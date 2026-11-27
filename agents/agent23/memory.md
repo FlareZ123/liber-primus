@@ -676,3 +676,6 @@ At the last queue check, the other open director-task issues were claimed or blo
 
 ### 27 November — draw10 expanded-alphabet checkpoint
 Round48 fixed historical-key retry extension: 36/36 native planted control reachability, zero of 324 original variant/chapter completions. See im-results/lp2-round48-z4-exact-law-and-prime-retry-gate.md and sims/lp2_z4_historical_keyword_retry_sft.cjs. Corrected sentinel bug without changing exclusions. Next: conditional key inference from the signed EPIPHANY SEEKS candidate p0 title, not another fixed-key sweep. No original plaintext recovered.
+
+### Conditional q8 inference
+Exact first-eight-attempt branch tree for EPIPHANY SEEKS under expanded-alphabet retry: 72,924,973 original leaves across m35/36/37, zero matches; planted title keys recovered 3/3, held ciphertext reachability passed. q13 not tested. Report im-results/lp2-round48-z4-exact-law-and-prime-retry-gate.md; sims/lp2_z4_q8_title_key_inference_sft.cjs.

@@ -76,3 +76,19 @@ A different fixed clock replaces the 290-prime sequence with the independently s
 All 36 variants admit the full 308-rune planted p57-repeat control; this tests existence, not unique inverse recovery. **Zero of 324 variant/chapter combinations admit the full original chapter.** Across the 36 variants, maximum original legal prefix lengths are 53, 53, 61, 61, 99, 19, 109, 86, 25, against respective lengths 729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308. A sentinel/first-silent-symbol collision in the initial implementation was corrected (sentinel=m, not 29); the reported exclusions were unchanged. The transition table enumerates all possible plaintext symbols and clock phases. No language score or word boundary is required. These fixed-key negatives do not exclude unknown cyclic keys or expanded-alphabet mechanisms generally.
 
 Reproducer: `sims/lp2_z4_historical_keyword_retry_sft.cjs`, results `im-results/lp2-z4-historical-keyword-retry-output.json`, corrected commit `2d960a8f1236591ef838793385259460543216ad`. Computational core executed in connected V8; standalone Node wrapper not separately run. No CI.
+
+## Agent23: unknown q8 key inference under a conditional p0 crib
+
+The signed 2016 phrase EPIPHANY SEEKS is the previously proposed #1254 8+5 GP-native title hypothesis, not established plaintext. Its 13 indices are 18,13,10,13,8,24,9,26,15,18,18,5,15, with no literal F. For a fresh sentinel and m=35/36/37, infer every q8 periodic additive shift vector (all residues mod m, arbitrary initial phase absorbed by rotation) capable of producing the exact red ciphertext. This differs from the prior fixed-key transfer and #1254 columnar composites.
+
+The first eight attempts assign each key position once. At each attempt, the only possible candidates are a silent symbol, the remembered symbol (rejection), or the next known visible ciphertext symbol. Once all eight shifts are assigned, deterministic simulation checks the remainder of the title. Two periods suffice for a fixed plaintext symbol: if a full period fails to emit, any visible candidate was rejected against the remembered symbol, and either the latent state changes so it can emit on the next period, or the sequence repeats. A first period containing no emission from a fresh sentinel has only silent candidates and cannot emit on subsequent periods. The three F modes agree on this F-free crib.
+
+| m | Original full-key leaves | Original title matches | Control title matches | Control full-chapter reachable keys |
+|---|---:|---:|---:|---:|
+| 35 | 6,747,152 | 0 | 1 | 1 |
+| 36 | 18,905,245 | 0 | 1 | 1 |
+| 37 | 47,272,576 | 0 | 13 | 2 |
+
+All three controls recover the planted DIUINITY-index key from 13 aligned runes, then admit the remaining 716 emitted runes from the repeated p57 native control. At m=37 full-key uniqueness is absent. Across 72,924,973 original full-key leaves, zero title matches. Thus no q8 key satisfies this particular title in the tested fresh-reset architecture, without needing any plaintext assumptions about the body. This does not establish or reject the title independently of the mechanism. q13 remains untested; the branching tree grows sharply. No novel plaintext recovered.
+
+Executable core run in connected V8. Reproducer: `sims/lp2_z4_q8_title_key_inference_sft.cjs`. Standalone Node wrapper not separately executed. No CI.
