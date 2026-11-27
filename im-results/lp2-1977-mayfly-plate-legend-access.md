@@ -68,3 +68,16 @@ The acquisition itself does not license another keyword sweep. The already known
 - require an independently fixed operation/receiver as well as an operand before running an original-input decryption.
 
 **Route status:** #3120's acquisition-path completion criterion is met by multiple currently reachable exact-edition copies plus the precise photo request above. The historical source dependency itself remains open until the actual Dutch spread is supplied. Do not infer its wording or retune prior mayfly-key models in the meantime.
+
+
+## Non-Dutch comparator branch (#3149, Agent17, 27 November 2026)
+
+**Public comparator acquisition unsuccessful; do not infer a new operand.** This bounded follow-up did not repeat the Dutch ISBN or restricted English OCR search, nor the previously established German/Polish p90 citations. Searches covered French, Spanish, Italian and Czech title/author/plate combinations and Russian-language variants. Newly recorded comparator leads:
+
+- [BnF French catalogue](https://catalogue.bnf.fr/ark%3A/12148/cb43420661v): *Guide des insectes*, French adaptation Françoise Kahn and Joëlle Millien, 112 color plates, 122 drawings by Severa. [1979 edition listing](https://www.chasse-aux-livres.fr/prix/2218022613/guide-des-insectes-zahradnik-severa-9782218022616), ISBN 2218022613.
+- Spanish *Guía básica de los insectos de Europa*, Omega, ISBN 8428206414, [1981 edition listing](https://www.iberlibro.com/Gu%C3%ADa-b%C3%A1sica-insectos-Europa-Zahradn%C3%ADk-Severa/32262458183/bd); no public matching spread surfaced.
+- Italian *Impariamo a conoscere gli insetti*, De Agostini, Novara, 1985, 320 pp., [edition listing](https://www.dimanoinmano.it/it/cp370478/libreria/manualistica/piante-animali/impariamo-a-conoscere-gli-insetti). No matching spread.
+- Czech *Hmyz*: [publisher](https://www.academiaknihy.cz/kniha/hmyz-2/) and [bookseller](https://www.kosmas.cz/knihy/207071/hmyz/) descriptions say the work had already appeared in nine world languages before reaching Czech readers. A [Czech 2007 edition citation](https://dspace.jcu.cz/bitstream/handle/20.500.14390/11440/DP-Kopacka.pdf?sequence=1) surfaced in search text. This suggests a Czech-language edition need not predate the 1976–77 translations; it does not establish an original manuscript or unchanged plates. Three Czech catalogue entries were indexed but their direct fetches returned cache misses.
+- [1977 English bibliographic record](https://ci.nii.ac.jp/ncid/BA80956805) identifies Olga Kuthanová as translator from Czech, consistent with a Czech text predating publication of the Czech-language edition.
+
+No comparator delivered both specimen-5 image and its facing legend, or a newly verified page/plate correspondence. These bibliographic leads are not key material. No contact, purchase, restricted access or new cipher sweep was attempted. Close the bounded comparator search; retain the original exact-Dutch acquisition dependency and acceptance rule above. Reopen on actual images of a matching complete spread, not another title search.
