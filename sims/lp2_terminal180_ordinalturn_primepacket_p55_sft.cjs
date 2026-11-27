@@ -73,6 +73,22 @@ assert.equal(packets.length,76);
 const key=packets.map(a=>a.reduce((sum,x)=>sum+gp.prime[x],0)%29);
 assert.deepEqual(key.slice(0,10),[10,9,21,9,16,9,23,28,17,20]);
 assert.equal(key.reduce((a,b)=>a+b,0),1131);
+function phi(n){
+ let k=n;
+ for(let d=2;d*d<=n;d++){
+  if(n%d===0){
+   while(n%d===0)n/=d;
+   k-=Math.floor(k/d);
+  }
+ }
+ if(n>1)k-=Math.floor(k/n);
+ return k;
+}
+const primePacketSums=packets.map(a=>a.reduce((sum,x)=>sum+gp.prime[x],0));
+const totientKey=primePacketSums.map(n=>phi(n)%29);
+assert.deepEqual(primePacketSums.slice(0,10),[126,96,108,96,161,67,110,86,133,78]);
+assert.deepEqual(totientKey.slice(0,10),[7,3,7,3,16,8,11,13,21,24]);
+assert.equal(totientKey.reduce((a,b)=>a+b,0),1028);
 const gpText=a=>a.map(x=>gp.translit[x]).join(" ");
 const ioc=a=>{
  const hist=Array(29).fill(0);
@@ -80,11 +96,11 @@ const ioc=a=>{
  return 29*hist.reduce((s,n)=>s+n*(n-1),0)/(a.length*(a.length-1));
 };
 /** Historical GP additive cipher, plaintext F=0 literal and nonconsuming. */
-function encrypt(plain){
+function encrypt(plain,k=key){
  let keyAt=0;
- return plain.map(x=>x===0?0:mod(x+key[keyAt++]));
+ return plain.map(x=>x===0?0:mod(x+k[keyAt++]));
 }
-function inverse(cipher){
+function inverse(cipher,k=key){
  const zeroSlots=cipher.flatMap((v,i)=>v===0?[i]:[]);
  assert.ok(zeroSlots.length<14,"small exhaustive F mask");
  const variants=[];
@@ -93,12 +109,12 @@ function inverse(cipher){
   for(let i=0;i<cipher.length;i++){
    const fbit=zeroSlots.indexOf(i);
    if(fbit>=0 && (mask&(1<<fbit))){plain.push(0);continue}
-   const x=mod(cipher[i]-key[used++]);
+   const x=mod(cipher[i]-k[used++]);
    if(x===0){ok=false;break}
    plain.push(x);
   }
   if(ok){
-   assert.deepEqual(encrypt(plain),cipher);
+   assert.deepEqual(encrypt(plain,k),cipher);
    variants.push({mask,used,scaledIoC:+ioc(plain).toFixed(9),
     runeText:gpText(plain),indices:plain});
   }
@@ -114,6 +130,15 @@ const original=inverse(original55);
 assert.deepEqual(original.zeroSlots,[15,25,41]);
 assert.deepEqual(original.variants.map(x=>x.mask),[0,3,7]);
 assert.deepEqual(original.variants.map(x=>x.used),[76,74,73]);
+const phiPlantPlain=source57.slice(0,76);
+const phiRecoveredPlant=inverse(encrypt(phiPlantPlain,totientKey),totientKey);
+assert.ok(phiRecoveredPlant.variants.some(v=>v.indices.every((x,i)=>x===phiPlantPlain[i])));
+const phiOriginal=inverse(original55,totientKey);
+assert.deepEqual(phiOriginal.zeroSlots,[15,25,41]);
+assert.deepEqual(phiOriginal.variants.map(x=>x.mask),[1,2,7]);
+assert.deepEqual(phiOriginal.variants.map(x=>x.used),[75,75,73]);
+assert.deepEqual(phiOriginal.variants.map(x=>x.scaledIoC),
+ [0.946315789,0.915789474,1.058245614]);
 // Independent printed-geometry control: compare this SAME 76-pad to the
 // 76 outer cells of the 32x8 table under the original row-major perimeter.
 const border=[];
@@ -135,7 +160,13 @@ console.log(JSON.stringify({
   exactInverse:true},
  originalVariants:original.variants.map(({mask,used,scaledIoC,runeText})=>
   ({mask,used,scaledIoC,runeText})),
+ totientPacketVariant:{
+  keyPrefix:totientKey.slice(0,20),
+  nativePlant:true,
+  originalVariants:phiOriginal.variants.map(({mask,used,scaledIoC,runeText})=>
+   ({mask,used,scaledIoC,runeText}))
+ },
  originalP50Ring:{mod29Equal:exact,additiveEqualP55:add,
   subtractiveEqualP55:sub},
- decision:"No authentic p55 plaintext. All three exact F-hold inverses are flat, nonprose; the same packet keys do not match the table border."
+ decision:"No authentic p55 plaintext. Three direct prime-packet and three source-selected totient-prime-packet exact F-hold inverses are all nonprose; no selected decoder."
 },null,2));
