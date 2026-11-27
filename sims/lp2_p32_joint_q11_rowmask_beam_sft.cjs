@@ -2,7 +2,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt"];
 
-function experiment(raw,K=1024,devInitial=null){
+function experiment(raw,K=1024,devInitial=null,mode='dev'){
  const [c0,n0,...lit]=raw,c=JSON.parse(c0),n=JSON.parse(n0),Q=29,N=11,S=N*Q,M=N*Q,H=128,NEG=-1e9,mod=x=>(x%Q+Q)%Q;
  const read=s=>[...s].filter(x=>c.runes.includes(x)).map(x=>c.runes.indexOf(x));const tokens=c.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
  function gp(s){return(s.match(/[a-z]+/gi)||[]).flatMap(w=>{w=w.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");const a=[];for(let i=0;i<w.length;){if(w.startsWith("ING",i)){a.push(21);i+=3}else if(w.startsWith("IO",i)){a.push(27);i+=2}else{const t=tokens.find(t=>w.startsWith(t.s,i));if(!t)throw Error(w);a.push(t.i);i+=t.s.length}}return a})}
@@ -73,13 +73,18 @@ function experiment(raw,K=1024,devInitial=null){
   const order=best.s.map(a=>Math.floor(a/Q)),shifts=best.s.map(a=>a%Q);for(let i=0;i<best.P.length;i++){const r=Math.floor(i/N),j=i%N;if(mod(best.P[i]+best.row[r]+shifts[j])!==C[r*N+order[j]])throw Error("replay")}
   return{ranks,initialScore,hist,order,shifts,row:best.row,P:best.P,score:best.z/H/(N*N-2),render:best.P.map(x=>c.translit[x]).join(" ")};
  }
+
  let seed=33013211;function rand(n){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%n}
- const out=[];
- const D=read(n.sections.find(s=>s.name===excluded[0]).source_text);
- for(let w=0;w<2;w++){const P=D.slice(w*121,(w+1)*121),order=Array.from({length:N},(_,j)=>j);for(let j=N-1;j>0;j--){const a=rand(j+1);[order[j],order[a]]=[order[a],order[j]]}const shifts=[0,...Array.from({length:N-1},()=>rand(Q))],row=Array.from({length:N},()=>rand(Q)),C=Array(N*N);for(let i=0;i<P.length;i++)C[Math.floor(i/N)*N+order[i%N]]=mod(P[i]+shifts[i%N]+row[Math.floor(i/N)]);
- const truth=order.map((a,j)=>a*Q+shifts[j]),z=beamSolve(C,truth,devInitial?devInitial[w].result.order.map((a,j)=>a*Q+devInitial[w].result.shifts[j]):null);out.push({w,correct:P.filter((x,i)=>x===z.P[i]).length,key:order.every((v,i)=>v===z.order[i]&&shifts[i]===z.shifts[i]),truthOrder:order,truthShifts:shifts,result:z})}
+ const out=[],specs=mode==='dev'?[[excluded[0],0],[excluded[0],121]]:mode==='freshA'?[[excluded[1],0],[excluded[1],121]]:mode==='freshB'?[[excluded[2],0],[excluded[2],121]]:[];
+ if(mode==='freshA')seed=0x330132a1;if(mode==='freshB')seed=0x330132b1;
+ for(let w=0;w<specs.length;w++){const [donorName,offset]=specs[w],D=read(n.sections.find(s=>s.name===donorName).source_text),P=D.slice(offset,offset+121);if(P.length!==121)throw Error("donor length");
+ const order=Array.from({length:N},(_,j)=>j);for(let j=N-1;j>0;j--){const a=rand(j+1);[order[j],order[a]]=[order[a],order[j]]}const shifts=[0,...Array.from({length:N-1},()=>rand(Q))],row=Array.from({length:N},()=>rand(Q)),C=Array(N*N);for(let i=0;i<P.length;i++)C[Math.floor(i/N)*N+order[i%N]]=mod(P[i]+shifts[i%N]+row[Math.floor(i/N)]);
+ const truth=order.map((a,j)=>a*Q+shifts[j]),z=beamSolve(C,truth,devInitial?devInitial[w].result.order.map((a,j)=>a*Q+devInitial[w].result.shifts[j]):null);
+ out.push({w,donorName,offset,correct:P.filter((x,i)=>x===z.P[i]).length,key:order.every((v,i)=>v===z.order[i]&&shifts[i]===z.shifts[i])&&row.every((v,i)=>v===z.row[i]),truthOrder:order,truthShifts:shifts,truthRow:row,result:z})}
+ if(mode==='original'){const C=c.pages[32].indices;if(C.length!==121)throw Error("p32");out.push({result:beamSolve(C)})}
+
  return{K,trainingRunes:total,out};
 }
 
-if(require.main===module)console.log(JSON.stringify(experiment(files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8')),Number(process.argv[2]||1024)),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8')),Number(process.argv[2]||1024),null,process.argv[3]||'dev'),null,2));
 module.exports={experiment};
