@@ -1,0 +1,36 @@
+[
+  {
+    "mode": "0",
+    "dict": 38938,
+    "budget": 5,
+    "nodes": 3000001,
+    "leaves": 0,
+    "maxsupport": 9,
+    "capped": true,
+    "omitted": [
+      6,
+      23,
+      22,
+      9,
+      12
+    ],
+    "fits": []
+  },
+  {
+    "mode": "1",
+    "dict": 38938,
+    "budget": 5,
+    "nodes": 3000001,
+    "leaves": 0,
+    "maxsupport": 8,
+    "capped": true,
+    "omitted": [
+      9,
+      19,
+      22,
+      14,
+      12
+    ],
+    "fits": []
+  }
+]
