@@ -1,0 +1,338 @@
+{
+  "script": "fa41cf781d365519f917a32169f540348656e2bb",
+  "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "transcription": "f7b534a33edeb212d427329798438325307463d7",
+  "anchors": [
+    3,
+    11,
+    15,
+    19,
+    27
+  ],
+  "zero": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    8,
+    9,
+    10,
+    16,
+    17,
+    18,
+    20,
+    21
+  ],
+  "original": [
+    {
+      "label": "continuous",
+      "frames": 1,
+      "pairSupport": 840,
+      "missing": 1,
+      "trigrams": 12954,
+      "results": [
+        {
+          "k": 2,
+          "m": 13,
+          "anchorSubsets": 406,
+          "minRow": 5,
+          "best": 54,
+          "spectralCount": 406,
+          "winner": {
+            "a": [
+              8,
+              12
+            ],
+            "row": 5,
+            "cert": {
+              "bound": 54,
+              "lambda": 8,
+              "num": 77298,
+              "den": 1458
+            }
+          },
+          "short": 12,
+          "long": 29,
+          "total": 41
+        },
+        {
+          "k": 3,
+          "m": 12,
+          "anchorSubsets": 3654,
+          "minRow": 33,
+          "best": 63,
+          "spectralCount": 3654,
+          "winner": {
+            "a": [
+              8,
+              12,
+              18
+            ],
+            "row": 33,
+            "cert": {
+              "bound": 63,
+              "lambda": 8,
+              "num": 83856,
+              "den": 1352
+            }
+          },
+          "short": 9,
+          "long": 38,
+          "total": 47
+        },
+        {
+          "k": 4,
+          "m": 11,
+          "anchorSubsets": 23751,
+          "minRow": 50,
+          "best": 50,
+          "spectralCount": 0,
+          "winner": {
+            "a": [
+              1,
+              14,
+              16,
+              20
+            ],
+            "row": 50,
+            "cert": null
+          },
+          "short": 8,
+          "long": 25,
+          "total": 33
+        },
+        {
+          "k": 5,
+          "m": 10,
+          "anchorSubsets": 118755,
+          "minRow": 52,
+          "best": 52,
+          "spectralCount": 0,
+          "winner": {
+            "a": [
+              0,
+              1,
+              14,
+              16,
+              20
+            ],
+            "row": 52,
+            "cert": null
+          },
+          "short": 8,
+          "long": 27,
+          "total": 35
+        }
+      ],
+      "min": 33
+    },
+    {
+      "label": "page",
+      "frames": 55,
+      "pairSupport": 840,
+      "missing": 1,
+      "trigrams": 12846,
+      "results": [
+        {
+          "k": 2,
+          "m": 13,
+          "anchorSubsets": 406,
+          "minRow": 5,
+          "best": 53,
+          "spectralCount": 406,
+          "winner": {
+            "a": [
+              8,
+              12
+            ],
+            "row": 5,
+            "cert": {
+              "bound": 53,
+              "lambda": 8,
+              "num": 76934,
+              "den": 1458
+            }
+          },
+          "short": 12,
+          "long": 28,
+          "total": 40
+        },
+        {
+          "k": 3,
+          "m": 12,
+          "anchorSubsets": 3654,
+          "minRow": 33,
+          "best": 62,
+          "spectralCount": 3654,
+          "winner": {
+            "a": [
+              8,
+              12,
+              18
+            ],
+            "row": 33,
+            "cert": {
+              "bound": 62,
+              "lambda": 8,
+              "num": 83520,
+              "den": 1352
+            }
+          },
+          "short": 9,
+          "long": 37,
+          "total": 46
+        },
+        {
+          "k": 4,
+          "m": 11,
+          "anchorSubsets": 23751,
+          "minRow": 50,
+          "best": 50,
+          "spectralCount": 0,
+          "winner": {
+            "a": [
+              1,
+              14,
+              16,
+              20
+            ],
+            "row": 50,
+            "cert": null
+          },
+          "short": 8,
+          "long": 25,
+          "total": 33
+        },
+        {
+          "k": 5,
+          "m": 10,
+          "anchorSubsets": 118755,
+          "minRow": 51,
+          "best": 51,
+          "spectralCount": 0,
+          "winner": {
+            "a": [
+              1,
+              5,
+              14,
+              16,
+              20
+            ],
+            "row": 51,
+            "cert": null
+          },
+          "short": 8,
+          "long": 26,
+          "total": 34
+        }
+      ],
+      "min": 33
+    },
+    {
+      "label": "line",
+      "frames": 594,
+      "pairSupport": 840,
+      "missing": 1,
+      "trigrams": 11768,
+      "results": [
+        {
+          "k": 2,
+          "m": 13,
+          "anchorSubsets": 406,
+          "minRow": 1,
+          "best": 47,
+          "spectralCount": 406,
+          "winner": {
+            "a": [
+              12,
+              26
+            ],
+            "row": 6,
+            "cert": {
+              "bound": 47,
+              "lambda": 9,
+              "num": 68354,
+              "den": 1458
+            }
+          },
+          "short": 12,
+          "long": 22,
+          "total": 34
+        },
+        {
+          "k": 3,
+          "m": 12,
+          "anchorSubsets": 3654,
+          "minRow": 25,
+          "best": 56,
+          "spectralCount": 3654,
+          "winner": {
+            "a": [
+              4,
+              13,
+              24
+            ],
+            "row": 25,
+            "cert": {
+              "bound": 56,
+              "lambda": 9,
+              "num": 74544,
+              "den": 1352
+            }
+          },
+          "short": 9,
+          "long": 31,
+          "total": 40
+        },
+        {
+          "k": 4,
+          "m": 11,
+          "anchorSubsets": 23751,
+          "minRow": 39,
+          "best": 47,
+          "spectralCount": 15,
+          "winner": {
+            "a": [
+              0,
+              5,
+              10,
+              17
+            ],
+            "row": 47,
+            "cert": null
+          },
+          "short": 8,
+          "long": 22,
+          "total": 30
+        },
+        {
+          "k": 5,
+          "m": 10,
+          "anchorSubsets": 118755,
+          "minRow": 44,
+          "best": 47,
+          "spectralCount": 10,
+          "winner": {
+            "a": [
+              1,
+              4,
+              8,
+              14,
+              24
+            ],
+            "row": 47,
+            "cert": null
+          },
+          "short": 8,
+          "long": 22,
+          "total": 30
+        }
+      ],
+      "min": 30
+    }
+  ],
+  "toy": 16320,
+  "psdCertificates": 12717,
+  "maxResidual": 452768
+}
