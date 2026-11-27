@@ -1,0 +1,1101 @@
+{
+  "source": "64cb525bbe91086d9312a7f2becba69297aa5f59",
+  "results": [
+    {
+      "heuristic": true,
+      "mode": "terminal0",
+      "budget": 3,
+      "dictionary": 38938,
+      "found": false,
+      "exact": false,
+      "train_supported": 0,
+      "train_truth": 0,
+      "holdout_supported": 0,
+      "holdout_truth": 0,
+      "holdout_count": 17,
+      "omitted": [
+        12,
+        34,
+        37
+      ],
+      "pi": [],
+      "key": [],
+      "seeds": [
+        {
+          "seed": [
+            45,
+            12,
+            13
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 31269,
+          "extends": 524037,
+          "enum": 284258,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0017
+        },
+        {
+          "seed": [
+            45,
+            12,
+            34
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 32053,
+          "extends": 418169,
+          "enum": 1004995,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00205
+        },
+        {
+          "seed": [
+            45,
+            12,
+            37
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 33755,
+          "extends": 430842,
+          "enum": 1615561,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0011
+        },
+        {
+          "seed": [
+            45,
+            12,
+            16
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 31725,
+          "extends": 384862,
+          "enum": 533194,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00216
+        },
+        {
+          "seed": [
+            45,
+            12,
+            0
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 31419,
+          "extends": 420678,
+          "enum": 787176,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00153
+        },
+        {
+          "seed": [
+            45,
+            13,
+            34
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 37127,
+          "extends": 483090,
+          "enum": 116058,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.02518
+        },
+        {
+          "seed": [
+            45,
+            13,
+            37
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 34438,
+          "extends": 468756,
+          "enum": 407885,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00103
+        },
+        {
+          "seed": [
+            45,
+            34,
+            37
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 39286,
+          "extends": 327314,
+          "enum": 3975407,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.13788
+        },
+        {
+          "seed": [
+            45,
+            13,
+            16
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 33100,
+          "extends": 611519,
+          "enum": 1626494,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00078
+        },
+        {
+          "seed": [
+            45,
+            34,
+            16
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 35411,
+          "extends": 277019,
+          "enum": 905757,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00181
+        },
+        {
+          "seed": [
+            45,
+            37,
+            16
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 50934,
+          "extends": 492576,
+          "enum": 19787889,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.02426
+        },
+        {
+          "seed": [
+            12,
+            13,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35112,
+          "extends": 397000,
+          "enum": 40368,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.03172
+        },
+        {
+          "seed": [
+            12,
+            16,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37217,
+          "extends": 434068,
+          "enum": 69803,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00233
+        },
+        {
+          "seed": [
+            37,
+            16,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 38400,
+          "extends": 213331,
+          "enum": 1528938,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.17489
+        },
+        {
+          "seed": [
+            45,
+            16,
+            0
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 36842,
+          "extends": 450062,
+          "enum": 4648207,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.02332
+        },
+        {
+          "seed": [
+            13,
+            16,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37170,
+          "extends": 668057,
+          "enum": 166518,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.12953
+        },
+        {
+          "seed": [
+            13,
+            37,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 36758,
+          "extends": 735776,
+          "enum": 948648,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.36715
+        },
+        {
+          "seed": [
+            45,
+            13,
+            0
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 33725,
+          "extends": 495745,
+          "enum": 1078162,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00317
+        },
+        {
+          "seed": [
+            34,
+            16,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 40661,
+          "extends": 325770,
+          "enum": 239685,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.23417
+        },
+        {
+          "seed": [
+            13,
+            37,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 36741,
+          "extends": 497933,
+          "enum": 359948,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.21582
+        },
+        {
+          "seed": [
+            34,
+            37,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 41650,
+          "extends": 316789,
+          "enum": 1244680,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.32555
+        },
+        {
+          "seed": [
+            13,
+            34,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35324,
+          "extends": 947024,
+          "enum": 305283,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.21195
+        },
+        {
+          "seed": [
+            12,
+            37,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35681,
+          "extends": 365863,
+          "enum": 194271,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00128
+        },
+        {
+          "seed": [
+            34,
+            37,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 42844,
+          "extends": 335629,
+          "enum": 2036902,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.03762
+        },
+        {
+          "seed": [
+            45,
+            34,
+            0
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 38371,
+          "extends": 425632,
+          "enum": 4372359,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.11156
+        },
+        {
+          "seed": [
+            12,
+            13,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 32104,
+          "extends": 435769,
+          "enum": 3364,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00659
+        },
+        {
+          "seed": [
+            13,
+            34,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 39747,
+          "extends": 349247,
+          "enum": 74008,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.09399
+        },
+        {
+          "seed": [
+            12,
+            13,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 32694,
+          "extends": 440328,
+          "enum": 32799,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00208
+        },
+        {
+          "seed": [
+            45,
+            37,
+            0
+          ],
+          "done": 1,
+          "total": 96,
+          "nodes": 37300,
+          "extends": 352996,
+          "enum": 2374984,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0948
+        },
+        {
+          "seed": [
+            12,
+            34,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 34886,
+          "extends": 344653,
+          "enum": 26912,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00164
+        },
+        {
+          "seed": [
+            12,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35904,
+          "extends": 263971,
+          "enum": 195953,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00336
+        },
+        {
+          "seed": [
+            13,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35373,
+          "extends": 489020,
+          "enum": 607202,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.19911
+        },
+        {
+          "seed": [
+            12,
+            37,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37878,
+          "extends": 510310,
+          "enum": 2158847,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.28264
+        },
+        {
+          "seed": [
+            12,
+            34,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 31759,
+          "extends": 509090,
+          "enum": 58870,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00214
+        },
+        {
+          "seed": [
+            12,
+            13,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 33781,
+          "extends": 398433,
+          "enum": 80736,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00169
+        }
+      ],
+      "run": 45948419038
+    },
+    {
+      "heuristic": true,
+      "mode": "terminal1",
+      "budget": 3,
+      "dictionary": 38938,
+      "found": false,
+      "exact": false,
+      "train_supported": 0,
+      "train_truth": 0,
+      "holdout_supported": 0,
+      "holdout_truth": 0,
+      "holdout_count": 17,
+      "omitted": [
+        12,
+        13,
+        16
+      ],
+      "pi": [],
+      "key": [],
+      "seeds": [
+        {
+          "seed": [
+            45,
+            12,
+            0
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37931,
+          "extends": 563075,
+          "enum": 841,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00019
+        },
+        {
+          "seed": [
+            45,
+            12,
+            13
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 40235,
+          "extends": 625507,
+          "enum": 5887,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00037
+        },
+        {
+          "seed": [
+            45,
+            12,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37877,
+          "extends": 914968,
+          "enum": 19343,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.03274
+        },
+        {
+          "seed": [
+            45,
+            12,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 38705,
+          "extends": 849007,
+          "enum": 104284,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.26447
+        },
+        {
+          "seed": [
+            45,
+            12,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 36496,
+          "extends": 763075,
+          "enum": 1682,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00774
+        },
+        {
+          "seed": [
+            45,
+            0,
+            13
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 36109,
+          "extends": 1596586,
+          "enum": 10092,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.09664
+        },
+        {
+          "seed": [
+            45,
+            0,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35665,
+          "extends": 1693915,
+          "enum": 479370,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.08821
+        },
+        {
+          "seed": [
+            45,
+            0,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37070,
+          "extends": 1063874,
+          "enum": 38686,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.05712
+        },
+        {
+          "seed": [
+            45,
+            0,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 39315,
+          "extends": 1071910,
+          "enum": 810724,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.18475
+        },
+        {
+          "seed": [
+            45,
+            13,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 38504,
+          "extends": 1845394,
+          "enum": 841,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.11709
+        },
+        {
+          "seed": [
+            45,
+            13,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 38317,
+          "extends": 1151914,
+          "enum": 7569,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0756
+        },
+        {
+          "seed": [
+            45,
+            13,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37241,
+          "extends": 1026831,
+          "enum": 10092,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0384
+        },
+        {
+          "seed": [
+            12,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 39355,
+          "extends": 933842,
+          "enum": 26071,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.04556
+        },
+        {
+          "seed": [
+            16,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 48967,
+          "extends": 642379,
+          "enum": 20184,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.06451
+        },
+        {
+          "seed": [
+            12,
+            13,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 40228,
+          "extends": 1019455,
+          "enum": 13456,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.06064
+        },
+        {
+          "seed": [
+            13,
+            16,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 45566,
+          "extends": 1127202,
+          "enum": 23548,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0276
+        },
+        {
+          "seed": [
+            0,
+            13,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 45162,
+          "extends": 811445,
+          "enum": 9251,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00826
+        },
+        {
+          "seed": [
+            12,
+            0,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 41627,
+          "extends": 1121411,
+          "enum": 77372,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.01657
+        },
+        {
+          "seed": [
+            13,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 40444,
+          "extends": 1061594,
+          "enum": 38686,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00075
+        },
+        {
+          "seed": [
+            0,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 44947,
+          "extends": 485460,
+          "enum": 26071,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00562
+        },
+        {
+          "seed": [
+            13,
+            16,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 49127,
+          "extends": 897002,
+          "enum": 3364,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.04837
+        },
+        {
+          "seed": [
+            0,
+            13,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 50405,
+          "extends": 682028,
+          "enum": 6728,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00663
+        },
+        {
+          "seed": [
+            12,
+            16,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37809,
+          "extends": 939120,
+          "enum": 27753,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.08524
+        },
+        {
+          "seed": [
+            0,
+            16,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 48438,
+          "extends": 722937,
+          "enum": 8410,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.05173
+        },
+        {
+          "seed": [
+            12,
+            0,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 35443,
+          "extends": 1151500,
+          "enum": 54665,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.21195
+        },
+        {
+          "seed": [
+            45,
+            34,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 41968,
+          "extends": 824596,
+          "enum": 38686,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.11505
+        },
+        {
+          "seed": [
+            0,
+            16,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 46963,
+          "extends": 590018,
+          "enum": 102602,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.10527
+        },
+        {
+          "seed": [
+            45,
+            16,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 43953,
+          "extends": 823912,
+          "enum": 8410,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.12957
+        },
+        {
+          "seed": [
+            12,
+            13,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 38317,
+          "extends": 1170304,
+          "enum": 25230,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.03292
+        },
+        {
+          "seed": [
+            12,
+            16,
+            34
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 40718,
+          "extends": 1166047,
+          "enum": 10092,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.24184
+        },
+        {
+          "seed": [
+            45,
+            16,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 44910,
+          "extends": 830006,
+          "enum": 0,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.10334
+        },
+        {
+          "seed": [
+            0,
+            13,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 49479,
+          "extends": 826921,
+          "enum": 5046,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.0821
+        },
+        {
+          "seed": [
+            12,
+            0,
+            16
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37820,
+          "extends": 1102576,
+          "enum": 213614,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00163
+        },
+        {
+          "seed": [
+            12,
+            0,
+            13
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 36786,
+          "extends": 1089995,
+          "enum": 26912,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.07285
+        },
+        {
+          "seed": [
+            12,
+            13,
+            37
+          ],
+          "done": 0,
+          "total": 96,
+          "nodes": 37423,
+          "extends": 920157,
+          "enum": 11774,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00095
+        }
+      ],
+      "run": 45948423709
+    }
+  ]
+}
