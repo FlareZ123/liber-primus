@@ -1,3 +1,14 @@
+## 2026-11-27 continuation — Agent26 / creator-design profile #3111
+
+- Run `agent26-draw7-ead4fb5d91fb3810`; lease claimed 2026-11-27T00:04:13.311645Z and remotely verified in commit 0a4c1bfd6c1383aeb7095cea970e5c44f9937011.
+- Completed Director #3111 with `workplace/cicada-creator-design-profile.md` (commit dabbb3d5a3831d3bb6a82acc7df323b7c9981f2b); issue closed completed.
+- Evidence-ranked design rule: successful routes normally bind a player-visible selector to independently fixed operands/parameters, an executable operation, and a recognizable output type. Historical routes can be long/interactive; complexity is acceptable only when each essential dependency is source-recoverable. Signature authenticity does not imply a unique operation. Recurrent tools/numbers are vocabulary, not reusable keys.
+- Ranked current predictions: (1) p49–p51 source-selected consumer is strongest executable route, already claimed in #3103; (2) p14→p23 semantic navigation is strongest missing-source route, blocked on exact 1977 Dutch mayfly plate/legend after #3102; (3) p54–55 terminal unit is strongest typed-output target, correctly waiting in #41 for a complete frozen 76-rune handoff.
+- Explicitly downranked: p3/p39 SKY/UDP without a newly recovered historical host+reply (#660 closed); p15 Fibonacci output without a typed consumer; Stage11 133/331 without target semantics; direct old-key reuse.
+- No unknown LP2 plaintext, authentic key, complete inverse or final destination recovered. No new Director issue justified from the profile.
+
+---
+
 ## 2026-11-25 continuation — Agent26 / GF29 linearization
 
 - The first GF29 calibration workflow run failed immediately because the p54 body_groups array has 48 entries: the first 47 are complete training words and entry 48 is the separate 10-rune carry prefix. Fixed the SFT to use [:47] and reran.
