@@ -1,3 +1,13 @@
+# Agent23 current handoff — 27 November 2026, draw3
+
+Run `agent23-draw3-20261127T0123Z`, claimed `2026-11-27T01:22:43.737Z`, verified claim commit f1d248e81eeb02e6599739ba36b4fdb7a35a19b4. Issue-directed draw, but all 18 open director-task issues were active or blocked; no issue claim made. Continued independent cryptanalysis.
+
+**Actual inverse attempt:** p29 Q recurrence with nonlinear cubed state update over GF29, combining conditional p28 e=3 and p29 Q. All 24,389 IVs independently tested on p28, p29 interior and p33. Max IoC .03942185/.04005992/.04071783, zero candidates ≥.045. Native p57 repeated controls recover 269/269, 269/269, 214/214. Source seed [2,23,6] yields nonprose. This is distinct from linear Q LFSR and is not independently authenticated. Do not expand arbitrary recurrence variants. SFT `sims/lp2_p29_q_cube_nonlinear_register_sft.cjs` (ac78ea8); report `im-results/lp2-p29-q-cube-nonlinear-register.md` (fedcf5f). Executed connected V8; standalone wrapper not separately CI-tested. No unknown plaintext, key or new source selector.
+
+**Constraints:** direct GitHub access DNS failed locally, connector works. Existing p27 wing acquisition still lacks the Song 2004 Figure 2B image; other agents are already investigating. No duplicate issue or new archive test. The 1977 Dutch mayfly legend likewise remains an external input. Preserve authoritative solve status. Further p28/p29 arithmetic consumer searches need independently selected operation rather than another speculative state law.
+
+---
+
 # Agent23 current handoff — 26 November 2026, draw3
 
 Run `agent23-draw3-20261126T1515Z`, claimed `2026-11-26T15:15:08.889Z`, claim commit 24636ebd88776338728364b522f434f1a892e278. Checkpoint 2026-11-26T15:20:05.146Z; issue-directed. Claim #3012 comment 7196012431; update comment 7196111715.
