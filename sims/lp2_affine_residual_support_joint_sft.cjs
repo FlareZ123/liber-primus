@@ -19,12 +19,31 @@ function solveAffine(corpus,txt,coeffs=[16,19],mode="ordinary",pairGate=false,wo
    function hall(){let letters=R(A).filter(x=>assigned[x]),masks=[0],tot=[0];for(let x of letters){let n=masks.length;for(let j=0;j<n;j++){let m=masks[j]|assigned[x],s=tot[j]+Math.max(0,pf[x]-loss);if(mass(m)<s)return false;masks.push(m);tot.push(s)}}return true;}
    function checkOther(){for(let g of gs){let ms=g.letters.map(x=>assigned[x]);if(ms.filter(x=>!x).length<=1&&freeCap(ms)<g.n)return false;}return true;}
    let ph=null;function checkPairs(){if(!pairGate)return true;if(!ph){ph=new Uint32Array(A*A);for(let j=start;j<start+N-2+loss;j++){if(shuffle&&word[j]!==word[j+1]||noF&&(!p[j]||!p[j+1]))continue;ph[p[j]*A+p[j+1]]++;}}for(let x=0;x<A;x++)for(let y=0;y<A;y++){let n=ph[x*A+y]-loss;if(n<=0||!assigned[x]&&!assigned[y])continue;let v=0;if(assigned[x]&&assigned[y]){for(let i of bits(assigned[x]))for(let j of bits(assigned[y]))v+=H[i*A+j];}else{let z=new Uint32Array(A);if(assigned[x]){for(let i of bits(assigned[x]))for(let j=0;j<A;j++)z[j]+=H[i*A+j];}else{for(let j of bits(assigned[y]))for(let i=0;i<A;i++)z[i]+=H[i*A+j];}v=top(z,q);}if(v<n)return false;}for(let k=0;k<f.length;k++){let n=f[k]-loss;if(n<=0)continue;let ms=idx(k).map(x=>assigned[x]);if(ms.filter(x=>!x).length<=1&&freeCap(ms)<n)return false;}return true;}
-   function checkWords(){if(!wordGate)return true;let pat=new Map(),end=start+N-1+loss;for(let j=start;j<end;){let k=j+1;while(k<end&&word[k]===word[j])k++;let w=p.slice(j,k).map(x=>assigned[x]||0);if(w.some(Boolean)){let key=w.join(",");if(!pat.has(key))pat.set(key,{w,n:0});pat.get(key).n++;}j=k;}const eligible=Array.from(pat.values()).filter(z=>z.n>loss).sort((a,b)=>b.w.filter(Boolean).length-a.w.filter(Boolean).length);for(let {w,n} of eligible){let count=0;for(let i=0;i+w.length<=d.length;i++){let ok=true;for(let j=0;j<w.length;j++)if(w[j]&&!(w[j]&(1<<d[i+j]))){ok=false;break;}if(ok&&++count>=n-loss)break;}if(count<n-loss)return false;}return true;}
+   function checkWords(){return !wordGate||projectedWordCapacity(p,word,start,start+N-1+loss,assigned,d,loss).pass;}
    function dfs(i){if(++state.nodes>500000){state.cap=true;return false}if(i===selected.length)return checkPairs()&&checkWords();const g=selected[i];for(let b of lists[i]){tries++;let ok=g.letters.every((x,j)=>!assigned[x]||assigned[x]===b[j]);if(!ok)continue;for(let z of used){let inter=val([b[0]&z.box[0],b[1]&z.box[1],b[2]&z.box[2]]);if(b[3]+z.box[3]-inter<g.n+z.n){ok=false;break}}if(!ok)continue;let changed=[];for(let j=0;j<3;j++){let x=g.letters[j];if(!assigned[x]){assigned[x]=b[j];changed.push(x)}}used.push({box:b,n:g.n});let pass=hall()&&checkOther()&&dfs(i+1);used.pop();for(let x of changed)assigned[x]=0;if(pass)return true;if(state.cap)return false;}return false;}
    if(dfs(0)){survivors.push({start,selected:selected.map(g=>[g.id,g.n]),nodes:state.nodes});}else if(state.cap){limit++;}else{stages.joint=(stages.joint||0)+1;}counts[state.nodes]=(counts[state.nodes]||0)+1;
   });results.push({a,mode,cap,boxes:boxes.length,outer,leaves,initialSurvivors:num,excluded:stages,survived:survivors.length,capped:limit,tries,pairGate,wordGate,survivors});
  }
  return results;
 }
-module.exports={solveAffine};
-if(require.main===module){const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8");console.log(JSON.stringify(solveAffine(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/control/shakespeare_first300k.txt"),[16,19],process.argv[2]||"ordinary",process.argv.includes("--pairs"),process.argv.includes("--words")),null,2));}
+
+// The projected whole-word count is independent of printed cipher boundaries.
+function projectedWordCapacity(p,word,start,end,assigned,d,loss){
+ let pat=new Map();for(let j=start;j<end;){let k=j+1;while(k<end&&word[k]===word[j])k++;let w=p.slice(j,k).map(x=>assigned[x]||0);if(w.some(Boolean)){let key=w.join(",");if(!pat.has(key))pat.set(key,{w,n:0});pat.get(key).n++;}j=k;}
+ const eligible=Array.from(pat.values()).filter(z=>z.n>loss).sort((a,b)=>b.w.filter(Boolean).length-a.w.filter(Boolean).length);
+ for(let {w,n} of eligible){let count=0;for(let i=0;i+w.length<=d.length;i++){let ok=true;for(let j=0;j<w.length;j++)if(w[j]&&!(w[j]&(1<<d[i+j]))){ok=false;break;}if(ok&&++count>=n-loss)break;}if(count<n-loss)return {pass:false,patterns:eligible.length};}
+ return {pass:true,patterns:eligible.length};
+}
+function plantProjected(corpus,txt){
+ const A=29,N=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices).length,toks=corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
+ const words=(txt.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").match(/[A-Z]+/g)||[]).map(w=>{let a=[];for(let i=0;i<w.length;){if(w.startsWith("ING",i)){a.push(21);i+=3}else if(w.startsWith("IO",i)){a.push(27);i+=2}else{let t=toks.find(t=>w.startsWith(t.s,i));if(!t)throw Error(w);a.push(t.i);i+=t.s.length}}return a});
+ let rnd=123456789;function next(n){rnd=(Math.imul(rnd,1664525)+1013904223)>>>0;return rnd%n;}function shuffle(x){for(let i=x.length-1;i>0;i--){let j=next(i+1);[x[i],x[j]]=[x[j],x[i]];}return x;}
+ const p=words.flat().slice(155256,155256+N),allWord=words.flatMap((w,i)=>w.map(()=>i)),word=allWord.slice(155256,155256+N),fragments=[];for(let i=0;i<p.length;){let j=i+1;while(j<p.length&&word[j]===word[i])j++;fragments.push(p.slice(i,j));i=j;}
+ let out=[];for(let a of [16,19])for(let f of [false,true]){let charts=Array.from({length:4},()=>shuffle(Array.from({length:A},(_,i)=>i))),assigned=new Uint32Array(A);for(let x of [24,9,23,26,3,1])for(let c of charts)assigned[x]|=1<<c[x];
+ const P=shuffle(fragments.slice()).flat(),C=[];let v=0;for(let x of P){let d=charts[next(4)][x],c=f&&x===0?0:(a*v+d)%A;C.push(c);v=c;}
+ const d=C.slice(1).map((x,i)=>(x-a*C[i]+A*A)%A),check=projectedWordCapacity(p,word,0,p.length,assigned,d,1);if(!check.pass)throw Error("projected plant failed");out.push({a,literalF:f,fragments:fragments.length,...check});}
+ return out;
+}
+
+module.exports={solveAffine,plantProjected};
+if(require.main===module){const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8");console.log(JSON.stringify(process.argv.includes("--plant")?plantProjected(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/control/shakespeare_first300k.txt")):solveAffine(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/control/shakespeare_first300k.txt"),[16,19],process.argv[2]||"ordinary",process.argv.includes("--pairs"),process.argv.includes("--words")),null,2));}
