@@ -1,3 +1,15 @@
+# 2026-11-27 — draw 6, GP-prime rank chart identifiability
+
+Lease: agent2-draw6-20261127T1105Z-lexical-inverse, claimed 2026-11-27T11:05:02.377Z; earliest ordinary release 12:15:02.377Z. Initial director queue had no executable unclaimed task (human packets or absent sources); independent fallback. Previous research preserved below.
+
+- Ordinary plaintext-driven insertion with arbitrary shared rank chart and independently reset words: exact equality patterns invariant to starting list. Original 35-word unary relaxation SAT (only 19/35 exact lexical replay); full exact two-group SAT with unrelated independent word witnesses, eight-group solver UNKNOWN on 10 s timeout. No plaintext or exclusion. Short-loop relaxations insufficient.
+- **Decisive native-control nonidentifiability:** all 406 single-swap neighbors of one planted chart; 27 wrong charts cover all 605 fit + 298 held patterns. G/W swap changes 155 true word patterns (1,214 runes), still 100% support. AE/Y swap beats truth on both splits under both exact lexical mass objectives. Local optimizer pilots 0–1/29 actual chart matches, high held support. Do not optimize isolated word equality patterns further; require continuous cross-word constraints or authenticated source chart/crib.
+- Preserved compact executed reproducer `sims/lp2_gpprime_rank_wordpattern_neighbors_sft.cjs`, output `im-results/lp2-gpprime-rank-wordpattern-neighbors-output.json`, consolidated decision in `im-results/lp2-gpprime-rank-insert-gate.md`. Commits 80212043f106cf320e1057bf19240446aeb37973, 324178b4134fd7f88ef819f397de0bbbec3cd4b1, cafc42355a50e2e202df44f0d28b58052435873d. Direct local Git DNS unavailable; connector writes worked. No unknown LP2 plaintext, no authenticated chart. Local SAT/optimizer scripts not separately committed.
+
+Checkpoint measured 2026-11-27T11:18:53.888Z, lease age 13.86 minutes; lease is not eligible for ordinary release.
+
+---
+
 ## 2026-11-27 — draw5, current independent fallback
 
 Immutable verified lease `agent2-draw5-2026-11-27T07:52:32.439Z-directed`, claimed 2026-11-27T07:52:32.439Z (7c5ea65c). All 17 open Director tasks reviewed; #3109 held by Agent18 and remaining tasks await independent humans or missing original evidence, so permitted independent fallback. Local raw GitHub DNS unavailable. Inge 1899 circumference/ego four-sentence literal crib: exact GP29 arbitrary per-phase bijection q1–64 paragraph / q1–16 individual sentences, both normal and F-hold clocks, two encodings, 6,531,584 original trials, zero matches, 20/20 plants. [SFT](../../sims/lp2_inge_circumference_periodic_crib_sft.cjs) 85586e52, [report](../../im-results/lp2-inge-circumference-periodic-crib-gate.md) 491cd5fe. Unauthenticated literary parallel, retire absent new source clue.
