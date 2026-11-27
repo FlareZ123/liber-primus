@@ -5173,6 +5173,342 @@
       "H": 2621,
       "floor": 0.65,
       "witness": null
+    },
+    {
+      "i": 135,
+      "a": {
+        "page": 42,
+        "i": 139,
+        "name": "0_loss_of_divinity",
+        "j": 531
+      },
+      "b": {
+        "page": 54,
+        "i": 36,
+        "name": "0_welcome",
+        "j": 497
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 10,
+      "propDead": 1,
+      "scoreDead": 8,
+      "evaluated": 1,
+      "rootUpper": 0.7045136815507981,
+      "leaf": 0,
+      "frameEvals": 84,
+      "N": 9778,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 117,
+      "a": {
+        "page": 42,
+        "i": 139,
+        "name": "0_loss_of_divinity",
+        "j": 531
+      },
+      "b": {
+        "page": 54,
+        "i": 36,
+        "name": "0_welcome",
+        "j": 497
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 0,
+      "scoreDead": 10,
+      "evaluated": 1,
+      "rootUpper": 0.6994263465516808,
+      "leaf": 0,
+      "frameEvals": 85,
+      "N": 9778,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 138,
+      "a": {
+        "page": 27,
+        "i": 68,
+        "name": "0_welcome",
+        "j": 443
+      },
+      "b": {
+        "page": 44,
+        "i": 120,
+        "name": "0_koan_1",
+        "j": 21
+      },
+      "fixed": 16,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 1,
+      "scoreDead": 9,
+      "evaluated": 1,
+      "rootUpper": 0.6948588717096181,
+      "leaf": 0,
+      "frameEvals": 97,
+      "N": 9775,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 109,
+      "a": {
+        "page": 10,
+        "i": 232,
+        "name": "0_koan_1",
+        "j": 768
+      },
+      "b": {
+        "page": 46,
+        "i": 30,
+        "name": "0_loss_of_divinity",
+        "j": 567
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 8,
+      "propDead": 0,
+      "scoreDead": 7,
+      "evaluated": 1,
+      "rootUpper": 0.6924042962211577,
+      "leaf": 0,
+      "frameEvals": 86,
+      "N": 9749,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 131,
+      "a": {
+        "page": 37,
+        "i": 96,
+        "name": "0_koan_1",
+        "j": 365
+      },
+      "b": {
+        "page": 47,
+        "i": 143,
+        "name": "0_loss_of_divinity",
+        "j": 389
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 13,
+      "propDead": 0,
+      "scoreDead": 12,
+      "evaluated": 1,
+      "rootUpper": 0.68428026748485,
+      "leaf": 0,
+      "frameEvals": 103,
+      "N": 9780,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 144,
+      "a": {
+        "page": 43,
+        "i": 79,
+        "name": "0_loss_of_divinity",
+        "j": 605
+      },
+      "b": {
+        "page": 43,
+        "i": 254,
+        "name": "0_welcome",
+        "j": 118
+      },
+      "fixed": 16,
+      "status": "BELOW_FLOOR",
+      "nodes": 14,
+      "propDead": 0,
+      "scoreDead": 13,
+      "evaluated": 1,
+      "rootUpper": 0.6792273600886235,
+      "leaf": 0,
+      "frameEvals": 106,
+      "N": 10007,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 119,
+      "a": {
+        "page": 9,
+        "i": 121,
+        "name": "0_loss_of_divinity",
+        "j": 607
+      },
+      "b": {
+        "page": 12,
+        "i": 41,
+        "name": "0_welcome",
+        "j": 272
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 0,
+      "scoreDead": 10,
+      "evaluated": 1,
+      "rootUpper": 0.6710576465466779,
+      "leaf": 0,
+      "frameEvals": 69,
+      "N": 9753,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 105,
+      "a": {
+        "page": 4,
+        "i": 157,
+        "name": "0_loss_of_divinity",
+        "j": 529
+      },
+      "b": {
+        "page": 8,
+        "i": 173,
+        "name": "0_loss_of_divinity",
+        "j": 388
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 1,
+      "propDead": 0,
+      "scoreDead": 1,
+      "evaluated": 1,
+      "rootUpper": 0.6373320665370317,
+      "leaf": 0,
+      "frameEvals": 42,
+      "N": 9766,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 118,
+      "a": {
+        "page": 9,
+        "i": 82,
+        "name": "0_welcome",
+        "j": 439
+      },
+      "b": {
+        "page": 33,
+        "i": 121,
+        "name": "0_koan_1",
+        "j": 694
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 1,
+      "propDead": 0,
+      "scoreDead": 1,
+      "evaluated": 1,
+      "rootUpper": 0.6284941466881363,
+      "leaf": 0,
+      "frameEvals": 42,
+      "N": 9800,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 124,
+      "a": {
+        "page": 22,
+        "i": 109,
+        "name": "jpg107-167",
+        "j": 162
+      },
+      "b": {
+        "page": 38,
+        "i": 30,
+        "name": "0_welcome",
+        "j": 105
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 1,
+      "propDead": 0,
+      "scoreDead": 1,
+      "evaluated": 1,
+      "rootUpper": 0.6167515612302127,
+      "leaf": 0,
+      "frameEvals": 43,
+      "N": 10053,
+      "H": 2491,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 128,
+      "a": {
+        "page": 27,
+        "i": 193,
+        "name": "p57_parable",
+        "j": 50
+      },
+      "b": {
+        "page": 36,
+        "i": 179,
+        "name": "0_welcome",
+        "j": 272
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 1,
+      "propDead": 0,
+      "scoreDead": 1,
+      "evaluated": 1,
+      "rootUpper": 0.5992302450029934,
+      "leaf": 0,
+      "frameEvals": 42,
+      "N": 9810,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 87,
+      "a": {
+        "page": 27,
+        "i": 69,
+        "name": "0_welcome",
+        "j": 444
+      },
+      "b": {
+        "page": 41,
+        "i": 261,
+        "name": "0_koan_1",
+        "j": 25
+      },
+      "fixed": 18,
+      "status": "BELOW_FLOOR",
+      "nodes": 1,
+      "propDead": 0,
+      "scoreDead": 1,
+      "evaluated": 1,
+      "rootUpper": 0.5838139445856347,
+      "leaf": 0,
+      "frameEvals": 42,
+      "N": 9775,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
     }
   ]
 }
