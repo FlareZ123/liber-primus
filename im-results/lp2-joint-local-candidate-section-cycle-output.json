@@ -1,0 +1,312 @@
+{
+  "local": [
+    {
+      "page": 33,
+      "offset": 132,
+      "name": "WILL",
+      "p": [
+        7,
+        10,
+        20,
+        20
+      ],
+      "c": [
+        3,
+        15,
+        17,
+        22
+      ]
+    },
+    {
+      "page": 34,
+      "offset": 4,
+      "name": "BE",
+      "p": [
+        17,
+        18
+      ],
+      "c": [
+        12,
+        23
+      ]
+    },
+    {
+      "page": 35,
+      "offset": 25,
+      "name": "FOUND",
+      "p": [
+        0,
+        3,
+        1,
+        9,
+        23
+      ],
+      "c": [
+        19,
+        17,
+        19,
+        24,
+        11
+      ]
+    },
+    {
+      "page": 37,
+      "offset": 146,
+      "name": "LUCK",
+      "p": [
+        20,
+        1,
+        5,
+        5
+      ],
+      "c": [
+        3,
+        2,
+        6,
+        27
+      ]
+    },
+    {
+      "page": 38,
+      "offset": 49,
+      "name": "FOUND",
+      "p": [
+        0,
+        3,
+        1,
+        9,
+        23
+      ],
+      "c": [
+        19,
+        25,
+        22,
+        26,
+        3
+      ]
+    },
+    {
+      "page": 38,
+      "offset": 57,
+      "name": "BEWARE",
+      "p": [
+        17,
+        18,
+        7,
+        24,
+        4,
+        18
+      ],
+      "c": [
+        8,
+        25,
+        14,
+        2,
+        17,
+        22
+      ]
+    },
+    {
+      "page": 39,
+      "offset": 132,
+      "name": "FALSE",
+      "p": [
+        0,
+        24,
+        20,
+        15,
+        18
+      ],
+      "c": [
+        19,
+        7,
+        10,
+        17,
+        23
+      ]
+    }
+  ],
+  "results": [
+    {
+      "set": "p33-39",
+      "q": 8,
+      "clock": "global",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "set": "p33-39",
+      "q": 8,
+      "clock": "reset",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "set": "p33-39",
+      "q": 8,
+      "clock": "page",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "set": "p33-39",
+      "q": 8,
+      "clock": "word",
+      "nodes": 257,
+      "pairPrune": 76,
+      "collision": 212,
+      "bestRank": 22,
+      "capHit": false,
+      "leaf": {
+        "free": 7,
+        "phases": {
+          "38:57": 0,
+          "35:25": 4,
+          "38:49": 1,
+          "39:132": 4,
+          "33:132": 6,
+          "37:146": 7,
+          "34:4": 7
+        }
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "set": "p33-39",
+      "q": 13,
+      "clock": "global",
+      "nodes": 2,
+      "pairPrune": 0,
+      "collision": 0,
+      "bestRank": 18,
+      "capHit": false,
+      "leaf": {
+        "free": 10,
+        "phases": {
+          "all": 0
+        }
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "set": "p33-39",
+      "q": 13,
+      "clock": "reset",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "set": "p33-39",
+      "q": 13,
+      "clock": "page",
+      "nodes": 10,
+      "pairPrune": 2,
+      "collision": 3,
+      "bestRank": 18,
+      "capHit": false,
+      "leaf": {
+        "free": 10,
+        "phases": {
+          "33": 0,
+          "34": 2,
+          "35": 1,
+          "37": 0,
+          "38": 0,
+          "39": 2
+        }
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "set": "p33-39",
+      "q": 13,
+      "clock": "word",
+      "nodes": 17,
+      "pairPrune": 5,
+      "collision": 9,
+      "bestRank": 21,
+      "capHit": false,
+      "leaf": {
+        "free": 10,
+        "phases": {
+          "38:57": 0,
+          "35:25": 0,
+          "38:49": 1,
+          "39:132": 0,
+          "33:132": 3,
+          "37:146": 7,
+          "34:4": 3
+        }
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "set": "all13",
+      "q": 8,
+      "clock": "word",
+      "nodes": 526,
+      "pairPrune": 308,
+      "collision": 421,
+      "bestRank": 25,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "set": "all13",
+      "q": 8,
+      "clock": "page",
+      "nodes": 3,
+      "pairPrune": 7,
+      "collision": 1,
+      "bestRank": 16,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "set": "all13",
+      "q": 13,
+      "clock": "word",
+      "nodes": 100001,
+      "pairPrune": 69130,
+      "collision": 86987,
+      "bestRank": 25,
+      "capHit": true,
+      "leaf": null,
+      "decision": "capped"
+    },
+    {
+      "set": "all13",
+      "q": 13,
+      "clock": "page",
+      "nodes": 229,
+      "pairPrune": 215,
+      "collision": 194,
+      "bestRank": 25,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    }
+  ]
+}
