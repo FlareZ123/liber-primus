@@ -1061,5 +1061,30 @@
         ]
       }
     }
+  },
+  "controlCorrection": {
+    "p56TransparentFOffset": 56,
+    "consumingShifts": 84,
+    "correctedNativePlants": {
+      "serial7": {
+        "data": 144,
+        "checks": 52,
+        "replay": true,
+        "mutationRejected": true
+      },
+      "quadrants7": {
+        "data": 144,
+        "checks": 52,
+        "replay": true,
+        "mutationRejected": true
+      },
+      "full14": {
+        "data": 169,
+        "checks": 27,
+        "replay": true,
+        "mutationRejected": true
+      }
+    },
+    "originalChecksUnaffected": true
   }
 }
