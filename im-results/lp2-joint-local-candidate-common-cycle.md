@@ -2,7 +2,7 @@
 
 ## Decision
 
-Do not treat the published local candidate words as jointly validated plaintext. A single arbitrary shared bijective GP29 alphabet with an additive period-8 or period-13 key cannot satisfy the tested whole-book crib set with continuous or page-local phase; q8 also fails with independently chosen word phases. The q13 word-phase searches are capped, not excluded. On p33–39 alone, q13 continuous phase is algebraically feasible, but the complete 864 normalized decoders yield no convincing continuation.
+Do not treat the published local candidate words as jointly validated plaintext. A single arbitrary shared bijective GP29 alphabet with an additive period-8 or period-13 key cannot satisfy the tested whole-book crib set with continuous or page-local phase; q8 also fails with independently chosen word phases. The initial q13 word-phase caps were subsequently closed by domain propagation and minimum-remaining-values branching: both whole-book anchor sets are excluded. On p33–39 alone, q13 continuous phase is algebraically feasible, but the complete 864 normalized decoders yield no convincing continuation.
 
 ## Inputs and mechanism
 
@@ -31,11 +31,11 @@ Test pi(C)=pi(P)+K[phase] modulo 29, where pi is any permutation of 29 rune labe
 | Anchors | Period | Continuous | Zero page reset | Arbitrary page phase | Arbitrary word phase |
 |---|---:|---|---|---|---|
 |11|8|excluded|excluded|excluded (12 nodes)|excluded (418)|
-|11|13|excluded|excluded|excluded (2733)|capped (50001)|
+|11|13|excluded|excluded|excluded (2733)|excluded (3037, MRV)|
 |13|8|—|—|excluded|excluded|
-|13|13|—|—|excluded (229)|capped (100001)|
+|13|13|—|—|excluded (229)|excluded (5575, MRV)|
 
-Controls planted on matching geometry: all eight known-phase cases retained; seven of eight unrestricted cases reached a relaxation leaf, remaining q13 word case capped without exclusion. A greedy removal process found six-anchor q8 and nine-anchor q13 page-phase exclusion cores; each single deletion then allowed a relaxation leaf, not necessarily a true bijection.
+The later MRV search precomputes pairwise phase-compatibility masks, fixes one word phase by rotational gauge, intersects every unassigned domain on each assignment, and selects the smallest remaining domain. In connected JS the 11- and 13-anchor q13 cases terminate after 3037 and 5575 nodes respectively, without a relaxation leaf or cap; eight of eight planted controls retain a leaf. A separately executed local C++ implementation with scaling gauge and all-different completion also excludes both sets (2576 and 4871 nodes respectively) and finds replay-valid witnesses on all eight planted cases. Thus the independent-word-phase exclusion no longer rests on a cap.\n\nControls planted on matching geometry: all eight known-phase cases retained; seven of eight unrestricted cases reached a relaxation leaf, remaining q13 word case capped without exclusion. A greedy removal process found six-anchor q8 and nine-anchor q13 page-phase exclusion cores; each single deletion then allowed a relaxation leaf, not necessarily a true bijection.
 
 ## Exact section-local inversion
 
@@ -56,9 +56,11 @@ Uniform log probability = -3.367296; clear p57 control = -2.499099 under the sam
 
 ## Reproduce
 
+- `node sims/lp2_joint_local_candidate_wordphase_mrv_sft.cjs`; `im-results/lp2-joint-local-candidate-wordphase-mrv-output.json` (uncapped closure of both q13 word-phase searches)
+
 - `node sims/lp2_joint_local_candidate_common_cycle_sft.cjs`; `im-results/lp2-joint-local-candidate-common-cycle-output.json`
 - `node sims/lp2_joint_local_candidate_section_cycle_sft.cjs`; `im-results/lp2-joint-local-candidate-section-cycle-output.json`
 - `node sims/lp2_section33_39_q13_bijection_sft.cjs`; `im-results/lp2-section33-39-q13-bijection-output.json` (initial four witnesses only)
 - `node sims/lp2_section33_39_q13_exhaustive_sft.cjs`; `im-results/lp2-section33-39-q13-exhaustive-output.json` (complete candidate table, full best streams, replay checks)
 
-The exact enumeration is a new finite closure of this conditional mechanism, not a solution to LP2. Avoid further scoring or resampling this set without an independent reason to alter the model. No change to established plaintext. Remaining q13 arbitrary-word-phase cases and mechanisms not constrained by these cribs remain open.
+The exact enumeration is a new finite closure of this conditional mechanism, not a solution to LP2. Avoid further scoring or resampling this set without an independent reason to alter the model. No change to established plaintext. The whole-book q13 arbitrary-word-phase cases are now closed. Section-only independent phases and mechanisms not constrained by these cribs remain open.
