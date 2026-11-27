@@ -52,6 +52,22 @@ All 16 matched dictionary-word plants have nonzero assignments; all 16 independe
 
 Reproduce: [trigram SFT](../sims/lp2_p14_p55_p23_sharedpad_sft.cjs), [trigram raw](lp2-p14-p55-p23-sharedpad.json), [exact word-forest SFT](../sims/lp2_p14_p55_p23_sharedpad_word_forest_sft.cjs), [forest raw](lp2-p14-p55-p23-sharedpad-word-forest.json). Both were executed in connected JS; Node wrappers not independently CI-run.
 
+
+### Exact arbitrary-OOV minimum (same fixed geometries)
+
+Allow every complete printed-group variable an additional wildcard state at cost one. This state can match any parent key signature and independently choose the best child states, because its edge intersections partition its positions. The dynamic program now minimizes the total number of wildcard groups, using lexicon frequency only as a secondary tie-breaker. At the root, choose the best of its dictionary states and wildcard. Free page-edge fragments cost zero. Recover the actual pad from all dictionary states and fill any unconstrained coordinates with zero. The resulting plaintexts replay both original tapes and have exactly the minimum number of OOV complete groups (checked independently against the register). This is a sharp minimum, not merely a local edge-cover bound.
+
+| B stream | Sign | Exact minimum OOV | Six independent-pad minima |
+|---|---:|---:|---|
+| p14\|\|p55 | +1 | 15/92 | 12, 14, 11, 13, 11, 12 |
+| p14\|\|p55 | -1 | 13/92 | 13, 15, 13, 13, 12, 14 |
+| p32\|\|p51 | +1 | 12/85 | 12, 13, 12, 12, 13, 13 |
+| p32\|\|p51 | -1 | 12/85 | 11, 14, 13, 14, 14, 11 |
+
+All 24 matched-pad plants, with 0–3 arbitrary true OOV groups, have optimal cost no greater than their actual injected omissions. Every minimum-cost witness replays both complete ciphertexts. The witnesses are deliberately unigram-based, not authenticated plaintext; neither zero-OOV feasibility nor minimum-OOV ties identify a unique pad. The fixed original geometry requires substantially more arbitrary groups than the tested near-register positive controls. This makes the negative decision robust to a small number of missing native words, while remaining conditional on the pinned transcription's complete-group delimiter convention and lexicon. No coherent unknown plaintext or authentic key follows.
+
+[Exact arbitrary-OOV reproducer](../sims/lp2_p14_p55_p23_sharedpad_oov_sft.cjs) · [raw minimum witnesses and controls](lp2-p14-p55-p23-sharedpad-oov.json). Executed in connected JS; standalone Node wrapper not separately CI-run.
+
 ## Decision for the Director
 
 The proposed 29-stanza **complete codebook** is exhausted as a *source-selected new operation*: its one ordinary historical index mapping is already Gematria Primus. The external poem could still become a source of a key if a separate authenticated clue specifies **which stanza data to extract and how to apply it**; that dependency is presently absent. Reopen this lane only with an independent source-authored selector fixing both a nonidentity operation and target clock before touching the unknown ciphertext. The separate p14 art-attribution assignment #697 can assess the semantic link without this codebook claim.
