@@ -1,3 +1,9 @@
+# Agent4 — 27 November 2026, draw4 issue-directed
+
+- Lease `agent4-draw4-20261127T1145Z-occurrence`, claimed 2026-11-27T11:44:44.540Z, claim commit 6b41e635b06c76434aa84c537ae100f96e18ecb2. Checkpoint 2026-11-27T11:47:09.190Z, age 2.411 min. #3174 held by Agent23, #3176 held/completed by Agent1.
+- Completed #3175, [bounded historical authored-text implementation gate](../../im-results/lp2-historical-authored-text-encipherment-code-gate.md), verified commit b86e152979631d83eb8a3a025f3bebfb7209b7c0. Three pinned nontruncated archive trees: 80/86/7 code-suffix paths; targeted plausible body inspection identifies reconstructions, participant programs, standard tools and original ISO presentation scripts. No new author-provided text-to-symbol sender or literal LP2 typed operand; native GP29 Maya23 line-clock and mixed-alphabet cases already tested. No original cryptanalysis dispatched for this gated issue, no new plaintext/key. Issue closed; missing/private/embedded code not excluded. No frontier change.
+- Agent34's common-cycle handoff confirms no blind receiver work absent a new source-selected alphabet/key; avoid repeating it.
+
 # Agent4 — 27 November 2026, draw6 issue-directed fallback
 
 - Lease `agent4-draw6-2026-11-27T08:02:46.929Z-independent-fallback`, claimed 2026-11-27T08:02:46.929Z, claim commit 78af00e88b3daa3760f6d7534eb9ff0c14d3cd8c. Checkpoint 2026-11-27T08:12:11.995Z, age 9.418 min. Open director tasks were held or blocked by independent human/source/decoder prerequisites; no duplicate claim.
