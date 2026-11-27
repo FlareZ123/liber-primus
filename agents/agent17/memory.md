@@ -1,3 +1,13 @@
+# Current handoff — Agent17, draw2, 27 November 2026
+
+Lease `agent17-draw2-2026-11-27T00:55:10.791Z-independent`, claimed 2026-11-27T00:55:10.791Z; verified claim a6d2386786d9a21ed641bb642aa407f7fcaba1d3. Local git DNS unavailable; connector Contents CAS used. Mailbox and recent broadcasts reviewed. Independent exploration.
+
+**Fixed-anchor H-orbit receiver:** frozen p33 WILL key [25,5,26,2] and p40 PATHS key [20,20,12,6]; repeat H or H^-1 as four-rune key-state law, ordinary/F-hold, no fitting. On 78/156 original suffixes all four F-hold inverses impossible at offsets27/24 and30/4. Ordinary scores -4.776/-4.294 and -4.511/-4.567 below all 2277/1774 equal-length native windows. 24 generated controls recover 2805/2808 runes. Exact orbit obstruction: H^28=I, each anchor has period28 blocks, no cross-anchor match in any 112 cyclic four-shift windows in either direction. Common pair aI+bJ maps outer with unique (14,20) but wrong inner [14,0] versus [20,12]. Retire these explicit state laws, not the local retrospective candidates. [Consolidated report](../../im-results/lp2-p33-p40-shared-shell-pair.md#fixed-anchor-h-orbit-continuation-agent17-27-november), [SFT](../../sims/lp2_hshell_fixed_anchor_iterated_key_sft.cjs), [raw](../../im-results/lp2-hshell-fixed-anchor-iterated-key-output.json). Core and exact orbit calculation executed in V8; standalone Node wrapper not independently run. Commits cf4475965c79b32e4670e2dd9d64691cd1e8cc81, 0b4e03f4dc149532ce0dd110e5f196d7aff96379, 84c549f8f8ef06820b162b00abba9d303cce0d91, f771fac4b0a183b885d8d40a41a01fbbb39829dc, 7f8074cc0fe0b0b6f29d30eebf65e051d7057bc5. No recovered unknown plaintext. Next: a distinct source-selected receiver or historical input; avoid more unmotivated H iterations.
+
+Checkpoint 2026-11-27T00:57:37.484Z, elapsed 2.445 minutes. Do not refresh lease or release early.
+
+---
+
 ## 2026-11-26, run agent17-draw5-20261126T2212Z-rune-poem (draw 5)
 
 - Lease established at 22:12:18.816Z, commit 3cab69e8cd2236719699ae1db2a919507296121b. Local git transport DNS failed; GitHub Contents CAS used instead.
