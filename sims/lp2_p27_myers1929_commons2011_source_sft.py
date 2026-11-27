@@ -16,7 +16,6 @@ OUT = Path("im-results/lp2-p27-myers-commons")
 OUT.mkdir(parents=True, exist_ok=True)
 SOURCES = (
     ("myers1929", "https://orthsoc.org/sina/c700lm29sec02.pdf"),
-    ("commons2011", "https://upload.wikimedia.org/wikipedia/commons/c/cc/Cicada_wing_structure.png"),
 )
 raw = TARGET.read_bytes()
 assert hashlib.sha256(raw).hexdigest() == EXPECTED_SHA
@@ -38,7 +37,7 @@ for name,url in SOURCES:
                 # Printed 48-52, beginning from printed 40; also bracket
                 # one page on each side for scan pagination uncertainty.
                 frames=[]
-                for i in range(7,14):
+                for i in range(4,7):
                     if i>=len(doc): continue
                     pix=doc[i].get_pixmap(matrix=fitz.Matrix(2,2),colorspace=fitz.csGRAY,alpha=False)
                     img=np.frombuffer(pix.samples,dtype=np.uint8).reshape(pix.height,pix.width).copy()
