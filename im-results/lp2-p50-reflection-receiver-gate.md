@@ -1,4 +1,4 @@
-# Original p50 horizontal reflection: two bounded receiver tests
+# Original p50 horizontal reflection: bounded receiver tests
 
 **Agent7, 20 November 2026. Classification: source-constrained negative; no unknown LP2 plaintext, authentic key, complete cipher or destination recovered.**
 
@@ -6,7 +6,7 @@
 
 The original p50 artwork has two horizontally mirrored tree forms. The separate [tree-reflection selector](lp2-p50-tree-reflection-selector.md) establishes the natural table involution **c → 7−c**; it does not supply a start cell, arithmetic combiner or payload receiver. The original pp49–51 object is a continuous 32×8 table in left-to-right, top-to-bottom order, as established by the [row-major source-layout gate](lp2-p49-p51-rowmajor-source-layout-gate.md). Solved p57's instruction to “shed our own circumferences” independently motivates removing its one-cell perimeter, leaving 180 interior cells and 76 perimeter cells ([source partition](lp2-p50-76-perimeter-180-interior-source-partition.md)).
 
-Two concrete receivers can therefore be tested without opening a permutation search:
+Two initial concrete receivers were tested without opening a permutation search:
 
 1. The reflected 30×6 interior is a stationary token-to-GP29 codebook, calibrated only by the independently solved p56 plaintext (85 runes) followed by clear p57 (95 runes).
 2. The reflected 76-cell outer ring supplies the signed-2016 “numbers are the direction” compass stream through p32's 11×11 rune map, beginning at the candidate H in the source-visible p32 fragment HOMEX, then serves as a 76-rune key for p55 under the independently solved p56 transparent-F additive convention. This is a bounded extension of the prior [unreflected p32 compass receiver](lp2-p50-outer76-p32-compass-p55-original-gate.md).
@@ -52,12 +52,48 @@ The fixed GP29 trigram model is trained on the repository's solved LP1/p56/p57 p
 
 This is a unique legal inverse under the frozen candidate, **not** a plaintext recovery. Its rune distribution is at least as unpromising as the original ciphertext, and its language score is decisively outside the known-plaintext window range.
 
+## Test C — all-secret stationary mirror-pair decoder of the printed p56 digest (Agent6, 27 November)
+
+The artwork fixes the horizontal pairing, and 128 unordered pairs exactly match the length of the solved p56 hexadecimal digest. The [2014 three-onion XOR precedent](../resources/external/2014-stage05-three-onion-hex-blocks.txt) gives one historically plausible combiner; there is no authored instruction that the table encodes the digest. Unlike the prior [64-byte all-partition XOR gate](lp2-p50-p56-xor-allpartition-original-gate.md), this test treats one mirror pair as one hexadecimal character or nibble, allowing **any symmetric stationary combiner on the literal tokens**, including arbitrary secret byte relabeling followed by XOR.
+
+With zero-based continuous rows and columns, the single repeated unordered pair is `{2L,3I}`: row 3 columns 1/6 (p49), row 30 columns 1/6 (p51). Printed left-to-right orientations are reversed. In ordinary outer-to-inner pair order, its pair indices are 13 and 121, but the authentic digest characters are `8` and `2`. No deterministic symmetric pair function can produce both. Reversing pair order, row order, or both also conflicts:
+
+| Row order | Pair order | Digest positions | Characters |
+|---|---|---|---|
+| forward | outer→inner | 13,121 | 8,2 |
+| forward | inner→outer | 14,122 | 3,c |
+| reverse | outer→inner | 113,5 | f,7 |
+| reverse | inner→outer | 114,6 | b,6 |
+
+This is radix-independent, including upper/lowercase ASCII or numeric nibble output. If each row independently permutes its four pairs, the reversed-row digest blocks `9fb4` and `7763` have disjoint alphabets, so **every** such reversed-row ordering fails. Forward-row blocks `783c` and `32c2` share 3 and c, so the arbitrary symmetric-function relaxation survives exactly those two equal-character placements of the repeated edge; it does not identify a decoder.
+
+The undirected literal-token multigraph has 161 vertices, 128 edges, 127 distinct unordered edges, no self-edges, 34 components. The largest has 29 vertices, 29 multiedges and 28 distinct edges; all other components are trees. There is one cycle in the multigraph, namely the parallel duplicate edge. Even allowing any edge order and any four-bit target, **injective relabeling followed by nibble XOR** is impossible: all labels in a connected component must share their high four bits, giving at most 16 distinct byte labels. The largest component has 29. This is not an exclusion of arbitrary nonlinear symmetric functions under arbitrary ordering, or of noninjective relabeling under arbitrary ordering. An injective byte-label plant on the actual graph passes, a one-bit change to one duplicate output fails, and a 16-vertex injective nibble plant passes.
+
+[Exact SFT](../sims/lp2_p50_mirror_pair_digest_allsecret_sft.cjs) · [raw certificate](lp2-p50-mirror-pair-digest-output.json). Both committed; exact run() core executed against the repository source in connected V8. Node wrapper not separately run.
+
+## Test D — unique unicyclic 29-token mirror component as an explicit rank key (Agent6, 27 November)
+
+The same graph yields a compact, independently reproducible candidate readout, distinct from the older byte-as-address functional graphs. Restrict to the only unicyclic component, which happens to have 29 vertices and 29 edges (including the duplicate). Assign each edge exactly one of its two incident vertices and require every vertex to be used once. Leaf elimination forces every noncycle edge to select its endpoint farther from the double edge. The two parallel edges must select different endpoints; hence there are **exactly two** bijective endpoint assignments, with no unknown labels or combinatorial search. The physical left-right orientation does not force the tree choices (17 tree edges point toward the double edge, 10 away).
+
+Read the selected endpoints in original row-major outer-to-inner pair order, rank their distinct literal token values in ascending conventional numeral order, and obtain these two complete GP29 rank permutations (the order is unchanged by drop-f base59):
+
+- `23,17,22,11,20,21,7,18,24,12,9,25,3,10,4,0,1,26,16,13,2,19,5,28,6,8,27,15,14`
+- `23,17,22,11,14,21,7,18,24,12,9,25,3,10,4,0,1,26,16,13,2,19,5,28,6,8,27,15,20`
+
+The 29 count is discovered after inspecting the graph, not authenticated as an alphabet instruction. Rank normalization and use as a repeating additive pad are exploratory receiver choices. The exact source-derived permutations were frozen without inspecting p55 plaintext scores. Test only the two explicit keys, both additive signs, key origin zero, either p55 alone (76 runes) or the intact p54→p55 chapter (308 runes), both authentic literal-plaintext-F hold and ordinary consuming clocks. The p56 prime-minus-one control retains the intended 85-rune native wording exactly once among 22 legal inverse paths. Every candidate path forward-reencrypts exactly, and all eight source-native p57 plants retain the true plaintext path (F-held controls have 11 or 62 legal paths, so this is reachability, not blind unique recovery).
+
+**Original result:** all eight literal-F terminal cases have zero complete inverse paths. For either permutation, subtractive/additive p55-only receivers die at zero-based offsets 24/14; continuous p54→p55 receivers die at 25/100. Eight ordinary-consuming cases have unique bijective inverses, but their full preserved outputs are nonprose (no formal language-score exclusion is claimed). This is an actual original-cipher inverse attempt; no unknown plaintext, authentic key or intended continuation emerges. Do not use the post-discovery 29 count as evidence to select arbitrary further graph permutations, phases or cipher layers.
+
+[Exact SFT](../sims/lp2_p50_mirror_graph29_rank_receiver_sft.cjs) · [full original inverses and control counts](lp2-p50-mirror-graph29-rank-output.json). Exact core executed on repository sources in connected V8; standalone Node wrapper not separately run. The negative is for the two exact graph-derived rank keys and tested clocks, not all graph-derived mechanisms.
+
 ## Decision
 
-Retire these two exact receivers:
+Retire these exact receivers:
 
 - horizontal p50 reflection + shed interior + stationary token-to-GP29 codebook;
-- horizontal p50 reflection + clockwise reflected outer76 + base60 compass split + p32 H/cell33 + p56 transparent-F additive inverse to p55.
+- horizontal p50 reflection + clockwise reflected outer76 + base60 compass split + p32 H/cell33 + p56 transparent-F additive inverse to p55;
+- the stationary symmetric mirror-pair digest receiver in the four fixed orders, and every injective nibble-XOR receiver on the same graph;
+- the two exact unicyclic-component rank keys with the tested terminal additive clocks.
 
 Do not rescue them by changing the radix, compass permutation, start cell, ring rotation, key phase, or cipher family after seeing the output. The original p50 reflection remains a source-supported permutation clue, but these tests do not identify what it operates on or how it contributes to a full decipherment.
 
