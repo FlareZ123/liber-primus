@@ -28,6 +28,24 @@ assert.equal(HERE.reduce((s,i)=>s+i,0),48);
 assert.equal(HERE.reduce((s,i)=>s+d.prime[i],0),168);
 assert.equal(WAY.reduce((s,i)=>s+d.prime[i],0),219);
 assert.ok(solved.sections.find(s=>s.name==='0_welcome').source_text.includes(HERE.map(i=>d.runes[i]).join('')));
+// Cross-chapter independently visible hexadecimal-prefix selectors:
+// original red span lengths 19 (p27), 51 (p53) each index a literal
+// 0X/0x table token. This is conditional convention evidence only.
+const exactRedSpans=ink.pages.flatMap(p=>(p.red_spans||[])
+  .map(s=>({page:p.page,first:s.start,length:s.length})));
+assert.equal(exactRedSpans.length,18);
+const isHexPrefix=i=>/^0x$/i.test(table[i]);
+const sourceRedPrefixHits=exactRedSpans.filter(s=>isHexPrefix(s.length));
+assert.deepEqual(sourceRedPrefixHits,[
+ {page:27,first:0,length:19},{page:53,first:128,length:51}
+]);
+assert.equal(table[19],'0X');assert.equal(table[51],'0x');
+assert.equal(table[48],'4D'); // lexical GP0(HERE) -> ASCII 'M'
+const pairBothPhases=[];
+for(let off=0;off<256;off++){
+ if(isHexPrefix((19+off)%256)&&isHexPrefix((51+off)%256))pairBothPhases.push(off);
+}
+assert.deepEqual(pairBothPhases,[0]);
 assert.equal(table[219],'0x');
 assert.equal(table[168],'40');
 const selectedOneBased=parseInt(table[168],16);assert.equal(selectedOneBased,64);
@@ -163,6 +181,7 @@ console.log(JSON.stringify({
  p33Giant:['D','NG'],primeSum:giantGpprime,ordinalSum:giantGp0,
  signedReference:'HERE',referencePrimeSum:168,
  publishedHexSelector:{word:'WAY',GPprime:219,tableToken:table[219]},
+ originalRedHexPrefixSelects:sourceRedPrefixHits,p27p53BothHitShifts:pairBothPhases,
  selectedGridEntry:{index:168,token:table[168],hexOneBased:selectedOneBased},
  sourceFirstPairs:sourcePairs,selectedSourcePair,
  sourcePairWrongPhase:pairGridPhaseHits.length+'/256',
