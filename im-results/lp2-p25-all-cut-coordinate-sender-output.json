@@ -1,0 +1,1344 @@
+{
+  "inputs": [
+    [
+      "resources/liber-primus/lp2-corpus.json",
+      "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    ],
+    [
+      "resources/liber-primus/lp2-transcription.txt",
+      "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    ],
+    [
+      "resources/external/2013-liber-al-bookcode-I.txt",
+      "64876892683fab1467481fe87d85743a8ea17982"
+    ],
+    [
+      "resources/external/2013-liber-al-bookcode-II.txt",
+      "cb4353b080d7584441f85502aeccb60796e6fe0f"
+    ],
+    [
+      "resources/external/2013-liber-al-bookcode-III.txt",
+      "36e716252a271d31f5c4ba25b3cb78199ccc1114"
+    ]
+  ],
+  "obj": [
+    18,
+    3,
+    20,
+    10,
+    11,
+    16
+  ],
+  "transformed": [
+    3,
+    10,
+    16,
+    3,
+    8,
+    20
+  ],
+  "cuts": [
+    [
+      3,
+      57
+    ],
+    [
+      13,
+      47
+    ],
+    [
+      29,
+      31
+    ],
+    [
+      32,
+      28
+    ],
+    [
+      40,
+      20
+    ]
+  ],
+  "groups": 2941,
+  "canonical": 2909,
+  "lp2": [
+    {
+      "reverse": false,
+      "pageOrigin": 0,
+      "offsetOrigin": 0,
+      "points": [
+        {
+          "p": 3,
+          "o": 57,
+          "rune": 9,
+          "word": null
+        },
+        {
+          "p": 13,
+          "o": 47,
+          "rune": 14,
+          "word": {
+            "start": 194,
+            "v": [
+              14,
+              6,
+              3,
+              5,
+              27
+            ]
+          }
+        },
+        {
+          "p": 29,
+          "o": 31,
+          "rune": 20,
+          "word": {
+            "start": 116,
+            "v": [
+              7,
+              11,
+              16,
+              27
+            ]
+          }
+        },
+        {
+          "p": 32,
+          "o": 28,
+          "rune": 2,
+          "word": null
+        },
+        {
+          "p": 40,
+          "o": 20,
+          "rune": 20,
+          "word": {
+            "start": 92,
+            "v": [
+              9,
+              11,
+              16,
+              26
+            ]
+          }
+        }
+      ],
+      "runeText": "N X L TH L",
+      "wordText": "? | XGOCIA | WJTIA | ? | NJTY"
+    },
+    {
+      "reverse": false,
+      "pageOrigin": 0,
+      "offsetOrigin": 1,
+      "points": [
+        {
+          "p": 3,
+          "o": 56,
+          "rune": 7,
+          "word": null
+        },
+        {
+          "p": 13,
+          "o": 46,
+          "rune": 3,
+          "word": {
+            "start": 190,
+            "v": [
+              23,
+              7,
+              2,
+              26
+            ]
+          }
+        },
+        {
+          "p": 29,
+          "o": 30,
+          "rune": 25,
+          "word": {
+            "start": 112,
+            "v": [
+              17,
+              12,
+              12,
+              4
+            ]
+          }
+        },
+        {
+          "p": 32,
+          "o": 27,
+          "rune": 16,
+          "word": null
+        },
+        {
+          "p": 40,
+          "o": 19,
+          "rune": 28,
+          "word": {
+            "start": 87,
+            "v": [
+              9,
+              13,
+              18,
+              7,
+              27
+            ]
+          }
+        }
+      ],
+      "runeText": "W O AE T EA",
+      "wordText": "? | DWTHY | BEOEOR | ? | NPEWIA"
+    },
+    {
+      "reverse": false,
+      "pageOrigin": 1,
+      "offsetOrigin": 0,
+      "points": [
+        {
+          "p": 2,
+          "o": 57,
+          "rune": 23,
+          "word": null
+        },
+        {
+          "p": 12,
+          "o": 47,
+          "rune": 6,
+          "word": {
+            "start": 171,
+            "v": [
+              1,
+              10,
+              14,
+              21,
+              24,
+              4,
+              14
+            ]
+          }
+        },
+        {
+          "p": 28,
+          "o": 31,
+          "rune": 13,
+          "word": {
+            "start": 155,
+            "v": [
+              28,
+              11,
+              12,
+              10,
+              28,
+              25
+            ]
+          }
+        },
+        {
+          "p": 31,
+          "o": 28,
+          "rune": 23,
+          "word": {
+            "start": 118,
+            "v": [
+              24,
+              17,
+              4
+            ]
+          }
+        },
+        {
+          "p": 39,
+          "o": 20,
+          "rune": 19,
+          "word": {
+            "start": 92,
+            "v": [
+              9,
+              2,
+              12,
+              17,
+              5
+            ]
+          }
+        }
+      ],
+      "runeText": "D G P D M",
+      "wordText": "? | UIXNGARX | EAJEOIEAAE | ABR | NTHEOBC"
+    },
+    {
+      "reverse": false,
+      "pageOrigin": 1,
+      "offsetOrigin": 1,
+      "points": [
+        {
+          "p": 2,
+          "o": 56,
+          "rune": 4,
+          "word": null
+        },
+        {
+          "p": 12,
+          "o": 46,
+          "rune": 24,
+          "word": {
+            "start": 169,
+            "v": [
+              3,
+              12
+            ]
+          }
+        },
+        {
+          "p": 28,
+          "o": 30,
+          "rune": 5,
+          "word": {
+            "start": 151,
+            "v": [
+              0,
+              12,
+              3,
+              7
+            ]
+          }
+        },
+        {
+          "p": 31,
+          "o": 27,
+          "rune": 25,
+          "word": {
+            "start": 116,
+            "v": [
+              0,
+              15
+            ]
+          }
+        },
+        {
+          "p": 39,
+          "o": 19,
+          "rune": 3,
+          "word": {
+            "start": 88,
+            "v": [
+              6,
+              26,
+              13,
+              6
+            ]
+          }
+        }
+      ],
+      "runeText": "R A C AE O",
+      "wordText": "? | OEO | FEOOW | FS | GYPG"
+    },
+    {
+      "reverse": true,
+      "pageOrigin": 0,
+      "offsetOrigin": 0,
+      "points": [
+        {
+          "p": 57,
+          "o": 3,
+          "rune": 24,
+          "word": {
+            "start": 13,
+            "v": [
+              10,
+              9,
+              15,
+              16,
+              24,
+              4
+            ]
+          }
+        },
+        {
+          "p": 47,
+          "o": 13,
+          "rune": 14,
+          "word": {
+            "start": 74,
+            "v": [
+              15,
+              6,
+              13,
+              24,
+              18,
+              3
+            ]
+          }
+        },
+        {
+          "p": 31,
+          "o": 29,
+          "rune": 20,
+          "word": {
+            "start": 121,
+            "v": [
+              14,
+              26,
+              8
+            ]
+          }
+        },
+        {
+          "p": 28,
+          "o": 32,
+          "rune": 21,
+          "word": {
+            "start": 161,
+            "v": [
+              11,
+              17
+            ]
+          }
+        },
+        {
+          "p": 20,
+          "o": 40,
+          "rune": 21,
+          "word": {
+            "start": 172,
+            "v": [
+              5,
+              14,
+              11,
+              3
+            ]
+          }
+        }
+      ],
+      "runeText": "A X L NG NG",
+      "wordText": "INSTAR | SGPAEO | XYH | JB | CXJO"
+    },
+    {
+      "reverse": true,
+      "pageOrigin": 0,
+      "offsetOrigin": 1,
+      "points": [
+        {
+          "p": 57,
+          "o": 2,
+          "rune": 4,
+          "word": {
+            "start": 11,
+            "v": [
+              2,
+              18
+            ]
+          }
+        },
+        {
+          "p": 47,
+          "o": 12,
+          "rune": 1,
+          "word": {
+            "start": 70,
+            "v": [
+              10,
+              25,
+              3,
+              9
+            ]
+          }
+        },
+        {
+          "p": 31,
+          "o": 28,
+          "rune": 23,
+          "word": {
+            "start": 118,
+            "v": [
+              24,
+              17,
+              4
+            ]
+          }
+        },
+        {
+          "p": 28,
+          "o": 31,
+          "rune": 13,
+          "word": {
+            "start": 155,
+            "v": [
+              28,
+              11,
+              12,
+              10,
+              28,
+              25
+            ]
+          }
+        },
+        {
+          "p": 20,
+          "o": 39,
+          "rune": 0,
+          "word": {
+            "start": 164,
+            "v": [
+              14,
+              1,
+              28,
+              19,
+              12,
+              1,
+              15,
+              8
+            ]
+          }
+        }
+      ],
+      "runeText": "R U D P F",
+      "wordText": "THE | IAEON | ABR | EAJEOIEAAE | XUEAMEOUSH"
+    },
+    {
+      "reverse": true,
+      "pageOrigin": 1,
+      "offsetOrigin": 0,
+      "points": [
+        {
+          "p": 56,
+          "o": 3,
+          "rune": 15,
+          "word": {
+            "start": 10,
+            "v": [
+              3,
+              25
+            ]
+          }
+        },
+        {
+          "p": 46,
+          "o": 13,
+          "rune": 7,
+          "word": {
+            "start": 52,
+            "v": [
+              7,
+              3
+            ]
+          }
+        },
+        {
+          "p": 30,
+          "o": 29,
+          "rune": 22,
+          "word": {
+            "start": 127,
+            "v": [
+              22,
+              12,
+              22
+            ]
+          }
+        },
+        {
+          "p": 27,
+          "o": 32,
+          "rune": 18,
+          "word": {
+            "start": 133,
+            "v": [
+              1,
+              22,
+              17,
+              7
+            ]
+          }
+        },
+        {
+          "p": 19,
+          "o": 40,
+          "rune": 18,
+          "word": {
+            "start": 186,
+            "v": [
+              21,
+              10,
+              7
+            ]
+          }
+        }
+      ],
+      "runeText": "S W OE E E",
+      "wordText": "OAE | WO | OEEOOE | UOEBW | NGIW"
+    },
+    {
+      "reverse": true,
+      "pageOrigin": 1,
+      "offsetOrigin": 1,
+      "points": [
+        {
+          "p": 56,
+          "o": 2,
+          "rune": 22,
+          "word": {
+            "start": 5,
+            "v": [
+              19,
+              26,
+              20,
+              3,
+              8
+            ]
+          }
+        },
+        {
+          "p": 46,
+          "o": 12,
+          "rune": 10,
+          "word": {
+            "start": 49,
+            "v": [
+              6,
+              16,
+              26
+            ]
+          }
+        },
+        {
+          "p": 30,
+          "o": 28,
+          "rune": 27,
+          "word": {
+            "start": 121,
+            "v": [
+              3,
+              18,
+              16,
+              0,
+              24,
+              20
+            ]
+          }
+        },
+        {
+          "p": 27,
+          "o": 31,
+          "rune": 17,
+          "word": {
+            "start": 126,
+            "v": [
+              26,
+              19,
+              0,
+              10,
+              25,
+              10,
+              24
+            ]
+          }
+        },
+        {
+          "p": 19,
+          "o": 39,
+          "rune": 14,
+          "word": {
+            "start": 183,
+            "v": [
+              11,
+              15,
+              9
+            ]
+          }
+        }
+      ],
+      "runeText": "OE I IA B X",
+      "wordText": "MYLOH | GTY | OETFAL | YMFIAEIA | JSN"
+    }
+  ],
+  "historic": [
+    {
+      "chapter": 1,
+      "reverse": false,
+      "records": [
+        {
+          "v": 3,
+          "k": 57,
+          "error": "invalid"
+        },
+        {
+          "v": 13,
+          "k": 47,
+          "c": "t",
+          "firstIndex": 26,
+          "first": false,
+          "actual": [
+            1,
+            1,
+            15
+          ],
+          "match": false
+        },
+        {
+          "v": 29,
+          "k": 31,
+          "c": "t",
+          "firstIndex": 31,
+          "first": true,
+          "actual": [
+            1,
+            2,
+            15
+          ],
+          "match": false
+        },
+        {
+          "v": 32,
+          "k": 28,
+          "c": "r",
+          "firstIndex": 8,
+          "first": false,
+          "actual": [
+            1,
+            3,
+            4
+          ],
+          "match": false
+        },
+        {
+          "v": 40,
+          "k": 20,
+          "c": "s",
+          "firstIndex": 8,
+          "first": false,
+          "actual": [
+            1,
+            4,
+            13
+          ],
+          "match": false
+        }
+      ],
+      "text": "?ttrs",
+      "allFirst": false,
+      "allSender": false
+    },
+    {
+      "chapter": 1,
+      "reverse": true,
+      "records": [
+        {
+          "v": 57,
+          "k": 3,
+          "c": "v",
+          "firstIndex": 3,
+          "first": true,
+          "actual": [
+            1,
+            2,
+            6
+          ],
+          "match": false
+        },
+        {
+          "v": 47,
+          "k": 13,
+          "c": "h",
+          "firstIndex": 5,
+          "first": false,
+          "actual": [
+            1,
+            4,
+            24
+          ],
+          "match": false
+        },
+        {
+          "v": 31,
+          "k": 29,
+          "c": "e",
+          "firstIndex": 6,
+          "first": false,
+          "actual": [
+            1,
+            5,
+            2
+          ],
+          "match": false
+        },
+        {
+          "v": 28,
+          "k": 32,
+          "c": "r",
+          "firstIndex": 7,
+          "first": false,
+          "actual": [
+            1,
+            6,
+            18
+          ],
+          "match": false
+        },
+        {
+          "v": 20,
+          "k": 40,
+          "c": "h",
+          "firstIndex": 2,
+          "first": false,
+          "actual": [
+            1,
+            7,
+            3
+          ],
+          "match": false
+        }
+      ],
+      "text": "vherh",
+      "allFirst": false,
+      "allSender": false
+    },
+    {
+      "chapter": 2,
+      "reverse": false,
+      "records": [
+        {
+          "v": 3,
+          "k": 57,
+          "c": ",",
+          "firstIndex": 34,
+          "first": false,
+          "actual": [
+            1,
+            5,
+            7
+          ],
+          "match": false
+        },
+        {
+          "v": 13,
+          "k": 47,
+          "error": "invalid"
+        },
+        {
+          "v": 29,
+          "k": 31,
+          "error": "invalid"
+        },
+        {
+          "v": 32,
+          "k": 28,
+          "c": "a",
+          "firstIndex": 7,
+          "first": false,
+          "actual": [
+            1,
+            6,
+            8
+          ],
+          "match": false
+        },
+        {
+          "v": 40,
+          "k": 20,
+          "c": "R",
+          "firstIndex": 20,
+          "first": true,
+          "actual": [
+            1,
+            36,
+            139
+          ],
+          "match": false
+        }
+      ],
+      "text": ",??aR",
+      "allFirst": false,
+      "allSender": false
+    },
+    {
+      "chapter": 2,
+      "reverse": true,
+      "records": [
+        {
+          "v": 57,
+          "k": 3,
+          "c": "t",
+          "firstIndex": 3,
+          "first": true,
+          "actual": [
+            1,
+            1,
+            15
+          ],
+          "match": false
+        },
+        {
+          "v": 47,
+          "k": 13,
+          "c": "e",
+          "firstIndex": 3,
+          "first": false,
+          "actual": [
+            1,
+            2,
+            3
+          ],
+          "match": false
+        },
+        {
+          "v": 31,
+          "k": 29,
+          "c": "a",
+          "firstIndex": 8,
+          "first": false,
+          "actual": [
+            1,
+            3,
+            7
+          ],
+          "match": false
+        },
+        {
+          "v": 28,
+          "k": 32,
+          "error": "invalid"
+        },
+        {
+          "v": 20,
+          "k": 40,
+          "c": "i",
+          "firstIndex": 23,
+          "first": false,
+          "actual": [
+            1,
+            4,
+            12
+          ],
+          "match": false
+        }
+      ],
+      "text": "tea?i",
+      "allFirst": false,
+      "allSender": false
+    },
+    {
+      "chapter": 3,
+      "reverse": false,
+      "records": [
+        {
+          "v": 3,
+          "k": 57,
+          "c": "I",
+          "firstIndex": 30,
+          "first": false,
+          "actual": [
+            1,
+            13,
+            1
+          ],
+          "match": false
+        },
+        {
+          "v": 13,
+          "k": 47,
+          "error": "invalid"
+        },
+        {
+          "v": 29,
+          "k": 31,
+          "c": "t",
+          "firstIndex": 12,
+          "first": false,
+          "actual": [
+            1,
+            14,
+            7
+          ],
+          "match": false
+        },
+        {
+          "v": 32,
+          "k": 28,
+          "error": "invalid"
+        },
+        {
+          "v": 40,
+          "k": 20,
+          "c": "e",
+          "firstIndex": 6,
+          "first": false,
+          "actual": [
+            1,
+            15,
+            5
+          ],
+          "match": false
+        }
+      ],
+      "text": "I?t?e",
+      "allFirst": false,
+      "allSender": false
+    },
+    {
+      "chapter": 3,
+      "reverse": true,
+      "records": [
+        {
+          "v": 57,
+          "k": 3,
+          "c": "s",
+          "firstIndex": 3,
+          "first": true,
+          "actual": [
+            1,
+            1,
+            14
+          ],
+          "match": false
+        },
+        {
+          "v": 47,
+          "k": 13,
+          "c": "l",
+          "firstIndex": 12,
+          "first": false,
+          "actual": [
+            1,
+            2,
+            9
+          ],
+          "match": false
+        },
+        {
+          "v": 31,
+          "k": 29,
+          "c": "s",
+          "firstIndex": 29,
+          "first": true,
+          "actual": [
+            1,
+            3,
+            23
+          ],
+          "match": false
+        },
+        {
+          "v": 28,
+          "k": 32,
+          "error": "invalid"
+        },
+        {
+          "v": 20,
+          "k": 40,
+          "c": "o",
+          "firstIndex": 12,
+          "first": false,
+          "actual": [
+            1,
+            4,
+            31
+          ],
+          "match": false
+        }
+      ],
+      "text": "sls?o",
+      "allFirst": false,
+      "allSender": false
+    }
+  ],
+  "necessary": [
+    {
+      "reverse": false,
+      "perCut": [
+        {
+          "v": 3,
+          "k": 57,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 3,
+              "k": 57,
+              "error": "invalid"
+            },
+            {
+              "chapter": 2,
+              "v": 3,
+              "k": 57,
+              "c": ",",
+              "firstIndex": 34,
+              "first": false
+            },
+            {
+              "chapter": 3,
+              "v": 3,
+              "k": 57,
+              "c": "I",
+              "firstIndex": 30,
+              "first": false
+            }
+          ]
+        },
+        {
+          "v": 13,
+          "k": 47,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 13,
+              "k": 47,
+              "c": "t",
+              "firstIndex": 26,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 13,
+              "k": 47,
+              "error": "invalid"
+            },
+            {
+              "chapter": 3,
+              "v": 13,
+              "k": 47,
+              "error": "invalid"
+            }
+          ]
+        },
+        {
+          "v": 29,
+          "k": 31,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 29,
+              "k": 31,
+              "c": "t",
+              "firstIndex": 31,
+              "first": true
+            },
+            {
+              "chapter": 2,
+              "v": 29,
+              "k": 31,
+              "error": "invalid"
+            },
+            {
+              "chapter": 3,
+              "v": 29,
+              "k": 31,
+              "c": "t",
+              "firstIndex": 12,
+              "first": false
+            }
+          ]
+        },
+        {
+          "v": 32,
+          "k": 28,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 32,
+              "k": 28,
+              "c": "r",
+              "firstIndex": 8,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 32,
+              "k": 28,
+              "c": "a",
+              "firstIndex": 7,
+              "first": false
+            },
+            {
+              "chapter": 3,
+              "v": 32,
+              "k": 28,
+              "error": "invalid"
+            }
+          ]
+        },
+        {
+          "v": 40,
+          "k": 20,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 40,
+              "k": 20,
+              "c": "s",
+              "firstIndex": 8,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 40,
+              "k": 20,
+              "c": "R",
+              "firstIndex": 20,
+              "first": true
+            },
+            {
+              "chapter": 3,
+              "v": 40,
+              "k": 20,
+              "c": "e",
+              "firstIndex": 6,
+              "first": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reverse": true,
+      "perCut": [
+        {
+          "v": 57,
+          "k": 3,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 57,
+              "k": 3,
+              "c": "v",
+              "firstIndex": 3,
+              "first": true
+            },
+            {
+              "chapter": 2,
+              "v": 57,
+              "k": 3,
+              "c": "t",
+              "firstIndex": 3,
+              "first": true
+            },
+            {
+              "chapter": 3,
+              "v": 57,
+              "k": 3,
+              "c": "s",
+              "firstIndex": 3,
+              "first": true
+            }
+          ]
+        },
+        {
+          "v": 47,
+          "k": 13,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 47,
+              "k": 13,
+              "c": "h",
+              "firstIndex": 5,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 47,
+              "k": 13,
+              "c": "e",
+              "firstIndex": 3,
+              "first": false
+            },
+            {
+              "chapter": 3,
+              "v": 47,
+              "k": 13,
+              "c": "l",
+              "firstIndex": 12,
+              "first": false
+            }
+          ]
+        },
+        {
+          "v": 31,
+          "k": 29,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 31,
+              "k": 29,
+              "c": "e",
+              "firstIndex": 6,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 31,
+              "k": 29,
+              "c": "a",
+              "firstIndex": 8,
+              "first": false
+            },
+            {
+              "chapter": 3,
+              "v": 31,
+              "k": 29,
+              "c": "s",
+              "firstIndex": 29,
+              "first": true
+            }
+          ]
+        },
+        {
+          "v": 28,
+          "k": 32,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 28,
+              "k": 32,
+              "c": "r",
+              "firstIndex": 7,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 28,
+              "k": 32,
+              "error": "invalid"
+            },
+            {
+              "chapter": 3,
+              "v": 28,
+              "k": 32,
+              "error": "invalid"
+            }
+          ]
+        },
+        {
+          "v": 20,
+          "k": 40,
+          "chapters": [
+            {
+              "chapter": 1,
+              "v": 20,
+              "k": 40,
+              "c": "h",
+              "firstIndex": 2,
+              "first": false
+            },
+            {
+              "chapter": 2,
+              "v": 20,
+              "k": 40,
+              "c": "i",
+              "firstIndex": 23,
+              "first": false
+            },
+            {
+              "chapter": 3,
+              "v": 20,
+              "k": 40,
+              "c": "o",
+              "firstIndex": 12,
+              "first": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "plantCount": 1100
+}

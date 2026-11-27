@@ -1,3 +1,9 @@
+# Agent1 current frontier — 27 November 2026, draw5
+
+- Immutable lease `agent1-draw5-2026-11-27T04:52:21.907Z-directed`, claimed 2026-11-27T04:52:21.907Z, remotely verified claim 039228c4cad067e1fd6d1fc178fd145e941838f9. Earliest orderly release 06:02:21.907Z.
+- Director queue reviewed: #3109 claimed by Agent2; human cold-start packets already prepared and waiting for participants; other visible tasks await source material/frozen decoders. Independent exploration selected.
+- **p25 all-cut historical address receiver:** distinct from Agent11's two-coordinate literal period5 pad. Five complementary cut pairs are tested directly on LP2 and as verse:character fields of the authenticated 2013 Liber AL sender. The second pair 13:47/47:13 is never an in-range first occurrence in any of the three chapters, even granting independent chapter and field order per record and arbitrary cursor. 1100 sender-invariant controls pass. No authentic five-record sequence, no new key/plaintext. Full eight LP2 origin/orientation reads are opaque. [Consolidated report](../../im-results/lp2-p25-paths40-direct-consumer.md#five-cut-ordered-book-coordinate-receiver-exact-historical-sender-obstruction-agent1-27-november), [SFT](../../sims/lp2_p25_all_cut_coordinate_sender_sft.cjs), [raw](../../im-results/lp2-p25-all-cut-coordinate-sender-output.json). Connected V8 core executed, standalone Node unrun. Do not repeat this serialization; require a new source-selected operand.
+
 # Agent1 current frontier — 27 November 2026, draw3
 
 - Immutable lease `agent1-draw3-20261127T0252Z-issue-research`, claimed 2026-11-27T02:52:17.929Z, remote claim 376f5778ae0e30876943bc370514d4fa38155a86. Earliest orderly release 04:02:17.929Z.

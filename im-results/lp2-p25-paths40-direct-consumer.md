@@ -225,3 +225,35 @@ The p25 cut-five producer has two outputs, 40 and 20, and a five-rune left opera
 The exact dynamic program includes every possible F-hold path using the state `(phase,last plaintext rune)`, counts all paths with BigInt, and retains the maximum fixed bigram score. Failure indices are zero-based offsets relative to the selected start. All four F-hold branches have zero complete paths. All four ordinary branches have exact forward replay but no recognizable prose. With add-0.5 GP bigrams trained on the pinned 47,662-rune Gibran source, the minimum of 601 native 484-rune windows is −2.720584, and of 547 native 502-rune windows is −2.707865; both the initial segment and the independently unadjusted next-page segment are below every corresponding native window. Across 24 matched-length positive plants made from native WELCOME, KOAN1 and LOSS OF DIVINITY, every authentic plant remains a valid path, 16/24 MAP outputs are exact and 11816/11832 runes recover. MAP can differ where several literal-F paths exist; these are synthetic encryptions of native plaintext, not historical proof of the cipher.
 
 **Decision:** retire exactly this literal two-coordinate period-five receiver. It neither authenticates nor retracts PATHS and does not resolve the right-output semantics. Do not tune offset, phase, or order after seeing the original failure. No unknown plaintext/key recovered. The core ran in connected V8, not a standalone Node CI job. [Reproducer](../sims/lp2_p25_two_coordinate_period5_sft.cjs) · [raw outputs and pinned inputs](lp2-p25-two-coordinate-period5-output.json).
+
+### Five-cut ordered book-coordinate receiver: exact historical sender obstruction (Agent1, 27 November)
+
+A distinct interpretation of the p25 transformed object treats its **five complementary prefix/suffix sums as five ordered two-field records**, rather than just the terminal cut5 as two signed-source word indices or Agent11's fixed (page,rune)-start with a five-rune repeating pad. This uses all five cuts in source order; no cut, phase, key or candidate word is selected by language scoring. The earlier 2013 Cicada book-code procedure, which is contemporaneous with the DH state used in the proposed producer, gives a concrete comparison. No first-party LP2 instruction establishes this serialization or carrier; the test is an exploratory rival.
+
+The frozen pairs are `(3,57),(13,47),(29,31),(32,28),(40,20)`. Reading the literal GP indices at the five LP2 page/rune coordinates yields:
+
+| Pair order | Page/index origins | Direct five-rune reading |
+| --- | --- | --- |
+| forward | 0/0 | N X L TH L |
+| forward | 0/1 | W O AE T EA |
+| forward | 1/0 | D G P D M |
+| forward | 1/1 | R A C AE O |
+| exchanged | 0/0 | A X L NG NG |
+| exchanged | 0/1 | R U D P F |
+| exchanged | 1/0 | S W OE E E |
+| exchanged | 1/1 | OE I IA B X |
+
+The analogous complete-printed-group addresses have an out-of-range coordinate in every forward orientation/origin; the four exchanged variants have five valid addresses but no coherent five-group reading. Known clear p57 may appear in those readings (e.g. INSTAR/THE); it is not new plaintext. The full original corpus parser admits 2,941 groups, of which 2,909 are wholly on one page, including solved p56/p57; this is not a changed unsolved-only census. No independently motivated subsequent key or inverse follows from any of these readings.
+
+The more discriminating historical test uses the **pinned 2013 Liber AL carrier and the exact one-based chapter:verse:character grammar** reconstructed in [#2892](https://github.com/FlareZ123/liber-primus/issues/2892). In the authentic sender each emitted coordinate points to the first case-sensitive occurrence of its character within its chosen verse, independent of initial cursor. Grant all three chapters for every record (not just the conjectural DH K=2 chapter), either coordinate order, and any cursor. The second pair alone is impossible:
+
+| Orientation | Verse:char | Chapter I | Chapter II | Chapter III |
+| --- | --- | --- | --- | --- |
+| forward | 13:47 | "t" (first at 26) | out of range | out of range |
+| exchanged | 47:13 | "h" (first at 5) | "e" (first at 3) | "l" (first at 12) |
+
+Therefore **zero full five-record sequences** can arise from the authentic historical sender, even with arbitrary independently varying chapter labels and arbitrary initial cursor, under either globally fixed order or even independently exchanged fields per record. All 1100 source-carrier/cursor/character controls return a valid first occurrence. The authentic 46-record replay is established in #2892 and not repeated here. The raw output includes all six fixed-chapter readings and their exact greedy re-encoding, but the second-cut obstruction is sufficient without invoking a cursor or scoring.
+
+**Decision:** retire this all-cut coordinate serialization under the actual 2013 sender. It does not exclude an independently selected isolated cut5 address or a different source/coordinate grammar, and does not strengthen or retract the local PATHS candidate. This is a bounded conditional exclusion, not a new solution. Do not tune origins, chapter labels or cut omissions to salvage it without an independent source selector. Core executed in connected V8; standalone Node wrapper unrun.
+
+[Reproducer](../sims/lp2_p25_all_cut_coordinate_sender_sft.cjs) · [Raw output and all pinned inputs](lp2-p25-all-cut-coordinate-sender-output.json).
