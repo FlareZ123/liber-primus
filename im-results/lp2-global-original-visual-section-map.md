@@ -10,7 +10,7 @@ The [source-exact CommonJS single-file reproducer](../sims/lp2_visual_chapter_bo
 | --- | --- | ---: | ---: |
 | **p0–2** | Black cross/branch graphic, red p0 opening, p2 terminal red 13-dot | **729** | 0 |
 | **p3–7** | Repeated side scrollwork; p3 opening, p6 red subheading, p7 terminal rubric/mark | **1,145** | 729 |
-| **p8–14** | Repeated marginal saplings; p8 opening, p14 feather and terminal mark | **1,729** | 1,874 |
+| **p8–14** | Repeated marginal saplings; p8 opening, p14 mayfly and terminal mark | **1,729** | 1,874 |
 | **p15–22** | p15 nine-rune heading and 4×4 number spiral, infinity ornament, second eleven-rune red heading; p22 stave/root and terminal mark | **1,903** | 3,603 |
 | **p23–26** | p23 five-dot graphic/red heading, p24–26 repeated side illustration, p26 terminal mark | **1,021** | 5,506 |
 | **p27–32** | p27 red heading/leaf, unframed text pp28–31, p32 small dead tree and terminal mark | **1,433** | 6,527 |
@@ -35,6 +35,29 @@ Training on the original pp0–53 yields **seven** source-visible page-break cha
 A border-change-only rule misses **p54**; the floral border is pixel-identical across physical pp40–55, yet p53 ends with red13 and p54 begins with a distinct red nine-rune rubric. A mark-only rule creates spurious top-level chapters at several intrapage red13 punctuation events. Original reading order and combined heading/terminal cues give a stronger human-solvable boundary criterion.
 
 Important **lower-level subdivisions** are still source-visible. Physical p15 rune offset9 follows the isolated red nine-rune 4×4-grid heading and precedes the second red headed text. On p33, the first **91 runes** finish at a red13 marker and printed three-dot break; a second enlarged red heading begins at local rune91. These subdivisions are not new physical-page starts, so they are listed separately from the nine top-level chapters.
+
+### Conditional uniqueness of the chapter-internal codex order (Director #3144, 27 November 2026)
+
+The source-visible chapters do more than merely suggest the published order. Given the **same nine ordered physical chapters**, their original rubric/terminal endpoint leaves, all 32 *specific directed* carried-word page joins, no newly created joins, the alternating left/right tree-margin pattern on p8–14, and ascending printed item numbers 1–5 on p36–38, **the ordinary page-major order is the unique within-chapter leaf permutation**. This is a conditional combinatorial result, not a claim that the authors intended a bound book or that a pre-encryption transposition must preserve those constraints.
+
+Each observed carried-word edge forces adjacent leaves in that direction. Contracting all 32 edges gives 24 chains. The following proof uses chain endpoints, not ciphertext language scores or a search over page orders:
+
+| Chapter | Directed carry chains | Why the order is forced |
+|---|---|---|
+| p0–2, p3–7, p23–26, p54–55 | One chain each | All internal joins fixed |
+| p8–14 | 8–10 / 11 / 12 / 13 / 14 | The rubric fixes the first chain; p13 ends with an undelimited rune and only p14 begins with a separator, forcing p13→14. The remaining right/left tree placements force p11 then p12. |
+| p15–22 | 15 / 16–17 / 18–20 / 21–22 | The start and terminal chain are fixed. p17 ends with an undelimited rune, and p18 alone begins with a separator. Reversing the two middle chains creates a new p17→21 carried group. |
+| p27–32 | 27–28 / 29–30 / 31–32 | First and last fixed; only one middle chain. |
+| p33–39 | 33–34 / 35–36 / 37 / 38 / 39 | Item 1 is on p36, items 2–4 on p37, item 5 on p38, forcing the three middle chains in order. |
+| p40–53 | 40–49 / 50 / 51–53 | First and terminal chains fixed; p50 is the sole intervening leaf, also preserving the contiguous three-page numeric grid. |
+
+The alternating saplings were independently measured in the [original-image art gate](lp2-p8-14-sapling-image-selector-gate.md). Local visual inspection of the owner-supplied original 75-image archive confirms the margin placement and the unnumbered leaves; no new plate/source attribution is claimed. **The parity constraint is substantive:** dropping it admits p8,9,10,12,11,13,14, with all 32 actual directed joins unchanged and no new join. Thus the carry inventory alone cannot establish ordinary reading order. Both conventional absolute binding parities remain possible; neither selects a cipher.
+
+For comparison, taking the previously frozen [14-sheet imposition map](https://github.com/FlareZ123/liber-primus/issues/1345) literally as a reading permutation (rather than a partner-key map) retains only 8/32 actual directed carry joins and creates 24 new ones; its inverse retains 10/32 and creates 21. The p49–51 grid occupies zero-based positions [12,11,8] and [24,25,30], respectively. These maps are exact bijections but fail independent physical continuity. No alternative imposition conventions or ciphertext scoring were searched.
+
+The [single-file reproducer](../sims/lp2_codex_carry_uniqueness_sft.cjs) checks all chain endpoints, exact directed carries against the original-image-adjudicated CSV, the numbered markers, the counterexample, and the two frozen map diagnostics. Executed in the connected V8 runtime on transcription blob 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7 and the canonical carry CSV; standalone Node/CI not separately run.
+
+**Decision:** The signed Stage11 sequential delivery remains the strongest page-order evidence. Physical continuity also forces that order under the stated preservation hypotheses. A new nonlocal reading mechanism needs an independent authored instruction identifying which of these constraints to break, or a typed operation acting before layout that need not preserve them. No new key or plaintext recovered. No more imposition or facing-page sweeps without that operand.
 
 ### An important nine-versus-nine ambiguity
 
