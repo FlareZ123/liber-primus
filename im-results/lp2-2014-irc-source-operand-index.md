@@ -61,3 +61,26 @@ A second pinned-source extraction ([script](../sims/lp2_2014_missing19_ephemeral
 Main L216945 (July 2 20:52, nikkler) specifically proposes a Diffie–Hellman interpretation of missing prime 19 involving runes and position. Together with the May 6/9/12 ephemeral/MAYFLY discussion, this establishes a historically available candidate family rather than author selection. The signed 2013 example has public share 19, but neither the IRC proposal nor the two pastes binds an LP2 receiver, operand serialization, or new plaintext prediction. Existing missing-19 and DH transfer negatives remain valid. Do not repeat those searches.
 
 The new decision is to prefer the 7/23 *reported rendering* as a contemporaneously corroborated description, while keeping the byte-authentication and cipher gates closed. No unknown plaintext or key was recovered.
+
+
+## Exact original-cipher gate: missing-19 DH position schedule
+
+To turn the July 2 participant suggestion into one falsifiable operation, freeze the signed 2013 DH example p=23,g=5,B=19 and use the position i as the changing party's secret exponent. The implied common value is k_i=19^i mod23 (equivalently (5^i)^15 mod23). The direct GP29 consumer is C=P±k_i mod29. The historically grounded F-transparent alternative passes P=F unchanged, with either the visible physical position or the p56 non-F consumption clock. Neither consumer was specified by the IRC speaker: this is a concrete exploratory realization of the historical idea, not an author-selected operation. Original p19 and mayfly-route pp14,23–27 were frozen targets. The source-motivated zero/one-based phases are included; the additional exact feasibility union over 22 starting phases avoids an off-by-one/reset escape without fitting a new key.
+
+The period is [1,19,16,5,3,11,2,15,9,10,6,22,4,7,18,20,12,21,8,14,13,17]. All nonzero mod23 residues appear exactly once. An exact inverse DP retains every reachable key phase; merging histories preserves feasibility, and a representative survivor is forward-replayed. For ordinary consuming clocks the inverse is unique. Eighteen planted p57-derived controls (three clocks, both signs, three phases) all admit a valid inverse, with exact planted plaintext for the ordinary clock.
+
+| Original physical page | Runes | Valid phase/sign combinations, physical-F | Valid phase/sign combinations, p56 consuming-F | Best ordinary GP trigram | Worst equal-length native reference |
+|---:|---:|---:|---:|---:|---:|
+|14|137|0|0|-10.6602|-7.6730|
+|19|271|0|3|-10.6603|-7.5706|
+|23|213|0|0|-10.6106|-7.6255|
+|24|270|0|0|-10.6899|-7.5708|
+|25|273|0|1|-10.6430|-7.5777|
+|26|265|0|0|-10.6396|-7.5726|
+|27|234|0|1|-10.6830|-7.6070|
+
+Each F-column tests all 44 phase/sign choices independently on each page. Thus no phase/sign choice admits the physical-F inverse on even one target page, and no continuous or reset consuming-F instance can cover pp23–26 (p23,24,26 are individually impossible regardless of entering phase). The surviving isolated p19/p25/p27 consuming-F branches were not exhaustively language-ranked; representative paths are nonlinguistic. Ordinary-clock outputs are all below every equal-length window of the source-native LP1 training reference; no readable continuation was obtained. This is an in-sample language diagnostic, not a statistical p-value. The exact F feasibility exclusions are independent of language. Do not reopen this exact schedule or treat the phase-count result as a negative for every possible DH consumer.
+
+Reproduction: [committed standalone test](../sims/lp2_2014_missing19_dh_position_sft.cjs), [successful Windows CI run 45925163262](https://github.com/FlareZ123/liber-primus/actions/runs/45925163262), full JSON artifact 15165833220. The initial dispatch used a version missing the required output artifact; the corrected version completed successfully. No unknown plaintext/key recovered.
+
+**#3106 closure decision:** the deduplicated index and new historical artifacts meet route-discovery criterion (a), with one concrete original-cipher receiver now tested and rejected. The unresolved source-selected DH receiver remains a real dependency; there is no new independent operand or justified follow-up cipher sweep. The entire lexical index is available, but was not exhaustively semantically adjudicated, so this is not criterion (b)'s universal corpus-negative.
