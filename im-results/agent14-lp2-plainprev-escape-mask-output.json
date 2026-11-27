@@ -1,0 +1,628 @@
+{
+  "shas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "df260a07d56bf5998d40a6360b6132c35c252d10"
+  ],
+  "sourceLengths": [
+    217106,
+    306851,
+    47629
+  ],
+  "frames": [
+    {
+      "name": "book",
+      "n": 12956,
+      "repeats": 86,
+      "pageSeams": 54
+    },
+    {
+      "name": "p0-2",
+      "n": 729,
+      "repeats": 4,
+      "pageSeams": 2
+    },
+    {
+      "name": "p3-7",
+      "n": 1145,
+      "repeats": 6,
+      "pageSeams": 4
+    },
+    {
+      "name": "p8-14",
+      "n": 1729,
+      "repeats": 9,
+      "pageSeams": 6
+    },
+    {
+      "name": "p15-22",
+      "n": 1903,
+      "repeats": 10,
+      "pageSeams": 7
+    },
+    {
+      "name": "p23-26",
+      "n": 1021,
+      "repeats": 11,
+      "pageSeams": 3
+    },
+    {
+      "name": "p27-32",
+      "n": 1433,
+      "repeats": 13,
+      "pageSeams": 5
+    },
+    {
+      "name": "p33-39",
+      "n": 1680,
+      "repeats": 12,
+      "pageSeams": 6
+    },
+    {
+      "name": "p40-53",
+      "n": 3008,
+      "repeats": 18,
+      "pageSeams": 12
+    },
+    {
+      "name": "p54-55",
+      "n": 308,
+      "repeats": 3,
+      "pageSeams": 1
+    }
+  ],
+  "controls": [
+    {
+      "source": 0,
+      "start": 4000,
+      "repeats": 47,
+      "exactReplay": 12956,
+      "forcedRows": 10,
+      "trainForcedRows": 9,
+      "held": 3301,
+      "forced": 3282,
+      "correct": 3282,
+      "scan": {
+        "windows": 401,
+        "predicateMinErrors": 0,
+        "predicateBestOffset": 200,
+        "predicateZero": 1,
+        "onePerRowLowerMinErrors": 0,
+        "onePerRowBestOffset": 200,
+        "onePerRowLowerZero": 1,
+        "exact": 1,
+        "exactFirst": [
+          {
+            "offset": 200,
+            "forcedRows": 10
+          }
+        ]
+      }
+    },
+    {
+      "source": 1,
+      "start": 4777,
+      "repeats": 37,
+      "exactReplay": 12956,
+      "forcedRows": 9,
+      "trainForcedRows": 9,
+      "held": 3301,
+      "forced": 3276,
+      "correct": 3276,
+      "scan": {
+        "windows": 401,
+        "predicateMinErrors": 0,
+        "predicateBestOffset": 200,
+        "predicateZero": 1,
+        "onePerRowLowerMinErrors": 0,
+        "onePerRowBestOffset": 200,
+        "onePerRowLowerZero": 1,
+        "exact": 1,
+        "exactFirst": [
+          {
+            "offset": 200,
+            "forcedRows": 9
+          }
+        ]
+      }
+    },
+    {
+      "source": 2,
+      "start": 5554,
+      "repeats": 22,
+      "exactReplay": 12956,
+      "forcedRows": 8,
+      "trainForcedRows": 7,
+      "held": 3301,
+      "forced": 3286,
+      "correct": 3286,
+      "scan": {
+        "windows": 401,
+        "predicateMinErrors": 0,
+        "predicateBestOffset": 200,
+        "predicateZero": 1,
+        "onePerRowLowerMinErrors": 0,
+        "onePerRowBestOffset": 200,
+        "onePerRowLowerZero": 1,
+        "exact": 1,
+        "exactFirst": [
+          {
+            "offset": 200,
+            "forcedRows": 8
+          }
+        ]
+      }
+    }
+  ],
+  "results": [
+    {
+      "source": 0,
+      "frame": "book",
+      "windows": 204151,
+      "predicateMinErrors": 80,
+      "predicateBestOffset": 58194,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 80,
+      "onePerRowBestOffset": 58194,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p0-2",
+      "windows": 216378,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 4511,
+      "predicateZero": 90,
+      "onePerRowLowerMinErrors": 0,
+      "onePerRowBestOffset": 4511,
+      "onePerRowLowerZero": 70,
+      "exact": 70,
+      "exactFirst": [
+        {
+          "offset": 4511,
+          "forcedRows": 3
+        },
+        {
+          "offset": 10604,
+          "forcedRows": 4
+        },
+        {
+          "offset": 19751,
+          "forcedRows": 4
+        }
+      ]
+    },
+    {
+      "source": 0,
+      "frame": "p3-7",
+      "windows": 215962,
+      "predicateMinErrors": 1,
+      "predicateBestOffset": 22918,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 1,
+      "onePerRowBestOffset": 47808,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p8-14",
+      "windows": 215378,
+      "predicateMinErrors": 3,
+      "predicateBestOffset": 22387,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 3,
+      "onePerRowBestOffset": 22387,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p15-22",
+      "windows": 215204,
+      "predicateMinErrors": 4,
+      "predicateBestOffset": 158409,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 4,
+      "onePerRowBestOffset": 158409,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p23-26",
+      "windows": 216086,
+      "predicateMinErrors": 4,
+      "predicateBestOffset": 191283,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 4,
+      "onePerRowBestOffset": 191283,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p27-32",
+      "windows": 215674,
+      "predicateMinErrors": 5,
+      "predicateBestOffset": 159487,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 6,
+      "onePerRowBestOffset": 165759,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p33-39",
+      "windows": 215427,
+      "predicateMinErrors": 6,
+      "predicateBestOffset": 71672,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 6,
+      "onePerRowBestOffset": 71672,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p40-53",
+      "windows": 214099,
+      "predicateMinErrors": 12,
+      "predicateBestOffset": 87434,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 12,
+      "onePerRowBestOffset": 87434,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 0,
+      "frame": "p54-55",
+      "windows": 216799,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 66,
+      "predicateZero": 6165,
+      "onePerRowLowerMinErrors": 0,
+      "onePerRowBestOffset": 66,
+      "onePerRowLowerZero": 5362,
+      "exact": 5362,
+      "exactFirst": [
+        {
+          "offset": 66,
+          "forcedRows": 3
+        },
+        {
+          "offset": 82,
+          "forcedRows": 3
+        },
+        {
+          "offset": 105,
+          "forcedRows": 3
+        }
+      ]
+    },
+    {
+      "source": 1,
+      "frame": "book",
+      "windows": 293896,
+      "predicateMinErrors": 81,
+      "predicateBestOffset": 4955,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 81,
+      "onePerRowBestOffset": 4955,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p0-2",
+      "windows": 306123,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 8256,
+      "predicateZero": 117,
+      "onePerRowLowerMinErrors": 0,
+      "onePerRowBestOffset": 8256,
+      "onePerRowLowerZero": 94,
+      "exact": 94,
+      "exactFirst": [
+        {
+          "offset": 8256,
+          "forcedRows": 4
+        },
+        {
+          "offset": 15406,
+          "forcedRows": 4
+        },
+        {
+          "offset": 22169,
+          "forcedRows": 4
+        }
+      ]
+    },
+    {
+      "source": 1,
+      "frame": "p3-7",
+      "windows": 305707,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 10837,
+      "predicateZero": 1,
+      "onePerRowLowerMinErrors": 1,
+      "onePerRowBestOffset": 10837,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p8-14",
+      "windows": 305123,
+      "predicateMinErrors": 3,
+      "predicateBestOffset": 297321,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 3,
+      "onePerRowBestOffset": 297321,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p15-22",
+      "windows": 304949,
+      "predicateMinErrors": 4,
+      "predicateBestOffset": 233316,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 5,
+      "onePerRowBestOffset": 9340,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p23-26",
+      "windows": 305831,
+      "predicateMinErrors": 4,
+      "predicateBestOffset": 5906,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 4,
+      "onePerRowBestOffset": 5906,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p27-32",
+      "windows": 305419,
+      "predicateMinErrors": 6,
+      "predicateBestOffset": 181023,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 7,
+      "onePerRowBestOffset": 9612,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p33-39",
+      "windows": 305172,
+      "predicateMinErrors": 6,
+      "predicateBestOffset": 38924,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 6,
+      "onePerRowBestOffset": 38924,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p40-53",
+      "windows": 303844,
+      "predicateMinErrors": 12,
+      "predicateBestOffset": 86222,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 12,
+      "onePerRowBestOffset": 86222,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 1,
+      "frame": "p54-55",
+      "windows": 306544,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 85,
+      "predicateZero": 8259,
+      "onePerRowLowerMinErrors": 0,
+      "onePerRowBestOffset": 85,
+      "onePerRowLowerZero": 7208,
+      "exact": 7208,
+      "exactFirst": [
+        {
+          "offset": 85,
+          "forcedRows": 3
+        },
+        {
+          "offset": 121,
+          "forcedRows": 3
+        },
+        {
+          "offset": 270,
+          "forcedRows": 3
+        }
+      ]
+    },
+    {
+      "source": 2,
+      "frame": "book",
+      "windows": 34674,
+      "predicateMinErrors": 81,
+      "predicateBestOffset": 5245,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 81,
+      "onePerRowBestOffset": 31810,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p0-2",
+      "windows": 46901,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 280,
+      "predicateZero": 13,
+      "onePerRowLowerMinErrors": 0,
+      "onePerRowBestOffset": 280,
+      "onePerRowLowerZero": 11,
+      "exact": 11,
+      "exactFirst": [
+        {
+          "offset": 280,
+          "forcedRows": 4
+        },
+        {
+          "offset": 1580,
+          "forcedRows": 4
+        },
+        {
+          "offset": 3591,
+          "forcedRows": 4
+        }
+      ]
+    },
+    {
+      "source": 2,
+      "frame": "p3-7",
+      "windows": 46485,
+      "predicateMinErrors": 1,
+      "predicateBestOffset": 22399,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 2,
+      "onePerRowBestOffset": 311,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p8-14",
+      "windows": 45901,
+      "predicateMinErrors": 4,
+      "predicateBestOffset": 14304,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 4,
+      "onePerRowBestOffset": 14304,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p15-22",
+      "windows": 45727,
+      "predicateMinErrors": 5,
+      "predicateBestOffset": 6460,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 5,
+      "onePerRowBestOffset": 6460,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p23-26",
+      "windows": 46609,
+      "predicateMinErrors": 4,
+      "predicateBestOffset": 12465,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 4,
+      "onePerRowBestOffset": 22545,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p27-32",
+      "windows": 46197,
+      "predicateMinErrors": 6,
+      "predicateBestOffset": 19229,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 7,
+      "onePerRowBestOffset": 2426,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p33-39",
+      "windows": 45950,
+      "predicateMinErrors": 6,
+      "predicateBestOffset": 8657,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 7,
+      "onePerRowBestOffset": 3543,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p40-53",
+      "windows": 44622,
+      "predicateMinErrors": 13,
+      "predicateBestOffset": 8850,
+      "predicateZero": 0,
+      "onePerRowLowerMinErrors": 14,
+      "onePerRowBestOffset": 39,
+      "onePerRowLowerZero": 0,
+      "exact": 0,
+      "exactFirst": []
+    },
+    {
+      "source": 2,
+      "frame": "p54-55",
+      "windows": 47322,
+      "predicateMinErrors": 0,
+      "predicateBestOffset": 29,
+      "predicateZero": 1132,
+      "onePerRowLowerMinErrors": 0,
+      "onePerRowBestOffset": 29,
+      "onePerRowLowerZero": 984,
+      "exact": 984,
+      "exactFirst": [
+        {
+          "offset": 29,
+          "forcedRows": 3
+        },
+        {
+          "offset": 52,
+          "forcedRows": 3
+        },
+        {
+          "offset": 58,
+          "forcedRows": 3
+        }
+      ]
+    }
+  ]
+}
