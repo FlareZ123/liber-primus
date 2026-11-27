@@ -1,0 +1,1662 @@
+{
+  "training": 2799,
+  "native": [
+    {
+      "n": 85,
+      "score": -2.542565687356515
+    },
+    {
+      "n": 95,
+      "score": -2.5374914647034696
+    }
+  ],
+  "originalRunes": 12956,
+  "rawScore": -3.5544202273217147,
+  "anchor": "HERE",
+  "outputs": [
+    {
+      "scope": "line",
+      "which": "H",
+      "total": 12956,
+      "score": -3.5502078263388235,
+      "outerLength": 5996,
+      "outerScore": -3.5436159104467584,
+      "chapterScore": -3.5495146051212987,
+      "chapterOuterScore": -3.557976351206722,
+      "p28": {
+        "rawScore": -3.5912582007096594,
+        "score": -3.5600740777837556,
+        "outerScore": -3.5108054604434042,
+        "firstLineSizedPrefix": "HEREOXXFMPNGEOFXTGNHDMBNEA",
+        "continuation": "OXXFMPNGEOFXTGNHDMBNEAAEOLBFRJEOLWNLNGIJNGJRRBTHOEGULRTETFUNUGCDEOUGEASWTHTHDWMOEFBTHOEGNXTHPENGNGRIALBLTIPAEOECPWGPHT",
+        "afterAnchorScore": -3.587247947350063,
+        "outerPreview": "HEREOXXFMPAEOLBFRJEOLWNLULRTETFUNUFBTHOEGNXTHPWGPHTGJSTHXREOEODEOHMEALJJTHEOEWOADGCAELAOOXFUEAUNEOCSRJTYNNETHFBWIGRN",
+        "outerAfterAnchorScore": -3.57688094125199
+      },
+      "p56": {
+        "aligned": 4,
+        "score": -3.624863118934737
+      },
+      "pageScores": [
+        {
+          "page": 34,
+          "score": -3.4849627041995834,
+          "outerScore": -3.4998012602397552,
+          "rawScore": -3.6043446718107077,
+          "preview": "THWUBEGIAEENAYHAEAIESNEYIAEORTHSOBEUCCPJCGPYOULSCSTOENUPAE"
+        },
+        {
+          "page": 1,
+          "score": -3.5046646002916075,
+          "outerScore": -3.430545048288348,
+          "rawScore": -3.5909316787963297,
+          "preview": "SRBPGNOWAAETHPJHREMTHMMDHGWRRIPEOOYOUEAAEEOIASMRAPOELNYOEJIAEA"
+        },
+        {
+          "page": 47,
+          "score": -3.512305371025964,
+          "outerScore": -3.5323139938255546,
+          "rawScore": -3.5752419454338993,
+          "preview": "YUCFIMANENSTIYXEIYWPBRAWIAANYCJOEAGPJMXIBENCWAEWEAERJR"
+        },
+        {
+          "page": 20,
+          "score": -3.5162039137654064,
+          "outerScore": -3.5009325640080062,
+          "rawScore": -3.5534408862574223,
+          "preview": "DEADETISJUEOPIABISUIXOUMIADOEYEEOWNMOASTOEWGIAAEABAEFFALEAEAEL"
+        },
+        {
+          "page": 55,
+          "score": -3.519347633494907,
+          "outerScore": -3.4951595766657437,
+          "rawScore": -3.6112484942953027,
+          "preview": "EOIAOARMJEAUOJNGBNFIXOEOEOFWEOTJMMEOOENLTHEAAELOEGAENGTHEGOAEGDUPX"
+        },
+        {
+          "page": 8,
+          "score": -3.522566801362161,
+          "outerScore": -3.534216018084368,
+          "rawScore": -3.570450361402022,
+          "preview": "ARPEJXXPAEAJBNGOOWTITHREAXAEDYRXPPAENGMONGNPOETHTHGJFEOCFLD"
+        },
+        {
+          "page": 6,
+          "score": -3.522578569679925,
+          "outerScore": -3.5036572125063525,
+          "rawScore": -3.536215303718056,
+          "preview": "THYSPXWJTJAEWEJEABNAEAHAAEECLANIPAAEFBJYDOOEOEUXPBOERTHITYWU"
+        },
+        {
+          "page": 30,
+          "score": -3.5242424986848926,
+          "outerScore": -3.5814889862781842,
+          "rawScore": -3.549833995597633,
+          "preview": "CEOIENGSCOMYJHPHRMIAFBPIYIAENGLNGFGTEOHPUWALWHNOURAUJRESIA"
+        },
+        {
+          "page": 10,
+          "score": -3.527598744980685,
+          "outerScore": -3.557768345588953,
+          "rawScore": -3.5702614650809132,
+          "preview": "PSATHSYROCNSBRFTHEAXPSNGGJSOAEHALDPSXOEITIAOEYPSEPIMBDACEOC"
+        },
+        {
+          "page": 26,
+          "score": -3.52842505147652,
+          "outerScore": -3.5265389316888767,
+          "rawScore": -3.53681237325256,
+          "preview": "FGPNUBSJIAIHTHNGTHSLWPJXHCPSSEOPTJDUGIFDSCIAEAOELALWSIANGYTX"
+        },
+        {
+          "page": 11,
+          "score": -3.531318587561143,
+          "outerScore": -3.5310990786369074,
+          "rawScore": -3.5861524782954524,
+          "preview": "NTMABUOUIAHIILEAMBHIMLSOEFYSWSTYNGPOEWSAEEOJGAEIEGPOEHAJFY"
+        },
+        {
+          "page": 12,
+          "score": -3.5315196896696883,
+          "outerScore": -3.5569750094941655,
+          "rawScore": -3.564899826805658,
+          "preview": "ASYJEOSUOCLOEMEAOYPCEOWEOPTAEEASIAATHNGENGETHAEOEAIAUOELHHRAIOAEHMN"
+        },
+        {
+          "page": 31,
+          "score": -3.534053262475213,
+          "outerScore": -3.5774816684962136,
+          "rawScore": -3.5304864137244745,
+          "preview": "HAEBPOOODTAWOORETHOTHEABDCHANGEGWRCSAEYAEWCYOPCRTHMXNHBJFF"
+        },
+        {
+          "page": 0,
+          "score": -3.5393788539181745,
+          "outerScore": -3.4969247490465003,
+          "rawScore": -3.5554098559054195,
+          "preview": "SSILGIAWOEIGCECBJEAHEYNUCHIWJIGYISGHYNYBGCFTHBSROEIXINR"
+        },
+        {
+          "page": 51,
+          "score": -3.539550043902179,
+          "outerScore": -3.4887630009864776,
+          "rawScore": -3.5968318816719473,
+          "preview": "DLLNSAYMNGPCMISSDHAEWIAGCNAEELYOETHAFMYGNGNJLPIOESOIBFPNGNAE"
+        },
+        {
+          "page": 35,
+          "score": -3.542235826896027,
+          "outerScore": -3.5128204044657134,
+          "rawScore": -3.5775067983552082,
+          "preview": "YTOECWOTHEOANGDJNGUOYLHEAPCLJGTTHWHUOEPOEPMCPWUEJYAPAEMJEOEEP"
+        },
+        {
+          "page": 14,
+          "score": -3.543506960802336,
+          "outerScore": -3.5928979156642304,
+          "rawScore": -3.556755415279728,
+          "preview": "CIAGDRXUIIAFALEODJCGGTHTTHEAAEDAEOCOEJUAPOJIJOLDRPBYRWXALIAG"
+        },
+        {
+          "page": 3,
+          "score": -3.5437505055796503,
+          "outerScore": -3.448349678295952,
+          "rawScore": -3.57805363506985,
+          "preview": "NTHRLDNNNGDOENBUCHDTGIATBGNCDOBUUEADAEOWNXTHNGGNBHRTHRRBUYY"
+        },
+        {
+          "page": 52,
+          "score": -3.5467215134485,
+          "outerScore": -3.5573174390048146,
+          "rawScore": -3.5944098257089454,
+          "preview": "IMWGNXCLLDPEOWNGFRCMNGWTTHDBAMWREOBTRDULEAOESGBPPLTHAEIAEAXEN"
+        },
+        {
+          "page": 15,
+          "score": -3.5483527652883624,
+          "outerScore": -3.5315044824853064,
+          "rawScore": -3.5240611443778156,
+          "preview": "IMFMINGGNGYJFRGAENNJYEUNOENNLJAEAETJNGLEOJDNGNUIARDGOEAEFEOLMFNG"
+        },
+        {
+          "page": 24,
+          "score": -3.5484713700917063,
+          "outerScore": -3.5589506626503282,
+          "rawScore": -3.535134338321144,
+          "preview": "DDOEXTHTCMEAIHGAYPEAYSFRJPXRIFCWIAXMEAYIPIACGOEGUOEACFBEOXHL"
+        },
+        {
+          "page": 25,
+          "score": -3.551970789966894,
+          "outerScore": -3.630607219399948,
+          "rawScore": -3.543650039333923,
+          "preview": "EABIRJMWIAXRGFEALGHSGMOCCLOOHIAROIPNGUTHMNRFABJXXWIIRDIAEO"
+        },
+        {
+          "page": 45,
+          "score": -3.5532134093153553,
+          "outerScore": -3.533723151961489,
+          "rawScore": -3.575936787992578,
+          "preview": "NALOECJEAOTXCTGXTEALEOTHTHTHLAXGWYICAODMNGSISAEDWAOEIAOEAUAEYBIA"
+        },
+        {
+          "page": 32,
+          "score": -3.5547017091317645,
+          "outerScore": -3.567202625427645,
+          "rawScore": -3.585746311829577,
+          "preview": "ANLUNCCILOEAJTHEASAEMYPTHXFTHOMIAIAIATHXTHDMTHGOOCFOEAITORLHWAES"
+        },
+        {
+          "page": 18,
+          "score": -3.554892314950402,
+          "outerScore": -3.5334476655043874,
+          "rawScore": -3.5714456652866846,
+          "preview": "HMEMYBDREANGXOEGAEDSLGDMEADNGIAGOEGMAENGAEAFLTHXLBJPCHMRIXUOEPIA"
+        },
+        {
+          "page": 19,
+          "score": -3.5551421587185743,
+          "outerScore": -3.5002883382473526,
+          "rawScore": -3.5486196937720824,
+          "preview": "NNDEOIWOESTHBPJDEOAAEAMFGEAUOEEAUNGMAEEMOEFEEAMOAEALFNGEEAMEAPUNME"
+        },
+        {
+          "page": 7,
+          "score": -3.5558901458028234,
+          "outerScore": -3.5111797091704817,
+          "rawScore": -3.5512022964878733,
+          "preview": "TFOHBPNTHFEAEATHHEOWTHCAEGNELIAJWIATADRXNGUEABHPXTHXLAENGOFGNGMGR"
+        },
+        {
+          "page": 49,
+          "score": -3.5573978347163404,
+          "outerScore": -3.4954375678353222,
+          "rawScore": -3.547185693261263,
+          "preview": "WFWOECSHEOLENFURIASIALILIAMTHMDCIAEOAXCWIEOMNUOEIGMMXCAOEJIANA"
+        },
+        {
+          "page": 23,
+          "score": -3.558085290326363,
+          "outerScore": -3.5668422541986584,
+          "rawScore": -3.5167031870934307,
+          "preview": "GAEUPFLSNOAIASGYLNGBNGLBXEOFAYBNOBYLWJHLXUGWRTHNHOJFAEPTHY"
+        },
+        {
+          "page": 17,
+          "score": -3.558264764252198,
+          "outerScore": -3.5598358588458052,
+          "rawScore": -3.5008201097141045,
+          "preview": "EOEMWXMOOEMEAUNAEBWEOOEAEEOYILCDBCHDXYRJPIOIMICEWCOADIRDEON"
+        },
+        {
+          "page": 39,
+          "score": -3.5586355621311028,
+          "outerScore": -3.6240871351025854,
+          "rawScore": -3.546442461011112,
+          "preview": "HOENGYOEGHYGAETHNWDFTHEONGEAIAPIOJGIJPIHMDGTHNGEOUPYAESIHPAEYDUNP"
+        },
+        {
+          "page": 28,
+          "score": -3.5600740777837556,
+          "outerScore": -3.5108054604434042,
+          "rawScore": -3.5912582007096594,
+          "preview": "HEREOXXFMPNGEOFXTGNHDMBNEAAEOLBFRJEOLWNLNGIJNGJRRBTHOEGULRT"
+        },
+        {
+          "page": 48,
+          "score": -3.5600879733721484,
+          "outerScore": -3.635296506684055,
+          "rawScore": -3.5454036404134914,
+          "preview": "GICBLOEBHWRCAAEUASEAWMIAETGWEOBIABOEOJOEGNNOUWAERJIANGPIOEOGM"
+        },
+        {
+          "page": 53,
+          "score": -3.560283523582924,
+          "outerScore": -3.5311258048026133,
+          "rawScore": -3.599596407541101,
+          "preview": "SNBXCDRHLCDFNGBOMDAEIAREANEYHUNOEPNGEHIHAENOEUGUHTHXEANGAEIAER"
+        },
+        {
+          "page": 16,
+          "score": -3.5615549977788565,
+          "outerScore": -3.544528100362863,
+          "rawScore": -3.580238583696314,
+          "preview": "THCUCAOEEEAMFAEXJIEABSXNGEAPEAEALIAGLIEARJTHMDOBAEGOJYTHCBSYHOEIE"
+        },
+        {
+          "page": 9,
+          "score": -3.561586247988016,
+          "outerScore": -3.5524124142043845,
+          "rawScore": -3.5945129559692193,
+          "preview": "SHHCSRLGIXUPEOYRNGUUHAEAHBYOHAENYNNGJRSJDOEPXIATHXLAMPNGAHD"
+        },
+        {
+          "page": 54,
+          "score": -3.5619941240320347,
+          "outerScore": -3.54400957921656,
+          "rawScore": -3.5279218298148516,
+          "preview": "FNHBNGJAJTHEAENHGLAEFLOEPFCSOEEAAXSNGNDNGTBWMILCAEEJOUTDORIP"
+        },
+        {
+          "page": 36,
+          "score": -3.562129678802453,
+          "outerScore": -3.5211420626765673,
+          "rawScore": -3.570687146811833,
+          "preview": "BGOENTHIOEPGCAEOEYOXSEAOAYNOAEEFPCGIATHAFYMJRIAGXUXJPTGOEEAIDR"
+        },
+        {
+          "page": 40,
+          "score": -3.5628598497326687,
+          "outerScore": -3.5665598986306426,
+          "rawScore": -3.5294036704407925,
+          "preview": "IMECTODUAHITHTIAETHNDXLLUHEEAWAEEAHEOMFCOTEATAYNAPEAYDCIMAF"
+        },
+        {
+          "page": 43,
+          "score": -3.5695835098527486,
+          "outerScore": -3.5838988387160065,
+          "rawScore": -3.5349416918584127,
+          "preview": "YMEOHYSWOPEATHCWPGAEPIAIJYGOEAUCDHHCIAEJPBOEWIADTHLDDEMWWTLM"
+        },
+        {
+          "page": 2,
+          "score": -3.569792841350043,
+          "outerScore": -3.5665849355468375,
+          "rawScore": -3.5667577817968463,
+          "preview": "OEONGAIAWJTYNGUAFTHXREOEAEAGDLYNWEASRIAIALWRFLDIHLENCRBEOEOXBAEP"
+        },
+        {
+          "page": 29,
+          "score": -3.5711844466182106,
+          "outerScore": -3.588333770518348,
+          "rawScore": -3.5552907056862644,
+          "preview": "AEHRIANOEMOEXHULAENFOIABDTHHLHAEXGXYIRNNOHLGNGIOEIAIABNGAEAESNEAOX"
+        },
+        {
+          "page": 5,
+          "score": -3.5719875043906044,
+          "outerScore": -3.5393226125325152,
+          "rawScore": -3.543377490579133,
+          "preview": "HFXXJEAWPRGBEAWDNGNGNGUFSNGSAEJUROEOCENCEAIATUSSEAIAXHXIALRXOERW"
+        },
+        {
+          "page": 27,
+          "score": -3.572442950322705,
+          "outerScore": -3.556351168634845,
+          "rawScore": -3.5433407670557693,
+          "preview": "OETFJWRNAECILPOEPEOWWXBEAWNBBOEAWIAAEAEPIAXJEOEADIAEANNGPWJMMEAIE"
+        },
+        {
+          "page": 22,
+          "score": -3.57286035036217,
+          "outerScore": -3.6503736531878856,
+          "rawScore": -3.5982417000380034,
+          "preview": "THJRTCBDTYYUOOAEUCTDPLPNDTOEYXYTHGIAREOEABLEATMJJAEMEOIADIGM"
+        },
+        {
+          "page": 4,
+          "score": -3.574894738059929,
+          "outerScore": -3.5668186870499845,
+          "rawScore": -3.5847557663304648,
+          "preview": "OEETWGCSJHJHEUJEAWARTHIAOBNUXNOETYMNGNGWMPAEJJXWNGPJWCCRBTHA"
+        },
+        {
+          "page": 13,
+          "score": -3.5795114038292395,
+          "outerScore": -3.5712528997960735,
+          "rawScore": -3.5435044805026568,
+          "preview": "UJIAOSNGXYAEHJNEOEABEJWTHHJLFPGFTHWOFUWYTHUEEXJAFUFTHUEOJIA"
+        },
+        {
+          "page": 33,
+          "score": -3.580491962687524,
+          "outerScore": -3.587146425534636,
+          "rawScore": -3.5771673479280066,
+          "preview": "JGHLMCCAYPBSOEWAEJSCNGROEUPOEBYYOASIAXWJMIAOENOEFAEEOEURNGNGJNG"
+        },
+        {
+          "page": 21,
+          "score": -3.582972229601406,
+          "outerScore": -3.559395282167243,
+          "rawScore": -3.5804145026781944,
+          "preview": "GRBFLSWJOETAEUBIAAECIARHNGTHANGEAOENGRNLPLJWTGTHOCJYNGEARAEMBYLOE"
+        },
+        {
+          "page": 42,
+          "score": -3.583145341729433,
+          "outerScore": -3.6032708892520926,
+          "rawScore": -3.571206382877026,
+          "preview": "EOTGXJSJEIRDMEAOAEOTJWUUHPTHHORIAXRGLCGEONLTHXRRNAHTAPEAW"
+        },
+        {
+          "page": 41,
+          "score": -3.5833174529153045,
+          "outerScore": -3.5773717332911126,
+          "rawScore": -3.5330699431240253,
+          "preview": "RDFUDJEODPYIAIFDEOCOEAEIAAEPTHXJJEOWPRAEBSPIABCIAFYWUMCTHOYIAAF"
+        },
+        {
+          "page": 37,
+          "score": -3.5848814352198692,
+          "outerScore": -3.6090552556615196,
+          "rawScore": -3.510178914937725,
+          "preview": "ADEAMAETHUXCHSTSUTHSEOGLAIAYPPDBAEDWUJXUEAGEMGTHHJARDAESTBIA"
+        },
+        {
+          "page": 46,
+          "score": -3.591182714646068,
+          "outerScore": -3.564262186519833,
+          "rawScore": -3.545386328053498,
+          "preview": "WNIAMTHEAGORPCIATHIAETHOAERAWAESNGDNRBADBJINGYXYSTHNOXEOPOWNOR"
+        },
+        {
+          "page": 38,
+          "score": -3.5944144345430953,
+          "outerScore": -3.5632014745486034,
+          "rawScore": -3.5232881048892164,
+          "preview": "RIAIAIAWDPBTRLULUOCAECOEBIACNGULRXROCYEOGFTHGLNBNGXYPEAMATOESA"
+        },
+        {
+          "page": 44,
+          "score": -3.596261842134477,
+          "outerScore": -3.600340538739591,
+          "rawScore": -3.544267289596896,
+          "preview": "IAFNODIMULIAOIATHMAEAEJCEYRFAGMMUPTACSUSPUBYLTJJIAEAGOEEOEOIU"
+        }
+      ]
+    },
+    {
+      "scope": "line",
+      "which": "Hinv",
+      "total": 12956,
+      "score": -3.5510406576985742,
+      "outerLength": 5996,
+      "outerScore": -3.540233809911045,
+      "chapterScore": -3.5665197487408973,
+      "chapterOuterScore": -3.558721972484956,
+      "p28": {
+        "rawScore": -3.5912582007096594,
+        "score": -3.604932003099182,
+        "outerScore": -3.614382951223424,
+        "firstLineSizedPrefix": "NAENIAWPFOENGCGRWFONGRIAOBNEA",
+        "continuation": "WPFOENGCGRWFONGRIAOBNEAGBDMTHFGNEMIINGIAENTHNRBJEAGIXHIAHLSFSIBYGOOXOESWUEADWMOEDFJEAMYUOENHAEREAIADMHMIPJTHCEHNGYHAE",
+        "afterAnchorScore": -3.60229494135112,
+        "outerPreview": "NAENIAWPFOENGCGBDMTHFGNEMIIIXHIAHLSFSIDFJEAMYUOEEHNGYHAELYUWTHOEGDGOAAEISLNNEAEEEOPOOIAEOEOMTPFOEXXMXBDTHWHNMTNIFEAEGOAMIA",
+        "outerAfterAnchorScore": -3.6081469364051273
+      },
+      "p56": {
+        "aligned": 3,
+        "score": -3.5473604955007483
+      },
+      "pageScores": [
+        {
+          "page": 5,
+          "score": -3.5040773213717946,
+          "outerScore": -3.580380418791934,
+          "rawScore": -3.543377490579133,
+          "preview": "FAEWOEXNNGJOIAXGYJNGNGSROEFOERAESNTIABDMLXEOIASNGOEWEASXHEAOETHMJOEEIA"
+        },
+        {
+          "page": 27,
+          "score": -3.5061873460324406,
+          "outerScore": -3.489081438033441,
+          "rawScore": -3.5433407670557693,
+          "preview": "HELFTHJNBTHIAPNGEEDWJXGMJDGEOEEAJIATHPWUJEXPEAOMSNGRLJACCSY"
+        },
+        {
+          "page": 3,
+          "score": -3.5111452073526466,
+          "outerScore": -3.529515312911599,
+          "rawScore": -3.57805363506985,
+          "preview": "UIIIAMOAEIJODIUREOHOEAYTOGBITOSGXXEOOEDWIAEEAGNRGUIATHIABPXR"
+        },
+        {
+          "page": 43,
+          "score": -3.5115442791367073,
+          "outerScore": -3.5316778261081607,
+          "rawScore": -3.5349416918584127,
+          "preview": "ATRDOETTJXHBEANGJIAYEAHLAYTYSSYEORAEEAEOLLDHEEYUIEAYOALEJINGH"
+        },
+        {
+          "page": 7,
+          "score": -3.5153773748754134,
+          "outerScore": -3.524391481592292,
+          "rawScore": -3.5512022964878733,
+          "preview": "FNGRPNGGUIXFEAREAEDTHCOTHNILLUEAJEONGTHOAEOEXXRGPXTHXLAETHFPAEYOCP"
+        },
+        {
+          "page": 54,
+          "score": -3.5168918776399427,
+          "outerScore": -3.4466370459442146,
+          "rawScore": -3.5279218298148516,
+          "preview": "MFDAELRAUNNSRIIYFTHJMFHOEEOXEWBAEWYINGDNGAJIBMAELLSPYNGORNGA"
+        },
+        {
+          "page": 55,
+          "score": -3.519004442010086,
+          "outerScore": -3.5323210682068935,
+          "rawScore": -3.6112484942953027,
+          "preview": "TLTUTHBLCSSLPNGBFIWATEFDGJLNGACJDIIXEAITHOEAETHNEATYOTHSOWH"
+        },
+        {
+          "page": 25,
+          "score": -3.5250463623652144,
+          "outerScore": -3.5599775217786243,
+          "rawScore": -3.543650039333923,
+          "preview": "DSTHAANEAJTHOEGXFOMOEAEGTCCCTMRPTHUCPAEHUXMCFIADBJXXWCAYIAGU"
+        },
+        {
+          "page": 16,
+          "score": -3.529568643210976,
+          "outerScore": -3.4536230232157212,
+          "rawScore": -3.580238583696314,
+          "preview": "BEABXJBXLFCWTHCNEAOEGAEOEEAXHISOUCMTHSUNMDDPOTHLPYTHCBSRTCEEO"
+        },
+        {
+          "page": 33,
+          "score": -3.5310824622279955,
+          "outerScore": -3.507440114578599,
+          "rawScore": -3.5771673479280066,
+          "preview": "ONIAEBCEOEONGTOEGEELTHBWTHRSEJHPGYEOPSIAXLJEACMENPIAFJLTHXAERJJ"
+        },
+        {
+          "page": 44,
+          "score": -3.5329627519008784,
+          "outerScore": -3.484809232756217,
+          "rawScore": -3.544267289596896,
+          "preview": "FUTICOSCEAMEAPTHIACLTHNEOYFIAAAYSCHHBBSWNGWDXITTLNIAEAJYGDSA"
+        },
+        {
+          "page": 53,
+          "score": -3.5342020425095018,
+          "outerScore": -3.608999256741433,
+          "rawScore": -3.599596407541101,
+          "preview": "MWWGYEORIABMDAEFTGMDAETHUEANPLSAEJIAEHECAEIAAETIEOXRXWEAAESEATHTHL"
+        },
+        {
+          "page": 19,
+          "score": -3.538396764066519,
+          "outerScore": -3.55879866917065,
+          "rawScore": -3.5486196937720824,
+          "preview": "MIGOEAOEEDEALHGOIABABOFSSOEEAAEXIACALFEXLTCEOTHFMNGXLXCPUAING"
+        },
+        {
+          "page": 35,
+          "score": -3.5385129003249323,
+          "outerScore": -3.543192050467398,
+          "rawScore": -3.5775067983552082,
+          "preview": "HTBETJGEAAEBDAENTXYLXAEBHLMHYEEASAENGENGEBCEHNXPNAPATHNNNEP"
+        },
+        {
+          "page": 18,
+          "score": -3.540856363188077,
+          "outerScore": -3.561194082042842,
+          "rawScore": -3.5714456652866846,
+          "preview": "AAEALDTTHOAESJOEGYTHIWGDMYSEARJYAYAETHXBIFWEADMNGNCAAECIASOENGEOE"
+        },
+        {
+          "page": 22,
+          "score": -3.5418581277981582,
+          "outerScore": -3.5758062766452285,
+          "rawScore": -3.5982417000380034,
+          "preview": "LEAHIADEOHOPTTXIAPBXYNGIHMHHOPEPOEOEAEOAGIADSXMANGJIANGCIACOAY"
+        },
+        {
+          "page": 4,
+          "score": -3.544260292861512,
+          "outerScore": -3.5085354485204685,
+          "rawScore": -3.5847557663304648,
+          "preview": "NEENGBYLWHJNAELXESTHBEAEADPNWXJIPNGAECERMIAHLNXWNGLHBJTHEOUGH"
+        },
+        {
+          "page": 47,
+          "score": -3.5446156257912316,
+          "outerScore": -3.5223531751917503,
+          "rawScore": -3.5752419454338993,
+          "preview": "STFEOAAMBMLHWIWTCLETDHEOIAEAJMBBTTNOSPANCOENGBIIAJNJAERTHN"
+        },
+        {
+          "page": 10,
+          "score": -3.5457522371987005,
+          "outerScore": -3.5944629952634104,
+          "rawScore": -3.5702614650809132,
+          "preview": "OEHUBPWTIACNDWFIAXEANGOESNGLYTWRTHIBNGOWWOEIEANGOEYPSNGLIDCEOOGEOTH"
+        },
+        {
+          "page": 0,
+          "score": -3.548449125972017,
+          "outerScore": -3.5368491853773323,
+          "rawScore": -3.5554098559054195,
+          "preview": "OEWIAEAYJJOANEODEOJRSEMTBXCAELJOACTOWPAENDTGFEODEASJIAWAMAS"
+        },
+        {
+          "page": 29,
+          "score": -3.549056849135033,
+          "outerScore": -3.5287961304122764,
+          "rawScore": -3.5552907056862644,
+          "preview": "RTHEAIAJIJCROEIXMTHTFDUDTHHLIAAEOOEPOETHAMIRPOMCREAEDUNGAEAESXIWP"
+        },
+        {
+          "page": 20,
+          "score": -3.549080308597813,
+          "outerScore": -3.5068308007921516,
+          "rawScore": -3.5534408862574223,
+          "preview": "XONOCNGLWGXPDUOEAUIXSPEACJONTEDAIEOPHWEEEAYXBIAGFFIBNSITH"
+        },
+        {
+          "page": 32,
+          "score": -3.550065502313786,
+          "outerScore": -3.5451296312811515,
+          "rawScore": -3.585746311829577,
+          "preview": "MBSMBICEOLXPUNOESAEPCPTHFOETEAMEAUUUUOEAOOEATPFEOOCSTTHPRMWOETH"
+        },
+        {
+          "page": 8,
+          "score": -3.5512802082520984,
+          "outerScore": -3.587583310424993,
+          "rawScore": -3.570450361402022,
+          "preview": "THBNHWNNGOEEOTHDNNTYEPCNGTHEAEOLIAOEPORNGOEIAHNGTCMRJHRNGOEAFNBDFYM"
+        },
+        {
+          "page": 24,
+          "score": -3.5520324891718897,
+          "outerScore": -3.498556822437853,
+          "rawScore": -3.535134338321144,
+          "preview": "YOWEHEAAEOCSOAEANGTPSFWRJPTHOEFAEEOWUXCCTEAHOEOOETXBSFBWDIAE"
+        },
+        {
+          "page": 15,
+          "score": -3.552105250033481,
+          "outerScore": -3.487804778371808,
+          "rawScore": -3.5240611443778156,
+          "preview": "AAAFAEAAEYYFNOIAMTHLINTUJIMILMIATHTJIRLDAEONEAXYIAJYFTHEOLFCC"
+        },
+        {
+          "page": 34,
+          "score": -3.552241929387285,
+          "outerScore": -3.5237383779380025,
+          "rawScore": -3.6043446718107077,
+          "preview": "EEADXOLNUMLPBEOAECSOELNEEATTHDOEEADPSLBEOLHOEOPHSPOEMCSTMENGXX"
+        },
+        {
+          "page": 40,
+          "score": -3.5534842508361915,
+          "outerScore": -3.4876161649471684,
+          "rawScore": -3.5294036704407925,
+          "preview": "AABLTNGSORBUACNGUTHNDXIMRXXLIAJEAGAEFCTEOXNGTPBEOIXHYTCEOEOCB"
+        },
+        {
+          "page": 48,
+          "score": -3.55383177539012,
+          "outerScore": -3.541869136451437,
+          "rawScore": -3.5454036404134914,
+          "preview": "CYDEOJMRGTHJEOEOSTHOEBESEACETEYDDDUTEJNGMISPIAJLIAIAEBPIGPAY"
+        },
+        {
+          "page": 21,
+          "score": -3.5551954890793405,
+          "outerScore": -3.5263634287815835,
+          "rawScore": -3.5804145026781944,
+          "preview": "THYFGOEMLJHESTHEAGAECIARIAURAEBJSTHRIIPLMHJUYOLEOAETTHSAEDCITTH"
+        },
+        {
+          "page": 23,
+          "score": -3.5565546970348896,
+          "outerScore": -3.569976049411498,
+          "rawScore": -3.5167031870934307,
+          "preview": "IAYNGXIFMWEOPOEUPYAEMBIRBGOEEOFDTTIPGEMJHWMUEYUIARILPIAFUHE"
+        },
+        {
+          "page": 26,
+          "score": -3.557392383122599,
+          "outerScore": -3.5411749424652506,
+          "rawScore": -3.53681237325256,
+          "preview": "OFMHDXLWIARAAEEAOEEAEMLHXBAEOEHGWHHYNUCYYFBWXUOEEOMEMEAWPRWNG"
+        },
+        {
+          "page": 38,
+          "score": -3.5596007545046593,
+          "outerScore": -3.542474471952029,
+          "rawScore": -3.5232881048892164,
+          "preview": "EAIAEAUYJDHTHNGSMSMBPBTHDEBUNGIXWIATIAPEOODUFIYDINGXNGTEAEOCJNGEOW"
+        },
+        {
+          "page": 41,
+          "score": -3.559849120110427,
+          "outerScore": -3.5624079511989026,
+          "rawScore": -3.5330699431240253,
+          "preview": "YIASFLOYDPHCUYFBDIAEIANGTHWEALNEDTHHDTHNGWDUEAEOPFWUMCTEAEATFB"
+        },
+        {
+          "page": 13,
+          "score": -3.5601296703666003,
+          "outerScore": -3.54868654349993,
+          "rawScore": -3.5435044805026568,
+          "preview": "LXEOAOEPWRYRTHMNTLDSLLUJLAELNGFFYEEAFPEXUTUEWLEONFUFSEALDM"
+        },
+        {
+          "page": 36,
+          "score": -3.5603791234925892,
+          "outerScore": -3.570852415796824,
+          "rawScore": -3.570687146811833,
+          "preview": "OGMECEANGEBYJTHTTXXWEOPYNOAEFLBHEAYEOEAPFLCEAIAWYWXNGNONGOEEAYAA"
+        },
+        {
+          "page": 52,
+          "score": -3.5656121848291984,
+          "outerScore": -3.6040115401257538,
+          "rawScore": -3.5944098257089454,
+          "preview": "AAOJWIIEOYMPEDFRRAEOERUNGDEOGECGIAHGYIAIXEAOEEDYNGHLTHAEXUNOEE"
+        },
+        {
+          "page": 1,
+          "score": -3.5665444991027915,
+          "outerScore": -3.5631420349381173,
+          "rawScore": -3.5909316787963297,
+          "preview": "THWNGGMYEPIABNGEARNRALAEAMROEYTHIANGATDTTXXGTHIAAWEOIAJHLPIOEEANJ"
+        },
+        {
+          "page": 9,
+          "score": -3.566969939225518,
+          "outerScore": -3.560757916875127,
+          "rawScore": -3.5945129559692193,
+          "preview": "RWBAETHWOMIXNGXPDAEIAURXAEADAETTIAAEPIAEITHNLWJOPXUUXEOMNGCEORYAE"
+        },
+        {
+          "page": 37,
+          "score": -3.567745247400474,
+          "outerScore": -3.5493188039275316,
+          "rawScore": -3.510178914937725,
+          "preview": "YBASNBSEABOEOEAEOENGUXGWIYEABNGTYHIAGEOLXSOEOSALUYLAEAYIAOETHDNGG"
+        },
+        {
+          "page": 39,
+          "score": -3.5698992095679145,
+          "outerScore": -3.574228499683266,
+          "rawScore": -3.546442461011112,
+          "preview": "JAEPROEPAEIAYTHNYJUFAEDEANGUIOONLACHAAEOOAEEASDPHAECWHIAHYTMXX"
+        },
+        {
+          "page": 17,
+          "score": -3.5705326304521625,
+          "outerScore": -3.542003485467946,
+          "rawScore": -3.5008201097141045,
+          "preview": "JLECAOEJPXCMXDTHGJIAEEOCTBMDOREOWOTHTNGNTAAABAELTEOADIYIAMD"
+        },
+        {
+          "page": 6,
+          "score": -3.5705438942931984,
+          "outerScore": -3.5518056120829034,
+          "rawScore": -3.536215303718056,
+          "preview": "PEANGWEOEHNIANNJXNBNAEAEOAENTHIEOMBNGAIABDFPNDJPSEXDHTHECEAPNGSJ"
+        },
+        {
+          "page": 42,
+          "score": -3.572788614748876,
+          "outerScore": -3.5533788023299064,
+          "rawScore": -3.571206382877026,
+          "preview": "HDWYOENNNTHADXCIAPHPJWSXNGAETHTAEEAIATHOEIYOEOMDUMTHOERNRBEONGNHEB"
+        },
+        {
+          "page": 51,
+          "score": -3.57286927552452,
+          "outerScore": -3.580525262575617,
+          "rawScore": -3.5968318816719473,
+          "preview": "IOMMEOWATNGRAEOOEAYWIAAEWIABYNAEILJTEOEAAFOTMRINPIOETWDANGFMROE"
+        },
+        {
+          "page": 30,
+          "score": -3.5758933118543292,
+          "outerScore": -3.599396863572696,
+          "rawScore": -3.549833995597633,
+          "preview": "GEONAOERTEOMYRNRHAIAFUBPPAIAAIRFRGGNGNGAEEXAEMMAEOUEOIALXNIAEAW"
+        },
+        {
+          "page": 46,
+          "score": -3.5799656570228633,
+          "outerScore": -3.560332110077571,
+          "rawScore": -3.545386328053498,
+          "preview": "MJAUXEATYNGIAEAEOEAEAULIAPEOIAWAEMWYYTHIEOGDOCNNGWTOETMEAOXNGDEPTIC"
+        },
+        {
+          "page": 45,
+          "score": -3.5808019671390565,
+          "outerScore": -3.5861984231876076,
+          "rawScore": -3.575936787992578,
+          "preview": "EOIJMLEOTSWNGCTWYXNGLEOUEAIEAWBEYCTEOEOODAECCWSYTHEOJEAEOESBPTHEAG"
+        },
+        {
+          "page": 11,
+          "score": -3.587932731459235,
+          "outerScore": -3.5768698788946636,
+          "rawScore": -3.5861524782954524,
+          "preview": "HIEOCSGSPEOACAEIAASRGAALJWFOETOEJPNGNGREEIAWLDIAYNANGYREAFNIA"
+        },
+        {
+          "page": 14,
+          "score": -3.596849280345538,
+          "outerScore": -3.586483935525688,
+          "rawScore": -3.556755415279728,
+          "preview": "EAEOYYWIACXFUIBYDBNGGTHUNGIASEOOBDLEEOXTHCNTNLTHODHYRWJIBOU"
+        },
+        {
+          "page": 2,
+          "score": -3.6048867057733993,
+          "outerScore": -3.587170561282291,
+          "rawScore": -3.5667577817968463,
+          "preview": "GPEOREUHNAETUFBWEARXDOSDPMEIOESEAIAIUTHJIFCOIAEEBIRBEOWDIAGTH"
+        },
+        {
+          "page": 28,
+          "score": -3.604932003099182,
+          "outerScore": -3.614382951223424,
+          "rawScore": -3.5912582007096594,
+          "preview": "NAENIAWPFOENGCGRWFONGRIAOBNEAGBDMTHFGNEMIINGIAENTHNRBJEAGIXHIA"
+        },
+        {
+          "page": 31,
+          "score": -3.610915806662692,
+          "outerScore": -3.61122873999306,
+          "rawScore": -3.5304864137244745,
+          "preview": "IAAENGGTPYPEONGTJTHPULUPDSDREOAEBOLTHJOEEOPTHETHPEONGPTHEOAEAXNDAEFNP"
+        },
+        {
+          "page": 49,
+          "score": -3.6186096809633255,
+          "outerScore": -3.6393601407774643,
+          "rawScore": -3.547185693261263,
+          "preview": "FJJJOEEOGAENMFITHXIAEAWCMLIAUCYCEAEOEODBOECJADNJXOAMMXEOEOLEMUC"
+        },
+        {
+          "page": 12,
+          "score": -3.6238344151618693,
+          "outerScore": -3.6536220454507538,
+          "rawScore": -3.564899826805658,
+          "preview": "OEBLTOEDTXIEOAETSNGTCEOWEOPIANGOESEOUAEEAAELULGBEASUIERAERCBIAPAAEN"
+        }
+      ]
+    },
+    {
+      "scope": "page",
+      "which": "H",
+      "total": 12956,
+      "score": -3.55353493424522,
+      "outerLength": 5996,
+      "outerScore": -3.5436159104467584,
+      "chapterScore": -3.5684719851556665,
+      "chapterOuterScore": -3.557976351206722,
+      "p28": {
+        "rawScore": -3.5912582007096594,
+        "score": -3.5669821861946067,
+        "outerScore": -3.5108054604434042,
+        "firstLineSizedPrefix": "HEREOXXFMPAEOLBFRJEOLWNLU",
+        "continuation": "OXXFMPAEOLBFRJEOLWNLULRTETFUNUFBTHOEGNXTHPWGPHTGJSTHXREOEODEOHMEALJJTHEOEWOADGCAELAOOXFUEAUNEOCSRJTYNNETHFBWIGRN",
+        "afterAnchorScore": -3.594260329095418,
+        "outerPreview": "HEREOXXFMPAEOLBFRJEOLWNLULRTETFUNUFBTHOEGNXTHPWGPHTGJSTHXREOEODEOHMEALJJTHEOEWOADGCAELAOOXFUEAUNEOCSRJTYNNETHFBWIGRN",
+        "outerAfterAnchorScore": -3.57688094125199
+      },
+      "p56": {
+        "aligned": 1,
+        "score": -3.6250932232379856
+      },
+      "pageScores": [
+        {
+          "page": 49,
+          "score": -3.4774130862860178,
+          "outerScore": -3.4954375678353222,
+          "rawScore": -3.547185693261263,
+          "preview": "WFWOECSHEOLENFURMDCIAEOAXCWIEOMOEJIANAIIANGEATIANSIALIUOEIGAEDOEA"
+        },
+        {
+          "page": 1,
+          "score": -3.493309141232409,
+          "outerScore": -3.430545048288348,
+          "rawScore": -3.5909316787963297,
+          "preview": "SRBPGNOWRRIPEOOYOUEAAEEOJIAEAOETHPOSEAOEJRIAPEOAETHLXDTATESTSTEA"
+        },
+        {
+          "page": 55,
+          "score": -3.5035764795004916,
+          "outerScore": -3.4951595766657437,
+          "rawScore": -3.6112484942953027,
+          "preview": "EOIAOARMJEAUOJTJMMEOOEDUPXORNASALMOEAWIANGBNFIXOEONLTHEAAELEOA"
+        },
+        {
+          "page": 3,
+          "score": -3.5132968548642154,
+          "outerScore": -3.448349678295952,
+          "rawScore": -3.57805363506985,
+          "preview": "NTHRLDNNNGBGNCDOBHRTHRRCIMEJGLEAAETIAUYCEASACFERWIJSFALU"
+        },
+        {
+          "page": 53,
+          "score": -3.523503303427974,
+          "outerScore": -3.5311258048026133,
+          "rawScore": -3.599596407541101,
+          "preview": "SNBXCDRHLCEYHUNOEPNGEANGAEIAERAOPOEIALORYIEAOSWIAAEWPIAXEEAWITIA"
+        },
+        {
+          "page": 34,
+          "score": -3.5256012816748137,
+          "outerScore": -3.4998012602397552,
+          "rawScore": -3.6043446718107077,
+          "preview": "THWUBEGIAEENAYHAEORTHSOBEUCCOENUPAEEAWRBUIFADPCHWTHUOECSUHX"
+        },
+        {
+          "page": 47,
+          "score": -3.5300607019786625,
+          "outerScore": -3.5323139938255546,
+          "rawScore": -3.5752419454338993,
+          "preview": "YUCFIMANWIAANYCJOEAGJRLCDNGHAETCEOEMROSEOSIASRUUHIUWXBBMTH"
+        },
+        {
+          "page": 0,
+          "score": -3.5323704825367246,
+          "outerScore": -3.4969247490465003,
+          "rawScore": -3.5554098559054195,
+          "preview": "SSILGIAWOEUCHIWJIGROEIXINRUEEBPECTEOEMMDMTHSHCEAAELLEOBJYI"
+        },
+        {
+          "page": 15,
+          "score": -3.5340910403702197,
+          "outerScore": -3.5315044824853064,
+          "rawScore": -3.5240611443778156,
+          "preview": "IMFMJFRGAENNJYENGLEOJDNGMFNGINBIOEWYOEIAGHNXEAUNFDTHFPAEUBEAIAH"
+        },
+        {
+          "page": 6,
+          "score": -3.5343303604052223,
+          "outerScore": -3.5036572125063525,
+          "rawScore": -3.536215303718056,
+          "preview": "THYSPXWJTJAEWEAEECLANIPTHITYWUUTRTHWEOEDTHYEOFTEOCHHTHAIAJRTHH"
+        },
+        {
+          "page": 51,
+          "score": -3.5346225699833034,
+          "outerScore": -3.4887630009864776,
+          "rawScore": -3.5968318816719473,
+          "preview": "DLLNSAYMNGPCMELYOETHAFMYGNGNFPNGNAESHCDFIAWEOSDMAPPOEISSDH"
+        },
+        {
+          "page": 54,
+          "score": -3.5372974554878747,
+          "outerScore": -3.54400957921656,
+          "rawScore": -3.5279218298148516,
+          "preview": "FNHBNGJPFCSOEEAAXSNGNDEJOUTDEBOEAAJTETEOGOHTWTWHAEPFSGYDS"
+        },
+        {
+          "page": 11,
+          "score": -3.537521899475177,
+          "outerScore": -3.5310990786369074,
+          "rawScore": -3.5861524782954524,
+          "preview": "NTMABUOUIAHIYSWSTYNGPOEWJFYAEDOEUHMPCAIGIUTHOETDBOECTEODUEA"
+        },
+        {
+          "page": 32,
+          "score": -3.5394841615977644,
+          "outerScore": -3.567202625427645,
+          "rawScore": -3.585746311829577,
+          "preview": "ANLUNCCIIAIAIATHXTHDMAESUPFROENGTHFAEEEATHMAERCGEAGNGNIAEOGXBPTEOWLA"
+        },
+        {
+          "page": 10,
+          "score": -3.54028766598396,
+          "outerScore": -3.557768345588953,
+          "rawScore": -3.5702614650809132,
+          "preview": "PSATHSYROGJSOAEHALDPSXMBDACEOCRXFEIJJWTOBTXFDMCDFYJCS"
+        },
+        {
+          "page": 19,
+          "score": -3.540519085933071,
+          "outerScore": -3.5002883382473526,
+          "rawScore": -3.5486196937720824,
+          "preview": "NNDEOIWOESTHBPJUNGMAEEMOEFEEANMEPCEALWYORDEAOEIOEFOECHIYCONGENI"
+        },
+        {
+          "page": 14,
+          "score": -3.5414736332882804,
+          "outerScore": -3.5928979156642304,
+          "rawScore": -3.556755415279728,
+          "preview": "CIAGDRXUIIAFALEAAEDAEOCOEJUAWXALIAGEATHPEOOECMLNGOEJAEOTOECPSUIANGW"
+        },
+        {
+          "page": 7,
+          "score": -3.5425607516839057,
+          "outerScore": -3.5111797091704817,
+          "rawScore": -3.5512022964878733,
+          "preview": "TFOHBPNTHFEAELIAJWIATADRXNGAENGOFGNGMGNGEBHSAETCCTMSOEGOWHEONS"
+        },
+        {
+          "page": 33,
+          "score": -3.5427420260658367,
+          "outerScore": -3.587146425534636,
+          "rawScore": -3.5771673479280066,
+          "preview": "JGHLMCCANGROEUPOEBYMIAOENOEFAEEOEDYEODRYUESJJAEBMUSJTHNNGLTHNR"
+        },
+        {
+          "page": 35,
+          "score": -3.543779343876062,
+          "outerScore": -3.5128204044657134,
+          "rawScore": -3.5775067983552082,
+          "preview": "YTOECWOTHEOANGGTTHWHUOEPOEPMCPWOEEPYIADIBGIAXAEYFLTHAHOYTHEALWG"
+        },
+        {
+          "page": 4,
+          "score": -3.544109533655366,
+          "outerScore": -3.5668186870499845,
+          "rawScore": -3.5847557663304648,
+          "preview": "OEETWGCSJUXNOETYMNGNGWWCCRBTHATOETPOAETACIADCPFEOTHTHNGEONNGNOSEO"
+        },
+        {
+          "page": 8,
+          "score": -3.547968770428259,
+          "outerScore": -3.534216018084368,
+          "rawScore": -3.570450361402022,
+          "preview": "ARPEJXXPTITHREAMONGNPOETHTHGJEOHPTJFYEBTOEYGBDTHROEWLGBEEO"
+        },
+        {
+          "page": 26,
+          "score": -3.548843950694383,
+          "outerScore": -3.5265389316888767,
+          "rawScore": -3.53681237325256,
+          "preview": "FGPNUBSJHCPSSEOPTJDLWSIANGYTXUJIAFROCATJEODMXTEAEONGXNGJAAS"
+        },
+        {
+          "page": 52,
+          "score": -3.5515466765894876,
+          "outerScore": -3.5573174390048146,
+          "rawScore": -3.5944098257089454,
+          "preview": "IMWGNXCLLDBAMWREOBTRDULIAEAXENWBFILORUOEJSETHROEEAOBGTHJTY"
+        },
+        {
+          "page": 39,
+          "score": -3.55160098223018,
+          "outerScore": -3.6240871351025854,
+          "rawScore": -3.546442461011112,
+          "preview": "HOENGYOEGHYGAEJGIJPIHMDGYDUNPEADEDFTEAPAEOGTHWOEMRXOEMIATNGAAEU"
+        },
+        {
+          "page": 16,
+          "score": -3.553047772912468,
+          "outerScore": -3.544528100362863,
+          "rawScore": -3.580238583696314,
+          "preview": "THCUCPEAEALIAGLIEARJTHYHOEIEAPEOTOTNGHNOEATHXLLOEDWMSDNYWCOEODC"
+        },
+        {
+          "page": 20,
+          "score": -3.5534341284924924,
+          "outerScore": -3.5009325640080062,
+          "rawScore": -3.5534408862574223,
+          "preview": "DEADETISJUEODOEYEEOWNMOASTOEWALEAEAELPASNGYPAEFEADUNGHEAHJWEBW"
+        },
+        {
+          "page": 45,
+          "score": -3.5535510055840676,
+          "outerScore": -3.533723151961489,
+          "rawScore": -3.575936787992578,
+          "preview": "NALOECJEAOTXAXGWYICAAUAEYBIAOEDGONGFLEAJRGNPHNMUNGINIRNJRF"
+        },
+        {
+          "page": 25,
+          "score": -3.5570603616806284,
+          "outerScore": -3.630607219399948,
+          "rawScore": -3.543650039333923,
+          "preview": "EABIRJMWIAXRLOOHIAROIPNGUTHIIRDIAEONGIAOEAETHFDBMTCGGYHNGTOEPX"
+        },
+        {
+          "page": 27,
+          "score": -3.560072987827261,
+          "outerScore": -3.556351168634845,
+          "rawScore": -3.5433407670557693,
+          "preview": "OETFJWRWNBBOEAWIAAEAEDIAEANNGPWJMMIAIASNGAEUYOHTOECIANDUEOLRIAHWWL"
+        },
+        {
+          "page": 12,
+          "score": -3.5609449081636213,
+          "outerScore": -3.5569750094941655,
+          "rawScore": -3.564899826805658,
+          "preview": "ASYJEOSUOCLOEMEAOTAEEASIAAAIOAEHMGBPEAPJNCGUEAWMEDYTHNIARPWY"
+        },
+        {
+          "page": 2,
+          "score": -3.5617681827755447,
+          "outerScore": -3.5665849355468375,
+          "rawScore": -3.5667577817968463,
+          "preview": "OEONGAIAWJTYNGLYNWEASRIAIALEOXBAEPRPTHNAEOCEARNGUEOPDROYFBRTHAEAD"
+        },
+        {
+          "page": 21,
+          "score": -3.5624439453624204,
+          "outerScore": -3.559395282167243,
+          "rawScore": -3.5804145026781944,
+          "preview": "GRBFLSWJOETAEUANGEAOENGRNLMBYLOEROBIABDITOEROEFAEYALGEOYOCIELY"
+        },
+        {
+          "page": 23,
+          "score": -3.5641722211214826,
+          "outerScore": -3.5668422541986584,
+          "rawScore": -3.5167031870934307,
+          "preview": "GAEUPFLSNOAXEOFAYBNOGWRTHNHEEATHBXBEATHBGJSCGABEOAWCABLNGD"
+        },
+        {
+          "page": 46,
+          "score": -3.565462360495335,
+          "outerScore": -3.564262186519833,
+          "rawScore": -3.545386328053498,
+          "preview": "WNIAMTHEAGORPSNGDNRBADBJIEOPOWNORIOIFCSJDAEIACNGTHNGGTHUSLIAB"
+        },
+        {
+          "page": 5,
+          "score": -3.5668634985491163,
+          "outerScore": -3.5393226125325152,
+          "rawScore": -3.543377490579133,
+          "preview": "HFXXJEAWPRGJUROEOCENCEALRXOERWBJNGTUAEPPBWFDNLEAFWPRGTHNGTHY"
+        },
+        {
+          "page": 18,
+          "score": -3.5669254676222066,
+          "outerScore": -3.5334476655043874,
+          "rawScore": -3.5714456652866846,
+          "preview": "HMEMYBDREANGXOENGIAGOEGMAENGAEAFLXUOEPIASEONDRIBNGBNGATEONGDISEAJGY"
+        },
+        {
+          "page": 28,
+          "score": -3.5669821861946067,
+          "outerScore": -3.5108054604434042,
+          "rawScore": -3.5912582007096594,
+          "preview": "HEREOXXFMPAEOLBFRJEOLWNLULRTETFUNUFBTHOEGNXTHPWGPHTGJSTH"
+        },
+        {
+          "page": 36,
+          "score": -3.5685366717639377,
+          "outerScore": -3.5211420626765673,
+          "rawScore": -3.570687146811833,
+          "preview": "BGOENTHIOEPGCAEOEYOEFPCGIATHAFYIDRMBJBJTHIAAEOFHBHFOETHEIAPAEDBNG"
+        },
+        {
+          "page": 48,
+          "score": -3.5708807268453104,
+          "outerScore": -3.635296506684055,
+          "rawScore": -3.5454036404134914,
+          "preview": "GICBLOEBHWRCAAEUGWEOBIABOEOJOEOEOGMBBMCMTGXRIFETHTHOEPTHABJDM"
+        },
+        {
+          "page": 24,
+          "score": -3.5719137673050443,
+          "outerScore": -3.5589506626503282,
+          "rawScore": -3.535134338321144,
+          "preview": "DDOEXTHTCMEAIHGXRIFCWIAXMEAYIEOXHLNGOEEACFTHIAUTHRMTSAENEOEOMIEDS"
+        },
+        {
+          "page": 31,
+          "score": -3.573316791243559,
+          "outerScore": -3.5774816684962136,
+          "rawScore": -3.5304864137244745,
+          "preview": "HAEBPOOODTAANGEGWRCSAEYAEWHBJFFYGSEOOERWUNGCOEAEWNEAFCLXTTAEA"
+        },
+        {
+          "page": 40,
+          "score": -3.573404606085059,
+          "outerScore": -3.5665598986306426,
+          "rawScore": -3.5294036704407925,
+          "preview": "IMECTODUAHLLUHEEAWAEAYNAPEAYDCIMAIAAEDXDSEOAEHMMIAJWEOGFUAH"
+        },
+        {
+          "page": 37,
+          "score": -3.57426156455295,
+          "outerScore": -3.6090552556615196,
+          "rawScore": -3.510178914937725,
+          "preview": "ADEAMAETHUXCAIAYPPDBAERDAESTBIAEOGFIAREHGDBOEDLLIABGEOBIWEOTHYJ"
+        },
+        {
+          "page": 17,
+          "score": -3.57628345304337,
+          "outerScore": -3.5598358588458052,
+          "rawScore": -3.5008201097141045,
+          "preview": "EOEMWXMOOEMEAUNAEBDBCHDXYRJPIOIMRDEONTTEETNGNGAHTCHBNGPCOEM"
+        },
+        {
+          "page": 38,
+          "score": -3.576976553779918,
+          "outerScore": -3.5632014745486034,
+          "rawScore": -3.5232881048892164,
+          "preview": "RIAIAIAWDPBTRULRXROCYEOGMATOESASUCIAMTHEIAJCFLCIAEAIEIAGRBMRH"
+        },
+        {
+          "page": 43,
+          "score": -3.5785263342046525,
+          "outerScore": -3.5838988387160065,
+          "rawScore": -3.5349416918584127,
+          "preview": "YMEOHYSWOPEAEAUCDHHCIATLMTCLIARMWTHIWOEGEXHAIFIAPXFFEALPYET"
+        },
+        {
+          "page": 29,
+          "score": -3.580430889141902,
+          "outerScore": -3.588333770518348,
+          "rawScore": -3.5552907056862644,
+          "preview": "AEHRIANOEMOEXHULAENHAEXGXYIRNNOHLGOXCAELMBMUXDWGRHOCGPRFF"
+        },
+        {
+          "page": 9,
+          "score": -3.5825987319031887,
+          "outerScore": -3.5524124142043845,
+          "rawScore": -3.5945129559692193,
+          "preview": "SHHCSRLGHBYOHAENYNNGJRLAMPNGAHDCEAALLRCOESWOEDGDEONGPYIADAEN"
+        },
+        {
+          "page": 41,
+          "score": -3.5831656934398173,
+          "outerScore": -3.5773717332911126,
+          "rawScore": -3.5330699431240253,
+          "preview": "RDFUDJEODPYIAITHXJJEOWPRAEBSPIABTHOYIAAFHNGBRAIAFAEIPRJBTFBS"
+        },
+        {
+          "page": 30,
+          "score": -3.5933171212433463,
+          "outerScore": -3.5814889862781842,
+          "rawScore": -3.549833995597633,
+          "preview": "CEOIENGSCOIYIAENGLNGFRAUJRESIANGSOECTHGIAGFATHFGNEODNGBLPOENBTHTH"
+        },
+        {
+          "page": 13,
+          "score": -3.595854909705104,
+          "outerScore": -3.5712528997960735,
+          "rawScore": -3.5435044805026568,
+          "preview": "UJIAOSNGXFPGFTHWOFUWYTHTHUEOJIANLSIMLCEAMXRHMAUJLNGNGGCLOGH"
+        },
+        {
+          "page": 42,
+          "score": -3.600179382583609,
+          "outerScore": -3.6032708892520926,
+          "rawScore": -3.571206382877026,
+          "preview": "EOTGXJSJEIRHORIAXRGLCGEONLTHAWWRCTRAIATHEAICUUNONGHFSTHLXJE"
+        },
+        {
+          "page": 22,
+          "score": -3.6020963316314303,
+          "outerScore": -3.6503736531878856,
+          "rawScore": -3.5982417000380034,
+          "preview": "THJRTCBDTYYUOOAEDTOEYXYTHGIADIGMXOEWEOPUAUJWMEOOUHOIABBWON"
+        },
+        {
+          "page": 44,
+          "score": -3.6066125626537744,
+          "outerScore": -3.600340538739591,
+          "rawScore": -3.544267289596896,
+          "preview": "IAFNODIMUGMMUPTACSUGOEEOEOIUYHXHDSUTFMAEMTBFWNGJXGJMAIADIA"
+        }
+      ]
+    },
+    {
+      "scope": "page",
+      "which": "Hinv",
+      "total": 12956,
+      "score": -3.5504762354177557,
+      "outerLength": 5996,
+      "outerScore": -3.540233809911045,
+      "chapterScore": -3.573644161634839,
+      "chapterOuterScore": -3.558721972484956,
+      "p28": {
+        "rawScore": -3.5912582007096594,
+        "score": -3.604648643215271,
+        "outerScore": -3.614382951223424,
+        "firstLineSizedPrefix": "NAENIAWPFOENGCGBDMTHFGNEMIII",
+        "continuation": "WPFOENGCGBDMTHFGNEMIIIXHIAHLSFSIDFJEAMYUOEEHNGYHAELYUWTHOEGDGOAAEISLNNEAEEEOPOOIAEOEOMTPFOEXXMXBDTHWHNMTNIFEAEGOAMIA",
+        "afterAnchorScore": -3.602007304336886,
+        "outerPreview": "NAENIAWPFOENGCGBDMTHFGNEMIIIXHIAHLSFSIDFJEAMYUOEEHNGYHAELYUWTHOEGDGOAAEISLNNEAEEEOPOOIAEOEOMTPFOEXXMXBDTHWHNMTNIFEAEGOAMIA",
+        "outerAfterAnchorScore": -3.6081469364051273
+      },
+      "p56": {
+        "aligned": 4,
+        "score": -3.5499250871961614
+      },
+      "pageScores": [
+        {
+          "page": 55,
+          "score": -3.4743237105431515,
+          "outerScore": -3.5323210682068935,
+          "rawScore": -3.6112484942953027,
+          "preview": "TLTUTHBLCSSLPLNGACJDSOWHTHPEOIEOWAMEOEEAJNGBFIWATEIIXEAITHEOD"
+        },
+        {
+          "page": 16,
+          "score": -3.4961112831938457,
+          "outerScore": -3.4536230232157212,
+          "rawScore": -3.580238583696314,
+          "preview": "BEABXXHISOUCMTHSUNRTCEEOLGHTNGAENGMAEXPWEAIMYEAJYWPIBJTEBO"
+        },
+        {
+          "page": 43,
+          "score": -3.510692806780441,
+          "outerScore": -3.5316778261081607,
+          "rawScore": -3.5349416918584127,
+          "preview": "ATRDOETTJXHSSYEORAEEAEOINGHCIEOTHUECCEAJJNYROECBEAFWHFFISPHHL"
+        },
+        {
+          "page": 3,
+          "score": -3.5107620412776517,
+          "outerScore": -3.529515312911599,
+          "rawScore": -3.57805363506985,
+          "preview": "UIIIAMOAEIOGBITORGUIATHIACEONCONNMIABEANGPXXEOEOWFEOTHLCJOENEOFSM"
+        },
+        {
+          "page": 27,
+          "score": -3.5109597893786426,
+          "outerScore": -3.489081438033441,
+          "rawScore": -3.5433407670557693,
+          "preview": "HELFTHJMJDGEOEEAJIATHEAOMSNGRLJACEAUAEWSTHTTHAEBEMUSOIDEAIAEAEIJ"
+        },
+        {
+          "page": 25,
+          "score": -3.5127018769522733,
+          "outerScore": -3.5599775217786243,
+          "rawScore": -3.543650039333923,
+          "preview": "DSTHAANEAJTHOETMRPTHUCPAEHUXCAYIAGUCRTBNSFEADOHCOEOPYAEAEJNGWH"
+        },
+        {
+          "page": 54,
+          "score": -3.5136970619075454,
+          "outerScore": -3.4466370459442146,
+          "rawScore": -3.5279218298148516,
+          "preview": "MFDAELRFHOEEOXEWBAEWYILLSPYNGDLEOELBNNGGNGTYHAEHJRJNGTHOEFPYOEO"
+        },
+        {
+          "page": 33,
+          "score": -3.514132907129361,
+          "outerScore": -3.507440114578599,
+          "rawScore": -3.5771673479280066,
+          "preview": "ONIAEBCEOEOTHRSEJHPGEACMENPIAFJLPOYDPIANXLWIANAGOEXUNAEIUMTHI"
+        },
+        {
+          "page": 40,
+          "score": -3.523589271104187,
+          "outerScore": -3.4876161649471684,
+          "rawScore": -3.5294036704407925,
+          "preview": "AABLTNGSORBIMRXXLIAJPBEOIXHYTCEOEOCIAUWOOEOIADAAEEACENODSFRB"
+        },
+        {
+          "page": 15,
+          "score": -3.5253514086322157,
+          "outerScore": -3.487804778371808,
+          "rawScore": -3.5240611443778156,
+          "preview": "AAAFFNOIAMTHLINTIRLDAEOFCCRDIJAPJEAERYWISSFIUONGFSTHXGRU"
+        },
+        {
+          "page": 44,
+          "score": -3.5288426637718775,
+          "outerScore": -3.484809232756217,
+          "rawScore": -3.544267289596896,
+          "preview": "FUTICOSCAYSCHHBBSWJYGDSARTROEOEOHXAFATHDNGEFLROOEANEABEAO"
+        },
+        {
+          "page": 18,
+          "score": -3.5290675053601346,
+          "outerScore": -3.561194082042842,
+          "rawScore": -3.5714456652866846,
+          "preview": "AAEALDTTHOAESJOEEARJYAYAETHXBIFSOENGEOEUMDTHODADREORGNGYROEALSPY"
+        },
+        {
+          "page": 22,
+          "score": -3.531306744034592,
+          "outerScore": -3.5758062766452285,
+          "rawScore": -3.5982417000380034,
+          "preview": "LEAHIADEOHOPTTXIAPHOPEPOEOEAEOACOAYJOEGJSHSBENGCSPTAEDUEGMP"
+        },
+        {
+          "page": 23,
+          "score": -3.5320696537099945,
+          "outerScore": -3.569976049411498,
+          "rawScore": -3.5167031870934307,
+          "preview": "IAYNGXIFMWEOPGOEEOFDTTIEYUIARIXLDEADOEUSOGOENOEODBTLEBEOEOIGYR"
+        },
+        {
+          "page": 37,
+          "score": -3.5363055398793564,
+          "outerScore": -3.5493188039275316,
+          "rawScore": -3.510178914937725,
+          "preview": "YBASNBSEABOEEABNGTYHIAGYIAOETHDNGGUFYTHURLYYJGIOEAMOGDDEAUDLT"
+        },
+        {
+          "page": 24,
+          "score": -3.5386106431260966,
+          "outerScore": -3.498556822437853,
+          "rawScore": -3.535134338321144,
+          "preview": "YOWEHEAAEOCSOAETHOEFAEEOWUXCCTWDIAEJRBSUFSUTHEAHCIAWGIADNAOEO"
+        },
+        {
+          "page": 5,
+          "score": -3.54111815623967,
+          "outerScore": -3.580380418791934,
+          "rawScore": -3.543377490579133,
+          "preview": "FAEWOEXNNGJOIASNTIABDMLXEOTHMJOEEIALGHRIAXNGHEGYFIIFSNGJOIAAEEAPEA"
+        },
+        {
+          "page": 0,
+          "score": -3.541302253905145,
+          "outerScore": -3.5368491853773323,
+          "rawScore": -3.5554098559054195,
+          "preview": "OEWIAEAYJJBXCAELJOAJIAWAMASIANLNGGBLNNGAEYCUCRWXEOITHGMLGCT"
+        },
+        {
+          "page": 38,
+          "score": -3.5433806216794808,
+          "outerScore": -3.542474471952029,
+          "rawScore": -3.5232881048892164,
+          "preview": "EAIAEAUYJDHTHNGIXWIATIAPEOODEOCJNGEOWSWEAEOUCEALBNIFEAEOCSEALTHYAGRIA"
+        },
+        {
+          "page": 26,
+          "score": -3.5452754354068103,
+          "outerScore": -3.5411749424652506,
+          "rawScore": -3.53681237325256,
+          "preview": "OFMHDXLWBAEOEHGWHHYNEMEAWPRWNGLXFUTIAEOEOLNGYDWCXNGAEDAEOEEONOEB"
+        },
+        {
+          "page": 7,
+          "score": -3.546242914334094,
+          "outerScore": -3.524391481592292,
+          "rawScore": -3.5512022964878733,
+          "preview": "FNGRPNGGUIXFILLUEAJEONGTHOAEOEAETHFPAEYOCNRRGIAWBNGHEOOECOEEPGAEOEI"
+        },
+        {
+          "page": 19,
+          "score": -3.546433299391821,
+          "outerScore": -3.55879866917065,
+          "rawScore": -3.5486196937720824,
+          "preview": "MIGOEAOEEDEALHAEXIACALFEXLAINGLXEOEMTTYIAJSJAJFREOPATEONRCI"
+        },
+        {
+          "page": 35,
+          "score": -3.5505287429179737,
+          "outerScore": -3.543192050467398,
+          "rawScore": -3.5775067983552082,
+          "preview": "HTBETJGEAAEBHYEEASAENGENGEBCEHNEPHYUDAEAYIAOEFTUMRBPPNEAIBOJ"
+        },
+        {
+          "page": 6,
+          "score": -3.5511312522848626,
+          "outerScore": -3.5518056120829034,
+          "rawScore": -3.536215303718056,
+          "preview": "PEANGWEOEHNIANNJNTHIEOMBNGACEAPNGSJHXUIAGJYLPEAFDGNGREOUAEEABTHNREA"
+        },
+        {
+          "page": 47,
+          "score": -3.5512241536714586,
+          "outerScore": -3.5223531751917503,
+          "rawScore": -3.5752419454338993,
+          "preview": "STFEOAAMBEAJMBBTTNOSTHNBMAEOIAAEBNGNDTHCOEPOEDOEUSIARXSAWJDGUC"
+        },
+        {
+          "page": 29,
+          "score": -3.551646284161241,
+          "outerScore": -3.5287961304122764,
+          "rawScore": -3.5552907056862644,
+          "preview": "RTHEAIAJIJCROEIXMTHIAAEOOEPOETHAMIRPOMWPIAEOAMAGWXEOTHYTAEOEOTHHFF"
+        },
+        {
+          "page": 9,
+          "score": -3.553613037409552,
+          "outerScore": -3.560757916875127,
+          "rawScore": -3.5945129559692193,
+          "preview": "RWBAETHWOMDAETTIAAEPIAEITHNEOMNGCEORYAEXEOIBTHMJEOEWYEYYAEDPHYUMTH"
+        },
+        {
+          "page": 21,
+          "score": -3.5542783726440668,
+          "outerScore": -3.5263634287815835,
+          "rawScore": -3.5804145026781944,
+          "preview": "THYFGOEMLJHESTHAEBJSTHRIIDCITTHEDPDUCOJNGJIAIAFEOTOMPDBPNAPM"
+        },
+        {
+          "page": 42,
+          "score": -3.5543936484094005,
+          "outerScore": -3.5533788023299064,
+          "rawScore": -3.571206382877026,
+          "preview": "HDWYOENNNTHATAEEAIATHOEIYOEOMDUMEBTHJHEOEOIAUUCSSEOMXAEPFAEUWWMNN"
+        },
+        {
+          "page": 34,
+          "score": -3.556443123734398,
+          "outerScore": -3.5237383779380025,
+          "rawScore": -3.6043446718107077,
+          "preview": "EEADXOLNUMLPBEOAETHDOEEADPSLBEOMENGXXTHTHJSGFAYBBHEAESEABESWWAE"
+        },
+        {
+          "page": 48,
+          "score": -3.557392795741966,
+          "outerScore": -3.541869136451437,
+          "rawScore": -3.5454036404134914,
+          "preview": "CYDEOJMRGTHJEOEOSTHEYDDDUTEJNGPAYDGBCHCWYCIANFUEANGEEOEALGAO"
+        },
+        {
+          "page": 17,
+          "score": -3.5610826062766145,
+          "outerScore": -3.542003485467946,
+          "rawScore": -3.5008201097141045,
+          "preview": "JLECAOEJPXCMXDTHDOREOWOTHTNGNTAAAYIAMDHNGNLAENGEORHAEREOAEGBHAE"
+        },
+        {
+          "page": 51,
+          "score": -3.5618168365521456,
+          "outerScore": -3.580525262575617,
+          "rawScore": -3.5968318816719473,
+          "preview": "IOMMEOWATNGRAEOILJTEOEAAFOTMRNGFMROETHBAEFOEOAGJYWEOCNGHOEOEAYWIA"
+        },
+        {
+          "page": 13,
+          "score": -3.564067836952574,
+          "outerScore": -3.54868654349993,
+          "rawScore": -3.5435044805026568,
+          "preview": "LXEOAOEPWRNGFFYEEAFPEXUTSEALDMUOEMAABMASTHOEAAESBINAERBYTMRY"
+        },
+        {
+          "page": 2,
+          "score": -3.5649319645404316,
+          "outerScore": -3.587170561282291,
+          "rawScore": -3.5667577817968463,
+          "preview": "GPEOREUHNAETPMEIOESEAIAIUWDIAGTHHHHMAEGBXEOAEIAGXYHTIAFTTHGEOEAYS"
+        },
+        {
+          "page": 11,
+          "score": -3.5651475708061424,
+          "outerScore": -3.5768698788946636,
+          "rawScore": -3.5861524782954524,
+          "preview": "HIEOCSGSPEOACAEOETOEJPNGNGREEFNIATJORXNGCEOEOOASAJEAYNGJGHEOYDXX"
+        },
+        {
+          "page": 20,
+          "score": -3.5656195756222226,
+          "outerScore": -3.5068308007921516,
+          "rawScore": -3.5534408862574223,
+          "preview": "XONOCNGLWGXJONTEDAIEOPHWEEIBNSITHEOHAEWNGTFTHYSAEXXAELAENJEG"
+        },
+        {
+          "page": 41,
+          "score": -3.566668657762315,
+          "outerScore": -3.5624079511989026,
+          "rawScore": -3.5330699431240253,
+          "preview": "YIASFLOYDPHCUWEALNEDTHHDTHNGWDUTEAEATFBAEAETHGCBFBCTHTHHDNFNGOEG"
+        },
+        {
+          "page": 4,
+          "score": -3.5683296043263306,
+          "outerScore": -3.5085354485204685,
+          "rawScore": -3.5847557663304648,
+          "preview": "NEENGBYLWWXJIPNGAECERBJTHEOUGHBHETHHTHBBYUNGEOGFUEAGRAEITIGW"
+        },
+        {
+          "page": 39,
+          "score": -3.5685410293852318,
+          "outerScore": -3.574228499683266,
+          "rawScore": -3.546442461011112,
+          "preview": "JAEPROEPAEIAYONLACHAAEOOYTMXXHNOFOXNGIAHOPEEAAEWIAAEHUEORSTH"
+        },
+        {
+          "page": 1,
+          "score": -3.5725180269125723,
+          "outerScore": -3.5631420349381173,
+          "rawScore": -3.5909316787963297,
+          "preview": "THWNGGMYEPTHIANGATDTTXXGTHEANJSNGEAOEPJSTHNNGUTLUTHWMHOHBOELOENGXNG"
+        },
+        {
+          "page": 45,
+          "score": -3.5729815401371816,
+          "outerScore": -3.5861984231876076,
+          "rawScore": -3.575936787992578,
+          "preview": "EOIJMLEOTSWNGWBEYCTEOEOSBPTHEAGYETYFRXMTHNMYRHAIAEXMATHALIFIA"
+        },
+        {
+          "page": 8,
+          "score": -3.5741544322712393,
+          "outerScore": -3.587583310424993,
+          "rawScore": -3.570450361402022,
+          "preview": "THBNHWNNGOECNGTHEAEOLTCMRJHRNGOEAGNNGAELNGPFDLTNGPLDYUOJIAIJDYGL"
+        },
+        {
+          "page": 10,
+          "score": -3.5755940446850154,
+          "outerScore": -3.5944629952634104,
+          "rawScore": -3.5702614650809132,
+          "preview": "OEHUBPWTIALYTWRTHIBNGOWWDCEOOGEOTHEOFOECLLNHJDPWNGYFBCFOLTOEEO"
+        },
+        {
+          "page": 46,
+          "score": -3.5787221950954002,
+          "outerScore": -3.560332110077571,
+          "rawScore": -3.545386328053498,
+          "preview": "MJAUXEATYNGIAMWYYTHIEOGDOCNNGDEPTICIACPBFLWIAOBUURORSEAIWDU"
+        },
+        {
+          "page": 14,
+          "score": -3.579127846912912,
+          "outerScore": -3.586483935525688,
+          "rawScore": -3.556755415279728,
+          "preview": "EAEOYYWIACXFUIBIASEOOBDLEEOXWJIBOUUSGHBEICJREONHDBEOEHEAXER"
+        },
+        {
+          "page": 53,
+          "score": -3.5856756603273925,
+          "outerScore": -3.608999256741433,
+          "rawScore": -3.599596407541101,
+          "preview": "MWWGYEORIABMPLSAEJIAEHAESEATHTHLTBJHIUTHPCTTSEWIAUNGJWUXLCJEANG"
+        },
+        {
+          "page": 52,
+          "score": -3.589428802059142,
+          "outerScore": -3.6040115401257538,
+          "rawScore": -3.5944098257089454,
+          "preview": "AAOJWIIEOYMEOGECGIAHGYIAIXXUNOEEIFGIATHPJXOENULJIATSOGLEAPNG"
+        },
+        {
+          "page": 36,
+          "score": -3.5924337484711306,
+          "outerScore": -3.570852415796824,
+          "rawScore": -3.570687146811833,
+          "preview": "OGMECEANGEBYJTHTTFLBHEAYEOEAPFYAAIALGLGEAEATTHRFRGJFNEANGUYTHAEG"
+        },
+        {
+          "page": 32,
+          "score": -3.5926048810752516,
+          "outerScore": -3.5451296312811515,
+          "rawScore": -3.585746311829577,
+          "preview": "MBSMBICEOEAUUUUOEAOOETHNGXTHFAEEFEANTHUSIACBIAXYAEYEAIODDOEHHEDLA"
+        },
+        {
+          "page": 49,
+          "score": -3.601863863286417,
+          "outerScore": -3.6393601407774643,
+          "rawScore": -3.547185693261263,
+          "preview": "FJJJOEEOGAENMFITHXYCEAEOEODBOECJADLEMUCBAEUHSIANEAWCMJXOAYTHXP"
+        },
+        {
+          "page": 30,
+          "score": -3.6028645645303374,
+          "outerScore": -3.599396863572696,
+          "rawScore": -3.549833995597633,
+          "preview": "GEONAOERTEOPAIAAIRFREOIALXNIAEAWOERBEOEAOUEOFFEAMYYDOIIGJHDIUEA"
+        },
+        {
+          "page": 28,
+          "score": -3.604648643215271,
+          "outerScore": -3.614382951223424,
+          "rawScore": -3.5912582007096594,
+          "preview": "NAENIAWPFOENGCGBDMTHFGNEMIIIXHIAHLSFSIDFJEAMYUOEEHNGYHAELYUW"
+        },
+        {
+          "page": 31,
+          "score": -3.6069378805389194,
+          "outerScore": -3.61122873999306,
+          "rawScore": -3.5304864137244745,
+          "preview": "IAAENGGTPYPEONGAEBOLTHJOEEOPTHETHDAEFNPFOEYJDEIAAEXJEOETHXIBFWMHNGEOTH"
+        },
+        {
+          "page": 12,
+          "score": -3.61487445357866,
+          "outerScore": -3.6536220454507538,
+          "rawScore": -3.564899826805658,
+          "preview": "OEBLTOEDTXIEOAETSIANGOESEOUCBIAPAAEDYNHNGBMNOEOXXAJYLUTEAINGIAPJ"
+        }
+      ]
+    }
+  ]
+}
