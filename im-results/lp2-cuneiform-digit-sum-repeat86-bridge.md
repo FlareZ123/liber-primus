@@ -120,6 +120,25 @@ For each key, both additive signs were tested over the complete 12,956-rune p0�
 
 The input IoC is 0.03447840. The exact readout prefixes, tails, key strings, byte hashes and round-trip assertions are emitted by the extended SFT. This closes only these three fixed, source-derived period-86 Vigenère keys at global phase zero; it does not exclude using the repeat events as some other form of side information or as part of a separately specified state machine.
 
+## 2013 recursive decimal digit sum as a state receiver (Agent3, 27 November 2026)
+
+Question 20 of the reported 2013 final questionnaire asks for recursive decimal digit summation to a single digit ([participant retrospective](https://leroy.works/articles/answers-to-cicada-3301-2013-questionnaire/), [archived questionnaire transcription](https://uncovering-cicada.fandom.com/wiki/Test_.onion)). These are secondary transcriptions, not an independently recovered original screenshot or signed Q20 source. The cuneiform integers 1033 and 3301 are decimal digit permutations and both reduce to **7**: one dependent observation, not two independent clues. Original archive 50.jpg places the stamp at the bottom of p33, while p34–39 repeat it at the top. Start at the first rune of p34 and carry state through later pages; separately test literal repeated-header resets.
+
+Freeze the inferred sender: r=7, C=(P+s*r) mod29 with s=+1 or −1; then r=1+((r+GPprime[P]−1) mod9), the digital root of the cumulative positive plaintext prime sum. Ordinary and literal-plaintext-F-transparent (emit 0 without updating r) variants are separate. The historical question names recursive digit summation, **not this key schedule, recipient, or feedback choice**. An exact finite-state DP counts all compatible plaintext paths by (r, previous plaintext rune), including both legal interpretations of ciphertext F and disallowing consuming plaintext F in the hold model. Smoothed GP-native bigrams rank paths, trained on five LP1 records named 0_ (2,391 runes), with four other solved-native records held out. All complete MAP outputs re-encipher exactly.
+
+| Original seed7 continuous read | p34 (261 runes) | p35–39 (1,205 runes) |
+|---|---:|---:|
+| s=+1, ordinary | −4.22045 | −4.23601 |
+| s=−1, ordinary | −4.28329 | −4.21497 |
+| s=+1, F-hold | no path at zero-based offset35 | not reached |
+| s=−1, F-hold | no path at zero-based offset78 | not reached |
+
+All eighteen initial-state/sign F-hold combinations die within p34 (offsets13,35,78). **0/108** independent p34–39 page-reset seed/sign F-hold receivers admit a complete path; latest dead offsets per page: 78,31,29,75,58,39. Thus even private initial roots on each identical-stamp page cannot rescue this exact rule. Ordinary seed7 page-reset readouts remain nonprose (−4.28532 to −4.13360 nats/rune); ordinary continuous output remains nonprose for all nine roots and both signs.
+
+Sixteen held solved-native plants (four records × two signs × two F conventions) all admit exact replay, with 15/16 exact MAP recoveries and remaining 92/95; aggregate 2,349/2,352 runes. True control scores −2.67818 to −2.54583. The plants check the proposed sender, not historical use of it; scores are diagnostics, not universal thresholds. The F-hold impossibilities do not depend on language ranking.
+
+[Reproducer](../sims/lp2_cuneiform_decimal_root_feedback_sft.cjs); canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; solved-native source blob `1b064ef6d85819b7d96adaff31a82d1ec551598f`; code commit `29ebc2f4f4981c2ab9f90d21122534c310e7bc3f`. Connected V8 core executed, Node filesystem wrapper not independently executed. Retire this exact receiver under both continuity conventions; no unknown plaintext or key. No additional radix or feedback sweep is justified by the digit-permutation identity.
+
 ## Decision
 
 Preserve **17+13+55+1 = 86 = the complete unsolved adjacent-repeat count** as an exact structural lead. It has a plausible human-puzzle character because both sides are directly observable and require only addition/counting.
@@ -129,7 +148,8 @@ Current direct consumers fail:
 - the 86 selected runes and natural four-group reversals are nonlinguistic;
 - the row-sum page pair (30,56) does not transfer the authentic p56 cipher to p30;
 - the four literal components do not map cleanly to p50 conventional values;
-- the repeated-rune, repeat-position, and repeat-gap sequences do not decrypt the full p0–p55 stream as direct period-86 additive GP29 keys.
+- the repeated-rune, repeat-position, and repeat-gap sequences do not decrypt the full p0–p55 stream as direct period-86 additive GP29 keys;
+- the historical questionnaire's recursive decimal-root cumulative plaintext-prime receiver is impossible with F holds and nonprose without them, including all nine roots and repeated-header resets.
 
 Do not turn the equality into a broad key search. A useful successor needs an independent clue explaining why the doubled-rune events should be segmented, transformed, or used as side information.
 
