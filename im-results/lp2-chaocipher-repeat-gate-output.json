@@ -1,0 +1,190 @@
+{
+  "runes": 12956,
+  "originalRepeats": 86,
+  "expectedEqualityFractionUnderUniformRightKeyIfAllNativeNonrepeat": 0.03571428571428571,
+  "plainEqualityFractionRequiredForMeanObserved": 0.8141258201466615,
+  "allResult": {
+    "runes": 2979,
+    "nativeRepeats": 77,
+    "exactMean": 103.60714285714286,
+    "draws": {
+      "n": 2000,
+      "min": 70,
+      "q025": 83,
+      "median": 104,
+      "q975": 125,
+      "max": 138,
+      "mean": 103.7585
+    },
+    "originalWindows": [
+      {
+        "offset": 0,
+        "n": 2979,
+        "repeats": 18,
+        "le": 0
+      },
+      {
+        "offset": 2979,
+        "n": 2979,
+        "repeats": 16,
+        "le": 0
+      },
+      {
+        "offset": 5958,
+        "n": 2979,
+        "repeats": 30,
+        "le": 0
+      },
+      {
+        "offset": 8937,
+        "n": 2979,
+        "repeats": 17,
+        "le": 0
+      }
+    ]
+  },
+  "terminalResult": {
+    "runes": 299,
+    "repeats": 3,
+    "trainRepeats": 2,
+    "heldRepeats": 1,
+    "carryRepeat": 0,
+    "controls": [
+      {
+        "nativeOffset": 0,
+        "ptRepeats": 8,
+        "exactMean": 10.357142857142858,
+        "draws": {
+          "n": 1000,
+          "min": 0,
+          "q025": 5,
+          "median": 10,
+          "q975": 17,
+          "max": 24,
+          "mean": 10.326
+        },
+        "le": 5
+      },
+      {
+        "nativeOffset": 299,
+        "ptRepeats": 14,
+        "exactMean": 10.142857142857142,
+        "draws": {
+          "n": 1000,
+          "min": 1,
+          "q025": 4,
+          "median": 10,
+          "q975": 17,
+          "max": 21,
+          "mean": 9.888
+        },
+        "le": 5
+      },
+      {
+        "nativeOffset": 598,
+        "ptRepeats": 10,
+        "exactMean": 10.285714285714286,
+        "draws": {
+          "n": 1000,
+          "min": 2,
+          "q025": 4,
+          "median": 10,
+          "q975": 18,
+          "max": 21,
+          "mean": 10.449
+        },
+        "le": 13
+      },
+      {
+        "nativeOffset": 897,
+        "ptRepeats": 5,
+        "exactMean": 10.464285714285714,
+        "draws": {
+          "n": 1000,
+          "min": 1,
+          "q025": 5,
+          "median": 10,
+          "q975": 18,
+          "max": 24,
+          "mean": 10.472
+        },
+        "le": 4
+      },
+      {
+        "nativeOffset": 1196,
+        "ptRepeats": 7,
+        "exactMean": 10.392857142857142,
+        "draws": {
+          "n": 1000,
+          "min": 1,
+          "q025": 4,
+          "median": 10,
+          "q975": 18,
+          "max": 21,
+          "mean": 10.428
+        },
+        "le": 10
+      },
+      {
+        "nativeOffset": 1495,
+        "ptRepeats": 8,
+        "exactMean": 10.357142857142858,
+        "draws": {
+          "n": 1000,
+          "min": 2,
+          "q025": 4,
+          "median": 10,
+          "q975": 16,
+          "max": 23,
+          "mean": 10.375
+        },
+        "le": 8
+      },
+      {
+        "nativeOffset": 1794,
+        "ptRepeats": 7,
+        "exactMean": 10.392857142857142,
+        "draws": {
+          "n": 1000,
+          "min": 2,
+          "q025": 4,
+          "median": 10,
+          "q975": 18,
+          "max": 23,
+          "mean": 10.316
+        },
+        "le": 9
+      },
+      {
+        "nativeOffset": 2093,
+        "ptRepeats": 5,
+        "exactMean": 10.464285714285714,
+        "draws": {
+          "n": 1000,
+          "min": 2,
+          "q025": 5,
+          "median": 10,
+          "q975": 17,
+          "max": 21,
+          "mean": 10.396
+        },
+        "le": 7
+      },
+      {
+        "nativeOffset": 2392,
+        "ptRepeats": 5,
+        "exactMean": 10.464285714285714,
+        "draws": {
+          "n": 1000,
+          "min": 2,
+          "q025": 4,
+          "median": 10,
+          "q975": 18,
+          "max": 26,
+          "mean": 10.518
+        },
+        "le": 14
+      }
+    ]
+  }
+}
