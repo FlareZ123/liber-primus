@@ -1,0 +1,543 @@
+{
+  "N": 20,
+  "W": 16,
+  "domain": "all exponents mod 28*29^19 via top16 beam, finite output",
+  "original": [
+    {
+      "rev": false,
+      "e": "64283369527044866681199514208",
+      "admissible": [
+        0,
+        1,
+        7,
+        11,
+        12,
+        15
+      ],
+      "fit": -3.3631088520879415,
+      "held": -3.5506158250710205,
+      "fitN": 42,
+      "heldN": 13,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "score": -3.876433321406966,
+          "truthRetained": null
+        },
+        {
+          "j": 2,
+          "score": -3.6387997872157705,
+          "truthRetained": null
+        },
+        {
+          "j": 3,
+          "score": -3.554694862086356,
+          "truthRetained": null
+        },
+        {
+          "j": 4,
+          "score": -3.4964583716597777,
+          "truthRetained": null
+        },
+        {
+          "j": 5,
+          "score": -3.4704603445457414,
+          "truthRetained": null
+        },
+        {
+          "j": 6,
+          "score": -3.454957347986235,
+          "truthRetained": null
+        },
+        {
+          "j": 7,
+          "score": -3.4377083104070123,
+          "truthRetained": null
+        },
+        {
+          "j": 8,
+          "score": -3.415133057208002,
+          "truthRetained": null
+        },
+        {
+          "j": 9,
+          "score": -3.4107966663588174,
+          "truthRetained": null
+        },
+        {
+          "j": 10,
+          "score": -3.3989125937968674,
+          "truthRetained": null
+        },
+        {
+          "j": 11,
+          "score": -3.385047701266311,
+          "truthRetained": null
+        },
+        {
+          "j": 12,
+          "score": -3.3794741719296892,
+          "truthRetained": null
+        },
+        {
+          "j": 13,
+          "score": -3.3782299917834715,
+          "truthRetained": null
+        },
+        {
+          "j": 14,
+          "score": -3.375040345888108,
+          "truthRetained": null
+        },
+        {
+          "j": 15,
+          "score": -3.370750446672687,
+          "truthRetained": null
+        },
+        {
+          "j": 16,
+          "score": -3.367682298653139,
+          "truthRetained": null
+        },
+        {
+          "j": 17,
+          "score": -3.3683575256305276,
+          "truthRetained": null
+        },
+        {
+          "j": 18,
+          "score": -3.3683104257690974,
+          "truthRetained": null
+        },
+        {
+          "j": 19,
+          "score": -3.365360901251378,
+          "truthRetained": null
+        },
+        {
+          "j": 20,
+          "score": -3.3631088520879415,
+          "truthRetained": null
+        }
+      ],
+      "sample": [
+        {
+          "page": 0,
+          "text": "B D TH D TH B B W L EA NG A EA X EA J O P AE W"
+        },
+        {
+          "page": 1,
+          "text": "J D R I H W I G J P J D T A TH D O B I R"
+        },
+        {
+          "page": 2,
+          "text": "S U M U M H IA OE U N T I L W OE R U X J O"
+        },
+        {
+          "page": 3,
+          "text": "A C AE D B U M P A H Y H M H R S E TH IA C"
+        },
+        {
+          "page": 4,
+          "text": "A R J G IA L C E TH A D I M E S IA R C X N"
+        }
+      ]
+    },
+    {
+      "rev": true,
+      "e": "14861249103948566581313436661",
+      "admissible": [
+        0,
+        8,
+        17
+      ],
+      "fit": -3.3702552948037168,
+      "held": -3.518537641321485,
+      "fitN": 42,
+      "heldN": 13,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "score": -3.8662950427433493,
+          "truthRetained": null
+        },
+        {
+          "j": 2,
+          "score": -3.7096568056212904,
+          "truthRetained": null
+        },
+        {
+          "j": 3,
+          "score": -3.5875828364097893,
+          "truthRetained": null
+        },
+        {
+          "j": 4,
+          "score": -3.5194093198341,
+          "truthRetained": null
+        },
+        {
+          "j": 5,
+          "score": -3.4796700476147016,
+          "truthRetained": null
+        },
+        {
+          "j": 6,
+          "score": -3.457911159474574,
+          "truthRetained": null
+        },
+        {
+          "j": 7,
+          "score": -3.438973673926038,
+          "truthRetained": null
+        },
+        {
+          "j": 8,
+          "score": -3.424967835806882,
+          "truthRetained": null
+        },
+        {
+          "j": 9,
+          "score": -3.4183815663344514,
+          "truthRetained": null
+        },
+        {
+          "j": 10,
+          "score": -3.4107023769905314,
+          "truthRetained": null
+        },
+        {
+          "j": 11,
+          "score": -3.399862195858988,
+          "truthRetained": null
+        },
+        {
+          "j": 12,
+          "score": -3.3933270316589517,
+          "truthRetained": null
+        },
+        {
+          "j": 13,
+          "score": -3.3914294802818925,
+          "truthRetained": null
+        },
+        {
+          "j": 14,
+          "score": -3.3870764815364174,
+          "truthRetained": null
+        },
+        {
+          "j": 15,
+          "score": -3.383062615343022,
+          "truthRetained": null
+        },
+        {
+          "j": 16,
+          "score": -3.378956500594117,
+          "truthRetained": null
+        },
+        {
+          "j": 17,
+          "score": -3.370002634171895,
+          "truthRetained": null
+        },
+        {
+          "j": 18,
+          "score": -3.3705215828246273,
+          "truthRetained": null
+        },
+        {
+          "j": 19,
+          "score": -3.369464207609475,
+          "truthRetained": null
+        },
+        {
+          "j": 20,
+          "score": -3.3702552948037168,
+          "truthRetained": null
+        }
+      ],
+      "sample": [
+        {
+          "page": 0,
+          "text": "P EO L I G H IA O O R A O F L A X TH P T L"
+        },
+        {
+          "page": 1,
+          "text": "IA EO W D M A T U N OE I H F R EA M P M N H"
+        },
+        {
+          "page": 2,
+          "text": "C M A R EA M R H E T I D P S OE A I P J L"
+        },
+        {
+          "page": 3,
+          "text": "S S T R EO J U H D EA A AE O D L U TH U N X"
+        },
+        {
+          "page": 4,
+          "text": "C R H U R T A D C D R F Y E C I N S X U"
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "rev": false,
+      "expectedE": "276543209945679011654320988",
+      "e": "276543209945679011654320988",
+      "admissible": [
+        0,
+        2,
+        3,
+        4,
+        6,
+        7,
+        9,
+        11,
+        12,
+        14,
+        18,
+        21,
+        23
+      ],
+      "fit": -2.6794909259898203,
+      "held": -2.607647267161641,
+      "fitN": 42,
+      "heldN": 13,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "score": -3.009995536100682,
+          "truthRetained": true
+        },
+        {
+          "j": 2,
+          "score": -2.8337553614509767,
+          "truthRetained": true
+        },
+        {
+          "j": 3,
+          "score": -2.7427255721891264,
+          "truthRetained": true
+        },
+        {
+          "j": 4,
+          "score": -2.662673651739631,
+          "truthRetained": true
+        },
+        {
+          "j": 5,
+          "score": -2.6729143520029544,
+          "truthRetained": true
+        },
+        {
+          "j": 6,
+          "score": -2.6699363654323576,
+          "truthRetained": true
+        },
+        {
+          "j": 7,
+          "score": -2.664703232797011,
+          "truthRetained": true
+        },
+        {
+          "j": 8,
+          "score": -2.669162272375424,
+          "truthRetained": true
+        },
+        {
+          "j": 9,
+          "score": -2.6664129348481627,
+          "truthRetained": true
+        },
+        {
+          "j": 10,
+          "score": -2.668944292260638,
+          "truthRetained": true
+        },
+        {
+          "j": 11,
+          "score": -2.680773117959282,
+          "truthRetained": true
+        },
+        {
+          "j": 12,
+          "score": -2.6974993297195105,
+          "truthRetained": true
+        },
+        {
+          "j": 13,
+          "score": -2.698674450219397,
+          "truthRetained": true
+        },
+        {
+          "j": 14,
+          "score": -2.7102213960904966,
+          "truthRetained": true
+        },
+        {
+          "j": 15,
+          "score": -2.6917929067488537,
+          "truthRetained": true
+        },
+        {
+          "j": 16,
+          "score": -2.687053758107871,
+          "truthRetained": true
+        },
+        {
+          "j": 17,
+          "score": -2.687234950692644,
+          "truthRetained": true
+        },
+        {
+          "j": 18,
+          "score": -2.6889391994771628,
+          "truthRetained": true
+        },
+        {
+          "j": 19,
+          "score": -2.684788819175898,
+          "truthRetained": true
+        },
+        {
+          "j": 20,
+          "score": -2.6794909259898203,
+          "truthRetained": true
+        }
+      ],
+      "correct": 1100,
+      "total": 1100
+    },
+    {
+      "rev": true,
+      "expectedE": "3456790116543209883456790092",
+      "e": "3456790116543209883456790092",
+      "admissible": [
+        0,
+        2,
+        3,
+        4,
+        9,
+        11,
+        12,
+        18,
+        21,
+        23
+      ],
+      "fit": -2.6819842552088744,
+      "held": -2.611356860723119,
+      "fitN": 42,
+      "heldN": 13,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "score": -2.9227449862080395,
+          "truthRetained": true
+        },
+        {
+          "j": 2,
+          "score": -2.789192170762552,
+          "truthRetained": true
+        },
+        {
+          "j": 3,
+          "score": -2.7504564425451203,
+          "truthRetained": true
+        },
+        {
+          "j": 4,
+          "score": -2.716645135151951,
+          "truthRetained": true
+        },
+        {
+          "j": 5,
+          "score": -2.720091902993451,
+          "truthRetained": true
+        },
+        {
+          "j": 6,
+          "score": -2.6988341880277145,
+          "truthRetained": true
+        },
+        {
+          "j": 7,
+          "score": -2.680377364077465,
+          "truthRetained": true
+        },
+        {
+          "j": 8,
+          "score": -2.6799587840392,
+          "truthRetained": true
+        },
+        {
+          "j": 9,
+          "score": -2.6983278717666024,
+          "truthRetained": true
+        },
+        {
+          "j": 10,
+          "score": -2.6970261586680317,
+          "truthRetained": true
+        },
+        {
+          "j": 11,
+          "score": -2.7160736005148207,
+          "truthRetained": true
+        },
+        {
+          "j": 12,
+          "score": -2.7197184000324186,
+          "truthRetained": true
+        },
+        {
+          "j": 13,
+          "score": -2.721820941420643,
+          "truthRetained": true
+        },
+        {
+          "j": 14,
+          "score": -2.7066565020568354,
+          "truthRetained": true
+        },
+        {
+          "j": 15,
+          "score": -2.706043502297104,
+          "truthRetained": true
+        },
+        {
+          "j": 16,
+          "score": -2.711277073893792,
+          "truthRetained": true
+        },
+        {
+          "j": 17,
+          "score": -2.7026946432631482,
+          "truthRetained": true
+        },
+        {
+          "j": 18,
+          "score": -2.6894912928644463,
+          "truthRetained": true
+        },
+        {
+          "j": 19,
+          "score": -2.6805569561792058,
+          "truthRetained": true
+        },
+        {
+          "j": 20,
+          "score": -2.6819842552088744,
+          "truthRetained": true
+        }
+      ],
+      "correct": 1100,
+      "total": 1100
+    }
+  ]
+}
