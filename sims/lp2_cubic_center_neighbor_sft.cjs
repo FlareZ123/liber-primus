@@ -85,6 +85,44 @@ function collisionCertificate(){
  return {secSizes:sec.map(x=>x.length),nonzeroColumns:Array.from({length:28},(_,j)=>lookup.slice(1).filter(s=>s.has(j+1)).length),counts,example};
 }
 
+/** Construct fixed-endpoint collisions for general nonlinear centers. */
+function generalCollisionCertificate(){
+ const q=29,N=q*q,inv=Array.from({length:q},(_,c)=>c?Array.from({length:q},(_,i)=>i).find(i=>c*i%q===1):0);
+ const f1=Array.from({length:q},(_,x)=>mod(x+(x===0?1:0)));
+ const f2=Array.from({length:q},(_,x)=>x===0?1:x===1?0:x);
+ function construct(f,n,b,c,L,R,d){
+  const sec=Array.from({length:q},(_,h)=>{const m=new Map();for(let x=0;x<q;x++)m.set(mod(f[(x+h)%q]-f[x]),x);return m});
+  assert(sec.slice(1).every(s=>s.size>=3));
+  function walk(t,alpha,beta){
+   const next=Array.from({length:N},(_,v)=>{const x=Math.floor(v/q),y=v%q;return [...sec[y].keys()].map(s=>y*q+mod(alpha*x+beta*s))});
+   let states=Array.from({length:q-1},(_,i)=>i+1);const pred=[];
+   for(let i=0;i<t;i++){const layer=new Int16Array(N).fill(-1),out=[];for(const v of states)for(const w of next[v])if(layer[w]===-1){layer[w]=v;out.push(w)};states=out;pred.push(layer)}
+   return {states,pred};
+  }
+  const t=32,fw=walk(t,mod(-inv[c]),mod(-b*inv[c])),bw=walk(n-t,mod(-c),mod(-b));
+  const bs=new Set(bw.states);let meeting=fw.states.find(v=>bs.has((v%q)*q+Math.floor(v/q)));
+  assert(meeting!==undefined&&fw.states.length>420&&bw.states.length>420);
+  function restore(w,v){const h=[v%q];for(let i=w.pred.length-1;i>=0;i--){v=w.pred[i][v];assert(v>=0);h.push(v%q)}h.push(Math.floor(v/q));return h.reverse()}
+  const H=[...restore(fw,meeting),...restore(bw,(meeting%q)*q+Math.floor(meeting/q)).reverse().slice(2)];
+  assert(H.length===n+2&&H[0]===0&&H[n+1]===0&&H[1]!==0);
+  const P=[],Q=[];for(let i=0;i<n;i++){let h=H[i+1],s=mod((-H[i]-c*H[i+2])*inv[b]),x=sec[h].get(s);assert(x!==undefined);P.push(x);Q.push(mod(x+h))}
+  const C=p=>p.map((x,i)=>mod((i?p[i-1]:L)+b*f[x]+c*(i+1<p.length?p[i+1]:R)+d));const cp=C(P);assert.deepEqual(C(Q),cp);
+  return {fwd:fw.states.length,bwd:bw.states.length};
+ }
+ const out=[];
+ for(const [name,f] of [["one-value perturbation",f1],["single transposition",f2]]){
+  let min=840,checked=0;
+  for(let b=1;b<q;b++)for(let c=1;c<q;c++){const w=construct(f,64,b,c,(b+7)%q,(c+11)%q,(b+c)%q);min=Math.min(min,w.fwd,w.bwd);checked++}
+  out.push({name,checked,min});
+ }
+ const lengths=[66,76,308,3008],long=[];for(const n of lengths){let min=840;for(const [b,c] of [[1,1],[2,3],[28,28]]){const w=construct(f1,n,b,c,7,11,4);min=Math.min(min,w.fwd,w.bwd)}long.push({n,checked:3,min})}
+ let lower=84,t=1;const bound=[[t,lower]];while(lower<=420){lower+=Math.min(14,2*Math.ceil((lower-28)/26));t++;bound.push([t,lower])}
+ assert.equal(t,31);assert.equal(lower,434);
+ const runePages=gp.pages.filter(p=>p.page<56&&p.indices.length);
+ assert.equal(runePages.length,55);assert.equal(Math.min(...runePages.map(p=>p.indices.length)),66);
+ return {out,long,boundLast:bound.slice(-5),safeHalfLength:t+1,safeFullLength:2*(t+1),runePages:runePages.length,minPageLength:66};
+}
+
 const parts=ref.split(/### (\d+)\n/),sec=Object.fromEntries(Array.from({length:(parts.length-1)/2},(_,i)=>[Number(parts[2*i+1]),enc(parts[2*i+2].replace(/^\[[^\n]*\]$/gm,''))]));
 const samples=[sec[3].slice(40,348),sec[6].slice(120,428),[...sec[10],...sec[11],...sec[12],...sec[13]].slice(70,378)];
 const keys=[{b:7,d:19,L:4,R:13},{b:23,d:3,L:16,R:25},{b:11,d:9,L:22,R:6}];
@@ -98,4 +136,4 @@ const ct=gp.pages.filter(p=>p.page>=40&&p.page<=53).flatMap(p=>p.indices),actual
 assert.deepEqual([ct.length,actual],[3008,18]);
 const repeats=files.map(file=>({file,...repeatGate(enc(read(file)),ct.length,actual)}));
 assert.deepEqual(repeats.map(x=>[x.min,x.symMin,x.keysPass,x.windowPass]),[[34,63,0,0],[50,53,0,0],[34,63,0,0]]);
-console.log(JSON.stringify({train:train.length,keys:28*29**3,controls,original:originalResult,repeatGate:{n:ct.length,actual,output:repeats},collisionCertificate:collisionCertificate()},null,2));
+console.log(JSON.stringify({train:train.length,keys:28*29**3,controls,original:originalResult,repeatGate:{n:ct.length,actual,output:repeats},collisionCertificate:collisionCertificate(),generalCollisionCertificate:generalCollisionCertificate()},null,2));

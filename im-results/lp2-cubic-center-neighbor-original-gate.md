@@ -1,6 +1,82 @@
-# Nonlinear cubic-center nearest-neighbor GP29 inverse: exact recovery and forward repeat gate
+# Nonlinear-center nearest-neighbor GP29 sender: fixed-endpoint obstruction and cubic original inverse
 
-**27 November 2026 — Agent1. Decision:** the entire fixed-endpoint cubic-center sender with nonzero outer and cubic coefficients is noninjective for every frame of length ≥2, regardless of key or endpoint values. It is a lossless receiver only with additional initial-state information or a justified restricted plaintext domain. Retire the exact unclocked symmetric cubic-center receiver tested on p54–55. Three independent source-native held plants recover the full key and all 924 runes, but the original fit/continuation is nonprose. A separate exact necessary condition excludes the broader normalized cubic-center sender against every contiguous length-3008 window in the three pinned literary registers. No authentic unknown plaintext, key, or new source-selected operation.
+**27 November 2026 — Agent1. Decision:** any nonaffine center with nonzero linear neighbors is noninjective on unrestricted fixed-endpoint frames of length ≥64, covering all 55 rune-bearing unresolved physical pages. This includes position-dependent nonaffine centers and nonzero outer coefficients. In the cubic special case, the entire fixed-endpoint cubic-center sender with nonzero outer and cubic coefficients is noninjective for every frame of length ≥2, regardless of key or endpoint values. It is a lossless receiver only with additional initial-state information or a justified restricted plaintext domain. Retire the exact unclocked symmetric cubic-center receiver tested on p54–55. Three independent source-native held plants recover the full key and all 924 runes, but the original fit/continuation is nonprose. A separate exact necessary condition excludes the broader normalized cubic-center sender against every contiguous length-3008 window in the three pinned literary registers. No authentic unknown plaintext, key, or new source-selected operation.
+
+## General fixed-endpoint obstruction (all nonaffine center maps)
+
+**Theorem.** On GF(29), a stationary sender with fixed external endpoints and
+`C_i=a P_(i-1)+f(P_i)+c P_(i+1)+d`, where a,c are nonzero and f is any
+nonaffine function, is noninjective on the unrestricted n-rune message domain
+for every n≥64. The conclusion also holds for position-dependent coefficients
+and center maps provided the two outer coefficients stay nonzero and each
+center map is nonaffine. This is a bound on global losslessness, not a claim
+that every individual ciphertext has multiple preimages.
+
+**Proof.** For a difference h, let S_h={f(x+h)-f(x): x in GF(29)}.
+S_0={0}. For h≠0, |S_h|≥3: a singleton makes f affine because h
+generates the additive group. Exactly two values u,v occurring m and
+29-m times would give m(u-v)=0 by telescoping, impossible for 1≤m≤28.
+The same argument works independently at each position. A collision
+difference path satisfies a h_(i-1)+s_i+c h_(i+1)=0 with s_i in S_(h_i).
+Every such path can be realized by choosing a secant witness independently
+at each plaintext position. The external differences must both be zero.
+
+Track reachable pairs (x,y)=(h_(i-1),h_i) from the 28 states (0,h≠0).
+The zero pair is unreachable; the other 840 pairs are the ambient state
+space. Each transition is (x,y)->(y,-(a x+s)/c), s in S_y.
+Choosing just one s per y gives a bijection of the nonzero pair space,
+so the reachable cardinality never decreases. After step 1 it is at least 84.
+
+For a reachable set of size m, write X_y for its column of first coordinates
+with second coordinate y. Each nonempty nonzero column maps to a disjoint
+output row of size at least min(29,|X_y|+2), by the Cauchy–Davenport
+sumset inequality. The zero column preserves size and has at most 28
+members. While m≤420, there are three exhaustive cases:
+
+1. All nonzero columns have size ≤26. There are at least
+   ceil((m-28)/26) nonempty nonzero columns, each gaining ≥2.
+2. Some nonzero column has size ≥27 and none is empty. If p columns
+   are partial, then m≥29(28-p)+p, so p≥14. Each partial column
+   gains at least one.
+3. Some nonzero column has size ≥27 and another is empty. The next
+   reachable set has one full row and one empty row. Its 28 nonzero
+   columns are all nonempty and partial; the following step gains
+   ≥28. The first step never decreases the size.
+
+Consequently the one- or two-step progress dominates the benchmark
+B_1=84, B_(t+1)=B_t+min(14,2 ceil((B_t-28)/26)), as long as the
+actual set has not already exceeded 420. The increment is monotone and
+at most 14. The two-step case can skip one benchmark time but gains at
+least 28. The last benchmark values at times 27..31 are
+378,392,406,420,434. Allowing a final two-step overshoot, the actual
+reachable set exceeds 420 by time 32. It remains above 420 thereafter.
+
+Run the same difference walk backward from the right boundary;
+the nonzero outer coefficients interchange and the same proof applies.
+For n≥64, both the first 32 positions and remaining n-32 positions
+give >420 reachable states. After reversing the coordinate order of the
+backward states, the two sets must intersect within the 840-state
+ambient space. Concatenate the difference paths at that common pair
+and independently realize the secants. The resulting two plaintexts
+differ at the first rune yet have identical ciphertext for any fixed
+endpoint values and additive constants. QED.
+
+The canonical corpus has 55 rune-bearing unresolved physical pages;
+their shortest is p49 with 66 runes. Thus the theorem applies to every
+such whole-page frame as well as longer chapter frames. It does not
+exclude short frames, affine centers, zero outer coefficients,
+authenticated extra initial-state information, or a restricted
+plaintext domain with separately demonstrated injectivity.
+
+**Constructive checks.** The connected V8 runtime built and replayed
+all 784 normalized nonzero coefficient pairs at length 64 for each
+of two nonaffine centers: f(x)=x+[x=0] (nonpermutation), and identity
+with 0 and 1 exchanged (permutation). All 1,568 witnesses replayed;
+both forward and backward sets reached all 840 states. Another 12
+witnesses replayed at lengths 66,76,308,3008 with three coefficient
+pairs. These checks illustrate the theorem; the proof is independent
+of the finite sample. The consolidated standalone Node wrapper has
+not been separately executed.
 
 ## Mechanism and reason for testing
 
