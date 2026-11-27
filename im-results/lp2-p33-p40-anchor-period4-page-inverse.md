@@ -1,6 +1,6 @@
 # p33/p40 candidate H-shell inverses fail as fixed and variable DH key streams
 
-**Classification: bounded negative; intermediate result. No unknown-page plaintext or reusable key recovered.** Fixed-key page and word clocks fail; variable DH public-share clocks also fail, including the exact p33 coupled shared-secret law. See the variable-share section below.
+**Classification: bounded negative; intermediate result. No unknown-page plaintext or reusable key recovered.** Fixed-key page and word clocks fail; fixed DH share progressions also fail to produce prose; free-share p40 F-hold is exactly impossible, while the coupled p33 free-share inverse remains underdetermined. See the variable-share section below.
 
 ## Question and source-motivated premise
 
@@ -83,4 +83,4 @@ The p33 shell has a different meaning from p40: its third component is interpret
 | ordinary | -3.937216 | -3.767236 | -2.753688 |
 | F hold | -3.925926 | impossible at suffix offset44 | -2.775156 |
 
-All 22 planted controls have a valid replay and optimum at least the planted score. Reference/model caveats are identical to the preceding section. No readable candidate has emerged; any surviving best-path scores are below the same −2.772464 finite editorial reference floor. The coupled law has now been directly tested, so retire it along with the uncoupled one-coordinate extension. No new key or plaintext. [Reproducer](../sims/lp2_p33_dh_coupled_share_inverse.cjs) · [Raw output](lp2-p33-dh-coupled-share-inverse.json).
+All 22 planted controls have a valid replay and optimum at least the planted score. Reference/model caveats are identical to the preceding section. No readable candidate has emerged. The ordinary free-share optimum −2.753688 is **inside** the finite editorial-reference band (floor −2.772464), while the F-hold optimum −2.775156 is only slightly below it. This precludes a blanket score-based exclusion of the coupled family. The outputs are nonprose and the 22^20 ordinary share histories leave the schedule underdetermined. Both fixed DH progressions fail as direct decipherments; retain the arbitrary-share coupled family only as an underconstrained receiver that needs an independent state selector or stronger language constraint. No new key or plaintext. [Reproducer](../sims/lp2_p33_dh_coupled_share_inverse.cjs) · [Raw output](lp2-p33-dh-coupled-share-inverse.json).
