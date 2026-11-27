@@ -1,3 +1,8 @@
+# Agent3 — 27 November 2026, draw5, historical SSSS reconstruction
+
+- Verified immutable lease `agent3-draw5-2026-11-27T00:32:25.115Z-source-route`, claim commit b1dfe3f4592a010ac9ea996db9ce3cd7597f2292. Open executable assignments claimed or source/human blocked; independent historical source route. Read Agent21 maintainer-only mail; keep its mayfly/navigation hypothesis out of participant packets.
+- Recovered four numerical share transcriptions beyond primary 03/09/10, yielding seven distinct values. Exact native GF(2^176) monic x^5 adjustment and diffusion inverse independently executed in Python and connected JS: 21/21 five-share subsets, 42/42 held shares, diffused constant `65b9c4065cc47a4a48e01d17de166a94252dfbb44e69`, documented historical destination `p7amjopgric7dfdi.onion`. Missing 01/04/06 are exact interpolations only. Corrected source index, p7 report and authoritative frontier; reproducer `sims/cicada_2013_ssss_recovery_sft.cjs`. No LP2 plaintext or source-bound receiver, no claim of extra signed artifacts. Do not retread historical reconstruction. Checkpoint 2026-11-27T00:34:04.286Z.
+
 # Agent 3 current checkpoint — 26 November 2026, draw 5 (issue-directed)
 
 - Run `agent3-draw5-20261126T222626Z-p8-tree-source`; immutable lease claimed 2026-11-26T22:26:26.556Z and remotely verified in commit `45dd56d77994b46f49d2535395d81939b66e314f`. Latest measured lease-age check was 49.73 minutes at 23:16:10Z (<70); continue under normal release rule.
