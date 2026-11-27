@@ -1,0 +1,297 @@
+{
+  "clipped-forward-allkeys": {
+    "tested": 1062,
+    "max": 13,
+    "winners": [
+      {
+        "rank": 226,
+        "missingTrit": ".",
+        "n": 13,
+        "visible": "..x..x-..-xx..xx.-x.-..xx-x.-.xx....x.x.-x.-..xx-.-.x.xx.x-..xx.-x-...xx...x-xx-x--xx..x",
+        "internal": [
+          "I",
+          "AL",
+          "TR",
+          "HEAL",
+          "CE",
+          "ED",
+          "AB",
+          "ST",
+          "TM"
+        ],
+        "score": -98.52476598774348
+      },
+      {
+        "rank": 226,
+        "missingTrit": "-",
+        "n": 13,
+        "visible": "..x..x-..-xx..xx.-x.-..xx-x.-.xx....x.x.-x.-..xx-.-.x.xx.x-..xx.-x-...xx...x-xx-x--xx..x",
+        "internal": [
+          "I",
+          "AL",
+          "TR",
+          "HEAL",
+          "CE",
+          "ED",
+          "AB",
+          "ST",
+          "TM"
+        ],
+        "score": -98.52476598774348
+      },
+      {
+        "rank": 226,
+        "missingTrit": "x",
+        "n": 13,
+        "visible": "..x..x-..-xx..xx.-x.-..xx-x.-.xx....x.x.-x.-..xx-.-.x.xx.x-..xx.-x-...xx...x-xx-x--xx..x",
+        "internal": [
+          "I",
+          "AL",
+          "TR",
+          "HEAL",
+          "CE",
+          "ED",
+          "AB",
+          "ST",
+          "TM"
+        ],
+        "score": -98.52476598774348
+      },
+      {
+        "rank": 248,
+        "missingTrit": ".",
+        "n": 13,
+        "visible": "..x..x-..-xx..xx.-x.-..xx-x.-.xx....x.x.-x.-..xx..-.x.xx.x...xx.-x-...xx...x-xx-x--xx..x",
+        "internal": [
+          "I",
+          "AL",
+          "TR",
+          "HEAL",
+          "FE",
+          "ES",
+          "AB",
+          "ST",
+          "TM"
+        ],
+        "score": -100.38366475980915
+      },
+      {
+        "rank": 248,
+        "missingTrit": "-",
+        "n": 13,
+        "visible": "..x..x-..-xx..xx.-x.-..xx-x.-.xx....x.x.-x.-..xx..-.x.xx.x...xx.-x-...xx...x-xx-x--xx..x",
+        "internal": [
+          "I",
+          "AL",
+          "TR",
+          "HEAL",
+          "FE",
+          "ES",
+          "AB",
+          "ST",
+          "TM"
+        ],
+        "score": -100.38366475980915
+      },
+      {
+        "rank": 248,
+        "missingTrit": "x",
+        "n": 13,
+        "visible": "..x..x-..-xx..xx.-x.-..xx-x.-.xx....x.x.-x.-..xx..-.x.xx.x...xx.-x-...xx...x-xx-x--xx..x",
+        "internal": [
+          "I",
+          "AL",
+          "TR",
+          "HEAL",
+          "FE",
+          "ES",
+          "AB",
+          "ST",
+          "TM"
+        ],
+        "score": -100.38366475980915
+      }
+    ],
+    "top": [
+      {
+        "rank": 1,
+        "missingTrit": ".",
+        "n": 5,
+        "visible": "-x...x...x..x...-x.xx..-.x.-..x.x.xx.-x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+        "internal": [
+          "FLEE",
+          "AS",
+          "CITIES",
+          "HIT"
+        ],
+        "score": -49.40462280025942
+      },
+      {
+        "rank": 1,
+        "missingTrit": "-",
+        "n": 5,
+        "visible": "-x...x...x..x...-x.xx..-.x.-..x.x.xx.-x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+        "internal": [
+          "FLEE",
+          "AS",
+          "CITIES",
+          "HIT"
+        ],
+        "score": -49.40462280025942
+      },
+      {
+        "rank": 1,
+        "missingTrit": "x",
+        "n": 5,
+        "visible": "-x...x...x..x...-x.xx..-.x.-..x.x.xx.-x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+        "internal": [
+          "FLEE",
+          "AS",
+          "CITIES",
+          "HIT"
+        ],
+        "score": -49.40462280025942
+      }
+    ],
+    "hist": {
+      "0": 297,
+      "1": 168,
+      "2": 291,
+      "3": 54,
+      "4": 45,
+      "5": 39,
+      "6": 33,
+      "7": 18,
+      "8": 12,
+      "10": 36,
+      "11": 27,
+      "12": 36,
+      "13": 6
+    }
+  },
+  "clipped-reverse-allkeys": {
+    "tested": 543,
+    "max": 28,
+    "winners": [
+      {
+        "rank": 27,
+        "missingTrit": ".",
+        "n": 28,
+        "visible": "...x...x..x.x.-.xx--x..xx.x.x.-.x..x.xx..xx.x...xx..x-xx.--x.xx.x-xx--x-xx..x-x...xx-x..xx-..x.xx-x.x.x",
+        "internal": [
+          "MI",
+          "EERIE",
+          "I",
+          "ES",
+          "IT",
+          "WE",
+          "ET",
+          "MT",
+          "ITS",
+          "TI",
+          "DE"
+        ],
+        "score": -95.99651709301132
+      },
+      {
+        "rank": 27,
+        "missingTrit": "-",
+        "n": 28,
+        "visible": "...x...x..x.x.-.xx--x..xx.x.x.-.x..x.xx..xx.x...xx..x-xx.--x.xx.x-xx--x-xx..x-x...xx-x..xx-..x.xx-x.x.x",
+        "internal": [
+          "MI",
+          "EERIE",
+          "I",
+          "ES",
+          "IT",
+          "WE",
+          "ET",
+          "MT",
+          "ITS",
+          "TI",
+          "DE"
+        ],
+        "score": -95.99651709301132
+      },
+      {
+        "rank": 27,
+        "missingTrit": "x",
+        "n": 28,
+        "visible": "...x...x..x.x.-.xx--x..xx.x.x.-.x..x.xx..xx.x...xx..x-xx.--x.xx.x-xx--x-xx..x-x...xx-x..xx-..x.xx-x.x.x",
+        "internal": [
+          "MI",
+          "EERIE",
+          "I",
+          "ES",
+          "IT",
+          "WE",
+          "ET",
+          "MT",
+          "ITS",
+          "TI",
+          "DE"
+        ],
+        "score": -95.99651709301132
+      }
+    ],
+    "top": [
+      {
+        "rank": 1,
+        "missingTrit": ".",
+        "n": 3,
+        "visible": "x-x....x.xx-.x.xx...x.x.xx..x-x...xx..x-xx-...x.x.-x-.xx.x.-.x..x.xx.x...x...x",
+        "internal": [
+          "NE",
+          "SEE",
+          "ITS",
+          "IT",
+          "BEAN",
+          "ERIE"
+        ],
+        "score": -63.78300053283769
+      },
+      {
+        "rank": 1,
+        "missingTrit": "-",
+        "n": 3,
+        "visible": "x-x....x.xx-.x.xx...x.x.xx..x-x...xx..x-xx-...x.x.-x-.xx.x.-.x..x.xx.x...x...x",
+        "internal": [
+          "NE",
+          "SEE",
+          "ITS",
+          "IT",
+          "BEAN",
+          "ERIE"
+        ],
+        "score": -63.78300053283769
+      },
+      {
+        "rank": 1,
+        "missingTrit": "x",
+        "n": 3,
+        "visible": "x-x....x.xx-.x.xx...x.x.xx..x-x...xx..x-xx-...x.x.-x-.xx.x.-.x..x.xx.x...x...x",
+        "internal": [
+          "NE",
+          "SEE",
+          "ITS",
+          "IT",
+          "BEAN",
+          "ERIE"
+        ],
+        "score": -63.78300053283769
+      }
+    ],
+    "hist": {
+      "0": 51,
+      "1": 195,
+      "2": 36,
+      "3": 162,
+      "5": 54,
+      "6": 9,
+      "7": 27,
+      "13": 3,
+      "15": 3,
+      "28": 3
+    }
+  }
+}
