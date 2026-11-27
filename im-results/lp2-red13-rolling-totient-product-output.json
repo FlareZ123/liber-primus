@@ -1,0 +1,660 @@
+{
+  "seed": [
+    15,
+    8,
+    18,
+    3,
+    6,
+    19,
+    27,
+    0,
+    15,
+    26,
+    18,
+    21,
+    5
+  ],
+  "W": 13,
+  "fit": 249,
+  "body": 716,
+  "controls": [
+    {
+      "role": "plain",
+      "sign": -1,
+      "hold": false,
+      "start": 2001,
+      "plantZeroShifts": 526,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 526,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": -1,
+      "hold": false,
+      "start": 12001,
+      "plantZeroShifts": 464,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 464,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": -1,
+      "hold": true,
+      "start": 2001,
+      "plantZeroShifts": 521,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 4,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "3"
+        },
+        {
+          "deep": 716,
+          "states": 3,
+          "paths": "108"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 521,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": -1,
+      "hold": true,
+      "start": 12001,
+      "plantZeroShifts": 462,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 9,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 4,
+          "paths": "10"
+        },
+        {
+          "deep": 716,
+          "states": 2,
+          "paths": "1050"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 462,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": 1,
+      "hold": false,
+      "start": 2001,
+      "plantZeroShifts": 526,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 526,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": 1,
+      "hold": false,
+      "start": 12001,
+      "plantZeroShifts": 464,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 464,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": 1,
+      "hold": true,
+      "start": 2001,
+      "plantZeroShifts": 521,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 6,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "4"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "160"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 521,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": 1,
+      "hold": true,
+      "start": 12001,
+      "plantZeroShifts": 462,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 12,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 5,
+          "paths": "36"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "448"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 462,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": -1,
+      "hold": false,
+      "start": 2001,
+      "plantZeroShifts": 348,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 348,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": -1,
+      "hold": false,
+      "start": 12001,
+      "plantZeroShifts": 390,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 390,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": -1,
+      "hold": true,
+      "start": 2001,
+      "plantZeroShifts": 431,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 8,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 2,
+          "paths": "2048"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 431,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": -1,
+      "hold": true,
+      "start": 12001,
+      "plantZeroShifts": 331,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 8,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "128"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "49152"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 331,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": 1,
+      "hold": false,
+      "start": 2001,
+      "plantZeroShifts": 273,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 273,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": 1,
+      "hold": false,
+      "start": 12001,
+      "plantZeroShifts": 357,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 357,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": 1,
+      "hold": true,
+      "start": 2001,
+      "plantZeroShifts": 353,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 8,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 2,
+          "paths": "2"
+        },
+        {
+          "deep": 716,
+          "states": 2,
+          "paths": "10240"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.24212665293102,
+      "fit": -2.2727497886478463,
+      "held": -2.2259298338259774,
+      "zeroShifts": 353,
+      "preview": "NYARETHECHILDRENOFMYLONGNGTHATWALCNACEDAMONGTHESEHILLSANDICANNOTWITHDRAWFROMTHEMWITHOUTABURDENANDANACHEITISNOTAGARMENTICASTOFFTHISDAYBUTASCINTHATITEARWITHMYOWNHANDSNORISITATHOUGHTILEAUEBEHINDMEBUTAHEARTMADESWEETWITHHU",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": 1,
+      "hold": true,
+      "start": 12001,
+      "plantZeroShifts": 347,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 14,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "512"
+        },
+        {
+          "deep": 716,
+          "states": 4,
+          "paths": "16384"
+        }
+      ],
+      "truthAlive": true,
+      "accuracy": 716,
+      "score": -2.2929776087223,
+      "fit": -2.320224690975676,
+      "held": -2.278566411042249,
+      "zeroShifts": 347,
+      "preview": "RWHENYOUDRAWTHEWINELETTHEREBEINYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINEYARDANDFORTHEWINEPRESSTHENAPLOUGHMANSAIDSPEACTOUSOFWORCANDHEANSWEREDSAYNGYOUWORCTHATYOUMAYCEEPPAC",
+      "replay": true
+    }
+  ],
+  "original": [
+    {
+      "role": "plain",
+      "sign": -1,
+      "hold": false,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": null,
+      "accuracy": null,
+      "score": -6.76373755730271,
+      "fit": -6.791380323327478,
+      "held": -6.749117079341015,
+      "zeroShifts": 271,
+      "preview": "LWHBWOEAAGNGBJFFXEOXEOAEOEPCLXNWHXOUGOEHCAEEUPNGUROYDNGSIETTFPUNGYNGXIAYHBUGAEAXEONSNHXTHPGYFNGCJTHYRSBUGOCSUPUAEOERAEOEHTFNEOTHJITHTHPYNGEAYGEANXANWBCXDBFMTNEEAJNLGBXGTHYIDCWDEAAEBWYRNGLTHAWXGFESXTHCLTHEORCOEFOEAEWAEUWAEEOCIWEAEONGONGHTHOEIACTDBOED",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": -1,
+      "hold": true,
+      "status": "UNSAT",
+      "deep": 27,
+      "deadAt": 27,
+      "maxStates": 2,
+      "trace": [],
+      "truthAlive": null
+    },
+    {
+      "role": "plain",
+      "sign": 1,
+      "hold": false,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": null,
+      "accuracy": null,
+      "score": -6.87699346908377,
+      "fit": -6.663726296869165,
+      "held": -6.989792166165163,
+      "zeroShifts": 195,
+      "preview": "PDAEBWHTHJWEWBBCRERRPOOJEOORNMEAUAEHWPWXUFBTHDAENHTIAFXGFSPTFPUNGYNGXIAYHBUGJJOERNGSWGFOHNIJOJPOEMFAEIAJWTHBIWMNGNPDHROENGLWIAOEYOEEOMWHSEAPNHEEEODHANGCAIATHPMIAMFHYLAEAEXUDTHAESRTMJROLEOYTPITHDJOEHLEAFXAEPJNGATWEOTAEFGNMEOLNNGMFRIAASEAMBFOECLEOLH",
+      "replay": true
+    },
+    {
+      "role": "plain",
+      "sign": 1,
+      "hold": true,
+      "status": "UNSAT",
+      "deep": 116,
+      "deadAt": 116,
+      "maxStates": 7,
+      "trace": [],
+      "truthAlive": null
+    },
+    {
+      "role": "cipher",
+      "sign": -1,
+      "hold": false,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": null,
+      "accuracy": null,
+      "score": -6.686657300785865,
+      "fit": -6.757689869728637,
+      "held": -6.649087612287224,
+      "zeroShifts": 299,
+      "preview": "LXOFEATGAXIAIAEWBASOEEOINGUNAEGAEPRTHAEIAPBNEOJTHANGYXBDXCOOENGEAPWEAEOFPUNGYNGXIAYHBUGADTHHYTBIAHUNWLOESAEITNFBLMMNGOTTHHAEIAXYEUNGCFNEOTHULCSIGIARTHGETHAEYBIOEOEDSMNGROENEEAJNLGBXGTHYIDCAEAEOFPIEOTHJXPITHDJOEHLEAFXAEPUFNITHAWAEFGNMEOLNNGMFRIAASEAMAETAEOEFNDE",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": -1,
+      "hold": true,
+      "status": "UNSAT",
+      "deep": 3,
+      "deadAt": 3,
+      "maxStates": 1,
+      "trace": [],
+      "truthAlive": null
+    },
+    {
+      "role": "cipher",
+      "sign": 1,
+      "hold": false,
+      "status": "SAT",
+      "deep": 716,
+      "maxStates": 1,
+      "trace": [
+        {
+          "deep": 249,
+          "states": 1,
+          "paths": "1"
+        },
+        {
+          "deep": 716,
+          "states": 1,
+          "paths": "1"
+        }
+      ],
+      "truthAlive": null,
+      "accuracy": null,
+      "score": -6.4798477299095625,
+      "fit": -6.775242643140968,
+      "held": -6.323611019913518,
+      "zeroShifts": 299,
+      "preview": "PHNNGUGNJRGLEWBASOEEOINGUNAEGALEOOOEIAPBNEOJTHANGYXBDEOTHOEWWPTDIALFPUNGYNGXIAYHBUGJOJPWRRELOBCOWIAXEOBINOOEUGTHPHUHAEIAXYEUNGCFNEOTHNGFEAETBSDNGEOENGNGTHAEREOBCTHSHCINEEAJNLGBXGTHYIDXBTGOEAAEEAOEEOEPITHDJOEHLEAFXAEPJEALUEOFAEAEFGNMEOLNNGMFRIAASEAMBEOOTHBAENGEA",
+      "replay": true
+    },
+    {
+      "role": "cipher",
+      "sign": 1,
+      "hold": true,
+      "status": "UNSAT",
+      "deep": 196,
+      "deadAt": 196,
+      "maxStates": 4,
+      "trace": [],
+      "truthAlive": null
+    }
+  ]
+}
