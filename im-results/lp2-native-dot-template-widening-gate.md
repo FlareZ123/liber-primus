@@ -25,3 +25,21 @@ The 13/10 holdouts are an out-of-sample check of the stable punctuation template
 ## Consequence for decipherment
 
 The physically observable action is **duplicate a five-position center column twice, moving outer columns outward**. This can be described without any modular arithmetic and the ordinary punctuation-template rival already explains the five holdouts. Nothing source-visible maps the expanded center columns to a rune register, selects an ordered operand or tells the player how to reverse a value-changing cipher. The glyph geometry therefore supplies no independent evidence for a 13→23 cryptographic state update or DH parameter, and cannot be used to promote one. Close this branch at typography; reopen only if a separate authentic clue supplies the receiving object and operation. No unknown plaintext, key or destination recovered. This does not rule out intentional numeric signaling via punctuation.
+
+### Typed-copy decision (#3154, Agent2, 27 November)
+
+The source operation is more restrictive than a count relation: replacing a center column C by C,C,C preserves each occupied center row as three adjacent equal cells. In a literal row-major rune or numeric expansion, even one occupied row forces a contiguous triple; a five-position center column forces five such rows. This condition is invariant under injective symbol relabeling and reversal. A separately encrypted or permuted copy need not preserve it, but requires its own independently selected operation and inverse.
+
+I inspected contact sheets of all 75 original JPEGs, with full-page enlargements of scans05,16,32,74, and used the independently transcribed literal p49–51 panel. The solved p57 PARABLE explicitly asks the reader to shed circumferences and find divinity within, but supplies neither a textual center-copy register nor a coordinate convention. LP1 scans05 and16 place ordinary 13-dot punctuation directly next to their KNOW THIS square heading: this establishes a genuine nearby numeric object, not a widening example. Their 5×5 tables have rotational rather than identical-center-column symmetry. The p15 4×4 and p49–51 32×8 tables have even widths, hence no unique central column; even the relaxed exact adjacent triple condition fails throughout.
+
+| Independently visible or solved object | Shape | Horizontal equal triples | Vertical equal triples |
+|---|---:|---:|---:|
+| LP1 scan05 GP-prime-summed square | 5×5 | 0 | 0 |
+| LP1 scan16 literal square | 5×5 | 0 | 0 |
+| LP2 p15 literal integers | 4×4 | 0 | 0 |
+| LP2 p49–51 literal case-sensitive tokens | 32×8 | 0 | 0 |
+| Constructed exact 3→5 column-copy positive control | 5×5 | 5 | 0 |
+
+In the 32×8 panel even the two central columns disagree in all 32 rows. The same necessary condition fails for the canonical 12,956-rune unresolved tape (zero triples, including across printed boundaries) and the complete 95-rune clear p57 tape (zero triples). Thus no raw contiguous-rune receiver can be the direct literal center-copy expansion, even if line widths or alignment are unspecified. This does not exclude copies of hidden state subsequently transformed, a different graphical operation, noncontiguous traversal, or a copy of punctuation rather than rune content. Cuneiform and ornamental motifs do not provide a separately typed exact five-cell register or restoration rule in this inspection; the contact-sheet inspection is a coarse visual screen, not exhaustive image matching.
+
+Reproduce with [SFT](../sims/lp2_dot_copy_literal_receiver_sft.cjs), using canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, grid blob `2550eae357442912220e05dc51147523a61dd75a`, and [LP1 solved reference](../resources/liber-primus/lp1-plaintext-reference.txt). The same computation was executed against fetched inputs in the connected JS runtime, including the five-triple plant; the saved CommonJS wrapper was not separately run in CI. No plaintext, authentic key, independent typed counterpart, or held-out cipher prediction. Retain the established dot result strictly as typography; reopen only for an independently selected value-changing receiver or actual receiving object, not more count-based tests.
