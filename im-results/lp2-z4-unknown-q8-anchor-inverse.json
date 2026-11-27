@@ -1,0 +1,110 @@
+{
+  "error": "plant gate",
+  "lexicon": 33390,
+  "outputs": [
+    {
+      "name": "0_welcome",
+      "word": "INTELLIGENCE",
+      "P": [
+        10,
+        9,
+        16,
+        18,
+        20,
+        20,
+        10,
+        6,
+        18,
+        9,
+        5,
+        18
+      ],
+      "C": [
+        12,
+        8,
+        26,
+        1,
+        26,
+        21,
+        10,
+        2,
+        12,
+        26
+      ],
+      "phase": 2,
+      "prev": 0,
+      "silent": 2,
+      "retries": 0,
+      "kind": "plant",
+      "keys": 0,
+      "truth": false,
+      "nodes": 40000001,
+      "checks": 23216240,
+      "words": 5844,
+      "completed": 367,
+      "complete": false,
+      "witnesses": 0
+    },
+    {
+      "name": "0_welcome",
+      "word": "INSTRUCTIAN",
+      "P": [
+        10,
+        9,
+        15,
+        16,
+        4,
+        1,
+        5,
+        16,
+        27,
+        9
+      ],
+      "C": [
+        18,
+        26,
+        21,
+        27,
+        8,
+        21,
+        8,
+        24,
+        8,
+        15
+      ],
+      "phase": 5,
+      "prev": 31,
+      "silent": 0,
+      "retries": 1,
+      "kind": "plant",
+      "keys": 0,
+      "truth": false,
+      "nodes": 40000001,
+      "checks": 23039423,
+      "words": 5844,
+      "completed": 462,
+      "complete": false,
+      "witnesses": 0
+    }
+  ],
+  "plantJoint": 0,
+  "truth": false,
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-page-groups-54-55-derived.json",
+      "sha": "8960e113af36ee46186965e394ec6be18d69b74f"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    }
+  ]
+}
