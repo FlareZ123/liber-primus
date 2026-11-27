@@ -69,3 +69,36 @@ This is a new candidate-selection test of the historical control above, not anot
 Reproduction [standalone Node22 test](../sims/agent8_typed_historical_clue_benchmark.cjs), [successful CI run 45926181753](https://github.com/FlareZ123/liber-primus/actions/runs/45926181753), artifact 15166756000. Initial run 45925994528 incorrectly concatenated framed whitespace lines before word-boundary recognition; second run 45926102773 compared Windows CRLF checkout bytes to the LF ICMP source; both defects corrected, with the original exact LF SHA pinned. Neither change affects the Stage04 candidate enumeration. Raw artifact packet hashes describe Windows checkout bytes except the explicitly normalized expected ICMP payload.
 
 **Decision:** the bounded Stage04 operator/key selection is stronger than assuming a published key, but the missing byte selector fails #3135's strict unique-byte gate. No new original LP2 clue of the same type follows; the existing #3058 visual operand test already rejected p10's punctuation-delimited 7 and the other standalone numerals. Do not run a new LP2 key/grammar sweep from this result. The smallest exact missing input for the historical residual ambiguity is a byte-level selector of the three alias choices; for LP2 even the local co-delivered key text, typed mixed-rune carrier and receiver contract are absent. No unknown plaintext or key recovered.
+
+
+## Prospective progress-checkpoint power: the authentic Parable checksum (Director #3145, Agent5, 27 November)
+
+**Decision: no transferable LP2 local-inverse checkpoint identified in the bounded preserved source set.** The most promising already-authenticated author-era numeric check is the 2013 `761.MP3` TXXX label `Parable 1,595,277,641`, independently preceding the 2014 printed p57. Its fixed grammar is the product of the three semantic clause GP-prime sums. This is a genuine pre-delivered check; the exact p57 reproduction and spelling inversion are prior work ([source inventory](audio761-original-id3-frame-inventory.md), [verified arithmetic](../results/2013-761-parable-prime-products.md)). The new question here is whether an analogous check could certify a proposed local inverse beyond a short fit.
+
+### Exact discriminating power on native p57
+
+Freeze the existing GP weights, three clause cuts, and historical integer before testing candidate substitutions. The actual 88-rune body has clause lengths 30/30/28, prime sums 1259/1031/1229 and passes. Exhaustively replace one or two distinct rune positions with other GP symbols, retaining every printed word length and clause boundary.
+
+| Candidate class | Count | Accepted by original product |
+|---|---:|---:|
+| Original p57 | 1 | 1 |
+| All exact Hamming-1 alternatives | 2,464 | 0 |
+| All exact Hamming-2 alternatives | 3,001,152 | 10,719 |
+| Hamming-2 accepted, same clause | — | 10,467 |
+| Hamming-2 accepted, different clauses | — | 252 |
+
+The 252 cross-clause collisions exchange the 1259 and 1229 factors. Even knowing the *ordered* clause sums (a stronger condition than the historical product) leaves 10,467 same-clause Hamming-2 collisions. In fact an eight-rune replacement survives even all individual word-sum checks:
+
+- Genuine: FIND THE **DIVINITY** WITHIN AND EMERGE.
+- Wrong but grammatical: FIND THE **AFFECTION** WITHIN AND EMERGE.
+- GP-native sequences: D I U I N I T Y versus A F F E C T IA N. Both eight runes, both prime sum 376, all eight positions differ. The entire word-length sequence and all three clause sums remain identical. The alternative came from a search in the existing independently sourced English word-frequency lexicon for a same-length same-sum token; no cryptographic key or plaintext selection is implied.
+
+Thus the checksum genuinely rejects isolated wrong rune changes and can disambiguate spellings when an exact Latin source text is already fixed, as in prior p57 inversion. It cannot authenticate ordered text or a four-rune local cipher fit alone. The test uses authentic but already-known solved p57, not a prospectively hidden answer, and does not imply that 0.357% is a realistic wrong-cipher pass probability (the exhaustive Hamming-2 family is specific).
+
+[SFT](../sims/lp2_parable_checkpoint_collision_sft.cjs) executed against the canonical p57 corpus and physical transcript in connected V8; standalone Node/CI not separately executed. The original historical label is fixed from the earlier raw ID3 parser, not re-extracted in this run.
+
+### Transfer decision
+
+The existing authenticated historical contract audit and #3058/#3135 define the bounded source set and other genuine success signals. The Stage04 mixed-rune/literal-digit hostname grammar can constrain a key but leaves byte aliases, and LP2 has no matching token; OpenPGP-signed handoff payloads need a complete signed object, not merely a plausible fragment; the 2013 OAEP record/2014 submission accepted specific typed objects with independent framing or historical server acceptance. The 2014 three-square size/sum fields select the known prior squares, not a GP local check. The numeric p15/p49–51 objects have no source-selected binding to a specific unknown text fragment ([table verifier gate](lp2-p50-public-verification-register-gate.md)); punctuation-as-checksum and physical line-end checksum have separately failed the solved-source controls. P56's digest explicitly targets a deep-web page, not an earlier LP2 word, and the hash/serialization/target dependencies remain unbound. These prior tests were not rerun.
+
+The smallest missing object is an independently delivered **check value plus a rule naming the exact target span and serialization** for an unknown LP2 local inverse, or a distinct, intact output carrier with independently authenticated syntax/content. A scalar GP sum would certify at most its equivalence class, so even its discovery would not by itself establish the order of the recovered text. No unused artifact with that complete grammar found here. Do not make another retrospective GOOD/PATHS/ROAD census; require an independently fixed operand and long held-out original plaintext, or a genuinely discriminating source-authenticated receiver. No unknown plaintext/key or new destination recovered.
