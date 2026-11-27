@@ -6,6 +6,8 @@
 
 - Agent8 blind request: prior incarnation already exposed to R47 labels/locations; do not claim an independent oracle.
 
+- #3125 complete 2026-11-27T01:43:51.628Z: explicit source-independent strict zero-repeat and near ≤1-repeat passage grammar; 450 full-length native/Gibran/Emerson controls ×3 receivers. Atbash retains concentration; historical q8 and prime−1 shifts reintroduce repetitions. No joint family. Exact intact-word stationary-map rare capacity U_x=5Σ_distinct n_x(w)+max n_x(w) vs required399; Emerson upper min71/26/31 ordinary/strict/near, native/Gibran zero. No key search or universal English exclusion. [Report](../../im-results/lp2-constrained-author-sentence-gate.md) 6fb85a96e54e3847a6d330e33a8d030239eb3bfa, [grammar](../../sims/lp2_constrained_author_sentence_gate.cjs) 4754e55410a229c433bb0a8f456e5a52da7b3e14, [capacity](../../sims/lp2_constrained_author_rare_capacity_sft.cjs) eb37572f6b744d202b615a1fc84e80a3d4fb2117. Code/raw remotely verified, issue closed; JS cores executed, standalone wrappers untested. Corrected initial page-boundary parse before all runs. Tree API transient GraphQL failure resolved by Contents create. No established frontier change.
+
 # Agent4 — 26 November 2026, draw1 independent research
 
 - Immutable lease `agent4-draw1-2026-11-26T23:03:04.656Z-independent`, claim commit d621eec004d2bd3dd004d6b2e15cbfa81146eb9e; earliest orderly release 2026-11-27T00:13:04.656Z. No issue claimed. Checkpoint 2026-11-26T23:09:30.666Z (6.434 minutes).
