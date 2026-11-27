@@ -1,0 +1,129 @@
+{
+  "controls": [
+    {
+      "section": 3,
+      "actualRoot": 274314,
+      "actualCutState": 189381,
+      "fit": {
+        "root": 274314,
+        "terminal": 189381,
+        "nll": 2.9168501872659176,
+        "optimumPathsCappedAt2": 1,
+        "reachableTerminalStates": 40097,
+        "sizes": [
+          [
+            100,
+            54069
+          ],
+          [
+            200,
+            26018
+          ],
+          [
+            267,
+            40097
+          ]
+        ]
+      },
+      "fitCorrect": 267,
+      "held": {
+        "root": 189381,
+        "terminal": 164681,
+        "nll": 2.969943469785575,
+        "optimumPathsCappedAt2": 1,
+        "reachableTerminalStates": 1005,
+        "sizes": [
+          [
+            100,
+            4
+          ],
+          [
+            200,
+            4
+          ],
+          [
+            300,
+            25
+          ],
+          [
+            400,
+            117
+          ],
+          [
+            500,
+            816
+          ],
+          [
+            513,
+            1005
+          ]
+        ]
+      },
+      "heldCorrect": 513,
+      "heldLength": 513
+    },
+    {
+      "section": 4,
+      "actualRoot": 360866,
+      "actualCutState": 4092,
+      "fit": {
+        "root": 360866,
+        "terminal": 4092,
+        "nll": 2.9793370786516853,
+        "optimumPathsCappedAt2": 1,
+        "reachableTerminalStates": 13709,
+        "sizes": [
+          [
+            100,
+            399417
+          ],
+          [
+            200,
+            70836
+          ],
+          [
+            267,
+            13709
+          ]
+        ]
+      },
+      "fitCorrect": 267,
+      "held": {
+        "root": 4092,
+        "terminal": 13455,
+        "nll": 3.0253811475409838,
+        "optimumPathsCappedAt2": 1,
+        "reachableTerminalStates": 4,
+        "sizes": [
+          [
+            100,
+            2
+          ],
+          [
+            200,
+            9
+          ],
+          [
+            300,
+            16
+          ],
+          [
+            400,
+            9
+          ],
+          [
+            488,
+            4
+          ]
+        ]
+      },
+      "heldCorrect": 488,
+      "heldLength": 488
+    }
+  ],
+  "method": "all-IV exact maximum unigram score, transparent-F; held only from frozen fit terminal; optimal path count capped at two",
+  "inputBlobs": {
+    "cipher": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
