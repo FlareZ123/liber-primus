@@ -1,0 +1,11 @@
+Base-only dictionary + independent 1260 native training runes. Quantized score table range -20387..-9.
+Ordinal:
+warning columns=1451520 assignments=193 best=-147992 mean=-2.34908 trueScore=-147992 correct=81 trueKey=1 tiedColumnTuples=1 sign=1 transpose=0 rows=381670524 cols=167423805 P=n393ginag3458oli2afh335342ijiffo6i539goa9in7a2a9ia2i42i734nf342ia491jhi4f034okkaf
+koan columns=1451520 assignments=519 best=-121098 mean=-1.92219 trueScore=-121098 correct=81 trueKey=1 tiedColumnTuples=1 sign=-1 transpose=0 rows=681520743 cols=231470865 P=o4i783o4iq317837af8ifg3fg1nq8i4iof5in2ijofgi4o6oa9o0gi4oj3ji9g3023168g2id430iff34
+loss columns=1451520 assignments=653 best=-180300 mean=-2.8619 trueScore=-180300 correct=81 trueKey=1 tiedColumnTuples=1 sign=1 transpose=1 rows=518306427 cols=631540278 P=93g7342d4ifi41lon8i4i95i7i03kk37n36jof32og7i5o9hik3lo9nhi4a68g347i03kk374sf39f37i
+original columns=1451520 assignments=821 best=-233588 mean=-3.70775 trueScore=0 correct=-1 trueKey=0 tiedColumnTuples=1 sign=1 transpose=1 rows=458210763 cols=150326847 P=pr7lbojhad58lf3ij2okeijd3as63la7a9f4k1cf1nnkf8snl4igi9ssdfka5o47634301k74m6j14q91
+Prime:
+warning columns=1451520 assignments=153 best=-147992 mean=-2.34908 trueScore=-147992 correct=81 trueKey=1 tiedColumnTuples=1 sign=1 transpose=0 rows=381670524 cols=167423805 P=n393ginag3458oli2afh335342ijiffo6i539goa9in7a2a9ia2i42i734nf342ia491jhi4f034okkaf
+koan columns=1451520 assignments=572 best=-121098 mean=-1.92219 trueScore=-121098 correct=81 trueKey=1 tiedColumnTuples=1 sign=-1 transpose=0 rows=681520743 cols=231470865 P=o4i783o4iq317837af8ifg3fg1nq8i4iof5in2ijofgi4o6oa9o0gi4oj3ji9g3023168g2id430iff34
+loss columns=1451520 assignments=431 best=-180300 mean=-2.8619 trueScore=-180300 correct=81 trueKey=1 tiedColumnTuples=1 sign=1 transpose=1 rows=518306427 cols=631540278 P=93g7342d4ifi41lon8i4i95i7i03kk37n36jof32og7i5o9hik3lo9nhi4a68g347i03kk374sf39f37i
+original columns=1451520 assignments=274 best=-232877 mean=-3.69646 trueScore=0 correct=-1 trueKey=0 tiedColumnTuples=1 sign=1 transpose=0 rows=260437851 cols=301468572 P=nfgqnkq9in3381h39k304ih1eq3seri539gjmchhihqag37965ghkospfonagnaicohfi4oaqdi9di190
