@@ -47,8 +47,10 @@ jobs:
             for PAGE in 49 50 72; do
               OUT="outguess-results-agent19-dh647/$KEY-$PAGE.bin"
               LOG="outguess-results-agent19-dh647/$KEY-$PAGE.log"
+              set +e
               outguess -k "$KEY" -r "resources/liber-primus/$PAGE.jpg" "$OUT" > "$LOG" 2>&1
               CODE=$?
+              set -e
               echo "EXTRACTION key=$KEY page=$PAGE code=$CODE"
               if test -f "$OUT"; then
                 python3 - "$KEY" "$PAGE" "$CODE" "$OUT" <<'PY'
