@@ -205,6 +205,21 @@ Original F-hold p33 legal candidates = 5,974,270; planted = 2,609,740. The plant
 
 Reproduce from repo root: `node sims/lp2_will_paths_reset_input.cjs > /tmp/reset.in`; compile `g++ -O3 -std=c++17 sims/lp2_will_paths_reset_affine4.cpp -o /tmp/reset`; run `/tmp/reset ordinary < /tmp/reset.in`, `/tmp/reset hold < /tmp/reset.in`, and append `plant` after the mode for each control. Local separate ordinary and F-hold C++ executables were run for all four searches; repository source consolidates the identical two algorithms, Node input wrapper is not independently run. Training/p57 scores independently matched to 1e-10.
 
+### Hidden state modulo source 1033 or 3301 (Agent41, 27 Nov)
+
+The printed cuneiform values motivate a **different** affine state family: `x_(i+1)=a*x_i+b mod m`, emitted key `x_i mod29`, m=1033 or 3301. Both moduli and direct reduction are explicit exploratory choices, not a proven authored opcode. Recover all `a,b,x0` from the first four-rune crib exactly: enumerate `x0,x1` with the observed residues and all a, solve b, check x2/x3. Continuous test jumps to every feasible second crib consuming offset and applies exact F-clock reachability. Separately intersect parameter pairs across the two independently initialized states, then evaluate both suffixes with exact best legal masks.
+
+| Modulus | First-anchor states | Continuous ordinary | Continuous F-gap candidates / legal | Independent reset state pairs / both F-legal | Reset ordinary / F-hold joint native floors |
+|---|---:|---:|---:|---:|---:|
+| 1033 | 1,477 | 0 | 0 / 0 | 0 / 0 | 0 / 0 |
+| 3301 | 49,529 | 0 | 18 / 0 | 362 / 13 | 0 / 0 |
+
+For m3301 even the best p33-only score among all matched reset state pairs is -3.353104 ordinary, -3.375172 F-hold, both below the p33 floor -3.320260. No original language candidate. The 1033 independent-reset case is an exact algebraic impossibility even before language scoring.
+
+Controls use a=23,b=5,x0=76, and second independent seed127. Both continuous ordinary plants recover true state by long-fit ranking; both F-hold plants have nonempty complete legal candidates (5 and 2, not uniquely recovered). Reset plants retain joint-floor solutions in both clocks, but state nonidentifiability can produce equal p33 fits, so p33-only ranking is not guaranteed to recover the second state. Actual controls: ordinary joint-floor counts 7/7, F-hold 6/7 for moduli 1033/3301 respectively. This is a complete parameter-family result conditional on the two local cribs and direct state-mod29 emission, not an exclusion of other moduli or nonlinear generators. No unknown plaintext.
+
+Reproducer: `g++ -O3 -std=c++17 sims/lp2_will_paths_source_moduli_lcg.cpp -o /tmp/lcg`; use previous `/tmp/reset.in`, run `/tmp/lcg plant < /tmp/reset.in` for originals and controls. Final C++ code executed locally with dynamic (not fixed-width) exact hold-count DP. The Node canonical input builder is shared with the reset relaxation.
+
 ## Evidence boundary
 
 Preserve:
