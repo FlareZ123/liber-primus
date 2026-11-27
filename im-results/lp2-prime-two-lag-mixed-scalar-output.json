@@ -1,0 +1,122 @@
+{
+  "primeResidues": [
+    2,
+    3,
+    5,
+    7,
+    11,
+    13,
+    17,
+    19,
+    23,
+    0,
+    2,
+    8,
+    12,
+    14,
+    18,
+    24,
+    1,
+    3,
+    9,
+    13,
+    15,
+    21,
+    25,
+    2,
+    10,
+    14,
+    16,
+    20,
+    22
+  ],
+  "distinct": 24,
+  "original": [
+    {
+      "clock": "continuous",
+      "N": 3008,
+      "free": 2,
+      "zero": 125,
+      "classes": 25230,
+      "max1": 260,
+      "max2": 467,
+      "maxF": 467,
+      "best": {
+        "t": 21,
+        "a": 18,
+        "b": 13,
+        "u1": 255,
+        "u2": 467
+      },
+      "classesReaching518": 0
+    },
+    {
+      "clock": "page reset",
+      "N": 3008,
+      "free": 26,
+      "zero": 125,
+      "classes": 25230,
+      "max1": 280,
+      "max2": 490,
+      "maxF": 490,
+      "best": {
+        "t": 21,
+        "a": 18,
+        "b": 13,
+        "u1": 278,
+        "u2": 490
+      },
+      "classesReaching518": 0
+    }
+  ],
+  "donors": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "windows": 59485,
+      "min": 563,
+      "minAt": 40278,
+      "tapeLength": 62492
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "windows": 214099,
+      "min": 518,
+      "minAt": 109406,
+      "tapeLength": 217106
+    }
+  ],
+  "plants": [
+    {
+      "seed": 1337,
+      "t": 1,
+      "a": 7,
+      "b": 11,
+      "exact": 3008,
+      "actual": 596,
+      "bound": 692
+    },
+    {
+      "seed": 3301,
+      "t": 29,
+      "a": 13,
+      "b": 5,
+      "exact": 3008,
+      "actual": 604,
+      "bound": 685
+    }
+  ],
+  "sourceBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ]
+}
