@@ -1,0 +1,226 @@
+{
+  "widths": {
+    "strata": [
+      {
+        "L": 6,
+        "d": 6,
+        "groups": 4,
+        "union": 2968304,
+        "max": 3,
+        "ties": 9,
+        "readings": [
+          {
+            "k": 452164543,
+            "indices": [
+              2,
+              31,
+              42
+            ],
+            "words": [
+              [
+                "UTTERS",
+                "SUTTER"
+              ],
+              [
+                "REPUTE"
+              ],
+              [
+                "FLOPPY"
+              ]
+            ]
+          },
+          {
+            "k": 580598253,
+            "indices": [
+              2,
+              31,
+              41
+            ],
+            "words": [
+              [
+                "WARMER"
+              ],
+              [
+                "CARGOES"
+              ],
+              [
+                "SERIAUS"
+              ]
+            ]
+          },
+          {
+            "k": 26658678,
+            "indices": [
+              2,
+              31,
+              42
+            ],
+            "words": [
+              [
+                "SUTTER",
+                "UTTERS"
+              ],
+              [
+                "REPUTE"
+              ],
+              [
+                "FLOPPY"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "L": 7,
+        "d": 7,
+        "groups": 1,
+        "union": 1066979,
+        "max": 1,
+        "ties": 1066979,
+        "readings": [
+          {
+            "k": 13206146276,
+            "indices": [
+              9
+            ],
+            "words": [
+              [
+                "ABANDON"
+              ]
+            ]
+          },
+          {
+            "k": 9175676672,
+            "indices": [
+              9
+            ],
+            "words": [
+              [
+                "ABANDON"
+              ]
+            ]
+          },
+          {
+            "k": 13041192312,
+            "indices": [
+              9
+            ],
+            "words": [
+              [
+                "ABANDON"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "L": 8,
+        "d": 8,
+        "groups": 5,
+        "union": 6367199,
+        "max": 2,
+        "ties": 38,
+        "readings": [
+          {
+            "k": 179194651041,
+            "indices": [
+              0,
+              13
+            ],
+            "words": [
+              [
+                "COMMENCNG"
+              ],
+              [
+                "NINETIES"
+              ]
+            ]
+          },
+          {
+            "k": 194180750561,
+            "indices": [
+              0,
+              13
+            ],
+            "words": [
+              [
+                "COMMENCNG"
+              ],
+              [
+                "NINETIES"
+              ]
+            ]
+          },
+          {
+            "k": 128531223680,
+            "indices": [
+              0,
+              13
+            ],
+            "words": [
+              [
+                "COMMENCNG"
+              ],
+              [
+                "NINETIES"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "L": 10,
+        "d": 10,
+        "groups": 2,
+        "union": 2328390,
+        "max": 1,
+        "ties": 2328390,
+        "readings": [
+          {
+            "k": 19500936575449,
+            "indices": [
+              12
+            ],
+            "words": [
+              [
+                "ABHORRENCE"
+              ]
+            ]
+          },
+          {
+            "k": 334070285449146,
+            "indices": [
+              12
+            ],
+            "words": [
+              [
+                "ABHORRENCE"
+              ]
+            ]
+          },
+          {
+            "k": 201022270181930,
+            "indices": [
+              12
+            ],
+            "words": [
+              [
+                "ABHORRENCE"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "minimumOOV": 5
+  },
+  "source": {
+    "words": 64,
+    "runes": 299,
+    "fitWords": 47,
+    "fitRunes": 213,
+    "holdWords": 17,
+    "holdRunes": 86
+  },
+  "lexicon": 33278
+}
