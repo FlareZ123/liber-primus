@@ -1,0 +1,52 @@
+{
+  "input": {
+    "length": 12956,
+    "fnv1a": "75f0ccfa"
+  },
+  "reduced_control_cases": 28,
+  "results": [
+    {
+      "period": 8,
+      "masks": 268435456,
+      "burn": 163,
+      "max": 659,
+      "mask": 52935990,
+      "independent": 852,
+      "seconds": 31.5149,
+      "phase_max": [
+        108,
+        106,
+        109,
+        107,
+        105,
+        108,
+        104,
+        105
+      ]
+    },
+    {
+      "period": 13,
+      "masks": 268435456,
+      "burn": 163,
+      "max": 689,
+      "mask": 73078798,
+      "independent": 962,
+      "seconds": 45.3853,
+      "phase_max": [
+        72,
+        77,
+        71,
+        73,
+        75,
+        72,
+        75,
+        73,
+        76,
+        75,
+        75,
+        74,
+        74
+      ]
+    }
+  ]
+}
