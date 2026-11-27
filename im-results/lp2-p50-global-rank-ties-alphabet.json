@@ -1,0 +1,3440 @@
+{
+  "comparisons": 32640,
+  "classes": 161,
+  "tieHistogram": {
+    "1": 92,
+    "2": 49,
+    "3": 14,
+    "4": 6
+  },
+  "controls": [
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": false,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 58
+    },
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": true,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 66
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": false,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 60
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": true,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 71
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": false,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 64
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": true,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 70
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": false,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 62
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": true,
+      "match": 29,
+      "known": 180,
+      "heldMatches": 69
+    }
+  ],
+  "original": [
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": false,
+      "name": "raw/raw",
+      "matched": 2,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 27
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              10
+            ]
+          },
+          {
+            "value": 73,
+            "need": 1,
+            "eligible": [
+              1,
+              2,
+              10,
+              23
+            ]
+          },
+          {
+            "value": 76,
+            "need": 1,
+            "eligible": [
+              9,
+              23
+            ]
+          },
+          {
+            "value": 81,
+            "need": 1,
+            "eligible": [
+              1,
+              4
+            ]
+          },
+          {
+            "value": 111,
+            "need": 1,
+            "eligible": [
+              4
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              0,
+              10
+            ]
+          },
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              4,
+              14
+            ]
+          },
+          {
+            "value": 205,
+            "need": 1,
+            "eligible": [
+              27
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": false,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 81,
+            "need": 1,
+            "eligible": [
+              1,
+              4
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              10
+            ]
+          },
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              2,
+              10
+            ]
+          },
+          {
+            "value": 205,
+            "need": 1,
+            "eligible": [
+              2
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": false,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 81,
+            "need": 1,
+            "eligible": [
+              1,
+              4
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              0,
+              10
+            ]
+          },
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              4,
+              14
+            ]
+          },
+          {
+            "value": 205,
+            "need": 1,
+            "eligible": [
+              27
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": true,
+      "name": "raw/raw",
+      "matched": 2,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 27
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 18,
+            "need": 1,
+            "eligible": [
+              4,
+              15
+            ]
+          },
+          {
+            "value": 61,
+            "need": 1,
+            "eligible": [
+              13
+            ]
+          },
+          {
+            "value": 74,
+            "need": 1,
+            "eligible": [
+              27
+            ]
+          },
+          {
+            "value": 114,
+            "need": 1,
+            "eligible": [
+              1,
+              27
+            ]
+          },
+          {
+            "value": 156,
+            "need": 1,
+            "eligible": [
+              16,
+              20,
+              21
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              0,
+              24
+            ]
+          },
+          {
+            "value": 193,
+            "need": 1,
+            "eligible": [
+              4,
+              5
+            ]
+          },
+          {
+            "value": 218,
+            "need": 1,
+            "eligible": [
+              10
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": true,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 18,
+            "need": 1,
+            "eligible": [
+              9,
+              23
+            ]
+          },
+          {
+            "value": 61,
+            "need": 1,
+            "eligible": [
+              15
+            ]
+          },
+          {
+            "value": 74,
+            "need": 1,
+            "eligible": [
+              2
+            ]
+          },
+          {
+            "value": 193,
+            "need": 1,
+            "eligible": [
+              4,
+              5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": false,
+      "scatter": true,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 18,
+            "need": 1,
+            "eligible": [
+              4,
+              15
+            ]
+          },
+          {
+            "value": 61,
+            "need": 1,
+            "eligible": [
+              13
+            ]
+          },
+          {
+            "value": 74,
+            "need": 1,
+            "eligible": [
+              27
+            ]
+          },
+          {
+            "value": 193,
+            "need": 1,
+            "eligible": [
+              4,
+              5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": false,
+      "name": "raw/raw",
+      "matched": 3,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 26
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              21
+            ]
+          },
+          {
+            "value": 73,
+            "need": 1,
+            "eligible": [
+              5,
+              6,
+              7
+            ]
+          },
+          {
+            "value": 76,
+            "need": 1,
+            "eligible": [
+              11,
+              18
+            ]
+          },
+          {
+            "value": 81,
+            "need": 1,
+            "eligible": [
+              3,
+              15
+            ]
+          },
+          {
+            "value": 111,
+            "need": 1,
+            "eligible": [
+              21
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              2,
+              20
+            ]
+          },
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              9,
+              13
+            ]
+          },
+          {
+            "value": 205,
+            "need": 1,
+            "eligible": [
+              9
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": false,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 81,
+            "need": 1,
+            "eligible": [
+              3,
+              15
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              15,
+              20
+            ]
+          },
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              18,
+              24
+            ]
+          },
+          {
+            "value": 205,
+            "need": 1,
+            "eligible": [
+              1
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": false,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 81,
+            "need": 1,
+            "eligible": [
+              3,
+              15
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              2,
+              20
+            ]
+          },
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              9,
+              13
+            ]
+          },
+          {
+            "value": 205,
+            "need": 1,
+            "eligible": [
+              9
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": true,
+      "name": "raw/raw",
+      "matched": 3,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 26
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 14,
+            "need": 1,
+            "eligible": [
+              10,
+              25
+            ]
+          },
+          {
+            "value": 16,
+            "need": 1,
+            "eligible": [
+              22
+            ]
+          },
+          {
+            "value": 70,
+            "need": 1,
+            "eligible": [
+              25
+            ]
+          },
+          {
+            "value": 127,
+            "need": 1,
+            "eligible": [
+              17
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              1,
+              18,
+              19
+            ]
+          },
+          {
+            "value": 177,
+            "need": 1,
+            "eligible": [
+              18
+            ]
+          },
+          {
+            "value": 192,
+            "need": 1,
+            "eligible": [
+              5,
+              10,
+              14
+            ]
+          },
+          {
+            "value": 255,
+            "need": 1,
+            "eligible": [
+              23
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": true,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 70,
+            "need": 1,
+            "eligible": [
+              3
+            ]
+          },
+          {
+            "value": 127,
+            "need": 1,
+            "eligible": [
+              17
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              1,
+              18,
+              19
+            ]
+          },
+          {
+            "value": 192,
+            "need": 1,
+            "eligible": [
+              5,
+              10,
+              14
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": false,
+      "reflect": true,
+      "scatter": true,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 70,
+            "need": 1,
+            "eligible": [
+              25
+            ]
+          },
+          {
+            "value": 127,
+            "need": 1,
+            "eligible": [
+              17
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              1,
+              18,
+              19
+            ]
+          },
+          {
+            "value": 192,
+            "need": 1,
+            "eligible": [
+              5,
+              10,
+              14
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": false,
+      "name": "raw/raw",
+      "matched": 2,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 27
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              4,
+              14
+            ]
+          },
+          {
+            "value": 183,
+            "need": 1,
+            "eligible": [
+              14,
+              19
+            ]
+          },
+          {
+            "value": 175,
+            "need": 1,
+            "eligible": [
+              12,
+              15,
+              18
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              2,
+              16,
+              19,
+              25
+            ]
+          },
+          {
+            "value": 150,
+            "need": 1,
+            "eligible": [
+              1,
+              7,
+              9
+            ]
+          },
+          {
+            "value": 86,
+            "need": 1,
+            "eligible": [
+              11,
+              13,
+              18
+            ]
+          },
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              10
+            ]
+          },
+          {
+            "value": 51,
+            "need": 1,
+            "eligible": [
+              10,
+              25
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": false,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              16,
+              18,
+              19
+            ]
+          },
+          {
+            "value": 86,
+            "need": 1,
+            "eligible": [
+              13,
+              18
+            ]
+          },
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              10
+            ]
+          },
+          {
+            "value": 51,
+            "need": 1,
+            "eligible": [
+              10,
+              25
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": false,
+      "name": "raw/native",
+      "matched": 9,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 20
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              2,
+              16,
+              19,
+              25
+            ]
+          },
+          {
+            "value": 86,
+            "need": 1,
+            "eligible": [
+              11,
+              13,
+              18
+            ]
+          },
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              10
+            ]
+          },
+          {
+            "value": 51,
+            "need": 1,
+            "eligible": [
+              10,
+              25
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": true,
+      "name": "raw/raw",
+      "matched": 2,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 27
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 218,
+            "need": 1,
+            "eligible": [
+              3
+            ]
+          },
+          {
+            "value": 193,
+            "need": 1,
+            "eligible": [
+              13,
+              16
+            ]
+          },
+          {
+            "value": 169,
+            "need": 1,
+            "eligible": [
+              18,
+              23
+            ]
+          },
+          {
+            "value": 156,
+            "need": 1,
+            "eligible": [
+              3,
+              7,
+              14
+            ]
+          },
+          {
+            "value": 114,
+            "need": 1,
+            "eligible": [
+              2,
+              24
+            ]
+          },
+          {
+            "value": 74,
+            "need": 1,
+            "eligible": [
+              18
+            ]
+          },
+          {
+            "value": 61,
+            "need": 1,
+            "eligible": [
+              4
+            ]
+          },
+          {
+            "value": 18,
+            "need": 1,
+            "eligible": [
+              18,
+              19
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": true,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 193,
+            "need": 1,
+            "eligible": [
+              15,
+              24
+            ]
+          },
+          {
+            "value": 74,
+            "need": 1,
+            "eligible": [
+              18
+            ]
+          },
+          {
+            "value": 61,
+            "need": 1,
+            "eligible": [
+              4
+            ]
+          },
+          {
+            "value": 18,
+            "need": 1,
+            "eligible": [
+              18,
+              19
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": false,
+      "scatter": true,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 193,
+            "need": 1,
+            "eligible": [
+              13,
+              16
+            ]
+          },
+          {
+            "value": 74,
+            "need": 1,
+            "eligible": [
+              18
+            ]
+          },
+          {
+            "value": 61,
+            "need": 1,
+            "eligible": [
+              4
+            ]
+          },
+          {
+            "value": 18,
+            "need": 1,
+            "eligible": [
+              18,
+              19
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": false,
+      "name": "raw/raw",
+      "matched": 3,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 26
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 197,
+            "need": 1,
+            "eligible": [
+              9,
+              13
+            ]
+          },
+          {
+            "value": 183,
+            "need": 1,
+            "eligible": [
+              21,
+              25
+            ]
+          },
+          {
+            "value": 175,
+            "need": 1,
+            "eligible": [
+              8,
+              23,
+              28
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              0,
+              1,
+              7,
+              18
+            ]
+          },
+          {
+            "value": 150,
+            "need": 1,
+            "eligible": [
+              6,
+              15,
+              19
+            ]
+          },
+          {
+            "value": 86,
+            "need": 1,
+            "eligible": [
+              5,
+              24,
+              26
+            ]
+          },
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              21
+            ]
+          },
+          {
+            "value": 51,
+            "need": 1,
+            "eligible": [
+              2,
+              14
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": false,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              0,
+              1,
+              7,
+              18
+            ]
+          },
+          {
+            "value": 86,
+            "need": 1,
+            "eligible": [
+              5,
+              6,
+              24
+            ]
+          },
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              21
+            ]
+          },
+          {
+            "value": 51,
+            "need": 1,
+            "eligible": [
+              2,
+              14
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": false,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              0,
+              1,
+              7,
+              18
+            ]
+          },
+          {
+            "value": 86,
+            "need": 1,
+            "eligible": [
+              5,
+              24,
+              26
+            ]
+          },
+          {
+            "value": 57,
+            "need": 1,
+            "eligible": [
+              21
+            ]
+          },
+          {
+            "value": 51,
+            "need": 1,
+            "eligible": [
+              2,
+              14
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": true,
+      "name": "raw/raw",
+      "matched": 2,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "sources": [],
+        "deficiency": 27
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 255,
+            "need": 1,
+            "eligible": [
+              21
+            ]
+          },
+          {
+            "value": 192,
+            "need": 1,
+            "eligible": [
+              5,
+              12,
+              24,
+              25
+            ]
+          },
+          {
+            "value": 177,
+            "need": 1,
+            "eligible": [
+              27
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              0,
+              4,
+              10,
+              21
+            ]
+          },
+          {
+            "value": 127,
+            "need": 1,
+            "eligible": [
+              20
+            ]
+          },
+          {
+            "value": 70,
+            "need": 1,
+            "eligible": [
+              3
+            ]
+          },
+          {
+            "value": 16,
+            "need": 1,
+            "eligible": [
+              4
+            ]
+          },
+          {
+            "value": 14,
+            "need": 1,
+            "eligible": [
+              15,
+              18
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": true,
+      "name": "native/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 192,
+            "need": 1,
+            "eligible": [
+              5,
+              8,
+              18,
+              25
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              0,
+              3,
+              10,
+              26
+            ]
+          },
+          {
+            "value": 127,
+            "need": 1,
+            "eligible": [
+              20
+            ]
+          },
+          {
+            "value": 70,
+            "need": 1,
+            "eligible": [
+              3
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "reverse": true,
+      "reflect": true,
+      "scatter": true,
+      "name": "raw/native",
+      "matched": 8,
+      "empty": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        13,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        24,
+        26
+      ],
+      "witness": {
+        "targets": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          23,
+          24,
+          26
+        ],
+        "sources": [],
+        "deficiency": 21
+      },
+      "domainSizes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        29,
+        29,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        29,
+        0,
+        0,
+        29,
+        0,
+        29,
+        29
+      ],
+      "recovered": null,
+      "firstEmptyWitness": {
+        "target": 0,
+        "constraints": [
+          {
+            "value": 192,
+            "need": 1,
+            "eligible": [
+              5,
+              12,
+              24,
+              25
+            ]
+          },
+          {
+            "value": 173,
+            "need": 1,
+            "eligible": [
+              0,
+              4,
+              10,
+              21
+            ]
+          },
+          {
+            "value": 127,
+            "need": 1,
+            "eligible": [
+              20
+            ]
+          },
+          {
+            "value": 70,
+            "need": 1,
+            "eligible": [
+              3
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
