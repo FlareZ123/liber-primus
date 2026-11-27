@@ -1,0 +1,127 @@
+{
+  "scope": "p23–26 after 16-rune heading",
+  "n": 1005,
+  "source_blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "solver": "local libz3 C API, QF_BV, necessary byte-header relations",
+  "original": [
+    {
+      "phase": 0,
+      "header_pairs": 601,
+      "status": "unsat"
+    },
+    {
+      "phase": 1,
+      "header_pairs": 608,
+      "status": "unsat"
+    },
+    {
+      "phase": 2,
+      "header_pairs": 594,
+      "status": "unsat"
+    },
+    {
+      "phase": 3,
+      "header_pairs": 601,
+      "status": "unsat"
+    },
+    {
+      "phase": 4,
+      "header_pairs": 596,
+      "status": "unsat"
+    },
+    {
+      "phase": 5,
+      "header_pairs": 597,
+      "status": "unsat"
+    },
+    {
+      "phase": 6,
+      "header_pairs": 598,
+      "status": "unsat"
+    },
+    {
+      "phase": 7,
+      "header_pairs": 597,
+      "status": "unsat"
+    }
+  ],
+  "positive_controls": [
+    {
+      "phase": 0,
+      "header_pairs": 49,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 82
+    },
+    {
+      "phase": 1,
+      "header_pairs": 49,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 82
+    },
+    {
+      "phase": 2,
+      "header_pairs": 49,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 82
+    },
+    {
+      "phase": 3,
+      "header_pairs": 50,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 83
+    },
+    {
+      "phase": 4,
+      "header_pairs": 51,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 83
+    },
+    {
+      "phase": 5,
+      "header_pairs": 51,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 83
+    },
+    {
+      "phase": 6,
+      "header_pairs": 50,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 83
+    },
+    {
+      "phase": 7,
+      "header_pairs": 50,
+      "status": "sat",
+      "distinct_codes": 29,
+      "n": 83
+    }
+  ],
+  "full_book_boundary_aligned_lead_eligible_labels": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "p40_53_minimum_five_label_neighbor_union": [
+    17,
+    17,
+    18,
+    18,
+    16,
+    17,
+    18,
+    17
+  ],
+  "phase_note": "For supplementary boundary union arrays, phase is the bit position of the first rune relative to the byte boundary; sign reversal permutes offset indices. All phases fail."
+}
