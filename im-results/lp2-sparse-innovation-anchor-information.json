@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "issue": 3238,
+  "model": {
+    "source_issue": 3231,
+    "clock": "ordinary",
+    "singleton_plaintext": [
+      "A",
+      "I",
+      "O"
+    ],
+    "minimum_innovations": 30
+  },
+  "original": {
+    "runes": 12956,
+    "singletons": 83,
+    "optimal_histories": "28793535022265499003299843330851405824",
+    "optimal_history_bits": 124.43708443228027,
+    "unique_final_state_count": 1,
+    "arbitrary_gp29_rune_information_lower_bound": 26,
+    "max_printed_word_length": 14,
+    "one_word_residual_history_lower_bound": "96766050676329647",
+    "singleton_option_histogram": {
+      "1": 30,
+      "2": 10,
+      "3": 43
+    },
+    "maximum_distinct_singleton_assignments": "336135134612005967490048",
+    "complete_singleton_assignment_residual_pigeonhole_lower_bound": "85660593188217",
+    "strongest_singleton": {
+      "global_offset": 530,
+      "physical_page": 2,
+      "page_offset": 2,
+      "minimax_remaining_histories": "9619808039475429872956011730673467392",
+      "minimax_information_gain_bits": 1.5816649106205745,
+      "counts": [
+        {
+          "plaintext": "A",
+          "count": "9619808039475429872956011730673467392"
+        },
+        {
+          "plaintext": "I",
+          "count": "9553918943314639257387819869504471040"
+        },
+        {
+          "plaintext": "O",
+          "count": "9619808039475429872956011730673467392"
+        }
+      ]
+    }
+  },
+  "control": {
+    "plaintext": "solved p57 native clear rune sequence repeated to 190 runes",
+    "true_events": [
+      [
+        17,
+        8
+      ],
+      [
+        53,
+        12
+      ],
+      [
+        97,
+        1
+      ]
+    ],
+    "stride16": {
+      "anchors": 13,
+      "trueCost": 3,
+      "trueUnique": true,
+      "trueRecovered": true,
+      "wrongSparseCost": 5,
+      "wrongUnique": true
+    },
+    "stride17": {
+      "anchors": 13,
+      "trueCost": 3,
+      "trueUnique": false,
+      "trueRecovered": false,
+      "wrongSparseCost": 7,
+      "wrongUnique": false
+    },
+    "wrong_law_actual_observable_changes": 188
+  },
+  "source_check": {
+    "p2_scan": "19.jpg",
+    "strongest_singleton_visually_distinguished": false,
+    "documented_independent_A_I_O_selector_found": false,
+    "prior_opening_cold_start_issue": 2117,
+    "prior_checkpoint_issue": 3145
+  },
+  "decision": "At least 26 arbitrary GP29 rune identities are required by information alone; this is a lower bound, not proof that any 26 positions suffice. No single printed word can identify the model. All singleton identities are also insufficient in the worst case. No independently authenticated anchor of the required information content is currently available."
+}
