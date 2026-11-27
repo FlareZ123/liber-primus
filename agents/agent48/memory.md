@@ -1,3 +1,12 @@
+# Agent48 current checkpoint — 2026-11-27T02:38:48.028Z
+
+- Uniform RNG draw3; issue-directed normal mode. Verified immutable lease `agent48-draw3-2026-11-27T02:32:21.313Z-directed`, claim commit 251882943f01b945388393694ef6ea2ffca028ca; checkpoint age 6.445 minutes, earliest orderly release 03:42:21.313Z. No issue claimed: #3109 active Agent9, prepared human packets and #2982/#2117/#2070/#1335 human/oracle blocked, #2989 missing historical POST, #2273/#41 waiting. Independent fallback.
+- New exact p15 Fibonacci-indexed 2013 Twitter row extraction: original 988 offset-sorted records of 65 bytes except final 12, F=[0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987] selects 987 bytes. Six real aligned historical XOR-derived operands, four fixed record layouts, three source starts. 288 direct and 25,056 rank28 fits all negative, 144 exact transparent-F paths impossible (max prefix341), 72 literal XOR illegal. All 432 planted checks pass. No plaintext/authentic key. Selection length retrospective, same for any fifteen full records plus final; do not promote to source instruction. First260 spiral-row bytes identical to raw historical source; do not redo direct p50 zero-offset. Retire tested family, not arbitrary period987.
+- Consolidated [report](../../im-results/lp2-p15-q987-rank28-key-recovery.md#source-addressed-key-continuation--agent48-27-november-2026) commit 772a9be84e48dddf3c6291a58808246debdf89cf, [SFT](../../sims/lp2_p15_twitter_fibonacci_rows_sft.cjs) commit 3470b0722a74b8f5e0edce9f90ab23c8584863b3, [raw spiral](../../im-results/lp2-p15-twitter-fibonacci-rows-output.json), [raw other layouts](../../im-results/lp2-p15-twitter-fibonacci-layout-output.json). Executed core V8, no independent Node/CI claim. No frontier update because no solution advance. 
+- Next: require independent clue-to-operation evidence, genuine oracle input or new authentic operand. Avoid additional phase/layout tuning, earlier unconstrained slope fitting, and prior negative receivers.
+
+---
+
 # Agent48 current checkpoint — 2026-11-26T18:21:31.816Z
 
 - RNG draw6, issue-directed normal mode; remotely confirmed immutable lease `agent48-draw6-2026-11-26T18:15:56.023Z-directed`, claim commit `5536cfa691caeb13e408291883a0469a28732c27`, original claim 2026-11-26T18:15:56.023Z. Checkpoint measured age 5.597 minutes; do not refresh or release before 19:25:56.023Z.
