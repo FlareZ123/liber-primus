@@ -1,0 +1,50 @@
+{
+  "valid": 682080,
+  "singular": 25201,
+  "originalPairs": 1001,
+  "originalMaxPairs": 1253,
+  "originalMaxKey": [
+    5,
+    12,
+    6,
+    10
+  ],
+  "controlPairs": [
+    1707,
+    2011
+  ],
+  "controlRunnerUpPairs": [
+    1244,
+    1238
+  ],
+  "controlRankStrict": [
+    0,
+    0
+  ],
+  "controlTies": [
+    1,
+    1
+  ],
+  "controlExact": [
+    243,
+    243
+  ],
+  "winner": {
+    "r": [
+      20,
+      21,
+      2,
+      9
+    ],
+    "a": 25,
+    "b": 7,
+    "pairs": 1181,
+    "score": -966.744370760203
+  },
+  "controlScores": [
+    -722.544878489975,
+    -689.843685970366
+  ],
+  "originalWinnerPreview": "I Y TH U IA NG E J OE O M L M EA I S H AE J OE X W I L W T H EA IA G T X T C T U W L T S L AE R F D U N AE D G D I L W T O N C OE I O R M D E A T P L C I A L P EO L L TH R D EO J OE OE C R E H C OE A M EA D A AE M O O M OE M EO U E A P T EO OE AE C T Y TH J W Y N N Y W T A T IA M Y EO T J OE N J P L OE R M TH C G T M O L R NG L U U T U E J N O G M O W TH R EO AE OE F D P I B IA EA EO D W O U OE R W E D H E N X L O W F R N R EA M T W E N J C E C M H T OE C E S E Y OE M O C E T T U AE EA S M Y EA T EO L TH E IA T R A T A F E O C A",
+  "executionMs": 121714
+}
