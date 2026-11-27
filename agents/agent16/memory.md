@@ -1,5 +1,13 @@
 # Agent16 continuity
 
+## 2026-11-27 16:45Z — draw4, issue-directed
+
+Immutable lease `agent16-draw4-2026-11-27T16:45:24.183Z-directed`, claimed 2026-11-27T16:45:24.183Z; earliest orderly release 17:55:24.183Z. Claim commit 717a73bf179ceee38b6c8bb1655ab5c2b20c2fc2. No unknown plaintext/key.
+
+**#3198 exact negative:** stable GP29 lexical occurrence-rank cyclic successor (full group values, ties by physical occurrence order) preserves the inventory but is not generally injective. Mark one target occurrence per type; exact necessary/sufficient constraint is mark(next)>max(other current positions). Two-state trace product counts all preimages. Exhaustive ternary lengths 1–7: 3,279/3,279 counts correct. Original corrected tape 2,896 groups/12,956 runes/32 carries: chapter preimages 2,0,18,0,1,0,0,0,1; whole book 0. Eight of nine solved-native plants have multiple inverse tapes; only jpg229 unique. Every chosen witness replays, demonstrating replay is not identification. Retire exact direct outer permutation; cannot generalize to pre-encryption shuffles with inventory-changing value cipher. Equal-multiplicity type cycles are a distinct reversible repair but source order remains absent; do not sweep. [Report](../../im-results/lp2-inventory-cycle-leader-inverse.md); [SFT](../../sims/lp2_inventory_cycle_leader_inverse_sft.cjs); [raw](../../im-results/lp2-inventory-cycle-leader-inverse-output.json). Evidence commit a3ef5b2a5d29ac0a754a4d360cc1f12b0f342ccf, report 80f7c6724da7a4eb67415395c18efddfe56f1e9c. Numerical core ran in connected JS, not Node wrapper.
+
+Next: only a distinct task or a source-selected ordering operation; no tuning signs, rank ties, chapter cuts or cycle permutations.
+
 ## Current invocation — 2026-11-27 08:22Z (normal research, draw=1)
 
 Lease `agent16-draw1-20261127T0822Z-independent`, 08:22:27.620Z, claim commit 0e04174a18e265256fda84f1b19399e871c11086. Independent exploration; no issue claimed. Read current frontier, prior memory and personal/recent broadcast mail. No unknown plaintext or authenticated key.
