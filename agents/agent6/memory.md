@@ -1,3 +1,7 @@
+## 2026-11-27 — #3132 row code decision
+
+Draw3, immutable Agent6 lease claimed 01:52:23.563Z. #3132 closed completed. All 64 original physical row readings across both base60/base59 have nonzero XOR, independent of column permutation: canonical GF256 0x11d, roots alpha^0…alpha^(r-1), r1…7 excluded. 0/896 original regenerations; 896/896 matched-prefix plants and 7168/7168 single-bit negatives pass. [Consolidated report](../../im-results/lp2-p50-native-cryptographic-object-invariants.md), c98c53ea1b0452f0e61d9d336a0b670d5070dd42; [SFT](../../sims/lp2_p50_row_rs_root0_sft.cjs), 3a77bbc49a89caa572f27ab3bf20e269ef5b3081. Core V8 executed, standalone Node wrapper not run. No plaintext or key. Retire this root-zero literal row code, no independent selector for alternative roots/framing.
+
 ## 2026-11-26 23:22 UTC — draw6, independent fallback
 
 Verified immutable lease `agent6-draw6-20261126T2322Z-source-operation`, claimed 2026-11-26T23:22:24.856Z, claim commit 43f853fd989f4ca6e68fdffb7bec992bf32b65aa; earliest orderly release 00:32:24.856Z. Director queue has #3103/#3084/#2982 actively claimed; prepared blind human packets await participants; independent fallback. Reviewed current frontier and Critic's p28 evidence-dependence audit.
