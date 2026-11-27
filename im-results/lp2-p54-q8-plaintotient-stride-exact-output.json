@@ -1,0 +1,656 @@
+{
+  "schema": "lp2-p54-q8-plaintext-totient-stride-20261127",
+  "lexicon": 38938,
+  "anchorIds": [
+    0,
+    13,
+    16,
+    34,
+    37,
+    45
+  ],
+  "controlPass": true,
+  "controls": [
+    {
+      "anchors": [
+        {
+          "id": 0,
+          "partialKeys": [],
+          "completeKeyCount": 0
+        },
+        {
+          "id": 13,
+          "partialKeys": [],
+          "completeKeyCount": 0
+        },
+        {
+          "id": 16,
+          "partialKeys": [],
+          "completeKeyCount": 0
+        },
+        {
+          "id": 34,
+          "partialKeys": [
+            "b_od"
+          ],
+          "completeKeyCount": 29
+        },
+        {
+          "id": 37,
+          "partialKeys": [
+            "db9o"
+          ],
+          "completeKeyCount": 1
+        },
+        {
+          "id": 45,
+          "partialKeys": [
+            "4h89"
+          ],
+          "completeKeyCount": 1
+        }
+      ],
+      "anchorSupportedKeys": 30,
+      "maxOne": 2,
+      "maxTwo": 3,
+      "pairCount": 1,
+      "unanchoredPartner": false,
+      "candidateCap": false,
+      "fitCount": 1,
+      "fits": [
+        {
+          "key": "4h89:9odb",
+          "support": 44,
+          "held": 17,
+          "trainTruth": 47,
+          "heldTruth": 17,
+          "trainWords": [
+            [],
+            [
+              "sfg"
+            ],
+            [
+              "d4aifg"
+            ],
+            [
+              "n3",
+              "83",
+              "jh",
+              "s4",
+              "f3",
+              "o4"
+            ],
+            [
+              "f8o4l"
+            ],
+            [
+              "i9n"
+            ],
+            [
+              "34",
+              "7o"
+            ],
+            [
+              "f37"
+            ],
+            [
+              "8s4gf"
+            ],
+            [
+              "1ai7a96"
+            ],
+            [
+              "han"
+            ],
+            [
+              "1d39"
+            ],
+            [
+              "fgogiji9gf"
+            ],
+            [],
+            [
+              "fo7",
+              "bo7"
+            ],
+            [
+              "h335f"
+            ],
+            [],
+            [
+              "8ikn"
+            ],
+            [
+              "7s5"
+            ],
+            [
+              "0ki7"
+            ],
+            [
+              "43o4l"
+            ],
+            [
+              "niin",
+              "8iin"
+            ],
+            [
+              "ni7"
+            ],
+            [
+              "4io58"
+            ],
+            [
+              "l",
+              "6",
+              "h",
+              "j",
+              "q",
+              "d",
+              "m"
+            ],
+            [
+              "1fl",
+              "sfl"
+            ],
+            [
+              "do4gl"
+            ],
+            [
+              "ni5oq"
+            ],
+            [
+              "hin"
+            ],
+            [
+              "sgi9"
+            ],
+            [
+              "oe",
+              "4a",
+              "ka"
+            ],
+            [
+              "d4oqal"
+            ],
+            [
+              "ga4in",
+              "0a4in"
+            ],
+            [
+              "37k"
+            ],
+            [
+              "qaikna96"
+            ],
+            [
+              "fii5f"
+            ],
+            [
+              "g149"
+            ],
+            [
+              "3hgoa9al"
+            ],
+            [
+              "00",
+              "kk",
+              "50",
+              "5i",
+              "0g",
+              "gi",
+              "0i",
+              "ik"
+            ],
+            [
+              "0of",
+              "g8q"
+            ],
+            [
+              "ki0g"
+            ],
+            [
+              "jo45in"
+            ],
+            [
+              "g84ion"
+            ],
+            [
+              "agf"
+            ],
+            [
+              "2i",
+              "gi",
+              "3e"
+            ],
+            [
+              "19oggi9nin"
+            ],
+            [
+              "50",
+              "a0",
+              "9c"
+            ]
+          ],
+          "heldWords": [
+            [
+              "ieg4o1o6o9g"
+            ],
+            [
+              "oajf"
+            ],
+            [
+              "sg",
+              "og"
+            ],
+            [
+              "n4",
+              "ji",
+              "o5"
+            ],
+            [
+              "7o1a96"
+            ],
+            [
+              "ofkiid"
+            ],
+            [
+              "gm",
+              "7i",
+              "ni",
+              "3i",
+              "2i"
+            ],
+            [
+              "a9gi49oga39ok"
+            ],
+            [
+              "g83168"
+            ],
+            [
+              "doa9"
+            ],
+            [
+              "sg",
+              "ji",
+              "fn"
+            ],
+            [
+              "6i9i4ok"
+            ],
+            [
+              "ki6okkq"
+            ],
+            [
+              "jh",
+              "h4",
+              "kk"
+            ],
+            [
+              "okkiqf"
+            ],
+            [
+              "k3l"
+            ],
+            [
+              "qio"
+            ]
+          ]
+        }
+      ],
+      "truthKeys": "4h89:9odb",
+      "truePairRecovered": true,
+      "omitted": [
+        0,
+        13,
+        16
+      ],
+      "exactForwardReplay": true
+    },
+    {
+      "anchors": [
+        {
+          "id": 0,
+          "partialKeys": [
+            "3rr2"
+          ],
+          "completeKeyCount": 1
+        },
+        {
+          "id": 13,
+          "partialKeys": [
+            "23rr"
+          ],
+          "completeKeyCount": 1
+        },
+        {
+          "id": 16,
+          "partialKeys": [
+            "7_6a"
+          ],
+          "completeKeyCount": 29
+        },
+        {
+          "id": 34,
+          "partialKeys": [],
+          "completeKeyCount": 0
+        },
+        {
+          "id": 37,
+          "partialKeys": [],
+          "completeKeyCount": 0
+        },
+        {
+          "id": 45,
+          "partialKeys": [],
+          "completeKeyCount": 0
+        }
+      ],
+      "anchorSupportedKeys": 30,
+      "maxOne": 2,
+      "maxTwo": 3,
+      "pairCount": 29,
+      "unanchoredPartner": false,
+      "candidateCap": false,
+      "fitCount": 1,
+      "fits": [
+        {
+          "key": "16a7:23rr",
+          "support": 44,
+          "held": 17,
+          "trainTruth": 47,
+          "heldTruth": 17,
+          "trainWords": [
+            [
+              "naf531i4"
+            ],
+            [
+              "7s4"
+            ],
+            [
+              "8io4gq"
+            ],
+            [
+              "aa",
+              "9a",
+              "ea"
+            ],
+            [
+              "fg34q"
+            ],
+            [
+              "9sg"
+            ],
+            [
+              "qs",
+              "03",
+              "no",
+              "jo"
+            ],
+            [
+              "f8i",
+              "64j"
+            ],
+            [
+              "93afq"
+            ],
+            [
+              "f141a1i"
+            ],
+            [
+              "5lf",
+              "agf"
+            ],
+            [
+              "fli4",
+              "kli4"
+            ],
+            [
+              "g84sgi9a96"
+            ],
+            [
+              "h1akna96"
+            ],
+            [
+              "3o5"
+            ],
+            [
+              "j319g",
+              "f319g"
+            ],
+            [
+              "83231fif"
+            ],
+            [
+              "jsgf",
+              "fsgf"
+            ],
+            [
+              "gi9"
+            ],
+            [
+              "j1ki"
+            ],
+            [
+              "57agi"
+            ],
+            [
+              "1ia9"
+            ],
+            [
+              "k3a",
+              "k3f",
+              "bo7"
+            ],
+            [
+              "hs1gq"
+            ],
+            [
+              "3",
+              "o",
+              "k",
+              "n"
+            ],
+            [
+              "ji9",
+              "fi9"
+            ],
+            [
+              "q3196"
+            ],
+            [
+              "hk37l",
+              "dk37l"
+            ],
+            [
+              "o4g"
+            ],
+            [
+              "04ii"
+            ],
+            [
+              "gs",
+              "f3"
+            ],
+            [
+              "7o9ni4"
+            ],
+            [
+              "n4a1i"
+            ],
+            [
+              "2al"
+            ],
+            [],
+            [
+              "gikkf"
+            ],
+            [
+              "4of8"
+            ],
+            [],
+            [
+              "4a",
+              "o5"
+            ],
+            [
+              "0ii"
+            ],
+            [
+              "433g"
+            ],
+            [
+              "5k3fin"
+            ],
+            [
+              "43jo9f"
+            ],
+            [
+              "0if",
+              "0ag"
+            ],
+            [
+              "4i",
+              "1a",
+              "o9"
+            ],
+            [],
+            [
+              "dj",
+              "ij",
+              "if",
+              "ag"
+            ]
+          ],
+          "heldWords": [
+            [
+              "58akka53g8i"
+            ],
+            [
+              "0oa2"
+            ],
+            [
+              "j4"
+            ],
+            [
+              "51",
+              "a1",
+              "7m",
+              "2l",
+              "1r"
+            ],
+            [
+              "o55idg"
+            ],
+            [
+              "ks9a96"
+            ],
+            [
+              "38",
+              "s4"
+            ],
+            [
+              "a44ifd39fahki"
+            ],
+            [
+              "74agal"
+            ],
+            [
+              "fgoh"
+            ],
+            [
+              "gs",
+              "f3"
+            ],
+            [
+              "n3kko4f"
+            ],
+            [
+              "5395iok"
+            ],
+            [
+              "9n",
+              "6o",
+              "1f"
+            ],
+            [
+              "gijdki"
+            ],
+            [
+              "agf"
+            ],
+            [
+              "58a",
+              "8sg"
+            ]
+          ]
+        }
+      ],
+      "truthKeys": "16a7:23rr",
+      "truePairRecovered": true,
+      "omitted": [
+        34,
+        37,
+        45
+      ],
+      "exactForwardReplay": true
+    }
+  ],
+  "original": {
+    "anchors": [
+      {
+        "id": 0,
+        "partialKeys": [],
+        "completeKeyCount": 0
+      },
+      {
+        "id": 13,
+        "partialKeys": [],
+        "completeKeyCount": 0
+      },
+      {
+        "id": 16,
+        "partialKeys": [],
+        "completeKeyCount": 0
+      },
+      {
+        "id": 34,
+        "partialKeys": [],
+        "completeKeyCount": 0
+      },
+      {
+        "id": 37,
+        "partialKeys": [],
+        "completeKeyCount": 0
+      },
+      {
+        "id": 45,
+        "partialKeys": [],
+        "completeKeyCount": 0
+      }
+    ],
+    "anchorSupportedKeys": 0,
+    "maxOne": 0,
+    "maxTwo": 0,
+    "pairCount": 0,
+    "unanchoredPartner": false,
+    "candidateCap": false,
+    "fitCount": 0,
+    "fits": [],
+    "truthKeys": null,
+    "truePairRecovered": null
+  },
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-page-groups-54-55-derived.json",
+      "sha": "8960e113af36ee46186965e394ec6be18d69b74f"
+    },
+    {
+      "path": "im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json",
+      "sha": "037beb1c7d6d3fa7d435bba7b44259f83fe71712"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    }
+  ]
+}
