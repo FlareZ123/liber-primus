@@ -1,0 +1,152 @@
+{
+  "lexicon": 29060,
+  "eligible": 17635,
+  "donorWords": 12353,
+  "oov": 175,
+  "total": [
+    605,
+    298
+  ],
+  "unique": [
+    162,
+    84
+  ],
+  "truth": [
+    2,
+    4,
+    0,
+    8,
+    12,
+    21,
+    6,
+    9,
+    10,
+    23,
+    5,
+    27,
+    18,
+    1,
+    26,
+    20,
+    13,
+    17,
+    14,
+    15,
+    22,
+    7,
+    25,
+    24,
+    3,
+    11,
+    16,
+    19,
+    28
+  ],
+  "base": [
+    {
+      "support": 605,
+      "uniform": 402.65787673342976,
+      "weighted": 1049.5396706861643
+    },
+    {
+      "support": 298,
+      "uniform": 271.9374453209178,
+      "weighted": 632.2118442956435
+    }
+  ],
+  "neighbors": 406,
+  "fullFit": 27,
+  "fullBoth": 27,
+  "betterUniform": 8,
+  "betterWeighted": 6,
+  "bestUniform": {
+    "swap": [
+      25,
+      26
+    ],
+    "scores": [
+      {
+        "support": 605,
+        "uniform": 403.40106924657977,
+        "weighted": 1050.3883423947896
+      },
+      {
+        "support": 298,
+        "uniform": 272.0254265470721,
+        "weighted": 632.4226859944248
+      }
+    ]
+  },
+  "bestWeighted": {
+    "swap": [
+      25,
+      26
+    ],
+    "scores": [
+      {
+        "support": 605,
+        "uniform": 403.40106924657977,
+        "weighted": 1050.3883423947896
+      },
+      {
+        "support": 298,
+        "uniform": 272.0254265470721,
+        "weighted": 632.4226859944248
+      }
+    ]
+  },
+  "witnesses": [
+    {
+      "swap": [
+        6,
+        7
+      ],
+      "scores": [
+        {
+          "support": 605,
+          "uniform": 400.4996326746896,
+          "weighted": 1037.0825992300902
+        },
+        {
+          "support": 298,
+          "uniform": 272.5154391053045,
+          "weighted": 627.9377195144548
+        }
+      ],
+      "changed": [
+        120,
+        35
+      ],
+      "changedRunes": [
+        941,
+        273
+      ]
+    },
+    {
+      "swap": [
+        25,
+        26
+      ],
+      "scores": [
+        {
+          "support": 605,
+          "uniform": 403.40106924657977,
+          "weighted": 1050.3883423947896
+        },
+        {
+          "support": 298,
+          "uniform": 272.0254265470721,
+          "weighted": 632.4226859944248
+        }
+      ],
+      "changed": [
+        8,
+        6
+      ],
+      "changedRunes": [
+        65,
+        48
+      ]
+    }
+  ]
+}
