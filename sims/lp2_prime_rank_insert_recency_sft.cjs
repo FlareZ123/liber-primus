@@ -70,7 +70,49 @@ let domainChecks=0;for(let k=0;k<12;k++){const o=(k*37)%464,A=perm(),dom=Array(n
 const windowMin=len=>{let h=Array(n).fill(0),minTop2=Infinity;for(let i=0;i<D.length;i++){h[D[i]]++;if(i>=len)h[D[i-len]]--;if(i>=len-1){let a=0,b=0;for(let x of h){if(x>a){b=a;a=x}else if(x>b)b=x}minTop2=Math.min(minTop2,a+b)}}return {len,windows:D.length-len+1,minTop2}};
 const privateAlphabet={domainChecks,whole:cap(C,os,0,N),carriedChapter:cap(C,os,start,end),resetChapter:cap(C.slice(start,end),os,0,end-start),literary:[windowMin(N),windowMin(end-start)]};
 
-return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet}
+
+// Transparent plaintext F: hold with no list or prime-clock update.
+// A pooled state at k=t-i represents all origins and histories at that
+// cursor. Union glyph domains and possible forbidden F ranks conservatively.
+const fhold=(C,origins,truth=null)=>{
+ const N=C.length,Z=C.filter(c=>c===0).length,W=origins+Z+1,base=Z+1;
+ const dom=new Int32Array(W*n),allowed=new Int32Array(W);
+ for(let o=0;o<origins;o++){allowed[base+o]=all;dom.fill(all,(base+o)*n,(base+o+1)*n)}
+ let left=base,right=base+origins-1,minLive=origins,dead=-1,trace=[],checks=0;
+ for(let i=0;i<N;i++){
+  let c=C[i],zero=c===0,from=left,to=right;
+  if(zero)left--;
+  let live=0;
+  for(let j=from;j<=to;j++){
+   let f=allowed[j];if(!f)continue;let off=j*n,t=j-base+i;
+   if(zero){let dest=j-1,doff=dest*n;
+    if(!allowed[dest])for(let g=0;g<n;g++)dom[doff+g]=dom[off+g];
+    else for(let g=0;g<n;g++)dom[doff+g]|=dom[off+g];
+    allowed[dest]|=f;
+   }
+   let a=dom[off+c];if((a&(a-1))===0)f&=~a;
+   if((f&(f-1))===0)a&=~f;
+   if(!f||!a){allowed[j]=0;continue}
+   let mn=31-Math.clz32(a&-a),mx=31-Math.clz32(a),r=R[t],lr=low(r),lm=low(mn+1),lx=low(mx);
+   assert(Number.isInteger(r),"prime cursor");
+   let valid=true;for(let g=0;g<n;g++){if(g===c)continue;let x=dom[off+g],removed=((x&~lm)>>>1)|(x&lx);dom[off+g]=(removed&lr)|((removed&~lr)<<1);if(!dom[off+g])valid=false}
+   dom[off+c]=1<<r;allowed[j]=valid?f:0;
+  }
+  while(left<=right&&!allowed[left])left++;
+  while(right>=left&&!allowed[right])right--;
+  let pairs=0;for(let j=left;j<=right;j++)if(allowed[j]){live++;for(let x=allowed[j];x;x&=x-1)pairs++}
+  minLive=Math.min(minLive,live);
+  if(truth){let h=truth.states[i],j=base+h.t-i-1;assert(allowed[j]&(1<<truth.f),"true F rank lost");for(let k=0;k<n;k++){assert(dom[j*n+h.A[k]]&(1<<k),"true state lost");checks++}}
+  if(i%500===499||i===N-1||!live)trace.push({i,live,pairs,range:[left-base,right-base]});
+  if(!live){dead=i;break}
+ }
+ return {N,Z,dead,minLive,trace,checks};
+};
+const encodeF=(P,o,S,A)=>{A=A.slice();let out=[],states=[],t=o;for(let p of P){if(p===0)out.push(0);else{let j=S[p],c=A[j];out.push(c);A.splice(j,1);A.splice(R[t++],0,c)}states.push({t,A:A.slice()})}return {out,states,f:S[0]}};
+const fcontrols=[];for(let k=0;k<2;k++){let P=D.slice(10001+k*8000,10001+k*8000+3008),o=[37,229][k],S=perm(),A=perm(),plant=encodeF(P,o,S,A);fcontrols.push({o,f:S[0],...fhold(plant.out,origins,plant)})}
+const latentF={controls:fcontrols,chapter:fhold(C.slice(start,end),origins),whole:fhold(C,origins)};
+
+return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet,latentF}
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt"];
 console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),JSON.parse(fs.readFileSync(paths[1],'utf8')),fs.readFileSync(paths[2],'utf8')),null,2));
