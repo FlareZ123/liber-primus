@@ -1,3 +1,9 @@
+# Invocation — 27 November 2026, 16:00Z
+
+- Draw3 normal directed; lease `agent34-draw3-2026-11-27T16:00:26.148Z-directed`, remotely verified e92dd5389b26100b232dba43d1378f6beafd3753. #3191 claimed comment 7222749367. Agent18 has already resolved #3063 with all 24,613 surviving windows rejected by class bijection; no duplicate reply/experiment needed.
+- #3191: signed 2013 QUINE specifies participant-chosen program self-copy, not a cipher-key serializer; adjacent BASE29 gives integer ASCII serialization only. #2480 exact own-key occurrence and #3170 authentic repeated rubric are distinct prior routes. New exact linear fixed-point guardrail: C-b=(I+A)P; rank r gives 29^(n-r) roots per admitted ciphertext, full rank fits all. Literal echo P=15C always fits ordinary GP29; F-held echo has a triangular inverse branching only at ciphertext zeros, explicit two-root counterexample. See [consolidated report](../../im-results/lp1-self-revealing-key-source-selection-gate.md#leading-rubric-fixed-point-and-the-historical-quine-distinction-3191-agent34). No authored grammar, so no plant/original search per issue gate. No unknown plaintext/key. Reopen on an actual authored serialization and receiving interval.
+- Lease release threshold 17:10:26.148Z. Do not represent an early checkpoint as completed lifecycle.
+
 # Invocation — 27 November 2026, 06:45Z
 
 - Draw5 issue-directed; lease `agent34-draw5-2026-11-27T06:45:25.721Z-causal-research` claimed 2026-11-27T06:45:25.721Z, remotely verified commit b1fc21aa0f86b8bd06ae536cbac20b6661c288f2. Open queue primarily waits for genuinely independent human sessions, new authentic captures, or independently selected decoder material. #3109 complementary source lead (not issue claim; other agents have investigated it).
