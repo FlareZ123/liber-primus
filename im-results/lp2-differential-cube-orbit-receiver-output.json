@@ -1,0 +1,1754 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "classes": [
+    [
+      0
+    ],
+    [
+      1
+    ],
+    [
+      2,
+      8,
+      19,
+      15,
+      11,
+      26
+    ],
+    [
+      3,
+      27,
+      21,
+      10,
+      14,
+      18
+    ],
+    [
+      4,
+      6,
+      13,
+      22,
+      5,
+      9
+    ],
+    [
+      7,
+      24,
+      20,
+      25,
+      23,
+      16
+    ],
+    [
+      12,
+      17
+    ],
+    [
+      28
+    ]
+  ],
+  "donorLengths": [
+    [
+      "Gibran",
+      62492
+    ],
+    [
+      "Shakespeare",
+      217106
+    ],
+    [
+      "Emerson",
+      321327
+    ],
+    [
+      "0_warning",
+      184
+    ],
+    [
+      "0_welcome",
+      515
+    ],
+    [
+      "0_wisdom",
+      157
+    ],
+    [
+      "0_koan_1",
+      780
+    ],
+    [
+      "0_loss_of_divinity",
+      755
+    ],
+    [
+      "jpg107-167",
+      319
+    ],
+    [
+      "jpg229",
+      89
+    ],
+    [
+      "p56_an_end",
+      85
+    ],
+    [
+      "p57_parable",
+      95
+    ]
+  ],
+  "originalFixedClock": {
+    "pages": [
+      27,
+      32
+    ],
+    "train": 502,
+    "held": 930,
+    "best": {
+      "b": 25,
+      "phase": 4,
+      "dir": 1,
+      "train": -5.345734643327218,
+      "held": -5.5654211049242726,
+      "preview": "O E M O P X Y P H EA T I TH Y AE O IA W EO A D O J EA C O H NG P OE L Y B S U C H H X OE R Y EA P X L TH N D S N N P EA G Y TH P G OE N EA E N A EA N P P S"
+    },
+    "top5": [
+      {
+        "b": 25,
+        "phase": 4,
+        "dir": 1,
+        "train": -5.345734643327218,
+        "held": -5.5654211049242726,
+        "preview": "O E M O P X Y P H EA T I TH Y AE O IA W EO A D O J EA C O H NG P OE L Y B S U C H H X OE R Y EA P X L TH N D S N N P EA G Y TH P G OE N EA E N A EA N P P S"
+      },
+      {
+        "b": 27,
+        "phase": 2,
+        "dir": 1,
+        "train": -5.384573990988377,
+        "held": -5.624316325469673,
+        "preview": "E W C E S AE EA S I M NG U L EA IA E B F OE Y H E A M R E I X S G D EA EO N TH R I I AE G P EA M S AE D L O H N O O S M T EA L S T G O M W O Y M O S S N"
+      },
+      {
+        "b": 25,
+        "phase": 4,
+        "dir": -1,
+        "train": -5.426678229058104,
+        "held": -5.515916097151049,
+        "preview": "O C T O P G Y P H EA M B TH Y AE O S S EO A X O OE I C T H NG P J L Y EA S F E H H G OE J Y EA P G L E F D W F N P I G Y C P X J N B TH N A I N P P S"
+      },
+      {
+        "b": 12,
+        "phase": 3,
+        "dir": 1,
+        "train": -5.471784805955962,
+        "held": -5.585578044405805,
+        "preview": "W B EA W A S P A F I H U AE P EO W L N M J R W D I T W F G A X O P OE IA NG T F F S X TH P I A S O AE C R IA C C A I Y P AE A Y X C I B C J I C A A IA"
+      },
+      {
+        "b": 14,
+        "phase": 4,
+        "dir": 1,
+        "train": -5.476422150404509,
+        "held": -5.634215884044643,
+        "preview": "NG W H NG TH O S TH Y B C EA L S X NG T AE U P EO NG F B D NG Y I TH J N S G R M D Y Y O J OE S B TH O N L IA EO R IA IA TH B A S L TH A J IA B W IA P B IA TH TH R"
+      }
+    ],
+    "sourceFixed": [
+      {
+        "b": 2,
+        "phase": 0,
+        "dir": 1,
+        "train": -5.805161660060394,
+        "held": -5.800225654455961,
+        "preview": "AE H OE AE M EO O M X T N D J O TH AE P NG IA U L AE I T A AE X Y M B E O C R S A X X EO B EA O T M EO E J G L R G G M T F O J M F B G T H G U T G M M R"
+      },
+      {
+        "b": 2,
+        "phase": 0,
+        "dir": -1,
+        "train": -5.8414731284693335,
+        "held": -5.804108031592264,
+        "preview": "AE A N AE M F O M X T OE C J O TH AE R R IA U EO AE B D A N X Y M I E O T R W H X X F B I O T M F E H W L NG W G M D F O A M EO I G C J G U D G M M R"
+      }
+    ]
+  },
+  "fixedClockControls": [
+    {
+      "truth": {
+        "b": 2,
+        "phase": 1,
+        "dir": 1,
+        "iv": 19
+      },
+      "best": {
+        "b": 2,
+        "phase": 1,
+        "dir": 1,
+        "train": -2.518781973994252,
+        "held": -2.495720653907506,
+        "preview": "E I L D T I L L W H E N TH E Y N E E D S M U S T S H O W TH E M S E L U E S W H I C H I N TH E H A T C H NG I T S E E M D A P P EA R D T O R O M"
+      },
+      "heldExact": 930,
+      "heldLength": 930
+    },
+    {
+      "truth": {
+        "b": 17,
+        "phase": 4,
+        "dir": -1,
+        "iv": 12
+      },
+      "best": {
+        "b": 17,
+        "phase": 4,
+        "dir": -1,
+        "train": -2.517879539282452,
+        "held": -2.605671280006067,
+        "preview": "I C E T O B E N A M E D TH A T TH E I R G I F T S A R E C A P R I C IA U S A N D N O T T O B E T R U S T E D TH A T W H O S E E C S A T R EA S U"
+      },
+      "heldExact": 930,
+      "heldLength": 930
+    }
+  ],
+  "variableRoundOriginal": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "length": 728,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 61765,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 216379,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 320600,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 53,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 28,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        4,
+        27,
+        168,
+        148,
+        158,
+        147,
+        49,
+        27
+      ]
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "length": 1144,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 61349,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 215963,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 320184,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        6,
+        37,
+        278,
+        235,
+        244,
+        246,
+        55,
+        43
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "length": 1728,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 60765,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 215379,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 319600,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        9,
+        67,
+        368,
+        362,
+        400,
+        346,
+        120,
+        56
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "length": 1902,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 60591,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 215205,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 319426,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        10,
+        73,
+        417,
+        392,
+        383,
+        431,
+        131,
+        65
+      ]
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "length": 1020,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 61473,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 216087,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 320308,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        11,
+        40,
+        207,
+        227,
+        233,
+        206,
+        65,
+        31
+      ]
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "length": 1432,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 61061,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 215675,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 319896,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        13,
+        48,
+        276,
+        315,
+        291,
+        335,
+        109,
+        45
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "length": 1679,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 60814,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 215428,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 319649,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        12,
+        67,
+        348,
+        382,
+        361,
+        351,
+        101,
+        57
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "length": 3007,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 59486,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 214100,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 318321,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        18,
+        88,
+        641,
+        671,
+        605,
+        676,
+        207,
+        101
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "length": 307,
+      "full": [
+        {
+          "name": "Gibran",
+          "windows": 62186,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 216800,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321021,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 209,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 474,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 449,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 13,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "prefix32": [
+        {
+          "name": "Gibran",
+          "windows": 62461,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 217075,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "Emerson",
+          "windows": 321296,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_warning",
+          "windows": 153,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_welcome",
+          "windows": 484,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 126,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 749,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 724,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 288,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "jpg229",
+          "windows": 58,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 54,
+          "matches": 0,
+          "first": []
+        },
+        {
+          "name": "p57_parable",
+          "windows": 64,
+          "matches": 0,
+          "first": []
+        }
+      ],
+      "orbitCounts": [
+        3,
+        12,
+        81,
+        49,
+        73,
+        67,
+        16,
+        6
+      ]
+    }
+  ],
+  "variableRoundControls": [
+    {
+      "source": "Shakespeare",
+      "offset": 40000,
+      "length": 1432,
+      "windowSearch": {
+        "name": "Shakespeare",
+        "windows": 215675,
+        "matches": 1,
+        "first": [
+          40000
+        ]
+      },
+      "compatibleReconstructedRunes": 1432,
+      "chartUnique": false
+    },
+    {
+      "source": "Emerson",
+      "offset": 41000,
+      "length": 1432,
+      "windowSearch": {
+        "name": "Emerson",
+        "windows": 319896,
+        "matches": 1,
+        "first": [
+          41000
+        ]
+      },
+      "compatibleReconstructedRunes": 1432,
+      "chartUnique": false
+    }
+  ]
+}
