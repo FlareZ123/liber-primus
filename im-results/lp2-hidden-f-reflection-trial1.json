@@ -1,0 +1,87 @@
+{
+  "trial": 1,
+  "native": true,
+  "fit": 9640,
+  "held": 3316,
+  "sourceRepeatCount": 86,
+  "repeatCount": 148,
+  "expectedRepeat": 0.013917059830939561,
+  "minimumExpectedRepeat": 0.013917059830939561,
+  "target": 0.00663836356619066,
+  "plant": {
+    "b": 9,
+    "k": [
+      13,
+      23
+    ],
+    "repeat": 0.013917059830939561,
+    "pair": -64012.16423083685,
+    "triple": -95259.89677448444,
+    "s0": 1,
+    "seed": 2
+  },
+  "plantPairRank": 1,
+  "plantTripleRank": 1,
+  "reflectionRank": 17161,
+  "best": {
+    "b": 9,
+    "k": [
+      13,
+      23
+    ],
+    "init": 31,
+    "fitScore": -2.651928209798534,
+    "initGap": 22989.637559942905,
+    "keyGap": 21855.018947396846
+  },
+  "exactFit": 9640,
+  "exactHeld": 3316,
+  "authentic57": 95,
+  "heldScore": -2.640145823190422,
+  "heldHead": "THEEBBOFTHYSOULEBBNGDOWNWARDINTOTHEFORMSINTOWHOSEHABITSTHOUHASTNOWFORMANYYEARSSLIDASNEARANDPROPERTOUSISALSOTHATOLDFABLEOFTHESPHINXWHOWASSAIDTOSITINTHE",
+  "viewRanks": {
+    "left2rank": 58,
+    "right2rank": 58,
+    "left1rank": 29,
+    "right1rank": 29
+  },
+  "replay": true,
+  "modelTop": [
+    {
+      "b": 9,
+      "k": [
+        13,
+        23
+      ],
+      "score": -25561.93601424807,
+      "init": 31
+    },
+    {
+      "b": 9,
+      "k": [
+        12,
+        23
+      ],
+      "score": -47416.954961644915,
+      "init": 12
+    },
+    {
+      "b": 9,
+      "k": [
+        13,
+        15
+      ],
+      "score": -47740.904551973086,
+      "init": 17
+    },
+    {
+      "b": 9,
+      "k": [
+        16,
+        23
+      ],
+      "score": -47741.70372454077,
+      "init": 43
+    }
+  ]
+}
