@@ -1,0 +1,316 @@
+{
+  "schema": 1,
+  "model": "common GP29 q8, primitive, literal-F holds, independent donor word starts",
+  "minimums": [
+    64
+  ],
+  "lens": [
+    18355,
+    6958,
+    7059,
+    7484,
+    41181
+  ],
+  "plants": [
+    {
+      "path": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "n": 64,
+      "seed": 3441,
+      "from": 7966,
+      "to": 7984,
+      "runes": 65,
+      "truth": "0,1,19,18,21,22,7,17,16,11,8,25,23,26,2,4,6,27,28,5,13,15,3,24,9,12,14,10,20:15,15,25,2,9,26,2,22",
+      "truthRetained": true,
+      "exact": false,
+      "heldTruth": 16,
+      "heldTotal": 16,
+      "scan": {
+        "name": "plant",
+        "spans": 1,
+        "alignments": 82,
+        "pairCandidates": 1,
+        "fCompatible": 1,
+        "completeRejected": 0,
+        "unresolved": [],
+        "hits": [
+          {
+            "from": 7966,
+            "to": 7984,
+            "donorRune": 32181,
+            "start": 13,
+            "plain": [
+              "30",
+              "2i",
+              "fqfgij",
+              "hki9n",
+              "g3",
+              "2ia4",
+              "iqi",
+              "a9",
+              "2i",
+              "4ij3gi",
+              "834af39",
+              "7a2",
+              "2i",
+              "7okkf",
+              "30",
+              "2i",
+              "19a1i4fi",
+              "2i"
+            ],
+            "actions": [
+              {
+                "pi": [
+                  0,
+                  1,
+                  19,
+                  18,
+                  21,
+                  12,
+                  7,
+                  17,
+                  16,
+                  11,
+                  8,
+                  25,
+                  23,
+                  26,
+                  2,
+                  4,
+                  6,
+                  27,
+                  28,
+                  5,
+                  13,
+                  15,
+                  3,
+                  24,
+                  9,
+                  22,
+                  14,
+                  10,
+                  20
+                ],
+                "k": [
+                  15,
+                  15,
+                  25,
+                  2,
+                  9,
+                  26,
+                  2,
+                  22
+                ]
+              },
+              {
+                "pi": [
+                  0,
+                  1,
+                  19,
+                  18,
+                  21,
+                  22,
+                  7,
+                  17,
+                  16,
+                  11,
+                  8,
+                  25,
+                  23,
+                  26,
+                  2,
+                  4,
+                  6,
+                  27,
+                  28,
+                  5,
+                  13,
+                  15,
+                  3,
+                  24,
+                  9,
+                  12,
+                  14,
+                  10,
+                  20
+                ],
+                "k": [
+                  15,
+                  15,
+                  25,
+                  2,
+                  9,
+                  26,
+                  2,
+                  22
+                ]
+              }
+            ],
+            "complete": true
+          }
+        ],
+        "reasons": {
+          "candidate": 1
+        },
+        "nodes": 116,
+        "joins": 192
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "path": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "n": 64,
+      "spans": 4150,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 4150,
+          "alignments": 2753892,
+          "pairCandidates": 2938,
+          "fCompatible": 2582,
+          "completeRejected": 2582,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 513,
+            "zero-shift pattern": 2069
+          },
+          "nodes": 41354,
+          "joins": 44672
+        },
+        {
+          "name": "p3-7",
+          "spans": 4150,
+          "alignments": 4480292,
+          "pairCandidates": 1040,
+          "fCompatible": 976,
+          "completeRejected": 976,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 686,
+            "affine rejection": 290
+          },
+          "nodes": 12712,
+          "joins": 13013
+        },
+        {
+          "name": "p8-14",
+          "spans": 4150,
+          "alignments": 6903892,
+          "pairCandidates": 7556,
+          "fCompatible": 5831,
+          "completeRejected": 5831,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 4595,
+            "affine rejection": 1234,
+            "anchor contradiction": 2
+          },
+          "nodes": 56850,
+          "joins": 62798
+        },
+        {
+          "name": "p15-22",
+          "spans": 4150,
+          "alignments": 7625992,
+          "pairCandidates": 5388,
+          "fCompatible": 4464,
+          "completeRejected": 4464,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 3557,
+            "affine rejection": 907
+          },
+          "nodes": 31311,
+          "joins": 33249
+        },
+        {
+          "name": "p23-26",
+          "spans": 4150,
+          "alignments": 3965692,
+          "pairCandidates": 2790,
+          "fCompatible": 2411,
+          "completeRejected": 2411,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 1913,
+            "affine rejection": 498
+          },
+          "nodes": 23341,
+          "joins": 24192
+        },
+        {
+          "name": "p27-32",
+          "spans": 4150,
+          "alignments": 5675492,
+          "pairCandidates": 5055,
+          "fCompatible": 4042,
+          "completeRejected": 4042,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 3243,
+            "affine rejection": 795,
+            "anchor contradiction": 4
+          },
+          "nodes": 30610,
+          "joins": 31327
+        },
+        {
+          "name": "p33-39",
+          "spans": 4150,
+          "alignments": 6700542,
+          "pairCandidates": 1615,
+          "fCompatible": 1461,
+          "completeRejected": 1461,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 1142,
+            "affine rejection": 319
+          },
+          "nodes": 9925,
+          "joins": 10202
+        },
+        {
+          "name": "p40-53",
+          "spans": 4150,
+          "alignments": 12211742,
+          "pairCandidates": 13283,
+          "fCompatible": 9951,
+          "completeRejected": 9951,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 7933,
+            "affine rejection": 2016,
+            "anchor contradiction": 2
+          },
+          "nodes": 66496,
+          "joins": 73603
+        },
+        {
+          "name": "p54-55",
+          "spans": 4150,
+          "alignments": 1006742,
+          "pairCandidates": 209,
+          "fCompatible": 209,
+          "completeRejected": 209,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 152,
+            "affine rejection": 57
+          },
+          "nodes": 2902,
+          "joins": 2898
+        }
+      ]
+    }
+  ]
+}
