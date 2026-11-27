@@ -42,7 +42,9 @@ function experiment(corpus,transcription) {
   eq(gLower>pUpper,"all-bijection contradiction");
   const forward=fields.map(decode), reverse=fields.map(d=>decode([...d].reverse()));
   eq(!accepts(forward)&&!accepts(reverse),"canonical negative");
-  return {controls:checked,original:{line,offset:before,digits,forward:forward.map(String),reverse:reverse.map(String),modulusUpper:String(pUpper),generatorLower:String(gLower),gOverP:true,scope:"ordered p,g,A,B; any stationary bijective GP29 digit alphabet; global forward or global reverse within each fragment"}};
+  const canonicalLargestFields=[forward,reverse].map(v=>v.reduce((a,b)=>a>b?a:b));
+  eq(canonicalLargestFields.every(v=>v>3n&&v%3n===0n),"even arbitrary field permutation fails for canonical alphabet");
+  return {controls:checked,original:{line,offset:before,digits,forward:forward.map(String),reverse:reverse.map(String),modulusUpper:String(pUpper),generatorLower:String(gLower),gOverP:true,canonicalLargestFields:canonicalLargestFields.map(String),canonicalArbitraryFieldOrder:"rejected: uniquely largest value divisible by 3",scope:"ordered p,g,A,B; any stationary bijective GP29 digit alphabet; global forward or global reverse within each fragment"}};
 }
 
 const root=path.resolve(__dirname,"..");
