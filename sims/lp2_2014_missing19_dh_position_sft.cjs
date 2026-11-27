@@ -51,7 +51,7 @@ for(const n of target){
    all.push(row);if(phase<=1)frozen.push(row);
   }
   const best=all.filter(x=>x.possible).sort((a,b)=>b.score-a.score)[0]||null;
-  rows.push({page:n,length:ct.length,clock,nativeMinimum:Math.min(...controls),nativeWindows:controls.length,frozen,allPhaseFeasible:all.filter(x=>x.possible).length,allPhaseBest:best});
+  rows.push({page:n,length:ct.length,clock,nativeMinimum:Math.min(...controls),nativeWindows:controls.length,frozen,allPhaseFeasible:all.filter(x=>x.possible).length,allPhaseBestExample:best});
  }
 }
 const plant=Array.from({length:273},(_,i)=>page(57)[i%page(57).length]);
@@ -61,4 +61,6 @@ for(const clock of clocks)for(const s of [1,-1])for(const phase of [0,1,17]){
  assert.ok(res.possible);if(clock==='ordinary')assert.deepEqual(res.example,plant);
  positive.push({clock,s,phase,possible:true});
 }
-console.log(JSON.stringify({p:P,g:G,B,key:k,targets:target,rows,positive},null,2));
+const result={p:P,g:G,B,key:k,targets:target,rows,positive};
+fs.writeFileSync(path.join(process.env.RUNNER_TEMP||'.','source-test-output.json'),JSON.stringify(result,null,2));
+console.log(JSON.stringify(rows.map(({page,clock,allPhaseFeasible,allPhaseBestExample,nativeMinimum})=>({page,clock,allPhaseFeasible,allPhaseBestExample,nativeMinimum})),null,2));
