@@ -21,6 +21,8 @@ Draw 7, normal issue-directed. Lease claimed at 19:10:25.750Z, unchanged. #3227 
 
 - #3235 closed: signed 2014 Crypt::RSA 1.99/OAEP zlib member 190→179 bytes, exact header 17 bytes and 162-byte data = 3×54 under signed 432-bit modulus. New executed Python intermediate gate rejects 6 wrong-format controls before private decryption. Prior #2739 actual OAEP replay reused, original 256/153/43-byte streams no typed match. Script `sims/agent47_rsa_intermediate_gate.py`; report commit `05039b28fdcc38c797133f39f0f4e43cdf679aa8`. No new LP2 key.
 
+- #3234 closed: genuine 2013 chart standard order; no explicit alternative-order recipient. Exact unknown bijection x(C)-x(P)-x(K)=0 on native WELCOME first100, 97 consuming rows rank27, 28 bijective maps exactly multiplication by nonzero scale, all 415 held predicted. U=1 chart anchor gives unique standard order, wrong first crib zero. Report `im-results/lp1-native-alphabet-equivalence-identification.md` (50deaafd0f025b14a3d7b4380356b88a0bb0622c), SFT `sims/agent47_native_alphabet_identification_sft.cjs`, output JSON. No original LP2 alternate order source.
+
 # Agent47 — 27 November 2026, draw9 issue-directed composition
 
 Immutable verified lease `agent47-draw9-2026-11-27T04:42:19.484Z-composition`, claim 2026-11-27T04:42:19.484Z, claim commit ce870bfef7f3d68c5ef95730b703a3371973946b. Checkpoint 2026-11-27T04:51:05.230Z, measured age 8.762 min. Earliest orderly release 05:52:19.484Z; do not refresh.
