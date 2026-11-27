@@ -1,0 +1,215 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "blob": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "blob": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ],
+  "definition": "Stable GP lexicographic occurrence ranks, cyclic successor by one, chapter-local, no sidecar. Each rank's group is moved to the predecessor rank's original position.",
+  "exhaustive": {
+    "tested": 3279,
+    "images": 1473
+  },
+  "controls": [
+    {
+      "label": "0_warning",
+      "groups": 45,
+      "types": 38,
+      "repeatedTypes": 5,
+      "preimages": "20",
+      "preimageBits": 4.321928094887363,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "0_welcome",
+      "groups": 124,
+      "types": 74,
+      "repeatedTypes": 26,
+      "preimages": "331776",
+      "preimageBits": 18.339850002884624,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "0_wisdom",
+      "groups": 31,
+      "types": 27,
+      "repeatedTypes": 4,
+      "preimages": "4",
+      "preimageBits": 2,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "0_koan_1",
+      "groups": 208,
+      "types": 80,
+      "repeatedTypes": 30,
+      "preimages": "11147673600",
+      "preimageBits": 33.37602361543811,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "0_loss_of_divinity",
+      "groups": 181,
+      "types": 93,
+      "repeatedTypes": 39,
+      "preimages": "8778792960",
+      "preimageBits": 33.03137544405067,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "jpg107-167",
+      "groups": 88,
+      "types": 45,
+      "repeatedTypes": 16,
+      "preimages": "898560",
+      "preimageBits": 19.777255315191923,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "jpg229",
+      "groups": 18,
+      "types": 17,
+      "repeatedTypes": 1,
+      "preimages": "1",
+      "preimageBits": 0,
+      "truthRecovered": true,
+      "witnessReplay": true
+    },
+    {
+      "label": "p56_an_end",
+      "groups": 25,
+      "types": 22,
+      "repeatedTypes": 3,
+      "preimages": "2",
+      "preimageBits": 1,
+      "truthRecovered": false,
+      "witnessReplay": true
+    },
+    {
+      "label": "p57_parable",
+      "groups": 20,
+      "types": 18,
+      "repeatedTypes": 1,
+      "preimages": "3",
+      "preimageBits": 1.584962500721156,
+      "truthRecovered": false,
+      "witnessReplay": true
+    }
+  ],
+  "original": [
+    {
+      "label": "p0-2",
+      "groups": 158,
+      "types": 156,
+      "repeatedTypes": 2,
+      "preimages": "2",
+      "preimageBits": 1,
+      "truthRecovered": null,
+      "witnessReplay": true
+    },
+    {
+      "label": "p3-7",
+      "groups": 255,
+      "types": 252,
+      "repeatedTypes": 3,
+      "preimages": "0",
+      "preimageBits": null,
+      "truthRecovered": null,
+      "witnessReplay": false
+    },
+    {
+      "label": "p8-14",
+      "groups": 383,
+      "types": 377,
+      "repeatedTypes": 4,
+      "preimages": "18",
+      "preimageBits": 4.169925001442312,
+      "truthRecovered": null,
+      "witnessReplay": true
+    },
+    {
+      "label": "p15-22",
+      "groups": 437,
+      "types": 430,
+      "repeatedTypes": 7,
+      "preimages": "0",
+      "preimageBits": null,
+      "truthRecovered": null,
+      "witnessReplay": false
+    },
+    {
+      "label": "p23-26",
+      "groups": 224,
+      "types": 224,
+      "repeatedTypes": 0,
+      "preimages": "1",
+      "preimageBits": 0,
+      "truthRecovered": null,
+      "witnessReplay": true
+    },
+    {
+      "label": "p27-32",
+      "groups": 326,
+      "types": 320,
+      "repeatedTypes": 5,
+      "preimages": "0",
+      "preimageBits": null,
+      "truthRecovered": null,
+      "witnessReplay": false
+    },
+    {
+      "label": "p33-39",
+      "groups": 378,
+      "types": 375,
+      "repeatedTypes": 3,
+      "preimages": "0",
+      "preimageBits": null,
+      "truthRecovered": null,
+      "witnessReplay": false
+    },
+    {
+      "label": "p40-53",
+      "groups": 669,
+      "types": 662,
+      "repeatedTypes": 7,
+      "preimages": "0",
+      "preimageBits": null,
+      "truthRecovered": null,
+      "witnessReplay": false
+    },
+    {
+      "label": "p54-55",
+      "groups": 66,
+      "types": 66,
+      "repeatedTypes": 0,
+      "preimages": "1",
+      "preimageBits": 0,
+      "truthRecovered": null,
+      "witnessReplay": true
+    }
+  ],
+  "all": {
+    "label": "whole book",
+    "groups": 2896,
+    "types": 2731,
+    "repeatedTypes": 120,
+    "preimages": "0",
+    "preimageBits": null,
+    "truthRecovered": null,
+    "witnessReplay": false
+  }
+}
