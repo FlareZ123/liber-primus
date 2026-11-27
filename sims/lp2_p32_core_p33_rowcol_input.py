@@ -8,6 +8,7 @@ Usage (from repository root):
 On Windows use the corresponding compiler/executable name, with stdin redirected
 from a command prompt. Dictionary membership only; frequency is not optimized.
 """
+import argparse
 import json
 import random
 import re
@@ -52,6 +53,10 @@ def fingerprint(words):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--prime', action='store_true')
+    parser.add_argument('--original-only', action='store_true')
+    args=parser.parse_args()
     d = {}
     lex = ROOT / "resources/control/english_wordfreq_textblob.txt"
     for line in lex.read_text(encoding="utf-8").splitlines():
@@ -76,12 +81,16 @@ def main():
     assert sum(src["prime"][x] for x in p32[:11]) == 563
     assert sum(src["prime"][x] for x in p32[::11]) == 569
     k = [p32[r*11+c] for r in range(1,10) for c in range(1,10)]
+    if args.prime:
+        k = [src['prime'][i] % 29 for i in k]
     c = pages[33][10:91]
     lengths = [2,9,6,3,3,5,3,2,7,3,3,6,5,8,2,3,2,2,2,3,2]
     assert len(c) == sum(lengths) == len(k) == 81
     controls = [("warning", "0_warning", 23),
                 ("koan", "0_koan_1", 116),
                 ("loss", "0_loss_of_divinity", 98)]
+    if args.original_only:
+        controls = []
     rng = random.Random(3301)
     print(len(d))
     for s,n in sorted(d.items()):
