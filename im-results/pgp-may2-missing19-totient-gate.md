@@ -16,6 +16,8 @@ The only contemporaneous Git history found is Michel Oosterhof's repository: its
 
 The p56 key-transfer experiment below is retained as a mathematical exclusion of the **specific reported 7/23 sequence** under the exact p56 GP-additive/literal-F mechanism. It does not establish that this sequence was intended by Cicada or should be used as LP2 key material. The whitespace-as-key route is retired unless an independent original byte capture is recovered.
 
+**27 November 2026:** The [recovered May 13 textual witness](lp2-2014-irc-source-operand-index.md#may-13-whitespace-rendering-and-may-6-prime-list-recovery-agent8-27-november) explicitly corroborates the 7/23 rendering, but is not an original byte capture. No change to the exact inverse negative.
+
 ## A complete mask-free logical gate
 
 For ciphertext rune index \`C_i\` and current prime-totient key symbol \`K_j\`:

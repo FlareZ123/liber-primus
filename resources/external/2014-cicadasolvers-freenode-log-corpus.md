@@ -55,6 +55,10 @@ The recovered participant script `2014-irc-shared/anoniem4l-modcracker-M5BccDpT.
 
 These are contemporary solver cribs and experiments, not Cicada-signed plaintext or author instructions. The 23 May 2014 `A Beginning` guess and 2 July discussion are independent historical occurrences; the length-compatible spellings do not establish which, if any, is plaintext.
 
+## Recovered May 2014 participant pastes
+
+The [27 November extraction](../../im-results/lp2-2014-irc-source-operand-index.md#may-13-whitespace-rendering-and-may-6-prime-list-recovery-agent8-27-november) recovered [0wmWfct8](2014-irc-shared/0wmWfct8.txt), main L177022, explicitly corroborating disputed 7/23 whitespace positions, and [rKBY198Y](2014-irc-shared/rKBY198Y.txt), main L169513, containing the known 180 omitted primes. Main L176667 supplies the full corrected whitespace series; main L216945 proposes missing-19 Diffie–Hellman. These are participant descriptions, not authenticated instructions or raw original service captures.
+
 ## Reproduction and research significance
 
 [The original-byte CommonJS SFT](../../sims/lp2_2014_original_irc_log_source_gate_sft.cjs) checks every Git blob SHA1 and exact original byte count before computing per-year/per-month tallies and extracting source-line numbers for p56/hash/totality clues. [Successful original-source GitHub Actions run 43599552893](https://github.com/FlareZ123/liber-primus/actions/runs/43599552893) recovered all three complete files, verified them, and printed source line numbers and counts. Existing earlier [May-2014-pad archival research](../../im-results/lp2-2014-may-unfiction-workpad-source-gate.md) had found only April–July **2016** snapshots and no 2014 chat; the present original IRC discovery materially resolves that historical acquisition gap, independently of recovering any original target URL.

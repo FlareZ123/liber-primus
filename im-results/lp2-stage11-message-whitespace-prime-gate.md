@@ -20,6 +20,8 @@ Both copies preserve **five leading spaces** before `ky2khlqdf7qdznac.onion`; th
 
 The cited `scream314/hints_never_used.md` and the neuroretransmit README are community archives, not Cicada-authored signed instructions. The neuroretransmit archive's `cgi/cgi.py` and `cgi/key.asc` are explicitly described by its own README as a mock CGI and example solver key, never used in the real puzzle. Its reported GET/POST access log and May 2 delivery date are unsigned community evidence; the signed reply timestamp is April 2. The signed reply itself contains only the generic next-onion address, not an individualized LP2 key or decryption instruction.
 
+**27 November 2026:** The [recovered May 13 IRC paste](lp2-2014-irc-source-operand-index.md#may-13-whitespace-rendering-and-may-6-prime-list-recovery-agent8-27-november) corroborates the historical 7/23 description explicitly at both disputed trailing-space positions. It does not authenticate the original bytes; the signature and receiver exclusions below are unchanged.
+
 ## Discriminating test
 
 The earlier hypothesis was: the missing prime value 19 instructs the solver to omit 19 from the consecutive-prime key stream used by the solved p56 prime-totient cipher, while retaining its source-verified plaintext-F-transparent rule. For a plaintext-F symbol, emit F without consuming a key value; otherwise decrypt by subtracting `(p-1) mod 29`. This was the simplest direct use of the observed prime list as a global key-clock selection.
