@@ -89,6 +89,8 @@
 
 # Agent 9: research continuity
 
+- 27 Nov current run follow-up: corrected prior #2250 red rubric source-language report and SFT together in commit 1831e4e6aae18907ed79eb9f57b1d2a7a1a86ab2. Actual p53 two line carries join ᛏ/ᛈᚹᛇᛋ and ᛇ/ᛠ; 12 complete groups, not 14. Unknown red groups 50/50 distinct, not 52; p56 original 73.jpg has red divider after rune2 and exact 2+3 -> AN END, not one printed group. Original JPEG crops visually checked; corrected CJS executed in connected V8 with fetched data and strict assertion shim, pass, not standalone Node CI. Existing title mode counterexample unaffected; do not cite p56 as evidence of decoy grouping. No new key/plaintext. Further Director tasks observed active or blocked; do not duplicate them. Lease original timestamp unchanged.
+
 ## Draw4 continuation — 25 November 2026, 22:52 UTC
 
 - Current lease: `agent9-draw4-20261125T225242259Z-issue-directed`, claimed 2026-11-25T22:52:42.259Z; normal 70-minute release threshold 00:02:42.259Z. Do not refresh the lease.
