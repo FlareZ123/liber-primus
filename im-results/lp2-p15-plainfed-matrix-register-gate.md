@@ -2,7 +2,7 @@
 
 **Agent35, 27 November 2026. No authenticated unknown-page plaintext or key.** The literal printed p15 matrix and the signed reconstruction both fail a distinct plaintext-fed state mechanism on the full following original pp16–22. With authentic transparent-F semantics, **all 707,281 initial states per matrix have zero complete legal paths**, independently of language scoring.
 
-A separate scalar ciphertext-fed register, tested below, also fails: exact all-initial-state transparent-F reachability becomes empty after original rune 1,369. Its ordinary-clock blind receiver recovers both concealed native control IVs and all 1,001 withheld control runes, but original continuation remains nonlinguistic. Neither hypothesis is an authenticated source-selected cipher.
+A separate scalar ciphertext-fed register, tested below, also fails: exact all-initial-state transparent-F reachability becomes empty after original rune 1,369. Its ordinary and transparent-F weighted blind receivers each recover both concealed native control IVs and all 1,001 withheld control runes, but original continuation remains nonlinguistic. Neither hypothesis is an authenticated source-selected cipher.
 
 ## Fixed source and reversible four-rune receiver
 
@@ -81,6 +81,19 @@ Deduplicate only identical current states, not histories: for existence of a fut
 Original reachable state counts after 267, 500, 1,000, 1,300, 1,369 runes are 49,947; 7,711; 512; 28; **0**. Hence the 1,744-rune original cannot be emitted by the exact transparent-F scalar ciphertext-fed model, even with non-English plaintext. This rejection is independent of the ordinary language ranking.
 
 [Executable receiver](../sims/lp2_p15_scalar_cipherfed_matrix_sft.cjs) and [raw numerical output](lp2-p15-scalar-cipherfed-matrix-output.json). The JS experiment core was actually executed in the tool runtime on the exact tracked ciphertext/native JSON blobs 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and 1b064ef6d85819b7d96adaff31a82d1ec551598f; matching alphabet order checked separately. The standalone Node filesystem wrapper was not independently executed. No CI run claimed.
+
+### Exact weighted inverse, including unknown F histories
+
+This is a true key/path recovery algorithm, not a second original sweep. Let D_i(v) be the best additive unigram score among legal histories ending in state v after i observed runes. Initialize every IV at score zero. On each legal transition, maximize D_i(v)+score(P_i) at the destination. Retain the optimal-path count capped at two. M is invertible, so the consuming predecessor is unique for fixed ciphertext; only a zero ciphertext event offers a second (hold) predecessor. Store a single hold/consume choice bit per state at zero events and backtrace via M inverse. Forward replay asserts exact ciphertext and terminal state. No beam, oracle F mask or held reranking of the fitted key.
+
+| Native F-hold plant | Recovered IV | Recovered cut state | Best fit paths | Fit accuracy | Held accuracy |
+|---|---:|---:|---:|---:|---:|
+| KOAN I | 274314 (truth) | 189381 (truth) | 1 | 267/267 | 513/513 |
+| LOSS OF DIVINITY | 360866 (truth) | 4092 (truth) | 1 | 267/267 | 488/488 |
+
+Freeze the best fit terminal state as the only held IV. The held optimum is unique for both controls; NLL 2.916850/2.969943 and 2.979337/3.025381 (fit/held). Both ordinary and F-hold blind receivers recover 1,535/1,535 total and 1,001/1,001 held runes. These are the same two distinct native passages and IVs under two encryption clocks, not four independent texts. The full original F-hold path set is already empty, so no further original ranking was performed.
+
+[Weighted inverse and backtrace](../sims/lp2_p15_scalar_cipherfed_fhold_viterbi.cjs) · [actual control outputs](lp2-p15-scalar-cipherfed-fhold-viterbi-output.json). The core executed on the same tracked source inputs; standalone Node checkout wrapper not independently run. The algorithm generalizes to bijective public-ciphertext-conditioned state transitions plus literal-F hold and additive symbol scores. No authenticated original key/plaintext.
 
 ## Scope and next decision
 
