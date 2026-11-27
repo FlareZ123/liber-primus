@@ -14,6 +14,30 @@
 
 **Original LP2 spans:** Source-printed p8–p14 has precisely 1,729 = 7×247 runes. The p33 internal red8 heading starts at local index91 and continues through p39, giving precisely 1,589 = 7×227 runes. The final visual chapter p54–p55 has 308 = 7×44 runes. These three spans are selected from the [unchanged canonical corpus](../resources/liber-primus/lp2-corpus.json), independently of output score. The separate p3 candidate is documented below; its digit-based page selector is explicitly provisional. Neither a source-selected key clock nor an instruction to compose Stage04 and Stage05 on LP2 is authenticated; this is a bounded historically motivated transfer, and the two operators occurred at different original stages.
 
+## Historical arithmetic discriminator and clock-identifiability limit (#3193, Agent5, 27 November)
+
+The original 18-rune Stage04 image and independently archived identifier, with the already recovered WELCOME PILGRIM TO THE phrase, supply a stronger intermediate-value test than a generic historical Vigenère label. The cipher and target are fixed independently of the following coefficient search. The archived community decoding program is a reconstruction, not creator-issued source code.
+
+Let C, P and K be canonical GP29 indices of the original rune, archived output and native key rune, respectively; skip the two literal digits as in the historical reconstruction. Fit the affine family P = aC + b*w(K) + d mod29 on the first eight consuming runes, then freeze the coefficients and compare the remaining ten. For each of five specified key-coordinate charts, enumerate all 29³ triples without a language score.
+
+| Key coordinate w(K) | First-eight solutions (a,b,d) | Full 18-rune solutions |
+|---|---|---|
+| K (ordinal) | (1,28,0) | same, 10/10 held |
+| K+1 | (1,28,1) | same, 10/10 held |
+| 28−K | (1,1,1) | same, 10/10 held |
+| GP prime(K) | none | none |
+| GP prime(K)−1 | none | none |
+
+The first three are the **same** map C−K mod29; they do not identify an independent one-based convention. In the earlier sections, s = −K mod29, so C+s and C−K are equivalent descriptions, not competing directions. Five observed raw differences are negative, requiring ordinary nonnegative modular normalization. The prime and totient weighting alternatives with arbitrary affine gain and bias are genuinely different and already fail the fit prefix. This is a conditional exclusion of those key-coordinate maps in this family, not a general prime-arithmetic exclusion.
+
+There is also an exact event-type discriminator: zero-based consuming positions 4 and 16 have C=F but P=Y and IO, respectively; positions 5 and 11 have C=M and R but P=F. Thus both input-F and plaintext-F unconditional literal-hold policies are impossible on this original example. Both directions of F crossing already occur in the first eight; the other two are untouched checks. The Stage04 numeric identifier is not an authentic demonstration of the LP1/p56 F-hold sender.
+
+Finally, the observed shift vector has no compatible shorter period 1–17, but its length is **exactly** 18, with no observed wrap. A finite 18-step tape, repetition at period 18 and all 29 possible extensions to period 19 agree on the entire original witness. The example does not establish a repeat/reset clock for a longer message. In particular, treating the historical key as a periodic LP2 keystream is an additional transfer assumption, not a new convention proved by the identifier.
+
+**Original LP2 decision:** #3058 and #3067 already inspected the manuscript and found no delimiter-bounded mixed rune/decimal token among p0–55; p10's separated 7 and the p36–38 list labels have a different printed grammar. No independently selected LP2 known-output identifier or key-bearing tuple matches the observed Stage04 input type. Do not infer that F must be consumed in ordinary LP2 prose, infer a period from the 18-rune key length, or repeat the direct Stage04 transfer. The new result is a worked-example arithmetic/clock discriminator, with no new original LP2 operand and no recovered plaintext. Reopen on a literal identifier/known-output constraint or source-selected continuation that distinguishes the candidate clock at step 19.
+
+[Exact SFT](../sims/stage04_affine_key_coordinate_discriminator_sft.cjs); the arithmetic enumeration and GP tokenization were executed directly in connected JavaScript. The standalone Node wrapper was not separately run.
+
 ## Cryptographic operation
 
 For original numeric GP29 input C in 0..28, the historical Stage04's reversed input-rune key array *and forward output letters* yield **P = (C + s) mod29**. The inverse is C=(P−s) mod29, rather than an involution. The original 2014 buggy key parser has 19 shifts; corrected GP-tokenization has 18. Both are derived from the same literal historical phrase, with zero-phase starts. **The earlier P=(28−C−s) assertion and all scores derived from it were invalid for canonical LP2 GP indices.** The onion-address test alone could not expose the error because the old output presentation reversed the incorrect numeric indices again.
