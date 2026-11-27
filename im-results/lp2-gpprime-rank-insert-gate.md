@@ -37,6 +37,15 @@ Two independently keyed 512-rune plants (ordinary and transparent-F) fail all 12
 
 The Gibran start marker is absent in the pinned input; an initial pilot invocation mistakenly sliced at -1 and failed before search. Corrected to the same conditional normalization as the other SFTs. The saved code and output reflect the completed corrected run. Further blind search needs actual key/crib constraints or diversity-aware exact propagation, rather than wider unstructured beams.
 
+## Does the secret plaintext-dependent state forget its initial list?
+
+For a fixed chart the move is T(j)=R(S^-1(j)). Despite duplicate targets in T, applying the observed ciphertext does not establish synchronization. On three 3008-rune independent literary controls using affine charts (1,0), (7,13), (17,4), zero of 96 independently shuffled starting trajectories coalesce with the canonical trajectory; canonical initialization decodes 128/116/112 correct runes respectively, with errors through the final rune. Four fixed original charts, 32 initial lists each, have zero observed coalescences across all 12,956 runes. The sound per-glyph rank-domain relaxation unions exact moves over every allowed selected position, then applies singleton all-different propagation. It retains every true rank (261,696 control checks, 1,502,896 original checks), but every original selected rank remains ambiguous; domains average approximately 28.79 positions each. Noninjectivity alone does not imply useful synchronization. This is not a proof that no initial lists can coalesce, and not an all-key exclusion.
+
+- [Synchronization SFT](../sims/lp2_gpprime_plain_rank_sync_sft.cjs)
+- [Output](lp2-gpprime-plain-rank-sync-output.json)
+
+The independently proposed opening title EPIPHANY SEEKS (GP EPIPHANY SEECS) gives plaintext indices [18,13,10,13,8,24,9,26,15,18,18,5,15]. Against original red13, with canonical or reversed initial list and either role, its repeated P at offset3 requires a different rank from offset1. Thus all four fixed initial-list hypotheses are inconsistent with this conditional crib, even with an arbitrary static chart. The title is not authenticated plaintext, and arbitrary initial lists are outside this observation.
+
 ## Reproduction
 
 - [SFT](../sims/lp2_gpprime_rank_insert_sft.cjs)
