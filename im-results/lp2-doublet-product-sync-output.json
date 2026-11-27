@@ -1,0 +1,502 @@
+{
+  "syncChecks": 659344,
+  "plans": [
+    {
+      "r": 28,
+      "k": 7,
+      "iv": [
+        11,
+        19
+      ],
+      "fit": [
+        "0_welcome",
+        88
+      ],
+      "held": [
+        "0_loss_of_divinity",
+        136
+      ]
+    },
+    {
+      "r": 27,
+      "k": 13,
+      "iv": [
+        23,
+        5
+      ],
+      "fit": [
+        "0_loss_of_divinity",
+        171
+      ],
+      "held": [
+        "0_koan_1",
+        319
+      ]
+    },
+    {
+      "r": 21,
+      "k": 17,
+      "iv": [
+        4,
+        9
+      ],
+      "fit": [
+        "0_welcome",
+        252
+      ],
+      "held": [
+        "0_koan_1",
+        192
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "plan": {
+        "r": 28,
+        "k": 7,
+        "iv": [
+          11,
+          19
+        ],
+        "fit": [
+          "0_welcome",
+          88
+        ],
+        "held": [
+          "0_loss_of_divinity",
+          136
+        ]
+      },
+      "actualReset": true,
+      "events": [
+        [
+          122,
+          212
+        ],
+        [
+          194
+        ]
+      ],
+      "replay": true,
+      "receivers": [
+        {
+          "reset": true,
+          "fit": {
+            "r": 28,
+            "k": 7,
+            "score": -2.599914944376914
+          },
+          "margin": 0.8985560352812514,
+          "held": -2.7544325683024615,
+          "heldCorrect": 71,
+          "heldN": 71,
+          "heldExact": true,
+          "keyExact": true
+        },
+        {
+          "reset": false,
+          "fit": {
+            "r": 28,
+            "k": 12,
+            "score": -2.995884244234655
+          },
+          "margin": 0.37112088429121304,
+          "held": -3.6802312192856084,
+          "heldCorrect": 0,
+          "heldN": 71,
+          "heldExact": false,
+          "keyExact": false
+        }
+      ]
+    },
+    {
+      "plan": {
+        "r": 28,
+        "k": 7,
+        "iv": [
+          11,
+          19
+        ],
+        "fit": [
+          "0_welcome",
+          88
+        ],
+        "held": [
+          "0_loss_of_divinity",
+          136
+        ]
+      },
+      "actualReset": false,
+      "events": [
+        [
+          122,
+          212
+        ],
+        [
+          194
+        ]
+      ],
+      "replay": true,
+      "receivers": [
+        {
+          "reset": true,
+          "fit": {
+            "r": 28,
+            "k": 13,
+            "score": -2.957020066192442
+          },
+          "margin": 0.3496142087639922,
+          "held": -3.7350742743531207,
+          "heldCorrect": 0,
+          "heldN": 71,
+          "heldExact": false,
+          "keyExact": false
+        },
+        {
+          "reset": false,
+          "fit": {
+            "r": 28,
+            "k": 7,
+            "score": -2.599914944376914
+          },
+          "margin": 0.8985560352812514,
+          "held": -2.7544325683024615,
+          "heldCorrect": 71,
+          "heldN": 71,
+          "heldExact": true,
+          "keyExact": true
+        }
+      ]
+    },
+    {
+      "plan": {
+        "r": 27,
+        "k": 13,
+        "iv": [
+          23,
+          5
+        ],
+        "fit": [
+          "0_loss_of_divinity",
+          171
+        ],
+        "held": [
+          "0_koan_1",
+          319
+        ]
+      },
+      "actualReset": true,
+      "events": [
+        [
+          122,
+          221
+        ],
+        [
+          194
+        ]
+      ],
+      "replay": true,
+      "receivers": [
+        {
+          "reset": true,
+          "fit": {
+            "r": 27,
+            "k": 13,
+            "score": -2.778049007748876
+          },
+          "margin": 0.7051345205621353,
+          "held": -3.0482728630838185,
+          "heldCorrect": 71,
+          "heldN": 71,
+          "heldExact": true,
+          "keyExact": true
+        },
+        {
+          "reset": false,
+          "fit": {
+            "r": 27,
+            "k": 17,
+            "score": -3.093992668338814
+          },
+          "margin": 0.2959204322631308,
+          "held": -3.711133216425362,
+          "heldCorrect": 0,
+          "heldN": 71,
+          "heldExact": false,
+          "keyExact": false
+        }
+      ]
+    },
+    {
+      "plan": {
+        "r": 27,
+        "k": 13,
+        "iv": [
+          23,
+          5
+        ],
+        "fit": [
+          "0_loss_of_divinity",
+          171
+        ],
+        "held": [
+          "0_koan_1",
+          319
+        ]
+      },
+      "actualReset": false,
+      "events": [
+        [
+          122,
+          221
+        ],
+        [
+          194
+        ]
+      ],
+      "replay": true,
+      "receivers": [
+        {
+          "reset": true,
+          "fit": {
+            "r": 27,
+            "k": 14,
+            "score": -3.0997757189899575
+          },
+          "margin": 0.30302221312226996,
+          "held": -3.6967034081445163,
+          "heldCorrect": 0,
+          "heldN": 71,
+          "heldExact": false,
+          "keyExact": false
+        },
+        {
+          "reset": false,
+          "fit": {
+            "r": 27,
+            "k": 13,
+            "score": -2.778049007748876
+          },
+          "margin": 0.7051345205621353,
+          "held": -3.0482728630838185,
+          "heldCorrect": 71,
+          "heldN": 71,
+          "heldExact": true,
+          "keyExact": true
+        }
+      ]
+    },
+    {
+      "plan": {
+        "r": 21,
+        "k": 17,
+        "iv": [
+          4,
+          9
+        ],
+        "fit": [
+          "0_welcome",
+          252
+        ],
+        "held": [
+          "0_koan_1",
+          192
+        ]
+      },
+      "actualReset": true,
+      "events": [
+        [
+          122,
+          157
+        ],
+        [
+          194
+        ]
+      ],
+      "replay": true,
+      "receivers": [
+        {
+          "reset": true,
+          "fit": {
+            "r": 21,
+            "k": 17,
+            "score": -2.5823141273243295
+          },
+          "margin": 0.9094637029590538,
+          "held": -2.612711880551089,
+          "heldCorrect": 71,
+          "heldN": 71,
+          "heldExact": true,
+          "keyExact": true
+        },
+        {
+          "reset": false,
+          "fit": {
+            "r": 21,
+            "k": 9,
+            "score": -2.835516730536312
+          },
+          "margin": 0.646006251418437,
+          "held": -3.6613005335901354,
+          "heldCorrect": 0,
+          "heldN": 71,
+          "heldExact": false,
+          "keyExact": false
+        }
+      ]
+    },
+    {
+      "plan": {
+        "r": 21,
+        "k": 17,
+        "iv": [
+          4,
+          9
+        ],
+        "fit": [
+          "0_welcome",
+          252
+        ],
+        "held": [
+          "0_koan_1",
+          192
+        ]
+      },
+      "actualReset": false,
+      "events": [
+        [
+          122,
+          157
+        ],
+        [
+          194
+        ]
+      ],
+      "replay": true,
+      "receivers": [
+        {
+          "reset": true,
+          "fit": {
+            "r": 21,
+            "k": 10,
+            "score": -2.824240534474475
+          },
+          "margin": 0.6653749680857106,
+          "held": -3.7136715104672313,
+          "heldCorrect": 0,
+          "heldN": 71,
+          "heldExact": false,
+          "keyExact": false
+        },
+        {
+          "reset": false,
+          "fit": {
+            "r": 21,
+            "k": 17,
+            "score": -2.5823141273243295
+          },
+          "margin": 0.9094637029590538,
+          "held": -2.612711880551089,
+          "heldCorrect": 71,
+          "heldN": 71,
+          "heldExact": true,
+          "keyExact": true
+        }
+      ]
+    }
+  ],
+  "original": {
+    "fit": {
+      "r": 26,
+      "k": 24,
+      "score": -3.5660130149505127
+    },
+    "margin": 0.006676353534376123,
+    "fitBegin": 122,
+    "heldBegin": 194,
+    "heldScore": -3.708361355545057,
+    "fitText": "EJJTIAFEARHSCOCOULLAGSEOJOEFOEAOFUTDWHNEOIXJTHAEPHIANIDIANIFOEXUDJMHBNGANGOIPIBONGEAAETHEAODLJHJLOPLEAHYNUIAGTHGBPIMXGXEOFDAEEAJTWRDEONEOUFICHXAEEOREOIHAEEOTHNGSDACPEOAERLEB",
+    "heldText": "WTRJFXEOTHEJSIOEUWTFOENFBWANGAEMTIAWIAPEAGGNDWEATIAUNUMOTHGGAIAOBNGTXOAEWPTOESSFJTHPIAP",
+    "wholePrefixSkipped": 123,
+    "wholeScore": -3.690284976899059,
+    "fitIoc": 0.03378167031592118,
+    "wholeIoc": 0.03527410094338688,
+    "wholeN": 12833,
+    "controlIoc": [
+      0.062767177562298,
+      0.07423626316338233,
+      0.056094255030758
+    ],
+    "fitNormalizedCounts": [
+      1,
+      6,
+      5,
+      8,
+      4,
+      5,
+      2,
+      5,
+      2,
+      5,
+      4,
+      3,
+      9,
+      4,
+      6,
+      7,
+      4,
+      8,
+      4,
+      6,
+      2,
+      3,
+      8,
+      4,
+      4,
+      4,
+      3,
+      5,
+      8
+    ],
+    "wholeNormalizedCounts": [
+      85,
+      448,
+      470,
+      450,
+      493,
+      443,
+      476,
+      456,
+      436,
+      498,
+      420,
+      488,
+      453,
+      439,
+      451,
+      475,
+      454,
+      456,
+      459,
+      442,
+      449,
+      432,
+      473,
+      430,
+      468,
+      456,
+      435,
+      464,
+      434
+    ]
+  },
+  "training": [
+    "0_warning",
+    "0_wisdom",
+    "jpg107-167",
+    "jpg229",
+    "p56_an_end",
+    "p57_parable"
+  ]
+}
