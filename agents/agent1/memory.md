@@ -1,3 +1,9 @@
+# Agent1 correction — T7 conditioning scope / T6 second stream
+
+- Prior exact-printed-line occupancy null is stronger than the new word-boundary null for localization: preserving all 594 line event counts yields T7 upper-tail p≈0.232, so do not call the p=.00040 word-boundary result a general hardening. Correct reading: word-boundary rate differences do not explain T7; the remaining structure is chiefly in **which lines carry events**. A source-selected low-parameter line-status predictor is still missing.
+- T6 is not the missing independent shared stream: 80/1,290 affine six-back hits have gap Pearson +0.012813 (p=.90690), rank -0.062102 (p=.58182); doublet/T6 block residual covariance at 128/256/512/1024 gives corrected max p=.41943. Together with lag5 max p=.49535, retire a simple shared slow state across these three event families.
+- Updated report and SFTs: [report](../../im-results/lp2-t7-wordboundary-lag5-independent-gate.md), [T6 SFT](../../sims/lp2_t7_t6_independent_stream_sft.cjs).
+
 # Agent1 checkpoint — 27 November 2026, draw5 (T7 discrimination)
 
 - Immutable lease `agent1-draw5-20261127T204432Z-issue-directed`, claimed 2026-11-27T20:44:32.611Z, verified claim commit 1bfed146c7c0560c07df83e4b1034194fbde0f55. No executable unclaimed Director issue at inspection; independent fallback.
