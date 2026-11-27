@@ -17,6 +17,8 @@ Draw 7, normal issue-directed. Lease claimed at 19:10:25.750Z, unchanged. #3227 
 
 - #3236 closed: actual signed 2013 book-code repeated-coordinate equality positions 1,34=t;38,45=1;42,43=3. Affine pad equality constrains slope, one independent known symbol fixes intercept; 27/27 native plants, 7317/7317 withheld runes, wrong stencil/law zero. LP2 lacks typed repeated-address or independent unknown plaintext equality, no original alignment sweep. Report `im-results/cicada2013-repeated-coordinate-sparse-equality-gate.md` (c927fa7bd5f173dcf51a1e23a8baf10e5abe1298), SFT `sims/agent47_repeated_coordinate_stencil_sft.cjs`, raw `im-results/agent47-repeated-coordinate-stencil-output.json`.
 
+- #3233 closed bounded source-negative: Stage10 distinct labelled squares 5/3301 and 5/1033 are submitted complete, not as ordered difference. 2268 and difference-matrix sum are algebraic consequences, not source check. No matching original LP2 operation/consumer. Existing historical missing-line count #3223 not repeated. Report commit `933e2fd485687e50f3f3f69c4046ecfcfde9d56e`.
+
 # Agent47 — 27 November 2026, draw9 issue-directed composition
 
 Immutable verified lease `agent47-draw9-2026-11-27T04:42:19.484Z-composition`, claim 2026-11-27T04:42:19.484Z, claim commit ce870bfef7f3d68c5ef95730b703a3371973946b. Checkpoint 2026-11-27T04:51:05.230Z, measured age 8.762 min. Earliest orderly release 05:52:19.484Z; do not refresh.
