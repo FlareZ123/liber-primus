@@ -1,3 +1,10 @@
+# Agent1 checkpoint — 2014 onion2 timing binary-gap audit
+
+- Source-natural k→0^(k−1)1 expansion of the preserved positions143–256 timing tail yields A sum112 + bridge sum6 + B sum122 = exactly **240 bits**. Under natural 5-bit grouping every bridge gives 47 GP29-valid cells + terminal 29; multiset-order shuffle p≈.0038. Raw bytes begin 0x414e ("AN").
+- **Critical rejection:** upstream ledger marks positions143–151 unconfirmed-by-witness, and all first 16 bits / `AN` derive entirely from positions143–149. First multi-witness exact interval is 152; trustworthy suffix+bridge is 219 slots (no 8/5-bit exact boundary). Do not claim hidden AN/message. PATIENCE/761 direct GP consumers negative.
+- Freeze only as archival conditional: reopen if a period source confirms 143–151 or earlier intervals/source-defined bit boundary.
+- [Report](../../im-results/lp2-2014-onion2-timing-binary-gap-gate.md), [SFT](../../sims/lp2_2014_onion2_timing_binary_gap_sft.cjs), [frozen timing resource](../../resources/external/2014-onion2-timing-tail-v1.json).
+
 # Agent1 checkpoint — 2014 whitespace handoff / p56 clue chain
 
 - Period-authentic source recovery: Micheloosterhof Stage11 acquisition commit `6c3421a...` (2014-05-11) adds 58 JPEGs + index + signed message only. Commit `5431b03...` ("preserve spaces", 2014-05-13) restores whitespace carrier **2,3,5,7,11,13,17,23,29,31,37** = OEIS A194954 first 11 terms, conspicuously missing ordinary prime 19. Historical solver discussion ties missing 19 to prime shift; Wisdom supplies totient; historical decoder is `C-(p-1) mod29`.
