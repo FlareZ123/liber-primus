@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** exact 76/180 original-print partition; fixed p28 H row-pair transfer to the known 180-rune terminal register is negative; the source-sized 256-rune direct byte-pad and row-wise rank-transposition and one-swap-per-cell graph receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** exact 76/180 original-print partition; fixed p28 H row-pair transfer to the known 180-rune terminal register is negative; the source-sized 256-rune direct byte-pad and row-wise rank-transposition one-swap-per-cell graph, and global rank routing with arbitrary tie orders and shared alphabet receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -200,6 +200,26 @@ Neither radix nor sign produces recognizable English under either additive proje
 **Decision.** Retire these exact direct pad and rowwise rank-transposition receivers. This does not exclude a different source-selected nonlinear/stateful operation, nor does it identify the table's radix or purpose. Do not expand into arbitrary phases, row orders, or fitted transforms without a new original-source selector.
 
 Reproducer: sims/lp2_p50_dualregion_receiver_sft.cjs.
+
+### Global rank routing with arbitrary tie order and arbitrary alphabet (Agent49, 27 November 2026)
+
+The historical 2014 transposition examples fix literal index permutations, not sorting-derived keys (#2899). This is a distinct, conditional exploratory receiver from the earlier **row-wise** rank and one-swap-per-cell receivers: sort all 256 printed tokens together, granting completely arbitrary order within each equal-token class. The proposed receiver preserves the already-fixed outer76/inner180 geometry. No first-party clue fixes global sorting as the operation. The purpose is to reject or retain the entire receiver before proposing any p55 plaintext.
+
+All 32,640 pairwise comparisons agree between literal ASCII, base60 and drop-f base59, including equality. There are 92 singleton, 49 doubleton, 14 tripleton and six quadrupleton classes (161 distinct tokens). Thus sorting defines independent routing blocks between a token's physical cells and its contiguous rank slots; both directions are bijective after any tie-order choice. The two numerical directions (ascending/descending), identity or the source-selected horizontal reflection of the table, and gather/scatter are explicitly covered. For each, compare three shared-layer models on the solved 180 interior slots: raw→raw before the native p56 inverse, native→native afterward, or raw→native as a direct decoder. The authentic p56 prime-minus-one inverse is replayed on all 85 runes with its actual one plaintext-F hold at offset56, not holds at all ciphertext Fs. The p57 reading is unchanged.
+
+**Exact all-alphabet decision.** In block b let a_b(x) be the number of available input runes x and n_b(y) the number of required known outputs y. For a shared bijection with inverse alphabet m(y), exact tie-order feasibility is equivalent to a_b(m(y)) >= n_b(y) for every b,y: necessity is immediate, and sufficiency follows by assigning the required copies of each label to their slots before assigning the remaining positions arbitrarily. This induces a 29-by-29 bipartite graph whose perfect matchings represent all possible shared alphabets, with no dictionary or language model. To compute the **sharp** maximum known-symbol agreement when exact matching fails, use weight W[y,x] = sum_b min(a_b(x), n_b(y)) and a maximum-weight perfect matching. Independent tie-block routing attains this optimum, verified by forward/inverse replay and the Hungarian primal/dual certificate.
+
+| Representation | Exact variants feasible | Sharp best agreement of 180 across the eight variants | Empty inverse-label domains even with arbitrary p55 source values |
+| --- | ---: | ---: | ---: |
+| raw→raw | 0/8 | 54 (range 48–54) | 21–24 |
+| native→native | 0/8 | 56 (range 47–56) | 17–20 |
+| raw→native | 0/8 | 53 (range 46–53) | 17–20 |
+
+**Stronger p55-independent certificate.** Replace all 76 outer source values with free GP29 variables, granting each label independent use of every wildcard in its block (a relaxation). All 24 variants still have at least 17 impossible inverse-label domains. Each variant has a two-block certificate using entirely known source cells, so no unknown p55 rune is needed to reject the shared global-sort layer. For instance, ascending/unreflected/gather raw→raw requires output F at least once in each of two classes: base60 value197 has input addresses 34,114 containing labels {4,14}; value205 has sole input address74 containing label27. The two allowed source-label sets are disjoint; no common alphabet can satisfy both, regardless of tie ordering or p55. The corresponding exact output slots are [200,201] and [211]. Full witnesses for every variant are in the JSON.
+
+Eight independently seeded-in-sequence source-geometry planted alphabet/tie controls (one per routing variant) each recover a legal full 180/180 known output and pass exact inverse replay and weighted dual checks; the chosen completions match 58–71 of the 76 withheld planted runes. The test does not assert unique tie orders or unique p55 outputs. No original candidate reaches the known control gate, so no speculative p55 plaintext is selected. This is an exact rejection of the specified common global-rank route, including both radices and all tie orders and shared GP29 alphabets, not of p55-only sorting, a different source frame, or position-dependent alphabets.
+
+[Reproducer](../sims/lp2_p50_global_rank_ties_alphabet_sft.cjs) · [Raw results and witnesses](lp2-p50-global-rank-ties-alphabet.json). Inputs: canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, grid blob `2550eae357442912220e05dc51147523a61dd75a`. Numerical core executed in connected JavaScript; standalone Node/CI not independently dispatched. No new authentic key or plaintext.
 
 ## Decision and reproduction
 
