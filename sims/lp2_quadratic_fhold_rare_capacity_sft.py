@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TAPE_SHA = "260fc1ff6eee3d7a108ed43d5b8112cc5c332fa2f4460e71c563ad504de2a6b7"
 DONORS = ("gibran_prophet_58585.txt", "shakespeare_first300k.txt")
 
-def build(t, w):
+def build(t, w, u=15, v=17):
     states = list(range(Q))
     off, N, E, layers, a = 0, Q, [], [], 0
     while a < len(t):
@@ -38,7 +38,7 @@ def build(t, w):
                     if i == a and hold:
                         continue
                     h[k * Q + c] += 1
-                    k = (k * k + 15 * w[c] + 17) % Q
+                    k = (k * k + u * w[c] + v) % Q
                 if k not in nxt:
                     nxt.append(k)
                 es.append((off + z, N + nxt.index(k), hold, h))
@@ -138,7 +138,7 @@ def upper_certificate(m, cert=None):
         obj = np.zeros(nvar)
         obj[n:] = -1
         res = linprog(obj, A_ub=sparse(A, nvar), b_ub=b,
-                      A_eq=sparse(D, nvar), b_eq=d, bounds=(0, 1), method="highs")
+                      A_eq=sparse(D, nvar) if D else None, b_eq=d if D else None, bounds=(0, 1), method="highs")
         assert res.success, res.message
         S = 10**6
         y = [max(0, round(-v * S)) for v in res.ineqlin.marginals]
