@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "execution": "Connected V8 original and plant fits; separate survivor check; reconstructed standalone reproducer not yet run",
+  "inputs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "transcription": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "gibran": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "shakespeare": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "emerson": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  },
+  "fourfold": {
+    "keys": 72,
+    "ordinary": {
+      "train": -3.1658631107001143,
+      "held": -4.649518497428699,
+      "heldControls": [
+        252,
+        242,
+        253,
+        255,
+        229,
+        225,
+        250,
+        224,
+        250,
+        255,
+        249,
+        238
+      ],
+      "worstControl": -3.158062943077107
+    },
+    "hold": {
+      "train": -3.2179712185867833,
+      "failure": {
+        "row": 0,
+        "j": 5,
+        "c": 11,
+        "k": 11
+      },
+      "completedControls": 7,
+      "totalControls": 12,
+      "heldControls": [
+        246,
+        255,
+        237,
+        237,
+        234,
+        254,
+        243
+      ],
+      "worstCompleted": -3.0802323171602137
+    },
+    "trainReference": {
+      "counts": [
+        216564,
+        2437,
+        320785
+      ],
+      "minima": [
+        -3.072612973617423,
+        -2.75748639708975,
+        -3.043895601921709
+      ],
+      "survivors": 0
+    }
+  },
+  "halfturn": {
+    "keysTrain": 142,
+    "keysFull": 143,
+    "unseen": {
+      "page": 26,
+      "row": 4,
+      "j": 23,
+      "c": 10
+    },
+    "ordinary": {
+      "train": -2.6454744553075313,
+      "held": -4.694065585643661,
+      "full": -3.0146307796145577,
+      "heldControls": [
+        136,
+        118,
+        179,
+        144,
+        125,
+        135,
+        140,
+        89,
+        168,
+        176,
+        136,
+        133
+      ],
+      "worstControl": -4.066311820906716
+    },
+    "hold": {
+      "train": -2.663690648303017,
+      "full": -3.035439780962899,
+      "failure": {
+        "row": 2,
+        "j": 2,
+        "c": 8,
+        "k": 8
+      },
+      "completedControls": 0,
+      "totalControls": 12
+    },
+    "fullReference": {
+      "counts": [
+        216299,
+        2172,
+        320520
+      ],
+      "minima": [
+        -3.0232156512532056,
+        -2.7356203196338034,
+        -2.9973627893018264
+      ],
+      "holdSurvivors": 0,
+      "ordinarySurvivors": [
+        {
+          "start": 210494,
+          "score": -3.020615911654187,
+          "existing": 18,
+          "needed": 8
+        },
+        {
+          "start": 210495,
+          "score": -3.017889367382837,
+          "existing": 12,
+          "needed": 5
+        },
+        {
+          "start": 210498,
+          "score": -3.0232156512532056,
+          "existing": 27,
+          "needed": 19
+        },
+        {
+          "start": 210504,
+          "score": -3.017124527255471,
+          "existing": 13,
+          "needed": 6
+        }
+      ],
+      "conflictAt": {
+        "page": 24,
+        "row": 6,
+        "j": 1,
+        "orbit": "5:20"
+      }
+    }
+  }
+}
