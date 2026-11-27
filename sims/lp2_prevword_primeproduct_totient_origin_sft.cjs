@@ -76,9 +76,11 @@ function study(co,tx,native){
  }
  const original=[];
  for(let i=0;i+1<cuts.length;i++){
-  const page=[0,3,8,15,23,27,33,40,54][i],c=words.slice(start.get(cuts[i]),start.get(cuts[i+1]));
-  for(const sign of [1,-1]){const d=decode(c,sign,train(null));const {decoded,history,...summary}=d;original.push({page,sign,n:c.flat().length,words:c.length,...summary, ...(decoded?{plaintext:decoded.map(w=>w.map(x=>co.translit[x]).join('')).join(' ')}:{}),history});}
- }
+  const page=[0,3,8,15,23,27,33,40,54][i],skip=[13,16,12,20,16,19,10,8,9][i];
+  for(const framing of ['complete','body']){
+  const from=cuts[i]+(framing==='body'?skip:0);check(start.has(from),'rubric word boundary '+page);const c=words.slice(start.get(from),start.get(cuts[i+1]));
+  for(const sign of [1,-1]){const d=decode(c,sign,train(null));const {decoded,history,...summary}=d;original.push({page,framing,sign,n:c.flat().length,words:c.length,...summary, ...(decoded?{plaintext:decoded.map(w=>w.map(x=>co.translit[x]).join('')).join(' ')}:{}),history});}
+ }}
  return {law:"s_next=phi(product GP primes of recovered word) mod3301; p56 prime-minus-one at prime ordinal s, literal F holds; all 3301 incoming states",canonicalRunes:total,canonicalWords:words.length,realP56:85,controls,original};
 }
 if(require.main===module){const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');console.log(JSON.stringify(study(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/liber-primus/lp2-transcription.txt'),JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json'))),null,2));}
