@@ -9,7 +9,7 @@
 #include <vector>
 using namespace std;
 using U=uint64_t;using Perm=array<int,9>;using Row=array<uint8_t,9>;
-const string ALPH="0123456789abcdefghijklmnopqrs";const int LIMIT=3;
+const string ALPH="0123456789abcdefghijklmnopqrs";int LIMIT=3;
 int dig(char c){auto p=ALPH.find(c);assert(p<29);return int(p);}
 int mod(int x){return (x+29)%29;}
 struct Lex{
@@ -25,7 +25,7 @@ struct Solver{
  array<vector<Word>,9>words;array<Cross,8>cross{};array<int,81>C{};
  Row dec[9][9];int un[9][9],cr[8][9][9],suf[9][9];Perm col,row;
  int sign,trans;U count=0,truth=0,cols=0,passUnary=0,passRelax=0,nodes=0;
- int best=999,bestCorrect=-1;vector<string>witnesses;array<U,4>hist{},countByFamily{};
+ int best=999,bestCorrect=-1;vector<string>witnesses;vector<U>hist=vector<U>(LIMIT+1);array<U,4>countByFamily{};
  Solver(const Lex&l,const array<int,81>&k,const Case&c):lex(l),K(k),ca(c){
   int pos=0;for(int n:ca.lens){assert(n>=1&&n<=9);int r=pos/9,a=pos%9;
    if(a+n<=9)words[r].push_back({a,n});else{assert(r<8&&cross[r].len==0);cross[r]={a,n};}pos+=n;
@@ -80,7 +80,8 @@ struct Solver{
   for(auto&w:witnesses)cout<<w<<"\n";
  }
 };
-int main(){
+int main(int argc,char**argv){
+ if(argc>1){LIMIT=stoi(argv[1]);assert(LIMIT>=0&&LIMIT<=21);}
  ios::sync_with_stdio(false);cin.tie(nullptr);Lex l;int n;cin>>n;
  for(int i=0;i<n;i++){string s;uint32_t f;cin>>s>>f;l.add(s,f);}
  string k;cin>>k;array<int,81>K;assert(k.size()==81);for(int i=0;i<81;i++)K[i]=dig(k[i]);
