@@ -679,3 +679,6 @@ Round48 fixed historical-key retry extension: 36/36 native planted control reach
 
 ### Conditional q8 inference
 Exact first-eight-attempt branch tree for EPIPHANY SEEKS under expanded-alphabet retry: 72,924,973 original leaves across m35/36/37, zero matches; planted title keys recovered 3/3, held ciphertext reachability passed. q13 not tested. Report im-results/lp2-round48-z4-exact-law-and-prime-retry-gate.md; sims/lp2_z4_q8_title_key_inference_sft.cjs.
+
+### q13 title continuation resolved
+Finite Z3 QF_BV exact phase/attempt constraints recover all three q13 title-compatible keys (one per m), each fails original p0–2 before offset46 in every F mode. Planted key recovered among first80 models. m36/q8 independent constraint UNSAT matches explicit enumeration. See sims/lp2_z4_title_smt.py and consolidated Round48 report. Do not retread fixed title + retry + historical periods.

@@ -92,3 +92,17 @@ The first eight attempts assign each key position once. At each attempt, the onl
 All three controls recover the planted DIUINITY-index key from 13 aligned runes, then admit the remaining 716 emitted runes from the repeated p57 native control. At m=37 full-key uniqueness is absent. Across 72,924,973 original full-key leaves, zero title matches. Thus no q8 key satisfies this particular title in the tested fresh-reset architecture, without needing any plaintext assumptions about the body. This does not establish or reject the title independently of the mechanism. q13 remains untested; the branching tree grows sharply. No novel plaintext recovered.
 
 Executable core run in connected V8. Reproducer: `sims/lp2_z4_q8_title_key_inference_sft.cjs`. Standalone Node wrapper not separately executed. No CI.
+
+## Agent23: q13 solved symbolically, all title-compatible keys fail the body
+
+The q13 analogue can avoid the enormous explicit tree with a finite QF_BV constraint model. For each known title plaintext rune and start phase, introduce a next-phase choice. The attempted symbols before the next visible emission consist of zero or more repeats of the previous visible symbol, followed by zero or more silent symbols. A repeat after the first silent symbol would emit and is therefore prohibited. The chosen endpoint must be the desired visible symbol; if it equals the previous visible symbol, the prefix must contain a silent value. The maximum attempt count is q for distinct previous and target visible symbols (a full period necessarily contains the emitting key position), otherwise 2q. The title starts with fresh sentinel, and contains no plaintext F. All possible shift residues are represented as six-bit vectors constrained below m. Each enumerated model was forward-replayed and blocked by its key vector; the solver returned UNSAT after the single original model in every m case. Exact finite inverse then tests unknown body runes under all three F modes.
+
+| m | Title-compatible keys | Max prefix ordinary | Max prefix F-preserves | Max prefix F-updates |
+|---|---:|---:|---:|---:|
+| 35 | 1 | 46 | 46 | 46 |
+| 36 | 1 | 18 | 46 | 46 |
+| 37 | 1 | 18 | 46 | 46 |
+
+Each prefix count includes the 13-rune title; none reaches the 729-rune full chapter. The m36/q8 SMT crosscheck returned UNSAT, agreeing with explicit enumeration. The m36/q13 planted FIRFUMFERENFE-index control recovered its true key among the first 80 title-compatible models (three ordinary-mode keys admitted its complete 729-symbol ciphertext). The control enumeration intentionally stopped at the true key, so no uniqueness is claimed. Original enumeration was exhaustive; none timed out. The conditional q8 and q13 cases now both fail. This rejects the proposed title under these finite periods and architecture, not under all cryptography.
+
+Local libz3 C-API solver executed against exact copied canonical 729-rune source and 95-rune native control. Reproducer `sims/lp2_z4_title_smt.py` reads those same inputs directly from the repository; only input loader and library discovery adapted for persistence. No CI. No new plaintext.
