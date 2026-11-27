@@ -1,0 +1,20 @@
+{
+  "source": {
+    "repository": "Dukotah/cicada3301",
+    "path": "liber-primus/analysis/round43/F5bT-timing-keystream/merged_intervals.json",
+    "description": "2014 onion2 inter-byte timing reconstruction; copied only to freeze the interval sequences used by Agent1."
+  },
+  "span": [143, 256],
+  "five_minute_units_A_positions_143_189": [2,6,2,3,1,1,2,3,1,1,4,1,2,3,3,2,1,5,3,3,1,4,1,4,1,1,3,2,7,2,1,2,3,1,1,3,5,3,3,2,3,2,2,2,1,1,2],
+  "five_minute_units_B_positions_192_256": [2,1,1,3,3,1,1,3,2,1,2,4,5,2,1,2,1,1,4,1,1,3,5,1,1,2,1,2,1,3,2,2,2,1,2,1,6,1,2,1,1,1,2,2,1,3,1,3,3,2,1,1,2,1,1,1,3,2,1,2,1,2,1,1,2],
+  "bridge_positions_190_191": {
+    "total_five_minute_units": 6,
+    "variants": [[1,5],[2,4],[3,3],[4,2],[5,1]]
+  },
+  "confidence_note": {
+    "positions_143_151": "single wiki witness sample; upstream ledger marks these nine cells unconfirmed-by-witness",
+    "positions_152_189": "exact multi/single witness intervals apart from documented local clock-digit disagreements resolved upstream",
+    "positions_190_191": "unknown individually, exact sum 30 minutes",
+    "positions_192_256": "exact BotSottile witness intervals"
+  }
+}
