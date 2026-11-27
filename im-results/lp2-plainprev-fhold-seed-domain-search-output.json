@@ -2818,6 +2818,254 @@
           "witness": null
         }
       ]
+    },
+    {
+      "start": 115,
+      "count": 10,
+      "cap": 256,
+      "total": 145,
+      "exactResults": [
+        {
+          "i": 115,
+          "a": {
+            "page": 12,
+            "i": 56,
+            "name": "0_koan_1",
+            "j": 719
+          },
+          "b": {
+            "page": 21,
+            "i": 193,
+            "name": "0_loss_of_divinity",
+            "j": 505
+          },
+          "k0": 23,
+          "fixed": 17,
+          "after": 116,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 635346,
+          "dead": 156,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 116,
+          "a": {
+            "page": 1,
+            "i": 254,
+            "name": "jpg107-167",
+            "j": 275
+          },
+          "b": {
+            "page": 5,
+            "i": 68,
+            "name": "0_loss_of_divinity",
+            "j": 410
+          },
+          "k0": 23,
+          "fixed": 17,
+          "after": 118,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 687286,
+          "dead": 154,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 117,
+          "a": {
+            "page": 42,
+            "i": 139,
+            "name": "0_loss_of_divinity",
+            "j": 531
+          },
+          "b": {
+            "page": 54,
+            "i": 36,
+            "name": "0_welcome",
+            "j": 497
+          },
+          "k0": 10,
+          "fixed": 17,
+          "after": 118,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 621458,
+          "dead": 163,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 118,
+          "a": {
+            "page": 9,
+            "i": 82,
+            "name": "0_welcome",
+            "j": 439
+          },
+          "b": {
+            "page": 33,
+            "i": 121,
+            "name": "0_koan_1",
+            "j": 694
+          },
+          "k0": 1,
+          "fixed": 17,
+          "after": 119,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 642521,
+          "dead": 159,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 119,
+          "a": {
+            "page": 9,
+            "i": 121,
+            "name": "0_loss_of_divinity",
+            "j": 607
+          },
+          "b": {
+            "page": 12,
+            "i": 41,
+            "name": "0_welcome",
+            "j": 272
+          },
+          "k0": 23,
+          "fixed": 17,
+          "after": 119,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 613709,
+          "dead": 157,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 120,
+          "a": {
+            "page": 10,
+            "i": 244,
+            "name": "jpg107-167",
+            "j": 261
+          },
+          "b": {
+            "page": 51,
+            "i": 36,
+            "name": "0_loss_of_divinity",
+            "j": 639
+          },
+          "k0": 15,
+          "fixed": 17,
+          "after": 119,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 548323,
+          "dead": 158,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 121,
+          "a": {
+            "page": 1,
+            "i": 20,
+            "name": "0_loss_of_divinity",
+            "j": 626
+          },
+          "b": {
+            "page": 42,
+            "i": 251,
+            "name": "0_wisdom",
+            "j": 50
+          },
+          "k0": 23,
+          "fixed": 17,
+          "after": 120,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 642772,
+          "dead": 159,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 122,
+          "a": {
+            "page": 16,
+            "i": 10,
+            "name": "0_koan_1",
+            "j": 262
+          },
+          "b": {
+            "page": 54,
+            "i": 136,
+            "name": "0_loss_of_divinity",
+            "j": 390
+          },
+          "k0": 23,
+          "fixed": 17,
+          "after": 120,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 611870,
+          "dead": 163,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 123,
+          "a": {
+            "page": 27,
+            "i": 193,
+            "name": "p57_parable",
+            "j": 50
+          },
+          "b": {
+            "page": 36,
+            "i": 179,
+            "name": "0_welcome",
+            "j": 272
+          },
+          "k0": 15,
+          "fixed": 17,
+          "after": 120,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 591638,
+          "dead": 158,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 124,
+          "a": {
+            "page": 22,
+            "i": 109,
+            "name": "jpg107-167",
+            "j": 162
+          },
+          "b": {
+            "page": 38,
+            "i": 30,
+            "name": "0_welcome",
+            "j": 105
+          },
+          "k0": 1,
+          "fixed": 17,
+          "after": 121,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 571575,
+          "dead": 159,
+          "leaves": 0,
+          "witness": null
+        }
+      ]
     }
   ]
 }
