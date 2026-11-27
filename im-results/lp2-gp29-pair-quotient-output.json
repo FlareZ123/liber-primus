@@ -1,0 +1,354 @@
+{
+  "schema": 1,
+  "sourceGeometry": {
+    "runes": 12956,
+    "pairs": 6478,
+    "split": 6527,
+    "omittedBoundaryPair": 3263,
+    "repeatCounts": [
+      37,
+      49
+    ]
+  },
+  "all": {
+    "pairs": 6478,
+    "q": [
+      1917,
+      2001,
+      1980,
+      580
+    ],
+    "ordinaryAscii": 0.38046795523906407,
+    "sideAscii": 0.6051724137931035,
+    "byteEntropy": 7.946262844356686,
+    "ordinaryEntropy": 7.962032271037687,
+    "longestPrintable": 9,
+    "sideLongestGap": 83,
+    "transitions": [
+      [
+        563,
+        594,
+        588,
+        172
+      ],
+      [
+        598,
+        600,
+        625,
+        178
+      ],
+      [
+        577,
+        610,
+        616,
+        176
+      ],
+      [
+        179,
+        196,
+        151,
+        54
+      ]
+    ],
+    "firstBytes": "bb0dc1cd1f9345d55560431105c96662",
+    "headers": []
+  },
+  "train": {
+    "pairs": 3263,
+    "q": [
+      986,
+      1009,
+      945,
+      323
+    ],
+    "ordinaryAscii": 0.37755102040816324,
+    "sideAscii": 0.6346749226006192,
+    "byteEntropy": 7.916889801100504,
+    "ordinaryEntropy": 7.929345638879559,
+    "longestPrintable": 6,
+    "sideLongestGap": 74,
+    "transitions": [
+      [
+        305,
+        298,
+        282,
+        101
+      ],
+      [
+        295,
+        309,
+        307,
+        98
+      ],
+      [
+        288,
+        289,
+        280,
+        87
+      ],
+      [
+        98,
+        112,
+        76,
+        37
+      ]
+    ],
+    "firstBytes": "bb0dc1cd1f9345d55560431105c96662",
+    "headers": []
+  },
+  "hold": {
+    "pairs": 3214,
+    "q": [
+      931,
+      992,
+      1034,
+      257
+    ],
+    "ordinaryAscii": 0.3831586066959757,
+    "sideAscii": 0.5680933852140078,
+    "byteEntropy": 7.916996033740902,
+    "ordinaryEntropy": 7.927946953328892,
+    "longestPrintable": 9,
+    "sideLongestGap": 83,
+    "transitions": [
+      [
+        258,
+        296,
+        306,
+        71
+      ],
+      [
+        303,
+        291,
+        318,
+        80
+      ],
+      [
+        289,
+        320,
+        335,
+        89
+      ],
+      [
+        81,
+        84,
+        75,
+        17
+      ]
+    ],
+    "firstBytes": "93536fdd56663b539e0daf2e1740ff3b",
+    "headers": []
+  },
+  "obs": {
+    "overflow": 0.08953380673047237,
+    "ascii": 0.38046795523906407,
+    "entropy": 7.962032271037687,
+    "longest": 9,
+    "heldGain": -0.0013798280072210834
+  },
+  "nulls": {
+    "uniform": {
+      "overflow": {
+        "min": 0.07440568076566842,
+        "p025": 0.07965421426366162,
+        "median": 0.08675517134918184,
+        "p975": 0.09370175980240815,
+        "max": 0.09725223834516826,
+        "le": 799,
+        "ge": 215
+      },
+      "ascii": {
+        "min": 0.36314727639542704,
+        "p025": 0.3708530805687204,
+        "median": 0.3829535864978903,
+        "p975": 0.3953921734711164,
+        "max": 0.4032067510548523,
+        "le": 361,
+        "ge": 640
+      },
+      "entropy": {
+        "min": 7.959015693854541,
+        "p025": 7.962622612178851,
+        "median": 7.968554973397142,
+        "p975": 7.973562048588515,
+        "max": 7.9763616369522055,
+        "le": 15,
+        "ge": 985
+      },
+      "longest": {
+        "min": 6,
+        "p025": 7,
+        "median": 8,
+        "p975": 12,
+        "max": 16,
+        "le": 781,
+        "ge": 460
+      },
+      "heldGain": {
+        "min": -0.00803543074301769,
+        "p025": -0.005705558301296816,
+        "median": -0.0017719178541991626,
+        "p975": 0.0007917157464941815,
+        "max": 0.0025827068339233524,
+        "le": 615,
+        "ge": 385
+      }
+    },
+    "matched": {
+      "overflow": {
+        "min": 0.07625810435319542,
+        "p025": 0.07965421426366162,
+        "median": 0.08613769682000617,
+        "p975": 0.09277554800864464,
+        "max": 0.09632602655140475,
+        "le": 829,
+        "ge": 180
+      },
+      "ascii": {
+        "min": 0.3627946127946128,
+        "p025": 0.37159302522431015,
+        "median": 0.38383152173913043,
+        "p975": 0.3964676198486123,
+        "max": 0.40077624029699627,
+        "le": 291,
+        "ge": 709
+      },
+      "entropy": {
+        "min": 7.951395122960967,
+        "p025": 7.956451323954127,
+        "median": 7.9629462536863915,
+        "p975": 7.969012875786826,
+        "max": 7.972126465688954,
+        "le": 398,
+        "ge": 602
+      },
+      "longest": {
+        "min": 6,
+        "p025": 7,
+        "median": 8,
+        "p975": 12,
+        "max": 15,
+        "le": 781,
+        "ge": 475
+      },
+      "heldGain": {
+        "min": -0.009118296153406221,
+        "p025": -0.005797184617130042,
+        "median": -0.0018450795225227314,
+        "p975": 0.0008651664029768067,
+        "max": 0.002115558772664091,
+        "le": 628,
+        "ge": 372
+      }
+    }
+  },
+  "wholeInteger": {
+    "bytes": 7868,
+    "ascii": 0.3842145399084901,
+    "entropy": 7.976885368782108,
+    "firstBytes": "08734843a55193dcbb7231b564a2a088",
+    "headers": []
+  },
+  "plants": [
+    {
+      "plaintext": "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE",
+      "pairs": 91,
+      "stats": {
+        "pairs": 91,
+        "q": [
+          31,
+          30,
+          30,
+          0
+        ],
+        "ordinaryAscii": 1,
+        "sideAscii": 0,
+        "byteEntropy": 3.8809659225571393,
+        "ordinaryEntropy": 3.8809659225571393,
+        "longestPrintable": 91,
+        "sideLongestGap": 0,
+        "transitions": [
+          [
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            30,
+            0
+          ],
+          [
+            30,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "firstBytes": "414e454e4457495448494e5448454445",
+        "headers": []
+      },
+      "repeats": 8
+    },
+    {
+      "plaintext": "PARABLELICETHEINSTARTUNNELNGTOTHESURFACEWEMUSTSHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEMERGE",
+      "pairs": 100,
+      "stats": {
+        "pairs": 100,
+        "q": [
+          33,
+          34,
+          33,
+          0
+        ],
+        "ordinaryAscii": 1,
+        "sideAscii": 0,
+        "byteEntropy": 4.001300702012147,
+        "ordinaryEntropy": 4.001300702012147,
+        "longestPrintable": 100,
+        "sideLongestGap": 0,
+        "transitions": [
+          [
+            0,
+            33,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            33,
+            0
+          ],
+          [
+            33,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "firstBytes": "50415241424c454c494345544845494e",
+        "headers": []
+      },
+      "repeats": 7
+    }
+  ],
+  "overflowPlant": {
+    "pairs": 256,
+    "overflow": 20
+  }
+}
