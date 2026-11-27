@@ -52,3 +52,25 @@ For each printed complete word w, starting prime ordinal s in 0..3300, use C=(P 
 Authentic p56 inner encryption reproduces 85/85 ciphertext runes using one uninterrupted prime clock. Three synthetic plants from independently solved native WARNING, KOAN1 and LOSS OF DIVINITY, with hidden initial origins 1033/761/229 and signs +/−/+, recover **184/184, 780/780, 755/755** plaintext runes and replay exactly. All true state transitions are retained. The ranker excludes the target native section from its bigram training, but is not a strict unseen-author or external-corpus holdout. It chooses initial origins 16/3/16, different from the planted origins; the first-word plaintext and its totient state coincide with the planted ones. This is observational origin aliasing and does **not** establish unique key recovery. All original cases fail independent of scores.
 
 [Standalone CJS](../sims/lp2_prevword_primeproduct_totient_origin_sft.cjs) and [machine-readable results](lp2-prevword-primeproduct-totient-origin-output.json); core study executed against pinned Git blobs 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 (corpus), 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7 (transcription), and 1b064ef6d85819b7d96adaff31a82d1ec551598f (native controls), in connected V8. Standalone Node wrapper and CI not separately run. This finite model is distinct from the [clause multiplicative prime-sum origin](lp2-clause-primeproduct-origin-inverse.md) and the repeated prior-word vector above. Retire this precise reset rule on original complete groups, including independently restarted red-free bodies. Other state updates and latent word boundaries are outside its scope. **No unknown plaintext, authentic key, or source-selected operation recovered.**
+
+### Latent-word-boundary extension (H-decoy)
+
+The printed complete groups need not be genuine plaintext words. The same totient-product prime-origin law was therefore inverted on each red-free body with all word boundaries latent. The sufficient state is (ciphertext offset, next prime ordinal), initialized with all 3,301 origins. A trie enumerates every lexical word and every legal literal-F interpretation; a finite nonlexical allowance enumerates arbitrary chunks up to the remaining rune budget. At identical state, lower total nonlexical rune cost dominates, then higher unigram word log probability breaks ties. No beam or intermediate score threshold. Vocabulary: 29,060 canonical GP forms, maximum lexical length 18, including the solved native sections (so controls are not blind to vocabulary membership); permitted singletons A/I/O/T. TextBlob blob 140e1d22b5f8c45deddd2e8b25549d9d6307d938.
+
+All three synthetic native-text plants recover 1,719/1,719 runes and 434/434 word ends with exact re-encryption. Initial origins remain aliases rather than uniquely recovered keys. On the nine original chapter bodies, both signs fail to complete with zero nonlexical runes. Maximum reachable completed-word boundary by page and sign:
+
+| Start page | Body runes | + | − |
+|---:|---:|---:|---:|
+| 0 | 716 | 12 | 11 |
+| 3 | 1129 | 12 | 9 |
+| 8 | 1717 | 10 | 11 |
+| 15 | 1883 | 10 | 12 |
+| 23 | 1005 | 10 | 11 |
+| 27 | 1414 | 11 | 16 |
+| 33 | 1670 | 9 | 11 |
+| 40 | 3000 | 7 | 12 |
+| 54 | 299 | 11 | 9 |
+
+With up to eight arbitrary nonlexical **runes** total, the additional three bodies (p0, p23, p54), both signs, also fail: completed-word maxima 44/37, 39/41, 37/40 respectively. This is an exact finite vocabulary/budget exclusion for this particular origin law, not an exclusion of general H-decoy or an independent statistical significance result. No unknown plaintext or authenticated key recovered. The added experiment core was executed in connected V8 against the repository blobs, not via a separate Node or CI run.
+
+Reproducer: [latent word inverse](../sims/lp2_latent_prevword_totient_origin_sft.cjs); [raw output](lp2-latent-prevword-totient-origin-output.json). Code commit f340dd0757496fd46f02fd3ff8a94c7c5a3d2444; raw output 7d5627dbf3cc4175bbeb081052a09928e2931e03.
