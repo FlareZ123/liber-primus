@@ -1,0 +1,203 @@
+{
+  "corpusBlob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "nativeBlob": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+  "fib": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    8,
+    13,
+    21,
+    34,
+    55,
+    89,
+    144,
+    233,
+    377,
+    610,
+    987
+  ],
+  "plate": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "pivot": 3301,
+  "sourceCrossingPrimeOrdinal": 464,
+  "origins": 3302,
+  "relaxedClasses": 95758,
+  "toyOracleChecks": 240,
+  "p56": {
+    "n": 85,
+    "consumed": 84
+  },
+  "plant": [
+    {
+      "name": "0_warning",
+      "n": 184,
+      "s": 100,
+      "B": 3301,
+      "truth": 181,
+      "fixedEnds": [
+        178,
+        179,
+        180,
+        181,
+        182
+      ],
+      "relaxEnds": [
+        182,
+        181,
+        180,
+        179,
+        178,
+        177
+      ],
+      "ordinaryOrigin": 100,
+      "ordinaryAccuracy": 184,
+      "fit": 0.6535475082670816,
+      "held": 0.7656040387953668
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "s": 400,
+      "B": 3301,
+      "truth": 504,
+      "fixedEnds": [
+        500,
+        501,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508
+      ],
+      "relaxEnds": [
+        508,
+        507,
+        506,
+        505,
+        504,
+        503,
+        501,
+        500
+      ],
+      "ordinaryOrigin": 400,
+      "ordinaryAccuracy": 515,
+      "fit": 0.7584706287077659,
+      "held": 0.8644404478880814
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157,
+      "s": 20,
+      "B": 1033,
+      "truth": 152,
+      "fixedEnds": [
+        147,
+        151,
+        152,
+        153,
+        154,
+        155
+      ],
+      "relaxEnds": [
+        155,
+        154,
+        153,
+        152,
+        151,
+        150,
+        149,
+        147
+      ],
+      "ordinaryOrigin": 20,
+      "ordinaryAccuracy": 157,
+      "fit": 0.5447634499784144,
+      "held": -0.07834391280553152
+    }
+  ],
+  "original": [
+    {
+      "name": "p15-offset20-through-p22",
+      "n": 1883,
+      "cut": 1752,
+      "sourceOrigin0": {
+        "prefix": 12,
+        "end": []
+      },
+      "fixedMax": 435,
+      "fixedBest": [
+        3024
+      ],
+      "fixedFull": 0,
+      "relaxedMax": 1323,
+      "relaxedBest": [
+        [
+          1494,
+          11
+        ],
+        [
+          1495,
+          11
+        ]
+      ],
+      "relaxedFull": 0,
+      "relaxedWitnesses": [],
+      "ordinary": {
+        "origin": 1578,
+        "fit": -1.6884274193750768,
+        "gap": 24.585126589191532,
+        "held": -1.8636624063732103,
+        "plain": "M IA O N Y D W Y H Y F AE B X A Y OE H G B S A D B N P N X I F E S J I X T W O G M D TH P E O D EO AE T P TH EA D H M T R F G B O NG M S N AE TH N IA EO F T O W X NG TH F U T J AE X H M TH E Y J IA R I J W G EO L D M M T P B J R R P I NG OE P NG C U L T I O U O N P T IA H X G IA EO M M IA J IA U A R S AE E N D I Y W A H X D H AE C B F W T I IA E TH D IA S H F W C C A G T X EO B T F L TH O X NG B TH TH C L W W IA T I B EA X R NG P X AE X W R I W S C H EA TH IA C EO L N TH W TH F D TH AE OE E TH N A X IA L X W G D NG TH L TH OE OE W AE E C O M Y W G X C N E R Y A L A TH TH A EA AE TH A N OE OE D EO P P H J O EO I X EA R O A M E B S D I M AE P P F J TH P D G A L IA R D U R EA H G EA X W G J N C D U G R X O AE R S OE I T OE J AE W J F EO NG J B F G O R D C TH J NG F S L B D M J G W EA AE Y I EA G M L C O O P D A A B EA B P X Y C R A EA H X AE IA W B A X IA IA W C F R U D N M P O W T D L IA C AE TH A U N J O R H EA P I T H B B A F U EA NG Y TH F G R S J M EO EO J H C EA S L H F TH L EO S F O AE G O Y O X U G X I B IA EO L D W U A L P S I U L I B NG C X N O D EO AE Y Y AE B AE EA EA NG R S D Y B EO O S AE U T T Y G B E EA E A X EA I U L B U X R Y Y C NG X P S L B J D S O P NG D N E Y W IA J R S E B T I U F NG S A I P G A X G B OE IA P L H EO N M W N EO S F R M X AE O Y A R W B P A TH C N S D S W L D D W S OE H NG P OE N EA A J AE O P I R P S A M D EA O TH E G I E EO Y H N Y S I N X EA AE J L I NG R NG A S R U A TH I R H D L O J H B TH D U NG O L G J B D X I EA U S F F X J Y N E O P TH NG AE A W X B B L D S B TH TH AE A TH S T J J N AE Y C OE TH I O X TH N EA U S U X A B B H I H A D S L EO N H EO N E U F N W X I S N L R T R F H S W A IA I NG J S O X B I E R T TH IA C I G A J O D M R EA AE H AE J L G C Y TH NG M W L M EA J A B M EO G Y U G S S L P X F I T F O Y E H NG S EO EO M T OE T A P M E P U E B E C E Y J I O M TH T J E O N T G NG J T E T B IA A N A O B H B TH IA EO EA L T NG T H S R I H L I O O L M A N P TH G D U H U X W EA J U IA M A P L X J U O P B E NG C O N L W H I L NG O TH D M W I B C N R S C A C J O I W TH P D W L F C R O D G M W B M E D TH Y N T EA H NG T W S H G R N O T L U M P D F O T EA R IA N U T N B EO TH L U J M N R O P X J B Y EO R N A E EA T Y E H EA G Y C IA H EA OE U B D F P X W D S U AE X J P EO O J M S EA P F J L NG H H E B C X T OE AE B NG Y Y F S E Y F B Y O C U R Y H S A B B S NG I F T L TH P R EO T OE X I O EA L S U J N EO EO O NG P R IA P D OE W M C H G X U W I L G U M F A H H H F Y P D T N I H L EO IA B D E W NG IA D O X N A EO B J S A G B S J O D T L A H N T E X I EO J D C F NG Y NG IA M EO O NG I EA B B H E X S H C G H C M EO IA EA M W E AE EO R Y B U X S H R D R P D H W H OE A L C A L G L Y EO I C IA F I U NG J N B C TH NG NG C G F N EA Y E M X AE S R NG I D OE X C H T TH AE M H W D M D W X I F EA D M EA E T H F U T U OE E T J W H L U H Y TH E M Y D A W IA TH B S W EO H O O R P L TH O IA Y N AE NG T EA Y J AE Y A AE IA R E D C EA EA B AE G E W P W OE L L A H E L N W AE I IA E U R IA EA EA O OE T R J S O H J M IA J C D E L W S TH AE I B H C X F I B R A W EA S G Y B A N R L A C X EO D N C X D G NG C IA B L OE F D Y W L G NG E G AE E E N S H N NG H R W J EO G E NG J AE E E X NG NG H EA E D Y Y EO M EA L I F AE B A E M P A B EA M W TH S G IA EO M T L B R I TH EA R O OE IA P H T O S R O NG EO N N AE W H F AE R C P L M AE B H F E O F EA AE R D J AE OE M F E H O D F TH N W T C I H G X X N M T H X X C B TH I Y U J I AE L OE F S A NG G W U P S IA E L J IA Y NG Y L X OE TH O X F W W B E N U AE EA P T J W EA O I OE L EO X H X IA W NG TH AE R Y NG E O EO L A IA EO B D AE H M OE L IA S AE J OE H X J J TH F U O D H AE AE C IA EA Y D X G J O EA P F J L J X L OE H P C J J R NG OE AE S IA G N F T I L O G L AE TH IA U L M OE EA W A Y Y G OE EO I R R E EO H J F F Y X EA EA O AE U AE N EA J W R O D P A EA B Y J M EO P OE C J X Y Y L L AE EO O G P EO X C R EO L L M C U Y AE NG P W O AE C NG P S R EO L G H P EO O D EA NG TH X B E S C AE AE TH L OE C F W TH U NG OE B Y AE EO Y S N EA H C J OE EA B Y T A F U I P EO G AE S W B O L J C A N AE B R W AE E A OE Y EA C A IA TH AE R C A U M H O T O Y EA J A T E L EA N NG O N D T TH TH F M O X IA H P E Y N E EA O OE C TH AE P S Y IA J P AE J P TH C NG A AE"
+      }
+    },
+    {
+      "name": "p16-through-p22",
+      "n": 1744,
+      "cut": 1613,
+      "sourceOrigin0": {
+        "prefix": 38,
+        "end": []
+      },
+      "fixedMax": 443,
+      "fixedBest": [
+        72
+      ],
+      "fixedFull": 0,
+      "relaxedMax": 1239,
+      "relaxedBest": [
+        [
+          687,
+          24
+        ]
+      ],
+      "relaxedFull": 0,
+      "relaxedWitnesses": [],
+      "ordinary": {
+        "origin": 2967,
+        "fit": -1.6887471125777285,
+        "gap": 13.313210742349384,
+        "held": -1.8248479513642981,
+        "plain": "O TH EA S D G F U A O J EA TH M H W A OE EO C L H M S S J AE B NG M O B J C D O A D L R IA J N Y U P O J N R H B O L X S C U T TH A P A EA AE D B A P L T D O U B AE U M P N U U R G AE N EO AE S AE B Y N C W M EO NG L OE W TH TH E H C AE F OE O I T F P P C U EA W S P B I A M NG W W H T I EO C F M L L A P EO P AE Y S Y EA N I EO T TH D G P X IA H H A U EO H C D Y M J Y NG A F EA IA AE R O L D N D TH A N C G N L A D I M EO H OE D S N R X P I F IA OE H E E X M I I G H T C L H P T J T T AE TH TH TH X NG L EO C L C N AE TH IA G P IA H E TH X IA TH EA R NG M EO EA H G G O G E EA A T B I C EO W H E D EA W H X P O B S T H T S U IA A S IA T IA N N IA S EA EA L W U G O X EO C AE W A O NG U R T X C W I S D N F E O EO P X EO L G IA D W C AE EO S F N NG O O T D Y T W D C H R P O W R IA H T G X S Y P H E L R S D IA Y I M IA U W A Y R X I P T G NG T H TH EA B OE A G S A S M W M C J A TH L J H F E IA J J I O NG L O Y H AE O G U E H IA W AE B W A A D G I Y F S G NG A S B U C E H Y N M C X AE S AE P C P X B D EA S T I G D EA M C U NG AE W J X X F I OE B B E H B AE S C O E U E P U C TH E D I G TH P NG U P W TH OE J I EO D TH S M U G I OE S O C Y D X D NG EA I A EO D S I X Y B P E J OE U T H X EA E U F S X M B L R AE H TH E E M G C M E Y EO A G I M O B A EO AE C Y U AE N S J H G A T EO A O P EO NG A B R W I S NG D X J N L EO IA U NG H G L AE S OE EO N E NG TH P Y R A A AE G F P L H IA D EO E C W M EO J H IA S EA L L G O O OE TH B EO S R EO E L D IA H A AE O O H E NG EA C W T R B N E TH NG OE B I C J M TH N J R C T AE TH P I X X EA F E C J AE L IA H W H NG EA T AE IA D R G Y C O U AE T TH OE EA B EO F M A D T TH U EA W B W P NG U IA C NG TH EA O L D J I G U I G IA G TH C R U OE M U EA C C IA U E TH N OE E M IA T N AE W U U T B X D IA U I A M IA F N L P H EO L M O OE G A IA E O X AE G X P G S X T N W E IA C TH L S N L F N Y N S F T EA B OE I L AE X C A E J NG T E J S H H M O F G O S S L H AE O T R X H A TH N EO IA L U NG G L T X OE H EA E F L W L IA U NG H I W I A EO C Y C IA S D U D G L B N EO X AE EA O W H R N U AE TH Y W F F TH IA X TH F U H A EA A E P O AE D J L N I I H D P TH M S TH J TH T IA F E B C IA W L E AE G A E N O J F S EO R B R X T S N N N U IA X L O F R U T EO M F F OE S G E TH C R EA EO I EA A P A H AE D NG N I D R X TH F P J J EA A NG E I J U NG Y O T L Y M AE I S N TH T G U G O I G D R U W G A X EO NG D B E EA TH L G R G B M C S OE IA E Y Y Y Y S C E OE W Y A M E Y A P T NG OE U A D J S D P T G D I D T N A H E F EA H J U M Y O L Y L B A N N W H S NG EA B A U G NG TH J W H F E EO M B R TH C O AE T W OE I N L D NG X W U EO IA H D N R TH EA G B O E B Y U X R L AE NG F L N B OE O P F EA G B D I T D X W TH AE EA L L S C OE A IA D X Y E W B Y EO N N O EO H B T E M L IA E P Y EA D L Y P IA EO N TH A W IA P J W U O M G AE D X B TH J R P N B D U C T TH N E H D N R C B Y O I EO A TH P P AE R R B W J IA X EA AE E U O M D N S B EO D T X EO C H NG EO U W L N U H EO NG N L I G G O L D S OE Y G Y EO U G Y R S Y S IA OE AE P C C X C U E TH O O NG L N H W D OE E J OE AE TH R A S D G C J T X R Y N R O N H S IA G Y D F C I W F NG D P J EA M N W C U C H EO C Y O G L W U P D R AE A I G H TH S X J TH C S NG P D Y Y IA E J X D B C P EA E B Y F R L IA A T J F R U F T G L I O C A L G D M A N D J B G U IA I NG G OE F T IA AE F EO D W NG U T U R NG J P D C D I S D E G IA OE S TH C O R O J X R X A W OE L J E U C IA D M I EO O U W EO S IA F R E O J NG E P I J S B U L R EO X X NG N W EO L F X F IA D B W I E U H NG X I C H J AE EA Y N U X O B W L EO S A M D I NG C S AE Y J O W U A J R I D X E M OE C P J U O EO T U EA T I H N X W T L P O B N IA J R OE N L B NG A AE W R R H TH I L L TH A R H O M OE R P H EA C L EO AE U G H A R Y N Y F P I P I J NG IA M U Y H N R F B T EA L S TH E O IA NG B AE AE B C J U W F F IA C B F O D NG AE TH IA P M T OE C M W U AE EA EO G G EA OE R TH H R OE X EA R T M U J OE F TH TH S L EO I T I L J TH L S I"
+      }
+    }
+  ]
+}
