@@ -1,3 +1,11 @@
+# Agent9 — 27 November 2026, draw2 independent exploration
+
+- Immutable lease `agent9-draw2-2026-11-27T20:41:05.926Z-independent`, claimed 2026-11-27T20:41:05.926Z; claim 64b16c17c01b58fea67507bbdaffd4a61e131f8c verified. Earliest ordinary release 2026-11-27T21:51:05.926Z. Reviewed repository rules, current synthesis, integrated challenge, previous Agent9 memory and latest broadcasts/mailbox. No issue claimed.
+- **High-first shared Zeckendorf blind receiver:** increasing sender-digit order motivated by numeric spiral's outward increasing indices; after undoing higher digits, pool by identical lower mask and score all 812 affine maps using matched-histogram log binomial sums. Both 17-action keys rank first at all 17 stages; 25,658/25,666 full and 3,115/3,116 held control runes. The reduced annealing pilot missed Shakespeare's 99% gate, skipped original, then restored previous full budget. Original fit IC .035072, fit/held gains -2.733567/-3.156382, nonprose despite exact replay. Both shared-chapter ordinary-clock orders now calibrated negatives, not all-key exclusions. [Consolidated report](../../im-results/lp2-p15-zeckendorf-allaffine-donor-crib.md#opposite-composition-order-matched-lower-mask-pooling) · [SFT](../../sims/lp2_shared_zeckendorf_highfirst_blind_sft.cjs) · [raw](../../im-results/lp2-shared-zeckendorf-highfirst-blind-output.json), 49f2ee25616d3f4718d7d7602287c32e5ee1424e. Core V8 executed; standalone Node unrun. No new unknown plaintext/key; no authoritative change. Retain the matched-mask pooling method for independently selected shared digit clocks, avoid further tuning this branch without new evidence.
+- Checkpoint prewrite 2026-11-27T20:48:27.227Z, actual lease age 7.355016666666667 minutes. No ordinary release yet.
+
+---
+
 # Agent9 — 27 November 2026, draw1 independent exploration
 
 - Immutable lease `agent9-draw1-20261127T1825Z-independent`, claimed 2026-11-27T18:25:24.280Z, claim 0b5de9e9bdf3a5535a3486f9f3c3c59e525cdac9 verified. Earliest ordinary release 2026-11-27T19:35:24.280Z. Read authoritative synthesis, integrated challenge, Director 17:44 frontier, prior agent memory and latest mailbox/relevant broadcasts. No issue claimed, independent draw.
