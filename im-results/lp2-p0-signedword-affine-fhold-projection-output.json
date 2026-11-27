@@ -1,0 +1,197 @@
+{
+  "original": {
+    "survivors": 24,
+    "ranks": [
+      {
+        "delta": 25,
+        "mean": -3.829762989843064,
+        "n": 213,
+        "iterations": 2
+      },
+      {
+        "delta": 4,
+        "mean": -3.886685650916506,
+        "n": 212,
+        "iterations": 2
+      },
+      {
+        "delta": 19,
+        "mean": -3.916062377183789,
+        "n": 211,
+        "iterations": 2
+      },
+      {
+        "delta": 16,
+        "mean": -3.9210969098971757,
+        "n": 210,
+        "iterations": 2
+      },
+      {
+        "delta": 15,
+        "mean": -3.947651061674719,
+        "n": 213,
+        "iterations": 2
+      },
+      {
+        "delta": 27,
+        "mean": -3.9621015187391753,
+        "n": 213,
+        "iterations": 2
+      },
+      {
+        "delta": 9,
+        "mean": -3.9629836653273074,
+        "n": 214,
+        "iterations": 3
+      },
+      {
+        "delta": 18,
+        "mean": -3.9718991725380928,
+        "n": 209,
+        "iterations": 2
+      },
+      {
+        "delta": 0,
+        "mean": -3.973421355893526,
+        "n": 213,
+        "iterations": 3
+      },
+      {
+        "delta": 11,
+        "mean": -3.980251933211472,
+        "n": 214,
+        "iterations": 3
+      },
+      {
+        "delta": 3,
+        "mean": -3.980642414436817,
+        "n": 213,
+        "iterations": 3
+      },
+      {
+        "delta": 21,
+        "mean": -3.987965064935012,
+        "n": 211,
+        "iterations": 2
+      },
+      {
+        "delta": 6,
+        "mean": -3.9923047145653077,
+        "n": 213,
+        "iterations": 2
+      },
+      {
+        "delta": 22,
+        "mean": -4.004479368488016,
+        "n": 212,
+        "iterations": 2
+      },
+      {
+        "delta": 13,
+        "mean": -4.012713303887046,
+        "n": 213,
+        "iterations": 2
+      },
+      {
+        "delta": 12,
+        "mean": -4.015295042150948,
+        "n": 212,
+        "iterations": 2
+      },
+      {
+        "delta": 24,
+        "mean": -4.021173097734494,
+        "n": 214,
+        "iterations": 3
+      },
+      {
+        "delta": 10,
+        "mean": -4.021707163399481,
+        "n": 214,
+        "iterations": 3
+      },
+      {
+        "delta": 2,
+        "mean": -4.043816658975539,
+        "n": 212,
+        "iterations": 2
+      },
+      {
+        "delta": 5,
+        "mean": -4.051262085075495,
+        "n": 216,
+        "iterations": 3
+      },
+      {
+        "delta": 1,
+        "mean": -4.05997406315688,
+        "n": 212,
+        "iterations": 2
+      },
+      {
+        "delta": 7,
+        "mean": -4.069505940108715,
+        "n": 216,
+        "iterations": 2
+      },
+      {
+        "delta": 17,
+        "mean": -4.09200808573538,
+        "n": 212,
+        "iterations": 3
+      },
+      {
+        "delta": 20,
+        "mean": -4.098160190290544,
+        "n": 213,
+        "iterations": 2
+      }
+    ]
+  },
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "truthDelta": 17,
+      "truthPath": {
+        "mean": -2.6499111512230167,
+        "n": 215
+      },
+      "rank": 1,
+      "truthOptimum": {
+        "delta": 17,
+        "mean": -2.6461811293566995,
+        "n": 214,
+        "iterations": 2
+      },
+      "winner": {
+        "delta": 17,
+        "mean": -2.6461811293566995,
+        "n": 214,
+        "iterations": 2
+      },
+      "survivors": 15
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "truthDelta": 14,
+      "truthPath": {
+        "mean": -2.7740715493968517,
+        "n": 212
+      },
+      "rank": 1,
+      "truthOptimum": {
+        "delta": 14,
+        "mean": -2.750455758728307,
+        "n": 211,
+        "iterations": 2
+      },
+      "winner": {
+        "delta": 14,
+        "mean": -2.750455758728307,
+        "n": 211,
+        "iterations": 2
+      },
+      "survivors": 25
+    }
+  ]
+}
