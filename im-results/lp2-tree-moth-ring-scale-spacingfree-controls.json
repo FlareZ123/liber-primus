@@ -1,0 +1,191 @@
+{
+  "trainRunes": 374413,
+  "records": [
+    {
+      "trial": 0,
+      "schedule": {
+        "radix": 60,
+        "reversed": false,
+        "sign": 1
+      },
+      "offsets": [
+        163063,
+        42482,
+        255786
+      ],
+      "pos": {
+        "prefix": 11.882218513932173,
+        "full": 20.18790802528747,
+        "held": 8.305689511355297
+      },
+      "neg": {
+        "prefix": -4.87413083812163,
+        "full": -10.087989076381518,
+        "held": -5.213858238259888
+      },
+      "observable": 76,
+      "correct": 72,
+      "plainCorrect": [
+        72,
+        73,
+        72
+      ]
+    },
+    {
+      "trial": 1,
+      "schedule": {
+        "radix": 60,
+        "reversed": true,
+        "sign": -1
+      },
+      "offsets": [
+        157793,
+        36209,
+        237508
+      ],
+      "pos": {
+        "prefix": 17.677085313506552,
+        "full": 28.226639417116075,
+        "held": 10.549554103609523
+      },
+      "neg": {
+        "prefix": -12.430569911553619,
+        "full": -18.025381985418676,
+        "held": -5.594812073865057
+      },
+      "observable": 76,
+      "correct": 57,
+      "plainCorrect": [
+        58,
+        57,
+        57
+      ]
+    },
+    {
+      "trial": 2,
+      "schedule": {
+        "radix": 59,
+        "reversed": true,
+        "sign": 1
+      },
+      "offsets": [
+        177513,
+        39040,
+        216559
+      ],
+      "pos": {
+        "prefix": 16.447014461782885,
+        "full": 24.550437494334915,
+        "held": 8.10342303255203
+      },
+      "neg": {
+        "prefix": -13.071394172637554,
+        "full": -16.847327912618084,
+        "held": -3.7759337399805304
+      },
+      "observable": 76,
+      "correct": 68,
+      "plainCorrect": [
+        68,
+        68,
+        69
+      ]
+    },
+    {
+      "trial": 3,
+      "schedule": {
+        "radix": 60,
+        "reversed": true,
+        "sign": -1
+      },
+      "offsets": [
+        195365,
+        42650,
+        224010
+      ],
+      "pos": {
+        "prefix": 20.562293805743764,
+        "full": 28.30288981008607,
+        "held": 7.740596004342308
+      },
+      "neg": {
+        "prefix": -9.645877918230156,
+        "full": -14.659876204209354,
+        "held": -5.0139982859791985
+      },
+      "observable": 76,
+      "correct": 64,
+      "plainCorrect": [
+        64,
+        64,
+        66
+      ]
+    },
+    {
+      "trial": 4,
+      "schedule": {
+        "radix": 60,
+        "reversed": true,
+        "sign": 1
+      },
+      "offsets": [
+        193853,
+        44383,
+        278325
+      ],
+      "pos": {
+        "prefix": 10.285850489410166,
+        "full": 14.890536873460746,
+        "held": 4.604686384050581
+      },
+      "neg": {
+        "prefix": -15.934975878987245,
+        "full": -23.872707522541305,
+        "held": -7.937731643554059
+      },
+      "observable": 76,
+      "correct": 71,
+      "plainCorrect": [
+        71,
+        71,
+        71
+      ]
+    },
+    {
+      "trial": 5,
+      "schedule": {
+        "radix": 60,
+        "reversed": false,
+        "sign": -1
+      },
+      "offsets": [
+        191154,
+        38341,
+        273310
+      ],
+      "pos": {
+        "prefix": 8.88560031801262,
+        "full": 22.214131520895876,
+        "held": 13.328531202883255
+      },
+      "neg": {
+        "prefix": -13.745277341348356,
+        "full": -20.339400976720867,
+        "held": -6.594123635372512
+      },
+      "observable": 76,
+      "correct": 61,
+      "plainCorrect": [
+        62,
+        62,
+        61
+      ]
+    }
+  ],
+  "pass": {
+    "positive": 6,
+    "negative": 6,
+    "recovery": 6
+  },
+  "passed": true
+}
