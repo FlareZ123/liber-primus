@@ -131,8 +131,8 @@ def run(dictionary,base,plant,world):
             if not all(G['primitive_q8'](key) for key in keys):return
             stats['primitive']+=1
             # Full forward replay on all eight anchor words.
-            for ci,idx,p,c,_ in groups:
-                if s.encode(p,pi,keys[ci],phases[idx])!=c:return
+            for anchor_i,(ci,wordidx,p,c,_) in enumerate(groups):
+                if s.encode(p,pi,keys[ci],phases[anchor_i])!=c:return
             stats['complete_actions']+=1
             held=[]
             for ci,ch in enumerate(chapters):
