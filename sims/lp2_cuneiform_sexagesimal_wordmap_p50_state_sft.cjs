@@ -196,14 +196,16 @@ assert.deepEqual(fivePacket.map((item) => item.base59Rune), ["T", "Y", "R", "T",
 assert.deepEqual(squareFirstSeenPacket.map((item) => item.outputRune), ["E", "NG", "EA", "M", "G"]);
 assert.deepEqual(squareFirstSeenPacket.map((item) => item.base59Rune), ["T", "M", "Y", "T", "R"]);
 
-// The final two values alone return the p33 oversized marker pair.
+// The final two values return the old hypothesized M/NG pair, not the actual D/NG initials.
 const selected = fivePacket.slice(3);
 assert.deepEqual(selected.map((item) => [item.pageNumber, item.wordOrdinal]), [
   [17, 13], [55, 1],
 ]);
 assert.deepEqual(selected.map((item) => item.outputRune), ["M", "NG"]);
 
-const target = [19, 21];
+const target = [19, 21]; // historical arithmetic target only
+const actualMarkerTarget = [23, 21];
+const actualMarkerMatches = [];
 const matches = [];
 let validVariants = 0;
 function variantOutput(number, config, alphabet) {
@@ -244,6 +246,7 @@ for (const reverseDigits of [false, true]) {
                 const output = cuneiformNumbers.map((number) => variantOutput(number, config, alphabet));
                 if (output.every((value) => value !== null)) {
                   validVariants += 1;
+                  if (output[0] === actualMarkerTarget[0] && output[1] === actualMarkerTarget[1]) actualMarkerMatches.push({radix, config, output});
                   if (output[0] === target[0] && output[1] === target[1]) {
                     matches.push({ radix, config, output });
                   }
@@ -257,6 +260,7 @@ for (const reverseDigits of [false, true]) {
   }
 }
 assert.equal(validVariants, 256);
+assert.equal(actualMarkerMatches.length, 0);
 assert.equal(matches.length, 1);
 assert.equal(matches[0].radix, "base60");
 assert.deepEqual(matches[0].config, {
@@ -336,7 +340,7 @@ const oversizedRedMarkerCensus = [
   { page: 15, markers: ["F"] },
   { page: 23, markers: ["U"] },
   { page: 27, markers: ["M"] },
-  { page: 33, markers: ["M", "NG"] },
+  { page: 33, markers: ["D", "NG"] },
   { page: 39, markers: ["IA"] },
   { page: 40, markers: ["F"] },
   { page: 54, markers: ["A"] },
@@ -344,7 +348,7 @@ const oversizedRedMarkerCensus = [
 assert.equal(oversizedRedMarkerCensus.reduce((sum, item) => sum + item.markers.length, 0), 13);
 assert.deepEqual(
   oversizedRedMarkerCensus.filter((item) => item.markers.length > 1),
-  [{ page: 3, markers: ["L", "P"] }, { page: 33, markers: ["M", "NG"] }],
+  [{ page: 3, markers: ["L", "P"] }, { page: 33, markers: ["D", "NG"] }],
 );
 assert.deepEqual(fivePacket.slice(0, 3).map((item) => item.outputRune), ["E", "EA", "G"]);
 
@@ -810,7 +814,9 @@ console.log(JSON.stringify({
       "BASE29 positional versus sum",
       "forward versus reversed rune order",
     ],
-    target: ["M", "NG"],
+    target: ["M", "NG"], // historical conditional target
+    actualMarkerTarget: ["D", "NG"],
+    actualMarkerMatches,
     matches,
   },
   sourceNativeControls: {

@@ -269,10 +269,9 @@ assert.equal(secondTitle[0].values[0], state.p - state.K);
 assert.deepEqual(hadamardPair([state.K, state.A]), [state.p, state.A + state.K]);
 assert.deepEqual(hadamardPair([state.e, state.g]), [mod29(-state.K), state.A]);
 
-// Original-image source reading: a decorative red M precedes the first
-// transcribed p33 unit, while the second oversized red rubric begins NG TH.
-// The second heading's literal first two GP values therefore map through the
-// already frozen H orientation to [M,D] = [B,p].
+// Historical conditional M target, withdrawn 27 November: the first enlarged
+// rune is D itself, not a separate M. The arithmetic H chain below is retained
+// as a regression for the old conditional receiver, not a visible-pair match.
 assert.deepEqual(secondTitle[0].values.slice(0, 2), [state.B + state.K, state.K]);
 assert.deepEqual(
   hadamardPair(secondTitle[0].values.slice(0, 2)),
@@ -423,7 +422,9 @@ console.log(JSON.stringify({
     hChain: {
       secondHeadingFirstTwo: secondTitle[0].values.slice(0, 2),
       toTopMarkerAndInitial: hadamardPair(secondTitle[0].values.slice(0, 2)),
-      topMarkerAndInitial: [markerMOrdinal, firstTitle[0].values[0]],
+      topMarkerAndInitial: [markerMOrdinal, firstTitle[0].values[0]], // legacy hypothetical target
+      actualEnlargedInitials: [firstTitle[0].values[0], secondTitle[0].values[0]],
+      visibleMDPair: false,
       toWeAndDots: hadamardPair([markerMOrdinal, firstTitle[0].values[0]]),
       matchingRedSpanFirstPairCount: redFirstPairTransforms.filter(
         (row) => row.throughH[0] === state.B && row.throughH[1] === state.p
@@ -448,5 +449,5 @@ console.log(JSON.stringify({
     solvedP57Trigram: model.p57Score,
   },
   interpretation:
-    "The independently selected B=19 state addresses p50[19]=0X=33. Physical p33 then self-registers the same DH/H state in its source layout: the second red heading starts [B+K,K]=[21,2] and uniquely among all red-span first pairs maps through H to [B,p]=[19,23], the decorative M plus first title D; a second H step gives [GP0(WE),13]=[25,13], matching solved p57 WE and the literal red title punctuation count. Separately, [K,A]=[2,8] is the unique exact two-word red span of that shape and H([2,8])=[p,A+K]=[23,10], matching the first red title rune D and total title length; the upper unit has g=5 lines, p=23 words, p-K=21 black words and e^q=81 black runes; the second red title has [e,g]=[3,5] and H=[-K,A]=[27,8], begins with GP21=p-K, and its lower unit has a=6 lines, p+g=28 black words and p*g=115 black runes. The 28-word lower body therefore motivates one bounded H-order cycle test over all 28 phases and both directions. No parameter outside that fixed family is searched.",
+    "The independently selected B=19 state addresses p50[19]=0X=33. Physical p33 then self-registers the same DH/H state in its source layout: the second red heading starts [B+K,K]=[21,2] and uniquely among all red-span first pairs maps through H to [B,p]=[19,23], the historical hypothetical M plus first title D (no separate M exists in the original); a second H step gives [GP0(WE),13]=[25,13], matching solved p57 WE and the literal red title punctuation count. Separately, [K,A]=[2,8] is the unique exact two-word red span of that shape and H([2,8])=[p,A+K]=[23,10], matching the first red title rune D and total title length; the upper unit has g=5 lines, p=23 words, p-K=21 black words and e^q=81 black runes; the second red title has [e,g]=[3,5] and H=[-K,A]=[27,8], begins with GP21=p-K, and its lower unit has a=6 lines, p+g=28 black words and p*g=115 black runes. The 28-word lower body therefore motivates one bounded H-order cycle test over all 28 phases and both directions. No parameter outside that fixed family is searched.",
 }, null, 2));

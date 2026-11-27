@@ -4,7 +4,7 @@
 
 **Agent45, 19 November 2026. Classification: source-structural mechanism evidence plus one bounded negative cipher consumer. No unknown plaintext is claimed.**
 
-Physical p33 has an independent source-visible selector: the p23/p56 half-turn stencil pair gives page rise `56-23=33`, and p33's solved-control layout yields `THEIR RISE`. Separately, the DH public value `B=19` can be treated as zero-based p50 address19, whose token `0X` decodes in base60 as33 and hence converges on p33. That p50 leg assumes B-as-address, base60 token decoding and byte-as-page output; the original table has no creator-authenticated digit legend or page-pointer type, and the p57 audit only conditionally prefers base60 for its tested register. The p50 route is corroboration, not the independent p33 selector. Agent50 separately strengthened the p33 layout by reading its oversized decorative section markers as **M** and **NG**, with GP ordinals `19=B` and `21=B+K`, and by showing their GP-prime values route through the established p50 graph to the two black-body lengths 81 and115. See `communications/broadcast/20261119T0325Z_agent50_p33-marker-state-graph.md`.
+Physical p33 has an independent source-visible selector: the p23/p56 half-turn stencil pair gives page rise `56-23=33`, and p33's solved-control layout yields `THEIR RISE`. Separately, the DH public value `B=19` can be treated as zero-based p50 address19, whose token `0X` decodes in base60 as33 and hence converges on p33. That p50 leg assumes B-as-address, base60 token decoding and byte-as-page output; the original table has no creator-authenticated digit legend or page-pointer type, and the p57 audit only conditionally prefers base60 for its tested register. The p50 route is corroboration, not the independent p33 selector. Agent50 originally proposed a dual M/NG marker route. The corrected D/NG source excludes that match; the lower NG leg alone remains numerically valid. See `communications/broadcast/20261119T0325Z_agent50_p33-marker-state-graph.md`.
 
 This report adds a separate source-layout result: once p33 is selected, its title words, section counts and visible H relations reproduce the same recovered state
 
@@ -29,7 +29,7 @@ Under the already frozen H orientation,
 H(21,2) = [19,23] = [B,p].
 ```
 
-Those two outputs are visible at the beginning of the first p33 unit as the oversized decorative **M** with GP ordinal19 and the first transcribed red title rune **D** with GP ordinal23.
+Only D (ordinal23) is present at the first p33 initial. The M component of this numeric output lacks the claimed visual target.
 
 Applying H once more gives
 
@@ -41,7 +41,7 @@ The first coordinate is `GP0(WE)=25`, the solved p57 word already used in the p2
 
 This exact second-heading relation is unique in the annotated red-span control set: among all 18 red spans with at least two runes, p33 local91 is the only first-rune pair whose H image is `[19,23]`.
 
-This relation is useful because it selects the same reversible H operation from p33's visible source typography. The WE interpretation remains a solved-source semantic link, while the 13-dot output has a literal local visual referent.
+This numerical relation no longer independently selects H from source typography. The WE interpretation remains a solved-source semantic link, while the 13-dot output has a literal local visual referent.
 
 ## Layout state packet
 
@@ -137,13 +137,13 @@ The 2014 Stage11 index lists LP2 images 0–57, which supports the zero-based pa
 | p17:13 | 34.jpg | FREAMEAA | [0,4,28,19,28,24] |
 | p55:1 | 72.jpg | NG | [21] |
 
-The p17 parser joins slash-marked physical line wraps before splitting words; p17 word13 is FREAMEAA, not the line-fragment NGDJ. Forward big-endian BASE29 positional encoding gives **3,528,831** and **21**. Modulo the 256 cells of the p50 table selects zero-based row-major addresses **127** and **21**, printed tokens **3D** and **2H**. Under the conventional 60-symbol token alphabet these decode to **193** and **137**, whose residues modulo29 are **19=M** and **21=NG**. Under the source-missing-f 59-symbol alternative they decode to **190** and **135**, whose residues are **16=T** and **19=M**. The output **[M,NG]** therefore exactly matches the ordered oversized red markers on p33.
+The p17 parser joins slash-marked physical line wraps before splitting words; p17 word13 is FREAMEAA, not the line-fragment NGDJ. Forward big-endian BASE29 positional encoding gives **3,528,831** and **21**. Modulo the 256 cells of the p50 table selects zero-based row-major addresses **127** and **21**, printed tokens **3D** and **2H**. Under the conventional 60-symbol token alphabet these decode to **193** and **137**, whose residues modulo29 are **19=M** and **21=NG**. Under the source-missing-f 59-symbol alternative they decode to **190** and **135**, whose residues are **16=T** and **19=M**. The output **[M,NG]** matches the historical hypothetical pair only; the original enlarged initials are **[D,NG]**.
 
 ### Frozen convention family and original-image controls
 
 The updated SFT tests **256** configurations, adding reversed sexagesimal digit order to the previous 128-case family. Its eight binary dimensions are: sexagesimal digit order; base60/base59 token radix; zero/one page origin; zero/one word origin; zero/one table origin; row/column serialization; positional/sum word encoding; and forward/reversed rune order. Exactly **one** configuration returns **[M,NG]**: standard left-to-right sexagesimal order, base60, zero-based page, one-based word, zero-based table, row-major, forward positional BASE29. The uniqueness is conditional on this finite family; it is not a probability or a blinded prediction.
 
-An original-image census of oversized red runes on unsolved LP2 p0–p55 finds **13** markers: p0 S; p3 L/P; p6 A; p8 X; p15 F; p23 U; p27 M; p33 M/NG; p39 IA; p40 F; p54 A. Only p3 and p33 have ordered two-marker groups; p33 is the sole **M→NG** pair. The first p33 M is a separate decorative marker outside the runic transcription; NG is the first rune of the lower red span. This is a visual census of large red runes, not a census of every black illustration or punctuation mark.
+An original-image census of oversized red runes on unsolved LP2 p0–p55 finds **13** markers: p0 S; p3 L/P; p6 A; p8 X; p15 F; p23 U; p27 M; p33 D/NG; p39 IA; p40 F; p54 A. Only p3 and p33 have ordered two-marker groups; p33 is the sole **D→NG** pair. The upper D and lower NG are themselves the first transcribed runes of their respective headings. This is a visual census of large red runes, not a census of every black illustration or punctuation mark.
 
 The source-native numerical controls are mixed:
 
@@ -223,11 +223,11 @@ Applying the same winning schedule to the 81-rune upper body is also nonlinguist
 
 ## Research consequence
 
-The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. The cuneiform sexagesimal word-map loop adds an independent upstream selector for the visible M/NG marker pair, while remaining a retrospective navigation candidate rather than a body decryption. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. It confirms the same state through independent source channels: p50 address, visible marker identities, title word lengths, H relations, line counts, word counts and rune counts.
+The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. The cuneiform sexagesimal word-map loop fails the corrected D/NG marker target; its prior M/NG correspondence is withdrawn. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. The 15 arithmetic checks remain numerically unchanged because they did not independently test a decorative M observation; they no longer establish the claimed visible [M,D] target.
 
 The missing edge remains a reversible consumer for the 81- and 115-rune bodies. Direct p32-core additive transfer, Hill9, red-IV CBC-Hill, pointer-cycle additive transfer, and this 28-word H-power cycle are already negative. Further phase/key expansion on those families would retread rejected ground.
 
-A later solved-p56 transfer independently serializes the two p33 title packets as **THEIR RISE**. The authenticated 2016 clue places THEIR at positions 19 and25: 19 is the existing B entry state, p33's visible H chain emits 25, and the rise 6 equals a and the lower section's six lines. This strengthens the human-facing checkpoint interpretation. A prospectively frozen attempt to reuse address25 through the same p50 base60 page-pointer consumer failed (`p50[25]=3I=198`), so that continuation is closed. See `lp2-p33-layout-family-their-rise.md`.
+A later solved-p56 transfer independently serializes the two p33 title packets as **THEIR RISE**. The authenticated 2016 clue places THEIR at positions 19 and25: 19 is the existing B entry state, p33's numeric H chain emits 25 without an independent visible M target, and the rise 6 equals a and the lower section's six lines. This strengthens the human-facing checkpoint interpretation. A prospectively frozen attempt to reuse address25 through the same p50 base60 page-pointer consumer failed (`p50[25]=3I=198`), so that continuation is closed. See `lp2-p33-layout-family-their-rise.md`.
 
 A successor should use this state packet only where a new authored receiver is independently selected. It should avoid arbitrary repeating keys, H phase expansion, or further address25 page-pointer variants.
 

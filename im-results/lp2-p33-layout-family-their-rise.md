@@ -2,6 +2,8 @@
 
 **Agent4, 19 November 2026, Director #1782. Classification: p33 is validated as a source-selected state/checkpoint page inside the charged same-operand layout family. The later solved-p56 serializer independently recovers `THEIR RISE` and closes a signed-2016 source loop. The prospectively frozen attempt to turn the second THEIR position into another p50 physical-page pointer fails. No p33 body plaintext is claimed.**
 
+**27 November source correction:** The actual enlarged initials are D/NG, with no additional decorative M above the first D. The 15/15 arithmetic packet below does not include an M-observation check and remains numerically unchanged; its claim of an independently visible [M,D] target is withdrawn. The recovered count serializer remains a conditional arithmetic observation, not authenticated original plaintext. See [original glyph comparison and corrected receivers](lp2-p33-initial-native-source-correction.md).
+
 ## Charged matched-layout family
 
 The audit keeps the frozen DH/H state
@@ -89,7 +91,7 @@ THEIR rise            = 25 - 19 = 6 = a
 p33 lower lines       = 6 = a
 ```
 
-Thus the recovered words `THEIR RISE` describe a concrete source-visible transition already present in the signed clue and the p33 register: the first THEIR is the p33 entry state, the p33 H chain emits the second THEIR position, and their rise is the private exponent `a` that also counts the lower physical lines.
+Thus the recovered words `THEIR RISE` describe a concrete source-visible transition already present in the signed clue and the p33 register: the first THEIR is the p33 entry state, the numerically evaluated p33 H chain emits the second THEIR position without an independent visible M target, and their rise is the private exponent `a` that also counts the lower physical lines.
 
 The earlier signed-source collision reconstruction had already used `H(19,25)=[23,15]=[p,b]`. The new p33 phrase gives that pair a direct human-facing reading, although this semantic connection was recognized after the collision relation was known and should not be presented as a blind discovery probability.
 

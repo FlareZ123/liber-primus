@@ -451,8 +451,9 @@ assert.equal(p33BodyRunes,p32OneShellCore.length);
 
 
 // P33 source layout after the p32->p33 handoff.
-// The two oversized decorative section runes are read directly from original
-// scan 50.jpg as M and NG. The red-title lengths are machine-verifiable below.
+// The actual oversized initials on scan 50.jpg are D and NG. The legacy M
+// computation is retained for the historical conditional hypothesis, not a
+// source reading. The red-title lengths are machine-verifiable below.
 const p33SecondUnit=p33Text.slice(firstUnitEnd+1);
 const secondTitleEnd=p33SecondUnit.indexOf(".");
 assert.ok(secondTitleEnd>0);
@@ -464,7 +465,7 @@ assert.equal(p33SecondUnitRunes,123);
 assert.equal(p33SecondBodyRunes,115);
 assert.equal(table60[32],p33SecondBodyRunes);
 
-const markerM={
+const markerM={ // historical hypothetical M, not an observed marker
   translit:"M",
   ordinal:corpus.translit.indexOf("M"),
   prime:corpus.prime[corpus.translit.indexOf("M")]
@@ -484,7 +485,7 @@ assert.equal(p33SecondTitleRunes,dh.A);
 assert.equal(markerM.ordinal+p33TitleRunes,29);
 assert.equal(markerNG.ordinal+p33SecondTitleRunes,29);
 
-// The p50 transition graph maps each visible marker's prime to its own black
+// The p50 transition graph maps the old hypothetical marker primes to black
 // body length under a source-fixed depth: q for section 1, printed A=8 title
 // length for section 2.
 const markerMRoute=walk(markerM.prime,q);
@@ -574,7 +575,10 @@ console.log(JSON.stringify({
   devotedDirectOffset:{offset:devotedOffset,fragment:"EN"},
   p33Handoff:{centerValue:divinityPrime,pointerToken:tokens[divinityPrime],page:table60[divinityPrime],dhFieldTargets,qRouteState:route[q],p32OneShellCore:p32OneShellCore.length,p33TitleRunes,p33BodyRunes,
     secondTitleRunes:p33SecondTitleRunes,secondBodyRunes:p33SecondBodyRunes,
-    markerM,markerNG,markerMRoute,markerNGRoute,markerMDepthHits,markerNGDepthHits,
+    markerM,markerNG,markerMRoute,markerNGRoute,markerMDepthHits,markerNGDepthHits, // legacy conditional fields
+    actualMarkerOrdinals:[corpus.pages[33].indices[0],corpus.pages[33].indices[91]],
+    actualMarkerDRoute:walk(corpus.prime[corpus.pages[33].indices[0]],q),
+    actualDualMarkerBodyMatch:false,
     secondBodyPointerCycleIoC:{raw:ioc(p33SecondBody),minus:ioc(secondCycleMinus),plus:ioc(secondCyclePlus)}},
   conclusion:"The route now reaches p33 and its two source sections: M(ordinal B, prime SEEKS) walked q steps lands on the first body length 81; NG(ordinal B+K) walked A=8 title-length steps lands on the second body length 115, which is also T[32]. The repeated 115-cycle additive body test is negative. The remaining problem is a source-selected reversible decoder on these now-selected p33 receivers."
 },null,2));
