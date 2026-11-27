@@ -1,6 +1,6 @@
-# p24 half-turn inverse gates: repeated-plaintext and literal paired-pad routes rejected
+# p24–26 half-turn inverse gates: repeated-plaintext, literal paired-pad and shared affine routes
 
-**Agent21 / Agent1 · Director Issues #2713 / #3023 · 25–26 November 2026.** Classification: source-frozen exact necessary-condition negatives for repeated plaintext; calibrated native-prose negative for the literal paired pad. No unknown LP2 plaintext, authentic key, or intended continuation was recovered.
+**Agent21 / Agent1 / Agent3 · Director Issues #2713 / #3023 and independent paired-coordinate follow-up · 25–27 November 2026.** Classification: source-frozen exact necessary-condition negatives for repeated plaintext; calibrated native-prose negatives for the literal paired pad and shared affine pair map. No unknown LP2 plaintext, authentic key, or intended continuation was recovered.
 
 ## Hypothesis and frozen source alignment
 
@@ -119,9 +119,40 @@ Sixteen of the 48 unrelated pair candidates equal or exceed the best original sc
 
 Reproduce with `node sims/lp2_p24_literal_halfturn_pad_sft.cjs` from the checkout. The computational core was executed on the actual committed canonical corpus, raw transcription and native solved reference in connected V8, producing the committed JSON; the standalone filesystem wrapper was not separately executed in Node. This scope does not exclude F-skip, alternative clocks, arbitrary nonlinear transforms or a different source-selected mechanism; they are not justified successors from this result.
 
+## Shared reversible paired-coordinate affine inverse (Agent3, 27 November)
+
+**Decision:** a single fixed invertible affine map mixing the two coordinates of the source half-turn does not recover native GP29 prose. Unlike the earlier repeated-plaintext and literal-pad branches, this receiver permits two different independently readable lanes, transforms both, and retains the complete original ciphertext length. No historical clue selects an affine matrix; this is a bounded ciphertext-only test of the simplest lossless two-coordinate arithmetic interpretation of the geometry.
+
+Use the already established six-line splits (135/135, 137/136, 134/131). Two fixed discrete geometry interpretations are tested: (i) flatten each half and pair from the outer page ends, (ii) pair the six opposite physical line pairs in reversed lower-line order, pairing rune ordinals from the opposite outer ends within each line. All unmatched runes pass unchanged, without deletion or invented padding. These ordinal pairings are explicit test conventions, not a claim that exact pixel centers correspond. Pair counts and unpaired glyphs are:
+
+| Physical page | Flat pairs / unmatched | Line pairs / unmatched |
+| --- | ---: | ---: |
+| 24 | 135 / 0 | 132 / 6 |
+| 25 | 136 / 1 | 134 / 5 |
+| 26 | 131 / 3 | 128 / 9 |
+
+For each pair (A,B), let the decoded coordinates be P=aA+bB+k and Q=dA+eB+h mod29. Require ae−bd ≠ 0 mod29. For each geometry, score the upper lane forward and the lower lane in either physical forward or half-turn order. Preserve both lanes and copy unmatched runes through. Invert the matrix exactly to re-encode both original coordinates. Printed words and the 6|7 carry are not assumed plaintext segmentation; the scorer is spacing-free and separately scores the two lanes, not their seam.
+
+**Exact all-key search without matrix enumeration:** the two lane scores are separable by affine row. Enumerate all (29²−1)×29=24,360 nonzero linear rows with arbitrary offset. Nonzero row pairs are independent exactly when their projective directions differ. Retain the best row for each of the 30 directions on each lane and choose the best distinct-direction pair. This computes the global maximum of the mean of the two lane trigram scores over all 29²(29²−1)(29²−29)=573,629,280 invertible affine keys for each frozen geometry/orientation. There are no heuristic caps or beam pruning. The three natural zero-offset sum/difference, shear and reverse-shear keys are also decoded explicitly in the raw output.
+
+Train the interpolated unigram/bigram/trigram score on the pinned Gibran text (47,629 GP-rendered runes after removing Gutenberg outer wrapper; internal front matter is retained). Fit **only p24**; freeze the two affine rows before decoding p25 and p26. The held pages are scored including the unmatched copied runes. Two disjoint windows of the separate editorial solved-native LP1 reference serve as the controls, with two fixed hidden matrices/offsets, each tested under both geometries and both lower-lane directions. These are synthetic sender controls, not eight independent text samples. Three deterministic uniform GP29 null tapes are processed under the same four configurations. The original and all controls exactly replay.
+
+| Geometry; lower order | p24 best mean nats/rune | p25 mean, frozen | p26 mean, frozen |
+| --- | ---: | ---: | ---: |
+| Flat; half-turn | −5.262518 | −6.674940 | −6.095042 |
+| Flat; physical | −5.273249 | −6.288337 | −6.461581 |
+| Line; half-turn | −5.245373 | −6.524448 | −5.929142 |
+| Line; physical | −5.180239 | −6.209253 | −6.301222 |
+
+All eight plant/configuration combinations recover all six key coefficients and every rune on p24/p25/p26 (270 fit + 538 held per combination); the true p24 mean scores are −2.450731 and −2.843490. All individual held control lanes score at least −2.559; the original maximum individual held-lane score is −5.732. Three nulls per configuration give p24 means comparable to the original and similarly nonprose frozen continuations. These nulls are illustrative, not enough to estimate a tail probability. The full original outputs, fitted keys, simple-key candidates and control diagnostics are preserved. No coherent original lane is recovered, even at the exact score optimum.
+
+Retire this specific static affine pair receiver with either named geometry and lane ordering under ordinary native prose. This is an exact optimization of a finite statistical objective, not a language-independent exclusion of every possible message or a general nonlinear-pair exclusion. The unmatched-copy rule and ordinal pairing are model assumptions; other independently selected coordinate rules remain possible. No new source-selected operation, genuine key, plaintext or frontier change.
+
+Reproduce: [SFT](../sims/lp2_mayfly_halfturn_pair_affine_sft.cjs), [complete output](lp2-mayfly-halfturn-pair-affine-output.json). Computational core executed on exact repository inputs in connected V8; standalone Node filesystem wrapper not independently executed. Source split and original geometry are established in the earlier source image report; no repeated image registration was needed.
+
 ## Decision and scope
 
-**Reject the exact repeated-plaintext / independent-q8-additive interpretation and the independent global-affine-substitution relation for the p24 halves.** The contradiction is algebraic, source-aligned, and independent of English assumptions. The separate direct literal paired-pad inverse is likewise nonprose in both roles; no follow-on period, parity or lane search is warranted by these failures.
+**Reject the exact repeated-plaintext / independent-q8-additive interpretation and the independent global-affine-substitution relation for the p24 halves.** The contradiction is algebraic, source-aligned, and independent of English assumptions. The separate direct literal paired-pad inverse is likewise nonprose in both roles. The distinct shared invertible affine pair receiver is also nonprose at the global score maximum, with no frozen held continuation. No further matrix, phase, offset or geometry search is justified by these failures.
 
 This does not reject the mayfly identification, the geometric half-turn, the wider p23–26 text, or all possible page mechanisms. It does not cover non-q8 periods, non-additive transformations, different plaintext relationships, or an independently source-selected alternative traversal. No successor is justified without new source evidence selecting such a mechanism.
 
