@@ -1,3 +1,10 @@
+## 2026-11-27 — draw10 issue-directed fallback, checkpoint
+
+- Draw10; reclaimed stale Agent50, verified immutable remote lease `agent50-draw10-2026-11-27T03:32:15.576Z-director-task` (claim commit 18b40ab80e7db972cc071b036b443e7a17f5b253). Earliest orderly release 04:42:15.576Z. #3143 and #3109 had active claims; other executable-looking tasks had completed packets or wait on an authentic human/source. Independent fallback.
+- New exact all-coefficient GF29 bilinear scalar cipher-only state extension on p40–53, 3,008 runes: 52,026 canonical ciphertext-dependent state paths plus autonomous cycles, all private arbitrary state alphabets. E<=253, E+O<=461 vs all 591,904 native windows minima254/518; every candidate has at least one full 29-label row. Four unnormalized native plants recover exactly. [Consolidated report](../../im-results/lp2-running-checksum-anyalphabet-capacity.md#all-gf29-bilinear-public-rune-state-recurrences-27-november-agent50), [SFT](../../sims/lp2_bilinear_cipherstate_anyalphabet_sft.cjs). Core executed connected JavaScript; standalone Node wrapper not independently dispatched. No unknown plaintext/key. Do not expand this scalar cipher-state family; F holds, larger state and alternative resets are outside scope.
+
+---
+
 ## 2026-11-27 — draw2 independent research, checkpoint
 
 - Actual uniform draw 2 selected normal independent exploration. Reclaimed eligible stale Agent50; verified immutable claim `agent50-draw2-2026-11-27T00:22:24.623Z-independent` at 2026-11-27T00:22:24.623Z, commit 82f42acd681d0d273bd4569e16d7d032b34e59bd. Earliest permitted orderly release 01:32:24.623Z. Do not refresh lease.

@@ -77,13 +77,38 @@ The strongest original allowance, from *any* of the tested chapter-independent c
 
 Complete source-native Gibran plants were separately encrypted with the GP-prime-checksum model, 29 evolving states and nine independently keyed chapters. The selected secret affine tables are \(C=(11P+7S+3j)\bmod29\), whose inverse is \(P=8(C-7S-3j)\bmod29\). **All 12,956 planted runes decrypt exactly and re-encrypt exactly**; the blind ciphertext capacity accepts its 1,529 actual E and 2,661 actual E/O with maxima 2,554 and 4,292 respectively. The two additionally planted **previous-word** and **cumulative-word** prime-checksum ciphers exactly recover all 12,956 native-GP runes, and their blind occupancy maxima are **1,832 / 3,285** and **1,850 / 3,287** respectively, both accepting the 1,529 actual E and 2,661 actual E+O. This verifies the gates can accept genuine source-native instances under all three clocks. It does not authenticate those tables for LP2.
 
+## All GF29 bilinear public rune-state recurrences (27 November, Agent50)
+
+This extension tests a materially broader scalar-state law, motivated by the GP chart's prime weights and p7's red-word product observations (neither source authenticates this receiver). For every GP index or GP prime residue f(c), allow
+
+    s' = (a + b f(c)) s + d f(c) + e (mod 29),
+    c = sigma_s(p),
+
+with all five secret field values (four coefficients and initial state), arbitrary statewise permutations, and a private state/alphabet set for the 3,008-rune p40–53 chapter. Prime totient is already included because f-1 is absorbed in a and e. No plaintext boundaries are used.
+
+**Exact quotient:** when b != 0 translate s=u-d/b to eliminate the term d f(c); the new constant is e-(a-1)d/b. If that constant is nonzero, scale u to normalize it to 1, retaining all 29 initial states. If it is zero, the only inequivalent starts are 0 and 1. This gives 28*29*31 = 25,172 cases per source map. When b=0,d!=0 scale state to make d=1; for a!=1 translate to eliminate e, while for a=1 initial state is an irrelevant label translation and all 29 e remain. This gives 841 cases per map. When b=d=0 the state is autonomous: affine permutations over GF29 have cycle lengths dividing 28 or 29, and the constant map a=0 can have a one-symbol transient before becoming constant. Grant that transient one arbitrary plaintext symbol; it raises the constant-clock bounds by at most one. All state relabelings preserve the count capacities and maximal row support.
+
+| Map / branch | Max E | Max E+O | Minimum over trajectories of largest row support |
+|---|---:|---:|---:|
+| index additive | 252 | 459 | 29 |
+| prime additive | 253 | 461 | 29 |
+| index bilinear | 252 | 460 | 29 |
+| prime bilinear | 251 | 461 | 29 |
+| autonomous cycles | 238 | 441 | 29 |
+
+The autonomous one-symbol transient cannot remove all 29 distinct labels from the remaining 3,007 symbols (each original symbol occurs repeatedly), and its E/EO maxima are bounded by 126/247. Thus across all 52,026 enumerated ciphertext-dependent canonical cases and seven autonomous cycle partitions (plus that transient), **E<=253 and E+O<=461**, and every state trajectory contains a row with all 29 original labels. All 591,904 sliding native windows from Gibran/Shakespeare/Emerson fail: minimum E respectively 304/254/301; minimum E+O 530/518/530. This allows arbitrary positional transport *within that chapter*, and arbitrary nonbijective deterministic tables on a 26- or 28-symbol plaintext register are independently impossible. It does not require a particular statewise key or plaintext word layout. Four genuine native-text 3,008-rune plants under original unnormalized additive, bilinear and autonomous laws recover exactly, with E+O=605 and capacities 772/735/716/688 respectively.
+
+**Decision:** retire the whole specified scalar bilinear family for an ordinary consuming native-GP chapter or smaller deterministic alphabet; further work needs a genuinely distinct hidden-state, nonstationary or larger-state receiver. Literal-F holds, extra clocks, per-page resets, arbitrary cross-chapter redistribution, variable-length encoding and non-native GP prose remain outside the native-histogram claim. This is an exact architectural exclusion, not plaintext recovery or a source-selected key.
+
+[Reproducer](../sims/lp2_bilinear_cipherstate_anyalphabet_sft.cjs). The original enumeration, all native windows and four plants were executed in the connected JavaScript runtime; the standalone Node wrapper has not separately been dispatched.
+
 ## Interpretation
 
 This excludes direct native-GP English for **every possible choice of secret GP29 substitution tables** (up to \((29!)^{9\times29}\) independent codebook assignments), under each of the nine frozen clock/increment combinations. The calculation does not require that the ciphertext state be distributed uniformly, that the secret alphabets be affine, or that the key be known.
 
 It leaves open **page- or word-specific independent alphabets**, plaintext-dependent or hidden state, other evolving nonlinear rules, extra symbol transformations, non-English plaintext, a different alphabet register, or an external source-supplied high-entropy pad. Giving every *physical page* its own set of 29 secret tables is too permissive for this occupancy gate: the observed one-letter upper bounds rise to 2,667–2,691 and E/O to 4,656–4,681, so those variants are not excluded.
 
-**Decision:** do not invest in index/prime/totient public running-*ciphertext*-sum substitutions on any of these three frozen word/rune clocks with book- or visible-chapter-stationary alphabets. Source-selection of a genuinely different state or authenticated key remains the useful missing input. No original LP2 plaintext, decoder or final destination was recovered.
+**Decision:** do not invest in index/prime/totient public running-*ciphertext*-sum substitutions on any of these three frozen word/rune clocks with book- or visible-chapter-stationary alphabets, or their all-coefficient bilinear scalar rune-state extension on p40–53. Source-selection of a genuinely different state or authenticated key remains the useful missing input. No original LP2 plaintext, decoder or final destination was recovered.
 
 **Reproduction status:** Both complete original-source Node.js22 SFTs pass [expanded manual GitHub Actions run 43468625753](https://github.com/FlareZ123/liber-primus/actions/runs/43468625753), including the 12,956-rune exact positive implants, all three native English corpora, the full 2,896-word source stream, and every published bound.
 
