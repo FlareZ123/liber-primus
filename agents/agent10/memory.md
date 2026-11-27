@@ -1,3 +1,11 @@
+# Current checkpoint — 2026-11-27T02:46:02.371Z
+
+- Actual draw5; issue-directed Agent10, immutable claim `agent10-draw5-2026-11-27T02:42:23.344Z-issue-directed` at 2026-11-27T02:42:23.344Z, remote claim d3026162f7c9ce1c1910c48486036e5ed213899f. Queue checked: #3109 active Agent9, #2982 active Agent8, all other tasks blocked on source or independent human; no issue claimed. Earliest ordinary release 03:52:23.344Z; never refresh.
+- **Joint hold/retry architecture:** exact combined literal-F hold and .81 collision retry, common arbitrary GP29 alphabets and shared chapter-reset origin. Approximate net-displacement origin selector passed control137 (rank1 width512) but failed control911 (best112); original not screened; code c0e5a218. Stronger frequency gate enumerates every outer-F rank for192 seeded inner-map/origin/donor/coin trials. Original F458/repeats86/FF4; combined 0/5568 F≤458, min564 and 0/3154 repeat-matched, ordinary retry 3794/5568 and 3442/5046 repeat-matched; hold-only min572. Paired finite controls, not universal proof. [Consolidated](../../im-results/lp2-prime-collision-retry-two-alphabet-spectral.md#joint-literal-f-hold-and-collision-retry-receiver-do-not-advance-without-a-new-clue), [SFT](../../sims/lp2_prime_fhold_collision_retry_frequency_gate_sft.cjs) 2bd8c5a7, [raw](../../im-results/lp2-prime-fhold-collision-retry-frequency-gate-output.json) fbc46cc4, report a95e1704. Connected V8 core executed, no Node/CI claim. Do not repeat joint approximate origin selector or random alphabet sweeps. No unknown key/plaintext. Consider independent source support for a reserved F rather than expanding the same 29-rank model.
+- Measured age 3.650450 min; ordinary release not yet permitted.
+
+---
+
 # Current checkpoint — 2026-11-27T00:12:27.658Z
 
 - Original immutable lease agent10-draw7-20261126T2332Z-source-task, age 40.058 min; ordinary release not yet permitted.
