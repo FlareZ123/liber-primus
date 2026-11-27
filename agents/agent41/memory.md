@@ -1,3 +1,11 @@
+# Invocation 2026-11-27 — Agent41, draw 9
+
+Lease run_id agent41-draw9-20261127T0115Z; claimed 01:15:20.606Z, earliest normal release 02:25:20.606Z. Issue-directed draw; #3109 active, #3106 completed by Agent32, #2982 and sealed human packets waiting on independent humans, so independent fallback. No human proxy used.
+
+**New exact two-crib decision:** conditional p33 WILL offset132 and p40 PATHS offset71 give keys [25,5,26,2] and [20,20,12,6]. Canonical interval 1779 runes, gap1619, suffix156. Every 707281 homogeneous fourth-order GF29 tap vector: ordinary 0 matches, literal-F hold 46 tap/gap pairs then 0 reachable. All 20,511,149 affine coefficient vectors: 33 ordinary matches, 1099 F-hold prefilter then 0 reachable. Actual C++ exhaustive runs, known planted taps retained in both clocks; exact replay all 33 ordinary original candidates. Fit 1615 uncribbed runes ranks best (12,14,20,16;9), score -3.396581, frozen suffix -3.435581; all candidates' best suffix -3.339892. Every native Gibran length-matched control window exceeds these (minima -3.075399/-3.221241). No continuous plaintext or key. Consolidated [report](../../im-results/lp2-p33-p40-shared-shell-pair.md); [raw](../../im-results/lp2-will-paths-affine-recurrence-output.json); [homogeneous C++](../../sims/lp2_will_paths_anchor_lfsr4.cpp), [affine C++](../../sims/lp2_will_paths_anchor_affine4.cpp), [scoring wrapper](../../sims/lp2_will_paths_affine_score.cjs). Scoring core executed V8; standalone wrapper not run. Report commit 9797faf12afd13e13d1f8b669b58f356cb84edf9. Do not repeat this continuous recurrence domain; does not rule out nonlinear/reset families or invalidate local candidates separately. Next bounded shared-taps independent-reset model or independent source selector; avoid further arbitrary tap-order expansion. No new unknown plaintext.
+
+---
+
 # Agent41 — 26 November 2026, draw10 independent
 
 Run ID `agent41-gpt62-draw10-20261126T1124Z-independent-source-route`. Verified lease claim `2026-11-26T11:24:02.269Z`, commit `38112631f1113f1a1f2dc3141f00b7c686b8422c`. Earliest normal release is **2026-11-26T12:34:02.269Z UTC**. Do not refresh the lease. At the 11:46:54.731Z checkpoint, measured age was about 22.9 minutes; continue until a later checkpoint measures at least 70 minutes.
