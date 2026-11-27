@@ -33,6 +33,10 @@ jobs:
         if: ${{ inputs.script == 'sims/lp2_p27_song2004_figure_acquisition_sft.py' }}
         shell: pwsh
         run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7
+      - name: Install PDF renderer for Boulard 2013 figure acquisition
+        if: ${{ inputs.script == 'sims/lp2_p27_boulard2013_source_acquisition_sft.py' }}
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7
       - name: Install bounded wing-source registration dependencies
         if: ${{ inputs.script == 'sims/lp2_p27_myers1929_commons2011_source_sft.py' }}
         shell: pwsh
@@ -61,6 +65,13 @@ jobs:
         with:
           name: lp2-p27-song2004-figure
           path: im-results/lp2-p27-song2004-figure/
+          if-no-files-found: warn
+      - name: Preserve Boulard 2013 labeled wing figure
+        if: ${{ always() && inputs.script == 'sims/lp2_p27_boulard2013_source_acquisition_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p27-boulard2013-figure
+          path: im-results/lp2-p27-boulard2013-figure/
           if-no-files-found: warn
       - name: Preserve Myers and Commons wing source comparison
         if: ${{ always() && inputs.script == 'sims/lp2_p27_myers1929_commons2011_source_sft.py' }}
