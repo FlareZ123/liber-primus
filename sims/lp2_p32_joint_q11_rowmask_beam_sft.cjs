@@ -37,9 +37,31 @@ function experiment(raw,K=1024,devInitial=null){
   let best=null;for(const p of (initial?[{s:initial}]:beam.slice(0,64))){const z=full(p.s);if(!best||z.z>best.z)best=z}
   const initialScore=best.z/H/(N*N-2);
   const normalize=s=>{const g=s[0]%Q;return s.map(a=>Math.floor(a/Q)*Q+mod(a%Q-g))};
+  // Exact full-stream trigram order optimization conditional on fixed per-column and per-row masks.
+  // Fix the first two columns, then a second-order subset DP; seam terms only use the first/last pairs.
+  function exactOrder(s,row){
+   const X=Array.from({length:N},(_,j)=>Uint8Array.from(row,(u,r)=>V[s[j]][r*Q+u])),T=new Int32Array(N**3);
+   for(let a=0;a<N;a++)for(let b=0;b<N;b++)if(a!==b)for(let c=0;c<N;c++)if(a!==c&&b!==c){let v=0;for(let r=0;r<N;r++)v+=L[(X[a][r]*Q+X[b][r])*Q+X[c][r]];T[(a*N+b)*N+c]=v}
+   const F=(1<<N)-1,NN=N*N,dp=new Int32Array((F+1)*NN),back=new Int8Array((F+1)*NN);
+   let bestValue=NEG,selected=null;
+   for(let a=0;a<N;a++)for(let b=0;b<N;b++)if(a!==b){
+    const base=(1<<a)|(1<<b);dp.fill(NEG);back.fill(-1);dp[base*NN+a*N+b]=0;
+    for(let m=base;m<F;m++){if((m&base)!==base)continue;const off=m*NN,remain=F^m;
+     for(let x=0;x<N;x++)if(m&(1<<x))for(let y=0;y<N;y++)if(x!==y&&(m&(1<<y))){const v=dp[off+x*N+y];if(v===NEG)continue;
+      for(let bits=remain;bits;bits&=bits-1){const bit=bits&-bits,c=31-Math.clz32(bit),ix=(m|bit)*NN+y*N+c,z=v+T[(x*N+y)*N+c];if(z>dp[ix]){dp[ix]=z;back[ix]=x}}
+     }
+    }
+    for(let x=0;x<N;x++)for(let y=0;y<N;y++)if(x!==y){let z=dp[F*NN+x*N+y];if(z===NEG)continue;for(let r=1;r<N;r++)z+=L[(X[x][r-1]*Q+X[y][r-1])*Q+X[a][r]]+L[(X[y][r-1]*Q+X[a][r])*Q+X[b][r]];
+     if(z>bestValue){bestValue=z;let m=F,i=x,j=y,path=[y,x];while(m!==base){const q=back[m*NN+i*N+j];if(q<0)throw Error("order backtrace");m^=1<<j;j=i;i=q;path.push(i)}if(path.length!==N)throw Error("order length");selected=path.reverse().map(k=>s[k])}
+    }
+   }
+   if(!selected)throw Error("no exact order");return {s:normalize(selected),z:bestValue};
+  }
   const hist=[];
   for(let iter=0;iter<20;iter++){
    let next=best;
+   const exact=exactOrder(best.s,best.row),ordered=full(exact.s);if(ordered.z<exact.z)throw Error("conditional order replay");
+   if(ordered.z>next.z)next=ordered;
    function test(s){const z=full(normalize(s));if(z.z>next.z)next=z}
    const s=best.s;
    // Exact conditional row Viterbi for each tested order; contiguous relocations also cover rotations.
