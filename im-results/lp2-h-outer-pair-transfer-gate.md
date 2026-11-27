@@ -80,3 +80,24 @@ The initial Windows run exposed one stale corpus census assertion, 2,347 versus 
 - `sims/lp2_h_outer_pair_transfer_gate_sft.cjs`
 - Windows run: `44456079554`
 - census-only repair: `74be1a3a5af17ab866d24959f131072c73447cc9`
+
+## Lossless synchronized circumference readout of the p28 HERE anchor (Agent 1, 27 November)
+
+A concrete continuation of the original first-line endpoint candidate differs from wordwise H: peel **all physical line fragments at the same depth**, emitting `H(left,right)` for each remaining pair in printed fragment order, then any singleton centers unchanged at that depth, before going inward. This produces a complete invertible length-preserving readout; the actual line-fragment lengths define the inverse permutation. For example, on p28 the first two fragments yield HERE in the first four output rune positions. The remaining fragments and depths give a completely specified continuation, without any inferred plaintext boundaries or keys. This is motivated by the solved PARABLE's "shed our own circumferences," but is an exploratory interpretation, not a signed instruction.
+
+Primary readout: independently peel each physical line, concatenated in printed order. Secondary natural framing: peel all fragments of a physical page simultaneously. Preserve line-fragment membership even across a printed carry. Pair outputs are interleaved `[difference,sum]` as in the original endpoint HERE candidate; do not replace them by the alternative H4 split-coordinate serialization. Use Hinv as a direction control. Also examine the outermost pair-only tape, discarding centers and interior layers: this exactly extends the local endpoint-only extraction without treating the discarded material as decoded.
+
+The exact unchanged source inputs are the GP29 corpus, slash-delimited transcription, and independently pinned native solved sections. The **2,799** solved LP1 runes train add-0.25 smoothed unigram/bigram/trigram models with successive interpolation weights 0.8 and 0.65; p56 and p57 are excluded from training. Their held-out scores are −2.54257 and −2.53749 nats/rune, versus −3.55442 on the raw 12,956-rune unknown corpus.
+
+| Frozen receiver | Full unknown-book mean | Full p27–32 mean | p28 continuation after first four runes | p56 aligned known runes |
+|---|---:|---:|---:|---:|
+| Line-synchronized H | −3.550208 | −3.549515 | −3.587248 | 4/85 |
+| Page-synchronized H | −3.553535 | −3.568472 | −3.594260 | 1/85 |
+| Line-synchronized Hinv | −3.551041 | −3.566520 | −3.602295 | 3/85 |
+| Page-synchronized Hinv | −3.550476 | −3.573644 | −3.602007 | 4/85 |
+
+The exact p28 line-synchronized H output starts `HEREOXXFMPNGEOFXTGNHDMBNEA`, with no source-native continuation. Its outermost endpoint-only tape starts `HEREOXXFMPAEOLBFRJEOLWNLU`; the p28 endpoint-only score after the anchor is −3.576881. Across unknown pages the endpoint-only tape has 5,996 runes and scores −3.543616 under H; the p27–32 subset scores −3.557976. The opposite direction is similarly nonprose. All complete original readouts re-encode exactly; every original-page-shaped native p57 plant recovers every rune, with an exact bijective index schedule. These are inverse implementation controls only.
+
+**Decision:** this is a direct executable extension of the locally selected HERE rather than a new fit. Neither full layer ordering nor endpoint-only extraction yields its expected next words. Retire these exact direct plaintext readouts. The p28 first four runes are still a reproducible local observation, not a validated decipherment; a different typed receiver would require independent evidence.
+
+Reproducer: [Node/CommonJS SFT](../sims/lp2_p28_here_synchronized_shell_sft.cjs); [full results](lp2-p28-here-synchronized-shell-output.json). The identical computational core ran on connector-returned source in V8; the standalone filesystem wrapper has not been separately executed in CI. Code commit `50241eee8cfc1f69388e41a9321d10967657f2d7`, output commit `0e434f37dc63f9539d2195cdd4c6e97d365ca515`.
