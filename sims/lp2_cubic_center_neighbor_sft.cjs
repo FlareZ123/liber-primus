@@ -54,6 +54,37 @@ function repeatGate(p,n,actual){
  }}
  return {length:p.length,windows:p.length-n+1,keys:784,min,max,which,keysPass,windowPass,symMin,symWhich};
 }
+/** Construct two different messages with the same ciphertext and fixed endpoints. */
+function collisionCertificate(){
+ const q=29;
+ const sec=Array.from({length:q},(_,h)=>{const m=new Map();for(let x=0;x<q;x++)m.set(mod(cube[(x+h)%q]-cube[x]),x);return [...m.entries()]});
+ const lookup=sec.map(row=>new Set(row.map(([s])=>s)));
+ const inv=Array.from({length:q},(_,c)=>c?Array.from({length:q},(_,i)=>i).find(i=>c*i%q===1):0);
+ assert.deepEqual(sec.map(x=>x.length),[1,...Array(28).fill(15)]);
+ assert.deepEqual(Array.from({length:28},(_,j)=>lookup.slice(1).filter(s=>s.has(j+1)).length),Array(28).fill(15));
+ const C=(p,L,R,b,c,d)=>p.map((x,i)=>mod((i?p[i-1]:L)+b*cube[x]+c*(i+1<p.length?p[i+1]:R)+d));
+ /** @param {number} n @param {number} b @param {number} c @param {number} L @param {number} R @param {number} d */
+ function witness(n,b,c,L,R,d){
+  const reachable=(t,a,z)=>t===0?a===0&&z!==0:t===1?a!==0&&z!==0&&lookup[a].has(mod(-c*z*inv[b])):t===2?a!==0:(a!==0||z!==0);
+  const P=new Array(n),Q=new Array(n);let a=1,z=0;
+  for(let t=n;t>=1;t--){
+   let found=false;
+   for(const [s,x] of sec[a]){
+    const v=mod(-b*s-c*z);
+    if(!reachable(t-1,v,a))continue;
+    P[t-1]=x;Q[t-1]=mod(x+a);z=a;a=v;found=true;break;
+   }
+   assert(found,'constructive reachability');
+  }
+  assert.equal(a,0);assert.notEqual(P[0],Q[0]);
+  const pC=C(P,L,R,b,c,d);assert.deepEqual(pC,C(Q,L,R,b,c,d));
+  return {P,Q,C:pC};
+ }
+ const nList=[2,3,76,308,3008],counts={},example=witness(2,1,1,7,11,0);
+ for(const n of nList){let checked=0;for(let b=1;b<q;b++)for(let c=1;c<q;c++){witness(n,b,c,(b+7)%q,(c+11)%q,(b+c)%q);checked++}counts[n]=checked}
+ return {secSizes:sec.map(x=>x.length),nonzeroColumns:Array.from({length:28},(_,j)=>lookup.slice(1).filter(s=>s.has(j+1)).length),counts,example};
+}
+
 const parts=ref.split(/### (\d+)\n/),sec=Object.fromEntries(Array.from({length:(parts.length-1)/2},(_,i)=>[Number(parts[2*i+1]),enc(parts[2*i+2].replace(/^\[[^\n]*\]$/gm,''))]));
 const samples=[sec[3].slice(40,348),sec[6].slice(120,428),[...sec[10],...sec[11],...sec[12],...sec[13]].slice(70,378)];
 const keys=[{b:7,d:19,L:4,R:13},{b:23,d:3,L:16,R:25},{b:11,d:9,L:22,R:6}];
@@ -67,4 +98,4 @@ const ct=gp.pages.filter(p=>p.page>=40&&p.page<=53).flatMap(p=>p.indices),actual
 assert.deepEqual([ct.length,actual],[3008,18]);
 const repeats=files.map(file=>({file,...repeatGate(enc(read(file)),ct.length,actual)}));
 assert.deepEqual(repeats.map(x=>[x.min,x.symMin,x.keysPass,x.windowPass]),[[34,63,0,0],[50,53,0,0],[34,63,0,0]]);
-console.log(JSON.stringify({train:train.length,keys:28*29**3,controls,original:originalResult,repeatGate:{n:ct.length,actual,output:repeats}},null,2));
+console.log(JSON.stringify({train:train.length,keys:28*29**3,controls,original:originalResult,repeatGate:{n:ct.length,actual,output:repeats},collisionCertificate:collisionCertificate()},null,2));

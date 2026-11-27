@@ -1,6 +1,6 @@
 # Nonlinear cubic-center nearest-neighbor GP29 inverse: exact recovery and forward repeat gate
 
-**27 November 2026 — Agent1. Decision:** retire the exact unclocked symmetric cubic-center receiver tested on p54–55. Three independent source-native held plants recover the full key and all 924 runes, but the original fit/continuation is nonprose. A separate exact necessary condition excludes the broader normalized cubic-center sender against every contiguous length-3008 window in the three pinned literary registers. No authentic unknown plaintext, key, or new source-selected operation.
+**27 November 2026 — Agent1. Decision:** the entire fixed-endpoint cubic-center sender with nonzero outer and cubic coefficients is noninjective for every frame of length ≥2, regardless of key or endpoint values. It is a lossless receiver only with additional initial-state information or a justified restricted plaintext domain. Retire the exact unclocked symmetric cubic-center receiver tested on p54–55. Three independent source-native held plants recover the full key and all 924 runes, but the original fit/continuation is nonprose. A separate exact necessary condition excludes the broader normalized cubic-center sender against every contiguous length-3008 window in the three pinned literary registers. No authentic unknown plaintext, key, or new source-selected operation.
 
 ## Mechanism and reason for testing
 
@@ -12,6 +12,37 @@ Fix a symmetric neighbor pair:
     P_(i+1) = C_i - P_(i-1) - b*P_i^3 - d mod29.
 
 Given both initial runes L=P_(-1) and P_0, the recurrence uniquely gives the plaintext and terminal R=P_n. The state update (prev,cur)->(cur,C_i-d-prev-b*cur^3) is a permutation of the 841 pair states for each C_i. This proves reversibility of the augmented-state transformation, not of every fixed-endpoint finite-frame sender: if only L,R are supplied, 29 candidate P_0 values must be checked; multiple may survive. Three actual native plants have respectively 3,1,2 such paths under their true key and both known boundaries. No original source specifies either seed, so the search grants both freely. No F-bypass, printed-word semantics, or resets.
+
+## Stronger constructive result: fixed endpoints never suffice for n≥2
+
+The prior rank-one obstruction relied on zero factors; this additive outer-neighbor family has a different, universal ambiguity. For any normalized nonzero b,c, fixed d,L,R, let two plaintexts differ by h_i, with h_(-1)=h_n=0. Define
+
+    S_h = { (x+h)^3 - x^3 : x in GF29 }.
+    h_(i-1) + b*s_i + c*h_(i+1) = 0, s_i in S_(h_i).
+
+This difference equation is necessary and sufficient for a collision: each x=P_i can be chosen independently as a witness to s_i in S_(h_i). The ciphertext constant and fixed endpoint values cancel exactly.
+
+For h≠0, completing the square gives
+
+    (x+h)^3 - x^3 = 3*h*(x+h/2)^2 + h^3/4.
+
+Thus S_h has exactly 15 elements. It excludes zero because x³ permutes GF29 (gcd(3,28)=1). Moreover S_h = h³*S_1; for every nonzero s, precisely 15 nonzero h admit s in S_h. S_0={0}.
+
+Track pair states (h_(i-1),h_i) and let R_t be the states reachable after t difference-equation steps from any (0,h_0), h_0≠0.
+
+- R_1 consists of (h_0,h_1) with h_0,h_1 nonzero and -c*h_1/b in S_(h_0). For each fixed h_1≠0, its predecessor set contains exactly 15 choices of h_0.
+- **R_2 is exactly all 812 pairs (u,v) with u≠0.** Fix u≠0 and any v. The second equation permits the 15 values h_0=-c*v-b*s, s in S_u. The first equation permits 15 values of h_0. Two sets of size15 in a 29-element field intersect. Conversely the first difference step never has h_1=0.
+- **R_3 is exactly all 840 nonzero pairs.** If the desired first coordinate u≠0, its allowed predecessor coordinate set has size15, so at least one predecessor is nonzero and belongs to R_2. If u=0 and v≠0, the predecessor must be -c*v≠0, also in R_2. The all-nonzero-pair set is invariant thereafter: every such state has a predecessor there, and the zero pair cannot be reached from a nonzero pair (S_0={0}).
+
+Therefore (1,0) is reachable for **every n≥2**, giving h_(n-1)=1,h_n=0. Backtrack with these exact reachability sets, choose a secant witness per position and construct two different messages with identical ciphertext for ANY given endpoints. Nonzero a in the unnormalized sender is removed by scaling. For n=1 the cube permutation is injective; the bound is sharp. The proof generalizes to any odd prime q>3 with q≡2 mod3 using (q+1)/2-sized sets.
+
+Example with n=2, b=c=1, d=0, L=7,R=11:
+
+    P  = [1,28]
+    P' = [0,0]
+    C  = [7,11]
+
+This is a global unrestricted-input theorem, not a claim that both members of each collision are natural English. A genuine source restriction or authenticated seed could still make the receiver usable; no such operand has been selected. Executed the exact 841-state reachability calculation for all 784 normalized keys: all reach a terminal pair at step2 and saturate to 840 states at step3. The constructive backtracker independently built and replayed **3,920/3,920** collisions (784 keys each at lengths 2,3,76,308,3008), with varying fixed endpoints and additive constants. These include the physical p55, p54–55 and p40–53 lengths; the proof covers every other length without further tests.
 
 ## Exact original-cipher inverse
 
@@ -52,4 +83,4 @@ Exact minimum witnesses (b,c,start): (27,28,50802), (18,15,203200), (27,28,31011
 
 ## Reproduction
 
-[SFT](../sims/lp2_cubic_center_neighbor_sft.cjs) prints complete controls, keys, fit/held scores, replay and all repeat minima. Both computation cores were executed in the connected V8 runtime using exact current source file contents; the Node wrapper uses the existing source-native encoder and was not separately executed. Inputs: canonical LP2 blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, solved reference blob 8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d, Gibran blob df260a07d56bf5998d40a6360b6132c35c252d10, repository-pinned Shakespeare and Emerson control files. The report and SFT are intentionally in intermediate results rather than authoritative plaintext.
+[SFT](../sims/lp2_cubic_center_neighbor_sft.cjs) prints complete controls, keys, fit/held scores, replay and all repeat minima. All three computation cores (key inference, repeat gate, constructive collision certificates) were executed in the connected V8 runtime using exact current source file contents; the Node wrapper uses the existing source-native encoder and was not separately executed. Inputs: canonical LP2 blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, solved reference blob 8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d, Gibran blob df260a07d56bf5998d40a6360b6132c35c252d10, repository-pinned Shakespeare and Emerson control files. The report and SFT are intentionally in intermediate results rather than authoritative plaintext.
