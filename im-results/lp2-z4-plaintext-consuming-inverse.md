@@ -69,3 +69,30 @@ The first two known-key native-plant results improve from 1/8 exact plaintext re
 The last two columns are stronger receiver-independent coverage statements: every one of q×37 possible initial (phase, previous latent) states is allowed **independently for every printed group**, including the fresh sentinel. The 44–45 impossible groups cannot be repaired by a different incoming clock, arbitrary intervening silent words, or resets at the printed boundaries, if each printed group must derive from one in-register plaintext word under this fixed sender. The FIRFUMFERENFE continuity relaxation adds two incompatible groups beyond the independent lower bound. No recovered original word is authenticated; the relaxed partial paths with [ ? ] placeholders are not complete decodings. All tested keys require at least 68.75% of original groups to be outside the finite lexical model even with independent state relaxation. Do not extend these three fixed-key lexical receivers or fit arbitrary reset policies. Changed word membership, arbitrary unknown keys or another sender are not excluded.
 
 Artifacts: [shared exact trie inverse](../sims/lp2_z4_wordlex_inverse_sft.cjs), [red8-only wrapper](../sims/lp2_z4_wordlex_red8_sft.cjs), [historical-key raw](lp2-z4-wordlex-inverse.json), [red8 raw](lp2-z4-wordlex-red8.json), [independent-state raw](lp2-z4-wordlex-independent-state.json). First two historical controls executed in connected V8 at 3015c774c1284b44786da83037d81b825fe35ab8, red8 at 206f0edd0e63b1360111984d41557289d9d65503, independent-state historical coverage executed separately using the consolidated implementation; standalone Node wrapper not executed. Source input blob IDs recorded in each raw output.
+
+## Unknown q8 key recovery from long original groups (Agent12, 27 November)
+
+**Decision:** under this exact mod36 sender, a shared cyclic eight-digit key over 0..28 cannot explain both of the two longest complete p54 black-body groups as in-register words with at most two silent accepted plaintext runes each. Even permitting one anchor to be OOV or have more erasures, every key recovered from the other anchor fails broad terminal word coverage.
+
+The search exhausts dictionary words of lengths 10–12 (5,844 distinct GP29 forms), arbitrary incoming latent states, cyclic starting phases, and every possible collision retry. Rotate the unknown key to the phase of the first accepted visible rune, enumerate the at most two preceding erased plaintext positions, and branch on visible, silent, or repeated candidates for the first eight attempts. The first visible rune fixes the first key digit. From that point at least ten accepted visible emissions remain including the first, so a full cycle is always determined. Once all eight digits are assigned, forward-replay the remainder, then replay the entire proposed word for every initial phase and predecessor to establish an exact witness. A repeated visible pair necessarily requires an intervening silent accepted rune; that requirement gives a safe pruning bound. The original initial-attempt enumeration reached its 40M node cap before finishing either control; that is an instrument failure, not a negative result. The rotated search completed all four cases under the revised 160M ceiling.
+
+| Anchor | Nodes | Distinct rotation classes | Complete |
+|---|---:|---:|---|
+| Synthetic native INTELLIGENCE, two erasures | 15,078,058 | 3 | yes |
+| Synthetic native INSTRUCTIAN, one retry | 30,828,347 | 64 | yes |
+| p54 black group 12 (zero-based), n78hl0o5b1 | 17,527,680 | 1 | yes |
+| p54 black group 45, 8so5ajebji | 23,968,492 | 2 | yes |
+
+The planted intersection uniquely recovers the true rotation class [3,28,8,17,6,11,4,20]. The original intersection is empty. Both synthetic native words are in the finite register by construction, with no independent-vocabulary claim. Both original anchors are in the 47-group p54 training prefix. No p55 words participate in key generation.
+
+The three single-anchor key classes and their exact dictionary witnesses were subsequently passed to the full all-state trie receiver, now allowing any number of silent accepted runes within any in-register word (length up to 24). Each group is granted every incoming state independently:
+
+| Single-anchor key rotation | Witness | No lexical word / 47 p54 fit | No lexical word / 17 remaining | No lexical word / 64 |
+|---|---|---:|---:|---:|
+| 0,25,20,28,3,7,1,16 | OSCILLATIAN | 32 | 10 | 42 |
+| 3,25,15,26,28,15,13,23 | CONSERUATION | 31 | 11 | 42 |
+| 0,10,13,23,3,25,15,25 | CONTINUATION | 34 | 11 | 45 |
+
+These isolated words are accidental compatible inverses, not recovered plaintext. A shared q8 sender with either eligible anchor therefore requires at least 31 out-of-register p54 groups, even granting independent incoming states. The 17-group continuation, including the crossing group, was untouched during key construction. No universal rejection of other periods, segmentation, vocabulary, or erasure rates; no new original key or plaintext.
+
+Artifacts: [optimized exhaustive anchor search](../sims/lp2_z4_unknown_q8_anchor_inverse_sft.cjs), [initial capped run](lp2-z4-unknown-q8-anchor-inverse.json), [complete first-visible run](lp2-z4-unknown-q8-anchor-inverse-first-visible.json), [single-anchor union and coverage](lp2-z4-unknown-q8-anchor-union-coverage.json). Complete actual V8 execution at 3b7e52505164d665bd6a2353d36f3f22fd64b70d; union coverage at c38cb9127a0c45298d3849d5cc3e5ec126c00868. Standalone Node wrapper not executed. Do not repeat this q8 two-anchor model without independent evidence that both anchors fall outside the <=2-erasure finite register.
