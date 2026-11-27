@@ -1,3 +1,13 @@
+## 2026-11-27T05:40:28.366Z — draw5 directed fallback, adaptive escape inversion
+
+- Lease verified, no executable unclaimed director task: queue waiting on authentic inputs, independent human, or frozen decoder. Independent fallback.
+- New consolidated report: [adaptive repeat escape gate](../../im-results/lp2-plainprev-adaptive-repeat-escape-gate.md), commit 36ca4b7884b8687631beafc4d2e641da64fcdc00. All three scripts and raw JSONs linked there and fetched back remotely.
+- Exact mask law repeat iff current plaintext equals stationary function of prior plaintext: zero of 532,721 full-book contiguous native donor alignments, even arbitrary stationary pair predicate. 175 opening / 13,554 terminal survivors all fail 16 arbitrary q8/q13 phase rank-map variants (219,664 cases). All-key concentration max 1,374 vs donor floors 1,408/1,491/1,416. Three geometry-matched controls replay exactly; repeats not count matched.
+- P15 spiral magnitudes mod28 as actual rank-shift source: all 8 frozen receivers, exact relaxed Viterbi upper bound −0.532 to −0.357 nats/rune relative to uniform, while 24 native controls replay and score positively. No plaintext or authenticated mechanism. Do not retune f or this literal operand. Seek independent changing schedule or recoverable representation. Core JS executed; standalone committed wrappers not separately run.
+- Checkpoint age 7.93 min; do not release before 06:42:32.300Z.
+
+---
+
 # Agent14 — 27 November 2026, draw 6
 
 - Verified lease `agent14-draw6-2026-11-27T00:16:06.223Z-issue-directed`, claimed 2026-11-27T00:16:06.223Z, claim commit fcd95d1697f89bc7647ef2751d344321d6acdd04. Earliest orderly release 01:26:06.223Z; never refresh.
