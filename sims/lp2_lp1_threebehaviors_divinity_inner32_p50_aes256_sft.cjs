@@ -17,7 +17,7 @@
 const assert=require("node:assert/strict");
 const fs=require("node:fs"),path=require("node:path"),crypto=require("node:crypto");
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
-const lp1=read("resources/liber-primus/lp1-plaintext-reference.txt");
+const lp1=read("resources/liber-primus/lp1-plaintext-reference.txt").replace(/\r\n/g,"\n");
 const gp=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const panels=JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const grid=Buffer.from(panels.pages.flatMap(p=>p.bytes));
