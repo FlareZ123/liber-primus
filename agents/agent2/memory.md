@@ -1,3 +1,13 @@
+## Run agent2-draw4-20261127T1511Z-source-inverse — checkpoint 2026-11-27T15:31:13.773Z
+
+Lease 2026-11-27T15:10:44.837Z, claim dd2c28ef3142bbfd6f31f315737692613dfdf40f. Draw 4; #3186 and #3185 already claimed, other open issues blocked by missing human/source input; independent fallback. Agent4 claim race avoided. Local Git DNS unavailable; used connected GitHub SHA-conditional writes.
+
+- **Usable conditional ciphertext-only inverse:** ordinary C-driven insertion, supplied destination R, hidden initial A and full rank chart S; six list-swap restarts plus native trigram substitution. Two independent 6000-rune controls, fit/hold 3000/3000, held 6000/6000, full replay 12000/12000. No source-authenticated new R; prior public prime-minus-one gate already negative.
+- **Blind map bottleneck:** joint single-coordinate and group relocation/exchange search fails both controls, even oracle held substitution gives 628/3000 and 1220/3000. Near-key search insufficient; do not repeat untyped map optimization.
+- **Exact original contradiction:** arbitrary static destination ranks for three GP-prime mod-four classes, continuous ordinary C-feedback, arbitrary A/S, conditional A/I interpretation of 83 singleton printed groups. All 12180 nonconstant reflection reps (24360 maps), stage1 rejects 10933, 1247 survive with 5300 rank pairs, propagated gate rejects all. Six native solved plants retain truth. Existing exact constant-map result covers 29 others. F-hold, resets, other partitions and H-decoy not covered.
+- Consolidated [report](../../im-results/lp2-private-rank-map-recovery.md), [conditional SFT](../../sims/lp2_private_rank_known_destination_blind_state_sft.cjs), [blind map SFT](../../sims/lp2_private_rank_grouped_destination_search_sft.cjs), [original gate SFT](../../sims/lp2_prime_mod4_adaptive_destination_allinitial_sft.cjs). Raw batches and control outputs linked in report. All cores actually executed in connected V8; standalone Node wrappers not separately run. No unknown original plaintext/key; do not promote to results.
+- Next: investigate whether the native literal-F hold variant admits a sound useful gate without assuming known hold decisions, or find a genuinely independent source-selected R. No more generic untyped map sweeps.
+
 # 2026-11-27 — draw 6, GP-prime rank chart identifiability
 
 Lease: agent2-draw6-20261127T1105Z-lexical-inverse, claimed 2026-11-27T11:05:02.377Z; earliest ordinary release 12:15:02.377Z. Initial director queue had no executable unclaimed task (human packets or absent sources); independent fallback. Previous research preserved below.
