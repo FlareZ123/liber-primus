@@ -1,6 +1,6 @@
 # Original LP2 whole-word BASE29 numeral cipher: exact all-secret exclusions
 
-**Classification:** source-motivated, bounded negative. No recovered unknown LP2 plaintext, authentic cipher key, or continuation destination. The new terminal lexical extension below also excludes a common affine integer key even with independent wordwise reversals on either side, under its explicit finite dictionary and three-OOV budget.
+**Classification:** source-motivated, bounded negative. No recovered unknown LP2 plaintext, authentic cipher key, or continuation destination. The new terminal lexical extension below also excludes a common affine integer key even with independent wordwise reversals on either side, under its explicit finite dictionary and three-OOV budget. The separate shared-additive receiver now also excludes independent cyclic cuts and reversals on both sides of every word: seven six-digit anchors in the 47 complete p54 black-body words admit no key residue supporting four anchors (at most three, over all 29^6 residues), forcing at least four OOV groups. Three matched-width controls uniquely recover their planted six-digit keys and retain all 51 withheld words.
 
 **Main new exclusion.** Grant an adversary an arbitrary SECRET coordinate order for every original rune-word length, and a separate independent coordinate order and full word-integer cipher state for **each of nine manuscript-illustrated chapters**. The original data still support at most **1,145** total word endings among the four most frequent GP plaintext-final rune classes. Exact original-length-matched GP-native Gibran and Shakespeare controls have **1,547** and **1,553**. The new bound includes all fixed chapter×length digit permutations followed by any invertible 29-adically compatible integer transformation, regardless of secret polynomial degree or coefficients. It also includes arbitrary wordwise reversals, circular digit readings, source-page orientations *if fixed inside each actual illustrated chapter×word-length stratum*, and independent key resets at the nine printed chapter boundaries. Two full 2,896-word native controls encrypted by chapter-varying, length-varying affine keys **and** secret cyclic rune-position shifts decrypt exactly; all 110 original chapter×length strata were exhaustively bounded without key enumeration.
 
@@ -193,6 +193,31 @@ Canonical 2,896 words/12,956 runes, all 32 cross-page joins, physical chapter as
 Thus arbitrary reversals do not close even the chapter×width gap: 1,466 < 1,547/1,553. All nine individual chapter strata also fail under chapter-only sharing. Page×width no longer has a global exclusion by this statistic, but 138/115 local strata exclude the respective matched donors. Two separate synthetic affine integer plants independently reverse ciphertext words and change keys per chapter×width; both round-trip all 12,956 runes and pass every stratum bound. This is a conditional exclusion against the specified donor controls, not a universal English-language bound; independent plaintext reversal, arbitrary interior-position choices per word, nonstationary word-private maps, and different segmentation are outside this graph theorem. No original plaintext or authentic key recovered.
 
 [Executable CommonJS](../sims/lp2_word_base29_free_reversal_graph_sft.cjs) · [machine output](lp2-word-base29-free-reversal-graph-output.json). Core executed in connected V8; no separate Node CI claim.
+
+## Independent cyclic cuts and reversals on both sides: exact shared additive anchor inverse (Agent49, 27 November)
+
+The finite terminal affine test above permits reversals only. The following distinct receiver relaxes word alignment to **any independent dihedral orientation** (every cyclic cut and reversal) on both plaintext and ciphertext, while narrowing the shared integer operation to addition. This is motivated by the known BASE29 protocol and the solved p57 injunction to shed circumferences; neither source selects circular reading of words or this composition. It is an actual key-recovery receiver for that hypothesis, not a newly authenticated clue.
+
+For each complete printed word `w` of width `L`, choose (u) from its ciphertext dihedral orbit and (v) from a lexical plaintext word's dihedral orbit. The receiver requires
+
+`pack(v) = pack(u) + K (mod 29^L)`
+
+with one common unknown integer (K) across all widths. Every leading zero is kept. Word order is irrelevant to the attack, but fixed word membership and width are essential. The canonical 64-group/299-rune terminal body splits into 47 complete black p54 words (213 runes) for fitting and 17 words (86 runes) for holdout, including the complete cross-page 11-rune carry. No held-out glyph is used for fitting.
+
+For each fit word of length at least 6, form the set of every residue `pack(v[-6:])-pack(u[-6:]) mod 29^6` over the 33,278-form native GP lexical register and both dihedral orbits. Choose the seven rows with least Cartesian-product size, tie-breaking on source index. Under the declared maximum three arbitrary OOV fit groups, at least four of these seven must admit the same key residue. Count each residue at most once per row. Keys outside the union cannot support any anchor. The calculation therefore covers **all 594,823,321 possible low-six-digit residues**, including the projection of every full-width integer key, without sampling. The other fit words impose their exact lower-width or six-digit necessary congruence. The search grants all latent orientations, not a single guessed order.
+
+| Input | Distinct anchor-union residues | Maximum anchor support | Residues supporting ≥4 anchors | Survivors after all 47 fit groups (≤3 OOV) |
+|---|---:|---:|---:|---:|
+| Original p54 complete black groups | 5,835,654 | 3/7 | 0 | 0 |
+| Matched synthetic plant 1 | 5,836,037 | 7/7 | 4 | 1 |
+| Matched synthetic plant 2 | 5,833,300 | 7/7 | 3 | 1 |
+| Matched synthetic plant 3 | 5,835,095 | 7/7 | 1 | 1 |
+
+Thus **at least four of the original 47 fit groups must be OOV** for every shared additive key, even with arbitrary independent cyclic rotations and reversals on both sides. This is a sharp logical consequence of the anchor test, not a claim that four omissions suffice. No original candidate reaches the continuation.
+
+The three deterministic matched-width controls draw lexical words from the same fixed register (not independent natural prose), use hidden keys 3302503, 51245470, 115183697, each less than (29^6), and random independent dihedral orientations on both sides. All three exact low-digit keys are uniquely recovered from the 47-word fit; because the generator restricts keys to six digits, these are also the full planted keys. Applying the recovered representatives to the untouched 17-word continuations retains 51/51 true words and 258/258 true runes in the exact lexical domains; 37/51 words (223/258 runes) are unique. Every retained candidate has an exact latent-orientation forward replay. A six-digit residue alone does not identify higher key digits in a general original model, but no original residue survives. This is a lexical recovery control, not a grammar or independent-language calibration.
+
+[Executable receiver](../sims/lp2_word_base29_dihedral_additive_anchor_sft.cjs) · [machine result and input blob hashes](lp2-word-base29-dihedral-additive-anchor.json). Computational core executed in connected V8; the standalone Node wrapper and CI were not separately run. Retire this exact shared-additive receiver at ≤3 OOV in the pinned register. This does not exclude arbitrary affine multipliers with free cyclic cuts, other word-private keys, other registers, or different segmentation. No unknown plaintext or authentic key recovered.
 
 ## Reproducible scripts and decision
 
