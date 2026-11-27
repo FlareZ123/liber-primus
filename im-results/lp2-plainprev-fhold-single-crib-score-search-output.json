@@ -1,0 +1,36 @@
+{
+  "inputShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "a15077cb16b676416bc5badca7a87cc541a15824",
+    "472e8a965cb6cae7f714b631712afbf8ed7e0723",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "a2968b9517d67314cd2cec0b2ca3c32d7a65e6d5",
+    "49931242dbf4619b99d723fe0b7dc4866e6ff60c"
+  ],
+  "original": [
+    {
+      "i": 0,
+      "page": 0,
+      "offset": 163,
+      "name": "0_wisdom",
+      "j": 68,
+      "k0": 1,
+      "fixed": 15,
+      "status": "BELOW_FLOOR",
+      "nodes": 125,
+      "propDead": 0,
+      "scoreDead": 112,
+      "evaluated": 13,
+      "rootUpper": 0.9001374032391659,
+      "leaf": 0,
+      "frameEvals": 958,
+      "N": 10280,
+      "H": 2360,
+      "floor": 0.65,
+      "witness": null
+    }
+  ]
+}
