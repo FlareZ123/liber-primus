@@ -4,6 +4,8 @@ Dependencies: numpy, scipy, numba. Optional --certificate FILE verifies saved du
 instead of optimizing. Optional --save FILE records newly generated duals.
 """
 import argparse
+import base64
+import zlib
 import hashlib
 import json
 import re
@@ -249,6 +251,8 @@ def main():
     assert len(t) == 3008 and t.count(0) == 125
     assert hashlib.sha256(bytes(t)).hexdigest() == TAPE_SHA
     saved = json.loads(args.certificate.read_text()) if args.certificate else {}
+    if saved.get("encoding") == "zlib-base64-json":
+        saved = {name: json.loads(zlib.decompress(base64.b64decode(saved[name]))) for name in ("ordinal", "prime")}
     out = {}
     for name, w in (("ordinal", list(range(Q))), ("prime", corpus["prime"])):
         cert = upper_certificate(model(t, w), saved.get(name))
