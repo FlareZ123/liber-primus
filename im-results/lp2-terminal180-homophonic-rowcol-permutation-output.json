@@ -55,7 +55,8 @@
       "CAP": 0,
       "nodes": 720,
       "max": 1,
-      "witnesses": []
+      "witnesses": [],
+      "method": "equality"
     },
     {
       "name": "plain",
@@ -65,7 +66,8 @@
       "CAP": 0,
       "nodes": 720,
       "max": 1,
-      "witnesses": []
+      "witnesses": [],
+      "method": "equality"
     },
     {
       "name": "printed",
@@ -75,7 +77,8 @@
       "CAP": 0,
       "nodes": 720,
       "max": 1,
-      "witnesses": []
+      "witnesses": [],
+      "method": "equality"
     },
     {
       "name": "printed",
@@ -85,17 +88,19 @@
       "CAP": 0,
       "nodes": 720,
       "max": 1,
-      "witnesses": []
+      "witnesses": [],
+      "method": "equality"
     },
     {
       "name": "pad",
       "layout": "row",
       "SAT": 0,
-      "UNSAT": 0,
-      "CAP": 720,
-      "nodes": 3600720,
-      "max": 5001,
-      "witnesses": []
+      "UNSAT": 720,
+      "CAP": 0,
+      "nodes": 0,
+      "max": 0,
+      "witnesses": [],
+      "method": "Hall"
     },
     {
       "name": "pad",
@@ -103,9 +108,10 @@
       "SAT": 0,
       "UNSAT": 720,
       "CAP": 0,
-      "nodes": 720,
-      "max": 1,
-      "witnesses": []
+      "nodes": 0,
+      "max": 0,
+      "witnesses": [],
+      "method": "Hall"
     }
   ],
   "capacity": [
