@@ -1,5 +1,12 @@
 "use strict";
-function run(native,corpus,master){
+function lexical(native,groups){
+ const alpha=native.runes,compact="0123456789abcdefghijklmnopqrs",proj=w=>w.map(i=>i===0?"F":i>=15?"1":"0").join("");
+ const wordMap=new Map();for(const s of native.sections)for(const w of s.source_text.match(/[\u16a0-\u16ff]+/gu)||[]){const a=[...w].map(x=>alpha.indexOf(x));if(a.includes(-1))throw Error("rune");const p=proj(a);if(!wordMap.has(p))wordMap.set(p,new Set());wordMap.get(p).add(w)}
+ const p54=groups.p54.body_groups,p55=groups.p55.groups,words=[...p54.slice(0,-1),p54.at(-1)+p55[0],...p55.slice(1)];
+ const matches=words.map(w=>{const p=proj([...w].map(c=>compact.indexOf(c)));return {word:w,p,n:wordMap.get(p)?.size||0,examples:[...(wordMap.get(p)||[])].slice(0,4)}});
+ return {nativeWordTypes:[...wordMap.values()].reduce((s,v)=>s+v.size,0),nativeProjectedTypes:wordMap.size,originalCompleteGroups:words.length,zero:matches.filter(x=>x.n===0).length,one:matches.filter(x=>x.n===1).length,multi:matches.filter(x=>x.n>1).length,log2PositiveOptions:matches.filter(x=>x.n>0).reduce((s,v)=>s+Math.log2(v.n),0),example:matches.filter(x=>x.n>=4).slice(0,8)};
+}
+function run(native,corpus,master,groups){
  const assert=(v,m)=>{if(!v)throw Error(m)}, N=29,L=32;const alphabet=native.runes,bit=v=>+(v>=15),bits=a=>a.map(bit).join(""),ones=s=>[...s].filter(x=>x==="1").length;
  const extract=s=>[...s].filter(x=>alphabet.includes(x)).map(x=>alphabet.indexOf(x));
  const donors=native.sections.map(s=>({name:s.name,a:extract(s.source_text)}));
@@ -22,7 +29,7 @@ function run(native,corpus,master){
  // Exact lower bound on unrestricted pointwise inverse ambiguity under mandatory F hold:
  // C=F forces P=F for permutations fixing F; all non-F first-column positions have 14 choices, and all second-column positions have 14.
  const counts=[...body,...p55].reduce((a,x)=>(a[x===0?0:bit(x)===0?1:2]++,a),[0,0,0]);
- return {schema:"literal-chart-row-projection-v1",partition:[alphabet.slice(0,15).join(""),alphabet.slice(15).join("")],donorSections:donors.map(d=>[d.name,d.a.length]),donorWindows:all.length,distinctFit:byFit.size,target:{n,m,nh,mh,...target},conditionalUniformPermutation:{expectedFit:eFit,expectedFull:eFull,unionBoundFull:Math.min(1,eFull)},positives,negatives,distractors,pointwiseFfixed:{counts,exactPlaintextCount:"14^"+(counts[1]+counts[2]),log2:(counts[1]+counts[2])*Math.log2(14)}};
+ return {lexical:groups?lexical(native,groups):null,schema:"literal-chart-row-projection-v1",partition:[alphabet.slice(0,15).join(""),alphabet.slice(15).join("")],donorSections:donors.map(d=>[d.name,d.a.length]),donorWindows:all.length,distinctFit:byFit.size,target:{n,m,nh,mh,...target},conditionalUniformPermutation:{expectedFit:eFit,expectedFull:eFull,unionBoundFull:Math.min(1,eFull)},positives,negatives,distractors,pointwiseFfixed:{counts,exactPlaintextCount:"14^"+(counts[1]+counts[2]),log2:(counts[1]+counts[2])*Math.log2(14)}};
 }
-if(require.main===module){const fs=require("node:fs");console.log(JSON.stringify(run(JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),fs.readFileSync("resources/transcriptions/liber_primus_master.txt","utf8")),null,2))}
+if(require.main===module){const fs=require("node:fs");console.log(JSON.stringify(run(JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),fs.readFileSync("resources/transcriptions/liber_primus_master.txt","utf8"),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-page-groups-54-55-derived.json","utf8"))),null,2))}
 module.exports={run};
