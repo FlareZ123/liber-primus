@@ -38,3 +38,29 @@ Every such codeword C(x) has C(1)=0, equivalently bytewise XOR of all eight cell
 Thus each of the three physical pages independently rejects the row premise, with zero of 64 distinct row readings satisfying the necessary condition. Full generator division and Horner evaluation additionally give zero syndrome-valid and zero exact regeneration matches among 896 radix/orientation/redundancy/row cases. Matched controls copy each original data prefix and replace its suffix with canonical systematic parity: 896/896 regenerate exactly and pass all roots; 7,168/7,168 one-bit mutations (every position of every plant) fail the necessary check. These deterministic controls verify the encoder and check, not an independently calibrated recovery of a secret.
 
 [SFT](../sims/lp2_p50_row_rs_root0_sft.cjs), commit `3a77bbc49a89caa572f27ab3bf20e269ef5b3081`; exact run() core executed on the pinned JSON in connected V8. Standalone Node wrapper has not separately run. No CI needed for the mathematical certificate. Retire this root-zero literal-row family, including arbitrary within-row permutations. Root sets excluding 1, an unknown extra symbol per row, error-corrected received words, nonliteral byte transforms, and non-row framing are outside scope; there is no independent source selector for those here. Do not infer any payload or unknown plaintext.
+
+
+## All-field fixed affine row-code obstruction (Agent6, 27 November 2026)
+
+The root-zero syndrome excludes only one generator-root family. A stronger necessary condition eliminates **every proper fixed linear or affine length-eight GF(256) row code** on the complete panel, independently of its dimension, parity coefficients, root set, evaluation points, systematic positions and common column ordering. The 32×8 printed geometry and the historical QR/RS precedent are the motivation; no authenticated selector for a row code is asserted.
+
+Let R contain the literal eight-byte rows, and let D consist of r_i XOR r_0 for each subsequent row. A shared nonzero parity functional w with an arbitrary fixed intercept b requires Rw=b·1, hence Dw=0. If rank(D)=8 then w=0, and no proper affine subspace contains the rows. Any proper linear code is a special case. This also rules out fixed invertible coordinate mixing, column permutations, nonzero per-column field scalings and fixed offsets of such a code (all preserve affine dimension). The calculation assumes the same coordinate transformation for every row in the tested scope.
+
+Enumerate **all 30 monic irreducible degree-eight polynomials over GF(2)** (test divisibility by every monic polynomial of degree 1–4), interpreting each literal byte as the polynomial with its bits as coefficients. GF256 elimination yields:
+
+| Literal codec | Scope | Min rank R across 30 fields | Min rank D across 30 fields |
+| --- | --- | ---: | ---: |
+| Base60 | Entire 32 rows | 8 | 8 |
+| Base60 | p49 (10 rows) | 8 | 8 |
+| Base60 | p50 (13 rows) | 8 | 8 |
+| Base60 | p51 (9 rows) | 8 | 8 |
+| Base59 | Entire 32 rows | 8 | 8 |
+| Base59 | p49 (10 rows) | 8 | 8 |
+| Base59 | p50 (13 rows) | 8 | 8 |
+| Base59 | p51 (9 rows) | 8 | 7 |
+
+The only affine rank-seven exceptions among the 240 codec/scope/field tests are isolated p51 under omitted-f base59, polynomial 0x1dd or 0x1e7. Their unshifted row rank is still eight, so they permit only a page-local proper affine coset, not a linear code; p49 and p50 independently fail even if field/code choice is page-private. No original instruction selects either exception. The standard 0x11d, 0x11b and 0x12d fields all have affine rank eight on every page under both readings. For 0x11d the first eight source-row differences of the full panel are independent, with minor determinants 44 (base60) and 67 (base59). The raw output records all field-specific selected minor row indices and determinants (indices are zero-based within R or D respectively).
+
+The frozen [SFT](../sims/lp2_p50_row_affine_allfield_sft.cjs) (commit f7f1da393335274c170512bd60f47d9d66277310) ran its exact fetched computational core on grid blob 2550eae357442912220e05dc51147523a61dd75a in connected V8. [Complete raw ranks and controls](lp2-p50-row-affine-allfield-output.json), commit 25259f387189bf51080350b7119034e8e8c8e65e: 7,650 nonzero field-inverse identities, 240 matched-prefix systematic rank-deficient plants, 240 affine-translated plants, 240 full-rank basis plants, 240 common reflection checks, all pass. The standalone Node wrapper was not separately executed.
+
+**Decision:** retire every exact proper fixed GF256 row-code/coset model in the stated literal polynomial-basis scope, not just root-zero RS. Even secret generalized-RS roots and multipliers cannot rescue a common proper row subspace. Other arbitrary bit-basis identifications of GF256, nonlinear encoders, row-varying transforms, noisy received words and alternative block framing are outside the theorem. This is an all-key structural exclusion, not an authenticated coding instruction, recovered key or plaintext. No further row-root search is warranted.
