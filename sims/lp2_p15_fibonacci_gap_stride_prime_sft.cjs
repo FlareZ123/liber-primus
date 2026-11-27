@@ -1,0 +1,25 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const read=p=>JSON.parse(fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
+function experiment(chart,native){
+ const check=(b,m)=>{if(!b)throw Error(m)}, mod=x=>((x%29)+29)%29, same=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
+ const gp=new Map(chart.runes.map((x,i)=>[x,i])),read=s=>[...s].filter(x=>gp.has(x)).map(x=>gp.get(x)),P=name=>read(native.sections.find(s=>s.name===name).source_text);
+ const fib=[0,1,2];while(fib.length<16)fib.push(fib.at(-1)+fib.at(-2));
+ const ord=fib.map(x=>x+1),gaps=ord.slice(1).map((x,i)=>x-ord[i]),N=1883, maxRank=ord.at(-1)+Math.ceil(N/gaps.length)*fib.at(-1), limit=Math.ceil(maxRank*(Math.log(maxRank)+Math.log(Math.log(maxRank))))+100;
+ const composite=new Uint8Array(limit+1),primes=[0];for(let i=2;i<=limit&&primes.length<=maxRank;i++)if(!composite[i]){primes.push(i);if(i*i<=limit)for(let j=i*i;j<=limit;j+=i)composite[j]=1}
+ check(primes.length>maxRank,"sieve");const grid=ord.map(x=>Math.abs(3301-primes[x]));check(same(grid,[3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516]),"grid");
+ const configs=[];for(const rank of ord)for(let phase=0;phase<gaps.length;phase++)for(const sign of [1,-1]){let x=rank;const key=[];for(let i=0;i<N;i++){key.push(mod(sign*(primes[x]-1)));x+=gaps[(phase+i)%gaps.length]}configs.push({rank,phase,sign,key})}
+ const label=({rank,phase,sign})=>({rank,phase,sign});
+ function enc(p,k){let j=0;return p.map(v=>v===0?0:mod(v+k[j++]))}
+ function reach(c,k){let s=new Set([0]);for(let i=0;i<c.length;i++){let n=new Set();for(const j of s){if(c[i]===0)n.add(j);if(mod(c[i]-k[j])!==0)n.add(j+1)}s=n;if(!s.size)return{death:i,end:[]}}return{death:null,end:[...s].sort((a,b)=>a-b)}}
+ const p56=P("p56_an_end"),key56=primes.slice(1,86).map(x=>mod(x-1));check(same(enc(p56,key56),chart.pages[56].indices),"authentic p56");
+ const big=Array.from({length:29},()=>Array(29).fill(.5)),uni=Array(29).fill(.5);
+ for(const s of native.sections.filter(x=>!["0_koan_1","0_loss_of_divinity"].includes(x.name))){const p=read(s.source_text);for(let i=0;i<p.length;i++){uni[p[i]]++;if(i)big[p[i-1]][p[i]]++}}
+ const norm=a=>{const z=a.reduce((x,y)=>x+y,0);return a.map(v=>Math.log(v/z))};const logB=big.map(norm),logU=norm(uni);
+ const score=(p,start=0,end=p.length)=>{let x=0;for(let i=start;i<end;i++)x+=i?logB[p[i-1]][p[i]]:logU[p[i]];return x/(end-start)};
+ function viterbi(c,k){let layers=[],s=new Map([[-1,{score:0}]]);for(const v of c){const n=new Map();for(const [id,o] of s){const j=id===-1?0:Math.floor(id/29),last=id===-1?-1:id%29;function add(p,consume){const z=(j+consume)*29+p,y=o.score+(last===-1?logU[p]:logB[last][p]);if(!n.has(z)||n.get(z).score<y)n.set(z,{score:y,prev:id,p})}if(v===0)add(0,0);const p=mod(v-k[j]);if(p!==0)add(p,1)}if(!n.size)return null;layers.push(n);s=n}let best=[...s].sort((a,b)=>b[1].score-a[1].score)[0][0],out=[];for(let i=layers.length-1;i>=0;i--){const o=layers[i].get(best);out.push(o.p);best=o.prev}return out.reverse()}
+ const controls=[["0_koan_1",6,4,1],["0_loss_of_divinity",378,12,-1]].map(([name,rank,phase,sign])=>{const p=P(name),cut=400,k=configs.find(a=>a.rank===rank&&a.phase===phase&&a.sign===sign),c=enc(p,k.key);const fit=configs.filter(x=>reach(c.slice(0,cut),x.key).death===null);check(fit.includes(k),"control truth lost");const full=fit.filter(x=>reach(c,x.key).death===null);const out=fit.length===1?viterbi(c,fit[0].key):null;const replay=out?same(enc(out,fit[0].key),c):null;check(!out||replay,"control replay");return {name,truth:label(k),n:p.length,cut,fitCandidates:fit.map(label),fullCandidates:full.map(label),fitMatch:out?out.slice(0,cut).filter((x,i)=>x===p[i]).length:null,heldMatch:out?out.slice(cut).filter((x,i)=>x===p[cut+i]).length:null,heldN:p.length-cut,replay,truthScore:score(p,cut),decoded:out?out.map(v=>chart.runes[v]).join(""):null}});
+ const orig=[{name:"p15 black body through p22",c:chart.pages.slice(15,23).flatMap(p=>p.indices).slice(20),cut:1210},{name:"p16 through p22",c:chart.pages.slice(16,23).flatMap(p=>p.indices),cut:1071}].map(({name,c,cut})=>{const a=configs.map(x=>({ ...label(x),...reach(c,x.key)}));const legal=a.filter(x=>x.death===null);const ordinary=configs.map(x=>{const p=c.map((v,i)=>mod(v-x.key[i]));return{...label(x),fit:score(p,0,cut),held:score(p,cut),preview:p.slice(0,80).map(v=>chart.translit[v]).join(" "),decoded:p.map(v=>chart.runes[v]).join("")}}).sort((a,b)=>b.fit-a.fit);const best=ordinary[0];return{name,n:c.length,cut,allCases:a,legal,latestDeath:Math.max(...a.filter(x=>x.death!==null).map(x=>x.death)),fitSelectedOrdinary:best,bestHeld:Math.max(...ordinary.map(x=>x.held)),rawHeld:score(c,cut)}})
+ return {fib,ord,gaps,grid,maxRank,configCount:configs.length,p56Replay:p56.length,p56Consumes:p56.filter(x=>x!==0).length,controls,orig}
+}
+console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
