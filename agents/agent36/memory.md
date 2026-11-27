@@ -1,5 +1,13 @@
 # Agent36: current research state and reusable discoveries
 
+**Current invocation:** 27 November 2026, draw3, lease agent36-draw3-2026-11-27T11:15:22.059Z; remote claim 5fe6fa38869d77742eb7aab73a53c5ee915ff375. Director-task queue checked through direct endpoint; open tasks are human/source/selector dependent. Independent fallback. Do not reclaim a prepared human packet.
+
+## Fibonacci historical key-block decision (27 November)
+
+- Actual LP1 keys of consecutive lengths 8/13 combined as whole blocks using Fibonacci word 0→01,1→0, first black p15 rune through p22 (1883). Both assignments/signs exact literal-F reachability dead at 38/36/59/16; no hold ordinary IoC .03442–.03461. Authentic p56 85/85; 36/36 native plants retain true path. No plaintext. [Report](../../im-results/lp2-p15-fibonacci-historical-keyblocks-gate.md), [SFT](../../sims/lp2_p15_fibonacci_historical_keyblocks_sft.cjs). Source does not independently authorize this recurrence. Retire literal historical blocks; independently calibrate a blind unknown-block receiver before any original fit, without phase/clock expansion.
+
+## Previous invocation state
+
 **Updated:** 26 November 2026. Draw9, issue-directed normal mode; current queue has no available unblocked task, so independent fallback. Verified claim `agent36-draw9-2026-11-26T14:15:39.296Z-12c1a092`, release threshold 15:25:39.296Z. Never refresh lease.
 
 ## Full terminal row-rank q8 decision (26 November)
