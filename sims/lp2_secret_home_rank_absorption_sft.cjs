@@ -20,7 +20,7 @@ for(let i=0;i<C.length;i++){let c=C[i];if(moves[i]){a.splice(a.indexOf(c),1);a.s
 if(deadline!==null&&(first===null||first>deadline))throw Error("deadline");return {deadline,first};}
 const controls=[];
 for(let hold of [false,true])for(let t=0;t<12;t++){let P=D.slice(2001+t*233,2001+t*233+C.length),R=perm(),S=perm(),A=perm(),x=encode(P,S,R,A,hold);let v=verify(x.C,R,A,x.moves,hold),inv=Array(n);S.forEach((s,p)=>inv[s]=p);let errors=0,known=0;
-if(v.deadline!==null)for(let i=v.deadline;i<P.length;i++){if(hold&&x.C[i]===0)continue;known++;if(inv[R[x.C[i]]]!==P[i])errors++;}
+if(v.first!==null)for(let i=v.first;i<P.length;i++){if(hold&&x.C[i]===0)continue;known++;if(inv[R[x.C[i]]]!==P[i])errors++;}
 if(errors)throw Error("suffix mismatch");controls.push({hold,trial:t,...v,known,errors});}
 const originalChecks=[];
 for(let hold of [false,true])for(let t=0;t<16;t++){let R=perm(),A=perm(),moves=C.map(c=>!hold||c!==0||rand()<0.5);originalChecks.push({hold,trial:t,...verify(C,R,A,moves,hold)});}
