@@ -1,0 +1,1494 @@
+[
+  {
+    "batch": 4,
+    "totals": {
+      "maps": 841,
+      "stage1Dead": 532,
+      "stage1Pairs": 2189,
+      "stage2Dead": 280,
+      "stage2Pairs": 30,
+      "splitDead": 27,
+      "splitPairs": 2
+    },
+    "surv": [
+      {
+        "d": [
+          4,
+          6,
+          4
+        ],
+        "pair": [
+          3,
+          7
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 356928
+        }
+      },
+      {
+        "d": [
+          4,
+          7,
+          4
+        ],
+        "pair": [
+          3,
+          9
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 382803
+        }
+      }
+    ],
+    "splitRows": [
+      {
+        "d": [
+          4,
+          1,
+          1
+        ],
+        "pair": [
+          0,
+          2
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21405
+      },
+      {
+        "d": [
+          4,
+          2,
+          2
+        ],
+        "pair": [
+          1,
+          3
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21629
+      },
+      {
+        "d": [
+          4,
+          3,
+          3
+        ],
+        "pair": [
+          2,
+          4
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21801
+      },
+      {
+        "d": [
+          4,
+          4,
+          4
+        ],
+        "pair": [
+          3,
+          5
+        ],
+        "dead": 792,
+        "maxStates": 29,
+        "transitions": 24793
+      },
+      {
+        "d": [
+          4,
+          5,
+          5
+        ],
+        "pair": [
+          4,
+          6
+        ],
+        "dead": 792,
+        "maxStates": 29,
+        "transitions": 20182
+      },
+      {
+        "d": [
+          4,
+          6,
+          4
+        ],
+        "pair": [
+          3,
+          7
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 356928
+      },
+      {
+        "d": [
+          4,
+          6,
+          6
+        ],
+        "pair": [
+          5,
+          7
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18731
+      },
+      {
+        "d": [
+          4,
+          7,
+          4
+        ],
+        "pair": [
+          3,
+          8
+        ],
+        "dead": 1062,
+        "maxStates": 29,
+        "transitions": 30003
+      },
+      {
+        "d": [
+          4,
+          7,
+          4
+        ],
+        "pair": [
+          3,
+          9
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 382803
+      },
+      {
+        "d": [
+          4,
+          7,
+          7
+        ],
+        "pair": [
+          6,
+          8
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18697
+      },
+      {
+        "d": [
+          4,
+          8,
+          8
+        ],
+        "pair": [
+          7,
+          9
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18624
+      },
+      {
+        "d": [
+          4,
+          9,
+          9
+        ],
+        "pair": [
+          8,
+          10
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18557
+      },
+      {
+        "d": [
+          4,
+          10,
+          10
+        ],
+        "pair": [
+          9,
+          11
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18494
+      },
+      {
+        "d": [
+          4,
+          11,
+          11
+        ],
+        "pair": [
+          10,
+          12
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18436
+      },
+      {
+        "d": [
+          4,
+          12,
+          12
+        ],
+        "pair": [
+          11,
+          13
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18362
+      },
+      {
+        "d": [
+          4,
+          13,
+          13
+        ],
+        "pair": [
+          12,
+          14
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18309
+      },
+      {
+        "d": [
+          4,
+          14,
+          14
+        ],
+        "pair": [
+          13,
+          15
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18256
+      },
+      {
+        "d": [
+          4,
+          15,
+          15
+        ],
+        "pair": [
+          14,
+          16
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18206
+      },
+      {
+        "d": [
+          4,
+          16,
+          16
+        ],
+        "pair": [
+          15,
+          17
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18161
+      },
+      {
+        "d": [
+          4,
+          17,
+          17
+        ],
+        "pair": [
+          16,
+          18
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18107
+      },
+      {
+        "d": [
+          4,
+          18,
+          18
+        ],
+        "pair": [
+          17,
+          19
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18065
+      },
+      {
+        "d": [
+          4,
+          19,
+          19
+        ],
+        "pair": [
+          18,
+          20
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18002
+      },
+      {
+        "d": [
+          4,
+          20,
+          20
+        ],
+        "pair": [
+          19,
+          21
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17964
+      },
+      {
+        "d": [
+          4,
+          21,
+          21
+        ],
+        "pair": [
+          20,
+          22
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17933
+      },
+      {
+        "d": [
+          4,
+          22,
+          22
+        ],
+        "pair": [
+          21,
+          23
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17884
+      },
+      {
+        "d": [
+          4,
+          23,
+          23
+        ],
+        "pair": [
+          22,
+          24
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17849
+      },
+      {
+        "d": [
+          4,
+          24,
+          24
+        ],
+        "pair": [
+          23,
+          25
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17866
+      },
+      {
+        "d": [
+          4,
+          25,
+          25
+        ],
+        "pair": [
+          24,
+          26
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17833
+      },
+      {
+        "d": [
+          4,
+          26,
+          26
+        ],
+        "pair": [
+          25,
+          27
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17798
+      },
+      {
+        "d": [
+          4,
+          27,
+          27
+        ],
+        "pair": [
+          26,
+          28
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17766
+      }
+    ],
+    "deadHistogram": {
+      "350": 65,
+      "530": 191,
+      "1062": 124,
+      "1316": 148,
+      "2428": 4
+    },
+    "controls": null
+  },
+  {
+    "batch": 5,
+    "totals": {
+      "maps": 841,
+      "stage1Dead": 532,
+      "stage1Pairs": 2189,
+      "stage2Dead": 280,
+      "stage2Pairs": 30,
+      "splitDead": 26,
+      "splitPairs": 4
+    },
+    "surv": [
+      {
+        "d": [
+          5,
+          5,
+          5
+        ],
+        "pair": [
+          4,
+          6
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 381587
+        }
+      },
+      {
+        "d": [
+          5,
+          7,
+          5
+        ],
+        "pair": [
+          4,
+          8
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 388671
+        }
+      },
+      {
+        "d": [
+          5,
+          8,
+          5
+        ],
+        "pair": [
+          4,
+          9
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 396226
+        }
+      },
+      {
+        "d": [
+          5,
+          8,
+          5
+        ],
+        "pair": [
+          4,
+          10
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 403665
+        }
+      }
+    ],
+    "splitRows": [
+      {
+        "d": [
+          5,
+          1,
+          1
+        ],
+        "pair": [
+          0,
+          2
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21126
+      },
+      {
+        "d": [
+          5,
+          2,
+          2
+        ],
+        "pair": [
+          1,
+          3
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21373
+      },
+      {
+        "d": [
+          5,
+          3,
+          3
+        ],
+        "pair": [
+          2,
+          4
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21590
+      },
+      {
+        "d": [
+          5,
+          4,
+          4
+        ],
+        "pair": [
+          3,
+          5
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21800
+      },
+      {
+        "d": [
+          5,
+          5,
+          5
+        ],
+        "pair": [
+          4,
+          6
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 381587
+      },
+      {
+        "d": [
+          5,
+          6,
+          6
+        ],
+        "pair": [
+          5,
+          7
+        ],
+        "dead": 792,
+        "maxStates": 29,
+        "transitions": 20621
+      },
+      {
+        "d": [
+          5,
+          7,
+          5
+        ],
+        "pair": [
+          4,
+          8
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 388671
+      },
+      {
+        "d": [
+          5,
+          7,
+          7
+        ],
+        "pair": [
+          6,
+          8
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18994
+      },
+      {
+        "d": [
+          5,
+          8,
+          5
+        ],
+        "pair": [
+          4,
+          9
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 396226
+      },
+      {
+        "d": [
+          5,
+          8,
+          5
+        ],
+        "pair": [
+          4,
+          10
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 403665
+      },
+      {
+        "d": [
+          5,
+          8,
+          8
+        ],
+        "pair": [
+          7,
+          9
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18942
+      },
+      {
+        "d": [
+          5,
+          9,
+          9
+        ],
+        "pair": [
+          8,
+          10
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18856
+      },
+      {
+        "d": [
+          5,
+          10,
+          10
+        ],
+        "pair": [
+          9,
+          11
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18784
+      },
+      {
+        "d": [
+          5,
+          11,
+          11
+        ],
+        "pair": [
+          10,
+          12
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18709
+      },
+      {
+        "d": [
+          5,
+          12,
+          12
+        ],
+        "pair": [
+          11,
+          13
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18637
+      },
+      {
+        "d": [
+          5,
+          13,
+          13
+        ],
+        "pair": [
+          12,
+          14
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18547
+      },
+      {
+        "d": [
+          5,
+          14,
+          14
+        ],
+        "pair": [
+          13,
+          15
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18485
+      },
+      {
+        "d": [
+          5,
+          15,
+          15
+        ],
+        "pair": [
+          14,
+          16
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18414
+      },
+      {
+        "d": [
+          5,
+          16,
+          16
+        ],
+        "pair": [
+          15,
+          17
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18356
+      },
+      {
+        "d": [
+          5,
+          17,
+          17
+        ],
+        "pair": [
+          16,
+          18
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18299
+      },
+      {
+        "d": [
+          5,
+          18,
+          18
+        ],
+        "pair": [
+          17,
+          19
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18230
+      },
+      {
+        "d": [
+          5,
+          19,
+          19
+        ],
+        "pair": [
+          18,
+          20
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18176
+      },
+      {
+        "d": [
+          5,
+          20,
+          20
+        ],
+        "pair": [
+          19,
+          21
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18109
+      },
+      {
+        "d": [
+          5,
+          21,
+          21
+        ],
+        "pair": [
+          20,
+          22
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18056
+      },
+      {
+        "d": [
+          5,
+          22,
+          22
+        ],
+        "pair": [
+          21,
+          23
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18006
+      },
+      {
+        "d": [
+          5,
+          23,
+          23
+        ],
+        "pair": [
+          22,
+          24
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17953
+      },
+      {
+        "d": [
+          5,
+          24,
+          24
+        ],
+        "pair": [
+          23,
+          25
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17961
+      },
+      {
+        "d": [
+          5,
+          25,
+          25
+        ],
+        "pair": [
+          24,
+          26
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17928
+      },
+      {
+        "d": [
+          5,
+          26,
+          26
+        ],
+        "pair": [
+          25,
+          27
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17878
+      },
+      {
+        "d": [
+          5,
+          27,
+          27
+        ],
+        "pair": [
+          26,
+          28
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17830
+      }
+    ],
+    "deadHistogram": {
+      "350": 65,
+      "530": 191,
+      "1062": 124,
+      "1316": 147,
+      "2428": 5
+    },
+    "controls": null
+  },
+  {
+    "batch": 6,
+    "totals": {
+      "maps": 841,
+      "stage1Dead": 532,
+      "stage1Pairs": 2189,
+      "stage2Dead": 280,
+      "stage2Pairs": 30,
+      "splitDead": 26,
+      "splitPairs": 4
+    },
+    "surv": [
+      {
+        "d": [
+          6,
+          6,
+          6
+        ],
+        "pair": [
+          5,
+          7
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 409163
+        }
+      },
+      {
+        "d": [
+          6,
+          8,
+          6
+        ],
+        "pair": [
+          5,
+          9
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 406706
+        }
+      },
+      {
+        "d": [
+          6,
+          9,
+          6
+        ],
+        "pair": [
+          5,
+          10
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 419785
+        }
+      },
+      {
+        "d": [
+          6,
+          9,
+          6
+        ],
+        "pair": [
+          5,
+          11
+        ],
+        "split": {
+          "dead": null,
+          "maxStates": 29,
+          "transitions": 426687
+        }
+      }
+    ],
+    "splitRows": [
+      {
+        "d": [
+          6,
+          1,
+          1
+        ],
+        "pair": [
+          0,
+          2
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 20822
+      },
+      {
+        "d": [
+          6,
+          2,
+          2
+        ],
+        "pair": [
+          1,
+          3
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21094
+      },
+      {
+        "d": [
+          6,
+          3,
+          3
+        ],
+        "pair": [
+          2,
+          4
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21332
+      },
+      {
+        "d": [
+          6,
+          4,
+          4
+        ],
+        "pair": [
+          3,
+          5
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21532
+      },
+      {
+        "d": [
+          6,
+          5,
+          5
+        ],
+        "pair": [
+          4,
+          6
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 21758
+      },
+      {
+        "d": [
+          6,
+          6,
+          6
+        ],
+        "pair": [
+          5,
+          7
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 409163
+      },
+      {
+        "d": [
+          6,
+          7,
+          7
+        ],
+        "pair": [
+          6,
+          8
+        ],
+        "dead": 792,
+        "maxStates": 29,
+        "transitions": 21019
+      },
+      {
+        "d": [
+          6,
+          8,
+          6
+        ],
+        "pair": [
+          5,
+          9
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 406706
+      },
+      {
+        "d": [
+          6,
+          8,
+          8
+        ],
+        "pair": [
+          7,
+          9
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 19236
+      },
+      {
+        "d": [
+          6,
+          9,
+          6
+        ],
+        "pair": [
+          5,
+          10
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 419785
+      },
+      {
+        "d": [
+          6,
+          9,
+          6
+        ],
+        "pair": [
+          5,
+          11
+        ],
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 426687
+      },
+      {
+        "d": [
+          6,
+          9,
+          9
+        ],
+        "pair": [
+          8,
+          10
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 19172
+      },
+      {
+        "d": [
+          6,
+          10,
+          10
+        ],
+        "pair": [
+          9,
+          11
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 19083
+      },
+      {
+        "d": [
+          6,
+          11,
+          11
+        ],
+        "pair": [
+          10,
+          12
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 19000
+      },
+      {
+        "d": [
+          6,
+          12,
+          12
+        ],
+        "pair": [
+          11,
+          13
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18912
+      },
+      {
+        "d": [
+          6,
+          13,
+          13
+        ],
+        "pair": [
+          12,
+          14
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18827
+      },
+      {
+        "d": [
+          6,
+          14,
+          14
+        ],
+        "pair": [
+          13,
+          15
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18724
+      },
+      {
+        "d": [
+          6,
+          15,
+          15
+        ],
+        "pair": [
+          14,
+          16
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18643
+      },
+      {
+        "d": [
+          6,
+          16,
+          16
+        ],
+        "pair": [
+          15,
+          17
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18561
+      },
+      {
+        "d": [
+          6,
+          17,
+          17
+        ],
+        "pair": [
+          16,
+          18
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18491
+      },
+      {
+        "d": [
+          6,
+          18,
+          18
+        ],
+        "pair": [
+          17,
+          19
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18421
+      },
+      {
+        "d": [
+          6,
+          19,
+          19
+        ],
+        "pair": [
+          18,
+          20
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18344
+      },
+      {
+        "d": [
+          6,
+          20,
+          20
+        ],
+        "pair": [
+          19,
+          21
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18282
+      },
+      {
+        "d": [
+          6,
+          21,
+          21
+        ],
+        "pair": [
+          20,
+          22
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18202
+      },
+      {
+        "d": [
+          6,
+          22,
+          22
+        ],
+        "pair": [
+          21,
+          23
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18129
+      },
+      {
+        "d": [
+          6,
+          23,
+          23
+        ],
+        "pair": [
+          22,
+          24
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18076
+      },
+      {
+        "d": [
+          6,
+          24,
+          24
+        ],
+        "pair": [
+          23,
+          25
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18064
+      },
+      {
+        "d": [
+          6,
+          25,
+          25
+        ],
+        "pair": [
+          24,
+          26
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 18019
+      },
+      {
+        "d": [
+          6,
+          26,
+          26
+        ],
+        "pair": [
+          25,
+          27
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17970
+      },
+      {
+        "d": [
+          6,
+          27,
+          27
+        ],
+        "pair": [
+          26,
+          28
+        ],
+        "dead": 644,
+        "maxStates": 29,
+        "transitions": 17908
+      }
+    ],
+    "deadHistogram": {
+      "350": 65,
+      "530": 191,
+      "1062": 124,
+      "1316": 146,
+      "2428": 6
+    },
+    "controls": null
+  }
+]
