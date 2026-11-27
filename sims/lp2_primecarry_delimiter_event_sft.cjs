@@ -119,8 +119,8 @@ const Eorig=gaps.map(g=>g.includes('-')?1:0);
 const tape=corpus.pages.slice(0,56).flatMap(p=>p.indices);
 if(tape.length!==12956)throw Error('unexpected unknown rune count');
 
-const chapterStarts=[0,729,1874,3612,5506,6527,7960,9640,12648];
-const chapterEnds=[729,1874,3612,5506,6527,7960,9640,12648,12956];
+const chapterStarts=[0,729,1874,3612,5506,6527,7960,9640];
+const chapterEnds=[729,1874,3612,5506,6527,7960,9640,12956];
 const failures=[];
 for(let q=0;q<chapterStarts.length;q++){
   const C=tape.slice(chapterStarts[q],chapterEnds[q]);
@@ -159,7 +159,7 @@ const dev=diag.filter(x=>x.page<=39),hold=diag.filter(x=>x.page>=40);
 console.log(JSON.stringify({
   construction:{
     cipher:'authentic p56 prime-minus-one GP29 additive core, literal F holds prime clock',
-    reset:'prime 2 at each source-visible $ chapter start',
+    reset:'prime 2 at each source-visible $ chapter start (and at book start)',
     event:'hyphen after shifted rune iff modular addition carries through 29'
   },
   authentic_p56_control:{runes:p56P.length,ciphertext_exact:true,carry_sidechannel_inverse_exact:true,
