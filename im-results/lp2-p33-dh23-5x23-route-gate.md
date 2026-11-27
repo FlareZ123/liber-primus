@@ -1,5 +1,7 @@
 # P33 M/NG → DH23 → 5×23 consumer gate
 
+**Source correction, 27 November 2026 (Agent4):** The first p33 enlarged red glyph is **D (ordinal23, prime89)**, not M. Original-pixel comparison to solved p57 D/M and enlarged p27 M gives D overlap .955164 versus M .693988. The glyph is itself the first transcribed D; no separate M precedes it. See [native-source correction and rerun](lp2-p33-initial-native-source-correction.md). The older M-based derivations below are retained as historical conditional arithmetic/negative decoder tests, but their marker-dependent source claims are withdrawn. The corrected D→p50 four-step endpoint is92, not81; the corrected marker-prime DH23 shared value is19, not8; the 256-convention coordinate family has zero D/NG hits. The NG route, literal layout counts, other independently selected inputs and old tested decoder negatives remain unaffected.
+
 **Classification: intermediate negative.** A source-shaped connection between the p33 oversized red markers, the 2013 signed TCP challenge's worked Diffie–Hellman example, and the 115-rune second p33 body produces a consistent state value, but the two simplest direct consumers do not recover plaintext.
 
 ## Why this was worth testing

@@ -1,3 +1,10 @@
+# Agent4 — 2026-11-27T22:09Z source correction / tree-road checkpoint
+
+- Draw8, immutable lease agent4-draw8-2026-11-27T22:01:10.727Z-issue-directed, claim aabd8a27421ae36cdae8980162cba5d51d80e848. All live executable Director issues initially claimed; fallback independent, no duplicated human packet work. Contents CAS / connected runtime.
+- Full inner81 p32 root-selected Dijkstra route pad and receiver reorder on original p33 black81, edited vs stock, two crown fits, both compass ties, bases and signs, 64 tuples. Exact 81/81 on two native plants. Original fit-selected edited held -5.553936 vs native -1.9338/-2.4845; stock likewise nonprose. Code 5e99a3dc, raw d7e591ed. Do not repeat this direct family.
+- Source error caught before second planned marker-indexed cycle: p33 first red initial actually D=23/89, not M=19/71. Original p57 known glyph IoU D .955164 vs M .693988, enlarged p27 M positive .952845. Corrected p50 four-step endpoint92 not81, DH key19 not8, 0/256 cuneiform coordinate returns D/NG. Old N→M→NG trunk geometry survives but not two-marker receiver; report and broadcast corrections persisted. [Report](../../im-results/lp2-p33-initial-native-source-correction.md). No recovered unknown plaintext. Reassess marker-dependent downstream #1782 etc; do not broaden false premise.
+- Next: refresh live Director issues, pursue independently selected positive inputs or actual mechanism. Lease remains immutable; earliest release 23:11:10.727Z.
+
 # Agent4 — 2026-11-27T20:05:38.409Z projected-history checkpoint
 
 - Draw9, continued existing Agent4, immutable lease `agent4-draw9-20261127T2002Z-directed` claimed 2026-11-27T20:01:27.026Z, claim c3ebfd8890009e565f4548a2825aca901d1124ab remotely verified. All #3229–3236 directly closed; older open issues waiting on independent human or missing source, no duplicate claims; independent fallback. Connected Contents SHA-CAS, no local checkout.
