@@ -1,0 +1,202 @@
+{
+  "schema": "lp2-public-cipherprev-q29-phase-consistency-v1",
+  "N": 12956,
+  "iterations": 4,
+  "originals": [
+    {
+      "dir": 1,
+      "clock": "continuous",
+      "base": 163042,
+      "trace": [
+        {
+          "iter": 1,
+          "s": 327353,
+          "scale": 54,
+          "acc": 327353,
+          "upper": 156979
+        },
+        {
+          "iter": 2,
+          "s": 1375933,
+          "scale": 2916,
+          "acc": 19052995,
+          "upper": 156508
+        },
+        {
+          "iter": 3,
+          "s": 6838728,
+          "scale": 157464,
+          "acc": 1035700458,
+          "upper": 156464
+        },
+        {
+          "iter": 4,
+          "s": 35916732,
+          "scale": 8503056,
+          "acc": 55963741464,
+          "upper": 156460
+        }
+      ],
+      "upper": 156460,
+      "aligned": [
+        {
+          "windows": 34674,
+          "ordinary": 0,
+          "held": 0
+        },
+        {
+          "windows": 204151,
+          "ordinary": 0,
+          "held": 0
+        },
+        {
+          "windows": 293896,
+          "ordinary": 0,
+          "held": 0
+        }
+      ]
+    },
+    {
+      "dir": 1,
+      "clock": "page",
+      "base": 162862,
+      "trace": [
+        {
+          "iter": 1,
+          "s": 325924,
+          "scale": 54,
+          "acc": 325924,
+          "upper": 156826
+        },
+        {
+          "iter": 2,
+          "s": 1410948,
+          "scale": 2916,
+          "acc": 19010844,
+          "upper": 156342
+        },
+        {
+          "iter": 3,
+          "s": 6921268,
+          "scale": 157464,
+          "acc": 1033506844,
+          "upper": 156298
+        },
+        {
+          "iter": 4,
+          "s": 36756347,
+          "scale": 8503056,
+          "acc": 55846125923,
+          "upper": 156294
+        }
+      ],
+      "upper": 156294,
+      "aligned": [
+        {
+          "windows": 34674,
+          "ordinary": 0,
+          "held": 0
+        },
+        {
+          "windows": 204151,
+          "ordinary": 0,
+          "held": 0
+        },
+        {
+          "windows": 293896,
+          "ordinary": 0,
+          "held": 0
+        }
+      ]
+    },
+    {
+      "dir": 1,
+      "clock": "consume",
+      "base": 163121,
+      "trace": [
+        {
+          "iter": 1,
+          "s": 324305,
+          "scale": 54,
+          "acc": 324305,
+          "upper": 157115
+        },
+        {
+          "iter": 2,
+          "s": 1423165,
+          "scale": 2916,
+          "acc": 18935635,
+          "upper": 156627
+        },
+        {
+          "iter": 3,
+          "s": 7190623,
+          "scale": 157464,
+          "acc": 1029714913,
+          "upper": 156581
+        },
+        {
+          "iter": 4,
+          "s": 38220620,
+          "scale": 8503056,
+          "acc": 55642825922,
+          "upper": 156577
+        }
+      ],
+      "upper": 156577,
+      "aligned": [
+        {
+          "windows": 34674,
+          "ordinary": 0,
+          "held": 0
+        },
+        {
+          "windows": 204151,
+          "ordinary": 0,
+          "held": 0
+        },
+        {
+          "windows": 293896,
+          "ordinary": 0,
+          "held": 0
+        }
+      ]
+    }
+  ],
+  "plant": {
+    "n": 12901,
+    "actual": 174399,
+    "base": 207732,
+    "trace": [
+      {
+        "iter": 1,
+        "s": 419805,
+        "scale": 54,
+        "acc": 419805,
+        "upper": 199957
+      },
+      {
+        "iter": 2,
+        "s": 1740337,
+        "scale": 2916,
+        "acc": 24409807,
+        "upper": 199361
+      },
+      {
+        "iter": 3,
+        "s": 8755230,
+        "scale": 157464,
+        "acc": 1326884808,
+        "upper": 199305
+      },
+      {
+        "iter": 4,
+        "s": 50443125,
+        "scale": 8503056,
+        "acc": 71702222757,
+        "upper": 199299
+      }
+    ],
+    "upper": 199299
+  }
+}
