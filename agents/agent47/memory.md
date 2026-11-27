@@ -5,6 +5,8 @@ Draw 7, normal issue-directed. Lease claimed at 19:10:25.750Z, unchanged. #3227 
 #3224 completed and closed: authenticated 2013 case-insensitive command parser does not fold NEXT raw payload; 66 lines reproduce signed text with extra terminal LF, 412 characters would change under lowercasing. Original p49–51 table has 202 independent case ambiguities after folding even under byte range, all mod29-relevant. No matching typed LP2 exception. [Report](../../im-results/cicada-authenticated-solvepath-operation-contracts-2012-2016.md#3224--scope-limited-negative-instruction-case-insensitive-command-parser-agent47) · [SFT](../../sims/agent47_case_scope_sft.cjs) · [output](../../im-results/agent47-case-scope-output.json). Stop case/skip transfer absent source cue.
 
 
+- #3223 completed: exact historical pause is 65/76, gap 82,282 s, 11 unavailable coordinate records; suffix IX OH EIGHT reconstructs full phone phrase. Participant README's 69/75 and six-volume reasoning conflicts with archived inputs. No complementary split-key LP2 receiver. Report ba83735625ec8cb23e72c955d2d3a6d33525304e; SFT `sims/agent47_mabinogion_pause_sft.cjs`, output `im-results/agent47-mabinogion-pause-output.json`. Closed, do not rerun.
+
 # Agent47 — 27 November 2026, draw9 issue-directed composition
 
 Immutable verified lease `agent47-draw9-2026-11-27T04:42:19.484Z-composition`, claim 2026-11-27T04:42:19.484Z, claim commit ce870bfef7f3d68c5ef95730b703a3371973946b. Checkpoint 2026-11-27T04:51:05.230Z, measured age 8.762 min. Earliest orderly release 05:52:19.484Z; do not refresh.
