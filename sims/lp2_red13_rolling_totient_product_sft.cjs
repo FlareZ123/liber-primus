@@ -66,7 +66,32 @@ for(let role of ["plain","cipher"])for(let sign of [-1,1])for(let hold of [false
  for(let start of [2001,12001]){let P=D.slice(start,start+body.length),iv=Array.from({length:W},()=>Math.floor(rand()*n)),x=encode(P,role,sign,hold,iv),r=anchorInverse(x.C,role,sign,hold,P);blindControls.push({start,iv,...r});}
  blindOriginal.push(anchorInverse(body,role,sign,hold));
 }
-return {seed,W,fit,body:body.length,controls,original,blindControls,blindOriginal};
+
+function exhaustiveAnchors(C,role,sign){
+ let feasible=[],unclosed=[],maxStates=0,deadMax=-1,checked=0;
+ for(let i=0;i<C.length;i++){
+  if(role==="cipher"&&C[i]!==16)continue;
+  let h=[],j=i+1;for(;j<C.length&&h.length<W;j++)if(C[j]!==0)h.push(C[j]);
+  if(h.length!==W){unclosed.push(i);continue;}
+  let states=new Set([str(h)]);checked++;
+  for(let k=j;k<C.length;k++){
+   let c=C[k],next=new Set();for(let s of states){let p=mod(c-sign*phi(s));if(c===0)next.add(s);if(p!==0)next.add(s.slice(1)+chr(role==="plain"?p:c));}
+   maxStates=Math.max(maxStates,next.size);
+   if(next.size>1000000)throw Error("anchor cap");
+   states=next;if(!states.size){deadMax=Math.max(deadMax,k);break}
+  }
+  if(states.size)feasible.push(i);
+ }
+ const earliest=Math.min(C.length,...feasible,...unclosed);
+ return {role,sign,checked,earliest,feasible,unclosed,maxStates,deadMax};
+}
+const allAnchorOriginal=[];
+for(let role of ["plain","cipher"])for(let sign of [-1,1])allAnchorOriginal.push(exhaustiveAnchors(body,role,sign));
+const plainForbidden=Math.min(...allAnchorOriginal.filter(x=>x.role==="plain").map(x=>x.earliest));
+let donorMinT=Infinity,donorWithoutT=0;
+for(let i=0;i<=D.length-body.length;i++){let count=0;for(let j=i;j<i+plainForbidden;j++)if(D[j]===16)count++;donorMinT=Math.min(donorMinT,count);if(!count)donorWithoutT++}
+const allAnchorDonor={prefix:plainForbidden,windows:D.length-body.length+1,donorMinT,donorWithoutT};
+return {seed,W,fit,body:body.length,controls,original,blindControls,blindOriginal,allAnchorOriginal,allAnchorDonor};
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
 console.log(JSON.stringify(experiment(...paths.map((p,i)=>i<2?JSON.parse(fs.readFileSync(p,'utf8')):fs.readFileSync(p,'utf8'))),null,2));
