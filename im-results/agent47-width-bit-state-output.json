@@ -1,0 +1,223 @@
+{
+  "width": 7,
+  "states": 58,
+  "domain": 1682,
+  "distinctJointOutputs": 1682,
+  "perCipherSymbolStates": 58,
+  "twoSymbolInputs": 841,
+  "distinctPlaintextsPerTwoCipherSymbols": 58,
+  "control": [
+    {
+      "name": "0_warning",
+      "n": 184,
+      "singletons": 1,
+      "plants": 58,
+      "unique": 0,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 58
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "singletons": 3,
+      "plants": 58,
+      "unique": 58,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 0
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157,
+      "singletons": 0,
+      "plants": 58,
+      "unique": 0,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 58
+    },
+    {
+      "name": "0_koan_1",
+      "n": 780,
+      "singletons": 13,
+      "plants": 58,
+      "unique": 58,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 0
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "singletons": 0,
+      "plants": 58,
+      "unique": 0,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 58
+    },
+    {
+      "name": "jpg107-167",
+      "n": 319,
+      "singletons": [
+        24,
+        24,
+        10,
+        10,
+        24,
+        24,
+        10,
+        16,
+        24,
+        10
+      ],
+      "excluded": "non-A/I/O singleton"
+    },
+    {
+      "name": "jpg229",
+      "n": 89,
+      "singletons": 0,
+      "plants": 58,
+      "unique": 0,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 58
+    },
+    {
+      "name": "p56_an_end",
+      "n": 85,
+      "singletons": 1,
+      "plants": 58,
+      "unique": 0,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 58
+    },
+    {
+      "name": "p57_parable",
+      "n": 95,
+      "singletons": 0,
+      "plants": 58,
+      "unique": 0,
+      "actualSurvived": 58,
+      "exactTwoAnchors": 58,
+      "wrongLawFeasible": 58
+    }
+  ],
+  "original": [
+    {
+      "allow": [
+        24,
+        10
+      ],
+      "all": [],
+      "chapters": [
+        {
+          "n": 729,
+          "sites": 5,
+          "seeds": []
+        },
+        {
+          "n": 1145,
+          "sites": 8,
+          "seeds": []
+        },
+        {
+          "n": 1729,
+          "sites": 11,
+          "seeds": []
+        },
+        {
+          "n": 1903,
+          "sites": 18,
+          "seeds": []
+        },
+        {
+          "n": 1021,
+          "sites": 5,
+          "seeds": []
+        },
+        {
+          "n": 1433,
+          "sites": 12,
+          "seeds": []
+        },
+        {
+          "n": 1680,
+          "sites": 9,
+          "seeds": []
+        },
+        {
+          "n": 3008,
+          "sites": 13,
+          "seeds": []
+        },
+        {
+          "n": 308,
+          "sites": 2,
+          "seeds": [
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "allow": [
+        24,
+        10,
+        3
+      ],
+      "all": [],
+      "chapters": [
+        {
+          "n": 729,
+          "sites": 5,
+          "seeds": []
+        },
+        {
+          "n": 1145,
+          "sites": 8,
+          "seeds": []
+        },
+        {
+          "n": 1729,
+          "sites": 11,
+          "seeds": []
+        },
+        {
+          "n": 1903,
+          "sites": 18,
+          "seeds": []
+        },
+        {
+          "n": 1021,
+          "sites": 5,
+          "seeds": []
+        },
+        {
+          "n": 1433,
+          "sites": 12,
+          "seeds": []
+        },
+        {
+          "n": 1680,
+          "sites": 9,
+          "seeds": []
+        },
+        {
+          "n": 3008,
+          "sites": 13,
+          "seeds": []
+        },
+        {
+          "n": 308,
+          "sites": 2,
+          "seeds": [
+            45
+          ]
+        }
+      ]
+    }
+  ]
+}
