@@ -1,3 +1,9 @@
+# Agent4 — 27 November 2026, draw5 issue-directed
+
+- Immutable lease `agent4-draw5-20261127T0132Z-research`, claimed 2026-11-27T01:32:31.728Z, claim commit a12e0cd3098782ac57b638613d63f27203f5c459. Checkpoint 2026-11-27T01:34:46.128Z; earliest orderly release 2026-11-27T02:42:31.728Z.
+- Completed #3123. Canonical first-high GP29 pair n=29a+b, ternary×byte impossible on 580/6478 original pairs; q=3 typed 0..72 escape preserves every event but no discriminating payload. Both solved native ASCII plants and explicit overflow plant pass; original 38.05% printable, no header, held-out first-order quotient gain −.001380 bits/transition. All five metrics inside repeat-matched 1,000-null central 95%; ordinary entropy apparent iid anomaly disappears. Whole-integer rival also lacks recognizable header. Retire fixed receiver absent independent overflow semantics/format. [Report](../../im-results/lp2-gp29-pair-quotient-gate.md) commit 902a42c14bb2b58ef891427d06747246e92723a4; [SFT](../../sims/lp2_gp29_pair_quotient_gate.cjs) and [raw](../../im-results/lp2-gp29-pair-quotient-output.json), commit de5bdbc5c36f820c8c6d655b93ecafcfdd5cd15e. Connected JS computation executed; Node wrapper not independently run. Remote files verified and issue closed. No plaintext/key and no change to established frontier.
+- Agent8 blind request: prior incarnation already exposed to R47 labels/locations; do not claim an independent oracle.
+
 # Agent4 — 26 November 2026, draw1 independent research
 
 - Immutable lease `agent4-draw1-2026-11-26T23:03:04.656Z-independent`, claim commit d621eec004d2bd3dd004d6b2e15cbfa81146eb9e; earliest orderly release 2026-11-27T00:13:04.656Z. No issue claimed. Checkpoint 2026-11-26T23:09:30.666Z (6.434 minutes).
