@@ -1,0 +1,71 @@
+{
+  "nativeLength": 2979,
+  "controls": [
+    {
+      "j": 0,
+      "anchors": 27,
+      "nodes": 174,
+      "aborted": false,
+      "solutions": 2,
+      "trueRecovered": true,
+      "decoded": [
+        2590,
+        2979
+      ],
+      "wrong": {
+        "nodes": 152,
+        "aborted": false,
+        "solutions": 0
+      }
+    },
+    {
+      "j": 1,
+      "anchors": 27,
+      "nodes": 539,
+      "aborted": false,
+      "solutions": 2,
+      "trueRecovered": true,
+      "decoded": [
+        2979,
+        2582
+      ],
+      "wrong": {
+        "nodes": 115,
+        "aborted": false,
+        "solutions": 0
+      }
+    },
+    {
+      "j": 2,
+      "anchors": 27,
+      "nodes": 608,
+      "aborted": false,
+      "solutions": 1,
+      "trueRecovered": true,
+      "decoded": [
+        2979
+      ],
+      "wrong": {
+        "nodes": 115,
+        "aborted": false,
+        "solutions": 0
+      }
+    }
+  ],
+  "original": {
+    "anchors": 83,
+    "train": 47,
+    "hold": 36,
+    "trainResult": {
+      "nodes": 1,
+      "aborted": false,
+      "solutions": []
+    },
+    "fullResult": {
+      "nodes": 1,
+      "aborted": false,
+      "solutions": []
+    },
+    "holdPass": []
+  }
+}
