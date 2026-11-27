@@ -1,0 +1,4299 @@
+{
+  "page": 33,
+  "suffixLength": 78,
+  "results": [
+    {
+      "perm": false,
+      "hold": false,
+      "forms": 29056,
+      "nodes": 72157,
+      "wordMass": 1096629,
+      "phase": 2,
+      "A": 22,
+      "q": 57170,
+      "cost": 302.5900414892563,
+      "plain": [
+        24,
+        15,
+        28,
+        20,
+        21,
+        15,
+        18,
+        9,
+        23,
+        1,
+        10,
+        23,
+        12,
+        7,
+        21,
+        3,
+        0,
+        24,
+        15,
+        18,
+        13,
+        10,
+        0,
+        16,
+        13,
+        13,
+        3,
+        16,
+        23,
+        10,
+        3,
+        20,
+        23,
+        1,
+        10,
+        3,
+        17,
+        20,
+        18,
+        15,
+        0,
+        0,
+        10,
+        8,
+        3,
+        7,
+        24,
+        5,
+        5,
+        0,
+        1,
+        24,
+        20,
+        10,
+        18,
+        19,
+        0,
+        0,
+        17,
+        26,
+        24,
+        4,
+        15,
+        28,
+        16,
+        1,
+        15,
+        15,
+        20,
+        3,
+        7,
+        10,
+        24,
+        6,
+        3,
+        15,
+        8,
+        24
+      ],
+      "shares": [
+        11,
+        11,
+        16,
+        16,
+        19,
+        4,
+        15,
+        9,
+        2,
+        16,
+        15,
+        17,
+        6,
+        18,
+        20,
+        7,
+        4,
+        13,
+        15,
+        22
+      ],
+      "words": [
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "SEALING",
+          "runes": [
+            15,
+            28,
+            20,
+            21
+          ]
+        },
+        {
+          "label": "SEND",
+          "runes": [
+            15,
+            18,
+            9,
+            23
+          ]
+        },
+        {
+          "label": "VIDEO",
+          "runes": [
+            1,
+            10,
+            23,
+            12
+          ]
+        },
+        {
+          "label": "WING",
+          "runes": [
+            7,
+            21
+          ]
+        },
+        {
+          "label": "OF",
+          "runes": [
+            3,
+            0
+          ]
+        },
+        {
+          "label": "AS",
+          "runes": [
+            24,
+            15
+          ]
+        },
+        {
+          "label": "EPI",
+          "runes": [
+            18,
+            13,
+            10
+          ]
+        },
+        {
+          "label": "FTP",
+          "runes": [
+            0,
+            16,
+            13
+          ]
+        },
+        {
+          "label": "POT",
+          "runes": [
+            13,
+            3,
+            16
+          ]
+        },
+        {
+          "label": "DI",
+          "runes": [
+            23,
+            10
+          ]
+        },
+        {
+          "label": "OLD",
+          "runes": [
+            3,
+            20,
+            23
+          ]
+        },
+        {
+          "label": "VI",
+          "runes": [
+            1,
+            10
+          ]
+        },
+        {
+          "label": "O",
+          "runes": [
+            3
+          ]
+        },
+        {
+          "label": "BL",
+          "runes": [
+            17,
+            20
+          ]
+        },
+        {
+          "label": "ES",
+          "runes": [
+            18,
+            15
+          ]
+        },
+        {
+          "label": "FF",
+          "runes": [
+            0,
+            0
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "HOW",
+          "runes": [
+            8,
+            3,
+            7
+          ]
+        },
+        {
+          "label": "AK",
+          "runes": [
+            24,
+            5
+          ]
+        },
+        {
+          "label": "CF",
+          "runes": [
+            5,
+            0
+          ]
+        },
+        {
+          "label": "VAL",
+          "runes": [
+            1,
+            24,
+            20
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "EM",
+          "runes": [
+            18,
+            19
+          ]
+        },
+        {
+          "label": "FF",
+          "runes": [
+            0,
+            0
+          ]
+        },
+        {
+          "label": "BY",
+          "runes": [
+            17,
+            26
+          ]
+        },
+        {
+          "label": "AR",
+          "runes": [
+            24,
+            4
+          ]
+        },
+        {
+          "label": "SEAT",
+          "runes": [
+            15,
+            28,
+            16
+          ]
+        },
+        {
+          "label": "US",
+          "runes": [
+            1,
+            15
+          ]
+        },
+        {
+          "label": "SLOW",
+          "runes": [
+            15,
+            20,
+            3,
+            7
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "AGO",
+          "runes": [
+            24,
+            6,
+            3
+          ]
+        }
+      ],
+      "pending": [
+        15,
+        8,
+        24
+      ],
+      "finalCost": 309.07303121441214,
+      "perRune": 3.96247475915913,
+      "maxStates": 173,
+      "controls": [
+        {
+          "cost": 1.5897165991899602,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL",
+            "HIS"
+          ],
+          "outputWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL"
+          ],
+          "pending": [
+            8,
+            10
+          ]
+        },
+        {
+          "cost": 2.020100188324953,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME",
+            "AND"
+          ],
+          "outputWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME"
+          ],
+          "pending": [
+            24,
+            9,
+            23
+          ]
+        },
+        {
+          "cost": 1.997606504402137,
+          "correct": 76,
+          "n": 78,
+          "originalWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST",
+            "YET"
+          ],
+          "outputWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST"
+          ],
+          "pending": [
+            8,
+            24
+          ]
+        },
+        {
+          "cost": 1.970012665603864,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "THE",
+            "ETHER"
+          ],
+          "outputWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "THE"
+          ],
+          "pending": [
+            18,
+            2,
+            18,
+            4
+          ]
+        },
+        {
+          "cost": 1.8527078975484936,
+          "correct": 77,
+          "n": 78,
+          "originalWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDES",
+            "HOW",
+            "OFTEN",
+            "HAVE",
+            "YOU"
+          ],
+          "outputWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDE",
+            "SHOW",
+            "OFTEN",
+            "HAVE"
+          ],
+          "pending": [
+            0,
+            3
+          ]
+        },
+        {
+          "cost": 1.667633801481524,
+          "correct": 74,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "NAME",
+            "AND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE",
+            "ANOTHER"
+          ],
+          "outputWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "HUSBAND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE"
+          ],
+          "pending": [
+            24,
+            9,
+            3,
+            2,
+            18
+          ]
+        },
+        {
+          "cost": 2.132372345589603,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR",
+            "DEARLY"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR"
+          ],
+          "pending": [
+            23
+          ]
+        },
+        {
+          "cost": 1.7719489190126545,
+          "correct": 72,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "OUR",
+            "LOVE"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "TO"
+          ],
+          "pending": [
+            5,
+            4,
+            1,
+            18
+          ]
+        },
+        {
+          "cost": 1.6841795453785415,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED",
+            "TOWARDS"
+          ],
+          "outputWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED"
+          ],
+          "pending": [
+            16,
+            3,
+            7,
+            24,
+            4,
+            23
+          ]
+        },
+        {
+          "cost": 1.757397535589151,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "IN",
+            "QUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE",
+            "DISTANCES"
+          ],
+          "outputWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "INQUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE"
+          ],
+          "pending": [
+            23,
+            10,
+            15,
+            16
+          ]
+        },
+        {
+          "cost": 1.9564800698696523,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR",
+            "CHILDREN"
+          ],
+          "outputWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR"
+          ],
+          "pending": [
+            5,
+            8,
+            10,
+            20
+          ]
+        },
+        {
+          "cost": 1.8383395409062995,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT",
+            "TO"
+          ],
+          "outputWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT"
+          ],
+          "pending": [
+            16
+          ]
+        }
+      ],
+      "nulls": [
+        4.003052514200755,
+        4.007821866014085,
+        4.77059279509187,
+        3.9885125119086773,
+        3.931815186270153,
+        4.240452402755665,
+        3.90631770137803,
+        4.008369391702526,
+        4.366731148495357,
+        4.208503596555145,
+        4.262227739024829,
+        3.985706230106034,
+        null,
+        4.2405732220020536,
+        4.204396575224842,
+        3.946938902826656,
+        4.237370809790158,
+        4.221551381978547,
+        3.899246962898818,
+        3.82639263423479,
+        4.09900325107705,
+        3.7332899418575938,
+        4.375846820844829,
+        3.945010071658975,
+        4.514027853331474,
+        4.112874150127646,
+        null,
+        4.106297893075944,
+        4.5354896528923305,
+        3.478407899280919,
+        4.318306281283395,
+        4.2714007011478605,
+        4.052025735832396,
+        4.197965581014677,
+        3.9477057106190747,
+        4.432011696351832,
+        4.527304410941567,
+        4.584410266290279,
+        4.2887768910291255,
+        3.8631017400662713
+      ]
+    },
+    {
+      "perm": false,
+      "hold": true,
+      "forms": 29056,
+      "nodes": 72157,
+      "wordMass": 1096629,
+      "phase": 1,
+      "A": 15,
+      "q": 54405,
+      "cost": 296.25791850960616,
+      "plain": [
+        24,
+        15,
+        28,
+        20,
+        21,
+        15,
+        18,
+        9,
+        23,
+        1,
+        10,
+        23,
+        12,
+        7,
+        21,
+        3,
+        8,
+        0,
+        16,
+        18,
+        9,
+        7,
+        18,
+        18,
+        16,
+        6,
+        1,
+        26,
+        15,
+        21,
+        15,
+        20,
+        24,
+        1,
+        24,
+        15,
+        9,
+        28,
+        4,
+        10,
+        5,
+        24,
+        20,
+        2,
+        7,
+        8,
+        1,
+        15,
+        6,
+        3,
+        15,
+        24,
+        5,
+        10,
+        10,
+        20,
+        18,
+        9,
+        2,
+        24,
+        16,
+        23,
+        3,
+        14,
+        14,
+        3,
+        24,
+        16,
+        15,
+        24,
+        2,
+        21,
+        10,
+        5,
+        10,
+        4,
+        27,
+        16
+      ],
+      "shares": [
+        11,
+        11,
+        16,
+        16,
+        21,
+        11,
+        8,
+        1,
+        10,
+        7,
+        9,
+        22,
+        17,
+        1,
+        11,
+        20,
+        19,
+        10,
+        7,
+        15
+      ],
+      "words": [
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "SEALING",
+          "runes": [
+            15,
+            28,
+            20,
+            21
+          ]
+        },
+        {
+          "label": "SEND",
+          "runes": [
+            15,
+            18,
+            9,
+            23
+          ]
+        },
+        {
+          "label": "VIDEO",
+          "runes": [
+            1,
+            10,
+            23,
+            12
+          ]
+        },
+        {
+          "label": "WING",
+          "runes": [
+            7,
+            21
+          ]
+        },
+        {
+          "label": "OH",
+          "runes": [
+            3,
+            8
+          ]
+        },
+        {
+          "label": "FT",
+          "runes": [
+            0,
+            16
+          ]
+        },
+        {
+          "label": "EN",
+          "runes": [
+            18,
+            9
+          ]
+        },
+        {
+          "label": "WE",
+          "runes": [
+            7,
+            18
+          ]
+        },
+        {
+          "label": "ET",
+          "runes": [
+            18,
+            16
+          ]
+        },
+        {
+          "label": "GUY",
+          "runes": [
+            6,
+            1,
+            26
+          ]
+        },
+        {
+          "label": "SING",
+          "runes": [
+            15,
+            21
+          ]
+        },
+        {
+          "label": "SLAV",
+          "runes": [
+            15,
+            20,
+            24,
+            1
+          ]
+        },
+        {
+          "label": "AS",
+          "runes": [
+            24,
+            15
+          ]
+        },
+        {
+          "label": "NEAR",
+          "runes": [
+            9,
+            28,
+            4
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "CAL",
+          "runes": [
+            5,
+            24,
+            20
+          ]
+        },
+        {
+          "label": "TH",
+          "runes": [
+            2
+          ]
+        },
+        {
+          "label": "WH",
+          "runes": [
+            7,
+            8
+          ]
+        },
+        {
+          "label": "US",
+          "runes": [
+            1,
+            15
+          ]
+        },
+        {
+          "label": "GO",
+          "runes": [
+            6,
+            3
+          ]
+        },
+        {
+          "label": "SAC",
+          "runes": [
+            15,
+            24,
+            5
+          ]
+        },
+        {
+          "label": "II",
+          "runes": [
+            10,
+            10
+          ]
+        },
+        {
+          "label": "LEN",
+          "runes": [
+            20,
+            18,
+            9
+          ]
+        },
+        {
+          "label": "THAT",
+          "runes": [
+            2,
+            24,
+            16
+          ]
+        },
+        {
+          "label": "DO",
+          "runes": [
+            23,
+            3
+          ]
+        },
+        {
+          "label": "XX",
+          "runes": [
+            14,
+            14
+          ]
+        },
+        {
+          "label": "OATS",
+          "runes": [
+            3,
+            24,
+            16,
+            15
+          ]
+        },
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "THING",
+          "runes": [
+            2,
+            21
+          ]
+        },
+        {
+          "label": "ICI",
+          "runes": [
+            10,
+            5,
+            10
+          ]
+        }
+      ],
+      "pending": [
+        4,
+        27,
+        16
+      ],
+      "finalCost": 306.73168279210006,
+      "perRune": 3.9324574716935907,
+      "maxStates": 263,
+      "controls": [
+        {
+          "cost": 1.5885201389868548,
+          "correct": 77,
+          "n": 78,
+          "originalWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL",
+            "HIS"
+          ],
+          "outputWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL"
+          ],
+          "pending": [
+            8,
+            18
+          ]
+        },
+        {
+          "cost": 2.020100188324953,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME",
+            "AND"
+          ],
+          "outputWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME"
+          ],
+          "pending": [
+            24,
+            9,
+            23
+          ]
+        },
+        {
+          "cost": 1.997606504402137,
+          "correct": 76,
+          "n": 78,
+          "originalWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST",
+            "YET"
+          ],
+          "outputWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST"
+          ],
+          "pending": [
+            8,
+            24
+          ]
+        },
+        {
+          "cost": 1.970012665603864,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "THE",
+            "ETHER"
+          ],
+          "outputWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "THE"
+          ],
+          "pending": [
+            18,
+            2,
+            18,
+            4
+          ]
+        },
+        {
+          "cost": 1.8596358723295405,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDES",
+            "HOW",
+            "OFTEN",
+            "HAVE",
+            "YOU"
+          ],
+          "outputWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDE",
+            "SHOW",
+            "OFTEN",
+            "HAVE"
+          ],
+          "pending": [
+            26,
+            3
+          ]
+        },
+        {
+          "cost": 1.667633801481524,
+          "correct": 74,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "NAME",
+            "AND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE",
+            "ANOTHER"
+          ],
+          "outputWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "HUSBAND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE"
+          ],
+          "pending": [
+            24,
+            9,
+            3,
+            2,
+            18
+          ]
+        },
+        {
+          "cost": 2.132372345589603,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR",
+            "DEARLY"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR"
+          ],
+          "pending": [
+            23
+          ]
+        },
+        {
+          "cost": 1.7777926697480224,
+          "correct": 77,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "OUR",
+            "LOVE"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "OUR"
+          ],
+          "pending": [
+            20,
+            3,
+            21
+          ]
+        },
+        {
+          "cost": 1.6841795453785415,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED",
+            "TOWARDS"
+          ],
+          "outputWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED"
+          ],
+          "pending": [
+            16,
+            3,
+            7,
+            24,
+            4,
+            23
+          ]
+        },
+        {
+          "cost": 1.757397535589151,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "IN",
+            "QUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE",
+            "DISTANCES"
+          ],
+          "outputWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "INQUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE"
+          ],
+          "pending": [
+            23,
+            10,
+            15,
+            16
+          ]
+        },
+        {
+          "cost": 1.9564800698696523,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR",
+            "CHILDREN"
+          ],
+          "outputWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR"
+          ],
+          "pending": [
+            5,
+            8,
+            10,
+            20
+          ]
+        },
+        {
+          "cost": 1.8383395409062995,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT",
+            "TO"
+          ],
+          "outputWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT"
+          ],
+          "pending": [
+            16
+          ]
+        }
+      ],
+      "nulls": [
+        4.129240937352228,
+        4.079547847647558,
+        4.328150716522119,
+        null,
+        4.041162677637096,
+        4.334141318166494,
+        4.243304164471236,
+        4.334824552492297,
+        4.298716474084443,
+        4.342804094845691,
+        4.248679878059682,
+        4.113069731879846,
+        4.2048328497473495,
+        4.229865497065437,
+        4.017498125454143,
+        3.9521387567631323,
+        4.320888312197399,
+        3.7553461851989915,
+        4.095053204749254,
+        3.825460402488892,
+        4.206633608887676,
+        null,
+        4.128566372497962,
+        3.911481175079574,
+        4.55587916775562,
+        4.094291190865768,
+        4.068540479190953,
+        4.106297893075944,
+        4.380394800419473,
+        3.4213896267156017,
+        4.297124925288285,
+        4.085526509190875,
+        3.811461099045106,
+        4.3305897874839685,
+        4.12875902871221,
+        4.179364892071091,
+        4.108327045845681,
+        4.365274782957078,
+        4.074083895877597,
+        3.935324170283373
+      ]
+    },
+    {
+      "perm": true,
+      "hold": false,
+      "forms": 40730,
+      "nodes": 98093,
+      "wordMass": 1096629.0000000133,
+      "phase": 2,
+      "A": 22,
+      "q": 77130,
+      "cost": 306.86670760827275,
+      "plain": [
+        24,
+        15,
+        28,
+        20,
+        21,
+        15,
+        18,
+        9,
+        23,
+        1,
+        10,
+        23,
+        12,
+        7,
+        21,
+        3,
+        0,
+        24,
+        15,
+        18,
+        13,
+        10,
+        0,
+        16,
+        13,
+        13,
+        3,
+        16,
+        23,
+        10,
+        3,
+        20,
+        23,
+        1,
+        10,
+        3,
+        17,
+        20,
+        18,
+        15,
+        0,
+        0,
+        10,
+        8,
+        3,
+        7,
+        24,
+        5,
+        5,
+        0,
+        1,
+        24,
+        20,
+        10,
+        18,
+        19,
+        0,
+        0,
+        17,
+        26,
+        24,
+        4,
+        15,
+        28,
+        16,
+        1,
+        15,
+        15,
+        20,
+        3,
+        7,
+        10,
+        24,
+        6,
+        3,
+        15,
+        8,
+        24
+      ],
+      "shares": [
+        11,
+        11,
+        16,
+        16,
+        19,
+        4,
+        15,
+        9,
+        2,
+        16,
+        15,
+        17,
+        6,
+        18,
+        20,
+        7,
+        4,
+        13,
+        15,
+        22
+      ],
+      "words": [
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "SEALING",
+          "runes": [
+            15,
+            28,
+            20,
+            21
+          ]
+        },
+        {
+          "label": "SEND",
+          "runes": [
+            15,
+            18,
+            9,
+            23
+          ]
+        },
+        {
+          "label": "VIDEO",
+          "runes": [
+            1,
+            10,
+            23,
+            12
+          ]
+        },
+        {
+          "label": "WING",
+          "runes": [
+            7,
+            21
+          ]
+        },
+        {
+          "label": "OF",
+          "runes": [
+            3,
+            0
+          ]
+        },
+        {
+          "label": "AS",
+          "runes": [
+            24,
+            15
+          ]
+        },
+        {
+          "label": "EPI",
+          "runes": [
+            18,
+            13,
+            10
+          ]
+        },
+        {
+          "label": "FTP",
+          "runes": [
+            0,
+            16,
+            13
+          ]
+        },
+        {
+          "label": "POT",
+          "runes": [
+            13,
+            3,
+            16
+          ]
+        },
+        {
+          "label": "DI",
+          "runes": [
+            23,
+            10
+          ]
+        },
+        {
+          "label": "OLD",
+          "runes": [
+            3,
+            20,
+            23
+          ]
+        },
+        {
+          "label": "VI",
+          "runes": [
+            1,
+            10
+          ]
+        },
+        {
+          "label": "O",
+          "runes": [
+            3
+          ]
+        },
+        {
+          "label": "BL",
+          "runes": [
+            17,
+            20
+          ]
+        },
+        {
+          "label": "ES",
+          "runes": [
+            18,
+            15
+          ]
+        },
+        {
+          "label": "FF",
+          "runes": [
+            0,
+            0
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "HOW",
+          "runes": [
+            8,
+            3,
+            7
+          ]
+        },
+        {
+          "label": "AK",
+          "runes": [
+            24,
+            5
+          ]
+        },
+        {
+          "label": "CF",
+          "runes": [
+            5,
+            0
+          ]
+        },
+        {
+          "label": "VAL",
+          "runes": [
+            1,
+            24,
+            20
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "EM",
+          "runes": [
+            18,
+            19
+          ]
+        },
+        {
+          "label": "FF",
+          "runes": [
+            0,
+            0
+          ]
+        },
+        {
+          "label": "BY",
+          "runes": [
+            17,
+            26
+          ]
+        },
+        {
+          "label": "AR",
+          "runes": [
+            24,
+            4
+          ]
+        },
+        {
+          "label": "SEAT",
+          "runes": [
+            15,
+            28,
+            16
+          ]
+        },
+        {
+          "label": "US",
+          "runes": [
+            1,
+            15
+          ]
+        },
+        {
+          "label": "SLOW",
+          "runes": [
+            15,
+            20,
+            3,
+            7
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "AGO",
+          "runes": [
+            24,
+            6,
+            3
+          ]
+        }
+      ],
+      "pending": [
+        15,
+        8,
+        24
+      ],
+      "finalCost": 313.3496973334286,
+      "perRune": 4.017303811967033,
+      "maxStates": 187,
+      "controls": [
+        {
+          "cost": 1.643033298656535,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL",
+            "HIS"
+          ],
+          "outputWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL"
+          ],
+          "pending": [
+            8,
+            10
+          ]
+        },
+        {
+          "cost": 2.1082970576129116,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME",
+            "AND"
+          ],
+          "outputWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME"
+          ],
+          "pending": [
+            24,
+            9,
+            23
+          ]
+        },
+        {
+          "cost": 2.068618596444565,
+          "correct": 76,
+          "n": 78,
+          "originalWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST",
+            "YET"
+          ],
+          "outputWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST"
+          ],
+          "pending": [
+            8,
+            24
+          ]
+        },
+        {
+          "cost": 2.037347539945421,
+          "correct": 72,
+          "n": 78,
+          "originalWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "THE",
+            "ETHER"
+          ],
+          "outputWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "CRY"
+          ],
+          "pending": [
+            5,
+            24,
+            20
+          ]
+        },
+        {
+          "cost": 1.8793480902551427,
+          "correct": 77,
+          "n": 78,
+          "originalWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDES",
+            "HOW",
+            "OFTEN",
+            "HAVE",
+            "YOU"
+          ],
+          "outputWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDE",
+            "SHOW",
+            "OFTEN",
+            "HAVE"
+          ],
+          "pending": [
+            0,
+            3
+          ]
+        },
+        {
+          "cost": 1.7365476272210674,
+          "correct": 74,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "NAME",
+            "AND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE",
+            "ANOTHER"
+          ],
+          "outputWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "HUSBAND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE"
+          ],
+          "pending": [
+            24,
+            9,
+            3,
+            2,
+            18
+          ]
+        },
+        {
+          "cost": 2.176804857163962,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR",
+            "DEARLY"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR"
+          ],
+          "pending": [
+            23
+          ]
+        },
+        {
+          "cost": 1.771948919012657,
+          "correct": 72,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "OUR",
+            "LOVE"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "TO"
+          ],
+          "pending": [
+            5,
+            4,
+            1,
+            18
+          ]
+        },
+        {
+          "cost": 1.7604698345142846,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED",
+            "TOWARDS"
+          ],
+          "outputWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED"
+          ],
+          "pending": [
+            16,
+            3,
+            7,
+            24,
+            4,
+            23
+          ]
+        },
+        {
+          "cost": 1.807028317780281,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "IN",
+            "QUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE",
+            "DISTANCES"
+          ],
+          "outputWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "INQUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE"
+          ],
+          "pending": [
+            23,
+            10,
+            15,
+            16
+          ]
+        },
+        {
+          "cost": 1.9920260791291402,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR",
+            "CHILDREN"
+          ],
+          "outputWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR"
+          ],
+          "pending": [
+            5,
+            8,
+            10,
+            20
+          ]
+        },
+        {
+          "cost": 1.855219559416304,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT",
+            "TO"
+          ],
+          "outputWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT"
+          ],
+          "pending": [
+            16
+          ]
+        }
+      ],
+      "nulls": [
+        4.117899555787751,
+        3.9604782956297755,
+        4.86610486201066,
+        3.8230448785100597,
+        3.9887286230003633,
+        4.361175203465767,
+        3.994131677148595,
+        4.049113671578788,
+        4.315310366174628,
+        4.305895262222357,
+        4.391149356459281,
+        4.053110016926908,
+        null,
+        4.329438245150771,
+        4.298786208956856,
+        4.0197757977826045,
+        4.31869888113378,
+        4.28375689818265,
+        3.9981601709183767,
+        3.918666801328403,
+        4.157009972175161,
+        3.675555709781647,
+        4.475108385227086,
+        3.9887717801401252,
+        4.5730546668009175,
+        4.180277936948522,
+        null,
+        4.149802123249013,
+        4.63202576545864,
+        3.437871942205635,
+        4.397445546654339,
+        4.231352914516527,
+        4.12816383128674,
+        4.272770618500171,
+        3.9832517198785635,
+        4.496825323197962,
+        4.410468128096345,
+        4.4647935793054545,
+        4.400316543068818,
+        3.9957311209285864
+      ]
+    },
+    {
+      "perm": true,
+      "hold": true,
+      "forms": 40730,
+      "nodes": 98093,
+      "wordMass": 1096629.0000000133,
+      "phase": 1,
+      "A": 6,
+      "q": 1,
+      "cost": 311.41919975070954,
+      "plain": [
+        24,
+        15,
+        28,
+        20,
+        21,
+        15,
+        18,
+        9,
+        23,
+        1,
+        10,
+        23,
+        12,
+        7,
+        21,
+        3,
+        8,
+        0,
+        16,
+        18,
+        9,
+        7,
+        18,
+        18,
+        16,
+        1,
+        17,
+        20,
+        10,
+        15,
+        15,
+        3,
+        18,
+        16,
+        24,
+        14,
+        24,
+        10,
+        15,
+        6,
+        16,
+        22,
+        8,
+        18,
+        5,
+        8,
+        1,
+        15,
+        6,
+        3,
+        15,
+        24,
+        5,
+        10,
+        10,
+        20,
+        18,
+        9,
+        2,
+        24,
+        16,
+        23,
+        3,
+        14,
+        14,
+        24,
+        18,
+        9,
+        7,
+        3,
+        6,
+        1,
+        18,
+        1,
+        13,
+        9,
+        23,
+        24
+      ],
+      "shares": [
+        11,
+        11,
+        16,
+        16,
+        21,
+        11,
+        15,
+        13,
+        9,
+        21,
+        8,
+        22,
+        17,
+        1,
+        11,
+        20,
+        18,
+        15,
+        9,
+        6
+      ],
+      "words": [
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "SEALING",
+          "runes": [
+            15,
+            28,
+            20,
+            21
+          ]
+        },
+        {
+          "label": "SEND",
+          "runes": [
+            15,
+            18,
+            9,
+            23
+          ]
+        },
+        {
+          "label": "VIDEO",
+          "runes": [
+            1,
+            10,
+            23,
+            12
+          ]
+        },
+        {
+          "label": "WING",
+          "runes": [
+            7,
+            21
+          ]
+        },
+        {
+          "label": "OH",
+          "runes": [
+            3,
+            8
+          ]
+        },
+        {
+          "label": "FT",
+          "runes": [
+            0,
+            16
+          ]
+        },
+        {
+          "label": "EN",
+          "runes": [
+            18,
+            9
+          ]
+        },
+        {
+          "label": "WEE",
+          "runes": [
+            7,
+            18,
+            18
+          ]
+        },
+        {
+          "label": "TU",
+          "runes": [
+            16,
+            1
+          ]
+        },
+        {
+          "label": "BLISS",
+          "runes": [
+            17,
+            20,
+            10,
+            15,
+            15
+          ]
+        },
+        {
+          "label": "OE",
+          "runes": [
+            3,
+            18
+          ]
+        },
+        {
+          "label": "TAX",
+          "runes": [
+            16,
+            24,
+            14
+          ]
+        },
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "I",
+          "runes": [
+            10
+          ]
+        },
+        {
+          "label": "SG",
+          "runes": [
+            15,
+            6
+          ]
+        },
+        {
+          "label": "TOE",
+          "runes": [
+            16,
+            22
+          ]
+        },
+        {
+          "label": "HE",
+          "runes": [
+            8,
+            18
+          ]
+        },
+        {
+          "label": "CH",
+          "runes": [
+            5,
+            8
+          ]
+        },
+        {
+          "label": "US",
+          "runes": [
+            1,
+            15
+          ]
+        },
+        {
+          "label": "GO",
+          "runes": [
+            6,
+            3
+          ]
+        },
+        {
+          "label": "SAC",
+          "runes": [
+            15,
+            24,
+            5
+          ]
+        },
+        {
+          "label": "II",
+          "runes": [
+            10,
+            10
+          ]
+        },
+        {
+          "label": "LEN",
+          "runes": [
+            20,
+            18,
+            9
+          ]
+        },
+        {
+          "label": "THAT",
+          "runes": [
+            2,
+            24,
+            16
+          ]
+        },
+        {
+          "label": "DO",
+          "runes": [
+            23,
+            3
+          ]
+        },
+        {
+          "label": "XX",
+          "runes": [
+            14,
+            14
+          ]
+        },
+        {
+          "label": "A",
+          "runes": [
+            24
+          ]
+        },
+        {
+          "label": "EN",
+          "runes": [
+            18,
+            9
+          ]
+        },
+        {
+          "label": "WOGUE",
+          "runes": [
+            7,
+            3,
+            6,
+            1,
+            18
+          ]
+        },
+        {
+          "label": "UP",
+          "runes": [
+            1,
+            13
+          ]
+        },
+        {
+          "label": "ND",
+          "runes": [
+            9,
+            23
+          ]
+        }
+      ],
+      "pending": [
+        24
+      ],
+      "finalCost": 313.5484321129809,
+      "perRune": 4.0198516937561655,
+      "maxStates": 269,
+      "controls": [
+        {
+          "cost": 1.6409194249088062,
+          "correct": 77,
+          "n": 78,
+          "originalWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL",
+            "HIS"
+          ],
+          "outputWords": [
+            "UNIVERSAL",
+            "AND",
+            "SO",
+            "POTENT",
+            "BUT",
+            "THE",
+            "MAJESTY",
+            "AND",
+            "BEAUTY",
+            "OF",
+            "THE",
+            "LANGUAGE",
+            "WITH",
+            "WHICH",
+            "HE",
+            "CLOTHED",
+            "IT",
+            "WERE",
+            "ALL"
+          ],
+          "pending": [
+            8,
+            18
+          ]
+        },
+        {
+          "cost": 2.1082970576129116,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME",
+            "AND"
+          ],
+          "outputWords": [
+            "GIVING",
+            "ON",
+            "EATING",
+            "AND",
+            "DRINKING",
+            "ON",
+            "WORK",
+            "ON",
+            "JOY",
+            "AND",
+            "SORROW",
+            "ON",
+            "HOUSES",
+            "ON",
+            "CLOTHES",
+            "ON",
+            "BUYING",
+            "AND",
+            "SELLING",
+            "ON",
+            "CRIME"
+          ],
+          "pending": [
+            24,
+            9,
+            23
+          ]
+        },
+        {
+          "cost": 2.068618596444565,
+          "correct": 76,
+          "n": 78,
+          "originalWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST",
+            "YET"
+          ],
+          "outputWords": [
+            "WITH",
+            "MY",
+            "OWN",
+            "HANDS",
+            "NOR",
+            "IS",
+            "IT",
+            "A",
+            "THOUGHT",
+            "I",
+            "LEAVE",
+            "BEHIND",
+            "ME",
+            "BUT",
+            "A",
+            "HEART",
+            "MADE",
+            "SWEET",
+            "WITH",
+            "HUNGER",
+            "AND",
+            "WITH",
+            "THIRST"
+          ],
+          "pending": [
+            8,
+            24
+          ]
+        },
+        {
+          "cost": 2.037347539945421,
+          "correct": 72,
+          "n": 78,
+          "originalWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "THE",
+            "ETHER"
+          ],
+          "outputWords": [
+            "BUT",
+            "HOW",
+            "SHALL",
+            "I",
+            "A",
+            "VOICE",
+            "CANNOT",
+            "CARRY",
+            "THE",
+            "TONGUE",
+            "AND",
+            "THE",
+            "LIPS",
+            "THAT",
+            "GAVE",
+            "IT",
+            "WINGS",
+            "ALONE",
+            "MUST",
+            "IT",
+            "SEEK",
+            "CRY"
+          ],
+          "pending": [
+            5,
+            24,
+            20
+          ]
+        },
+        {
+          "cost": 1.886295379274157,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDES",
+            "HOW",
+            "OFTEN",
+            "HAVE",
+            "YOU"
+          ],
+          "outputWords": [
+            "SOUL",
+            "CRIED",
+            "OUT",
+            "TO",
+            "THEM",
+            "AND",
+            "HE",
+            "SAID",
+            "SONS",
+            "OF",
+            "MY",
+            "ANCIENT",
+            "MOTHER",
+            "YOU",
+            "RIDERS",
+            "OF",
+            "THE",
+            "TIDE",
+            "SHOW",
+            "OFTEN",
+            "HAVE"
+          ],
+          "pending": [
+            26,
+            3
+          ]
+        },
+        {
+          "cost": 1.7365476272210674,
+          "correct": 74,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "NAME",
+            "AND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE",
+            "ANOTHER"
+          ],
+          "outputWords": [
+            "CITY",
+            "GATES",
+            "AND",
+            "HE",
+            "HEARD",
+            "THEIR",
+            "VOICES",
+            "CALLING",
+            "HIS",
+            "HUSBAND",
+            "SHOUTING",
+            "FROM",
+            "FIELD",
+            "TO",
+            "FIELD",
+            "TELLING",
+            "ONE"
+          ],
+          "pending": [
+            24,
+            9,
+            3,
+            2,
+            18
+          ]
+        },
+        {
+          "cost": 2.176804857163962,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR",
+            "DEARLY"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "YOUTH",
+            "HAS",
+            "GIVEN",
+            "US",
+            "DREAMS",
+            "TO",
+            "DREAM",
+            "NO",
+            "STRANGER",
+            "ARE",
+            "YOU",
+            "AMONG",
+            "US",
+            "NOR",
+            "A",
+            "GUEST",
+            "BUT",
+            "OUR",
+            "SON",
+            "AND",
+            "OUR"
+          ],
+          "pending": [
+            23
+          ]
+        },
+        {
+          "cost": 1.78068349742772,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "OUR",
+            "LOVE"
+          ],
+          "outputWords": [
+            "AND",
+            "YOUR",
+            "SHADOW",
+            "HAS",
+            "BEEN",
+            "A",
+            "LIGHT",
+            "UPON",
+            "OUR",
+            "FACES",
+            "MUCH",
+            "HAVE",
+            "WE",
+            "LOVED",
+            "YOU",
+            "BUT",
+            "SPEECHLESS",
+            "WAS",
+            "OUR"
+          ],
+          "pending": [
+            20,
+            3,
+            1
+          ]
+        },
+        {
+          "cost": 1.7604698345142846,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED",
+            "TOWARDS"
+          ],
+          "outputWords": [
+            "HEAD",
+            "AND",
+            "THOSE",
+            "WHO",
+            "STOOD",
+            "NEAR",
+            "SAW",
+            "HIS",
+            "TEARS",
+            "FALLING",
+            "UPON",
+            "HIS",
+            "BREAST",
+            "AND",
+            "HE",
+            "AND",
+            "THE",
+            "PEOPLE",
+            "PROCEEDED"
+          ],
+          "pending": [
+            16,
+            3,
+            7,
+            24,
+            4,
+            23
+          ]
+        },
+        {
+          "cost": 1.807028317780281,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "IN",
+            "QUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE",
+            "DISTANCES"
+          ],
+          "outputWords": [
+            "CITY",
+            "AND",
+            "SHE",
+            "HAILED",
+            "HIM",
+            "SAYING",
+            "PROPHET",
+            "OF",
+            "GOD",
+            "INQUEST",
+            "OF",
+            "THE",
+            "UTTERMOST",
+            "LONG",
+            "HAVE",
+            "YOU",
+            "SEARCHED",
+            "THE"
+          ],
+          "pending": [
+            23,
+            10,
+            15,
+            16
+          ]
+        },
+        {
+          "cost": 1.9920260791291402,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR",
+            "CHILDREN"
+          ],
+          "outputWords": [
+            "YOU",
+            "SPEAK",
+            "TO",
+            "US",
+            "AND",
+            "GIVE",
+            "US",
+            "OF",
+            "YOUR",
+            "TRUTH",
+            "AND",
+            "WE",
+            "WILL",
+            "GIVE",
+            "IT",
+            "UNTO",
+            "OUR",
+            "CHILDREN",
+            "AND",
+            "THEY",
+            "UNTO",
+            "THEIR"
+          ],
+          "pending": [
+            5,
+            8,
+            10,
+            20
+          ]
+        },
+        {
+          "cost": 1.855219559416304,
+          "correct": 78,
+          "n": 78,
+          "originalWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT",
+            "TO"
+          ],
+          "outputWords": [
+            "THE",
+            "COURSE",
+            "OF",
+            "LOVE",
+            "FOR",
+            "LOVE",
+            "IF",
+            "IT",
+            "FINDS",
+            "YOU",
+            "WORTHY",
+            "DIRECTS",
+            "YOUR",
+            "COURSE",
+            "LOVE",
+            "HAS",
+            "NO",
+            "OTHER",
+            "DESIRE",
+            "BUT"
+          ],
+          "pending": [
+            16
+          ]
+        }
+      ],
+      "nulls": [
+        4.275598068026481,
+        4.089886462416682,
+        4.410375093287548,
+        null,
+        4.113018702259639,
+        4.465260660110139,
+        4.334231263005037,
+        4.35162745287826,
+        4.3151246417344495,
+        4.420598258697979,
+        4.301998891948915,
+        4.10581165255395,
+        4.263350134253355,
+        4.230531018492314,
+        3.969536453433085,
+        4.037315548213749,
+        4.279634765962381,
+        3.799778696773352,
+        4.130540608428172,
+        3.877373492790364,
+        4.210283844301207,
+        null,
+        4.208263211415412,
+        3.92819861844868,
+        4.632718098209816,
+        4.180277936948522,
+        4.162601614075771,
+        4.149802123249013,
+        4.5197657736686425,
+        3.4038249448868316,
+        4.399073747548452,
+        4.04120215965164,
+        3.92631747527768,
+        4.408390115538386,
+        4.153868764441816,
+        4.317774192332611,
+        4.107636654278616,
+        4.168331140190819,
+        4.1087852741390085,
+        4.04858653903527
+      ]
+    }
+  ],
+  "inputs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/liber-primus/lp1-plaintext-reference.txt": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10"
+  }
+}

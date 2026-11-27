@@ -99,3 +99,18 @@ Use the pinned TextBlob English dictionary and additional editorial LP1 referenc
 | All tokenizations | F hold | 31,833 | 10/17 | 299 |
 
 All 24 deterministic matched-length dictionary-word plants achieve zero OOV and exact forward replay. They calibrate feasibility, not natural-prose power; sampled words are not coherent sentences. Original best paths replay exactly. The lexical conclusion is conditional on this finite register and preservation of printed word units (order not tested); arbitrary OOV words and decoy segmentation are outside scope. The optimal word lists, exact selected shares, and planted control outputs are preserved in [raw JSON](lp2-p33-dh-coupled-lexical-inverse.json). No new authentic plaintext or state schedule follows from the best path. [Reproducer](../sims/lp2_p33_dh_coupled_lexical_inverse.cjs), exact core run in connected V8; standalone wrapper unrun.
+
+### Spacing-free word-probability inverse (decoy-separator rival)
+
+Remove every printed group boundary in the same 78 original suffix runes; assume only that the candidate WILL anchor ends a true word. Retain all independently chosen shares and exact K=A^15 mod23. Build a frequency-weighted GP trie from the pinned TextBlob register plus missing editorial LP1 words at count1. Restrict one-letter Latin words to A/I/O and forms to at most16 runes; compare source-native greedy and every token segmentation. Aggregate probability mass of homophonous GP forms and divide a word's mass among its permitted spellings. The exact DP state (block phase, share, trie node) branches on every allowed share, F hold and lexical termination. Charge −log normalized word frequency at each termination and −log prefix mass for the unfinished last word, so the physical page cut need not be a true word boundary. No beam or pruning beyond identical-state dominance. Surviving paths replay exactly.
+
+Twelve deterministic natural Gibran word-boundary starts per register are selected only for complete lexicon coverage, encrypted with deterministic variable shares and the same clock. These are non-LP2 controls, but the TextBlob source training corpus may overlap Gibran and the controls are not a claim of held-out corpus independence. Forty phase-preserving within-column ciphertext shuffles per configuration supply a descriptive finite null (not an exhaustive randomization test).
+
+| Register | Clock | GP forms | Original optimum cost/rune | 12 plant optimum range | Null feasible | Null ≤ original cost |
+|---|---|---:|---:|---:|---:|---:|
+| Native greedy | ordinary | 29056 | 3.962475 | 1.589717 to 2.132372 | 38/40 | 10/40 |
+| Native greedy | F hold | 29056 | 3.932457 | 1.588520 to 2.132372 | 38/40 | 5/40 |
+| All tokenizations | ordinary | 40730 | 4.017304 | 1.643033 to 2.176805 | 38/40 | 11/40 |
+| All tokenizations | F hold | 40730 | 4.019852 | 1.640919 to 2.176805 | 38/40 | 6/40 |
+
+Lower cost is better. Word-probability optimization is intentionally independent of the earlier rune bigram score. Actual candidate word sequences, prefix fragments, exact share choices, controls and null scores are in [raw output](lp2-p33-dh-coupled-spacingfree-inverse.json). Reproducer [sims/lp2_p33_dh_coupled_spacingfree_inverse.cjs](../sims/lp2_p33_dh_coupled_spacingfree_inverse.cjs), executed core in connected V8; standalone wrapper not separately run. This is an explicitly finite lexical register, not all possible English or a proof that no other decoy-boundary cipher exists. No authentic schedule or unknown plaintext is established.
