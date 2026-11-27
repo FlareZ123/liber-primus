@@ -1,0 +1,534 @@
+{
+  "schema": "lp2-public-cipher-prev-shared-phase-permutation-v1",
+  "N": 12956,
+  "skip": 55,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "lowerBounds": [
+    {
+      "windows": 34674,
+      "min": [
+        162279,
+        159874
+      ],
+      "max": [
+        168057,
+        166502
+      ],
+      "minAt": [
+        16287,
+        16287
+      ]
+    },
+    {
+      "windows": 204151,
+      "min": [
+        156719,
+        155755
+      ],
+      "max": [
+        169002,
+        167880
+      ],
+      "minAt": [
+        190987,
+        190987
+      ]
+    },
+    {
+      "windows": 293896,
+      "min": [
+        164864,
+        162758
+      ],
+      "max": [
+        174344,
+        172406
+      ],
+      "minAt": [
+        150402,
+        150402
+      ]
+    }
+  ],
+  "floor": [
+    156719,
+    155755
+  ],
+  "assignmentOracle": 64,
+  "plants": [
+    {
+      "donor": 0,
+      "held": false,
+      "q": 8,
+      "clock": "continuous",
+      "correct": 12901,
+      "pairs": 175824,
+      "lo": 165503,
+      "hi": 176086
+    },
+    {
+      "donor": 0,
+      "held": true,
+      "q": 8,
+      "clock": "continuous",
+      "correct": 12901,
+      "pairs": 176962,
+      "lo": 163787,
+      "hi": 179466
+    },
+    {
+      "donor": 1,
+      "held": false,
+      "q": 13,
+      "clock": "page",
+      "correct": 12901,
+      "pairs": 174265,
+      "lo": 165431,
+      "hi": 177582
+    },
+    {
+      "donor": 1,
+      "held": true,
+      "q": 13,
+      "clock": "page",
+      "correct": 12901,
+      "pairs": 176366,
+      "lo": 164342,
+      "hi": 182465
+    },
+    {
+      "donor": 2,
+      "held": false,
+      "q": 23,
+      "clock": "consume",
+      "correct": 12901,
+      "pairs": 178592,
+      "lo": 170248,
+      "hi": 197174
+    },
+    {
+      "donor": 2,
+      "held": true,
+      "q": 23,
+      "clock": "consume",
+      "correct": 12901,
+      "pairs": 178538,
+      "lo": 168166,
+      "hi": 200957
+    }
+  ],
+  "original": [
+    {
+      "dir": 1,
+      "q": 1,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 101478,
+      "arbitrary": 101478,
+      "additive": 101478,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 1,
+      "clock": "page",
+      "n": 12901,
+      "within": 101478,
+      "arbitrary": 101478,
+      "additive": 101478,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 1,
+      "clock": "consume",
+      "n": 12901,
+      "within": 101478,
+      "arbitrary": 101478,
+      "additive": 101478,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 8,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 12646,
+      "arbitrary": 114942,
+      "additive": 102797,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 8,
+      "clock": "page",
+      "n": 12901,
+      "within": 12745,
+      "arbitrary": 115434,
+      "additive": 102937,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 8,
+      "clock": "consume",
+      "n": 12901,
+      "within": 12585,
+      "arbitrary": 115080,
+      "additive": 102509,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 13,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 8020,
+      "arbitrary": 127096,
+      "additive": 105090,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 13,
+      "clock": "page",
+      "n": 12901,
+      "within": 7907,
+      "arbitrary": 126477,
+      "additive": 104877,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 13,
+      "clock": "consume",
+      "n": 12901,
+      "within": 7803,
+      "arbitrary": 126168,
+      "additive": 104670,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 23,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 4338,
+      "arbitrary": 148186,
+      "additive": 109182,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 23,
+      "clock": "page",
+      "n": 12901,
+      "within": 4507,
+      "arbitrary": 150114,
+      "additive": 109475,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 23,
+      "clock": "consume",
+      "n": 12901,
+      "within": 4479,
+      "arbitrary": 149506,
+      "additive": 109797,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 29,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 3531,
+      "arbitrary": 163042,
+      "additive": 112201,
+      "ordinaryExcluded": false,
+      "physicalFExcluded": false,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 29,
+      "clock": "page",
+      "n": 12901,
+      "within": 3518,
+      "arbitrary": 162862,
+      "additive": 111981,
+      "ordinaryExcluded": false,
+      "physicalFExcluded": false,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": 1,
+      "q": 29,
+      "clock": "consume",
+      "n": 12901,
+      "within": 3520,
+      "arbitrary": 163121,
+      "additive": 112083,
+      "ordinaryExcluded": false,
+      "physicalFExcluded": false,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 1,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 101478,
+      "arbitrary": 101478,
+      "additive": 101478,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 1,
+      "clock": "page",
+      "n": 12901,
+      "within": 101478,
+      "arbitrary": 101478,
+      "additive": 101478,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 1,
+      "clock": "consume",
+      "n": 12901,
+      "within": 101478,
+      "arbitrary": 101478,
+      "additive": 101478,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 8,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 12646,
+      "arbitrary": 114811,
+      "additive": 102909,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 8,
+      "clock": "page",
+      "n": 12901,
+      "within": 12856,
+      "arbitrary": 115552,
+      "additive": 102934,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 8,
+      "clock": "consume",
+      "n": 12901,
+      "within": 12585,
+      "arbitrary": 114791,
+      "additive": 102876,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 13,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 8020,
+      "arbitrary": 127029,
+      "additive": 104963,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 13,
+      "clock": "page",
+      "n": 12901,
+      "within": 7745,
+      "arbitrary": 125848,
+      "additive": 104550,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 13,
+      "clock": "consume",
+      "n": 12901,
+      "within": 7803,
+      "arbitrary": 126141,
+      "additive": 104760,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 23,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 4338,
+      "arbitrary": 148212,
+      "additive": 109089,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 23,
+      "clock": "page",
+      "n": 12901,
+      "within": 4390,
+      "arbitrary": 148855,
+      "additive": 109216,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 23,
+      "clock": "consume",
+      "n": 12901,
+      "within": 4479,
+      "arbitrary": 149466,
+      "additive": 109554,
+      "ordinaryExcluded": true,
+      "physicalFExcluded": true,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 29,
+      "clock": "continuous",
+      "n": 12901,
+      "within": 3531,
+      "arbitrary": 163151,
+      "additive": 112197,
+      "ordinaryExcluded": false,
+      "physicalFExcluded": false,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 29,
+      "clock": "page",
+      "n": 12901,
+      "within": 3474,
+      "arbitrary": 162718,
+      "additive": 111974,
+      "ordinaryExcluded": false,
+      "physicalFExcluded": false,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    },
+    {
+      "dir": -1,
+      "q": 29,
+      "clock": "consume",
+      "n": 12901,
+      "within": 3520,
+      "arbitrary": 163278,
+      "additive": 112036,
+      "ordinaryExcluded": false,
+      "physicalFExcluded": false,
+      "additiveOrdinaryExcluded": true,
+      "additivePhysicalFExcluded": true
+    }
+  ],
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ]
+}
