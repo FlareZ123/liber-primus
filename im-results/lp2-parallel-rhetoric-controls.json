@@ -1,0 +1,212 @@
+{
+  "adjacent-exact": [
+    {
+      "name": "0_warning",
+      "recordCount": 10,
+      "pairs": []
+    },
+    {
+      "name": "0_welcome",
+      "recordCount": 15,
+      "pairs": [
+        {
+          "k": 9,
+          "j": 10,
+          "starts": [
+            400,
+            422
+          ],
+          "shapeA": [
+            3,
+            3,
+            1,
+            3,
+            4,
+            8
+          ],
+          "shapeB": [
+            3,
+            3,
+            1,
+            3,
+            4,
+            8
+          ],
+          "equal": true,
+          "left": "ᚣᚩᚢᚪᚱᛖᚪ",
+          "right": "ᚣᚩᚢᚪᚱᛖᚪ"
+        }
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "recordCount": 10,
+      "pairs": []
+    },
+    {
+      "name": "0_koan_1",
+      "recordCount": 22,
+      "pairs": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "recordCount": 25,
+      "pairs": []
+    },
+    {
+      "name": "jpg107-167",
+      "recordCount": 7,
+      "pairs": []
+    },
+    {
+      "name": "jpg229",
+      "recordCount": 6,
+      "pairs": []
+    },
+    {
+      "name": "p56_an_end",
+      "recordCount": 3,
+      "pairs": []
+    },
+    {
+      "name": "p57_parable",
+      "recordCount": 4,
+      "pairs": []
+    }
+  ],
+  "same-section-one-width": [
+    {
+      "name": "0_warning",
+      "recordCount": 10,
+      "pairs": []
+    },
+    {
+      "name": "0_welcome",
+      "recordCount": 15,
+      "pairs": [
+        {
+          "k": 9,
+          "j": 10,
+          "starts": [
+            400,
+            422
+          ],
+          "shapeA": [
+            3,
+            3,
+            1,
+            3,
+            4,
+            8
+          ],
+          "shapeB": [
+            3,
+            3,
+            1,
+            3,
+            4,
+            8
+          ],
+          "equal": true,
+          "left": "ᚣᚩᚢᚪᚱᛖᚪ",
+          "right": "ᚣᚩᚢᚪᚱᛖᚪ"
+        }
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "recordCount": 10,
+      "pairs": []
+    },
+    {
+      "name": "0_koan_1",
+      "recordCount": 22,
+      "pairs": [
+        {
+          "k": 9,
+          "j": 16,
+          "starts": [
+            302,
+            576
+          ],
+          "shapeA": [
+            3,
+            3,
+            3,
+            3,
+            6,
+            2,
+            5,
+            4
+          ],
+          "shapeB": [
+            3,
+            3,
+            3,
+            3,
+            6,
+            2,
+            5,
+            4
+          ],
+          "equal": true,
+          "left": "ᚹᚻᚩᚪᚱᛖᚣᚩᚢ",
+          "right": "ᚹᚻᚩᚪᚱᛖᚣᚩᚢ"
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "recordCount": 25,
+      "pairs": [
+        {
+          "k": 6,
+          "j": 11,
+          "starts": [
+            260,
+            394
+          ],
+          "shapeA": [
+            4,
+            3,
+            3,
+            3,
+            4,
+            7
+          ],
+          "shapeB": [
+            4,
+            3,
+            3,
+            3,
+            4,
+            8
+          ],
+          "equal": true,
+          "left": "ᛗᚩᛋᛏᚦᛝᛋᚪᚱᛖ",
+          "right": "ᛗᚩᛋᛏᚦᛝᛋᚪᚱᛖ"
+        }
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "recordCount": 7,
+      "pairs": []
+    },
+    {
+      "name": "jpg229",
+      "recordCount": 6,
+      "pairs": []
+    },
+    {
+      "name": "p56_an_end",
+      "recordCount": 3,
+      "pairs": []
+    },
+    {
+      "name": "p57_parable",
+      "recordCount": 4,
+      "pairs": []
+    }
+  ]
+}

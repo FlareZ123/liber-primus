@@ -1,0 +1,78 @@
+{
+  "groupCount": 2896,
+  "units": 164,
+  "result": [
+    {
+      "section": [
+        0,
+        2
+      ],
+      "units": 9,
+      "pairs": []
+    },
+    {
+      "section": [
+        3,
+        7
+      ],
+      "units": 17,
+      "pairs": []
+    },
+    {
+      "section": [
+        8,
+        14
+      ],
+      "units": 26,
+      "pairs": []
+    },
+    {
+      "section": [
+        15,
+        22
+      ],
+      "units": 20,
+      "pairs": []
+    },
+    {
+      "section": [
+        23,
+        26
+      ],
+      "units": 9,
+      "pairs": []
+    },
+    {
+      "section": [
+        27,
+        32
+      ],
+      "units": 22,
+      "pairs": []
+    },
+    {
+      "section": [
+        33,
+        39
+      ],
+      "units": 19,
+      "pairs": []
+    },
+    {
+      "section": [
+        40,
+        53
+      ],
+      "units": 40,
+      "pairs": []
+    },
+    {
+      "section": [
+        54,
+        55
+      ],
+      "units": 2,
+      "pairs": []
+    }
+  ]
+}
