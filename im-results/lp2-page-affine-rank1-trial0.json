@@ -1,0 +1,149 @@
+{
+  "sourceShas": [
+    "b94ab8012c57ac24f7c5cd9d40ef44a19ba81889",
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  ],
+  "fit": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    13,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31,
+    32,
+    33,
+    35,
+    36,
+    37,
+    38,
+    40,
+    41,
+    42,
+    43,
+    45,
+    46,
+    47,
+    48,
+    51,
+    52,
+    53,
+    55
+  ],
+  "hold": [
+    4,
+    9,
+    14,
+    19,
+    24,
+    29,
+    34,
+    39,
+    44,
+    49,
+    54
+  ],
+  "maxFit": 274,
+  "m": 277,
+  "uncoveredHold": 3,
+  "fitN": 10400,
+  "holdN": 2028,
+  "trial": {
+    "t": 0,
+    "kind": "rank1-gibran-A",
+    "seed": 3243,
+    "offset": 18000,
+    "anchorPages": [
+      8,
+      10,
+      23,
+      48
+    ],
+    "anchorTruth": [
+      26,
+      26,
+      13,
+      13
+    ],
+    "topPair": 8.471251341595229,
+    "refined": [
+      {
+        "changes": 0,
+        "gain": 0
+      }
+    ],
+    "gauge": {
+      "n": 44,
+      "a": 20,
+      "b": 2
+    },
+    "exactCols": 270,
+    "exactColsFirst200": 200,
+    "fitCorrect": 10372,
+    "fitN": 10400,
+    "fitScore": -2.595887319799884,
+    "held": {
+      "N": 2028,
+      "score": -2.5822457340182696,
+      "correct": 2017,
+      "n200": 1475,
+      "c200": 1475
+    },
+    "monoHeld": {
+      "N": 2028,
+      "score": -2.6700701638491426,
+      "correct": 1976,
+      "n200": 1475,
+      "c200": 1475
+    },
+    "baseline": {
+      "N": 2028,
+      "score": -5.444600603719963,
+      "correct": 84,
+      "n200": 1475,
+      "c200": 62
+    },
+    "heldCoef": 11,
+    "auth": [
+      {
+        "page": 56,
+        "coef": true,
+        "correct": 37,
+        "n": 37,
+        "preview": "STHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE"
+      },
+      {
+        "page": 57,
+        "coef": true,
+        "correct": 47,
+        "n": 47,
+        "preview": "UROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEMERGE"
+      }
+    ],
+    "repeat": 463,
+    "heldPreview": "OURSPIRITGOESWANDERNGUPONTHEWINDTHATYOUALONEANDUNGUARDEDCOMMITAWRONGUNTOOTHERSA",
+    "replay": true
+  }
+}
