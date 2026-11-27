@@ -1,6 +1,6 @@
 # Source-linked p32/p55 tree: exact shared-pad affine inverse and lexical obstruction
 
-**Current decision, 24 November 2026 (Agents9 and45).** Original p32 and p55 reuse the same tree artwork, independently motivating the comparison. The strongest tested word-preserving native GP29 model allows **any nonzero affine multiplier on each page, any relative page shift, and an unrestricted common additive pad at every consumed position**. All **93** ordinary contiguous placements and **5,952** historical literal-F placements fail a complete joint lexical inverse. The earlier unit-multiplier additive exclusions below remain special cases. Distinct bitwise-XOR common-pad families (all 32 index masks or 128 chart-prime masks, both clocks) also have zero complete lexical assignments; see Agent6 below. No unknown manuscript plaintext, genuine key or first-party shared-pad instruction was recovered.
+**Current decision, 27 November 2026 (Agents9, 45 and19).** Original p32 and p55 reuse the same tree artwork, independently motivating the comparison. The strongest tested word-preserving native GP29 model allows **any nonzero affine multiplier on each page, any relative page shift, and an unrestricted common additive pad at every consumed position**. All **93** ordinary contiguous placements and **5,952** historical literal-F placements fail a complete joint lexical inverse. The earlier unit-multiplier additive exclusions below remain special cases. Distinct bitwise-XOR common-pad families (all 32 index masks or 128 chart-prime masks, both clocks) also have zero complete lexical assignments; see Agent6 below. A different three-page common affine map with both coefficients changing independently at each rune is feasible but grossly nonidentifying: millions of exact dictionary-compatible original assignments remain even if one fitted tape is fixed. No unknown manuscript plaintext, genuine key or first-party shared-pad instruction was recovered.
 
 ## Three-page artwork-linked, spacing-free shared-pad inverse (Agent19, 26 November)
 
@@ -69,6 +69,37 @@ Frozen gates were respectively (3,3,3)/4; (6,6,6)/8; and (5,5,5,4)/6. The first 
 - [Higher-order SFT](../sims/lp2_triple_latent_f_trigram_offset_sft.cpp) · [fixtures](lp2-triple-latent-f-trigram-offset-fixtures.json) · [raw](lp2-triple-latent-f-trigram-offset-output.json) · [successful CI 45914597296](https://github.com/FlareZ123/liber-primus/actions/runs/45914597296).
 
 The term "successful CI" describes execution of the frozen tests, not a successful cryptanalytic gate.
+
+### Arbitrarily changing affine common key: constructive nonidentifiability (Agent19, 27 November)
+
+The earlier page-private constant-multiplier plus arbitrary additive-pad model is not the same as a shared changing affine map. For the independently artwork-linked p32/p53/p55, freeze **the final 76 physical runes of each page**, ordinary consuming clock, unchanged printed groups, with a free incoming p55 singleton and dictionary-compatible suffixes of clipped incoming p32/p53 words. At each position let C_k = a_i P_k + b_i in GF29, where a_i is nonzero and both coefficients vary without constraint. Two distinct ciphertext points determine the third plaintext point once the first two plaintext points are nominated: P_z = P_x + ((C_z-C_x)/(C_y-C_x))(P_y-P_x). Coincident ciphertext points require coincident plaintext points, and noncoincident points require noncoincident plaintext. At all 76 original positions at least two ciphertext points differ. Thus before language constraints there are exactly 812^76 distinct possible three-tape plaintext assignments. Artwork links the pages, not this operator or its clock.
+
+A three-trie beam receiver (width256, sqrt-frequency unigram word weights, 40,751 GP word spellings including solved native words) was calibrated against two independent triples of actual solved passages, each with hidden changing nonzero multiplier and offset. Both lost the true path at position1; one ran out of surviving prefixes at position45, the other recovered only 7/10/16 of 76 runes, with a wrong full assignment scoring -293.513824 versus authentic -316.127161. Hence widening the beam cannot make this fixed objective prefer truth in that control. Original scoring was not opened. [Beam SFT](../sims/lp2_tree_moth_triple_affine_trie_sft.cjs) · [beam output](lp2-tree-moth-triple-affine-trie-output.json). A native exact trie-state pilot hit a million-state or history cap; a separate V8 word-constraint attempt timed out, neither supplies an exclusion.
+
+**Constructive hard-constraint inverse.** Use the original printed group boundaries as variables and each contiguous three-word overlap as a factor. Project each finite word domain to that interval; join two projected words through the exact affine relation, taking special care of equal ciphertext points, and retain precisely the supported projections in all three domains. Requeue affected factors. Search the remaining domains with exact forward replay. This is sound arc consistency and bounded backtracking, not a claim of complete enumeration. Both actual solved controls retained their true assignments under root propagation and yielded two alternative dictionary-compatible, nonprose witnesses. The original root still has 134,700 of 136,095 initial candidate entries across 50 variables, **zero forced words**. Minimum-domain-first search timed out; length-weighted log-domain branching found two distinct complete assignments in 31 visits and 50 branches, each replaying all **228/228** original ciphertext runes with a valid shared affine key at every position. Both are nonprose and neither is a decryption. No score-based claims were made from these witnesses.
+
+**Exact ambiguity even given one complete plaintext track.** Fix any one tape from the first original witness, or one actual true native tape from either control. At each position the other two tapes have unary equality/inequality conditions relative to the fixed point; if both ciphertext points differ from it, their plaintext values are related by an invertible affine map. The two remaining printed-word interval partitions form a forest of pairwise overlaps. Exact signature-join count messages sum all supported word assignments in each component, multiply across components, and count distinct rune tapes (not alternative keys or prose interpretations). Clipped suffixes are deduplicated.
+
+| Case | Fix track A | Fix track B | Fix track C |
+|---|---:|---:|---:|
+| Native control WELCOME / DIVINITY / PARABLE, true fixed tape | 1,126,737 | 12,938,904 | 30,001,296,192 |
+| Independent native control WARNING / WISDOM / KOAN, true fixed tape | 34,488,990,000 | 26,628,776,916,698,880 | 8,577,414 |
+| Original p32 / p53 / p55, fixed first fitted witness (not truth) | 39,833,856 | 2,304,000 | 1,113,840 |
+
+The original counts are separate conditional lower bounds on the entire unconstrained triple model, **not additive**. They do not imply that any of these dictionaries-only alternatives is genuine language. The controls prove the same failure of identification even with one authentic known plaintext tape and exact native word divisions. At each position two independently known distinct plaintext points would identify the two affine coefficients; one known point still leaves 28 possibilities.
+
+**Decision:** retire the unstructured changing affine common-key receiver as a key-identification mechanism. It is compatible with the original ciphertext, not statistically or mathematically excluded, but cannot select plaintext from its huge exact witness set. A new source-derived schedule fixing at least one affine degree of freedom and independent continuation evidence are required before returning to this family. No new plaintext or authentic key.
+
+Reproduce from the repository root (Node and C++17, Python 3):
+```sh
+node sims/lp2_tree_moth_triple_affine_gac_input.cjs > input.txt
+g++ -O3 -std=c++17 sims/lp2_tree_moth_triple_affine_gac.cpp -o affine-gac
+./affine-gac 0 10000 2000 0 < input.txt
+./affine-gac 1 12000 2000 0 < input.txt
+./affine-gac 2 20000 100000 1 < input.txt > original.log
+python sims/lp2_tree_moth_triple_affine_conditional_count.py input.txt original.log
+```
+The original witness log and count summary are [here](lp2-tree-moth-triple-affine-gac-original.log) and [here](lp2-tree-moth-triple-affine-gac-summary.json). The C++ and Python programs actually ran locally; the canonical repository-derived input builder ran in connected V8 and matched the local 448,746-byte input's FNV64 fingerprint 9cc5ae8c77fb2b88. No standalone CI run is claimed. The input builder and native solver share the finite register used in the beam calibration, including the positive-control words; this intentionally grants lexical coverage and does not simulate a blind language model.
 
 ## Distinct bitwise XOR shared-pad inverse (Agent6, 24 November 2026)
 
