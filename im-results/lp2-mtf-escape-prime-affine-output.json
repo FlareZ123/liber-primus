@@ -1,0 +1,233 @@
+{
+  "source": {
+    "n": 12956,
+    "fit": 9640,
+    "held": 3316,
+    "repeats": [
+      65,
+      21
+    ],
+    "primeOrigins": [
+      0,
+      3301
+    ],
+    "affineKeys": 1109472,
+    "fitKey": {
+      "origin": 2309,
+      "a": 3,
+      "b": 10
+    },
+    "fitRankScore": -3.911724597857516,
+    "heldRankScore": -3.980271912155165,
+    "fitGPScore": -4.276269150323204,
+    "heldGPScore": -4.296768377871523,
+    "heldIoC": 0.0345083120006841,
+    "runnerGap": 11.800742873267154,
+    "cap": {
+      "fitTop5": 1924,
+      "fitTop10": 3716,
+      "wholeTop5": 2550,
+      "wholeTop10": 4952
+    },
+    "heldPrefix": "C E OE OE Y S D X A G EA G F IA O U D NG B EA G P TH AE S D N I EO H X T O AE J U N NG L EO F NG J S T E NG G P B D N AE R U U E EA X EA N G G L P P EO D B EA J P D C G AE D EO J P",
+    "replay": 12956,
+    "elapsedMs": 5625
+  },
+  "donors": [
+    {
+      "name": "Gibran",
+      "runes": 25025,
+      "fullWindows": 12070,
+      "fitWindows": 15386,
+      "maskForcedConsistent": 0,
+      "maskCompatible": 0,
+      "fit": {
+        "min5": 2813,
+        "min10": 5435,
+        "anyInit5": 2784,
+        "anyInit10": 5406
+      },
+      "whole": {
+        "min5": 3802,
+        "min10": 7293,
+        "anyInit5": 3773,
+        "anyInit10": 7264
+      }
+    },
+    {
+      "name": "Emerson",
+      "runes": 73287,
+      "fullWindows": 60332,
+      "fitWindows": 63648,
+      "maskForcedConsistent": 0,
+      "maskCompatible": 0,
+      "fit": {
+        "min5": 2842,
+        "min10": 5405,
+        "anyInit5": 2813,
+        "anyInit10": 5376
+      },
+      "whole": {
+        "min5": 3805,
+        "min10": 7229,
+        "anyInit5": 3776,
+        "anyInit10": 7200
+      }
+    },
+    {
+      "name": "Shakespeare",
+      "runes": 30880,
+      "fullWindows": 17925,
+      "fitWindows": 21241,
+      "maskForcedConsistent": 0,
+      "maskCompatible": 0,
+      "fit": {
+        "min5": 2776,
+        "min10": 5334,
+        "anyInit5": 2747,
+        "anyInit10": 5305
+      },
+      "whole": {
+        "min5": 3742,
+        "min10": 7188,
+        "anyInit5": 3713,
+        "anyInit10": 7159
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "Gibran",
+      "offset": 11323,
+      "key": {
+        "origin": 237,
+        "a": 5,
+        "b": 11
+      },
+      "unique": true,
+      "fitRankScore": -3.1119000025562147,
+      "heldRankScore": -3.107508426846893,
+      "fitGPScore": -2.54825909127472,
+      "heldGPScore": -2.565521019210033,
+      "heldIoC": 0.058701628559004564,
+      "runnerGap": 507.6753072037027,
+      "fitMatches": 9640,
+      "heldMatches": 3316,
+      "cap": {
+        "fitTop5": 2822,
+        "fitTop10": 5456,
+        "wholeTop5": 3811,
+        "wholeTop10": 7323
+      },
+      "repeatCounts": [
+        65,
+        21
+      ],
+      "cribKeys": 1,
+      "maskCompatible": 1,
+      "maskEscape": 23,
+      "elapsedMs": 5058
+    },
+    {
+      "name": "Emerson",
+      "offset": 49648,
+      "key": {
+        "origin": 1419,
+        "a": 3,
+        "b": 16
+      },
+      "unique": true,
+      "fitRankScore": -3.135549051755646,
+      "heldRankScore": -3.1234266274499727,
+      "fitGPScore": -2.655188162461888,
+      "heldGPScore": -2.6778779389770753,
+      "heldIoC": 0.06123098028299192,
+      "runnerGap": 502.76737026302,
+      "fitMatches": 9640,
+      "heldMatches": 3316,
+      "cap": {
+        "fitTop5": 2875,
+        "fitTop10": 5478,
+        "wholeTop5": 3873,
+        "wholeTop10": 7342
+      },
+      "repeatCounts": [
+        65,
+        21
+      ],
+      "cribKeys": 1,
+      "maskCompatible": 1,
+      "maskEscape": 23,
+      "elapsedMs": 5956
+    },
+    {
+      "name": "Shakespeare",
+      "offset": 8723,
+      "key": {
+        "origin": 3200,
+        "a": 27,
+        "b": 6
+      },
+      "unique": true,
+      "fitRankScore": -3.11452149520241,
+      "heldRankScore": -3.1018892714358905,
+      "fitGPScore": -2.714048994704321,
+      "heldGPScore": -2.674155576847512,
+      "heldIoC": 0.060280699456176645,
+      "runnerGap": 433.45981549958015,
+      "fitMatches": 9640,
+      "heldMatches": 3316,
+      "cap": {
+        "fitTop5": 2809,
+        "fitTop10": 5389,
+        "wholeTop5": 3771,
+        "wholeTop10": 7257
+      },
+      "repeatCounts": [
+        65,
+        21
+      ],
+      "cribKeys": 1,
+      "maskCompatible": 1,
+      "maskEscape": 23,
+      "elapsedMs": 4975
+    }
+  ],
+  "negative": {
+    "name": "independent pad on same Emerson MTF rank escape",
+    "offset": 49648,
+    "key": {
+      "origin": 832,
+      "a": 27,
+      "b": 10
+    },
+    "fitRankScore": -3.9096661388830993,
+    "heldRankScore": -3.958920304117851,
+    "fitGPScore": -4.260705367896839,
+    "heldGPScore": -4.269515630721386,
+    "heldIoC": 0.03433164673496753,
+    "runnerGap": 58.411023522647156,
+    "fitMatches": 326,
+    "heldMatches": 121,
+    "cap": {
+      "fitTop5": 1935,
+      "fitTop10": 3738,
+      "wholeTop5": 2538,
+      "wholeTop10": 4938
+    },
+    "repeatCounts": [
+      65,
+      21
+    ],
+    "cribKeys": 0,
+    "maskCompatible": 1,
+    "maskEscape": 23,
+    "elapsedMs": 7199
+  },
+  "notes": "Compact exact observed metrics from connected V8 execution; full outputs reproducible by SFT. Sources first 1600 lines; no standalone Node or CI execution claimed.",
+  "totals": {
+    "donorFullWindows": 90327,
+    "donorFitWindows": 100275,
+    "heldControlMatches": 9948
+  }
+}
