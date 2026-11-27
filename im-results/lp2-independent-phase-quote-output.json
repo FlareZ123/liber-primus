@@ -1,0 +1,891 @@
+{
+  "schema": 1,
+  "lengths": [
+    184,
+    515,
+    157,
+    780,
+    755,
+    319,
+    89,
+    85,
+    95,
+    18355,
+    6958,
+    7059,
+    7484,
+    41181
+  ],
+  "sources": [
+    "0_warning",
+    "0_welcome",
+    "0_wisdom",
+    "0_koan_1",
+    "0_loss_of_divinity",
+    "jpg107-167",
+    "jpg229",
+    "p56_an_end",
+    "p57_parable",
+    "resources/external/blake-marriage-1906-gutenberg45315.txt",
+    "resources/external/2013-liber-al-bookcode-I.txt",
+    "resources/external/2013-liber-al-bookcode-II.txt",
+    "resources/external/2013-liber-al-bookcode-III.txt",
+    "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt"
+  ],
+  "controls": [
+    {
+      "source": 3,
+      "seed": 330399,
+      "off": 7,
+      "start": 1,
+      "pad": 0,
+      "learned": 143,
+      "truth": 143,
+      "known": 119,
+      "unknown": 9,
+      "errors": 0,
+      "literal": 0,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 334122,
+      "indexed": 9269,
+      "fpass": 5662,
+      "hit": 451,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          7,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 4,
+      "seed": 330416,
+      "off": 47,
+      "start": 1,
+      "pad": 0,
+      "learned": 150,
+      "truth": 150,
+      "known": 113,
+      "unknown": 15,
+      "errors": 0,
+      "literal": 0,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 322472,
+      "indexed": 9590,
+      "fpass": 9590,
+      "hit": 449,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          47,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 9,
+      "seed": 330501,
+      "off": 16668,
+      "start": 3,
+      "pad": 0,
+      "learned": 153,
+      "truth": 153,
+      "known": 118,
+      "unknown": 10,
+      "errors": 0,
+      "literal": 6,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 8524072,
+      "indexed": 146976,
+      "fpass": 58273,
+      "hit": 451,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          16668,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 10,
+      "seed": 330518,
+      "off": 3610,
+      "start": 5,
+      "pad": 0,
+      "learned": 143,
+      "truth": 143,
+      "known": 120,
+      "unknown": 8,
+      "errors": 0,
+      "literal": 4,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 3213070,
+      "indexed": 63067,
+      "fpass": 32692,
+      "hit": 449,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          3610,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 11,
+      "seed": 330535,
+      "off": 166,
+      "start": 1,
+      "pad": 0,
+      "learned": 149,
+      "truth": 149,
+      "known": 120,
+      "unknown": 8,
+      "errors": 0,
+      "literal": 1,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 3260136,
+      "indexed": 48615,
+      "fpass": 20720,
+      "hit": 451,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          166,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 12,
+      "seed": 330552,
+      "off": 2828,
+      "start": 3,
+      "pad": 0,
+      "learned": 143,
+      "truth": 143,
+      "known": 119,
+      "unknown": 9,
+      "errors": 0,
+      "literal": 3,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 3458186,
+      "indexed": 68770,
+      "fpass": 25357,
+      "hit": 449,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          2828,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 13,
+      "seed": 330569,
+      "off": 6917,
+      "start": 7,
+      "pad": 0,
+      "learned": 151,
+      "truth": 151,
+      "known": 112,
+      "unknown": 16,
+      "errors": 0,
+      "literal": 0,
+      "q": 8,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 19160988,
+      "indexed": 397512,
+      "fpass": 177569,
+      "hit": 451,
+      "ge128": 387,
+      "max": 512,
+      "best": [
+        [
+          6917,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 3,
+      "seed": 330554,
+      "off": 17,
+      "start": 5,
+      "pad": 0,
+      "learned": 202,
+      "truth": 202,
+      "known": 119,
+      "unknown": 9,
+      "errors": 0,
+      "literal": 0,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 334122,
+      "indexed": 10966,
+      "fpass": 6972,
+      "hit": 451,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          17,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 4,
+      "seed": 330571,
+      "off": 87,
+      "start": 10,
+      "pad": 1,
+      "learned": 217,
+      "truth": 216,
+      "known": 109,
+      "unknown": 19,
+      "errors": 0,
+      "literal": 0,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 322472,
+      "indexed": 11774,
+      "fpass": 9337,
+      "hit": 453,
+      "ge128": 389,
+      "max": 513,
+      "best": [
+        [
+          86,
+          16
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 9,
+      "seed": 330656,
+      "off": 4265,
+      "start": 9,
+      "pad": 0,
+      "learned": 208,
+      "truth": 208,
+      "known": 100,
+      "unknown": 28,
+      "errors": 0,
+      "literal": 3,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 8524072,
+      "indexed": 185540,
+      "fpass": 86650,
+      "hit": 449,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          4265,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 10,
+      "seed": 330673,
+      "off": 5224,
+      "start": 10,
+      "pad": 0,
+      "learned": 200,
+      "truth": 200,
+      "known": 107,
+      "unknown": 21,
+      "errors": 0,
+      "literal": 4,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 3213070,
+      "indexed": 76501,
+      "fpass": 36892,
+      "hit": 457,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          5224,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 11,
+      "seed": 330690,
+      "off": 4868,
+      "start": 3,
+      "pad": 2,
+      "learned": 204,
+      "truth": 203,
+      "known": 105,
+      "unknown": 23,
+      "errors": 0,
+      "literal": 4,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 3260136,
+      "indexed": 58885,
+      "fpass": 23573,
+      "hit": 451,
+      "ge128": 387,
+      "max": 514,
+      "best": [
+        [
+          4866,
+          15
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 12,
+      "seed": 330707,
+      "off": 1181,
+      "start": 2,
+      "pad": 0,
+      "learned": 213,
+      "truth": 213,
+      "known": 112,
+      "unknown": 16,
+      "errors": 0,
+      "literal": 3,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 3458186,
+      "indexed": 62630,
+      "fpass": 24846,
+      "hit": 452,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          1181,
+          17
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 13,
+      "seed": 330724,
+      "off": 26684,
+      "start": 11,
+      "pad": 0,
+      "learned": 220,
+      "truth": 220,
+      "known": 116,
+      "unknown": 12,
+      "errors": 0,
+      "literal": 5,
+      "q": 13,
+      "m": 64,
+      "cap": 529,
+      "conceptual": 19160988,
+      "indexed": 378384,
+      "fpass": 166657,
+      "hit": 457,
+      "ge128": 385,
+      "max": 512,
+      "best": [
+        [
+          26684,
+          17
+        ]
+      ],
+      "noAnchor": 4
+    }
+  ],
+  "original": [
+    {
+      "source": 0,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 1560053,
+      "indexed": 46693,
+      "fpass": 17733,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 1,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 5827636,
+      "indexed": 109500,
+      "fpass": 60325,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 2,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 1211942,
+      "indexed": 14433,
+      "fpass": 570,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 3,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 9244281,
+      "indexed": 222389,
+      "fpass": 124872,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 4,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 8921956,
+      "indexed": 272667,
+      "fpass": 150370,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 5,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 3300608,
+      "indexed": 89341,
+      "fpass": 85547,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 6,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 335218,
+      "indexed": 104,
+      "fpass": 104,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 7,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 283646,
+      "indexed": 9427,
+      "fpass": 281,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 8,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 412576,
+      "indexed": 452,
+      "fpass": 88,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 9,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 235838756,
+      "indexed": 4043274,
+      "fpass": 1626507,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 10,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 88897235,
+      "indexed": 1455993,
+      "fpass": 560411,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 11,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 90199428,
+      "indexed": 1273472,
+      "fpass": 437276,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 12,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 95678953,
+      "indexed": 1525651,
+      "fpass": 512732,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 13,
+      "q": 8,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 530134374,
+      "indexed": 9117246,
+      "fpass": 3681289,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 0,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 1560053,
+      "indexed": 47214,
+      "fpass": 17993,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 1,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 5827636,
+      "indexed": 110600,
+      "fpass": 61059,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 2,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 1211942,
+      "indexed": 14606,
+      "fpass": 657,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 3,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 9244281,
+      "indexed": 223969,
+      "fpass": 126012,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 4,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 8921956,
+      "indexed": 275132,
+      "fpass": 151470,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 5,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 3300608,
+      "indexed": 90208,
+      "fpass": 86397,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 6,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 335218,
+      "indexed": 104,
+      "fpass": 104,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 7,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 283646,
+      "indexed": 9532,
+      "fpass": 306,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 8,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 412576,
+      "indexed": 452,
+      "fpass": 88,
+      "hit": 0,
+      "ge128": 0,
+      "max": 0,
+      "best": [],
+      "noAnchor": 0
+    },
+    {
+      "source": 9,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 235838756,
+      "indexed": 4073205,
+      "fpass": 1639811,
+      "hit": 22,
+      "ge128": 0,
+      "max": 70,
+      "best": [
+        [
+          1034,
+          732
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 10,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 88897235,
+      "indexed": 1464780,
+      "fpass": 563563,
+      "hit": 17,
+      "ge128": 0,
+      "max": 66,
+      "best": [
+        [
+          6546,
+          2573
+        ],
+        [
+          6546,
+          2962
+        ],
+        [
+          6546,
+          3967
+        ],
+        [
+          6546,
+          5290
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 11,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 90199428,
+      "indexed": 1281520,
+      "fpass": 441256,
+      "hit": 15,
+      "ge128": 0,
+      "max": 68,
+      "best": [
+        [
+          4754,
+          633
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 12,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 95678953,
+      "indexed": 1537911,
+      "fpass": 519036,
+      "hit": 3,
+      "ge128": 0,
+      "max": 64,
+      "best": [
+        [
+          448,
+          8894
+        ],
+        [
+          448,
+          9824
+        ],
+        [
+          1579,
+          733
+        ]
+      ],
+      "noAnchor": 0
+    },
+    {
+      "source": 13,
+      "q": 13,
+      "m": 64,
+      "cap": 256,
+      "conceptual": 530134374,
+      "indexed": 9237996,
+      "fpass": 3775039,
+      "hit": 727,
+      "ge128": 0,
+      "max": 72,
+      "best": [
+        [
+          35296,
+          9629
+        ]
+      ],
+      "noAnchor": 4
+    }
+  ],
+  "sourceBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "fc503b01bbedbec4e0c8b3d1ded311bed8e28874",
+    "64876892683fab1467481fe87d85743a8ea17982",
+    "cb4353b080d7584441f85502aeccb60796e6fe0f",
+    "36e716252a271d31f5c4ba25b3cb78199ccc1114",
+    "12a6bc018047a1276e77f2b7f633d5905732fff9"
+  ]
+}
