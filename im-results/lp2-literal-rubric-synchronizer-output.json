@@ -1,0 +1,1064 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-ink-annotations.json",
+      "blob": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "blob": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "blob": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    {
+      "path": "resources/liber-primus/lp1-plaintext-reference.txt",
+      "blob": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"
+    }
+  ],
+  "totalGroups": 2941,
+  "spans": [
+    {
+      "page": 0,
+      "start": 0,
+      "len": 13,
+      "runes": "ᛋᚻᛖᚩᚷᛗᛡᚠᛋᚣᛖᛝᚳ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛋᚻᛖᚩᚷᛗᛡᚠ",
+        "ᛋᚣᛖᛝᚳ"
+      ]
+    },
+    {
+      "page": 3,
+      "start": 0,
+      "len": 16,
+      "runes": "ᛚᛄᛇᚻᛝᚳᚦᛏᚫᛄᛏᛉᚻᛏᚢᛟ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛚᛄ",
+        "ᛇᚻᛝᚳᚦᛏᚫᛄᛏᛉᚻ",
+        "ᛏᚢᛟ"
+      ]
+    },
+    {
+      "page": 3,
+      "start": 119,
+      "len": 3,
+      "runes": "ᛈᛞᚦ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛈᛞᚦ"
+      ]
+    },
+    {
+      "page": 6,
+      "start": 71,
+      "len": 11,
+      "runes": "ᚪᛏᛉᛒᛗᚷᛡᛋᛒᛉᛇ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚪᛏᛉᛒ",
+        "ᛗ",
+        "ᚷᛡᛋᛒ",
+        "ᛉᛇ"
+      ]
+    },
+    {
+      "page": 7,
+      "start": 194,
+      "len": 14,
+      "runes": "ᛞᚩᛟᛏᚦᚫᚳᚹᛄᛉᛠᚷᛠᛗ",
+      "left": [
+        "13:black",
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛞᚩ",
+        "ᛟᛏᚦᚫ",
+        "ᚳᚹᛄ",
+        "ᛉᛠ",
+        "ᚷᛠᛗ"
+      ]
+    },
+    {
+      "page": 8,
+      "start": 0,
+      "len": 12,
+      "runes": "ᛉᛁᛉᛗᚢᛉᛗᚳᚦᛈᚩᛒ",
+      "left": [],
+      "right": [],
+      "complete": [
+        "ᛉᛁᛉᛗ",
+        "ᚢᛉᛗᚳᚦᛈᚩᛒ"
+      ]
+    },
+    {
+      "page": 15,
+      "start": 0,
+      "len": 9,
+      "runes": "ᚠᚢᛚᛗᚪᛠᚣᛟᚪ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚠᚢᛚᛗ",
+        "ᚪᛠᚣᛟᚪ"
+      ]
+    },
+    {
+      "page": 15,
+      "start": 9,
+      "len": 11,
+      "runes": "ᛚᚢᛝᚾᚳᚢᛒᚾᛏᚠᛝ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛚᚢᛝᚾ",
+        "ᚳᚢ",
+        "ᛒᚾᛏᚠᛝ"
+      ]
+    },
+    {
+      "page": 23,
+      "start": 0,
+      "len": 16,
+      "runes": "ᚢᚪᚹᛝᚷᛉᛞᚷᛁᛒᛁᛇᛏᛒᛁᚣ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚢᚪ",
+        "ᚹᛝᚷᛉᛞᚷ",
+        "ᛁᛒᛁ",
+        "ᛇᛏᛒᛁᚣ"
+      ]
+    },
+    {
+      "page": 27,
+      "start": 0,
+      "len": 19,
+      "runes": "ᛗᛈᚣᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚᛚᛋᚳᛈ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛗᛈᚣ",
+        "ᛚᛋᚩᚪᚫᚻᛚᛖᛇᛁᛗᛚ",
+        "ᛚᛋᚳᛈ"
+      ]
+    },
+    {
+      "page": 33,
+      "start": 0,
+      "len": 10,
+      "runes": "ᛞᛇᛉᚳᚠᛁᚪᚹᚻᚷ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛞᛇ",
+        "ᛉᚳᚠᛁᚪᚹᚻᚷ"
+      ]
+    },
+    {
+      "page": 33,
+      "start": 91,
+      "len": 8,
+      "runes": "ᛝᚦᛇᛁᚠᚳᛟᛇ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛝᚦᛇ",
+        "ᛁᚠᚳᛟᛇ"
+      ]
+    },
+    {
+      "page": 39,
+      "start": 119,
+      "len": 3,
+      "runes": "ᛡᚳᛋ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛡᚳᛋ"
+      ]
+    },
+    {
+      "page": 40,
+      "start": 0,
+      "len": 8,
+      "runes": "ᚠᚾᛗᚣᚷᛞᚫᚻ",
+      "left": [],
+      "right": [],
+      "complete": [
+        "ᚠᚾᛗ",
+        "ᚣᚷᛞᚫᚻ"
+      ]
+    },
+    {
+      "page": 53,
+      "start": 128,
+      "len": 51,
+      "runes": "ᛏᛈᚹᛇᛋᚹᛒᛇᚦᚾᚻᚷᛄᚱᛡᛞᛡᚦᚪᛁᛇᚫᛉᛚᛇᛠᛡᚪᛄᚻᚱᚦᛈᛞᛄᛝᚩᚷᚠᛇᛗᚳᚻᛞᚩᛏᚳᚢᚱᛈᚾ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛏᛈᚹᛇᛋ",
+        "ᚹᛒᛇᚦ",
+        "ᚾᚻᚷᛄ",
+        "ᚱᛡᛞᛡᚦᚪᛁᛇᚫᛉᛚ",
+        "ᛇᛠ",
+        "ᛡᚪᛄ",
+        "ᚻᚱ",
+        "ᚦᛈᛞᛄᛝᚩ",
+        "ᚷᚠᛇᛗᚳ",
+        "ᚻᛞᚩᛏᚳ",
+        "ᚢᚱ",
+        "ᛈᚾ"
+      ]
+    },
+    {
+      "page": 54,
+      "start": 0,
+      "len": 9,
+      "runes": "ᚪᛗᛝᛞᛡᚦᛉᛁᛗ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚪ",
+        "ᛗᛝᛞᛡᚦᛉᛁᛗ"
+      ]
+    },
+    {
+      "page": 56,
+      "start": 0,
+      "len": 5,
+      "runes": "ᚫᛄᛟᛋᚱ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚫᛄ",
+        "ᛟᛋᚱ"
+      ]
+    },
+    {
+      "page": 57,
+      "start": 0,
+      "len": 7,
+      "runes": "ᛈᚪᚱᚪᛒᛚᛖ",
+      "left": [],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛈᚪᚱᚪᛒᛚᛖ"
+      ]
+    }
+  ],
+  "redGroupCount": 53,
+  "spanDuplicates": [],
+  "redGroupDuplicates": [],
+  "bracketed": [
+    {
+      "page": 3,
+      "start": 119,
+      "len": 3,
+      "runes": "ᛈᛞᚦ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛈᛞᚦ"
+      ]
+    },
+    {
+      "page": 6,
+      "start": 71,
+      "len": 11,
+      "runes": "ᚪᛏᛉᛒᛗᚷᛡᛋᛒᛉᛇ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚪᛏᛉᛒ",
+        "ᛗ",
+        "ᚷᛡᛋᛒ",
+        "ᛉᛇ"
+      ]
+    },
+    {
+      "page": 7,
+      "start": 194,
+      "len": 14,
+      "runes": "ᛞᚩᛟᛏᚦᚫᚳᚹᛄᛉᛠᚷᛠᛗ",
+      "left": [
+        "13:black",
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛞᚩ",
+        "ᛟᛏᚦᚫ",
+        "ᚳᚹᛄ",
+        "ᛉᛠ",
+        "ᚷᛠᛗ"
+      ]
+    },
+    {
+      "page": 15,
+      "start": 0,
+      "len": 9,
+      "runes": "ᚠᚢᛚᛗᚪᛠᚣᛟᚪ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᚠᚢᛚᛗ",
+        "ᚪᛠᚣᛟᚪ"
+      ]
+    },
+    {
+      "page": 15,
+      "start": 9,
+      "len": 11,
+      "runes": "ᛚᚢᛝᚾᚳᚢᛒᚾᛏᚠᛝ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛚᚢᛝᚾ",
+        "ᚳᚢ",
+        "ᛒᚾᛏᚠᛝ"
+      ]
+    },
+    {
+      "page": 33,
+      "start": 91,
+      "len": 8,
+      "runes": "ᛝᚦᛇᛁᚠᚳᛟᛇ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛝᚦᛇ",
+        "ᛁᚠᚳᛟᛇ"
+      ]
+    },
+    {
+      "page": 39,
+      "start": 119,
+      "len": 3,
+      "runes": "ᛡᚳᛋ",
+      "left": [
+        "13:red"
+      ],
+      "right": [
+        "13:red"
+      ],
+      "complete": [
+        "ᛡᚳᛋ"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "page": 0,
+      "offset": 13,
+      "global": 13,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛋᚣᛖᛝᚳ",
+      "after": "ᚦᛄᚷᚫ"
+    },
+    {
+      "page": 2,
+      "offset": 201,
+      "global": 729,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚻᛞᚾᛡᚢᛈᛋᚢᚹ",
+      "after": "ᛚᛄ"
+    },
+    {
+      "page": 3,
+      "offset": 16,
+      "global": 745,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛏᚢᛟ",
+      "after": "ᛋᛈᚱᚷ"
+    },
+    {
+      "page": 3,
+      "offset": 119,
+      "global": 848,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛞᛠᛖᛡᚾᛏ",
+      "after": "ᛈᛞᚦ"
+    },
+    {
+      "page": 3,
+      "offset": 122,
+      "global": 851,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛈᛞᚦ",
+      "after": "ᛇᛞᛇ"
+    },
+    {
+      "page": 6,
+      "offset": 71,
+      "global": 1541,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚢᚩᛁᛠ",
+      "after": "ᚪᛏᛉᛒ"
+    },
+    {
+      "page": 6,
+      "offset": 82,
+      "global": 1552,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛉᛇ",
+      "after": "ᚷᚾᛠᚫᚷᛝᛞ"
+    },
+    {
+      "page": 7,
+      "offset": 194,
+      "global": 1860,
+      "dots": 13,
+      "color": "black",
+      "before": "ᛖᚳᚪ",
+      "after": "ᛞᚩ"
+    },
+    {
+      "page": 7,
+      "offset": 194,
+      "global": 1860,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛖᚳᚪ",
+      "after": "ᛞᚩ"
+    },
+    {
+      "page": 7,
+      "offset": 208,
+      "global": 1874,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚷᛠᛗ",
+      "after": "ᛉᛁᛉᛗ"
+    },
+    {
+      "page": 14,
+      "offset": 137,
+      "global": 3603,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛋᚪᚢᚪᛈᚻ",
+      "after": "ᚠᚢᛚᛗ"
+    },
+    {
+      "page": 15,
+      "offset": 0,
+      "global": 3603,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛋᚪᚢᚪᛈᚻ",
+      "after": "ᚠᚢᛚᛗ"
+    },
+    {
+      "page": 15,
+      "offset": 9,
+      "global": 3612,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚪᛠᚣᛟᚪ",
+      "after": "ᛚᚢᛝᚾ"
+    },
+    {
+      "page": 15,
+      "offset": 20,
+      "global": 3623,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛒᚾᛏᚠᛝ",
+      "after": "ᛁᚢᛁᚢ"
+    },
+    {
+      "page": 22,
+      "offset": 131,
+      "global": 5506,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚠᚾᛉ",
+      "after": "ᚢᚪ"
+    },
+    {
+      "page": 23,
+      "offset": 16,
+      "global": 5522,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛇᛏᛒᛁᚣ",
+      "after": "ᛠᚷᛋᚫᛈᚹᛗᛠ"
+    },
+    {
+      "page": 26,
+      "offset": 265,
+      "global": 6527,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛄᚷᛏᛝᛄᛝ",
+      "after": "ᛗᛈᚣ"
+    },
+    {
+      "page": 27,
+      "offset": 19,
+      "global": 6546,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛚᛋᚳᛈ",
+      "after": "ᚾᚻᚷᚢᛡᚻᚢ"
+    },
+    {
+      "page": 32,
+      "offset": 121,
+      "global": 7960,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚪᚷᛒᛇ",
+      "after": "ᛞᛇ"
+    },
+    {
+      "page": 33,
+      "offset": 10,
+      "global": 7970,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛉᚳᚠᛁᚪᚹᚻᚷ",
+      "after": "ᛇᛟ"
+    },
+    {
+      "page": 33,
+      "offset": 91,
+      "global": 8051,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛄᛚ",
+      "after": "ᛝᚦᛇ"
+    },
+    {
+      "page": 33,
+      "offset": 99,
+      "global": 8059,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛁᚠᚳᛟᛇ",
+      "after": "ᛞᛒᚣᛡᚣᚢ"
+    },
+    {
+      "page": 36,
+      "offset": 99,
+      "global": 8805,
+      "dots": 10,
+      "color": "red",
+      "before": "ᛁᚦᚩᚻᛡᚷᚻ",
+      "after": "ᛚᚦᛇᛟ"
+    },
+    {
+      "page": 38,
+      "offset": 186,
+      "global": 9358,
+      "dots": 10,
+      "color": "red",
+      "before": "ᚻᚳ",
+      "after": "ᚫᛞᛟᚫᛟᛗ"
+    },
+    {
+      "page": 39,
+      "offset": 119,
+      "global": 9519,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚹᛗᛋᚹᛟᚻ",
+      "after": "ᛡᚳᛋ"
+    },
+    {
+      "page": 39,
+      "offset": 122,
+      "global": 9522,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛡᚳᛋ",
+      "after": "ᛈᛞᛋᛡ"
+    },
+    {
+      "page": 39,
+      "offset": 240,
+      "global": 9640,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛒᛋᛄ",
+      "after": "ᚠᚾᛗ"
+    },
+    {
+      "page": 49,
+      "offset": 66,
+      "global": 12114,
+      "dots": 10,
+      "color": "red",
+      "before": "ᛟᛇᚹᛄᛈᛞ",
+      "after": "ᚹᚹᛈ"
+    },
+    {
+      "page": 53,
+      "offset": 179,
+      "global": 12648,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛈᚾ",
+      "after": "ᚪ"
+    },
+    {
+      "page": 54,
+      "offset": 9,
+      "global": 12657,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛗᛝᛞᛡᚦᛉᛁᛗ",
+      "after": "ᛡᛞᛈᛝᚢᚹᚪᛗ"
+    },
+    {
+      "page": 55,
+      "offset": 76,
+      "global": 12956,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛒᛖᛁ",
+      "after": "ᚫᛄ"
+    },
+    {
+      "page": 56,
+      "offset": 5,
+      "global": 12961,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛟᛋᚱ",
+      "after": "ᛗᚣᛚᚩᚻ"
+    },
+    {
+      "page": 56,
+      "offset": 45,
+      "global": 13001,
+      "dots": 10,
+      "color": "red",
+      "before": "ᚳᚫ",
+      "after": "ᚳᛞ"
+    },
+    {
+      "page": 56,
+      "offset": 85,
+      "global": 13041,
+      "dots": 13,
+      "color": "red",
+      "before": "ᚫᚾᚢᛋ",
+      "after": "ᛈᚪᚱᚪᛒᛚᛖ"
+    },
+    {
+      "page": 57,
+      "offset": 7,
+      "global": 13048,
+      "dots": 13,
+      "color": "red",
+      "before": "ᛈᚪᚱᚪᛒᛚᛖ",
+      "after": "ᛚᛁᚳᛖ"
+    },
+    {
+      "page": 57,
+      "offset": 95,
+      "global": 13136,
+      "dots": 23,
+      "color": "red",
+      "before": "ᛖᛗᛖᚱᚷᛖ",
+      "after": null
+    }
+  ],
+  "duplicatePairs": [
+    {
+      "key": "[13,\"red\",\"ᛋᚪᚢᚪᛈᚻ\",\"ᚠᚢᛚᛗ\"]",
+      "rows": [
+        {
+          "page": 14,
+          "offset": 137,
+          "global": 3603,
+          "dots": 13,
+          "color": "red",
+          "before": "ᛋᚪᚢᚪᛈᚻ",
+          "after": "ᚠᚢᛚᛗ"
+        },
+        {
+          "page": 15,
+          "offset": 0,
+          "global": 3603,
+          "dots": 13,
+          "color": "red",
+          "before": "ᛋᚪᚢᚪᛈᚻ",
+          "after": "ᚠᚢᛚᛗ"
+        }
+      ]
+    }
+  ],
+  "duplicateSingles": [
+    {
+      "key": "[13,\"red\",\"before\",\"ᛋᚪᚢᚪᛈᚻ\"]",
+      "rows": [
+        {
+          "page": 14,
+          "offset": 137,
+          "global": 3603,
+          "dots": 13,
+          "color": "red",
+          "before": "ᛋᚪᚢᚪᛈᚻ",
+          "after": "ᚠᚢᛚᛗ",
+          "side": "before",
+          "w": "ᛋᚪᚢᚪᛈᚻ"
+        },
+        {
+          "page": 15,
+          "offset": 0,
+          "global": 3603,
+          "dots": 13,
+          "color": "red",
+          "before": "ᛋᚪᚢᚪᛈᚻ",
+          "after": "ᚠᚢᛚᛗ",
+          "side": "before",
+          "w": "ᛋᚪᚢᚪᛈᚻ"
+        }
+      ]
+    },
+    {
+      "key": "[13,\"red\",\"after\",\"ᚠᚢᛚᛗ\"]",
+      "rows": [
+        {
+          "page": 14,
+          "offset": 137,
+          "global": 3603,
+          "dots": 13,
+          "color": "red",
+          "before": "ᛋᚪᚢᚪᛈᚻ",
+          "after": "ᚠᚢᛚᛗ",
+          "side": "after",
+          "w": "ᚠᚢᛚᛗ"
+        },
+        {
+          "page": 15,
+          "offset": 0,
+          "global": 3603,
+          "dots": 13,
+          "color": "red",
+          "before": "ᛋᚪᚢᚪᛈᚻ",
+          "after": "ᚠᚢᛚᛗ",
+          "side": "after",
+          "w": "ᚠᚢᛚᛗ"
+        }
+      ]
+    }
+  ],
+  "independent": [],
+  "independentSingle": [],
+  "controls": {
+    "lp1": {
+      "runes": 515,
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "visibleF": [
+        {
+          "offset": 5,
+          "hold": false,
+          "in": 5,
+          "out": 6
+        },
+        {
+          "offset": 14,
+          "hold": false,
+          "in": 6,
+          "out": 7
+        },
+        {
+          "offset": 47,
+          "hold": false,
+          "in": 7,
+          "out": 0
+        },
+        {
+          "offset": 48,
+          "hold": true,
+          "in": 0,
+          "out": 0
+        },
+        {
+          "offset": 74,
+          "hold": true,
+          "in": 1,
+          "out": 1
+        },
+        {
+          "offset": 84,
+          "hold": true,
+          "in": 2,
+          "out": 2
+        },
+        {
+          "offset": 132,
+          "hold": true,
+          "in": 1,
+          "out": 1
+        },
+        {
+          "offset": 144,
+          "hold": false,
+          "in": 4,
+          "out": 5
+        },
+        {
+          "offset": 152,
+          "hold": false,
+          "in": 4,
+          "out": 5
+        },
+        {
+          "offset": 159,
+          "hold": true,
+          "in": 3,
+          "out": 3
+        },
+        {
+          "offset": 160,
+          "hold": true,
+          "in": 3,
+          "out": 3
+        },
+        {
+          "offset": 165,
+          "hold": false,
+          "in": 7,
+          "out": 0
+        },
+        {
+          "offset": 219,
+          "hold": false,
+          "in": 5,
+          "out": 6
+        },
+        {
+          "offset": 250,
+          "hold": true,
+          "in": 4,
+          "out": 4
+        },
+        {
+          "offset": 317,
+          "hold": false,
+          "in": 6,
+          "out": 7
+        },
+        {
+          "offset": 331,
+          "hold": false,
+          "in": 4,
+          "out": 5
+        },
+        {
+          "offset": 398,
+          "hold": false,
+          "in": 7,
+          "out": 0
+        },
+        {
+          "offset": 421,
+          "hold": true,
+          "in": 6,
+          "out": 6
+        },
+        {
+          "offset": 423,
+          "hold": false,
+          "in": 7,
+          "out": 0
+        },
+        {
+          "offset": 443,
+          "hold": true,
+          "in": 3,
+          "out": 3
+        },
+        {
+          "offset": 465,
+          "hold": true,
+          "in": 0,
+          "out": 0
+        },
+        {
+          "offset": 470,
+          "hold": false,
+          "in": 4,
+          "out": 5
+        },
+        {
+          "offset": 499,
+          "hold": false,
+          "in": 1,
+          "out": 2
+        },
+        {
+          "offset": 505,
+          "hold": false,
+          "in": 7,
+          "out": 0
+        },
+        {
+          "offset": 514,
+          "hold": true,
+          "in": 0,
+          "out": 0
+        }
+      ],
+      "phases": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "holdPhases": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6
+      ]
+    },
+    "p56": {
+      "runes": 85,
+      "visibleF": [
+        {
+          "offset": 35,
+          "hold": false,
+          "in": 35,
+          "out": 36,
+          "nextShift": 11
+        },
+        {
+          "offset": 47,
+          "hold": false,
+          "in": 47,
+          "out": 48,
+          "nextShift": 23
+        },
+        {
+          "offset": 51,
+          "hold": false,
+          "in": 51,
+          "out": 52,
+          "nextShift": 8
+        },
+        {
+          "offset": 56,
+          "hold": true,
+          "in": 56,
+          "out": 56,
+          "nextShift": 7
+        },
+        {
+          "offset": 74,
+          "hold": false,
+          "in": 73,
+          "out": 74,
+          "nextShift": 1
+        }
+      ],
+      "consuming": 84
+    }
+  }
+}
