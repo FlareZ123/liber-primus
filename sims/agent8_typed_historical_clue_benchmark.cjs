@@ -11,9 +11,9 @@ const whitespaceLines=clearBody(input1).split(/\r?\n/).filter(x=>/^[ \t]+$/.test
 assert.deepEqual(whitespaceLines.map(x=>x.length),[240,200,80,32]);
 const dev1=[];
 for(const tab of [0,1])for(const reverse of [false,true]){
- const raw=Buffer.from(whitespaceLines.flatMap(line=>Array.from({length:line.length/8},(_,i)=>{let bits=[...line.slice(8*i,8*i+8)].map(x=>x==='\t'?tab:1-tab);if(reverse)bits.reverse();return parseInt(bits.join(''),2)})));
+ const chunks=whitespaceLines.map(line=>Buffer.from(Array.from({length:line.length/8},(_,i)=>{let bits=[...line.slice(8*i,8*i+8)].map(x=>x==='\t'?tab:1-tab);if(reverse)bits.reverse();return parseInt(bits.join(''),2)}))); const raw=Buffer.concat(chunks.flatMap((b,i)=>i?[Buffer.from('\n'),b]:[b]));
  const s=raw.toString('latin1');
- if(/^[\x20-\x7e]+$/.test(s)&&[...s.matchAll(hostRE)].length===1)dev1.push({operation:'binary whitespace to octets',tab,reverse,serializedHex:raw.toString('hex'),text:s,hosts:[...s.matchAll(hostRE)].map(x=>x[0])});
+ if(/^[\x20-\x7e\n]+$/.test(s)&&[...s.matchAll(hostRE)].length===1)dev1.push({operation:'binary whitespace to octets',tab,reverse,serializedHex:raw.toString('hex'),text:s,hosts:[...s.matchAll(hostRE)].map(x=>x[0])});
 }
 const packed=Buffer.from(input2.toString().replace(/\s/g,''),'hex');
 const dev2=[];
@@ -59,7 +59,7 @@ const selected={dev1,dev2,heldout:{cipher,n,sourceRuneCount:sourceIdx.length,sou
 console.log(JSON.stringify(selected,null,2));
 // These expected results are read only after candidate enumeration. They are the
 // historically independently validated outputs, not a selector or ranking signal.
-const expected1='Come to emiwp4muu2ktwknf.onionWe shall await you there.Good luck.3301';
+const expected1='Come to emiwp4muu2ktwknf.onion\nWe shall await you there.\nGood luck.\n3301';
 const expected2=read(historical+'cicada2013-second-onion-icmp-echo.asc');
 const expected3='avowyfgl5lkzfj3n.onion';
 assert.equal(dev1.length,1);assert.equal(dev1[0].text,expected1);
