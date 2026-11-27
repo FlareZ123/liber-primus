@@ -177,7 +177,7 @@ function study(data,job){
  }
  const tape=corpus.pages.slice(0,56).flatMap(p=>p.indices),rows=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
  if(job.control===undefined)return{job,model:'Known selected prime-origin chapter reset, arbitrary common alpha/beta, optional single collision-only retry with rho=.81; literal F hold',result:run(rows)};
- const j=job.control,P=(j?gp(gibran):gp(shakespeare)).slice(j?5000:60000,(j?12000:80000)+12956),rng=random(0x27112790+j),A=perm(rng,true),B=perm(rng,false),truth=starts.slice(0,-1).map((x,i)=>P.slice(x,starts[i+1]));assert(P.length===12956,'control length');
+ const j=job.control,P=(j?gp(gibran):gp(shakespeare)).slice(j?5000:60000,(j?5000:60000)+12956),rng=random(0x27112790+j),A=perm(rng,true),B=perm(rng,false),truth=starts.slice(0,-1).map((x,i)=>P.slice(x,starts[i+1]));assert(P.length===12956,'control length');
  const planted=truth.map(p=>encrypt(p,A,B,rng)),C=planted.map(x=>x.C);for(let i=0;i<C.length;i++)assert(replay(truth[i],A,B,planted[i].moves).join()===C[i].join(),'plant replay');
  return{job,model:'Known selected prime-origin chapter reset, arbitrary common alpha/beta, optional single collision-only retry with rho=.81; literal F hold',trueSkips:planted.map(x=>x.skip),trueHolds:planted.map(x=>x.holds),repeats:C.map(x=>x.filter((z,i)=>i&&z===x[i-1]).length),result:run(C,truth,A,B)};
 }
