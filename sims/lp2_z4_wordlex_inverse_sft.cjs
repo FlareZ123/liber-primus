@@ -2,7 +2,7 @@
 const fs=require("node:fs");
 function experiment(raw,config={}){
  const gp=JSON.parse(raw[0]),f=JSON.parse(raw[1]),n=JSON.parse(raw[2]),lex=new Map(),runes=new Map(gp.runes.map((r,i)=>[r,i])),compact="0123456789abcdefghijklmnopqrs",keys=[{name:'DIUINITY',K:[23,10,1,10,9,10,16,26],initial:null},{name:'FIRFUMFERENFE',K:[0,10,4,0,1,19,0,18,4,18,9,0,18],initial:null},{name:'p54 red8',K:f.red8_key.gp29_indices,initial:{phase:0,prev:f.red8_key.enlarged_initial.gp29_index}}];
- const id=w=>String.fromCharCode(...w.map(x=>65+x)),from=s=>Array.from(s,x=>x.charCodeAt(0)-65),text=w=>from(w).map(x=>gp.translit[x]).join("");
+ if(config.extraKeys)keys.push(...config.extraKeys);const id=w=>String.fromCharCode(...w.map(x=>65+x)),from=s=>Array.from(s,x=>x.charCodeAt(0)-65),text=w=>from(w).map(x=>gp.translit[x]).join("");
  const tokens=gp.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function normalize(w,alt){w=w.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");let a=[];for(let j=0;j<w.length;){const q=alt&&w.startsWith("ING",j)?{t:"ING",i:21}:alt&&w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));if(!q)return null;a.push(q.i);j+=q.t.length;}return id(a);}
  const add=(w,c)=>{if(w&&w.length<=24)lex.set(w,(lex.get(w)||0)+c);};

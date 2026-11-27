@@ -67,8 +67,8 @@ function experiment(raw,config={}){
  for(const c of anchorCases){
   const r=search(c.C);outputs.push({...c,kind:"original",keys:r.keys.size,nodes:r.nodes,checks:r.fullChecks,words:r.words,completed:r.completed,complete:r.complete,witnesses:r.witnesses});sets.push(r.keys);
  }
- const joint=intersect(sets[0],sets[1]);
- return {lexicon:lex.size,maxHidden,cap,plantKey,truthCanonical:uncode(truth),plantJoint:plantJoint.size,plantTruth:plantJoint.has(truth),outputs,jointCount:joint.size,jointComplete:outputs.filter(x=>x.kind==="original").every(x=>x.complete),jointKeys:[...joint].slice(0,10000).map(([k,w])=>({key:uncode(k),anchor0:w,anchor1:sets[1].get(k)})),truncated:joint.size>10000};
+ const joint=intersect(sets[0],sets[1]);const union=[...new Set(sets.flatMap(m=>[...m.keys()]))].map(k=>({key:uncode(k),anchors:sets.map(m=>m.get(k)??null)}));
+ return {lexicon:lex.size,maxHidden,cap,plantKey,truthCanonical:uncode(truth),plantJoint:plantJoint.size,plantTruth:plantJoint.has(truth),outputs,union,jointCount:joint.size,jointComplete:outputs.filter(x=>x.kind==="original").every(x=>x.complete),jointKeys:[...joint].slice(0,10000).map(([k,w])=>({key:uncode(k),anchor0:w,anchor1:sets[1].get(k)})),truncated:joint.size>10000};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-page-groups-54-55-derived.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
