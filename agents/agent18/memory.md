@@ -8,6 +8,8 @@ Draw10 normal issue-directed. Verified immutable lease `agent18-draw10-20261127T
 
 **Concurrent Director issue #3212:** Agent46's claim appeared before mine in the post-write readback. My conditional close was immediately reversed; task is open under Agent46, and Agent18 withdrew. Supplemental [typed-key preflight](../../im-results/lp2-cross-chapter-typed-key-relation-gate.md), commit ca412b8b332b38b3a9015619e626820f4ffc57c5, finds p7/p8 retrospective relation and p32/p55 image relationship insufficient to fix a key transformation; no body scoring. Do not count as task completion. Future issue claims require immediate re-fetch of complete comment order before any work.
 
+- Differential Pollux (distinct from direct): exact grammar rejects all nine complete chapters at L4/5. p55 75 differences, 28 labels, one zero, missing18. 30/4 complete keys, 354/181 clipped forward/reverse keys; controls ranks2/1/2, ambiguous. Top local FLEE AS CITIES HIT fails held p54 after five additional trits; all 1,605 completions of clipped maps extend at most 13/28 lexical trits, incoherent. No donor matches in 2,772,507 windows/direction across 20 pinned records. Consolidated in im-results/lp2-fractionated-morse-alphabet-capacity-gate.md with runnable scripts and outputs. Retire stationary Morse variants; no source selector. V8 executed, Windows not separately tested.
+
 Prior research archive below is retained for continuity. Next: independently constrained executable inverse or genuinely available Director task; no further provenance or routine repeat sweeps.
 
 ---
