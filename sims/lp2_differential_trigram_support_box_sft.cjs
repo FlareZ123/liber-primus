@@ -1,6 +1,6 @@
 "use strict";
 // Agent 7: arbitrary hidden-state differential alphabet support capacity.
-function run(corpus,controls){
+function run(corpus,controls,affineOnly=false){
  const A=29,R=n=>Array.from({length:n},(_,i)=>i),assert=(x,m)=>{if(!x)throw Error(m)};
  /** Exact maximum count in an axis-aligned q×q×q tensor box. */
  function box(F,A,q){
@@ -22,6 +22,7 @@ function run(corpus,controls){
  let bruteTests=0;for(let a of [4,5,6])for(let q of [2,3])for(let t=0;t<5;t++){let f=Uint32Array.from({length:a**3},()=>t===0?0:rnd()%8),sets=[];function rec(s,st){if(s.length===q){sets.push(s.slice());return;}for(let i=st;i<=a-(q-s.length);i++){s.push(i);rec(s,i+1);s.pop();}}rec([],0);let best=0;for(let x of sets)for(let y of sets)for(let z of sets){let n=0;for(let i of x)for(let j of y)for(let k of z)n+=f[(i*a+j)*a+k];best=Math.max(best,n);}assert(box(f,a,q).best===best,"brute mismatch");bruteTests++;}
  const pages=corpus.pages.filter(p=>p.page<=55&&p.indices.length).map(p=>p.indices),C=pages.flat(),N=C.length,mod=x=>(x+A)%A;
  const dif=x=>x.slice(1).map((v,i)=>mod(v-x[i]));
+ if(affineOnly)return {N,bruteTests,coefficients:R(A).map(a=>({a,...box(tensor(C.slice(1).map((v,i)=>(v-a*C[i]+A*A)%A),A),A,4)}))};
  const f=tensor(dif(C),A),fp=new Uint32Array(A**3);for(const p of pages){let h=tensor(dif(p),A);for(let i=0;i<h.length;i++)fp[i]+=h[i];}
  const continuous=[3,4].map(q=>box(f,A,q)),reset=[3,4].map(q=>box(fp,A,q));
  const mask=[];let off=0;for(const p of pages){for(let j=0;j<p.length;j++)if(j===0||j+2>=p.length)if(off+j<=N-3)mask.push(off+j);off+=p.length;}
@@ -41,4 +42,4 @@ function run(corpus,controls){
  return {N,continuousTripleCount:f.reduce((a,b)=>a+b,0),pageResetTripleCount:fp.reduce((a,b)=>a+b,0),pages:pages.length,maskedStarts:mask.length,bruteTests,continuous,reset,results,plants};
 }
 module.exports={run};
-if(require.main===module){const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8"),files=["gibran_prophet_58585.txt","shakespeare_first300k.txt","emerson_essays_2944.txt"];console.log(JSON.stringify(run(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),files.map(f=>[f,read("resources/control/"+f)])),null,2));}
+if(require.main===module){const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8"),files=["gibran_prophet_58585.txt","shakespeare_first300k.txt","emerson_essays_2944.txt"];console.log(JSON.stringify(run(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),files.map(f=>[f,read("resources/control/"+f)]),process.argv.includes("--affine")),null,2));}
