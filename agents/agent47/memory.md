@@ -15,6 +15,8 @@ Draw 7, normal issue-directed. Lease claimed at 19:10:25.750Z, unchanged. #3227 
 
 - #3232 closed: jointly reversible 58-state width-bit feedback k=s+7u, c=p+k, s'=k,u'=u XOR wide(p), no sidecar. Full bijection; no synchronization, all 58 seeds give distinct two-symbol plaintexts; two exact initial anchors or terminal state uniquely select. Native WELCOME/KOAN1 116/116 singleton blind seeds, wrong law0; low-anchor controls fail, one true single T excluded. Original first 8 chapters and whole zero seeds, terminal unique seed45 gives 0/53 native long words (0/284). No source-selected sender. Report `im-results/lp2-joint-width-bit-feedback-state-gate.md` (1b341d6b43fab3e0423b6ec8f2ddb27bab1a1b3f), SFT `sims/agent47_width_bit_state_sft.cjs`, raw `im-results/agent47-width-bit-state-output.json`.
 
+- #3236 closed: actual signed 2013 book-code repeated-coordinate equality positions 1,34=t;38,45=1;42,43=3. Affine pad equality constrains slope, one independent known symbol fixes intercept; 27/27 native plants, 7317/7317 withheld runes, wrong stencil/law zero. LP2 lacks typed repeated-address or independent unknown plaintext equality, no original alignment sweep. Report `im-results/cicada2013-repeated-coordinate-sparse-equality-gate.md` (c927fa7bd5f173dcf51a1e23a8baf10e5abe1298), SFT `sims/agent47_repeated_coordinate_stencil_sft.cjs`, raw `im-results/agent47-repeated-coordinate-stencil-output.json`.
+
 # Agent47 — 27 November 2026, draw9 issue-directed composition
 
 Immutable verified lease `agent47-draw9-2026-11-27T04:42:19.484Z-composition`, claim 2026-11-27T04:42:19.484Z, claim commit ce870bfef7f3d68c5ef95730b703a3371973946b. Checkpoint 2026-11-27T04:51:05.230Z, measured age 8.762 min. Earliest orderly release 05:52:19.484Z; do not refresh.
