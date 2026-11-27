@@ -1,0 +1,342 @@
+{
+  "source": "15d64ba6bfd448498bf5553c3c3e3238e68be429",
+  "results": [
+    {
+      "heuristic": true,
+      "q": 13,
+      "mode": "2",
+      "budget": 6,
+      "dictionary": 38938,
+      "found": true,
+      "exact": true,
+      "train_supported": 18,
+      "train_truth": 18,
+      "holdout_supported": 40,
+      "holdout_truth": 40,
+      "holdout_count": 40,
+      "omitted": [
+        1,
+        8,
+        13,
+        14,
+        18,
+        19
+      ],
+      "pi": [
+        0,
+        1,
+        12,
+        24,
+        26,
+        15,
+        3,
+        18,
+        19,
+        11,
+        4,
+        16,
+        5,
+        13,
+        10,
+        21,
+        23,
+        9,
+        25,
+        17,
+        20,
+        8,
+        7,
+        28,
+        2,
+        27,
+        22,
+        6,
+        14
+      ],
+      "key": [
+        6,
+        19,
+        21,
+        18,
+        10,
+        3,
+        14,
+        7,
+        24,
+        21,
+        0,
+        27,
+        22
+      ],
+      "seeds": [
+        {
+          "seed": [
+            0,
+            1,
+            3
+          ],
+          "done": 96,
+          "total": 96,
+          "nodes": 15,
+          "extends": 1665719,
+          "enum": 3364,
+          "residual": 0,
+          "timed": false,
+          "seconds": 4.49119
+        },
+        {
+          "seed": [
+            0,
+            1,
+            2
+          ],
+          "done": 96,
+          "total": 96,
+          "nodes": 195,
+          "extends": 2873998,
+          "enum": 59711,
+          "residual": 0,
+          "timed": false,
+          "seconds": 6.0225
+        },
+        {
+          "seed": [
+            0,
+            1,
+            4
+          ],
+          "done": 96,
+          "total": 96,
+          "nodes": 28,
+          "extends": 1747483,
+          "enum": 2523,
+          "residual": 0,
+          "timed": false,
+          "seconds": 4.54133
+        },
+        {
+          "seed": [
+            0,
+            1,
+            5
+          ],
+          "done": 67,
+          "total": 96,
+          "nodes": 3987,
+          "extends": 3077754,
+          "enum": 622340,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00013
+        },
+        {
+          "seed": [
+            0,
+            1,
+            6
+          ],
+          "done": 96,
+          "total": 96,
+          "nodes": 1046,
+          "extends": 4147908,
+          "enum": 185861,
+          "residual": 0,
+          "timed": false,
+          "seconds": 7.75773
+        },
+        {
+          "seed": [
+            0,
+            1,
+            8
+          ],
+          "done": 21,
+          "total": 96,
+          "nodes": 7176,
+          "extends": 1742392,
+          "enum": 7530314,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00075
+        },
+        {
+          "seed": [
+            0,
+            1,
+            9
+          ],
+          "done": 44,
+          "total": 96,
+          "nodes": 3649,
+          "extends": 3637075,
+          "enum": 1404470,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00088
+        },
+        {
+          "seed": [
+            0,
+            1,
+            10
+          ],
+          "done": 48,
+          "total": 96,
+          "nodes": 6151,
+          "extends": 1827587,
+          "enum": 4453936,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00041
+        },
+        {
+          "seed": [
+            0,
+            1,
+            11
+          ],
+          "done": 79,
+          "total": 96,
+          "nodes": 2140,
+          "extends": 4029855,
+          "enum": 952853,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00114
+        },
+        {
+          "seed": [
+            0,
+            1,
+            12
+          ],
+          "done": 27,
+          "total": 96,
+          "nodes": 7949,
+          "extends": 1719566,
+          "enum": 1682000,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00014
+        },
+        {
+          "seed": [
+            0,
+            1,
+            7
+          ],
+          "done": 89,
+          "total": 96,
+          "nodes": 3853,
+          "extends": 2338394,
+          "enum": 722419,
+          "residual": 0,
+          "timed": true,
+          "seconds": 8.00032
+        },
+        {
+          "seed": [
+            0,
+            3,
+            2
+          ],
+          "done": 17,
+          "total": 96,
+          "nodes": 76,
+          "extends": 481443,
+          "enum": 558,
+          "residual": 0,
+          "timed": false,
+          "seconds": 1.32159
+        }
+      ],
+      "run": 45948811122
+    },
+    {
+      "heuristic": true,
+      "q": 13,
+      "mode": "3",
+      "budget": 6,
+      "dictionary": 38938,
+      "found": true,
+      "exact": true,
+      "train_supported": 18,
+      "train_truth": 18,
+      "holdout_supported": 40,
+      "holdout_truth": 40,
+      "holdout_count": 40,
+      "omitted": [
+        5,
+        6,
+        7,
+        9,
+        16,
+        23
+      ],
+      "pi": [
+        0,
+        1,
+        24,
+        26,
+        14,
+        18,
+        16,
+        11,
+        6,
+        15,
+        20,
+        13,
+        21,
+        12,
+        10,
+        3,
+        5,
+        27,
+        19,
+        8,
+        17,
+        9,
+        2,
+        4,
+        25,
+        23,
+        22,
+        7,
+        28
+      ],
+      "key": [
+        14,
+        19,
+        16,
+        1,
+        10,
+        12,
+        13,
+        27,
+        0,
+        18,
+        28,
+        2,
+        15
+      ],
+      "seeds": [
+        {
+          "seed": [
+            0,
+            1,
+            3
+          ],
+          "done": 6,
+          "total": 96,
+          "nodes": 2,
+          "extends": 99790,
+          "enum": 620,
+          "residual": 0,
+          "timed": false,
+          "seconds": 0.307316
+        }
+      ],
+      "run": 45948815012
+    }
+  ]
+}
