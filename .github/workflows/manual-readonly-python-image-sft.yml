@@ -71,6 +71,23 @@ jobs:
           & python -- $env:TEST_SCRIPT
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+      - name: Preserve sealed p33–39 discovery packet
+        if: ${{ success() && inputs.script == 'sims/lp2_p33_p39_blind_packet_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p33-p39-discovery
+          path: im-results/lp2-p33-p39-blind-packet/discovery.zip
+          if-no-files-found: error
+      - name: Preserve separate moderator-only p33–39 materials
+        if: ${{ success() && inputs.script == 'sims/lp2_p33_p39_blind_packet_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p33-p39-moderator-only
+          path: |
+            im-results/lp2-p33-p39-blind-packet/holdout.zip
+            im-results/lp2-p33-p39-blind-packet/moderator.md
+          if-no-files-found: error
+
       - name: Preserve Kumar proxy evidence
         if: ${{ always() && inputs.script == 'sims/lp2_p27_kumar2021_song_proxy_sft.py' }}
         uses: actions/upload-artifact@v4
