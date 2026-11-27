@@ -1,0 +1,1355 @@
+{
+  "baseBlob": "13e5d15cbd6f7aa40981cedda42a108c17b24a18",
+  "codeBlob": "efba4c5a50a3f81e0bceb8f343bcb527f52b1d3b",
+  "inputs": [
+    {
+      "path": "sims/lp2_p56_primeclock_spectral_pool_sft.cjs",
+      "sha": "13e5d15cbd6f7aa40981cedda42a108c17b24a18"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "sha": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    }
+  ],
+  "controls": [
+    {
+      "control": 0,
+      "visibleF": 98,
+      "literalF": 26,
+      "result": {
+        "records": [
+          {
+            "start": 0,
+            "kind": "forbidden",
+            "initBeta": 2,
+            "fitBeta": 0,
+            "strictLL": -4420.628629629349
+          },
+          {
+            "start": 0,
+            "kind": "fourier6g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4173.170358335202
+          },
+          {
+            "start": 0,
+            "kind": "fourier6g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4173.1916974274745
+          },
+          {
+            "start": 1,
+            "kind": "forbidden",
+            "initBeta": 2,
+            "fitBeta": 0,
+            "strictLL": -4191.7725643604
+          },
+          {
+            "start": 1,
+            "kind": "fourier6g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4173.1724648733925
+          },
+          {
+            "start": 1,
+            "kind": "fourier6g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4191.7725643604
+          },
+          {
+            "start": 2,
+            "kind": "forbidden",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 2,
+            "kind": "fourier6g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4173.170358335202
+          },
+          {
+            "start": 2,
+            "kind": "fourier6g1",
+            "initBeta": 1,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 2,
+            "kind": "fourier9g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4186.30320860882
+          },
+          {
+            "start": 2,
+            "kind": "fourier9g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4173.1916974274745
+          }
+        ],
+        "best": {
+          "fit": 1412,
+          "fitLength": 1412,
+          "held": 471,
+          "heldLength": 471,
+          "fitScore": -3823.249872454267,
+          "heldScore": -1279.944631162394,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            18,
+            16,
+            9,
+            12,
+            25,
+            6,
+            14,
+            21,
+            23,
+            24,
+            22,
+            20,
+            2,
+            8,
+            19,
+            15,
+            4,
+            28,
+            27,
+            5,
+            1,
+            10,
+            26,
+            13,
+            11,
+            3,
+            17,
+            7
+          ],
+          "B": [
+            2,
+            10,
+            9,
+            4,
+            6,
+            24,
+            15,
+            18,
+            22,
+            17,
+            26,
+            11,
+            12,
+            0,
+            8,
+            21,
+            7,
+            1,
+            16,
+            28,
+            20,
+            5,
+            25,
+            14,
+            3,
+            19,
+            27,
+            23,
+            13
+          ],
+          "betaCorrect": 0,
+          "alphaCorrect": 1,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1412,
+              "held": 471,
+              "heldCorrect": 471,
+              "replay": true,
+              "fitEnd": 1395,
+              "continuationEnd": 1395,
+              "possibleFitEnds": 2,
+              "fitScore": -3823.249872454267,
+              "heldScore": -1279.944631162394
+            }
+          ]
+        },
+        "oracle": {
+          "fit": 1412,
+          "fitLength": 1412,
+          "held": 471,
+          "heldLength": 471,
+          "fitScore": -3823.249872454267,
+          "heldScore": -1279.944631162394,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            7,
+            5,
+            27,
+            1,
+            14,
+            24,
+            3,
+            10,
+            12,
+            13,
+            11,
+            9,
+            20,
+            26,
+            8,
+            4,
+            22,
+            17,
+            16,
+            23,
+            19,
+            28,
+            15,
+            2,
+            18,
+            21,
+            6,
+            25
+          ],
+          "B": [
+            20,
+            28,
+            27,
+            22,
+            24,
+            13,
+            4,
+            7,
+            11,
+            6,
+            15,
+            0,
+            1,
+            18,
+            26,
+            10,
+            25,
+            19,
+            5,
+            17,
+            9,
+            23,
+            14,
+            3,
+            21,
+            8,
+            16,
+            12,
+            2
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 29,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1412,
+              "held": 471,
+              "heldCorrect": 471,
+              "replay": true,
+              "fitEnd": 1395,
+              "continuationEnd": 1395,
+              "possibleFitEnds": 2,
+              "fitScore": -3823.249872454267,
+              "heldScore": -1279.944631162394
+            }
+          ]
+        }
+      }
+    },
+    {
+      "control": 1,
+      "visibleF": 106,
+      "literalF": 46,
+      "result": {
+        "records": [
+          {
+            "start": 0,
+            "kind": "forbidden",
+            "initBeta": 5,
+            "fitBeta": 0,
+            "strictLL": -4214.451736523166
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.126562047495
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.125648581517
+          },
+          {
+            "start": 0,
+            "kind": "fourier8g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.12566853198
+          },
+          {
+            "start": 1,
+            "kind": "forbidden",
+            "initBeta": 5,
+            "fitBeta": 0,
+            "strictLL": -4214.451736523166
+          },
+          {
+            "start": 1,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.126562047495
+          },
+          {
+            "start": 1,
+            "kind": "fourier12g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.125648581517
+          },
+          {
+            "start": 1,
+            "kind": "fourier8g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.12566853198
+          },
+          {
+            "start": 2,
+            "kind": "forbidden",
+            "initBeta": 5,
+            "fitBeta": 0,
+            "strictLL": -4214.451736523166
+          },
+          {
+            "start": 2,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.111050663127
+          },
+          {
+            "start": 2,
+            "kind": "fourier12g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.12566853198
+          },
+          {
+            "start": 2,
+            "kind": "fourier8g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.169917637115
+          },
+          {
+            "start": 2,
+            "kind": "fourier8g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4146.1370472206045
+          }
+        ],
+        "best": {
+          "fit": 1410,
+          "fitLength": 1412,
+          "held": 469,
+          "heldLength": 471,
+          "fitScore": -3654.066672477282,
+          "heldScore": -1241.6703689928136,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            9,
+            26,
+            20,
+            13,
+            25,
+            27,
+            4,
+            3,
+            14,
+            19,
+            5,
+            2,
+            10,
+            18,
+            6,
+            21,
+            17,
+            16,
+            15,
+            22,
+            8,
+            12,
+            28,
+            23,
+            1,
+            24,
+            11,
+            7
+          ],
+          "B": [
+            4,
+            2,
+            13,
+            22,
+            5,
+            25,
+            17,
+            9,
+            6,
+            10,
+            16,
+            7,
+            1,
+            21,
+            8,
+            26,
+            12,
+            20,
+            15,
+            0,
+            18,
+            19,
+            23,
+            14,
+            24,
+            27,
+            3,
+            11,
+            28
+          ],
+          "betaCorrect": 0,
+          "alphaCorrect": 1,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1410,
+              "held": 471,
+              "heldCorrect": 469,
+              "replay": true,
+              "fitEnd": 1382,
+              "continuationEnd": 1381,
+              "possibleFitEnds": 6,
+              "fitScore": -3654.066672477282,
+              "heldScore": -1241.6703689928136
+            }
+          ]
+        },
+        "oracle": {
+          "fit": 1410,
+          "fitLength": 1412,
+          "held": 469,
+          "heldLength": 471,
+          "fitScore": -3654.066672477282,
+          "heldScore": -1241.6703689928136,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            27,
+            15,
+            9,
+            2,
+            14,
+            16,
+            22,
+            21,
+            3,
+            8,
+            23,
+            18,
+            28,
+            19,
+            24,
+            10,
+            6,
+            5,
+            4,
+            11,
+            26,
+            1,
+            17,
+            12,
+            20,
+            13,
+            7,
+            25
+          ],
+          "B": [
+            22,
+            20,
+            2,
+            11,
+            23,
+            14,
+            6,
+            27,
+            24,
+            28,
+            5,
+            25,
+            19,
+            10,
+            26,
+            15,
+            1,
+            9,
+            4,
+            18,
+            7,
+            8,
+            12,
+            3,
+            13,
+            16,
+            21,
+            0,
+            17
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 29,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1410,
+              "held": 471,
+              "heldCorrect": 469,
+              "replay": true,
+              "fitEnd": 1382,
+              "continuationEnd": 1381,
+              "possibleFitEnds": 6,
+              "fitScore": -3654.066672477282,
+              "heldScore": -1241.6703689928136
+            }
+          ]
+        }
+      }
+    },
+    {
+      "control": 2,
+      "visibleF": 101,
+      "literalF": 44,
+      "result": {
+        "records": [
+          {
+            "start": 0,
+            "kind": "forbidden",
+            "initBeta": 6,
+            "fitBeta": 29,
+            "strictLL": -4154.091700963735
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4154.091971302379
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4154.091700963735
+          },
+          {
+            "start": 0,
+            "kind": "fourier4g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4154.134312987507
+          },
+          {
+            "start": 1,
+            "kind": "forbidden",
+            "initBeta": 4,
+            "fitBeta": 29,
+            "strictLL": -4154.091700963735
+          },
+          {
+            "start": 1,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4154.091971302379
+          },
+          {
+            "start": 1,
+            "kind": "fourier12g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4154.091700963735
+          },
+          {
+            "start": 2,
+            "kind": "forbidden",
+            "initBeta": 5,
+            "fitBeta": 29,
+            "strictLL": -4154.0933733851
+          },
+          {
+            "start": 2,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4154.134312987507
+          },
+          {
+            "start": 2,
+            "kind": "fourier12g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4154.091971302379
+          },
+          {
+            "start": 2,
+            "kind": "fourier4g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4154.091700963735
+          }
+        ],
+        "best": {
+          "fit": 1408,
+          "fitLength": 1412,
+          "held": 471,
+          "heldLength": 471,
+          "fitScore": -3728.8426165301535,
+          "heldScore": -1318.9369344038316,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            6,
+            17,
+            5,
+            8,
+            16,
+            15,
+            10,
+            13,
+            27,
+            11,
+            9,
+            4,
+            2,
+            22,
+            18,
+            3,
+            1,
+            20,
+            28,
+            19,
+            12,
+            21,
+            14,
+            23,
+            26,
+            24,
+            7,
+            25
+          ],
+          "B": [
+            21,
+            18,
+            13,
+            10,
+            2,
+            28,
+            19,
+            5,
+            9,
+            26,
+            15,
+            14,
+            25,
+            24,
+            1,
+            20,
+            27,
+            12,
+            0,
+            22,
+            8,
+            4,
+            23,
+            3,
+            7,
+            17,
+            11,
+            6,
+            16
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 26,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1408,
+              "held": 471,
+              "heldCorrect": 471,
+              "replay": true,
+              "fitEnd": 1376,
+              "continuationEnd": 1376,
+              "possibleFitEnds": 2,
+              "fitScore": -3728.8426165301535,
+              "heldScore": -1318.9369344038316
+            }
+          ]
+        },
+        "oracle": {
+          "fit": 1408,
+          "fitLength": 1412,
+          "held": 471,
+          "heldLength": 471,
+          "fitScore": -3728.8426165301535,
+          "heldScore": -1318.9369344038316,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            6,
+            17,
+            5,
+            8,
+            16,
+            15,
+            10,
+            13,
+            27,
+            11,
+            9,
+            26,
+            2,
+            22,
+            18,
+            3,
+            1,
+            20,
+            28,
+            19,
+            12,
+            4,
+            14,
+            23,
+            21,
+            24,
+            7,
+            25
+          ],
+          "B": [
+            21,
+            18,
+            13,
+            10,
+            2,
+            28,
+            19,
+            5,
+            9,
+            26,
+            15,
+            14,
+            25,
+            24,
+            1,
+            20,
+            27,
+            12,
+            0,
+            22,
+            8,
+            4,
+            23,
+            3,
+            7,
+            17,
+            11,
+            6,
+            16
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 29,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1408,
+              "held": 471,
+              "heldCorrect": 471,
+              "replay": true,
+              "fitEnd": 1376,
+              "continuationEnd": 1376,
+              "possibleFitEnds": 2,
+              "fitScore": -3728.8426165301535,
+              "heldScore": -1318.9369344038316
+            }
+          ]
+        }
+      }
+    },
+    {
+      "control": 3,
+      "visibleF": 112,
+      "literalF": 49,
+      "result": {
+        "records": [
+          {
+            "start": 0,
+            "kind": "forbidden",
+            "initBeta": 2,
+            "fitBeta": 0,
+            "strictLL": -4149.730445478652
+          },
+          {
+            "start": 0,
+            "kind": "fourier6g0",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4149.7311221219625
+          },
+          {
+            "start": 0,
+            "kind": "fourier6g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4149.732207316441
+          },
+          {
+            "start": 0,
+            "kind": "fourier11g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4149.730445478652
+          },
+          {
+            "start": 1,
+            "kind": "forbidden",
+            "initBeta": 3,
+            "fitBeta": 29,
+            "strictLL": -4149.730241321508
+          },
+          {
+            "start": 1,
+            "kind": "fourier6g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4149.732207316441
+          },
+          {
+            "start": 1,
+            "kind": "fourier6g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4149.7311221219625
+          },
+          {
+            "start": 1,
+            "kind": "fourier3g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4149.733980599069
+          },
+          {
+            "start": 2,
+            "kind": "forbidden",
+            "initBeta": 3,
+            "fitBeta": 0,
+            "strictLL": -4149.733980599069
+          },
+          {
+            "start": 2,
+            "kind": "fourier6g0",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4149.730241321508
+          },
+          {
+            "start": 2,
+            "kind": "fourier6g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4149.730445478652
+          },
+          {
+            "start": 2,
+            "kind": "fourier11g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 2,
+            "kind": "fourier3g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4212.64590700239
+          }
+        ],
+        "best": {
+          "fit": 1410,
+          "fitLength": 1412,
+          "held": 469,
+          "heldLength": 471,
+          "fitScore": -3622.372515756804,
+          "heldScore": -1222.0612655169934,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            27,
+            13,
+            28,
+            18,
+            11,
+            6,
+            4,
+            15,
+            3,
+            2,
+            14,
+            24,
+            23,
+            12,
+            20,
+            21,
+            5,
+            7,
+            22,
+            9,
+            10,
+            16,
+            26,
+            8,
+            19,
+            17,
+            1,
+            25
+          ],
+          "B": [
+            28,
+            15,
+            10,
+            20,
+            17,
+            16,
+            19,
+            9,
+            27,
+            12,
+            11,
+            21,
+            5,
+            26,
+            23,
+            3,
+            25,
+            8,
+            22,
+            1,
+            2,
+            0,
+            4,
+            13,
+            24,
+            14,
+            6,
+            7,
+            18
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 25,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1410,
+              "held": 471,
+              "heldCorrect": 469,
+              "replay": true,
+              "fitEnd": 1370,
+              "continuationEnd": 1370,
+              "possibleFitEnds": 3,
+              "fitScore": -3622.372515756804,
+              "heldScore": -1222.0612655169934
+            }
+          ]
+        },
+        "oracle": {
+          "fit": 1410,
+          "fitLength": 1412,
+          "held": 469,
+          "heldLength": 471,
+          "fitScore": -3622.372515756804,
+          "heldScore": -1222.0612655169934,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            27,
+            13,
+            28,
+            18,
+            11,
+            6,
+            4,
+            15,
+            3,
+            2,
+            14,
+            12,
+            23,
+            16,
+            20,
+            21,
+            5,
+            7,
+            22,
+            9,
+            10,
+            19,
+            26,
+            8,
+            24,
+            17,
+            1,
+            25
+          ],
+          "B": [
+            28,
+            15,
+            10,
+            20,
+            17,
+            16,
+            19,
+            9,
+            27,
+            12,
+            11,
+            21,
+            5,
+            26,
+            23,
+            3,
+            25,
+            8,
+            22,
+            1,
+            2,
+            0,
+            4,
+            13,
+            24,
+            14,
+            6,
+            7,
+            18
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 29,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1410,
+              "held": 471,
+              "heldCorrect": 469,
+              "replay": true,
+              "fitEnd": 1370,
+              "continuationEnd": 1370,
+              "possibleFitEnds": 3,
+              "fitScore": -3622.372515756804,
+              "heldScore": -1222.0612655169934
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "gate": true,
+  "original": {
+    "control": null,
+    "visibleF": 70,
+    "literalF": null,
+    "result": {
+      "records": [
+        {
+          "start": 0,
+          "kind": "forbidden",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier10g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier10g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier5g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier5g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier4g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier4g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier7g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier7g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier12g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 0,
+          "kind": "fourier12g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "forbidden",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier5g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier5g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier10g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier10g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier2g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier2g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier7g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier7g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier4g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 1,
+          "kind": "fourier4g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "forbidden",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier14g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier14g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier8g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier8g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier6g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier6g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier4g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier4g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier12g0",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        },
+        {
+          "start": 2,
+          "kind": "fourier12g1",
+          "initBeta": null,
+          "fitBeta": null,
+          "strictLL": null
+        }
+      ],
+      "best": null,
+      "oracle": null
+    }
+  }
+}
