@@ -1,0 +1,25 @@
+'use strict';
+const fs=require('node:fs');const path=require('node:path');
+function run(corpus,native,gibran,emerson,previous){
+ const mod=x=>(x%29+29)%29,unseen=[0,11,12,21,22,25,27,28],N=308,cut=154,M=3301,id=Array.from({length:29},(_,i)=>i),lookup=new Map(corpus.runes.map((x,i)=>[x,i])),tok=corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length),pr=[];
+ for(let x=2;pr.length<M+N+1;x++){let yes=true;for(let d=2;d*d<=x;d++)if(x%d===0){yes=false;break}if(yes)pr.push((x-1)%29)}
+ function gp(text){let P=[];for(let w of text.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let i=0;i<w.length;){if(w.startsWith("ING",i)){P.push(21);i+=3;continue}if(w.startsWith("IO",i)){P.push(27);i+=2;continue}let t=tok.find(x=>w.startsWith(x.s,i));if(!t){i++;continue}P.push(t.i);i+=t.s.length}}return P}
+ function model(text){let cnt=new Int32Array(29**4),pre=new Int32Array(29**3),P=gp(text);for(let i=3;i<P.length;i++){let k=(P[i-3]*29+P[i-2])*29+P[i-1];cnt[k*29+P[i]]++;pre[k]++}let L=new Float64Array(cnt.length);for(let i=0;i<L.length;i++)L[i]=Math.log((cnt[i]+.25)/(pre[Math.floor(i/29)]+.25*29));return {L,N:P.length-3}}
+ const models=[model(gibran),model(emerson)],combined=new Float64Array(29**4);for(let i=0;i<combined.length;i++)combined[i]=(models[0].L[i]+models[1].L[i])/2;models.push({L:combined,N:null});
+ const perms=[];function perm(a,left){if(!left.length){perms.push(a);return}left.forEach((x,i)=>perm([...a,x],left.slice(0,i).concat(left.slice(i+1))))}perm([],unseen.slice(1));
+ function score(P,L,a=3,b=N){let s=0;for(let i=a;i<b;i++)s+=L[((P[i-3]*29+P[i-2])*29+P[i-1])*29+P[i]];return s/(b-a)}
+ function encode(P,inv,o){let S=[];inv.forEach((x,i)=>S[x]=i);let j=o;return P.map(x=>x===0?0:mod(S[x]+pr[j++]))}
+ const text=P=>P.map(x=>corpus.translit[x]).join(" ");
+ function search(C,H,truth){let res=models.map(()=>({bestPrefix:null,bestFull:null,ties:0,truthInPrefixTies:false})),total=0;let trueCandidate=0;const P=new Int8Array(N),T=new Int32Array(N);
+ for(const h of H){const u=unseen.filter(x=>x!==h.f);for(const p of perms){const inv=id.slice();inv[h.f]=0;u.forEach((x,i)=>inv[x]=p[i]);for(let i=0;i<N;i++)P[i]=h.r[i]===-1?0:inv[h.r[i]];for(let i=3;i<N;i++)T[i]=((P[i-3]*29+P[i-2])*29+P[i-1])*29+P[i];total++;let exact=truth?truth.every((x,i)=>P[i]===x):false;if(exact)trueCandidate++;const row=()=>({f:h.f,o:h.o,holds:h.holds,inv,plain:Array.from(P),display:text(P),truthMatches:truth?truth.filter((x,i)=>P[i]===x).length:null});for(let j=0;j<3;j++){const L=models[j].L,z=res[j];let sa=0,sb=0;for(let i=3;i<cut;i++)sa+=L[T[i]];for(let i=cut;i<N;i++)sb+=L[T[i]];let a=sa/(cut-3),b=sb/(N-cut),full=(sa+sb)/(N-3);if(!z.bestPrefix||a>z.bestPrefix.prefix+1e-12){z.bestPrefix={...row(),prefix:a,holdout:b,full};z.ties=1;z.truthInPrefixTies=exact}else if(Math.abs(a-z.bestPrefix.prefix)<1e-12){z.ties++;z.truthInPrefixTies||=exact}if(!z.bestFull||full>z.bestFull.full+1e-12)z.bestFull={...row(),prefix:a,holdout:b,full}}}}
+ for(const z of res)for(const v of [z.bestPrefix,z.bestFull])if(encode(v.plain,v.inv,v.o).join()!==C.join())throw Error("forward replay");
+ return {histories:H.length,total,trueCandidate,results:res}}
+ const sections=native.sections.map(s=>({name:s.name,p:[...s.source_text].filter(x=>lookup.has(x)).map(x=>lookup.get(x))}));const windows=[];for(const s of sections)for(let i=0;i+N<=s.p.length;i+=N)windows.push({name:s.name,start:i,p:s.p.slice(i,i+N)});
+ const reference=windows.map(w=>({name:w.name,start:w.start,scores:models.map(m=>({prefix:score(w.p,m.L,3,cut),holdout:score(w.p,m.L,cut,N),full:score(w.p,m.L)}))}));
+ let seed=0x47af1193;function rand(n){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%n}
+ const controls=[];for(const [idx,o] of [[0,0],[Math.floor(windows.length/2),167],[windows.length-1,3301]]){const w=windows[idx];let p=unseen.slice();for(let k=p.length-1;k>0;k--){let j=rand(k+1);[p[k],p[j]]=[p[j],p[k]]}const inv=id.slice();unseen.forEach((x,j)=>inv[x]=p[j]);const S=[];inv.forEach((x,j)=>S[x]=j);const C=encode(w.p,inv,o),H=[{f:S[0],o,holds:w.p.map((x,i)=>x===0?i:-1).filter(x=>x>=0),r:w.p.map(x=>x===0?-1:S[x])}];const z=search(C,H,w.p);if(!z.trueCandidate)throw Error("control lost");controls.push({name:w.name,start:w.start,truthOrigin:o,truthInverse:inv,truthPlain:w.p,...z})}
+ const C=corpus.pages.filter(p=>p.page===54||p.page===55).flatMap(p=>p.indices),H=previous.paths;const original=search(C,H,null);
+ return {N,cut,modelTransitions:models.map(m=>m.N),reference,controls,original};
+}
+if(require.main===module){const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');console.log(JSON.stringify(run(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json')),read('resources/control/gibran_prophet_58585.txt'),read('resources/control/emerson_essays_2944.txt'),JSON.parse(read('im-results/agent47-p56-calibrated-terminal-paths.json'))),null,2));}
+module.exports={run};
