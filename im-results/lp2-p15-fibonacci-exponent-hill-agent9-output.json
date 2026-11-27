@@ -1,0 +1,488 @@
+{
+  "candidates": 4704,
+  "complete": 0,
+  "maxPrefix": 563,
+  "peak": 7,
+  "phaseStats": [
+    {
+      "v": 0,
+      "name": "printed",
+      "tr": 0,
+      "sign": 1,
+      "period": 840,
+      "pass": 0,
+      "far": 297,
+      "peak": 5
+    },
+    {
+      "v": 1,
+      "name": "printed",
+      "tr": 0,
+      "sign": -1,
+      "period": 840,
+      "pass": 0,
+      "far": 395,
+      "peak": 6
+    },
+    {
+      "v": 2,
+      "name": "printed",
+      "tr": 1,
+      "sign": 1,
+      "period": 840,
+      "pass": 0,
+      "far": 430,
+      "peak": 7
+    },
+    {
+      "v": 3,
+      "name": "printed",
+      "tr": 1,
+      "sign": -1,
+      "period": 840,
+      "pass": 0,
+      "far": 388,
+      "peak": 5
+    },
+    {
+      "v": 4,
+      "name": "signed",
+      "tr": 0,
+      "sign": 1,
+      "period": 336,
+      "pass": 0,
+      "far": 563,
+      "peak": 6
+    },
+    {
+      "v": 5,
+      "name": "signed",
+      "tr": 0,
+      "sign": -1,
+      "period": 336,
+      "pass": 0,
+      "far": 344,
+      "peak": 5
+    },
+    {
+      "v": 6,
+      "name": "signed",
+      "tr": 1,
+      "sign": 1,
+      "period": 336,
+      "pass": 0,
+      "far": 391,
+      "peak": 5
+    },
+    {
+      "v": 7,
+      "name": "signed",
+      "tr": 1,
+      "sign": -1,
+      "period": 336,
+      "pass": 0,
+      "far": 429,
+      "peak": 5
+    }
+  ],
+  "fullWitnesses": [],
+  "natural": [
+    {
+      "v": 0,
+      "phase": 0,
+      "fit": -4.029318216157737,
+      "held": -4.003890645083841,
+      "legal": {
+        "complete": false,
+        "furthest": 4,
+        "peak": 1,
+        "blocks": 2
+      }
+    },
+    {
+      "v": 0,
+      "phase": 17,
+      "fit": -3.960273573895373,
+      "held": -3.984263167824326,
+      "legal": {
+        "complete": false,
+        "furthest": 36,
+        "peak": 1,
+        "blocks": 10
+      }
+    },
+    {
+      "v": 1,
+      "phase": 0,
+      "fit": -3.958618985129332,
+      "held": -4.006798384679744,
+      "legal": {
+        "complete": false,
+        "furthest": 36,
+        "peak": 1,
+        "blocks": 10
+      }
+    },
+    {
+      "v": 1,
+      "phase": 17,
+      "fit": -3.947621502247268,
+      "held": -3.927794711844021,
+      "legal": {
+        "complete": false,
+        "furthest": 57,
+        "peak": 2,
+        "blocks": 15
+      }
+    },
+    {
+      "v": 2,
+      "phase": 0,
+      "fit": -3.9960869000823243,
+      "held": -3.99780318810571,
+      "legal": {
+        "complete": false,
+        "furthest": 60,
+        "peak": 1,
+        "blocks": 16
+      }
+    },
+    {
+      "v": 2,
+      "phase": 17,
+      "fit": -3.9650032458985702,
+      "held": -3.9889593718856533,
+      "legal": {
+        "complete": false,
+        "furthest": 0,
+        "peak": 1,
+        "blocks": 1
+      }
+    },
+    {
+      "v": 3,
+      "phase": 0,
+      "fit": -3.964687182824033,
+      "held": -3.9958571411787753,
+      "legal": {
+        "complete": false,
+        "furthest": 4,
+        "peak": 1,
+        "blocks": 2
+      }
+    },
+    {
+      "v": 3,
+      "phase": 17,
+      "fit": -3.9955690744821153,
+      "held": -3.93474843713571,
+      "legal": {
+        "complete": false,
+        "furthest": 0,
+        "peak": 1,
+        "blocks": 1
+      }
+    },
+    {
+      "v": 4,
+      "phase": 0,
+      "fit": -3.915846370426068,
+      "held": -3.8809268656089118,
+      "legal": {
+        "complete": false,
+        "furthest": 4,
+        "peak": 1,
+        "blocks": 2
+      }
+    },
+    {
+      "v": 4,
+      "phase": 17,
+      "fit": -3.9707013503005544,
+      "held": -4.005970719433119,
+      "legal": {
+        "complete": false,
+        "furthest": 98,
+        "peak": 2,
+        "blocks": 25
+      }
+    },
+    {
+      "v": 5,
+      "phase": 0,
+      "fit": -3.978847048326724,
+      "held": -3.955113109453057,
+      "legal": {
+        "complete": false,
+        "furthest": 24,
+        "peak": 1,
+        "blocks": 7
+      }
+    },
+    {
+      "v": 5,
+      "phase": 17,
+      "fit": -3.933010263075158,
+      "held": -3.983886793186061,
+      "legal": {
+        "complete": false,
+        "furthest": 8,
+        "peak": 1,
+        "blocks": 3
+      }
+    },
+    {
+      "v": 6,
+      "phase": 0,
+      "fit": -3.9457206763365282,
+      "held": -3.87895138981709,
+      "legal": {
+        "complete": false,
+        "furthest": 4,
+        "peak": 1,
+        "blocks": 2
+      }
+    },
+    {
+      "v": 6,
+      "phase": 17,
+      "fit": -3.9830387731736727,
+      "held": -3.9749471144062047,
+      "legal": {
+        "complete": false,
+        "furthest": 0,
+        "peak": 1,
+        "blocks": 1
+      }
+    },
+    {
+      "v": 7,
+      "phase": 0,
+      "fit": -3.96441131724586,
+      "held": -4.034647166197985,
+      "legal": {
+        "complete": false,
+        "furthest": 4,
+        "peak": 1,
+        "blocks": 2
+      }
+    },
+    {
+      "v": 7,
+      "phase": 17,
+      "fit": -3.95390586005802,
+      "held": -3.9672538856010244,
+      "legal": {
+        "complete": false,
+        "furthest": 93,
+        "peak": 2,
+        "blocks": 24
+      }
+    }
+  ],
+  "best": [
+    {
+      "v": 1,
+      "phase": 236,
+      "fit": -3.839258233309593,
+      "held": -3.9680166221809667,
+      "preview": "TNGLXDFYEONEUOEGNGWUEOCBCDXEAYRNJEACWWNOEOEEATHEUGYAEJTEISREATBXYAYWAELLOEEGYSEAUEAEALBPUIAEOEOJEEONBFIANGEORSNIAEOMRFTHEXJOEEOCDYSIJCFSESYNREBANGWXF",
+      "replay": true,
+      "exact": null
+    },
+    {
+      "v": 0,
+      "phase": 137,
+      "fit": -2.2575516253755348,
+      "held": -2.0509306760354256,
+      "preview": "CSFOODEUENINDARCCAUESANDWHENITTHIRSTSITDRINCSEUENOFDEADWATERSYOUAREGOODWHENYOUAREONEWITHYOURSELFYETWHENYOUARENOTONEWITHYOURS",
+      "replay": true,
+      "exact": 1744
+    },
+    {
+      "v": 6,
+      "phase": 211,
+      "fit": -2.1783470882775027,
+      "held": -2.1899980747432055,
+      "preview": "RSOULSUMMONSYOUTOPRAYERSHESHOULDSPURYOUAGAINANDYETAGAINTHOUGHWEEPINGUNTILYOUSHALLCOMELAUGHINGWHENYOUPRAYYOURISETOMEETINTHEAI",
+      "replay": true,
+      "exact": 1744
+    }
+  ],
+  "holdPlants": [
+    {
+      "v": 0,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 0,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 0,
+      "phase": 280,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 1,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 1,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 1,
+      "phase": 280,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 2,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 2,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 2,
+      "phase": 280,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 3,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 3,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 3,
+      "phase": 280,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 4,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 4,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 4,
+      "phase": 112,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 5,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 5,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 5,
+      "phase": 112,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 6,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 6,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 6,
+      "phase": 112,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 7,
+      "phase": 0,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 7,
+      "phase": 17,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    },
+    {
+      "v": 7,
+      "phase": 112,
+      "length": 1741,
+      "zero": 49,
+      "complete": true
+    }
+  ],
+  "donorLength": 63114,
+  "sourceZero": 65,
+  "controlHeld": [
+    -2.0509306760354256,
+    -2.1899980747432055
+  ]
+}
