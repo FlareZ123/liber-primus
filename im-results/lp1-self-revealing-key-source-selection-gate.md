@@ -42,3 +42,25 @@ The May 23 discussion (lines 186629–634) explicitly corrects an incorrect seco
 ## Next decision
 
 The positive 26-rune crib control gives a concrete way to evaluate a genuinely source-selected LP2 crib in a bounded periodic family. It does not select that family for unknown pages, nor a new nonperiodic law. Stop this branch before arbitrary key words, spelling mutations, or expansion functions are introduced. Reopen only with an independent clue fixing the donor address, spelling rule, and target or with an authentic known crib. Reproducer: `node sims/lp1_self_revealing_key_control_sft.cjs`.
+
+
+## Two authentic encipherings of one exact rubric: key-bearing differential (#3170, Agent17)
+
+The strongest exact cross-section match among the five already solved *encrypted* GP29 records is not an arbitrary thematic word: the complete repeated printed rubric AN INSTRUCTION, native 12 runes `ᚪᚾᛁᚾᛋᛏᚱᚢᚳᛏᛡᚾ`, occurs at WELCOME offset485, KOAN I offset740 (corrected 778-rune source, not the 780-rune external transcription), clear LOSS OF DIVINITY offset715, and clear final INSTRUCTION offset0. The first two are distinct original encrypted representations, with separately fixed physical rubric endpoints; the latter two are literal GP29, not independently encrypted third witnesses. The longer 13-rune exact cross-match includes the preceding word's terminal Y and is not a complete source-defined rubric, so it is not used.
+
+For the authentic LP1 WELCOME and KOAN I laws, on a shared consuming non-F plaintext P, C_W=P+K_j and C_R=2-P (mod29). Therefore C_W+C_R-2=K_j, with P eliminated. If even the reflection intercept 2 were unknown, subtracting the first sum gives the intercept-free relative key differences. The actual rubric contains no F; there is no hidden hold choice within the overlap.
+
+| Quantity | Exact GP0 sequence |
+|---|---|
+| Original WELCOME ciphertext | 5,18,20,25,12,10,14,2,15,25,8,25 |
+| Original KOAN I ciphertext | 7,22,21,22,16,15,27,1,26,15,4,22 |
+| Cipher-only difference after known reflection intercept | 10,9,10,16,26,23,10,1,10,9,10,16 |
+| Intercept-free relative differences | 0,28,0,6,16,13,0,20,0,28,0,6 |
+
+The overlap has shortest exact period 8 (period12 is the trivial finite-length alternative); one full cyclic key is obtained from the two cipher streams without inserting the rubric's plaintext rune values into the key equation. The independently known WELCOME consuming clock has phase3 at the rubric, which rotates that vector to [23,10,1,10,9,10,16,26] = DIVINITY. Forward prediction outside the 12-rune fitted span reproduces **503/503 original WELCOME symbols** using the separately known native plaintext and its literal-F mask. Thus the differential independently recovers the already known key conditional on the known reflection law, exact repeated-span alignment and external phase clock. This is not a blind inference of the phase or F mask. Wrong shifts -2,-1,+1,+2 in the KOAN I rubric fail period8 at 3,4,4,4 of the four repeated phase comparisons. Choosing period8 relies on shortest period plus the held continuation; the 12-symbol fit alone is not an unbounded period proof.
+
+Exact longest common runs for all ten distinct pairs of the five solved encrypted sections are, in order: WARNING/WELCOME 8, WARNING/KOAN I 7, WARNING/KOAN II 5, WARNING/p56 6, WELCOME/KOAN I 13, WELCOME/KOAN II 5, WELCOME/p56 9, KOAN I/KOAN II 10, KOAN I/p56 6, KOAN II/p56 4. No third encrypted occurrence of the source-defined rubric exists in this finite register. The earlier 2013 ID3 PARABLE text and clear p57 are plaintext publication in different media; the original XOR stage's MP3 operand is not evidence of two independent ciphertexts enciphering that same passage. See #1377 for the existing source-exact carrier work; do not rerun it.
+
+There is no independently readable AN INSTRUCTION rubric/other exact common-plaintext alignment on a presently unknown LP2 interval, nor an authenticated marker assigning it WELCOME's consuming clock or KOAN I's reflection law. Consequently the authentic differential provides a useful key-eliminating primitive but no source-selected original LP2 receiver. Stop before searching unknown offsets or forcing a 12-rune heading crib. The historical key is already known and this reconstruction contributes no new unknown-page key information. An independent third encrypted witness or original receiving interval is the missing requirement.
+
+[Executable reproducer](../sims/lp1_repeated_rubric_differential_sft.cjs), executed on pinned native, original LP1 canonical ciphertext and LP2 corpus in connected V8. Standalone Node/CI not run.
