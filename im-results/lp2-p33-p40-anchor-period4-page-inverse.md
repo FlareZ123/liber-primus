@@ -1,6 +1,6 @@
-# p33/p40 local inverse keys fail as period-four page/word streams
+# p33/p40 candidate H-shell inverses fail as fixed and variable DH key streams
 
-**Classification: bounded negative; intermediate result. No unknown-page plaintext or reusable key recovered.**
+**Classification: bounded negative; intermediate result. No unknown-page plaintext or reusable key recovered.** Fixed-key page and word clocks fail; variable DH public-share clocks also fail, including the exact p33 coupled shared-secret law. See the variable-share section below.
 
 ## Question and source-motivated premise
 
@@ -70,6 +70,17 @@ For ordinary consumption the exact Viterbi state retains the current block phase
 
 All scores are nats per adjacent decoded rune pair. A simple add-0.5 bigram model fitted on 1,829 transliterated runes from uppercase lines of the repository's editorial LP1 reference gives worst equal-length sliding-window scores −2.707368 (156) and −2.772464 (78); this is an in-sample diagnostic, not an independently calibrated language cutoff. The reference conversion is heuristic (including composite-token normalization and some skipped symbols), not a scan-exact native transcript. Exact ordinary model path counts are 22^39 for p40 and 22^20 for p33 (the latter includes partial terminal blocks); the F-path counts are state/share histories, not necessarily distinct plaintext strings. All 44 control inversions retain a forward-consistent path scoring at least the planted truth; all eight fixed-progression p57 plants recover 95/95 runes. Free-share matched-length controls are selected from the training reference, so their score and accuracy are not held-out power estimates; the separate p57 plants are not claimed independent of the reference file. The original best paths are nonlinguistic. See raw JSON for decoded candidates, shares, control scores and exact dead-state records.
 
-**Decision:** retire the exact one-coordinate variable-share extension, not the whole DH hypothesis or the retrospective local fits. In particular p40 F-hold cannot survive even arbitrary independent share selection: the state DAG becomes empty at the 57th post-anchor rune (zero-based suffix56). The three ordinary/free-score survivors do not read as prose even after optimizing all allowed shares. Further changing the other shell coordinates or key clock would be a new, unsupported mechanism; do not fit them to rescue this receiver. No new unknown plaintext or authentic key was recovered.
+**Decision:** retire the exact one-coordinate variable-share extension, not the whole DH hypothesis or the retrospective local fits. In particular p40 F-hold cannot survive even arbitrary independent share selection: the state DAG becomes empty at the 57th post-anchor rune (zero-based suffix56). The only surviving state class immediately before it has phase0 and previous plaintext17, with 2,409,697,382,400,000,000 state histories. The observed next ciphertext is 20, and every A forces the fixed first key digit20, hence plaintext F. A non-F ciphertext cannot represent F under this clock; this is the precise obstruction. The three ordinary/free-score survivors do not read as prose even after optimizing all allowed shares. Further changing the other shell coordinates or key clock would be a new, unsupported mechanism; do not fit them to rescue this receiver. No new unknown plaintext or authentic key was recovered.
 
 Reproducer: [sims/lp2_p33_p40_dh_share_inverse.cjs](../sims/lp2_p33_p40_dh_share_inverse.cjs); [complete output](lp2-p33-p40-dh-share-inverse.json). The exact same core ran in connected V8 on the two pinned input blobs; the Node wrapper is supplied but not separately executed. No CI used.
+
+### DH-consistent p33 coupling: K=A^15 mod23
+
+The p33 shell has a different meaning from p40: its third component is interpreted as the shared key K, not the constant inverse exponent e. Varying A while holding K fixed is not the ordinary historical DH exchange. Freeze b=15, let K=A^15 mod23 for every four-consuming-rune block, and construct H=[23,A,K,−K mod29]. At A=8 this exactly reproduces the existing WILL anchor. Both generator directions and the full free-share inverse retain this exact coupling; the same original 78-rune suffix and same two consumption clocks are used. This is a correction to the mechanism premise, not tuning extra free parameters.
+
+| Clock | Forward DH progression | Reflected DH progression | Arbitrary A, coupled K |
+|---|---:|---:|---:|
+| ordinary | -3.937216 | -3.767236 | -2.753688 |
+| F hold | -3.925926 | impossible at suffix offset44 | -2.775156 |
+
+All 22 planted controls have a valid replay and optimum at least the planted score. Reference/model caveats are identical to the preceding section. No readable candidate has emerged; any surviving best-path scores are below the same −2.772464 finite editorial reference floor. The coupled law has now been directly tested, so retire it along with the uncoupled one-coordinate extension. No new key or plaintext. [Reproducer](../sims/lp2_p33_dh_coupled_share_inverse.cjs) · [Raw output](lp2-p33-dh-coupled-share-inverse.json).
