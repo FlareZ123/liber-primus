@@ -1,0 +1,427 @@
+{
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "source": {
+    "words": 64,
+    "runes": 299,
+    "fitWords": 47,
+    "fitRunes": 213,
+    "holdWords": 17,
+    "holdRunes": 86
+  },
+  "lexicon": 33278,
+  "model": "independent per-width cyclic convolution in GF29[x]/(x^L-1), both sides arbitrary dihedral, including nonunit kernels as relaxation",
+  "original": {
+    "strata": [
+      {
+        "L": 6,
+        "groups": 4,
+        "domains": [
+          {
+            "i": 2,
+            "r": 6,
+            "n": 10350
+          },
+          {
+            "i": 31,
+            "r": 6,
+            "n": 10350
+          },
+          {
+            "i": 41,
+            "r": 6,
+            "n": 10341
+          },
+          {
+            "i": 42,
+            "r": 6,
+            "n": 10350
+          }
+        ],
+        "union": 41383,
+        "max": 2,
+        "maxWithSkipped": 2,
+        "ties": 8,
+        "examples": [
+          {
+            "k": 215620554,
+            "unit": true,
+            "readings": [
+              {
+                "i": 2,
+                "words": [
+                  "BREEDNG"
+                ]
+              },
+              {
+                "i": 42,
+                "words": [
+                  "RULERS"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 54922076,
+            "unit": true,
+            "readings": [
+              {
+                "i": 2,
+                "words": [
+                  "PAUSING"
+                ]
+              },
+              {
+                "i": 41,
+                "words": [
+                  "THEODOSIA"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 301731162,
+            "unit": true,
+            "readings": [
+              {
+                "i": 31,
+                "words": [
+                  "COYOTE"
+                ]
+              },
+              {
+                "i": 41,
+                "words": [
+                  "NURSED"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "L": 7,
+        "groups": 1,
+        "domains": [
+          {
+            "i": 9,
+            "r": 6,
+            "n": 10382
+          }
+        ],
+        "union": 10382,
+        "max": 1,
+        "maxWithSkipped": 1,
+        "ties": 10382,
+        "examples": [
+          {
+            "k": 552566231,
+            "unit": true,
+            "readings": [
+              {
+                "i": 9,
+                "words": [
+                  "ABASHED"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 706014265,
+            "unit": true,
+            "readings": [
+              {
+                "i": 9,
+                "words": [
+                  "ABASHED"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 70792069,
+            "unit": true,
+            "readings": [
+              {
+                "i": 9,
+                "words": [
+                  "ABASHED"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "L": 8,
+        "groups": 5,
+        "domains": [
+          {
+            "i": 0,
+            "r": 8,
+            "n": 9950
+          },
+          {
+            "i": 13,
+            "r": 8,
+            "n": 9950
+          },
+          {
+            "i": 16,
+            "r": 8,
+            "n": 9950
+          },
+          {
+            "i": 34,
+            "r": 8,
+            "n": 9950
+          },
+          {
+            "i": 37,
+            "r": 8,
+            "n": 9950
+          }
+        ],
+        "union": 49750,
+        "max": 1,
+        "maxWithSkipped": 1,
+        "ties": 49750,
+        "examples": [
+          {
+            "k": 38646769747,
+            "unit": true,
+            "readings": [
+              {
+                "i": 0,
+                "words": [
+                  "ABANDONNG"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 13975296095,
+            "unit": true,
+            "readings": [
+              {
+                "i": 0,
+                "words": [
+                  "ABANDONNG"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 128785098913,
+            "unit": true,
+            "readings": [
+              {
+                "i": 0,
+                "words": [
+                  "ABANDONS"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "L": 10,
+        "groups": 2,
+        "domains": [
+          {
+            "i": 12,
+            "r": 10,
+            "n": 5822
+          },
+          {
+            "i": 45,
+            "r": 10,
+            "n": 5822
+          }
+        ],
+        "union": 11644,
+        "max": 1,
+        "maxWithSkipped": 1,
+        "ties": 11644,
+        "examples": [
+          {
+            "k": 1182778082722,
+            "unit": true,
+            "readings": [
+              {
+                "i": 12,
+                "words": [
+                  "ABHORRENCE"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 39751643250591,
+            "unit": true,
+            "readings": [
+              {
+                "i": 12,
+                "words": [
+                  "ABHORRENCE"
+                ]
+              }
+            ]
+          },
+          {
+            "k": 46278025098560,
+            "unit": true,
+            "readings": [
+              {
+                "i": 12,
+                "words": [
+                  "ABNEGATION"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "minimumOOV": 7
+  },
+  "controls": [
+    [
+      {
+        "L": 6,
+        "groups": 4,
+        "rank": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "ties": 1,
+        "key": 183887027,
+        "retained": true,
+        "held": 4,
+        "heldRunes": 24,
+        "unique": 4,
+        "uniqueRunes": 24
+      },
+      {
+        "L": 7,
+        "groups": 1,
+        "rank": [
+          7
+        ],
+        "ties": 10888,
+        "key": 57211098,
+        "retained": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 8,
+        "groups": 5,
+        "rank": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "ties": 1,
+        "key": 1453848972,
+        "retained": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 10,
+        "groups": 2,
+        "rank": [
+          10,
+          10
+        ],
+        "ties": 1,
+        "key": 16917080249639,
+        "retained": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      }
+    ],
+    [
+      {
+        "L": 6,
+        "groups": 4,
+        "rank": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "ties": 1,
+        "key": 52582536,
+        "retained": true,
+        "held": 4,
+        "heldRunes": 24,
+        "unique": 4,
+        "uniqueRunes": 24
+      },
+      {
+        "L": 7,
+        "groups": 1,
+        "rank": [
+          7
+        ],
+        "ties": 10888,
+        "key": 3800470961,
+        "retained": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 8,
+        "groups": 5,
+        "rank": [
+          7,
+          8,
+          7,
+          8,
+          8
+        ],
+        "ties": 1,
+        "key": 161709142475,
+        "retained": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 10,
+        "groups": 2,
+        "rank": [
+          10,
+          10
+        ],
+        "ties": 1,
+        "key": 5607679031126,
+        "retained": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      }
+    ]
+  ]
+}
