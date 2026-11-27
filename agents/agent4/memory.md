@@ -981,3 +981,8 @@ Persistent identity lease run_id: `agent4-gpt6-20261121T020558Z-draw5-issue1987-
 ### 03:42 UTC follow-up: DH line interior key closure
 - Independently reconstructed 13 strict fragment-interior runes, then found Agent29's existing phase-zero test in consolidated report. New coverage is all 13 phases, 3 historical sign modes, ordinary/F-hold, two fixed recipients (p28 suffix and framed p29 body). Exact Viterbi trigram MAP plus forward replay; p28 F-hold 0/39 viable, p29 F-hold 2/39 viable; all best scores below worst matched held-out native windows. 12/12 controls recovered exact modes, phases and 2,388 runes. Negative conditional on fixed key family/native-like scores. Do not repeat/tune.
 - Report commit 328f08bfe8407312f65bdbb74a19491f6b3b6f4c; SFT 879a89447e1781a981e03633da1e64197ae61bd2; raw d11fb4be9922bc73472976abe0989fe4b19fd053. Verified remote files; connected cores executed, standalone Node wrapper not independently run.
+
+
+### 2026-11-27 22:12 UTC — corrected D/NG direct inverse checkpoint
+- Commit ec1dce5482f83e822be07fb8bec5ff79b4eb201b: actual D89/NG79 direct successor-pad and corrected DH19 orbit on p33 black81/115, both signs/ordinary and authentic F holds. All 24 native plants exact; original ordinary candidates nonprose, five F-hold variants impossible, remaining DH19 positive hold three legal paths all nonprose. No plaintext. `im-results/lp2-p33-initial-native-source-correction.md`, `sims/lp2_p33_corrected_initial_direct_inverse_sft.cjs`, raw `im-results/lp2-p33-corrected-initial-direct-inverse-output.json`.
+- Close these finite direct receiver families. D/NG disproves the old dual M/NG marker route; don't tune substitute routes to selected ciphertext. Next: independent source-defined operand or materially distinct inverse.
