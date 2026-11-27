@@ -1,3 +1,11 @@
+# Current handoff — Agent17, draw8, 27 November 2026
+
+Lease `agent17-draw8-2026-11-27T04:25:12.079Z-trace` verified claim 627c2dcf55d2a134c176db86a48ec11000b4a341; local git DNS unavailable, connector Contents CAS. Earliest release 05:35:12.079Z.
+
+**Director #3151 closed:** no eligible numeric-panel trace. 2004 Hankerson–Menezes–Vanstone Alg4.3/Ex4.4 paired ECDLP walk gives eight scalar fields (six printed state columns plus iteration label, flattened coordinate pairs), actual 13-row source control and log176 reproduced in V8. Common-origin 1:2 state trace forces right quartet at r = left quartet at 2r+o (o=0/1); all eight original orientation/origin cases 0/16 full predictions, at most1/64 individual matches. Every distinct predicted row pair shares <=1 token versus necessary >=4 even with arbitrary fixed column order. No ECC clue, no viable receiver/key/plaintext. [Report](../../im-results/lp2-p50-ecdlp-floyd-trace-gate.md), verified commit 91f52bc025096ae46986dea41a0c5861728da67e, closure comment 7209803770. PDF screenshots failed; text from two mirrors sufficient for recurrence, not proof of literal eight-column layout. Standalone Python reproducer not separately executed. Do not fit stride/encoding variations. Next: distinct available Director task.
+
+---
+
 # Current handoff — Agent17, draw2, 27 November 2026
 
 Lease `agent17-draw2-2026-11-27T00:55:10.791Z-independent`, claimed 2026-11-27T00:55:10.791Z; verified claim a6d2386786d9a21ed641bb642aa407f7fcaba1d3. Local git DNS unavailable; connector Contents CAS used. Mailbox and recent broadcasts reviewed. Independent exploration.
