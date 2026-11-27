@@ -41,7 +41,36 @@ const u=Array(n).fill(1),B=Array.from({length:n},()=>Array(n).fill(0)),T=Array.f
 const U=u.reduce((x,y)=>x+y,0),p1=u.map(x=>x/U),p2=B.map(row=>{let s=row.reduce((x,y)=>x+y,0);return row.map((x,j)=>(x+10*p1[j])/(s+10))}),p3=T.map((row,k)=>{let s=row.reduce((x,y)=>x+y,0);return row.map((x,j)=>Math.log((x+10*p2[k%n][j])/(s+10)))});
 const score=(P,a,b)=>{let z=0;for(let i=Math.max(2,a);i<b;i++)z+=p3[n*P[i-2]+P[i-1]][P[i]];return z/(b-Math.max(2,a))};
 let best={fit:-Infinity},maxTop2=0;for(let o of os){const P=decode(C,o,range(),range()),fit=score(P,0,729);if(fit>best.fit)best={o,fit,held:score(P,start,end),preview:P.slice(start,start+140).map(x=>corpus.translit[x]).join(""),replay:equal(encode(P,o,range(),range()),C)};const hist=Array(n).fill(0);P.slice(start,end).forEach(x=>hist[x]++);hist.sort((x,y)=>y-x);maxTop2=Math.max(maxTop2,hist[0]+hist[1])}
-return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2}}
+
+// A domain mask for each glyph tracks every possible initial permutation.
+// Selected old rank a and other glyph rank b must be distinct. The union
+// over a<b and a>b requires only the smallest and largest possible a.
+const all=(1<<29)-1, low=k=>((1<<k)-1), masks=Array.from({length:29},(_,i)=>1<<i);
+const step=(domains,c,r)=>{
+ const selected=domains[c],mn=31-Math.clz32(selected&-selected),mx=31-Math.clz32(selected);
+ for(let g=0;g<n;g++){if(g===c)continue;let x=domains[g];
+ const removed=((x&~low(mn+1))>>>1)|(x&low(mx));
+ domains[g]=(removed&low(r))|((removed&~low(r))<<1);
+ assert(domains[g]!==0,"empty position domain");
+ }
+ domains[c]=1<<r;return selected;
+};
+const cap=(C,origins,begin,end)=>{
+ let best={top2:0},maxSingletonLoss=0,minSync=Infinity,maxSync=0,unsynced=0;
+ for(let o of origins){let dom=Array(n).fill(all),hist=Array(n).fill(0),amb=0,sync=-1;
+ for(let i=0;i<end;i++){const m=step(dom,C[i],R[o+i]);if(sync<0&&dom.every(x=>(x&(x-1))===0))sync=i;
+ if(i>=begin){if((m&(m-1))!==0)amb++;for(let x=m;x;x&=x-1)hist[31-Math.clz32(x&-x)]++}}
+ let h=hist.slice().sort((a,b)=>b-a);if(h[0]+h[1]>best.top2)best={o,top2:h[0]+h[1],hist,amb,sync};
+ maxSingletonLoss=Math.max(maxSingletonLoss,amb);
+ if(sync<0)unsynced++;else{minSync=Math.min(minSync,sync);maxSync=Math.max(maxSync,sync)}
+ }return {best,maxSingletonLoss,minSync:Number.isFinite(minSync)?minSync:null,maxSync,unsynced};
+};
+// Check abstract-domain containment using independently generated initial lists.
+let domainChecks=0;for(let k=0;k<12;k++){const o=(k*37)%464,A=perm(),dom=Array(n).fill(all);for(let i=0;i<500;i++){let c=C[k*500+i],j=A.indexOf(c);const m=step(dom,c,R[o+i]);assert((m&(1<<j))!==0,"actual selected rank lost");A.splice(j,1);A.splice(R[o+i],0,c);for(let l=0;l<n;l++){assert((dom[A[l]]&(1<<l))!==0,"actual alphabet rank lost");domainChecks++}}}
+const windowMin=len=>{let h=Array(n).fill(0),minTop2=Infinity;for(let i=0;i<D.length;i++){h[D[i]]++;if(i>=len)h[D[i-len]]--;if(i>=len-1){let a=0,b=0;for(let x of h){if(x>a){b=a;a=x}else if(x>b)b=x}minTop2=Math.min(minTop2,a+b)}}return {len,windows:D.length-len+1,minTop2}};
+const privateAlphabet={domainChecks,whole:cap(C,os,0,N),carriedChapter:cap(C,os,start,end),resetChapter:cap(C.slice(start,end),os,0,end-start),literary:[windowMin(N),windowMin(end-start)]};
+
+return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet}
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt"];
 console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),JSON.parse(fs.readFileSync(paths[1],'utf8')),fs.readFileSync(paths[2],'utf8')),null,2));
