@@ -1,0 +1,234 @@
+{
+  "schema": "agent35-pair-capacity-summary-v1",
+  "execution": "study core executed directly in JS runtime on exact Git blobs; file wrapper not separately executed",
+  "blobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "fc503b01bbedbec4e0c8b3d1ded311bed8e28874",
+    "64876892683fab1467481fe87d85743a8ea17982",
+    "cb4353b080d7584441f85502aeccb60796e6fe0f",
+    "36e716252a271d31f5c4ba25b3cb78199ccc1114",
+    "12a6bc018047a1276e77f2b7f633d5905732fff9",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  ],
+  "donorLengths": [
+    18355,
+    6958,
+    7059,
+    7484,
+    41181,
+    62492,
+    321327,
+    217106
+  ],
+  "nativeLengths": [
+    184,
+    515,
+    157,
+    780,
+    755,
+    319,
+    89,
+    85,
+    95
+  ],
+  "controls": {
+    "passed": 36,
+    "total": 36,
+    "knownKeyExactInversion": true
+  },
+  "targets": [
+    {
+      "range": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "windows": [
+        16923,
+        5526,
+        5627,
+        6052,
+        39749,
+        61060,
+        319895,
+        215674
+      ],
+      "globalPass": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "globalMinGap": [
+        47,
+        73,
+        60,
+        41,
+        36,
+        39,
+        25,
+        11
+      ],
+      "globalMinSingle": [
+        44,
+        54,
+        60,
+        33,
+        20,
+        13,
+        11,
+        1
+      ],
+      "pagePass": [
+        0,
+        0,
+        0,
+        82,
+        2530,
+        12162,
+        14879,
+        41830
+      ],
+      "canonicalPagePass": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fixedPagePass": [
+        0,
+        0,
+        0,
+        82,
+        2527,
+        12160,
+        14862,
+        41761
+      ],
+      "tripleGlobalPass": [
+        3861,
+        23,
+        0,
+        2118,
+        23132,
+        41121,
+        134354,
+        141883
+      ],
+      "singleton": {
+        "min": 20,
+        "max": 81,
+        "attainable": 62
+      },
+      "topPair": {
+        "global": 120,
+        "page": 156
+      }
+    },
+    {
+      "range": [
+        0,
+        55
+      ],
+      "n": 12956,
+      "donorIndices": [
+        0,
+        4,
+        5,
+        6,
+        7
+      ],
+      "windows": [
+        5400,
+        28226,
+        49537,
+        308372,
+        204151
+      ],
+      "globalPass": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "globalMinGap": [
+        805,
+        729,
+        645,
+        691,
+        544
+      ],
+      "chapterPass": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "chapterMinGap": [
+        537,
+        429,
+        423,
+        416,
+        352
+      ],
+      "chapterMinSingle": [
+        537,
+        394,
+        320,
+        395,
+        312
+      ],
+      "pagePass": [
+        0,
+        0,
+        11188,
+        0,
+        17545
+      ],
+      "canonicalPagePass": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "fixedPagePass": [
+        0,
+        0,
+        11188,
+        0,
+        17327
+      ],
+      "tripleGlobalPass": [
+        0,
+        0,
+        4079,
+        0,
+        8852
+      ],
+      "singleton": {
+        "min": 180,
+        "max": 767,
+        "attainable": 588
+      },
+      "topPair": {
+        "global": 974,
+        "chapter": 1096,
+        "page": 1464
+      }
+    }
+  ]
+}
