@@ -1,0 +1,154 @@
+{
+  "title": [
+    19,
+    13,
+    10,
+    13,
+    8,
+    25,
+    9,
+    27,
+    15,
+    19,
+    19,
+    5,
+    15
+  ],
+  "cipherTitle": [
+    15,
+    8,
+    18,
+    3,
+    6,
+    19,
+    27,
+    0,
+    15,
+    26,
+    18,
+    21,
+    5
+  ],
+  "domain": "all signed integer coefficients |a|,|b|,|c|,|d|<29^3, primitive projective map, determinant and denominator units",
+  "toyChecks": 242,
+  "original": {
+    "visited": 1,
+    "rounds": 68,
+    "coordinateBounds": [
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "rawLatticePoints": 1,
+    "primitiveMatrices": 0,
+    "keys": [],
+    "sample": null
+  },
+  "plants": [
+    {
+      "name": "0_koan_1",
+      "expectedK": [
+        "18293",
+        "-14517",
+        "9311",
+        "21417"
+      ],
+      "visited": 3,
+      "rounds": 94,
+      "coordinateBounds": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "rawLatticePoints": 3,
+      "primitiveMatrices": 1,
+      "keys": [
+        {
+          "K": [
+            "18293",
+            "-14517",
+            "9311",
+            "21417"
+          ],
+          "fit": -2.4648158387080863
+        }
+      ],
+      "winner": {
+        "K": [
+          "18293",
+          "-14517",
+          "9311",
+          "21417"
+        ],
+        "fit": -2.4648158387080863,
+        "held": -2.640772482682175,
+        "replay": true
+      },
+      "fitCorrect": 249,
+      "heldCorrect": 467
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "expectedK": [
+        "19331",
+        "15441",
+        "-11017",
+        "15007"
+      ],
+      "visited": 15,
+      "rounds": 75,
+      "coordinateBounds": [
+        "2",
+        "1",
+        "0",
+        "0"
+      ],
+      "rawLatticePoints": 7,
+      "primitiveMatrices": 3,
+      "keys": [
+        {
+          "K": [
+            "19331",
+            "15441",
+            "-11017",
+            "15007"
+          ],
+          "fit": -2.7777296343455546
+        },
+        {
+          "K": [
+            "15073",
+            "7969",
+            "9748",
+            "-4586"
+          ],
+          "fit": -3.499850465690579
+        },
+        {
+          "K": [
+            "4258",
+            "7472",
+            "-20765",
+            "19593"
+          ],
+          "fit": -3.526121250499859
+        }
+      ],
+      "winner": {
+        "K": [
+          "19331",
+          "15441",
+          "-11017",
+          "15007"
+        ],
+        "fit": -2.7777296343455546,
+        "held": -2.736144000778573,
+        "replay": true
+      },
+      "fitCorrect": 249,
+      "heldCorrect": 467
+    }
+  ]
+}
