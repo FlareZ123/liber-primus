@@ -194,6 +194,31 @@ async function main(){
   const b=await baseline();
   report.baseline={...b.source,member:b.member,coreSha256:b.sha256,release:"4.7.2"};
   report.delta=delta(orig,b.entries);
+
+  const passwdFields = (entries) => entries.get("etc/passwd").data.toString("utf8").trimEnd()
+    .split(/\r?\n/).map(line => line.split(":"));
+  const rootAccount = (entries) => {
+    const row = passwdFields(entries).find(fields => fields[0] === "root");
+    assert.ok(row && row.length >= 7, "root passwd row");
+    return { uid: row[2], gid: row[3], home: row[5], shell: row[6] };
+  };
+  const oRoot = rootAccount(orig), bRoot = rootAccount(b.entries);
+  report.semanticDelta = {
+    rootAccount: { baseline: bRoot, original: oRoot },
+    tcConfigSuperuserGuard: {
+      baseline: 'if [ -n "$SUPERUSER" ]; then ... fi',
+      original: '#if [ -n "$SUPERUSER" ]; then ... #fi',
+      consequence: "touch /etc/sysconfig/superuser is unconditional",
+    },
+  };
+  assert.deepEqual(
+    {uid:oRoot.uid,gid:oRoot.gid,home:oRoot.home},
+    {uid:bRoot.uid,gid:bRoot.gid,home:bRoot.home},
+    "root account identity/home unexpectedly changed"
+  );
+  assert.equal(bRoot.shell, "/bin/sh");
+  assert.equal(oRoot.shell, "/usr/local/bin/cicada");
+
   // Compare only public puzzle/OS code and configs; output hashes for all files.
   // Keep exact text diffs of small changed scripts, excluding account credential files.
   report.changedText=report.delta.changed.filter(e=>!/(?:^|\/)(?:shadow|gshadow|passwd)$/.test(e.name)).flatMap(e=>{
