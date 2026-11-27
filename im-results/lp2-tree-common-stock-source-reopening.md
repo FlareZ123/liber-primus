@@ -85,3 +85,23 @@ The p55-derived graph-cut raster is frozen, inverse-warped into stock coordinate
 | Right | Full LP2 reconstruction | .936104 | .775785 | .849266 | 1.405796 |
 
 Geometry in signed pixel coordinates [cx,cy,sx,sy] left [201.25,256.25,1.05,1.05], sigma4 stock cells; right [200.25,255.25,1.05,1.05], sigma2.5. Root-only edit improves both independent held root predictions while leaving opposite crown essentially unchanged; full reconstruction additionally improves opposite crown prediction and reduces root MSE 28.1%/30.7%. Thus the signed image likely shares the distinctive edited LP2 intermediate, beyond common stock ancestry. This is positive cross-year evidence; it does not establish author intent, exact shared raster, or a cipher operation. Root text suppression is imperfect (JPEG ringing and blocked pixels remain); similarity metrics are not independent pixel significance tests. Source: `sims/lp2_tree_signed2016_held_root_sft.cjs` plus p55-only mask fixture `im-results/lp2-p55-contour-inverse-mask.b64`. Core executed against connector-fetched exact JPEG bytes in V8; standalone filesystem wrapper not separately executed.
+
+## Image-selected p32 trunk route into p33 (Agent6, 21:34 UTC)
+
+Use the already established cumulative GP-prime axes of p32 (first row/column; 563x569 exact signed-image dimensions). Overlay the frozen p55 reconstruction in the signed 2016 geometry from each independent crown fit. No rune-based alignment. Nonzero reconstructed foreground cell counts, zero-based (row,col):
+
+| Tile | Rune | Left-fit count | Right-fit count |
+|---|---|---:|---:|
+| (7,4) | NG | 2421 | 2478 |
+| (7,5) | IA | 53 | 69 |
+| (7,6) | EA | 812 | 796 |
+| (7,7) | J | 13 | 10 |
+| (8,4) | M | 1587 | 1574 |
+| (8,5) | B | 68 | 63 |
+| (8,6) | U | 315 | 299 |
+| (8,7) | D | 14 | 11 |
+| (9,4) | N | 383 | 366 |
+
+All nonempty graph-cut priors p=.3,1,2,3,5,10 independently preserve the column4 trunk cells (7,4),(8,4),(9,4); far-right crown fringe membership is unstable. The bottommost p55 foreground (native rows >=170) maps solely to (9,4) in both crown registrations (366 cells each). This yields a geometry-fixed root-up occupied-column read N→M→NG, original offsets 103→92→81, primes 29→71→79. The exact original signed pixels independently show excess grayscale above baseline1 in these three cells of 821.75, 2759, 3695.5 (masked 2x2 samples, as above); this is not solely a prior projection. Root N is immediately east of E at offset102, previously selected independently as GP0(DEVOTED)=102 and phi(GP(BUDS))=102. The literal HOME X marker at (3,4) selects the same column. Thus the tentative earlier EN compass reading has a specific visual realization: east from E to N at the root, then north through M and NG, the two original enlarged p33 section markers in source order. M/NG marker primes and p50 route lengths 81/115 were established before this new geometric readout. This is a new source-constrained connection, discovered after inspecting the overlay; no discovery-wide probability or authored semantics claimed. The independent crown-fit geometry has no p33 labels or rune scoring in its objective.
+
+Direct consumer test: the right-hand adjacent stable two cells (B,U)/(IA,EA), selected three-cell suffix (B,U,D)/(IA,EA,J), entire six-cell right suffix, marker plus three cells, or full corresponding p32 row as repeating section-local pad; both ordinal and GP-prime-mod29 bases, both signs, all-consuming or literal-F-held clock. 40 models per p33 body. Native-independent trigram objective from exact core attack. Best first-body score -5.802987 nats/trigram, second -5.833894, both unreadable (raw -6.554646/-6.214566). No genuine plaintext. Fringe-based keys remain especially weak since J/D occupancy is threshold-dependent. Retire these simple local additive consumers. The trunk selector itself survives; it supplies candidate receiver order, not a uniquely selected arithmetic operator. Next: use N=29 and M/NG as typed states only if an independent source operation connects them to a reversible inverse.
