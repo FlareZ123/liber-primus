@@ -1,6 +1,6 @@
 # Terminal 180 known GP runes → 76 ordinal-wrap prime-weight packets: original p55 inverse
 
-**Agent23, 27 November 2026. Classification: bounded negative for one fixed two-register GP29 key construction.** No unknown LP2 plaintext, authenticated key, operation, or continuation was recovered.
+**Agent23, 27 November 2026. Classification: bounded negative for two fixed source-constructed GP29 keys, including a historically authenticated totient operator.** No unknown LP2 plaintext, authenticated key, operation, or continuation was recovered.
 
 ## Proposed original-source route
 
@@ -32,8 +32,29 @@ All are ciphertext-flat/nonprose, with no complete GP-native reading; the mask0 
 
 One extra **fixed, independent** 76-value receiver is the physical outside border of the 32×8 numeric p49–51 panel, reduced bytewise modulo29. In physical row-major border order, this K agrees directly at **2/76** locations; K plus border equals original p55 at **1/76**, and K minus border at **3/76**. These are very weak direct equalities, not a panel decoding. They do not exclude a different author-specified byte converter or an encrypted table.
 
+## A second source-fixed key: the actual Euler totient of each full packet prime sum
+
+The solved first book explicitly names **the totient function** as sacred; authentic p56 uses Euler totients of successive primes as its 84 consuming key positions. A distinct, pre-specified construction therefore applies the *same verified operation* to the **entire GP prime sum of each source-determined 29-ordinal-carry packet**, *before* reducing modulo29:
+
+```text
+packet full-prime sums first 10:
+126 96 108 96 161 67 110 86 133 78
+
+Euler totients of those sums first 10:
+36 32 36 32 132 66 40 42 108 24
+
+totient-key residues mod29 first 10:
+7 3 7 3 16 8 11 13 21 24
+```
+
+All 76 packet sums are strictly positive so totient is defined; the exact 76 key residues have sum **1,028**. Unlike the prior [272-ring totient-of-pointed-to-byte gate](lp2-terminal180-totient-272ring-76carry-source-gate.md), this operation applies φ to the packet's *entire original prime-register sum*. There is no 272-ring pointer, original table dependence, byte-value zero, key phase, secret alphabet, inferred input label, or English feedback.
+
+Applying the actual p56 additive cipher with plaintext-F holds to untouched p55 source ciphertext gives **three of eight** legal original inverses: mask **1** (75 key digits consumed, scaled IoC **0.946315789**), mask **2** (75, **0.915789474**), and mask **7** (73, **1.058245614**). The most favorable IoC is still not a recognizable 76-rune native-GP message. Mask1 begins `X OE EO W L W G U IA L C J R OE G F O NG P J`; no output gives an independently readable key, instruction, place, or plaintext. All three decryptions exactly re-encrypt the original 76 source runes, and a separate solved-p57 76-rune GP plant is recovered exactly under the actual 76 key.
+
+**Decision:** retire this exact **totient(whole-packet prime sum) modulo29** transfer to p55 along with the raw whole-packet sum. The operator itself is historically authenticated, but combining these source registers into 76 packets and selecting p55 as its receiver **is not**. The observed 76-carry coincidence is insufficient to license ad hoc phi iteration, new clocks, pointer offsets or rescue transforms.
+
 ## Decision and reproduction
 
-**Reject precisely the 76 ordinal-wrap / whole-packet prime-sum key under the authentic p56 F-hold additive law**, and the explicitly fixed literal terminal table-border readouts. Do not extend to arbitrary modulo clocks, key shifts or page-order permutations without another original instruction. Neither the double divisibility nor a 76-character key alone demonstrates intentional cipher construction. No current evidence changes the authoritative [research state](../results/README.md).
+**Reject precisely the 76 ordinal-wrap / whole-packet prime-sum key and the source-first totient-of-whole-packet-prime-sum key under the authentic p56 F-hold additive law**, and the explicitly fixed literal terminal table-border readouts. Do not extend to arbitrary modulo clocks, key shifts or page-order permutations without another original instruction. Neither the double divisibility nor a 76-character key alone demonstrates intentional cipher construction. No current evidence changes the authoritative [research state](../results/README.md).
 
-[Exact CommonJS original-input SFT](../sims/lp2_terminal180_ordinalturn_primepacket_p55_sft.cjs). It reconstructs all 180 genuine solved GP indices, independently reencrypts p56 all 85/85, checks every numerical total and key prefix, enumerates complete p55 F masks, asserts exact forward regeneration, verifies the independently planted control, and checks all 76 border values. [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/46082672001).
+[Exact CommonJS original-input SFT](../sims/lp2_terminal180_ordinalturn_primepacket_p55_sft.cjs). It reconstructs all 180 genuine solved GP indices, independently reencrypts p56 all 85/85, checks every numerical total and both key prefixes, enumerates complete p55 F masks for raw and totient packet keys, asserts exact forward regeneration, verifies independent planted controls, and checks all 76 border values. [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/46082672001).
