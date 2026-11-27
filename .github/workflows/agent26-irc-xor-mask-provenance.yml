@@ -1,0 +1,16 @@
+name: Agent26 2014 IRC XOR mask provenance
+
+on:
+  workflow_dispatch:
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Trace exact mask and sender context
+        run: node sims/lp2_2014_irc_xor_mask_provenance.cjs
