@@ -23,7 +23,50 @@ if(deep===fit||deep===C.length)trace.push({deep,states:states.size,paths:([...st
 let best=null;for(let q of states.values())if(!best||q.score>best.score)best=q;let P=arr(best.out),replay=eq(encode(P,role,sign,hold).C,C);if(!replay)throw Error("replay");return {status:"SAT",deep,maxStates,trace,truthAlive,accuracy:truth?P.reduce((x,p,i)=>x+(p===truth[i]),0):null,score:score(P,0,P.length),fit:score(P,0,fit),held:score(P,fit,P.length),zeroShifts:best.z,preview:render(P.slice(0,200)),replay};
 }
 let controls=[],original=[];for(let role of ["plain","cipher"])for(let sign of [-1,1])for(let hold of [false,true]){for(let i of [2001,12001]){let P=D.slice(i,i+body.length),x=encode(P,role,sign,hold),y=decode(x.C,role,sign,hold,P);controls.push({role,sign,hold,start:i,plantZeroShifts:x.zeroShifts,...y})}original.push({role,sign,hold,...decode(body,role,sign,hold)})}
-return {seed,W,fit,body:body.length,controls,original};
+
+function anchorInverse(C,role,sign,hold,truth=null){
+const anchorRune=16,anchorLast=128,scoreFirst=160;
+if(prime[anchorRune]!==59)throw Error("anchor");
+function pass(begin,end,initial,scoreFrom){
+ let states=new Map([[initial.h+"|"+chr(initial.prev)+chr(initial.last),{...initial,v:0,out:"",count:1n}]]),maxStates=1;
+ for(let i=begin;i<end;i++){let c=C[i],next=new Map();
+ for(let q of states.values()){let k=phi(q.h),p=mod(c-sign*k);
+ const emit=(p,held)=>{let h=held?q.h:q.h.slice(1)+chr(role==="plain"?p:c),v=q.v+(i>=scoreFrom?T[n*n*q.prev+n*q.last+p]:0),key=h+"|"+chr(q.last)+chr(p),old=next.get(key),count=q.count+(old?old.count:0n);
+ if(!old||v>old.v)next.set(key,{h,prev:q.last,last:p,v,out:q.out+chr(p),count});else old.count=count};
+ if(hold&&c===0)emit(0,true);if(!hold||p!==0)emit(p,false);
+ }
+ if(!next.size)return {status:"UNSAT",dead:i,maxStates};
+ if(next.size>1000000)return {status:"UNKNOWN",dead:i,maxStates:next.size};
+ states=next;maxStates=Math.max(maxStates,states.size);
+ }
+ return {status:"SAT",states,maxStates};
+}
+let starts=[],seen=new Set(),fitSat=0,fullSat=0,unknown=0,deadMax=-1,bestFit=null,bestHeld=null,maxStates=0,trueAnchorCount=0,legalAnchorCount=0;
+for(let i=0;i<=anchorLast;i++){
+ if(role==="cipher"&&C[i]!==anchorRune)continue;
+ let h=[],j=i+1;for(;j<C.length&&h.length<W;j++){if(!hold||C[j]!==0)h.push(C[j]);}
+ if(h.length!==W||j>scoreFirst)continue;
+ const prev=C[j-2],last=C[j-1],init={h:str(h),prev,last},key=j+"|"+init.h+"|"+chr(prev)+chr(last);
+ if(seen.has(key))continue;seen.add(key);starts.push({i,j});
+ if(truth&&(role==="plain"?truth[i]===anchorRune:C[i]===anchorRune))trueAnchorCount++;
+ let a=pass(j,fit,init,scoreFirst);maxStates=Math.max(maxStates,a.maxStates);
+ if(a.status==="UNKNOWN"){unknown++;continue}if(a.status!=="SAT"){deadMax=Math.max(deadMax,a.dead);continue}fitSat++;
+ for(let q of a.states.values())if(!bestFit||q.v>bestFit.v)bestFit={...q,i,j};
+ let b=pass(j,C.length,init,fit);maxStates=Math.max(maxStates,b.maxStates);
+ if(b.status==="UNKNOWN"){unknown++;continue}if(b.status!=="SAT"){deadMax=Math.max(deadMax,b.dead);continue}
+ fullSat++;if(truth&&(role==="plain"?truth[i]===anchorRune:C[i]===anchorRune))legalAnchorCount++;
+ for(let q of b.states.values())if(!bestHeld||q.v>bestHeld.v)bestHeld={...q,i,j};
+}
+let frozen=null;if(bestFit){let b=pass(fit,C.length,bestFit,fit);if(b.status==="SAT"){let q=[...b.states.values()].reduce((x,y)=>x.v>y.v?x:y),P=arr(q.out),check=encode(P,role,sign,hold,arr(bestFit.h)).C;if(!eq(check,C.slice(fit)))throw Error("anchor replay");frozen={status:"SAT",anchor:bestFit.i,knownStateAt:bestFit.j,fit:bestFit.v/(fit-scoreFirst),held:q.v/(C.length-fit),accuracy:truth?P.reduce((s,p,k)=>s+(p===truth[fit+k]),0):null,preview:render(P.slice(0,150)),replay:true}}else frozen={status:b.status,anchor:bestFit.i,dead:b.dead,fit:bestFit.v/(fit-scoreFirst)}}
+return {role,sign,hold,anchors:starts.length,anchorLast,scoreFirst,fitSat,fullSat,unknown,deadMax,maxStates,trueAnchorCount:truth?trueAnchorCount:null,legalTrueAnchors:truth?legalAnchorCount:null,oracleHeld:bestHeld?bestHeld.v/(C.length-fit):null,oracleAnchor:bestHeld?bestHeld.i:null,frozen};
+}
+let seedRng=0xc028590d;const rand=()=>{seedRng=(Math.imul(seedRng,1664525)+1013904223)>>>0;return seedRng/2**32};
+const blindControls=[],blindOriginal=[];
+for(let role of ["plain","cipher"])for(let sign of [-1,1])for(let hold of [false,true]){
+ for(let start of [2001,12001]){let P=D.slice(start,start+body.length),iv=Array.from({length:W},()=>Math.floor(rand()*n)),x=encode(P,role,sign,hold,iv),r=anchorInverse(x.C,role,sign,hold,P);blindControls.push({start,iv,...r});}
+ blindOriginal.push(anchorInverse(body,role,sign,hold));
+}
+return {seed,W,fit,body:body.length,controls,original,blindControls,blindOriginal};
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
 console.log(JSON.stringify(experiment(...paths.map((p,i)=>i<2?JSON.parse(fs.readFileSync(p,'utf8')):fs.readFileSync(p,'utf8'))),null,2));
