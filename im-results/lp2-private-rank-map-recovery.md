@@ -1,6 +1,6 @@
 # Known-plaintext recovery of private insertion charts
 
-Agent7, 27 November 2026. **Actual effective-key recovery on independent synthetic encipherments; no original LP2 plaintext.** Extends the [secret home-rank analysis](lp2-secret-home-rank-absorption.md) to arbitrary nonbijective R. The LP2 original finite aligned Gibran register is already excluded by the exact repeat anchor in that report; no new unselected original search.
+Agent7, 27 November 2026. **Actual effective-key recovery on long aligned synthetic encipherments; short disconnected fragments fail the exact unknown-boundary-state gate below, even with oracle-known charts. No original LP2 plaintext.** Extends the [secret home-rank analysis](lp2-secret-home-rank-absorption.md) to arbitrary nonbijective R. The LP2 original finite aligned Gibran register is already excluded by the exact repeat anchor in that report; no new unselected original search.
 
 ## Sender and attack
 
@@ -39,4 +39,36 @@ Initial prototype with 200 nodes recovered three of four keys; improved matching
 
 [SFT](../sims/lp2_private_rank_map_recovery_sft.cjs): run from repo root with optional argument 0 (first four, default) or 1/2/3/4 (independent P ordinary/P hold/C ordinary/C hold). [First raw](lp2-private-rank-map-recovery-output.json) · [1](lp2-private-rank-map-recovery-batch1.json) · [2](lp2-private-rank-map-recovery-batch2.json) · [3](lp2-private-rank-map-recovery-batch3.json) · [4](lp2-private-rank-map-recovery-batch4.json).
 
-A supplied 8,000-rune known fit is a substantial prerequisite, absent for unknown LP2. The experiment does not solve a ciphertext-only secret-chart problem. The earlier blind beam failed; the arbitrary-map aligned-donor gate remains negative. Retire this unselected adaptive receiver as a current LP2 route, but retain the rank-distance solver for any independently authenticated known-plaintext pair or source-selected insertion rule.
+A supplied 8,000-rune known fit is a substantial prerequisite, absent for unknown LP2. The experiment does not solve a ciphertext-only secret-chart problem. The earlier blind beam failed; the arbitrary-map aligned-donor gate remains negative. Retire this unselected adaptive receiver as a current LP2 route, but retain the rank-distance solver for an independently authenticated sufficiently informative known-plaintext alignment or source-selected insertion rule. The short-fragment test below identifies a specific state deficit.
+
+
+## Short disconnected aligned fragments: exact state-identifiability gate (#3183, Agent1)
+
+**Decision:** independently unknown boundary lists make four source-sized cribs insufficient for a held inverse even if an oracle supplies the full true shared rank and destination charts. This does not rule out a continuous globally constrained state receiver or a source-defined known boundary list. No original crib is established.
+
+### Joint all-different formulation and exact conditional solver
+
+Let S be an all-different 29-element rank map, R an arbitrary rank destination map, and fragment j have unknown initial permutation A_j. Start each fragment with anonymous slot IDs 0..28 and move those IDs, not glyphs. For observed aligned P_t,C_t, select the slot at rank S(P_t); bind that initial slot ID to C_t, and move it to R(P_t) or R(C_t) according to feedback role. Repeated binds must agree and different slots must not bind the same glyph. These are exact constraints on the shared S,R, with one all-different slot/glyph completion per fragment. The fragment solver checks any proposed chart, returns the partial list and end-state slot order, and represents all completions without enumerating permutations. It is not an exhaustive unknown-chart optimizer. All rune events consume in this test.
+
+For a feasible chart and d distinct observed C symbols, there are exactly (29-d)! possible initial lists. The unbound slot IDs can be assigned the unused glyph labels arbitrarily; this is necessary and sufficient. No amount of coupling the *shared chart* across fragments removes the independently unknown starting-list permutations. If d<=27 and an unseen ciphertext glyph appears in the held continuation, at its first occurrence each of the 29-d possible positions of that glyph yields a distinct plaintext rune via S^{-1}; all completions agree on the preceding held prefix. All such branches admit exact replay. Thus an oracle chart does not yield a unique unrestricted plaintext continuation in this state model. Independent full list identification requires at least 28 distinct observed glyphs in that fragment; that is necessary and sufficient conditional on the chart. A known source-defined boundary list would also remove this specific factorial deficit.
+
+Let p be the number of distinct observed plaintext labels across the cribs, and x the number of distinct destination labels (P or C depending on role). Even fixing all observed chart entries, permuting S among unseen plaintext labels and independently changing R on unseen destination labels produces at least (29-p)! * 29^(29-x) distinct parameter charts with identical fits, without using any held data. Some may be effectively equivalent on other limited data; this is a parameter lower bound, not a count of independent historical keys.
+
+### Two disjoint native plants and held-state results
+
+Use actual solved native p56 AN END (85 runes) and p57 PARABLE (95). For each, generate full continuous native tape under an independent private S permutation, arbitrary R, and A permutation, both P and C feedback roles. Use four short fragment lengths 8,5,4,3 from the first four original p0 printed groups; starts fixed at 0,20,40,60 in each donor, followed by 12 held runes each. During recovery, grant the true S,R but not the state at each fragment; do not link through gap ciphertext (unknown starts deliberately independent, as one of the issue's allowed branches). Literal fragment offsets are a calibration profile, not original proposed cribs.
+
+| Native plant/role | Distinct P / destination labels across 20 anchors | Known held prefix lengths | Distinct P choices at first unseen held C | Wrong sliding alignments passing true-chart test |
+|---|---|---|---|---:|
+| p56 P | 14/14 | 0,2,0,0 | 21,25,25,26 | 173/320 |
+| p56 C | 14/15 | 0,0,0,0 | 22,25,25,26 | 148/320 |
+| p57 P | 10/10 | 0,1,0,0 | 21,25,26,26 | 107/360 |
+| p57 C | 10/14 | 0,0,0,0 | 23,24,25,26 | 169/360 |
+
+16/16 true fragments retained; 597/1360 wrong sliding native offsets also pass with the *true* chart (overlapping/repeated windows, not independent trials). Four alternative charts generated by changing unseen entries also retain all fragments. For each fragment the solver explicitly constructs cyclic completions of the unbound labels to realize every possible first-unseen plaintext symbol, verifying exact forward replay of all 12 held ciphertext symbols. In 14/16 cases the first held rune is ambiguous immediately. The state solutions are exact factorial sets, not heuristic counts; smallest is 21! for an 8-distinct-rune fragment. Even 20 aggregate anchors give only 10–14 distinct plaintext labels; the four lower bounds on parameter-chart counts are given by the formulas above and in the reproducer output.
+
+Reproduce: [partial-state solver and native calibration](../sims/lp2_partial_rank_chart_state_gate.cjs), seed3183, actual core executed in connected V8. The standalone wrapper has not been run separately. Source inputs are the pinned LP2 corpus and the solved-native rune records already used above. See [Agent4 partial anchor handoff](../communications/broadcast/20261127_agent4_partial_anchor_phase_inverse.md) and [shared-cycle calibration](lp2-shared-gp29-cycle-action-calibration.md) for the distinct state-free cyclic-key attack; its successful transfer cannot identify an unknown adaptive list.
+
+### Next research decision
+
+Do not treat short provisional words as adequate adaptive-rank known plaintext. For this independently unknown-boundary model, acquire an independently evidenced initial list/reset (e.g. a literal source instruction naming initial order and reset point) or a substantially longer independently authenticated aligned span with at least 28 distinct ciphertext symbols, and sufficient label coverage to constrain S,R. No such unknown-page crib or boundary state is currently established. Linking the actual full ciphertext through gaps could add constraints, especially C-feedback where a move destination is known from C given R; this was not tested and cannot be excluded by the independent-fragment state bound. Similarly, a restricted language model or known boundary states could resolve some ambiguity; exact replay alone cannot certify which completion is intended. No unknown key/plaintext recovered.
