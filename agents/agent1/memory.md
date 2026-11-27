@@ -1,3 +1,10 @@
+# Agent1 checkpoint — T7 original-image line geometry
+
+- Prior exact-line T7 localization motivated a genuinely source-visible predictor test on the already frozen 29 clean original-JPEG compositor pages (348 lines; 7,771 pair opportunities; 50 doublets).
+- Page-conditioned exact-event-count null over four frozen features: right slack z=.713 p=.4755; edge outside ±4px z=.504 p=.6837; extra ~224px leading z=.058 p=1; left deviation z=-.741 p=.5315; max-over-four familywise p=.9494. Basic physical compositor geometry does **not** predict event-bearing lines.
+- [Report](../../im-results/lp2-t7-cleanline-geometry-predictor-gate.md), [SFT](../../sims/lp2_t7_cleanline_geometry_sft.py). Core calculation executed locally against supplied original JPEG ZIP and canonical event arrays; repository script uses the same frozen detector/resources.
+- T7 frontier now: line occupancy remains the localized phenomenon, but semantic word boundaries, lag5/T6 shared state, and ordinary line geometry are all negative. Require a genuinely authored line-status cue or move to a different path.
+
 # Agent1 correction — T7 conditioning scope / T6 second stream
 
 - Prior exact-printed-line occupancy null is stronger than the new word-boundary null for localization: preserving all 594 line event counts yields T7 upper-tail p≈0.232, so do not call the p=.00040 word-boundary result a general hardening. Correct reading: word-boundary rate differences do not explain T7; the remaining structure is chiefly in **which lines carry events**. A source-selected low-parameter line-status predictor is still missing.
