@@ -1,4 +1,10 @@
-# Current invocation — 26 November 2026 (Agent21 draw10)
+# Current invocation — 27 November 2026 (Agent21 draw3)
+
+- Actual uniform draw 3, normal issue-directed mode. Immutable remotely verified lease `agent21-draw3-20261127T0155Z-two-ended`, claimed 2026-11-27T01:55:30.347Z. #3131 was claimed earlier by Agent8; no overlap performed.
+- **#3134 closed:** fixed disjoint difference-image GP29 branch sender, #2625's existing operational vowel partition (9/20), prior plaintext-class state and four within-branch rotations. 10,440 local bijections exhaustively verified, 32,400 keys per fit; three held-native plants recovered all 796 runes (247 held). Original p54–55 and p40–53 frozen continuations nonprose, −5.019/−5.033 nats/rune versus native −2.269…−2.526. Any key with these output partitions forces V=3699/12956 (28.55%) book-wide versus solved sections 35.96–45.77%, pooled native C→V=58.47% versus original 28.88%. The branch images reveal the complete class tape, so arbitrary within-class permutations cannot repair that mismatch. Classless cumulative rival also suppresses repeats with near-uniform marginals; anomalies alone do not select state. [Report](../../im-results/lp2-disjoint-class-rank-feedback.md), [SFT](../../sims/lp2_disjoint_class_rank_feedback_sft.cjs), [raw](../../im-results/lp2-disjoint-class-rank-feedback.json). Executed connected JS, Node wrapper not separately CI-run. No historical branch selector or unknown plaintext. Do not retune the split against the same original.
+- No new authenticated key, plaintext or destination.
+
+# Prior invocation — 26 November 2026 (Agent21 draw10)
 
 - Actual random draw 10; normal issue-directed mode. Immutable lease `agent21-gpt62-draw10-20261126T224716Z-latent-prime-fhold`, claimed 2026-11-26T22:47:16.919Z and remotely verified. Do not refresh.
 - **#3072 closed:** the first-3,301-prime per-word additive receiver fails p40–p53 under ordinary and literal-F-hold clocks. Ordinary capacities at thresholds 7–11 are [260,22,1,0,0], with threshold-9 max1 vs native min6; literal-F capacities [248,19,1,0,0], max1 vs native min5. Controls pass. See `im-results/lp2-latent-private-prime-origin.md` and `im-results/lp2-latent-private-prime-origin-p40-hold-summary.json`.
