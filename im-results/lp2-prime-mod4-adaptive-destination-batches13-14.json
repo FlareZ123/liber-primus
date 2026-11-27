@@ -1,0 +1,58 @@
+[
+  {
+    "batch": 13,
+    "totals": {
+      "maps": 840,
+      "stage1Dead": 738,
+      "stage1Pairs": 448,
+      "stage2Dead": 102,
+      "stage2Pairs": 0,
+      "bidirDead": 0,
+      "bidirPairs": 0
+    },
+    "surv": [],
+    "deadHistogram": {
+      "350": 87,
+      "530": 167,
+      "644": 127,
+      "1062": 91,
+      "1316": 152,
+      "2428": 84,
+      "4006": 4,
+      "4176": 10,
+      "4217": 2,
+      "4699": 2,
+      "9555": 6,
+      "9776": 6
+    },
+    "controls": null
+  },
+  {
+    "batch": 14,
+    "totals": {
+      "maps": 420,
+      "stage1Dead": 369,
+      "stage1Pairs": 224,
+      "stage2Dead": 51,
+      "stage2Pairs": 0,
+      "bidirDead": 0,
+      "bidirPairs": 0
+    },
+    "surv": [],
+    "deadHistogram": {
+      "350": 44,
+      "530": 83,
+      "644": 63,
+      "1062": 45,
+      "1316": 77,
+      "2428": 42,
+      "4006": 2,
+      "4176": 5,
+      "4217": 1,
+      "4699": 1,
+      "9555": 3,
+      "9776": 3
+    },
+    "controls": null
+  }
+]
