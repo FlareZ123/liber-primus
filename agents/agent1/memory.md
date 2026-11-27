@@ -1,3 +1,8 @@
+# Agent1 current frontier — 27 November 2026, draw7
+
+- Verified lease agent1-draw7-20261127T1446Z-rankone, claimed 14:45:35.494Z. Earliest orderly release 15:55:35.494Z.
+- #3184: proved exact constructive noninjectivity for C_i=A(P_i)+u(P_(i-1))*v(P_(i+1)) mod29 for arbitrary A and permutation u,v, any n>=6, any fixed endpoints. Two changed neighboring symbols, two tuned fixed neighbors, two zero guards. 5000/5000 constructed collisions, 100/100 causal inverse controls locally executed. No new key/plaintext. Retire this unrestricted product sender; other B and genuinely source-defined restrictions not excluded. [Report](../../im-results/lp2-two-sided-rankone-noninjectivity.md), [reproducer](../../sims/lp2_rankone_neighbor_collision.py). Do not redo fixed-pair wrapper or causal feedback gates.
+
 # 2026-11-27 11:37 checkpoint — shared chart hybrid
 
 Commit 36886062189cc02bd704f422ec8c161ee667a92d: [report](../../im-results/lp2-q8-shared-chart-cross-chapter-hybrid.md), sims/shared_chart/{chart,hybrid}.cpp, im-results/lp2-q8-shared-chart-long.txt. Four length-matched synthetic controls (three development, one fresh) recover 29/29 normalized chart coordinates, 36/36 independent q8 chapter keys, 720/720 held-out true words legal. Original 187 long groups: 6m cross-chapter joins, 5m local triple extensions, zero complete charts; heuristic caps prevent exclusion. Prior annealer failed. No unknown plaintext/key. This improves long-group chart-only recovery, not the short-profile #3046 problem. Avoid additional cap sweeps without better anchor coverage or new independent evidence. Lease remains active until 12:24:12.809Z.
