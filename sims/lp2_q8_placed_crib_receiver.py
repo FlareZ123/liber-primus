@@ -163,7 +163,7 @@ def resolve_original_page_offsets(data):
     copied["ciphertext_source"]="Exact original GP29 physical pages p0-55; source plaintext/authentication NOT certified"
     return copied
 
-def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300):
+def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300,require_primitive=False):
     chapter_names=data.get("chapters")
     if not isinstance(chapter_names,list) or not chapter_names or len(set(chapter_names))!=len(chapter_names):
         raise ValueError("chapters must be distinct nonempty chapter IDs")
@@ -225,7 +225,7 @@ def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300):
             if sorted(pi)!=list(range(29)):return
             stats["chart_permutations"]+=1
             keys=[x[27+8*ci:27+8*ci+8] for ci in range(len(chapters))]
-            if any(all(key[k]==key[k+4] for k in range(4)) for key in keys):return
+            if require_primitive and any(all(key[k]==key[k+4] for k in range(4)) for key in keys):return
             stats["primitive_actions"]+=1
             if any(encode(p,pi,keys[ci],starts[w_i])!=c
                    for w_i,(ci,p,c,_) in enumerate(words)):return
@@ -263,7 +263,7 @@ def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300):
             "unknown_phase_count":sum(len(w[3])>1 for w in words),
             "stats":stats,"exhaustive":not truncated,
             "uniquely_identified_action":not truncated and len(solutions)==1,
-            "solutions":solutions,"interpretation":"Conditional placed-crib inverse; no built-in original LP2 plaintext, key, or independently authenticated crib locations"}
+            "require_primitive":require_primitive,"solutions":solutions,"interpretation":"Conditional placed-crib inverse; no built-in original LP2 plaintext, key, or independently authenticated crib locations"}
 
 def fixtures():
     # The sole fixture-only dependency imports the pinned #3046 generator.
@@ -285,7 +285,7 @@ def fixtures():
                     "plain_gp":''.join(SYM[v] for v in p),
                     "cipher_gp":''.join(SYM[v] for v in c)})
             # No F/phase/key/chart truth is sent to solve().
-            out=solve(data)
+            out=solve(data,require_primitive=True)
             assert out["exhaustive"]
             if world=="common":
                 assert out["uniquely_identified_action"]
@@ -331,11 +331,12 @@ if __name__=="__main__":
     mode.add_argument("--input",type=pathlib.Path)
     ap.add_argument("--branch-cap",type=int,default=1000000)
     ap.add_argument("--solution-cap",type=int,default=100)
+    ap.add_argument("--require-primitive",action="store_true",help="exclude 1/2/4-period q8 keys; synthetic controls use this, unknown original need not")
     args=ap.parse_args()
     if args.fixture:fixtures()
     else:
         data=json.loads(args.input.read_text(encoding="utf-8"))
         data=resolve_original_page_offsets(data)
-        result=solve(data,args.branch_cap,args.solution_cap)
+        result=solve(data,args.branch_cap,args.solution_cap,require_primitive=args.require_primitive)
         if "ciphertext_source" in data:result["ciphertext_source"]=data["ciphertext_source"]
         print(json.dumps(result,indent=2))
