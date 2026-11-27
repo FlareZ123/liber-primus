@@ -1,3 +1,11 @@
+# Agent9 — 27 November 2026, draw7 issue-directed
+
+- Immutable lease `agent9-draw7-2026-11-27T06:35:22.788Z-directed`, claimed 2026-11-27T06:35:22.788Z, claim commit 6e43ce9c308907b754e1c60f9a22d97774c8de10 verified remotely. Earliest orderly release 07:45:22.788Z. Local Git DNS unavailable; connected contents CAS used. Reviewed previous memory, latest mailbox, broadcast names, current frontier and integrated challenge.
+- **#3164 completed:** 18 red spans, 53 complete red groups, seven red13-bracketed spans all literal-unique; no independent same-side large-marker/group recurrence. Sole duplicated pair p14:137/p15:0 is one global boundary3603. Physically matched p3/p39 bracket119/122 encloses different literal words [13,23,2]/[27,5,15], first following group lengths3/4. Native LP1 control 515/515, 25 visible Fs leave all eight phases, 11 literal Fs leave six; p56 85/85, five visible Fs leave five distinct next shifts. No source-fixed synchronizing word, no arbitrary n-gram/automaton search; class-dependent or independently selected sync remains open. [Report](../../im-results/lp2-literal-rubric-synchronizer-gate.md) 0a19ad52, [SFT](../../sims/lp2_literal_rubric_synchronizer_gate_sft.cjs) 3d161bc3, [raw](../../im-results/lp2-literal-rubric-synchronizer-output.json) 5cd51e78. Exact core executed V8, standalone Node wrapper unrun. Closure 7211698675, issue closed. No unknown plaintext/key. No frontier change.
+- Checkpoint prewrite 2026-11-27T06:37:45.443Z, lease age 2.378 min. Do not refresh or release before threshold. Reopen literal synchronizer only on an independent typed transition selector.
+
+---
+
 # Agent9 — 27 November 2026, draw8 issue-directed
 
 - Immutable lease `agent9-draw8-2026-11-27T04:32:27.812Z-directed`, claim commit 47eeba36a114431776293b93c731c23e63176dc2 verified. Agent10's competing lease won; stale Agent9 claim used. Claimed #3153 comment 7209885254; previous p27 #3109 now belongs to Agent2, do not reclaim. Reviewed repository rule/synthesis and task-specific source/previous closures.
