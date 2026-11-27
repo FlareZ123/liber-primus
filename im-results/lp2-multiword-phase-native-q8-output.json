@@ -1,0 +1,1459 @@
+{
+  "schema": 1,
+  "configs": [
+    [
+      8,
+      64
+    ],
+    [
+      8,
+      96
+    ]
+  ],
+  "sourceBlocks": [
+    {
+      "name": "0_warning:0",
+      "words": 45,
+      "runes": 184
+    },
+    {
+      "name": "0_welcome:0",
+      "words": 124,
+      "runes": 515
+    },
+    {
+      "name": "0_wisdom:0",
+      "words": 18,
+      "runes": 81
+    },
+    {
+      "name": "0_koan_1:0",
+      "words": 208,
+      "runes": 780
+    },
+    {
+      "name": "0_loss_of_divinity:0",
+      "words": 30,
+      "runes": 153
+    },
+    {
+      "name": "0_loss_of_divinity:1",
+      "words": 120,
+      "runes": 495
+    },
+    {
+      "name": "jpg107-167:0",
+      "words": 88,
+      "runes": 319
+    },
+    {
+      "name": "jpg229:0",
+      "words": 18,
+      "runes": 89
+    },
+    {
+      "name": "p56_an_end:0",
+      "words": 13,
+      "runes": 45
+    },
+    {
+      "name": "p56_an_end:1",
+      "words": 12,
+      "runes": 40
+    },
+    {
+      "name": "p57_parable:0",
+      "words": 20,
+      "runes": 95
+    }
+  ],
+  "controls": [
+    {
+      "source": "0_loss_of_divinity:1",
+      "from": 41,
+      "to": 60,
+      "heldTotal": 16,
+      "heldTruth": 16,
+      "q": 8,
+      "seed": 4134,
+      "fitRunes": 65,
+      "maxConsuming": 5,
+      "truth": "0,1,25,21,23,28,8,18,17,2,4,26,11,3,5,22,12,10,14,6,16,27,24,15,19,20,13,7,9:13,17,25,28,22,20,18,14",
+      "truthRetained": true,
+      "complete": true,
+      "actions": [
+        {
+          "pi": [
+            0,
+            1,
+            25,
+            21,
+            23,
+            28,
+            8,
+            18,
+            17,
+            2,
+            4,
+            26,
+            11,
+            3,
+            5,
+            22,
+            12,
+            10,
+            14,
+            6,
+            16,
+            27,
+            24,
+            15,
+            19,
+            20,
+            13,
+            7,
+            9
+          ],
+          "k": [
+            28,
+            22,
+            20,
+            18,
+            14,
+            13,
+            17,
+            25
+          ]
+        }
+      ],
+      "groups": 19,
+      "anchor": 5,
+      "nodes": 46,
+      "joins": 63,
+      "pairPrune": 0,
+      "linearPrune": 18,
+      "forcedCollision": 17,
+      "enumNodes": 3,
+      "completedVectors": 1,
+      "caps": 0,
+      "fullRank": 0
+    },
+    {
+      "source": "0_koan_1:0",
+      "from": 117,
+      "to": 134,
+      "heldTotal": 16,
+      "heldTruth": 16,
+      "q": 8,
+      "seed": 4235,
+      "fitRunes": 67,
+      "maxConsuming": 6,
+      "truth": "0,1,25,24,13,15,8,4,20,26,23,22,9,12,2,3,16,14,27,11,21,10,17,18,5,7,19,28,6:14,20,6,16,2,19,2,19",
+      "truthRetained": true,
+      "complete": true,
+      "actions": [
+        {
+          "pi": [
+            0,
+            1,
+            25,
+            24,
+            13,
+            15,
+            8,
+            4,
+            20,
+            26,
+            23,
+            22,
+            9,
+            12,
+            2,
+            3,
+            16,
+            14,
+            27,
+            11,
+            21,
+            10,
+            17,
+            18,
+            5,
+            7,
+            19,
+            28,
+            6
+          ],
+          "k": [
+            19,
+            14,
+            20,
+            6,
+            16,
+            2,
+            19,
+            2
+          ]
+        }
+      ],
+      "groups": 17,
+      "anchor": 6,
+      "nodes": 109,
+      "joins": 118,
+      "pairPrune": 2,
+      "linearPrune": 8,
+      "forcedCollision": 58,
+      "enumNodes": 3,
+      "completedVectors": 1,
+      "caps": 0,
+      "fullRank": 0
+    },
+    {
+      "source": "0_welcome:0",
+      "from": 4,
+      "to": 24,
+      "heldTotal": 16,
+      "heldTruth": 16,
+      "q": 8,
+      "seed": 4336,
+      "fitRunes": 65,
+      "maxConsuming": 7,
+      "truth": "0,1,3,8,11,23,7,18,22,6,24,17,10,27,26,12,21,9,20,5,15,25,16,13,19,2,28,14,4:1,14,27,1,8,14,10,13",
+      "truthRetained": true,
+      "complete": true,
+      "actions": [
+        {
+          "pi": [
+            0,
+            1,
+            3,
+            8,
+            11,
+            23,
+            7,
+            18,
+            22,
+            6,
+            24,
+            17,
+            10,
+            27,
+            26,
+            12,
+            21,
+            9,
+            20,
+            5,
+            15,
+            25,
+            16,
+            13,
+            19,
+            2,
+            28,
+            14,
+            4
+          ],
+          "k": [
+            27,
+            1,
+            8,
+            14,
+            10,
+            13,
+            1,
+            14
+          ]
+        }
+      ],
+      "groups": 20,
+      "anchor": 7,
+      "nodes": 465,
+      "joins": 504,
+      "pairPrune": 0,
+      "linearPrune": 40,
+      "forcedCollision": 301,
+      "enumNodes": 3,
+      "completedVectors": 1,
+      "caps": 0,
+      "fullRank": 0
+    },
+    {
+      "source": "0_welcome:0",
+      "from": 82,
+      "to": 108,
+      "heldTotal": 16,
+      "heldTruth": 16,
+      "q": 8,
+      "seed": 5126,
+      "fitRunes": 98,
+      "maxConsuming": 7,
+      "truth": "0,1,3,15,17,6,7,11,5,20,13,25,12,8,4,14,2,21,28,23,10,26,24,16,22,27,18,9,19:10,2,6,2,28,2,13,17",
+      "truthRetained": true,
+      "complete": true,
+      "actions": [
+        {
+          "pi": [
+            0,
+            1,
+            3,
+            15,
+            17,
+            6,
+            7,
+            11,
+            5,
+            20,
+            13,
+            25,
+            12,
+            8,
+            4,
+            14,
+            2,
+            21,
+            28,
+            23,
+            10,
+            26,
+            24,
+            16,
+            22,
+            27,
+            18,
+            9,
+            19
+          ],
+          "k": [
+            28,
+            2,
+            13,
+            17,
+            10,
+            2,
+            6,
+            2
+          ]
+        }
+      ],
+      "groups": 26,
+      "anchor": 7,
+      "nodes": 23,
+      "joins": 29,
+      "pairPrune": 0,
+      "linearPrune": 7,
+      "forcedCollision": 8,
+      "enumNodes": 3,
+      "completedVectors": 1,
+      "caps": 0,
+      "fullRank": 0
+    },
+    {
+      "source": "0_koan_1:0",
+      "from": 108,
+      "to": 134,
+      "heldTotal": 16,
+      "heldTruth": 16,
+      "q": 8,
+      "seed": 5227,
+      "fitRunes": 99,
+      "maxConsuming": 7,
+      "truth": "0,1,16,11,8,27,15,5,7,2,17,24,22,9,18,14,6,10,4,21,23,3,19,26,28,12,25,20,13:0,20,1,24,9,21,22,28",
+      "truthRetained": true,
+      "complete": true,
+      "actions": [
+        {
+          "pi": [
+            0,
+            1,
+            16,
+            11,
+            8,
+            27,
+            15,
+            5,
+            7,
+            2,
+            17,
+            24,
+            22,
+            9,
+            18,
+            14,
+            6,
+            10,
+            4,
+            21,
+            23,
+            3,
+            19,
+            26,
+            28,
+            12,
+            25,
+            20,
+            13
+          ],
+          "k": [
+            0,
+            20,
+            1,
+            24,
+            9,
+            21,
+            22,
+            28
+          ]
+        }
+      ],
+      "groups": 26,
+      "anchor": 7,
+      "nodes": 11,
+      "joins": 10,
+      "pairPrune": 0,
+      "linearPrune": 0,
+      "forcedCollision": 0,
+      "enumNodes": 3,
+      "completedVectors": 1,
+      "caps": 0,
+      "fullRank": 0
+    },
+    {
+      "source": "0_welcome:0",
+      "from": 0,
+      "to": 27,
+      "heldTotal": 16,
+      "heldTruth": 16,
+      "q": 8,
+      "seed": 5328,
+      "fitRunes": 99,
+      "maxConsuming": 7,
+      "truth": "0,1,20,18,5,24,7,2,3,6,26,25,10,27,13,16,15,11,8,14,12,17,9,19,22,4,21,23,28:0,22,13,21,19,24,13,20",
+      "truthRetained": true,
+      "complete": true,
+      "actions": [
+        {
+          "pi": [
+            0,
+            1,
+            20,
+            18,
+            5,
+            24,
+            7,
+            2,
+            3,
+            6,
+            26,
+            25,
+            10,
+            27,
+            13,
+            16,
+            15,
+            11,
+            8,
+            14,
+            12,
+            17,
+            9,
+            19,
+            22,
+            4,
+            21,
+            23,
+            28
+          ],
+          "k": [
+            0,
+            22,
+            13,
+            21,
+            19,
+            24,
+            13,
+            20
+          ]
+        }
+      ],
+      "groups": 27,
+      "anchor": 7,
+      "nodes": 10,
+      "joins": 9,
+      "pairPrune": 0,
+      "linearPrune": 0,
+      "forcedCollision": 0,
+      "enumNodes": 3,
+      "completedVectors": 1,
+      "caps": 0,
+      "fullRank": 0
+    }
+  ],
+  "outputs": [
+    {
+      "q": 8,
+      "n": 64,
+      "source": "0_welcome:0",
+      "spans": 9,
+      "partialSpans": 9,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 9,
+          "alignments": 5976,
+          "fCompatible": 6,
+          "completeRejected": 6,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4,
+            "word-pair phase contradiction": 2
+          },
+          "nodes": 12,
+          "joins": 11,
+          "linearPrune": 0,
+          "pairPrune": 3,
+          "forcedCollision": 1
+        },
+        {
+          "name": "p3-7",
+          "spans": 9,
+          "alignments": 9720,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 10,
+          "joins": 10,
+          "linearPrune": 0,
+          "pairPrune": 4,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p8-14",
+          "spans": 9,
+          "alignments": 14976,
+          "fCompatible": 6,
+          "completeRejected": 6,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 6
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p15-22",
+          "spans": 9,
+          "alignments": 16542,
+          "fCompatible": 8,
+          "completeRejected": 8,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 1,
+            "phase/affine rejection": 7
+          },
+          "nodes": 17,
+          "joins": 17,
+          "linearPrune": 0,
+          "pairPrune": 7,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p23-26",
+          "spans": 9,
+          "alignments": 8604,
+          "fCompatible": 7,
+          "completeRejected": 7,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 1,
+            "phase/affine rejection": 6
+          },
+          "nodes": 57,
+          "joins": 66,
+          "linearPrune": 3,
+          "pairPrune": 12,
+          "forcedCollision": 12
+        },
+        {
+          "name": "p27-32",
+          "spans": 9,
+          "alignments": 12312,
+          "fCompatible": 6,
+          "completeRejected": 6,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 2,
+            "phase/affine rejection": 4
+          },
+          "nodes": 14,
+          "joins": 13,
+          "linearPrune": 0,
+          "pairPrune": 3,
+          "forcedCollision": 1
+        },
+        {
+          "name": "p33-39",
+          "spans": 9,
+          "alignments": 14535,
+          "fCompatible": 7,
+          "completeRejected": 7,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4,
+            "word-pair phase contradiction": 3
+          },
+          "nodes": 8,
+          "joins": 8,
+          "linearPrune": 0,
+          "pairPrune": 4,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p40-53",
+          "spans": 9,
+          "alignments": 26487,
+          "fCompatible": 18,
+          "completeRejected": 18,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 12,
+            "phase/affine rejection": 6
+          },
+          "nodes": 226,
+          "joins": 255,
+          "linearPrune": 24,
+          "pairPrune": 11,
+          "forcedCollision": 86
+        },
+        {
+          "name": "p54-55",
+          "spans": 9,
+          "alignments": 2187,
+          "fCompatible": 1,
+          "completeRejected": 1,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 1
+          },
+          "nodes": 2,
+          "joins": 2,
+          "linearPrune": 0,
+          "pairPrune": 1,
+          "forcedCollision": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "n": 64,
+      "source": "0_koan_1:0",
+      "spans": 22,
+      "partialSpans": 22,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 22,
+          "alignments": 14613,
+          "fCompatible": 12,
+          "completeRejected": 12,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 8,
+            "phase/affine rejection": 4
+          },
+          "nodes": 8,
+          "joins": 8,
+          "linearPrune": 0,
+          "pairPrune": 4,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p3-7",
+          "spans": 22,
+          "alignments": 23765,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p8-14",
+          "spans": 22,
+          "alignments": 36613,
+          "fCompatible": 16,
+          "completeRejected": 16,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 4,
+            "phase/affine rejection": 12
+          },
+          "nodes": 184,
+          "joins": 197,
+          "linearPrune": 4,
+          "pairPrune": 21,
+          "forcedCollision": 69
+        },
+        {
+          "name": "p15-22",
+          "spans": 22,
+          "alignments": 40441,
+          "fCompatible": 11,
+          "completeRejected": 11,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 7,
+            "phase/affine rejection": 4
+          },
+          "nodes": 8,
+          "joins": 8,
+          "linearPrune": 0,
+          "pairPrune": 4,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p23-26",
+          "spans": 22,
+          "alignments": 21037,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 2
+          },
+          "nodes": 4,
+          "joins": 4,
+          "linearPrune": 0,
+          "pairPrune": 2,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p27-32",
+          "spans": 22,
+          "alignments": 30101,
+          "fCompatible": 26,
+          "completeRejected": 26,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 14,
+            "word-pair phase contradiction": 12
+          },
+          "nodes": 37,
+          "joins": 43,
+          "linearPrune": 0,
+          "pairPrune": 20,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p33-39",
+          "spans": 22,
+          "alignments": 35535,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p40-53",
+          "spans": 22,
+          "alignments": 64751,
+          "fCompatible": 20,
+          "completeRejected": 20,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 12,
+            "word-pair phase contradiction": 8
+          },
+          "nodes": 27,
+          "joins": 33,
+          "linearPrune": 0,
+          "pairPrune": 18,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p54-55",
+          "spans": 22,
+          "alignments": 5351,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 2
+          },
+          "nodes": 4,
+          "joins": 4,
+          "linearPrune": 0,
+          "pairPrune": 2,
+          "forcedCollision": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "n": 64,
+      "source": "0_loss_of_divinity:1",
+      "spans": 2,
+      "partialSpans": 2,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 2,
+          "alignments": 1329,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 18,
+          "joins": 22,
+          "linearPrune": 0,
+          "pairPrune": 8,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p3-7",
+          "spans": 2,
+          "alignments": 2161,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p8-14",
+          "spans": 2,
+          "alignments": 3329,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 22,
+          "joins": 26,
+          "linearPrune": 0,
+          "pairPrune": 8,
+          "forcedCollision": 6
+        },
+        {
+          "name": "p15-22",
+          "spans": 2,
+          "alignments": 3677,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 8,
+          "joins": 12,
+          "linearPrune": 0,
+          "pairPrune": 8,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p23-26",
+          "spans": 2,
+          "alignments": 1913,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 8,
+          "joins": 8,
+          "linearPrune": 0,
+          "pairPrune": 4,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p27-32",
+          "spans": 2,
+          "alignments": 2737,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p33-39",
+          "spans": 2,
+          "alignments": 3231,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 2
+          },
+          "nodes": 4,
+          "joins": 4,
+          "linearPrune": 0,
+          "pairPrune": 2,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p40-53",
+          "spans": 2,
+          "alignments": 5887,
+          "fCompatible": 18,
+          "completeRejected": 18,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 14,
+            "word-pair phase contradiction": 4
+          },
+          "nodes": 33,
+          "joins": 41,
+          "linearPrune": 0,
+          "pairPrune": 22,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p54-55",
+          "spans": 2,
+          "alignments": 487,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "n": 96,
+      "source": "0_welcome:0",
+      "spans": 4,
+      "partialSpans": 4,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 4,
+          "alignments": 2530,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 2
+          },
+          "nodes": 4,
+          "joins": 4,
+          "linearPrune": 0,
+          "pairPrune": 2,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p3-7",
+          "spans": 4,
+          "alignments": 4194,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 1,
+            "phase/affine rejection": 1
+          },
+          "nodes": 2,
+          "joins": 2,
+          "linearPrune": 0,
+          "pairPrune": 1,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p8-14",
+          "spans": 4,
+          "alignments": 6530,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 4
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p15-22",
+          "spans": 4,
+          "alignments": 7226,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 2
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p23-26",
+          "spans": 4,
+          "alignments": 3698,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 2,
+            "word-pair phase contradiction": 2
+          },
+          "nodes": 27,
+          "joins": 34,
+          "linearPrune": 0,
+          "pairPrune": 9,
+          "forcedCollision": 5
+        },
+        {
+          "name": "p27-32",
+          "spans": 4,
+          "alignments": 5346,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 2
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p33-39",
+          "spans": 4,
+          "alignments": 6334,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 4
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p40-53",
+          "spans": 4,
+          "alignments": 11646,
+          "fCompatible": 8,
+          "completeRejected": 8,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 8
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p54-55",
+          "spans": 4,
+          "alignments": 846,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "n": 96,
+      "source": "0_koan_1:0",
+      "spans": 14,
+      "partialSpans": 14,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 14,
+          "alignments": 8846,
+          "fCompatible": 17,
+          "completeRejected": 17,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 17
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p3-7",
+          "spans": 14,
+          "alignments": 14670,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p8-14",
+          "spans": 14,
+          "alignments": 22846,
+          "fCompatible": 23,
+          "completeRejected": 23,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 23
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p15-22",
+          "spans": 14,
+          "alignments": 25282,
+          "fCompatible": 16,
+          "completeRejected": 16,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 16
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p23-26",
+          "spans": 14,
+          "alignments": 12934,
+          "fCompatible": 3,
+          "completeRejected": 3,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "word-pair phase contradiction": 3
+          },
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p27-32",
+          "spans": 14,
+          "alignments": 18702,
+          "fCompatible": 26,
+          "completeRejected": 26,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 15,
+            "word-pair phase contradiction": 11
+          },
+          "nodes": 38,
+          "joins": 38,
+          "linearPrune": 0,
+          "pairPrune": 15,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p33-39",
+          "spans": 14,
+          "alignments": 22160,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p40-53",
+          "spans": 14,
+          "alignments": 40752,
+          "fCompatible": 28,
+          "completeRejected": 28,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 3,
+            "word-pair phase contradiction": 25
+          },
+          "nodes": 12,
+          "joins": 12,
+          "linearPrune": 0,
+          "pairPrune": 3,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p54-55",
+          "spans": 14,
+          "alignments": 2952,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "n": 96,
+      "source": "0_loss_of_divinity:1",
+      "spans": 2,
+      "partialSpans": 2,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 2,
+          "alignments": 1264,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 16,
+          "joins": 20,
+          "linearPrune": 0,
+          "pairPrune": 8,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p3-7",
+          "spans": 2,
+          "alignments": 2096,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p8-14",
+          "spans": 2,
+          "alignments": 3264,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 12,
+          "joins": 14,
+          "linearPrune": 0,
+          "pairPrune": 6,
+          "forcedCollision": 2
+        },
+        {
+          "name": "p15-22",
+          "spans": 2,
+          "alignments": 3612,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 8,
+          "joins": 10,
+          "linearPrune": 0,
+          "pairPrune": 6,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p23-26",
+          "spans": 2,
+          "alignments": 1848,
+          "fCompatible": 4,
+          "completeRejected": 4,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 4
+          },
+          "nodes": 8,
+          "joins": 8,
+          "linearPrune": 0,
+          "pairPrune": 4,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p27-32",
+          "spans": 2,
+          "alignments": 2672,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p33-39",
+          "spans": 2,
+          "alignments": 3166,
+          "fCompatible": 2,
+          "completeRejected": 2,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 2
+          },
+          "nodes": 4,
+          "joins": 4,
+          "linearPrune": 0,
+          "pairPrune": 2,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p40-53",
+          "spans": 2,
+          "alignments": 5822,
+          "fCompatible": 18,
+          "completeRejected": 18,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {
+            "phase/affine rejection": 12,
+            "word-pair phase contradiction": 6
+          },
+          "nodes": 28,
+          "joins": 34,
+          "linearPrune": 0,
+          "pairPrune": 18,
+          "forcedCollision": 0
+        },
+        {
+          "name": "p54-55",
+          "spans": 2,
+          "alignments": 422,
+          "fCompatible": 0,
+          "completeRejected": 0,
+          "hits": [],
+          "unresolved": [],
+          "reasons": {},
+          "nodes": 0,
+          "joins": 0,
+          "linearPrune": 0,
+          "pairPrune": 0,
+          "forcedCollision": 0
+        }
+      ]
+    }
+  ]
+}
