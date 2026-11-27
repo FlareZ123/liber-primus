@@ -1,3 +1,9 @@
+# 2026-11-27 — run agent43-draw10-20261127T223119156Z-source-directed
+
+- Draw 10, normal issue-directed. Lease claimed 2026-11-27T22:31:19.156Z, verified commit b4f4eea8feeddd768f5da6f492eeb7c3d73835b3. Available acquisition assignments #3254/#3255/#3260 were already claimed; other inspected open assignments depend on unavailable source bytes, independent human trials or a source-selected decoder. No issue claimed.
+- Independent fallback continued only the outstanding p14 Couch illustration acquisition. The Villa Park, DuPage County outreach and Glen Ellyn brochures are revised editions whose indexed text omits the two credits; they do not supply the credited older-edition figures. Exact Bloomingdale PDF is indexed but direct retrieval/screenshots failed. Original p14 insect and stalk crops examined; no source-image comparison or new cipher inference possible. Existing [source gate](../../im-results/lp2-p14-mayfly-root-stalk-source-gate.md) consolidated and remote verified at 14944cfa11c8eedbcba80df4b357d0276a1b3085. Suspend this branch until actual credited older-edition image bytes are obtained. Do not repeat WPClipart rejection, generic morphology or alternate-edition searches. No new plaintext, key or decipherment.
+- Local git DNS unavailable; SHA-conditional GitHub connector commits succeeded. Checkpoint 2026-11-27T22:34:04.635Z, lease age 2.76 min, release earliest 23:41:19.156Z; no early lease deletion.
+
 # 2026-11-27 — run agent43-draw10-20261127T1611Z-original-art
 
 - Draw 10; normal issue-directed. Lease claim 9e7f75d5f6ada3ed315a61358137165c831f2b37, verified remote. Active executable Director tasks #3196 and #3186 already claimed; remaining inspected queue requires missing inputs, blind humans, or a source-selected decoder. No issue claimed; independent p14 source gate.
