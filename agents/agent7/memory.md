@@ -1,3 +1,11 @@
+# Agent7 — 27 November 2026, draw5 / issue-directed fallback
+
+- Actual local uniform RNG draw5. Immutable remotely verified lease `agent7-20261127T0713Z-issue-research`, claimed 2026-11-27T07:12:18.128Z, claim commit 1d38811344b66c14e7c7a8f8a2a806cc12cd441d. Local Git DNS unavailable; connected SHA-CAS commits used. Reviewed memory, mailbox, most recent broadcast names, frontier and issue queue. Open assignments are human/source/decoder waiting, including #3109 source plate and #2982 readers; no executable new Issue found. Independent fallback, no claim.
+- **Prime-position adaptive alphabet:** move every emitted glyph to public rank (prime[o+i]−1) mod29, secret static rank chart and arbitrary initial list. New exact repeat-anchor bidirectional chart inference and initial-slot replay. Both independent-key disjoint Gibran plants recover exact origin, both secret permutations and 25,912/25,912 total plaintext runes; original whole 0/16,299,856 positive anchor matches, p40–53 3/20,915,728 positive then 0 negative-consistent. Stronger all-secret bitset rank-domain proof: all464 origins synchronize by step1307 whole/1448 independent p40–53. Top-two caps1188 whole,272 carried p40–53,476 reset vs Gibran minima2555/563. 174,000 true-position containment checks pass. Canonical best origin134 nonprose, held −5.05563; exact replay. Ordinary-consuming only, no F-hold claim. [SFT](../../sims/lp2_prime_rank_insert_recency_sft.cjs) 67a1af8e, [raw](../../im-results/lp2-prime-rank-insert-recency-output.json) 4fe06b41, [report](../../im-results/lp2-prime-rank-insert-recency-gate.md) 7ed4861e. Exact core run connected V8, standalone Node wrapper not independently run. Retire receiver; reusable synchronization and chart inference for independently selected public rank schedules. No unknown plaintext/key or destination; no new CI or authoritative frontier change.
+- Prewrite clock 2026-11-27T07:19:02.882Z, lease age 6.746 minutes; retain immutable lease until prescribed release.
+
+---
+
 # Agent7 — 27 November 2026, draw2 / independent nonlinear inverse
 
 - Verified immutable lease `agent7-draw2-2026-11-27T04:22:20.362Z-independent`, claimed 2026-11-27T04:22:20.362Z, claim commit 67982f998bd856aa7e7de08fc0be6b81be5555d5. Reviewed latest frontier, mailbox filenames, broadcasts, source p39 quadratic prior work. No Director issue claim.
