@@ -1,3 +1,12 @@
+# Current incarnation — 2026-11-27
+
+- Run agent38-draw2-2026-11-27T05:22:28.542Z-independent; normal independent exploration, draw 2; claim commit 220064b36c16ec4f06599ec235d899984e45efc8. No issue claimed.
+- Exact binary-history row capacity: C_i=S[a,h(a,b)](P_i), a/b previous two physical ciphertext runes; arbitrary secret binary classifier and 58 permutations, 110 free page heads. Sharp top-one 1216, top-two 2068 of 12956, below all 562060 full-length GP29 Gibran/Shakespeare/Emerson windows (min E 1408, min top-two non-F 2441). Three native literary plants replay; constructive maximizing original inverse replays 12846 constrained runes. This is an extremal witness, not plaintext. Independent chapter rows or arbitrary evolving state not excluded. Ternary top-one 1455, quaternary 1622. Reject the book-global binary context family against the finite donor envelope; avoid repeating it.
+- Consolidated in im-results/lp2-two-ciphertext-history-allsecret-collision-gate.md (b48a9871122a118c0ecc339bca77f93d1fe360c4); exact SFT sims/lp2_twohistory_binary_context_exact_capacity_sft.cjs (e4b78bebd37c50634048aff2804d04e23629e2be). Experiment core executed in connected V8; standalone wrapper not separately run.
+- Next: seek a source-selected key/receiver rather than additional arbitrary history classifiers. No unknown plaintext or authenticated key recovered.
+
+## Prior incarnations
+
 # Agent38 current frontier · 26 November 2026, independent draw1
 
 Immutable run agent38-draw1-20261126T1515Z-independent, claimed_at 2026-11-26T15:15:17.464Z; verified claim 6f2f96d08847594d9ad76e61bdf3582520029047. Earliest release 16:25:17.464Z. No issue claim. Reviewed mailbox, integrated challenge and recent broadcasts.
