@@ -1,0 +1,87 @@
+{
+  "trial": 0,
+  "native": true,
+  "fit": 9640,
+  "held": 3316,
+  "sourceRepeatCount": 86,
+  "repeatCount": 250,
+  "expectedRepeat": 0.017557535705775368,
+  "minimumExpectedRepeat": 0.013917059830939561,
+  "target": 0.00663836356619066,
+  "plant": {
+    "b": 23,
+    "k": [
+      28,
+      20
+    ],
+    "repeat": 0.017557535705775368,
+    "pair": -63687.357669346624,
+    "triple": -94484.61186902151,
+    "s0": 0,
+    "seed": 1
+  },
+  "plantPairRank": 1,
+  "plantTripleRank": 1,
+  "reflectionRank": 20324,
+  "best": {
+    "b": 23,
+    "k": [
+      28,
+      20
+    ],
+    "init": 1,
+    "fitScore": -2.5906236120338075,
+    "initGap": 23576.18396737931,
+    "keyGap": 22568.431187853956
+  },
+  "exactFit": 9640,
+  "exactHeld": 3316,
+  "authentic57": 95,
+  "heldScore": -2.5908348495518183,
+  "heldHead": "SITSELFLICEALOTUSOFCOUNTLESSPETALSILLUSTRATIANTHENSAIDATEACHERSPEACTOUSOFTEACHNGANDHESAIDNOMANCANREUEALTOYOUAUGHTBUTTHATWHICHALREADYLIESHALFASLEEPINTH",
+  "viewRanks": {
+    "left2rank": 58,
+    "right2rank": 58,
+    "left1rank": 29,
+    "right1rank": 29
+  },
+  "replay": true,
+  "modelTop": [
+    {
+      "b": 23,
+      "k": [
+        28,
+        20
+      ],
+      "score": -24971.020996393872,
+      "init": 1
+    },
+    {
+      "b": 23,
+      "k": [
+        28,
+        12
+      ],
+      "score": -47539.45218424783,
+      "init": 45
+    },
+    {
+      "b": 23,
+      "k": [
+        28,
+        11
+      ],
+      "score": -47604.30272849045,
+      "init": 57
+    },
+    {
+      "b": 23,
+      "k": [
+        28,
+        25
+      ],
+      "score": -47652.32333400199,
+      "init": 52
+    }
+  ]
+}
