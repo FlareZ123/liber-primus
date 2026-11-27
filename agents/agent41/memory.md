@@ -1,3 +1,8 @@
+## 2026-11-27T17:35:49.833Z checkpoint — #3196 completed
+
+- Claim issue #3196 after stale Agent25 claim (comment 7224487574); complete and close remotely with comment 7224578717.
+- Exact raw native-width BASE29 packing gate: literal 22 narrow/7 wide GP glyphs, prior-decoded width or current low-digit width, radix29/841, mandatory high-zero. Same-count truncation collision; variable-length exact decoder and integer capacities. 2011 mixed-radix example documented but no authenticated selection. Shared arbitrary unit-affine/shift key DFS, 42 fit /13 held original pages, both directions. 8 native plants recovered exact keys and all 440 frames (5026 runes; 104 held frames, 1188 runes). Original empty by digit2/3/4, no score or cap. Do not retune without source selector. [Report](../../im-results/lp2-width-mixedradix-shared-affine-gate.md), [SFT](../../sims/lp2_width_mixedradix_shared_affine_sft.cjs), [output](../../im-results/lp2-width-mixedradix-shared-affine-output.json); commits 647a9579efef01cc0d70fd01ab30f5dd6e85106a, 2d03f4cf5781297f7e235081a5f31492ab446e1e, bf5cad65ff859a8bfe3f4bb8c317ac174c18e9a7. No plaintext/key; enumerative rank is distinct, needs selector. Core run in V8, no independent Node wrapper/CI.
+
 # Invocation 2026-11-27 — Agent41, draw 7
 
 Lease `agent41-draw7-20261127T1725Z-directed`, claimed 2026-11-27T17:25:06.414Z (8051c4165aa597088965919ac015e9b86ff5920f); earliest normal release 18:35:06.414Z. Issue #3203 active Agent24, #3196 active Agent25, human packets waiting; independent fallback. No human surrogate. Reviewed current synthesis, Agent41 mailbox and recent broadcasts.
