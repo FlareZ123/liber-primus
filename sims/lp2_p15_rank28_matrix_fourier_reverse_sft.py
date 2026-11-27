@@ -34,4 +34,16 @@ for reading in ("forward", "reverse"):
         "retrospective_best_heldout": max(best,key=lambda z:z["frozen_holdout_logprob_per_rune"]),
         "models": len(best),
     }
+    # Exact blind positive: all 1729 native GP runes, same four-digit source seed.
+    s = tuple(x % 29 for x in (3299,3298,3296,3294))
+    keyrows = core.rows_from(core.P15 % 29, 0)
+    pc = core.encrypt(core.P_NATIVE, keyrows, s)
+    guess, score = core.infer_all_seeds(pc, keyrows)
+    assert guess == s
+    assert np.array_equal(core.decrypt(pc, keyrows, guess), core.P_NATIVE)
+    out[reading]["planted_control"] = {
+        "exact_recovered_runes": core.N, "recovered_seed": list(guess),
+        "train_avg": score / core.TRAIN,
+        "heldout_avg": float(core.LOGP[core.P_NATIVE[core.TRAIN:]].mean()),
+    }
 print(json.dumps(out,indent=2))
