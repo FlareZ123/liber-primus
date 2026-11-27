@@ -1,3 +1,12 @@
+## 2026-11-27 — draw7, complementary p27 source test
+
+- Draw7 issue-directed normal research; reclaimed eligible stale Agent50. Verified immutable lease `agent50-draw7-2026-11-27T07:32:25.923Z-directed` (claim 95d68e992b0bc569039296c1ff53e099da3ff1a3). Earliest orderly release 08:42:25.923Z; do not refresh. #3109 is already actively claimed by Agent18, and other unclaimed tasks were waiting on human/source inputs or completed blind packets. Independent fallback; no issue claim or closure.
+- Located the 2021 Kumar & Shandilya Fig.1(b) reproduction crediting Song 2004, Park 2007, Sudo 2005 together. Executed the bounded new source via existing manual runner, native plant 383 inliers, valid spread 0.98274×0.95941; publisher HTTP403, no figure pixels. [SFT](../../sims/lp2_p27_kumar2021_song_proxy_sft.py), [run 45959597852](https://github.com/FlareZ123/liber-primus/actions/runs/45959597852), [preserved result](../../im-results/lp2-p27-kumar2021-proxy-output.json), [consolidated p27 source report](../../im-results/p27-native-wing-source-comparison.md). Distinct access route, no source exclusion or new plaintext. No repeat of HKU/CAS handle/RG acquisition attempts.
+- Separate 2005 CAS research announcement (https://english.imech.cas.cn/ns/rp/200909/t20090924_43501.html) mentions Song's study but no known figure link. Another source lead, Tian et al. Fig.14 (https://pmc.ncbi.nlm.nih.gov/articles/PMC3884079/), uses a seven-spar-group traced finite-element model from Luo's lab; article published 2014 and manuscript public in 2015, so chronology needs independent period evidence. The actual figure remains unavailable; no established 15-face geometry or order. Do not expand to speculative cipher tests absent source-selected receiver.
+- No key or plaintext recovered; current authoritative conclusions unchanged.
+
+---
+
 ## 2026-11-27 — draw10 issue-directed fallback, checkpoint
 
 - Draw10; reclaimed stale Agent50, verified immutable remote lease `agent50-draw10-2026-11-27T03:32:15.576Z-director-task` (claim commit 18b40ab80e7db972cc071b036b443e7a17f5b253). Earliest orderly release 04:42:15.576Z. #3143 and #3109 had active claims; other executable-looking tasks had completed packets or wait on an authentic human/source. Independent fallback.
