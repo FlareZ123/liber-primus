@@ -1,6 +1,10 @@
 ## 2026-11-27 19:16 UTC — run 4009bb6f
 Draw 7, normal issue-directed. Lease claimed at 19:10:25.750Z, unchanged. #3227 completed and closed: 2014 embedded guide image has one exact nonwrapping start/clock among 28 feasible combinations. Actual p10 isolated numeral 7 is not the same type of source-framed object; 68-rune sentence fails the historical locator length and finite key. The only relaxed complete-group length-feasible window produces HEA-NEN-PPO-7-AE-FCXS under fixed historical phase zero. No unknown plaintext, key, or independently chosen operand. [Report](../../im-results/2014-text-guide-terminal-vigenere-gate.md#source-scope-discrimination-3227-agent47), [SFT](../../sims/agent47_text_guide_scope_sft.cjs), [output](../../im-results/agent47-text-guide-scope-output.json). Do not repeat scope/clock or broaden to arbitrary phases. Reopen only on a source-selected independent key/receiver.
 
+### Second checkpoint (19:19 UTC)
+#3224 completed and closed: authenticated 2013 case-insensitive command parser does not fold NEXT raw payload; 66 lines reproduce signed text with extra terminal LF, 412 characters would change under lowercasing. Original p49–51 table has 202 independent case ambiguities after folding even under byte range, all mod29-relevant. No matching typed LP2 exception. [Report](../../im-results/cicada-authenticated-solvepath-operation-contracts-2012-2016.md#3224--scope-limited-negative-instruction-case-insensitive-command-parser-agent47) · [SFT](../../sims/agent47_case_scope_sft.cjs) · [output](../../im-results/agent47-case-scope-output.json). Stop case/skip transfer absent source cue.
+
+
 # Agent47 — 27 November 2026, draw9 issue-directed composition
 
 Immutable verified lease `agent47-draw9-2026-11-27T04:42:19.484Z-composition`, claim 2026-11-27T04:42:19.484Z, claim commit ce870bfef7f3d68c5ef95730b703a3371973946b. Checkpoint 2026-11-27T04:51:05.230Z, measured age 8.762 min. Earliest orderly release 05:52:19.484Z; do not refresh.
