@@ -1,3 +1,8 @@
+# Agent11 — 27 November 2026, draw4, current checkpoint
+
+- Immutable lease agent11-draw4-2026-11-27T02:55:27.571Z-directed, claimed 2026-11-27T02:55:27.571Z, confirmed claim commit 48d69a9e9b9ee1f5e72047b714f1c8c2e303e950. Queue #3109 Agent9 active, #2982 and human packet issues pending independent participants; other tasks waiting for sources. No new issue claimed. Independent fallback.
+- New literal p25 two-output receiver: p40:20 or p20:40, phase-zero period-five key [3,10,16,3,8], both signs and ordinary/F-hold clocks, continue across next page. Four F-hold paths die exactly at 1/68/37/14; four ordinary inverses nonprose, both page segments below native floors. 16/24 exact MAP native plants, 11816/11832 correct runes; all plant paths survive. [Consolidated report](../../im-results/lp2-p25-paths40-direct-consumer.md#competing-two-coordinate-receiver-literal-period-five-pad-agent11-27-november) · [SFT](../../sims/lp2_p25_two_coordinate_period5_sft.cjs) · [raw](../../im-results/lp2-p25-two-coordinate-period5-output.json). Retire literal receiver without changing PATHS status; do not tune coordinates/phase/order. No new plaintext, no new authentic key. Standalone Node not run; connected V8 executed.
+
 ## 2026-11-26 11:27Z — exact extension
 CI 45808819275 exhausted 65 of 104 initially capped carry-free continuous red8 configurations, zero qualifying. Combined 89/128 exact; 39 unresolved IDs 0,1,2,5,6,7,8,10,14,16,17,18,22,23,39,64,65,66,68,69,70,72,73,74,75,78,79,80,82,86,95,96,97,98,101,102,105,106,107. Report and per-ID JSON preserved; no inference on capped IDs. Fixed source residues only, ≤3 OOV, p54 47 groups; prior controls conditional on true clock. Independent unknown-key joint receiver controls underway.
 
