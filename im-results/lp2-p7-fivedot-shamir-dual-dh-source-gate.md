@@ -141,10 +141,31 @@ The ordinary outputs are nonprose and exactly re-encrypt. Held solved p57 scores
 
 [Executable receiver](../sims/lp2_2013_ssss_base29_p8_receiver.cjs), original corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, code commit `d1a832146b998e445f9def66b7d61eb6f7a5c1f1`. Connected V8 core executed; filesystem wrapper/CI not independently executed.
 
+## Full-coefficient lossless interpolation receiver (Agent3, 27 November 2026)
+
+The earlier 51-rune experiment retained only the interpolated constant and discarded four coefficients per record. A genuinely reversible interpretation instead treats each original five-rune record as five evaluations of a degree-four polynomial (or of the historically motivated fixed monic degree-five polynomial), then emits **all five** coefficients. This uses the same three frozen x registers `[1,2,3,4,5]`, `[3,5,1,4,2]`, and `[11,26,8,15,2]`; no key or matrix elements are fitted. The Vandermonde map is invertible because each register has distinct coordinates. Monic interpolation subtracts the known x^5 term before interpolation. Test adjacent records and five contiguous lanes, with either record-major or degree-major coefficient serialization: 24 full receivers. The p8 input is all 255 physical runes (including its red rubric); freeze each receiver for physical p9's first 265 runes (53 complete records), with its last three copied unchanged solely to make the framing reversible. No phase or coefficient permutation search.
+
+| Diagnostic | Result |
+|---|---:|
+| Original p8 raw mean trigram log probability | -3.506158 |
+| Best full p8 inverse (vertical coordinates, monic, adjacent→degree-major) | -3.449953 |
+| Same frozen p9 inverse | -3.509499 |
+| Best individual p8 coefficient lane (vertical, ordinary, adjacent, constant) | -3.339012 |
+| Same frozen p9 coefficient lane | -3.511494 |
+| Raw p9 265-rune reference | -3.518239 |
+| Actual clear p57 reference | -2.668243 |
+| Native-derived 255/268-rune positive samples | -1.955843 / -2.005589 |
+
+All 24 p8 and p9 inverse/re-encryption checks restore every original symbol, including the explicitly untransformed p9 tail. All 48 same-mechanism native-derived plant trials recover every rune. All five coefficient lanes were examined; the best lane is the previously examined constant, and its continuation is nonprose. The best full p8 inverse has IoC .03433688 and frozen p9 .03396226. No readable multiword continuation emerges. The 2,399-rune approximate LP1 trigram training reference includes parts of the positive samples, so these positive scores are illustrative rather than blind discrimination; the untouched real p57 reference is independent. Coefficient decoding is affine-linear, so original round trips do not distinguish historical keys. The three coordinates and the five-rune framing remain proposed rather than authenticated; the p8 color boundary cuts a record.
+
+**Decision:** retire this full-coefficient alternative to the previous lossy constant-only receiver. It resolves the objection that useful plaintext could have been discarded in the other four polynomial coefficients *for the fixed coordinates and serializations*. It supplies neither plaintext nor a source-selected secret. Do not tune an arbitrary coefficient order or add a new cipher layer to rescue it.
+
+[Reproducer](../sims/lp2_p7_p8_full_polynomial_coefficients_sft.cjs), commit `7ddf6bca1f727ef833bfd56600fb06c1306c2ed1`; corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, reference `8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d`. Connected JavaScript core executed; standalone filesystem wrapper not separately executed.
+
 ## Research decision
 
 This is a **geometry-constrained ordinary-quartic coincidence with already-known key-state constants**. The actual 2013 sender's fixed monic term removes the dual DH match in the corresponding GF29 analogue. Its merit is that the dot heights supply an actual missing order permutation, while Cicada's earlier puzzle historically used the five-share operation. It may be useful if a future independent original clue specifies how to consume the resulting parameters.
 
-The direct p8 tensor, p0 period-five body, and reconstructed historical secret's phase-zero BASE29 p8/p9 consumers all fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The primary 2013 source reconstruction now fixes the historical comparison scheme as GF(2^176), polynomial x^176+x^11+x^3+x^2+1, index-prefixed 44-hex shares, and threshold 5; no GP29 bridge exists. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
+The direct p8 tensor, p0 period-five body, reconstructed historical secret's phase-zero BASE29 p8/p9, and lossless five-coefficient interpolation consumers all fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The primary 2013 source reconstruction now fixes the historical comparison scheme as GF(2^176), polynomial x^176+x^11+x^3+x^2+1, index-prefixed 44-hex shares, and threshold 5; no GP29 bridge exists. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
 
 **Reproducer:** [source-native Windows Node22 CommonJS single-file test](../sims/lp2_p7_fivedot_shamir_dual_secret_sft.cjs), including the original JPEG SHA, all five rune products, unchanged dot ranks, two GF29 polynomials, synthetic interpolation control, full 120-permutation enumeration, six competing aggregations, and original p8 16-way receiver. [Independent Windows CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44941697115).
