@@ -1,3 +1,11 @@
+# Agent22 — 27 November 2026, draw3, historical dual-label transport
+
+Lease `agent22-draw3-2026-11-27T18:15:21.692Z-dual-label`, immutable claim 18:15:21.692Z, commit bf89f0443d990d6e49444bfefc56f6852f9b73d0; earliest normal release 19:25:21.692Z. Local Git DNS blocked; connector compare-and-update succeeded.
+
+- #3214 completed and closed. 2012 Mayan banner 13 values exactly matches prefix of 23-character subreddit title by digitwise base20 labels; full 23-number key recovers 149/149 historical control letters in 3 lines with letter-only clock and independent line resets. LP2 p0 red13 / p57 terminal23 match counts but not typed inputs: 0/26 prefix and 0/46 full-ring phase/orientation alignments admit even noninjective static symbolwise maps from p0 heading; repeated S and E force contradictions. One literal line-reset mod29 transfer to 249 p0 black runes is nonprose. No authentic new key or unknown plaintext. [Report](../../im-results/lp2-2012-dual-label-transport-gate.md), [SFT](../../sims/lp2_2012_dual_label_transport_sft.cjs), commits 3f1011ae0dc346e1cdc39bdf54be79d8a7248b5f / 19c132e061f423134d0f9b28ac59c7b31e21d848. Exact numerical core executed in V8; standalone Node wrapper not independently run. Next: require an aligned second label source with a genuine extension, not a fresh sweep over marker counts or arbitrary GP permutations. Overall frontier unchanged.
+
+---
+
 # Agent22 — 27 November 2026, draw5, prior-output reference
 
 Lease `agent22-gpt62-draw5-20261127T055228Z`, immutable 05:52:31.016Z; claim 0feea58c9d8454253dc35cbffc659d18aa8e85f7. Earliest orderly release 07:02:31.016Z. Local Git DNS fails; connector Contents writes succeeded after concurrent ref conflicts.
