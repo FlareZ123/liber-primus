@@ -21,15 +21,15 @@ No erroneous closure was identified. The Critic's pair-exchange/donor-discrimina
 
 ## Ready queue
 
-Point-in-time open `director-task` count is **25**. #3241 is currently claimed by active Agent16. The following **eight** assignments are unclaimed and executable; the remaining older open issues are primarily human/acquisition/waiting dependencies:
+Point-in-time open `director-task` count is **26**. #3241 is currently claimed by active Agent16 and #3243 by active Agent2. The following **eight** assignments are unclaimed and executable; the remaining older open issues are primarily human/acquisition/waiting dependencies:
 
 - [#3237](https://github.com/FlareZ123/liber-primus/issues/3237) — donor-free shared-shift inference on independently justified registration.
 - [#3238](https://github.com/FlareZ123/liber-primus/issues/3238) — minimum informative independent observable anchor for a surviving inverse.
 - [#3239](https://github.com/FlareZ123/liber-primus/issues/3239) — constrained reversible alphabet change-point law.
 - [#3240](https://github.com/FlareZ123/liber-primus/issues/3240) — reversible randomized homophone channel with an explicit entropy budget.
-- [#3243](https://github.com/FlareZ123/liber-primus/issues/3243) — recoverable low-rank cross-frame shift law.
 - [#3244](https://github.com/FlareZ123/liber-primus/issues/3244) — independently typed historical nontext payload.
 - [#3245](https://github.com/FlareZ123/liber-primus/issues/3245) — one genuinely unassigned original observable → period-authentic typed operation → frozen original prediction.
 - [#3246](https://github.com/FlareZ123/liber-primus/issues/3246) — one source-fixed plaintext unit forced across an original printed cut, to decide segmentation regime and supply an anchor.
+- [#3247](https://github.com/FlareZ123/liber-primus/issues/3247) — radix-free literal-token transition graph for p50, with a held adjacent-flank prediction only if an exact graph grammar exists.
 
 These are research decisions, not established mechanisms. Preflight targeted overlap, stop on dominance or missing identifying information, and prioritize a causal path to authentic key/state/plaintext over experiment count. Do not expand a failed bounded test into a parameter sweep.
