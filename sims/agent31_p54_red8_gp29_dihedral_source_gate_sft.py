@@ -55,24 +55,15 @@ def forward_group(plain,key,mask,start):
         phase=(phase+1)%8
     return ''.join(out)
 
-def native_source_model_controls(words,key,mask,dictionary):
-    # Genuine complete lexical donor words are not needed: use 47 existing
-    # dictionary forms with identical length profile and deterministic phases.
-    bylen=collections.defaultdict(list)
-    for word in dictionary:bylen[len(word)].append(word)
-    plant=[]
-    for i,c in enumerate(words):
-        forms=bylen[len(c)]
-        assert forms
-        # Alternate forms containing F to exercise bypass, when available.
-        preferred=[w for w in forms if (0 in w)==bool(i%2)]
-        chosen=sorted(preferred or forms)[i % len(preferred or forms)]
+def native_source_model_controls(plantwords,key,mask,dictionary):
+    # 47 freeze-chosen source-register forms, with the actual original length
+    # profile and alternating literal-F inclusion to test the whole decoder.
+    for i,chosen in enumerate(plantwords):
         phase=(7*i+11)%8
         cipher=forward_group(chosen,key,mask,phase)
         assert chosen in decode_group(cipher,key,mask,phase,dictionary),('plant failed',i,mask)
-        plant.append((chosen,cipher))
-    assert len(plant)==47
     return True
+
 
 def evaluate():
     original=json.loads(SRC.read_text(encoding='utf-8'))
@@ -86,6 +77,17 @@ def evaluate():
     assert len(red)==8 and ''.join(SYM[x] for x in red)=='jlnr2eaj'
     D=smt.load_dictionary(LEX,'')
     assert len(D)==38910
+    bylen=collections.defaultdict(list)
+    for word in D:bylen[len(word)].append(word)
+    for length in bylen:bylen[length].sort()
+    plantwords=[]
+    for i,c in enumerate(complete):
+        forms=bylen[len(c)]
+        assert forms
+        preferred=[w for w in forms if (0 in w)==bool(i%2)]
+        chosen=(preferred or forms)[i%len(preferred or forms)]
+        plantwords.append(chosen)
+    assert len(plantwords)==47
     bylen=collections.Counter(map(len,D))
     all_best=[]
     positive_models=0
@@ -94,7 +96,7 @@ def evaluate():
     for sign in (1,-1):
         key=[(sign*v)%MOD for v in red]
         for mask in range(256):
-            native_source_model_controls(complete,key,mask,D)
+            native_source_model_controls(plantwords,key,mask,D)
             positive_models+=1
             supported=[]
             counts=[]
