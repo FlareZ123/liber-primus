@@ -1,0 +1,132 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ],
+  "donors": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "length": 62492,
+      "windows": 62185,
+      "minimum": 82,
+      "eligible": 6
+    },
+    {
+      "name": "resources/control/emerson_essays_2944.txt",
+      "length": 321327,
+      "windows": 321020,
+      "minimum": 68,
+      "eligible": 442
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "length": 217106,
+      "windows": 216799,
+      "minimum": 66,
+      "eligible": 630
+    },
+    {
+      "name": "0_warning",
+      "length": 184,
+      "windows": 0,
+      "minimum": null,
+      "eligible": 0
+    },
+    {
+      "name": "0_welcome",
+      "length": 515,
+      "windows": 208,
+      "minimum": 162,
+      "eligible": 0
+    },
+    {
+      "name": "0_wisdom",
+      "length": 157,
+      "windows": 0,
+      "minimum": null,
+      "eligible": 0
+    },
+    {
+      "name": "0_koan_1",
+      "length": 780,
+      "windows": 473,
+      "minimum": 136,
+      "eligible": 0
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "length": 755,
+      "windows": 448,
+      "minimum": 130,
+      "eligible": 0
+    },
+    {
+      "name": "jpg107-167",
+      "length": 319,
+      "windows": 12,
+      "minimum": 232,
+      "eligible": 0
+    },
+    {
+      "name": "jpg229",
+      "length": 89,
+      "windows": 0,
+      "minimum": null,
+      "eligible": 0
+    },
+    {
+      "name": "p56_an_end",
+      "length": 85,
+      "windows": 0,
+      "minimum": null,
+      "eligible": 0
+    },
+    {
+      "name": "p57_parable",
+      "length": 95,
+      "windows": 0,
+      "minimum": null,
+      "eligible": 0
+    }
+  ],
+  "eligibleUniqueSignatures": 1078,
+  "min": 66,
+  "stats": [
+    {
+      "layout": "row",
+      "count": 135135,
+      "optimisticSurvivors": 993,
+      "orientationSurvivors": 623,
+      "signatureMatches": 0,
+      "max": 86
+    },
+    {
+      "layout": "column",
+      "count": 135135,
+      "optimisticSurvivors": 413,
+      "orientationSurvivors": 38,
+      "signatureMatches": 0,
+      "max": 70
+    }
+  ],
+  "matches": [],
+  "plantSignatureExact": true
+}
