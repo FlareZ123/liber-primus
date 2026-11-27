@@ -1,0 +1,1127 @@
+{
+  "plantChecks": 60,
+  "smallExhaustive": 15360,
+  "results": [
+    {
+      "radix": 60,
+      "f": "11b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "11d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "12b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 2
+    },
+    {
+      "radix": 60,
+      "f": "12d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        4,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "139",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "13f",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "14d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "15f",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "163",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        4,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "165",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "169",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "171",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "177",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "17b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "187",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "18b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "18d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "19f",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 2
+    },
+    {
+      "radix": 60,
+      "f": "1a3",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1a9",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1b1",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1bd",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1c3",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1cf",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1d7",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        3,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1dd",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        3,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1e7",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1f3",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1f5",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 60,
+      "f": "1f9",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "11b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "11d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "12b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "12d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "139",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "13f",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "14d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "15f",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "163",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "165",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "169",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "171",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        3,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "177",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "17b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "187",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "18b",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "18d",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "19f",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        4,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1a3",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        3,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1a9",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1b1",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1bd",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1c3",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        3,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1cf",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1d7",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        2,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1dd",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1e7",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1f3",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1f5",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    },
+    {
+      "radix": 59,
+      "f": "1f9",
+      "counts": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        1,
+        0
+      ],
+      "live": 0,
+      "witnesses": [],
+      "plantWitnesses": 1
+    }
+  ]
+}
