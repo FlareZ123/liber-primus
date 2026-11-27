@@ -1,0 +1,90 @@
+[
+  {
+    "id": 45950804176,
+    "mode": "0",
+    "dictionary": 38938,
+    "budget": 6,
+    "eligible": 15,
+    "qualifying_pairs": 2188,
+    "coverage_max_independent": 6,
+    "coverage_nodes": 12529,
+    "joined": 7420813,
+    "consistent": 1857,
+    "keys": 2725,
+    "duplicates": 23,
+    "fast_pass": 1,
+    "fit_count": 1,
+    "omitted": [
+      2,
+      4,
+      13,
+      14,
+      15,
+      19
+    ],
+    "fits": [
+      {
+        "key": [
+          8,
+          49,
+          191,
+          591,
+          775,
+          97,
+          450,
+          285
+        ],
+        "training": 18,
+        "held": 40
+      }
+    ],
+    "exact": 1,
+    "train_truth": 24,
+    "held_truth": 40,
+    "held_count": 40
+  },
+  {
+    "id": 45950808984,
+    "mode": "1",
+    "dictionary": 38938,
+    "budget": 6,
+    "eligible": 15,
+    "qualifying_pairs": 1963,
+    "coverage_max_independent": 7,
+    "coverage_nodes": 69950,
+    "joined": 3980854,
+    "consistent": 1400,
+    "keys": 2811,
+    "duplicates": 20,
+    "fast_pass": 1,
+    "fit_count": 1,
+    "omitted": [
+      4,
+      6,
+      8,
+      11,
+      15,
+      19
+    ],
+    "fits": [
+      {
+        "key": [
+          59,
+          171,
+          593,
+          423,
+          729,
+          187,
+          484,
+          419
+        ],
+        "training": 18,
+        "held": 40
+      }
+    ],
+    "exact": 1,
+    "train_truth": 24,
+    "held_truth": 40,
+    "held_count": 40
+  }
+]
