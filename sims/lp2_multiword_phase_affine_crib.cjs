@@ -69,11 +69,11 @@ function solve(q,words,{nodeCap=300000,enumCap=2000000,actionCap=1000}={}){
  const D=new Int32Array(L).fill(full);D[0]=1;walk(B,Array(q).fill(null),D,L);
  return {complete,actions:[...actions.values()],groups:L,anchor:A[0].e.length,...counts};
 }
-function trial(words,q,seed){
+function trial(words,q,seed,heldWords=[]){
  let s=seed>>>0;function rng(n){s^=s<<13;s^=s>>>17;s^=s<<5;return Math.floor((s>>>0)/4294967296*n)}
  const pi=seq(Q);for(let i=28;i>1;i--){const j=1+rng(i);[pi[i],pi[j]]=[pi[j],pi[i]]}
  let k;do{k=seq(q).map(()=>rng(Q))}while(!primitive(k));
  const fit=words.map(p=>({p,c:encrypt(p,pi,k,rng(q))})),truth=canonical(pi,k);
- const r=solve(q,fit);return {q,seed,fitRunes:words.join("").length,maxConsuming:Math.max(...words.map(p=>p.replace(/0/g,"").length)),truth,truthRetained:r.actions.some(a=>canonical(a.pi,a.k)===truth),...r};
+ const held=heldWords.map(p=>({p,c:encrypt(p,pi,k,rng(q))}));const r=solve(q,fit),a=r.actions.find(a=>canonical(a.pi,a.k)===truth);return {heldTotal:held.length,heldTruth:a?held.filter(w=>matches(w,a.pi,a.k)).length:null,q,seed,fitRunes:words.join("").length,maxConsuming:Math.max(...words.map(p=>p.replace(/0/g,"").length)),truth,truthRetained:r.actions.some(a=>canonical(a.pi,a.k)===truth),...r};
 }
 module.exports={solve,trial,encrypt,canonical,matches,S};
