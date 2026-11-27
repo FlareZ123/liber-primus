@@ -14,8 +14,8 @@ from PIL import Image
 from io import BytesIO
 
 URLS = (
-    "https://www.researchgate.net/figure/profile/Ak-Soh/publication/8431487/figure/fig1/AS%3A601636183478286%401520452652827/Fig2-A-Scanning-image-of-a-cicada-showing-some-structural-and-morphological.png",
-    "https://www.researchgate.net/publication/profile/Ak-Soh/publication/8431487_Experimental_studies_of_the_material_properties_of_the_forewing_of_cicada_Homptera_Cicdidae/links/00b4951a02c8c97469000000/Experimental-studies-of-the-material-properties-of-the-forewing-of-cicada-Homptera-Cicdidae.pdf",
+    "https://www.researchgate.net/profile/Ak-Soh/publication/8431487/figure/fig1/AS%3A601636183478286%401520452652827/Fig2-A-Scanning-image-of-a-cicada-showing-some-structural-and-morphological.png",
+    "https://www.researchgate.net/profile/Ak-Soh/publication/8431487_Experimental_studies_of_the_material_properties_of_the_forewing_of_cicada_Homptera_Cicdidae/links/00b4951a02c8c97469000000/Experimental-studies-of-the-material-properties-of-the-forewing-of-cicada-Homptera-Cicdidae.pdf",
 )
 OUT = Path("im-results/lp2-p27-song2004-figure")
 OUT.mkdir(parents=True, exist_ok=True)
