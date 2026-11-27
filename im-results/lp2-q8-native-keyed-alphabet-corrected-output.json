@@ -1,0 +1,204 @@
+{
+  "dictionary": 38910,
+  "sourceWords": 272,
+  "alphabetBank": 527,
+  "controls": [
+    {
+      "index": 17,
+      "k": [
+        20,
+        28,
+        25,
+        11,
+        26,
+        12,
+        15,
+        3
+      ],
+      "omit": [
+        0,
+        13,
+        16
+      ],
+      "anchors": [
+        0,
+        13,
+        16,
+        34,
+        37,
+        45
+      ],
+      "threshold": 3,
+      "alphabets": 527,
+      "keysExamined": 14262715,
+      "maxVotes": 3,
+      "nCandidates": 1,
+      "bestSupport": 44,
+      "nFits": 1,
+      "fits": [
+        {
+          "p": [
+            0,
+            27,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            28,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ],
+          "k": [
+            3,
+            20,
+            28,
+            25,
+            11,
+            26,
+            12,
+            15
+          ],
+          "support": 44,
+          "v": 3
+        }
+      ],
+      "exact": true,
+      "heldCorrect": 17,
+      "trainTruth": 44,
+      "source": {
+        "keyword": "1f",
+        "convention": "rotate"
+      }
+    },
+    {
+      "index": 525,
+      "k": [
+        6,
+        21,
+        28,
+        16,
+        22,
+        0,
+        21,
+        5
+      ],
+      "omit": [
+        0,
+        13,
+        16
+      ],
+      "anchors": [
+        0,
+        13,
+        16,
+        34,
+        37,
+        45
+      ],
+      "threshold": 3,
+      "alphabets": 527,
+      "keysExamined": 14263508,
+      "maxVotes": 3,
+      "nCandidates": 1,
+      "bestSupport": 44,
+      "nFits": 1,
+      "fits": [
+        {
+          "p": [
+            0,
+            1,
+            26,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            28,
+            9,
+            10,
+            11,
+            27,
+            12,
+            13,
+            14,
+            15,
+            22,
+            16,
+            23,
+            17,
+            24,
+            21,
+            18,
+            19,
+            25,
+            20
+          ],
+          "k": [
+            0,
+            21,
+            5,
+            6,
+            21,
+            28,
+            16,
+            22
+          ],
+          "support": 44,
+          "v": 3
+        }
+      ],
+      "exact": true,
+      "heldCorrect": 17,
+      "trainTruth": 44,
+      "source": {
+        "keyword": "ojlnr2eaj",
+        "convention": "rotate"
+      }
+    }
+  ],
+  "original": {
+    "anchors": [
+      0,
+      13,
+      16,
+      34,
+      37,
+      45
+    ],
+    "threshold": 3,
+    "alphabets": 527,
+    "keysExamined": 14262218,
+    "maxVotes": 2,
+    "nCandidates": 0,
+    "bestSupport": -1,
+    "nFits": 0,
+    "fits": []
+  },
+  "inputs": {
+    "lex": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "fixture": "8960e113af36ee46186965e394ec6be18d69b74f",
+    "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
