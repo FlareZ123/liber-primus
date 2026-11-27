@@ -37,6 +37,22 @@ The earlier [185-line Mabinogion carrier reconstruction](2012-first-image-payloa
 
 The common 2012/2013 sender behavior is therefore first-occurrence addressing with forward-moving carrier position. The 2012 sample uses successive fixed lines and its carrier contains every requested character on the assigned line; it cannot identify the 2013 skip/wrap/escape rules. The 2014 sample still prevents calling this a universal organizer algorithm. This is an authentic source-specific reconstruction of two historical senders, not a new LP2 dictionary, key, or address grammar. Reproducer: [2012 sender SFT](../sims/cicada2012_first_occurrence_sender_sft.cjs), [raw result](cicada2012-first-occurrence-sender-output.json). Core executed on the pinned source through the connector; standalone Node wrapper not independently run.
 
+### #3202 — Paired 2012 book-code operand substitution (Agent7, 27 November)
+
+Two contemporaneous first-party branches of the same 22-record puzzle instruction survive as clear-signed bodies, rather than merely two modern transcriptions. In the pinned [Britannica payload](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/005-845145127.com/img/162667212858.jpg.asc) (blob `22f1a810c9a848afffe8e84e677eead6f41ff035`) and [Agrippa payload](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/005-845145127.com/img/everywhere.jpg.asc) (blob `8a0ea6bf59590c2f1b9cbaaaa8f2429eabc08f8b`), both version-4 RSA/SHA1 text signatures verify against the preserved 4096-bit primary public key. An independent executed RSA PKCS#1 v1.5 check of canonical cleartext, signature hashed subpackets and version-4 trailer recovered digests `f680f3223c0986818534851b3f67d0e05193797c` and `1271fec7d388bafbab50071be99175aac34b2407` respectively. This authenticates the payloads, not the dates or custody of the surrounding JPEGs.
+
+Both change the carrier clue and all address records; the 22 outputs documented in the [pinned participant decoding account](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/006-two-book-codes/README.md) differ at exactly four one-based positions (1,4,9,10). All three output digits are identical across the two branches, but the input record types are **not** identical:
+
+| Position | Britannica | Agrippa | Output |
+|---|---|---|---|
+| 3 | product of the first two primes | same | 6 |
+| 8 | the first prime | 24:3 | 2 |
+| 15 | product of the first two primes | same | 6 |
+
+The Agrippa result is reproduced directly from its pinned source file, skipping the five header lines and using one-based line/column addressing, for all 22 records; the Britannica result is the established archival decode (the connector returned empty text for the requested excerpt of its >1 MB carrier, so not independently replayed here). Crucially, identical output 2 is a literal computation in one authenticated instruction but a character lookup in the other. This proves that output digit identity does not select record type; it does not establish a universal prime-digit literal rule. The common format is typed records, not an immutable input alphabet or record-type mask. These are parallel authored branches, not evidence of chronological editing.
+
+The corresponding receiver condition in LP2 would be an independently readable coordinate record or literal operation in a known output slot with a specified carrier. The visible p10 digit 7 does not satisfy that condition (see the existing #2932 analysis); a decimal glyph alone cannot select literal versus lookup, and ink partition does not establish a shared record mask. Neither this paired comparison nor the earlier 2013/2014 sender controls select an LP2 operand or new cipher parameter. No original scan or freely chosen carrier is warranted. Retire this version pair as an LP2 key source pending an authenticated LP2 record grammar/carrier or independently aligned output. The comparison does not dismiss compressed or encrypted mixed records.
+
 ### Original LP2 transfer gate
 
 The only obvious source-visible binary type label is red/black rune ink. The corrected p0 ink annotation is included, all source spans match the canonical GP29 tape, and the image-corrected transcription's physical line/page carries remain intact. Across unknown p0–55, all **2,896** printed groups are monochrome: 50 red groups (213 runes) and 2,846 black groups (12,743 runes). This is a genuine type partition but not an authenticated literal/reference distinction.
