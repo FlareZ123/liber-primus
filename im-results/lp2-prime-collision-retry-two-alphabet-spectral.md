@@ -1,6 +1,6 @@
 # Blind two-alphabet prime collision-retry inverse
 
-**27 November 2026 — Agent 10.** Constructive full-key recovery on independent original-length literary controls; predictive negative on original. No authentic unknown key or plaintext.
+**27 November 2026 — Agent 10.** Constructive full-key recovery on independent original-length literary controls; predictive negative on original. The proposed extension adding authentic literal-F holds fails both a blind origin-selection control and a source-rune-frequency comparison across all 29 possible outer F ranks per trial. No authentic unknown key or plaintext.
 
 ## Why this model
 
@@ -37,3 +37,35 @@ A cross-fold conditional-shift screen of all 3,302 common chapter origins (0..33
 The predeclared long-width leading candidate 1654 was passed to the existing blind inverse with no additional origin tuning. A nonzero-origin Gibran control (3200) recovered both complete alphabets modulo gauge (58/58), 9701/9713 fitting runes and 3243/3243 held runes, equal to the oracle, and replayed exactly. Original candidate 1654 returned a legal nonlinguistic inverse, fit score -4.533178, frozen-key held score -4.625615 nats/rune, 285 retries, exact replay. Control held score -2.60429 nats/rune. No unknown plaintext/key. This is a predictive negative for the strongest screened origin, not an exhaustive alphabet/origin theorem.
 
 Reproducers: [screen](../sims/lp2_prime_collision_retry_unknown_origin_crossfold_sft.cjs), [receiver](../sims/lp2_prime_collision_retry_two_alphabet_spectral_sft.cjs), raw [original screen](lp2-prime-collision-retry-origin-prefilter-original.json), [selected control](lp2-prime-collision-retry-origin-selected-control3200.json), [selected original](lp2-prime-collision-retry-origin-selected-original1654.json). Four screening-control JSONs are named lp2-prime-collision-retry-origin-prefilter-control0..3.json. All cores executed connected V8; no standalone wrapper/CI claim. The receiver parameterization is d9868cc6.
+
+
+## Joint literal-F hold and collision-retry receiver: do not advance without a new clue
+
+Agent10's 27 November follow-up combines the two separately explored variable clocks. At each chapter reset, plaintext F emits literal ciphertext F and consumes no prime, even when preceded by F. Every other plaintext rune uses the ordinary two-alphabet prime-minus-one shift; a first draw matching the preceding emitted glyph may retry once with probability .81, consuming one additional prime. The joint clock displacement is retries minus holds. This is a plausible construction combining a genuine p56 convention with a hypothesis motivated by repeat suppression; no authentic clue selects their combination.
+
+### Origin selector calibration failed
+
+The approximate independent-uniform consuming-emission model assigns an observed rune c probabilities proportional to hold h=f·1[c=F], direct d=(1−f)(1−.81·1[c=previous])/29, and retry r=(1−f)·.81/29² (r=0 at the first rune). The prior f=.026950738655637404 is measured from the separate Emerson training tape. The posterior propagates net displacements −1,0,+1 respectively; consuming emissions contribute weighted prime residues at the actual shift index, not the index before a retry. The inherited crossfold association score ranks all 3,302 shared origins using the first 64,128,256,512 eligible prefix runes. The previously fixed retention criterion is true origin in the top16 at any width for **every** hidden control.
+
+| New hidden literary control | True origin | Ranks at 64 /128 /256 /512 |
+|---|---:|---|
+| Shakespeare, offset41000 |137|391 /836 /2 /1|
+| Shakespeare, offset150000 |911|2260 /996 /311 /112|
+
+The second control fails. The two remaining controls and original origin screen were not executed; the gate had already failed, so this method is not a valid selector. No original failure is inferred. [Frozen SFT](../sims/lp2_prime_fhold_collision_retry_origin_sft.cjs), commit c0e5a2188b02005c454eddcc464588d963bd380a. These two jobs were executed in connected V8; the full Node wrapper was not run.
+
+### Stronger independent diagnostic: all possible outer F ranks
+
+For a fixed inner permutation, prime origin, plaintext and collision coins, the entire output rank sequence depends on the outer permutation only through the numerical rank b of literal ciphertext F: equality/retry tests are invariant under relabeling the other 28 outputs. Thus enumerate **all 29 choices of b**, rather than randomly sample the outer permutation. Reuse the same hidden literary slice, inner permutation, origin and per-position coin tape in three paired architectures (joint hold/retry, ordinary-consuming retry, hold only). 192 seeded trials draw from Emerson, Shakespeare and Gibran, using the exact original nine chapter lengths, origins0–3301 and independently randomized inner maps. Donor windows can overlap; these are finite randomized controls, not 5,568 independent statistical observations.
+
+Original unknown tape has 458 literal ciphertext F, 86 equal adjacent pairs within chapters, including 4 FF. In the controls, true plaintext F count ranges 210–421. The repeat-matched subset is predeclared as |repeats−86|≤20.
+
+| Model | All outer-rank trials | Minimum F (all) | Median minimum over 29 ranks per trial | F≤458 | Repeat-matched count | Repeat-matched F≤458 |
+|---|---:|---:|---:|---:|---:|---:|
+| Combined |5,568|564|701|0|3,154|0|
+| Ordinary retry |5,568|358|396|3,794|5,046|3,442|
+| Hold only |5,568|572|705|0|0|0|
+
+The most favorable combined plant still emits 106 extra F; no trial matches the original F count even after exhaustive optimization of the outer F rank. The ordinary-consuming comparison has at least one favorable outer F rank in all192 trials. This is a conditional frequency mismatch, not an exact theorem for every inner map, plaintext, origin or collision path, and not evidence that the ordinary retry model decrypts LP2 (its earlier blind receiver was negative). In particular, it does not exclude a reserved-F alphabet or deliberate avoidance of emitting F on consuming steps, unusual F-poor prose, a nonuniform key or another operation. It removes the reason to spend further blind-recovery compute on this particular combined 29-symbol architecture absent independent evidence. No original candidate plaintext/key has been produced by it.
+
+[Executable control gate](../sims/lp2_prime_fhold_collision_retry_frequency_gate_sft.cjs) (2bd8c5a78ddeb98ade7a90584697421e934f68d3); [complete raw paired output](lp2-prime-fhold-collision-retry-frequency-gate-output.json) (fbc46cc4fd84c9c1e30ed59d4d7bcfbb4f6cc08a), including every inner map, donor offset, origin and 29 rank measurements per variant, and source blob IDs. Connected V8 executed the committed core in 18.222s. No separate Node wrapper/CI execution claimed.
