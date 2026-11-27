@@ -1,0 +1,236 @@
+[
+  {
+    "mode": "0",
+    "found": true,
+    "exact": true,
+    "training": 18,
+    "training_truth": 18,
+    "held": 40,
+    "held_truth": 40,
+    "held_count": 40,
+    "omitted": [
+      7,
+      8,
+      13,
+      17,
+      20,
+      22
+    ],
+    "B": [
+      0,
+      21,
+      9,
+      14,
+      1,
+      25,
+      19,
+      8,
+      10,
+      12,
+      18,
+      13,
+      16,
+      28,
+      20,
+      11,
+      22,
+      23,
+      15,
+      6,
+      7,
+      17,
+      24,
+      4,
+      27,
+      5,
+      3,
+      2,
+      26
+    ],
+    "key": [
+      1,
+      22,
+      2,
+      17,
+      28,
+      11,
+      7,
+      18
+    ],
+    "seeds": [
+      {
+        "seed": [
+          0,
+          8,
+          7
+        ],
+        "roots": 96,
+        "nodes": 0,
+        "tests": 251920,
+        "full": 0,
+        "rank": 24,
+        "timed": false,
+        "capped": false
+      },
+      {
+        "seed": [
+          0,
+          8,
+          1
+        ],
+        "roots": 96,
+        "nodes": 0,
+        "tests": 535480,
+        "full": 0,
+        "rank": 24,
+        "timed": false,
+        "capped": false
+      },
+      {
+        "seed": [
+          0,
+          7,
+          1
+        ],
+        "roots": 96,
+        "nodes": 0,
+        "tests": 109136,
+        "full": 0,
+        "rank": 22,
+        "timed": false,
+        "capped": false
+      },
+      {
+        "seed": [
+          0,
+          8,
+          23
+        ],
+        "roots": 96,
+        "nodes": 0,
+        "tests": 327536,
+        "full": 0,
+        "rank": 24,
+        "timed": false,
+        "capped": false
+      },
+      {
+        "seed": [
+          0,
+          7,
+          23
+        ],
+        "roots": 96,
+        "nodes": 0,
+        "tests": 106144,
+        "full": 0,
+        "rank": 22,
+        "timed": false,
+        "capped": false
+      },
+      {
+        "seed": [
+          0,
+          1,
+          23
+        ],
+        "roots": 8,
+        "nodes": 4,
+        "tests": 230070,
+        "full": 2,
+        "rank": 33,
+        "timed": false,
+        "capped": false
+      }
+    ]
+  },
+  {
+    "mode": "1",
+    "found": true,
+    "exact": true,
+    "training": 18,
+    "training_truth": 18,
+    "held": 40,
+    "held_truth": 40,
+    "held_count": 40,
+    "omitted": [
+      0,
+      8,
+      9,
+      16,
+      18,
+      22
+    ],
+    "B": [
+      0,
+      27,
+      25,
+      6,
+      14,
+      19,
+      2,
+      10,
+      18,
+      4,
+      12,
+      24,
+      1,
+      15,
+      11,
+      3,
+      20,
+      21,
+      8,
+      13,
+      17,
+      28,
+      22,
+      5,
+      23,
+      9,
+      16,
+      26,
+      7
+    ],
+    "key": [
+      0,
+      28,
+      22,
+      16,
+      7,
+      21,
+      15,
+      20
+    ],
+    "seeds": [
+      {
+        "seed": [
+          6,
+          3,
+          0
+        ],
+        "roots": 9,
+        "nodes": 0,
+        "tests": 16656,
+        "full": 0,
+        "rank": 19,
+        "timed": false,
+        "capped": false
+      },
+      {
+        "seed": [
+          6,
+          3,
+          1
+        ],
+        "roots": 1,
+        "nodes": 7,
+        "tests": 622478,
+        "full": 1,
+        "rank": 33,
+        "timed": false,
+        "capped": false
+      }
+    ]
+  }
+]
