@@ -1,0 +1,242 @@
+{
+  "results": [
+    {
+      "n": 11,
+      "q": 13,
+      "nodes": 3037,
+      "collisions": 1914,
+      "domainPrunes": 27,
+      "capped": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "n": 13,
+      "q": 13,
+      "nodes": 5575,
+      "collisions": 3261,
+      "domainPrunes": 163,
+      "capped": false,
+      "leaf": null,
+      "decision": "excluded"
+    }
+  ],
+  "controls": [
+    {
+      "seed": 1,
+      "n": 11,
+      "q": 13,
+      "nodes": 11734,
+      "collisions": 9884,
+      "domainPrunes": 0,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          12,
+          7,
+          0,
+          6,
+          8,
+          3,
+          6,
+          5,
+          6,
+          12,
+          7
+        ],
+        "free": 6
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 2,
+      "n": 11,
+      "q": 13,
+      "nodes": 39,
+      "collisions": 16,
+      "domainPrunes": 1,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          1,
+          7,
+          0,
+          12,
+          9,
+          2,
+          0,
+          11,
+          3,
+          5,
+          7
+        ],
+        "free": 6
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 3,
+      "n": 11,
+      "q": 13,
+      "nodes": 25089,
+      "collisions": 21246,
+      "domainPrunes": 0,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          1,
+          1,
+          0,
+          3,
+          5,
+          5,
+          7,
+          4,
+          9,
+          6,
+          10
+        ],
+        "free": 4
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 4,
+      "n": 11,
+      "q": 13,
+      "nodes": 9811,
+      "collisions": 8398,
+      "domainPrunes": 0,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          8,
+          2,
+          0,
+          9,
+          9,
+          10,
+          3,
+          9,
+          9,
+          3,
+          6
+        ],
+        "free": 3
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 1,
+      "n": 13,
+      "q": 13,
+      "nodes": 6192,
+      "collisions": 5047,
+      "domainPrunes": 0,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          5,
+          0,
+          6,
+          12,
+          1,
+          9,
+          12,
+          11,
+          12,
+          5,
+          0,
+          0,
+          10
+        ],
+        "free": 3
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 2,
+      "n": 13,
+      "q": 13,
+      "nodes": 52,
+      "collisions": 17,
+      "domainPrunes": 3,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          3,
+          12,
+          2,
+          1,
+          8,
+          4,
+          2,
+          0,
+          5,
+          10,
+          12,
+          0,
+          6
+        ],
+        "free": 4
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 3,
+      "n": 13,
+      "q": 13,
+      "nodes": 95158,
+      "collisions": 77755,
+      "domainPrunes": 0,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          2,
+          2,
+          1,
+          4,
+          6,
+          6,
+          8,
+          5,
+          10,
+          7,
+          11,
+          0,
+          7
+        ],
+        "free": 2
+      },
+      "decision": "relaxation_survives"
+    },
+    {
+      "seed": 4,
+      "n": 13,
+      "q": 13,
+      "nodes": 189722,
+      "collisions": 157913,
+      "domainPrunes": 0,
+      "capped": false,
+      "leaf": {
+        "phases": [
+          1,
+          0,
+          6,
+          4,
+          10,
+          5,
+          9,
+          10,
+          2,
+          9,
+          2,
+          0,
+          2
+        ],
+        "free": 1
+      },
+      "decision": "relaxation_survives"
+    }
+  ]
+}
