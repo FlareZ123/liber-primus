@@ -1,0 +1,4057 @@
+{
+  "soundness": {
+    "tested": 480,
+    "completions": 4014,
+    "strictMasks": 0,
+    "strictEmpty": 0,
+    "strictExample": null
+  },
+  "summary": {
+    "all": {
+      "cases": 72,
+      "sat": 51,
+      "solved": [
+        66,
+        69,
+        66
+      ],
+      "common": 66,
+      "ops": [
+        1877244,
+        1155212,
+        2229988
+      ],
+      "nodes": [
+        1258,
+        1353,
+        1204
+      ],
+      "wins": 2,
+      "losses": 61
+    },
+    "reduced": {
+      "cases": 48,
+      "sat": 35,
+      "solved": [
+        48,
+        48,
+        48
+      ],
+      "common": 48,
+      "ops": [
+        302867,
+        218609,
+        413242
+      ],
+      "nodes": [
+        872,
+        872,
+        845
+      ],
+      "wins": 2,
+      "losses": 45
+    },
+    "gp29": {
+      "cases": 24,
+      "sat": 16,
+      "solved": [
+        18,
+        21,
+        18
+      ],
+      "common": 18,
+      "ops": [
+        1574377,
+        936603,
+        1816746
+      ],
+      "nodes": [
+        386,
+        481,
+        359
+      ],
+      "wins": 0,
+      "losses": 16
+    }
+  },
+  "rows": [
+    {
+      "n": 3,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 6,
+      "a": {
+        "status": "sat",
+        "ops": 805,
+        "nodes": 9,
+        "witness": [
+          2,
+          0,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 768,
+        "nodes": 9,
+        "witness": [
+          2,
+          0,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 1210,
+        "nodes": 9,
+        "witness": [
+          2,
+          0,
+          1
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 1,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 6,
+      "a": {
+        "status": "unsat",
+        "ops": 67,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 67,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 67,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 6,
+      "a": {
+        "status": "sat",
+        "ops": 748,
+        "nodes": 5,
+        "witness": [
+          1,
+          2,
+          0
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 686,
+        "nodes": 5,
+        "witness": [
+          1,
+          2,
+          0
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 1452,
+        "nodes": 5,
+        "witness": [
+          1,
+          2,
+          0
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 3,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 6,
+      "a": {
+        "status": "unsat",
+        "ops": 121,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 129,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 135,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 6,
+      "a": {
+        "status": "sat",
+        "ops": 457,
+        "nodes": 5,
+        "witness": [
+          1,
+          2,
+          0
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 438,
+        "nodes": 5,
+        "witness": [
+          1,
+          2,
+          0
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 713,
+        "nodes": 5,
+        "witness": [
+          1,
+          2,
+          0
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 5,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 6,
+      "a": {
+        "status": "unsat",
+        "ops": 179,
+        "nodes": 4,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 185,
+        "nodes": 4,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 198,
+        "nodes": 4,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 6,
+      "a": {
+        "status": "sat",
+        "ops": 369,
+        "nodes": 4,
+        "witness": [
+          0,
+          1,
+          2
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 358,
+        "nodes": 4,
+        "witness": [
+          0,
+          1,
+          2
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 716,
+        "nodes": 4,
+        "witness": [
+          0,
+          1,
+          2
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 3,
+      "trial": 7,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 6,
+      "a": {
+        "status": "unsat",
+        "ops": 216,
+        "nodes": 5,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 227,
+        "nodes": 5,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 239,
+        "nodes": 5,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 24,
+      "a": {
+        "status": "sat",
+        "ops": 2385,
+        "nodes": 15,
+        "witness": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2149,
+        "nodes": 15,
+        "witness": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 3631,
+        "nodes": 15,
+        "witness": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 1,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 24,
+      "a": {
+        "status": "unsat",
+        "ops": 1319,
+        "nodes": 9,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 1115,
+        "nodes": 9,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 1415,
+        "nodes": 7,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 24,
+      "a": {
+        "status": "sat",
+        "ops": 1817,
+        "nodes": 10,
+        "witness": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 1497,
+        "nodes": 10,
+        "witness": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 3007,
+        "nodes": 10,
+        "witness": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "cuts": 1
+      }
+    },
+    {
+      "n": 4,
+      "trial": 3,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 24,
+      "a": {
+        "status": "unsat",
+        "ops": 981,
+        "nodes": 7,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 954,
+        "nodes": 7,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 542,
+        "nodes": 7,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 24,
+      "a": {
+        "status": "sat",
+        "ops": 1191,
+        "nodes": 8,
+        "witness": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 1020,
+        "nodes": 8,
+        "witness": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 2026,
+        "nodes": 8,
+        "witness": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 5,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 24,
+      "a": {
+        "status": "unsat",
+        "ops": 165,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 178,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 148,
+        "nodes": 3,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 24,
+      "a": {
+        "status": "sat",
+        "ops": 889,
+        "nodes": 5,
+        "witness": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 730,
+        "nodes": 5,
+        "witness": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 1580,
+        "nodes": 5,
+        "witness": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 4,
+      "trial": 7,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 24,
+      "a": {
+        "status": "unsat",
+        "ops": 818,
+        "nodes": 10,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 747,
+        "nodes": 10,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 1103,
+        "nodes": 10,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 120,
+      "a": {
+        "status": "sat",
+        "ops": 2520,
+        "nodes": 9,
+        "witness": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 1903,
+        "nodes": 9,
+        "witness": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 3374,
+        "nodes": 8,
+        "witness": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 1,
+      "planted": false,
+      "truth": "sat",
+      "completions": 120,
+      "a": {
+        "status": "sat",
+        "ops": 1059,
+        "nodes": 6,
+        "witness": [
+          0,
+          3,
+          1,
+          2,
+          4
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 826,
+        "nodes": 6,
+        "witness": [
+          0,
+          3,
+          1,
+          2,
+          4
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 1563,
+        "nodes": 6,
+        "witness": [
+          0,
+          3,
+          1,
+          2,
+          4
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 120,
+      "a": {
+        "status": "sat",
+        "ops": 1406,
+        "nodes": 6,
+        "witness": [
+          1,
+          0,
+          2,
+          4,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 1058,
+        "nodes": 6,
+        "witness": [
+          1,
+          0,
+          2,
+          4,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 2187,
+        "nodes": 6,
+        "witness": [
+          1,
+          0,
+          2,
+          4,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 3,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 120,
+      "a": {
+        "status": "unsat",
+        "ops": 8188,
+        "nodes": 31,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 6203,
+        "nodes": 31,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 12109,
+        "nodes": 29,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 120,
+      "a": {
+        "status": "sat",
+        "ops": 6853,
+        "nodes": 24,
+        "witness": [
+          2,
+          3,
+          4,
+          1,
+          0
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 5256,
+        "nodes": 24,
+        "witness": [
+          2,
+          3,
+          4,
+          1,
+          0
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 10188,
+        "nodes": 23,
+        "witness": [
+          2,
+          3,
+          4,
+          1,
+          0
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 5,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 120,
+      "a": {
+        "status": "unsat",
+        "ops": 11224,
+        "nodes": 30,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 8498,
+        "nodes": 30,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 16658,
+        "nodes": 29,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 120,
+      "a": {
+        "status": "sat",
+        "ops": 1175,
+        "nodes": 6,
+        "witness": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 907,
+        "nodes": 6,
+        "witness": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 1832,
+        "nodes": 6,
+        "witness": [
+          0,
+          1,
+          4,
+          3,
+          2
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 5,
+      "trial": 7,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 120,
+      "a": {
+        "status": "unsat",
+        "ops": 8090,
+        "nodes": 32,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 6223,
+        "nodes": 32,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 10403,
+        "nodes": 30,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 6,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 2944,
+        "nodes": 8,
+        "witness": [
+          0,
+          3,
+          2,
+          4,
+          5,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2189,
+        "nodes": 8,
+        "witness": [
+          0,
+          3,
+          2,
+          4,
+          5,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 4359,
+        "nodes": 8,
+        "witness": [
+          0,
+          3,
+          2,
+          4,
+          5,
+          1
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 6,
+      "trial": 1,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 39076,
+        "nodes": 89,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 28138,
+        "nodes": 89,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 53608,
+        "nodes": 87,
+        "witness": null,
+        "cuts": 2
+      }
+    },
+    {
+      "n": 6,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 2160,
+        "nodes": 7,
+        "witness": [
+          0,
+          2,
+          1,
+          5,
+          4,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 1599,
+        "nodes": 7,
+        "witness": [
+          0,
+          2,
+          1,
+          5,
+          4,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 3159,
+        "nodes": 7,
+        "witness": [
+          0,
+          2,
+          1,
+          5,
+          4,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 6,
+      "trial": 3,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 31923,
+        "nodes": 88,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 22807,
+        "nodes": 88,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 41920,
+        "nodes": 85,
+        "witness": null,
+        "cuts": 3
+      }
+    },
+    {
+      "n": 6,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 3932,
+        "nodes": 11,
+        "witness": [
+          1,
+          0,
+          4,
+          5,
+          2,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2780,
+        "nodes": 11,
+        "witness": [
+          1,
+          0,
+          4,
+          5,
+          2,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 5008,
+        "nodes": 10,
+        "witness": [
+          1,
+          0,
+          4,
+          5,
+          2,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 6,
+      "trial": 5,
+      "planted": false,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 11843,
+        "nodes": 33,
+        "witness": [
+          2,
+          4,
+          3,
+          1,
+          5,
+          0
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 8343,
+        "nodes": 33,
+        "witness": [
+          2,
+          4,
+          3,
+          1,
+          5,
+          0
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 16709,
+        "nodes": 32,
+        "witness": [
+          2,
+          4,
+          3,
+          1,
+          5,
+          0
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 6,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 1877,
+        "nodes": 9,
+        "witness": [
+          0,
+          1,
+          5,
+          3,
+          2,
+          4
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 1346,
+        "nodes": 9,
+        "witness": [
+          0,
+          1,
+          5,
+          3,
+          2,
+          4
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 2665,
+        "nodes": 9,
+        "witness": [
+          0,
+          1,
+          5,
+          3,
+          2,
+          4
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 6,
+      "trial": 7,
+      "planted": false,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 8657,
+        "nodes": 30,
+        "witness": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 6459,
+        "nodes": 30,
+        "witness": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 12719,
+        "nodes": 30,
+        "witness": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 3187,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          3,
+          4,
+          6,
+          2,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2325,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          3,
+          4,
+          6,
+          2,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 4362,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          3,
+          4,
+          6,
+          2,
+          1
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 1,
+      "planted": false,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 9063,
+        "nodes": 28,
+        "witness": [
+          1,
+          0,
+          4,
+          2,
+          3,
+          5,
+          6
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 6460,
+        "nodes": 28,
+        "witness": [
+          1,
+          0,
+          4,
+          2,
+          3,
+          5,
+          6
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 12314,
+        "nodes": 28,
+        "witness": [
+          1,
+          0,
+          4,
+          2,
+          3,
+          5,
+          6
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 3116,
+        "nodes": 10,
+        "witness": [
+          0,
+          4,
+          6,
+          3,
+          1,
+          2,
+          5
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2207,
+        "nodes": 10,
+        "witness": [
+          0,
+          4,
+          6,
+          3,
+          1,
+          2,
+          5
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 4240,
+        "nodes": 10,
+        "witness": [
+          0,
+          4,
+          6,
+          3,
+          1,
+          2,
+          5
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 3,
+      "planted": false,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 3204,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          3,
+          2,
+          1,
+          4,
+          6
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2212,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          3,
+          2,
+          1,
+          4,
+          6
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 4500,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          3,
+          2,
+          1,
+          4,
+          6
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 8920,
+        "nodes": 18,
+        "witness": [
+          0,
+          4,
+          6,
+          1,
+          5,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 6276,
+        "nodes": 18,
+        "witness": [
+          0,
+          4,
+          6,
+          1,
+          5,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 11992,
+        "nodes": 17,
+        "witness": [
+          0,
+          4,
+          6,
+          1,
+          5,
+          3,
+          2
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 5,
+      "planted": false,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 58559,
+        "nodes": 143,
+        "witness": [
+          0,
+          4,
+          2,
+          1,
+          5,
+          3,
+          6
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 40929,
+        "nodes": 143,
+        "witness": [
+          0,
+          4,
+          2,
+          1,
+          5,
+          3,
+          6
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 78032,
+        "nodes": 136,
+        "witness": [
+          0,
+          4,
+          2,
+          1,
+          5,
+          3,
+          6
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 3187,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          1,
+          4,
+          6,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2208,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          1,
+          4,
+          6,
+          3,
+          2
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 4436,
+        "nodes": 8,
+        "witness": [
+          0,
+          5,
+          1,
+          4,
+          6,
+          3,
+          2
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 7,
+      "trial": 7,
+      "planted": false,
+      "truth": "sat",
+      "completions": 5040,
+      "a": {
+        "status": "sat",
+        "ops": 14367,
+        "nodes": 30,
+        "witness": [
+          0,
+          3,
+          1,
+          2,
+          5,
+          6,
+          4
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 10293,
+        "nodes": 30,
+        "witness": [
+          0,
+          3,
+          1,
+          2,
+          5,
+          6,
+          4
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 18979,
+        "nodes": 27,
+        "witness": [
+          0,
+          3,
+          1,
+          2,
+          5,
+          6,
+          4
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 3063,
+        "nodes": 9,
+        "witness": [
+          0,
+          3,
+          6,
+          4,
+          5,
+          7,
+          2,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2071,
+        "nodes": 9,
+        "witness": [
+          0,
+          3,
+          6,
+          4,
+          5,
+          7,
+          2,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 3979,
+        "nodes": 9,
+        "witness": [
+          0,
+          3,
+          6,
+          4,
+          5,
+          7,
+          2,
+          1
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 1,
+      "planted": false,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 12736,
+        "nodes": 23,
+        "witness": [
+          0,
+          1,
+          4,
+          7,
+          6,
+          3,
+          2,
+          5
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 8705,
+        "nodes": 23,
+        "witness": [
+          0,
+          1,
+          4,
+          7,
+          6,
+          3,
+          2,
+          5
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 16491,
+        "nodes": 23,
+        "witness": [
+          0,
+          1,
+          4,
+          7,
+          6,
+          3,
+          2,
+          5
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 3908,
+        "nodes": 9,
+        "witness": [
+          0,
+          2,
+          6,
+          7,
+          5,
+          4,
+          3,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2696,
+        "nodes": 9,
+        "witness": [
+          0,
+          2,
+          6,
+          7,
+          5,
+          4,
+          3,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 5192,
+        "nodes": 9,
+        "witness": [
+          0,
+          2,
+          6,
+          7,
+          5,
+          4,
+          3,
+          1
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 3,
+      "planted": false,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 6528,
+        "nodes": 14,
+        "witness": [
+          1,
+          0,
+          7,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 4474,
+        "nodes": 14,
+        "witness": [
+          1,
+          0,
+          7,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 8686,
+        "nodes": 14,
+        "witness": [
+          1,
+          0,
+          7,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 4394,
+        "nodes": 9,
+        "witness": [
+          1,
+          4,
+          2,
+          0,
+          3,
+          5,
+          6,
+          7
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2914,
+        "nodes": 9,
+        "witness": [
+          1,
+          4,
+          2,
+          0,
+          3,
+          5,
+          6,
+          7
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 5886,
+        "nodes": 9,
+        "witness": [
+          1,
+          4,
+          2,
+          0,
+          3,
+          5,
+          6,
+          7
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 5,
+      "planted": false,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 4418,
+        "nodes": 11,
+        "witness": [
+          0,
+          1,
+          4,
+          5,
+          3,
+          2,
+          7,
+          6
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 3055,
+        "nodes": 11,
+        "witness": [
+          0,
+          1,
+          4,
+          5,
+          3,
+          2,
+          7,
+          6
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 5903,
+        "nodes": 11,
+        "witness": [
+          0,
+          1,
+          4,
+          5,
+          3,
+          2,
+          7,
+          6
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 3597,
+        "nodes": 10,
+        "witness": [
+          0,
+          7,
+          3,
+          6,
+          1,
+          5,
+          2,
+          4
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 2482,
+        "nodes": 10,
+        "witness": [
+          0,
+          7,
+          3,
+          6,
+          1,
+          5,
+          2,
+          4
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 4722,
+        "nodes": 10,
+        "witness": [
+          0,
+          7,
+          3,
+          6,
+          1,
+          5,
+          2,
+          4
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 8,
+      "trial": 7,
+      "planted": false,
+      "truth": "sat",
+      "completions": 40320,
+      "a": {
+        "status": "sat",
+        "ops": 5166,
+        "nodes": 10,
+        "witness": [
+          0,
+          4,
+          7,
+          5,
+          1,
+          6,
+          2,
+          3
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 3519,
+        "nodes": 10,
+        "witness": [
+          0,
+          4,
+          7,
+          5,
+          1,
+          6,
+          2,
+          3
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 6885,
+        "nodes": 10,
+        "witness": [
+          0,
+          4,
+          7,
+          5,
+          1,
+          6,
+          2,
+          3
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 0,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 138318,
+        "nodes": 17,
+        "witness": [
+          14,
+          5,
+          9,
+          7,
+          27,
+          2,
+          22,
+          25,
+          11,
+          13,
+          16,
+          18,
+          28,
+          6,
+          26,
+          15,
+          1,
+          10,
+          17,
+          12,
+          21,
+          20,
+          8,
+          23,
+          3,
+          24,
+          4,
+          0,
+          19
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 81612,
+        "nodes": 17,
+        "witness": [
+          14,
+          5,
+          9,
+          7,
+          27,
+          2,
+          22,
+          25,
+          11,
+          13,
+          16,
+          18,
+          28,
+          6,
+          26,
+          15,
+          1,
+          10,
+          17,
+          12,
+          21,
+          20,
+          8,
+          23,
+          3,
+          24,
+          4,
+          0,
+          19
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 164292,
+        "nodes": 17,
+        "witness": [
+          14,
+          5,
+          9,
+          7,
+          27,
+          2,
+          22,
+          25,
+          11,
+          13,
+          16,
+          18,
+          28,
+          6,
+          26,
+          15,
+          1,
+          10,
+          17,
+          12,
+          21,
+          20,
+          8,
+          23,
+          3,
+          24,
+          4,
+          0,
+          19
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 1,
+      "planted": false,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 29,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 193253,
+        "nodes": 37,
+        "witness": [
+          7,
+          8,
+          28,
+          17,
+          25,
+          6,
+          15,
+          9,
+          10,
+          0,
+          13,
+          5,
+          19,
+          20,
+          24,
+          23,
+          3,
+          18,
+          12,
+          4,
+          21,
+          1,
+          16,
+          27,
+          2,
+          11,
+          26,
+          22,
+          14
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 24,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 2,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 30,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 207883,
+        "nodes": 44,
+        "witness": [
+          3,
+          8,
+          19,
+          16,
+          27,
+          25,
+          6,
+          7,
+          24,
+          0,
+          14,
+          21,
+          5,
+          18,
+          9,
+          11,
+          13,
+          20,
+          28,
+          15,
+          26,
+          4,
+          12,
+          1,
+          2,
+          23,
+          22,
+          10,
+          17
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 27,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 3,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 39,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 39,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 39,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 4,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 122082,
+        "nodes": 13,
+        "witness": [
+          13,
+          15,
+          22,
+          23,
+          18,
+          2,
+          3,
+          20,
+          27,
+          1,
+          6,
+          14,
+          17,
+          7,
+          16,
+          4,
+          5,
+          26,
+          8,
+          9,
+          0,
+          11,
+          21,
+          10,
+          12,
+          25,
+          28,
+          19,
+          24
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 73043,
+        "nodes": 13,
+        "witness": [
+          13,
+          15,
+          22,
+          23,
+          18,
+          2,
+          3,
+          20,
+          27,
+          1,
+          6,
+          14,
+          17,
+          7,
+          16,
+          4,
+          5,
+          26,
+          8,
+          9,
+          0,
+          11,
+          21,
+          10,
+          12,
+          25,
+          28,
+          19,
+          24
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 126322,
+        "nodes": 11,
+        "witness": [
+          13,
+          15,
+          22,
+          23,
+          18,
+          2,
+          3,
+          20,
+          27,
+          1,
+          6,
+          14,
+          17,
+          7,
+          16,
+          4,
+          5,
+          26,
+          8,
+          9,
+          0,
+          11,
+          21,
+          10,
+          12,
+          25,
+          28,
+          19,
+          24
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 5,
+      "planted": false,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 47400,
+        "nodes": 8,
+        "witness": [
+          2,
+          25,
+          5,
+          21,
+          16,
+          14,
+          23,
+          0,
+          15,
+          24,
+          17,
+          9,
+          28,
+          6,
+          27,
+          20,
+          11,
+          19,
+          18,
+          4,
+          7,
+          8,
+          22,
+          3,
+          10,
+          13,
+          12,
+          26,
+          1
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 28006,
+        "nodes": 8,
+        "witness": [
+          2,
+          25,
+          5,
+          21,
+          16,
+          14,
+          23,
+          0,
+          15,
+          24,
+          17,
+          9,
+          28,
+          6,
+          27,
+          20,
+          11,
+          19,
+          18,
+          4,
+          7,
+          8,
+          22,
+          3,
+          10,
+          13,
+          12,
+          26,
+          1
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 53739,
+        "nodes": 8,
+        "witness": [
+          2,
+          25,
+          5,
+          21,
+          16,
+          14,
+          23,
+          0,
+          15,
+          24,
+          17,
+          9,
+          28,
+          6,
+          27,
+          20,
+          11,
+          19,
+          18,
+          4,
+          7,
+          8,
+          22,
+          3,
+          10,
+          13,
+          12,
+          26,
+          1
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 6,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 40121,
+        "nodes": 7,
+        "witness": [
+          4,
+          3,
+          10,
+          22,
+          12,
+          20,
+          15,
+          21,
+          6,
+          16,
+          2,
+          13,
+          28,
+          24,
+          17,
+          19,
+          8,
+          0,
+          26,
+          1,
+          23,
+          18,
+          27,
+          7,
+          25,
+          11,
+          5,
+          14,
+          9
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 23381,
+        "nodes": 7,
+        "witness": [
+          4,
+          3,
+          10,
+          22,
+          12,
+          20,
+          15,
+          21,
+          6,
+          16,
+          2,
+          13,
+          28,
+          24,
+          17,
+          19,
+          8,
+          0,
+          26,
+          1,
+          23,
+          18,
+          27,
+          7,
+          25,
+          11,
+          5,
+          14,
+          9
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 46444,
+        "nodes": 7,
+        "witness": [
+          4,
+          3,
+          10,
+          22,
+          12,
+          20,
+          15,
+          21,
+          6,
+          16,
+          2,
+          13,
+          28,
+          24,
+          17,
+          19,
+          8,
+          0,
+          26,
+          1,
+          23,
+          18,
+          27,
+          7,
+          25,
+          11,
+          5,
+          14,
+          9
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 7,
+      "planted": false,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 24,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 44,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 22,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 8,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 35277,
+        "nodes": 7,
+        "witness": [
+          20,
+          8,
+          25,
+          15,
+          18,
+          14,
+          4,
+          11,
+          5,
+          13,
+          7,
+          0,
+          1,
+          21,
+          27,
+          23,
+          3,
+          28,
+          16,
+          22,
+          26,
+          9,
+          2,
+          12,
+          24,
+          17,
+          10,
+          6,
+          19
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 20880,
+        "nodes": 7,
+        "witness": [
+          20,
+          8,
+          25,
+          15,
+          18,
+          14,
+          4,
+          11,
+          5,
+          13,
+          7,
+          0,
+          1,
+          21,
+          27,
+          23,
+          3,
+          28,
+          16,
+          22,
+          26,
+          9,
+          2,
+          12,
+          24,
+          17,
+          10,
+          6,
+          19
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 45223,
+        "nodes": 7,
+        "witness": [
+          20,
+          8,
+          25,
+          15,
+          18,
+          14,
+          4,
+          11,
+          5,
+          13,
+          7,
+          0,
+          1,
+          21,
+          27,
+          23,
+          3,
+          28,
+          16,
+          22,
+          26,
+          9,
+          2,
+          12,
+          24,
+          17,
+          10,
+          6,
+          19
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 9,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 28,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 50,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 26,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 10,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 138949,
+        "nodes": 16,
+        "witness": [
+          20,
+          9,
+          11,
+          8,
+          28,
+          12,
+          18,
+          25,
+          21,
+          7,
+          15,
+          2,
+          4,
+          26,
+          6,
+          27,
+          3,
+          1,
+          10,
+          14,
+          17,
+          23,
+          24,
+          0,
+          19,
+          5,
+          13,
+          16,
+          22
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 84184,
+        "nodes": 16,
+        "witness": [
+          20,
+          9,
+          11,
+          8,
+          28,
+          12,
+          18,
+          25,
+          21,
+          7,
+          15,
+          2,
+          4,
+          26,
+          6,
+          27,
+          3,
+          1,
+          10,
+          14,
+          17,
+          23,
+          24,
+          0,
+          19,
+          5,
+          13,
+          16,
+          22
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 169134,
+        "nodes": 16,
+        "witness": [
+          20,
+          9,
+          11,
+          8,
+          28,
+          12,
+          18,
+          25,
+          21,
+          7,
+          15,
+          2,
+          4,
+          26,
+          6,
+          27,
+          3,
+          1,
+          10,
+          14,
+          17,
+          23,
+          24,
+          0,
+          19,
+          5,
+          13,
+          16,
+          22
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 11,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 29,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 226038,
+        "nodes": 43,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 27,
+        "witness": null,
+        "cuts": 2
+      }
+    },
+    {
+      "n": 29,
+      "trial": 12,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 156093,
+        "nodes": 22,
+        "witness": [
+          4,
+          11,
+          17,
+          26,
+          10,
+          1,
+          25,
+          2,
+          22,
+          18,
+          0,
+          19,
+          5,
+          12,
+          28,
+          27,
+          14,
+          24,
+          13,
+          20,
+          16,
+          3,
+          6,
+          8,
+          15,
+          23,
+          9,
+          21,
+          7
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 93899,
+        "nodes": 22,
+        "witness": [
+          4,
+          11,
+          17,
+          26,
+          10,
+          1,
+          25,
+          2,
+          22,
+          18,
+          0,
+          19,
+          5,
+          12,
+          28,
+          27,
+          14,
+          24,
+          13,
+          20,
+          16,
+          3,
+          6,
+          8,
+          15,
+          23,
+          9,
+          21,
+          7
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 172519,
+        "nodes": 21,
+        "witness": [
+          4,
+          11,
+          17,
+          26,
+          10,
+          1,
+          25,
+          2,
+          22,
+          18,
+          0,
+          19,
+          5,
+          12,
+          28,
+          27,
+          14,
+          24,
+          13,
+          20,
+          16,
+          3,
+          6,
+          8,
+          15,
+          23,
+          9,
+          21,
+          7
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 13,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 39,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 39,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 39,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 14,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 34450,
+        "nodes": 7,
+        "witness": [
+          18,
+          25,
+          3,
+          14,
+          8,
+          4,
+          7,
+          11,
+          1,
+          12,
+          17,
+          6,
+          26,
+          13,
+          5,
+          23,
+          22,
+          9,
+          10,
+          27,
+          2,
+          24,
+          16,
+          21,
+          15,
+          20,
+          19,
+          0,
+          28
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 20103,
+        "nodes": 7,
+        "witness": [
+          18,
+          25,
+          3,
+          14,
+          8,
+          4,
+          7,
+          11,
+          1,
+          12,
+          17,
+          6,
+          26,
+          13,
+          5,
+          23,
+          22,
+          9,
+          10,
+          27,
+          2,
+          24,
+          16,
+          21,
+          15,
+          20,
+          19,
+          0,
+          28
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 40247,
+        "nodes": 7,
+        "witness": [
+          18,
+          25,
+          3,
+          14,
+          8,
+          4,
+          7,
+          11,
+          1,
+          12,
+          17,
+          6,
+          26,
+          13,
+          5,
+          23,
+          22,
+          9,
+          10,
+          27,
+          2,
+          24,
+          16,
+          21,
+          15,
+          20,
+          19,
+          0,
+          28
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 15,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 30,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 30,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 30,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 16,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 215432,
+        "nodes": 24,
+        "witness": [
+          22,
+          4,
+          9,
+          26,
+          27,
+          12,
+          25,
+          6,
+          24,
+          5,
+          23,
+          19,
+          17,
+          18,
+          16,
+          20,
+          7,
+          21,
+          10,
+          14,
+          2,
+          3,
+          28,
+          15,
+          11,
+          8,
+          13,
+          1,
+          0
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 127301,
+        "nodes": 24,
+        "witness": [
+          22,
+          4,
+          9,
+          26,
+          27,
+          12,
+          25,
+          6,
+          24,
+          5,
+          23,
+          19,
+          17,
+          18,
+          16,
+          20,
+          7,
+          21,
+          10,
+          14,
+          2,
+          3,
+          28,
+          15,
+          11,
+          8,
+          13,
+          1,
+          0
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 245349,
+        "nodes": 23,
+        "witness": [
+          22,
+          4,
+          9,
+          26,
+          27,
+          12,
+          25,
+          6,
+          24,
+          5,
+          23,
+          19,
+          17,
+          18,
+          16,
+          20,
+          7,
+          21,
+          10,
+          14,
+          2,
+          3,
+          28,
+          15,
+          11,
+          8,
+          13,
+          1,
+          0
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 17,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 32,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 49,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unknown",
+        "ops": 250001,
+        "nodes": 25,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 18,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 154285,
+        "nodes": 23,
+        "witness": [
+          17,
+          14,
+          19,
+          2,
+          4,
+          15,
+          8,
+          26,
+          23,
+          7,
+          0,
+          25,
+          1,
+          10,
+          3,
+          22,
+          13,
+          28,
+          11,
+          27,
+          5,
+          12,
+          20,
+          16,
+          6,
+          21,
+          9,
+          24,
+          18
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 92389,
+        "nodes": 23,
+        "witness": [
+          17,
+          14,
+          19,
+          2,
+          4,
+          15,
+          8,
+          26,
+          23,
+          7,
+          0,
+          25,
+          1,
+          10,
+          3,
+          22,
+          13,
+          28,
+          11,
+          27,
+          5,
+          12,
+          20,
+          16,
+          6,
+          21,
+          9,
+          24,
+          18
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 185321,
+        "nodes": 23,
+        "witness": [
+          17,
+          14,
+          19,
+          2,
+          4,
+          15,
+          8,
+          26,
+          23,
+          7,
+          0,
+          25,
+          1,
+          10,
+          3,
+          22,
+          13,
+          28,
+          11,
+          27,
+          5,
+          12,
+          20,
+          16,
+          6,
+          21,
+          9,
+          24,
+          18
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 19,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 32,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 32,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 32,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 20,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 89413,
+        "nodes": 11,
+        "witness": [
+          2,
+          1,
+          15,
+          17,
+          9,
+          8,
+          18,
+          6,
+          12,
+          23,
+          28,
+          19,
+          0,
+          10,
+          27,
+          7,
+          21,
+          13,
+          5,
+          11,
+          16,
+          26,
+          20,
+          3,
+          24,
+          14,
+          4,
+          25,
+          22
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 53098,
+        "nodes": 11,
+        "witness": [
+          2,
+          1,
+          15,
+          17,
+          9,
+          8,
+          18,
+          6,
+          12,
+          23,
+          28,
+          19,
+          0,
+          10,
+          27,
+          7,
+          21,
+          13,
+          5,
+          11,
+          16,
+          26,
+          20,
+          3,
+          24,
+          14,
+          4,
+          25,
+          22
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 99476,
+        "nodes": 10,
+        "witness": [
+          2,
+          1,
+          15,
+          17,
+          9,
+          8,
+          18,
+          6,
+          12,
+          23,
+          28,
+          19,
+          0,
+          10,
+          27,
+          7,
+          21,
+          13,
+          5,
+          11,
+          16,
+          26,
+          20,
+          3,
+          24,
+          14,
+          4,
+          25,
+          22
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 21,
+      "planted": false,
+      "truth": "unsat",
+      "completions": 720,
+      "a": {
+        "status": "unsat",
+        "ops": 38,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "b": {
+        "status": "unsat",
+        "ops": 38,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      },
+      "c": {
+        "status": "unsat",
+        "ops": 38,
+        "nodes": 1,
+        "witness": null,
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 22,
+      "planted": true,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 200704,
+        "nodes": 25,
+        "witness": [
+          12,
+          14,
+          25,
+          1,
+          20,
+          13,
+          6,
+          2,
+          10,
+          7,
+          9,
+          11,
+          22,
+          23,
+          19,
+          17,
+          18,
+          4,
+          5,
+          28,
+          8,
+          16,
+          21,
+          24,
+          3,
+          27,
+          15,
+          0,
+          26
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 119435,
+        "nodes": 25,
+        "witness": [
+          12,
+          14,
+          25,
+          1,
+          20,
+          13,
+          6,
+          2,
+          10,
+          7,
+          9,
+          11,
+          22,
+          23,
+          19,
+          17,
+          18,
+          4,
+          5,
+          28,
+          8,
+          16,
+          21,
+          24,
+          3,
+          27,
+          15,
+          0,
+          26
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 237537,
+        "nodes": 24,
+        "witness": [
+          12,
+          14,
+          25,
+          1,
+          20,
+          13,
+          6,
+          2,
+          10,
+          7,
+          9,
+          11,
+          22,
+          23,
+          19,
+          17,
+          18,
+          4,
+          5,
+          28,
+          8,
+          16,
+          21,
+          24,
+          3,
+          27,
+          15,
+          0,
+          26
+        ],
+        "cuts": 0
+      }
+    },
+    {
+      "n": 29,
+      "trial": 23,
+      "planted": false,
+      "truth": "sat",
+      "completions": 720,
+      "a": {
+        "status": "sat",
+        "ops": 201675,
+        "nodes": 29,
+        "witness": [
+          5,
+          4,
+          1,
+          3,
+          12,
+          2,
+          7,
+          6,
+          21,
+          14,
+          25,
+          16,
+          28,
+          20,
+          0,
+          22,
+          15,
+          26,
+          27,
+          24,
+          19,
+          11,
+          18,
+          17,
+          23,
+          9,
+          10,
+          13,
+          8
+        ],
+        "cuts": 0
+      },
+      "b": {
+        "status": "sat",
+        "ops": 119094,
+        "nodes": 29,
+        "witness": [
+          5,
+          4,
+          1,
+          3,
+          12,
+          2,
+          7,
+          6,
+          21,
+          14,
+          25,
+          16,
+          28,
+          20,
+          0,
+          22,
+          15,
+          26,
+          27,
+          24,
+          19,
+          11,
+          18,
+          17,
+          23,
+          9,
+          10,
+          13,
+          8
+        ],
+        "cuts": 0
+      },
+      "c": {
+        "status": "sat",
+        "ops": 230965,
+        "nodes": 29,
+        "witness": [
+          5,
+          4,
+          1,
+          3,
+          12,
+          2,
+          7,
+          6,
+          21,
+          14,
+          25,
+          16,
+          28,
+          20,
+          0,
+          22,
+          15,
+          26,
+          27,
+          24,
+          19,
+          11,
+          18,
+          17,
+          23,
+          9,
+          10,
+          13,
+          8
+        ],
+        "cuts": 0
+      }
+    }
+  ]
+}
