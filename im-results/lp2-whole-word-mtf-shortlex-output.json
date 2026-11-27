@@ -1,0 +1,158 @@
+{
+  "initialDictionary": 1390,
+  "controls": [
+    {
+      "name": "LP1p3",
+      "groups": 31,
+      "inputRunes": 157,
+      "digits": 117,
+      "over4": 12,
+      "oov": 13,
+      "finalDictionary": 1403,
+      "repeatRate": 0.02586206896551724,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP1p8",
+      "groups": 40,
+      "inputRunes": 187,
+      "digits": 115,
+      "over4": 7,
+      "oov": 8,
+      "finalDictionary": 1398,
+      "repeatRate": 0.07017543859649122,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP1p9",
+      "groups": 55,
+      "inputRunes": 207,
+      "digits": 133,
+      "over4": 6,
+      "oov": 11,
+      "finalDictionary": 1401,
+      "repeatRate": 0.06060606060606061,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP1p10",
+      "groups": 49,
+      "inputRunes": 192,
+      "digits": 135,
+      "over4": 9,
+      "oov": 10,
+      "finalDictionary": 1400,
+      "repeatRate": 0.06716417910447761,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP1p11",
+      "groups": 38,
+      "inputRunes": 169,
+      "digits": 113,
+      "over4": 7,
+      "oov": 10,
+      "finalDictionary": 1400,
+      "repeatRate": 0.03571428571428571,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP1p14",
+      "groups": 18,
+      "inputRunes": 89,
+      "digits": 57,
+      "over4": 4,
+      "oov": 4,
+      "finalDictionary": 1394,
+      "repeatRate": 0.05357142857142857,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP2p56",
+      "groups": 25,
+      "inputRunes": 85,
+      "digits": 64,
+      "over4": 3,
+      "oov": 6,
+      "finalDictionary": 1396,
+      "repeatRate": 0.06349206349206349,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "LP2p57",
+      "groups": 20,
+      "inputRunes": 95,
+      "digits": 75,
+      "over4": 5,
+      "oov": 7,
+      "finalDictionary": 1397,
+      "repeatRate": 0.02702702702702703,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "Book of Law I",
+      "groups": 1897,
+      "inputRunes": 6958,
+      "digits": 4482,
+      "over4": 222,
+      "oov": 311,
+      "finalDictionary": 1701,
+      "repeatRate": 0.04887301941530908,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "Self-Reliance",
+      "groups": 10170,
+      "inputRunes": 41181,
+      "digits": 27641,
+      "over4": 1636,
+      "oov": 1953,
+      "finalDictionary": 3343,
+      "repeatRate": 0.04077424023154848,
+      "wrongOrderExact": false,
+      "wrongUpdateExact": false
+    },
+    {
+      "name": "literal edge",
+      "groups": 4,
+      "inputRunes": 19,
+      "digits": 22,
+      "over4": 1,
+      "oov": 3,
+      "finalDictionary": 1393,
+      "repeatRate": 0.5714285714285714,
+      "wrongOrderExact": true,
+      "wrongUpdateExact": true
+    }
+  ],
+  "original": {
+    "groups": 2896,
+    "knownRankCeiling": 4285,
+    "status": "nonminimal",
+    "firstFailureGroup": 3,
+    "firstFailureGlyphs": "ᚠᛄᛟ",
+    "literalCountBeforeFailure": 3,
+    "over4": 1132,
+    "nonminimal": 116,
+    "minimumOOVIfOnlyMinimalRepaired": 1132,
+    "minimumOOVAmongCanonicalGroups": 2155
+  },
+  "inputBlobs": {
+    "sims/lp2_whole_word_mtf_shortlex_sft.cjs": "641b450fc8cac97ee0bfb12cb14403e26ed9b6cb",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/transcriptions/lp1_wulfic_canonical.txt": "37c96b816495c5f93ca658a01c9918bf92598316",
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/external/blake-marriage-1906-gutenberg45315.txt": "fc503b01bbedbec4e0c8b3d1ded311bed8e28874",
+    "resources/external/2013-book-of-law-I.txt": "64876892683fab1467481fe87d85743a8ea17982",
+    "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt": "12a6bc018047a1276e77f2b7f633d5905732fff9"
+  }
+}
