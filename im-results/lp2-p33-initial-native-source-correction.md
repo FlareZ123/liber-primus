@@ -45,3 +45,14 @@ No original prose, including the maximum full-score candidate (stock −4.584550
 [Runnable JS SFT](../sims/lp2_p32_tree_road_priority_sft.cjs) · [complete actual output](lp2-p32-tree-road-priority-output.json). Original JS executed in connected runtime; standalone Node file was committed but no independent CI execution claimed.
 
 **Decision:** retire the M/NG-based receiver-selection chain and this finite road-priority pad/receiver-permutation family. Preserve the independent art registrations, literal D and NG, 10/8 title lengths, 81/115 bodies, the dimensional sum identity, and unrelated exact arithmetic. Reconsider only if a genuinely independent authored operation is found.
+
+## Correct-input bounded direct inverse (follow-up)
+
+The corrected shared DH value19 happens also to equal the previously known B and p50 page address19→33. The D-prime q4 endpoint92 equals the signed word EMPTY's GP0 and the previously noticed SEEKS route step7; D is the only GP prime seed hitting92 at exactly q4 (three of 256 table addresses do). These are retrospective overlaps with an already selected target, not independent predictions. The D/NG prime-index PARABLE headings do not form coherent directions. To make the changed source operand actionable, executed the minimal direct consumers, without phases or altered traversal:
+- For each p33 black body start the existing base60 successor walk at its **actual enlarged initial prime** (89 or79); consume successive address residues mod29, starting with the seed itself.
+- For lower115, reuse the previously tested DH23 orbit consumer, replacing wrong marker-derived key8 with actual derived key19; multiply by g=5 through 22 nonzero states, append zero, repeat. The key2 alternative remains previously negative.
+- For each of these three fixed streams, both signs and ordinary vs authentic plaintext-F-hold; enumerate every legal exact plaintext history. No original fitting.
+
+All 24 solved-native plants (p56/p57 × three streams × two signs × two clocks; lengths81–95) retained their exact true history. Top-language recovery: 24/24, minimum accuracy 100.00%. All legal original paths replay exactly. With F holds the four graph-walk variants have **zero legal paths**, as does the DH19 negative sign. DH19 positive sign allows three paths, best score −5.083007, all nonprose. Ordinary D-seed best −5.139480 vs raw −5.188965; NG best −5.029109 vs raw −5.002447; DH19 best −5.158627. These are nonlinguistic relative to solved native controls (about −2.47 to −2.54 for p57). The source-corrected operands therefore do not supply a direct decipherment. Stop this family rather than expanding phases, recurrence parameters or masks.
+
+[Read-only SFT](../sims/lp2_p33_corrected_initial_direct_inverse_sft.cjs) · [complete original and control outputs](lp2-p33-corrected-initial-direct-inverse-output.json).
