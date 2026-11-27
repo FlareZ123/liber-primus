@@ -39,7 +39,7 @@ RADII=(6,8,10,12)
 INTERFACES=(16,24,32)
 
 def emit_image(tag,im):
-    mem=BytesIO(); im.save(mem,format="PNG",optimize=True)
+    mem=BytesIO(); im.convert("RGB").save(mem,format="JPEG",quality=76,optimize=True)
     data=base64.b64encode(mem.getvalue()).decode()
     for i,part in enumerate(textwrap.wrap(data,1024)):
         print(f"{tag}_{i:05d}:{part}")
@@ -122,7 +122,7 @@ def graph_cells(im, polygon, source_width, refgraphs, tag):
                         cx,cy=centers[i]; draw.ellipse((cx-9,cy-9,cx+9,cy+9),fill="white",outline="red")
                         draw.text((cx-6,cy-6),str(k),fill="red")
                     # Small JPEG for inspection without raw full-source republishing.
-                    canvas.thumbnail((850,500))
+                    canvas.thumbnail((600,300))
                     emit_image(f"MASK_{tag}_{channel}",canvas)
             summaries.append(row)
     result={"tag":tag,"native_size":native_size,"rows":summaries,"distinct_15face_graphs":len(seen),"match_count":len(matched),"matches":matched}
