@@ -1,0 +1,3003 @@
+{
+  "scope": "fixed historical chart, arbitrary independent row/column positional permutations preserving group membership for word receiver; arbitrary whole-opening/book permutations for window gate",
+  "lexicon": 33704,
+  "solvedGroups": 18,
+  "openingGroups": 156,
+  "donorLengths": [
+    62492,
+    6958,
+    7059,
+    7484,
+    33276,
+    41181,
+    3896
+  ],
+  "rows": [
+    {
+      "board": "Salzburg+Ior slot 1",
+      "R": 4,
+      "C": 8,
+      "opening": {
+        "groups": 156,
+        "miss": 122,
+        "longMiss": 63,
+        "unique": 26,
+        "total": 43,
+        "coveredRunes": 95,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 14,
+            "unique": 11
+          },
+          "3": {
+            "n": 36,
+            "miss": 27,
+            "unique": 6
+          },
+          "4": {
+            "n": 20,
+            "miss": 17,
+            "unique": 2
+          },
+          "5": {
+            "n": 12,
+            "miss": 11,
+            "unique": 0
+          },
+          "6": {
+            "n": 18,
+            "miss": 16,
+            "unique": 2
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "firstUnique": [
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 33,
+            "word": "ayez"
+          },
+          {
+            "i": 39,
+            "word": "rioters"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 62,
+            "word": "ex"
+          },
+          {
+            "i": 63,
+            "word": "rot"
+          },
+          {
+            "i": 64,
+            "word": "rio"
+          },
+          {
+            "i": 68,
+            "word": "xv"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2088,
+        "longMiss": 1019,
+        "unique": 540,
+        "total": 1199,
+        "coveredRunes": 2503,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 226,
+            "unique": 135
+          },
+          "3": {
+            "n": 720,
+            "miss": 452,
+            "unique": 171
+          },
+          "4": {
+            "n": 513,
+            "miss": 384,
+            "unique": 72
+          },
+          "5": {
+            "n": 317,
+            "miss": 258,
+            "unique": 41
+          },
+          "6": {
+            "n": 256,
+            "miss": 229,
+            "unique": 20
+          },
+          "7": {
+            "n": 216,
+            "miss": 200,
+            "unique": 14
+          },
+          "8": {
+            "n": 156,
+            "miss": 148,
+            "unique": 8
+          },
+          "9": {
+            "n": 78,
+            "miss": 76,
+            "unique": 2
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 17,
+            "unique": 1
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "firstUnique": [
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 35,
+            "word": "ayez"
+          },
+          {
+            "i": 41,
+            "word": "rioters"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 64,
+            "word": "ex"
+          },
+          {
+            "i": 65,
+            "word": "rot"
+          },
+          {
+            "i": 66,
+            "word": "rio"
+          },
+          {
+            "i": 70,
+            "word": "xv"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 17,
+        "changed": 72,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 320,
+          "bestOffset": 35993
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 376,
+          "bestOffset": 3543
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 340,
+          "bestOffset": 2905
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 352,
+          "bestOffset": 5327
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 314,
+          "bestOffset": 30942
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 298,
+          "bestOffset": 34993
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 354,
+          "bestOffset": 1775
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6370,
+          "bestOffset": 48430
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 6302,
+          "bestOffset": 19589
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 6496,
+          "bestOffset": 26689
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Salzburg+Ior slot 2",
+      "R": 4,
+      "C": 8,
+      "opening": {
+        "groups": 156,
+        "miss": 120,
+        "longMiss": 62,
+        "unique": 25,
+        "total": 51,
+        "coveredRunes": 102,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 13,
+            "unique": 10
+          },
+          "3": {
+            "n": 36,
+            "miss": 27,
+            "unique": 6
+          },
+          "4": {
+            "n": 20,
+            "miss": 17,
+            "unique": 2
+          },
+          "5": {
+            "n": 12,
+            "miss": 10,
+            "unique": 1
+          },
+          "6": {
+            "n": 18,
+            "miss": 16,
+            "unique": 1
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          15
+        ],
+        "firstUnique": [
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 12,
+            "word": "ja"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 17,
+            "word": "campo"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 33,
+            "word": "ayez"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 62,
+            "word": "ex"
+          },
+          {
+            "i": 63,
+            "word": "rot"
+          },
+          {
+            "i": 68,
+            "word": "xv"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2100,
+        "longMiss": 1017,
+        "unique": 526,
+        "total": 1188,
+        "coveredRunes": 2469,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 224,
+            "unique": 137
+          },
+          "3": {
+            "n": 720,
+            "miss": 467,
+            "unique": 154
+          },
+          "4": {
+            "n": 513,
+            "miss": 385,
+            "unique": 74
+          },
+          "5": {
+            "n": 317,
+            "miss": 255,
+            "unique": 45
+          },
+          "6": {
+            "n": 256,
+            "miss": 228,
+            "unique": 19
+          },
+          "7": {
+            "n": 216,
+            "miss": 203,
+            "unique": 11
+          },
+          "8": {
+            "n": 156,
+            "miss": 150,
+            "unique": 5
+          },
+          "9": {
+            "n": 78,
+            "miss": 73,
+            "unique": 4
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 17,
+            "unique": 1
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "firstUnique": [
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 14,
+            "word": "ja"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 19,
+            "word": "campo"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 35,
+            "word": "ayez"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 64,
+            "word": "ex"
+          },
+          {
+            "i": 65,
+            "word": "rot"
+          },
+          {
+            "i": 70,
+            "word": "xv"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 17,
+        "changed": 74,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 290,
+          "bestOffset": 24925
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 336,
+          "bestOffset": 5984
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 298,
+          "bestOffset": 2405
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 352,
+          "bestOffset": 3512
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 288,
+          "bestOffset": 9144
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 282,
+          "bestOffset": 29293
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 298,
+          "bestOffset": 10
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6274,
+          "bestOffset": 48430
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 6216,
+          "bestOffset": 18603
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 6406,
+          "bestOffset": 25646
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Salzburg+Ior slot 3",
+      "R": 4,
+      "C": 8,
+      "opening": {
+        "groups": 156,
+        "miss": 118,
+        "longMiss": 62,
+        "unique": 26,
+        "total": 53,
+        "coveredRunes": 108,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 13,
+            "unique": 10
+          },
+          "3": {
+            "n": 36,
+            "miss": 26,
+            "unique": 6
+          },
+          "4": {
+            "n": 20,
+            "miss": 16,
+            "unique": 3
+          },
+          "5": {
+            "n": 12,
+            "miss": 9,
+            "unique": 1
+          },
+          "6": {
+            "n": 18,
+            "miss": 17,
+            "unique": 1
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          15,
+          16
+        ],
+        "firstUnique": [
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 5,
+            "word": "anne"
+          },
+          {
+            "i": 12,
+            "word": "ja"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 17,
+            "word": "campo"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 33,
+            "word": "ayez"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 62,
+            "word": "ex"
+          },
+          {
+            "i": 63,
+            "word": "rot"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2093,
+        "longMiss": 1023,
+        "unique": 543,
+        "total": 1182,
+        "coveredRunes": 2466,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 224,
+            "unique": 140
+          },
+          "3": {
+            "n": 720,
+            "miss": 463,
+            "unique": 164
+          },
+          "4": {
+            "n": 513,
+            "miss": 376,
+            "unique": 83
+          },
+          "5": {
+            "n": 317,
+            "miss": 255,
+            "unique": 43
+          },
+          "6": {
+            "n": 256,
+            "miss": 228,
+            "unique": 20
+          },
+          "7": {
+            "n": 216,
+            "miss": 204,
+            "unique": 11
+          },
+          "8": {
+            "n": 156,
+            "miss": 151,
+            "unique": 4
+          },
+          "9": {
+            "n": 78,
+            "miss": 77,
+            "unique": 1
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 17,
+            "unique": 1
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "firstUnique": [
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 7,
+            "word": "anne"
+          },
+          {
+            "i": 14,
+            "word": "ja"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 19,
+            "word": "campo"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 35,
+            "word": "ayez"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 64,
+            "word": "ex"
+          },
+          {
+            "i": 65,
+            "word": "rot"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 17,
+        "changed": 74,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 290,
+          "bestOffset": 24925
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 336,
+          "bestOffset": 5984
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 306,
+          "bestOffset": 2405
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 356,
+          "bestOffset": 3782
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 288,
+          "bestOffset": 9145
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 288,
+          "bestOffset": 29345
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 312,
+          "bestOffset": 627
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6396,
+          "bestOffset": 31876
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 6432,
+          "bestOffset": 18603
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 6546,
+          "bestOffset": 25646
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Salzburg+Ior slot 4",
+      "R": 4,
+      "C": 8,
+      "opening": {
+        "groups": 156,
+        "miss": 112,
+        "longMiss": 61,
+        "unique": 31,
+        "total": 59,
+        "coveredRunes": 135,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 13,
+            "unique": 10
+          },
+          "3": {
+            "n": 36,
+            "miss": 23,
+            "unique": 9
+          },
+          "4": {
+            "n": 20,
+            "miss": 14,
+            "unique": 4
+          },
+          "5": {
+            "n": 12,
+            "miss": 10,
+            "unique": 0
+          },
+          "6": {
+            "n": 18,
+            "miss": 16,
+            "unique": 2
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 5,
+            "unique": 1
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          16,
+          17
+        ],
+        "firstUnique": [
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 5,
+            "word": "mann"
+          },
+          {
+            "i": 12,
+            "word": "ai"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 15,
+            "word": "vying"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 33,
+            "word": "ayez"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 59,
+            "word": "york"
+          },
+          {
+            "i": 62,
+            "word": "ex"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2080,
+        "longMiss": 1022,
+        "unique": 540,
+        "total": 1215,
+        "coveredRunes": 2510,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 223,
+            "unique": 140
+          },
+          "3": {
+            "n": 720,
+            "miss": 459,
+            "unique": 165
+          },
+          "4": {
+            "n": 513,
+            "miss": 369,
+            "unique": 84
+          },
+          "5": {
+            "n": 317,
+            "miss": 252,
+            "unique": 43
+          },
+          "6": {
+            "n": 256,
+            "miss": 229,
+            "unique": 16
+          },
+          "7": {
+            "n": 216,
+            "miss": 204,
+            "unique": 11
+          },
+          "8": {
+            "n": 156,
+            "miss": 153,
+            "unique": 2
+          },
+          "9": {
+            "n": 78,
+            "miss": 76,
+            "unique": 2
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 17,
+            "unique": 1
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "firstUnique": [
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 7,
+            "word": "mann"
+          },
+          {
+            "i": 14,
+            "word": "ai"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 17,
+            "word": "vying"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 35,
+            "word": "ayez"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 61,
+            "word": "york"
+          },
+          {
+            "i": 64,
+            "word": "ex"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 17,
+        "changed": 74,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 290,
+          "bestOffset": 24925
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 338,
+          "bestOffset": 5984
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 318,
+          "bestOffset": 2404
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 360,
+          "bestOffset": 3512
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 298,
+          "bestOffset": 9145
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 288,
+          "bestOffset": 29345
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 318,
+          "bestOffset": 10
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6888,
+          "bestOffset": 48845
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 6808,
+          "bestOffset": 19589
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 6888,
+          "bestOffset": 27855
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Salzburg+Ior slot 5",
+      "R": 4,
+      "C": 8,
+      "opening": {
+        "groups": 156,
+        "miss": 118,
+        "longMiss": 63,
+        "unique": 27,
+        "total": 50,
+        "coveredRunes": 110,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 15,
+            "unique": 10
+          },
+          "3": {
+            "n": 36,
+            "miss": 24,
+            "unique": 7
+          },
+          "4": {
+            "n": 20,
+            "miss": 15,
+            "unique": 2
+          },
+          "5": {
+            "n": 12,
+            "miss": 11,
+            "unique": 1
+          },
+          "6": {
+            "n": 18,
+            "miss": 16,
+            "unique": 2
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          16
+        ],
+        "firstUnique": [
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 12,
+            "word": "ai"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 15,
+            "word": "vying"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 33,
+            "word": "ayez"
+          },
+          {
+            "i": 42,
+            "word": "local"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 56,
+            "word": "sheaves"
+          },
+          {
+            "i": 62,
+            "word": "ex"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2088,
+        "longMiss": 1019,
+        "unique": 544,
+        "total": 1209,
+        "coveredRunes": 2485,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 220,
+            "unique": 145
+          },
+          "3": {
+            "n": 720,
+            "miss": 466,
+            "unique": 156
+          },
+          "4": {
+            "n": 513,
+            "miss": 376,
+            "unique": 81
+          },
+          "5": {
+            "n": 317,
+            "miss": 252,
+            "unique": 48
+          },
+          "6": {
+            "n": 256,
+            "miss": 226,
+            "unique": 21
+          },
+          "7": {
+            "n": 216,
+            "miss": 204,
+            "unique": 11
+          },
+          "8": {
+            "n": 156,
+            "miss": 153,
+            "unique": 3
+          },
+          "9": {
+            "n": 78,
+            "miss": 76,
+            "unique": 2
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 17,
+            "unique": 1
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "firstUnique": [
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 14,
+            "word": "ai"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 17,
+            "word": "vying"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 35,
+            "word": "ayez"
+          },
+          {
+            "i": 44,
+            "word": "local"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 58,
+            "word": "sheaves"
+          },
+          {
+            "i": 64,
+            "word": "ex"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 17,
+        "changed": 74,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 294,
+          "bestOffset": 24919
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 338,
+          "bestOffset": 5984
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 318,
+          "bestOffset": 2404
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 358,
+          "bestOffset": 3510
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 286,
+          "bestOffset": 19443
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 280,
+          "bestOffset": 29356
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 326,
+          "bestOffset": 724
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6888,
+          "bestOffset": 48845
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 6808,
+          "bestOffset": 19589
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 6888,
+          "bestOffset": 27855
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Domitian 8+8+17",
+      "R": 3,
+      "C": 17,
+      "opening": {
+        "groups": 156,
+        "miss": 127,
+        "longMiss": 64,
+        "unique": 21,
+        "total": 37,
+        "coveredRunes": 80,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 17,
+            "unique": 7
+          },
+          "3": {
+            "n": 36,
+            "miss": 27,
+            "unique": 6
+          },
+          "4": {
+            "n": 20,
+            "miss": 18,
+            "unique": 1
+          },
+          "5": {
+            "n": 12,
+            "miss": 12,
+            "unique": 0
+          },
+          "6": {
+            "n": 18,
+            "miss": 16,
+            "unique": 2
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          15
+        ],
+        "firstUnique": [
+          {
+            "i": 1,
+            "word": "sot"
+          },
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 60,
+            "word": "roguet"
+          },
+          {
+            "i": 63,
+            "word": "rot"
+          },
+          {
+            "i": 68,
+            "word": "xv"
+          },
+          {
+            "i": 75,
+            "word": "kopf"
+          },
+          {
+            "i": 77,
+            "word": "n"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2223,
+        "longMiss": 1062,
+        "unique": 458,
+        "total": 959,
+        "coveredRunes": 1960,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 246,
+            "unique": 117
+          },
+          "3": {
+            "n": 720,
+            "miss": 496,
+            "unique": 142
+          },
+          "4": {
+            "n": 513,
+            "miss": 412,
+            "unique": 61
+          },
+          "5": {
+            "n": 317,
+            "miss": 278,
+            "unique": 34
+          },
+          "6": {
+            "n": 256,
+            "miss": 239,
+            "unique": 15
+          },
+          "7": {
+            "n": 216,
+            "miss": 208,
+            "unique": 7
+          },
+          "8": {
+            "n": 156,
+            "miss": 153,
+            "unique": 3
+          },
+          "9": {
+            "n": 78,
+            "miss": 75,
+            "unique": 3
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 18,
+            "unique": 0
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "firstUnique": [
+          {
+            "i": 3,
+            "word": "sot"
+          },
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 62,
+            "word": "roguet"
+          },
+          {
+            "i": 65,
+            "word": "rot"
+          },
+          {
+            "i": 70,
+            "word": "xv"
+          },
+          {
+            "i": 77,
+            "word": "kopf"
+          },
+          {
+            "i": 79,
+            "word": "n"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 18,
+        "changed": 68,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 296,
+          "bestOffset": 47871
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 364,
+          "bestOffset": 1223
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 376,
+          "bestOffset": 2613
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 346,
+          "bestOffset": 5890
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 298,
+          "bestOffset": 19132
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 302,
+          "bestOffset": 15651
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 326,
+          "bestOffset": 2902
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6006,
+          "bestOffset": 36257
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 6034,
+          "bestOffset": 6833
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 6024,
+          "bestOffset": 26408
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Domitian 8+8+12+5",
+      "R": 4,
+      "C": 12,
+      "opening": {
+        "groups": 156,
+        "miss": 127,
+        "longMiss": 64,
+        "unique": 21,
+        "total": 37,
+        "coveredRunes": 80,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 17,
+            "unique": 7
+          },
+          "3": {
+            "n": 36,
+            "miss": 27,
+            "unique": 6
+          },
+          "4": {
+            "n": 20,
+            "miss": 18,
+            "unique": 1
+          },
+          "5": {
+            "n": 12,
+            "miss": 12,
+            "unique": 0
+          },
+          "6": {
+            "n": 18,
+            "miss": 16,
+            "unique": 2
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          15
+        ],
+        "firstUnique": [
+          {
+            "i": 1,
+            "word": "sot"
+          },
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 60,
+            "word": "roguet"
+          },
+          {
+            "i": 63,
+            "word": "rot"
+          },
+          {
+            "i": 68,
+            "word": "xv"
+          },
+          {
+            "i": 75,
+            "word": "kopf"
+          },
+          {
+            "i": 77,
+            "word": "n"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2223,
+        "longMiss": 1062,
+        "unique": 458,
+        "total": 959,
+        "coveredRunes": 1960,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 246,
+            "unique": 117
+          },
+          "3": {
+            "n": 720,
+            "miss": 496,
+            "unique": 142
+          },
+          "4": {
+            "n": 513,
+            "miss": 412,
+            "unique": 61
+          },
+          "5": {
+            "n": 317,
+            "miss": 278,
+            "unique": 34
+          },
+          "6": {
+            "n": 256,
+            "miss": 239,
+            "unique": 15
+          },
+          "7": {
+            "n": 216,
+            "miss": 208,
+            "unique": 7
+          },
+          "8": {
+            "n": 156,
+            "miss": 153,
+            "unique": 3
+          },
+          "9": {
+            "n": 78,
+            "miss": 75,
+            "unique": 3
+          },
+          "10": {
+            "n": 52,
+            "miss": 52,
+            "unique": 0
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 18,
+            "unique": 0
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "firstUnique": [
+          {
+            "i": 3,
+            "word": "sot"
+          },
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 62,
+            "word": "roguet"
+          },
+          {
+            "i": 65,
+            "word": "rot"
+          },
+          {
+            "i": 70,
+            "word": "xv"
+          },
+          {
+            "i": 77,
+            "word": "kopf"
+          },
+          {
+            "i": 79,
+            "word": "n"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 18,
+        "changed": 68,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 314,
+          "bestOffset": 48171
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 386,
+          "bestOffset": 1448
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 370,
+          "bestOffset": 2933
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 376,
+          "bestOffset": 5747
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 306,
+          "bestOffset": 31875
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 306,
+          "bestOffset": 18221
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 336,
+          "bestOffset": 3000
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 6048,
+          "bestOffset": 36075
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 5908,
+          "bestOffset": 6984
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 5568,
+          "bestOffset": 26713
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    },
+    {
+      "board": "Domitian 8+8+8+9",
+      "R": 4,
+      "C": 9,
+      "opening": {
+        "groups": 156,
+        "miss": 117,
+        "longMiss": 62,
+        "unique": 27,
+        "total": 52,
+        "coveredRunes": 115,
+        "sizes": {
+          "1": {
+            "n": 5,
+            "miss": 1,
+            "unique": 4
+          },
+          "2": {
+            "n": 28,
+            "miss": 15,
+            "unique": 9
+          },
+          "3": {
+            "n": 36,
+            "miss": 23,
+            "unique": 8
+          },
+          "4": {
+            "n": 20,
+            "miss": 16,
+            "unique": 1
+          },
+          "5": {
+            "n": 12,
+            "miss": 11,
+            "unique": 1
+          },
+          "6": {
+            "n": 18,
+            "miss": 15,
+            "unique": 3
+          },
+          "7": {
+            "n": 17,
+            "miss": 16,
+            "unique": 1
+          },
+          "8": {
+            "n": 8,
+            "miss": 8,
+            "unique": 0
+          },
+          "9": {
+            "n": 6,
+            "miss": 6,
+            "unique": 0
+          },
+          "10": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "11": {
+            "n": 2,
+            "miss": 2,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          0,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          16,
+          17
+        ],
+        "firstUnique": [
+          {
+            "i": 1,
+            "word": "sot"
+          },
+          {
+            "i": 2,
+            "word": "oui"
+          },
+          {
+            "i": 12,
+            "word": "ai"
+          },
+          {
+            "i": 13,
+            "word": "bu"
+          },
+          {
+            "i": 14,
+            "word": "cox"
+          },
+          {
+            "i": 15,
+            "word": "vying"
+          },
+          {
+            "i": 32,
+            "word": "gig"
+          },
+          {
+            "i": 42,
+            "word": "local"
+          },
+          {
+            "i": 50,
+            "word": "ch"
+          },
+          {
+            "i": 52,
+            "word": "s"
+          },
+          {
+            "i": 56,
+            "word": "sheaves"
+          },
+          {
+            "i": 60,
+            "word": "roguet"
+          }
+        ]
+      },
+      "whole": {
+        "groups": 2896,
+        "miss": 2081,
+        "longMiss": 1016,
+        "unique": 547,
+        "total": 1194,
+        "coveredRunes": 2540,
+        "sizes": {
+          "1": {
+            "n": 83,
+            "miss": 7,
+            "unique": 76
+          },
+          "2": {
+            "n": 448,
+            "miss": 226,
+            "unique": 131
+          },
+          "3": {
+            "n": 720,
+            "miss": 457,
+            "unique": 169
+          },
+          "4": {
+            "n": 513,
+            "miss": 375,
+            "unique": 77
+          },
+          "5": {
+            "n": 317,
+            "miss": 255,
+            "unique": 48
+          },
+          "6": {
+            "n": 256,
+            "miss": 229,
+            "unique": 21
+          },
+          "7": {
+            "n": 216,
+            "miss": 201,
+            "unique": 13
+          },
+          "8": {
+            "n": 156,
+            "miss": 149,
+            "unique": 7
+          },
+          "9": {
+            "n": 78,
+            "miss": 74,
+            "unique": 4
+          },
+          "10": {
+            "n": 52,
+            "miss": 51,
+            "unique": 1
+          },
+          "11": {
+            "n": 32,
+            "miss": 32,
+            "unique": 0
+          },
+          "12": {
+            "n": 18,
+            "miss": 18,
+            "unique": 0
+          },
+          "13": {
+            "n": 4,
+            "miss": 4,
+            "unique": 0
+          },
+          "14": {
+            "n": 3,
+            "miss": 3,
+            "unique": 0
+          }
+        },
+        "firstMissing": [
+          1,
+          2,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          18
+        ],
+        "firstUnique": [
+          {
+            "i": 0,
+            "word": "foreheads"
+          },
+          {
+            "i": 3,
+            "word": "sot"
+          },
+          {
+            "i": 4,
+            "word": "oui"
+          },
+          {
+            "i": 14,
+            "word": "ai"
+          },
+          {
+            "i": 15,
+            "word": "bu"
+          },
+          {
+            "i": 16,
+            "word": "cox"
+          },
+          {
+            "i": 17,
+            "word": "vying"
+          },
+          {
+            "i": 34,
+            "word": "gig"
+          },
+          {
+            "i": 44,
+            "word": "local"
+          },
+          {
+            "i": 52,
+            "word": "ch"
+          },
+          {
+            "i": 54,
+            "word": "s"
+          },
+          {
+            "i": 58,
+            "word": "sheaves"
+          }
+        ]
+      },
+      "control": {
+        "groups": 20,
+        "top": 18,
+        "changed": 74,
+        "total": 95
+      },
+      "windowGate": [
+        {
+          "windows": 61777,
+          "exact": 0,
+          "minL1": 238,
+          "bestOffset": 24917
+        },
+        {
+          "windows": 6243,
+          "exact": 0,
+          "minL1": 296,
+          "bestOffset": 5984
+        },
+        {
+          "windows": 6344,
+          "exact": 0,
+          "minL1": 282,
+          "bestOffset": 2417
+        },
+        {
+          "windows": 6769,
+          "exact": 0,
+          "minL1": 316,
+          "bestOffset": 3506
+        },
+        {
+          "windows": 32561,
+          "exact": 0,
+          "minL1": 254,
+          "bestOffset": 9146
+        },
+        {
+          "windows": 40466,
+          "exact": 0,
+          "minL1": 240,
+          "bestOffset": 29356
+        },
+        {
+          "windows": 3181,
+          "exact": 0,
+          "minL1": 264,
+          "bestOffset": 2978
+        }
+      ],
+      "wholeGate": [
+        {
+          "windows": 49537,
+          "exact": 0,
+          "minL1": 5902,
+          "bestOffset": 15921
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        },
+        {
+          "windows": 20321,
+          "exact": 0,
+          "minL1": 5924,
+          "bestOffset": 7312
+        },
+        {
+          "windows": 28226,
+          "exact": 0,
+          "minL1": 5904,
+          "bestOffset": 27860
+        },
+        {
+          "windows": 0,
+          "exact": 0,
+          "minL1": null
+        }
+      ]
+    }
+  ],
+  "sourceBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-I.txt",
+      "sha": "64876892683fab1467481fe87d85743a8ea17982"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-II.txt",
+      "sha": "cb4353b080d7584441f85502aeccb60796e6fe0f"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-III.txt",
+      "sha": "36e716252a271d31f5c4ba25b3cb78199ccc1114"
+    },
+    {
+      "path": "resources/external/cicada2012-blake-marriage-gutenberg45315.txt",
+      "sha": "44149cc32fa8a46501a95059283526a8a3429705"
+    },
+    {
+      "path": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "sha": "12a6bc018047a1276e77f2b7f633d5905732fff9"
+    },
+    {
+      "path": "resources/liber-primus/lp1-plaintext-reference.txt",
+      "sha": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"
+    }
+  ]
+}
