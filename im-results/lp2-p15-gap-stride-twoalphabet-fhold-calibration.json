@@ -1,0 +1,526 @@
+{
+  "codeBlob": "13e5d15cbd6f7aa40981cedda42a108c17b24a18",
+  "paths": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "sha": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    }
+  ],
+  "rank": 1,
+  "phase": 0,
+  "results": [
+    {
+      "rank": 1,
+      "phase": 0,
+      "control": 0,
+      "visibleF": [
+        98
+      ],
+      "literalF": [
+        26
+      ],
+      "result": {
+        "records": [
+          {
+            "start": 0,
+            "kind": "forbidden",
+            "initBeta": 2,
+            "fitBeta": 1,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier4g0",
+            "initBeta": 2,
+            "fitBeta": 1,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier4g1",
+            "initBeta": 0,
+            "fitBeta": 1,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier13g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier13g1",
+            "initBeta": 2,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier11g0",
+            "initBeta": 3,
+            "fitBeta": 2,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier11g1",
+            "initBeta": 1,
+            "fitBeta": 1,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier1g0",
+            "initBeta": 2,
+            "fitBeta": 5,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier1g1",
+            "initBeta": 2,
+            "fitBeta": 5,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g0",
+            "initBeta": 3,
+            "fitBeta": 3,
+            "strictLL": null
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g1",
+            "initBeta": 2,
+            "fitBeta": 2,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "forbidden",
+            "initBeta": 1,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier11g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier11g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier13g0",
+            "initBeta": 2,
+            "fitBeta": 1,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier13g1",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier5g0",
+            "initBeta": 1,
+            "fitBeta": 0,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier5g1",
+            "initBeta": 1,
+            "fitBeta": 3,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier6g0",
+            "initBeta": 1,
+            "fitBeta": 1,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier6g1",
+            "initBeta": 1,
+            "fitBeta": 2,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier1g0",
+            "initBeta": 1,
+            "fitBeta": 2,
+            "strictLL": null
+          },
+          {
+            "start": 1,
+            "kind": "fourier1g1",
+            "initBeta": 0,
+            "fitBeta": 1,
+            "strictLL": null
+          }
+        ],
+        "best": null,
+        "oracle": {
+          "fit": 1412,
+          "fitLength": 1412,
+          "held": 471,
+          "heldLength": 471,
+          "fitScore": -3823.249872454267,
+          "heldScore": -1279.944631162394,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            7,
+            5,
+            27,
+            1,
+            14,
+            24,
+            3,
+            10,
+            12,
+            13,
+            11,
+            9,
+            20,
+            26,
+            8,
+            4,
+            22,
+            17,
+            16,
+            23,
+            19,
+            28,
+            15,
+            2,
+            18,
+            21,
+            6,
+            25
+          ],
+          "B": [
+            20,
+            28,
+            27,
+            22,
+            24,
+            13,
+            4,
+            7,
+            11,
+            6,
+            15,
+            0,
+            1,
+            18,
+            26,
+            10,
+            25,
+            19,
+            5,
+            17,
+            9,
+            23,
+            14,
+            3,
+            21,
+            8,
+            16,
+            12,
+            2
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 29,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1412,
+              "held": 471,
+              "heldCorrect": 471,
+              "replay": true,
+              "fitEnd": 1395,
+              "continuationEnd": 1395,
+              "possibleFitEnds": 2,
+              "fitScore": -3823.249872454267,
+              "heldScore": -1279.944631162394
+            }
+          ]
+        }
+      }
+    },
+    {
+      "rank": 1,
+      "phase": 0,
+      "control": 1,
+      "visibleF": [
+        106
+      ],
+      "literalF": [
+        46
+      ],
+      "result": {
+        "records": [
+          {
+            "start": 0,
+            "kind": "forbidden",
+            "initBeta": 1,
+            "fitBeta": 0,
+            "strictLL": -4214.451736523166
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.111050663127
+          },
+          {
+            "start": 0,
+            "kind": "fourier12g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4146.1370472206045
+          },
+          {
+            "start": 1,
+            "kind": "forbidden",
+            "initBeta": 2,
+            "fitBeta": 0,
+            "strictLL": -4146.111050663127
+          },
+          {
+            "start": 1,
+            "kind": "fourier12g0",
+            "initBeta": 0,
+            "fitBeta": 0,
+            "strictLL": -4146.111050663127
+          },
+          {
+            "start": 1,
+            "kind": "fourier12g1",
+            "initBeta": 29,
+            "fitBeta": 29,
+            "strictLL": -4146.1370472206045
+          }
+        ],
+        "best": {
+          "fit": 1410,
+          "fitLength": 1412,
+          "held": 469,
+          "heldLength": 471,
+          "fitScore": -3654.066672477282,
+          "heldScore": -1241.6703689928136,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            9,
+            26,
+            20,
+            13,
+            25,
+            27,
+            4,
+            3,
+            14,
+            19,
+            5,
+            18,
+            10,
+            11,
+            6,
+            21,
+            17,
+            16,
+            15,
+            22,
+            8,
+            12,
+            28,
+            23,
+            2,
+            24,
+            1,
+            7
+          ],
+          "B": [
+            4,
+            2,
+            13,
+            22,
+            5,
+            25,
+            17,
+            9,
+            6,
+            10,
+            16,
+            7,
+            1,
+            21,
+            8,
+            26,
+            12,
+            20,
+            15,
+            0,
+            18,
+            19,
+            23,
+            14,
+            24,
+            27,
+            3,
+            11,
+            28
+          ],
+          "betaCorrect": 0,
+          "alphaCorrect": 2,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1410,
+              "held": 471,
+              "heldCorrect": 469,
+              "replay": true,
+              "fitEnd": 1382,
+              "continuationEnd": 1381,
+              "possibleFitEnds": 6,
+              "fitScore": -3654.066672477282,
+              "heldScore": -1241.6703689928136
+            }
+          ]
+        },
+        "oracle": {
+          "fit": 1410,
+          "fitLength": 1412,
+          "held": 469,
+          "heldLength": 471,
+          "fitScore": -3654.066672477282,
+          "heldScore": -1241.6703689928136,
+          "legal": true,
+          "exactReplay": true,
+          "A": [
+            0,
+            27,
+            15,
+            9,
+            2,
+            14,
+            16,
+            22,
+            21,
+            3,
+            8,
+            23,
+            18,
+            28,
+            19,
+            24,
+            10,
+            6,
+            5,
+            4,
+            11,
+            26,
+            1,
+            17,
+            12,
+            20,
+            13,
+            7,
+            25
+          ],
+          "B": [
+            22,
+            20,
+            2,
+            11,
+            23,
+            14,
+            6,
+            27,
+            24,
+            28,
+            5,
+            25,
+            19,
+            10,
+            26,
+            15,
+            1,
+            9,
+            4,
+            18,
+            7,
+            8,
+            12,
+            3,
+            13,
+            16,
+            21,
+            0,
+            17
+          ],
+          "betaCorrect": 29,
+          "alphaCorrect": 29,
+          "scopes": [
+            {
+              "fit": 1412,
+              "fitCorrect": 1410,
+              "held": 471,
+              "heldCorrect": 469,
+              "replay": true,
+              "fitEnd": 1382,
+              "continuationEnd": 1381,
+              "possibleFitEnds": 6,
+              "fitScore": -3654.066672477282,
+              "heldScore": -1241.6703689928136
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "gate": false,
+  "branch": " if(originJob?.customSchedule){const {K,C,control,seed=0x44f15,rank=1,phase=0}=originJob;let rows=C,truth=null,A=null,B=null;\n if(control!==undefined){const rand=random(seed^0xabc123),donors=[gp(shakespeare),gp(gibran)];truth=[donors[control].slice(30000,30000+K.length)];A=perm(rand,true);B=perm(rand,false);rows=[encrypt(truth[0],K,A,B)];}\n const result=curriculum(rows,K,seed,truth,A,B);return {rank,phase,control:control??null,visibleF:rows.map(x=>x.filter(y=>y===0).length),literalF:truth?.map(x=>x.filter(y=>y===0).length)??null,result};}\n"
+}
