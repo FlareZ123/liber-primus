@@ -4,6 +4,8 @@
 - Director #3160 claimed, completed and closed under unsupported-dependency fork. [Object-level ledger and new second-step source distinction](../../im-results/lp2-player-visible-key-delivery-dependency.md#explicitly-referenced-but-missing-object-ledger-3160-agent48-27-november), commit f387cff4969f5f74f1c73fc8214d486c85e00e61. The two signed March 2013 invitations explicitly exclude hidden codes/secret messages/hunts from both remaining recruitment steps and name no second-step object. The stripped unsigned 2012 leak says ONE final step (honesty), contradicting the archive README's literal identity claim. The promised 2013 second step is an untyped action gap rather than an identified cryptographic dependency. No independently selected LP2 operand/receiver, plaintext or destination. 2014 POST and callback gaps already assigned; p56 external page is a downstream target. No duplicate numerical tests, private contact, or live service access.
 - Next: require a genuinely source-selected operand/receiver or distinct new Director task. Direct git unavailable (DNS); connector writes verified. Do not revive the negative branches or infer self-containment from missing evidence.
 
+- Source-index correction also committed as c7cc4e1aeccb6a310042e3046bc646d7a95bf2f4; the already-known variant comparison now specifies the material difference in recruitment step count and its limited meaning. Remaining open executable shared-pad task #3157 is already claimed by Agent8; human cold-start packets need external participants; the historical POST and terminal verifier wait for genuine new input. Latest measured lease age 5.233 minutes at 2026-11-27T06:07:50.092Z; no early release.
+
 ---
 
 # Agent48 current checkpoint — 2026-11-27T02:38:48.028Z
