@@ -1,0 +1,29 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path");
+function experiment(corpus,transcription,signedSource,solved,donor){
+ const M=x=>(x%29+29)%29, sum=a=>a.reduce((s,x)=>s+x,0), eq=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]), H=k=>[M(k[0]-k[3]),M(k[1]-k[2]),M(k[1]+k[2]),M(k[0]+k[3])], I=s=>[M(15*(s[0]+s[3])),M(15*(s[1]+s[2])),M(15*(s[2]-s[1])),M(15*(s[3]-s[0]))],check=(x,m)=>{if(!x)throw Error(m)};
+ const ri=new Map(corpus.runes.map((r,i)=>[r,i])), tokens=corpus.translit.map((v,i)=>[v,i]).sort((a,b)=>b[0].length-a[0].length);
+ function gp(s){let out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");while(w){if(w.startsWith("ING")){out.push(21);w=w.slice(3);continue}if(w.startsWith("IO")){out.push(27);w=w.slice(2);continue}const t=tokens.find(t=>w.startsWith(t[0]));check(t,"unmapped "+w);out.push(t[1]);w=w.slice(t[0].length)}}return out}
+ const clear=signedSource.split("-----BEGIN PGP SIGNATURE-----")[0],source=clear.slice(clear.indexOf("Hello.")).split(/[^A-Za-z0-9]+/).filter(x=>/^[A-Za-z]+$/.test(x)).map((word,index)=>({word:word.toUpperCase(),index,p:gp(word)}));check(source.length===43,"source");
+ const parts=transcription.replace(/\r/g,"").split(/^\s*%\s*$/m).slice(0,55);let words=[],w=[],sp=-1,ep=-1,st=0;function flush(){if(w.length)words.push({page:sp,endPage:ep,start:st,c:w});w=[]}for(let s=0;s<parts.length;s++){const p=s>=50?s+1:s;let o=0;for(const ch of parts[s]){if(ri.has(ch)){if(!w.length){sp=p;st=o}ep=p;w.push(ri.get(ch));o++}else if(!/[\s/]/u.test(ch))flush()}check(o===corpus.pages[p].indices.length,"offset")}flush();
+ const canon=words.filter(w=>w.page===w.endPage),four=canon.filter(w=>w.c.length===4),vocab=[...new Map(source.filter(s=>s.p.length===4).map(s=>[s.p.join(),s])).values()];check(words.length===2896&&canon.length===2864,"word count");
+ const state=[23,5,6,15,8,19,2,3,4],signedState=new Set(state.flatMap(x=>[x,M(-x)])),matrix=[];
+ for(let p=0;p<43;p++)for(const s of source.filter(s=>s.p.length===4)){const match=four.filter(w=>w.page===p&&sum(w.c)===sum(s.p));if(match.length===1){const w=match[0],k=w.c.map((x,i)=>M(x-s.p[i])),h=H(k);check(h[3]===M(-h[2]),"sum condition");matrix.push({page:p,start:w.start,index:s.index,word:s.word,c:w.c,key:k,shell:h})}}
+ const alternatives=matrix.filter(x=>signedState.has(x.shell[0])&&state.includes(x.shell[2])&&[8,22].includes(x.shell[1]));
+ const page=corpus.pages[40].indices,c=page.slice(71,75),target=page.slice(75),road=source[23],paths=source[40];check(road.word==="ROAD"&&paths.word==="PATHS"&&eq(c,[4,15,14,21])&&sum(c)===sum(road.p)&&sum(c)===sum(paths.p),"anchor");
+ const d=gp(donor.split("*** START OF")[1]?.split("*** END OF")[0]||donor),counts=Array.from({length:29},()=>Array(29).fill(.5));for(let i=1;i<d.length;i++)counts[d[i-1]][d[i]]++;const log=counts.map(row=>row.map(x=>Math.log(x/sum(row))));
+ const native=solved.sections.map(s=>({name:s.name,p:[...s.source_text].filter(x=>ri.has(x)).map(x=>ri.get(x))}));
+ function score(p,prev){let s=0;for(const x of p){s+=log[prev][x];prev=x}return s/p.length}
+ let nativeScores=[];for(const s of native)for(let i=1;i+target.length<=s.p.length;i++)nativeScores.push(score(s.p.slice(i,i+target.length),s.p[i-1]));
+ function stream(k,step,n){let s=[];while(s.length<n){s.push(...k);k=step(k)}return s}
+ function encode(p,k,hold){let j=0;return p.map(x=>hold&&x===0?0:M(x+k[j++]))}
+ function decode(c,k,hold,prev){let states=new Map([[`0,${prev}`,{j:0,last:prev,s:0,p:[]}]]);for(let i=0;i<c.length;i++){let next=new Map;for(const z of states.values()){const offer=(p,j)=>{const s=z.s+log[z.last][p],id=`${j},${p}`;if(!next.has(id)||next.get(id).s<s)next.set(id,{j,last:p,s,p:[...z.p,p]})};if(hold&&c[i]===0)offer(0,z.j);const p=M(c[i]-k[z.j]);if(!hold||p!==0)offer(p,z.j+1)}states=next;if(!states.size)return {failAt:i,score:null,p:null}}const best=[...states.values()].sort((a,b)=>b.s-a.s)[0];check(eq(encode(best.p,k,hold),c),"replay");return {failAt:null,score:best.s/c.length,p:best.p,finalStates:states.size}}
+ const k=I([2,22,2,27]);check(eq(k,[0,12,19,27])&&eq(encode(road.p,k,false),c)&&eq(H(k),[2,22,2,27]),"road");
+ const hits=[];for(const w of four)for(const sign of [1,-1]){const p=w.c.map((x,i)=>M(x-sign*k[i]));for(const s of vocab)if(eq(p,s.p))hits.push({page:w.page,start:w.start,sign,word:s.word,c:w.c,p})}
+ const rows=[],controls=[];for(const [name,step] of [["constant",x=>x],["H",H],["Hinv",I]]){const ks=stream(k,step,target.length+4).slice(4);for(const hold of [false,true]){const z=decode(target,ks,hold,road.p[3]);rows.push({name,hold,...z,render:z.p?.slice(0,50).map(x=>corpus.translit[x]).join(" ")||null});for(const s of native.filter(x=>x.p.length>=target.length+1).slice(0,3)){const p=s.p.slice(1,target.length+1),ct=encode(p,ks,hold),q=decode(ct,ks,hold,s.p[0]);check(q.p&&q.score+1e-10>=score(p,s.p[0]),"control");controls.push({name,hold,source:s.name,n:p.length,correct:q.p.filter((x,i)=>x===p[i]).length,score:q.score,trueScore:score(p,s.p[0])})}}}
+ return {counts:{words:words.length,canon:canon.length,four:four.length,vocab:vocab.length,matrix:matrix.length},anchor:{page:40,start:71,c,road:road.p,paths:paths.p,key:k,shell:H(k),pathsShell:H(c.map((x,i)=>M(x-paths.p[i])))},alternatives,fixedKeyHits:hits,trainRunes:d.length,nativeWindows:nativeScores.length,nativeFloor:Math.min(...nativeScores),rows,controls};
+}
+const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/historical/cicada2016-4gq25-outguess.asc","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt"];
+const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
+const v=paths.map(read);
+console.log(JSON.stringify(experiment(JSON.parse(v[0]),v[1],v[2],JSON.parse(v[3]),v[4]),null,2));
