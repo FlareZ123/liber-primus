@@ -1,0 +1,2343 @@
+{
+  "schema": 1,
+  "training": [
+    {
+      "name": "0_warning",
+      "n": 184
+    },
+    {
+      "name": "0_welcome",
+      "n": 515
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157
+    },
+    {
+      "name": "0_koan_1",
+      "n": 780
+    }
+  ],
+  "weights": [
+    33,
+    82,
+    58,
+    153,
+    115,
+    46,
+    22,
+    53,
+    53,
+    92,
+    97,
+    3,
+    1,
+    18,
+    3,
+    110,
+    106,
+    19,
+    193,
+    46,
+    69,
+    16,
+    1,
+    65,
+    131,
+    3,
+    60,
+    6,
+    11,
+    5
+  ],
+  "lengths": [
+    6,
+    4,
+    5,
+    3,
+    4,
+    5,
+    7,
+    5,
+    5,
+    4,
+    4,
+    10,
+    11,
+    7,
+    9,
+    4,
+    4,
+    7,
+    3,
+    5,
+    5,
+    7,
+    11,
+    5,
+    4,
+    9,
+    5,
+    8,
+    8,
+    9
+  ],
+  "codes": [
+    "111100",
+    "0100",
+    "10110",
+    "000",
+    "0101",
+    "10111",
+    "1111010",
+    "11000",
+    "11001",
+    "0110",
+    "0111",
+    "1111111110",
+    "11111111110",
+    "1111011",
+    "111111100",
+    "1000",
+    "1001",
+    "1111100",
+    "001",
+    "11010",
+    "11011",
+    "1111101",
+    "11111111111",
+    "11100",
+    "1010",
+    "111111101",
+    "11101",
+    "11111100",
+    "11111101",
+    "111111110"
+  ],
+  "controls": [
+    {
+      "name": "0_loss_of_divinity",
+      "plainRunes": 755,
+      "cipherRunes": 678,
+      "score": 0.5548252473635155,
+      "rejects": [
+        {
+          "name": "leading-zero",
+          "status": "noncanonical-leading-zero"
+        },
+        {
+          "name": "append-0",
+          "status": "early-EOF"
+        },
+        {
+          "name": "append-1",
+          "status": "early-EOF"
+        },
+        {
+          "name": "remove-last-bit",
+          "status": "partial-codeword"
+        }
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "plainRunes": 319,
+      "cipherRunes": 281,
+      "score": 0.6698735400683831,
+      "rejects": [
+        {
+          "name": "leading-zero",
+          "status": "noncanonical-leading-zero"
+        },
+        {
+          "name": "append-0",
+          "status": "early-EOF"
+        },
+        {
+          "name": "append-1",
+          "status": "early-EOF"
+        },
+        {
+          "name": "remove-last-bit",
+          "status": "partial-codeword"
+        }
+      ]
+    },
+    {
+      "name": "jpg229",
+      "plainRunes": 89,
+      "cipherRunes": 82,
+      "score": 0.6920466196474506,
+      "rejects": [
+        {
+          "name": "leading-zero",
+          "status": "noncanonical-leading-zero"
+        },
+        {
+          "name": "append-0",
+          "status": "early-EOF"
+        },
+        {
+          "name": "append-1",
+          "status": "early-EOF"
+        },
+        {
+          "name": "remove-last-bit",
+          "status": "partial-codeword"
+        }
+      ]
+    },
+    {
+      "name": "p56_an_end",
+      "plainRunes": 85,
+      "cipherRunes": 78,
+      "score": 0.6261913423430452,
+      "rejects": [
+        {
+          "name": "leading-zero",
+          "status": "noncanonical-leading-zero"
+        },
+        {
+          "name": "append-0",
+          "status": "early-EOF"
+        },
+        {
+          "name": "append-1",
+          "status": "early-EOF"
+        },
+        {
+          "name": "remove-last-bit",
+          "status": "partial-codeword"
+        }
+      ]
+    },
+    {
+      "name": "p57_parable",
+      "plainRunes": 95,
+      "cipherRunes": 86,
+      "score": 0.6528651404267637,
+      "rejects": [
+        {
+          "name": "leading-zero",
+          "status": "noncanonical-leading-zero"
+        },
+        {
+          "name": "append-0",
+          "status": "early-EOF"
+        },
+        {
+          "name": "append-1",
+          "status": "early-EOF"
+        },
+        {
+          "name": "remove-last-bit",
+          "status": "partial-codeword"
+        }
+      ]
+    }
+  ],
+  "chapterLengths": [
+    729,
+    1145,
+    1729,
+    1903,
+    1021,
+    1433,
+    1680,
+    3008,
+    308
+  ],
+  "seed": "0x3133c0de",
+  "drawsPerFramePerModel": 128,
+  "original": [
+    {
+      "id": "p0",
+      "scope": "page",
+      "cipherRunes": 262,
+      "status": "partial-codeword",
+      "bits": 1271,
+      "used": null
+    },
+    {
+      "id": "p1",
+      "scope": "page",
+      "cipherRunes": 266,
+      "status": "partial-codeword",
+      "bits": 1291,
+      "used": null
+    },
+    {
+      "id": "p2",
+      "scope": "page",
+      "cipherRunes": 201,
+      "status": "missing-EOF",
+      "bits": 976,
+      "used": null
+    },
+    {
+      "id": "p3",
+      "scope": "page",
+      "cipherRunes": 217,
+      "status": "early-EOF",
+      "bits": 1053,
+      "used": 78
+    },
+    {
+      "id": "p4",
+      "scope": "page",
+      "cipherRunes": 261,
+      "status": "missing-EOF",
+      "bits": 1267,
+      "used": null
+    },
+    {
+      "id": "p5",
+      "scope": "page",
+      "cipherRunes": 263,
+      "status": "missing-EOF",
+      "bits": 1275,
+      "used": null
+    },
+    {
+      "id": "p6",
+      "scope": "page",
+      "cipherRunes": 196,
+      "status": "early-EOF",
+      "bits": 951,
+      "used": 348
+    },
+    {
+      "id": "p7",
+      "scope": "page",
+      "cipherRunes": 208,
+      "status": "missing-EOF",
+      "bits": 1008,
+      "used": null
+    },
+    {
+      "id": "p8",
+      "scope": "page",
+      "cipherRunes": 255,
+      "status": "partial-codeword",
+      "bits": 1237,
+      "used": null
+    },
+    {
+      "id": "p9",
+      "scope": "page",
+      "cipherRunes": 268,
+      "status": "early-EOF",
+      "bits": 1301,
+      "used": 666
+    },
+    {
+      "id": "p10",
+      "scope": "page",
+      "cipherRunes": 263,
+      "status": "partial-codeword",
+      "bits": 1275,
+      "used": null
+    },
+    {
+      "id": "p11",
+      "scope": "page",
+      "cipherRunes": 273,
+      "status": "partial-codeword",
+      "bits": 1326,
+      "used": null
+    },
+    {
+      "id": "p12",
+      "scope": "page",
+      "cipherRunes": 261,
+      "status": "missing-EOF",
+      "bits": 1265,
+      "used": null
+    },
+    {
+      "id": "p13",
+      "scope": "page",
+      "cipherRunes": 272,
+      "status": "early-EOF",
+      "bits": 1319,
+      "used": 83
+    },
+    {
+      "id": "p14",
+      "scope": "page",
+      "cipherRunes": 137,
+      "status": "partial-codeword",
+      "bits": 664,
+      "used": null
+    },
+    {
+      "id": "p15",
+      "scope": "page",
+      "cipherRunes": 159,
+      "status": "noncanonical-leading-zero",
+      "bits": null,
+      "used": null
+    },
+    {
+      "id": "p16",
+      "scope": "page",
+      "cipherRunes": 267,
+      "status": "partial-codeword",
+      "bits": 1296,
+      "used": null
+    },
+    {
+      "id": "p17",
+      "scope": "page",
+      "cipherRunes": 273,
+      "status": "early-EOF",
+      "bits": 1325,
+      "used": 610
+    },
+    {
+      "id": "p18",
+      "scope": "page",
+      "cipherRunes": 260,
+      "status": "partial-codeword",
+      "bits": 1263,
+      "used": null
+    },
+    {
+      "id": "p19",
+      "scope": "page",
+      "cipherRunes": 271,
+      "status": "partial-codeword",
+      "bits": 1314,
+      "used": null
+    },
+    {
+      "id": "p20",
+      "scope": "page",
+      "cipherRunes": 269,
+      "status": "partial-codeword",
+      "bits": 1305,
+      "used": null
+    },
+    {
+      "id": "p21",
+      "scope": "page",
+      "cipherRunes": 273,
+      "status": "partial-codeword",
+      "bits": 1323,
+      "used": null
+    },
+    {
+      "id": "p22",
+      "scope": "page",
+      "cipherRunes": 131,
+      "status": "partial-codeword",
+      "bits": 635,
+      "used": null
+    },
+    {
+      "id": "p23",
+      "scope": "page",
+      "cipherRunes": 213,
+      "status": "early-EOF",
+      "bits": 1030,
+      "used": 39
+    },
+    {
+      "id": "p24",
+      "scope": "page",
+      "cipherRunes": 270,
+      "status": "early-EOF",
+      "bits": 1311,
+      "used": 766
+    },
+    {
+      "id": "p25",
+      "scope": "page",
+      "cipherRunes": 273,
+      "status": "partial-codeword",
+      "bits": 1324,
+      "used": null
+    },
+    {
+      "id": "p26",
+      "scope": "page",
+      "cipherRunes": 265,
+      "status": "partial-codeword",
+      "bits": 1287,
+      "used": null
+    },
+    {
+      "id": "p27",
+      "scope": "page",
+      "cipherRunes": 234,
+      "status": "early-EOF",
+      "bits": 1136,
+      "used": 104
+    },
+    {
+      "id": "p28",
+      "scope": "page",
+      "cipherRunes": 269,
+      "status": "missing-EOF",
+      "bits": 1305,
+      "used": null
+    },
+    {
+      "id": "p29",
+      "scope": "page",
+      "cipherRunes": 277,
+      "status": "early-EOF",
+      "bits": 1342,
+      "used": 796
+    },
+    {
+      "id": "p30",
+      "scope": "page",
+      "cipherRunes": 263,
+      "status": "early-EOF",
+      "bits": 1277,
+      "used": 1209
+    },
+    {
+      "id": "p31",
+      "scope": "page",
+      "cipherRunes": 269,
+      "status": "partial-codeword",
+      "bits": 1303,
+      "used": null
+    },
+    {
+      "id": "p32",
+      "scope": "page",
+      "cipherRunes": 121,
+      "status": "missing-EOF",
+      "bits": 587,
+      "used": null
+    },
+    {
+      "id": "p33",
+      "scope": "page",
+      "cipherRunes": 214,
+      "status": "partial-codeword",
+      "bits": 1039,
+      "used": null
+    },
+    {
+      "id": "p34",
+      "scope": "page",
+      "cipherRunes": 261,
+      "status": "early-EOF",
+      "bits": 1267,
+      "used": 563
+    },
+    {
+      "id": "p35",
+      "scope": "page",
+      "cipherRunes": 271,
+      "status": "partial-codeword",
+      "bits": 1316,
+      "used": null
+    },
+    {
+      "id": "p36",
+      "scope": "page",
+      "cipherRunes": 238,
+      "status": "partial-codeword",
+      "bits": 1156,
+      "used": null
+    },
+    {
+      "id": "p37",
+      "scope": "page",
+      "cipherRunes": 228,
+      "status": "partial-codeword",
+      "bits": 1106,
+      "used": null
+    },
+    {
+      "id": "p38",
+      "scope": "page",
+      "cipherRunes": 228,
+      "status": "partial-codeword",
+      "bits": 1103,
+      "used": null
+    },
+    {
+      "id": "p39",
+      "scope": "page",
+      "cipherRunes": 240,
+      "status": "early-EOF",
+      "bits": 1164,
+      "used": 24
+    },
+    {
+      "id": "p40",
+      "scope": "page",
+      "cipherRunes": 231,
+      "status": "noncanonical-leading-zero",
+      "bits": null,
+      "used": null
+    },
+    {
+      "id": "p41",
+      "scope": "page",
+      "cipherRunes": 273,
+      "status": "early-EOF",
+      "bits": 1326,
+      "used": 265
+    },
+    {
+      "id": "p42",
+      "scope": "page",
+      "cipherRunes": 272,
+      "status": "early-EOF",
+      "bits": 1321,
+      "used": 534
+    },
+    {
+      "id": "p43",
+      "scope": "page",
+      "cipherRunes": 274,
+      "status": "early-EOF",
+      "bits": 1329,
+      "used": 93
+    },
+    {
+      "id": "p44",
+      "scope": "page",
+      "cipherRunes": 273,
+      "status": "early-EOF",
+      "bits": 1326,
+      "used": 931
+    },
+    {
+      "id": "p45",
+      "scope": "page",
+      "cipherRunes": 270,
+      "status": "missing-EOF",
+      "bits": 1309,
+      "used": null
+    },
+    {
+      "id": "p46",
+      "scope": "page",
+      "cipherRunes": 270,
+      "status": "missing-EOF",
+      "bits": 1309,
+      "used": null
+    },
+    {
+      "id": "p47",
+      "scope": "page",
+      "cipherRunes": 274,
+      "status": "early-EOF",
+      "bits": 1331,
+      "used": 431
+    },
+    {
+      "id": "p48",
+      "scope": "page",
+      "cipherRunes": 271,
+      "status": "early-EOF",
+      "bits": 1314,
+      "used": 1181
+    },
+    {
+      "id": "p49",
+      "scope": "page",
+      "cipherRunes": 66,
+      "status": "partial-codeword",
+      "bits": 320,
+      "used": null
+    },
+    {
+      "id": "p51",
+      "scope": "page",
+      "cipherRunes": 92,
+      "status": "missing-EOF",
+      "bits": 444,
+      "used": null
+    },
+    {
+      "id": "p52",
+      "scope": "page",
+      "cipherRunes": 263,
+      "status": "partial-codeword",
+      "bits": 1276,
+      "used": null
+    },
+    {
+      "id": "p53",
+      "scope": "page",
+      "cipherRunes": 179,
+      "status": "partial-codeword",
+      "bits": 868,
+      "used": null
+    },
+    {
+      "id": "p54",
+      "scope": "page",
+      "cipherRunes": 232,
+      "status": "early-EOF",
+      "bits": 1126,
+      "used": 1059
+    },
+    {
+      "id": "p55",
+      "scope": "page",
+      "cipherRunes": 76,
+      "status": "partial-codeword",
+      "bits": 368,
+      "used": null
+    },
+    {
+      "id": "chapter1",
+      "scope": "chapter",
+      "cipherRunes": 729,
+      "status": "missing-EOF",
+      "bits": 3540,
+      "used": null
+    },
+    {
+      "id": "chapter2",
+      "scope": "chapter",
+      "cipherRunes": 1145,
+      "status": "early-EOF",
+      "bits": 5561,
+      "used": 2198
+    },
+    {
+      "id": "chapter3",
+      "scope": "chapter",
+      "cipherRunes": 1729,
+      "status": "early-EOF",
+      "bits": 8398,
+      "used": 7421
+    },
+    {
+      "id": "chapter4",
+      "scope": "chapter",
+      "cipherRunes": 1903,
+      "status": "noncanonical-leading-zero",
+      "bits": null,
+      "used": null
+    },
+    {
+      "id": "chapter5",
+      "scope": "chapter",
+      "cipherRunes": 1021,
+      "status": "early-EOF",
+      "bits": 4956,
+      "used": 353
+    },
+    {
+      "id": "chapter6",
+      "scope": "chapter",
+      "cipherRunes": 1433,
+      "status": "early-EOF",
+      "bits": 6960,
+      "used": 1858
+    },
+    {
+      "id": "chapter7",
+      "scope": "chapter",
+      "cipherRunes": 1680,
+      "status": "early-EOF",
+      "bits": 8161,
+      "used": 3023
+    },
+    {
+      "id": "chapter8",
+      "scope": "chapter",
+      "cipherRunes": 3008,
+      "status": "noncanonical-leading-zero",
+      "bits": null,
+      "used": null
+    },
+    {
+      "id": "chapter9",
+      "scope": "chapter",
+      "cipherRunes": 308,
+      "status": "partial-codeword",
+      "bits": 1496,
+      "used": null
+    },
+    {
+      "id": "book",
+      "scope": "book",
+      "cipherRunes": 12956,
+      "status": "early-EOF",
+      "bits": 62939,
+      "used": 4405
+    }
+  ],
+  "nulls": [
+    {
+      "id": "p0",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 54,
+        "partial-codeword": 49,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 19,
+        "legal": 1
+      },
+      "legal": [
+        {
+          "runes": 296,
+          "score": -0.09513755979776108
+        }
+      ]
+    },
+    {
+      "id": "p0",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 65,
+        "partial-codeword": 43,
+        "missing-EOF": 15,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p1",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 57,
+        "missing-EOF": 8,
+        "early-EOF": 58,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p1",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 52,
+        "early-EOF": 59,
+        "missing-EOF": 10,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p2",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 62,
+        "early-EOF": 46,
+        "missing-EOF": 14,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p2",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 45,
+        "partial-codeword": 60,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p3",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "noncanonical-leading-zero": 5,
+        "early-EOF": 48,
+        "partial-codeword": 61,
+        "missing-EOF": 14
+      },
+      "legal": []
+    },
+    {
+      "id": "p3",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 46,
+        "early-EOF": 61,
+        "missing-EOF": 14,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p4",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 50,
+        "partial-codeword": 59,
+        "missing-EOF": 17,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p4",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 55,
+        "partial-codeword": 46,
+        "missing-EOF": 20,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p5",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "missing-EOF": 14,
+        "partial-codeword": 55,
+        "early-EOF": 54,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p5",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 54,
+        "early-EOF": 52,
+        "missing-EOF": 20,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p6",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 37,
+        "partial-codeword": 70,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p6",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "missing-EOF": 32,
+        "partial-codeword": 53,
+        "noncanonical-leading-zero": 4,
+        "early-EOF": 39
+      },
+      "legal": []
+    },
+    {
+      "id": "p7",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 65,
+        "missing-EOF": 19,
+        "early-EOF": 43,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p7",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 41,
+        "partial-codeword": 54,
+        "missing-EOF": 25,
+        "noncanonical-leading-zero": 8
+      },
+      "legal": []
+    },
+    {
+      "id": "p8",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 58,
+        "partial-codeword": 49,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p8",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "missing-EOF": 20,
+        "early-EOF": 42,
+        "partial-codeword": 62,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p9",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 50,
+        "missing-EOF": 20,
+        "early-EOF": 53,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p9",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 63,
+        "noncanonical-leading-zero": 5,
+        "partial-codeword": 48,
+        "missing-EOF": 12
+      },
+      "legal": []
+    },
+    {
+      "id": "p10",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "missing-EOF": 18,
+        "partial-codeword": 49,
+        "early-EOF": 59,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p10",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 56,
+        "missing-EOF": 17,
+        "early-EOF": 54,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p11",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 50,
+        "early-EOF": 64,
+        "missing-EOF": 10,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p11",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 57,
+        "early-EOF": 51,
+        "missing-EOF": 16,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p12",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 59,
+        "early-EOF": 49,
+        "missing-EOF": 16,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p12",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 56,
+        "early-EOF": 56,
+        "missing-EOF": 13,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p13",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 49,
+        "noncanonical-leading-zero": 4,
+        "partial-codeword": 62,
+        "missing-EOF": 13
+      },
+      "legal": []
+    },
+    {
+      "id": "p13",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "missing-EOF": 22,
+        "early-EOF": 48,
+        "partial-codeword": 57,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p14",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 75,
+        "early-EOF": 21,
+        "missing-EOF": 25,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p14",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 72,
+        "missing-EOF": 18,
+        "early-EOF": 34,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p15",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "missing-EOF": 20,
+        "early-EOF": 42,
+        "partial-codeword": 66
+      },
+      "legal": []
+    },
+    {
+      "id": "p15",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 30,
+        "partial-codeword": 78,
+        "noncanonical-leading-zero": 4,
+        "missing-EOF": 16
+      },
+      "legal": []
+    },
+    {
+      "id": "p16",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 56,
+        "missing-EOF": 9,
+        "partial-codeword": 60,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p16",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "noncanonical-leading-zero": 7,
+        "partial-codeword": 57,
+        "early-EOF": 48,
+        "missing-EOF": 16
+      },
+      "legal": []
+    },
+    {
+      "id": "p17",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 60,
+        "missing-EOF": 15,
+        "partial-codeword": 50,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p17",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 55,
+        "noncanonical-leading-zero": 5,
+        "partial-codeword": 50,
+        "missing-EOF": 18
+      },
+      "legal": []
+    },
+    {
+      "id": "p18",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 50,
+        "early-EOF": 64,
+        "missing-EOF": 13,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p18",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 59,
+        "missing-EOF": 20,
+        "partial-codeword": 45,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p19",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 45,
+        "partial-codeword": 64,
+        "missing-EOF": 15,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p19",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 54,
+        "early-EOF": 51,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 18
+      },
+      "legal": []
+    },
+    {
+      "id": "p20",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 54,
+        "partial-codeword": 50,
+        "noncanonical-leading-zero": 6,
+        "missing-EOF": 18
+      },
+      "legal": []
+    },
+    {
+      "id": "p20",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 64,
+        "missing-EOF": 12,
+        "early-EOF": 49,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p21",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 44,
+        "early-EOF": 62,
+        "missing-EOF": 16,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p21",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 45,
+        "missing-EOF": 10,
+        "early-EOF": 66,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p22",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 64,
+        "early-EOF": 37,
+        "missing-EOF": 21,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p22",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 32,
+        "partial-codeword": 76,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p23",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 53,
+        "early-EOF": 53,
+        "noncanonical-leading-zero": 6,
+        "missing-EOF": 16
+      },
+      "legal": []
+    },
+    {
+      "id": "p23",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 56,
+        "partial-codeword": 44,
+        "missing-EOF": 23,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p24",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "noncanonical-leading-zero": 6,
+        "partial-codeword": 57,
+        "missing-EOF": 13,
+        "early-EOF": 52
+      },
+      "legal": []
+    },
+    {
+      "id": "p24",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 42,
+        "noncanonical-leading-zero": 3,
+        "partial-codeword": 63,
+        "missing-EOF": 20
+      },
+      "legal": []
+    },
+    {
+      "id": "p25",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 51,
+        "noncanonical-leading-zero": 7,
+        "partial-codeword": 52,
+        "missing-EOF": 18
+      },
+      "legal": []
+    },
+    {
+      "id": "p25",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 50,
+        "missing-EOF": 14,
+        "early-EOF": 60,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p26",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 64,
+        "partial-codeword": 47,
+        "missing-EOF": 13,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p26",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 55,
+        "partial-codeword": 50,
+        "missing-EOF": 17,
+        "legal": 1,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": [
+        {
+          "runes": 301,
+          "score": 0.021213484270244946
+        }
+      ]
+    },
+    {
+      "id": "p27",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "missing-EOF": 18,
+        "early-EOF": 54,
+        "partial-codeword": 50,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p27",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 47,
+        "partial-codeword": 56,
+        "noncanonical-leading-zero": 8,
+        "missing-EOF": 17
+      },
+      "legal": []
+    },
+    {
+      "id": "p28",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 53,
+        "missing-EOF": 19,
+        "early-EOF": 50,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p28",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 43,
+        "early-EOF": 70,
+        "missing-EOF": 11,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p29",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 53,
+        "partial-codeword": 43,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 13
+      },
+      "legal": []
+    },
+    {
+      "id": "p29",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 53,
+        "missing-EOF": 15,
+        "early-EOF": 55,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p30",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 53,
+        "early-EOF": 48,
+        "noncanonical-leading-zero": 11,
+        "missing-EOF": 16
+      },
+      "legal": []
+    },
+    {
+      "id": "p30",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 54,
+        "early-EOF": 52,
+        "missing-EOF": 17,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p31",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 51,
+        "partial-codeword": 42,
+        "missing-EOF": 30,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p31",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 58,
+        "partial-codeword": 49,
+        "missing-EOF": 15,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p32",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 68,
+        "missing-EOF": 26,
+        "early-EOF": 29,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p32",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 81,
+        "missing-EOF": 20,
+        "early-EOF": 24,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p33",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "missing-EOF": 17,
+        "early-EOF": 48,
+        "partial-codeword": 60,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p33",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 58,
+        "partial-codeword": 50,
+        "noncanonical-leading-zero": 7,
+        "missing-EOF": 13
+      },
+      "legal": []
+    },
+    {
+      "id": "p34",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 50,
+        "partial-codeword": 54,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p34",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 57,
+        "partial-codeword": 56,
+        "missing-EOF": 15
+      },
+      "legal": []
+    },
+    {
+      "id": "p35",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 51,
+        "early-EOF": 55,
+        "noncanonical-leading-zero": 7,
+        "missing-EOF": 15
+      },
+      "legal": []
+    },
+    {
+      "id": "p35",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 64,
+        "partial-codeword": 46,
+        "missing-EOF": 17,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p36",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 53,
+        "early-EOF": 53,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 17
+      },
+      "legal": []
+    },
+    {
+      "id": "p36",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 50,
+        "partial-codeword": 51,
+        "noncanonical-leading-zero": 7,
+        "missing-EOF": 20
+      },
+      "legal": []
+    },
+    {
+      "id": "p37",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 51,
+        "missing-EOF": 19,
+        "early-EOF": 57,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p37",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 53,
+        "early-EOF": 46,
+        "missing-EOF": 21,
+        "noncanonical-leading-zero": 8
+      },
+      "legal": []
+    },
+    {
+      "id": "p38",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 59,
+        "early-EOF": 46,
+        "missing-EOF": 19,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p38",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "missing-EOF": 20,
+        "partial-codeword": 63,
+        "early-EOF": 41,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p39",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 46,
+        "noncanonical-leading-zero": 8,
+        "partial-codeword": 56,
+        "missing-EOF": 17,
+        "legal": 1
+      },
+      "legal": [
+        {
+          "runes": 276,
+          "score": -0.012710406109447245
+        }
+      ]
+    },
+    {
+      "id": "p39",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 58,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 15,
+        "early-EOF": 50
+      },
+      "legal": []
+    },
+    {
+      "id": "p40",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 49,
+        "noncanonical-leading-zero": 4,
+        "early-EOF": 57,
+        "missing-EOF": 18
+      },
+      "legal": []
+    },
+    {
+      "id": "p40",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 50,
+        "partial-codeword": 58,
+        "missing-EOF": 14,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p41",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 51,
+        "missing-EOF": 26,
+        "partial-codeword": 46,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p41",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 64,
+        "noncanonical-leading-zero": 4,
+        "partial-codeword": 50,
+        "missing-EOF": 10
+      },
+      "legal": []
+    },
+    {
+      "id": "p42",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 59,
+        "partial-codeword": 53,
+        "missing-EOF": 10,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p42",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 51,
+        "early-EOF": 58,
+        "missing-EOF": 16,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p43",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 69,
+        "missing-EOF": 18,
+        "partial-codeword": 40,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "p43",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 58,
+        "partial-codeword": 47,
+        "missing-EOF": 21,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p44",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 56,
+        "early-EOF": 56,
+        "missing-EOF": 14,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "p44",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 63,
+        "missing-EOF": 16,
+        "noncanonical-leading-zero": 3,
+        "partial-codeword": 46
+      },
+      "legal": []
+    },
+    {
+      "id": "p45",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 48,
+        "early-EOF": 55,
+        "missing-EOF": 20,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p45",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "missing-EOF": 17,
+        "partial-codeword": 45,
+        "noncanonical-leading-zero": 2,
+        "early-EOF": 64
+      },
+      "legal": []
+    },
+    {
+      "id": "p46",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "missing-EOF": 15,
+        "early-EOF": 53,
+        "partial-codeword": 51,
+        "noncanonical-leading-zero": 9
+      },
+      "legal": []
+    },
+    {
+      "id": "p46",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 53,
+        "partial-codeword": 59,
+        "missing-EOF": 13,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p47",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 61,
+        "partial-codeword": 46,
+        "missing-EOF": 14,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p47",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 55,
+        "partial-codeword": 44,
+        "missing-EOF": 24,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p48",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 50,
+        "missing-EOF": 22,
+        "early-EOF": 52,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p48",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 62,
+        "missing-EOF": 15,
+        "partial-codeword": 48,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p49",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 18,
+        "partial-codeword": 73,
+        "noncanonical-leading-zero": 6,
+        "missing-EOF": 30,
+        "legal": 1
+      },
+      "legal": [
+        {
+          "runes": 75,
+          "score": -0.20324687670227543
+        }
+      ]
+    },
+    {
+      "id": "p49",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 83,
+        "missing-EOF": 25,
+        "early-EOF": 17,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "p51",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 82,
+        "early-EOF": 17,
+        "missing-EOF": 24,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p51",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 77,
+        "missing-EOF": 22,
+        "early-EOF": 23,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "p52",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 54,
+        "missing-EOF": 11,
+        "partial-codeword": 59,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "p52",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 48,
+        "early-EOF": 57,
+        "missing-EOF": 16,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "p53",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 62,
+        "early-EOF": 38,
+        "missing-EOF": 23,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p53",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 45,
+        "partial-codeword": 59,
+        "noncanonical-leading-zero": 6,
+        "missing-EOF": 18
+      },
+      "legal": []
+    },
+    {
+      "id": "p54",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "partial-codeword": 62,
+        "early-EOF": 44,
+        "missing-EOF": 17,
+        "noncanonical-leading-zero": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "p54",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "partial-codeword": 67,
+        "early-EOF": 48,
+        "noncanonical-leading-zero": 1,
+        "missing-EOF": 12
+      },
+      "legal": []
+    },
+    {
+      "id": "p55",
+      "scope": "page",
+      "model": "uniform",
+      "counts": {
+        "noncanonical-leading-zero": 7,
+        "missing-EOF": 24,
+        "partial-codeword": 80,
+        "early-EOF": 17
+      },
+      "legal": []
+    },
+    {
+      "id": "p55",
+      "scope": "page",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 19,
+        "missing-EOF": 23,
+        "partial-codeword": 79,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter1",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 101,
+        "partial-codeword": 16,
+        "missing-EOF": 5,
+        "noncanonical-leading-zero": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter1",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 102,
+        "partial-codeword": 15,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter2",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 112,
+        "partial-codeword": 10,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter2",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "noncanonical-leading-zero": 8,
+        "early-EOF": 114,
+        "partial-codeword": 6
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter3",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 120,
+        "noncanonical-leading-zero": 8
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter3",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 122,
+        "noncanonical-leading-zero": 2,
+        "partial-codeword": 3,
+        "missing-EOF": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter4",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 119,
+        "noncanonical-leading-zero": 7,
+        "partial-codeword": 1,
+        "missing-EOF": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter4",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 123,
+        "partial-codeword": 1,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter5",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 114,
+        "partial-codeword": 12,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter5",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 106,
+        "partial-codeword": 12,
+        "noncanonical-leading-zero": 5,
+        "missing-EOF": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter6",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 117,
+        "noncanonical-leading-zero": 4,
+        "missing-EOF": 2,
+        "partial-codeword": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter6",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 113,
+        "noncanonical-leading-zero": 8,
+        "missing-EOF": 2,
+        "partial-codeword": 5
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter7",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 122,
+        "noncanonical-leading-zero": 5,
+        "partial-codeword": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter7",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 124,
+        "noncanonical-leading-zero": 4
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter8",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 124,
+        "noncanonical-leading-zero": 3,
+        "partial-codeword": 1
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter8",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 121,
+        "noncanonical-leading-zero": 7
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter9",
+      "scope": "chapter",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 59,
+        "missing-EOF": 10,
+        "partial-codeword": 56,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "chapter9",
+      "scope": "chapter",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 61,
+        "partial-codeword": 47,
+        "missing-EOF": 17,
+        "noncanonical-leading-zero": 3
+      },
+      "legal": []
+    },
+    {
+      "id": "book",
+      "scope": "book",
+      "model": "uniform",
+      "counts": {
+        "early-EOF": 126,
+        "noncanonical-leading-zero": 2
+      },
+      "legal": []
+    },
+    {
+      "id": "book",
+      "scope": "book",
+      "model": "low-repeat",
+      "counts": {
+        "early-EOF": 127,
+        "noncanonical-leading-zero": 1
+      },
+      "legal": []
+    }
+  ]
+}
