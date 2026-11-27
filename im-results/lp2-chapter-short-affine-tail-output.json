@@ -1,0 +1,96 @@
+{
+  "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+  "Q": 24389,
+  "domain": "signed unit A with abs(A)<29^3; 0<=B<29^3",
+  "original": [
+    {
+      "reverse": false,
+      "fit": -3.3876064344328625,
+      "A": -10925,
+      "lo": 3319,
+      "hi": 24388,
+      "carryBranch": 1,
+      "runner": {
+        "A": -10925,
+        "lo": 0,
+        "hi": 3318,
+        "carryBranch": 0,
+        "fit": -3.3887569941797495
+      },
+      "count": 94192,
+      "held": -3.4872797981559707,
+      "replay": true,
+      "rendered": "F F F F J NG OE TH X IA J F U T I E C EO OE R D Y C A P T E L F D S T J T A O S IA T N A D IA X EO EA P I OE G E D TH G R EA L B TH OE D O L EO Y R Y P G C W L Y T L C M I I U C M TH E J R F C EA B C N S A B A OE D X T N A B Y H E S OE M Y S I C TH E A IA AE I R G X O TH C EA S E W N O B B TH OE G E E F TH TH H F OE IA S NG X C B E T TH H EA AE H T M C A O T EA R F B S I L G R Y J TH T AE C R E"
+    },
+    {
+      "reverse": true,
+      "fit": -3.3741395529773004,
+      "A": -8391,
+      "lo": 0,
+      "hi": 13612,
+      "carryBranch": 0,
+      "runner": {
+        "A": -8391,
+        "lo": 13613,
+        "hi": 24388,
+        "carryBranch": 1,
+        "fit": -3.3741395529773004
+      },
+      "count": 94192,
+      "held": -3.491689272679691,
+      "replay": true,
+      "rendered": "C NG I N E T I I E G M D S W I U EA A T J C H U I E S C AE A F M TH I O NG N TH N G P IA A E G D W O B M B L EA M EA Y IA I P NG N I G U B W NG I X M A C L L M G L W NG E U S OE C P N W J O I AE Y R NG N A A S A S J OE U U I F TH L NG T J S T N B NG TH H X TH U F TH R P A G J D X R S S W P TH G EO I H Y C U T H Y G S H F E EA G OE D H OE S OE E L J U T G T C EO A F C AE IA U B EA C D EO IA L"
+    }
+  ],
+  "plants": [
+    {
+      "reverse": false,
+      "fit": -2.4489764500550786,
+      "expectedA": 1033,
+      "expectedB": 17659,
+      "A": 1033,
+      "lo": 14967,
+      "hi": 24388,
+      "carryBranch": 1,
+      "runner": {
+        "A": 1033,
+        "lo": 0,
+        "hi": 14966,
+        "carryBranch": 0,
+        "fit": -2.4496417569184152
+      },
+      "count": 94192,
+      "held": -2.655298274455961,
+      "replay": true,
+      "containsB": true,
+      "fitCorrect": 246,
+      "heldCorrect": 467,
+      "heldN": 467
+    },
+    {
+      "reverse": true,
+      "fit": -2.710108589566659,
+      "expectedA": -3301,
+      "expectedB": 22001,
+      "A": -3301,
+      "lo": 15829,
+      "hi": 24388,
+      "carryBranch": 1,
+      "runner": {
+        "A": -3301,
+        "lo": 0,
+        "hi": 15828,
+        "carryBranch": 0,
+        "fit": -2.711374436508184
+      },
+      "count": 94192,
+      "held": -2.793610341327231,
+      "replay": true,
+      "containsB": true,
+      "fitCorrect": 198,
+      "heldCorrect": 515,
+      "heldN": 515
+    }
+  ]
+}
