@@ -1,0 +1,82 @@
+{
+  "matrix": [
+    [
+      272,
+      151
+    ],
+    [
+      151,
+      272
+    ]
+  ],
+  "ratio": "423/121",
+  "order29": 28,
+  "power28mod841": "668",
+  "domain": "all integer e in [-3301,3301] with finite output",
+  "original": [
+    {
+      "reverse": false,
+      "fit": 249,
+      "e": 1822,
+      "fitScore": -3.393398854522249,
+      "runner": {
+        "e": -2729,
+        "fitScore": -3.3990282823226927
+      },
+      "count": 6367,
+      "held": -3.5068521377798847,
+      "replay": true,
+      "rendered": "OE S IA TH IA B W O EO U I W N A S N N I A N E N P U T AE G S S C R H F I Y C A D R D C J P OE NG IA G IA M I F N F NG EO C F IA C O I D O N G OE EO IA S EO G R O M D T O U U L Y O M EA OE R IA N EO E OE T S U O M EO D O W O EO L TH J N W W S Y J D O A L O S O F I X S I C E P W W D N EO Y U W E OE Y Y EA E AE J C O S EA EA N R A C C H B Y EA TH G M P D O L L A X TH F T AE S U D X TH OE E A N A"
+    },
+    {
+      "reverse": true,
+      "fit": 201,
+      "e": 1082,
+      "fitScore": -3.398495795482376,
+      "runner": {
+        "e": 483,
+        "fitScore": -3.4020675108515146
+      },
+      "count": 6367,
+      "held": -3.4680966670176394,
+      "replay": true,
+      "rendered": "G C T AE EA L R P J B G S G N S EA B I B L P D OE L W G A M P T U R IA J R J T A W EO P H IA P J R D T W AE Y H A S C AE OE EO C Y I L EO TH Y AE NG G Y NG P B W I X N OE EO F O W U O R U T C OE M B N S C O EA B F P EA AE F F N B C M D R L L I X G I O M O A G J R J Y OE S IA N M B N C N X AE B T M W TH OE Y Y L B EA O T O NG IA G G B M R S P X IA F F OE F W AE EO Y M T G N E T I C OE O IA C U"
+    }
+  ],
+  "plants": [
+    {
+      "reverse": false,
+      "fit": 249,
+      "expectedE": 1033,
+      "e": 1033,
+      "fitScore": -2.4474259980632396,
+      "runner": {
+        "e": 65,
+        "fitScore": -3.4045871157011454
+      },
+      "count": 6367,
+      "held": -2.655298274455961,
+      "replay": true,
+      "fitCorrect": 249,
+      "heldCorrect": 467,
+      "heldN": 467
+    },
+    {
+      "reverse": true,
+      "fit": 201,
+      "expectedE": -3301,
+      "e": -3301,
+      "fitScore": -2.7137675733529547,
+      "runner": {
+        "e": -2225,
+        "fitScore": -3.3848620091480868
+      },
+      "count": 6368,
+      "held": -2.793610341327231,
+      "replay": true,
+      "fitCorrect": 201,
+      "heldCorrect": 515,
+      "heldN": 515
+    }
+  ]
+}
