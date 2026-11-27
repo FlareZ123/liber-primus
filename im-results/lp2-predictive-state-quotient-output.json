@@ -1,0 +1,669 @@
+{
+  "N": 12956,
+  "source": {
+    "train": 18000,
+    "donor": 62492,
+    "uniqueRowSpectra": 29,
+    "rare": [
+      25,
+      14,
+      22,
+      12
+    ],
+    "solvedLengths": [
+      184,
+      515,
+      157,
+      780,
+      755,
+      319,
+      89,
+      85,
+      95
+    ]
+  },
+  "originalNoDecode": {
+    "repeats": 86,
+    "arbitraryStateTop1Caps": [
+      510,
+      1014,
+      1518,
+      2015
+    ],
+    "arbitraryStateTop2Caps": [
+      1014,
+      2015,
+      2977,
+      3925
+    ],
+    "gibranWindowSize": 12955,
+    "gibranMinTop1": 1416,
+    "gibranMinTop2": 2548
+  },
+  "results": [
+    {
+      "type": "native",
+      "q": 2,
+      "seed": 7323,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 0,
+      "repeats": 1,
+      "spec": {
+        "fitHit": 5074,
+        "heldHit": 3064,
+        "held": 4956,
+        "heldLogP": -3.232335093446054
+      },
+      "uni": {
+        "fitHit": 4657,
+        "heldHit": 3017,
+        "held": 4956,
+        "heldLogP": -3.1272742164244938
+      },
+      "refined": {
+        "fitHit": 7979,
+        "heldHit": 4951,
+        "held": 4956,
+        "heldLogP": -2.544251381004587
+      },
+      "keyMatches": [
+        32,
+        29,
+        52
+      ],
+      "keySize": 58,
+      "context": {
+        "nonempty": 98,
+        "total": 116,
+        "median": 10
+      },
+      "fitObjectives": [
+        -25505.354244713308,
+        -25227.673696028076,
+        -20355.578330663364
+      ],
+      "quotient": {
+        "reachable": 1570,
+        "distinctTwoStepSignatures": 1570,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "repeat-matched-rival",
+      "q": 2,
+      "seed": 7323,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 2,
+      "repeats": 1,
+      "spec": {
+        "fitHit": 271,
+        "heldHit": 155,
+        "held": 4956,
+        "heldLogP": -4.221583022145336
+      },
+      "uni": {
+        "fitHit": 283,
+        "heldHit": 185,
+        "held": 4956,
+        "heldLogP": -4.215976797026114
+      },
+      "refined": {
+        "fitHit": 287,
+        "heldHit": 171,
+        "held": 4956,
+        "heldLogP": -4.174762878160799
+      },
+      "keyMatches": [
+        0,
+        3,
+        1
+      ],
+      "keySize": 58,
+      "context": {
+        "nonempty": 113,
+        "total": 116,
+        "median": 11
+      },
+      "fitObjectives": [
+        -33712.24770230644,
+        -33261.663130070185,
+        -32097.035762499887
+      ],
+      "quotient": {
+        "reachable": 1570,
+        "distinctTwoStepSignatures": 1570,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "native",
+      "q": 2,
+      "seed": 7324,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 0,
+      "repeats": 1,
+      "spec": {
+        "fitHit": 5674,
+        "heldHit": 3467,
+        "held": 4956,
+        "heldLogP": -3.0392611188180263
+      },
+      "uni": {
+        "fitHit": 3073,
+        "heldHit": 1908,
+        "held": 4956,
+        "heldLogP": -3.349723575164699
+      },
+      "refined": {
+        "fitHit": 8000,
+        "heldHit": 4956,
+        "held": 4956,
+        "heldLogP": -2.548453609677095
+      },
+      "keyMatches": [
+        35,
+        18,
+        56
+      ],
+      "keySize": 58,
+      "context": {
+        "nonempty": 98,
+        "total": 116,
+        "median": 10
+      },
+      "fitObjectives": [
+        -24371.187392320797,
+        -26733.35896408833,
+        -20464.680473969776
+      ],
+      "quotient": {
+        "reachable": 1570,
+        "distinctTwoStepSignatures": 1570,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "repeat-matched-rival",
+      "q": 2,
+      "seed": 7324,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 2,
+      "repeats": 2,
+      "spec": {
+        "fitHit": 299,
+        "heldHit": 186,
+        "held": 4956,
+        "heldLogP": -4.201778670891135
+      },
+      "uni": {
+        "fitHit": 290,
+        "heldHit": 186,
+        "held": 4956,
+        "heldLogP": -4.17041755158776
+      },
+      "refined": {
+        "fitHit": 315,
+        "heldHit": 178,
+        "held": 4956,
+        "heldLogP": -4.145049806418935
+      },
+      "keyMatches": [
+        6,
+        3,
+        2
+      ],
+      "keySize": 58,
+      "context": {
+        "nonempty": 113,
+        "total": 116,
+        "median": 11
+      },
+      "fitObjectives": [
+        -33618.268817310265,
+        -33182.489491614644,
+        -32141.36775211136
+      ],
+      "quotient": {
+        "reachable": 1570,
+        "distinctTwoStepSignatures": 1570,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "markov-book-length",
+      "q": 2,
+      "seed": 915,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 0,
+      "repeats": 20,
+      "spec": {
+        "fitHit": 5431,
+        "heldHit": 3296,
+        "held": 4956,
+        "heldLogP": -3.276944871306021
+      },
+      "uni": {
+        "fitHit": 4073,
+        "heldHit": 2537,
+        "held": 4956,
+        "heldLogP": -3.172959303811753
+      },
+      "refined": {
+        "fitHit": 7966,
+        "heldHit": 4921,
+        "held": 4956,
+        "heldLogP": -2.590368860076757
+      },
+      "keyMatches": [
+        32,
+        25,
+        52
+      ],
+      "keySize": 58,
+      "context": {
+        "nonempty": 102,
+        "total": 116,
+        "median": 9
+      },
+      "fitObjectives": [
+        -26397.98033638741,
+        -25564.348980097562,
+        -20720.969382376323
+      ],
+      "quotient": {
+        "reachable": 1570,
+        "distinctTwoStepSignatures": 1570,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "markov-long",
+      "q": 2,
+      "seed": 915,
+      "n": 1000000,
+      "fit": 800000,
+      "rival": 0,
+      "repeats": 1600,
+      "spec": {
+        "fitHit": 800000,
+        "heldHit": 200000,
+        "held": 200000,
+        "heldLogP": -2.5984433166955214
+      },
+      "uni": {
+        "fitHit": 777810,
+        "heldHit": 194382,
+        "held": 200000,
+        "heldLogP": -2.6312751635546325
+      },
+      "refined": {
+        "fitHit": 800000,
+        "heldHit": 200000,
+        "held": 200000,
+        "heldLogP": -2.5984433166955214
+      },
+      "keyMatches": [
+        58,
+        54,
+        58
+      ],
+      "keySize": 58,
+      "context": {
+        "nonempty": 114,
+        "total": 116,
+        "median": 996
+      },
+      "fitObjectives": [
+        -2077115.6908925031,
+        -2103525.10397026,
+        -2077115.6908925031
+      ],
+      "quotient": {
+        "reachable": 1570,
+        "distinctTwoStepSignatures": 1570,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "native",
+      "q": 4,
+      "seed": 7523,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 0,
+      "repeats": 2,
+      "spec": {
+        "fitHit": 3492,
+        "heldHit": 2260,
+        "held": 4956,
+        "heldLogP": -3.356128622874707
+      },
+      "uni": {
+        "fitHit": 3970,
+        "heldHit": 2432,
+        "held": 4956,
+        "heldLogP": -3.2090379744939854
+      },
+      "refined": {
+        "fitHit": 7980,
+        "heldHit": 4948,
+        "held": 4956,
+        "heldLogP": -2.545610648919205
+      },
+      "keyMatches": [
+        46,
+        53,
+        102
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 333,
+        "total": 464,
+        "median": 2
+      },
+      "fitObjectives": [
+        -27180.093518147005,
+        -25714.699807350178,
+        -20354.126465076883
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "repeat-matched-rival",
+      "q": 4,
+      "seed": 7523,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 2,
+      "repeats": 7,
+      "spec": {
+        "fitHit": 270,
+        "heldHit": 163,
+        "held": 4956,
+        "heldLogP": -4.219870711335701
+      },
+      "uni": {
+        "fitHit": 298,
+        "heldHit": 195,
+        "held": 4956,
+        "heldLogP": -4.213029998114071
+      },
+      "refined": {
+        "fitHit": 281,
+        "heldHit": 191,
+        "held": 4956,
+        "heldLogP": -4.172421760218659
+      },
+      "keyMatches": [
+        3,
+        5,
+        2
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 403,
+        "total": 464,
+        "median": 3
+      },
+      "fitObjectives": [
+        -33787.50529633486,
+        -32911.08163586236,
+        -31559.220914567355
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "native",
+      "q": 4,
+      "seed": 7524,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 0,
+      "repeats": 3,
+      "spec": {
+        "fitHit": 2949,
+        "heldHit": 1853,
+        "held": 4956,
+        "heldLogP": -3.4637313766680866
+      },
+      "uni": {
+        "fitHit": 3600,
+        "heldHit": 2187,
+        "held": 4956,
+        "heldLogP": -3.298543851071647
+      },
+      "refined": {
+        "fitHit": 7998,
+        "heldHit": 4950,
+        "held": 4956,
+        "heldLogP": -2.5514960059402925
+      },
+      "keyMatches": [
+        37,
+        37,
+        105
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 327,
+        "total": 464,
+        "median": 2
+      },
+      "fitObjectives": [
+        -27826.776868851604,
+        -26222.51565659185,
+        -20463.082870514987
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "repeat-matched-rival",
+      "q": 4,
+      "seed": 7524,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 2,
+      "repeats": 2,
+      "spec": {
+        "fitHit": 263,
+        "heldHit": 178,
+        "held": 4956,
+        "heldLogP": -4.230517468648145
+      },
+      "uni": {
+        "fitHit": 341,
+        "heldHit": 183,
+        "held": 4956,
+        "heldLogP": -4.183955945346059
+      },
+      "refined": {
+        "fitHit": 287,
+        "heldHit": 186,
+        "held": 4956,
+        "heldLogP": -4.190688118375371
+      },
+      "keyMatches": [
+        3,
+        1,
+        4
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 396,
+        "total": 464,
+        "median": 3
+      },
+      "fitObjectives": [
+        -33803.30127651233,
+        -32767.654601148883,
+        -31438.20724455308
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "markov-book-length",
+      "q": 4,
+      "seed": 917,
+      "n": 12956,
+      "fit": 8000,
+      "rival": 0,
+      "repeats": 30,
+      "spec": {
+        "fitHit": 3909,
+        "heldHit": 2396,
+        "held": 4956,
+        "heldLogP": -3.322364099246847
+      },
+      "uni": {
+        "fitHit": 3663,
+        "heldHit": 2198,
+        "held": 4956,
+        "heldLogP": -3.266536427569158
+      },
+      "refined": {
+        "fitHit": 7959,
+        "heldHit": 4919,
+        "held": 4956,
+        "heldLogP": -2.604437358142376
+      },
+      "keyMatches": [
+        43,
+        41,
+        105
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 337,
+        "total": 464,
+        "median": 3
+      },
+      "fitObjectives": [
+        -26586.318140499596,
+        -26126.30826290803,
+        -20899.28430867738
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "markov-long",
+      "q": 4,
+      "seed": 917,
+      "n": 1000000,
+      "fit": 800000,
+      "rival": 0,
+      "repeats": 1738,
+      "spec": {
+        "fitHit": 798706,
+        "heldHit": 199700,
+        "held": 200000,
+        "heldLogP": -2.5943794987389777
+      },
+      "uni": {
+        "fitHit": 729157,
+        "heldHit": 182729,
+        "held": 200000,
+        "heldLogP": -2.7084626317105682
+      },
+      "refined": {
+        "fitHit": 798706,
+        "heldHit": 199700,
+        "held": 200000,
+        "heldLogP": -2.5943794987389777
+      },
+      "keyMatches": [
+        112,
+        95,
+        112
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 428,
+        "total": 464,
+        "median": 283
+      },
+      "fitObjectives": [
+        -2077115.5301626984,
+        -2171025.466142695,
+        -2077115.5301626984
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    },
+    {
+      "type": "solved-native-longest",
+      "q": 4,
+      "seed": 1717,
+      "n": 780,
+      "fit": 507,
+      "rival": 0,
+      "repeats": 0,
+      "spec": {
+        "fitHit": 16,
+        "heldHit": 7,
+        "held": 273,
+        "heldLogP": -4.25957957480053
+      },
+      "uni": {
+        "fitHit": 127,
+        "heldHit": 63,
+        "held": 273,
+        "heldLogP": -3.4388595733566483
+      },
+      "refined": {
+        "fitHit": 361,
+        "heldHit": 176,
+        "held": 273,
+        "heldLogP": -3.0503664963732504
+      },
+      "keyMatches": [
+        5,
+        17,
+        53
+      ],
+      "keySize": 116,
+      "context": {
+        "nonempty": 132,
+        "total": 464,
+        "median": 0
+      },
+      "fitObjectives": [
+        -2221.449501040026,
+        -1614.712582659788,
+        -1275.034044934203
+      ],
+      "quotient": {
+        "reachable": 2716,
+        "distinctTwoStepSignatures": 2716,
+        "uniformSourcePredictiveClasses": 1
+      }
+    }
+  ]
+}
