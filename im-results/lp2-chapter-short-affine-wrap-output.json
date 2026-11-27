@@ -1,0 +1,169 @@
+{
+  "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+  "domain": "1<=abs(A)<=3301, 29∤A; 0<=B<29^3; encryption C=A*P+B mod 29^716",
+  "original": [
+    {
+      "count": 10526324,
+      "prefixLength": 32,
+      "retained": 512,
+      "fit": 249,
+      "reverse": false,
+      "winner": {
+        "a": 1236,
+        "k": 433,
+        "sign": -1,
+        "v": -93.51820944590442,
+        "fit": -3.3741109571048633
+      },
+      "runner": {
+        "a": 1833,
+        "k": 1397,
+        "sign": -1,
+        "v": -93.66721387328711,
+        "fit": -3.379146048944964
+      },
+      "trueRank": null,
+      "truthK": null,
+      "truthScore": null,
+      "truthInHeap": null,
+      "heldN": 464,
+      "branches": [
+        {
+          "Bmin": 1069,
+          "Bmax": 23317,
+          "Bstep": 1236,
+          "held": -3.501083160590092,
+          "replay": true,
+          "fitAgreement": null,
+          "heldAgreement": null,
+          "containsTrueB": null,
+          "rendered": "E A N N E NG E NG D L L TH G G O A L O W EA TH E A D EA G EA L E I S S D C L NG G L L H E U X M E U EA R R EA G AE U N TH L G F G EA EO F EO NG U EA L TH O J NG A G H R P G EO IA M C OE W P H Y O U E I D U M F EO L A Y IA C C N E S S G H EA N L E L E D A EA L B E NG"
+        }
+      ]
+    },
+    {
+      "count": 10526324,
+      "prefixLength": 32,
+      "retained": 512,
+      "fit": 201,
+      "reverse": true,
+      "winner": {
+        "a": 3227,
+        "k": 837,
+        "sign": -1,
+        "v": -93.10305891769079,
+        "fit": -3.3571845309259736
+      },
+      "runner": {
+        "a": 1265,
+        "k": 653,
+        "sign": -1,
+        "v": -93.4020260047851,
+        "fit": -3.360646961546253
+      },
+      "trueRank": null,
+      "truthK": null,
+      "truthScore": null,
+      "truthInHeap": null,
+      "heldN": 512,
+      "branches": [
+        {
+          "Bmin": 3225,
+          "Bmax": 22587,
+          "Bstep": 3227,
+          "held": -3.493996098187559,
+          "replay": true,
+          "fitAgreement": null,
+          "heldAgreement": null,
+          "containsTrueB": null,
+          "rendered": "S AE F I N I A T OE U X T N B G S NG E EA D AE P O T NG H Y N G EA M I G S H H D AE OE G D J M AE TH AE H I IA L Y AE L C F L EO TH S Y EO S S D N M D IA C J G A I W A N J P P A W L S W C IA E E N OE F A M A T C OE W TH M OE X U AE IA F W G E J W B J L NG C EO U EA X"
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "A": 1033,
+      "B": 17659,
+      "count": 10526324,
+      "prefixLength": 32,
+      "retained": 512,
+      "fit": 249,
+      "reverse": false,
+      "winner": {
+        "a": 1033,
+        "k": 861,
+        "sign": 1,
+        "v": -78.73334107576228,
+        "fit": -2.4474259980632396
+      },
+      "runner": {
+        "a": 3236,
+        "k": 6,
+        "sign": -1,
+        "v": -92.65178500395557,
+        "fit": -3.3783690692106036
+      },
+      "trueRank": 1,
+      "truthK": 861,
+      "truthScore": -78.73334107576228,
+      "truthInHeap": true,
+      "heldN": 464,
+      "branches": [
+        {
+          "Bmin": 98,
+          "Bmax": 23857,
+          "Bstep": 1033,
+          "held": -2.6556161259930486,
+          "replay": true,
+          "fitAgreement": 249,
+          "heldAgreement": 464,
+          "containsTrueB": true,
+          "rendered": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T E R W H O A R E Y O U W H O W I S H E S T O S T U D Y H E R E A S C E D TH E M A S T E R TH E S T U D E N T T O L D TH E M"
+        }
+      ]
+    },
+    {
+      "A": -3301,
+      "B": 22001,
+      "count": 10526324,
+      "prefixLength": 32,
+      "retained": 512,
+      "fit": 201,
+      "reverse": true,
+      "winner": {
+        "a": 3301,
+        "k": 532,
+        "sign": -1,
+        "v": -77.92362534550134,
+        "fit": -2.7137675733529547
+      },
+      "runner": {
+        "a": 2561,
+        "k": 2208,
+        "sign": -1,
+        "v": -92.08638429913866,
+        "fit": -3.3656258079029153
+      },
+      "trueRank": 1,
+      "truthK": 532,
+      "truthScore": -77.92362534550134,
+      "truthInHeap": true,
+      "heldN": 512,
+      "branches": [
+        {
+          "Bmin": 2195,
+          "Bmax": 22001,
+          "Bstep": 3301,
+          "held": -2.792892441050981,
+          "replay": true,
+          "fitAgreement": 201,
+          "heldAgreement": 512,
+          "containsTrueB": true,
+          "rendered": "AE B L O S S O F D I U I N I T Y TH E C I R C U M F E R E N C E P R A C T I C E S TH R E E B E H A U IA R S W H I C H C A U S E TH E L O S S O F D I U I N I T Y C O N S U M P T IA N W E C O N S U M E T O O M U C H B E C A U S E W E B E L E I U E"
+        }
+      ]
+    }
+  ]
+}
