@@ -1,0 +1,278 @@
+{
+  "period": 1650,
+  "first16": [
+    22,
+    21,
+    19,
+    17,
+    11,
+    1,
+    10,
+    3,
+    20,
+    22,
+    25,
+    7,
+    22,
+    12,
+    17,
+    21
+  ],
+  "firstWrapOrdinal": 18,
+  "scores": [
+    {
+      "label": "p15:20-p55",
+      "phase": 0,
+      "sign": 1,
+      "hold": {
+        "prefix": 127,
+        "peak": 3,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03433458767201521,
+        "held": 0.03438674122083932,
+        "all": 0.03448584678648817,
+        "first80": "B N L P J A U Y C H I W M U Y C TH M OE R D A AE S IA EO B D AE R S D IA T Y C EO D U U E M L OE AE EO T Y G H EO R W NG N M X C R Y P T H EO C X J R X E D T L H T O AE S OE E"
+      }
+    },
+    {
+      "label": "p15:20-p55",
+      "phase": 0,
+      "sign": -1,
+      "hold": {
+        "prefix": 2,
+        "peak": 1,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03434436681974293,
+        "held": 0.034657165196102714,
+        "all": 0.03449434320162099,
+        "first80": "O OE F E R Y NG O T D TH NG C AE TH E AE NG Y A NG R F E E S U AE X IA Y A EA L NG EA D H M A M P F EO EA IA P S F AE W T M A T S F NG EO J R EO A M E L E Y X P S R C F Y EA R E L H"
+      }
+    },
+    {
+      "label": "p15:20-p55",
+      "phase": 16,
+      "sign": 1,
+      "hold": {
+        "prefix": 1,
+        "peak": 1,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.034496921524295315,
+        "held": 0.034568719088085245,
+        "all": 0.03446061013721527,
+        "first80": "P F H L D G N P S X X P O T D J P E EO B TH W E C OE TH M F E H OE F T A Y AE Y X NG F J H G I TH W NG B J EA G EA P AE TH D F B O G M IA B G J G F F S EO R R IA P OE IA P OE NG EA"
+      }
+    },
+    {
+      "label": "p15:20-p55",
+      "phase": 16,
+      "sign": -1,
+      "hold": {
+        "prefix": 68,
+        "peak": 2,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03445193744474782,
+        "held": 0.034431185390118094,
+        "all": 0.03444825589034646,
+        "first80": "W TH EO J NG S P T G B IA S NG I C EO X OE W J P NG W EA D AE EA M NG D M E I EO NG H N B EA AE Y A X A OE O H A A C P NG P L D J X N P TH IA U S AE EO EA F U P M C T IA A L R T J NG IA"
+      }
+    },
+    {
+      "label": "p16-p55",
+      "phase": 0,
+      "sign": 1,
+      "hold": {
+        "prefix": 35,
+        "peak": 1,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03464407520164175,
+        "held": 0.03462046006127546,
+        "all": 0.034484296710137884,
+        "first80": "AE TH C H C TH E S H NG N NG D L G P TH H O NG L R R D A L U D NG L X I T TH O F R N OE L G I AE N D EA R U IA TH H I IA J W TH U P W AE B U G G G C S G I J TH B B B EA B Y J N J"
+      }
+    },
+    {
+      "label": "p16-p55",
+      "phase": 0,
+      "sign": -1,
+      "hold": {
+        "prefix": 65,
+        "peak": 2,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03480560397145402,
+        "held": 0.03452250599664612,
+        "all": 0.03450694211939876,
+        "first80": "J S X P IA R N NG M W U G N S J Y AE I W EO E P H Y S D X AE I X AE J B G IA D S D J X W R C EA Y X U M NG M O OE I X X IA T F S I H Y OE P M J OE EA I G D C TH N N P C X W U"
+      }
+    },
+    {
+      "label": "p16-p55",
+      "phase": 16,
+      "sign": 1,
+      "hold": {
+        "prefix": 27,
+        "peak": 1,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03481483418687187,
+        "held": 0.034474745098316696,
+        "all": 0.03447857028480755,
+        "first80": "NG OE OE S B P Y TH E IA P IA W G O M P W OE C EA T Y P M I O F X A NG T C I O L E F P M EA EA J Y F D N NG O OE TH C R S F G T AE G C D EO S F EO Y R TH J C EO C A OE C EO X E H NG"
+      }
+    },
+    {
+      "label": "p16-p55",
+      "phase": 16,
+      "sign": -1,
+      "hold": {
+        "prefix": 11,
+        "peak": 1,
+        "endStates": 0
+      },
+      "ordinary": {
+        "train": 0.03487636895632416,
+        "held": 0.03452958168528752,
+        "all": 0.034550079612692984,
+        "first80": "S A Y G S OE U C N U Y F AE F X L X J B EA I U S W L R EO M B I E C EA IA IA O U O L S X S M J L M AE EA T EA N IA R I NG D U B T U TH S P M P M R O N EO P B A R O E B W H L"
+      }
+    }
+  ],
+  "plants": [
+    {
+      "label": "p15:20-p55",
+      "phase": 0,
+      "sign": 1,
+      "heldStates": 3,
+      "firstWitnessMatches": 6049,
+      "length": 9333,
+      "nativeTrain": 0.05848517090038569,
+      "nativeHeld": 0.061953845282992165
+    },
+    {
+      "label": "p15:20-p55",
+      "phase": 0,
+      "sign": -1,
+      "heldStates": 3,
+      "firstWitnessMatches": 6369,
+      "length": 9333,
+      "nativeTrain": 0.05848517090038569,
+      "nativeHeld": 0.061953845282992165
+    },
+    {
+      "label": "p15:20-p55",
+      "phase": 16,
+      "sign": 1,
+      "heldStates": 2,
+      "firstWitnessMatches": 5919,
+      "length": 9333,
+      "nativeTrain": 0.05848517090038569,
+      "nativeHeld": 0.061953845282992165
+    },
+    {
+      "label": "p15:20-p55",
+      "phase": 16,
+      "sign": -1,
+      "heldStates": 9,
+      "firstWitnessMatches": 6417,
+      "length": 9333,
+      "nativeTrain": 0.05848517090038569,
+      "nativeHeld": 0.061953845282992165
+    },
+    {
+      "label": "p16-p55",
+      "phase": 0,
+      "sign": 1,
+      "heldStates": 4,
+      "firstWitnessMatches": 6029,
+      "length": 9194,
+      "nativeTrain": 0.059234138259396746,
+      "nativeHeld": 0.061988118149848934
+    },
+    {
+      "label": "p16-p55",
+      "phase": 0,
+      "sign": -1,
+      "heldStates": 5,
+      "firstWitnessMatches": 6197,
+      "length": 9194,
+      "nativeTrain": 0.059234138259396746,
+      "nativeHeld": 0.061988118149848934
+    },
+    {
+      "label": "p16-p55",
+      "phase": 16,
+      "sign": 1,
+      "heldStates": 4,
+      "firstWitnessMatches": 5788,
+      "length": 9194,
+      "nativeTrain": 0.059234138259396746,
+      "nativeHeld": 0.061988118149848934
+    },
+    {
+      "label": "p16-p55",
+      "phase": 16,
+      "sign": -1,
+      "heldStates": 3,
+      "firstWitnessMatches": 6263,
+      "length": 9194,
+      "nativeTrain": 0.059234138259396746,
+      "nativeHeld": 0.061988118149848934
+    }
+  ],
+  "allPhase": [
+    {
+      "label": "p15:20-p55",
+      "sign": 1,
+      "period": 1650,
+      "complete": 0,
+      "best": 543,
+      "bestPhases": [
+        401,
+        402
+      ]
+    },
+    {
+      "label": "p15:20-p55",
+      "sign": -1,
+      "period": 1650,
+      "complete": 0,
+      "best": 525,
+      "bestPhases": [
+        1515,
+        1517
+      ]
+    },
+    {
+      "label": "p16-p55",
+      "sign": 1,
+      "period": 1650,
+      "complete": 0,
+      "best": 565,
+      "bestPhases": [
+        1195
+      ]
+    },
+    {
+      "label": "p16-p55",
+      "sign": -1,
+      "period": 1650,
+      "complete": 0,
+      "best": 445,
+      "bestPhases": [
+        239
+      ]
+    }
+  ]
+}
