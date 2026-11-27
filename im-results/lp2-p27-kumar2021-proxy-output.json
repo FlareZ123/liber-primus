@@ -1,0 +1,28 @@
+{
+  "url": "https://gigvvy.com/journals/ijase/articles/ijase-202106-18-2-001.pdf",
+  "native_positive": {
+    "source_keypoints": 1093,
+    "target_keypoints": 1174,
+    "ratio_matches": 414,
+    "affine_inliers": 383,
+    "target_span_x": 0.98274,
+    "target_span_y": 0.95941,
+    "scale": 0.870009,
+    "valid_noncollapsed": true,
+    "similarity_matrix": [
+      [
+        0.86789,
+        0.06071,
+        65.32451
+      ],
+      [
+        -0.06071,
+        0.86789,
+        57.18314
+      ]
+    ]
+  },
+  "scope": "exact-parent similarity only; 2021 proxy does not establish 2004 attribution",
+  "status": "BLOCKED",
+  "error": "HTTPError: HTTP Error 403: Forbidden"
+}
