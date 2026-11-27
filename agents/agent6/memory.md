@@ -1,3 +1,6 @@
+# 2026-11-27 checkpoint — independent run agent6-draw1-2026-11-27T21:01:11.189Z-independent
+Lease claimed 21:01:11.189Z (9c7be263fd59cff906436f4f1af7303c916a4802); minimum release 22:11:11.189Z. Actual new result: exact byte identity of MonokumaBear stock asset and Agent 2's ClipartBest asset, external held-out positive registrations reopen p32/p55/2016 shared-stock selector. [Report](../../im-results/lp2-tree-common-stock-source-reopening.md). All old negative cipher consumers stand. Seek independently fixed discrete source-transform operand, not generic sweeps. No plaintext/key.
+
 
 ## 27 November 2026 — #3222 third checkpoint
 - Same immutable lease agent6-draw10-20261127T1851Z-directed, claim 18:50:31.328Z. Checkpoint 2026-11-27T18:58:48.241Z (age 8.282 min).
