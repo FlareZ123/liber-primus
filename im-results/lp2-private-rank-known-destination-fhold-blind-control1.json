@@ -1,0 +1,728 @@
+{
+  "seed": 318309,
+  "z": 1,
+  "R": [
+    16,
+    26,
+    21,
+    9,
+    16,
+    16,
+    20,
+    21,
+    26,
+    20,
+    9,
+    26,
+    16,
+    23,
+    23,
+    27,
+    9,
+    20,
+    27,
+    9,
+    25,
+    26,
+    20,
+    21,
+    21,
+    9,
+    20,
+    27,
+    26
+  ],
+  "S": [
+    22,
+    17,
+    5,
+    13,
+    10,
+    1,
+    6,
+    0,
+    24,
+    19,
+    4,
+    25,
+    21,
+    28,
+    26,
+    18,
+    11,
+    2,
+    15,
+    8,
+    14,
+    16,
+    20,
+    7,
+    3,
+    23,
+    12,
+    9,
+    27
+  ],
+  "init": [
+    24,
+    2,
+    28,
+    10,
+    0,
+    4,
+    27,
+    6,
+    15,
+    13,
+    19,
+    16,
+    3,
+    17,
+    14,
+    26,
+    25,
+    23,
+    22,
+    20,
+    8,
+    11,
+    21,
+    5,
+    7,
+    12,
+    18,
+    1,
+    9
+  ],
+  "repeat": 48,
+  "results": [
+    {
+      "oracle": true,
+      "learned": {
+        "A": [
+          28,
+          8,
+          22,
+          13,
+          6,
+          23,
+          14,
+          15,
+          9,
+          16,
+          25,
+          21,
+          19,
+          17,
+          5,
+          12,
+          26,
+          27,
+          10,
+          3,
+          2,
+          11,
+          24,
+          4,
+          7,
+          0,
+          18,
+          20,
+          1
+        ],
+        "score": -8917.482913899761,
+        "bad": 0,
+        "f": 22,
+        "starts": [
+          {
+            "score": -8925.869864830396,
+            "bad": 0,
+            "f": 22,
+            "initial": -10129.540354721034,
+            "history": [
+              {
+                "score": -8965.348190416138,
+                "bad": 1,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8947.06460539565,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8939.130348752731,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8932.965613957682,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8930.964716283323,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8929.107354494534,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8927.409898489781,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8925.869864830396,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8929.60119377357,
+            "bad": 0,
+            "f": 22,
+            "initial": -10075.422983685903,
+            "history": [
+              {
+                "score": -8988.156964918195,
+                "bad": 1,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8968.024239887656,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8954.991510547625,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8948.620270569827,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8943.227915855628,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8938.446513571476,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8933.68789767156,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8929.60119377357,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8917.482913899761,
+            "bad": 0,
+            "f": 22,
+            "initial": -10082.230865587671,
+            "history": [
+              {
+                "score": -8963.558932299442,
+                "bad": 1,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8935.176823334315,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8929.906440684832,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8925.319311505096,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8923.146043932442,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8920.649423762186,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8918.777811274857,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8917.482913899761,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8918.152412908377,
+            "bad": 0,
+            "f": 22,
+            "initial": -10044.175112352776,
+            "history": [
+              {
+                "score": -8964.918712736511,
+                "bad": 1,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8946.607569482157,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8933.235936922469,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8926.211298756101,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8923.334881515602,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8921.155749704518,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8919.311610959387,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              },
+              {
+                "score": -8918.152412908377,
+                "bad": 0,
+                "holds": 102,
+                "changes": 0
+              }
+            ]
+          }
+        ]
+      },
+      "rankAccuracy": 2967,
+      "holdAccuracy": 3000,
+      "holdCorrectOnZeros": 243,
+      "trueHolds": 102,
+      "zeroFit": 243,
+      "key": {
+        "K": [
+          7,
+          5,
+          17,
+          24,
+          10,
+          2,
+          6,
+          23,
+          19,
+          27,
+          4,
+          16,
+          26,
+          3,
+          20,
+          18,
+          21,
+          1,
+          15,
+          9,
+          12,
+          25,
+          0,
+          22,
+          8,
+          11,
+          14,
+          28,
+          13
+        ],
+        "score": -7503.436349768619
+      },
+      "fitAccuracy": 2963,
+      "held": {
+        "dead": null,
+        "peak": 68,
+        "accuracy": 2993,
+        "score": -2.4596161118685167,
+        "nativeScore": -2.460096951886141,
+        "replay": true,
+        "prefix": "JUSTJUSTICEOFTHEETERNALFATHERANDTHERACEOFMORTALSANDREADILYSUFFERSALLTHNGSONTHEIRACCOUNTBUTWHEREITDEPARTSFROMTHECALUINISTICCHRIST"
+      }
+    },
+    {
+      "oracle": false,
+      "learned": {
+        "A": [
+          24,
+          14,
+          7,
+          9,
+          10,
+          1,
+          17,
+          19,
+          13,
+          27,
+          21,
+          6,
+          23,
+          8,
+          16,
+          20,
+          25,
+          15,
+          12,
+          3,
+          22,
+          2,
+          26,
+          11,
+          28,
+          4,
+          0,
+          18,
+          5
+        ],
+        "score": -8857.528997835383,
+        "bad": 0,
+        "f": 22,
+        "starts": [
+          {
+            "score": -9124.553523797871,
+            "bad": 0,
+            "f": 22,
+            "initial": -9896.224451992379,
+            "history": [
+              {
+                "score": -9175.450089505859,
+                "bad": 0,
+                "holds": 236,
+                "changes": 7
+              },
+              {
+                "score": -9152.854525251129,
+                "bad": 0,
+                "holds": 222,
+                "changes": 14
+              },
+              {
+                "score": -9139.391225606336,
+                "bad": 0,
+                "holds": 219,
+                "changes": 7
+              },
+              {
+                "score": -9133.226912736547,
+                "bad": 0,
+                "holds": 217,
+                "changes": 2
+              },
+              {
+                "score": -9129.731501357674,
+                "bad": 0,
+                "holds": 217,
+                "changes": 0
+              },
+              {
+                "score": -9127.455193414844,
+                "bad": 0,
+                "holds": 217,
+                "changes": 0
+              },
+              {
+                "score": -9125.939619936387,
+                "bad": 0,
+                "holds": 217,
+                "changes": 0
+              },
+              {
+                "score": -9124.553523797871,
+                "bad": 0,
+                "holds": 217,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8866.671990850999,
+            "bad": 0,
+            "f": 22,
+            "initial": -10019.203567544573,
+            "history": [
+              {
+                "score": -8905.604376919468,
+                "bad": 0,
+                "holds": 62,
+                "changes": 62
+              },
+              {
+                "score": -8889.855623863205,
+                "bad": 0,
+                "holds": 65,
+                "changes": 3
+              },
+              {
+                "score": -8881.836996279126,
+                "bad": 0,
+                "holds": 65,
+                "changes": 0
+              },
+              {
+                "score": -8877.332411568941,
+                "bad": 0,
+                "holds": 65,
+                "changes": 0
+              },
+              {
+                "score": -8873.208012442032,
+                "bad": 0,
+                "holds": 66,
+                "changes": 1
+              },
+              {
+                "score": -8869.916174483587,
+                "bad": 0,
+                "holds": 66,
+                "changes": 0
+              },
+              {
+                "score": -8868.00095377293,
+                "bad": 0,
+                "holds": 66,
+                "changes": 0
+              },
+              {
+                "score": -8866.671990850999,
+                "bad": 0,
+                "holds": 66,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8857.528997835383,
+            "bad": 0,
+            "f": 22,
+            "initial": -10217.77536049911,
+            "history": [
+              {
+                "score": -8946.553136180928,
+                "bad": 0,
+                "holds": 77,
+                "changes": 119
+              },
+              {
+                "score": -8892.398682537718,
+                "bad": 0,
+                "holds": 73,
+                "changes": 28
+              },
+              {
+                "score": -8878.598620130246,
+                "bad": 0,
+                "holds": 71,
+                "changes": 6
+              },
+              {
+                "score": -8869.972288837189,
+                "bad": 0,
+                "holds": 70,
+                "changes": 3
+              },
+              {
+                "score": -8861.809410148535,
+                "bad": 0,
+                "holds": 70,
+                "changes": 0
+              },
+              {
+                "score": -8860.227010315773,
+                "bad": 0,
+                "holds": 70,
+                "changes": 0
+              },
+              {
+                "score": -8858.878004075577,
+                "bad": 0,
+                "holds": 70,
+                "changes": 0
+              },
+              {
+                "score": -8857.528997835383,
+                "bad": 0,
+                "holds": 70,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8859.963769958853,
+            "bad": 0,
+            "f": 22,
+            "initial": -9234.023758267609,
+            "history": [
+              {
+                "score": -8897.165548132454,
+                "bad": 0,
+                "holds": 68,
+                "changes": 123
+              },
+              {
+                "score": -8883.853950301034,
+                "bad": 0,
+                "holds": 73,
+                "changes": 11
+              },
+              {
+                "score": -8879.647912855962,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              },
+              {
+                "score": -8873.94527620699,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              },
+              {
+                "score": -8869.124872459211,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              },
+              {
+                "score": -8865.587650147583,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              },
+              {
+                "score": -8862.563499547337,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              },
+              {
+                "score": -8859.963769958853,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              }
+            ]
+          }
+        ]
+      },
+      "rankAccuracy": 2768,
+      "holdAccuracy": 2942,
+      "holdCorrectOnZeros": 185,
+      "trueHolds": 102,
+      "zeroFit": 243,
+      "key": {
+        "K": [
+          7,
+          5,
+          17,
+          24,
+          10,
+          2,
+          6,
+          23,
+          19,
+          27,
+          4,
+          16,
+          26,
+          3,
+          20,
+          18,
+          21,
+          1,
+          15,
+          9,
+          22,
+          12,
+          0,
+          25,
+          8,
+          11,
+          14,
+          28,
+          13
+        ],
+        "score": -8342.685321359053
+      },
+      "fitAccuracy": 2768,
+      "held": {
+        "dead": null,
+        "peak": 68,
+        "accuracy": 2998,
+        "score": -2.4596044357526443,
+        "nativeScore": -2.460096951886141,
+        "replay": true,
+        "prefix": "JUSTJUSTICEOFTHEETERNALFATHERANDTHERACEOFMORTALSANDREADILYSUFFERSALLTHNGSONTHEIRACCOUNTBUTWHEREITDEPARTSFROMTHECALUINISTICCHRIST"
+      }
+    }
+  ]
+}
