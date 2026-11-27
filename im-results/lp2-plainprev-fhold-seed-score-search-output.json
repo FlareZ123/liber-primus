@@ -5005,6 +5005,174 @@
       "H": 2355,
       "floor": 0.65,
       "witness": null
+    },
+    {
+      "i": 137,
+      "a": {
+        "page": 5,
+        "i": 66,
+        "name": "0_loss_of_divinity",
+        "j": 76
+      },
+      "b": {
+        "page": 35,
+        "i": 72,
+        "name": "0_loss_of_divinity",
+        "j": 743
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 0,
+      "scoreDead": 10,
+      "evaluated": 1,
+      "rootUpper": 0.8230258541942774,
+      "leaf": 0,
+      "frameEvals": 164,
+      "N": 9748,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 125,
+      "a": {
+        "page": 8,
+        "i": 229,
+        "name": "jpg107-167",
+        "j": 161
+      },
+      "b": {
+        "page": 25,
+        "i": 92,
+        "name": "0_warning",
+        "j": 78
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 10,
+      "propDead": 0,
+      "scoreDead": 9,
+      "evaluated": 1,
+      "rootUpper": 0.816839785780364,
+      "leaf": 0,
+      "frameEvals": 234,
+      "N": 9754,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 142,
+      "a": {
+        "page": 9,
+        "i": 121,
+        "name": "0_loss_of_divinity",
+        "j": 607
+      },
+      "b": {
+        "page": 12,
+        "i": 40,
+        "name": "0_welcome",
+        "j": 271
+      },
+      "fixed": 16,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 1,
+      "scoreDead": 9,
+      "evaluated": 1,
+      "rootUpper": 0.8063656542604051,
+      "leaf": 0,
+      "frameEvals": 249,
+      "N": 9753,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 140,
+      "a": {
+        "page": 27,
+        "i": 194,
+        "name": "p57_parable",
+        "j": 51
+      },
+      "b": {
+        "page": 36,
+        "i": 179,
+        "name": "0_welcome",
+        "j": 272
+      },
+      "fixed": 16,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 0,
+      "scoreDead": 10,
+      "evaluated": 1,
+      "rootUpper": 0.7961428005413829,
+      "leaf": 0,
+      "frameEvals": 284,
+      "N": 9810,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 139,
+      "a": {
+        "page": 27,
+        "i": 194,
+        "name": "p57_parable",
+        "j": 51
+      },
+      "b": {
+        "page": 36,
+        "i": 179,
+        "name": "0_welcome",
+        "j": 272
+      },
+      "fixed": 16,
+      "status": "BELOW_FLOOR",
+      "nodes": 12,
+      "propDead": 0,
+      "scoreDead": 11,
+      "evaluated": 1,
+      "rootUpper": 0.7884930383947963,
+      "leaf": 0,
+      "frameEvals": 278,
+      "N": 9810,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
+    },
+    {
+      "i": 143,
+      "a": {
+        "page": 27,
+        "i": 68,
+        "name": "0_welcome",
+        "j": 443
+      },
+      "b": {
+        "page": 44,
+        "i": 119,
+        "name": "0_koan_1",
+        "j": 20
+      },
+      "fixed": 16,
+      "status": "BELOW_FLOOR",
+      "nodes": 10,
+      "propDead": 1,
+      "scoreDead": 8,
+      "evaluated": 1,
+      "rootUpper": 0.7045771966169497,
+      "leaf": 0,
+      "frameEvals": 106,
+      "N": 9775,
+      "H": 2621,
+      "floor": 0.65,
+      "witness": null
     }
   ]
 }
