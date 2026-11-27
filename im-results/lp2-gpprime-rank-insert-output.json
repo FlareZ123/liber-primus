@@ -538,5 +538,1237 @@
       "preview": "TAEOEEAGTHJNSJREOFFMEAWYNWEAREASIATHTHHYSXEOREOAEOESDNGYAETREOUNRDNSAESSOOEYSNMIANGBTHENOMCWYDELGXTGTLLULTTEOSEONGNHEANJWGWULEIACFBPFJEANLOETHRYOEWSFPETHDOEDWYMFEOOERGOAUYWMEAJ",
       "replay": true
     }
-  ]
+  ],
+  "fhold": {
+    "controls": [
+      {
+        "f": 25,
+        "n": 3008,
+        "dead": -1,
+        "minLive": 2,
+        "terminal": 3,
+        "exactStates": 2,
+        "top2": 830,
+        "best": {
+          "z": 2,
+          "top": [
+            455,
+            375
+          ]
+        },
+        "checks": 87232,
+        "trace": [
+          {
+            "i": 499,
+            "live": 7
+          },
+          {
+            "i": 999,
+            "live": 5
+          },
+          {
+            "i": 1499,
+            "live": 4
+          },
+          {
+            "i": 1999,
+            "live": 5
+          },
+          {
+            "i": 2499,
+            "live": 5
+          },
+          {
+            "i": 2999,
+            "live": 3
+          },
+          {
+            "i": 3007,
+            "live": 3
+          }
+        ]
+      },
+      {
+        "f": 13,
+        "n": 3008,
+        "dead": -1,
+        "minLive": 2,
+        "terminal": 3,
+        "exactStates": 0,
+        "top2": 834,
+        "best": {
+          "z": 1,
+          "top": [
+            443,
+            391
+          ]
+        },
+        "checks": 87232,
+        "trace": [
+          {
+            "i": 499,
+            "live": 2
+          },
+          {
+            "i": 999,
+            "live": 5
+          },
+          {
+            "i": 1499,
+            "live": 5
+          },
+          {
+            "i": 1999,
+            "live": 5
+          },
+          {
+            "i": 2499,
+            "live": 6
+          },
+          {
+            "i": 2999,
+            "live": 3
+          },
+          {
+            "i": 3007,
+            "live": 3
+          }
+        ]
+      }
+    ],
+    "chapter": [
+      {
+        "f": 0,
+        "n": 3008,
+        "dead": 22,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 22,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 1,
+        "n": 3008,
+        "dead": 63,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 63,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 2,
+        "n": 3008,
+        "dead": 57,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 57,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 3,
+        "n": 3008,
+        "dead": 41,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 41,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 4,
+        "n": 3008,
+        "dead": 112,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 112,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 5,
+        "n": 3008,
+        "dead": 134,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 134,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 6,
+        "n": 3008,
+        "dead": 97,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 97,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 7,
+        "n": 3008,
+        "dead": 108,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 108,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 8,
+        "n": 3008,
+        "dead": 121,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 121,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 9,
+        "n": 3008,
+        "dead": 107,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 107,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 10,
+        "n": 3008,
+        "dead": 356,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 356,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 11,
+        "n": 3008,
+        "dead": 153,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 153,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 12,
+        "n": 3008,
+        "dead": 122,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 122,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 13,
+        "n": 3008,
+        "dead": 353,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 353,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 14,
+        "n": 3008,
+        "dead": 125,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 125,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 15,
+        "n": 3008,
+        "dead": 126,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 126,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 16,
+        "n": 3008,
+        "dead": 210,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 210,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 17,
+        "n": 3008,
+        "dead": 138,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 138,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 18,
+        "n": 3008,
+        "dead": 505,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 499,
+            "live": 3
+          },
+          {
+            "i": 505,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 19,
+        "n": 3008,
+        "dead": 230,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 230,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 20,
+        "n": 3008,
+        "dead": 309,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 309,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 21,
+        "n": 3008,
+        "dead": 333,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 333,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 22,
+        "n": 3008,
+        "dead": 346,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 346,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 23,
+        "n": 3008,
+        "dead": 98,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 98,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 24,
+        "n": 3008,
+        "dead": 234,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 234,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 25,
+        "n": 3008,
+        "dead": 272,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 272,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 26,
+        "n": 3008,
+        "dead": 350,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 350,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 27,
+        "n": 3008,
+        "dead": -1,
+        "minLive": 1,
+        "terminal": 1,
+        "exactStates": 1,
+        "top2": 345,
+        "best": {
+          "z": 27,
+          "top": [
+            175,
+            170
+          ]
+        },
+        "checks": 0,
+        "trace": [
+          {
+            "i": 499,
+            "live": 1
+          },
+          {
+            "i": 999,
+            "live": 1
+          },
+          {
+            "i": 1499,
+            "live": 1
+          },
+          {
+            "i": 1999,
+            "live": 1
+          },
+          {
+            "i": 2499,
+            "live": 1
+          },
+          {
+            "i": 2999,
+            "live": 1
+          },
+          {
+            "i": 3007,
+            "live": 1
+          }
+        ]
+      },
+      {
+        "f": 28,
+        "n": 3008,
+        "dead": 36,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 36,
+            "live": 0
+          }
+        ]
+      }
+    ],
+    "whole": [
+      {
+        "f": 0,
+        "n": 12956,
+        "dead": 105,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 105,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 1,
+        "n": 12956,
+        "dead": 100,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 100,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 2,
+        "n": 12956,
+        "dead": 139,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 139,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 3,
+        "n": 12956,
+        "dead": 155,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 155,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 4,
+        "n": 12956,
+        "dead": 122,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 122,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 5,
+        "n": 12956,
+        "dead": 155,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 155,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 6,
+        "n": 12956,
+        "dead": 305,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 305,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 7,
+        "n": 12956,
+        "dead": 161,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 161,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 8,
+        "n": 12956,
+        "dead": 391,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 391,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 9,
+        "n": 12956,
+        "dead": 262,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 262,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 10,
+        "n": 12956,
+        "dead": 233,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 233,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 11,
+        "n": 12956,
+        "dead": 216,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 216,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 12,
+        "n": 12956,
+        "dead": 259,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 259,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 13,
+        "n": 12956,
+        "dead": 84,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 84,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 14,
+        "n": 12956,
+        "dead": 332,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 332,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 15,
+        "n": 12956,
+        "dead": 73,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 73,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 16,
+        "n": 12956,
+        "dead": 152,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 152,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 17,
+        "n": 12956,
+        "dead": 207,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 207,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 18,
+        "n": 12956,
+        "dead": 271,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 271,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 19,
+        "n": 12956,
+        "dead": 392,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 392,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 20,
+        "n": 12956,
+        "dead": 219,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 219,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 21,
+        "n": 12956,
+        "dead": 441,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 441,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 22,
+        "n": 12956,
+        "dead": 235,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 235,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 23,
+        "n": 12956,
+        "dead": 244,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 244,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 24,
+        "n": 12956,
+        "dead": 240,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 240,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 25,
+        "n": 12956,
+        "dead": 342,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 342,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 26,
+        "n": 12956,
+        "dead": 534,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 499,
+            "live": 3
+          },
+          {
+            "i": 534,
+            "live": 0
+          }
+        ]
+      },
+      {
+        "f": 27,
+        "n": 12956,
+        "dead": -1,
+        "minLive": 1,
+        "terminal": 1,
+        "exactStates": 1,
+        "top2": 1126,
+        "best": {
+          "z": 27,
+          "top": [
+            565,
+            561
+          ]
+        },
+        "checks": 0,
+        "trace": [
+          {
+            "i": 499,
+            "live": 1
+          },
+          {
+            "i": 999,
+            "live": 1
+          },
+          {
+            "i": 1499,
+            "live": 1
+          },
+          {
+            "i": 1999,
+            "live": 1
+          },
+          {
+            "i": 2499,
+            "live": 1
+          },
+          {
+            "i": 2999,
+            "live": 1
+          },
+          {
+            "i": 3499,
+            "live": 1
+          },
+          {
+            "i": 3999,
+            "live": 1
+          },
+          {
+            "i": 4499,
+            "live": 1
+          },
+          {
+            "i": 4999,
+            "live": 1
+          },
+          {
+            "i": 5499,
+            "live": 1
+          },
+          {
+            "i": 5999,
+            "live": 1
+          },
+          {
+            "i": 6499,
+            "live": 1
+          },
+          {
+            "i": 6999,
+            "live": 1
+          },
+          {
+            "i": 7499,
+            "live": 1
+          },
+          {
+            "i": 7999,
+            "live": 1
+          },
+          {
+            "i": 8499,
+            "live": 1
+          },
+          {
+            "i": 8999,
+            "live": 1
+          },
+          {
+            "i": 9499,
+            "live": 1
+          },
+          {
+            "i": 9999,
+            "live": 1
+          },
+          {
+            "i": 10499,
+            "live": 1
+          },
+          {
+            "i": 10999,
+            "live": 1
+          },
+          {
+            "i": 11499,
+            "live": 1
+          },
+          {
+            "i": 11999,
+            "live": 1
+          },
+          {
+            "i": 12499,
+            "live": 1
+          },
+          {
+            "i": 12955,
+            "live": 1
+          }
+        ]
+      },
+      {
+        "f": 28,
+        "n": 12956,
+        "dead": 23,
+        "minLive": 0,
+        "terminal": 0,
+        "exactStates": 0,
+        "top2": 0,
+        "best": null,
+        "checks": 0,
+        "trace": [
+          {
+            "i": 23,
+            "live": 0
+          }
+        ]
+      }
+    ]
+  }
 }
