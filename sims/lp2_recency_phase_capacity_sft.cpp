@@ -20,7 +20,7 @@ static Capacity capacity(const vector<int>& c,int n,int q,bool verify,bool log){
 #pragma omp parallel reduction(max:maximum)
     {vector<Row> rows(1<<low);
 #pragma omp for schedule(static)
-      for(int hi=0;hi<(1<<high);++hi){fillrows(rows,terms,low,hi);for(Mask lo=0;lo<(1<<low);++lo){Mask s=(Mask(hi)<<low)|lo;int m=pc(s),v=0,best=0;for(int j=0;j<m;++j){v-=rows[lo].a[j];assert(v>=0);best=max(best,v);}assert(v==rows[lo].a[m]);one[s]=best;maximum=max(maximum,best);}}
+      for(int hi=0;hi<(1<<high);++hi){fillrows(rows,terms,low,hi);for(Mask lo=0;lo<(Mask(1)<<low);++lo){Mask s=(Mask(hi)<<low)|lo;int m=pc(s),v=0,best=0;for(int j=0;j<m;++j){v-=rows[lo].a[j];assert(v>=0);best=max(best,v);}assert(v==rows[lo].a[m]);one[s]=best;maximum=max(maximum,best);}}
     }
     res.phaseMax.push_back(maximum);res.independent+=maximum;
 #pragma omp parallel for schedule(static)
