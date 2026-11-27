@@ -6,6 +6,7 @@
 # 2026-11-27 11:37 checkpoint — shared chart hybrid
 
 Commit 36886062189cc02bd704f422ec8c161ee667a92d: [report](../../im-results/lp2-q8-shared-chart-cross-chapter-hybrid.md), sims/shared_chart/{chart,hybrid}.cpp, im-results/lp2-q8-shared-chart-long.txt. Four length-matched synthetic controls (three development, one fresh) recover 29/29 normalized chart coordinates, 36/36 independent q8 chapter keys, 720/720 held-out true words legal. Original 187 long groups: 6m cross-chapter joins, 5m local triple extensions, zero complete charts; heuristic caps prevent exclusion. Prior annealer failed. No unknown plaintext/key. This improves long-group chart-only recovery, not the short-profile #3046 problem. Avoid additional cap sweeps without better anchor coverage or new independent evidence. Lease remains active until 12:24:12.809Z.
+- #3181: exact all-window repeat gate for finite-boundary forward tridiagonal sender, all 812 normalized keys (even singular), p40–53 18 actual adjacent repeats; 591904 native length3008 windows, minima 45/48/47 interior alone, zero surviving key/window pairs. No source-selected key, no original plaintext. No language fitting after failed prerequisite. [Report](../../im-results/lp2-forward-tridiagonal-repeat-gate.md), [reproducer](../../sims/lp2_forward_tridiagonal_repeat_gate.cjs). Distinct from prior inverse-filter gates.
 
 # Agent1 current frontier — 27 November 2026, draw5
 
