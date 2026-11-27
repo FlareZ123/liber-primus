@@ -1,0 +1,192 @@
+{
+  "framing": [
+    0,
+    13,
+    154,
+    275,
+    297,
+    350,
+    394,
+    434,
+    531,
+    729
+  ],
+  "wrongFraming": [
+    0,
+    14,
+    155,
+    276,
+    298,
+    351,
+    394,
+    435,
+    532,
+    729
+  ],
+  "fit": 394,
+  "held": 335,
+  "keyCount": 21924,
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "truth": {
+        "a": 7,
+        "g": 13,
+        "s": 19
+      },
+      "repeats": 24,
+      "arbitraryBlockMinRepeats": 3,
+      "anchors": {
+        "consecutiveTriples": 7,
+        "nondegenerate": 7
+      },
+      "good": {
+        "key": {
+          "a": 7,
+          "g": 13,
+          "s": 19
+        },
+        "keys": 21924,
+        "fitScore": -2.4805422178063288,
+        "margin": 125.60743153932026,
+        "heldScore": -2.622364371757019,
+        "trueRank": {
+          "better": 0,
+          "equal": 1
+        },
+        "heldHits": 335
+      },
+      "wrongBoundary": {
+        "key": {
+          "a": 2,
+          "g": 27,
+          "s": 5
+        },
+        "keys": 21924,
+        "fitScore": -3.984561749656057,
+        "margin": 0.8206176248488646,
+        "heldScore": -4.24321235887163,
+        "trueRank": null,
+        "heldHits": 5
+      },
+      "privateState": {
+        "key": {
+          "a": 19,
+          "g": 14,
+          "s": 6
+        },
+        "keys": 21924,
+        "fitScore": -2.805687843380597,
+        "margin": 2.058649250071994,
+        "heldScore": -4.237322200917939,
+        "trueRank": null,
+        "heldHits": 11
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "truth": {
+        "a": 22,
+        "g": 8,
+        "s": 11
+      },
+      "repeats": 27,
+      "arbitraryBlockMinRepeats": 2,
+      "anchors": {
+        "consecutiveTriples": 7,
+        "nondegenerate": 7
+      },
+      "good": {
+        "key": {
+          "a": 22,
+          "g": 8,
+          "s": 11
+        },
+        "keys": 21924,
+        "fitScore": -2.7052848124405955,
+        "margin": 135.233711095874,
+        "heldScore": -2.678152560537535,
+        "trueRank": {
+          "better": 0,
+          "equal": 1
+        },
+        "heldHits": 335
+      },
+      "wrongBoundary": {
+        "key": {
+          "a": 1,
+          "g": 25,
+          "s": 8
+        },
+        "keys": 21924,
+        "fitScore": -3.949535747170757,
+        "margin": 12.20143197436073,
+        "heldScore": -4.238952367246091,
+        "trueRank": null,
+        "heldHits": 17
+      },
+      "privateState": {
+        "key": {
+          "a": 8,
+          "g": 19,
+          "s": 17
+        },
+        "keys": 21924,
+        "fitScore": -2.9827941074012423,
+        "margin": 17.84194511135047,
+        "heldScore": -4.255221016794515,
+        "trueRank": null,
+        "heldHits": 4
+      }
+    }
+  ],
+  "calibrated": true,
+  "original": {
+    "run": true,
+    "repeats": 4,
+    "frame": [
+      0,
+      13,
+      154,
+      275,
+      297,
+      350,
+      394,
+      434,
+      531,
+      729,
+      745,
+      848,
+      851,
+      1025,
+      1046,
+      1067,
+      1111,
+      1294,
+      1317,
+      1428,
+      1541,
+      1552,
+      1659,
+      1685,
+      1828,
+      1860
+    ],
+    "fit": 394,
+    "hold": 335,
+    "continuation": 1131,
+    "key": {
+      "a": 4,
+      "g": 11,
+      "s": 16
+    },
+    "keys": 21924,
+    "fitScore": -3.995488851436655,
+    "fitMargin": 0.8912428188587,
+    "heldScore": -4.22017813040452,
+    "continuationScore": -4.2463605909517375,
+    "candidateFirst120": "D E B D T TH X AE EO G H IA E R M S Y D EA L X H E T NG L EA OE U A TH X L EO R R X N L M Y O R NG U J C NG S AE P D TH NG W IA X Y D TH I L Y W U TH B G R C TH E C W OE O W L X EO T EA F I T J W T T N S U D OE Y AE T OE AE P W EO NG NG AE H A S EA EO NG TH C TH N E T S O B",
+    "candidateHeldFirst120": "TH EA U W U G X F C G R D OE TH D P J I D N L G H B A L J H E R X AE NG D D I O OE C W EA D NG G R E J Y X EA R O EO G M T OE J U G D E F W O R R Y TH A H H B T OE R TH G R J NG I C A L IA J AE T OE A M OE T EA W J NG TH X EA T NG A I N S W Y S I OE X D M P EO W H R",
+    "terminalStateCandidates": 29
+  }
+}
