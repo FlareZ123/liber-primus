@@ -4,6 +4,51 @@
 
 This source-native orthography question is distinct from the old GP-versus-one-Latin-letter [word-length study](lp2-uncontracted-latin-wordlength-adjacency-original-gate.md), the phoneme-class register in [#2253/#2257](lp2-phonemic-register-capacity-source-gate.md), and an arbitrary private within-word substitution. Its concrete original input is the source chart itself and *both* authentic cleared p57 prose and original unsolved cipher. An absent additional encoding instruction is a real prerequisite for this proposed route.
 
+
+## Historical ordered-component gate (Director #3167, Agent17, 27 November)
+
+**Decision: genuine pre-2014 historical coordinate ciphers exist, but the original GP chart does not select their group partition or a 29-sign extension, and the prominent LP2 dot markers are not literal historical two-row rune codes.** This is a distinct test of a lossless ordered-component representation, independent of the Latin spelling ambiguities below.
+
+### Source and incompatibility
+
+The historically documented *isruna* tract encodes a rune by an ordered pair (group, position within group). René Derolez, *Runica Manuscripta: The English Tradition* (1954), pp. 89, 132–135, discusses five manuscript witnesses and explicitly distinguishes the 28-sign repertoire, the Salzburg witness's 8+8+8+4 partition, and the other witnesses' unresolved placement of the additional four signs. The variants express the same pair through short/long I runes, L runes, bilateral strokes, or two horizontal dot rows (*stopfruna*). The *hahalruna* discussion describes group strokes on the left and position strokes on the right. [1954 book bibliographic record](https://biblio.ugent.be/publication/8767090); [scanned text, pp. 89 and 132–135](https://old.katab.asia/special/Rene_Derolez_-_Runica_Manuscripta.pdf); [St Gall MS 270, digitized 2008](https://e-codices.ch/en/list/one/csg/0270); [Dickins 1915 discussion](https://en.wikisource.org/wiki/Page:Runic_and_heroic_poems_of_the_old_Teutonic_peoples.djvu/18). The scanned text was readable but web PDF screenshot retrieval failed; historical conclusions use the printed text, not a newly adjudicated facsimile. The documented cipher encodes the **position** of a rune; it does not decompose the ordinary glyph itself into physical strokes.
+
+I decoded and visually inspected the checked-in [original 2013 chart JPEG](../resources/historical/cicada2013-gematria-jpeg.b64) (current base64 blob `625717bab1bff316c204b197c1cd901eb3cd7cb6`). It is headed “Gematria Primus” and has two equally styled three-column tables, Rune/Letter/Value, with 15 rows (F–X) and 14 rows (S–EA). Each row has the same kind of horizontal rule; there are no visible ætt partitions or ordered two-component field. The chart's explicit number assignments are primes. Reading table number and row number is a lossless coordinate representation, but it is simply the known ordinal expressed as two integers, and differs from the historical grouping:
+
+- Literal chart coordinates for zero-based GP ordinal i: (1,i+1) for i=0..14, (2,i−14) otherwise.
+- Hypothetical four-group extension of the historical partition: (1+floor(i/8),1+i mod 8), inverse i=8(g−1)+p−1 with range check i<29. This is bijective on GP29 but **the 29th sign is an extension**, and the chart does not print this partition. Treating the extra signs as one extended third group instead is another distinct choice allowed by historical uncertainty. The 28-sign tract does not provide a canonical choice for the GP29 IA/EA ending.
+- Exact intersection: chart-native coordinate positions above eight occur for 13 of the 29 signs: H,N,I,J,EO,P,X,D,A,AE,Y,IA,EA. Thus the chart grouping cannot be consumed directly by the historical one-to-eight position grammar. Even the solved physical p56 contains all 29 signs, with 36/85 occurrences outside that grammar. It is not enough to add a special case for unknown ciphertext.
+
+Executed on canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`:
+
+| Span | Runes | Chart row >8 | IA | EA |
+|---|---:|---:|---:|---:|
+| p0 | 262 | 118 | 7 | 6 |
+| p56 solved control | 85 | 36 | 3 | 2 |
+| p57 clear control | 95 | 30 | 0 | 0 |
+| p0–55 unknown | 12956 | 5827 | 470 | 460 |
+
+For reproducibility, the core is `const row=i=>i<15?i+1:i-14; const count=xs=>xs.filter(i=>row(i)>8).length;` on each physical page's `indices` array in [lp2-corpus.json](../resources/liber-primus/lp2-corpus.json). This exact core was executed on fetched original-derived inputs. No language model or cipher score is involved.
+
+### The obvious original dot receiver fails its literal type
+
+The historical *stopfruna* draws one row for group and one for position. Even granting a generous full 4×8 domain, a single mark contains at most 12 dots; under the GP29 8+8+8+5 extension the actual maximum is 11. Hence neither the original 13-dot punctuation nor the terminal 23-dot marker can be one historical coordinate rune. The native 10-dot marker could satisfy the count alone, but not the literal two-horizontal-row grammar.
+
+Using the supplied original JPEG archive and the existing [native dot-template detector](lp2-native-dot-template-widening-gate.md), I additionally grouped centroids by y in ascending order with a 3-pixel consecutive-gap threshold. The original source groups have the following row populations, with no rotation, rescaling, or repartition:
+
+| Original LP2 mark | Physical pages independently observed | Row populations | Number of rows |
+|---|---|---|---:|
+| 13 | p0,p2,p56 (twice),p57 | 1,2,1,2,1,2,1,2,1 | 9 |
+| 10 | p36,p38,p49,p56 | 1,2,1,2,1,2,1 | 7 |
+| 23 | p57 terminal | 3,2,3,2,3,2,3,2,3 | 9 |
+
+This is an additional geometrical type check on already known marker counts, not a new marker discovery. A two-row positive control with g=3,p=8 has populations [3,8] and total 11. Arbitrarily splitting or rotating the source marks to make several code runes would require a separate independent delimiter and orientation cue.
+
+Original scans05 and16 show solved, mixed rune/numeric magic-square graphics, whereas the LP2 p0/p2 triple-cross assets and p23/p40 scattered dot decorations do not supply a labelled ætt index or a two-row receiving register. The contact-sheet examination is a coarse screen, not an exhaustive ornament inventory. The source's tree/branch imagery alone cannot pick group order, group sizes, grapheme boundary, or any operation on resulting coordinate streams. The known LP1 prime-sum and LP2 p56 totient operations consume prime/ordinal values already given by GP, not this component type.
+
+**Fork:** close #3167 on its missing-source-edge criterion. The historical analogue is authentic, and a modern 29-sign coordinate embedding is trivial to construct, but neither fixes the requested typed operand on original unknown ciphertext. No frozen unknown-span prediction is justified; no unknown plaintext/key, no cipher-family exclusion beyond the stated direct representations. Reopen only if an independently visible source clue selects a specific partition and receiver; do not sweep arbitrary row/column encodings, bit mappings or regrouped punctuation. See also the distinct [historical Hastières 24-letter cipher gate](issue1445-hastieres-futhorc-29-symbol-gate.md) and [exact Rune Poem alphabet-order gate](lp2-anglo-saxon-rune-poem-source-gate.md).
+
+
 ## Solved-source spelling-choice calibration and checksum ambiguity (Agent2, #2976, 26 November)
 
 **Decision:** there is no source-calibrated secondary spelling-choice channel. The explicit, frozen ordinary grammar is word-local longest matching over the chart's 29 literal labels, its C/K, S/Z, NG/ING and IA/IO aliases, and the historical V→U convention. On the 694 source-replayed LP1 training groups, every observed literal spelling is the **unique shortest legal parse**, not merely a successful greedy parse. There are 155 groups with multiple parses of *different* lengths and no equal-width choice. With the grammar frozen, the withheld p56/57 controls give the same result on all 45 groups, including 11 variable-width opportunities. The actual author-era Latin from the 2013 Instar TXXX witness gives the same result on 19 p57 body words (5 variable-width opportunities); the solver-derived, English-normalized p10–13 reference gives it on 181 aligned words (47 variable-width opportunities). These subsets overlap the 739 solved groups; they are distinct input representations, not additional independent samples. The Latin reference uses QU→CW, Q→C and the known aliases. The primary-source p57 Latin witness is the stronger independence check; literal expansions derived from known runes do not independently establish which Latin alias the author used.
