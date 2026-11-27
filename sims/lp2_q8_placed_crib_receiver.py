@@ -305,7 +305,24 @@ def fixtures():
                             "stats":out["stats"],
                             "unique_action":out["uniquely_identified_action"]})
             print("CASE "+json.dumps(outputs[-1],separators=(",",":")),flush=True)
-    print("PASS generic crib-driven receiver: two exact shared-chart actions recovered and two independent-chart controls rejected; no original LP2 cribs supplied.")
+    # Exact canonical original-cipher acquisition smoke test. The plaintext
+    # below is intentionally fabricated and NEVER fed to the inverse.
+    original_input={"chapters":["physical54"],"source_note":"UNTRUSTED TEST WORD",
+                    "cribs":[{"chapter":"physical54","plain_gp":"aaa",
+                              "page":54,"rune_offset":0}],
+                    "query":[{"chapter":"physical54","id":"page55test",
+                              "page":55,"rune_offset":0,"rune_length":4}]}
+    hydrated=resolve_original_page_offsets(original_input)
+    corpus=json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
+    pages={p["page"]:p["indices"] for p in corpus["pages"]}
+    assert hydrated["cribs"][0]["cipher_gp"]==''.join(SYM[x] for x in pages[54][:3])
+    assert hydrated["query"][0]["cipher_gp"]==''.join(SYM[x] for x in pages[55][:4])
+    contradiction=json.loads(json.dumps(original_input))
+    contradiction["cribs"][0]["cipher_gp"]="zzz"
+    try:resolve_original_page_offsets(contradiction)
+    except ValueError:pass
+    else:raise AssertionError("incorrect original ciphertext was accepted")
+    print("PASS generic crib-driven receiver: two exact shared-chart actions recovered and two independent-chart controls rejected; canonical original-page offset hydrator rejects forged ciphertext; NO original plaintext or key supplied.")
 
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
