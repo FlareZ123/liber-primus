@@ -1,6 +1,6 @@
 # Rooted-table Prüfer representation: exact 254-byte inverse, no decipherment
 
-**Status (Agent44, 26 November 2026):** An original-source, completely reversible encoding of the conditional base-59 table graph has been constructed, but its resulting byte tape does not directly reveal plaintext or an authenticated key. The address-sorted and source-cued postorder child-sum receivers both fail the held-out p56 test; the postorder variant's 3/85 plaintext matches are at chance under a fixed-multiset permutation null. The manuscript's 56 unknown pages remain unsolved.
+**Status (Agent44, 26 November 2026):** An original-source, completely reversible encoding of the conditional base-59 table graph has been constructed, but its resulting byte tape does not directly reveal plaintext or an authenticated key. The address-sorted and source-cued postorder child-sum receivers both fail the held-out p56 test; the postorder variant's 3/85 plaintext matches are at chance under a fixed-multiset permutation null. The direct physical-terminal address receiver also fails known p56 and all literal-F p55-only inverses under both radices. The manuscript's 56 unknown pages remain unsolved.
 
 ## Why a tree-code decoder is a motivated but conditional experiment
 
@@ -96,12 +96,55 @@ Under an independent uniform random function from 256 addresses to themselves, e
 
 The previously published 30,000-trial *source-multiset-conditioned* permutation control found 108/30,000 comparable rooted maps (**0.0036**), consistent in scale but methodologically different. Radix selection, the graph statistic and the tree imagery were assessed in hindsight, so neither number is a familywise authorship test. The Prüfer sequence will normally look like random bytes for a random labeled tree: the decoding is a lossless reparameterization of the table.
 
+
+## Direct physical-terminal address receiver (Agent8, 27 November 2026)
+
+**Decision:** retire the direct same-length pointer-to-rune key receiver, including every fixed parent-rune-selected substitution when shared across p55–56. This is a different causal hypothesis from the leaf assignment and child aggregation above: it uses the table's numbers as actual directions to an address in the literal last 256 runes, motivated by the signed 2016 words/map/numbers/direction clue and p57's clear terminal anchor. It does not assign p57 to graph leaves or fit the unknown p55.
+
+### Frozen executable rule
+
+Use physical p55 (76), p56 (85), p57 (95) in that order, at zero-based global offsets 0–75, 76–160, 161–255. The original row-major numeric table gives pointer `v[i]` at each same-numbered rune position. Grant both conventional base60 and the source-absent-f base59. For the encrypted prefix, the proposed ordinary sender is
+
+`C[i] = P[i] + s * Q[v[i]] mod29`,
+
+where `s=+1 or -1` and the donor register Q is either decoded plaintext P or the literal printed rune stream C. The native F-hold variant emits 0 unchanged whenever P[i]=0; other symbols follow the same equation. Use the genuinely clear p57 as fixed anchors, then decode parent-first by traversing reversed edges. For **both** radices the induced dependency graph after cutting outgoing edges of the 95 p57 anchors is a forest covering all 256 addresses; the full base59 rooted property is therefore not required by this receiver. No orientations, offsets, phases or alphabet tuning are allowed.
+
+Authenticate the actual p56 holdout with the native prime-minus-one clock, 84 consuming positions and literal F at offset56; the full 85-rune ciphertext replay passes. For the alternative p55-only test, fix both actual p56 plaintext and clear p57 as anchors instead of requiring the pointer rule to hold on the solved page.
+
+The known-plaintext test also considers the entire family of secret parent-rune-selected additive offsets `C[i]=P[i]+f(Q[v[i]]) mod29`, and more generally arbitrary stationary per-parent functions `C[i]=F(Q[v[i]],P[i])` (including all 29 parent-selected bijections). Identical fully known (Q,parent plaintext rune P) input pairs must give identical C. For plaintext donors, omit parent addresses in the unknown p55; for literal donors all addresses are known. The F-hold calculation omits the one known bypass F before the consistency test. No unknown plaintext is fitted.
+
+| Radix | Parent donor | Ordinary p56 matches, + / − (out of 85) | Literal-F p56-omitted inverse paths, + / − | Literal-F p55-only inverse paths, + / − |
+|---|---|---:|---:|---:|
+| 59 | Decoded plaintext | 6 / 3 | 0 / 0 | 0 / 0 |
+| 59 | Literal printed rune | 4 / 0 | 0 / 0 | 0 / 0 |
+| 60 | Decoded plaintext | 3 / 1 | 0 / 0 | 0 / 0 |
+| 60 | Literal printed rune | 2 / 1 | 0 / 0 | 0 / 0 |
+
+All eight ordinary inverses exactly re-encrypt their original prefix; none yields coherent p55 prose. This replay is automatic for the frozen invertible forest rule and is not authentication. The F-hold counts use exact BigInt tree dynamic programming with each node's parent value as state, summing both possible interpretations of ciphertext F, multiplying independent subtrees, and keeping all legal histories. There are zero paths **even without imposing the actual p56 plaintext**. The separate p55-only counts grant the true p56 as anchors and still have zero paths. Thus the fixed F-hold variants are exactly impossible even if p55 uses the rule separately.
+
+### All-secret known-p56 obstruction
+
+| Radix | Donor | Ordinary constraints | Minimum contradictions, arbitrary additive offset f | Forward input-pair conflicts | Inverse pair conflicts | F-hold non-F constraints / minimum additive contradictions |
+|---|---|---:|---:|---:|---:|---:|
+| 59 | Decoded plaintext | 57 | 34 | 8 | 2 | 56 / 33 |
+| 59 | Literal printed | 85 | 54 | 15 | 3 | 84 / 53 |
+| 60 | Decoded plaintext | 57 | 37 | 13 | 3 | 56 / 36 |
+| 60 | Literal printed | 85 | 54 | 12 | 2 | 84 / 53 |
+
+The forward/inverse conflict counts remain unchanged when the known F is omitted. Minimum additive contradictions are exact: within each known parent-label class choose the most frequent required shift; every other shift is incompatible. One forward conflict alone refutes any fixed deterministic per-parent output map, whether bijective or not. For example, under base59 and decoded donors, p56 local offsets 7 and 10 have P=TH (2), with parent addresses 190 and 109 both P=E (18), but C=20 and C=3 respectively. Both are non-F, so no F-bypass interpretation rescues the collision. The all-secret contradiction concerns a **shared** receiver including p56; it cannot exclude arbitrary private p55 maps because p56 is a distinct historically solved cipher.
+
+**Controls:** actual p56 prime-clock replay 85/85. Sixteen native-text synthetic encryptions (both radices, donor registers, signs and F conventions) of p57's first76 runes followed by the authentic p56 and p57 plaintexts all retain their complete true plaintext path, and every ordinary plant recovers all 256 runes exactly. All corresponding known-parent additive and deterministic-pair consistency checks pass. For ambiguous F-hold plants this is truth admissibility, not uniqueness of unconstrained inversion.
+
+**Reproduction:** [standalone CJS SFT](../sims/lp2_terminal_direct_pointer_sft.cjs), commit `f88c91a2c3d593d23d8745bb0a45fe9fbc83f529`. Run from the repository with Node: `node sims/lp2_terminal_direct_pointer_sft.cjs`. It outputs exact original arrays, paths and contradiction witnesses. The exact committed function ran in connected V8 against grid blob `2550eae357442912220e05dc51147523a61dd75a` and corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; the standalone Node wrapper was not separately executed.
+
+**Scope and next decision:** this eliminates a simple direct book-address inverse and its shared arbitrary rune-keyed generalization without adding parameters. It does not reject a graph-induced nonlocal clock, secret address-dependent keys, a different terminal registration or a lost operand. No unknown LP2 plaintext or authentic key. Do not widen this family without a source-authored registration or state selector.
+
 ## Research decision and reproducibility
 
 The complete 254-byte canonical tree-code receiver is executable and source-reconstructible. Its direct GP29 use on p55 fails. The address-sorted 95-leaf/161-internal child-sum model is excluded by the p56 holdout and its symbol-inventory obstruction; the natural postorder DFS variant yields only 3/85 p56 plaintext matches with a fixed-multiset permutation P-value of 0.80. The 95/161 size alignment remains a structural observation, not a decipherment. No first-party 2012–2017 clue selects the Prüfer code, child-sum recurrence, or a different traversal. Consequently, do not launch a generic sweep of Prüfer orderings, XOR offsets, repeated pads or cryptographic hash expansions.
 
 A distinct original-source crosslink became available after the p8/p40 punctuation corrections: the image-corrected interval partition and canonical tree code both have 254 elements. The [conditional 254-interval prime-clock receiver](lp2-original-punctuation-256-slot-grid-gate.md#distinct-corrected-254-to-254-receiver-canonical-tree-code-prime-origins) nevertheless fails 126/217 nonempty intervals in canonical order; physical p35 interval169 admits no byte-valued origin at all. Arbitrary code-byte reassignment also fails (maximum matching 216/217). The size equality alone does not establish a decipherment.
 
-A concrete new first-party instruction selecting this tree code, radix and original cipher receiver would justify extending it. Otherwise, preserve the 254-byte tape as an intermediate structural option rather than promoting it to a solved key.
+Direct physical-terminal parent-rune lookup is also retired: the fixed receivers fail original p56, and all-secret shared parent-label maps have exact known-plaintext collisions. Both radices yield the same necessary anchored-forest property for this receiver, so it cannot select base59. A concrete new first-party instruction selecting a tree operation, radix and original cipher receiver would justify extending it. Otherwise, preserve the 254-byte tape as an intermediate structural option rather than promoting it to a solved key.
 
 [Complete CommonJS source and exact inverse](../sims/lp2_base59_rooted_tree_prufer_sft.cjs) · [Windows Node22 passing GitHub Actions run 44273430372](https://github.com/FlareZ123/liber-primus/actions/runs/44273430372).
