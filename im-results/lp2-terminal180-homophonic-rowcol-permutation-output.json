@@ -1,0 +1,111 @@
+{
+  "p56": "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE",
+  "primesConsumed": 84,
+  "innerDistinct": 127,
+  "perimeterLength": 76,
+  "knownPerimeter": 37,
+  "unseenPerimeter": 39,
+  "controls": [
+    {
+      "stats": {
+        "SAT": 1,
+        "UNSAT": 719,
+        "CAP": 0,
+        "nodes": 720,
+        "max": 1
+      },
+      "exactRow": true,
+      "exactColumn": true,
+      "perimeterHits": 37,
+      "perimeterAvailable": 37
+    },
+    {
+      "stats": {
+        "SAT": 1,
+        "UNSAT": 719,
+        "CAP": 0,
+        "nodes": 720,
+        "max": 1
+      },
+      "exactRow": true,
+      "exactColumn": true,
+      "perimeterHits": 37,
+      "perimeterAvailable": 37
+    },
+    {
+      "stats": {
+        "SAT": 1,
+        "UNSAT": 719,
+        "CAP": 0,
+        "nodes": 720,
+        "max": 1
+      },
+      "exactRow": true,
+      "exactColumn": true,
+      "perimeterHits": 37,
+      "perimeterAvailable": 37
+    }
+  ],
+  "original": [
+    {
+      "name": "plain",
+      "layout": "row",
+      "SAT": 0,
+      "UNSAT": 720,
+      "CAP": 0,
+      "nodes": 720,
+      "max": 1,
+      "witnesses": []
+    },
+    {
+      "name": "plain",
+      "layout": "column",
+      "SAT": 0,
+      "UNSAT": 720,
+      "CAP": 0,
+      "nodes": 720,
+      "max": 1,
+      "witnesses": []
+    },
+    {
+      "name": "printed",
+      "layout": "row",
+      "SAT": 0,
+      "UNSAT": 720,
+      "CAP": 0,
+      "nodes": 720,
+      "max": 1,
+      "witnesses": []
+    },
+    {
+      "name": "printed",
+      "layout": "column",
+      "SAT": 0,
+      "UNSAT": 720,
+      "CAP": 0,
+      "nodes": 720,
+      "max": 1,
+      "witnesses": []
+    },
+    {
+      "name": "pad",
+      "layout": "row",
+      "SAT": 0,
+      "UNSAT": 0,
+      "CAP": 720,
+      "nodes": 3600720,
+      "max": 5001,
+      "witnesses": []
+    },
+    {
+      "name": "pad",
+      "layout": "column",
+      "SAT": 0,
+      "UNSAT": 720,
+      "CAP": 0,
+      "nodes": 720,
+      "max": 1,
+      "witnesses": []
+    }
+  ]
+}
