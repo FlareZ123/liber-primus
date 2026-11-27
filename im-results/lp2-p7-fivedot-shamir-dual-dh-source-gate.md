@@ -96,9 +96,32 @@ The v0.5 implementation enables its diffusion layer by default and exposes `-D` 
 
 **Decision:** reject the p7-as-2013-Shamir-share interpretation as a source-selected mechanism. Preserve the geometric GF29/DH coincidence as an intermediate observation only; do not search arbitrary GP29-to-GF(2^176) encodings or promote a key/plaintext. The historical secret is reconstructible using the additional public numerical transcriptions; this does not supply a p7-to-historical-key bridge.
 
+## Historically faithful monic-polynomial analogue (Agent3, 27 November 2026)
+
+The [reconstructed 2013 SSSS control](../sims/cicada_2013_ssss_recovery_sft.cjs) establishes that the native sender adds the fixed monic degree-five term, and its receiver removes that term before quartic interpolation. Over GF29 the corresponding algebraic analogue is subtraction of x^5 (not characteristic-two XOR). The prior p7 dual-secret coincidence uses ordinary quartic interpolation, omitting this historical convention. For five distinct nonzero points, the interpolation-at-zero correction is their product, since x^5 minus its degree-four interpolant equals the monic polynomial with those five roots.
+
+| Coordinate register | Ordinary quartic constant | Monic correction mod29 | Native-convention analogue constant |
+|---|---:|---:|---:|
+| Horizontal dot ranks | 5 | 4 | 1 |
+| Vertical dot ranks | 23 | 4 | 19 |
+| Red-word products | 0 | 26 | 3 |
+
+Both dot-rank registers contain 1–5, so both subtract 120 mod29 = 4. The previously reported (5,23) DH pair becomes **(1,19)**. The historical 2013 implementation does not independently support the exact arithmetic that produces the DH pair. Ordinary textbook Shamir remains a possible generic inspiration; this is a convention-specific objection, not a general exclusion.
+
+For the fixed p8 255-rune recipient (51 adjacent records or five lanes), the native analogue changes each recovered rune by one common shift per coordinate register. The six original output tapes:
+
+- 1,2,3,4,5 / adjacent: `EOTATOESGPDOEOEOIANGAEEOJWNGOESCCNDUNUDHAESRTEONGIATAECOEEAORLEAPOAOE` (IoC 0.036862745).
+- 1,2,3,4,5 / lanes: `SFYRWPEAEEOIFBEAEAETHRINGLNYJHLEOYCGTHROEAESUTEOEALBNGLIATYOELNGGBX` (IoC 0.031372549).
+- 3,5,1,4,2 / adjacent: `AJTHBJPXBIAGGIWFHRGPOAEHGLTEABXFAENRIWDJSSAEEOXNGEAPFIADOENGNGMTH` (IoC 0.028235294).
+- 3,5,1,4,2 / lanes: `TOEYGFEOTJEODINPIARAWEUOUOJEOWTOETNYADBIIOEDIATLFNGISNGFJXD` (IoC 0.036078431).
+- 11,26,8,15,2 / adjacent: `FFNJFBOOEASNGJUBOXTACONIAAEJATHFGEEOEAYAENDNRAEXGTHIAFLEAGYJPPC` (IoC 0.035294118).
+- 11,26,8,15,2 / lanes: `NGTHBEAGTEONIANNEAEGDWDRATSAEEOAEUJEAAEHIAEPEEOPTHGXDYEOFEOEANGAFHB` (IoC 0.031372549).
+
+None yields recognizable prose; IoC is invariant under the common translation. The six monic degree-five plants using genuine p57 first 51 plaintext runes recover 51/51 each. [Reproducer](../sims/lp2_p7_native_monic_shamir_original_sft.cjs); canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`. Connected V8 core executed; original p7 constants independently checked in Python. No broader key/clock search or LP2 plaintext claim.
+
 ## Research decision
 
-This is a **new geometry-constrained candidate mechanism for recovering already-known key-state constants from the original manuscript**. Its merit is that the dot heights supply an actual missing order permutation, while Cicada's earlier puzzle historically used the five-share operation. It may be useful if a future independent original clue specifies how to consume the resulting parameters.
+This is a **geometry-constrained ordinary-quartic coincidence with already-known key-state constants**. The actual 2013 sender's fixed monic term removes the dual DH match in the corresponding GF29 analogue. Its merit is that the dot heights supply an actual missing order permutation, while Cicada's earlier puzzle historically used the five-share operation. It may be useful if a future independent original clue specifies how to consume the resulting parameters.
 
 The direct p8 tensor and p0 period-five body consumers both fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The primary 2013 source reconstruction now fixes the historical comparison scheme as GF(2^176), polynomial x^176+x^11+x^3+x^2+1, index-prefixed 44-hex shares, and threshold 5; no GP29 bridge exists. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
 
