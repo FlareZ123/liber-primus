@@ -67,3 +67,37 @@ For any allowed set S of 29 five-bit patterns:
 Controls: 3,744 independent exhaustive small-carrier subset comparisons match the greedy class-size formula; a noncanonical five-bit injection with ordinal codebook round-trips all 95 native p57 runes with supplied cuts/suffixes (18 frames, including suffix-only frames when necessary). The latter control is not an original-frame or blind alphabet recovery.
 
 [SFT](../sims/lp2_fibonacci_5bit_arbitrary_codebook_sft.cjs) · [raw certificate](lp2-fibonacci-5bit-arbitrary-codebook.json). Exact committed core executed V8. This rejects the entire one-codeword-per-GP-rune, stationary five-bit injection, printed-group reset family over the full original tape. It does not exclude a changing codebook, a codebook of more than 29 symbols, unknown frame starts, or a different prefix code. No original plaintext or key recovered.
+
+## Self-synchronizing arbitrary-codebook exclusion without word-reset assumption (27 November, Agent25)
+
+The preceding 36-word certificate relied on printed-group starts. A separate self-synchronization argument removes that dependence for the continuous, page-framed and physical-line-framed full LP2 tapes. The stationary five-bit injection and a shared 29-codeword Fibonacci dictionary are still the only codebook assumptions. Frame suffixes may be arbitrary up to four bits to complete the final codeword.
+
+A valid Fibonacci codeword ends in 11, and its prior bits have no consecutive ones. The decoder consumes nonoverlapping 11 delimiters, resetting after each. Among the 32 possible five-bit patterns:
+
+- Exactly five patterns (3,11,15,19,27) force a parser reset **at their end**, independently of the incoming trailing-bit state.
+- Thirteen patterns contain no 11. Of these five start in 1 and five end in 1.
+- The sets are disjoint. With three omitted patterns, if k synchronization patterns remain (2≤k≤5), at least m=15−k delimiter-free patterns remain.
+
+For a possible assignment of the k synchronization patterns to an observed label set A, construct a directed graph H on the 29−k other observed labels. H[p,q]=1 iff at least one trigram a,p,q with a in A occurs wholly within a tested frame. Any m-element subset Z corresponding to delimiter-free patterns must then contain a certain minimum number of induced directed edges. At most 5×5=25 of these can produce 11 across the p/q bit boundary. All other edges force **distinct ten-bit prefixes of longer complete codewords**, starting immediately after a known reset. Their codewords must be longer than ten bits, so these are mutually distinct, regardless of the actual following bits or integer values.
+
+The induced-edge lower bounds are rigorous and deliberately relaxed. For each of all 146,566 possible A subsets (sizes 2,3,4,5), first bound the number of retained edges per row by max(0, degree−(n−m)), then sum the m smallest row bounds. For weak cases strengthen using the integer symmetric adjacency M=H+H^T. Let S be its total sum, L the sum of its m smallest row sums and lambda a certified PSD shift of M. For an m-subset indicator x, write x=(m/n)1+z. Then z is orthogonal to 1 and ||z||²=m(n−m)/n, hence
+
+```
+edges(Z) = x^T M x / 2
+         >= ceil((2mn L − m² S − lambda m(n−m)n)/(2n²)).
+```
+
+The shift certificate does not rely on numerical eigenvalues: floating Cholesky nominates a rounded integer factor R at scale Q=10000; the SFT checks that Q²(M+lambda I)−RR^T is symmetric diagonally dominant with nonnegative diagonal, proving PSD. All residual calculations are exact safe integers. 16,320 exhaustive induced-subset toy comparisons validate the inequality.
+
+For an independent disjoint set of short words, enumerate all 4,960 possible allowed pattern sets S. Parse every allowed two-pattern concatenation starting from both possible incoming trailing-bit states, record only complete words after a synchronization delimiter common to both parses, and retain words forced by more distinct pattern pairs than the original observed missing-pair count. Each such short word is ≤10 bits; therefore it cannot coincide with any long-prefix codeword. The original continuous, page and line tapes all cover 840/841 distinct ordered pairs.
+
+| Frame geometry | k=2 bound | k=3 bound | k=4 bound | k=5 bound | Global minimum |
+|---|---:|---:|---:|---:|---:|
+| Continuous p0–55 | 41 | 47 | 33 | 35 | **33** |
+| Physical pages | 40 | 46 | 33 | 34 | **33** |
+| Physical lines | 34 | 40 | 30 | 30 | **30** |
+| Printed groups (root-start certificate above) | — | — | — | — | **36** |
+
+These are conservative required distinct-codeword counts, not exact minima or recovered plaintext. All four ordinary full-book frame geometries require strictly more than 29 codewords, even with an arbitrary stationary secret five-bit injection and unrestricted secret positive-integer assignments. The result does not assume that every codeword occurs, that integer lengths are bounded, or that plaintext has any linguistic statistics. It does assume all codewords in a frame eventually complete. Arbitrary extra hidden cuts, chapter-dependent mappings/dictionaries, multiple codewords per plaintext rune, and other prefix codes remain different hypotheses. Neither p15 nor an authenticated historical instruction selects this payload carrier.
+
+[SFT](../sims/lp2_fibonacci_5bit_selfsync_codebook_sft.cjs) · [raw certificate](lp2-fibonacci-5bit-selfsync-codebook.json). Exact committed core executed in V8: 12,717 PSD certificates including toy controls, all passed. No standalone Windows run. **Decision:** retire the shared stationary one-codeword-per-rune Fibonacci five-bit receiver across every ordinary printed framing, without further codebook or alphabet enumeration.
