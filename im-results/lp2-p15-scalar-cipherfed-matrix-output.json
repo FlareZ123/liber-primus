@@ -154,7 +154,7 @@
     "hold": {
       "terminalStates": 0,
       "firstEmpty": 1369,
-      "truthRetained": true,
+      "truthRetained": null,
       "stats": [
         [
           100,
