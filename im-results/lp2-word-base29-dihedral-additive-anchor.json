@@ -1,0 +1,230 @@
+{
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "source": {
+    "words": 64,
+    "runes": 299,
+    "fitWords": 47,
+    "fitRunes": 213,
+    "holdWords": 17,
+    "holdRunes": 86
+  },
+  "lexicon": 33278,
+  "model": "shared full-word BASE29 addition, independently dihedral input/output, unknown original high digits, fixed widths",
+  "depth": 6,
+  "budget": 3,
+  "controls": [
+    {
+      "key": 3302503,
+      "fit": {
+        "sizes": [
+          [
+            2,
+            6,
+            742968
+          ],
+          [
+            31,
+            6,
+            744059
+          ],
+          [
+            41,
+            6,
+            744002
+          ],
+          [
+            42,
+            6,
+            744215
+          ],
+          [
+            12,
+            10,
+            934961
+          ],
+          [
+            45,
+            10,
+            935082
+          ],
+          [
+            9,
+            7,
+            1015915
+          ]
+        ],
+        "union": 5836037,
+        "maxAnchor": 7,
+        "anchorPass": 4,
+        "maxFitAmongAnchorPass": 47,
+        "maxFitUpper": 47,
+        "candidates": [
+          3302503
+        ]
+      },
+      "held": 17,
+      "unique": 13,
+      "heldRunes": 86,
+      "uniqueRunes": 76
+    },
+    {
+      "key": 51245470,
+      "fit": {
+        "sizes": [
+          [
+            2,
+            6,
+            743118
+          ],
+          [
+            31,
+            6,
+            743594
+          ],
+          [
+            41,
+            6,
+            743890
+          ],
+          [
+            42,
+            6,
+            743251
+          ],
+          [
+            12,
+            10,
+            934711
+          ],
+          [
+            45,
+            10,
+            935068
+          ],
+          [
+            9,
+            7,
+            1015482
+          ]
+        ],
+        "union": 5833300,
+        "maxAnchor": 7,
+        "anchorPass": 3,
+        "maxFitAmongAnchorPass": 47,
+        "maxFitUpper": 47,
+        "candidates": [
+          51245470
+        ]
+      },
+      "held": 17,
+      "unique": 12,
+      "heldRunes": 86,
+      "uniqueRunes": 75
+    },
+    {
+      "key": 115183697,
+      "fit": {
+        "sizes": [
+          [
+            2,
+            6,
+            743881
+          ],
+          [
+            31,
+            6,
+            743009
+          ],
+          [
+            41,
+            6,
+            743327
+          ],
+          [
+            42,
+            6,
+            743428
+          ],
+          [
+            12,
+            10,
+            934972
+          ],
+          [
+            45,
+            10,
+            934743
+          ],
+          [
+            9,
+            7,
+            1016028
+          ]
+        ],
+        "union": 5835095,
+        "maxAnchor": 7,
+        "anchorPass": 1,
+        "maxFitAmongAnchorPass": 47,
+        "maxFitUpper": 47,
+        "candidates": [
+          115183697
+        ]
+      },
+      "held": 17,
+      "unique": 12,
+      "heldRunes": 86,
+      "uniqueRunes": 72
+    }
+  ],
+  "original": {
+    "sizes": [
+      [
+        2,
+        6,
+        743369
+      ],
+      [
+        31,
+        6,
+        743724
+      ],
+      [
+        41,
+        6,
+        743228
+      ],
+      [
+        42,
+        6,
+        743640
+      ],
+      [
+        12,
+        10,
+        935236
+      ],
+      [
+        45,
+        10,
+        934916
+      ],
+      [
+        9,
+        7,
+        1016217
+      ]
+    ],
+    "union": 5835654,
+    "maxAnchor": 3,
+    "anchorPass": 0,
+    "maxFitAmongAnchorPass": 0,
+    "maxFitUpper": 43,
+    "candidates": []
+  },
+  "candidateReadings": []
+}
