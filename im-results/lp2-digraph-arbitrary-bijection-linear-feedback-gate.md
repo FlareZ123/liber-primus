@@ -85,3 +85,30 @@ Positive controls use independently randomized 841-element lane permutations and
 The arbitrary lane substitutions are not recovered blindly. These controls establish recovery of the linear feedback component, not a complete blind plaintext inverse. No unknown-page key or plaintext emerged.
 
 [Periodic CommonJS SFT](../sims/lp2_digraph_periodic_projective_feedback_sft.cjs), [q4 raw](lp2-digraph-periodic-feedback-q4-output.json), [q13 raw](lp2-digraph-periodic-feedback-q13-output.json). Both executed in connected V8 using the pinned source and exact projective method; q13 evaluated the pinned authored script's computational function. Standalone Node wrapper not separately run. Retire both historic-length ordinary-clock extensions rather than expanding arbitrary periods without a source-selected clock.
+
+## Arbitrary plaintext transport: exact weighted collision capacity (Agent40, 27 November)
+
+The preceding native digraph collision test assumes adjacent native plaintext pairs. Arbitrary pre-encryption position transport can separate those pairs and erase this invariant. A stronger necessary condition uses the residual pair collision ceiling to bound **combined native unigram concentration**, invariant under any length-preserving permutation of all plaintext rune positions. This includes arbitrary cross-chapter reordering when the frame capacities are summed.
+
+For a chosen set of k GP29 symbols, the 841 plaintext pair labels partition into k² bins of weight2, 2k(29−k) bins of weight1, and (29−k)² bins of weight0. If h is the residual histogram, a secret pair bijection only permutes its counts. With n complete residual pairs and ordered collision ceiling Q=2K from the projective all-matrix maximum, any histogram must satisfy sum h=n and sum h(h−1)≤Q. The maximum possible top-k plaintext count under this relaxed constraint is the integer optimization
+
+    max 2z+y
+    subject to z+y+x=n, z,y,x≥0 integers,
+    b(z,k²)+b(y,2k(29−k))+b(x,(29−k)²)≤Q,
+    b(s,m)=m floor(s/m)(floor(s/m)−1)+2 floor(s/m)(s mod m).
+
+The function b is the exact smallest ordered collision count for m nonnegative integer bins summing to s (equalize counts). Enumerating z and binary searching the convex upper feasible y branch computes the **exact optimum over relaxed histograms**, rather than treating a Cauchy–Schwarz inequality as a sharp result. Every optimum has a balanced-bin witness; that witness need not be achievable by a particular feedback matrix. Add all discarded initial pairs/tails as entirely free runes, sum independent lane capacities, and grant either pair alignment by taking each rank's larger bound independently. These extra relaxations favor the cipher. The top-k bound is independent of native ordering and printed boundaries.
+
+Reuse the exact already-published full, q4, q13 and chapter maxima rather than rerunning them. Evaluate all 562,060 contiguous full-book native GP windows from Gibran/Emerson/Shakespeare at every k1…28. The historical LP1 eight-rune key motivates four pair phases; independent q4 matrices and tables subsume q1/q2. Exact phase-specific maxima for the p40 black-only body are new: phase0 K=1524 at rows [269,778], phase1 K=1512 at [1,831], each a unique maximum over all 707,281 matrices. The source geometry excludes the red heading from the 3000-rune input and gives both phases their respective free runes.
+
+| Scope | Top-eight upper bound | Smallest native top-eight | All-rank passing windows |
+|---|---:|---:|---:|
+| Full global q1 | 5292 | 7280 | 0/562060 |
+| Full global q4 | 6795 | 7280 | 0/562060 |
+| Full global q13 | 9074 | 7280 | 562060/562060 |
+| Full chapter-private q1, arbitrary cross-chapter transport | 8048 | 7280 | 217355/562060 |
+| p40–53 black body q1, either pair alignment | 1588 | 1644 | 0/591928 |
+
+Every full-book native window exceeds the q1 relaxed ceiling at some rank by at least 2412 runes and q4 by at least 775. Every native p40 body window exceeds its q1 bound by at least 130. Thus arbitrary plaintext rearrangement does not rescue even the global four-phase linear-feedback pair-map receiver in this finite native register. q13 and chapter-private q1 are not ruled out by this particular all-order bound; their passes are not actual feasible keys. The exact relaxation is checked against brute-force small group allocations. Two independently shuffled native 3000-rune nonlinear-pair plants uniquely recover the hidden linear matrices [137,722] and [612,48] via projective incidence, respect the bound and decode all 6000 runes with actual arbitrary pair maps and shuffle keys. Neither the maps nor the shuffle is inferred blindly.
+
+[Standalone SFT](../sims/lp2_digraph_feedback_pretransposition_capacity_sft.cjs) · [raw results, input pins, all-rank capacities and witnesses](lp2-digraph-feedback-pretransposition-capacity-output.json), commits 4b8818e2 and 21f66fa7. The computation executed against live sources in V8; standalone filesystem wrapper not separately run. This is a rigorous transport-robust exclusion of the specified family for the tested native windows, not authentication of any LP2 operation. See the [static/phase reverse-order pair-table report](lp2-digraph-column14-pairing.md#reverse-layer-order-arbitrary-pretransposition-and-secret-pair-tables-27-november-agent40-draw1) for the separate no-feedback results. No unknown plaintext or key recovered.
