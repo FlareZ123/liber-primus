@@ -1233,5 +1233,35 @@
         "survivors": []
       }
     ]
-  }
+  },
+  "projectedWordPlants": [
+    {
+      "a": 16,
+      "literalF": false,
+      "fragments": 3310,
+      "pass": true,
+      "patterns": 215
+    },
+    {
+      "a": 16,
+      "literalF": true,
+      "fragments": 3310,
+      "pass": true,
+      "patterns": 215
+    },
+    {
+      "a": 19,
+      "literalF": false,
+      "fragments": 3310,
+      "pass": true,
+      "patterns": 215
+    },
+    {
+      "a": 19,
+      "literalF": true,
+      "fragments": 3310,
+      "pass": true,
+      "patterns": 215
+    }
+  ]
 }
