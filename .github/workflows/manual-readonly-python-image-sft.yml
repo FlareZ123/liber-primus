@@ -42,7 +42,7 @@ jobs:
         shell: pwsh
         run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7 opencv-python-headless==4.12.0.88 requests==2.32.5 filelock==3.20.0
       - name: Install later Moulds plate topology dependencies
-        if: ${{ inputs.script == 'sims/lp2_p27_moulds_lateplate_topology_sft.py' }}
+        if: ${{ inputs.script == 'sims/lp2_p27_moulds_lateplate_topology_sft.py' || inputs.script == 'sims/lp2_p27_other_auchenorrhyncha_sft.py' }}
         shell: pwsh
         run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7 opencv-python-headless==4.12.0.88 requests==2.32.5 filelock==3.20.0 scipy==1.16.3 networkx==3.5
       - name: Install topology dependencies for the exact p27 shared-source candidate
