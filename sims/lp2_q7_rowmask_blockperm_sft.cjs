@@ -11,7 +11,8 @@ function experiment(raw) {
  // All native solved sections and Gibran are excluded from training for this test.
  for(const t of T.slice(1)){for(let i=0;i<t.length;i++){const p=t[i];n1[p]++;total++;if(i){n2[t[i-1]*Q+p]++;ctx[t[i-1]]++;diff[mod(p-t[i-1])]++}if(i>1){const j=t[i-2]*Q+t[i-1];n3[j*Q+p]++;ctx3[j]++}}}
  const U=Float64Array.from(n1,x=>Math.log((x+1)/(total+Q))),B=new Float64Array(Q*Q),L=new Float64Array(Q**3),D=Float64Array.from(diff,x=>Math.log((x+1)/(total-2+Q)));
- for(let a=0;a<Q;a++)for(let b=0;b<Q;b++){B[a*Q+b]=Math.log((n2[a*Q+b]+16*Math.exp(U[b]))/(ctx[a]+16));for(let d=0;d<Q;d++)L[(a*Q+b)*Q+d]=Math.log((n3[(a*Q+b)*Q+d]+12*Math.exp(B[b*Q+d]))/(ctx3[a*Q+b]+12))}
+ for(let a=0;a<Q;a++)for(let b=0;b<Q;b++)B[a*Q+b]=Math.log((n2[a*Q+b]+16*Math.exp(U[b]))/(ctx[a]+16));
+ for(let a=0;a<Q;a++)for(let b=0;b<Q;b++)for(let d=0;d<Q;d++)L[(a*Q+b)*Q+d]=Math.log((n3[(a*Q+b)*Q+d]+12*Math.exp(B[b*Q+d]))/(ctx3[a*Q+b]+12));
  function score(p){let s=0;for(let i=2;i<p.length;i++)s+=L[(p[i-2]*Q+p[i-1])*Q+p[i]];return s/(p.length-2)}
  function initializer(C){
   const R=C.length/N;if(!Number.isInteger(R))throw Error("blocks");
@@ -54,13 +55,14 @@ function experiment(raw) {
   return {order,shifts,row,P,score:score(P),marginal:objective(selected)/R,exactDifferenceMaximum:optimum,initializerRank:initRank,render:P.slice(0,140).map(x=>c.translit[x]).join(" ")};
  }
  let seed=0x33010607;function random(n){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%n}
- function plant(P){let order=Array.from({length:N},(_,j)=>j);for(let j=N-1;j>0;j--){const a=random(j+1);[order[j],order[a]]=[order[a],order[j]]}const shifts=[0,...Array.from({length:N-1},()=>random(Q))],row=Array.from({length:P.length/N},()=>random(Q)),C=Array(P.length);for(let i=0;i<P.length;i++)C[Math.floor(i/N)*N+order[i%N]]=mod(P[i]+row[Math.floor(i/N)]+shifts[i%N]);return {order,shifts,row,C}}
+ function plant(P,key=null){let order=Array.from({length:N},(_,j)=>j);for(let j=N-1;j>0;j--){const a=random(j+1);[order[j],order[a]]=[order[a],order[j]]}if(key)order=key.order.slice();const shifts=key?key.shifts.slice():[0,...Array.from({length:N-1},()=>random(Q))],row=Array.from({length:P.length/N},()=>random(Q)),C=Array(P.length);for(let i=0;i<P.length;i++)C[Math.floor(i/N)*N+order[i%N]]=mod(P[i]+row[Math.floor(i/N)]+shifts[i%N]);return {order,shifts,row,C}}
+
  const control=[];
- // Independent held literary donor, native-source validation in a later stage only if the long controls pass.
- for(const offset of [0,1729,3458]){const P=T[0].slice(offset,offset+1729),p=plant(P),z=solve(p.C);control.push({offset,truthScore:score(P),correct:P.filter((x,i)=>x===z.P[i]).length,orderCorrect:p.order.every((x,i)=>x===z.order[i]),shiftCorrect:p.shifts.every((x,i)=>x===z.shifts[i]),truthOrder:p.order,truthShifts:p.shifts,result:z})}
+ for(const offset of [0,1729,3458,5187,8813,12440]){const P=T[0].slice(offset,offset+1729),p=plant(P),z=solve(p.C),held=[];if(offset>=5187){for(const [off,len] of [[offset+1729,1589],[offset+3318,308]]){const H=T[0].slice(off,off+len),h=plant(H,p),v=solve(h.C,z);held.push({offset:off,length:len,truthScore:score(H),correct:H.filter((x,i)=>x===v.P[i]).length,result:v})}}
+ control.push({offset,truthScore:score(P),correct:P.filter((x,i)=>x===z.P[i]).length,orderCorrect:p.order.every((x,i)=>x===z.order[i]),shiftCorrect:p.shifts.every((x,i)=>x===z.shifts[i]),truthOrder:p.order,truthShifts:p.shifts,result:z,held})}
  const original=[];
- if(control.every(z=>z.orderCorrect&&z.shiftCorrect&&z.correct>=1700)){
- const spans=[[8,14,0],[33,39,91],[54,55,0]],C=spans.map(([a,b,k])=>c.pages.slice(a,b+1).flatMap(p=>p.indices).slice(k));const fit=solve(C[0]);original.push(fit,...C.slice(1).map(t=>solve(t,fit)));
+ if(control.slice(3).every(z=>z.orderCorrect&&z.shiftCorrect&&z.correct>=1643&&z.held.every(h=>h.correct>=0.9*h.length))){
+ const spans=[[8,14,0],[33,39,91],[54,55,0]],C=spans.map(([a,b,k])=>c.pages.slice(a,b+1).flatMap(p=>p.indices).slice(k));if(C.map(t=>t.length).join()!=="1729,1589,308")throw Error("span length");const fit=solve(C[0]);original.push(fit,...C.slice(1).map(t=>solve(t,fit)));
  }
  return {trainingRunes:total,control,original};
 }
