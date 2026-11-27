@@ -1,0 +1,31 @@
+{
+  "next": {
+    "payloadLines": 66,
+    "normalizedLength": 3183,
+    "referenceLength": 3182,
+    "equalIgnoringTerminalWhitespace": true,
+    "caseChanges": 412
+  },
+  "grid": {
+    "total": 256,
+    "distinct": 161,
+    "foldedDistinct": 118,
+    "ambiguous": 202,
+    "residueAmbiguous": 202,
+    "preimageCount": "6427752177035961102167848369364650410088811975131171341205504",
+    "forcedLetterPositions": [
+      48,
+      56,
+      65,
+      95,
+      99,
+      118,
+      157,
+      166,
+      170,
+      193,
+      214,
+      243
+    ]
+  }
+}
