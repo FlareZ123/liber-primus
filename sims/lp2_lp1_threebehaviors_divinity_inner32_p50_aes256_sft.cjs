@@ -107,6 +107,27 @@ const shellReadouts=[-1,1].map(sign=>{
  return {sign,first24GP:decoded.slice(0,24).map(i=>gp.translit[i]).join("-"),
   fullGP:decoded.map(i=>gp.translit[i]).join("")};
 });
+const sourceXorShellKeys={
+ "ordinal-XOR-shell":Buffer.from(inner.map((x,i)=>x^shell[i])),
+ "GP-prime-XOR-shell":Buffer.from(inner.map((x,i)=>gp.prime[x]^gp.prime[shell[i]]))
+};
+assert.equal(sourceXorShellKeys["ordinal-XOR-shell"].toString("hex"),
+ "1a0e00101d1e1f130305150b03081218010f0f05141d161d0b130f0f1d081b1a");
+assert.equal(sourceXorShellKeys["GP-prime-XOR-shell"].toString("hex"),
+ "620e003e686c0e7a0508503e7e22446306122e1a7a764876185e122c461e2224");
+const shellXorEcb=[];
+for(const [tableName,source] of literalRegisters)for(const [keyName,key] of Object.entries(sourceXorShellKeys)){
+ const plain=crypt("ECB",key,source,true);
+ const printable=[...plain].filter(b=>b>=32&&b<=126||[9,10,13].includes(b)).length;
+ const fileMagic=magic.filter(([,prefix])=>plain.subarray(0,prefix.length).equals(prefix))
+  .map(([name])=>name);
+ shellXorEcb.push({tableName,keyName,printable,fileMagic,
+  first16hex:plain.subarray(0,16).toString("hex")});
+}
+assert.deepEqual(shellXorEcb.map(x=>x.printable),[108,97,126,94]);
+assert.ok(shellXorEcb.every(x=>x.fileMagic.length===0));
+// The supplementary XOR combination is not author-instructed. No key
+// repair via further KDFs, phase fitting, custom IVs or searches.
 const outputs=[];
 for(const [tableName,source] of literalRegisters)
 for(const [keyName,key] of Object.entries(keys)){
@@ -146,6 +167,7 @@ console.log(JSON.stringify({
  p50Base59Sha256:crypto.createHash("sha256").update(grid59).digest("hex"),
  p55ExteriorOffsets:exteriorOffsets, p55ExteriorLength:shell.length,
  p55ShellDirectGP: shellReadouts,
+ p55ShellXorAesEcb:shellXorEcb,
  controls:"NIST AES-256 ECB vector and 12 256-byte exact native encrypt/decrypt plants pass",
  outputs
 },null,2));
