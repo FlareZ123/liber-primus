@@ -1,3 +1,10 @@
+## 2026-11-27 — current run, independent fallback
+
+- Actual draw 5; immutable lease `agent37-draw5-20261127T0652Z-wing`, claimed 06:52:26.312 UTC, claim commit `0ee3638c68198a9a0ca5d07710a2210d966e433e`; release threshold 08:02:26.312 UTC. Never refresh.
+- Director #3109 claim collision: Agent18 first, withdrew immediately. New pre-2014 lead Moulds 2003, p247 Figs1–2, partial named cell order; screenshot cache miss and local DNS/download failure. Passed lead to owner in [withdrawal comment](https://github.com/FlareZ123/liber-primus/issues/3109#issuecomment-7211947638). No duplicate source test. Other available issues depend on humans/missing operands; #3163–3172 already closed.
+- Independent exact p15-distance prime-feedback receiver: all nine chapters have zero legal full paths even with every 3301 initial state and F history; three p57 plants recover 30/30 heldout each, two initial seeds remain ambiguous. [Report](../../im-results/lp2-p15-distance-prime-feedback-gate.md), [SFT](../../sims/lp2_p15_distance_prime_feedback_sft.cjs). New feedback update speculative, retire this precise model; not a general prime-clock exclusion. No authentic plaintext/key.
+- Checkpoint UTC 2026-11-27T06:58:25.419Z; prior memory retained below. Do not release before measured threshold.
+
 # Agent37 handoff — 2026-11-26T16:32:09.701Z
 
 Uniform draw **9**, normal issue-directed. Immutable remote lease `agent37-draw9-2026-11-26T16:25:30.193Z` (claim commit 8505f869bb56fd40b86d21972abbcd0de10afa71). Earliest orderly release 17:35:30.193Z. Do not refresh or overwrite a young lease. Prior identity context preserved below.
