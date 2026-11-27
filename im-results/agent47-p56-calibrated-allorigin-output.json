@@ -1,0 +1,553 @@
+{
+  "corpusRunes": 12956,
+  "range": [
+    0,
+    3301
+  ],
+  "primeEchoMax": 463,
+  "markers": [
+    0,
+    11,
+    12,
+    21,
+    22,
+    25,
+    27,
+    28
+  ],
+  "nchecks": 96,
+  "p56Origin0": true,
+  "plants": [
+    {
+      "f": 0,
+      "o": 0,
+      "n": 95,
+      "originCount": 1637
+    },
+    {
+      "f": 11,
+      "o": 3102,
+      "n": 124,
+      "originCount": 433
+    },
+    {
+      "f": 12,
+      "o": 2165,
+      "n": 153,
+      "originCount": 2262
+    },
+    {
+      "f": 21,
+      "o": 34,
+      "n": 182,
+      "originCount": 1286
+    },
+    {
+      "f": 22,
+      "o": 2391,
+      "n": 211,
+      "originCount": 346
+    },
+    {
+      "f": 25,
+      "o": 372,
+      "n": 240,
+      "originCount": 243
+    },
+    {
+      "f": 27,
+      "o": 519,
+      "n": 269,
+      "originCount": 152
+    },
+    {
+      "f": 28,
+      "o": 1334,
+      "n": 298,
+      "originCount": 288
+    },
+    {
+      "f": 0,
+      "o": 2211,
+      "n": 327,
+      "originCount": 196
+    },
+    {
+      "f": 11,
+      "o": 2638,
+      "n": 356,
+      "originCount": 156
+    },
+    {
+      "f": 12,
+      "o": 2745,
+      "n": 385,
+      "originCount": 629
+    },
+    {
+      "f": 21,
+      "o": 870,
+      "n": 414,
+      "originCount": 121
+    },
+    {
+      "f": 22,
+      "o": 55,
+      "n": 443,
+      "originCount": 180
+    },
+    {
+      "f": 25,
+      "o": 542,
+      "n": 472,
+      "originCount": 7
+    },
+    {
+      "f": 27,
+      "o": 1065,
+      "n": 501,
+      "originCount": 59
+    },
+    {
+      "f": 28,
+      "o": 3301,
+      "n": 530,
+      "originCount": 132
+    }
+  ],
+  "originCounts": [
+    {
+      "lo": 0,
+      "hi": 2,
+      "n": 729,
+      "visibleF": 34,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 3,
+      "hi": 7,
+      "n": 1145,
+      "visibleF": 26,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 8,
+      "hi": 14,
+      "n": 1729,
+      "visibleF": 66,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 15,
+      "hi": 22,
+      "n": 1903,
+      "visibleF": 72,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 23,
+      "hi": 26,
+      "n": 1021,
+      "visibleF": 37,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 27,
+      "hi": 32,
+      "n": 1433,
+      "visibleF": 52,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 33,
+      "hi": 39,
+      "n": 1680,
+      "visibleF": 40,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 40,
+      "hi": 53,
+      "n": 3008,
+      "visibleF": 125,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": []
+        },
+        {
+          "f": 11,
+          "origins": []
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": []
+        },
+        {
+          "f": 22,
+          "origins": []
+        },
+        {
+          "f": 25,
+          "origins": []
+        },
+        {
+          "f": 27,
+          "origins": []
+        },
+        {
+          "f": 28,
+          "origins": []
+        }
+      ]
+    },
+    {
+      "lo": 54,
+      "hi": 55,
+      "n": 308,
+      "visibleF": 6,
+      "byMarker": [
+        {
+          "f": 0,
+          "origins": [
+            167,
+            168,
+            3047
+          ]
+        },
+        {
+          "f": 11,
+          "origins": [
+            1021
+          ]
+        },
+        {
+          "f": 12,
+          "origins": []
+        },
+        {
+          "f": 21,
+          "origins": [
+            2360
+          ]
+        },
+        {
+          "f": 22,
+          "origins": [
+            1702,
+            2675,
+            3298
+          ]
+        },
+        {
+          "f": 25,
+          "origins": [
+            668
+          ]
+        },
+        {
+          "f": 27,
+          "origins": [
+            1283,
+            1284,
+            1717
+          ]
+        },
+        {
+          "f": 28,
+          "origins": [
+            535,
+            574,
+            2973
+          ]
+        }
+      ]
+    }
+  ],
+  "unionMarker": [
+    {
+      "f": 0,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 11,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 12,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 21,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 22,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 25,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 27,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    },
+    {
+      "f": 28,
+      "sharedOrigin": [],
+      "independentChapterPossible": false,
+      "fullContinuous": []
+    }
+  ],
+  "corpusSha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+}
