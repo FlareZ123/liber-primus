@@ -156,6 +156,24 @@
         13
       ],
       "run": 45948556816
+    },
+    {
+      "mode": "original",
+      "q": 13,
+      "dictionary": 38938,
+      "bank": 527,
+      "budget": 6,
+      "pair_joins": 1,
+      "full_keys": 1,
+      "duplicates": 0,
+      "option_incidences": 16003936,
+      "holdout_count": 645,
+      "fits": [],
+      "exact": false,
+      "train_truth": 0,
+      "holdout_truth": 0,
+      "omitted": [],
+      "run": 45948660483
     }
   ]
 }
