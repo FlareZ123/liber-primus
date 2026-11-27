@@ -143,7 +143,6 @@
     "literalCountBeforeFailure": 3,
     "over4": 1132,
     "nonminimal": 116,
-    "minimumOOVIfOnlyMinimalRepaired": 1132,
     "minimumOOVAmongCanonicalGroups": 2155
   },
   "inputBlobs": {
@@ -154,5 +153,6 @@
     "resources/external/blake-marriage-1906-gutenberg45315.txt": "fc503b01bbedbec4e0c8b3d1ded311bed8e28874",
     "resources/external/2013-book-of-law-I.txt": "64876892683fab1467481fe87d85743a8ea17982",
     "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt": "12a6bc018047a1276e77f2b7f633d5905732fff9"
-  }
+  },
+  "frozenSourceCommit": "c42a7207727e1fce8558358e8d0517be2ac4daaa"
 }
