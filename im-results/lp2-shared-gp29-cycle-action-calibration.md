@@ -410,6 +410,23 @@ On the original 24 long p40–53 groups, the exact search exhausts 131/131 first
 
 A separate long-anchor extension rejects every arbitrary common-cycle q8 key with up to three omissions among the 24 selected anchors (1,012/1,012 first-anchor branches, 326,552 nodes, 3,028,059 extensions, 69,803 residual-coordinate enumerations, no unresolved leaves). It forces at least four of those anchors outside the lexicon, still within the chapter-wide 33-omission allowance. The chapter-wide model is therefore not excluded. Six other visual chapters also have strict all-long-anchor-in-register exclusions; p0–2 timed out. These results do not depend on the p54 transcription and remain valid within their stated finite-register conditions.
 
+
+### Carry-independent, near-chart all-key anchor receiver (Agent5, 27 November)
+
+A different tractable branch keeps the exact canonical GP29 chart or allows one transposition of two non-F coordinates (379 alphabets), with **all primitive q8 vectors**, independent group starts, literal-F holds and three allowed out-of-register complete training groups. This is an exploratory small-edit family, not a source-selected relabeling. It does not revisit the failed general graph, SAT or stochastic receivers. No carry-prefix constraint is imposed.
+
+For each alphabet, a printed group of at least eight runes with no ciphertext F must consume at every position; a dictionary word matching it cannot contain F. Each possible word therefore determines the complete eight shifts by coordinate subtraction. Additional positions check the period, and lexicographically minimal rotation quotients unknown start. Distinct candidate keys are counted once per group. The six eligible p54 black complete-group indices (zero-based) are 0, 13, 16, 34, 37, 45. If at least 44/47 complete groups decode in-register, at least three of these six must support the same key and alphabet. Thus rejecting every three-vote key is exact for this finite model, without scoring every possible q8 vector. For surviving keys the implementation decodes all eight starts and every legal F interpretation on all 47 groups. All 17 withheld words (including the complete eleven-rune carry) are excluded from fitting.
+
+| Control/original | Unique anchor-key incidences | Max anchor votes | Three-vote candidates | Full fits | Holdout truth |
+|---|---:|---:|---:|---:|---:|
+| Hidden swap 3↔23, seed stream 0x5e21cafe | 10,256,476 | 3 | 1 | 1 (44/47) | 17/17 |
+| Hidden swap 18↔24, continuation of seed stream | 10,259,359 | 3 | 1 | 1 (44/47) | 17/17 |
+| Original p54 | 10,256,582 | 2 | 0 | 0 | not inspected for language |
+
+Both length-profile controls deliberately place all three OOVs in the first three eligible long groups, and reject even accidental in-register inverse support for those corruptions. They recover the exact planted alphabet and cyclic key; all 44 valid training truths and all 17 held truths are present. These are independent random dictionary-word controls, not natural prose or arbitrary-permutation calibration. The original fails before any candidate language scoring. **Decision:** at least four complete p54 words must be outside the 38,910-form pinned dictionary under any canonical-or-single-swap GP29 q8 action of this type, even permitting independent group starts. This does not exclude more extensive alphabet changes, other periods, printed groups that are not words, different clocks, or a larger/other lexicon. It supplies an inexpensive exact receiver for any future independently supplied finite alphabet bank; do not widen near-chart edit distance merely to create more negative results.
+
+[Reproducer](../sims/lp2_q8_near_chart_receiver_sft.cjs) · [raw controls and original result](lp2-q8-near-chart-receiver.json). Executed on the exact fetched repository dictionary and source profile in connected V8; standalone Node wrapper/CI not separately run. Source and output commits 81547a66 and ccf86ae5.
+
 ### Other finite source families
 
 The earlier fixed-keyword, mapped-DIVINITY, fixed keyed-alphabet and red-title terminal conclusions used the defective p54/p55 segmentation described above and are withdrawn for those pages. The corresponding results on earlier visual chapters remain separate evidence and are not changed by this correction. No source-selected alphabet or key has been authenticated.
