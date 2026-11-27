@@ -18,6 +18,18 @@ Training: normalized Shakespeare and Emerson; Gibran absent from training. Two d
 
 Even true planted R/K with canonical rather than true starting A gives 1978/2000 and 1836/2000: arbitrary static nonbijective maps need not synchronize completely. Joint refinement includes A but neither blind plant is fully recovered. The partial control phrases are genuinely predicted from held ciphertext, not given donor words, but must not be described as complete decipherments. Original held candidate begins `EONLYOEEJJPOEGEOONGTEOTNGEOXIAXMUTHGUOENGHXUCXYFMWJXTHNIAADRAECEALWGHSTYJGMTHAEAEJGRDYDGCBDNGOEORMNOSTHDNGEAXAJOEAEPNGYTEAUPYEAGG`; no defensible plaintext island. Since all ordinary candidate keys define invertible senders, replay by itself cannot certify a solution. F-hold and P-driven destination extensions were not attempted here. Preserve the distinction between this stochastic result and the exact finite aligned-donor exclusion in `lp2-secret-home-rank-absorption.md` and the known-plaintext private chart recovery in `lp2-private-rank-map-recovery.md`.
 
+### Frozen full-tape diagnosis
+
+Carry the selected original R/K/A forward without refitting to all 12,956 symbols. On the extra unseen interval [6000,12956), the held trigram mean is -6.586981. Crucially, changing only K cannot rescue even the native unigram concentration: K permutes rank counts, so the two largest counts are invariant. For each interval, compare against the minimum top-two count across every same-length contiguous normalized Gibran window.
+
+| Original interval | Frozen top two | Native-window minimum | Frozen trigram mean | Exact oracle unigram mean over every K |
+|---|---:|---:|---:|---:|
+| [4000,6000) | 160 | 362 | -6.494358 | -4.031993 |
+| [6000,12956) | 546 | 1338 | -6.586981 | -4.075109 |
+| [4000,12956) | 695 | 1734 | -6.566297 | -4.089197 |
+
+Thus this particular fitted R/A pair fails the entire finite matched-length donor register even granting an arbitrary new private inverse chart on each held interval. This is not an all-R/A bound. To reproduce rank counts, read `final.key` from original JSON; start A=key.a.slice(), then for each original c record j=A.indexOf(c), remove A[j], insert c at key.r[c]. Count j on the stated half-open intervals. Sorted matching with the same training probabilities gives oracle unigram; K[j] gives trigram. The finite donor minimum uses sliding counts over every Gibran window and sums its two largest counts. No parameter or chart selection uses this extra held interval.
+
 ## Reproduction
 
 Run from repository root `node sims/lp2_private_cipher_rank_blind_sft.cjs plant`, `plant2`, or `original`. Exact core executed in connected V8 with repository source files; standalone Node wrapper not independently launched. Raw results: `lp2-private-cipher-rank-blind-plant1.json` (30073a44), `lp2-private-cipher-rank-blind-plant2.json` (e5116ab0), `lp2-private-cipher-rank-blind-original.json` (f391c8f3). No CI. Retire this unsourced receiver absent independent clue or known plaintext; use the sorted-likelihood reduction when warranted by a future rank-based law.
