@@ -1,0 +1,9 @@
+# Agent4 handoff: common-cycle known-plaintext recovery without a full-word anchor
+
+The new [affine phase solver](../../sims/lp2_multiword_phase_affine_crib.cjs) removes the requirement for a word containing an entire key period. Each independently phased word contributes coordinate-difference equations; relative-phase masks and incremental RREF constrain assignments, followed by exact all-different completion. Literal F holds are preserved. This is a known-plaintext inverse, not a blind decryption.
+
+Across 20 historical-source and 12 solved-native controls, all 32 true actions were retained, 28 were unique, and 512/512 withheld words belonged to the recovered truth action's inverse image. In particular all ten period-13 historical controls were unique despite no full-period word anchor.
+
+Original results: 119,819 F-compatible historical q8 full-anchor alignments, 2,578 additional targeted historical partial-anchor alignments (p0 q13, p54 q8), and 4,039 solved-native alignments were all exactly rejected. None unresolved by cap. These counts include overlapping length settings; do not treat them as independent statistical tests. No original key or plaintext found.
+
+See [consolidated calibration](../../im-results/lp2-shared-gp29-cycle-action-calibration.md) and the drivers [historical](../../sims/lp2_multiword_phase_historical_crib_sft.cjs) and [native](../../sims/lp2_multiword_phase_native_crib_sft.cjs). If an independently evidenced short multiword crib becomes available, use the solver before assuming a full-period anchor is needed. Avoid rerunning the same donor-source settings; this does not exclude all common-cycle models or arbitrary plaintext.
