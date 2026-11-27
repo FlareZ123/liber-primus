@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function study(raw,emersonRaw,shakespeareRaw,gibranRaw){
+function study(raw,emersonRaw,shakespeareRaw,gibranRaw,job=null){
   const corpus=JSON.parse(raw),Q=29,N=3302,starts=[0,729,1874,3603,5506,6527,7960,9640,12648,12956];
   const assert=(v,s)=>{if(!v)throw Error(s)};
   const R=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'],ri=new Map(R.map((r,i)=>[r,i]));
@@ -46,7 +46,7 @@ function study(raw,emersonRaw,shakespeareRaw,gibranRaw){
     return {width,observations:O.length,ranked:out.sort((a,b)=>b.score-a.score)};
   }
   const source=[gp(shakespeareRaw),gp(gibranRaw)],settings=[[0,25000,137],[0,130000,911],[1,1500,1703],[1,35000,3200]],controls=[];
-  for(let t=0;t<settings.length;t++){
+  for(let t=0;t<settings.length;t++){if(job&&job.control!==t)continue;
     const [kind,offset,o]=settings[t],P=source[kind].slice(offset,offset+starts.at(-1)),rand=rng(0x27112760+t),A=permutation(Q,rand,false),B=permutation(Q,rand),inv=B.map((_,i)=>B.indexOf(i));assert(P.length===starts.at(-1),'control length');
     const C=starts.slice(0,-1).map((x,i)=>{let j=o,prev=-1;return P.slice(x,starts[i+1]).map(p=>{let c=inv[(A[p]+K[j])%Q];if(c===prev&&rand()/4294967296<rho)c=inv[(A[p]+K[++j])%Q];j++;prev=c;return c})});
     const ranked=[64,128,256,512].map(width=>{const z=rank(C,width),pos=z.ranked.findIndex(x=>x.origin===o);return{width,observations:z.observations,trueRank:pos+1,trueScore:z.ranked[pos].score,top:z.ranked.slice(0,16)}});
@@ -56,8 +56,8 @@ function study(raw,emersonRaw,shakespeareRaw,gibranRaw){
   // width, for all four plants. Only then screen the original.
   const gate=controls.every(c=>c.ranked.some(x=>x.trueRank<=16));
   const tape=corpus.pages.slice(0,56).flatMap(p=>p.indices),C=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
-  const original=gate?[64,128,256,512].map(w=>{const z=rank(C,w);return{width:w,observations:z.observations,top:z.ranked.slice(0,16)}}):null;
-  return {model:'Shared unknown p56 consuming origin, arbitrary common alphabets, ordinary-consuming F, optional single collision retry rho=.81. Approximate collision-only retry clock posterior under a uniform collision probability prior; cross-fold conditional-shift association of first 75% prefixes. Candidate screen only.',retry,retryOnRepeat,controls,gate,original};
+  const original=(job?.original===true||(!job&&gate))?[64,128,256,512].map(w=>{const z=rank(C,w);return{width:w,observations:z.observations,top:z.ranked.slice(0,16)}}):null;
+  return {job,model:'Shared unknown p56 consuming origin, arbitrary common alphabets, ordinary-consuming F, optional single collision retry rho=.81. Approximate collision-only retry clock posterior under a uniform collision probability prior; cross-fold conditional-shift association of first 75% prefixes. Candidate screen only.',retry,retryOnRepeat,controls,gate,original};
 }
 if(require.main===module){const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');console.log(JSON.stringify(study(read('resources/liber-primus/lp2-corpus.json'),read('resources/control/emerson_essays_2944.txt'),read('resources/control/shakespeare_first300k.txt'),read('resources/control/gibran_prophet_58585.txt')),null,2))}
 module.exports={study};
