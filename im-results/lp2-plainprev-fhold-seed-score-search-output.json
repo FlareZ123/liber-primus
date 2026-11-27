@@ -4977,5 +4977,34 @@
       }
     }
   ],
-  "original": []
+  "original": [
+    {
+      "i": 122,
+      "a": {
+        "page": 16,
+        "i": 10,
+        "name": "0_koan_1",
+        "j": 262
+      },
+      "b": {
+        "page": 54,
+        "i": 136,
+        "name": "0_loss_of_divinity",
+        "j": 390
+      },
+      "fixed": 17,
+      "status": "BELOW_FLOOR",
+      "nodes": 11,
+      "propDead": 0,
+      "scoreDead": 10,
+      "evaluated": 1,
+      "rootUpper": 0.8897400421507853,
+      "leaf": 0,
+      "frameEvals": 235,
+      "N": 10049,
+      "H": 2355,
+      "floor": 0.65,
+      "witness": null
+    }
+  ]
 }
