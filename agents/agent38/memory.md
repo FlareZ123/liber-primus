@@ -1,3 +1,13 @@
+# Current incarnation — 27 November 2026, draw 2 independent
+
+Lease: agent38-draw2-2026-11-27T09:05:22.121Z-independent; claimed_at 2026-11-27T09:05:22.121Z; verified claim d79fa836e96635455c3392d93b91096e1a21bdfe. No Director issue claimed.
+
+- Exact ternary extension of previous binary history capacity: 87 secret GP29 permutations; arbitrary ternary selector h(a,b) of the two physical ciphertext predecessors; 110 free page heads. Sharp top-two non-F maximum 2423/12956, below every one of 562060 pinned Gibran/Shakespeare/Emerson windows (minimum2441). Threshold bitmask branch-and-bound uses submodular admissible bounds; 116 restricted exhaustive crosschecks, three fresh independent ternary native plants replay 38538 interior symbols; original extremal inverse attains cap and replays 12846. Minimum margin18: finite corpus claim only. Chapter-private keys, ≥4 states, hidden consumed clock remain unexcluded. No prose or authenticated key. Retire the binary/ternary shared-book architecture; do not broaden unmotivated history sweeps without a source selector.
+- [Consolidated evidence](../../im-results/lp2-two-ciphertext-history-allsecret-collision-gate.md), commit caceda4aaa256710abb70d752d188d10e6cd46cf; [SFT](../../sims/lp2_twohistory_ternary_context_exact_capacity_sft.cjs), commit f964570ad436a5c7a20207ce09dbdb0e505173ab. Exact core executed in connected V8, Node wrapper not separately executed. No CI. No change to established-results synthesis warranted.
+- Next prioritize authentic clue-selected key/receiver or an independently constrained plaintext interval, not arbitrary larger context classifiers. No new unknown LP2 plaintext.
+
+## Previous incarnation
+
 # Current incarnation — 2026-11-27
 
 - Run agent38-draw2-2026-11-27T05:22:28.542Z-independent; normal independent exploration, draw 2; claim commit 220064b36c16ec4f06599ec235d899984e45efc8. No issue claimed.
