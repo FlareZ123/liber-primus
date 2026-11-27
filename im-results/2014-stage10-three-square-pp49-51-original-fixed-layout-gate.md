@@ -1,6 +1,6 @@
 # Original 2014 Stage10 three-square contract versus LP2 pp49–51
 
-**Decision (26 November 2026; Director #3103 extension):** The source-fixed top-left 5×5/7×7/5×5 transfer fails, and the one centered p50 7×7 candidate selected by its 13-row geometry and horizontal-reflection alternatives also fails the historical 1033 magic-square test. No plaintext, cipher, missing server handler or independent key emerges.
+**Decision (27 November 2026; Director #3103 and #3226):** The source-fixed top-left 5×5/7×7/5×5 transfer fails, and the one centered p50 7×7 candidate selected by its 13-row geometry and horizontal-reflection alternatives also fails the historical 1033 magic-square test. The exact historical decimal order/sum field grammar also has no positive-order operand in the literal LP2 numeric fields. No plaintext, cipher, missing server handler or independent key emerges.
 
 ## Historical source and original artifact
 
@@ -54,8 +54,59 @@ The p49 5×5/3301 transfer remains impossible in the byte domain: even five maxi
 
 The exact Stage10 response is now known to return LP1 pp14–16 themselves. A separate original-image comparison asks whether those three page layouts, rather than the three magic-square operands, predict the LP2 pp49–51 table geometry. They do not. The returned pages have ordered visible structure of eleven prose lines; five prose lines plus insects; then four prose lines, an insect, a heading and a 5×5 square. LP2 pp49–51 instead form one eight-column table split 10/13/9 rows. Repeated three-page framing is common within LP1, and the Stage10 triplet's exact cross-release footer reuse occurs on LP2 p22, not pp49–51. See [the visual-layout gate](2014-stage10-lp1-triplet-lp2-table-layout-gate.md).
 
+## Dual-output field typing, rather than radix conversion (#3226, Agent50, 27 November)
+
+A player had a real example of **one integral label selecting two distinct validation parameters** in the original Stage10 form: the decimal field names `53301`, `71033`, `51033` are each adjacent to an explicit label identifying square order and magic sum. Define `q=floor(N/10000)` and `r=N mod 10000`. The exact label/receiver replay gives:
+
+| Field N | q: dimension receiver | r: line-sum receiver | Original matrix | Exact validation |
+|---|---:|---:|---|---|
+| 53301 | 5 | 3301 | first blank-separated matrix | all 12 row/column/diagonal sums = 3301 |
+| 71033 | 7 | 1033 | second matrix | all 16 = 1033 |
+| 51033 | 5 | 1033 | third matrix | all 12 = 1033 |
+
+The three matrices each match exactly one of the three labels; the two dimension-five matrices disambiguate by r, and the two sum-1033 matrices disambiguate by q. This is a genuine typed **decimal field decomposition**, rather than converting an integer to an undifferentiated sequence of radix digits. It is *not* evidence of a particular server-side divmod implementation: the source HTML spells out both values, while its signed prose requests the appropriate squares. The surrounding field labels are original recovered HTML, outside the clear-signed block; the private validator and exact successful POST are still missing. The historical matrix match was already established by #3001; the new decision concerns whether the exact **packed tag grammar** has a receiver in LP2, not another extraction or square permutation.
+
+**Fixed transfer gate:** keep the historical divisor 10000 and independently require an original integral object supplying both a positive square order q and a target sum r. Source image 32.jpg (p15) displays a 4×4 spiral-number panel, with all 16 entries between 708 and 4516; the largest entry is 4516. The cuneiform pair 1033/3301 is also below 10000. The red list labels 1–5 supply enumeration, not a second checksum field. Every original p49–51 cell is precisely two printed characters, and even the *largest possible* two-digit radix60 value 3599 is below 10000. On the actual pinned 256 cells the maximum is 255 at radix60 (251 under the omit-lowercase-f radix59 alphabet), hence all 256 produce q=0; 60 cells also have a literal leading 0. The original Stage11 HTML numeric labels 133 and 331 are separately named title and id fields, not packed square tags. The solved p56 hexadecimal digest is explicitly a different receiver type.
+
+Thus none of these independently visible numeric fields can carry a positive order and four-digit target in the exact historical grammar. Even proposing a two-byte tag carrier (not source-selected) cannot carry the complete historical triplet: 71033 exceeds 65535. A changed divisor, concatenated multi-cell fields, or source-independent pairing of order and sum would need a **new independently visible frame and two typed consumers**. The old natural square receiver above already fails, so no new square extraction or key sweep was performed. This excludes the literal tag transfer, not arbitrary dual-output ciphers.
+
+**Reproducible source check** (executed with the fetched exact source strings in V8; the Node wrapper below reads the identical repository files; p15 numbers separately inspected in original image 32.jpg):
+
+```js
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const root = 'resources/';
+const html = fs.readFileSync(root+'historical/cicada2014-stage10-original-form.html','utf8');
+const labels = [...html.matchAll(/Order (\d+) Square, (\d+)\s*<\/p>\s*<textarea name="(\d+)"/g)]
+  .map(m => ({n:+m[3],q:Math.floor(+m[3]/10000),r:+m[3]%10000,order:+m[1],sum:+m[2]}));
+assert.deepEqual(labels.map(x=>[x.q,x.r]),labels.map(x=>[x.order,x.sum]));
+const matrices=fs.readFileSync(root+'cicada2014-openpuff-magic-squares.txt','utf8')
+  .trim().split(/\r?\n\s*\r?\n/).map(b=>b.split(/\r?\n/).map(l=>l.trim().split(/\s+/).map(Number)));
+const sum=a=>a.reduce((s,x)=>s+x,0);
+for (const m of matrices) {
+  const n=m.length;
+  const sums=[...m.map(sum),...m.map((_,j)=>sum(m.map(row=>row[j]))),
+    sum(m.map((row,j)=>row[j])),sum(m.map((row,j)=>row[n-1-j]))];
+  console.log(n,sums.length,[...new Set(sums)],
+    labels.filter(x=>x.q===n&&m.every(row=>row.length===x.q)&&sums.every(s=>s===x.r)).map(x=>x.n));
+}
+const grid=JSON.parse(fs.readFileSync(root+'liber-primus/lp2-grid-256.json','utf8'));
+const tokens=grid.pages.flatMap(p=>p.tokens);
+const v60=grid.pages.flatMap(p=>p.bytes);
+const a59='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx';
+const v59=tokens.map(t=>59*a59.indexOf(t[0])+a59.indexOf(t[1]));
+assert.equal(tokens.length,256);
+assert.equal(Math.max(...v60),255);
+assert.equal(Math.max(...v59),251);
+assert(v60.every(n=>Math.floor(n/10000)===0));
+assert(v59.every(n=>Math.floor(n/10000)===0));
+console.log({leadingZero:tokens.filter(t=>t[0]==='0').length});
+```
+
+**Decision for #3226:** the historical two-parameter tag is real, but neither original LP2 field framing nor the separate order/checksum consumer is present for this exact transfer. No new key, plaintext, or source-selected invertible operation is available. Do not use the historical field grammar to justify arbitrary radix/decomposition experiments. Reopen only on a source-selected multi-field operand and independent consuming operation.
+
 ## Reproducer and controls
 
 [CommonJS original-input SFT](../sims/lp2_stage10_three_square_pp49_51_sft.cjs) loads the full 256-cell canonical source and asserts that every token matches its source byte under the frozen alphabet. It verifies page image names, printed row counts, the locked top-left blocks, both reflection-related centered p50 7×7 windows, all row/column/diagonal sums and the p49 upper bound. It constructs independent genuine order-five and order-seven magic squares (sum 65 and 175) by the Siamese method and confirms that perturbing a cell breaks the magic-square predicate. The source-block arithmetic and positive/negative control calculations were independently executed in the JavaScript tool runtime.
 
-**Disposition:** retire the exact Stage10 square→LP2 natural-page transfer, including the centered/reflection-related p50 order-seven candidate. A further square extraction requires an **independent contemporary rule selecting the exact cells and a compatible numeric domain**. The 2014 historical squares remain valid clues in their own Stage10 context, with the missing Cicada-side validator reserved for #494. No result here authenticates a cipher for the 56 unsolved LP2 pages.
+**Disposition:** retire the exact Stage10 square→LP2 natural-page transfer, including the centered/reflection-related p50 order-seven candidate. A further square extraction requires an **independent contemporary rule selecting the exact cells and a compatible numeric domain**; a packed-label transfer also needs a source-visible field containing both typed values. The 2014 historical squares remain valid clues in their own Stage10 context, with the missing Cicada-side validator reserved for #494. No result here authenticates a cipher for the 56 unsolved LP2 pages.
