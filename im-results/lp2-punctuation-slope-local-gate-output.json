@@ -1,0 +1,717 @@
+{
+  "n": 12956,
+  "anchors": 83,
+  "variants": [
+    {
+      "name": "marks",
+      "F": false,
+      "segments": 175,
+      "failed": 1,
+      "fail": [
+        {
+          "j": 71,
+          "l": 4967,
+          "h": 5342,
+          "coord": [
+            20,
+            134
+          ],
+          "failedAt": 5336,
+          "anchors": [
+            5253,
+            5319,
+            5336
+          ],
+          "minimumWitness": [
+            {
+              "i": 5253,
+              "pageOffset": [
+                21,
+                151
+              ],
+              "C": 28
+            },
+            {
+              "i": 5319,
+              "pageOffset": [
+                21,
+                217
+              ],
+              "C": 25
+            },
+            {
+              "i": 5336,
+              "pageOffset": [
+                21,
+                234
+              ],
+              "C": 9
+            }
+          ],
+          "leaveOneOut": [
+            9,
+            9,
+            9
+          ],
+          "unconstrained": 841
+        }
+      ]
+    },
+    {
+      "name": "marks",
+      "F": true,
+      "segments": 175,
+      "failed": 13,
+      "fail": [
+        {
+          "j": 2,
+          "l": 154,
+          "h": 275,
+          "coord": [
+            0,
+            154
+          ],
+          "failedAt": 244,
+          "anchors": [
+            176,
+            244
+          ],
+          "minimumWitness": [
+            {
+              "i": 176,
+              "pageOffset": [
+                0,
+                176
+              ],
+              "C": 28
+            },
+            {
+              "i": 244,
+              "pageOffset": [
+                0,
+                244
+              ],
+              "C": 15
+            }
+          ],
+          "leaveOneOut": [
+            14,
+            23
+          ],
+          "unconstrained": 137
+        },
+        {
+          "j": 8,
+          "l": 531,
+          "h": 729,
+          "coord": [
+            2,
+            3
+          ],
+          "failedAt": 699,
+          "anchors": [
+            644
+          ],
+          "minimumWitness": [
+            {
+              "i": 644,
+              "pageOffset": [
+                2,
+                116
+              ],
+              "C": 0
+            }
+          ],
+          "leaveOneOut": [
+            26
+          ],
+          "unconstrained": 26
+        },
+        {
+          "j": 16,
+          "l": 1111,
+          "h": 1294,
+          "coord": [
+            4,
+            165
+          ],
+          "failedAt": 1275,
+          "anchors": [
+            1250
+          ],
+          "minimumWitness": [
+            {
+              "i": 1250,
+              "pageOffset": [
+                5,
+                43
+              ],
+              "C": 27
+            }
+          ],
+          "leaveOneOut": [
+            48
+          ],
+          "unconstrained": 48
+        },
+        {
+          "j": 51,
+          "l": 3232,
+          "h": 3487,
+          "coord": [
+            13,
+            38
+          ],
+          "failedAt": 3485,
+          "anchors": [
+            3275,
+            3347
+          ],
+          "minimumWitness": [
+            {
+              "i": 3275,
+              "pageOffset": [
+                13,
+                81
+              ],
+              "C": 7
+            }
+          ],
+          "leaveOneOut": [
+            14
+          ],
+          "unconstrained": 14
+        },
+        {
+          "j": 57,
+          "l": 3623,
+          "h": 3849,
+          "coord": [
+            15,
+            20
+          ],
+          "failedAt": 3810,
+          "anchors": [
+            3738,
+            3783
+          ],
+          "minimumWitness": [
+            {
+              "i": 3738,
+              "pageOffset": [
+                15,
+                135
+              ],
+              "C": 26
+            },
+            {
+              "i": 3783,
+              "pageOffset": [
+                16,
+                21
+              ],
+              "C": 23
+            }
+          ],
+          "leaveOneOut": [
+            2,
+            4
+          ],
+          "unconstrained": 13
+        },
+        {
+          "j": 71,
+          "l": 4967,
+          "h": 5342,
+          "coord": [
+            20,
+            134
+          ],
+          "failedAt": 5253,
+          "anchors": [
+            5253,
+            5319,
+            5336
+          ],
+          "minimumWitness": [
+            {
+              "i": 5336,
+              "pageOffset": [
+                21,
+                234
+              ],
+              "C": 9
+            }
+          ],
+          "leaveOneOut": [
+            1
+          ],
+          "unconstrained": 1
+        },
+        {
+          "j": 77,
+          "l": 5522,
+          "h": 5842,
+          "coord": [
+            23,
+            16
+          ],
+          "failedAt": 5699,
+          "anchors": [
+            5635,
+            5699
+          ],
+          "minimumWitness": [
+            {
+              "i": 5699,
+              "pageOffset": [
+                23,
+                193
+              ],
+              "C": 23
+            }
+          ],
+          "leaveOneOut": [
+            13
+          ],
+          "unconstrained": 13
+        },
+        {
+          "j": 80,
+          "l": 5907,
+          "h": 6028,
+          "coord": [
+            24,
+            188
+          ],
+          "failedAt": 5993,
+          "anchors": [
+            5976,
+            5991
+          ],
+          "minimumWitness": [
+            {
+              "i": 5976,
+              "pageOffset": [
+                24,
+                257
+              ],
+              "C": 16
+            },
+            {
+              "i": 5991,
+              "pageOffset": [
+                25,
+                2
+              ],
+              "C": 6
+            }
+          ],
+          "leaveOneOut": [
+            3,
+            1
+          ],
+          "unconstrained": 29
+        },
+        {
+          "j": 95,
+          "l": 7153,
+          "h": 7447,
+          "coord": [
+            29,
+            123
+          ],
+          "failedAt": 7315,
+          "anchors": [
+            7185,
+            7311
+          ],
+          "minimumWitness": [
+            {
+              "i": 7311,
+              "pageOffset": [
+                30,
+                4
+              ],
+              "C": 19
+            }
+          ],
+          "leaveOneOut": [
+            3
+          ],
+          "unconstrained": 3
+        },
+        {
+          "j": 113,
+          "l": 8190,
+          "h": 8328,
+          "coord": [
+            34,
+            16
+          ],
+          "failedAt": 8316,
+          "anchors": [
+            8278,
+            8327
+          ],
+          "minimumWitness": [
+            {
+              "i": 8278,
+              "pageOffset": [
+                34,
+                104
+              ],
+              "C": 23
+            }
+          ],
+          "leaveOneOut": [
+            19
+          ],
+          "unconstrained": 19
+        },
+        {
+          "j": 118,
+          "l": 8513,
+          "h": 8805,
+          "coord": [
+            35,
+            78
+          ],
+          "failedAt": 8678,
+          "anchors": [
+            8559,
+            8678
+          ],
+          "minimumWitness": [
+            {
+              "i": 8678,
+              "pageOffset": [
+                35,
+                243
+              ],
+              "C": 7
+            }
+          ],
+          "leaveOneOut": [
+            1
+          ],
+          "unconstrained": 1
+        },
+        {
+          "j": 167,
+          "l": 12114,
+          "h": 12284,
+          "coord": [
+            50,
+            0
+          ],
+          "failedAt": 12254,
+          "anchors": [
+            12165,
+            12233,
+            12254
+          ],
+          "minimumWitness": [
+            {
+              "i": 12233,
+              "pageOffset": [
+                51,
+                27
+              ],
+              "C": 28
+            },
+            {
+              "i": 12254,
+              "pageOffset": [
+                51,
+                48
+              ],
+              "C": 19
+            }
+          ],
+          "leaveOneOut": [
+            1,
+            6
+          ],
+          "unconstrained": 34
+        },
+        {
+          "j": 174,
+          "l": 12657,
+          "h": 12956,
+          "coord": [
+            53,
+            9
+          ],
+          "failedAt": 12893,
+          "anchors": [
+            12770
+          ],
+          "minimumWitness": [
+            {
+              "i": 12770,
+              "pageOffset": [
+                53,
+                122
+              ],
+              "C": 21
+            }
+          ],
+          "leaveOneOut": [
+            2
+          ],
+          "unconstrained": 2
+        }
+      ]
+    },
+    {
+      "name": "marks_plus_physical_page",
+      "F": false,
+      "segments": 219,
+      "failed": 1,
+      "fail": [
+        {
+          "j": 89,
+          "l": 5102,
+          "h": 5342,
+          "coord": [
+            21,
+            0
+          ],
+          "failedAt": 5336,
+          "anchors": [
+            5253,
+            5319,
+            5336
+          ],
+          "minimumWitness": [
+            {
+              "i": 5253,
+              "pageOffset": [
+                21,
+                151
+              ],
+              "C": 28
+            },
+            {
+              "i": 5319,
+              "pageOffset": [
+                21,
+                217
+              ],
+              "C": 25
+            },
+            {
+              "i": 5336,
+              "pageOffset": [
+                21,
+                234
+              ],
+              "C": 9
+            }
+          ],
+          "leaveOneOut": [
+            9,
+            9,
+            9
+          ],
+          "unconstrained": 841
+        }
+      ]
+    },
+    {
+      "name": "marks_plus_physical_page",
+      "F": true,
+      "segments": 219,
+      "failed": 6,
+      "fail": [
+        {
+          "j": 2,
+          "l": 154,
+          "h": 262,
+          "coord": [
+            0,
+            154
+          ],
+          "failedAt": 244,
+          "anchors": [
+            176,
+            244
+          ],
+          "minimumWitness": [
+            {
+              "i": 176,
+              "pageOffset": [
+                0,
+                176
+              ],
+              "C": 28
+            },
+            {
+              "i": 244,
+              "pageOffset": [
+                0,
+                244
+              ],
+              "C": 15
+            }
+          ],
+          "leaveOneOut": [
+            24,
+            41
+          ],
+          "unconstrained": 217
+        },
+        {
+          "j": 10,
+          "l": 531,
+          "h": 729,
+          "coord": [
+            2,
+            3
+          ],
+          "failedAt": 699,
+          "anchors": [
+            644
+          ],
+          "minimumWitness": [
+            {
+              "i": 644,
+              "pageOffset": [
+                2,
+                116
+              ],
+              "C": 0
+            }
+          ],
+          "leaveOneOut": [
+            26
+          ],
+          "unconstrained": 26
+        },
+        {
+          "j": 89,
+          "l": 5102,
+          "h": 5342,
+          "coord": [
+            21,
+            0
+          ],
+          "failedAt": 5319,
+          "anchors": [
+            5253,
+            5319,
+            5336
+          ],
+          "minimumWitness": [
+            {
+              "i": 5319,
+              "pageOffset": [
+                21,
+                217
+              ],
+              "C": 25
+            }
+          ],
+          "leaveOneOut": [
+            4
+          ],
+          "unconstrained": 4
+        },
+        {
+          "j": 96,
+          "l": 5522,
+          "h": 5719,
+          "coord": [
+            23,
+            16
+          ],
+          "failedAt": 5699,
+          "anchors": [
+            5635,
+            5699
+          ],
+          "minimumWitness": [
+            {
+              "i": 5635,
+              "pageOffset": [
+                23,
+                129
+              ],
+              "C": 24
+            },
+            {
+              "i": 5699,
+              "pageOffset": [
+                23,
+                193
+              ],
+              "C": 23
+            }
+          ],
+          "leaveOneOut": [
+            5,
+            9
+          ],
+          "unconstrained": 32
+        },
+        {
+          "j": 141,
+          "l": 8190,
+          "h": 8328,
+          "coord": [
+            34,
+            16
+          ],
+          "failedAt": 8316,
+          "anchors": [
+            8278,
+            8327
+          ],
+          "minimumWitness": [
+            {
+              "i": 8278,
+              "pageOffset": [
+                34,
+                104
+              ],
+              "C": 23
+            }
+          ],
+          "leaveOneOut": [
+            19
+          ],
+          "unconstrained": 19
+        },
+        {
+          "j": 147,
+          "l": 8513,
+          "h": 8706,
+          "coord": [
+            35,
+            78
+          ],
+          "failedAt": 8678,
+          "anchors": [
+            8559,
+            8678
+          ],
+          "minimumWitness": [
+            {
+              "i": 8678,
+              "pageOffset": [
+                35,
+                243
+              ],
+              "C": 7
+            }
+          ],
+          "leaveOneOut": [
+            4
+          ],
+          "unconstrained": 4
+        }
+      ]
+    }
+  ]
+}
