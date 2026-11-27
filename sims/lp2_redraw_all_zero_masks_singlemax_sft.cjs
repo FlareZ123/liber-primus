@@ -1,6 +1,6 @@
 "use strict";
 // Exact per-rune max count over all phase paths, normalized phase coordinates.
-function singleMax(c,rings,threshold=2311){
+function singleMax(c,rings,threshold=0){
 const n=c.length,mod=x=>(x+29)%29,d=Uint8Array.from(c.slice(1),(x,i)=>mod(x-c[i]));
 let a=new Int16Array(232),b=new Int16Array(232),m=new Int16Array(29),out=[];
 for(const row of rings){
