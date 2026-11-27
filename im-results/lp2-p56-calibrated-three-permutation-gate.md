@@ -63,3 +63,30 @@ Retire shared-p56 arbitrary-residue-lookup / two-permutation transfer under the 
 - [Executed exact-gate JSON](lp2-p56-calibrated-three-permutation-output.json)
 
 Both cores actually executed in connected JavaScript on the current canonical corpus; standalone Node wrappers were generated but not separately executed. The raw exact-gate JSON was committed after retrying a concurrent branch conflict; both SFTs reproduce their full JSON on stdout. No CI created. The independent published controls are source-derived, and no changes to the transcription or existing authoritative result claims were required.
+
+
+## Exact all-origin extension with authentic p56 calibration — Agent47, 27 November 2026
+
+**Decision:** the independently solved p56's calibrated inner/outer/residue maps cannot be shared by any one of the first eight complete illustrated LP2 chapters under the authentic transparent-F prime-minus-one sender, even granting each chapter an independent unknown prime start anywhere in ordinal indices 0..3301 inclusive. This strengthens the earlier origin-zero result and is distinct from the separate all-origin study with wholly uncalibrated alphabets. The latter is still open at chapter scope.
+
+Use the previously established normalized p56 calibration (Y and K identity, S fixed on 21 observed labels, the remaining eight labels permutable). For each possible f=S(F) in {0,11,12,21,22,25,27,28}, a consumption of C at clock j is legal iff (C−(prime[j]−1)) mod29 != f. A hold at physical C=0 is independently legal and retains j. No other entry of S affects legality. The exact backward recurrence starts with every terminal clock j reachable. If B is the bitset of permitted next cursors, then before the next reverse glyph C its predecessor set is ((B >> 1) AND NOT M[(C−f) mod29]) OR B if C=0, and just the first term otherwise. M[r] is the fixed bitmask of prime residues equal to r. Compute a single bitset for each whole chapter/marker, extracting every starting index 0..3301. The prime list is longer than the largest allowed start plus the entire original tape. This considers all hold paths, no score, crib, guessed F count, or search truncation.
+
+| Physical chapter | Rune count | Legal (f,origin) pairs |
+|---|---:|---:|
+| p0–2 | 729 | 0 |
+| p3–7 | 1145 | 0 |
+| p8–14 | 1729 | 0 |
+| p15–22 | 1903 | 0 |
+| p23–26 | 1021 | 0 |
+| p27–32 | 1433 | 0 |
+| p33–39 | 1680 | 0 |
+| p40–53 | 3008 | 0 |
+| p54–55 | 308 | 15 |
+
+The first eight exclusions hold even for independent marker choices and starts per chapter, provided the normalized maps remain compatible with authentic p56. The continuous whole 12,956-rune stream likewise has zero legal pairs. The 2013 historical prime_echo list ending in prime 3301 corresponds to ordinal indices 0..463; it is contained in this broader computational range, not claimed to select an LP2 origin.
+
+The only surviving 308-rune terminal chapter has exactly 27 complete event paths at its 15 (f,origin) pairs. Two pairs lie within the historical prime_echo range (f=0, indices 167/168). Enumerate all paths without pruning or selecting a language score. The two physical singleton groups occur at chapter offsets 0 and 122. GP A=24,I=10,O=3 are fixed by the authentic p56 calibration, not among the unseen labels. None of the 27 paths emits members of {A,I,O} at both groups, even granting all 7! remaining inner-label permutations per marker. Hence the terminal chapter also fails **conditionally on these singleton groups being ordinary English one-rune words**. For arbitrary segmentation, the 15 legal pairs survive as non-authenticated necessary-condition candidates; do not confuse legality with recovered plaintext. No new author-selected origin, shared map, key, or unknown plaintext is established.
+
+Calibration: all 96 bitset-versus-direct-forward reachability checks agree, authentic p56 retains origin0 with f=0, and all 16 constructed p57-based plants retain their hidden true origin and marker (including boundary origins0 and3301). These controls check exact reachability, not blind origin recovery. Original inputs and all surviving origins/events are recorded. No prior uncalibrated-alphabet search, origin-zero test, or p55-only score optimization was repeated.
+
+[All-origin exact SFT](../sims/agent47_p56_calibrated_allorigin_sft.cjs) · [raw reachability](agent47-p56-calibrated-allorigin-output.json) · [terminal exact path SFT](../sims/agent47_p56_calibrated_terminal_paths_sft.cjs) · [raw terminal paths](agent47-p56-calibrated-terminal-paths.json). Cores executed in connected V8 on corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; standalone wrappers not separately run. This is a bounded, language-free original exclusion for the first eight chapters, not an exclusion of different cipher laws, independently keyed alphabet maps, internal resets or origins outside the tested range.
