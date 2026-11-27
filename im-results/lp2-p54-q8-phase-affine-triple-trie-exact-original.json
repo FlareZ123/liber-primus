@@ -1,0 +1,29 @@
+{
+  "run": 45951436846,
+  "mode": "original",
+  "dictionary": 38938,
+  "budget": 3,
+  "anchor_ids": [
+    0,
+    13,
+    16,
+    34,
+    37,
+    45
+  ],
+  "alignments": 1280,
+  "nodes": 183781961,
+  "child_pairs": 1399963206,
+  "leaf_triples": 224,
+  "consistent": 165,
+  "max_missing": 0,
+  "keys": 165,
+  "duplicates": 0,
+  "fit_count": 0,
+  "omitted": [],
+  "fits": [],
+  "exact": 0,
+  "train_truth": 0,
+  "held_truth": 0,
+  "held_count": 17
+}
