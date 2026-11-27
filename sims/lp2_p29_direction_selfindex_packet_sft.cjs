@@ -110,6 +110,19 @@ function pageWords(page) {
 }
 
 /**
+ * Canonical two-rune H serialization.
+ *
+ * @param {number[]} values
+ */
+function H2(values) {
+  assert.equal(values.length, 2);
+  return [
+    mod29(values[0] - values[1]),
+    mod29(values[0] + values[1]),
+  ];
+}
+
+/**
  * Canonical outside-in four-rune H serialization:
  * H(k0,k3) || H(k1,k2).
  *
@@ -185,6 +198,21 @@ assert.deepEqual(directionSource, {
 });
 
 const p29Words = pageWords(projectPage);
+
+// READ OUT THE DIRECTION names one-based source words29 THE and30 DIRECTION.
+// Once DIRECTION's number30 selects physical page30/project p29, retain both
+// source-numbered canonical objects on that page.
+const theSource = sourceWords[28];
+assert.deepEqual(theSource, {index: 28, ordinal: 29, word: "THE"});
+const theObject = p29Words[theSource.ordinal - 1];
+assert.ok(theObject);
+assert.equal(theObject.ordinal, 29);
+assert.equal(theObject.start, 106);
+assert.deepEqual(theObject.values, [8, 15]);
+const roadPacket = H2(theObject.values);
+assert.deepEqual(roadPacket, [22, 23]);
+assert.deepEqual(roadPacket.map((index) => sourceWords[index].word), ["THE", "ROAD"]);
+
 const directionObject = p29Words[directionSource.ordinal - 1];
 assert.ok(directionObject);
 assert.equal(directionObject.ordinal, 30);
@@ -247,7 +275,57 @@ assert.deepEqual(
   [[29, 30, 30, 108, [22, 15, 8, 0]]]
 );
 
-// Manuscript-wide exact packet control.
+// Pair-family control: on each project page with physical one-based number n,
+// retain canonical words n-1 and n. Seven predecessor objects have length2;
+// only p29/physical30 maps under H2 to an increasing consecutive source pair.
+const numberedPairs = [];
+for (let page = 0; page <= 55; page += 1) {
+  const physical = page + 1;
+  const words = pageWords(page);
+  const prior = words[physical - 2];
+  const current = words[physical - 1];
+  if (!prior || !current) continue;
+  numberedPairs.push({page, physical, prior, current});
+}
+assert.equal(numberedPairs.length, 48);
+const twoRunePredecessors = numberedPairs.filter((row) => row.prior.values.length === 2);
+assert.equal(twoRunePredecessors.length, 7);
+const increasingSourcePairHits = twoRunePredecessors
+  .map((row) => ({...row, h2: H2(row.prior.values)}))
+  .filter((row) =>
+    row.h2[0] >= 0 &&
+    row.h2[1] < sourceWords.length &&
+    row.h2[1] === row.h2[0] + 1
+  );
+assert.deepEqual(increasingSourcePairHits.map((row) => ({
+  page: row.page,
+  physical: row.physical,
+  priorOrdinal: row.prior.ordinal,
+  priorStart: row.prior.start,
+  h2: row.h2,
+  words: row.h2.map((index) => sourceWords[index].word),
+  currentOrdinal: row.current.ordinal,
+  currentLength: row.current.values.length,
+})), [{
+  page: 29,
+  physical: 30,
+  priorOrdinal: 29,
+  priorStart: 106,
+  h2: [22, 23],
+  words: ["THE", "ROAD"],
+  currentOrdinal: 30,
+  currentLength: 4,
+}]);
+
+// Across all canonical two-rune words, exact H2=[22,23] occurs once.
+const twoRuneWords = canonicalWords.filter((word) => word.values.length === 2);
+assert.equal(twoRuneWords.length, 448);
+const roadPacketHits = twoRuneWords
+  .filter((word) => H2(word.values).every((value, index) => value === roadPacket[index]))
+  .map((word) => ({page: word.page, ordinal: word.ordinal, start: word.start}));
+assert.deepEqual(roadPacketHits, [{page: 29, ordinal: 29, start: 106}]);
+
+// Manuscript-wide exact DIRECTION packet control.
 const fourRuneWords = canonicalWords.filter((word) => word.values.length === 4);
 const exactPacketHits = [];
 for (const word of fourRuneWords) {
@@ -290,6 +368,30 @@ console.log(JSON.stringify({
   source: {
     prior: sourceWords[28],
     direction: directionSource,
+  },
+  pairedReadout: {
+    clue: "READ OUT THE DIRECTION",
+    sourceOrdinals: [theSource.ordinal, directionSource.ordinal],
+    theObject: {
+      ordinal: theObject.ordinal,
+      start: theObject.start,
+      values: theObject.values,
+      h2: roadPacket,
+      sourceWords: roadPacket.map((index) => sourceWords[index].word),
+    },
+    directionObject: {
+      ordinal: directionObject.ordinal,
+      start: directionObject.start,
+      values: directionObject.values,
+      h4: packet,
+    },
+    familyControl: {
+      numberedPairs: numberedPairs.length,
+      twoRunePredecessors: twoRunePredecessors.length,
+      increasingSourcePairHits: increasingSourcePairHits.length,
+      canonicalTwoRuneWords: twoRuneWords.length,
+      exactRoadPacketHits: roadPacketHits,
+    },
   },
   localObject: {
     projectPage,
