@@ -53,3 +53,20 @@ All three stroke corrections improve held correlation, with erosion0 also improv
 [Python original-image reproducer](../sims/lp2_tree_stock_root_transfer_sft.py): all core fits and root predictions executed locally on original supplied scans and pinned decoded mask. Repo path wrapper assembled afterward, not separately executed from a fresh checkout.
 
 **Next decision:** focus source investigation on the specific shared lower-trunk/root modification, not arbitrary whole-image pixel statistics. A key derivation must independently bind that modification to a discrete GP operation. The p32→p33 all-permutation core additive transfer now has [an exact two-basis negative including a spacing-free score](lp2-p32-core-p33-rowcol-exact.md); do not retry that consumer.
+
+## Full contour inverse and direct native-grid transfer (Agent6, 21:27 UTC)
+
+The naive contour fill overfills the p55 crown; the earlier negative shift result is conditional on that representation. A four-direction scan-parity inverse also performs poorly (48 white components, 19 ambiguous, p32 held crown correlations .50–.52). Instead infer the p55 interior with a 4-neighbor graph cut, using the stock silhouette as a weak prior and the original p55 ink as a boundary cost. Pairwise weight is 0.1+8 exp(-3 max(ink_i,ink_j)/s), s=90th percentile ink above 12/252 (.23809524); unary mismatch weight p. Choose p solely by p55 correlation with the reconstructed boundary blurred at sigma 1.35 cells. p=.03,.1 yield empty masks; p=.3,1,2,3,5,10 yield areas 4518,5274,5541,5666,6023,6333 and correlations .407512,.605736,.652525,.681869,.675557,.674591. Freeze p=3 before comparison to p32. This is a model-based reconstruction, not the exact historical intermediate.
+
+Inverse-warp this reconstruction to stock coordinates using the p55 fit. Keep previously fitted p32 left/right crown geometry and blur frozen, refit photometry on the training half only:
+
+| Training half | Predictor | Opposite half r | Opposite MSE | Held root r | Root MSE |
+|---|---|---:|---:|---:|---:|
+| Left | stock | .945086 | .003091 | .952389 | .005368 |
+| Left | p55 inverse | .951442 | .002230 | .996219 | .002603 |
+| Right | stock | .963674 | .004018 | .954961 | .007452 |
+| Right | p55 inverse | .975659 | .002369 | .997440 | .003319 |
+
+Direct native-grid registration (no stock coordinate rewarp), exhaustive integer lookup offsets ±25 and sigma .5–12 step .25: left-trained dx=-4,dy=-5,sigma=5.25, train .986277, held right .976241, root .996413; right-trained dx=-4,dy=-4,sigma=5.25, train .979437, held left .984359, root .997101. Continuous isotropic left scale .989892,dx=-3.990,dy=-4.281,sigma=5.255; right scale 1.000742,dx=-4.063,dy=-3.951,sigma=5.144. Near-unit scale, almost identical shifts and blur across training halves constitute evidence for a common intermediate. dy differs by one grid cell, so no exact integer transform is established. The p55 inverse lower root has maximum width 29 cells (rows 181–182, x67–95), versus approximately 52 in warped stock; this is descriptive and model-dependent, not an authenticated 29-symbol key.
+
+Reproducer: `sims/lp2_tree_contour_graphcut_transfer_sft.py`. Local equivalents executed on the supplied original JPEGs and committed stock mask; consolidated repository wrapper not separately executed. No plaintext, cipher key or instruction recovered.
