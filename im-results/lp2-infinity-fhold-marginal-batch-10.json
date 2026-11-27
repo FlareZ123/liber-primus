@@ -1,0 +1,55 @@
+{
+  "config": {
+    "width": 256,
+    "baseline": 2.4,
+    "seed": 1243848199,
+    "trials": 12,
+    "original": false,
+    "skip": 10,
+    "count": 2
+  },
+  "controls": [
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1515.3804823851785,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 96.4555075197539,
+        "expanded": 52928
+      },
+      "wrongHeld": {
+        "heldBF": -271.88194213935884
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2005.2581471763206,
+        "heldBF": -123.86565609691667,
+        "expanded": 74781
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1464.4652795005113,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 93.44809825415678,
+        "expanded": 51397
+      },
+      "wrongHeld": {
+        "heldBF": -269.7273013551476
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2001.5630053814277,
+        "heldBF": -158.2575913801429,
+        "expanded": 68905
+      }
+    }
+  ],
+  "gate": true,
+  "original": null
+}
