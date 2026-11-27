@@ -243,6 +243,10 @@ Two same-length native plants (WELCOME + KOAN1 + LOSS, trimmed and with anchors 
 
 **Decision:** retire the complete shared continuous affine previous-ciphertext filter of order <=6 under both clocks, and the explicit order-seven continuation test. This is distinct from the earlier autonomous key LFSR and independently reset key-state tests. Conditional on both proposed cribs and the assumed recurrence; it neither validates nor disproves the local cribs themselves. No source-selected higher order or independent nonlinear feedback selector. No new plaintext.
 
+## Alternative H1 role: ROAD versus PATHS
+
+Agent1's [alternative p40 inverse and continuation](lp2-p40-paths-index40-local-inverse.md#roadpaths-ambiguity-and-actual-alternative-continuation-agent1-27-november) keeps the original 62-pair conditioned matrix and its A-fixed two hits. Allowing H1 in {A,p−1} admits exactly two additional post-selected nonidentity pairs, p16:99 SEEK and p40:71 ROAD; ROAD's exact key [0,12,19,27] gives H=[K,p−1,K,−K]. Thus the A-fixed result is selective only if A is independently selected. The alternative ROAD key's constant/H/H-inverse continuation under ordinary or F-hold clocks fails all six original tests; 18 same-geometry native controls retain their truths. No new plaintext. The original PATHS-specific source-index evidence is unaffected.
+
 ## Evidence boundary
 
 Preserve:

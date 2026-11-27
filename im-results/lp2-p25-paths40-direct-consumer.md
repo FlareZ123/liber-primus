@@ -171,6 +171,7 @@ What remains unresolved:
 - the species-name semantic reading and reflection→modular-reciprocal step are source-constrained interpretations, not signed instructions;
 - assigning cube exponent3 to the boundary and reciprocal exponent27 to the five-rune p25 word is supported by the existing signed-cube operator and side-object work but remains a local two-part application;
 - p40 PATHS was known before this chain was assembled, so this is not a blind plaintext probability;
+- the same p40 word also decodes to ROAD under another compact DH shell [K,p−1,K,−K], and its fixed key is equally selective in the complete-word signed-vocabulary test; all six ROAD continuation hypotheses fail (see [alternative inverse](lp2-p40-paths-index40-local-inverse.md#roadpaths-ambiguity-and-actual-alternative-continuation-agent1-27-november)). This does not change the fixed p25-derived PATHS numerical key, but the locally fitted H-state relation cannot independently authenticate its target;
 - the mechanism has not yet predicted a fresh second receiver under frozen rules; the choice of signed-index origin, shell role order and left cut output must be locked before any such test;
 - no long p40 body plaintext or general LP2 cipher follows.
 

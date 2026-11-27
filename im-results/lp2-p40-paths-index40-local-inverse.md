@@ -51,7 +51,7 @@ ROAD  = [4,3,24,23]   length4 GP0=54
 PATHS = [13,24,2,15]  length4 GP0=54
 ```
 
-So length+GP0 alone cannot distinguish `ROAD` from `PATHS`. The authenticated source label at index40 supplies that distinction. This is unusually apt given the source contrast between `the road` and `false paths`.
+So length+GP0 alone cannot distinguish `ROAD` from `PATHS`. The authenticated source label at index40 supplies that distinction conditional on the adopted index convention. The local DH-shell family alone does not: ROAD also has a compact exact DH shell when the middle coordinate is allowed to be p−1 (see the alternative continuation test below). This is unusually apt given the source contrast between `the road` and `false paths`.
 
 ## 3. Exact local inverse
 
@@ -191,6 +191,23 @@ subtract [20,20,12,6]
 ```
 
 This makes the local inverse manuscript-wide selective even though the shell-template discovery is retrospective.
+
+## ROAD/PATHS ambiguity and actual alternative continuation (Agent1, 27 November)
+
+The already-selected p40:71 receiver `[4,15,14,21]` admits two distinct same-GP0 source words, ROAD (signed23) and PATHS (signed40). The signed warning contrasts them, so test the ROAD alternative rather than assume a PATHS key is intrinsically identified by the local shell. With the same canonical subtraction and H orientation:
+
+| Target | Plain GP29 | Subtraction key | H(key) |
+|---|---|---|---|
+| ROAD | [4,3,24,23] | [0,12,19,27] | [2,22,2,27] = [K,p−1,K,−K] |
+| PATHS | [13,24,2,15] | [20,20,12,6] | [14,8,3,26] = [−b,A,e,−e] |
+
+Both re-encrypt exactly. ROAD's middle coordinate p−1=22 is already present in the p29 DH packet; its other coordinates are existing state values, but the ordered role choice is retrospective. The prior criterion with **H1=A fixed** remains valid and discriminates ROAD; relaxing that constraint to H1 in {A,p−1}, while retaining H0 in the signed state register and H2 in the positive state register, gives four hits among the same 62 unique page/source-state pairs. The additional hits are p40 ROAD and p16:99 SEEK (source30, shell [26,22,15,14]); the latter is a post-selected nonidentity pair with no independent receiver selector. No new plaintext claim. The canonical seam-aware parser has 2,896 groups, 2,864 wholly contained, and 509 complete four-rune groups. Holding the exact ROAD key and testing all nine distinct matching-length signed words and both signs (9,162 trials) gives exactly one hit, ROAD at this same p40 receiver. Thus the fixed-key selectivity test by itself is also insufficient to choose ROAD versus PATHS.
+
+To attempt actual decipherment, freeze the ROAD key, consume the four anchor runes, and apply constant block reuse, H iteration or inverse-H iteration with no other fitted parameter to the next 156 original p40 runes. Ordinary consuming inverses all replay exactly, but their bigram scores are respectively −4.636329, −4.486648, −4.780132 nats/rune, below all 1,774 equal-length solved-native windows (minimum −2.949326; 47,662-rune Gibran training). Exact literal-plaintext-F hold paths die at suffix indices 111, 5 and 0 respectively. Eighteen matched-geometry native plants using three solved sections retain all truths and replay; maximum-score decoding recovers 2,806/2,808 runes (17/18 exact). Two differing runes in the H-inverse F-hold control reflect mask ambiguity, not a failed replay.
+
+**Decision:** retain PATHS as the source-index-selected candidate, not an intrinsically unique state-derived inverse. ROAD has no independent p40 key/target selector, and all six frozen continuation hypotheses fail. Do not promote the p16 SEEK post-selection or sweep alternative shells. The evidence strengthens the requirement for a prospective source rule that fixes H roles and receiver. No authentic key or unknown plaintext recovered.
+
+[SFT](../sims/lp2_p40_road_collision_continuation_sft.cjs) · [Raw output, pinned inputs and decoded continuations](lp2-p40-road-collision-continuation.json). Core executed in connected V8; standalone Node wrapper not separately run.
 
 ## 7. Relationship to the signed warning
 
