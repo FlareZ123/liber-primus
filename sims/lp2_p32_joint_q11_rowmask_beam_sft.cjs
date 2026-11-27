@@ -67,7 +67,11 @@ function experiment(raw,K=1024,devInitial=null,mode='dev'){
    // Exact conditional row Viterbi for each tested order; contiguous relocations also cover rotations.
    for(let a=0;a<N;a++)for(let b=a+1;b<=N;b++){const chunk=s.slice(a,b),rem=s.slice(0,a).concat(s.slice(b));for(let d=0;d<=rem.length;d++)if(d!==a)test(rem.slice(0,d).concat(chunk,rem.slice(d)))}
    for(let a=0;a<N;a++)for(let b=a+1;b<N;b++){const t=s.slice();[t[a],t[b]]=[t[b],t[a]];test(t)}
-   if(next.z===best.z){for(let j=1;j<N;j++){const t=s.slice(),a=Math.floor(t[j]/Q);for(let k=0;k<Q;k++)if(k!==t[j]%Q){t[j]=a*Q+k;test(t)}}}
+   if(next.z===best.z){
+    // Rotate a near-correct column cycle while changing one column shift in the same move.
+    // A shift correction alone can worsen the currently wrong seam, trapping separate coordinate moves.
+    for(let rot=0;rot<N;rot++){const t=normalize(s.slice(rot).concat(s.slice(0,rot)));for(let j=0;j<N;j++){const a=Math.floor(t[j]/Q),old=t[j];for(let k=0;k<Q;k++)if(k!==old%Q){t[j]=a*Q+k;test(t)}t[j]=old}}
+   }
    if(next.z===best.z)break;best=next;hist.push(best.z/H/(N*N-2));
   }
   const order=best.s.map(a=>Math.floor(a/Q)),shifts=best.s.map(a=>a%Q);for(let i=0;i<best.P.length;i++){const r=Math.floor(i/N),j=i%N;if(mod(best.P[i]+best.row[r]+shifts[j])!==C[r*N+order[j]])throw Error("replay")}
@@ -75,8 +79,8 @@ function experiment(raw,K=1024,devInitial=null,mode='dev'){
  }
 
  let seed=33013211;function rand(n){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%n}
- const out=[],specs=mode==='dev'?[[excluded[0],0],[excluded[0],121]]:mode==='freshA'?[[excluded[1],0],[excluded[1],121]]:mode==='freshB'?[[excluded[2],0],[excluded[2],121]]:[];
- if(mode==='freshA')seed=0x330132a1;if(mode==='freshB')seed=0x330132b1;
+ const out=[],specs=mode==='dev'?[[excluded[0],0],[excluded[0],121]]:mode==='freshA'?[[excluded[1],0],[excluded[1],121]]:mode==='freshB'?[[excluded[2],0],[excluded[2],121]]:mode==='freshC'?[[excluded[2],242],[excluded[2],363]]:[];
+ if(mode==='freshA')seed=0x330132a1;if(mode==='freshB')seed=0x330132b1;if(mode==='freshC')seed=0x330132c1;
  for(let w=0;w<specs.length;w++){const [donorName,offset]=specs[w],D=read(n.sections.find(s=>s.name===donorName).source_text),P=D.slice(offset,offset+121);if(P.length!==121)throw Error("donor length");
  const order=Array.from({length:N},(_,j)=>j);for(let j=N-1;j>0;j--){const a=rand(j+1);[order[j],order[a]]=[order[a],order[j]]}const shifts=[0,...Array.from({length:N-1},()=>rand(Q))],row=Array.from({length:N},()=>rand(Q)),C=Array(N*N);for(let i=0;i<P.length;i++)C[Math.floor(i/N)*N+order[i%N]]=mod(P[i]+shifts[i%N]+row[Math.floor(i/N)]);
  const truth=order.map((a,j)=>a*Q+shifts[j]),z=beamSolve(C,truth,devInitial?devInitial[w].result.order.map((a,j)=>a*Q+devInitial[w].result.shifts[j]):null);
