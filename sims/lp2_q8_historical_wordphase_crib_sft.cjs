@@ -105,10 +105,10 @@ function plant(words,ss,seed){
  const c=prefix+aligned.map(w=>w.c).join("")+held.map(w=>w.c).join("");
  const r=scan(scopeIndex("plant",c),[s]),truth=canonical(pi,k);
  const found=r.hits.find(h=>h.start===prefix.length&&h.actions.some(a=>canonical(a.pi,a.k)===truth));
- if(!found)throw Error("plant missed truth "+seed);
+ if(!found)return {seed,from:s.from,to:s.to,runes:s.l,truth,truthRetained:false,exact:false,heldTruth:null,heldTotal:held.length,scan:r};
  const a=found.actions.find(a=>canonical(a.pi,a.k)===truth),heldTruth=held.filter(w=>matches(w,a.pi,a.k)).length;
  if(heldTruth!==held.length)throw Error("held truth lost");
- return {seed,from:s.from,to:s.to,runes:s.l,truth,exact:found.complete&&found.actions.length===1,heldTruth,heldTotal:held.length,scan:r}
+ return {seed,from:s.from,to:s.to,runes:s.l,truth,truthRetained:true,exact:found.complete&&found.actions.length===1,heldTruth,heldTotal:held.length,scan:r}
 }
 function study(A,donors,minimums=[64,96],sourceIds=seq(paths.length)){
  const D=donors.map(t=>normalize(t,A)),lens=D.map(w=>w.join("").length);
