@@ -1,0 +1,416 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/liber-primus/lp2-ink-annotations.json",
+      "sha": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6"
+    }
+  ],
+  "original": {
+    "mode": "p7",
+    "p": 7,
+    "start": 25,
+    "end": 194,
+    "rows": [
+      {
+        "q": 1,
+        "D": 8,
+        "lo": 161,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 8964,
+          "floor": -1420,
+          "windows": 129197,
+          "gap": 4488
+        }
+      },
+      {
+        "q": 2,
+        "D": 16,
+        "lo": 153,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 9964,
+          "floor": -1420,
+          "windows": 264529,
+          "gap": 3488
+        }
+      },
+      {
+        "q": 3,
+        "D": 21,
+        "lo": 148,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 11280,
+          "floor": -1420,
+          "windows": 360413,
+          "gap": 2172
+        }
+      },
+      {
+        "q": 4,
+        "D": 24,
+        "lo": 145,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 11304,
+          "floor": -1420,
+          "windows": 422662,
+          "gap": 2148
+        }
+      },
+      {
+        "q": 5,
+        "D": 29,
+        "lo": 140,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 11668,
+          "floor": -1420,
+          "windows": 535044,
+          "gap": 1784
+        }
+      },
+      {
+        "q": 6,
+        "D": 27,
+        "lo": 142,
+        "best": {
+          "t": 19,
+          "w": 100,
+          "cap": 13900,
+          "floor": -1500,
+          "windows": 488742,
+          "gap": 1500
+        }
+      },
+      {
+        "q": 7,
+        "D": 32,
+        "lo": 137,
+        "best": {
+          "t": 19,
+          "w": 100,
+          "cap": 14600,
+          "floor": -1500,
+          "windows": 608088,
+          "gap": 800
+        }
+      },
+      {
+        "q": 8,
+        "D": 33,
+        "lo": 136,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 12756,
+          "floor": -1420,
+          "windows": 633444,
+          "gap": 696
+        }
+      },
+      {
+        "q": 9,
+        "D": 35,
+        "lo": 134,
+        "best": {
+          "t": 19,
+          "w": 100,
+          "cap": 14700,
+          "floor": -1500,
+          "windows": 685739,
+          "gap": 700
+        }
+      },
+      {
+        "q": 10,
+        "D": 37,
+        "lo": 132,
+        "best": {
+          "t": 19,
+          "w": 100,
+          "cap": 15000,
+          "floor": -1500,
+          "windows": 740230,
+          "gap": 400
+        }
+      },
+      {
+        "q": 11,
+        "D": 41,
+        "lo": 128,
+        "best": {
+          "t": 15,
+          "w": 88,
+          "cap": 13372,
+          "floor": -1420,
+          "windows": 856209,
+          "gap": 80
+        }
+      },
+      {
+        "q": 12,
+        "D": 37,
+        "lo": 132,
+        "best": {
+          "t": 19,
+          "w": 100,
+          "cap": 15300,
+          "floor": -1500,
+          "windows": 740230,
+          "gap": 100
+        }
+      },
+      {
+        "q": 13,
+        "D": 42,
+        "lo": 127,
+        "best": {
+          "t": 19,
+          "w": 100,
+          "cap": 15700,
+          "floor": -1500,
+          "windows": 886757,
+          "gap": -300
+        },
+        "search": {
+          "q": 13,
+          "n": 169,
+          "D": 42,
+          "lo": 127,
+          "masks": 8192,
+          "starts": 30548,
+          "windows": 886757,
+          "tested": 250249216,
+          "passedQ1": 18134102,
+          "furthest": 19,
+          "success": []
+        }
+      }
+    ]
+  },
+  "controls": {
+    "mode": "controls",
+    "seed": "0x4707b1a9",
+    "controls": [
+      {
+        "q": 8,
+        "n": 67,
+        "L": 61,
+        "d": 6,
+        "tail": true,
+        "D": 19,
+        "attempt": 9,
+        "keys": 1,
+        "matchLength": 61,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 70,
+        "L": 68,
+        "d": 2,
+        "tail": false,
+        "D": 20,
+        "attempt": 8,
+        "keys": 1,
+        "matchLength": 67,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 58,
+        "L": 57,
+        "d": 1,
+        "tail": true,
+        "D": 20,
+        "attempt": 5,
+        "keys": 1,
+        "matchLength": 57,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 70,
+        "L": 69,
+        "d": 1,
+        "tail": false,
+        "D": 22,
+        "attempt": 1,
+        "keys": 1,
+        "matchLength": 68,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 73,
+        "L": 69,
+        "d": 4,
+        "tail": true,
+        "D": 22,
+        "attempt": 16,
+        "keys": 1,
+        "matchLength": 69,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 70,
+        "L": 68,
+        "d": 2,
+        "tail": false,
+        "D": 21,
+        "attempt": 7,
+        "keys": 1,
+        "matchLength": 67,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 72,
+        "L": 68,
+        "d": 4,
+        "tail": true,
+        "D": 20,
+        "attempt": 2,
+        "keys": 1,
+        "matchLength": 68,
+        "correct": true
+      },
+      {
+        "q": 8,
+        "n": 73,
+        "L": 72,
+        "d": 1,
+        "tail": false,
+        "D": 22,
+        "attempt": 14,
+        "keys": 1,
+        "matchLength": 71,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 65,
+        "L": 64,
+        "d": 1,
+        "tail": true,
+        "D": 26,
+        "attempt": 9,
+        "keys": 1,
+        "matchLength": 64,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 65,
+        "L": 62,
+        "d": 3,
+        "tail": false,
+        "D": 26,
+        "attempt": 6,
+        "keys": 1,
+        "matchLength": 61,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 66,
+        "L": 65,
+        "d": 1,
+        "tail": true,
+        "D": 26,
+        "attempt": 3,
+        "keys": 1,
+        "matchLength": 65,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 63,
+        "L": 61,
+        "d": 2,
+        "tail": false,
+        "D": 27,
+        "attempt": 20,
+        "keys": 1,
+        "matchLength": 60,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 68,
+        "L": 63,
+        "d": 5,
+        "tail": true,
+        "D": 29,
+        "attempt": 1,
+        "keys": 1,
+        "matchLength": 63,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 61,
+        "L": 59,
+        "d": 2,
+        "tail": false,
+        "D": 25,
+        "attempt": 21,
+        "keys": 1,
+        "matchLength": 58,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 61,
+        "L": 59,
+        "d": 2,
+        "tail": true,
+        "D": 27,
+        "attempt": 7,
+        "keys": 1,
+        "matchLength": 59,
+        "correct": true
+      },
+      {
+        "q": 13,
+        "n": 60,
+        "L": 59,
+        "d": 1,
+        "tail": false,
+        "D": 27,
+        "attempt": 1,
+        "keys": 1,
+        "matchLength": 58,
+        "correct": true
+      }
+    ]
+  }
+}
