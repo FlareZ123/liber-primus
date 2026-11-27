@@ -21,6 +21,40 @@ for(const s of native)for(let i=2;i<s.length;i++){const j=29*s[i-2]+s[i-1];tri[2
 const log=Float64Array.from(tri,(v,i)=>Math.log((v+0.5)/(bi[Math.floor(i/29)]+14.5)));
 function score(p,start=0,end=p.length){let n=0,s=0;for(let i=Math.max(start+2,2);i<end;i++){s+=log[(29*p[i-2]+p[i-1])*29+p[i]];n++}return s/n}
 function fit(c,cut){const rows=[];for(let a=0;a<29;a++)for(let b=0;b<29;b++){const p=dec(c,a,b);rows.push({a,b,train:score(p,0,cut)})}rows.sort((x,y)=>y.train-x.train);const best=rows[0],p=dec(c,best.a,best.b);assert.deepEqual(enc(p,best.a,best.b),c);return {best,runnerUp:rows[1],hold:score(p,cut),p,rows}}
+// Exact max-score Viterbi over all legal F histories, with training-only key/path selection.
+function viterbi(x,start,end,initial={j:0,last2:29,last:29,v:0,n:0,head:null}){
+ let states=new Map([[initial.j*900+initial.last2*30+initial.last,initial]]);
+ for(let i=start;i<end;i++){
+  const next=new Map();
+  for(const st of states.values()){
+   const push=(p,j)=>{const hasTri=st.last2<29, v=st.v+(hasTri?log[(29*st.last2+st.last)*29+p]:0),id=j*900+st.last*30+p;
+    const old=next.get(id);if(!old||v>old.v)next.set(id,{j,last2:st.last,last:p,v,n:st.n+Number(hasTri),head:{p,prev:st.head}})};
+   if(x[i]===0)push(0,st.j);
+   const p=mod(x[i]-primes[st.j]);if(p!==0)push(p,st.j+1);
+  }
+  if(!next.size)return null;states=next;
+ }
+ let best=null;for(const st of states.values())if(!best||st.v>best.v)best=st;
+ return best;
+}
+function pathOf(st){const out=[];for(let n=st?.head;n;n=n.prev)out.push(n.p);return out.reverse()}
+function fitF(c,cut){
+ const rows=[];
+ for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  const x=unmix(c,a,b),st=viterbi(x,0,cut);
+  if(st)rows.push({a,b,train:st.v/st.n,st});
+ }
+ rows.sort((x,y)=>y.train-x.train);
+ if(!rows.length)return {trainCandidates:0,complete:false};
+ const best=rows[0],end=viterbi(unmix(c,best.a,best.b),cut,c.length,best.st);
+ const result={trainCandidates:rows.length,a:best.a,b:best.b,train:best.train,complete:!!end,
+  runnerUp:rows[1]?.train??null,ranked:rows.map(({a,b,train})=>({a,b,train}))};
+ if(end){const p=pathOf(end);assert.deepEqual(enc(p,best.a,best.b,true),c);
+  result.hold=score(p,cut);result.plain=p;
+ }
+ return result;
+}
+
 const repeat=c=>c.reduce((s,x,i)=>s+Number(i>0&&x===c[i-1]),0);
 const ioc=c=>{const h=new Uint32Array(29);for(const x of c)h[x]++;return h.reduce((s,n)=>s+n*(n-1),0)/(c.length*(c.length-1))};
 const donors=[['Shakespeare','resources/control/shakespeare_first300k.txt'],['Gibran','resources/control/gibran_prophet_58585.txt'],['Emerson','resources/control/emerson_essays_2944.txt']].map(([name,f])=>({name,p:encodeSourceNativeGP(read(f))}));
@@ -38,8 +72,10 @@ for(const {name,c,cut} of source){
   const p=donors[d].p.slice(113+d*71,113+d*71+n),a=[7,13,19][d],b=[11,5,8][d],ct=enc(p,a,b),f=fit(ct,cut);
   const rank=1+f.rows.filter(r=>r.train>f.rows.find(r=>r.a===a&&r.b===b).train).length;
   const recovered=f.p.reduce((s,x,i)=>s+Number(x===p[i]),0);assert.deepEqual(dec(ct,a,b),p);
-  const x=unmix(enc(p,a,b,true),a,b);assert.deepEqual(x,clockEncode(p,true));assert.ok(reach(x,p).possible);
-  plants.push({donor:donors[d].name,a,b,rank,recovered,n,hold:f.hold,train:f.best.train,unique:f.rows[0].train>f.rows[1].train,FTruePath:true});
+  const fct=enc(p,a,b,true),x=unmix(fct,a,b);assert.deepEqual(x,clockEncode(p,true));assert.ok(reach(x,p).possible);
+  const ff=fitF(fct,cut),FkeyRank=1+ff.ranked.filter(r=>r.train>ff.ranked.find(r=>r.a===a&&r.b===b).train).length;
+  const FRecovered=ff.plain?.reduce((s,x,i)=>s+Number(x===p[i]),0)??0,FHeldRecovered=ff.plain?.slice(cut).reduce((s,x,i)=>s+Number(x===p[cut+i]),0)??0;
+  plants.push({donor:donors[d].name,a,b,rank,recovered,n,hold:f.hold,train:f.best.train,unique:f.rows[0].train>f.rows[1].train,FTruePath:true,FkeyRank,FRecovered,FHeldRecovered,FComplete:ff.complete});
  }
  const repeatObs=repeat(c),iocObs=ioc(c),feature={ordinary:[],F:[]};
  // Every coefficient, same 24 independent donor windows; no fitted repeat parameter.
@@ -58,11 +94,12 @@ for(const {name,c,cut} of source){
  const nativeHold=wins.map(w=>score(w.p,cut)),nativeTrain=wins.map(w=>score(w.p,0,cut));
  // Exact F inverse for all 841 coefficients; no candidate path-score tuning.
  const Frows=[];for(let a=0;a<29;a++)for(let b=0;b<29;b++){const x=unmix(c,a,b);assert.deepEqual(mix(x,a,b),c);Frows.push({a,b,...reach(x)})}
+ const fitFOriginal=fitF(c,cut);const allFBest=Frows.filter(r=>r.possible).map(({a,b})=>{const st=viterbi(unmix(c,a,b),0,c.length);assert.ok(st);const p=pathOf(st);assert.deepEqual(enc(p,a,b,true),c);return {a,b,score:score(p),hold:score(p,cut),preview:p.slice(0,90).map(x=>gp.translit[x]).join(''),heldPreview:p.slice(cut,cut+90).map(x=>gp.translit[x]).join('')}}).sort((x,y)=>y.score-x.score);
  const fitNulls=[];for(let j=0;j<8;j++){
   const u=Array.from({length:n},()=>rand(29)),f=fit(u,cut);fitNulls.push({train:f.best.train,hold:f.hold});
  }
  const summarize=rs=>({minRepeatAcrossAll:Math.min(...rs.map(x=>x.repeat.min)),maxRepeatAcrossAll:Math.max(...rs.map(x=>x.repeat.max)),repeatRangePass:rs.filter(x=>x.withinRepeatRange).length,jointRangePass:rs.filter(x=>x.withinRepeatRange&&x.withinIoCRange).length,closestRepeat:rs.slice().sort((x,y)=>Math.abs(x.repeat.mean-repeatObs)-Math.abs(y.repeat.mean-repeatObs))[0]});
- results.push({name,n,cut,repeatObs,iocObs,plants,nativeTrain:stats(nativeTrain),nativeHold:stats(nativeHold),original:{best:original.best,runnerUp:original.runnerUp,hold:original.hold,preview:p.slice(0,90).map(x=>gp.translit[x]).join(''),heldPreview:p.slice(cut,cut+90).map(x=>gp.translit[x]).join('')},Fsurvivors:Frows.filter(r=>r.possible),FlatestDead:Frows.filter(r=>!r.possible).sort((x,y)=>y.dead-x.dead)[0],feature:{ordinary:summarize(feature.ordinary),F:summarize(feature.F)},uniformNull:{repeat:stats(nulls.map(x=>x.repeat)),ioc:stats(nulls.map(x=>x.ioc))},matchedLowRepeatNullIoC:stats(lowRepeat.map(x=>x.ioc)),uniformFit:fitNulls,Frows});
+ results.push({name,n,cut,repeatObs,iocObs,plants,nativeTrain:stats(nativeTrain),nativeHold:stats(nativeHold),original:{best:original.best,runnerUp:original.runnerUp,hold:original.hold,preview:p.slice(0,90).map(x=>gp.translit[x]).join(''),heldPreview:p.slice(cut,cut+90).map(x=>gp.translit[x]).join('')},Ffit:{...fitFOriginal,ranked:undefined,plain:undefined,preview:fitFOriginal.plain?.slice(0,90).map(x=>gp.translit[x]).join('')},allFBest,Fsurvivors:Frows.filter(r=>r.possible),FlatestDead:Frows.filter(r=>!r.possible).sort((x,y)=>y.dead-x.dead)[0],feature:{ordinary:summarize(feature.ordinary),F:summarize(feature.F)},uniformNull:{repeat:stats(nulls.map(x=>x.repeat)),ioc:stats(nulls.map(x=>x.ioc))},matchedLowRepeatNullIoC:stats(lowRepeat.map(x=>x.ioc)),uniformFit:fitNulls,Frows});
 }
 const output={model:'X=P+prime, U=X+a*previous U, C=U+b*next C; F variant historical bypass at X only',authenticP56:p56.length,results};
 fs.writeFileSync(path.join(process.env.RUNNER_TEMP||'.','source-test-output.json'),JSON.stringify(output,null,2));
