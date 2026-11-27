@@ -78,6 +78,107 @@ const selectedSourcePair=sourcePairs.filter(p=>p.right.localStart+1===selectedOn
 assert.equal(selectedSourcePair.length,1);
 assert.equal(selectedSourcePair[0].right.page,8);
 assert.equal(selectedSourcePair[0].rightGP0,48); // HERE GP0, not a fitted receiver
+// Separate stronger-but-retrospectively-noticed numerical overlap.
+// If the addressed original p8 four-rune word were plaintext HERE,
+// its GP29 subtraction key C-P is the antisymmetric [5,3,-3,-5].
+// The [3,5] pair is also the two lower p33 red printed word lengths,
+// and p40 has another independent [3,5] red heading. Test *without*
+// fitting any other word key on all complete length-4 original words
+// in p8, p33, p40 and compare to authentic solved GP29 vocabulary.
+const p8Selected=words.find(w=>{const z=locate(w.start);return z.page===8&&z.localStart===63;});
+assert.ok(p8Selected);
+const exactHereResidual=p8Selected.indices.map((c,i)=>(c-HERE[i]+29)%29);
+assert.deepEqual(exactHereResidual,[5,3,26,24]);
+const red3And5=[3,5]; // physical p33 local91 eight-rune heading and p40 local0
+const gpSet=new Set(d.runes);
+function redWordLengths(p,start,n){
+ const source=trans.split('%')[p].split('');
+ let index=0,word=0,lens=[];
+ for(const ch of source){
+  if(gpSet.has(ch)){if(index>=start&&index<start+n)word++;index++;}
+  else if('-.&
+for(let i=1;i<words.length;i++){
+ const a=words[i-1].indices,b=words[i].indices;
+ if(a.length===b.length&&a.every((v,j)=>v===b[j]))
+   duplicated.push({left:locate(words[i-1].start),right:locate(words[i].start),
+     symbols:a.map(j=>d.translit[j])});
+}
+assert.equal(duplicated.length,1);
+assert.deepEqual(duplicated[0],{
+ left:{page:7,localStart:134},right:{page:7,localStart:136},symbols:['D','NG']});
+// Honest conditional wrong-phase comparison: all table entries read as a hex
+// byte; count those landing at one-based starts of any HERE dual-checksum alias.
+const startAddresses=new Set(aliases.map(a=>a.localStart+1));
+const wrongPhases=table.flatMap((token,i)=>/^[0-9a-fA-F]{2}$/.test(token)
+  &&startAddresses.has(parseInt(token,16))?[{tableIndex:i,token,oneBased:parseInt(token,16)}]:[]);
+assert.deepEqual(wrongPhases.map(x=>x.tableIndex),[108,137,154,168,181,238]);
+// Strongest direct cipher temptation: the source marker's prime sum 168
+// as a p15-style zero-based starting rank in the authenticated p56
+// successive-prime/totient additive cipher, seeded AT the selected p8 word.
+// It must recover exact HERE and continuation, not merely a checksum alias.
+const primes=[];
+for(let n=2;primes.length<240;n++){
+ let q=true;for(let j=2;j*j<=n;j++)if(n%j===0){q=false;break}
+ if(q)primes.push(n);
+}
+const c8=d.pages[8].indices;
+const cipherStart=c8.slice(63,70);
+assert.deepEqual(cipherStart.slice(0,4),['P','NG','U','P'].map(t=>d.translit.indexOf(t)));
+const plusPrime=cipherStart.map((c,i)=>(c+primes[168+i]-1)%29);
+const minusPrime=cipherStart.map((c,i)=>(c-(primes[168+i]-1)%29+29)%29);
+assert.deepEqual(plusPrime.slice(0,4),[6,18,4,18]); // GERE, not HERE
+assert.deepEqual(plusPrime.slice(4,7),[18,19,8]); // EMH, not native GP-English
+assert.notDeepEqual(plusPrime.slice(0,4),HERE);
+assert.notDeepEqual(minusPrime.slice(0,4),HERE);
+const nativePlant=HERE.map((p,i)=>(p-(primes[168+i]-1)%29+29)%29);
+assert.deepEqual(nativePlant.map((c,i)=>(c+primes[168+i]-1)%29),HERE);
+console.log(JSON.stringify({
+ p33Giant:['D','NG'],primeSum:giantGpprime,ordinalSum:giantGp0,
+ signedReference:'HERE',referencePrimeSum:168,
+ publishedHexSelector:{word:'WAY',GPprime:219,tableToken:table[219]},
+ selectedGridEntry:{index:168,token:table[168],hexOneBased:selectedOneBased},
+ sourceFirstPairs:sourcePairs,selectedSourcePair,
+ sourcePairWrongPhase:pairGridPhaseHits.length+'/256',
+ retrofittedMirrorRed35:{residual:exactHereResidual,sourceLowerRed: red3And5,heldFourRune:fourRuneMirrorTest},
+ recipientAliases:aliases,selectedRecipient:hits,onlyConsecutiveRepeatedPrintedWord:duplicated,
+ primeTotientDirect:{startIndexZeroBased:168,firstFour:plusPrime.slice(0,4).map(i=>d.translit[i]),nextThree:plusPrime.slice(4,7).map(i=>d.translit[i]),exactHERE:false},
+ conditionalWrongTablePhaseHits:wrongPhases.length+'/256',
+ status:'candidate numeric page/word address; NOT verified ciphertext-to-plaintext decryption'
+},null,2));
+.includes(ch)){if(word){lens.push(word);word=0;}}
+ }
+ if(word)lens.push(word);
+ return lens;
+}
+assert.deepEqual(redWordLengths(33,91,8),red3And5);
+assert.deepEqual(redWordLengths(40,0,8),red3And5);
+const candidateMirrorKey=[red3And5[1],red3And5[0],
+                         (29-red3And5[0])%29,(29-red3And5[1])%29];
+assert.deepEqual(candidateMirrorKey,exactHereResidual);
+const nativeWordLexicon=new Set();
+for(const record of solved.sections){
+ let w=[];
+ function flushNative(){if(w.length){nativeWordLexicon.add(w.join(','));w=[];}}
+ for(const rune of record.source_text){
+  const v=d.runes.indexOf(rune);
+  if(v>=0)w.push(v);else flushNative();
+ }
+ flushNative();
+}
+const fourRuneMirrorTest=[];
+for(const p of [8,33,40]){
+ const subset=words.filter(w=>locate(w.start).page===p &&w.indices.length===4);
+ const lexicalHits=subset.flatMap(w=>{
+   const plain=w.indices.map((c,i)=>(c-candidateMirrorKey[i]+29)%29);
+   return nativeWordLexicon.has(plain.join(','))?
+     [{start:locate(w.start).localStart,plain:plain.map(k=>d.translit[k])}]:[];
+ });
+ fourRuneMirrorTest.push({page:p,candidates:subset.length,lexicalHits});
+}
+assert.deepEqual(fourRuneMirrorTest.map(x=>x.candidates),[10,7,15]);
+assert.deepEqual(fourRuneMirrorTest.map(x=>x.lexicalHits.length),[1,0,0]);
+assert.deepEqual(fourRuneMirrorTest[0].lexicalHits[0],
+                 {start:63,plain:['H','E','R','E']});
 const duplicated=[];
 for(let i=1;i<words.length;i++){
  const a=words[i-1].indices,b=words[i].indices;
