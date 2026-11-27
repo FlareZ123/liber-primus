@@ -56,6 +56,28 @@ assert.deepEqual(aliases.map(w=>[w.page,w.localStart,w.n]),[[8,63,4],[27,40,4],[
 const hits=aliases.filter(w=>w.localStart===selectedOneBased-1);
 assert.deepEqual(hits.map(w=>w.page),[8]);
 assert.deepEqual(hits[0].runes,['P','NG','U','P']);
+// More discriminating source-first receiver: do not use the solved word
+// HERE to select the target. Use BOTH prime/ordinal coordinates from the
+// physically conspicuous original D/NG pair, on adjacent complete words.
+const sourcePairs=[];
+for(let i=0;i<words.length-1;i++){
+ const left=features(words[i]),right=features(words[i+1]);
+ if(left.GP0===giantGp0&&right.GPprime===giantGpprime){
+  sourcePairs.push({left:locate(words[i].start),right:locate(words[i+1].start),
+    leftGP0:left.GP0,rightGPprime:right.GPprime,rightGP0:right.GP0,
+    leftRunes:words[i].indices.map(k=>d.translit[k]),
+    rightRunes:words[i+1].indices.map(k=>d.translit[k])});
+ }
+}
+assert.deepEqual(sourcePairs.map(p=>[p.right.page,p.right.localStart]),[[7,136],[8,63],[27,150]]);
+const sourcePairStarts=new Set(sourcePairs.map(p=>p.right.localStart+1));
+const pairGridPhaseHits=table.flatMap((token,i)=>/^[0-9a-fA-F]{2}$/.test(token)
+  &&sourcePairStarts.has(parseInt(token,16))?[{index:i,token,oneBased:parseInt(token,16)}]:[]);
+assert.deepEqual(pairGridPhaseHits,[{index:168,token:'40',oneBased:64}]);
+const selectedSourcePair=sourcePairs.filter(p=>p.right.localStart+1===selectedOneBased);
+assert.equal(selectedSourcePair.length,1);
+assert.equal(selectedSourcePair[0].right.page,8);
+assert.equal(selectedSourcePair[0].rightGP0,48); // HERE GP0, not a fitted receiver
 const duplicated=[];
 for(let i=1;i<words.length;i++){
  const a=words[i-1].indices,b=words[i].indices;
@@ -97,6 +119,8 @@ console.log(JSON.stringify({
  signedReference:'HERE',referencePrimeSum:168,
  publishedHexSelector:{word:'WAY',GPprime:219,tableToken:table[219]},
  selectedGridEntry:{index:168,token:table[168],hexOneBased:selectedOneBased},
+ sourceFirstPairs:sourcePairs,selectedSourcePair,
+ sourcePairWrongPhase:pairGridPhaseHits.length+'/256',
  recipientAliases:aliases,selectedRecipient:hits,onlyConsecutiveRepeatedPrintedWord:duplicated,
  primeTotientDirect:{startIndexZeroBased:168,firstFour:plusPrime.slice(0,4).map(i=>d.translit[i]),nextThree:plusPrime.slice(4,7).map(i=>d.translit[i]),exactHERE:false},
  conditionalWrongTablePhaseHits:wrongPhases.length+'/256',
