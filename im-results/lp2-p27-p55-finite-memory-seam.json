@@ -1,0 +1,592 @@
+{
+  "inputBlob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "knownP56": "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE",
+  "holdIndex": 56,
+  "seam": [
+    23,
+    11,
+    1,
+    17,
+    18,
+    10,
+    25
+  ],
+  "results": [
+    {
+      "m": 1,
+      "degree": 1,
+      "clock": "printed",
+      "k": 2,
+      "train": {
+        "consistent": false,
+        "rank": 2,
+        "contradictionAt": 2
+      },
+      "full": {
+        "consistent": false,
+        "rank": 2,
+        "contradictionAt": 2
+      },
+      "validation": null,
+      "plant": {
+        "rank": 2,
+        "exactKey": true,
+        "trainRank": 2,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 1,
+      "degree": 1,
+      "clock": "consumed",
+      "k": 2,
+      "train": {
+        "consistent": false,
+        "rank": 2,
+        "contradictionAt": 2
+      },
+      "full": {
+        "consistent": false,
+        "rank": 2,
+        "contradictionAt": 2
+      },
+      "validation": null,
+      "plant": {
+        "rank": 2,
+        "exactKey": true,
+        "trainRank": 2,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 1,
+      "degree": 2,
+      "clock": "printed",
+      "k": 3,
+      "train": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "full": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "validation": null,
+      "plant": {
+        "rank": 3,
+        "exactKey": true,
+        "trainRank": 3,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 1,
+      "degree": 2,
+      "clock": "consumed",
+      "k": 3,
+      "train": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "full": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "validation": null,
+      "plant": {
+        "rank": 3,
+        "exactKey": true,
+        "trainRank": 3,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 2,
+      "degree": 1,
+      "clock": "printed",
+      "k": 3,
+      "train": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "full": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "validation": null,
+      "plant": {
+        "rank": 3,
+        "exactKey": true,
+        "trainRank": 3,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 2,
+      "degree": 1,
+      "clock": "consumed",
+      "k": 3,
+      "train": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "full": {
+        "consistent": false,
+        "rank": 3,
+        "contradictionAt": 3
+      },
+      "validation": null,
+      "plant": {
+        "rank": 3,
+        "exactKey": true,
+        "trainRank": 3,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 2,
+      "degree": 2,
+      "clock": "printed",
+      "k": 6,
+      "train": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "full": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "validation": null,
+      "plant": {
+        "rank": 6,
+        "exactKey": true,
+        "trainRank": 6,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 2,
+      "degree": 2,
+      "clock": "consumed",
+      "k": 6,
+      "train": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "full": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "validation": null,
+      "plant": {
+        "rank": 6,
+        "exactKey": true,
+        "trainRank": 6,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 3,
+      "degree": 1,
+      "clock": "printed",
+      "k": 4,
+      "train": {
+        "consistent": false,
+        "rank": 4,
+        "contradictionAt": 4
+      },
+      "full": {
+        "consistent": false,
+        "rank": 4,
+        "contradictionAt": 4
+      },
+      "validation": null,
+      "plant": {
+        "rank": 4,
+        "exactKey": true,
+        "trainRank": 4,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 3,
+      "degree": 1,
+      "clock": "consumed",
+      "k": 4,
+      "train": {
+        "consistent": false,
+        "rank": 4,
+        "contradictionAt": 4
+      },
+      "full": {
+        "consistent": false,
+        "rank": 4,
+        "contradictionAt": 4
+      },
+      "validation": null,
+      "plant": {
+        "rank": 4,
+        "exactKey": true,
+        "trainRank": 4,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 3,
+      "degree": 2,
+      "clock": "printed",
+      "k": 10,
+      "train": {
+        "consistent": false,
+        "rank": 10,
+        "contradictionAt": 10
+      },
+      "full": {
+        "consistent": false,
+        "rank": 10,
+        "contradictionAt": 10
+      },
+      "validation": null,
+      "plant": {
+        "rank": 10,
+        "exactKey": true,
+        "trainRank": 10,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 3,
+      "degree": 2,
+      "clock": "consumed",
+      "k": 10,
+      "train": {
+        "consistent": false,
+        "rank": 10,
+        "contradictionAt": 10
+      },
+      "full": {
+        "consistent": false,
+        "rank": 10,
+        "contradictionAt": 10
+      },
+      "validation": null,
+      "plant": {
+        "rank": 10,
+        "exactKey": true,
+        "trainRank": 10,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 4,
+      "degree": 1,
+      "clock": "printed",
+      "k": 5,
+      "train": {
+        "consistent": false,
+        "rank": 5,
+        "contradictionAt": 5
+      },
+      "full": {
+        "consistent": false,
+        "rank": 5,
+        "contradictionAt": 5
+      },
+      "validation": null,
+      "plant": {
+        "rank": 5,
+        "exactKey": true,
+        "trainRank": 5,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 4,
+      "degree": 1,
+      "clock": "consumed",
+      "k": 5,
+      "train": {
+        "consistent": false,
+        "rank": 5,
+        "contradictionAt": 5
+      },
+      "full": {
+        "consistent": false,
+        "rank": 5,
+        "contradictionAt": 5
+      },
+      "validation": null,
+      "plant": {
+        "rank": 5,
+        "exactKey": true,
+        "trainRank": 5,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 4,
+      "degree": 2,
+      "clock": "printed",
+      "k": 15,
+      "train": {
+        "consistent": false,
+        "rank": 15,
+        "contradictionAt": 15
+      },
+      "full": {
+        "consistent": false,
+        "rank": 15,
+        "contradictionAt": 15
+      },
+      "validation": null,
+      "plant": {
+        "rank": 15,
+        "exactKey": true,
+        "trainRank": 15,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 4,
+      "degree": 2,
+      "clock": "consumed",
+      "k": 15,
+      "train": {
+        "consistent": false,
+        "rank": 15,
+        "contradictionAt": 15
+      },
+      "full": {
+        "consistent": false,
+        "rank": 15,
+        "contradictionAt": 15
+      },
+      "validation": null,
+      "plant": {
+        "rank": 15,
+        "exactKey": true,
+        "trainRank": 15,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 5,
+      "degree": 1,
+      "clock": "printed",
+      "k": 6,
+      "train": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "full": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "validation": null,
+      "plant": {
+        "rank": 6,
+        "exactKey": true,
+        "trainRank": 6,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 5,
+      "degree": 1,
+      "clock": "consumed",
+      "k": 6,
+      "train": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "full": {
+        "consistent": false,
+        "rank": 6,
+        "contradictionAt": 6
+      },
+      "validation": null,
+      "plant": {
+        "rank": 6,
+        "exactKey": true,
+        "trainRank": 6,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 5,
+      "degree": 2,
+      "clock": "printed",
+      "k": 21,
+      "train": {
+        "consistent": false,
+        "rank": 21,
+        "contradictionAt": 21
+      },
+      "full": {
+        "consistent": false,
+        "rank": 21,
+        "contradictionAt": 21
+      },
+      "validation": null,
+      "plant": {
+        "rank": 21,
+        "exactKey": true,
+        "trainRank": 21,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 5,
+      "degree": 2,
+      "clock": "consumed",
+      "k": 21,
+      "train": {
+        "consistent": false,
+        "rank": 21,
+        "contradictionAt": 21
+      },
+      "full": {
+        "consistent": false,
+        "rank": 21,
+        "contradictionAt": 21
+      },
+      "validation": null,
+      "plant": {
+        "rank": 21,
+        "exactKey": true,
+        "trainRank": 21,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 6,
+      "degree": 1,
+      "clock": "printed",
+      "k": 7,
+      "train": {
+        "consistent": false,
+        "rank": 7,
+        "contradictionAt": 7
+      },
+      "full": {
+        "consistent": false,
+        "rank": 7,
+        "contradictionAt": 7
+      },
+      "validation": null,
+      "plant": {
+        "rank": 7,
+        "exactKey": true,
+        "trainRank": 7,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 6,
+      "degree": 1,
+      "clock": "consumed",
+      "k": 7,
+      "train": {
+        "consistent": false,
+        "rank": 7,
+        "contradictionAt": 7
+      },
+      "full": {
+        "consistent": false,
+        "rank": 7,
+        "contradictionAt": 7
+      },
+      "validation": null,
+      "plant": {
+        "rank": 7,
+        "exactKey": true,
+        "trainRank": 7,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 6,
+      "degree": 2,
+      "clock": "printed",
+      "k": 28,
+      "train": {
+        "consistent": false,
+        "rank": 28,
+        "contradictionAt": 28
+      },
+      "full": {
+        "consistent": false,
+        "rank": 28,
+        "contradictionAt": 28
+      },
+      "validation": null,
+      "plant": {
+        "rank": 28,
+        "exactKey": true,
+        "trainRank": 28,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    },
+    {
+      "m": 6,
+      "degree": 2,
+      "clock": "consumed",
+      "k": 28,
+      "train": {
+        "consistent": false,
+        "rank": 28,
+        "contradictionAt": 28
+      },
+      "full": {
+        "consistent": false,
+        "rank": 28,
+        "contradictionAt": 28
+      },
+      "validation": null,
+      "plant": {
+        "rank": 28,
+        "exactKey": true,
+        "trainRank": 28,
+        "holdout": 34,
+        "holdoutTotal": 34
+      }
+    }
+  ]
+}
