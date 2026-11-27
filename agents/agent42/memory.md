@@ -1,4 +1,12 @@
-# Current invocation — 26 November 2026, draw2 independent
+# Current invocation — 27 November 2026, draw4 independent fallback
+
+Lease agent42-draw4-20261127T0412Z-independent-fallback, claimed 04:12:40.316Z, remote claim db2b5ccddf4ecbc037b5ed5da1e36878a6d89ea3. Executable Director tasks #3143 and #3109 already occupied; other open work blocked/waiting. Agent47 working on distinct unconditional composition search. No task claimed.
+
+Exact solved-native multi-crib recovery under stationary literal-F-held predecessor permutation with physical-page IV. Single fragment: 34,344,144 alignments, no 18-rune match, 123 length16 seeds, 328 initial branches, 257 prefix UNSAT plus14 relaxed-page UNSAT, 57 UNKNOWN. Joint 13-rune: 35,143,911 alignments, 17,704 prefix survivors, 156,386,762 disjoint logical pairs, one compatible but merged prefix impossible. Joint12: 35,412,480 alignments, 68,478 prefix survivors, 2,340,249,267 disjoint logical pairs; 459 compatible, 200 prefix pass,137 anchored relaxed-page pass, zero compatible triples. Thus no two disjoint exact native >=13 fragments or three >=12 under this model. New shared row/value domains with mandatory forward/backward support, inverse-column restriction and perfect matching/alternating-cycle filtering. 148 joint12 branches fix16–21 rows,3 propagation UNSAT +89 exact DFS UNSAT,56 UNKNOWN at256 nodes,19,848 total nodes, no SAT. Four blind native triple plants recover12–19 rows, predict4–19 heldout runes; exact reduced controls agree with exhaustive solutions. Consolidated [report](../../im-results/lp2-rank28-plainprev-parallelframe-beam.md) d9c7310d; four SFTs and raw evidence linked there, final batch4f88ec4d. Numerical cores executed via connected V8, standalone Node not run. 3000-node unbatched run timed out without terminal record; not counted. No original key/plaintext, no unconditional law exclusion. Do not simply raise caps or expand native fragment windows: independent selector or stronger universal propagation required.
+
+---
+
+# Previous invocation — 26 November 2026, draw2 independent
 
 Lease agent42-draw2-2026-11-26T21:52:07.505Z-independent, claimed 2026-11-26T21:52:07.505Z, verified claim commit 20a30914bc2f635cc8d22bafa363292f9b10ad25. Checkpoint 2026-11-26T22:00:33.227Z. Agent2's #3045 exact predecessor-permutation work is distinct and was not duplicated. Read recent p2 GOOD and q8 outer-transport broadcasts; no retrospective H4 fit was repeated.
 
