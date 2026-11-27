@@ -1,0 +1,819 @@
+{
+  "inputBlobs": {
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/liber-primus/lp1-plaintext-reference.txt": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  },
+  "scopes": [
+    {
+      "label": "full",
+      "phase": 0,
+      "n": 6478,
+      "distinct": [
+        832,
+        6449
+      ],
+      "max": [
+        19,
+        2
+      ],
+      "inside": 37,
+      "seam": 49,
+      "controls": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "windows": 4,
+          "q": [
+            10,
+            13
+          ],
+          "dv": [
+            3251,
+            3387
+          ],
+          "de": [
+            2286,
+            2535
+          ],
+          "exception": [
+            3251,
+            3387
+          ],
+          "switchAtMin": [
+            64,
+            102
+          ],
+          "switch8": [
+            146,
+            247
+          ],
+          "switch13": [
+            15,
+            99
+          ],
+          "switch29": [
+            0,
+            6
+          ],
+          "nativeInside": [
+            183,
+            215
+          ],
+          "nativeSeam": [
+            169,
+            201
+          ],
+          "minQWitness": {
+            "at": 38868,
+            "q": 10,
+            "dv": 3251,
+            "de": 2397,
+            "exception": 3251,
+            "switchAtMin": 81,
+            "switch8": 155,
+            "switch13": 15,
+            "switch29": 0,
+            "nativeInside": 187,
+            "nativeSeam": 190
+          }
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "windows": 16,
+          "q": [
+            7,
+            11
+          ],
+          "dv": [
+            3127,
+            3381
+          ],
+          "de": [
+            1935,
+            2351
+          ],
+          "exception": [
+            3127,
+            3381
+          ],
+          "switchAtMin": [
+            61,
+            259
+          ],
+          "switch8": [
+            70,
+            298
+          ],
+          "switch13": [
+            3,
+            134
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            160,
+            279
+          ],
+          "nativeSeam": [
+            163,
+            289
+          ],
+          "minQWitness": {
+            "at": 103648,
+            "q": 7,
+            "dv": 3252,
+            "de": 1963,
+            "exception": 3252,
+            "switchAtMin": 104,
+            "switch8": 70,
+            "switch13": 3,
+            "switch29": 0,
+            "nativeInside": 160,
+            "nativeSeam": 205
+          }
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "windows": 25,
+          "q": [
+            8,
+            11
+          ],
+          "dv": [
+            3245,
+            3522
+          ],
+          "de": [
+            1767,
+            3323
+          ],
+          "exception": [
+            3245,
+            3522
+          ],
+          "switchAtMin": [
+            2,
+            595
+          ],
+          "switch8": [
+            27,
+            754
+          ],
+          "switch13": [
+            0,
+            444
+          ],
+          "switch29": [
+            0,
+            131
+          ],
+          "nativeInside": [
+            166,
+            215
+          ],
+          "nativeSeam": [
+            155,
+            207
+          ],
+          "minQWitness": {
+            "at": 90692,
+            "q": 8,
+            "dv": 3305,
+            "de": 1975,
+            "exception": 3305,
+            "switchAtMin": 40,
+            "switch8": 40,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 179,
+            "nativeSeam": 200
+          }
+        }
+      ]
+    },
+    {
+      "label": "full",
+      "phase": 1,
+      "n": 6477,
+      "distinct": [
+        838,
+        6445
+      ],
+      "max": [
+        17,
+        3
+      ],
+      "inside": 49,
+      "seam": 37,
+      "controls": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "windows": 4,
+          "q": [
+            10,
+            14
+          ],
+          "dv": [
+            3321,
+            3411
+          ],
+          "de": [
+            2278,
+            2472
+          ],
+          "exception": [
+            3321,
+            3411
+          ],
+          "switchAtMin": [
+            60,
+            97
+          ],
+          "switch8": [
+            152,
+            239
+          ],
+          "switch13": [
+            23,
+            97
+          ],
+          "switch29": [
+            0,
+            3
+          ],
+          "nativeInside": [
+            169,
+            201
+          ],
+          "nativeSeam": [
+            183,
+            215
+          ],
+          "minQWitness": {
+            "at": 38868,
+            "q": 10,
+            "dv": 3321,
+            "de": 2348,
+            "exception": 3321,
+            "switchAtMin": 87,
+            "switch8": 152,
+            "switch13": 23,
+            "switch29": 0,
+            "nativeInside": 190,
+            "nativeSeam": 187
+          }
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "windows": 16,
+          "q": [
+            7,
+            10
+          ],
+          "dv": [
+            3172,
+            3431
+          ],
+          "de": [
+            1914,
+            2345
+          ],
+          "exception": [
+            3172,
+            3431
+          ],
+          "switchAtMin": [
+            55,
+            244
+          ],
+          "switch8": [
+            55,
+            283
+          ],
+          "switch13": [
+            0,
+            124
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            163,
+            289
+          ],
+          "nativeSeam": [
+            160,
+            279
+          ],
+          "minQWitness": {
+            "at": 194340,
+            "q": 7,
+            "dv": 3226,
+            "de": 1959,
+            "exception": 3226,
+            "switchAtMin": 244,
+            "switch8": 198,
+            "switch13": 87,
+            "switch29": 0,
+            "nativeInside": 289,
+            "nativeSeam": 279
+          }
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "windows": 25,
+          "q": [
+            9,
+            12
+          ],
+          "dv": [
+            3270,
+            3539
+          ],
+          "de": [
+            1757,
+            3279
+          ],
+          "exception": [
+            3270,
+            3539
+          ],
+          "switchAtMin": [
+            0,
+            677
+          ],
+          "switch8": [
+            15,
+            760
+          ],
+          "switch13": [
+            0,
+            457
+          ],
+          "switch29": [
+            0,
+            135
+          ],
+          "nativeInside": [
+            155,
+            207
+          ],
+          "nativeSeam": [
+            166,
+            215
+          ],
+          "minQWitness": {
+            "at": 38868,
+            "q": 9,
+            "dv": 3356,
+            "de": 1868,
+            "exception": 3356,
+            "switchAtMin": 23,
+            "switch8": 42,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 194,
+            "nativeSeam": 172
+          }
+        }
+      ]
+    },
+    {
+      "label": "terminal",
+      "phase": 0,
+      "n": 154,
+      "distinct": [
+        138,
+        153
+      ],
+      "max": [
+        3,
+        1
+      ],
+      "inside": 1,
+      "seam": 2,
+      "controls": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "windows": 204,
+          "q": [
+            2,
+            4
+          ],
+          "dv": [
+            23,
+            56
+          ],
+          "de": [
+            0,
+            34
+          ],
+          "exception": [
+            23,
+            56
+          ],
+          "switchAtMin": [
+            0,
+            5
+          ],
+          "switch8": [
+            0,
+            0
+          ],
+          "switch13": [
+            0,
+            0
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            0,
+            14
+          ],
+          "nativeSeam": [
+            0,
+            11
+          ],
+          "minQWitness": {
+            "at": 616,
+            "q": 2,
+            "dv": 23,
+            "de": 3,
+            "exception": 23,
+            "switchAtMin": 0,
+            "switch8": 0,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 4,
+            "nativeSeam": 4
+          }
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "windows": 710,
+          "q": [
+            2,
+            5
+          ],
+          "dv": [
+            17,
+            57
+          ],
+          "de": [
+            0,
+            42
+          ],
+          "exception": [
+            17,
+            57
+          ],
+          "switchAtMin": [
+            0,
+            6
+          ],
+          "switch8": [
+            0,
+            0
+          ],
+          "switch13": [
+            0,
+            0
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            0,
+            14
+          ],
+          "nativeSeam": [
+            0,
+            14
+          ],
+          "minQWitness": {
+            "at": 308,
+            "q": 2,
+            "dv": 30,
+            "de": 3,
+            "exception": 30,
+            "switchAtMin": 1,
+            "switch8": 0,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 5,
+            "nativeSeam": 4
+          }
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "windows": 1053,
+          "q": [
+            2,
+            4
+          ],
+          "dv": [
+            16,
+            54
+          ],
+          "de": [
+            0,
+            38
+          ],
+          "exception": [
+            16,
+            54
+          ],
+          "switchAtMin": [
+            0,
+            3
+          ],
+          "switch8": [
+            0,
+            0
+          ],
+          "switch13": [
+            0,
+            0
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            0,
+            12
+          ],
+          "nativeSeam": [
+            0,
+            13
+          ],
+          "minQWitness": {
+            "at": 1232,
+            "q": 2,
+            "dv": 35,
+            "de": 2,
+            "exception": 35,
+            "switchAtMin": 0,
+            "switch8": 0,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 1,
+            "nativeSeam": 6
+          }
+        }
+      ]
+    },
+    {
+      "label": "terminal",
+      "phase": 1,
+      "n": 153,
+      "distinct": [
+        140,
+        152
+      ],
+      "max": [
+        2,
+        1
+      ],
+      "inside": 2,
+      "seam": 1,
+      "controls": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "windows": 204,
+          "q": [
+            2,
+            9
+          ],
+          "dv": [
+            20,
+            56
+          ],
+          "de": [
+            0,
+            31
+          ],
+          "exception": [
+            20,
+            56
+          ],
+          "switchAtMin": [
+            0,
+            2
+          ],
+          "switch8": [
+            0,
+            0
+          ],
+          "switch13": [
+            0,
+            0
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            0,
+            11
+          ],
+          "nativeSeam": [
+            0,
+            14
+          ],
+          "minQWitness": {
+            "at": 4928,
+            "q": 2,
+            "dv": 34,
+            "de": 3,
+            "exception": 34,
+            "switchAtMin": 0,
+            "switch8": 0,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 6,
+            "nativeSeam": 3
+          }
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "windows": 710,
+          "q": [
+            2,
+            6
+          ],
+          "dv": [
+            17,
+            61
+          ],
+          "de": [
+            0,
+            40
+          ],
+          "exception": [
+            17,
+            61
+          ],
+          "switchAtMin": [
+            0,
+            4
+          ],
+          "switch8": [
+            0,
+            0
+          ],
+          "switch13": [
+            0,
+            0
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            0,
+            14
+          ],
+          "nativeSeam": [
+            0,
+            14
+          ],
+          "minQWitness": {
+            "at": 8624,
+            "q": 2,
+            "dv": 34,
+            "de": 5,
+            "exception": 34,
+            "switchAtMin": 0,
+            "switch8": 0,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 10,
+            "nativeSeam": 8
+          }
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "windows": 1053,
+          "q": [
+            2,
+            6
+          ],
+          "dv": [
+            21,
+            57
+          ],
+          "de": [
+            0,
+            38
+          ],
+          "exception": [
+            21,
+            57
+          ],
+          "switchAtMin": [
+            0,
+            3
+          ],
+          "switch8": [
+            0,
+            0
+          ],
+          "switch13": [
+            0,
+            0
+          ],
+          "switch29": [
+            0,
+            0
+          ],
+          "nativeInside": [
+            0,
+            13
+          ],
+          "nativeSeam": [
+            0,
+            12
+          ],
+          "minQWitness": {
+            "at": 2464,
+            "q": 2,
+            "dv": 21,
+            "de": 1,
+            "exception": 21,
+            "switchAtMin": 0,
+            "switch8": 0,
+            "switch13": 0,
+            "switch29": 0,
+            "nativeInside": 6,
+            "nativeSeam": 4
+          }
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "q": 1,
+      "blocks": 1780,
+      "actualSwitches": 0,
+      "actualExceptions": 0,
+      "qFloor": 1,
+      "exceptionFloor": 0,
+      "switchFloor": 0
+    },
+    {
+      "q": 2,
+      "blocks": 1780,
+      "actualSwitches": 1779,
+      "actualExceptions": 890,
+      "qFloor": 2,
+      "exceptionFloor": 288,
+      "switchFloor": 0
+    },
+    {
+      "q": 4,
+      "blocks": 1780,
+      "actualSwitches": 1779,
+      "actualExceptions": 1335,
+      "qFloor": 3,
+      "exceptionFloor": 491,
+      "switchFloor": 0
+    },
+    {
+      "q": 8,
+      "blocks": 1780,
+      "actualSwitches": 1779,
+      "actualExceptions": 1557,
+      "qFloor": 4,
+      "exceptionFloor": 618,
+      "switchFloor": 0
+    },
+    {
+      "q": 13,
+      "blocks": 1780,
+      "actualSwitches": 1643,
+      "actualExceptions": 1661,
+      "qFloor": 4,
+      "exceptionFloor": 699,
+      "switchFloor": 0
+    },
+    {
+      "q": 29,
+      "blocks": 1780,
+      "actualSwitches": 1708,
+      "actualExceptions": 1712,
+      "qFloor": 4,
+      "exceptionFloor": 738,
+      "switchFloor": 0
+    }
+  ]
+}
