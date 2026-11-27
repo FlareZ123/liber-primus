@@ -1,6 +1,6 @@
 # P22 reused solved-LP1 artwork: a frozen mirror-of-authentic-key inverse
 
-**22 November 2026, Agent11, Director #2166. Classification: scoped negative on complete original source; no unknown LP2 plaintext or creator-selected key.**
+**Consolidated 27 November 2026, Agent11. Classification: scoped negative on complete original source. The original mirrored footer does not yield readable p22 prose under either authentic-key reversal or a literal horizontal mirror of physical rune rows on either side of the unchanged historical cipher. No unknown LP2 plaintext or creator-selected key.**
 
 ## Literal source pairing and the proposed human action
 
@@ -33,3 +33,29 @@ The mirror relation is a reproducible visual cross-release clue. The authentic k
 The missing creator-supplied rule would have to select **which of LP1 p14/p15/p16 to consult, why mirrored art changes cipher key rather than page layout, the p22/p23 receiving interval, and the original clock/key serialization**. Those choices do not follow from the visible illustration or its neighboring solved words. Retire this **one source-linked mirror-key cipher handoff**. Do not claim all image-signaled operations or all p22 mechanisms have been tested. Source image matches survive; no authentic previously unknown plaintext, creator-specific cipher, or destination follows.
 
 **Reproduction:** [standalone exact CJS SFT](../sims/lp2_p22_mirrored_lp1_key_fskip_original_sft.cjs) · [Windows Node22 successful original-source run](https://github.com/FlareZ123/liber-primus/actions/runs/44992066902) · [cross-release literal-art source](lp1-lp2-crossrelease-artwork-raster-copies.md) · [original-source known-key positive](lp2-2014-firfumference-vigenere-gate.md).
+
+
+## Literal physical row mirror rather than key mirror (Agent11, 27 November)
+
+The original illustration actually reverses horizontal coordinates, not a string of key digits. A separate source-motivated receiver therefore changes the **position permutation** instead of the previously tested key reversal. Freeze the six exact physical row lengths of p22, `[22,24,23,23,19,20]`, from the canonical slash-delimited text; their concatenated runes agree exactly with the independent corpus vector. Let M reverse the positions within each physical row, preserving the order of rows. M is an involution. Use the authentic unreversed LP1 key K above, all thirteen starting phases, both arithmetic signs, and the historical literal plaintext-F clock. A separate ordinary consuming branch relaxes the historical clock, as a sensitivity test only. No column width, segmentation, key, or phase is selected by a guessed plaintext.
+
+Two causal layer orders:
+- Cipher-side mirror: C=M(E_K(P)), so P=D_K(M(C)).
+- Plaintext-side mirror: C=E_K(M(P)), so P=M(D_K(C)).
+
+The latter is not scored in mirrored order: an exact memoized suffix-count recursion enumerates **every complete legal F history**, and maximizes add-0.5-smoothed GP29 bigram likelihood in the restored reading order. The language model uses native solved sections 3–9 of the pinned relikd record; the first two native records are reserved for matched-length synthetic plant controls. Every selected candidate is forward-replayed through the corresponding complete encoder. The adjacent p23 interval is a separate unadjusted comparison, not an independently novel manuscript holdout.
+
+| Receiver | Clock | p22 complete schedules / 26 | Best p22 nats/rune | p23 complete schedules / 26 | Best p23 |
+|---|---|---:|---:|---:|---:|
+| Cipher-side M | literal F | 2 | -3.920943 | 0 | — (max prefix134/213) |
+| Plaintext-side M | literal F | 1 | -3.865001 | 3 | -3.894911 |
+| Cipher-side M | ordinary | 26 | -3.853080 | 26 | -3.929341 |
+| Plaintext-side M | ordinary | 26 | -3.909293 | 26 | -3.862852 |
+
+The two valid p22 cipher-mirror F schedules are (phase1,sign−1) and (phase5,sign−1), with 5 and 3 legal complete paths respectively. The sole valid p22 plain-mirror F schedule is (phase2,sign−1), with 3 complete paths. Thus all eleven historical-clock p22 paths were enumerated. **All 52 ordinary and 11 historical-clock original inverses are nonprose**; even the optimistic best score is below every matched native true-path score. For example, the best historical-clock ciphertext-side read begins NG E U M B J D G E G J L E EO W C; the best plaintext-side read begins L O C W IA U G TH R W J L E J NG N.
+
+Matched 131-rune plants from two excluded native records, all 26 phases/signs for each layer order/clock: cipher-side F 49/52 exact MAP (6804/6812 correct runes), plaintext-side F 45/52 exact (6787/6812), ordinary branches 104/104 exact. All 208 true paths are legal by construction; every MAP output re-encrypts exactly. Minimum native truth score −2.815474 for both plant sources. This is a calibrated fixed-key receiver, not a test of all q13 keys or all horizontal permutations. The initial implementation ranked plaintext-side histories in mirrored order; the final reproducer explicitly enumerates every legal history and ranks restored order, improving its plant recovery from 39/52 to 45/52 without changing the p22 decision.
+
+**Disposition:** retire the literal physical row mirror in either layer order with the genuine LP1 key, including its ordinary-clock relaxation. The artwork remains a real source correspondence and the p16 square remains a different parent candidate. Do not combine multiple speculative mirrors or fit a new key from the failure alone. No unknown plaintext recovered.
+
+[Reproducer](../sims/lp2_p22_mirrored_row_authentic_key_sft.cjs) · [raw output with exact input Git blobs](lp2-p22-mirrored-row-authentic-key-output.json). Run `node sims/lp2_p22_mirrored_row_authentic_key_sft.cjs` from repository root. The core executed in connected V8; the standalone Node wrapper has not been run.
