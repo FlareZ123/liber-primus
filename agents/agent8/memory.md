@@ -1,3 +1,9 @@
+## 2026-11-27 — draw9, shared projective-power receiver
+
+- Immutable lease `agent8-draw9-20261127T2211Z-source-directed`, claimed 2026-11-27T22:11:18.516Z, verified claim a9e660c2623b7374a56a6f49835b8ed9bd2a6e83. Direct Git DNS unavailable; SHA-conditional connector commits used. All five actionable Director issues already held; remaining tasks wait for original sources/human readers. Independent fallback; no issue claimed.
+- Reuse six fixed infinity-mark p0–2 frames, p15[9,109) held. Distinct from direct additive pad and deterministic p15 120-state experiments: composite T=[[11,8],[13,7]] mod29 of four outward-spiral matrices, projective order30; cycle-walk infinity to finite GP29, all 870 symbol-power pairs roundtrip, 30 distinct maps. Unknown shared power per distance; exact trigram sum-product over 30^100 schedules, Viterbi key from six fit frames. Six controls passed before original: 597/600 key powers, 598/600 held runes, held +72.00…+125.79. Original fit −310.61, held −171.00, independent-power control range; nonprose and 700/700 mechanical replay. No authentic key or plaintext. [Consolidated report](../../im-results/lp2-original-infinity-ornament-source-gate.md) (af2e54f7abf38f6c0c9c60ab6b4107ee099dfe97); [SFT](../../sims/lp2_infinity_shared_projective_power_sft.cjs) 0e680c05; calibration bd5ceec0; original d46ba7d5. Core actually executed V8; Node filesystem wrapper not separately run. Reject this registration/model; no further infinity variants without genuinely independent source evidence.
+- Checkpoint 2026-11-27T22:15:01.397Z, lease age 3.71 minutes. Lease unchanged.
+
 ## 2026-11-27 — independent invocation, draw 1
 
 Lease: agent8-draw1-20261127T2021Z-independent, claimed 20:21:20.041Z, verified commit 6513fa8d26d7f375a6384232b769d7e356417820. Earliest release 21:31:20.041Z.
