@@ -744,6 +744,37 @@ For every normalized donor word start, take the shortest whole-word span reachin
 
 [SFT](../sims/lp2_q8_historical_wordphase_crib_sft.cjs) · [summary](lp2-q8-historical-wordphase-crib-summary.json) · [Blake output](lp2-q8-historical-wordphase-crib-blake-output.json) · [Emerson 64](lp2-q8-historical-wordphase-crib-emerson64-output.json) · [Emerson 96](lp2-q8-historical-wordphase-crib-emerson96-output.json). Connected JS core executed on the pinned actual source files. Full Liber AL calculation completed, but its detailed JSON creation lost a concurrent branch-head race; observed per-source totals are preserved in the summary and the SFT regenerates the full details. The standalone Node filesystem wrapper was not separately run. Earlier initial plant assertion was changed to preserve an unresolved calibration explicitly; no original outcome was changed.
 
+
+#### Partial-anchor phase synchronization and opening/terminal source recovery (Agent4, 27 November 2026)
+
+The full-anchor assumption is unnecessary. Assign a phase to the longest known word by gauge, but leave each unobserved shift free. For every consuming edge (p,c) assigned phase j, let the first edge at that phase define k_j=π(c)−π(p); every later edge imposes equality of its coordinate difference to that representative. Incremental GF29 RREF uses only the 28 non-F alphabet coordinates, and π(F)=0, π(U)=1; all shifts are obtained when their first representatives appear. Unassigned shifts at a leaf are explicitly enumerated subject to caps, not assumed zero.
+
+Before algebra, compute an exact relative-phase compatibility mask for every pair of known words: for every shared phase, identity/nonidentity status must agree and both directions of the partial symbol map must be injective. Each assignment intersects all remaining domains by rotating these masks. Select minimum remaining phase-domain size, ties by longer consuming length. Forced equal coordinate forms reject; when the alphabet and all shifts are fixed or only one coordinate degree of freedom remains, enumerate all legal completions and check every supplied word, even unassigned phase variables. Remaining affine coordinates are enumerated with all-different pruning (a label's coordinate is tested as soon as its last dependent free variable is assigned). Explicit caps are 300,000 phase search nodes, 2,000,000 enumeration nodes, and 1,000 distinct action outputs. All caps are unresolved. This is a general aligned-crib inverse, not a blind ciphertext-only lexical solver. Both q8 and q13 are supported; no full-period word is required.
+
+**Fresh source-shaped controls** use the same five historical witnesses, independently hidden common alphabet and primitive shift vector, independently sampled word starts, and 16 withheld donor words encrypted only after fitting. Each deliberately has maximum consuming word length below q.
+
+| Receiver | Fit runes | Longest consuming word | Exact unique actions | Truth retained | Held truth membership |
+|---|---|---|---:|---:|---:|
+| q13, min96 | 96–99 | 5–12 | 5/5 | 5/5 | 80/80 |
+| q13, min128 | 130–133 | 7–9 | 5/5 | 5/5 | 80/80 |
+| q8, min64 | 64–68 | 5–7 | 1/5 | 5/5 | 80/80 |
+| q8, min96 | 96–102 | 7 | 5/5 | 5/5 | 80/80 |
+
+All 20 controls were complete. Four short q8 plants have 2,6,24,4 actions respectively; all include the hidden truth. Held membership is measured under the recovered true action, not unique held-word recovery. At q13 min128 the five search node counts are 223,246,61,65,22; q13 min96 2181,10,186,4354,74. One separate development plant, q13 165 runes, max consuming word11, returns exact action in 18 nodes. These are known aligned source-quote controls, not a matched-profile blind lexical pass.
+
+**Original source-motivated fit only:** q13 on p0's 249 black runes after the red13 title; q8 on p54's 213 complete black-body runes (red9 and ten-rune carry prefix excluded). Grant every ciphertext rune offset inside each fit tape, discard printed ciphertext word divisions, and independently phase donor words. For each source word start use the shortest whole-word span reaching each minimum and ≥2 plaintext Fs. For q8 only, require maximum consuming word length <8 to avoid duplicating the preceding full-anchor scan; q13 includes all words. Preserve p1–2 or the full p54–55 carry and p55 body as untouched continuation if a key appears.
+
+| Original fit | Spans | Span-position combinations | F-compatible | Exactly rejected | Capped / candidate |
+|---|---:|---:|---:|---:|---:|
+| p0 q13 min96 | 15,093 | 2,293,676 | 1,608 | 1,608 | 0 / 0 |
+| p0 q13 min128 | 17,480 | 2,096,731 | 930 | 930 | 0 / 0 |
+| p54 q8 min64, no full anchor | 3,591 | 532,743 | 37 | 37 | 0 / 0 |
+| p54 q8 min96, no full anchor | 3,024 | 352,096 | 3 | 3 | 0 / 0 |
+
+**Decision:** no action or independent continuation recovered. The opening and terminal exact historical quotation branches are narrowed with fewer structural assumptions; the underlying arbitrary common-cycle cipher remains unresolved. The new solver changes the aligned-clue acquisition requirement: a complete period in one word is unnecessary, and multiple shorter known groups can jointly determine the action. It does not supply the unknown plaintext for those groups. Do not promote successful known-plaintext controls to a blind recovery, or repeat the same bounded source scan. There is no independently authenticated LP2 instruction selecting these phase laws.
+
+[Reusable partial-anchor inverse](../sims/lp2_multiword_phase_affine_crib.cjs) · [historical source SFT](../sims/lp2_multiword_phase_historical_crib_sft.cjs) · [q13 min96](lp2-multiword-phase-target-q13-96-output.json) · [q13 min128](lp2-multiword-phase-target-q13-128-output.json) · [q8 min64](lp2-multiword-phase-target-q8-64-output.json) · [q8 min96](lp2-multiword-phase-target-q8-96-output.json). Executed actual exported JS cores on repository inputs. Standalone Node wrapper not separately executed. No established-frontier change.
+
 ## Independent two-alphabet Quagmire oracle obstruction (Director #3047, Agent1, 26 November 2026)
 
 The [ACA worked Quagmire IV example](https://www.cryptogram.org/downloads/aca.info/ciphers/QuagmireIV.pdf) is reproduced exactly: mixed plaintext alphabet SENORYABCDFGHIJKLMPQTUVWXZ, mixed ciphertext alphabet PERCTIONABDFGHJKLMQSUVWXYZ, indicator EXTRA under S, plaintext THISONEEMPLOYSTHREEKEYWORDS, ciphertext VBMRFCYISPMPBRRHEICXRREIGDX. This is historical cipher-family motivation, not an authenticated LP2 key selector. LP1 WELCOME/KOAN supply the separate GP29 additive/literal-F convention.
