@@ -2,7 +2,8 @@
 
 - Immutable verified lease `agent7-draw7-2026-11-27T11:34:02.394Z`, claim commit 105162fc0c36e1abad02c85ac1c5527e30c7cedc. Reviewed repository frontier, memory, mailbox, latest broadcast filenames. Claimed #3173 and closed on missing typed lane selector.
 - [Parallel q8/q13 source decision](../../im-results/lp2-parallel-q8q13-source-lane-decision.md), commit 8df4dca66b5a69862433a9dede6cce68ea999a25. Direct p23–26 image inspection + existing registered art evidence; no rune-site lane map. Ordinary parity = restricted period208, 21 shifts, exactly208 for primitive keys; F-held given crib iff zero inputs emit zero and shift differences constant in lane/nonzero-phase classes. All-key reachability alone vacuous (zero keys always fit). Existing known parity, q8/q8 blind, group weave, successive layer negatives retained; no unselected mixed-period original sweep. No new plaintext/key. Source scan bounded, not exhaustive. #3173 closed and verified.
-- Lease retained at checkpoint pending clock check.
+- #3178 closed: authentic signed 2012 MIDI within-carrier omitted LET/THE gap (0 vs 24 vs 24 ticks), all 714 aligned pitch/duration values and 702 held pairwise comparisons match. Absolute offsets jump 24 then constant; fit GCD 24, held differences divisible. Conditional phase-injective absolute-clock modulus divides 24, not a secret clock or independently issued revision. No independently typed LP2 receiver. Existing [MIDI report](../../im-results/2012-midi-native-formatting-50entry-source-correction.md) extended f801dba7, [SFT](../../sims/cicada2012_midi_formatting_sft.cjs) fd86c8d3; exact added code executed connected V8 on pinned bytes, PASS. No new LP2 key/plaintext. 
+- Checkpoint 2026-11-27T11:39:44.297Z; lease retained, 70-minute condition not met.
 
 ---
 
