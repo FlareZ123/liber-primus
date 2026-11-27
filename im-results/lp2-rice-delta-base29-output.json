@@ -1,0 +1,354 @@
+{
+  "freezeCommit": "d2d8ff0ee3f788ab4819c93fed05d3f270b05c42",
+  "inputBlobs": {
+    "sims/lp2_rice_delta_base29_sft.cjs": "f8af9c755f0ed960fd3fb458177a7e1b4da0fd79",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/transcriptions/lp1_wulfic_canonical.txt": "37c96b816495c5f93ca658a01c9918bf92598316",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  },
+  "model": "centered mod29 previous-symbol residual, fold negative -2d-1 / nonnegative 2d, previous=0, EOF29, unary q ones then 0, MSB k-bit remainder",
+  "frame": "positive integer binary 1||payload, minimal base29, no pad",
+  "costs": [
+    8558,
+    4975,
+    3456,
+    3001,
+    3040,
+    3324
+  ],
+  "k": 3,
+  "EOFword": "1110101",
+  "controls": [
+    {
+      "id": "LP1p10",
+      "plain": 192,
+      "bits": 1074,
+      "digits": 222,
+      "ratio": 1.15625,
+      "repeats": 11,
+      "repeatRate": 0.049773755656108594,
+      "mutations": [
+        {
+          "kind": "truncate-one-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "append-zero-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "leading-zero-digit",
+          "status": "nonminimal-or-zero",
+          "samePlain": false
+        },
+        {
+          "kind": "wrong-k",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p11",
+      "plain": 169,
+      "bits": 912,
+      "digits": 188,
+      "ratio": 1.1124260355029585,
+      "repeats": 7,
+      "repeatRate": 0.0374331550802139,
+      "mutations": [
+        {
+          "kind": "truncate-one-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "append-zero-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "leading-zero-digit",
+          "status": "nonminimal-or-zero",
+          "samePlain": false
+        },
+        {
+          "kind": "wrong-k",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p14",
+      "plain": 89,
+      "bits": 474,
+      "digits": 98,
+      "ratio": 1.101123595505618,
+      "repeats": 2,
+      "repeatRate": 0.020618556701030927,
+      "mutations": [
+        {
+          "kind": "truncate-one-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "append-zero-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "leading-zero-digit",
+          "status": "nonminimal-or-zero",
+          "samePlain": false
+        },
+        {
+          "kind": "wrong-k",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP2p56",
+      "plain": 85,
+      "bits": 480,
+      "digits": 99,
+      "ratio": 1.1647058823529413,
+      "repeats": 1,
+      "repeatRate": 0.01020408163265306,
+      "mutations": [
+        {
+          "kind": "truncate-one-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "append-zero-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "leading-zero-digit",
+          "status": "nonminimal-or-zero",
+          "samePlain": false
+        },
+        {
+          "kind": "wrong-k",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP2p57",
+      "plain": 95,
+      "bits": 521,
+      "digits": 108,
+      "ratio": 1.1368421052631579,
+      "repeats": 5,
+      "repeatRate": 0.04672897196261682,
+      "mutations": [
+        {
+          "kind": "truncate-one-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "append-zero-bit",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        },
+        {
+          "kind": "leading-zero-digit",
+          "status": "nonminimal-or-zero",
+          "samePlain": false
+        },
+        {
+          "kind": "wrong-k",
+          "status": "wrong-eof-suffix",
+          "samePlain": false
+        }
+      ]
+    }
+  ],
+  "literary": [
+    {
+      "id": "donor0-native12956",
+      "plain": 12956,
+      "bits": 69688,
+      "digits": 14346,
+      "ratio": 1.1072861994442729,
+      "repeats": 520,
+      "repeatRate": 0.0362495643081213
+    },
+    {
+      "id": "donor0-encoded12956",
+      "plain": 11706,
+      "bits": 62939,
+      "digits": 12956,
+      "ratio": 1.1067828464035538,
+      "repeats": 445,
+      "repeatRate": 0.03434967194133539
+    },
+    {
+      "id": "donor1-native12956",
+      "plain": 12956,
+      "bits": 69678,
+      "digits": 14344,
+      "ratio": 1.107131830811979,
+      "repeats": 506,
+      "repeatRate": 0.035278533082339816
+    },
+    {
+      "id": "donor1-encoded12956",
+      "plain": 11682,
+      "bits": 62934,
+      "digits": 12955,
+      "ratio": 1.1089710665981853,
+      "repeats": 463,
+      "repeatRate": 0.035741855797437085
+    },
+    {
+      "id": "donor2-native12956",
+      "plain": 12956,
+      "bits": 69402,
+      "digits": 14287,
+      "ratio": 1.1027323247916023,
+      "repeats": 495,
+      "repeatRate": 0.03464930701385972
+    },
+    {
+      "id": "donor2-encoded12956",
+      "plain": 11748,
+      "bits": 62939,
+      "digits": 12956,
+      "ratio": 1.1028260129383725,
+      "repeats": 430,
+      "repeatRate": 0.0331918178309533
+    }
+  ],
+  "original": [
+    {
+      "range": [
+        0,
+        2
+      ],
+      "digits": 729,
+      "repeats": 4,
+      "suffixValue": 25,
+      "status": "wrong-eof-suffix",
+      "bits": 3540,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        3,
+        7
+      ],
+      "digits": 1145,
+      "repeats": 6,
+      "suffixValue": 27,
+      "status": "wrong-eof-suffix",
+      "bits": 5561,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        8,
+        14
+      ],
+      "digits": 1729,
+      "repeats": 9,
+      "suffixValue": 126,
+      "status": "wrong-eof-suffix",
+      "bits": 8398,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        15,
+        22
+      ],
+      "digits": 1903,
+      "repeats": 10,
+      "suffixValue": 31,
+      "status": "nonminimal-or-zero"
+    },
+    {
+      "range": [
+        23,
+        26
+      ],
+      "digits": 1021,
+      "repeats": 11,
+      "suffixValue": 43,
+      "status": "wrong-eof-suffix",
+      "bits": 4956,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        27,
+        32
+      ],
+      "digits": 1433,
+      "repeats": 13,
+      "suffixValue": 19,
+      "status": "wrong-eof-suffix",
+      "bits": 6960,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        33,
+        39
+      ],
+      "digits": 1680,
+      "repeats": 12,
+      "suffixValue": 120,
+      "status": "wrong-eof-suffix",
+      "bits": 8161,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        40,
+        53
+      ],
+      "digits": 3008,
+      "repeats": 18,
+      "suffixValue": 0,
+      "status": "nonminimal-or-zero"
+    },
+    {
+      "range": [
+        54,
+        55
+      ],
+      "digits": 308,
+      "repeats": 3,
+      "suffixValue": 115,
+      "status": "wrong-eof-suffix",
+      "bits": 1496,
+      "suffixOK": false
+    },
+    {
+      "range": [
+        0,
+        55
+      ],
+      "digits": 12956,
+      "repeats": 86,
+      "suffixValue": 106,
+      "status": "wrong-eof-suffix",
+      "bits": 62939,
+      "suffixOK": false
+    }
+  ]
+}
