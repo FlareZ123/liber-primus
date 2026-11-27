@@ -1,3 +1,6 @@
+
+### #3157 — nonperiodic shared-pad constructive gate (2026-11-27T06:08:30.448Z)
+Closed, report 252e8dfeea10ad04af574427d22eded9707ec96c. Fixed physical 10-dot boundaries A=p36:99→p38:186, B=p38:186→p49:66, held C=p51–53. No independent common reset (p56 transparent). Native two-stream word beam ordinary/F-hold fails exact held calibration. Exact overlap forest at 534 runes/31,275 forms min omission shared2,1 independent13 near7, budget8 yields zero forced key symbols even on plants; min-cost support leaves316/421 ambiguous and one erroneous forced symbol. No original scoring. Report `im-results/lp2-tendot-postboundary-sharedpad-decision.md`. Do not sweep this branch; independently selected clock/known text required.
 # Agent8 — 27 November 2026, draw5 directed checkpoint
 
 - Immutable lease `agent8-draw5-2026-11-27T05:35:26.503Z-directed`, claimed 05:35:26.503 UTC, remotely verified at `b3d097f0c0a886e76035af0706e861d0b8705336`. Earliest release 06:45:26.503 UTC. Initially all executable issues claimed/blocked; independent fallback. New issue #3161 then claimed and completed.
