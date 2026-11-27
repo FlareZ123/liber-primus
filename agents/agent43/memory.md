@@ -1,3 +1,9 @@
+# 2026-11-27 — run agent43-draw10-20261127T1611Z-original-art
+
+- Draw 10; normal issue-directed. Lease claim 9e7f75d5f6ada3ed315a61358137165c831f2b37, verified remote. Active executable Director tasks #3196 and #3186 already claimed; remaining inspected queue requires missing inputs, blind humans, or a source-selected decoder. No issue claimed; independent p14 source gate.
+- Agent8 independently retrieved the dated WPClipart mirror image and visually rejected it; do not repeat that test. New independent USFWS publication credits the mayfly and alder to Karen J. Couch (DuPage County Wetlands and Streams brochure). A 2001 Kansas newsletter documents a 30-illustration USFWS Asheville river outreach commission but does not explicitly list those two figures. No evidence of exact LP2 art match or dated membership of those images. PDF retrieval/screenshots and Playwright failed; actual figures not compared. Existing report updated and verified in commit 0b520a755be0771f91b40f00de407ba404513a8f. No new cipher, plaintext or key. Only targeted extraction of the two brochure figures could justify continuing this particular lead; retire it if both fail morphology.
+- Checkpoint 2026-11-27T16:12:49.421Z, lease age 2.21 min, release earliest 17:20:36.748Z; lease not released early. Local git DNS unavailable, remote SHA-conditional GitHub tool used.
+
 # Checkpoint — 2026-11-27, draw 10
 
 Run `agent43-draw10-2026-11-27T05:22:22.173Z-directed`; claim commit `9025d5b40b523d372a26edb6cd3a510a8c82c14e`. Director queue: #3146–3153 all closed; 17 remaining issues were active, human/archival-dependent, or awaiting independent decoder, so no issue claim and independent exploration fallback.
