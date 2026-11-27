@@ -1,0 +1,656 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/2013-0-wisdom.txt",
+      "blob": "320257b0db6ee6326ef3fc216c5379c9c91694f3"
+    },
+    {
+      "path": "resources/cicada2014-openpuff-magic-squares.txt",
+      "blob": "0cff0a94f16a8603443619b6338def411c9f7bd5"
+    },
+    {
+      "path": "resources/liber-primus/lp2-grid-256.json",
+      "blob": "2550eae357442912220e05dc51147523a61dd75a"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "blob": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/external/2013-tcp-live-test-vectors.json",
+      "blob": "5f473d569bf27ff603a74ce7d812690aa140e374"
+    }
+  ],
+  "historical": [
+    {
+      "input": 3301,
+      "token": "3QO",
+      "type": "signed example",
+      "decoded": 3301
+    },
+    {
+      "input": 30,
+      "token": "11",
+      "type": "participant log",
+      "decoded": 30
+    },
+    {
+      "input": 1033,
+      "token": "16I",
+      "type": "participant log",
+      "decoded": 1033
+    }
+  ],
+  "sourceEntries": [
+    {
+      "slot": 0,
+      "token": "272",
+      "kind": "decimal",
+      "expected": 272,
+      "decimal": 272,
+      "base29": 1887
+    },
+    {
+      "slot": 1,
+      "token": "138",
+      "kind": "decimal",
+      "expected": 138,
+      "decimal": 138,
+      "base29": 936
+    },
+    {
+      "slot": 2,
+      "token": "ᛋᚻᚪᛞᚩᚹᛋ",
+      "kind": "GP word",
+      "expected": 341,
+      "prime": 341,
+      "zeroRank": 95,
+      "oneRank": 102
+    },
+    {
+      "slot": 3,
+      "token": "131",
+      "kind": "decimal",
+      "expected": 131,
+      "decimal": 131,
+      "base29": 929
+    },
+    {
+      "slot": 4,
+      "token": "151",
+      "kind": "decimal",
+      "expected": 151,
+      "decimal": 151,
+      "base29": 987
+    },
+    {
+      "slot": 5,
+      "token": "ᚫᚦᛖᚱᛠᛚ",
+      "kind": "GP word",
+      "expected": 366,
+      "prime": 366,
+      "zeroRank": 97,
+      "oneRank": 103
+    },
+    {
+      "slot": 6,
+      "token": "ᛒᚢᚠᚠᛖᚱᛋ",
+      "kind": "GP word",
+      "expected": 199,
+      "prime": 199,
+      "zeroRank": 55,
+      "oneRank": 62
+    },
+    {
+      "slot": 7,
+      "token": "ᚢᚩᛁᛞ",
+      "kind": "GP word",
+      "expected": 130,
+      "prime": 130,
+      "zeroRank": 37,
+      "oneRank": 41
+    },
+    {
+      "slot": 8,
+      "token": "ᚳᚪᚱᚾᚪᛚ",
+      "kind": "GP word",
+      "expected": 320,
+      "prime": 320,
+      "zeroRank": 86,
+      "oneRank": 92
+    },
+    {
+      "slot": 9,
+      "token": "18",
+      "kind": "decimal",
+      "expected": 18,
+      "decimal": 18,
+      "base29": 37
+    },
+    {
+      "slot": 10,
+      "token": "226",
+      "kind": "decimal",
+      "expected": 226,
+      "decimal": 226,
+      "base29": 1746
+    },
+    {
+      "slot": 11,
+      "token": "ᚩᛒᛋᚳᚢᚱᚪ",
+      "kind": "GP word",
+      "expected": 245,
+      "prime": 245,
+      "zeroRank": 69,
+      "oneRank": 76
+    },
+    {
+      "slot": 12,
+      "token": "ᚠᚩᚱᛗ",
+      "kind": "GP word",
+      "expected": 91,
+      "prime": 91,
+      "zeroRank": 26,
+      "oneRank": 30
+    },
+    {
+      "slot": 13,
+      "token": "245",
+      "kind": "decimal",
+      "expected": 245,
+      "decimal": 245,
+      "base29": 1803
+    },
+    {
+      "slot": 14,
+      "token": "ᛗᚩᛒᛁᚢᛋ",
+      "kind": "GP word",
+      "expected": 226,
+      "prime": 226,
+      "zeroRank": 65,
+      "oneRank": 71
+    },
+    {
+      "slot": 15,
+      "token": "18",
+      "kind": "decimal",
+      "expected": 18,
+      "decimal": 18,
+      "base29": 37
+    },
+    {
+      "slot": 16,
+      "token": "ᚪᚾᚪᛚᚩᚷ",
+      "kind": "GP word",
+      "expected": 320,
+      "prime": 320,
+      "zeroRank": 86,
+      "oneRank": 92
+    },
+    {
+      "slot": 17,
+      "token": "ᚢᚩᛁᛞ",
+      "kind": "GP word",
+      "expected": 130,
+      "prime": 130,
+      "zeroRank": 37,
+      "oneRank": 41
+    },
+    {
+      "slot": 18,
+      "token": "ᛗᚩᚢᚱᚾᚠᚢᛚ",
+      "kind": "GP word",
+      "expected": 199,
+      "prime": 199,
+      "zeroRank": 57,
+      "oneRank": 65
+    },
+    {
+      "slot": 19,
+      "token": "ᚫᚦᛖᚱᛠᛚ",
+      "kind": "GP word",
+      "expected": 366,
+      "prime": 366,
+      "zeroRank": 97,
+      "oneRank": 103
+    },
+    {
+      "slot": 20,
+      "token": "151",
+      "kind": "decimal",
+      "expected": 151,
+      "decimal": 151,
+      "base29": 987
+    },
+    {
+      "slot": 21,
+      "token": "131",
+      "kind": "decimal",
+      "expected": 131,
+      "decimal": 131,
+      "base29": 929
+    },
+    {
+      "slot": 22,
+      "token": "ᚳᚪᛒᚪᛚ",
+      "kind": "GP word",
+      "expected": 341,
+      "prime": 341,
+      "zeroRank": 90,
+      "oneRank": 95
+    },
+    {
+      "slot": 23,
+      "token": "138",
+      "kind": "decimal",
+      "expected": 138,
+      "decimal": 138,
+      "base29": 936
+    },
+    {
+      "slot": 24,
+      "token": "272",
+      "kind": "decimal",
+      "expected": 272,
+      "decimal": 272,
+      "base29": 1887
+    }
+  ],
+  "sourceSummary": {
+    "numericCells": 12,
+    "distinctNumerals": 7,
+    "decimalMatches": 12,
+    "base29Matches": 0,
+    "firstRowDistinctFit": [
+      "272",
+      "138",
+      "131",
+      "151"
+    ],
+    "heldDistinctNumerals": [
+      "18",
+      "226",
+      "245"
+    ],
+    "runeCells": 13,
+    "distinctRuneWords": 11,
+    "primeMatches": 13,
+    "zeroRankMatches": 0,
+    "oneRankMatches": 0
+  },
+  "original": {
+    "prose": [
+      {
+        "page": 10,
+        "token": "7",
+        "decimal": 7,
+        "base29": 7
+      },
+      {
+        "page": 36,
+        "token": "1",
+        "decimal": 1,
+        "base29": 1
+      },
+      {
+        "page": 37,
+        "token": "2",
+        "decimal": 2,
+        "base29": 2
+      },
+      {
+        "page": 37,
+        "token": "3",
+        "decimal": 3,
+        "base29": 3
+      },
+      {
+        "page": 37,
+        "token": "4",
+        "decimal": 4,
+        "base29": 4
+      },
+      {
+        "page": 38,
+        "token": "5",
+        "decimal": 5,
+        "base29": 5
+      }
+    ],
+    "gridCells": 256,
+    "asciiNumeralCells": 42,
+    "leadingZeroNumericCells": 5,
+    "base29Legal": 132,
+    "base29Illegal": 124,
+    "sharedLiteralTokens": [
+      {
+        "page": 51,
+        "cell": 19,
+        "token": "18",
+        "decimal": 18,
+        "base29": 37,
+        "radix60": 68
+      },
+      {
+        "page": 51,
+        "cell": 40,
+        "token": "18",
+        "decimal": 18,
+        "base29": 37,
+        "radix60": 68
+      }
+    ]
+  },
+  "hybrid": {
+    "59": {
+      "distinctValues": 143,
+      "collisionClasses": 18,
+      "ambiguousPositions": 51,
+      "fixedInventoryPreimages": "226748160",
+      "fixedInventoryBits": 27.75651560282008,
+      "collisions": [
+        {
+          "value": 13,
+          "spellings": {
+            "13": 1,
+            "0D": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 15,
+          "spellings": {
+            "15": 1,
+            "0F": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 16,
+          "spellings": {
+            "16": 1,
+            "0G": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 18,
+          "spellings": {
+            "18": 2,
+            "0I": 2
+          },
+          "fixedInventoryPreimages": "6"
+        },
+        {
+          "value": 19,
+          "spellings": {
+            "19": 1,
+            "0J": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 20,
+          "spellings": {
+            "20": 1,
+            "0K": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 21,
+          "spellings": {
+            "21": 2,
+            "0L": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 22,
+          "spellings": {
+            "22": 2,
+            "0M": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 25,
+          "spellings": {
+            "25": 1,
+            "0P": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 28,
+          "spellings": {
+            "28": 1,
+            "0S": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 33,
+          "spellings": {
+            "33": 2,
+            "0X": 3
+          },
+          "fixedInventoryPreimages": "10"
+        },
+        {
+          "value": 34,
+          "spellings": {
+            "34": 2,
+            "0Y": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 36,
+          "spellings": {
+            "36": 1,
+            "0a": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 39,
+          "spellings": {
+            "39": 2,
+            "0d": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 40,
+          "spellings": {
+            "40": 1,
+            "0e": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 45,
+          "spellings": {
+            "45": 1,
+            "0k": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 46,
+          "spellings": {
+            "46": 1,
+            "0l": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 48,
+          "spellings": {
+            "48": 2,
+            "0n": 1
+          },
+          "fixedInventoryPreimages": "3"
+        }
+      ]
+    },
+    "60": {
+      "distinctValues": 143,
+      "collisionClasses": 18,
+      "ambiguousPositions": 53,
+      "fixedInventoryPreimages": "604661760",
+      "fixedInventoryBits": 29.171553102098922,
+      "collisions": [
+        {
+          "value": 13,
+          "spellings": {
+            "13": 1,
+            "0D": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 15,
+          "spellings": {
+            "15": 1,
+            "0F": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 16,
+          "spellings": {
+            "16": 1,
+            "0G": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 18,
+          "spellings": {
+            "18": 2,
+            "0I": 2
+          },
+          "fixedInventoryPreimages": "6"
+        },
+        {
+          "value": 19,
+          "spellings": {
+            "19": 1,
+            "0J": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 20,
+          "spellings": {
+            "20": 1,
+            "0K": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 21,
+          "spellings": {
+            "21": 2,
+            "0L": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 22,
+          "spellings": {
+            "22": 2,
+            "0M": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 25,
+          "spellings": {
+            "25": 1,
+            "0P": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 28,
+          "spellings": {
+            "28": 1,
+            "0S": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 33,
+          "spellings": {
+            "33": 2,
+            "0X": 3
+          },
+          "fixedInventoryPreimages": "10"
+        },
+        {
+          "value": 34,
+          "spellings": {
+            "34": 2,
+            "0Y": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 36,
+          "spellings": {
+            "36": 1,
+            "0a": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 39,
+          "spellings": {
+            "39": 2,
+            "0d": 1
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 40,
+          "spellings": {
+            "40": 1,
+            "0e": 1
+          },
+          "fixedInventoryPreimages": "2"
+        },
+        {
+          "value": 46,
+          "spellings": {
+            "46": 1,
+            "0k": 2
+          },
+          "fixedInventoryPreimages": "3"
+        },
+        {
+          "value": 47,
+          "spellings": {
+            "47": 2,
+            "0l": 2
+          },
+          "fixedInventoryPreimages": "6"
+        },
+        {
+          "value": 49,
+          "spellings": {
+            "49": 3,
+            "0n": 1
+          },
+          "fixedInventoryPreimages": "4"
+        }
+      ]
+    }
+  }
+}
