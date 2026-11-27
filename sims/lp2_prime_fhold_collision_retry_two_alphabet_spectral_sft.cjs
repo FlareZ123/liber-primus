@@ -176,6 +176,9 @@ function study(data,job){
    return{records,best:best?evaluate(best.A,best.B):null,oracle:truth?evaluate(truthA,truthB):null}
  }
  const tape=corpus.pages.slice(0,56).flatMap(p=>p.indices),rows=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
+ if(job.prefilterControl!==undefined){
+ const j=job.prefilterControl,settings=[[0,30000,137],[0,145000,911],[1,2500,1703],[1,30000,3200]], [donor,offset,o]=settings[j];assert(origin===o,'origin mismatch');let x=(0x27112800+j)>>>0;const rnd=()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return x>>>0},rng=()=>rnd()/4294967296;const draw=fix0=>{const a=id.slice();for(let i=28;i>(fix0?1:0);i--){const k=(fix0?1:0)+rnd()%(i+(fix0?0:1));[a[i],a[k]]=[a[k],a[i]]}return a};const A=draw(true),B=draw(false),P=gp(donor?gibran:shakespeare).slice(offset,offset+12956),truth=starts.slice(0,-1).map((a,i)=>P.slice(a,starts[i+1]));assert(P.length===12956,'control length');const planted=truth.map(p=>encrypt(p,A,B,rng)),C=planted.map(z=>z.C);return {job,origin,trueSkips:planted.map(z=>z.skip),trueHolds:planted.map(z=>z.holds),repeats:C.map(c=>c.filter((z,i)=>i&&z===c[i-1]).length),result:run(C,truth,A,B)};
+ }
  if(job.control===undefined)return{job,model:'Known selected prime-origin chapter reset, arbitrary common alpha/beta, optional single collision-only retry with rho=.81; literal F hold',result:run(rows)};
  const j=job.control,P=(j?gp(gibran):gp(shakespeare)).slice(j?5000:60000,(j?5000:60000)+12956),rng=random(0x27112790+j),A=perm(rng,true),B=perm(rng,false),truth=starts.slice(0,-1).map((x,i)=>P.slice(x,starts[i+1]));assert(P.length===12956,'control length');
  const planted=truth.map(p=>encrypt(p,A,B,rng)),C=planted.map(x=>x.C);for(let i=0;i<C.length;i++)assert(replay(truth[i],A,B,planted[i].moves).join()===C[i].join(),'plant replay');
