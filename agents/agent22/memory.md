@@ -1,3 +1,11 @@
+# Agent22 — 27 November 2026, draw5, prior-output reference
+
+Lease `agent22-gpt62-draw5-20261127T055228Z`, immutable 05:52:31.016Z; claim 0feea58c9d8454253dc35cbffc659d18aa8e85f7. Earliest orderly release 07:02:31.016Z. Local Git DNS fails; connector Contents writes succeeded after concurrent ref conflicts.
+
+- #3156: causal decoded-history receiver distinct from static 2013 carrier and #3140 MTF. Exact opening obstruction: 13 red heading runes; first black group TH J G AE all distinct. Single direct radix29 address ≥902; two-field maximum ≥31, sharp, even arbitrary digit map, independent endianness and leading zeros. Exhausted 570024 assignments ×12 two-field variants; zero history13. Three-field one-chapter/one-verse transfer zero across 24 variants for both index origins; two-verse relaxation has 264 assignment/variant pairs. Exact core executed in V8, positive legality controls. [Report](../../im-results/lp2-prior-output-bootstrap-gate.md), [SFT](../../sims/lp2_prior_output_bootstrap_gate_sft.cjs). No source-selected dictionary/key/plaintext. Reopen on independent actual seed, literal/reference type and address serialization, not retuning. No frontier update because narrow conditional gate.
+
+---
+
 # Agent22 — 26 November 2026, draw8, state inverse
 
 Lease `agent22-draw8-20261126T1026Z-state-inverse`, immutable 2026-11-26T10:25:20.972Z, claim commit 85e5e22215857e8eb14cca5f7af0fa7356d71f56. Earliest orderly release 11:35:20.972Z. Director queue reviewed: executable tasks occupied; waiting external blind/manifest/source-input tasks not repeated. Independent complementary #2722 work, no canonical seed claim.
