@@ -69,22 +69,22 @@ This matters because `5181401` is superficially attractive as a numeric key. The
 
 The recovered AutoIt source records a screen coordinate on F1, samples RGB values 100 pixels to the left and right, moves/clicks toward one side according to the summed RGB difference, and stops on F2. It contains no runes, key material, LP2 filenames, hashes, page numbers, onion strings, or first-party data. It is a participant convenience script and has no cryptanalytic consequence.
 
-## Dead endpoints
+## Dead endpoints and exact-context disposition
 
-The seven unavailable targets are useful negatives because their period descriptions are more source-specific than generic paste links:
+The seven unavailable targets are endpoint negatives, but the pinned IRC context now resolves the two Sprunge items that initially looked source-significant:
 
-- **`iQUB`** is the most interesting missing object: Nem0 said a link to it was present in `n.jpg`. Current HTTP and HTTPS Sprunge both return the same 404 body. A historical exact capture could reveal an image-embedded source operand, so recovery remains worthwhile if an archive with that exact ID is found.
-- **`YJdG`** was described by Nem0 as exact onion `index.html` content. Both Sprunge schemes now 404. It may duplicate already preserved onion material, but only the bytes can decide.
-- **`Hjmq1HCfpg`** (Titanpad), **`CO4O`** (dpaste), **`Yg2u7HNw` / `7AvbevYe`** (Pastebin script/output pair), and **`CCZP1WkY`** (message encrypted *for* Cicada) are unavailable at the exact current endpoints. `CO4O` now redirects to a parked-domain sale page, which is not historical content.
+- **`iQUB` is not an LP2 source lead.** In the exact ±12-line context at `#cicadasolvers.freenode.log:210760`, Nem0 is discussing a separate community/PM puzzle which he calls a “ridiculous boring” chain of Caesar/base32/base64 links. He says he and Schizoid had already solved it to a **450 MB PNG on Reddit**, calls such linked puzzles/false sidetracks “not worth spending a single thought on”, and only then explains that `n.jpg` has `http://sprunge.us/iQUB` “in the hex”. The following lines decode another sendspace URL and discuss a WAV spectrogram. This object is third-party sidetrack material, not recovered Cicada/LP2 source evidence.
+- **`YJdG` is a copy of the already-known Stage11 index, not an unknown companion page.** At `#cicadasolvers.freenode.log:219445`, a participant asks whether apparent `../htmls/` and `../Z` directories from Onion7 were omitted. Nem0 answers that Wikia mangled the HTML, then says: “onion had exactly an index.html with this content http://sprunge.us/YJdG”; the IRC title bot reports **`133`**, and Nem0 immediately adds “no further subdirs, at least not linked or anything at all”. The independently recovered May paste `TJBzPtKr` and surviving original source already preserve that Stage11 `title=133`, `div id=331`, 58-image index. Recovering `YJdG` could still compare newline/paste formatting, but it no longer represents a missing semantic operand.
+- **`Hjmq1HCfpg`** (Titanpad), **`CO4O`** (dpaste), **`Yg2u7HNw` / `7AvbevYe`** (Pastebin script/output pair), and **`CCZP1WkY`** (message encrypted *for* Cicada) remain unavailable at the exact current endpoints. `CO4O` now redirects to a parked-domain sale page, which is not historical content.
 
-These failures are endpoint negatives, not claims that no archive copy exists.
+The context extraction is reproduced by [`sims/lp2_2014_irc_highvalue_context.cjs`](../sims/lp2_2014_irc_highvalue_context.cjs), Windows Node22 run **45917259889** against the pinned original IRC Git blobs.
 
 ## Decision
 
 This bounded acquisition produced one strong first-party-copy provenance result and four exact participant artifacts, but **no new authenticated operand**:
 
-1. Stage11 `133/331` is independently preserved in a May 2014 paste, yet the paste is text-identical to the surviving source after newline normalization and adds no operation.
+1. Stage11 `133/331` is independently preserved in a May 2014 paste, yet the paste is text-identical to the surviving source after newline normalization and adds no operation. The later dead `YJdG` paste is explicitly described in-period as that same Onion7 index, not a hidden directory or companion instruction.
 2. The md5crypt ordering, Wind numeric key, Wind gibberish, and AutoIt code are solver/community material without first-party selection.
-3. The two potentially source-significant missing Sprunge objects (`iQUB`, `YJdG`) remain the only items in this batch worth exact-archive recovery; neither justifies guessing its content.
+3. The dead `iQUB` URL is now explicitly classified as a third-party false-sidetrack object from the surrounding IRC conversation. It should not be pursued as an LP2 operand.
 
-No new cipher sweep or successor issue is justified from the five live recoveries. If future work revisits this batch, it should be a **source-acquisition** task for the exact dead `iQUB` or `YJdG` objects, not a receiver search over the recovered solver data.
+No new cipher sweep or successor issue is justified from this batch. Exact archival copies of the remaining dead URLs may still be useful for historical completeness, but **none currently has a source-derived path to LP2 plaintext or key material**. Reopen cryptanalytic work only if an archived object contradicts the period context or supplies new first-party-authenticated information.
