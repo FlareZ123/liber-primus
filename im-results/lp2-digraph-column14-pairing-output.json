@@ -1,0 +1,1131 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ],
+  "width": 14,
+  "originals": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "length": 729,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 666,
+          "at": 61552,
+          "windows": 61765
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 588,
+          "at": 217127,
+          "windows": 320600
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 548,
+          "at": 122821,
+          "windows": 216379
+        }
+      ],
+      "nativeFloor": 548,
+      "fits": [
+        {
+          "n": 728,
+          "rows": 52,
+          "tail": 1,
+          "layout": "row",
+          "exactMax": 260,
+          "relaxedMax": 272,
+          "matchings": 135135,
+          "exactOrientationChecks": 5632,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              3
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              5,
+              9
+            ],
+            [
+              7,
+              12
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        },
+        {
+          "n": 728,
+          "rows": 52,
+          "tail": 1,
+          "layout": "column",
+          "exactMax": 258,
+          "relaxedMax": 278,
+          "matchings": 135135,
+          "exactOrientationChecks": 25920,
+          "tiesModuloGlobalReverse": 3,
+          "pairs": [
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              9,
+              10
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "length": 1145,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 1750,
+          "at": 43997,
+          "windows": 61359
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 1550,
+          "at": 219734,
+          "windows": 320194
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 1392,
+          "at": 199717,
+          "windows": 215973
+        }
+      ],
+      "nativeFloor": 1392,
+      "fits": [
+        {
+          "n": 1134,
+          "rows": 81,
+          "tail": 11,
+          "layout": "row",
+          "exactMax": 544,
+          "relaxedMax": 576,
+          "matchings": 135135,
+          "exactOrientationChecks": 22016,
+          "tiesModuloGlobalReverse": 2,
+          "pairs": [
+            [
+              0,
+              7
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              12,
+              2
+            ],
+            [
+              3,
+              9
+            ],
+            [
+              11,
+              4
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              10,
+              6
+            ]
+          ]
+        },
+        {
+          "n": 1134,
+          "rows": 81,
+          "tail": 11,
+          "layout": "column",
+          "exactMax": 554,
+          "relaxedMax": 580,
+          "matchings": 135135,
+          "exactOrientationChecks": 14016,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              10
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              13,
+              6
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              12,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "length": 1729,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 4226,
+          "at": 47460,
+          "windows": 60771
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 3656,
+          "at": 39850,
+          "windows": 319606
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 3490,
+          "at": 197096,
+          "windows": 215385
+        }
+      ],
+      "nativeFloor": 3490,
+      "fits": [
+        {
+          "n": 1722,
+          "rows": 123,
+          "tail": 7,
+          "layout": "row",
+          "exactMax": 1092,
+          "relaxedMax": 1126,
+          "matchings": 135135,
+          "exactOrientationChecks": 11200,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              12
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              13,
+              2
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              10
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        },
+        {
+          "n": 1722,
+          "rows": 123,
+          "tail": 7,
+          "layout": "column",
+          "exactMax": 1090,
+          "relaxedMax": 1140,
+          "matchings": 135135,
+          "exactOrientationChecks": 28416,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              12,
+              4
+            ],
+            [
+              6,
+              9
+            ],
+            [
+              7,
+              10
+            ],
+            [
+              11,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "length": 1903,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 5026,
+          "at": 367,
+          "windows": 60603
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 4352,
+          "at": 39850,
+          "windows": 319438
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 4232,
+          "at": 138633,
+          "windows": 215217
+        }
+      ],
+      "nativeFloor": 4232,
+      "fits": [
+        {
+          "n": 1890,
+          "rows": 135,
+          "tail": 13,
+          "layout": "row",
+          "exactMax": 1336,
+          "relaxedMax": 1378,
+          "matchings": 135135,
+          "exactOrientationChecks": 9408,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              6
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              8,
+              7
+            ],
+            [
+              11,
+              9
+            ],
+            [
+              10,
+              12
+            ]
+          ]
+        },
+        {
+          "n": 1890,
+          "rows": 135,
+          "tail": 13,
+          "layout": "column",
+          "exactMax": 1334,
+          "relaxedMax": 1344,
+          "matchings": 135135,
+          "exactOrientationChecks": 11456,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              13,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              9,
+              12
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "length": 1021,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 1378,
+          "at": 61478,
+          "windows": 61485
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 1198,
+          "at": 279627,
+          "windows": 320320
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 1092,
+          "at": 199759,
+          "windows": 216099
+        }
+      ],
+      "nativeFloor": 1092,
+      "fits": [
+        {
+          "n": 1008,
+          "rows": 72,
+          "tail": 13,
+          "layout": "row",
+          "exactMax": 438,
+          "relaxedMax": 460,
+          "matchings": 135135,
+          "exactOrientationChecks": 18560,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              13
+            ],
+            [
+              1,
+              7
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              9,
+              8
+            ],
+            [
+              12,
+              11
+            ]
+          ]
+        },
+        {
+          "n": 1008,
+          "rows": 72,
+          "tail": 13,
+          "layout": "column",
+          "exactMax": 428,
+          "relaxedMax": 444,
+          "matchings": 135135,
+          "exactOrientationChecks": 3520,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              13,
+              4
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              9,
+              6
+            ],
+            [
+              7,
+              10
+            ],
+            [
+              12,
+              11
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "length": 1433,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 2824,
+          "at": 47824,
+          "windows": 61065
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 2526,
+          "at": 40296,
+          "windows": 319900
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 2398,
+          "at": 199379,
+          "windows": 215679
+        }
+      ],
+      "nativeFloor": 2398,
+      "fits": [
+        {
+          "n": 1428,
+          "rows": 102,
+          "tail": 5,
+          "layout": "row",
+          "exactMax": 804,
+          "relaxedMax": 842,
+          "matchings": 135135,
+          "exactOrientationChecks": 22464,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              7
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              9,
+              13
+            ]
+          ]
+        },
+        {
+          "n": 1428,
+          "rows": 102,
+          "tail": 5,
+          "layout": "column",
+          "exactMax": 802,
+          "relaxedMax": 846,
+          "matchings": 135135,
+          "exactOrientationChecks": 6336,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              11
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              7,
+              13
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "length": 1680,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 4014,
+          "at": 47351,
+          "windows": 60813
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 3478,
+          "at": 40036,
+          "windows": 319648
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 3332,
+          "at": 197096,
+          "windows": 215427
+        }
+      ],
+      "nativeFloor": 3332,
+      "fits": [
+        {
+          "n": 1680,
+          "rows": 120,
+          "tail": 0,
+          "layout": "row",
+          "exactMax": 1064,
+          "relaxedMax": 1094,
+          "matchings": 135135,
+          "exactOrientationChecks": 11072,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              7,
+              11
+            ]
+          ]
+        },
+        {
+          "n": 1680,
+          "rows": 120,
+          "tail": 0,
+          "layout": "column",
+          "exactMax": 1088,
+          "relaxedMax": 1126,
+          "matchings": 135135,
+          "exactOrientationChecks": 16000,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              10
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              11,
+              6
+            ],
+            [
+              13,
+              7
+            ],
+            [
+              12,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "length": 3008,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 12680,
+          "at": 46697,
+          "windows": 59497
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 11540,
+          "at": 38720,
+          "windows": 318332
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 11102,
+          "at": 195827,
+          "windows": 214111
+        }
+      ],
+      "nativeFloor": 11102,
+      "fits": [
+        {
+          "n": 2996,
+          "rows": 214,
+          "tail": 12,
+          "layout": "row",
+          "exactMax": 3110,
+          "relaxedMax": 3206,
+          "matchings": 135135,
+          "exactOrientationChecks": 15616,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              11
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              6,
+              12
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        },
+        {
+          "n": 2996,
+          "rows": 214,
+          "tail": 12,
+          "layout": "column",
+          "exactMax": 3066,
+          "relaxedMax": 3148,
+          "matchings": 135135,
+          "exactOrientationChecks": 9152,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              10,
+              8
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "length": 308,
+      "refs": [
+        {
+          "name": "resources/control/gibran_prophet_58585.txt",
+          "min": 82,
+          "at": 630,
+          "windows": 62185
+        },
+        {
+          "name": "resources/control/emerson_essays_2944.txt",
+          "min": 68,
+          "at": 36590,
+          "windows": 321020
+        },
+        {
+          "name": "resources/control/shakespeare_first300k.txt",
+          "min": 66,
+          "at": 153289,
+          "windows": 216799
+        }
+      ],
+      "nativeFloor": 66,
+      "fits": [
+        {
+          "n": 308,
+          "rows": 22,
+          "tail": 0,
+          "layout": "row",
+          "exactMax": 86,
+          "relaxedMax": 90,
+          "matchings": 135135,
+          "exactOrientationChecks": 2752,
+          "tiesModuloGlobalReverse": 2,
+          "pairs": [
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              12,
+              2
+            ],
+            [
+              13,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              7,
+              8
+            ],
+            [
+              11,
+              10
+            ]
+          ]
+        },
+        {
+          "n": 308,
+          "rows": 22,
+          "tail": 0,
+          "layout": "column",
+          "exactMax": 70,
+          "relaxedMax": 80,
+          "matchings": 135135,
+          "exactOrientationChecks": 17344,
+          "tiesModuloGlobalReverse": 1,
+          "pairs": [
+            [
+              0,
+              9
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              13,
+              7
+            ],
+            [
+              11,
+              10
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "seed": 335554817,
+      "layout": "column",
+      "truth": 13318,
+      "fit": {
+        "n": 2996,
+        "rows": 214,
+        "tail": 0,
+        "layout": "column",
+        "exactMax": 13318,
+        "relaxedMax": 13318,
+        "matchings": 135135,
+        "exactOrientationChecks": 1472,
+        "tiesModuloGlobalReverse": 1,
+        "pairs": [
+          [
+            0,
+            13
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            9,
+            6
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            10,
+            8
+          ]
+        ]
+      },
+      "recoveredUnorderedPairing": true,
+      "recoveredOrientedPairingUpToGlobalReverse": true,
+      "knownFullKeyRecoveredRunes": 2996
+    },
+    {
+      "seed": 335554818,
+      "layout": "row",
+      "truth": 14658,
+      "fit": {
+        "n": 2996,
+        "rows": 214,
+        "tail": 0,
+        "layout": "row",
+        "exactMax": 14658,
+        "relaxedMax": 14658,
+        "matchings": 135135,
+        "exactOrientationChecks": 1152,
+        "tiesModuloGlobalReverse": 1,
+        "pairs": [
+          [
+            0,
+            1
+          ],
+          [
+            6,
+            2
+          ],
+          [
+            3,
+            13
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            5,
+            9
+          ],
+          [
+            7,
+            10
+          ],
+          [
+            11,
+            8
+          ]
+        ]
+      },
+      "recoveredUnorderedPairing": true,
+      "recoveredOrientedPairingUpToGlobalReverse": true,
+      "knownFullKeyRecoveredRunes": 2996
+    }
+  ]
+}
