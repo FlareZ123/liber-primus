@@ -1,0 +1,18 @@
+{
+  "mode": "original",
+  "start": 1,
+  "end": 2,
+  "period": 8,
+  "dictionary": 23689,
+  "rows": [
+    {
+      "name": "p3-7",
+      "start": 0,
+      "end": 0,
+      "scored": 0,
+      "best": null,
+      "rows": []
+    }
+  ],
+  "seed": "0x47a8c8"
+}
