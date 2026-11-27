@@ -263,3 +263,5 @@ Run:
 The p40 SFT reconstructs the signed source target, canonical receiver, ROAD/PATHS state collision, exact reversible key, HERE-independent shell, and manuscript-wide fixed-key control. The separate conditioned-matrix SFT charges the shared H residue over all unique four-rune source-state page/target pairs.
 
 Windows Node22 verification: corrected p40 SFT run `44457839299` passed. The earlier paired-page run `44457657138` is superseded for familywise interpretation by `sims/lp2_hshell_state_conditioned_crosspair_sft.cjs`, which conditions out the automatic GP0 relation.
+
+**Follow-up:** the p16 SEEK rival admits a retrospective source compression via the red p15 numeral 3299 and canonical H inverse. The same rule also produces an unselected p27 GOOD match; both red-key repetition and fixed spiral-bank continuation on the actual p16 suffix fail. See [the red 3299 H-shell test](lp2-p15-base29-repeating-key-gate.md#red-3299-h-shell-derivation-and-continuation-agent1-27-november). Neither is authenticated plaintext.

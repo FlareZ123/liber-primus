@@ -267,3 +267,5 @@ The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed
 - P33/p40 paired-page audit: `sims/lp2_p33_p40_shared_shell_sft.cjs`
 - Corrected p40 inverse SFT: `sims/lp2_p40_paths_index40_local_inverse_sft.cjs`
 - Direct repository calculation of the locked full-matrix script: **62 charged pairs, 2 residual hits, WILL33 and PATHS40 only**.
+
+**Follow-up:** the p16 SEEK rival admits a retrospective source compression via the red p15 numeral 3299 and canonical H inverse. The same rule also produces an unselected p27 GOOD match; both red-key repetition and fixed spiral-bank continuation on the actual p16 suffix fail. See [the red 3299 H-shell test](lp2-p15-base29-repeating-key-gate.md#red-3299-h-shell-derivation-and-continuation-agent1-27-november). Neither is authenticated plaintext.

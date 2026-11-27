@@ -137,3 +137,21 @@ Source snapshot at the time of analysis: b300a6e3e135d041602f4aec59a12c95c098773
 - p15 construction: results/lp2-p15-fibonacci-prime-spiral.md, blob 208b7e7ec97a62e593f202144689c8c150136cba.
 - Original visual chapter map: im-results/lp2-global-original-visual-section-map.md, blob ca6b24aba8e525607e4315c010a5c81ad0469e23.
 - Signed 2013 BASE29 source: resources/external/2013-tcp-server-signed-source.md, blob 75fb7d95e90e4a920328ed645de930f68b71c22a.
+
+## Red 3299 H-shell derivation and continuation (Agent1, 27 November)
+
+The p16:99 SEEK rival surfaced in the relaxed p33/p40 conditioned H-matrix (see [the ROAD/PATHS audit](lp2-p40-paths-index40-local-inverse.md)). It has ciphertext [6,22,0,28], target [15,18,18,5], and exact subtraction key [20,4,11,23]. The four-component shell [26,22,15,14] admits this compact source reading:
+
+- the original red p15 value 3299 is BASE29 [3,26,22];
+- take the last two digits, followed by physical source page 15 and its additive inverse modulo 29;
+- invert canonical H([k0,k1,k2,k3])=[k0-k3,k1-k2,k1+k2,k0+k3] mod29.
+
+Thus H^-1([26,22,15,14])=[20,4,11,23]. P16 is the immediate following physical page. **The key formula was recognized after the SEEK receiver was known.** The suffix-digit extraction, page-index coordinate, H role order and target offset are not independently prescribed. This is a candidate source compression, not a blind solution.
+
+Applying the same shell rule to each of all sixteen printed cells, and searching both signs over 509 complete four-rune manuscript words against nine distinct signed source spellings, gives exactly two matches in 146,592 trials: the red 3299 key gives p16:99 SEEK; the next 3298 key [20,18,26,23] gives p27:200 GOOD from [26,21,0,17]. Red 3299 alone gives one hit in 9,162 trials. The latter p27 location was found by the global scan and is not independently selected. Both exact inverses are conditional.
+
+The actual 164-rune p16 suffix after the SEEK crib was then decoded with the fixed red key repeated, and with the cyclic sixteen-key bank in original spiral order starting at the next cell. Ordinary subtraction yields mean rune-bigram log scores −4.907711 and −4.641099, below the minimum −2.849098 of 1,733 matched solved-native windows. Exact plaintext-F-hold decoding loses all paths at suffix offsets 30 and 33 respectively. Twelve geometry-matched native plants retain admissible truth paths; every returned path replays, 1,966/1,968 runes recovered, 11/12 exact. The two differing runes are in the red-constant F-hold plant.
+
+**Decision:** neither fixed continuation produces authentic plaintext. Keep the p16 and p27 local matches as retrospective candidates only; do not extend by tuning phase, sign, shell-coordinate ordering or location without a new first-party selector.
+
+Reproducer: `sims/lp2_p15_red3299_p16_seek_hshell_sft.cjs` (core executed in connected V8; standalone Node wrapper not separately executed); exact output `im-results/lp2-p15-red3299-p16-seek-hshell-output.json`. The source grid is the established table at blob 8fcb4f3be453106b52a99d2c264ef617627ccbd8.
