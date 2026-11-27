@@ -11,6 +11,8 @@
         "score": -2.2339523018718612,
         "maxStates": 1,
         "paths": "1",
+        "clipped": false,
+        "exactStatus": "SAT",
         "accuracy": 4956,
         "replay": true
       },
@@ -180,9 +182,14 @@
       "held": 4956,
       "matches": 4956,
       "decoded": {
-        "status": "UNKNOWN",
-        "dead": 1046,
-        "maxStates": 293969
+        "status": "SAT",
+        "score": -2.232842806403831,
+        "maxStates": 8001,
+        "paths": "1428480",
+        "clipped": true,
+        "exactStatus": "UNKNOWN",
+        "accuracy": 4952,
+        "replay": true
       },
       "keyMatches": {
         "S": 29,
@@ -350,6 +357,8 @@
         "score": -2.2339523018718612,
         "maxStates": 1,
         "paths": "1",
+        "clipped": false,
+        "exactStatus": "SAT",
         "accuracy": 4956,
         "replay": true
       },
@@ -508,6 +517,8 @@
         "score": -2.232396400618775,
         "maxStates": 64,
         "paths": "229081502538083464525950070114782777687545655389155804881263372984647680000000",
+        "clipped": false,
+        "exactStatus": "SAT",
         "accuracy": 4949,
         "replay": true
       },
