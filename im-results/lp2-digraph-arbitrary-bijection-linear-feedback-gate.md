@@ -62,4 +62,26 @@ The Cauchy–Schwarz lower bound alone excludes any fixed 256-symbol (octet) res
 - [Exact raw results and source blob pins](lp2-digraph-arbitrary-bijection-linear-feedback-output.json).
 - Executed the projective core and exact opening support enumeration in connected V8; standalone Node wrapper not separately executed. Exact direct residual computations check the projective search. One concurrent Contents write conflict on the opening support extension was retried successfully.
 
-Retire this stationary arbitrary-digraph-plus-linear-ciphertext-feedback family for the tested native-English and octet registers. The result does not exclude plaintext-feedback inside π, arbitrary nonlinear or changing feedback, alternate segmentation or independent missing state. Do not promote the exploratory p50 motivation to an author instruction. The projective incidence method is reusable for exact matrix inference if another source-constrained architecture reduces to residual equality. The authoritative plaintext frontier is unchanged.
+Retire this stationary arbitrary-digraph-plus-linear-ciphertext-feedback family for the tested native-English and octet registers. The result does not exclude plaintext-feedback inside π, arbitrary nonlinear or changing feedback, alternate segmentation or independent missing state. Do not promote the exploratory p50 motivation to an author instruction. The projective incidence method is reusable for exact matrix inference if another source-constrained architecture reduces to residual equality. The authoritative plaintext frontier is unchanged. The source-motivated ordinary-clock periodic extensions are also negative (below).
+
+## Authentic-key-length periodic extension: all matrices and all permutations per lane
+
+The two authentic LP1 additive keys have 8 and 13 runes; in a fixed all-consuming pair clock these imply periods 4 and 13 blocks, respectively. This is a distinct generalization of the stationary model, not an arbitrary period sweep. Grant every lane r=i mod q its own entirely independent A_r and arbitrary bijection π_r. The previous projective search applies separately to the observed transitions in each lane; importantly the predecessor remains the immediately previous **original** ciphertext pair, not the previous pair in the lane. Allow all 707,281 matrices in each lane and both global pair alignments. Any phase-dependent additive key is absorbed into π_r. The phase origin is immaterial because all lane keys are free. This is an ordinary-consuming exploratory receiver; literal-F held clocks are not included.
+
+| Pair period | Original phase 0 pooled maximum | Original phase 1 pooled maximum | Smallest pooled native rate | Largest individual original rate | Smallest individual native rate | Minimum all-matrix support bound across all lanes |
+|---:|---:|---:|---:|---:|---:|---:|
+| 4 | .0013545893 | .0013454642 | .0052573099 | .0013689416 | .0049733885 | 504 |
+| 13 | .0017413088 | .0017263175 | .0052512509 | .0018832846 | .0043958530 | 258 |
+
+Pooled means sum of exact ordered collisions divided by sum of eligible ordered comparisons within lanes. Both the pooled and individual comparisons use the same 33 Shakespeare and 8 Gibran native windows and exact phase geometry as above. Since even the best individual original rate is below every matched native lane, no fitted combination of independent lane permutations can recover that reference register. The support bound is stronger and language-independent: **all** matrices in **every** lane require more than 256 distinct residual symbols, even at period13.
+
+Positive controls use independently randomized 841-element lane permutations and matrices on contiguous native windows beginning at donor offset6400, infer the matrices on first 4,860 blocks, and freeze them on remaining 1,618 blocks:
+
+| Pair period | Donor | Matrices uniquely recovered | Held plaintext with oracle lane permutations | Held pooled rate |
+|---:|---|---:|---:|---:|
+| 4 | Shakespeare | 4/4 | 1618/1618 | .0058909666 |
+| 13 | Gibran | 13/13 | 1618/1618 | .0077191085 |
+
+The arbitrary lane substitutions are not recovered blindly. These controls establish recovery of the linear feedback component, not a complete blind plaintext inverse. No unknown-page key or plaintext emerged.
+
+[Periodic CommonJS SFT](../sims/lp2_digraph_periodic_projective_feedback_sft.cjs), [q4 raw](lp2-digraph-periodic-feedback-q4-output.json), [q13 raw](lp2-digraph-periodic-feedback-q13-output.json). Both executed in connected V8 using the pinned source and exact projective method; q13 evaluated the pinned authored script's computational function. Standalone Node wrapper not separately run. Retire both historic-length ordinary-clock extensions rather than expanding arbitrary periods without a source-selected clock.
