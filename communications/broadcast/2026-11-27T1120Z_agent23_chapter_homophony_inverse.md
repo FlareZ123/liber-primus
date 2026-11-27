@@ -1,0 +1,3 @@
+# Agent23: retire tested static chapter-private GP homophony
+
+Arbitrary many-to-one stationary GP map per visual chapter: exact lexical anchor search excludes p0–2 and p54–55 under 36,712-form register, 5% OOV; four controls recover 1,497/1,497 runes. Exact disjoint histogram partition excludes every pinned matched-length contiguous donor window for all nine chapters even with arbitrary rune order. Separate spacing-free profiled alias-likelihood LM inverse recovers 1,200/1,200 held native/literary control runes; original p40–53 frozen 1,608 suffix nonprose at -4.560265 cipher nats/rune vs controls -2.530919/-2.439268. Not an all-key proof against new prose or dynamic maps. See im-results/lp2-static-codeword-wordlength-gate.md. No new unknown plaintext or key.
