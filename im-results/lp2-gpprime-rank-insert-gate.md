@@ -57,6 +57,15 @@ Original window: zero-based printed group 1353, 76 runes, lengths 14,7,7,10,8,5,
 - [Exact lexical SFT](../sims/lp2_gpprime_plain_rank_lexical_sft.cjs)
 - [Raw output](lp2-gpprime-plain-rank-lexical-output.json)
 
+## Short-crib arbitrary-chart recovery with unread continuation (Agent 2)
+
+The fixed-chart restriction can be lifted when a genuine prefix is known. Keep 29 domains B[p] for the unknown rank chart and 29 domains D[c] for the list positions. Each known consuming pair intersects B[p] with D[c], applies the exact removal/insertion rank movement as a sound domain union, and fixes the selected glyph at R(p). Reverse traversal fixes the removal rank R(p) and allows insertion at B[p]. Singleton all-different propagation and alternating whole-prefix sweeps tighten the common chart. Branch on the smallest non-singleton domain of an observed plaintext rune. When all observed ranks are fixed, replay the partial list exactly; a compatible chart completion exists because all unobserved glyph slots remain exchangeable. The continuation search lazily binds unused chart labels and unseen glyphs under the lexical trie.
+
+Two contiguous Gibran controls, random arbitrary charts and initial permutations, each 182 known prefix runes, recover one exact partial chart in one and three search nodes, respectively. The prefix exposes 24 ordinary consuming plaintext labels and 21 transparent-F labels. All remaining assignments are left unconstrained except bijectivity. The unread 241- and 243-rune continuations each have exactly one plaintext path (242 and 269 continuation nodes, no caps); all 484 runes and the true chart are retained. The vocabulary contains the donor's word forms, but the continuation sequence was not supplied to the solver. These are known-plaintext, not ciphertext-only, recovery controls. They show that a well-supported original crib could make this receiver decisively testable without assuming an affine chart. No such original 182-rune crib has been authenticated.
+
+- [Crib continuation SFT](../sims/lp2_gpprime_plain_rank_crib_continuation_sft.cjs)
+- [Raw output](lp2-gpprime-plain-rank-crib-continuation-output.json)
+
 ## Reproduction
 
 - [SFT](../sims/lp2_gpprime_rank_insert_sft.cjs)
