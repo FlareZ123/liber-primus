@@ -1,0 +1,637 @@
+{
+  "q": [
+    1,
+    2,
+    4,
+    6,
+    10,
+    12,
+    16,
+    18,
+    22,
+    28,
+    1,
+    7,
+    11,
+    13,
+    17,
+    23,
+    0,
+    2,
+    8,
+    12,
+    14,
+    20,
+    24,
+    1,
+    9,
+    13,
+    15,
+    19,
+    21
+  ],
+  "trainLength": 62696,
+  "donorLength": 217644,
+  "cut": 267,
+  "n": 1744,
+  "results": [
+    {
+      "sign": 1,
+      "hold": false,
+      "seedMode": "spiral",
+      "fitDead": null,
+      "fitFinal": 1,
+      "fitStart": 659,
+      "fitScore": -4.3759511959100825,
+      "fullDead": null,
+      "fullFinal": 1,
+      "fullScore": -4.309316370928756,
+      "fullFirstUnique": 0,
+      "heldDead": null,
+      "heldFinal": 1,
+      "heldScore": -4.297270671355266,
+      "heldStats": {
+        "n": 1477,
+        "ioc": 0.034627614387179755,
+        "mean": -4.297270671355266
+      },
+      "heldPreview": "W N E W EO B NG C S O W U C I B U T G N T OE I H L EO S AE NG T Y O D EA J M OE H C L NG EA AE IA O G M M O EO TH I H M O J A P F M EO D T N Y S X U I X EA",
+      "supportAt": [
+        [
+          0,
+          1
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          50,
+          1
+        ],
+        [
+          100,
+          1
+        ],
+        [
+          200,
+          1
+        ],
+        [
+          266,
+          1
+        ],
+        [
+          500,
+          1
+        ],
+        [
+          1000,
+          1
+        ],
+        [
+          1743,
+          1
+        ]
+      ]
+    },
+    {
+      "sign": 1,
+      "hold": false,
+      "seedMode": "all",
+      "fitDead": null,
+      "fitFinal": 9,
+      "fitStart": 12,
+      "fitScore": -3.876302108714451,
+      "fullDead": null,
+      "fullFinal": 1,
+      "fullScore": -4.260650813990673,
+      "fullFirstUnique": 1295,
+      "heldDead": null,
+      "heldFinal": 1,
+      "heldScore": -4.402493049357209,
+      "heldStats": {
+        "n": 1477,
+        "ioc": 0.034406518743589604,
+        "mean": -4.402493049357209
+      },
+      "heldPreview": "U EA E R N M O H X A R T AE E S F NG J EA L D U D AE A R EA Y T W P J M P NG L F C R C F E EO S J M R B P NG EA F N G B D D B F N EO X S P P U AE W A E",
+      "supportAt": [
+        [
+          0,
+          580
+        ],
+        [
+          10,
+          159
+        ],
+        [
+          50,
+          47
+        ],
+        [
+          100,
+          23
+        ],
+        [
+          200,
+          11
+        ],
+        [
+          266,
+          9
+        ],
+        [
+          500,
+          6
+        ],
+        [
+          1000,
+          2
+        ],
+        [
+          1743,
+          1
+        ]
+      ]
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "seedMode": "spiral",
+      "fitDead": 12,
+      "fitFinal": 0,
+      "fullDead": 12,
+      "fullFinal": 0,
+      "fullFirstUnique": 0,
+      "heldStats": null,
+      "supportAt": [
+        [
+          0,
+          1
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          50,
+          null
+        ],
+        [
+          100,
+          null
+        ],
+        [
+          200,
+          null
+        ],
+        [
+          266,
+          null
+        ],
+        [
+          500,
+          null
+        ],
+        [
+          1000,
+          null
+        ],
+        [
+          1743,
+          null
+        ]
+      ]
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "seedMode": "all",
+      "fitDead": 236,
+      "fitFinal": 0,
+      "fullDead": 236,
+      "fullFinal": 0,
+      "fullFirstUnique": 199,
+      "heldStats": null,
+      "supportAt": [
+        [
+          0,
+          580
+        ],
+        [
+          10,
+          137
+        ],
+        [
+          50,
+          15
+        ],
+        [
+          100,
+          9
+        ],
+        [
+          200,
+          1
+        ],
+        [
+          266,
+          null
+        ],
+        [
+          500,
+          null
+        ],
+        [
+          1000,
+          null
+        ],
+        [
+          1743,
+          null
+        ]
+      ]
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "seedMode": "spiral",
+      "fitDead": null,
+      "fitFinal": 1,
+      "fitStart": 659,
+      "fitScore": -4.261424658497484,
+      "fullDead": null,
+      "fullFinal": 1,
+      "fullScore": -4.286986288242089,
+      "fullFirstUnique": 0,
+      "heldDead": null,
+      "heldFinal": 1,
+      "heldScore": -4.291607110951483,
+      "heldStats": {
+        "n": 1477,
+        "ioc": 0.03445055439044573,
+        "mean": -4.291607110951483
+      },
+      "heldPreview": "C A O S M S L IA EO A U TH L O OE G D W E TH A TH G S X L TH J F IA E S L M AE Y X AE IA S R N E M J F EA G EA X EO X I I OE L OE EA G L B X R W F P N E TH R",
+      "supportAt": [
+        [
+          0,
+          1
+        ],
+        [
+          10,
+          1
+        ],
+        [
+          50,
+          1
+        ],
+        [
+          100,
+          1
+        ],
+        [
+          200,
+          1
+        ],
+        [
+          266,
+          1
+        ],
+        [
+          500,
+          1
+        ],
+        [
+          1000,
+          1
+        ],
+        [
+          1743,
+          1
+        ]
+      ]
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "seedMode": "all",
+      "fitDead": null,
+      "fitFinal": 11,
+      "fitStart": 485,
+      "fitScore": -4.011158224215019,
+      "fullDead": null,
+      "fullFinal": 4,
+      "fullScore": -4.251145847534881,
+      "fullFirstUnique": -1,
+      "heldDead": null,
+      "heldFinal": 1,
+      "heldScore": -4.304400731591227,
+      "heldStats": {
+        "n": 1477,
+        "ioc": 0.03439734465049458,
+        "mean": -4.304400731591227
+      },
+      "heldPreview": "EO Y J TH S H L M R U IA IA U A EO L X I EA IA X O C B J IA AE B N H G T B D X H E E S L U TH F EA A TH T EA B U IA U L NG IA Y EA EO OE I TH C J F Y S OE X W X",
+      "supportAt": [
+        [
+          0,
+          609
+        ],
+        [
+          10,
+          167
+        ],
+        [
+          50,
+          49
+        ],
+        [
+          100,
+          27
+        ],
+        [
+          200,
+          12
+        ],
+        [
+          266,
+          11
+        ],
+        [
+          500,
+          4
+        ],
+        [
+          1000,
+          4
+        ],
+        [
+          1743,
+          4
+        ]
+      ]
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "seedMode": "spiral",
+      "fitDead": 7,
+      "fitFinal": 0,
+      "fullDead": 7,
+      "fullFinal": 0,
+      "fullFirstUnique": 0,
+      "heldStats": null,
+      "supportAt": [
+        [
+          0,
+          1
+        ],
+        [
+          10,
+          null
+        ],
+        [
+          50,
+          null
+        ],
+        [
+          100,
+          null
+        ],
+        [
+          200,
+          null
+        ],
+        [
+          266,
+          null
+        ],
+        [
+          500,
+          null
+        ],
+        [
+          1000,
+          null
+        ],
+        [
+          1743,
+          null
+        ]
+      ]
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "seedMode": "all",
+      "fitDead": null,
+      "fitFinal": 4,
+      "fitStart": 446,
+      "fitScore": -4.200890701736477,
+      "fullDead": 418,
+      "fullFinal": 0,
+      "fullFirstUnique": 151,
+      "heldDead": 20,
+      "heldFinal": 0,
+      "heldStats": null,
+      "supportAt": [
+        [
+          0,
+          609
+        ],
+        [
+          10,
+          139
+        ],
+        [
+          50,
+          18
+        ],
+        [
+          100,
+          10
+        ],
+        [
+          200,
+          1
+        ],
+        [
+          266,
+          4
+        ],
+        [
+          500,
+          null
+        ],
+        [
+          1000,
+          null
+        ],
+        [
+          1743,
+          null
+        ]
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "sign": 1,
+      "hold": false,
+      "off": 500,
+      "seed": 223,
+      "selectedSeed": 330,
+      "fitCorrect": 265,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -2.934742916737806,
+      "fullCorrect": 1742,
+      "fullScore": -2.9375619603313394
+    },
+    {
+      "sign": 1,
+      "hold": false,
+      "off": 5500,
+      "seed": 554,
+      "selectedSeed": 262,
+      "fitCorrect": 256,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -2.9647583665124015,
+      "fullCorrect": 1733,
+      "fullScore": -2.9576658810120877
+    },
+    {
+      "sign": 1,
+      "hold": false,
+      "off": 10500,
+      "seed": 73,
+      "selectedSeed": 73,
+      "fitCorrect": 267,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -3.0114958661683127,
+      "fullCorrect": 1744,
+      "fullScore": -2.997928279368552
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "off": 500,
+      "seed": 223,
+      "selectedSeed": 330,
+      "fitCorrect": 265,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -2.934742916737806,
+      "fullCorrect": 1742,
+      "fullScore": -2.9375619603313394
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "off": 5500,
+      "seed": 554,
+      "selectedSeed": 262,
+      "fitCorrect": 256,
+      "heldCorrect": 1473,
+      "heldDead": null,
+      "heldScore": -2.9647583665124015,
+      "fullCorrect": 1729,
+      "fullScore": -2.9576658810120877
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "off": 10500,
+      "seed": 73,
+      "selectedSeed": 73,
+      "fitCorrect": 267,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -3.0114958661683127,
+      "fullCorrect": 1744,
+      "fullScore": -2.997928279368552
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "off": 500,
+      "seed": 223,
+      "selectedSeed": 223,
+      "fitCorrect": 267,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -2.934742916737806,
+      "fullCorrect": 1744,
+      "fullScore": -2.9375749479671374
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "off": 5500,
+      "seed": 554,
+      "selectedSeed": 554,
+      "fitCorrect": 267,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -2.9647583665124015,
+      "fullCorrect": 1744,
+      "fullScore": -2.9582924457532296
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "off": 10500,
+      "seed": 73,
+      "selectedSeed": 73,
+      "fitCorrect": 267,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -3.0114958661683127,
+      "fullCorrect": 1744,
+      "fullScore": -2.997928279368552
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "off": 500,
+      "seed": 223,
+      "selectedSeed": 223,
+      "fitCorrect": 267,
+      "heldCorrect": 1473,
+      "heldDead": null,
+      "heldScore": -2.934742916737806,
+      "fullCorrect": 1740,
+      "fullScore": -2.9375749479671374
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "off": 5500,
+      "seed": 554,
+      "selectedSeed": 554,
+      "fitCorrect": 267,
+      "heldCorrect": 1477,
+      "heldDead": null,
+      "heldScore": -2.9647583665124015,
+      "fullCorrect": 1744,
+      "fullScore": -2.9582924457532296
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "off": 10500,
+      "seed": 73,
+      "selectedSeed": 73,
+      "fitCorrect": 265,
+      "heldCorrect": 1467,
+      "heldDead": null,
+      "heldScore": -3.009623545983846,
+      "fullCorrect": 1732,
+      "fullScore": -2.9963426045334276
+    }
+  ]
+}
