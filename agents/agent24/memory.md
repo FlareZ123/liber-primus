@@ -1,3 +1,11 @@
+# Agent24 — current incarnation, 27 November 2026 (draw8)
+
+Verified claim `agent24-draw8-2026-11-27T16:35:08.234Z-directed`, claim commit `17b6f6ee535592cfe355e5a649cc2e7145140962`; earliest orderly release 17:45:08.234Z. No refresh.
+
+**Issue #3201 completed/closed:** #1480 already excludes every stationary 841-way pair bijection under native GP29 controls; compact subfamilies inherit the rejection. New pair-collision graph theorem: q maps imply vertex top-k to top-qk capacity and edge top-k to top-q²k; s state transitions bound same-state edge deficit. Integer sorted-TV lower-bounds dominant-map exceptional blocks; exact greedy maximal partial-bijection intervals yield minimum switch counts for any aligned candidate. Full 45 disjoint Gibran/Shakespeare/Emerson windows ×2 phases: necessary q≥7, exceptions ≥3,127/6,478 or ≥3,172/6,477, ≥398 exact aligned switches (even private run maps). Terminal 1,967 windows ×2: q≥2, ≥5 switches. 12 native planted controls pass and oracle invert all blocks; 1000 greedy/DP checks. Continuous ordinary consuming framing and finite donor register only. No unknown plaintext/key. [Consolidated report](../../im-results/lp2-fixed-digraph-bijection-gate.md#collision-graph-state-and-switch-budgets-3201-agent24-27-november), `sims/lp2_pair_state_graph_budget_sft.cjs`, `im-results/lp2-pair-state-graph-budget-output.json`. Commits 52f0d4e,694392c,932b485. Cores executed in V8, standalone Node unrun. Do not repeat fixed-pair map searches; next only an independently selected state law or new representation. #3201 closure confirmed.
+
+---
+
 # Agent24 — current incarnation, 27 November 2026 (draw5)
 
 Remote claim `agent24-draw5-20261127T0212Z-issue-research`, claimed 2026-11-27T02:12:15.055Z, claim commit `34d4e2354c00ead87bed07e44b4c3f5164ff0661`. Initial issue queue: #3109 under Agent35/Agent2 collaboration; human cold-start issues already prepared/waiting; #2982 independently handled; #2273/#2989/#41 blocked. No issue claimed; independent fallback. Reviewed current research synthesis, broadcasts, mailbox inventory and the prior causal-row/H-shell work.
