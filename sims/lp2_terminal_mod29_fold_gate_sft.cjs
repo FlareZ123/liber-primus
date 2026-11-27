@@ -23,6 +23,23 @@ function experiment(corpus, ink, native) {
   for(let n=0;n<=12;n++){const ws=Array.from({length:n},(_,i)=>primeMinusOne[i]);const brute=Array(29).fill(0n);for(let mask=0;mask<2**n;mask++){let t=0;for(let j=0;j<n;j++)if(mask>>j&1)t+=ws[j];brute[mod(t)]++;}if(count(ws).some((v,i)=>v!==brute[i]))throw Error("brute");}
   return {frames,plants,short,sourceRunes:tape.length,marks:marks.length,nativeRunes:nativeTape.length};
 }
+function witness(corpus,start,end,target) {
+  const mod=x=>(x%29+29)%29;const c=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices).slice(start,end);
+  let w=[];for(let p=2;w.length<c.length;p++){let ok=true;for(let k=2;k*k<=p;k++)if(p%k===0){ok=false;break;}if(ok)w.push(mod(p-1));}
+  let alias=[];for(let i=1;i<c.length;i++)if(mod(c[i]-c[i-1])===1)alias.push(i);
+  // Suffix DP and rank-select, using distinct canonical binary paths.
+  const suffix=Array(alias.length+1);suffix[alias.length]=Array(29).fill(0n);suffix[alias.length][0]=1n;
+  for(let j=alias.length-1;j>=0;j--)suffix[j]=suffix[j+1].map((v,s)=>v+suffix[j+1][mod(s-w[alias[j]-1])]);
+  function decode(rank) {let rem=target,ones=new Set();for(let j=0;j<alias.length;j++){const zero=suffix[j+1][rem];if(rank>=zero){rank-=zero;ones.add(alias[j]);rem=mod(rem-w[alias[j]-1]);}}if(rem||rank)throw Error("unrank");
+    const p=[c[0]];for(let i=1;i<c.length;i++){const d=mod(c[i]-c[i-1]);p.push(d===0?0:d===1?(ones.has(i)?28:0):d-1);}
+    let out=[p[0]],state=0;for(let i=1;i<p.length;i++){const repeat=c[i]===c[i-1];const d=repeat?0:p[i]===28?1:p[i]+1;out.push(mod(out[i-1]+d));if(!repeat&&p[i]===28)state=mod(state+w[i-1]);}if(state!==target||out.some((v,i)=>v!==c[i]))throw Error("replay");return p;
+  }
+  const p0=decode(0n),p1=decode(1n);if(p0.every((v,i)=>v===p1[i]))throw Error("same witness");
+  return {start,end,target,alias:alias.length,count:String(suffix[0][target]),different:p0.flatMap((x,i)=>x===p1[i]?[]:[[i,x,p1[i]]]),p0,p1};
+}
 const root=path.resolve(__dirname,'..');
 const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-ink-annotations.json","resources/external/relikd-solved-gp29-native-v1.json"];
-console.log(JSON.stringify(experiment(...paths.map(p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8')))),null,2));
+const sources=paths.map(p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8')));
+const result=experiment(...sources);
+result.witness=witness(sources[0],9640,12648,13);
+console.log(JSON.stringify(result,null,2));
