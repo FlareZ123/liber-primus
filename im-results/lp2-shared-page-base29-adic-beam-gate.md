@@ -37,3 +37,24 @@ For the valuation-preserving map, recover all legal exponent residues modulo 28 
 Both true planted exponents survived every lift and finished first. Each plant's 260 withheld runes is recovered exactly. Original decoded prefixes remain nonprose. Separately, full-page powers and reciprocal powers of 3 (DH23 inverse exponent), 1033 and 3301 (historical magic-square sums), in both orientations, all replay all 12,956 original runes exactly; held mean log likelihood ranges from -3.499593 to -3.480813, and no coherent plaintext is evident. No source binds those values to this receiver. No original authentic exponent recovered. The finite 20-digit heuristic negative does not cover arbitrary per-page exponents, other boundaries, or nonnative plaintext.
 
 Reproduce with `node sims/lp2_shared_page_unit_power_adic_sft.cjs` ([SFT](../sims/lp2_shared_page_unit_power_adic_sft.cjs), [raw](lp2-shared-page-unit-power-adic-output.json)). Experiment core executed in connected V8 against fetched repository data; the Node filesystem wrapper has not been run. No new workflow. Do not extend the power/affine/Möbius shared-page search by merely tuning beam width or page partitions: a new source selector or qualitatively distinct operation is needed.
+
+## General fractional-linear shared key (Agent41, 27 November)
+
+The affine and fixed-matrix-power models above are proper subfamilies of the arbitrary fractional-linear map `P=(A C+B)/(1+D C) mod29^N`. This follow-up is exploratory: the historical BASE29 operation and the original LP1 MOBIUS word motivate the form but neither selects physical page resets or its three parameters. In each of the two common orientations take the 12 low runes of all 55 rune-bearing unknown pages, 42 fitting and 13 fixed index-mod4=3 withheld pages. The normal form requires nonzero determinant `A-BD mod29` and a unit denominator on every observed frame. Because both original endpoint sets contain zero, the original denominator's constant term must be a unit, so normalization to 1 loses no admissible integral projective matrix with unit determinant. A nonzero D mod29 is allowed if its pole is absent from every observed frame; for an all-residue GP29 bijection, D must be 0 mod29.
+
+At lift j, let m=29^j and let lower coefficients and plaintext residue p satisfy A C+B-(1+D C)p = 0 mod m. For new coefficient digits a,b,d, the next plaintext digit is
+
+    t = ((A C+B-(1+D C)p)/m + a C+b-d C p) / (1+D C) mod29.
+
+Thus every one of 29^3 extensions is enumerated for each retained prefix, scoring the next digit against the frozen native trigram model. At each lift retain the best 16 across all parents. Group the score contributions by the low ciphertext rune: all pages with the same residue have the same shift from the new coefficient digits, and the grouped table is exact. All retained lifts are explicitly checked; independently apply the full fractional-linear inverse to every returned plaintext prefix. All legal first-digit triples are enumerated (4,872 forward and 3,248 reverse original); high-digit search remains a beam, not an all-key decision. Both original orientations allow D0=0 and nonzero D0 whenever the pole is absent; held ciphertext is used only for this algebraic legality check, never for language-based selection.
+
+Native positive plants use **disjoint** sets of 55 nonoverlapping length-12 chunks from the KOAN1 and LOSS OF DIVINITY records excluded from language training. Two separate 12-digit coefficient triples, one globally pole-free and one valid on the finite sampled affine chart, are inverted to create ciphertext. Both exact key triples survive every lift and finish first; all 1,320 planted runes, including 312 withheld, recover exactly.
+
+| Orientation | Original fit | Original held | Native held | Plant exact key/runes |
+|---|---:|---:|---:|---|
+| First rune low | -3.175884 | -3.567296 | -2.647006 | yes, 660/660 |
+| Last rune low | -3.186596 | -3.561328 | -2.702293 | yes, 660/660 |
+
+Original winners are nonprose, held scores worse than uniform -ln29; inverse replay succeeds as expected for legal keys. The apparent improved fit relative to the simpler families is not predictive. No authentic plaintext/key. This is a calibrated, bounded shared-page key-recovery negative, not an all-key impossibility or exclusion of a nonlinear transform in a different register. Do not increase beam width or change framing without new independent source evidence.
+
+[SFT](../sims/lp2_shared_page_general_mobius_adic_beam_sft.cjs) · [raw output](lp2-shared-page-general-mobius-adic-beam-output.json). Executed the experiment function directly in connected V8; standalone Node wrapper not independently executed. No CI run.
