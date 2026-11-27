@@ -1,0 +1,408 @@
+{
+  "source": {
+    "donor": 48084,
+    "train": [
+      217106,
+      321327,
+      184,
+      515,
+      157,
+      780,
+      755,
+      319,
+      89,
+      85,
+      95
+    ],
+    "R": [
+      1,
+      2,
+      4,
+      6,
+      10,
+      12,
+      16,
+      18,
+      22,
+      28,
+      1,
+      7,
+      11,
+      13,
+      17,
+      23,
+      0,
+      2,
+      8,
+      12,
+      14,
+      20,
+      24,
+      1,
+      9,
+      13,
+      15,
+      19,
+      21
+    ]
+  },
+  "controls": [
+    {
+      "plant": 0,
+      "rev": false,
+      "hold": false,
+      "width": 512,
+      "knownChart": true,
+      "crib": 0,
+      "deep": 512,
+      "expanded": 441673,
+      "firstLost": 3,
+      "accuracy": 28,
+      "exactTruthInFinal": false,
+      "score": -5.708656700388574,
+      "preview": "ATIANOTBEGREATFORSECANDCIECTOHEEHMTHBRYLOUNGADHROWWNGNDOBELPUPNPNGEORNOWALFIAOYPIIEGSPHDNGTEBYMJUFOREONAEMIROITOETEBNGEOXIADHALMUOJNGEAE",
+      "assigned": 29,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 512,
+          "best": -2.1996598388907382
+        },
+        {
+          "deep": 64,
+          "states": 512,
+          "best": -3.1329717464008966
+        },
+        {
+          "deep": 128,
+          "states": 512,
+          "best": -3.9792131128909367
+        },
+        {
+          "deep": 256,
+          "states": 512,
+          "best": -4.971405332243908
+        },
+        {
+          "deep": 512,
+          "states": 512,
+          "best": -5.708656700388574
+        }
+      ]
+    },
+    {
+      "plant": 0,
+      "rev": false,
+      "hold": false,
+      "width": 512,
+      "knownChart": false,
+      "crib": 0,
+      "deep": 512,
+      "expanded": 3340834,
+      "firstLost": 2,
+      "accuracy": 22,
+      "exactTruthInFinal": false,
+      "score": -5.559571785090396,
+      "preview": "THERESTOFACTIANOTWHISANDBYINTOLDOCUMPYNGDEACMGRAYYOMESTGOOUANEORGTHEAWDEAGBAETDOTPPIATPEALISRTHUMCYGRPIACXMESIATHNGWNTHHXFRSLTAUFATGYJGH",
+      "assigned": 29,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 512,
+          "best": -1.8220795807507844
+        },
+        {
+          "deep": 64,
+          "states": 512,
+          "best": -2.474795372895784
+        },
+        {
+          "deep": 128,
+          "states": 512,
+          "best": -3.6747896025457085
+        },
+        {
+          "deep": 256,
+          "states": 512,
+          "best": -4.833699877198854
+        },
+        {
+          "deep": 512,
+          "states": 512,
+          "best": -5.559571785090396
+        }
+      ]
+    },
+    {
+      "plant": 0,
+      "rev": false,
+      "hold": false,
+      "width": 512,
+      "knownChart": false,
+      "crib": 32,
+      "deep": 13,
+      "expanded": 70027,
+      "firstLost": null,
+      "accuracy": 13,
+      "exactTruthInFinal": false,
+      "score": -2.3982210171487477,
+      "preview": "TOGETHERANDBEJ",
+      "assigned": 11,
+      "trace": []
+    },
+    {
+      "plant": 0,
+      "rev": true,
+      "hold": false,
+      "width": 512,
+      "knownChart": true,
+      "crib": 0,
+      "deep": 151,
+      "expanded": 221356,
+      "firstLost": 3,
+      "accuracy": 2,
+      "exactTruthInFinal": false,
+      "score": -5.292803327163181,
+      "preview": "OEJNEOEONEOOWRLDINDEAEYPNGIWBNGTHMNGEOOTHTXLAEMTTHSDBSXRHAERYAESCNOEHBRTHTHPXTHDIARFNGFASSEOWXENILLLPOJOTOENLYREBTHNOWAYDINPEALLCOMANDANDANDTHE",
+      "assigned": 29,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 371,
+          "best": -2.093894554480392
+        },
+        {
+          "deep": 64,
+          "states": 510,
+          "best": -2.9529056896924644
+        },
+        {
+          "deep": 128,
+          "states": 269,
+          "best": -4.6495927570861975
+        }
+      ]
+    },
+    {
+      "plant": 0,
+      "rev": true,
+      "hold": false,
+      "width": 512,
+      "knownChart": false,
+      "crib": 0,
+      "deep": 33,
+      "expanded": 3202849,
+      "firstLost": 1,
+      "accuracy": 0,
+      "exactTruthInFinal": false,
+      "score": -2.5922698089248875,
+      "preview": "AROEWNLESATHSPIRSTYOUSTHEWHESTRAINTHE",
+      "assigned": 16,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 444,
+          "best": -2.5945537279860513
+        }
+      ]
+    },
+    {
+      "plant": 0,
+      "rev": true,
+      "hold": false,
+      "width": 512,
+      "knownChart": false,
+      "crib": 32,
+      "deep": 7,
+      "expanded": 48993,
+      "firstLost": null,
+      "accuracy": 7,
+      "exactTruthInFinal": false,
+      "score": -2.5338889640464477,
+      "preview": "YOUMAYG",
+      "assigned": 6,
+      "trace": []
+    },
+    {
+      "plant": 1,
+      "rev": false,
+      "hold": true,
+      "width": 512,
+      "knownChart": true,
+      "crib": 0,
+      "deep": 512,
+      "expanded": 303377,
+      "firstLost": 3,
+      "accuracy": 38,
+      "exactTruthInFinal": false,
+      "score": -5.8113231730504396,
+      "preview": "OUGHTANDWHIMBLOURATIANOFDAFTNAPSFOICNGHALESUNPGNANNGYDUGERUUGEADSAEAUEORHNIAPINIEADSIEAJLYCNOITHPPOEIAYBNGWMJNGEETNGOAEACYNGIAEIIAUMCEONOGTHD",
+      "assigned": 29,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 512,
+          "best": -1.9846797591753091
+        },
+        {
+          "deep": 64,
+          "states": 500,
+          "best": -2.588770010245449
+        },
+        {
+          "deep": 128,
+          "states": 189,
+          "best": -4.352440528500615
+        },
+        {
+          "deep": 256,
+          "states": 87,
+          "best": -5.488335877522081
+        },
+        {
+          "deep": 512,
+          "states": 442,
+          "best": -5.8113231730504396
+        }
+      ]
+    },
+    {
+      "plant": 1,
+      "rev": false,
+      "hold": true,
+      "width": 512,
+      "knownChart": false,
+      "crib": 0,
+      "deep": 512,
+      "expanded": 3380448,
+      "firstLost": 1,
+      "accuracy": 24,
+      "exactTruthInFinal": false,
+      "score": -5.443848572852675,
+      "preview": "THERESTOTHESTANDTHEYOUGHTHASSUBLEPAMHICPINCESEAWORCLUOTMECRYAHIDELJMYNGUEMBAEGIABREACAEINCGDCHEAEAUOIHCTUGTHIAOWHJXXUIALPTGJDTYGNEARH",
+      "assigned": 28,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 512,
+          "best": -1.6562845285208356
+        },
+        {
+          "deep": 64,
+          "states": 512,
+          "best": -2.2839354576297026
+        },
+        {
+          "deep": 128,
+          "states": 410,
+          "best": -3.6664759384494046
+        },
+        {
+          "deep": 256,
+          "states": 87,
+          "best": -4.859848457284778
+        },
+        {
+          "deep": 512,
+          "states": 439,
+          "best": -5.443848572852675
+        }
+      ]
+    },
+    {
+      "plant": 1,
+      "rev": false,
+      "hold": true,
+      "width": 512,
+      "knownChart": false,
+      "crib": 32,
+      "deep": 10,
+      "expanded": 66493,
+      "firstLost": null,
+      "accuracy": 10,
+      "exactTruthInFinal": false,
+      "score": -2.2643380685090158,
+      "preview": "BYTHEDEADFOR",
+      "assigned": 8,
+      "trace": []
+    },
+    {
+      "plant": 1,
+      "rev": true,
+      "hold": true,
+      "width": 512,
+      "knownChart": true,
+      "crib": 0,
+      "deep": 218,
+      "expanded": 209116,
+      "firstLost": 8,
+      "accuracy": 12,
+      "exactTruthInFinal": false,
+      "score": -5.703931137163364,
+      "preview": "WHREOMBAENXJRNGTGXWRJAWRGYGTAEOPOEDIAPNNGEANIATHAFAETHNUIATUSAEWELLETHOFHSONOETOEOTHTYPASNGTHNIABAOFNCSTHSTASNANDSTRSEEXPLANDWAREFITIANSANDABLE",
+      "assigned": 29,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 512,
+          "best": -1.972394496800347
+        },
+        {
+          "deep": 64,
+          "states": 512,
+          "best": -3.1200849686311916
+        },
+        {
+          "deep": 128,
+          "states": 33,
+          "best": -4.458989431441804
+        }
+      ]
+    },
+    {
+      "plant": 1,
+      "rev": true,
+      "hold": true,
+      "width": 512,
+      "knownChart": false,
+      "crib": 0,
+      "deep": 115,
+      "expanded": 2630455,
+      "firstLost": 2,
+      "accuracy": 6,
+      "exactTruthInFinal": false,
+      "score": -5.23277312692858,
+      "preview": "OTHSHIABEAYEOYROENNNISDOEIAEAIANGEANOEEOBYPYNCBFGFLCCOBSLALEAUXTHYFTHAEOTHOEEOIAOEEOBNGFOENGLLNDETCFRHABEJURACCOMEPOETWHOWEGREATYOURHEARSTRAINTHE",
+      "assigned": 28,
+      "trace": [
+        {
+          "deep": 32,
+          "states": 512,
+          "best": -1.9020500903227588
+        },
+        {
+          "deep": 64,
+          "states": 91,
+          "best": -3.783325477692644
+        }
+      ]
+    },
+    {
+      "plant": 1,
+      "rev": true,
+      "hold": true,
+      "width": 512,
+      "knownChart": false,
+      "crib": 32,
+      "deep": 5,
+      "expanded": 24439,
+      "firstLost": null,
+      "accuracy": 5,
+      "exactTruthInFinal": false,
+      "score": -2.1478236896180993,
+      "preview": "NTHEWI",
+      "assigned": 5,
+      "trace": []
+    }
+  ]
+}
