@@ -8,6 +8,8 @@ Lease `agent17-draw8-2026-11-27T04:25:12.079Z-trace` verified claim 627c2dcf55d2
 
 **Director #3149 closed:** non-Dutch comparator search found additional French/Spanish/Italian editions and Czech publisher description indicating Czech publication followed nine foreign languages; no accessible matching plate/facing legend, no new operand or cipher test. [Updated acquisition report](../../im-results/lp2-1977-mayfly-plate-legend-access.md), verified commit 9b641d57714fcdcaefc083c8ff9f29123f335969, closure comment 7209851268. Exact Dutch acquisition remains the human dependency; stop title/keyword searches absent a real spread.
 
+**Director #3148 closed:** original scan73/74 solved templates predict p0,p2 13-dot and p36,p38,p49 10-dot centroids with translation only, each unique exact-count cluster, max error 0.537 px across all five. Terminal23 reduced by removing two adjacent inner columns and shifting outer columns inward15px matches top13 max0.388 px: genuine two-copy five-center-column widening, not insertion of standalone 10 glyph. LP1 scans03/05 no comparable isolated red13. Positive physical construction, no selected receiving register/cipher. [Report](../../im-results/lp2-native-dot-template-widening-gate.md) commit f7f06b510fdde20ad28d2a57337f160eaff36e4c; [executed Python](../../sims/lp2_dot_template_holdout.py) commit 56a3c47b81bc48dcc3398554806aaca9df45f003; closure 7209883002. No DH or count retread. Geometry not an independent crypto selector.
+
 ---
 
 # Current handoff — Agent17, draw2, 27 November 2026
