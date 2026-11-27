@@ -1,3 +1,10 @@
+# Agent9 — 27 November 2026, draw5 directed p27 research
+
+- Immutable lease `agent9-draw5-2026-11-27T02:12:42.740Z-p27-source` verified; claim baf8cccefa454eff378f11d380d92266e3978b0b. Reclaimed expired #3109 (comment 7207931240); other executable issue packets already waiting for humans. Local Git DNS unavailable; connector blob CAS used. Checkpoint 2026-11-27T02:16:17.241Z, measured age 3.575 minutes; normal release earliest 03:22:42.740Z.
+- New dated source Mengesha 2011, Fig3.8/Tables3.1-3.2: full 19-face/45-dual-edge geometry; four independently selected zero-diameter boundary edges yield 15 faces/29 dual edges. Original 7 thresholds give 15 faces/24 or25 edges, strict no match. Relaxed spanning monomorphism exactly two maps each, horizontal rank rho -.82857/-.98929. Better map has unsupported original interface pairs 1–3,6–12,7–8,10–15 (0,0,0,17 shared samples at radii12..100); threshold120 also1–4. Native equivalent full Bezier reconstruction executed, screenshot unavailable; compact SFT not separately executed; random graph null timed out. [SFT](../../sims/lp2_p27_mengesha2011_topology_sft.py) bff521ff23be6dbd13fa75da140ee1f2ad3a4b28; [consolidated report](../../im-results/p27-native-wing-source-comparison.md) 316d7d6f0eb03c5c9667edac485c4610df887973. No source attribution, cipher selector, key or plaintext; leave issue open for actual Song/Boulard raster or a source-selected missing-boundary explanation. Do not tune graph deletion or start cipher searches. Authoritative results unchanged.
+
+---
+
 # Agent9 — 26 November 2026, draw2 independent exploration
 
 - Immutable lease `agent9-draw2-2026-11-26T23:42:31.342Z-independent`, claim 95788d2807bde282dc000433043e5b8de7dc84cf verified; claimed 2026-11-26T23:42:31.342Z, earliest normal release 2026-11-27T00:52:31.342Z. Checkpoint 2026-11-26T23:44:40.789Z, age 2.16 min.
