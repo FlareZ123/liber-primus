@@ -1,0 +1,385 @@
+{
+  "sortedLabels": [
+    "0E",
+    "0I",
+    "0J",
+    "0K",
+    "0X",
+    "0v",
+    "0w",
+    "0x",
+    "18",
+    "1O",
+    "1Q",
+    "1g",
+    "1p",
+    "28",
+    "2L",
+    "2O",
+    "2t",
+    "33",
+    "3C",
+    "3E",
+    "3I",
+    "3J",
+    "3M",
+    "3N",
+    "3P",
+    "3c",
+    "40",
+    "49",
+    "4B"
+  ],
+  "keys": [
+    [
+      23,
+      17,
+      22,
+      11,
+      20,
+      21,
+      7,
+      18,
+      24,
+      12,
+      9,
+      25,
+      3,
+      10,
+      4,
+      0,
+      1,
+      26,
+      16,
+      13,
+      2,
+      19,
+      5,
+      28,
+      6,
+      8,
+      27,
+      15,
+      14
+    ],
+    [
+      23,
+      17,
+      22,
+      11,
+      14,
+      21,
+      7,
+      18,
+      24,
+      12,
+      9,
+      25,
+      3,
+      10,
+      4,
+      0,
+      1,
+      26,
+      16,
+      13,
+      2,
+      19,
+      5,
+      28,
+      6,
+      8,
+      27,
+      15,
+      20
+    ]
+  ],
+  "authenticControl": {
+    "paths": 22,
+    "intendedTruthCount": 1
+  },
+  "plants": [
+    {
+      "k": 0,
+      "sign": -1,
+      "hold": true,
+      "pathCount": 62,
+      "truthRetained": true
+    },
+    {
+      "k": 0,
+      "sign": -1,
+      "hold": false,
+      "pathCount": 1,
+      "truthRetained": true
+    },
+    {
+      "k": 0,
+      "sign": 1,
+      "hold": true,
+      "pathCount": 11,
+      "truthRetained": true
+    },
+    {
+      "k": 0,
+      "sign": 1,
+      "hold": false,
+      "pathCount": 1,
+      "truthRetained": true
+    },
+    {
+      "k": 1,
+      "sign": -1,
+      "hold": true,
+      "pathCount": 62,
+      "truthRetained": true
+    },
+    {
+      "k": 1,
+      "sign": -1,
+      "hold": false,
+      "pathCount": 1,
+      "truthRetained": true
+    },
+    {
+      "k": 1,
+      "sign": 1,
+      "hold": true,
+      "pathCount": 11,
+      "truthRetained": true
+    },
+    {
+      "k": 1,
+      "sign": 1,
+      "hold": false,
+      "pathCount": 1,
+      "truthRetained": true
+    }
+  ],
+  "original": [
+    {
+      "k": 0,
+      "sign": -1,
+      "hold": true,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 0,
+      "dead": 24,
+      "outputs": []
+    },
+    {
+      "k": 0,
+      "sign": -1,
+      "hold": true,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 0,
+      "dead": 25,
+      "outputs": []
+    },
+    {
+      "k": 0,
+      "sign": -1,
+      "hold": false,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "IAHYEATDIAEAOOILNGNGFYIAUNGEABEAEOENGTACWBLYUEACULJEBYWREORSTHSTLUSFWLFIAHXAERJUIAISWAEELUYBBP"
+      ]
+    },
+    {
+      "k": 0,
+      "sign": -1,
+      "hold": false,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "UTHEAEOWIWNGASXBELOAEMHHMEOOEHNFEOMJMHPNGEAEBFHRIAWYTYTICASTSRFEALLEEWYUAEBAEXJFOETHCFUDEANDMASJGSEYNEOCNAEREOWEAGDSMAUONIOECEOFNOEDIMAUWTTHEASRRXSTHEAFAIARPHEOXTSRGTHSNSWSTHEALMIAOEANGHOEEYINGTHCGTHNGRGSEONGEATREARLEAXAENPLGSEAXCIAETNSBBLNGRIECEOSLNGEECSNGTHAEHMREOAEXTRWMBOEROEUYYSEOLGLEOIAHYEATDIAEAOOILNGNGFYIAUNGEABEAEOENGTACWBLYUEACULJEBYWREORSTHSTLUSFWLFIAHXAERJUIAISWAEELUYBBP"
+      ]
+    },
+    {
+      "k": 0,
+      "sign": 1,
+      "hold": true,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 0,
+      "dead": 14,
+      "outputs": []
+    },
+    {
+      "k": 0,
+      "sign": 1,
+      "hold": true,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 0,
+      "dead": 100,
+      "outputs": []
+    },
+    {
+      "k": 0,
+      "sign": 1,
+      "hold": false,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "SPEONGIAWAOXIANGTHYEOFFEANGREOYNTCHEOAERAOEGMEOEOMHIGWNOIAEOEOGNCEOLFJPEODTUYAEMJYOEXEOBCTHXIYNGCBMW"
+      ]
+    },
+    {
+      "k": 0,
+      "sign": 1,
+      "hold": false,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "EWXCEDNGEAXIONAJJALPJCDNGOGNGTHLIWPEAXITHTHWIAEATEAOWCTEOEAIAEOLAXIAJWTMBATHTEEANEAEMBLYGNGTHEAJBOENGMLTPUPCPRYUMCEEOLUCXPOENFEOEWEOGYPEOEANGOEGLTHGRWXHSBEAOENGDETRANGHXHMEOHSEOPNGTHOTUTAECLRHGSEOPSTHIAOEPGRSWOMNGTHYEALACMTMJTHARLOEENDMAWBSMJDEHMEAOATHTOEBGIUXPNOEYDWXGOEASMMTWMCGWPAWTHNGJSPEONGIAWAOXIANGTHYEOFFEANGREOYNTCHEOAERAOEGMEOEOMHIGWNOIAEOEOGNCEOLFJPEODTUYAEMJYOEXEOBCTHXIYNGCBMW"
+      ]
+    },
+    {
+      "k": 1,
+      "sign": -1,
+      "hold": true,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 0,
+      "dead": 24,
+      "outputs": []
+    },
+    {
+      "k": 1,
+      "sign": -1,
+      "hold": true,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 0,
+      "dead": 25,
+      "outputs": []
+    },
+    {
+      "k": 1,
+      "sign": -1,
+      "hold": false,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "IAHYEAOEDIAEAOOILNGNGFYIAUNGEABEAEOENGTAEAWBLYWEACULJEBYWREORSTHSTLUSFWLFNGHXAERBUIAISWAEELUYBBP"
+      ]
+    },
+    {
+      "k": 1,
+      "sign": -1,
+      "hold": false,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "UTHEAEOPIWNGASXBELOAEMHHMEOOEHNFEOMCMHPNGCEBFHRIAWYTYTICASTSRFEALLEEOWYUAEDAEXJFOETHCFUDEANDMASJGSEYNEOEANAEREOPEAGDSMAUONIOECEOFNOEDIMAUUTTHEASIRXSTHEAFAIARPHEOXTSRGTHSNSWSAEEALMIAEAANGHOEEYINGTHCGTHNGRGSEONGEATREARXEAXAENMLGSEAXCIAETNSBBLNGRIECEOSLNGEOECSNGHAEHMREOAEXTRWMBOEROEUYYSEOLGLGIAHYEAOEDIAEAOOILNGNGFYIAUNGEABEAEOENGTAEAWBLYWEACULJEBYWREORSTHSTLUSFWLFNGHXAERBUIAISWAEELUYBBP"
+      ]
+    },
+    {
+      "k": 1,
+      "sign": 1,
+      "hold": true,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 0,
+      "dead": 14,
+      "outputs": []
+    },
+    {
+      "k": 1,
+      "sign": 1,
+      "hold": true,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 0,
+      "dead": 100,
+      "outputs": []
+    },
+    {
+      "k": 1,
+      "sign": 1,
+      "hold": false,
+      "range": [
+        55,
+        55
+      ],
+      "length": 76,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "SPEONGNGWAOXIANGTHYEOFFEANGREOYNTCHEOAEIAOEGMGEOMHIGWNOIAEOEOGNCEOLFJPEODTUOAEMJYTXEOBCTHXIYNGCBMW"
+      ]
+    },
+    {
+      "k": 1,
+      "sign": 1,
+      "hold": false,
+      "range": [
+        54,
+        55
+      ],
+      "length": 308,
+      "pathCount": 1,
+      "dead": null,
+      "outputs": [
+        "EWXCEODNGEAXIONAJJALPJCDNGOGNGTHLTWPEAXRTHTHWIAEATEAOWCTEOEAIAEOLAXIAJWTMDATHTEOENEAEMBLYGNGTHEAJBOENGMLTPUPCPIYUMCEOEOLUCXPOENFEOEWEOGYPEOEANGOEGLTHEORWXHNBEAOENGDETRANGHXHMEOHSEOPNGTHOTWTAECLIAHGSEOPSTHIAOEPGRSWOMNGTHYEALACAETMJTHERLOEENDMAWBSMJDEHMEAOATHTOEDGIUXWNOEYDWXGOEASMMTWMCGWPAWTHNGBSPEONGNGWAOXIANGTHYEOFFEANGREOYNTCHEOAEIAOEGMGEOMHIGWNOIAEOEOGNCEOLFJPEODTUOAEMJYTXEOBCTHXIYNGCBMW"
+      ]
+    }
+  ]
+}
