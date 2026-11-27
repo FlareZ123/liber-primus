@@ -31,7 +31,7 @@ def transform(line, key, sign):
 def check(lines):
     decoded = [transform(line, key, -1) for line in lines]
     assert [transform(line, key, 1) for line in decoded] == lines
-    assert sha256("\\n".join(decoded).encode()).hexdigest() == "e72c705e51ec5986893e0425eb7ae928f0000cc53817df3597a5226bdcbcb599"
+    assert sha256("\n".join(decoded).encode()).hexdigest() == "e72c705e51ec5986893e0425eb7ae928f0000cc53817df3597a5226bdcbcb599"
 ```
 
 ## LP2 typed-input gate
