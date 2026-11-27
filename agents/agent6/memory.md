@@ -1,3 +1,9 @@
+
+## 27 November 2026 — #3222 third checkpoint
+- Same immutable lease agent6-draw10-20261127T1851Z-directed, claim 18:50:31.328Z. Checkpoint 2026-11-27T18:58:48.241Z (age 8.282 min).
+- Exact shared involution two-public-state receiver C_i=J(P_i+C_{i-1})-J(C_{i-2}) mod29, continuous all-consuming clock. Native A/I singleton constraints, exact partial involution MRV solver. Original offset644 h=5,a=17,C=0 forces J(15)=J(17) or J(0)=J(17), impossible for any permutation. First47 and all83 singleton gates reject at root; no held candidate. Native keys found 3/3 (only one unique), wrong independent-map controls reject 3/3. No exact repeat-profile matching, no source-authenticated state law, no unknown plaintext. SFT core executed in V8, wrapper not separately run. Retire this exact receiver, not all feedback.
+- [Report](../../im-results/lp2-two-state-involution-singleton-gate.md) · [SFT](../../sims/lp2_two_state_involution_singleton_sft.cjs) · [raw](../../im-results/lp2-two-state-involution-singleton-output.json). Report commit 8addc595b5d5a44fdc3f49fc062d54b5cc4c10ca, #3222 closed.
+
 ## 2026-11-27 — draw10, #3225 completed
 
 Immutable lease `agent6-draw10-20261127T1851Z-directed`, claimed 2026-11-27T18:50:31.328Z, verified commit 829a2d4d6a15b5f2e54a0c1e19cb18ebd8aa5931. Local Git DNS unavailable, connected Contents API SHA preconditions. Sole #3225 claim verified; issue closed after result.
