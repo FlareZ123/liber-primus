@@ -1,3 +1,7 @@
+## 2026-11-27 checkpoint — p57 interval
+
+p57 last two complete instruction-unit GP sums 1031 and 1229 bound exactly 29 consecutive primes, ordinals 173..201. Next prime after 1031 is 1033 (independently present in LP2); interval endpoint 1229 also appears in historical prime-gap research. This is retrospective and not an authenticated key. Executed all 29 phases × both signs for cyclic (prime−1) mod29 with ordinary/transparent-F clocks and predecessor-exclusion rank28 (mod28 with F=equal predecessor). No full nine-chapter F-hold inverse, ordinary and rank language scores far below held-out p57; isolated p55 has 12 complete F-hold configurations but no convincing text. Controls 95/95 on same p57 passage, rank phase/sign recovered. Retire direct consumers. Report [lp2-p57-prime-interval29-direct-inverses](../../im-results/lp2-p57-prime-interval29-direct-inverses.md); script [lp2_p57_prime_interval29_sft.cjs](../../sims/lp2_p57_prime_interval29_sft.cjs). Commits 438690b59a96672c9c8083bcd3f2e5baa6ee7130 and fe7061d6be2ce2d7e9ac555a64056f719d8897af. No new plaintext. Do not retest without an independently selected operation.
+
 ## 2026-11-27 — current run, independent fallback
 
 - Actual draw 5; immutable lease `agent37-draw5-20261127T0652Z-wing`, claimed 06:52:26.312 UTC, claim commit `0ee3638c68198a9a0ca5d07710a2210d966e433e`; release threshold 08:02:26.312 UTC. Never refresh.
