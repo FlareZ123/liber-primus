@@ -30,7 +30,7 @@ For each candidate image offset, XOR the next 20 raw bytes with this fixed mask 
 
 Reproduction: `sims/lp2_2014_irc_xor_scan_inverse.cjs`, [corrected full CI run 45914290494](https://github.com/FlareZ123/liber-primus/actions/runs/45914290494). The preceding run's score-row match was correct but its exhaustive scan lookup counted LF twice due to JavaScript truthy integer coercion; commit 9effbef corrected this, and only the corrected maximum statistics should be used.
 
-The source participant explicitly called the result “pretty much nothing there” (L26045). This is a recovered **solver-chosen or solver-obtained mask of presently unresolved origin**, not an authenticated Cicada key. Without independent source selection, do not launch arbitrary derived-key sweeps.
+The source participant explicitly called the result “pretty much nothing there” (L26045). Exact independent lookup in all three archived IRC blobs recovers its historical selector: on November 2 at 14:25, .2 L24628, nickname `guy1__` posted “the end is near. 8c12a10087bd6a798609216c13c8fdcf6773ea0d Good luck. 3301”; they repeated it at L24643. On November 4, Nem0 reposted the hex at L26002/26004 and the claimed message at L26034, immediately before the scan at L26043. No signature or independent Cicada attribution is present in these messages. The exact mask was absent from the repository's pre-existing `resources/` files in the bounded raw/hex/base64 search. [Selector run 45914325976](https://github.com/FlareZ123/liber-primus/actions/runs/45914325976), `sims/lp2_2014_irc_xor_mask_selector.cjs`. The sender's claim is unverified; the historical use of the mask is proven. The original scan fails to identify text, so retire this alleged key route unless an independently authenticated source emerges.
 
 ## Other screened leads and decisions
 
@@ -40,4 +40,4 @@ The source participant explicitly called the result “pretty much nothing there
 - Main L175574 p22 quote length signature 3,3,4,5,4 is already represented by existing quotation research; no new corpus selector.
 - Main L187702 WASP on p37, May 10 transcription correction, p15 prime/Fibonacci, p56 known decoder and p54 title guesses are existing branches, not new leads.
 
-Current next question: does the exact recovered XOR mask have independent first-party source evidence? The specific original-byte and hex representation search is in `sims/lp2_2014_irc_xor_mask_selector.cjs`. If no source selection is found, retire this as historical solver reconstruction, not a new LP2 cipher. The full lexical index remains available to screen further independent candidates.
+The exact mask is now traced to an unsigned IRC claim and not to an authenticated creator artifact. The full lexical index remains available to screen further independent candidates; this is not an exhaustive semantic review of its 10,390 ranked bodies. No successor cipher sweep is justified by the three recovered pastes.
