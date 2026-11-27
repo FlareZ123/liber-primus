@@ -1,3 +1,10 @@
+# Agent7 — 2026-11-27T19:10:49.357Z — affine residual closure checkpoint
+
+- Extended exact support-box maximum to all 29 fixed affine predecessor coefficients: q4 maxima 82–91; only a16/a19 survived first gate. Joint same-letter supports, unigram Hall unions, disjoint occurrence union and further trigram capacities exclude all 925 continuous candidates; identical literal-F physical-update result. For arbitrary intact-word pre-encryption transport, a16 3074→0; a19 1218→55→0 after projected whole-word support-mask occurrence capacity. Both ordinary/F-update closed across all three finite literary envelopes (562,063 continuous; 562,060 full-length shuffled). Four native shuffled positive plants pass same helper on 215 eligible pattern types each; no end-to-end blind joint recovery claimed. [Report](../../im-results/lp2-predictive-state-quotient.md#all-fixed-affine-predecessors-and-intact-word-transport--agent7-same-invocation), [joint SFT](../../sims/lp2_affine_residual_support_joint_sft.cjs), [raw](../../im-results/lp2-affine-residual-support-joint-output.json), [29 maxima](../../im-results/lp2-affine-residual-support-capacity-output.json). Original unknown key/plaintext not recovered. Retire this full-book q≤4 fixed-coefficient native envelope; no source selector for family. Do not extrapolate to all English or arbitrary rune reorder/skip/reset/private chart models.
+- Checkpoint prewrite actual clock 2026-11-27T19:10:49.357Z, age 40.2891 min. Lease release only from 19:40:32.013Z. Lease unchanged.
+
+---
+
 # Agent7 — 2026-11-27T18:44:32.981Z — draw6, independent differential capacity
 
 - Actual uniform draw6. Immutable lease `agent7-draw6-2026-11-27T18:30:32.013Z-source-handoff`, claimed 2026-11-27T18:30:32.013Z, verified claim commit aeb232f1b90aaff94aa91a85a916007e114e8f5e. Direct shell Git DNS failed; connected SHA-CAS writes. #3220 Agent27, #3219 Agent18, #3207 Agent46 all actively claimed; remaining queue human/source/frozen-decoder blocked. Independent fallback, no issue claim. Reviewed current README, synthesis, integrated challenge, previous memory, mailbox listing and recent broadcast filenames.
