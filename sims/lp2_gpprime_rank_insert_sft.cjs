@@ -57,7 +57,49 @@ let u=Array(n).fill(1),B=Array.from({length:n},()=>Array(n).fill(0)),T=Array.fro
 let U=u.reduce((a,b)=>a+b,0),p1=u.map(x=>x/U),p2=B.map(row=>{let s=row.reduce((a,b)=>a+b,0);return row.map((x,j)=>(x+10*p1[j])/(s+10))}),p3=T.map((row,k)=>{let s=row.reduce((a,b)=>a+b,0);return row.map((x,j)=>Math.log((x+10*p2[k%n][j])/(s+10)))});
 const score=(P,a,b)=>{let z=0;for(let i=Math.max(2,a);i<b;i++)z+=p3[n*P[i-2]+P[i-1]][P[i]];return z/(b-Math.max(2,a))};
 const canonical=[];for(let kind of ["cipher","plain"]){let best={fit:-Infinity};for(let m=1;m<n;m++)for(let k=0;k<n;k++){let S=range().map(p=>(m*p+k)%n),P=decode(C,S,range(),kind),fit=score(P,0,729);if(fit>best.fit)best={m,k,fit,held:score(P,start,end),preview:P.slice(start,start+140).map(x=>corpus.translit[x]).join(""),replay:eq(encode(P,S,range(),kind),C)}}canonical.push({kind,...best})}
-return {R,source:{N:C.length,start,end,donor:D.length},bounds:{whole:bound(C,0,C.length),carried:bound(C,start,end),chapter:bound(chapter,0,chapter.length)},original:["cipher","plain"].map(kind=>({kind,whole:scan(C,D,kind),chapter:scan(chapter,D,kind)})),controls,canonical};
+
+// F-hold receiver, public R(C). Condition each relaxed alphabet on the
+// exact position z of literal ciphertext zero and on fixed f=S(F).
+// A nonzero move splits at j<z or j>z so the next z is exact.
+// Counts track per-rank maximum over every relaxed path to each state.
+const prop=dom=>{
+ for(;;){let sing=0;for(let x of dom){if(!x)return false;if(!(x&(x-1))){if(sing&x)return false;sing|=x}}
+ let changed=false;for(let g=0;g<n;g++){let x=dom[g];if(!(x&(x-1)))continue;let y=x&~sing;if(!y)return false;if(y!==x){dom[g]=y;changed=true}}
+ if(!changed)return true;
+ }
+};
+const encodeF=(P,S,A)=>{A=A.slice();let ct=[],states=[];for(let p of P){if(p===0)ct.push(0);else{let j=S[p],c=A[j];ct.push(c);A.splice(j,1);A.splice(R[c],0,c)}states.push(A.slice())}return {ct,states,P,S}};
+const holdBound=(C,f,truth=null)=>{
+ let domains=Array.from({length:n},(_,z)=>{let d=Array(n).fill(all&~(1<<z));d[0]=1<<z;return d}),counts=Array.from({length:n},()=>Array(n).fill(0)),live=n,minLive=n,dead=-1,checks=0,trace=[];
+ const scratch=Array(n).fill(0),truthCounts=Array(n).fill(0);
+ for(let i=0;i<C.length;i++){let c=C[i],r=R[c],next=Array(n).fill(null),nc=Array(n).fill(null);
+  const merge=(z,d,q,mask)=>{if(!next[z]){next[z]=d.slice();nc[z]=q.map((v,k)=>v+((mask>>>k)&1));return}
+    let D=next[z],Q=nc[z];for(let k=0;k<n;k++){D[k]|=d[k];Q[k]=Math.max(Q[k],q[k]+((mask>>>k)&1))}
+  };
+  const move=(z,d,q,jmask)=>{if(!jmask)return;
+   // Conditioning on selected rank and the all-different singleton facts.
+   for(let g=0;g<n;g++)scratch[g]=d[g];scratch[c]=jmask;if(!prop(scratch))return;jmask=scratch[c];
+   let mn=31-Math.clz32(jmask&-jmask),mx=31-Math.clz32(jmask),lr=low(r),lm=low(mn+1),lx=low(mx);
+   for(let g=0;g<n;g++){if(g===c)continue;let x=scratch[g],rm=((x&~lm)>>>1)|(x&lx);scratch[g]=(rm&lr)|((rm&~lr)<<1)}
+   scratch[c]=1<<r;if(!prop(scratch))return;
+   let zz=scratch[0];assert(zz&&!(zz&(zz-1)),"zero rank not exact");merge(31-Math.clz32(zz),scratch,q,jmask);
+  };
+  for(let z=0;z<n;z++){let d=domains[z],q=counts[z];if(!d)continue;
+   if(c===0){merge(z,d,q,1<<f);if(z!==f)move(z,d,q,1<<z)}
+   else{let m=d[c]&~(1<<f);move(z,d,q,m&low(z));move(z,d,q,m&~low(z+1))}
+  }
+  domains=next;counts=nc;live=domains.filter(Boolean).length;minLive=Math.min(minLive,live);
+  if(truth){let A=truth.states[i],z=A.indexOf(0),d=domains[z];assert(d,"true zero state lost");truthCounts[truth.S[truth.P[i]]]++;for(let k=0;k<n;k++){assert(d[A[k]]&(1<<k),"true rank lost");assert(counts[z][k]>=truthCounts[k],"true count bound lost");checks++}}
+  if(i%500===499||i===C.length-1||!live)trace.push({i,live});
+  if(!live){dead=i;break}
+ }
+ let top2=0,best=null,exactStates=0;for(let z=0;z<n;z++){if(!domains[z])continue;let h=counts[z].slice().sort((a,b)=>b-a),v=h[0]+h[1];if(v>top2){top2=v;best={z,top:h.slice(0,2)}}if(domains[z].every(x=>!(x&(x-1))))exactStates++}
+ return {f,n:C.length,dead,minLive,terminal:live,exactStates,top2,best,checks,trace};
+};
+const hc=[];for(let s of [10001,18001]){let P=D.slice(s,s+3008),S=perm(),A=perm(),plant=encodeF(P,S,A);hc.push(holdBound(plant.ct,S[0],plant))}
+const fhold={controls:hc,chapter:range().map(f=>holdBound(chapter,f)),whole:range().map(f=>holdBound(C,f))};
+
+return {R,source:{N:C.length,start,end,donor:D.length},bounds:{whole:bound(C,0,C.length),carried:bound(C,start,end),chapter:bound(chapter,0,chapter.length)},original:["cipher","plain"].map(kind=>({kind,whole:scan(C,D,kind),chapter:scan(chapter,D,kind)})),controls,canonical,fhold};
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt"];
 console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),JSON.parse(fs.readFileSync(paths[1],'utf8')),fs.readFileSync(paths[2],'utf8')),null,2));
