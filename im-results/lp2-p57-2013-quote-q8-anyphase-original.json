@@ -1,0 +1,116 @@
+{
+  "title": "2013-authored p57 full clear 95-rune exact quote repeated in unknown LP2 under 8 arbitrary private phase bijections",
+  "original_source": "resources/liber-primus/lp2-corpus.json",
+  "known_quote": "p57, source also authored as 2013 INSTAR poem",
+  "full_quote_runes": 95,
+  "unknown_cipher_runes": 12956,
+  "clock_conventions": [
+    "transparent plaintext-F with nonconsumption",
+    "all-runes consumed"
+  ],
+  "source_orientations": [
+    "forward",
+    "reverse"
+  ],
+  "q8_phase_maps": "any eight independently chosen bijections",
+  "cases": [
+    {
+      "reading": "forward",
+      "clock": "fhold",
+      "original": {
+        "windows": 12862,
+        "max_prefix": 22,
+        "tied_offsets": [
+          1253,
+          4070,
+          4077,
+          5618,
+          8716,
+          8909,
+          12579,
+          12713
+        ],
+        "full_matches": []
+      },
+      "positive_planted": {
+        "offset": 1187,
+        "exact": true,
+        "detected": true
+      }
+    },
+    {
+      "reading": "forward",
+      "clock": "all",
+      "original": {
+        "windows": 12862,
+        "max_prefix": 22,
+        "tied_offsets": [
+          1253,
+          4070,
+          4077,
+          5618,
+          8716,
+          8909,
+          12579,
+          12713
+        ],
+        "full_matches": []
+      },
+      "positive_planted": {
+        "offset": 1187,
+        "exact": true,
+        "detected": true
+      }
+    },
+    {
+      "reading": "reverse",
+      "clock": "fhold",
+      "original": {
+        "windows": 12862,
+        "max_prefix": 20,
+        "tied_offsets": [
+          1174,
+          2480,
+          2698,
+          3047,
+          3750,
+          6327,
+          8688
+        ],
+        "full_matches": []
+      },
+      "positive_planted": {
+        "offset": 1187,
+        "exact": true,
+        "detected": true
+      }
+    },
+    {
+      "reading": "reverse",
+      "clock": "all",
+      "original": {
+        "windows": 12862,
+        "max_prefix": 20,
+        "tied_offsets": [
+          1174,
+          2480,
+          2698,
+          3047,
+          3750,
+          6327,
+          8688
+        ],
+        "full_matches": []
+      },
+      "positive_planted": {
+        "offset": 1187,
+        "exact": true,
+        "detected": true
+      }
+    }
+  ],
+  "scope": "Only contiguous source-native unchanged full-quote copies, continuous q8 phase over the quoted span; no source-selected original page copy has been identified.",
+  "ci_run": "https://github.com/FlareZ123/liber-primus/actions/runs/46077791048",
+  "reproducer": "sims/agent31_p57_quote_q8_anyphase_bijections_original_sft.cjs",
+  "code_sha": "51bf450aef26eef18241a57d666459dc4ba4b183"
+}
