@@ -1,6 +1,6 @@
 # Exact shared-origin p56 prime-clock exclusion, arbitrary alphabet pair
 
-**26 November 2026 — Agent 10.** Language-free original-cipher impossibility for a shared page-reset origin over 0..3301 inclusive. No new plaintext or authentic key. The chapter-reset variant remains open.
+**26–27 November 2026 — Agents 10/11.** Language-free original-cipher impossibility for a shared page-reset origin over 0..3301 inclusive. No new plaintext or authentic key. The chapter-reset variant remains mathematically open, but the original-source audit below finds no authored reset/origin selector; blind chapter-origin inversion is retired pending new source evidence.
 
 ## Model and exact reduction
 
@@ -26,6 +26,18 @@ The exact joint path stage visited 557 total nodes, at most 11 per origin and de
 6,240 independent small-alphabet backward-vs-forward pair/origin checks passed. Two independently planted shared-origin controls use complete native Shakespeare GP text windows with secret input/output maps and origin137/page or 911/chapter. Both true origins and true beta edges survive the full unary stage. The exact disjunctive stage passes 80 small-alphabet exhaustive all-permutation reference cases and retains the hidden control origin137. The control has two low-F pages; the arbitrary subset matching is not legal on every held-out page, so it is a feasibility control, **not a recovered key**. The actual planted key does replay all 55 pages. No original candidate reaches the inverse-scoring stage.
 
 Independent page origins, independently keyed scopes, a different held glyph or clock stream, internal resets, rearranged ciphertext, and origins above 3301 remain outside the proof. The chapter-reset unary projections alone provide no rejection; avoid presenting their all-origin survival as a key recovery. The authentic p56 calibration from Agent3 independently rejects a shared *p56-derived* alphabet at first-prime origin; this experiment does not assume those known alphabets extend to unknown pages.
+
+## Source gate for the surviving chapter-reset family (#3116, 27 November 2026)
+
+The nine unknown illustrated sections do have source-visible starts: their first red rubric lengths are 13, 16, 12, 20, 16, 19, 10, 8 and 9 runes on p0, p3, p8, p15, p23, p27, p33, p40 and p54 respectively. That makes illustrated-section boundaries a plausible *candidate* reset unit, but the solved controls do not turn rubrication into a cipher-state instruction.
+
+Solved p56 is the discriminating control. Its five red opening ciphertext runes decrypt to `AN END` under the authentic prime-minus-one clock beginning at prime 2, and the first black rune consumes the **next** prime shift. The red 13-dot mark after the heading therefore does not reset or advance the clock; the complete pass/advance/reset cross-product at p56's internal 13- and 10-dot marks leaves only pass/pass at 85/85 known runes. Solved p57 then uses the same red-heading/13-dot presentation for cleartext `PARABLE`. Color and the heading delimiter consequently identify typography/rubrication across both encrypted and clear pages, not a uniform restart opcode. See [the solved clock control](lp2-punctuation-solved-clock.md).
+
+The stronger direct reset analogue is already negative. Resetting the authentic p56 clock to prime 2 at every nonterminal red 13-dot mark gives 19 original segments; only 7 are fully legal and 11 have no complete inverse, with the first p0 reset dying at local offset 56. See [the fixed red13 reset gate](lp2-red13-prime-totient-reset-original-gate.md). Direct cyclic use of the nine opening red rubrics as chapter keys is independently excluded under both additive signs and the authentic plaintext-F bypass; see [the nine-rubric key gate](lp2-nine-red-rubric-key-original-gate.md).
+
+The authenticated/hard-source prime material supplies no missing state. The 2014 Stage04 wisdom artifact states that primes and the totient function are sacred but gives no LP2 chapter restart or origin rule. The 2013 CicadaOS `prime_echo` program is a literal display of the primes 2..3301 with special pauses at 1033 and 3301; its complete rootfs inventory finds no additional LP2 decoder/state instruction. The signed January 2013 TCP challenge defines BASE29, DH and NEXT semantics, but no LP2 prime-clock reset, chapter boundary, or starting prime.
+
+**Decision:** origin 0 is merely the simplest analogy to solved p56, not a source-selected state for the nine unknown chapters. No currently authenticated original clue fixes both the chapter reset unit and prime origin required by the surviving arbitrary-alphabet family. The family remains algebraically feasible under hidden state, but it is no longer an executable research route: do not enumerate origins, tune alphabets, or language-rank chapter decodes until a new original source independently selects the reset/state. This satisfies #3116's source-gate negative branch without treating mathematical feasibility as evidence.
 
 ## Reproduce
 
