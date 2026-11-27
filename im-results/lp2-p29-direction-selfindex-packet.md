@@ -1,6 +1,6 @@
 # READ OUT THE DIRECTION self-locates p29 word30 and yields a DH/derivative packet
 
-**Agent1, 19 November 2026. Classification: conditional structural operation candidate with an exact, previously known numeric consequence on p29.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
+**Agent1, 19 November 2026; paired source-number extension by Agent42, 27 November 2026. Classification: conditional structural operation candidate with an exact, previously known numeric consequence on p29 and a new source-numbered ROAD handoff.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
 
 ```text
 [22,15,8,0] = [p-1,b,A,F].
@@ -43,6 +43,106 @@ Canonical p29 word30 is:
 offsets108..111
 [11,26,11,18].
 ```
+
+## Paired THE / DIRECTION readout: the preceding numbered word says THE ROAD
+
+The recovered instruction does not name DIRECTION in isolation. It is literally:
+
+```text
+READ OUT THE DIRECTION
+```
+
+and the authenticated one-based source register fixes the adjacent pair:
+
+```text
+29 THE
+30 DIRECTION
+```
+
+Once DIRECTION's number30 selects physical page30 / project p29, retain both source-numbered canonical objects on that same page rather than discarding THE29. Canonical p29 word29 is immediately before the already selected word30:
+
+```text
+word29 offsets106..107 = [8,15]
+word30 offsets108..111 = [11,26,11,18]
+```
+
+Apply the same two-rune H map already used by the numbered-source grammar:
+
+```text
+H2([8,15])
+= [8-15, 8+15] mod29
+= [22,23].
+```
+
+Those are authenticated zero-based source indices:
+
+```text
+22 THE
+23 ROAD
+
+=> THE ROAD.
+```
+
+The following word30 retains the established four-rune result:
+
+```text
+H4([11,26,11,18]) = [22,15,8,0] = [p-1,b,A,F].
+```
+
+So the exact source-numbered pair selected by `THE DIRECTION` yields two typed outputs side by side:
+
+```text
+THE29       -> THE ROAD
+DIRECTION30 -> [p-1,b,A,F] -> p=23,e=3,K=2.
+```
+
+### Finite pair-family control
+
+Charge the same coordinate grammar across every project page. For physical one-based page number `n`, take canonical words `n-1` and `n` when both exist. There are **48** such adjacent numbered pairs. Seven have a two-rune predecessor, so H2 can emit a two-coordinate source interval without any width change.
+
+Exactly one of those seven predecessors gives an **increasing consecutive authenticated-source pair**:
+
+```text
+project p29 / physical30
+canonical word29
+H2 = [22,23] = THE ROAD.
+```
+
+The same page's current numbered object, word30, is independently the sole one of the seven numbered four-rune objects whose H4 outer-sum coordinate is zero. Thus the two observations meet on the same source-selected page/word pair; they are not assembled from separate page searches.
+
+Across all **448** canonical complete two-rune words on unknown p0–55, exact H2 `[22,23]` occurs only at p29 word29. Exact-packet uniqueness alone is not a discovery statistic because H2 is invertible; the discriminating control is the finite numbered-pair family and the ordered consecutive-source predicate.
+
+[Windows Node22 reproduction **45915515638 PASS**](https://github.com/FlareZ123/liber-primus/actions/runs/45915515638).
+
+### Direct ROAD handoff to the existing p23 instruction
+
+The new output ends on source index **23 ROAD**. Under the already used source-number-as-project-page convention this points to project p23 without consuming the polynomial-root orientation at all. P23 had independently yielded the hidden red-heading instruction:
+
+```text
+THE ONE RISE.
+```
+
+That earlier route prospectively interpreted one rise from source/project23 to24, selecting authenticated **AND24**. The established numbered-diagonal p24 checkpoint then gives:
+
+```text
+AND24 -> p24 canonical word25 -> H2 [12,13] -> THE WAY.
+```
+
+The new p29 result therefore connects already established pieces as:
+
+```text
+READ OUT THE DIRECTION
+ -> DIRECTION30 selects physical page30 / p29
+ -> p29 word29 H2 = THE ROAD
+ -> ROAD23 selects p23
+ -> p23 THE ONE RISE
+ -> one rise 23 -> 24 AND
+ -> AND24 numbered checkpoint = THE WAY.
+```
+
+This is a different p23 selector from the old reciprocal-root23 proposal. The source-selected polynomial orientation remains root24; nothing here revives or overrides the retired root23 branch.
+
+The chain is structural source-register navigation, not continuous unknown-page prose. The remaining promotion gate is a genuinely new reversible ciphertext receiver selected by this route, rather than another coordinate correspondence.
 
 ## READ OUT with the fixed H serialization
 
@@ -184,11 +284,10 @@ The existing cross-source route supplies `AY=[24,26]` separately from the authen
 The current literal route can now be written:
 
 ```text
-p28 -> READ OUT THE
-source word29 THE -> source word30 DIRECTION
-DIRECTION's number30 -> physical page30 / p29 word30
-READ OUT via fixed H4
--> [p-1,b,A,F]
+p28 -> READ OUT THE DIRECTION
+DIRECTION's number30 -> physical page30 / p29
+source-numbered word29 THE -> H2 [22,23] -> THE ROAD -> ROAD23/p23
+source-numbered word30 DIRECTION -> H4 [p-1,b,A,F]
 -> derive p,e,K
 -> e=3 tells derivative order at independently selected root24
 -> W.
@@ -208,8 +307,9 @@ Preserve as a **source-selected structural operation candidate**:
 
 ```text
 READ OUT THE DIRECTION
- -> p29 word30
- -> H4=[p-1,b,A,0]
+ -> p29 words29/30
+ -> word29 H2=[22,23]=THE ROAD -> ROAD23/p23
+ -> word30 H4=[p-1,b,A,0]
  -> e=3
  -> p29 derivative order3 at root24
  -> W.
@@ -227,4 +327,4 @@ Run:
 node sims/lp2_p29_direction_selfindex_packet_sft.cjs
 ```
 
-The SFT parses canonical words without splitting line wraps, selects page30/word30 from authenticated DIRECTION's number, verifies the exact H4 packet, performs the numbered-object and manuscript-wide controls, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24. Historical Windows Node22 run: **44461973002**. The Critic independently replayed the parser and derivative arithmetic against the current pinned blobs (49 numbered objects, 509 distinct four-rune groups, derivatives [0,0,25,7]); the SFT assertion of 48 was corrected to 49. The historical run is not a rerun of the corrected SFT.
+The SFT parses canonical words without splitting line wraps, selects page30 from authenticated DIRECTION's number, verifies the paired source-numbered words29/30, checks word29 H2=`[22,23]`=`THE ROAD`, performs the 48-pair / 448-two-rune controls, verifies word30's H4 packet, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24. Historical Windows Node22 run: **44461973002**. Paired-readout extension: **45915515638 PASS**. The Critic independently replayed the parser and derivative arithmetic against the current pinned blobs (49 numbered objects, 509 distinct four-rune groups, derivatives [0,0,25,7]); the SFT assertion of 48 was corrected to 49. The historical run is not a rerun of the corrected SFT.
