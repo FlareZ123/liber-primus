@@ -1,0 +1,326 @@
+{
+  "source": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "grid": "2550eae357442912220e05dc51147523a61dd75a"
+  },
+  "p56Replay": 85,
+  "consumingPrimes": 84,
+  "results": [
+    {
+      "radix": 59,
+      "layout": "row",
+      "p56": {
+        "distinctInputs": 81,
+        "distinctOutputs": 74,
+        "functionFailures": 3,
+        "injectivityFailures": 10,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 79,
+            "j": 79,
+            "s": 19,
+            "c": 15,
+            "p": 9,
+            "target": 81
+          },
+          "b": {
+            "i": 85,
+            "j": 85,
+            "s": 19,
+            "c": 8,
+            "p": 9,
+            "target": 28
+          }
+        }
+      },
+      "p57": {
+        "distinctInputs": 85,
+        "distinctOutputs": 85,
+        "functionFailures": 0,
+        "injectivityFailures": 0,
+        "first": null
+      },
+      "combined": {
+        "distinctInputs": 158,
+        "distinctOutputs": 147,
+        "functionFailures": 11,
+        "injectivityFailures": 26,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 79,
+            "j": 79,
+            "s": 19,
+            "c": 15,
+            "p": 9,
+            "target": 81
+          },
+          "b": {
+            "i": 85,
+            "j": 85,
+            "s": 19,
+            "c": 8,
+            "p": 9,
+            "target": 28
+          }
+        }
+      },
+      "p56AffineFits": [],
+      "plant": {
+        "affineFit": [
+          [
+            2,
+            7
+          ]
+        ],
+        "allSecretCompatibility": {
+          "distinctInputs": 189,
+          "distinctOutputs": 189,
+          "functionFailures": 0,
+          "injectivityFailures": 0,
+          "first": null
+        },
+        "held57Correct": 95,
+        "held55Correct": 76
+      }
+    },
+    {
+      "radix": 59,
+      "layout": "rim",
+      "p56": {
+        "distinctInputs": 82,
+        "distinctOutputs": 77,
+        "functionFailures": 2,
+        "injectivityFailures": 7,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 11,
+            "j": 78,
+            "s": 18,
+            "c": 22,
+            "p": 18,
+            "target": 218
+          },
+          "b": {
+            "i": 26,
+            "j": 89,
+            "s": 18,
+            "c": 2,
+            "p": 18,
+            "target": 170
+          }
+        }
+      },
+      "p57": {
+        "distinctInputs": 82,
+        "distinctOutputs": 82,
+        "functionFailures": 0,
+        "injectivityFailures": 0,
+        "first": null
+      },
+      "combined": {
+        "distinctInputs": 151,
+        "distinctOutputs": 140,
+        "functionFailures": 17,
+        "injectivityFailures": 29,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 11,
+            "j": 78,
+            "s": 18,
+            "c": 22,
+            "p": 18,
+            "target": 218
+          },
+          "b": {
+            "i": 26,
+            "j": 89,
+            "s": 18,
+            "c": 2,
+            "p": 18,
+            "target": 170
+          }
+        }
+      },
+      "p56AffineFits": [],
+      "plant": {
+        "affineFit": [
+          [
+            2,
+            7
+          ]
+        ],
+        "allSecretCompatibility": {
+          "distinctInputs": 189,
+          "distinctOutputs": 189,
+          "functionFailures": 0,
+          "injectivityFailures": 0,
+          "first": null
+        },
+        "held57Correct": 95,
+        "held55Correct": 76
+      }
+    },
+    {
+      "radix": 60,
+      "layout": "row",
+      "p56": {
+        "distinctInputs": 82,
+        "distinctOutputs": 75,
+        "functionFailures": 2,
+        "injectivityFailures": 9,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 109,
+            "j": 109,
+            "s": 18,
+            "c": 11,
+            "p": 18,
+            "target": 184
+          },
+          "b": {
+            "i": 117,
+            "j": 117,
+            "s": 18,
+            "c": 24,
+            "p": 18,
+            "target": 171
+          }
+        }
+      },
+      "p57": {
+        "distinctInputs": 85,
+        "distinctOutputs": 85,
+        "functionFailures": 0,
+        "injectivityFailures": 0,
+        "first": null
+      },
+      "combined": {
+        "distinctInputs": 160,
+        "distinctOutputs": 146,
+        "functionFailures": 9,
+        "injectivityFailures": 26,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 109,
+            "j": 109,
+            "s": 18,
+            "c": 11,
+            "p": 18,
+            "target": 184
+          },
+          "b": {
+            "i": 117,
+            "j": 117,
+            "s": 18,
+            "c": 24,
+            "p": 18,
+            "target": 171
+          }
+        }
+      },
+      "p56AffineFits": [],
+      "plant": {
+        "affineFit": [
+          [
+            2,
+            7
+          ]
+        ],
+        "allSecretCompatibility": {
+          "distinctInputs": 193,
+          "distinctOutputs": 193,
+          "functionFailures": 0,
+          "injectivityFailures": 0,
+          "first": null
+        },
+        "held57Correct": 95,
+        "held55Correct": 76
+      }
+    },
+    {
+      "radix": 60,
+      "layout": "rim",
+      "p56": {
+        "distinctInputs": 79,
+        "distinctOutputs": 78,
+        "functionFailures": 5,
+        "injectivityFailures": 6,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 11,
+            "j": 78,
+            "s": 10,
+            "c": 22,
+            "p": 18,
+            "target": 222
+          },
+          "b": {
+            "i": 37,
+            "j": 98,
+            "s": 10,
+            "c": 13,
+            "p": 18,
+            "target": 80
+          }
+        }
+      },
+      "p57": {
+        "distinctInputs": 82,
+        "distinctOutputs": 82,
+        "functionFailures": 0,
+        "injectivityFailures": 0,
+        "first": null
+      },
+      "combined": {
+        "distinctInputs": 151,
+        "distinctOutputs": 148,
+        "functionFailures": 17,
+        "injectivityFailures": 22,
+        "first": {
+          "type": "injective",
+          "a": {
+            "i": 11,
+            "j": 78,
+            "s": 10,
+            "c": 22,
+            "p": 18,
+            "target": 222
+          },
+          "b": {
+            "i": 37,
+            "j": 98,
+            "s": 10,
+            "c": 13,
+            "p": 18,
+            "target": 80
+          }
+        }
+      },
+      "p56AffineFits": [],
+      "plant": {
+        "affineFit": [
+          [
+            2,
+            7
+          ]
+        ],
+        "allSecretCompatibility": {
+          "distinctInputs": 189,
+          "distinctOutputs": 189,
+          "functionFailures": 0,
+          "injectivityFailures": 0,
+          "first": null
+        },
+        "held57Correct": 95,
+        "held55Correct": 76
+      }
+    }
+  ]
+}

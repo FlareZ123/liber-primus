@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** exact 76/180 original-print partition; fixed p28 H row-pair transfer to the known 180-rune terminal register is negative; the source-sized 256-rune direct byte-pad and row-wise rank-transposition, one-swap-per-cell graph, and global rank routing with arbitrary tie orders and shared alphabet receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** exact 76/180 original-print partition; fixed p28 H row-pair transfer to the known 180-rune terminal register is negative; the source-sized 256-rune direct byte-pad and row-wise rank-transposition, one-swap-per-cell graph, and global rank routing with arbitrary tie orders and shared alphabet receivers are also negative; shared successor-glyph-conditioned bijection, direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -11,6 +11,26 @@ There are two independently known but **unproven** historical receivers of these
 This partition is a **candidate source-sized route**, rather than a decryption. A byte-to-rune consumer, an independently authored known-tail correspondence or any missing-prime mapping must still be selected by external instructions.
 
 ## Frozen finite direct consumers
+
+### Shared successor-glyph-conditioned inverse: exact all-secret decision (Agent39, 27 November)
+
+A concrete alternative to the earlier address-potential and address-swap models uses the original table as a **selector of an already observed ciphertext rune**, not a byte pad or a moving state. For each physical address i, set s=C[f(i)] and recover P[i]=D_s(C[i]), where each of the 29 unknown maps D_s is an arbitrary GP29 bijection shared across the 256 terminal cells. This covers every additive shift or affine symbol map depending only on the pointed-to ciphertext glyph, as well as arbitrary state relabeling/coarsening. It does not cover a map depending on the address, a longer orbit state, or private page keys. Both published radix conventions (base59 without f, base60) and two existing frozen placements (straight row-major and clockwise p55 perimeter followed by row-major interior) are tested. The 76-rune p55 original ciphertext is used as public input only; its unknown plaintext never enters fit. The p56 known native inverse is re-encrypted 85/85, with its one transparent F and 84 consuming primes. P57 clear plaintext is reserved as a continuation. The proposed shared graph receiver would replace the native p56 decipherment and must reproduce its authenticated output; the manuscript does not authenticate that transfer or the graph opcode.
+
+For a fixed state, two equal ciphertext inputs must decode equally, and two different ciphertext inputs must decode differently. The following counts compare each later observation with the first stored observation at that input/output; they are counts of failed checks, not independent events or p-values.
+
+| Radix | Placement | p56 function / injectivity failures | p56+p57 failures | Affine keys fitting p56 (of 841) | Native plant held p57; p55 |
+|---|---|---:|---:|---:|---:|
+| 59 | row | 3 / 10 | 11 / 26 | 0 | 95/95; 76/76 |
+| 59 | rim | 2 / 7 | 17 / 29 | 0 | 95/95; 76/76 |
+| 60 | row | 2 / 9 | 9 / 26 | 0 | 95/95; 76/76 |
+| 60 | rim | 5 / 6 | 17 / 22 | 0 | 95/95; 76/76 |
+
+A two-record certificate for base60/rim: at physical cells 11 and 37 (terminal linear indices 78 and 98), pointers 222 and 80 both select ciphertext state 10. The original ciphertext indices 22 and 13 are distinct but both must map to authenticated plaintext 18. No bijection can do that. Each other case has its own exact certificate in the machine output. This rules out the entire (29!)^29 shared local-bijection family on p56 alone in all four cases, before p57 or p55 plaintext fitting. A stationary shift or arbitrary affine receiver cannot repair it.
+
+**Constructive control:** for each exact original graph and placement, independently solve the global functional-graph cycle equations C_i=P_i+2C_f(i)+7 mod29 on a 256-rune GP-native plant (p57 prefix76, native p56, p57). Each cycle has invertible 1−2^L in GF29; propagate the solved values up the trees. Hide (2,7) from the decoder, enumerate 841 affine pairs using only synthetic p56 positions, and apply the unique fitted pair to the held p57 and p55 positions. All four controls recover both coefficients and all 171 held runes, and their entire sender replays exactly. The repeated solved text is a mechanism control, not independent prose calibration. The unrestricted row family passes every planted constraint. No original fit, plaintext or authentic key; retire this specific state receiver rather than tune new states after contradiction. This is independent of the earlier address-potential, graph swaps and moving-byte-state models. Core executed in connected V8, not standalone CI.
+
+[Reproducer](../sims/lp2_p50_successor_glyph_bijection_sft.cjs) · [machine output and exact contradiction certificates](lp2-p50-successor-glyph-bijection.json).
+
 
 ### Address-potential difference receiver: exact conditional image dimension (Agent50, 27 November)
 
