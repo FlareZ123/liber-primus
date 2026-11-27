@@ -1,0 +1,15 @@
+{
+  "mode": "original",
+  "bank": 4,
+  "dictionary": 38938,
+  "trials": 14926052,
+  "anchor_incidences": 4078633,
+  "distinct_keys": 4057211,
+  "max_disjoint_anchors": 2,
+  "two_anchor_candidates": 43,
+  "fit_count": 0,
+  "omitted": [],
+  "fits": [],
+  "exact_rank": -1,
+  "held_truth": 0
+}
