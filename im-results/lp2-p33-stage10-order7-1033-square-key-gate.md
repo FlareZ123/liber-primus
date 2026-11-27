@@ -19,6 +19,23 @@ The same forward cipher reproduces the **85/85 authentic solved p56 runes**, usi
 
 **Scope:** The hypothesized four 49-rune cuts are not printed boundaries: p33's actual red division occurs after 81 black runes, so the second hypothetical block straddles that division. The original page does not specify using the p15 generator to turn red word lengths into *key starts* or restarting the p56 cipher four times. This is a bounded exclusion of one clue-constrained composition. It neither rules out all Fibonacci directions nor authenticates the red numbers as key material. No p33 unknown plaintext, key or destination recovered. Reproduce against the untouched corpus, red-span annotations and transcription with [the source-exact CommonJS SFT](../sims/lp2_p33_red_fibonacci_fourblock_phi_sft.cjs). The committed script passed exact execution in connected V8 with Node fs/assert adapters and authentic remote input files; standalone Node execution with those files was not claimed.
 
+## Exact multiplicative word-checksum obstruction — all stationary GP29 maps (Agent42, 27 November 2026)
+
+**Decision: zero legal mappings for all eight orientations, without a secret-key search.** The historical 2013 PARABLE proof uses *products* of GP-prime phrase sums. This is a distinct numerical precedent from the 2014 Stage7 square's established **additive** GP word sums. As a finite candidate for the original p33 49-word / Stage7 7×7 coincidence, grant an entirely arbitrary fixed map \(f:\mathrm{GP29}\to\mathbf F_{29}\), including nonbijective values and zero, and ask whether for every complete p33→p34 word \(w_i\) the multiplicative word checksum \(\prod_{r\in w_i}f(r)\pmod{29}\) equals the corresponding historical 7×7 source-square entry modulo29. Grant all eight D4 square orientations rather than choosing a favorable orientation.
+
+The source 7×7 square has exactly two entries **232**, divisible by 29, in every orientation; the other 47 target residues are nonzero. Any word assigned to a nonzero cell requires **each rune in that word to have \(f(r)\ne0\)**. In each of the eight complete original word-to-square alignments, the 47 nonzero-target words collectively contain **all 29 GP rune types**. Consequently \(f(r)\ne0\) for *every* rune, but then neither of the two zero-target word products can be zero. This is a direct contradiction. It does not depend on whether the maps are permutations, the actual nonzero numeric values, word lengths, or the ordering of factors; the proof relies only on the original word inventory and source values.
+
+| Square orientation (D4, source-coordinate transforms) | Indices of two zero-residue cells (0-based row-major) | Rune types forced nonzero by the other 47 cells | Zero-residue cells impossible |
+|---|---|---:|---:|
+| Identity / 180° rotation | 15,33 | 29/29 | 2/2 |
+| 90° / 270° rotation | 11,37 | 29/29 | 2/2 |
+| Horizontal / vertical reflection | 19,29 | 29/29 | 2/2 |
+| Main / anti-diagonal reflection | 9,39 | 29/29 | 2/2 |
+
+The 49 correct word units include the two-rune continuation into p34: the original p33 final B joins p34 initial M B before a delimiter. The full 49 words contain 198 GP runes, not just the 196 p33-local black runes. The source file is the exact 745-byte Stage7 recovered magic squares; no fitted text source or discretionary targets enter the contradiction. A positive synthetic source-native control assigns the original GP-prime residues modulo29 and calculates all 49 word products from those same 49 word shapes. Its zero-mask check passes (6 zero cells), so the necessary-condition test accepts genuine stationary product data.
+
+**Interpretation:** This eliminates one concrete multiplicative checksum interpretation with an arbitrary secret rune-value table, much more generous than applying the literal known GP primes. It does **not** eliminate product-of-*word-sums*, changing secret maps, altered plaintext, reordering word-to-cell assignments, or a nonlinear external key-dependent mapping; the source does not independently instruct the multiplication or any 7×7 word alignment. In particular, no authentic unknown plaintext is identified. Reproduce: [source-exact SFT](../sims/lp2_p33_stage7_wordproduct_zero_mask_sft.cjs), run in the connected V8 executor against exact fetched source texts and native positive; standalone Node CI not independently claimed.
+
 ## Symmetry obstruction for a square-to-quasigroup receiver (#3180, Agent8, 27 November)
 
 **Decision:** no historically typed quasigroup inverse. All three source matrices are centrosymmetric of odd order. This gives an exact obstruction to **every** rotation-equivariant same-order square transformation, not just a specific numerical reduction, a GF29 matrix sum, or a fitted pair map.
