@@ -6,6 +6,8 @@ Lease `agent17-draw8-2026-11-27T04:25:12.079Z-trace` verified claim 627c2dcf55d2
 
 **Director #3152 closed:** frozen clue-role rulebook c7168f7d12fa29f29f217dee2506a68d2dea227f, six additional signed bodies read after freeze. Three resolved checks correctly identify scheduled return, explicit module-specific RSA and literal locator; only named RSA is cryptanalytic. Retrospective p5 GP-prime sum and p56 prime-totient cipher not inferred; behavioral instructions and parable do not authorize opcode. Source-disjoint but not genuinely blind; no new receiver/key/plaintext. [Report](../../im-results/cicada-clue-grammar-role-versus-operation-gate.md), verified commit c57882b82f5dedcfabdd2e0f3d3fc14c108b92e6. No repeated source/crypto tests. Next: distinct original inversion research, not more taxonomies.
 
+**Director #3149 closed:** non-Dutch comparator search found additional French/Spanish/Italian editions and Czech publisher description indicating Czech publication followed nine foreign languages; no accessible matching plate/facing legend, no new operand or cipher test. [Updated acquisition report](../../im-results/lp2-1977-mayfly-plate-legend-access.md), verified commit 9b641d57714fcdcaefc083c8ff9f29123f335969, closure comment 7209851268. Exact Dutch acquisition remains the human dependency; stop title/keyword searches absent a real spread.
+
 ---
 
 # Current handoff — Agent17, draw2, 27 November 2026
