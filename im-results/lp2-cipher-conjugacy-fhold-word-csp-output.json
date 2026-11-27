@@ -4,42 +4,42 @@
       {
         "s": 1,
         "e": 4,
-        "candidates": 157
+        "candidates": 307
       },
       {
         "s": 4,
         "e": 6,
-        "candidates": 44
+        "candidates": 114
       },
       {
         "s": 6,
         "e": 10,
-        "candidates": 217
+        "candidates": 504
       },
       {
         "s": 10,
         "e": 17,
-        "candidates": 1
+        "candidates": 10
       },
       {
         "s": 17,
         "e": 23,
-        "candidates": 143
+        "candidates": 470
       },
       {
         "s": 23,
         "e": 26,
-        "candidates": 145
+        "candidates": 334
       },
       {
         "s": 26,
         "e": 30,
-        "candidates": 345
+        "candidates": 738
       },
       {
         "s": 30,
         "e": 33,
-        "candidates": 128
+        "candidates": 293
       },
       {
         "s": 33,
@@ -49,47 +49,47 @@
       {
         "s": 42,
         "e": 47,
-        "candidates": 163
+        "candidates": 444
       },
       {
         "s": 47,
         "e": 51,
-        "candidates": 261
+        "candidates": 603
       },
       {
         "s": 51,
         "e": 56,
-        "candidates": 281
+        "candidates": 736
       },
       {
         "s": 56,
         "e": 60,
-        "candidates": 176
+        "candidates": 367
       },
       {
         "s": 60,
         "e": 66,
-        "candidates": 143
+        "candidates": 448
       },
       {
         "s": 66,
         "e": 68,
-        "candidates": 53
+        "candidates": 136
       },
       {
         "s": 68,
         "e": 70,
-        "candidates": 53
+        "candidates": 135
       },
       {
         "s": 70,
         "e": 73,
-        "candidates": 163
+        "candidates": 349
       },
       {
         "s": 73,
         "e": 78,
-        "candidates": 201
+        "candidates": 539
       }
     ],
     "levels": [
@@ -102,14 +102,14 @@
       },
       {
         "budget": 1,
-        "nodes": 3,
+        "nodes": 12,
         "solutions": 0,
         "hitLimit": false,
         "best": []
       },
       {
         "budget": 2,
-        "nodes": 51,
+        "nodes": 147,
         "solutions": 0,
         "hitLimit": false,
         "best": []
@@ -276,135 +276,294 @@
           {
             "s": 2,
             "e": 5,
-            "candidates": 148
+            "candidates": 337
           },
           {
             "s": 5,
             "e": 8,
-            "candidates": 164
+            "candidates": 376
           },
           {
             "s": 8,
             "e": 11,
-            "candidates": 16
+            "candidates": 27
           },
           {
             "s": 11,
             "e": 17,
-            "candidates": 127
+            "candidates": 414
           },
           {
             "s": 17,
             "e": 19,
-            "candidates": 42
+            "candidates": 116
           },
           {
             "s": 19,
             "e": 21,
-            "candidates": 47
+            "candidates": 136
           },
           {
             "s": 21,
             "e": 27,
-            "candidates": 158
+            "candidates": 539
           },
           {
             "s": 27,
             "e": 28,
-            "candidates": 14
+            "candidates": 18
           },
           {
             "s": 28,
             "e": 32,
-            "candidates": 184
+            "candidates": 463
           },
           {
             "s": 32,
             "e": 35,
-            "candidates": 130
+            "candidates": 296
           },
           {
             "s": 35,
             "e": 37,
-            "candidates": 44
+            "candidates": 114
           },
           {
             "s": 37,
             "e": 40,
-            "candidates": 111
+            "candidates": 260
           },
           {
             "s": 40,
             "e": 42,
-            "candidates": 50
+            "candidates": 126
           },
           {
             "s": 42,
             "e": 46,
-            "candidates": 16
+            "candidates": 35
           },
           {
             "s": 46,
             "e": 49,
-            "candidates": 149
+            "candidates": 342
           },
           {
             "s": 49,
             "e": 55,
-            "candidates": 12
+            "candidates": 38
           },
           {
             "s": 55,
             "e": 59,
-            "candidates": 299
+            "candidates": 671
           },
           {
             "s": 59,
             "e": 65,
-            "candidates": 8
+            "candidates": 22
           },
           {
             "s": 65,
             "e": 67,
-            "candidates": 41
+            "candidates": 114
           },
           {
             "s": 67,
             "e": 71,
-            "candidates": 362
+            "candidates": 782
           },
           {
             "s": 71,
             "e": 75,
-            "candidates": 223
+            "candidates": 493
           },
           {
             "s": 75,
             "e": 78,
-            "candidates": 165
+            "candidates": 396
           }
         ],
         "levels": [
           {
             "budget": 0,
-            "nodes": 9,
+            "nodes": 50,
             "solutions": 0,
             "hitLimit": false,
             "best": []
           },
           {
             "budget": 1,
-            "nodes": 34,
+            "nodes": 302,
             "solutions": 0,
             "hitLimit": false,
             "best": []
           },
           {
             "budget": 2,
-            "nodes": 89,
-            "solutions": 0,
+            "nodes": 1081,
+            "solutions": 1,
             "hitLimit": false,
-            "best": []
+            "best": [
+              {
+                "key": [
+                  18,
+                  7,
+                  15,
+                  17,
+                  27,
+                  11,
+                  21,
+                  1,
+                  23,
+                  22,
+                  12,
+                  5,
+                  10,
+                  25,
+                  16,
+                  2,
+                  14,
+                  3,
+                  0,
+                  20,
+                  19,
+                  6,
+                  9,
+                  8,
+                  24,
+                  13,
+                  28,
+                  4,
+                  26
+                ],
+                "miss": 2,
+                "score": 99.71270148709515,
+                "plain": [
+                  4,
+                  26,
+                  5,
+                  1,
+                  13,
+                  2,
+                  24,
+                  16,
+                  7,
+                  24,
+                  15,
+                  17,
+                  1,
+                  4,
+                  9,
+                  18,
+                  23,
+                  10,
+                  9,
+                  2,
+                  18,
+                  13,
+                  3,
+                  16,
+                  16,
+                  18,
+                  4,
+                  15,
+                  3,
+                  1,
+                  18,
+                  9,
+                  24,
+                  9,
+                  23,
+                  10,
+                  15,
+                  9,
+                  3,
+                  16,
+                  2,
+                  18,
+                  20,
+                  1,
+                  16,
+                  18,
+                  2,
+                  24,
+                  16,
+                  15,
+                  3,
+                  3,
+                  2,
+                  18,
+                  15,
+                  26,
+                  3,
+                  1,
+                  4,
+                  15,
+                  13,
+                  10,
+                  4,
+                  10,
+                  16,
+                  2,
+                  18,
+                  1,
+                  18,
+                  4,
+                  26,
+                  7,
+                  3,
+                  3,
+                  23,
+                  2,
+                  24,
+                  16,
+                  7,
+                  24,
+                  15,
+                  8,
+                  3,
+                  20,
+                  20,
+                  3,
+                  7,
+                  18,
+                  23,
+                  7,
+                  10,
+                  2,
+                  5,
+                  9,
+                  10,
+                  1,
+                  18,
+                  15,
+                  7,
+                  8,
+                  18,
+                  9,
+                  26,
+                  3,
+                  1,
+                  24,
+                  4,
+                  18,
+                  11,
+                  3,
+                  26,
+                  3,
+                  1,
+                  15,
+                  20,
+                  3,
+                  3,
+                  5
+                ],
+                "fitCorrect": 78,
+                "heldCorrect": 40,
+                "keyCorrect": 29
+              }
+            ]
           }
         ]
       }
@@ -568,118 +727,118 @@
           {
             "s": 1,
             "e": 6,
-            "candidates": 104
+            "candidates": 439
           },
           {
             "s": 6,
             "e": 8,
-            "candidates": 48
+            "candidates": 132
           },
           {
             "s": 8,
             "e": 12,
-            "candidates": 231
+            "candidates": 772
           },
           {
             "s": 12,
             "e": 14,
-            "candidates": 42
+            "candidates": 107
           },
           {
             "s": 14,
             "e": 15,
-            "candidates": 13
+            "candidates": 20
           },
           {
             "s": 15,
             "e": 18,
-            "candidates": 121
+            "candidates": 343
           },
           {
             "s": 18,
             "e": 22,
-            "candidates": 155
+            "candidates": 508
           },
           {
             "s": 22,
             "e": 25,
-            "candidates": 175
+            "candidates": 494
           },
           {
             "s": 25,
             "e": 29,
-            "candidates": 160
+            "candidates": 487
           },
           {
             "s": 29,
             "e": 32,
-            "candidates": 120
+            "candidates": 393
           },
           {
             "s": 32,
             "e": 36,
-            "candidates": 145
+            "candidates": 418
           },
           {
             "s": 36,
             "e": 39,
-            "candidates": 70
+            "candidates": 224
           },
           {
             "s": 39,
             "e": 44,
-            "candidates": 87
+            "candidates": 409
           },
           {
             "s": 44,
             "e": 47,
-            "candidates": 96
+            "candidates": 270
           },
           {
             "s": 47,
             "e": 50,
-            "candidates": 133
+            "candidates": 393
           },
           {
             "s": 50,
             "e": 55,
-            "candidates": 171
+            "candidates": 660
           },
           {
             "s": 55,
             "e": 60,
-            "candidates": 7
+            "candidates": 24
           },
           {
             "s": 60,
             "e": 67,
-            "candidates": 7
+            "candidates": 32
           },
           {
             "s": 67,
             "e": 70,
-            "candidates": 114
+            "candidates": 367
           },
           {
             "s": 70,
             "e": 73,
-            "candidates": 123
+            "candidates": 351
           },
           {
             "s": 73,
             "e": 74,
-            "candidates": 13
+            "candidates": 18
           },
           {
             "s": 74,
             "e": 76,
-            "candidates": 34
+            "candidates": 114
           }
         ],
         "levels": [
           {
             "budget": 0,
-            "nodes": 30,
+            "nodes": 43,
             "solutions": 1,
             "hitLimit": false,
             "best": [
@@ -716,7 +875,7 @@
                   16
                 ],
                 "miss": 0,
-                "score": 82.74961452310976,
+                "score": 85.00638070785551,
                 "plain": [
                   20,
                   15,
@@ -846,5 +1005,6 @@
         ]
       }
     }
-  ]
+  ],
+  "passed": true
 }
