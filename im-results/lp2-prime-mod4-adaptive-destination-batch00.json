@@ -1,0 +1,145 @@
+{
+  "batch": 0,
+  "totals": {
+    "maps": 840,
+    "stage1Dead": 814,
+    "stage1Pairs": 52,
+    "stage2Dead": 26,
+    "stage2Pairs": 0,
+    "bidirDead": 0,
+    "bidirPairs": 0
+  },
+  "surv": [],
+  "deadHistogram": {
+    "350": 109,
+    "530": 187,
+    "644": 288,
+    "1316": 132,
+    "2428": 98
+  },
+  "controls": {
+    "checks": 23548,
+    "plants": [
+      {
+        "d": [
+          2,
+          15,
+          25
+        ],
+        "n": 2979,
+        "singletons": 27,
+        "p": [
+          5,
+          14
+        ],
+        "unconstrainedPairs": 29,
+        "bidir": {
+          "dead": null,
+          "passes": 3,
+          "changes": 89273,
+          "converged": true
+        }
+      },
+      {
+        "d": [
+          13,
+          13,
+          23
+        ],
+        "n": 2979,
+        "singletons": 27,
+        "p": [
+          16,
+          21
+        ],
+        "unconstrainedPairs": 106,
+        "bidir": {
+          "dead": null,
+          "passes": 4,
+          "changes": 142738,
+          "converged": true
+        }
+      },
+      {
+        "d": [
+          4,
+          19,
+          8
+        ],
+        "n": 2979,
+        "singletons": 27,
+        "p": [
+          5,
+          19
+        ],
+        "unconstrainedPairs": 6,
+        "bidir": {
+          "dead": null,
+          "passes": 4,
+          "changes": 105412,
+          "converged": true
+        }
+      },
+      {
+        "d": [
+          0,
+          28,
+          14
+        ],
+        "n": 2979,
+        "singletons": 27,
+        "p": [
+          3,
+          11
+        ],
+        "unconstrainedPairs": 106,
+        "bidir": {
+          "dead": null,
+          "passes": 4,
+          "changes": 107582,
+          "converged": true
+        }
+      },
+      {
+        "d": [
+          28,
+          0,
+          0
+        ],
+        "n": 2979,
+        "singletons": 27,
+        "p": [
+          3,
+          16
+        ],
+        "unconstrainedPairs": 1,
+        "bidir": {
+          "dead": null,
+          "passes": 2,
+          "changes": 86392,
+          "converged": true
+        }
+      },
+      {
+        "d": [
+          18,
+          18,
+          18
+        ],
+        "n": 2979,
+        "singletons": 27,
+        "p": [
+          27,
+          28
+        ],
+        "unconstrainedPairs": 400,
+        "bidir": {
+          "dead": null,
+          "passes": 4,
+          "changes": 118019,
+          "converged": true
+        }
+      }
+    ]
+  }
+}
