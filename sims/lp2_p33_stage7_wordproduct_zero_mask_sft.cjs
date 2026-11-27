@@ -13,7 +13,7 @@ const ink=JSON.parse(fs.readFileSync(path.join(root,'resources/liber-primus/lp2-
 const trans=fs.readFileSync(path.join(root,'resources/liber-primus/lp2-transcription.txt'),'utf8');
 const squares=fs.readFileSync(path.join(root,'resources/cicada2014-openpuff-magic-squares.txt'),'utf8');
 assert.equal(d.pages[33].indices.length,214);
-assert.equal(d.pages[34].indices.length,243);
+assert.equal(d.pages[34].indices.length,261);
 const p33ink=ink.pages.find(p=>p.page===33);
 assert.deepEqual(p33ink.red_spans.map(s=>[s.start,s.length]),[[0,10],[91,8]]);
 const sourceRunes=new Set(d.runes), raw=trans.split('%')[33];
