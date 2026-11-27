@@ -1,0 +1,476 @@
+{
+  "batch": 4,
+  "totals": {
+    "maps": 841,
+    "stage1Dead": 532,
+    "stage1Pairs": 2189,
+    "stage2Dead": 280,
+    "stage2Pairs": 30,
+    "splitDead": 27,
+    "splitPairs": 2
+  },
+  "surv": [
+    {
+      "d": [
+        4,
+        6,
+        4
+      ],
+      "pair": [
+        3,
+        7
+      ],
+      "split": {
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 356928
+      }
+    },
+    {
+      "d": [
+        4,
+        7,
+        4
+      ],
+      "pair": [
+        3,
+        9
+      ],
+      "split": {
+        "dead": null,
+        "maxStates": 29,
+        "transitions": 382803
+      }
+    }
+  ],
+  "splitRows": [
+    {
+      "d": [
+        4,
+        1,
+        1
+      ],
+      "pair": [
+        0,
+        2
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 21405
+    },
+    {
+      "d": [
+        4,
+        2,
+        2
+      ],
+      "pair": [
+        1,
+        3
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 21629
+    },
+    {
+      "d": [
+        4,
+        3,
+        3
+      ],
+      "pair": [
+        2,
+        4
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 21801
+    },
+    {
+      "d": [
+        4,
+        4,
+        4
+      ],
+      "pair": [
+        3,
+        5
+      ],
+      "dead": 792,
+      "maxStates": 29,
+      "transitions": 24793
+    },
+    {
+      "d": [
+        4,
+        5,
+        5
+      ],
+      "pair": [
+        4,
+        6
+      ],
+      "dead": 792,
+      "maxStates": 29,
+      "transitions": 20182
+    },
+    {
+      "d": [
+        4,
+        6,
+        4
+      ],
+      "pair": [
+        3,
+        7
+      ],
+      "dead": null,
+      "maxStates": 29,
+      "transitions": 356928
+    },
+    {
+      "d": [
+        4,
+        6,
+        6
+      ],
+      "pair": [
+        5,
+        7
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18731
+    },
+    {
+      "d": [
+        4,
+        7,
+        4
+      ],
+      "pair": [
+        3,
+        8
+      ],
+      "dead": 1062,
+      "maxStates": 29,
+      "transitions": 30003
+    },
+    {
+      "d": [
+        4,
+        7,
+        4
+      ],
+      "pair": [
+        3,
+        9
+      ],
+      "dead": null,
+      "maxStates": 29,
+      "transitions": 382803
+    },
+    {
+      "d": [
+        4,
+        7,
+        7
+      ],
+      "pair": [
+        6,
+        8
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18697
+    },
+    {
+      "d": [
+        4,
+        8,
+        8
+      ],
+      "pair": [
+        7,
+        9
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18624
+    },
+    {
+      "d": [
+        4,
+        9,
+        9
+      ],
+      "pair": [
+        8,
+        10
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18557
+    },
+    {
+      "d": [
+        4,
+        10,
+        10
+      ],
+      "pair": [
+        9,
+        11
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18494
+    },
+    {
+      "d": [
+        4,
+        11,
+        11
+      ],
+      "pair": [
+        10,
+        12
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18436
+    },
+    {
+      "d": [
+        4,
+        12,
+        12
+      ],
+      "pair": [
+        11,
+        13
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18362
+    },
+    {
+      "d": [
+        4,
+        13,
+        13
+      ],
+      "pair": [
+        12,
+        14
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18309
+    },
+    {
+      "d": [
+        4,
+        14,
+        14
+      ],
+      "pair": [
+        13,
+        15
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18256
+    },
+    {
+      "d": [
+        4,
+        15,
+        15
+      ],
+      "pair": [
+        14,
+        16
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18206
+    },
+    {
+      "d": [
+        4,
+        16,
+        16
+      ],
+      "pair": [
+        15,
+        17
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18161
+    },
+    {
+      "d": [
+        4,
+        17,
+        17
+      ],
+      "pair": [
+        16,
+        18
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18107
+    },
+    {
+      "d": [
+        4,
+        18,
+        18
+      ],
+      "pair": [
+        17,
+        19
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18065
+    },
+    {
+      "d": [
+        4,
+        19,
+        19
+      ],
+      "pair": [
+        18,
+        20
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 18002
+    },
+    {
+      "d": [
+        4,
+        20,
+        20
+      ],
+      "pair": [
+        19,
+        21
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17964
+    },
+    {
+      "d": [
+        4,
+        21,
+        21
+      ],
+      "pair": [
+        20,
+        22
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17933
+    },
+    {
+      "d": [
+        4,
+        22,
+        22
+      ],
+      "pair": [
+        21,
+        23
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17884
+    },
+    {
+      "d": [
+        4,
+        23,
+        23
+      ],
+      "pair": [
+        22,
+        24
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17849
+    },
+    {
+      "d": [
+        4,
+        24,
+        24
+      ],
+      "pair": [
+        23,
+        25
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17866
+    },
+    {
+      "d": [
+        4,
+        25,
+        25
+      ],
+      "pair": [
+        24,
+        26
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17833
+    },
+    {
+      "d": [
+        4,
+        26,
+        26
+      ],
+      "pair": [
+        25,
+        27
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17798
+    },
+    {
+      "d": [
+        4,
+        27,
+        27
+      ],
+      "pair": [
+        26,
+        28
+      ],
+      "dead": 644,
+      "maxStates": 29,
+      "transitions": 17766
+    }
+  ],
+  "deadHistogram": {
+    "350": 65,
+    "530": 191,
+    "1062": 124,
+    "1316": 148,
+    "2428": 4
+  },
+  "controls": null
+}
