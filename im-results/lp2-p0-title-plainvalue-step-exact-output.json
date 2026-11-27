@@ -1,0 +1,2018 @@
+{
+  "schema": "lp2-p0-fixed-title-plainvalue-step-20261127",
+  "title": [
+    15,
+    8,
+    18,
+    3,
+    6,
+    19,
+    27,
+    0,
+    15,
+    26,
+    18,
+    21,
+    5
+  ],
+  "profile": {
+    "runes": 716,
+    "groups": 156,
+    "p0": 249,
+    "long": 20,
+    "lexicon": 38938
+  },
+  "controlPass": true,
+  "cases": [
+    {
+      "weight": "ordinal",
+      "sign": 1,
+      "advance": "prime",
+      "key": [
+        15,
+        8,
+        18,
+        3,
+        6,
+        19,
+        27,
+        0,
+        15,
+        26,
+        18,
+        21,
+        5
+      ],
+      "phase0": {
+        "firstImpossible": 29,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 29,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 29,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 45,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "8",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "262144",
+          "bestAccuracy": 0.9766990291262136,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "ordinal",
+      "sign": 1,
+      "advance": "totient",
+      "key": [
+        15,
+        8,
+        18,
+        3,
+        6,
+        19,
+        27,
+        0,
+        15,
+        26,
+        18,
+        21,
+        5
+      ],
+      "phase0": {
+        "firstImpossible": 145,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 145,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 145,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 43,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "16",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "3145728",
+          "bestAccuracy": 0.9941747572815534,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "ordinal",
+      "sign": -1,
+      "advance": "prime",
+      "key": [
+        14,
+        21,
+        11,
+        26,
+        23,
+        10,
+        2,
+        0,
+        14,
+        3,
+        11,
+        8,
+        24
+      ],
+      "phase0": {
+        "firstImpossible": 34,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 34,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 34,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 40,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "88",
+          "bestAccuracy": 0.9402173913043478,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "80740352",
+          "bestAccuracy": 0.9825242718446602,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "ordinal",
+      "sign": -1,
+      "advance": "totient",
+      "key": [
+        14,
+        21,
+        11,
+        26,
+        23,
+        10,
+        2,
+        0,
+        14,
+        3,
+        11,
+        8,
+        24
+      ],
+      "phase0": {
+        "firstImpossible": 46,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 46,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 46,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 38,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "2880",
+          "bestAccuracy": 0.9184782608695652,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "29491200",
+          "bestAccuracy": 0.9922330097087378,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "prime",
+      "sign": 1,
+      "advance": "prime",
+      "key": [
+        24,
+        23,
+        9,
+        7,
+        17,
+        13,
+        20,
+        2,
+        24,
+        16,
+        9,
+        21,
+        13
+      ],
+      "phase0": {
+        "firstImpossible": 75,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 75,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 75,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 40,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "32",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "6082560",
+          "bestAccuracy": 0.9728155339805825,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "prime",
+      "sign": 1,
+      "advance": "totient",
+      "key": [
+        24,
+        23,
+        9,
+        7,
+        17,
+        13,
+        20,
+        2,
+        24,
+        16,
+        9,
+        21,
+        13
+      ],
+      "phase0": {
+        "firstImpossible": 28,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 28,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 28,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 41,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "16",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "1128960",
+          "bestAccuracy": 0.9883495145631068,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "prime",
+      "sign": -1,
+      "advance": "prime",
+      "key": [
+        5,
+        6,
+        20,
+        22,
+        12,
+        16,
+        9,
+        27,
+        5,
+        13,
+        20,
+        8,
+        16
+      ],
+      "phase0": {
+        "firstImpossible": 16,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 17,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 17,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 46,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "32",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "37843200",
+          "bestAccuracy": 0.9669902912621359,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "prime",
+      "sign": -1,
+      "advance": "totient",
+      "key": [
+        5,
+        6,
+        20,
+        22,
+        12,
+        16,
+        9,
+        27,
+        5,
+        13,
+        20,
+        8,
+        16
+      ],
+      "phase0": {
+        "firstImpossible": 29,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 29,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 29,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 49,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "4096",
+          "bestAccuracy": 0.9565217391304348,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "275251200",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "totient",
+      "sign": 1,
+      "advance": "prime",
+      "key": [
+        23,
+        22,
+        8,
+        6,
+        16,
+        12,
+        19,
+        1,
+        23,
+        15,
+        8,
+        20,
+        12
+      ],
+      "phase0": {
+        "firstImpossible": 158,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 158,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 158,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 45,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "32",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "23040",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "totient",
+      "sign": 1,
+      "advance": "totient",
+      "key": [
+        23,
+        22,
+        8,
+        6,
+        16,
+        12,
+        19,
+        1,
+        23,
+        15,
+        8,
+        20,
+        12
+      ],
+      "phase0": {
+        "firstImpossible": 143,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 143,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 143,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 45,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "32",
+          "bestAccuracy": 0.9891304347826086,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "9043968",
+          "bestAccuracy": 0.9922330097087378,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "totient",
+      "sign": -1,
+      "advance": "prime",
+      "key": [
+        6,
+        7,
+        21,
+        23,
+        13,
+        17,
+        10,
+        28,
+        6,
+        14,
+        21,
+        9,
+        17
+      ],
+      "phase0": {
+        "firstImpossible": 40,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 40,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 40,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 51,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "256",
+          "bestAccuracy": 0.907608695652174,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "5308416",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    },
+    {
+      "weight": "totient",
+      "sign": -1,
+      "advance": "totient",
+      "key": [
+        6,
+        7,
+        21,
+        23,
+        13,
+        17,
+        10,
+        28,
+        6,
+        14,
+        21,
+        9,
+        17
+      ],
+      "phase0": {
+        "firstImpossible": 24,
+        "paths": "0"
+      },
+      "allPhases": {
+        "firstImpossible": 24,
+        "paths": "0"
+      },
+      "p0AllPhases": {
+        "firstImpossible": 24,
+        "paths": "0"
+      },
+      "wordIndependent": {
+        "groups": 156,
+        "lexical": 42,
+        "long": 20,
+        "longLexical": 0,
+        "longCandidates": [
+          {
+            "i": 3,
+            "cipher": "9i7hofmcal1",
+            "words": []
+          },
+          {
+            "i": 11,
+            "cipher": "fdg0d1lqler",
+            "words": []
+          },
+          {
+            "i": 18,
+            "cipher": "2ojalarq",
+            "words": []
+          },
+          {
+            "i": 34,
+            "cipher": "l6jb43kc",
+            "words": []
+          },
+          {
+            "i": 44,
+            "cipher": "sjleecnh",
+            "words": []
+          },
+          {
+            "i": 53,
+            "cipher": "03i7smk0p",
+            "words": []
+          },
+          {
+            "i": 57,
+            "cipher": "fm417fkr",
+            "words": []
+          },
+          {
+            "i": 58,
+            "cipher": "moplfndg",
+            "words": []
+          },
+          {
+            "i": 65,
+            "cipher": "43mj8j6d8",
+            "words": []
+          },
+          {
+            "i": 88,
+            "cipher": "b0a9r5qsar",
+            "words": []
+          },
+          {
+            "i": 93,
+            "cipher": "n5ksfe56r",
+            "words": []
+          },
+          {
+            "i": 129,
+            "cipher": "ls09ainrl4",
+            "words": []
+          },
+          {
+            "i": 138,
+            "cipher": "dg084ni0g",
+            "words": []
+          },
+          {
+            "i": 142,
+            "cipher": "dok1s9kb",
+            "words": []
+          },
+          {
+            "i": 143,
+            "cipher": "b5k7sn1nc",
+            "words": []
+          },
+          {
+            "i": 145,
+            "cipher": "2rp5kg7ia5",
+            "words": []
+          },
+          {
+            "i": 148,
+            "cipher": "4a62sig6",
+            "words": []
+          },
+          {
+            "i": 149,
+            "cipher": "283r7pbi",
+            "words": []
+          },
+          {
+            "i": 153,
+            "cipher": "hb51egohbd",
+            "words": []
+          },
+          {
+            "i": 155,
+            "cipher": "8n9r1df17",
+            "words": []
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "0_warning",
+          "n": 184,
+          "truthRetained": true,
+          "completePaths": "32",
+          "bestAccuracy": 1,
+          "bestReplay": true,
+          "wordTruth": 45,
+          "wordCount": 45,
+          "lexicalControl": 45
+        },
+        {
+          "name": "0_welcome",
+          "n": 515,
+          "truthRetained": true,
+          "completePaths": "3670016",
+          "bestAccuracy": 0.996116504854369,
+          "bestReplay": true,
+          "wordTruth": 124,
+          "wordCount": 124,
+          "lexicalControl": 124
+        }
+      ]
+    }
+  ],
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json",
+      "sha": "037beb1c7d6d3fa7d435bba7b44259f83fe71712"
+    }
+  ]
+}
