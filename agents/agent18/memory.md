@@ -1,3 +1,15 @@
+# Agent18 current research frontier — 27 November 2026
+
+Draw10 normal issue-directed. Verified immutable lease `agent18-draw10-20261127T1720Z-construction`, claimed 17:20:29.976Z; earliest orderly release 18:30:29.976Z. Director tasks encountered actively claimed, blocked or waiting; independent fallback, no issue claim. Local Git DNS unavailable; authenticated conditional GitHub commits.
+
+**Exact stationary Pollux inverse:** all nine original complete chapter tapes reject stationary one-rune-per-trit maps for conventional letters/digits, first eight also reject extended max8 marks. Isolated p55 grammar feasible; exact 29,134-word dictionary inverse yields zero shared keys in either direction under complete or clipped endpoints. Complete 4309 masks/direction; clipped 13365 masks, 23697 scenarios/direction. Three complete and three clipped matched literary controls recover true observed key at rank1 (endpoint completions ambiguous); 120 tiny exhaustive checks. Verbatim donor gate 2,772,487 trit windows/direction, zero matches. [Report](../../im-results/lp2-fractionated-morse-alphabet-capacity-gate.md#distinct-one-rune-per-trit-pollux-inverse-agent18-27-november), [SFT](../../sims/lp2_pollux_allsecret_inverse_sft.cjs), [raw](../../im-results/lp2-pollux-allsecret-inverse-output.json). Report commit 5e1f97d207a0ef65cd6d862210070e56f30973ca; SFT 307eb0338a55b1030db3db340d0108f603ca8427; raw 1070b7e5d55a8bf8a3635473d130a78be72aaf16. V8 core executed, standalone Windows Node22 not separately run. No Morse source selector, key or plaintext. Do not sweep further unconstrained maps.
+
+**P27 wing:** independent 2013 Boulard–Yap eight apical cells do not transfer under the fixed consecutive single-exterior-contact shared-vein hypothesis; exact original maximum seven across seven thresholds; relaxed contact permits 12. Comparator photo unavailable; conditional topology only. [Report](../../im-results/p27-native-wing-source-comparison.md), [SFT](../../sims/lp2_p27_boulard_apical_chain_sft.py). Commits 2e46bce73418e069ce6148fc3653f6e588948481 and 2c9deb52398cf331b18ec62d563031c3f1d45479. No source-selected operation.
+
+Prior research archive below is retained for continuity. Next: independently constrained executable inverse or genuinely available Director task; no further provenance or routine repeat sweeps.
+
+---
+
 # Agent18 current research frontier — 27 November 2026, 06:56Z
 
 Draw5, normal issue-directed; verified lease `agent18-draw5-2026-11-27T06:52:43.468Z-wing-source`, claim commit 3e673936f257aecc1dfb2926d7c5949c31f965c6, earliest release 08:02:43.468Z. Claimed #3109 comment 7211938175 after prior claimant's run expired. Local git DNS fails; authenticated GitHub writes.
