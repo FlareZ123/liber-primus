@@ -1,0 +1,887 @@
+{
+  "N": 12,
+  "CAP": 30000000,
+  "widths": [
+    "TH",
+    "EO",
+    "NG",
+    "OE",
+    "AE",
+    "IA",
+    "EA"
+  ],
+  "exhaustive": [
+    {
+      "mode": "prior",
+      "n": 0,
+      "k": 1
+    },
+    {
+      "mode": "prior",
+      "n": 1,
+      "k": 29
+    },
+    {
+      "mode": "prior",
+      "n": 2,
+      "k": 638
+    },
+    {
+      "mode": "prior",
+      "n": 3,
+      "k": 14239
+    },
+    {
+      "mode": "current",
+      "n": 0,
+      "k": 1
+    },
+    {
+      "mode": "current",
+      "n": 1,
+      "k": 22
+    },
+    {
+      "mode": "current",
+      "n": 2,
+      "k": 491
+    },
+    {
+      "mode": "current",
+      "n": 3,
+      "k": 10956
+    }
+  ],
+  "capacity": [
+    {
+      "mode": "prior",
+      "n": 1,
+      "legal": "29",
+      "total": "29",
+      "log2Density": 0
+    },
+    {
+      "mode": "prior",
+      "n": 2,
+      "legal": "638",
+      "total": "841",
+      "log2Density": -0.39854937649027455
+    },
+    {
+      "mode": "prior",
+      "n": 3,
+      "legal": "14239",
+      "total": "24389",
+      "log2Density": -0.7763827759404496
+    },
+    {
+      "mode": "prior",
+      "n": 12,
+      "legal": "19526485376777940",
+      "total": "353814783205469041",
+      "log2Density": -4.179490125198718
+    },
+    {
+      "mode": "prior",
+      "n": 76,
+      "legal": "3973895268131927817632090887960043251569459462124712964960210286495877385604582825243088287255464006804",
+      "total": "1387547439428344656247272504532537896952189706862745037301149512954382537414617471894894643441404995685462212721",
+      "log2Density": -28.379336100272212
+    },
+    {
+      "mode": "prior",
+      "n": 262,
+      "legal": "271370662762712217007097612840376841300397115625175407511792846041772221245907077936393591288927661649920395935502180891606372672812422084451873214892280927877242740356129630285196388379402558544573822317507435157667205882585777653163467849750755284180287930523901063034487486700016401304774064901522317909627472609638602152631649505466219757149570983258",
+      "total": "140693958697448419267566654795259556164161570107295846929133630787785986839076500605226352222450760194313079250282483426670369564705240441008378548996198903618344014564326724023662820039037799900546359763228960511540978013406160544531827742282445505150847191180356116373421867158626706432830397177820122911762593030515183504637831719967085221924854198100041864168331746701726075174041",
+      "log2Density": -98.71013846532969
+    },
+    {
+      "mode": "current",
+      "n": 1,
+      "legal": "22",
+      "total": "29",
+      "log2Density": -0.39854937649027455
+    },
+    {
+      "mode": "current",
+      "n": 2,
+      "legal": "491",
+      "total": "841",
+      "log2Density": -0.7763827759404514
+    },
+    {
+      "mode": "current",
+      "n": 3,
+      "legal": "10956",
+      "total": "24389",
+      "log2Density": -1.1545094346773368
+    },
+    {
+      "mode": "current",
+      "n": 12,
+      "legal": "15024424231279709",
+      "total": "353814783205469041",
+      "log2Density": -4.557612718559234
+    },
+    {
+      "mode": "current",
+      "n": 76,
+      "legal": "3057666917882438654659578520887833551864794759987600422015220745668418669806021189984675035053770641309",
+      "total": "1387547439428344656247272504532537896952189706862745037301149512954382537414617471894894643441404995685462212721",
+      "log2Density": -28.75745869363277
+    },
+    {
+      "mode": "current",
+      "n": 262,
+      "legal": "208802960829774442550643983344781491239256691134829242504609591169110312155358523111077808471902677348171041687368360278882579352725184628021133242166085324386081132153589923264024107662946306802887642810508865006644922427649427270583863731689412780975387765804809710108217496715563091044607086633945474265434612521540808421088063862701306606347237068703",
+      "total": "140693958697448419267566654795259556164161570107295846929133630787785986839076500605226352222450760194313079250282483426670369564705240441008378548996198903618344014564326724023662820039037799900546359763228960511540978013406160544531827742282445505150847191180356116373421867158626706432830397177820122911762593030515183504637831719967085221924854198100041864168331746701726075174041",
+      "log2Density": -99.08826105869025
+    }
+  ],
+  "plants": [
+    {
+      "mode": "prior",
+      "kind": "shift",
+      "rev": false,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        841,
+        45,
+        1,
+        1,
+        29,
+        29,
+        1,
+        1,
+        1,
+        29,
+        1
+      ],
+      "attempts": 1036,
+      "nodes": 1008,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "1",
+        "B": "258092024574969521",
+        "fit": -2.5954570251867692,
+        "heldValid": 13,
+        "held": -2.568715616192372,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "1",
+          "258092024574969521"
+        ]
+      ],
+      "source": "0_koan_1",
+      "skipped": 0,
+      "truth": {
+        "A": "1",
+        "B": "258092024574969521"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 643,
+      "heldRunes": 153
+    },
+    {
+      "mode": "prior",
+      "kind": "shift",
+      "rev": true,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        841,
+        13,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        29,
+        14,
+        1
+      ],
+      "attempts": 933,
+      "nodes": 933,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "1",
+        "B": "333909478118998601",
+        "fit": -2.7709646498614653,
+        "heldValid": 13,
+        "held": -2.7182759339517513,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "1",
+          "333909478118998601"
+        ]
+      ],
+      "source": "0_loss_of_divinity",
+      "skipped": 2,
+      "truth": {
+        "A": "1",
+        "B": "333909478118998601"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 619,
+      "heldRunes": 144
+    },
+    {
+      "mode": "prior",
+      "kind": "affine",
+      "rev": false,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        682892,
+        2238721,
+        36290,
+        26448,
+        841,
+        24389,
+        67,
+        29,
+        29,
+        841,
+        29
+      ],
+      "attempts": 3035748,
+      "nodes": 3011388,
+      "capped": false,
+      "leaf": 29,
+      "truthSeen": true,
+      "chosen": {
+        "A": "247083110446429015",
+        "B": "258092024574969521",
+        "fit": -2.5954570251867692,
+        "heldValid": 13,
+        "held": -2.568715616192372,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "3072915132312435",
+          "172688456215028718"
+        ],
+        [
+          "15273424898018264",
+          "123886417152205402"
+        ],
+        [
+          "27473934663724093",
+          "75084378089382086"
+        ],
+        [
+          "39674444429429922",
+          "26282339026558770"
+        ],
+        [
+          "51874954195135751",
+          "331295083169204495"
+        ]
+      ],
+      "source": "0_koan_1",
+      "skipped": 0,
+      "truth": {
+        "A": "247083110446429015",
+        "B": "258092024574969521"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 643,
+      "heldRunes": 153
+    },
+    {
+      "mode": "prior",
+      "kind": "affine",
+      "rev": true,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        682892,
+        7092,
+        164,
+        1,
+        1,
+        1,
+        1,
+        1,
+        841,
+        31,
+        1
+      ],
+      "attempts": 691839,
+      "nodes": 691838,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "284991837218442714",
+        "B": "333909478118998601",
+        "fit": -2.7709646498614653,
+        "heldValid": 13,
+        "held": -2.7182759339517513,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "284991837218442714",
+          "333909478118998601"
+        ]
+      ],
+      "source": "0_loss_of_divinity",
+      "skipped": 2,
+      "truth": {
+        "A": "284991837218442714",
+        "B": "333909478118998601"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 619,
+      "heldRunes": 144
+    },
+    {
+      "mode": "current",
+      "kind": "shift",
+      "rev": false,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        1,
+        1,
+        1,
+        29,
+        1,
+        1,
+        1,
+        1,
+        29,
+        1,
+        1
+      ],
+      "attempts": 96,
+      "nodes": 96,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "1",
+        "B": "308636993604322241",
+        "fit": -2.605752031361251,
+        "heldValid": 13,
+        "held": -2.569767164849029,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "1",
+          "308636993604322241"
+        ]
+      ],
+      "source": "0_koan_1",
+      "skipped": 7,
+      "truth": {
+        "A": "1",
+        "B": "308636993604322241"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 636,
+      "heldRunes": 152
+    },
+    {
+      "mode": "current",
+      "kind": "shift",
+      "rev": true,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "attempts": 40,
+      "nodes": 40,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "1",
+        "B": "30624638705769431",
+        "fit": -2.755199701031013,
+        "heldValid": 13,
+        "held": -2.6981701535583262,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "1",
+          "30624638705769431"
+        ]
+      ],
+      "source": "0_loss_of_divinity",
+      "skipped": 2,
+      "truth": {
+        "A": "1",
+        "B": "30624638705769431"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 615,
+      "heldRunes": 145
+    },
+    {
+      "mode": "current",
+      "kind": "affine",
+      "rev": false,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        2652,
+        38,
+        29,
+        841,
+        1,
+        1,
+        29,
+        1,
+        841,
+        29,
+        1
+      ],
+      "attempts": 5275,
+      "nodes": 5275,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "272355594961104534",
+        "B": "308636993604322241",
+        "fit": -2.605752031361251,
+        "heldValid": 13,
+        "held": -2.569767164849029,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "272355594961104534",
+          "308636993604322241"
+        ]
+      ],
+      "source": "0_koan_1",
+      "skipped": 7,
+      "truth": {
+        "A": "272355594961104534",
+        "B": "308636993604322241"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 636,
+      "heldRunes": 152
+    },
+    {
+      "mode": "current",
+      "kind": "affine",
+      "rev": true,
+      "complete": true,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        109,
+        3,
+        1,
+        29,
+        1,
+        1,
+        1,
+        1,
+        1,
+        29,
+        1
+      ],
+      "attempts": 989,
+      "nodes": 989,
+      "capped": false,
+      "leaf": 1,
+      "truthSeen": true,
+      "chosen": {
+        "A": "310264321733119074",
+        "B": "30624638705769431",
+        "fit": -2.755199701031013,
+        "heldValid": 13,
+        "held": -2.6981701535583262,
+        "replay": true
+      },
+      "firstKeys": [
+        [
+          "310264321733119074",
+          "30624638705769431"
+        ]
+      ],
+      "source": "0_loss_of_divinity",
+      "skipped": 2,
+      "truth": {
+        "A": "310264321733119074",
+        "B": "30624638705769431"
+      },
+      "keyExact": true,
+      "exactFrames": 55,
+      "totalRunes": 615,
+      "heldRunes": 145
+    }
+  ],
+  "original": [
+    {
+      "mode": "prior",
+      "kind": "shift",
+      "rev": false,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        841,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 870,
+      "nodes": 870,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "prior",
+      "kind": "shift",
+      "rev": true,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        841,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 870,
+      "nodes": 870,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "prior",
+      "kind": "affine",
+      "rev": false,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        682892,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 683706,
+      "nodes": 683706,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "prior",
+      "kind": "affine",
+      "rev": true,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        682892,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 683704,
+      "nodes": 683704,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "current",
+      "kind": "shift",
+      "rev": false,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 29,
+      "nodes": 29,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "current",
+      "kind": "shift",
+      "rev": true,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        29,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 29,
+      "nodes": 29,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "current",
+      "kind": "affine",
+      "rev": false,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 812,
+      "nodes": 812,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    },
+    {
+      "mode": "current",
+      "kind": "affine",
+      "rev": true,
+      "complete": false,
+      "fitN": 42,
+      "heldN": 13,
+      "count": [
+        1,
+        812,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "attempts": 812,
+      "nodes": 812,
+      "capped": false,
+      "leaf": 0,
+      "truthSeen": null,
+      "chosen": null,
+      "firstKeys": [],
+      "sample": null
+    }
+  ],
+  "truncation": [
+    {
+      "mode": "prior",
+      "a": [
+        2,
+        0,
+        0
+      ],
+      "b": [
+        2,
+        0,
+        1
+      ],
+      "p": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "q": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "stored": [
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "mode": "current",
+      "a": [
+        2,
+        0,
+        0
+      ],
+      "b": [
+        2,
+        0,
+        1
+      ],
+      "p": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "q": [
+        2,
+        0,
+        0,
+        1
+      ],
+      "stored": [
+        2,
+        0,
+        0
+      ]
+    }
+  ]
+}
