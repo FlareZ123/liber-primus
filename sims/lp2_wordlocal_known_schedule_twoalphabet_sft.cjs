@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function study(data) {
+function study(data, request = null) {
   const [rawCorpus,rawText,rawNative,lp1,emerson,shakespeare,gibran]=data;
   const c=JSON.parse(rawCorpus),native=JSON.parse(rawNative),Q=29,id=Array.from({length:Q},(_,i)=>i),m=x=>(x%Q+Q)%Q;
   const assert=(x,msg)=>{if(!x)throw Error(msg)};
@@ -48,12 +48,30 @@ function study(data) {
     legal.sort((a,b)=>b.ll-a.ll);const uniq=[...new Map(legal.map(x=>[x.A.join()+":"+x.B.join(),x])).values()].sort((a,b)=>b.ll-a.ll).slice(0,4);let best=null;
     for(const z of uniq){let A=z.A,B=z.B,D=fit.map(row=>decode(row,A,B,true));if(D.some(x=>!x))continue;A=refine(A,D,rand);D=fit.map(row=>decode(row,A,B));if(D.some(x=>!x))continue;let score=D.reduce((s,x)=>s+x.s,0);for(let it=0;it<2;it++){const a=refine(A,D,rand),d=fit.map(row=>decode(row,a,B));if(d.some(x=>!x))break;const q=d.reduce((s,x)=>s+x.s,0);if(q<=score)break;A=a;D=d;score=q}if(!best||score>best.score)best={A,B,score}}
     return {seeds:seeds.length,legal:legal.length,best}}
+  // Receiver entry point: each printed scope has a supplied consuming-shift array.
+  // A separate source gate must establish the array before using original ciphertext.
+  if (request) {
+    const { rows, fitWords, seed = 0x44112710 } = request;
+    assert(Array.isArray(rows) && Number.isInteger(fitWords) && fitWords > 0 && fitWords < rows.length, "fit split");
+    const R = rows.map(({ C, K }) => {
+      assert(Array.isArray(C) && C.length > 0 && Array.isArray(K) && K.length >= C.length &&
+        C.every(x => Number.isInteger(x) && x >= 0 && x < Q) &&
+        K.every(x => Number.isInteger(x) && x >= 0 && x < Q), "word-local GP29 arrays");
+      return setup(C,K);
+    });
+    const rec = recover(R,fitWords,seed);
+    if (!rec.best) return {seeds:rec.seeds,legal:rec.legal,best:null};
+    const {A,B}=rec.best;
+    const decoded=R.map(row=>{const d=decode(row,A,B);return d?{P:d.p,score:d.s,replay:encrypt(d.p,row.K,A,B).join()===row.C.join()}:null});
+    return {seeds:rec.seeds,legal:rec.legal,A,B,fit:decoded.slice(0,fitWords),held:decoded.slice(fitWords)};
+  }
   const pools=[words(shakespeare),words(gibran)].map(xs=>{const out=Array.from({length:30},()=>[]);for(const w of xs)if(w.length<out.length)out[w.length].push(w);return out});
   const cut=Math.floor(.75*original.length);
   function run(j){const random=rng(0x27112710+j),A=perm(random,true),B=perm(random,false),P=[],rows=[],fallback={};for(let i=0;i<original.length;i++){const n=original[i].length,own=pools[j%2][n],pool=own.length?own:pools[1-j%2][n];assert(pool.length,"donor length "+n);if(!own.length)fallback[n]=(fallback[n]||0)+1;const p=pool[Math.floor(random()*pool.length)].slice(),K=Array.from({length:n},(_,k)=>tape[(i+k)%tape.length]);P.push(p);rows.push(setup(encrypt(p,K,A,B),K))}
     const rec=recover(rows,cut,0x44112710+j);
     function evaluate(a,b){if(!a||!b)return null;let fit=0,held=0,fitWords=0,heldWords=0,fitN=0,heldN=0,replay=true,illegal=0;for(let i=0;i<rows.length;i++){const w=P[i],row=rows[i],d=decode(row,a,b);if(!d){illegal++;replay=false;if(i<cut)fitN+=w.length;else heldN+=w.length;continue}const n=d.p.filter((x,k)=>x===w[k]).length;if(i<cut){fit+=n;fitN+=w.length;fitWords+=n===w.length}else{held+=n;heldN+=w.length;heldWords+=n===w.length}replay=replay&&encrypt(d.p,row.K,a,b).join()===row.C.join()}return {fit,fitN,held,heldN,fitWords,heldWords,replay,illegal,inner:a.filter((x,i)=>x===A[i]).length,outer:b.filter((x,i)=>x===B[i]).length}}
-    return {control:j,donor:j%2?"Gibran":"Shakespeare",fallback,visibleF:rows.flatMap(r=>r.C).filter(x=>x===0).length,literalF:P.flat().filter(x=>x===0).length,seeds:rec.seeds,legal:rec.legal,recovered:rec.best?evaluate(rec.best.A,rec.best.B):null,oracle:evaluate(A,B),key:rec.best?{A:rec.best.A,B:rec.best.B}:null,truthKey:{A,B}}
+    const observed=[...new Set(P.flat())].sort((a,b)=>a-b), missing=id.filter(x=>!observed.includes(x));const gauge=rec.best?id.map(d=>({d,outer:rec.best.B.filter((x,i)=>m(x-B[i])===d).length,inner:observed.filter(p=>p!==0&&m(rec.best.A[p]-A[p])===d).length})).sort((a,b)=>b.outer+b.inner-a.outer-a.inner)[0]:null;
+    return {control:j,donor:j%2?"Gibran":"Shakespeare",fallback,observed,missing,gauge,visibleF:rows.flatMap(r=>r.C).filter(x=>x===0).length,literalF:P.flat().filter(x=>x===0).length,seeds:rec.seeds,legal:rec.legal,recovered:rec.best?evaluate(rec.best.A,rec.best.B):null,oracle:evaluate(A,B),key:rec.best?{A:rec.best.A,B:rec.best.B}:null,truthKey:{A,B}}
   }
   const controls=[run(0),run(1)];
   return {model:"Fixed independently supplied per-word nonperiodic key arrays; word-local cursor resets; shared arbitrary GP29 alphabets; literal F holds; synthetic LP1 ordinal key offset i, not a historical selector. Exact printed length inventory, independent donor sampling by length, word-local first/bigram/last model trained on Emerson; 75% words fit; frozen keys on held words.",words:original.length,fitWords:cut,heldWords:original.length-cut,runicCount:original.flat().length,controls,gate:controls.every(x=>x.recovered&&x.recovered.fit>=.9*x.recovered.fitN&&x.recovered.held>=.9*x.recovered.heldN&&x.recovered.replay),original:null};
