@@ -1,0 +1,377 @@
+{
+  "vertices": 161,
+  "edges": 128,
+  "uniquePairs": 127,
+  "selfPairs": 0,
+  "components": [
+    {
+      "size": 29,
+      "edges": 29,
+      "distinctEdges": 28
+    },
+    {
+      "size": 25,
+      "edges": 24,
+      "distinctEdges": 24
+    },
+    {
+      "size": 14,
+      "edges": 13,
+      "distinctEdges": 13
+    },
+    {
+      "size": 9,
+      "edges": 8,
+      "distinctEdges": 8
+    },
+    {
+      "size": 6,
+      "edges": 5,
+      "distinctEdges": 5
+    },
+    {
+      "size": 5,
+      "edges": 4,
+      "distinctEdges": 4
+    },
+    {
+      "size": 4,
+      "edges": 3,
+      "distinctEdges": 3
+    },
+    {
+      "size": 4,
+      "edges": 3,
+      "distinctEdges": 3
+    },
+    {
+      "size": 4,
+      "edges": 3,
+      "distinctEdges": 3
+    },
+    {
+      "size": 4,
+      "edges": 3,
+      "distinctEdges": 3
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 3,
+      "edges": 2,
+      "distinctEdges": 2
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    },
+    {
+      "size": 2,
+      "edges": 1,
+      "distinctEdges": 1
+    }
+  ],
+  "largestVertices": [
+    "3N",
+    "33",
+    "49",
+    "0X",
+    "2O",
+    "1g",
+    "28",
+    "3P",
+    "2t",
+    "3C",
+    "4B",
+    "18",
+    "3J",
+    "0I",
+    "0J",
+    "0E",
+    "3E",
+    "1O",
+    "40",
+    "3c",
+    "3I",
+    "0v",
+    "2L",
+    "1Q",
+    "0x",
+    "0K",
+    "3M",
+    "0w",
+    "1p"
+  ],
+  "duplicates": [
+    [
+      "2L|3I",
+      [
+        13,
+        121
+      ]
+    ]
+  ],
+  "fixedOrder": [
+    {
+      "reverseRows": false,
+      "reversePairs": false,
+      "conflicts": [
+        {
+          "pair": "2L|3I",
+          "sourcePairIndices": [
+            13,
+            121
+          ],
+          "targetIndices": [
+            13,
+            121
+          ],
+          "targetChars": [
+            "8",
+            "2"
+          ]
+        }
+      ]
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": true,
+      "conflicts": [
+        {
+          "pair": "2L|3I",
+          "sourcePairIndices": [
+            13,
+            121
+          ],
+          "targetIndices": [
+            14,
+            122
+          ],
+          "targetChars": [
+            "3",
+            "c"
+          ]
+        }
+      ]
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": false,
+      "conflicts": [
+        {
+          "pair": "2L|3I",
+          "sourcePairIndices": [
+            13,
+            121
+          ],
+          "targetIndices": [
+            113,
+            5
+          ],
+          "targetChars": [
+            "f",
+            "7"
+          ]
+        }
+      ]
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": true,
+      "conflicts": [
+        {
+          "pair": "2L|3I",
+          "sourcePairIndices": [
+            13,
+            121
+          ],
+          "targetIndices": [
+            114,
+            6
+          ],
+          "targetChars": [
+            "b",
+            "6"
+          ]
+        }
+      ]
+    }
+  ],
+  "rowRelaxation": [
+    {
+      "reverseRows": false,
+      "rows": [
+        3,
+        30
+      ],
+      "blocks": [
+        "783c",
+        "32c2"
+      ],
+      "compatibleSlots": [
+        [
+          2,
+          0,
+          "3"
+        ],
+        [
+          3,
+          2,
+          "c"
+        ]
+      ]
+    },
+    {
+      "reverseRows": true,
+      "rows": [
+        28,
+        1
+      ],
+      "blocks": [
+        "9fb4",
+        "7763"
+      ],
+      "compatibleSlots": []
+    }
+  ],
+  "xorConsistency": [
+    {
+      "reverseRows": false,
+      "reversePairs": false,
+      "asciiXorConsistent": false,
+      "nibbleXorConsistent": false
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": true,
+      "asciiXorConsistent": false,
+      "nibbleXorConsistent": false
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": false,
+      "asciiXorConsistent": false,
+      "nibbleXorConsistent": false
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": true,
+      "asciiXorConsistent": false,
+      "nibbleXorConsistent": false
+    }
+  ],
+  "nibbleCapacity": {
+    "maximumDistinctLabelsPerConnectedComponent": 16,
+    "actualLargestComponent": 29,
+    "injectivePossible": false
+  },
+  "controls": {
+    "injectiveByteLabelPlant": true,
+    "changedDuplicateRejected": true,
+    "sixteenVertexNibbleCapacityPlant": true
+  }
+}
