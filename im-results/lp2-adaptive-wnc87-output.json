@@ -1,0 +1,491 @@
+{
+  "inputBlobs": [
+    [
+      "sims/lp2_adaptive_wnc87_sft.cjs",
+      "bd76fb5f7799de90eed0abef92ac8a3edf62cb5a"
+    ],
+    [
+      "resources/liber-primus/lp2-corpus.json",
+      "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    ],
+    [
+      "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "37c96b816495c5f93ca658a01c9918bf92598316"
+    ],
+    [
+      "resources/control/emerson_essays_2944.txt",
+      "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    ],
+    [
+      "resources/control/gibran_prophet_58585.txt",
+      "df260a07d56bf5998d40a6360b6132c35c252d10"
+    ],
+    [
+      "resources/control/shakespeare_first300k.txt",
+      "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    ]
+  ],
+  "model": "WNC 1987, 16-bit, max16383, 30 symbols all counts1, descending frequency tie-swap, EOF29, LSB byte order, unconditional final zero-padding flush",
+  "frame": "big-endian bytes, fixed minimal sufficient radix29 width; exact canonical re-encode",
+  "controls": [
+    {
+      "id": "LP1p3",
+      "plain": 157,
+      "bytes": 93,
+      "bits": 737,
+      "digits": 154,
+      "ratio": 0.9808917197452229,
+      "repeats": 4,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p8",
+      "plain": 187,
+      "bytes": 106,
+      "bits": 846,
+      "digits": 175,
+      "ratio": 0.9358288770053476,
+      "repeats": 6,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "missing-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p9",
+      "plain": 207,
+      "bytes": 117,
+      "bits": 931,
+      "digits": 193,
+      "ratio": 0.9323671497584541,
+      "repeats": 2,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "missing-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p10",
+      "plain": 192,
+      "bytes": 111,
+      "bits": 883,
+      "digits": 183,
+      "ratio": 0.953125,
+      "repeats": 4,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "missing-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p11",
+      "plain": 169,
+      "bytes": 98,
+      "bits": 781,
+      "digits": 162,
+      "ratio": 0.9585798816568047,
+      "repeats": 5,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "missing-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP1p14",
+      "plain": 89,
+      "bytes": 53,
+      "bits": 419,
+      "digits": 88,
+      "ratio": 0.9887640449438202,
+      "repeats": 0,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP2p56",
+      "plain": 85,
+      "bytes": 50,
+      "bits": 396,
+      "digits": 83,
+      "ratio": 0.9764705882352941,
+      "repeats": 3,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "missing-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    },
+    {
+      "id": "LP2p57",
+      "plain": 95,
+      "bytes": 56,
+      "bits": 445,
+      "digits": 93,
+      "ratio": 0.9789473684210527,
+      "repeats": 2,
+      "rescales": 0,
+      "mutations": [
+        {
+          "type": "truncate-byte",
+          "status": "missing-eof",
+          "samePlain": false
+        },
+        {
+          "type": "append-byte",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        },
+        {
+          "type": "wrong-init",
+          "status": "noncanonical-eof",
+          "samePlain": false
+        }
+      ]
+    }
+  ],
+  "literary": [
+    {
+      "id": "donor0-308",
+      "plain": 308,
+      "bytes": 172,
+      "bits": 1370,
+      "digits": 284,
+      "ratio": 0.922077922077922,
+      "repeats": 9,
+      "rescales": 0
+    },
+    {
+      "id": "donor0-729",
+      "plain": 729,
+      "bytes": 397,
+      "bits": 3173,
+      "digits": 654,
+      "ratio": 0.897119341563786,
+      "repeats": 18,
+      "rescales": 0
+    },
+    {
+      "id": "donor0-3008",
+      "plain": 3008,
+      "bytes": 1622,
+      "bits": 12968,
+      "digits": 2672,
+      "ratio": 0.8882978723404256,
+      "repeats": 103,
+      "rescales": 0
+    },
+    {
+      "id": "donor0-12956",
+      "plain": 12956,
+      "bytes": 6921,
+      "bits": 55364,
+      "digits": 11398,
+      "ratio": 0.879746835443038,
+      "repeats": 384,
+      "rescales": 0
+    },
+    {
+      "id": "donor1-308",
+      "plain": 308,
+      "bytes": 172,
+      "bits": 1373,
+      "digits": 284,
+      "ratio": 0.922077922077922,
+      "repeats": 4,
+      "rescales": 0
+    },
+    {
+      "id": "donor1-729",
+      "plain": 729,
+      "bytes": 401,
+      "bits": 3203,
+      "digits": 661,
+      "ratio": 0.906721536351166,
+      "repeats": 23,
+      "rescales": 0
+    },
+    {
+      "id": "donor1-3008",
+      "plain": 3008,
+      "bytes": 1631,
+      "bits": 13045,
+      "digits": 2686,
+      "ratio": 0.8929521276595744,
+      "repeats": 107,
+      "rescales": 0
+    },
+    {
+      "id": "donor1-12956",
+      "plain": 12956,
+      "bytes": 6939,
+      "bits": 55507,
+      "digits": 11427,
+      "ratio": 0.8819851806112998,
+      "repeats": 429,
+      "rescales": 0
+    },
+    {
+      "id": "donor2-308",
+      "plain": 308,
+      "bytes": 170,
+      "bits": 1359,
+      "digits": 280,
+      "ratio": 0.9090909090909091,
+      "repeats": 8,
+      "rescales": 0
+    },
+    {
+      "id": "donor2-729",
+      "plain": 729,
+      "bytes": 396,
+      "bits": 3162,
+      "digits": 653,
+      "ratio": 0.8957475994513031,
+      "repeats": 25,
+      "rescales": 0
+    },
+    {
+      "id": "donor2-3008",
+      "plain": 3008,
+      "bytes": 1601,
+      "bits": 12805,
+      "digits": 2637,
+      "ratio": 0.8766622340425532,
+      "repeats": 93,
+      "rescales": 0
+    },
+    {
+      "id": "donor2-12956",
+      "plain": 12956,
+      "bytes": 6917,
+      "bits": 55333,
+      "digits": 11391,
+      "ratio": 0.8792065452300093,
+      "repeats": 413,
+      "rescales": 0
+    }
+  ],
+  "stress": {
+    "id": "rescale",
+    "plain": 20000,
+    "bytes": 12166,
+    "bits": 97324,
+    "digits": 20035,
+    "ratio": 1.00175,
+    "repeats": 674,
+    "rescales": 1
+  },
+  "empty": "canonical",
+  "original": [
+    {
+      "range": [
+        0,
+        2
+      ],
+      "digits": 729,
+      "repeats": 4,
+      "status": "width-impossible",
+      "bytesExpected": 442
+    },
+    {
+      "range": [
+        3,
+        7
+      ],
+      "digits": 1145,
+      "repeats": 6,
+      "status": "integer-overflow",
+      "bytesExpected": 695
+    },
+    {
+      "range": [
+        8,
+        14
+      ],
+      "digits": 1729,
+      "repeats": 9,
+      "status": "width-impossible",
+      "bytesExpected": 1049
+    },
+    {
+      "range": [
+        15,
+        22
+      ],
+      "digits": 1903,
+      "repeats": 10,
+      "bytes": 1155,
+      "status": "noncanonical-eof",
+      "decoded": 7,
+      "canonicalBytes": 6,
+      "readBits": 54,
+      "rescales": 0
+    },
+    {
+      "range": [
+        23,
+        26
+      ],
+      "digits": 1021,
+      "repeats": 11,
+      "status": "width-impossible",
+      "bytesExpected": 619
+    },
+    {
+      "range": [
+        27,
+        32
+      ],
+      "digits": 1433,
+      "repeats": 13,
+      "status": "integer-overflow",
+      "bytesExpected": 870
+    },
+    {
+      "range": [
+        33,
+        39
+      ],
+      "digits": 1680,
+      "repeats": 12,
+      "status": "integer-overflow",
+      "bytesExpected": 1020
+    },
+    {
+      "range": [
+        40,
+        53
+      ],
+      "digits": 3008,
+      "repeats": 18,
+      "bytes": 1826,
+      "status": "noncanonical-eof",
+      "decoded": 12,
+      "canonicalBytes": 9,
+      "readBits": 80,
+      "rescales": 0
+    },
+    {
+      "range": [
+        54,
+        55
+      ],
+      "digits": 308,
+      "repeats": 3,
+      "status": "integer-overflow",
+      "bytesExpected": 187
+    },
+    {
+      "range": [
+        0,
+        55
+      ],
+      "digits": 12956,
+      "repeats": 86,
+      "status": "integer-overflow",
+      "bytesExpected": 7867
+    }
+  ]
+}
