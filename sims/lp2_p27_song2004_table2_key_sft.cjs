@@ -1,6 +1,21 @@
 "use strict";
 const fs = require("node:fs");
 const path = require("node:path");
+function phaseFeasibility(c,key,sign,hold,fitLength){
+ const mod=x=>(x%29+29)%29;
+ let phases=new Set([0]), phasesAfterFit=null;
+ for(let i=0;i<c.length;i++){
+  const next=new Set();
+  for(const q of phases){
+   if(hold&&c[i]===0)next.add(q);
+   if(!hold||mod(c[i]-sign*key[q])!==0)next.add((q+1)%key.length);
+  }
+  if(!next.size)return {firstImpossibleChapterOffset:i,phasesBefore:[...phases].sort((a,b)=>a-b),phasesAfterFit};
+  phases=next;
+  if(i===fitLength-1)phasesAfterFit=[...phases].sort((a,b)=>a-b);
+ }
+ return {firstImpossibleChapterOffset:null,finalPhases:[...phases].sort((a,b)=>a-b),phasesAfterFit};
+}
 function experiment(data,reference){
  const A=data.translit, mod=x=>(x%29+29)%29;
  const table={thickness_tenths:[152,123,145,102,108,138,108,134,115,128,146,125,131,153,152],modulus_hundredths:[372,385,383,378,375,359,366,356,363,357,379,355,356,382,377],hardness_hundredths:[21,23,23,22,19,17,18,17,18,17,21,18,17,23,19]};
@@ -30,7 +45,7 @@ function experiment(data,reference){
    const control=[p56,p57].map((p,i)=>{const c=encrypt(p,key,sign,hold),u=decode(c.slice(0,50),key,sign,hold),v=u.indices?decode(c.slice(50),key,sign,hold,u):null;const q=u.indices&&v?.indices?[...u.indices,...v.indices]:null;return {page:56+i,fitScore:u.mean??null,heldScore:v?.mean??null,fitMatches:u.indices?.filter((x,k)=>x===p[k]).length??null,heldMatches:v?.indices?.filter((x,k)=>x===p[k+50]).length??null,heldLength:p.length-50,replay:q&&eq(encrypt(q,key,sign,hold),c)};});
    const u=decode(fit,key,sign,hold),v=u.indices?decode(held,key,sign,hold,u):null;
    const q=u.indices&&v?.indices?[...u.indices,...v.indices]:null;
-   results.push({name,key,sign,hold,control,original:{fitScore:u.mean??null,heldScore:v?.mean??null,fitDead:u.dead??null,heldDead:v?.dead??null,fitText:u.indices&&render(u.indices),heldText:v?.indices&&render(v.indices),replay:q&&eq(encrypt(q,key,sign,hold),[...fit,...held])}});
+   results.push({name,key,sign,hold,control,original:{fullFeasibility:phaseFeasibility([...fit,...held],key,sign,hold,fit.length),fitScore:u.mean??null,heldScore:v?.mean??null,fitDead:u.dead??null,heldDead:v?.dead??null,fitText:u.indices&&render(u.indices),heldText:v?.indices&&render(v.indices),replay:q&&eq(encrypt(q,key,sign,hold),[...fit,...held])}});
  }}
  return {source:"Song et al. 2004 DOI 10.1242/jeb.01122 Table 2; published mean rows, exact printed decimal integers; not authenticated artwork attribution",table,trainingRunes:T.length,fitRunes:fit.length,heldRunes:held.length,results};
 }
