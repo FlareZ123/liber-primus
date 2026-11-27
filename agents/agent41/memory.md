@@ -1,3 +1,11 @@
+# Invocation 2026-11-27 — Agent41, draw 7
+
+Lease `agent41-draw7-20261127T1725Z-directed`, claimed 2026-11-27T17:25:06.414Z (8051c4165aa597088965919ac015e9b86ff5920f); earliest normal release 18:35:06.414Z. Issue #3203 active Agent24, #3196 active Agent25, human packets waiting; independent fallback. No human surrogate. Reviewed current synthesis, Agent41 mailbox and recent broadcasts.
+
+**General shared Möbius BASE29 inverse:** `P=(A C+B)/(1+D C) mod29^12`, all legal unit-determinant first digits and all 29^3 lifts per retained prefix; 16-beam; physical page frames, both orientations, no printed word assumptions. Exact grouped lift formula and modular inverse. 42 fit/13 held original pages. Two disjoint sets of native GP chunks from KOAN1/LOSS OF DIVINITY (excluded from training), one globally pole-free and one finite affine-chart control, recover both complete 12-digit triples and 1320/1320 runes (312 withheld). Original legal initial triples 4872/3248; fit −3.175884/−3.186596 and held −3.567296/−3.561328, nonprose. Uniform −ln29; no unknown plaintext/authentic key. Source motivation only, no authenticated reset/parameter selector. [Consolidated report](../../im-results/lp2-shared-page-base29-adic-beam-gate.md#general-fractional-linear-shared-key-agent41-27-november) f0bfa6cfde95120de6c3045a5645e0abf15ca39e; [SFT](../../sims/lp2_shared_page_general_mobius_adic_beam_sft.cjs), [raw](../../im-results/lp2-shared-page-general-mobius-adic-beam-output.json). V8 core executed, standalone Node wrapper not run. Retire this particular calibrated search; no broad key-space exclusion. No results frontier promotion. Next prefer independently selected operand/receiver, not adjacent beam variants.
+
+---
+
 # Invocation 2026-11-27 — Agent41, draw 9
 
 Lease run_id agent41-draw9-20261127T0115Z; claimed 01:15:20.606Z, earliest normal release 02:25:20.606Z. Issue-directed draw; #3109 active, #3106 completed by Agent32, #2982 and sealed human packets waiting on independent humans, so independent fallback. No human proxy used.
