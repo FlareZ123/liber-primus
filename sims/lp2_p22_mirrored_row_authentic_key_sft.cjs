@@ -27,7 +27,26 @@ states=next;peak=Math.max(peak,states.size);if(!states.size)return {paths:"0",pr
 }
 const best=[...states.values()].sort((a,b)=>b.s-a.s)[0];return {paths:[...states.values()].reduce((s,q)=>s+q.num,0n).toString(),prefix:y.length,peak,p:best.p,score:score(best.p)}
 }
-function receiver(raw,lengths,phase,sign,hold,mode){const m=perm(lengths,true),y=mode==="cipher-mirror"?reorder(raw,m):raw;const z=invert(y,phase,sign,hold);if(!z.p)return z;const p=mode==="plain-mirror"?reorder(z.p,m):z.p;const replay=mode==="cipher-mirror"?reorder(enc(p,phase,sign,hold),m):enc(mode==="plain-mirror"?reorder(p,m):p,phase,sign,hold);assert(replay.join()===raw.join(),"replay");return {...z,p,score:score(p),text:p.map(x=>c.translit[x]).join(" ")}}
+function receiver(raw,lengths,phase,sign,hold,mode){
+ const m=perm(lengths,true),y=mode==="cipher-mirror"?reorder(raw,m):raw;
+ const z=invert(y,phase,sign,hold);if(!z.p)return z;
+ // Enumerate only complete legal paths, using suffix counts to prune dead branches.
+ // This also optimizes restored-order language for plaintext-side mirroring exactly.
+ const memo=new Map();
+ function edges(i,k){const a=[];if(hold&&y[i]===0)a.push([0,k]);const p=mod(y[i]-sign*K[k]);if(!hold||p!==0)a.push([p,(k+1)%13]);return a}
+ function ways(i,k){if(i===y.length)return 1n;const key=i*13+k;if(memo.has(key))return memo.get(key);const a=edges(i,k).reduce((v,[p,j])=>v+ways(i+1,j),0n);memo.set(key,a);return a}
+ const count=ways(0,phase);assert(count.toString()===z.paths,"path-count mismatch");
+ let best=null,visited=0n;const a=[];
+ function visit(i,k){if(i===y.length){
+   const p=mode==="plain-mirror"?reorder(a,m):a.slice(),s=score(p);visited++;
+   if(!best||s>best.score)best={p,score:s};
+   return;
+ }for(const [p,j] of edges(i,k)){if(ways(i+1,j)===0n)continue;a.push(p);visit(i+1,j);a.pop()}}
+ visit(0,phase);assert(visited===count,"incomplete enumeration");
+ const p=best.p,replay=mode==="cipher-mirror"?reorder(enc(p,phase,sign,hold),m):enc(mode==="plain-mirror"?reorder(p,m):p,phase,sign,hold);
+ assert(replay.join()===raw.join(),"replay");
+ return {...z,p,score:best.score,text:p.map(x=>c.translit[x]).join(" ")}
+}
 const original=[];for(const pg of [22,23]){const ls=lines(pg),raw=ls.flat();assert(raw.join()===c.pages[pg].indices.join(),"line/corpus mismatch");const lengths=ls.map(a=>a.length);for(const mode of ["cipher-mirror","plain-mirror"])for(const hold of [true,false])for(const sign of [1,-1])for(let phase=0;phase<13;phase++){const z=receiver(raw,lengths,phase,sign,hold,mode);original.push({pg,lengths,mode,hold,sign,phase,...z})}}
 const controls=[];const lengths=lines(22).map(a=>a.length),m=perm(lengths,true),L=m.length;
 for(const s of native.slice(0,2)){assert(s.x.length>=L,"short plant");const p=s.x.slice(0,L);for(const mode of ["cipher-mirror","plain-mirror"])for(const hold of [true,false])for(const sign of [1,-1])for(let phase=0;phase<13;phase++){const raw=mode==="cipher-mirror"?reorder(enc(p,phase,sign,hold),m):enc(reorder(p,m),phase,sign,hold);const z=receiver(raw,lengths,phase,sign,hold,mode);assert(z.p,"lost true plant");controls.push({name:s.name,mode,hold,sign,phase,exact:z.p.join()===p.join(),correct:z.p.filter((x,i)=>x===p[i]).length,score:z.score,truthScore:score(p),paths:z.paths})}}
