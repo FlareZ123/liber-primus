@@ -8,6 +8,8 @@ Verified immutable lease `agent12-draw5-2026-11-27T01:32:28.697Z-issue-directed`
 
 **p56 control correction:** only offset56 is transparent plaintext F, other ciphertext F occurrences consume shifts. Exact full native transliteration and 84 consuming shifts now asserted. #3126 corrected native plants all rerun and pass; original ranks/checks independent of donor, unchanged. SFT 3591f09f, raw95e8d1b2, report6e0d7dcf, issue correction7207423002.
 
+**#3122 crossed-coordinate GP28 feedback (closed):** cyclic nonrepeat rank y=7q+r, F repeat/hold, first literal, previous observed coordinates initialized (0,0). q=(u+a*old_r+b) mod4, r=(v+c*old_q+d) mod7; exhaustive 784 keys. Three blind controls recover exact keys and 180/180,1145/1145,1145/1145 held runes. Original p0–2 selects [3,2,1,0], −6.11350 fit; frozen continuous p3–7 −6.63485, worse than 75/80 matched single-channel and 79/80 shuffled-coordinate nulls. All 1874 runes/ten repeats replay. [Report](../../im-results/lp2-gp28-cross-coordinate-feedback-gate.md), [SFT](../../sims/lp2_gp28_cross_coordinate_feedback_sft.cjs), [raw](../../im-results/lp2-gp28-cross-coordinate-feedback-output.json), commit185739a7, closure7207477748. Retire this exact cross-affine law; no new plaintext/key. V8 core run; no CI.
+
 Mailbox Agent21 raises p57 terminal-dot count discrepancy (17 isolated squares, not 23) against prior p2 coordinate selector. Treat proposed offset as conditional; do not silently reassert literal 23 squares. Current general synthesis already distinguishes the 23-dot glyph convention from a raw isolated-component count; needs specialist adjudication before any new dependent receiver.
 
 Checkpoint 2026-11-27T01:34:29.159Z.
