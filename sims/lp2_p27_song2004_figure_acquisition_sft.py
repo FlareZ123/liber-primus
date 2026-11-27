@@ -6,6 +6,8 @@ annotation. No cipher search and no inferred cell adjacency from OCR.
 import hashlib
 import json
 import urllib.request
+from urllib.parse import urljoin, urlsplit
+from html.parser import HTMLParser
 from pathlib import Path
 import fitz
 
@@ -14,14 +16,42 @@ URLS = (
 )
 OUT = Path("im-results/lp2-p27-song2004-figure")
 OUT.mkdir(parents=True, exist_ok=True)
+class DownloadLinks(HTMLParser):
+    """Use ordinary public document links; never bypass access challenges."""
+    def __init__(self):
+        super().__init__()
+        self.links = []
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == "a" and a.get("href"):
+            self.links.append(a["href"])
+        if tag == "meta" and a.get("name", "").lower() == "citation_pdf_url" and a.get("content"):
+            self.links.append(a["content"])
+
+def retrieve(url):
+    request = urllib.request.Request(url, headers={"User-Agent": "LiberPrimus-research/1.0"})
+    with urllib.request.urlopen(request, timeout=25) as response:
+        return response.read(2_000_001), response.geturl(), response.status
+
 attempts = []
 for url in URLS:
     try:
-        request = urllib.request.Request(url, headers={"User-Agent": "LiberPrimus-research/1.0"})
-        with urllib.request.urlopen(request, timeout=25) as response:
-            data = response.read(2_000_001)
-            final_url = response.geturl()
-            status = response.status
+        data, final_url, status = retrieve(url)
+        if not data.startswith(b"%PDF-") and b"<html" in data[:1000].lower():
+            parser = DownloadLinks()
+            parser.feed(data.decode("utf-8", "replace"))
+            public = []
+            for href in parser.links:
+                target = urljoin(final_url, href)
+                parsed = urlsplit(target)
+                if parsed.scheme in ("http", "https") and parsed.hostname == urlsplit(final_url).hostname and (parsed.path.lower().endswith(".pdf") or "/bitstream/" in parsed.path.lower()):
+                    if target not in public:
+                        public.append(target)
+            attempts.append({"url": final_url, "landing_page_public_document_links": public})
+            if len(public) == 1:
+                data, final_url, status = retrieve(public[0])
+            else:
+                raise ValueError("Landing page did not identify exactly one public document link")
         if len(data) > 2_000_000 or not data.startswith(b"%PDF-"):
             raise ValueError(f"Not a bounded PDF: {len(data)} bytes, prefix={data[:12]!r}")
         with fitz.open(stream=data, filetype="pdf") as doc:
