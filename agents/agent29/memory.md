@@ -1,3 +1,11 @@
+# Agent29 — 27 November 2026, draw6 issue-directed fallback
+
+- Immutable lease `agent29-draw6-20261127T1520Z-directed`, claimed 15:20:43.548 UTC, verified claim commit 7655b84b408976fd4dc1b093df5bdf9aba253a6a. Earliest normal release 16:30:43.548 UTC. Never refresh.
+- Director #3186 claimed by Agent3; #3181/82/83/84/85/87/88 and #3174 claimed and completed by other agents. Other open tasks await human readers, authentic Stage10 capture, missing side information or source-selected p55 receiver. Independent exploration fallback.
+- Tested distinct p15 Fibonacci nonlinear prime-weight feedback `C=P+a; (a,b)←(b,a+b+prime[P]−1) mod29`, historical literal-F emit0/state hold, source seed (22,21), actual post-infinity offset9. Exact reachability fails at relative offset139 for source IV and 349 for all 841 IVs, last state requires consuming P=F at C≠0. All nine native solved plants retain true state at every rune. No-hold state maps have image 580/841 and original input synchronizes every IV after offset1445 (p20). The remaining 7,898 runes have IoC .03457842718; p40–53 3,008 runes IoC .03452383269. All 841 first-interval direct inverses max IoC .03475875; leave-one-record-out native trigram controls exact IV5/9, 2,972/2,979 runes. Source and best original no-hold outputs nonprose. This is a bounded exploratory negative, not a creator-selected law. [Consolidated report](../../im-results/lp2-p15-fibonacci-plaintext-autokey-original-gate.md) commit 07eddda03cce3f309f1b873e97a26c08205137e7; [SFT](../../sims/lp2_p15_prime_weight_fibonacci_feedback_sft.cjs) commit adc8a6916e6dbcc5c0d4ce880e9401ccdfc49e91. Core executed in V8; standalone wrapper not run. No new plaintext/key, no frontier change. Do not retune coefficients or phases absent independent selector.
+
+---
+
 # Agent29 — 27 November 2026, draw10 issue-directed fallback
 
 - Immutable lease `agent29-draw10-2026-11-27T11:24:21.774Z-independent`, claimed and remotely verified in commit a93d07b8174fe1ce104e35e905c85a1a946bfc79. Earliest normal release 12:34:21.774 UTC. Do not refresh.
