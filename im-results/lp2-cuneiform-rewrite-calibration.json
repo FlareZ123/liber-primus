@@ -1,0 +1,243 @@
+{
+  "summary": {
+    "count": 6,
+    "keyCorrect": 527,
+    "heldCorrect": 525,
+    "rawErrors": 59,
+    "rewrites": 115,
+    "repeats": 21,
+    "positiveFit": [
+      -1509.0987317456945,
+      -1458.9589000198039
+    ],
+    "positiveHeld": [
+      27.81692202990081,
+      102.02277590610822
+    ],
+    "wrongHeld": [
+      -229.38749487656304,
+      -145.82388079101474
+    ],
+    "independentFit": [
+      -1898.4281066020155,
+      -1883.1355679819806
+    ],
+    "independentHeld": [
+      -204.04219285266942,
+      -143.71064167106192
+    ],
+    "passes": 5,
+    "gate": true
+  },
+  "batches": [
+    "im-results/lp2-cuneiform-rewrite-batch-00.json",
+    "im-results/lp2-cuneiform-rewrite-batch-02.json",
+    "im-results/lp2-cuneiform-rewrite-batch-04.json"
+  ],
+  "controls": [
+    {
+      "positive": {
+        "fitScore": -1509.0987317456945,
+        "keyCorrect": 81,
+        "heldCorrect": 79,
+        "heldBF": 27.81692202990081,
+        "rawErrors": 15,
+        "rewrites": [
+          0,
+          2,
+          3,
+          4,
+          1,
+          5,
+          3
+        ],
+        "repeats": [
+          0,
+          1,
+          0,
+          2,
+          0,
+          1,
+          0
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -174.712558540045
+      },
+      "independent": {
+        "fitScore": -1883.1355679819806,
+        "heldBF": -204.04219285266942
+      }
+    },
+    {
+      "positive": {
+        "fitScore": -1489.8991418622709,
+        "keyCorrect": 89,
+        "heldCorrect": 90,
+        "heldBF": 102.02277590610822,
+        "rawErrors": 7,
+        "rewrites": [
+          4,
+          0,
+          2,
+          3,
+          3,
+          4,
+          1
+        ],
+        "repeats": [
+          2,
+          1,
+          2,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -145.82388079101474
+      },
+      "independent": {
+        "fitScore": -1898.4281066020155,
+        "heldBF": -180.60994217231377
+      }
+    },
+    {
+      "positive": {
+        "fitScore": -1479.9570524094952,
+        "keyCorrect": 88,
+        "heldCorrect": 89,
+        "heldBF": 64.34129653013827,
+        "rawErrors": 10,
+        "rewrites": [
+          2,
+          2,
+          5,
+          3,
+          3,
+          5,
+          3
+        ],
+        "repeats": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -229.38749487656304
+      },
+      "independent": {
+        "fitScore": -1891.9990221729179,
+        "heldBF": -169.86012512135648
+      }
+    },
+    {
+      "positive": {
+        "fitScore": -1458.9589000198039,
+        "keyCorrect": 90,
+        "heldCorrect": 89,
+        "heldBF": 89.25601827021183,
+        "rawErrors": 10,
+        "rewrites": [
+          2,
+          2,
+          1,
+          1,
+          2,
+          3,
+          2
+        ],
+        "repeats": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -189.8233466489845
+      },
+      "independent": {
+        "fitScore": -1883.9025162658286,
+        "heldBF": -147.5435480816538
+      }
+    },
+    {
+      "positive": {
+        "fitScore": -1490.347747857835,
+        "keyCorrect": 89,
+        "heldCorrect": 89,
+        "heldBF": 90.97257625201507,
+        "rawErrors": 10,
+        "rewrites": [
+          5,
+          2,
+          3,
+          4,
+          4,
+          4,
+          4
+        ],
+        "repeats": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -198.8387234975798
+      },
+      "independent": {
+        "fitScore": -1884.38087606132,
+        "heldBF": -143.71064167106192
+      }
+    },
+    {
+      "positive": {
+        "fitScore": -1466.0069711671467,
+        "keyCorrect": 90,
+        "heldCorrect": 89,
+        "heldBF": 95.43823912744796,
+        "rawErrors": 7,
+        "rewrites": [
+          2,
+          3,
+          5,
+          0,
+          2,
+          5,
+          1
+        ],
+        "repeats": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -183.48945101963227
+      },
+      "independent": {
+        "fitScore": -1896.0331546109019,
+        "heldBF": -175.97805811428998
+      }
+    }
+  ]
+}
