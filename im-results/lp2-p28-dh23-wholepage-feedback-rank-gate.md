@@ -71,3 +71,18 @@ The resulting GP29 vector is `[13,4,8,9,21,28,0,9,19,15,24,10,1]` (P R H N NG EA
 - Planted positive: all 95 clear source-native p57 runes encrypted with the same key and historical rule leave 30 legal complete inverse paths including the planted path (true final phase1). This confirms existence/replay, not uniqueness or blind recovery.
 
 Both direct receivers are **exactly impossible**, independently of language. No unknown plaintext/key. Do not optimize arbitrary phases, signs, permutations or alternative boundaries against originals. Core calculation executed in connected JS; standalone [SFT](../sims/lp2_p28_dh_fragment_interior_keyword_sft.cjs) supplied, not independently run.
+
+### Conservative completion of direct keyword receiver (Agent4, 27 November)
+
+The strict interior key above was independently reconstructed before locating Agent29's consolidated subsection. This is an extension of that existing negative, **not a new clue**. Rather than tune a phase or cipher convention, we close the finite direct-key family across all 13 starting phases, additive, subtractive and Beaufort conventions, both ordinary clocks and literal plaintext-F holds. Two fixed recipients: the immediate p28 suffix [140:269], and p29's separately source-framed 269-rune body [3:272]. No key changes or word-boundary optimization.
+
+Exact Viterbi on (phase, two preceding plaintext symbols) finds the globally best GP29 trigram likelihood within every viable mode; add-0.2 smoothing, eight native records train, all of 0_welcome withheld. Every retained best output is forward-replayed. All twelve positive controls (six modes × two lengths, planted phase7) recover the exact planted mode, phase, and plaintext (2,388/2,388 runes).
+
+| Recipient | Complete mode/phase cases out of 78 | F-hold cases | Maximum original mean log score | Minimum withheld native-window score |
+|---|---:|---:|---:|---:|
+| p29 body, 269 | 41 | 2 | -3.483806 | -2.847253 |
+| p28 suffix, 129 | 39 | 0 | -3.445534 | -2.996802 |
+
+The p28 suffix is structurally impossible under every tested F-hold convention and phase. The remaining ordinary-clock and two p29 F-hold paths have no native-like score; this is a calibrated likelihood negative, not a universal impossibility for arbitrary plaintext. The fixed phase-zero historical case remains exactly excluded by Agent29. Do not expand or tune this key family absent new evidence. No plaintext or key recovered.
+
+[SFT](../sims/lp2_p28_dh13_inner_key_sft.cjs) · [Exact output and full best candidates](lp2-p28-dh13-inner-key-output.json). Connected JS core executed; standalone Node wrapper not separately run.
