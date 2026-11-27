@@ -1,0 +1,149 @@
+{
+  "constraints": [
+    47,
+    47
+  ],
+  "windows": 2772507,
+  "quote": [
+    {
+      "name": "resources/control/emerson_essays_2944.txt",
+      "trits": 1278268,
+      "windows": 1278194,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "trits": 256051,
+      "windows": 255977,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "trits": 876226,
+      "windows": 876152,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/2013-book-of-law-I.txt",
+      "trits": 29051,
+      "windows": 28977,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/2013-book-of-law-II.txt",
+      "trits": 30011,
+      "windows": 29937,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/2013-book-of-law-III.txt",
+      "trits": 31466,
+      "windows": 31392,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "trits": 74728,
+      "windows": 74654,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/cicada2012-blake-marriage-gutenberg45315.txt",
+      "trits": 134774,
+      "windows": 134700,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/tennyson-lady-of-shalott-1832-mptc.txt",
+      "trits": 17349,
+      "windows": 17275,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/external/tennyson-lady-of-shalott-1842-gutenberg8601.txt",
+      "trits": 16328,
+      "windows": 16254,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "resources/liber-primus/lp1-plaintext-reference.txt",
+      "trits": 17909,
+      "windows": 17835,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "0_warning",
+      "trits": 744,
+      "windows": 670,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "0_welcome",
+      "trits": 2068,
+      "windows": 1994,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "0_wisdom",
+      "trits": 644,
+      "windows": 570,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "0_koan_1",
+      "trits": 3065,
+      "windows": 2991,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "trits": 3006,
+      "windows": 2932,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "jpg107-167",
+      "trits": 1232,
+      "windows": 1158,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "jpg229",
+      "trits": 375,
+      "windows": 301,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "p56_an_end",
+      "trits": 330,
+      "windows": 256,
+      "forward": [],
+      "reverse": []
+    },
+    {
+      "name": "p57_parable",
+      "trits": 362,
+      "windows": 288,
+      "forward": [],
+      "reverse": []
+    }
+  ]
+}
