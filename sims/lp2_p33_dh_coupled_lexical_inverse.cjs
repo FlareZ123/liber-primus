@@ -1,0 +1,31 @@
+'use strict';
+// Exact minimal OOV inverse for coupled DH p33 with canonical printed group boundaries.
+const fs=require('node:fs'),crypto=require('node:crypto');
+function lexical(corpus,transcript,dict,ref){
+ const m=x=>(x%29+29)%29,pow=(a,n,p)=>{let x=1;for(let i=0;i<n;i++)x=x*a%p;return x},key=A=>{const K=pow(A,15,23);return [m(15*(23-K)),m(15*(A+K)),m(15*(K-A)),m(15*(-K-23))]};const keys=Array.from({length:23},(_,i)=>key(i));
+ const runeMap=new Map(corpus.runes.map((r,i)=>[r,i])),parts=transcript.split(/^\s*%\s*$/m).slice(0,55),groups=[],offsets=Array(55).fill(0);let cur=null;function flush(){if(cur)groups.push(cur);cur=null}
+ for(let pg=0;pg<parts.length;pg++)for(const ch of parts[pg]){if(runeMap.has(ch)){if(!cur)cur={pg,start:offsets[pg],endpg:pg,runes:[]};cur.endpg=pg;cur.runes.push(runeMap.get(ch));offsets[pg]++}else if(ch!=="/"&&!/\s/u.test(ch))flush()}flush();if(groups.length!==2896)throw Error("word count");
+ const suffix=corpus.pages[33].indices.slice(136),gs=groups.filter(g=>g.pg===33&&g.start>=136&&g.endpg===33);if(gs.length!==17||gs.reduce((a,g)=>a+g.runes.length,0)!==77)throw Error("geometry");const lens=gs.map(g=>g.runes.length);let n=0;const ends=lens.map(l=>(n+=l)-1);
+ const labels=corpus.translit.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length);const normalize=s=>s.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");const forms=labels.concat([["ING",21],["IO",27]]).sort((a,b)=>b[0].length-a[0].length);
+ function canonical(s){let a=[];for(let w of normalize(s).match(/[A-Z]+/g)||[]){while(w.length){let t=w.startsWith("ING")?["ING",21]:w.startsWith("IO")?["IO",27]:labels.find(([q])=>w.startsWith(q));if(!t)throw Error("unmapped "+w);a.push(t[1]);w=w.slice(t[0].length)}}return a}
+ const training=canonical(ref.replace(/^#.*$/gm,""));if(training.length!==3510)throw Error("training length "+training.length);
+ const big=Array.from({length:29},()=>Array(29).fill(0.5));for(let i=1;i<training.length;i++)big[training[i-1]][training[i]]++;const L=big.map(r=>{const n=r.reduce((a,b)=>a+b,0);return r.map(x=>Math.log(x/n))});
+ const lex=Array.from(new Set(dict.split(/\r?\n/).flatMap(l=>{let m=l.match(/^([a-z]+)\s+\d+$/);return m?[m[1]]:[]}))).concat(ref.replace(/^#.*$/gm,"").match(/[A-Z]+/g)||[]);
+ function alternatives(w){const s=normalize(w);let memo=new Map();function rec(i){if(i===s.length)return [[]];if(memo.has(i))return memo.get(i);let a=[];for(const [q,v] of forms)if(s.startsWith(q,i))for(const tail of rec(i+q.length)){if(tail.length<9)a.push([v,...tail])}memo.set(i,a);return a}return rec(0)}
+ function build(permissive){const trie=[{next:new Map(),word:null}],set=new Map(),byLen=Array.from({length:10},()=>[]);for(const w of lex)for(const a of permissive?alternatives(w):[canonical(w)]){if(!a.length||a.length>9)continue;let k=a.join(",");if(set.has(k))continue;set.set(k,w);byLen[a.length].push(a);let node=0;for(const x of a){if(!trie[node].next.has(x)){trie[node].next.set(x,trie.length);trie.push({next:new Map(),word:null})}node=trie[node].next.get(x)}trie[node].word=w}return {trie,set,byLen}}
+ function inverse(input,hold,ends,trie){const b=new Set(ends),len=input.length;let dp=new Map([["0,0,0,29",{phase:0,A:0,q:0,last:29,oov:0,s:0,plain:[],shares:[],words:[],w:[]}]]),maxStates=1;
+  for(let i=0;i<len;i++){let nd=new Map();function put(v,p,phase,A,shares){let q=v.q<0?-1:(trie[v.q].next.get(p)??-1),oov=v.oov,words=v.words,w=[...v.w,p];if(b.has(i)){const word=q>=0?trie[q].word:null;if(!word)oov++;words=[...words,{runes:w,word:word??null}];w=[];q=0}const k=[phase,A,q,p].join(","),s=v.s+(v.last===29?0:L[v.last][p]),old=nd.get(k);if(!old||oov<old.oov||oov===old.oov&&s>old.s)nd.set(k,{phase,A,q,last:p,oov,s,plain:[...v.plain,p],shares,words,w})}
+   for(const v of dp.values()){if(hold&&input[i]===0)put(v,0,v.phase,v.A,v.shares);const allow=v.phase===0?Array.from({length:22},(_,i)=>i+1):[v.A];for(const A of allow){let p=m(input[i]-keys[A][v.phase]);if(hold&&p===0)continue;let phase=(v.phase+1)%4;put(v,p,phase,phase===0?0:A,v.phase===0?[...v.shares,A]:v.shares)}}
+   if(!nd.size)return {dead:i,maxStates};dp=nd;maxStates=Math.max(maxStates,dp.size)
+  }let a=[...dp.values()].sort((a,b)=>a.oov-b.oov||b.s-a.s)[0];return {...a,maxStates,score:a.s/(input.length-1)}
+ }
+ function forward(p,shares,hold){let phase=0,b=0;return p.map(x=>{if(hold&&x===0)return 0;let c=m(x+keys[shares[b]][phase]);if(++phase===4){phase=0;b++}return c})}
+ const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b),results=[];
+ for(const permissive of [false,true]){const {trie,set,byLen}=build(permissive);for(const hold of [false,true]){let a=inverse(suffix,hold,ends,trie);if(a.plain&&!eq(forward(a.plain,a.shares,hold),suffix))throw Error("replay");
+  let controls=[];for(let s=0;s<6;s++){const plain=lens.flatMap((l,i)=>byLen[l][(s*199+i*103+i*i*7)%byLen[l].length]).concat([s+1]);const shares=Array.from({length:plain.length},(_,i)=>1+((i*7+s*11+i*i)%22));const c=forward(plain,shares,hold),v=inverse(c,hold,ends,trie);if(v.oov!==0||!eq(forward(v.plain,v.shares,hold),c))throw Error("planted control");controls.push({oov:v.oov,correct:v.plain.filter((r,i)=>r===plain[i]).length,n:plain.length,score:v.score})}
+  results.push({permissive,hold,distinctLexiconForms:set.size,trieNodes:trie.length,coverage:77,...a,controls})}}
+ return {lengths:lens,completeWords:gs.length,referenceTraining:training.length,dictionaryRawWords:lex.length,results}
+}
+const paths=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/control/english_wordfreq_textblob.txt","resources/liber-primus/lp1-plaintext-reference.txt"],expected=["054f2a0f780b7d46901acbe3d9bf4f0ac1801165","43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7","140e1d22b5f8c45deddd2e8b25549d9d6307d938","8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"];
+const blob=b=>crypto.createHash('sha1').update('blob '+b.length+'\0').update(b).digest('hex');
+const buffers=paths.map(p=>fs.readFileSync(p));if(buffers.some((b,i)=>blob(b)!==expected[i]))throw Error('input blob mismatch');const [c,t,d,r]=buffers.map(b=>b.toString('utf8'));const o=lexical(JSON.parse(c),t,d,r);o.inputs=Object.fromEntries(paths.map((p,i)=>[p,expected[i]]));if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(o,null,2)+'\n');else console.log(JSON.stringify(o,null,2));

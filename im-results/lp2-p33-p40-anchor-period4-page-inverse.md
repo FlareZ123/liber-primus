@@ -84,3 +84,18 @@ The p33 shell has a different meaning from p40: its third component is interpret
 | F hold | -3.925926 | impossible at suffix offset44 | -2.775156 |
 
 All 22 planted controls have a valid replay and optimum at least the planted score. Reference/model caveats are identical to the preceding section. No readable candidate has emerged. The ordinary free-share optimum −2.753688 is **inside** the finite editorial-reference band (floor −2.772464), while the F-hold optimum −2.775156 is only slightly below it. This precludes a blanket score-based exclusion of the coupled family. The outputs are nonprose and the 22^20 ordinary share histories leave the schedule underdetermined. Both fixed DH progressions fail as direct decipherments; retain the arbitrary-share coupled family only as an underconstrained receiver that needs an independent state selector or stronger language constraint. No new key or plaintext. [Reproducer](../sims/lp2_p33_dh_coupled_share_inverse.cjs) · [Raw output](lp2-p33-dh-coupled-share-inverse.json).
+
+### Exact printed-group lexical inverse of the underdetermined p33 coupled family
+
+The preceding coupled free-share score overlaps the editorial reference band; a language score alone is not a decisive exclusion. Test the strongest alternate interpretation that the printed words are true word units. On physical p33 after the WILL candidate (offset136), the 17 complete groups have lengths 2, 1, 9, 8, 4, 4, 9, 5, 5, 2, 4, 2, 4, 3, 7, 3, 5 (77 runes), followed by the first rune of a three-rune carry into p34. Keep the final fragment unconstrained. The canonical seam-aware parser reproduces all 2,896 manuscript groups. Retain every A∈1..22 per block and exact K=A^15 mod23, with the same ordinary and transparent-F clocks. Do not optimize spacing, anchor, phase or DH tuple.
+
+Use the pinned TextBlob English dictionary and additional editorial LP1 reference words; limit forms to lengths1–9, the longest target group. Compare the native greedy QU→CW/V→U/K,Q→C/Z→S and ING/IO encoding with a superset allowing all token segmentations including split composites. For each ciphertext rune maintain exact (block phase, current share, trie node, previous decoded rune); non-prefix transitions go to an absorbing OOV sentinel until the next printed boundary. At each boundary charge one OOV iff the current string is not a complete dictionary form. Merge only identical future-relevant states, minimize OOV first and maximize an add-0.5 native-reference bigram score second; the latter uses all 3,510 runes of the established source-calibrated editorial reference. It cannot alter the exact minimum OOV count.
+
+| GP word register | Clock | Distinct forms length1–9 | Minimum OOV | Max live states |
+|---|---|---:|---:|---:|
+| Native greedy | ordinary | 23,877 | 12/17 | 258 |
+| Native greedy | F hold | 23,877 | 10/17 | 294 |
+| All tokenizations | ordinary | 31,833 | 12/17 | 265 |
+| All tokenizations | F hold | 31,833 | 10/17 | 299 |
+
+All 24 deterministic matched-length dictionary-word plants achieve zero OOV and exact forward replay. They calibrate feasibility, not natural-prose power; sampled words are not coherent sentences. Original best paths replay exactly. The lexical conclusion is conditional on this finite register and preservation of printed word units (order not tested); arbitrary OOV words and decoy segmentation are outside scope. The optimal word lists, exact selected shares, and planted control outputs are preserved in [raw JSON](lp2-p33-dh-coupled-lexical-inverse.json). No new authentic plaintext or state schedule follows from the best path. [Reproducer](../sims/lp2_p33_dh_coupled_lexical_inverse.cjs), exact core run in connected V8; standalone wrapper unrun.
