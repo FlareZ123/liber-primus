@@ -1018,5 +1018,75 @@
         }
       ]
     }
+  },
+  "rank28": {
+    "whole": {
+      "n": 12956,
+      "prefix": 64,
+      "prefixNonzero": 60,
+      "prefixZero": 4,
+      "suffixNonzero": 12438,
+      "suffixF": 454,
+      "cursors": 468,
+      "best": {
+        "t": 331,
+        "cap": 1203,
+        "top2": [
+          592,
+          547
+        ],
+        "sync": 713
+      },
+      "syncMin": 160,
+      "syncMax": 1215,
+      "unsynced": 0
+    },
+    "chapter": {
+      "n": 3008,
+      "prefix": 64,
+      "prefixNonzero": 61,
+      "prefixZero": 3,
+      "suffixNonzero": 2822,
+      "suffixF": 122,
+      "cursors": 467,
+      "best": {
+        "t": 85,
+        "cap": 489,
+        "top2": [
+          216,
+          209
+        ],
+        "sync": 650
+      },
+      "syncMin": 128,
+      "syncMax": 1175,
+      "unsynced": 0
+    },
+    "nondegenerateCanonicalF": {
+      "whole": {
+        "n": 12956,
+        "origins": 464,
+        "exhausted": 464,
+        "unresolved": 0,
+        "survivors": 0,
+        "deepest": 1117,
+        "total": 10756251,
+        "maxWork": 608322,
+        "cap": 2000000,
+        "examples": []
+      },
+      "chapter": {
+        "n": 3008,
+        "origins": 464,
+        "exhausted": 461,
+        "unresolved": 3,
+        "survivors": 0,
+        "deepest": 1390,
+        "total": 15874506,
+        "maxWork": 2000001,
+        "cap": 2000000,
+        "examples": []
+      }
+    }
   }
 }
