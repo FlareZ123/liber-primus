@@ -6,6 +6,8 @@
 
 - Actual LP1 keys of consecutive lengths 8/13 combined as whole blocks using Fibonacci word 0→01,1→0, first black p15 rune through p22 (1883). Both assignments/signs exact literal-F reachability dead at 38/36/59/16; no hold ordinary IoC .03442–.03461. Authentic p56 85/85; 36/36 native plants retain true path. No plaintext. [Report](../../im-results/lp2-p15-fibonacci-historical-keyblocks-gate.md), [SFT](../../sims/lp2_p15_fibonacci_historical_keyblocks_sft.cjs). Source does not independently authorize this recurrence. Retire literal historical blocks; independently calibrate a blind unknown-block receiver before any original fit, without phase/clock expansion.
 
+- Constructive 21-coordinate unknown-block receiver: collapsed Bayesian F-hold beam, donor-excluded native unigram/bigram; fit 1752, held131. Two independent key seeds on same native donor tape recover all 42 key coordinates and 262/262 held runes at width1024/rerank256. Wider beam 4096/1024 still recovers both keys but one hard-cursor selection fails; exact fixed-key marginal continuation corrects that artifact. Native predictive -2.775226/-2.769979; original A -4.421227 (legal), B dead at 1857, no prose. Heuristic original rejection only. [C++](../../sims/lp2_fib_keyblocks_blind.cpp), [wrapper](../../sims/lp2_fib_keyblocks_blind_sft.cjs), consolidated report above. Retire this clock absent a new independent clue; reuse collapsed posterior method for source-supported clocks.
+
 ## Previous invocation state
 
 **Updated:** 26 November 2026. Draw9, issue-directed normal mode; current queue has no available unblocked task, so independent fallback. Verified claim `agent36-draw9-2026-11-26T14:15:39.296Z-12c1a092`, release threshold 15:25:39.296Z. Never refresh lease.
