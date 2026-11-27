@@ -5,7 +5,7 @@ Usage:
     python sims/lp2_q8_placed_crib_receiver.py --fixture
     python sims/lp2_q8_placed_crib_receiver.py --input path/to/cribs.json
 
-Input JSON (NO proposed original LP2 cribs are embedded):
+Input JSON (NO proposed original LP2 cribs are embedded; use supplied cipher_gp or the exact original page/rune_offset):
   {"chapters":["c0","c1","c2"],
    "source_note":"user-specified origin and location; never inferred here",
    "cribs":[
@@ -16,7 +16,7 @@ Input JSON (NO proposed original LP2 cribs are embedded):
    ],
    "query":[{"chapter":"c0","cipher_gp":"...", "id":"word42"}]}
 
-The FIRST crib in each chapter defines its private phase-0 gauge. Every later
+In original-page mode each crib supplies page (0..55) and rune_offset instead\nof cipher_gp; the exact unmodified source ciphertext is inserted and checked.\nOptional query entries can use page, rune_offset and rune_length. Original\nplaintext and its semantic alignment are NEVER inferred or certified here.\n\nThe FIRST crib in each chapter defines its private phase-0 gauge. Every later
 crib has eight possible unknown starts, unless phase_from_anchor is explicitly
 provided (0..7). Only source-known input words are used to fit. The F rune,
 index zero, is a transparent plaintext bypass; only consuming non-F plaintext
@@ -113,6 +113,55 @@ def parse_gp(value,where):
     bad=set(value)-set(SYM)
     if bad:raise ValueError(where+" contains invalid canonical GP29 symbols "+repr(sorted(bad)))
     return [SYM.index(ch) for ch in value]
+
+def resolve_original_page_offsets(data):
+    """Fill ciphertext from authoritative original physical LP2 p0-55 runes.
+
+    Input crib: {"chapter":"c0","page":27,"rune_offset":12,
+                 "plain_gp":"..."}.
+    The supplied plaintext *remains a hypothesis*; only ciphertext is
+    authenticated. Inputs that claim a different cipher_gp at the given
+    source offset are rejected before cryptanalysis.
+
+    Input query: {"id":"rune-window","chapter":"c0",
+                  "page":27,"rune_offset":12,"rune_length":7}.
+    No page-spanning, synthetic/real mixture, or page50 runeless text is
+    silently repaired. The two solved pages 56-57 are excluded because their
+    published methods differ from any unknown-page q8 hypothesis.
+    """
+    cribs=data.get("cribs",[])
+    originals=[bool(isinstance(q,dict) and "page" in q) for q in cribs]
+    if not any(originals):
+        return data
+    if not all(originals):
+        raise ValueError("do not mix original-offset cribs with synthetic string cribs")
+    original=json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
+    pages={p["page"]:p["indices"] for p in original["pages"] if p["page"]<=55}
+    copied=json.loads(json.dumps(data))
+    for typ in ("cribs","query"):
+        for idx,obj in enumerate(copied.get(typ,[])):
+            if not isinstance(obj,dict) or "page" not in obj or "rune_offset" not in obj:
+                raise ValueError(f"all original {typ} entries require physical page and rune_offset")
+            page=obj["page"];offset=obj["rune_offset"]
+            if not isinstance(page,int) or page not in pages:
+                raise ValueError(f"{typ}[{idx}] page outside original p0-55")
+            if not isinstance(offset,int) or offset<0:
+                raise ValueError(f"{typ}[{idx}] rune_offset negative/noninteger")
+            if typ=="cribs":
+                length=len(parse_gp(obj.get("plain_gp"),f"{typ}[{idx}].plain_gp"))
+            else:
+                length=obj.get("rune_length")
+                if not isinstance(length,int) or length<1:
+                    raise ValueError("query rune_length must be a positive integer")
+            if offset+length>len(pages[page]):
+                raise ValueError(f"{typ}[{idx}] exceeds original page rune range")
+            actual=''.join(SYM[v] for v in pages[page][offset:offset+length])
+            supplied=obj.get("cipher_gp")
+            if supplied is not None and supplied!=actual:
+                raise ValueError(f"{typ}[{idx}] supplied ciphertext contradicts canonical source")
+            obj["cipher_gp"]=actual
+    copied["ciphertext_source"]="Exact original GP29 physical pages p0-55; source plaintext/authentication NOT certified"
+    return copied
 
 def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300):
     chapter_names=data.get("chapters")
@@ -269,4 +318,7 @@ if __name__=="__main__":
     if args.fixture:fixtures()
     else:
         data=json.loads(args.input.read_text(encoding="utf-8"))
-        print(json.dumps(solve(data,args.branch_cap,args.solution_cap),indent=2))
+        data=resolve_original_page_offsets(data)
+        result=solve(data,args.branch_cap,args.solution_cap)
+        if "ciphertext_source" in data:result["ciphertext_source"]=data["ciphertext_source"]
+        print(json.dumps(result,indent=2))
