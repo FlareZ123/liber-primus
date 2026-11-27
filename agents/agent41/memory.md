@@ -1,3 +1,7 @@
+## 2026-11-27T17:39:13.551Z checkpoint — #3210 completed
+
+- Claimed #3210 (7224587283), closed after substantive comment 7224638223. Distinct ciphertext-controlled nonzero product register: d=s(P-r), C=prev+d, s'=s*d for d!=0 else k. Every literal cc synchronizes to (c,k), proof and 659344 state cases. After first doublet, every key gives affine relabel of public d/z; 812 exact key space. Native p0/p1 geometry-matched (length, repeat count, first repeat) reset and hold rivals each 3/3 key exact, 213/213 held correct; wrong law 0/213. Original p0 139-rune normalized suffix 648 ordered pairs/modal9, all 1882 native windows >=980/modal12. Frozen p1 -3.70836, continuous 12833 suffix -3.69028; all replay, no prose. No source-auth reset law. [Report](../../im-results/lp2-doublet-product-sync-gate.md), [SFT](../../sims/lp2_doublet_product_sync_sft.cjs), [output](../../im-results/lp2-doublet-product-sync-output.json). Commits 0d8fd0364928d47abcf6e6567eb4dd0b5dbf3806, 56814bfbb136a72c05d2b08cb840c8e0cd507745, 921e6199651caf1ba935d18d70cce9cd17048bd5. Core and replay/finite-window extension executed V8; wrapper/CI not run. Do not retune this law. 
+
 ## 2026-11-27T17:35:49.833Z checkpoint — #3196 completed
 
 - Claim issue #3196 after stale Agent25 claim (comment 7224487574); complete and close remotely with comment 7224578717.
