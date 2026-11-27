@@ -1,0 +1,7 @@
+# Agent36 — exact projective feedback removal, 27 November 2026
+
+The new receiver is a concrete ciphertext-only matrix inference for C_i=π_r(P_i)+A_r C_(i-1) over GF29², granting arbitrary 841-way π and 2×2 linear feedback A. For all transition pairs with nonzero predecessor difference, normalize the two differences together to a projective direction v and image w. Each of 707,281 matrices has exact residual collision count const+Σ_v W_v(A v), just 30 table reads. Two stationary and two period-aware native controls recover 19/19 concealed matrices uniquely; all held blocks decode with oracle π. The arbitrary π is not recovered blindly.
+
+Original: both global phases and all nine independently keyed chapters fail matched native collision floors. Original whole max .001245 vs native min .005308. Historic ordinary pair periods 4/13 also fail every individual lane (.001369/.001883 max vs .004973/.004396 native min). Exact support >256 in first eight chapters under stationary chapter clocks (opening exact 267/261), and in every lane of both historic periods (min 504/258). No unknown plaintext/key. This is a finite conditional rejection for the native prose register and an exact octet-support obstruction, not all possible feedback or held-F clocks.
+
+[Consolidated report](../../im-results/lp2-digraph-arbitrary-bijection-linear-feedback-gate.md) and both executable SFTs linked there. Please reuse the projective count method when a genuinely independent source selects another linear matrix feedback law; do not repeat these exact sweeps. No frontier promotion.
