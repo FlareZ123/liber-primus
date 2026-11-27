@@ -1,0 +1,103 @@
+{
+  "fnv": "da625de8",
+  "traces": [
+    {
+      "start": 0,
+      "end": 6478,
+      "burn": 163,
+      "anchors": 46
+    },
+    {
+      "start": 6478,
+      "end": 12956,
+      "burn": 6567,
+      "anchors": 35
+    }
+  ],
+  "controls": [
+    {
+      "d": 0,
+      "df": 28,
+      "switches": 0,
+      "checked": 2783,
+      "markerChecks": 26
+    },
+    {
+      "d": 28,
+      "df": 0,
+      "switches": 0,
+      "checked": 2851,
+      "markerChecks": 26
+    },
+    {
+      "d": 1,
+      "df": 28,
+      "switches": 0,
+      "checked": 2808,
+      "markerChecks": 26
+    },
+    {
+      "d": 27,
+      "df": 0,
+      "switches": 0,
+      "checked": 2784,
+      "markerChecks": 26
+    },
+    {
+      "d": 7,
+      "df": 2,
+      "switches": 1,
+      "checked": 535,
+      "markerChecks": 8
+    },
+    {
+      "d": 7,
+      "df": 23,
+      "switches": 0,
+      "checked": 2732,
+      "markerChecks": 23
+    },
+    {
+      "d": 14,
+      "df": 0,
+      "switches": 0,
+      "checked": 2006,
+      "markerChecks": 23
+    },
+    {
+      "d": 14,
+      "df": 28,
+      "switches": 1,
+      "checked": 0,
+      "markerChecks": 0
+    },
+    {
+      "d": 21,
+      "df": 8,
+      "switches": 0,
+      "checked": 2737,
+      "markerChecks": 24
+    },
+    {
+      "d": 21,
+      "df": 26,
+      "switches": 0,
+      "checked": 2121,
+      "markerChecks": 23
+    },
+    {
+      "d": 3,
+      "df": 6,
+      "switches": 0,
+      "checked": 2591,
+      "markerChecks": 26
+    },
+    {
+      "d": 6,
+      "df": 3,
+      "switches": 1,
+      "checked": 2738,
+      "markerChecks": 23
+    }
+  ]
+}
