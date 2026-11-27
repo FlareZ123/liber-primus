@@ -22,7 +22,7 @@ function caps(H){const b1=upper(H,[0]);let b2={value:-1};for(let d=1;d<=14;d++){
 function minima(n){return donors.map(d=>{const h=Array(N).fill(0),mins=[Infinity,Infinity];for(let i=0;i<d.length;i++){h[d[i]]++;if(i>=n)h[d[i-n]]--;if(i>=n-1){let q=h.slice().sort((a,b)=>b-a);mins[0]=Math.min(mins[0],q[0]);mins[1]=Math.min(mins[1],q[0]+q[1])}}return{windows:d.length-n+1,mins}})}
 function counts(P){let h=Array(N).fill(0);P.forEach(x=>h[x]++);return h.sort((a,b)=>b-a)}
 const controls=[];
-for(const [di,off,rank,phase,n,cut] of [[0,10000,1,0,1883,1210],[2,30000,378,1,1744,1071]]){
+for(const [di,off,rank,phase,n,cut] of [[0,10000,1,0,1883,1210],[2,30000,378,1,1744,1071],[0,60000,14,7,1883,1210],[2,100000,988,3,1744,1071],[0,150000,56,10,1744,1071],[2,200000,611,2,1883,1210]]){
  const P=donors[di].slice(off,off+n),A=perm(N),B=perm(N),invA=Array(N);A.forEach((v,i)=>invA[v]=i);
  const K=key(rank,phase,n),C=P.map((v,i)=>invA[mod(B[v]+K[i])]),H=histogram(C,K),q=caps(H),h=counts(P);
  check(q.b1.value>=h[0]&&q.b2.value>=h[0]+h[1],"true key in caps");
@@ -35,10 +35,24 @@ for(const [di,off,rank,phase,n,cut] of [[0,10000,1,0,1883,1210],[2,30000,378,1,1
  let best=null;
  for(const first of [start.b1.a,start.b2.a,...Array.from({length:8},()=>perm(N))]){let a=first,b=inferB(a),old=-Infinity;for(let it=0;it<35;it++){const score=fitScore(a,b);if(score<=old+1e-9)break;old=score;const W=train.map(row=>Array.from({length:N},(_,v)=>row.reduce((s,z,k)=>s+z*lU[b[mod(v-k)]],0)));a=hung(W).a;b=inferB(a)}
  const score=fitScore(a,b);if(!best||score>best.score)best={a,b,score}}
+ // Train an independent conditional bigram model. The outer map is frozen.
+ const LM=Array.from({length:N},()=>Array(N).fill(.5));for(let i=1;i<donors[1].length;i++)LM[donors[1][i-1]][donors[1][i]]++;
+ for(const row of LM){const z=row.reduce((a,b)=>a+b,0);for(let i=0;i<N;i++)row[i]=Math.log(row[i]/z)}
+ const rankTape=getR(best.a,cut),M=Array.from({length:N},()=>Array(N).fill(0));for(let i=1;i<rankTape.length;i++)M[rankTape[i-1]][rankTape[i]]++;
+ function bScore(I){let v=0;for(let a=0;a<N;a++)for(let b=0;b<N;b++)v+=M[a][b]*LM[I[a]][I[b]];return v}
+ let bestI=best.b.slice(),bestBS=bScore(bestI);
+ for(let restart=0;restart<20;restart++){let I=restart===0?bestI.slice():perm(N),score=bScore(I);
+  for(let t=0;t<8000;t++){let a=rng()%N,b=rng()%N;if(a===b)continue;let x=I[a],y=I[b],delta=0;
+   for(let j=0;j<N;j++)if(j!==a&&j!==b){let z=I[j];delta+=M[a][j]*(LM[y][z]-LM[x][z])+M[b][j]*(LM[x][z]-LM[y][z])+M[j][a]*(LM[z][y]-LM[z][x])+M[j][b]*(LM[z][x]-LM[z][y])}
+   delta+=M[a][a]*(LM[y][y]-LM[x][x])+M[b][b]*(LM[x][x]-LM[y][y])+M[a][b]*(LM[y][x]-LM[x][y])+M[b][a]*(LM[x][y]-LM[y][x]);
+   const T=8*Math.pow(.005,t/7999);if(delta>=0||rng()/4294967296<Math.exp(delta/T)){[I[a],I[b]]=[I[b],I[a]];score+=delta;if(score>bestBS){bestBS=score;bestI=I.slice()}}
+  }
+ }
+ const before=getR(best.a,n).map(v=>best.b[v]);best.b=bestI;
  const out=getR(best.a,n).map(v=>best.b[v]),matches=(lo,hi)=>out.slice(lo,hi).filter((v,i)=>v===P[lo+i]).length;
  const d=best.a.map((v,i)=>mod(v-A[i])),outerGaugeMatches=Math.max(...Array.from({length:N},(_,j)=>d.filter(v=>v===j).length));
  const reA=Array(N),reB=Array(N);best.a.forEach((v,i)=>reA[v]=i);best.b.forEach((v,i)=>reB[v]=i);check(out.map((v,i)=>reA[mod(reB[v]+K[i])]).join(",")===C.join(","),"blind replay");
- controls.push({di,off,rank,phase,n,cut,actualTop1:h[0],actualTop2:h[0]+h[1],cap1:q.b1.value,cap2:q.b2.value,signSymmetry:true,blind:{fitMatches:matches(0,cut),heldMatches:matches(cut,n),heldN:n-cut,outerGaugeMatches,replay:true}})
+ controls.push({di,off,rank,phase,n,cut,actualTop1:h[0],actualTop2:h[0]+h[1],cap1:q.b1.value,cap2:q.b2.value,signSymmetry:true,blind:{fitMatches:matches(0,cut),heldMatches:matches(cut,n),heldN:n-cut,outerGaugeMatches,unigramFitMatches:before.slice(0,cut).filter((v,i)=>v===P[i]).length,unigramHeldMatches:before.slice(cut).filter((v,i)=>v===P[cut+i]).length,bigramFitNatsPerTransition:bestBS/(cut-1),replay:true}})
 }
 const res=[];
 for(const [start,skip] of [[15,20],[16,0]]){const C=chart.pages.slice(start,23).flatMap(x=>x.indices).slice(skip),min=minima(C.length),allmin=[Math.min(...min.map(x=>x.mins[0])),Math.min(...min.map(x=>x.mins[1]))],stats=[];
