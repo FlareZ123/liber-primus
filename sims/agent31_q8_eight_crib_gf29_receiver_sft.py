@@ -37,12 +37,10 @@ MOD=29
 N=27+3*8
 # These eight true words constitute oracle cribs, not ciphertext-discovered
 # words. Seven leave one private shift unconstrained; the eighth fixes it.
-ANCHORS=(('p57_parable',13),('jpg229',1),('p57_parable',16),
-         ('p57_parable',0),('p56_an_end',19),('jpg229',12),
-         ('p57_parable',4),('p56_an_end',11))
-# Known zero start is just the chapter-specific cyclic phase gauge:
-# each of the three planted chapter anchor words was normalized to start 0.
-ORDER=(0,1,4,2,3,5,6,7)
+ANCHORS=(('p57_parable',13),('jpg229',1),('p56_an_end',19),
+         ('jpg229',5),('p57_parable',0),('p56_an_end',2),
+         ('p56_an_end',21),('p56_an_end',10))
+ORDER=tuple(range(len(ANCHORS)))
 
 class Linear:
     """Echelon chart-key constraints over GF29; no oracle key is inspected."""
@@ -107,7 +105,7 @@ def run(dictionary,base,plant,world):
         ci,ch=by_name[name]
         groups.append((ci,idx,ch['train_truth'][idx],ch['train_cipher'][idx],
                        idx==ch['anchor']))
-    assert sum(len(g[2]) for g in groups)==65
+    assert sum(len(g[2]) for g in groups)==58
     assert sum(g[4] for g in groups)==3
     # Permutation sum invariant: sum pi(0..28)=406=0 mod29.
     # Given fixed pi(0)=0 and pi(1)=1, sum remaining pi = -1.
@@ -115,23 +113,23 @@ def run(dictionary,base,plant,world):
     sumrow=[1]*27+[0]*24
     assert basis.add(sumrow,28)
 
-    # Diagnostic only: oracle plaintext and *true* starts must reproduce the
-    # documented 51/51 field rank. The solver below still hides these starts.
-    diag=basis.copy()
-    values=chapters[0]['pi'][2:]
-    for cc in chapters: values+=cc['key']
-    diag_steps=[]
-    for anchor_i in ORDER:
-        ci,wordidx,p,c,_=groups[anchor_i]
-        true_start=chapters[ci]['starts'][wordidx]
-        eq=list(rows(ci,p,c,true_start))
-        violations=sum((sum(a*b for a,b in zip(row,values))-rhs)%MOD!=0
-                       for row,rhs in eq)
-        assert violations==0,('oracle violates field equation',plant,world,anchor_i,violations)
-        ok=apply(diag,ci,p,c,true_start)
-        diag_steps.append((anchor_i,true_start,len(diag.pivots),ok))
-        if not ok:break
-    print('DIAG',plant,world,diag_steps,flush=True)
+    # Diagnostic only. For independent-pi rivals, a shared-chart oracle
+    # cannot be assembled from three different source charts.
+    if world=='common':
+        diag=basis.copy()
+        values=chapters[0]['pi'][2:]
+        for cc in chapters:values+=cc['key']
+        diag_steps=[]
+        for anchor_i in ORDER:
+            ci,wordidx,p,c,_=groups[anchor_i]
+            true_start=chapters[ci]['starts'][wordidx]
+            eq=list(rows(ci,p,c,true_start))
+            assert all((sum(a*b for a,b in zip(row,values))-rhs)%MOD==0
+                       for row,rhs in eq),('oracle row failed',plant,anchor_i)
+            assert apply(diag,ci,p,c,true_start)
+            diag_steps.append((anchor_i,true_start,len(diag.pivots)))
+        assert len(diag.pivots)==N,('oracle rank not 51',plant,diag_steps)
+        print('ORACLE_RANK',plant,world,len(diag.pivots),diag_steps,flush=True)
 
     stats=dict(branches=0,dead=0,leaves=0,rank51=0,
                permutation=0,primitive=0,complete_actions=0)
@@ -183,7 +181,7 @@ def run(dictionary,base,plant,world):
     t=time.monotonic()
     walk(0,basis,{})
     return {'plant':plant,'world':world,'oracle_anchor_words':len(ANCHORS),
-            'oracle_anchor_runes':65,'unfixed_start_phases':5,
+            'oracle_anchor_runes':58,'unfixed_start_phases':5,
             'stats':stats,'seconds':round(time.monotonic()-t,3),
             'solutions':solutions}
 
