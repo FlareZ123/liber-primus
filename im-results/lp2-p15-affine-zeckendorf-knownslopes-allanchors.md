@@ -1,6 +1,6 @@
-# P15 noncommuting affine Zeckendorf inverse with fixed source slopes and all singleton anchors
+# P15 noncommuting affine Zeckendorf inverse with fixed source slopes: anchor enumeration and spacing-free inversion
 
-**Decision:** calibrated negative search, not an all-key language theorem. Over both digit-composition orders, every A/I/O-compatible 17-coefficient intercept key is enumerated and sample scored: 26,721,486 original keys. No original plaintext recovered.
+**Decision:** calibrated negative search, not an all-key language theorem. Over both digit-composition orders, every A/I/O-compatible 17-coefficient intercept key is enumerated and sample scored: 26,721,486 original keys. A separate spacing-free blind inverse also recovers all four independent planted keys, but finds no readable original continuation. No original plaintext recovered.
 
 ## Typed hypothesis and exact parameter elimination
 
@@ -27,4 +27,23 @@ Two disjoint unseen Emerson spans are used for matched plants; 18 positions per 
 
 [CommonJS SFT](../sims/lp2_p15_affine_zeckendorf_knownslopes_allanchors_sft.cjs) · [low-first raw](lp2-p15-affine-zeckendorf-knownslopes-lowfirst.json) · [high-first raw](lp2-p15-affine-zeckendorf-knownslopes-highfirst.json). Run from repository root with Node22, optional mode 0/1 for a single order. Executed connected V8, not standalone Windows CI. Input blob IDs included in raw files. Source commit 3f6612d5, orientation-specific seed correction 3af5a806, raw bc5fe053/e48f5614.
 
-Retire these two fixed-slope models under the tested singleton/ranking premise. This includes arbitrary noncommuting intercepts, not arbitrary secret slopes, other affine compositions, changed word segmentation, OOV singleton alphabets or moving clocks. No independent source selector for more slope/clock fitting. No unknown LP2 plaintext, authenticated key or destination.
+The anchor-enumeration test is negative under its singleton/ranking premise. This includes arbitrary noncommuting intercepts, not arbitrary secret slopes, other affine compositions, changed word segmentation, OOV singleton alphabets or moving clocks. No independent source selector for more slope/clock fitting. No unknown LP2 plaintext, authenticated key or destination.
+
+## Spacing-free noncommuting inverse
+
+Conjugate each digit transform by T0: D_k=T0 T_k T0^-1, with slope a_k and intercept u_k=a0*b_k+(1-a_k)*b0. Thus the ciphertext is the ordered product of active D_k applied to T0(P). At each stage peel previously estimated outer transforms. For positions i,j=i+F_k with masks differing exactly by bit k, the remaining ciphertexts y obey
+```
+y_j - a_k*y_i - u_k = A_remaining(j)*(P_j-P_i) mod 29
+```
+where A_remaining includes the base slope. All unknown inner intercepts cancel. This supplies a direct offset likelihood against the empirical GP29 lag-difference distribution; it does not require printed word boundaries or singleton labels. Retain 256 branches, expanding each over all 29 possible digit offsets, with cumulative lag likelihood. At the last stage evaluate every base intercept for every retained branch using prefix trigram score; refine the top eight plus the source-fixed initialization with coordinate ascent. Freeze the winning key before p22. There are 155–669 fitting pairs per digit. The pair likelihood is a ranking heuristic, not a calibrated joint probability.
+
+Four disjoint unmodified Emerson spans, excluded from language training, use independent planted keys (two per digit order). All four pre-refinement fit winners recover their complete 17 coefficients, and all 7,532 runes, including 524/524 frozen continuation runes, exactly. Three true digit paths rank first at every stage; the fourth ranks second at two stages. Their fit gains are +0.976837,+1.068096,+0.960393,+1.032871 and held gains +0.987742,+0.978349,+0.902268,+0.995435.
+
+| Order | Original pre-refinement fit | Refined fit | Frozen p22 |
+|---|---:|---:|---:|
+| Low digit first | -2.869403 | -2.570947 | -3.801977 |
+| High digit first | -2.857701 | -2.556449 | -3.181785 |
+
+All final candidates replay exactly; no readable original continuation. This is an independent calibrated negative for the same two fixed-slope compositions without the anchor assumption, not exhaustive exclusion of every key. No authenticated evidence selects this affine receiver in the first place.
+
+[Spacing-free SFT](../sims/lp2_p15_affine_zeckendorf_spacingfree_pairbeam_sft.cjs) · [low-first raw](lp2-p15-affine-zeckendorf-spacingfree-lowfirst.json) · [high-first raw](lp2-p15-affine-zeckendorf-spacingfree-highfirst.json). Executed connected V8; no standalone Windows CI. Code 4cf52446; raw 1031edbb/6fb056a1. No additional fixed-slope, ordinary-clock fit variants warranted without new source evidence.
