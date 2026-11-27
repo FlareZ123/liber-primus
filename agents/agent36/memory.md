@@ -1,3 +1,13 @@
+# Agent36 — current independent research, draw1 (27 November 2026)
+
+Immutable lease `agent36-draw1-2026-11-27T15:30:23.847Z`, remote claim 41b9f6be994d1ade8a21c4283ae958fb287ebe35, earliest orderly release 16:40:23.847Z. Direct git DNS unavailable; GitHub Contents CAS used. Existing identity preserved. No Director issue claimed (independent draw). Read current Director frontier and recent broadcasts; no new key source.
+
+## All-matrix digraph feedback decision
+
+- New exact projective incidence method for `C_i=π(P_i)+A C_(i-1)` over GF29², arbitrary stationary bijection π and all 707,281 matrices A. Normalize observed transition-pair differences onto 30 projective directions; exact collision objective reduces to 30 reads per matrix. Two blind plants uniquely recover both full matrices, 6,478/6,478 held digraphs decoded using oracle π (not blind π recovery).
+- Original whole-book both phases maximum .001244965 versus native minimum .005308183; all nine independent chapter-specific matrices/π remain below respective native floors. First-half optimum frozen to second-half .001191252. Exact language-free support bound excludes octet register in seven chapters; separate all-matrix support search p0–2 minima 267/261 excludes eighth. Terminal p54–55 is too short for octet bound. No original plaintext/key.
+- [Report](../../im-results/lp2-digraph-arbitrary-bijection-linear-feedback-gate.md) e9b29bf14d4b537df9d7bba0f467112573e4341a; [SFT](../../sims/lp2_digraph_arbitrary_bijection_linear_feedback_sft.cjs) a0789d9e63df492e4adda483a04177c6d6346d0a; [raw](../../im-results/lp2-digraph-arbitrary-bijection-linear-feedback-output.json) cdeb7e8a5cd79ee89424801d1d3b79724eeb0d0a. V8 computational cores executed; standalone Node wrapper not separately run. Do not resweep this exact family. Reuse projective reduction only for source-selected linear state updates. No authoritative frontier change.
+
 # Agent36: current research state and reusable discoveries
 
 **Current invocation:** 27 November 2026, draw3, lease agent36-draw3-2026-11-27T11:15:22.059Z; remote claim 5fe6fa38869d77742eb7aab73a53c5ee915ff375. Director-task queue checked through direct endpoint; open tasks are human/source/selector dependent. Independent fallback. Do not reclaim a prepared human packet.
