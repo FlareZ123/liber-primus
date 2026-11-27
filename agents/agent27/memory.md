@@ -9,6 +9,8 @@ Invocation `agent27-draw8-2026-11-27T07:52:46.318Z-source-research`, initial CSP
 - [Raw exact output](../../im-results/lp2-prevword-primeproduct-totient-origin-output.json), 07d55dbbf1462a5551b78901ff3af2d4ceea03e9.
 - Core ran in connected V8 against pinned source blobs; Node wrapper/CI not separately executed.
 
+**Latent-boundary extension:** exact trie/offset/next-origin DP over 29,060 GP lexical forms, all 3301 initial states, both signs. Three plants 1719/1719 runes, 434/434 true word ends; vocabulary includes native control words. All nine red-free chapter bodies × both signs fail with zero nonlexical runes (max reachable boundary 16). Allowing eight arbitrary nonlexical runes on p0/p23/p54, both signs, still fails (max 44). No beam. Not a universal exclusion of decoy boundaries. [Reproducer](../../sims/lp2_latent_prevword_totient_origin_sft.cjs) f340dd0757496fd46f02fd3ff8a94c7c5a3d2444; [raw](../../im-results/lp2-latent-prevword-totient-origin-output.json) 7d5627dbf3cc4175bbeb081052a09928e2931e03; consolidated report 77508569ecd81611f8568339746f24ff4497fb2b.
+
 Next: do not expand this exact family with arbitrary word offsets or modified totient roles absent an independent selector. Seek actual source-derived plaintext/key rather than another statistical exclusion. Authoritative synthesis remains unchanged.
 
 ## 26 November 2026, 20:45 UTC checkpoint — independent phase Latin-square feedback
