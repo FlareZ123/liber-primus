@@ -1,0 +1,163 @@
+{
+  "title": [
+    19,
+    13,
+    10,
+    13,
+    8,
+    25,
+    9,
+    27,
+    15,
+    19,
+    19,
+    5,
+    15
+  ],
+  "cipherTitle": [
+    15,
+    8,
+    18,
+    3,
+    6,
+    19,
+    27,
+    0,
+    15,
+    26,
+    18,
+    21,
+    5
+  ],
+  "domain": "exact globally smallest primitive projective matrices by coefficient max absolute value, determinant and denominator units",
+  "toyChecks": 242,
+  "original": {
+    "visited": 27,
+    "rounds": 68,
+    "coordinateBounds": [
+      "1",
+      "1",
+      "1",
+      "0"
+    ],
+    "rawLatticePoints": 3,
+    "primitiveMatrices": 1,
+    "upperBound": "41227",
+    "minimum": "41227",
+    "keys": [
+      {
+        "K": [
+          "19341",
+          "41227",
+          "-8116",
+          "-15771"
+        ],
+        "fit": -3.5289262437370117
+      }
+    ],
+    "winner": {
+      "K": [
+        "19341",
+        "41227",
+        "-8116",
+        "-15771"
+      ],
+      "fit": -3.5289262437370117,
+      "held": -3.467026124276701,
+      "replay": true
+    },
+    "sample": "F G EA EO W G N EO F S J M IA Y S X L IA D AE U IA TH E B M E U W IA J J P S X EO G AE F M R OE T M U EO S F L Y L E TH C P O TH L L EO U S J T A EA Y J NG AE W C D X IA D Y H O F X R I B U X EO A G A S S R S X EO N NG T AE W Y C D R AE C B U B T G J E F F EA H B IA Y M T EA O EO M W D Y NG U X TH Y OE B N O S"
+  },
+  "plants": [
+    {
+      "name": "0_koan_1",
+      "expectedK": [
+        "18293",
+        "-14517",
+        "9311",
+        "21417"
+      ],
+      "visited": 3,
+      "rounds": 94,
+      "coordinateBounds": [
+        "1",
+        "0",
+        "0",
+        "0"
+      ],
+      "rawLatticePoints": 3,
+      "primitiveMatrices": 1,
+      "upperBound": "21417",
+      "minimum": "21417",
+      "keys": [
+        {
+          "K": [
+            "18293",
+            "-14517",
+            "9311",
+            "21417"
+          ],
+          "fit": -2.4648158387080863
+        }
+      ],
+      "winner": {
+        "K": [
+          "18293",
+          "-14517",
+          "9311",
+          "21417"
+        ],
+        "fit": -2.4648158387080863,
+        "held": -2.640772482682175,
+        "replay": true
+      },
+      "fitCorrect": 249,
+      "heldCorrect": 467
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "expectedK": [
+        "19331",
+        "15441",
+        "-11017",
+        "15007"
+      ],
+      "visited": 9,
+      "rounds": 75,
+      "coordinateBounds": [
+        "1",
+        "1",
+        "0",
+        "0"
+      ],
+      "rawLatticePoints": 3,
+      "primitiveMatrices": 1,
+      "upperBound": "15073",
+      "minimum": "15073",
+      "keys": [
+        {
+          "K": [
+            "15073",
+            "7969",
+            "9748",
+            "-4586"
+          ],
+          "fit": -3.499850465690579
+        }
+      ],
+      "winner": {
+        "K": [
+          "15073",
+          "7969",
+          "9748",
+          "-4586"
+        ],
+        "fit": -3.499850465690579,
+        "held": -3.51608050057852,
+        "replay": true
+      },
+      "fitCorrect": 5,
+      "heldCorrect": 16
+    }
+  ]
+}
