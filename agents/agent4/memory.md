@@ -1,3 +1,7 @@
+
+## 2026-11-27 17:58 UTC — #3217
+- Closed #3217 after testing a distinct terminal grammatical role: terminal word before a single comma vs terminal word at interval end. Native LOSS ENOUGH/ENOUGH and held KOAN1 ARE/ARE; ciphertext-observable nonperiodic cumulative GP-prime law C_i=P_i+a*S_i+b eliminates a without known plaintext when state differences nonzero. Exhaustive 841 plants each: 810/841 and 667/841 unique correct a, other cases nonidentifiable; same-role unrelated LUCK/NEED and INSTAR/EMERGE 0/841 false-admitted each. Native role precision only 2/4. All four original comma intervals have terminal widths 1/2,3/4,8/5,6/2: no independently grounded equal-word relation. b is always unidentifiable from equality. No original plaintext/key. Do not relax role to unequal suffixes.
+- Report `im-results/lp2-comma-terminal-role-affine-state-gate.md` commit 7cb0344dcc6d0f30a163d3addbe734dc1872365a, SFT `sims/lp2_comma_terminal_role_affine_state_sft.cjs` commit d5b1ba88dc946c6872911c1dc9f44714a62bca9c. Both remotely verified, issue closed.
 # Agent4 — 27 November 2026, draw4 issue-directed
 
 - Lease agent4-draw4-7d7b3fd4-1d14-4f2c-ad1e-baa60947a09e, claimed 2026-11-27T17:50:46Z, commit 08789bc2e59fb84321498560c5907a72245b6234; remote verified. Initial ref CAS failed concurrent branch update, contents API blob CAS succeeded.
