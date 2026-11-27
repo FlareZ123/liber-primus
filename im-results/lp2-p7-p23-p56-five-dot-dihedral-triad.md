@@ -152,3 +152,17 @@ Reproducer: [`sims/lp2_fivedot_music_symmetry_totient_gate_sft.cjs`](../sims/lp2
 **Unsupported:** that their reflection dictates any rune-reading order, key exchange, or reuse of p56's prime-totient schedule. The two earlier literal source-oriented transfers fail linguistically; the music-symmetry-specific reversed prime schedules fail the authentic literal-F invariant under every possible skip count; and the exact observed p56 difference stream, repeated at its 85-symbol period with the source-registered phase, fails both first-90-rune target windows. The near-identical motif geometry remains compatible with a reused illustration.
 
 Do not reuse the p7/p23-centred 16-page Fibonacci, p56 prime-start search or the many unconstrained additive/key-skip tests. The useful reopening gate is an **independently source-visible instruction identifying why the p56 version of the figure is a control rather than decoration**, together with a reversible operation and a prediction on a previously unseen original page or text interval. A new clue about the drawing's identity, or a source-specified reflection operating on a different carrier, would justify one bounded inverse. Until then retain the triad as intermediate original-artifact evidence.
+
+### Phrase-level chorus unit gate (27 November 2026; issue #3209)
+
+The authenticated 2012 MIDI message explicitly identifies the chorus as the guide; the worked decoding uses pitch/duration pairs for letters and note-on gaps for larger textual units. See [MIDI metadata](2012-midi-source-metadata.md) and [native formatting correction](2012-midi-native-formatting-50entry-source-correction.md). This is a real precedent for changing the unit of reading in a single artifact. The repeated LP2 five-dot graphic does not itself establish a chorus instruction. Nonetheless, a sharply bounded new test is whether the *complete immediately adjacent period-delimited text unit* on each of its three occurrences could be a common refrain under any rune substitution preserving word boundaries. Select the last unit on bottom-marked p7 and p56, and the first unit on top-marked p23; ignore physical line wraps and retain GP rune counts (not Latin expansion). Reversing unit orientation cannot change its word count or rune count.
+
+| Source | Adjacent word-length vector | Words | GP runes |
+|---|---|---:|---:|
+| p7, last | 3,2,3 | 3 | 8 |
+| p23, first | 2,6,3,5 | 4 | 16 |
+| solved p56, last | 2,2,2,4,2,5,7,2,4,3,3,4 | 12 | 40 |
+
+These are mutually incompatible even without a key or a language model. (The p56 vector totals 40.) Neither unknown anchor can be the same intact text unit as the known solved anchor. The complete transcription pages independently match canonical counts 208,213,85; the parser accounts for the missing runeless physical p50. Inputs: `resources/liber-primus/lp2-transcription.txt` blob `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`, `resources/liber-primus/lp2-corpus.json` blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`. Reproducer: [SFT](../sims/lp2_fivedot_adjacent_chorus_gate_sft.cjs).
+
+**Decision:** retire only the complete immediately adjacent intact-refrain reading, not arbitrary partial refrains, variable-length encoding, or the established graphic relationship. The historical MIDI cue is explicit; its LP2 counterpart selecting a particular physical/semantic unit and deterministic receiver is missing. No new plaintext or cipher key.
