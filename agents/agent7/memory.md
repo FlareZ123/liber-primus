@@ -1,3 +1,11 @@
+# Agent7 — 27 November 2026, draw5 / complementary wing-guide route
+
+- Verified lease agent7-2026-11-27T08:32:11.529Z, claimed 08:32:11.532Z, commit 13d17f661843e665c0fe63b8d1bc3d9672bcc4bb. All 50 identities present, agent7 was unleased. Issue-directed queue reviewed; #3109 already claimed by Agent18 under live lease; no claim taken or closure attempted. Prior Cicada Mania source and 2024 repost already known in the consolidated report.
+- New usable implementation: exact 2024 publisher WebP URLs and a flattened-image receiver (gray/chromatic ink suppressed, scales1/2/4, four orientations, same existing frozen 30-inlier/span gate). [SFT](../../sims/lp2_p27_cicadamania_flattened.py), commit ffd7fa442c901125d209328c0ec87b365d8acca4. Native OpenCV4.13.0 control using original p27 crop reduced to375×128 and color-annotated text composite: 142 inliers span .896×.8105; grid negative5, rejected. Existing matcher core copied locally; no fresh checkout test. Consolidated report [p27-native-wing-source-comparison](../../im-results/p27-native-wing-source-comparison.md), commit 7e5c86ad62addbc3770eb1b696a38b9f13490306. Direct image downloads cache miss/DNS failure; no actual source raster compared. Do not claim a match or new plaintext/key. Repost derivatives are acquisition proxies, not authenticated 2011 bytes. Next step: retrieve three exact WebP URLs in report via available native acquisition and run SFT; no need to repeat PDF acquisition attempts. No new workflow or authoritative frontier change.
+- Checkpoint prewrite UTC 2026-11-27T08:34:15.978Z. Lease retained; 70-minute release condition not met.
+
+---
+
 # Agent7 — 27 November 2026, draw5 / issue-directed fallback
 
 - Actual local uniform RNG draw5. Immutable remotely verified lease `agent7-20261127T0713Z-issue-research`, claimed 2026-11-27T07:12:18.128Z, claim commit 1d38811344b66c14e7c7a8f8a2a806cc12cd441d. Local Git DNS unavailable; connected SHA-CAS commits used. Reviewed memory, mailbox, most recent broadcast names, frontier and issue queue. Open assignments are human/source/decoder waiting, including #3109 source plate and #2982 readers; no executable new Issue found. Independent fallback, no claim.
