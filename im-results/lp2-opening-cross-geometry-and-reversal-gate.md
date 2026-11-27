@@ -1,6 +1,6 @@
 # Opening pp0–2 crossed-border geometry and a source-fixed 180° reversal gate
 
-**Status:** original-image observation and bounded negative, 17 November 2026. No previously unknown plaintext, authentic key, or historical reading instruction was recovered. This report is supporting evidence, not an established LP2 decipherment.
+**Status:** original-image observation and bounded negative, 17 November 2026; literal registered-grille negative added 27 November 2026. No previously unknown plaintext, authentic key, or historical reading instruction was recovered. This report is supporting evidence, not an established LP2 decipherment.
 
 ## Physical prompt to a 2014 solver
 
@@ -39,8 +39,26 @@ An exact DP carries *all* legal F-skip interpretations, rather than inferring th
 
 At the failure point every possible prime-key clock would require a non-F ciphertext to decode to plaintext F, contradicting the authentic plaintext-F bypass forward rule. This is a mathematical impossibility for the **particular** page-reversal plus p56-value-inverse choice, independent of an English-language dictionary or a fitted crib. The solved p56 positive verifies legal handling of its 85 original ciphertext runes. Exact source arrays, masks, checksums and assertions live in the single Python SFT. Neither test restores 150 coherent original plaintext runes, and no source-selected alternative value key exists to test here.
 
+## Literal registered turning-grille decision (#3163, Agent12, 27 November 2026)
+
+The actual repeated p0–2 asset cannot serve as a **literal page-registered turning grille** under its independently established transformation. This is a geometric coverage decision, independent of the preceding prime/totient reversal experiment and the conditional 27×27 reshape. A historical Cardan/Fleissner grille exposes a specified cell field by apertures; a complete half-turn variant on a centrally symmetric rectangle must expose exactly one member of each two-cell orbit before rotation. See the historical description in [Gaines, Elementary Cryptanalysis (1939), chapter V](https://www.gutenberg.org/files/75074/75074-h/75074-h.htm#page26) and the separate [p7 five-dot gate](lp2-p7-five-dot-turning-grille-gate.md). The original p0–2 source has no ruled grid and the only physically registered rotation is the page-centred half-turn. The existing [solved-context art transfer](lp1-lp2-crossrelease-artwork-raster-copies.md) also provides no uniform graphic-selected cipher instruction.
+
+Freeze the two existing native crop rectangles above, threshold 125, and four-connected exterior flood-fill. White components disconnected from the rectangle exterior are literal enclosed holes. Do not reposition, scale, or rank-normalize them. The original pages visibly place all 12/12/9 text lines in the central band; its broad fixed measurement ROI is x=550..1849, y=650..2869 (p0/p1) or y=650..2309 (p2), excluding footer illustrations. These ROI bounds are an analyst measurement of visible layout, not claimed authored cell coordinates.
+
+| Page | Enclosed holes L/R | Hole area pixels L/R | Largest hole pixels L/R | Dark ink x extent (inclusive) | Hole/text ink intersections, 0° and 180° |
+|---|---:|---:|---:|---|---:|
+| p0 | 212/209 | 12,900/12,936 | 1,612/1,569 | 601–1793 | 0 / 0 |
+| p1 | 208/208 | 12,791/12,832 | 1,587/1,547 | 601–1795 | 0 / 0 |
+| p2 | 208/208 | 12,791/12,832 | 1,587/1,547 | 600–1798 | 0 / 0 |
+
+The distressed cross contains many enclosed raster voids (not zero); ink occupies only 24.54–24.58% of each fixed illustration rectangle. Even the *entire* left/right rectangles, not just their holes, have zero overlap with the central text ROI under both registered orientations. Because their source x supports are 57–546 and 1853–2342, this failure is independent of threshold, detailed hole topology, or rune identification. The page half-turn exchanges the margins, not the margins and text. Taking the exterior white region as a hole would expose the full central text in both orientations, giving duplicate exposures, not a complete grille. Translating/rotating an artwork crop into the text band, inventing an artificial 27-square coordinate scale, or selecting distress components by language would introduce an unprinted registration. Quarter-turns are not the observed asset registration and do not preserve the rectangular page footprint.
+
+A [local executed Python SFT](../sims/lp2_cross_literal_grille_sft.py) on all three original supplied JPEGs reproduces the table and passes two genuine controls: a raster with two enclosed apertures plus an open-edge notch (two holes, 40 pixels total, largest 24) and a 4×6 half-turn grille whose 24 cells are each exposed exactly once and whose full numbered tape is recovered. These controls validate topology and coverage, not the historical use of a grille. No original plaintext scoring or invented readout was attempted because the required physical intersection is empty. No new key or plaintext.
+
+**Director fork:** retire the literal registered pp0–2 cross grille. A stencil interpretation of a different asset or an externally prescribed re-registration remains distinct; require an independently visible receiving grid and fixed anchor/scale before reading ciphertext. This does not repeat the already negative p7 rank-mask or p8–14 tree-side direction tests.
+
 ## Decision and remaining path
 
 The repeated paired crosses make **180° rotation a legitimate clue candidate**, but the original pages contain **identical border diagrams** and no instruction selecting the required rune-level traversal, its start/stop, or a source-derived value key. The most literal complete page-wise reversal cannot coexist with the authentic prime-totient/F cipher when applied to this original chapter. One can invent different inverses, but there is no causal justification for enumerating variants until another original Cicada clue specifies a traversal and key.
 
-Retire this exact direct cross→180° page reversal→p56-family branch. The broader possibility that the crosses are thematic, indicate some other simple operation, or reference an external historical object remains open **only if** an independent source selects a complete decoder. Do not conflate this with #1363's p0 red-heading instruction or the p23–32 insect/wing plate inquiries.
+Retire the exact direct cross→180° page reversal→p56-family branch and the literal page-registered cross turning-grille branch. The broader possibility that the crosses are thematic, indicate some other simple operation, or reference an external historical object remains open **only if** an independent source selects a complete decoder. Do not conflate this with #1363's p0 red-heading instruction or the p23–32 insect/wing plate inquiries.
