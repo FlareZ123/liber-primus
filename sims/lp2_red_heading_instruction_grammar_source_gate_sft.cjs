@@ -41,7 +41,7 @@ function wordsInSpan(page,span) {
   const final = offsets[span.start+span.length-1];
   assert(Number.isInteger(first) && Number.isInteger(final));
   const slice = text.slice(first,final+1);
-  const words = splitRuneWords(slice);
+  const words = splitRuneWords(slice.replace(/[\/\r\n]/gu,"")); // line wraps are not word separators
   assert.equal(runes(slice).length,span.length);
   const expected = corpus.pages[page].indices.slice(span.start,span.start+span.length);
   assert.deepEqual(runes(slice).map((r)=>indexByRune.get(r)),expected);
@@ -61,6 +61,9 @@ const unsolved = red.filter((section)=>section.page<56);
 assert.equal(unsolved.length,16);
 assert.equal(unsolved.reduce((n,section)=>n+section.length,0),213);
 const allWords = unsolved.flatMap((section)=>section.rawWords);
+assert.equal(allWords.length,50);
+assert.equal(red.find((span)=>span.page===53).rawWords.length,12);
+assert.deepEqual(red.find((span)=>span.page===56).rawWords.map((w)=>w.length),[2,3]);
 assert.equal(new Set(allWords).size,allWords.length,"none of the unknown red words repeat");
 
 /** @param {number} page */
@@ -87,7 +90,8 @@ assert.equal(gp(red57),"PARABLE");
 const phi=[1,2,4,6,10]; // first five phi(p)=p-1, p=2,3,5,7,11
 const mod29=(n)=>(n%29+29)%29;
 const de56=red56.map((v,i)=>mod29(v-phi[i]));
-assert.equal(gp(de56),"ANEND"); // authentic solved p56 AN END
+assert.equal(gp(de56),"ANEND");
+assert.deepEqual([gp(de56.slice(0,2)),gp(de56.slice(2))],["AN","END"]); // authentic solved p56 AN END
 assert.deepEqual(de56.map((v,i)=>mod29(v+phi[i])),red56);
 const phi57=red57.map((v,i)=>mod29(v-phi[i%phi.length]));
 assert.notEqual(gp(phi57),"PARABLE");
@@ -116,7 +120,7 @@ console.log(JSON.stringify({
   },
   solvedControl:{
     p56:{originalRed:gp(red56),decodedPlain:gp(de56),mode:"prime-totient",
-      red13DotAfterTitle:true,redCipherWordCount:1,plaintextWordCount:2,
+      red13DotAfterTitle:true,redCipherWordCount:2,plaintextWordCount:2,
       exactRedFiveForwardReplay:true},
     p57:{originalRed:gp(red57),decodedPlain:gp(red57),mode:"literal",
       red13DotAfterTitle:true,redCipherWordCount:1,plaintextWordCount:1,
