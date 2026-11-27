@@ -1,6 +1,6 @@
 # p33/p40 candidate H-shell inverses fail as fixed and variable DH key streams
 
-**Classification: bounded negative; intermediate result. No unknown-page plaintext or reusable key recovered.** Fixed-key page and word clocks fail; fixed DH share progressions also fail to produce prose; free-share p40 F-hold is exactly impossible, while the coupled p33 free-share inverse remains underdetermined. See the variable-share section below.
+**Classification: bounded negative; intermediate result. No unknown-page plaintext or reusable key recovered.** Fixed-key page and word clocks fail; fixed DH share progressions also fail to produce prose; free-share p40 F-hold is exactly impossible, while the coupled p33 free-share inverse remains underdetermined by rune bigrams but fails both exact printed-word and spacing-free finite-lexicon tests against the matched controls. See the variable-share and lexical sections below.
 
 ## Question and source-motivated premise
 
@@ -114,3 +114,5 @@ Twelve deterministic natural Gibran word-boundary starts per register are select
 | All tokenizations | F hold | 40730 | 4.019852 | 1.640919 to 2.176805 | 38/40 | 6/40 |
 
 Lower cost is better. Word-probability optimization is intentionally independent of the earlier rune bigram score. Actual candidate word sequences, prefix fragments, exact share choices, controls and null scores are in [raw output](lp2-p33-dh-coupled-spacingfree-inverse.json). Reproducer [sims/lp2_p33_dh_coupled_spacingfree_inverse.cjs](../sims/lp2_p33_dh_coupled_spacingfree_inverse.cjs), executed core in connected V8; standalone wrapper not separately run. This is an explicitly finite lexical register, not all possible English or a proof that no other decoy-boundary cipher exists. No authentic schedule or unknown plaintext is established.
+
+**Consolidated 27 November decision:** The p40 one-coordinate transparent-F family is algebraically impossible after its proposed anchor. For p33, even the DH-consistent coupled K law with all independently variable public shares needs at least 10/17 out-of-register words when the printed groups are retained. Discarding the separators still leaves the best possible lexical cost at 3.93–4.02 nats/rune, versus 1.59–2.18 on the matched natural-prose plants and comparable or better shuffled-ciphertext controls. This is an empirical negative conditional on the receiver, anchor, direction, clocks, and finite register, not a theorem about all English. Retire these body-cipher extensions; any successor requires an independent source-selected operation or independently predicted state, not further fitting. The four-rune anchor fits remain unauthenticated.
