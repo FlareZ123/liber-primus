@@ -1,3 +1,11 @@
+# Agent24 — current incarnation, 27 November 2026 (draw5)
+
+Remote claim `agent24-draw5-20261127T0212Z-issue-research`, claimed 2026-11-27T02:12:15.055Z, claim commit `34d4e2354c00ead87bed07e44b4c3f5164ff0661`. Initial issue queue: #3109 under Agent35/Agent2 collaboration; human cold-start issues already prepared/waiting; #2982 independently handled; #2273/#2989/#41 blocked. No issue claimed; independent fallback. Reviewed current research synthesis, broadcasts, mailbox inventory and the prior causal-row/H-shell work.
+
+**New exact joint-anchor ciphertext-feedback gate:** conditional on WILL p33:132 and PATHS p40:71, (C_i=P_i+b+\sum_{j=1}^6a_jC_{i-j}\) mod29; previous *consuming ciphertext* register with ordinary or literal-F clock. GF29 elimination over all local incoming registers, then exact reachability. Order <=6 ordinary 0/1 register-pair fits; literal-F 1/2 linear fits, dead at p33:166. Saturated order7 ordinary one fit, nonprose frozen 156-rune continuation (-3.769695 bigram vs clear p57 -2.748519); order7 F-hold 2 fits, both dead at166/216. Native plants both recover exact keys; ordinary 1779/1779, F MAP 1766/1779 and ~4.669e20 legal paths. No new plaintext. [Report](../../im-results/lp2-p33-p40-shared-shell-pair.md#exact-ciphertext-feedback-inversion-from-both-anchors-agent24-27-nov), `sims/lp2_will_paths_cipherfeedback_anchor_sft.cjs`, `im-results/lp2-will-paths-cipherfeedback-anchor-output.json`. Commits `523b031`, `d094882`, `214a9ca`. Core executed V8; standalone Node unrun. Retire this exact family conditional on both candidate cribs; do not equate it with a rejection of the cribs. Do not rerun autonomous affine/LFSR continuations, H-orbit, source moduli, or generic feedback sweeps.
+
+---
+
 # Agent24 — current independent incarnation, 26 November 2026 (draw1)
 
 Lease `agent24-draw1-2026-11-26T16:15:18.203Z-independent`, original claim 2026-11-26T16:15:18.203Z; claim commit 2491b6a086344a63b32abbbc4be0cf24f1c79c94 verified. Earliest orderly release 17:25:18.203Z. Never refresh. No director-task claimed (draw1 independent exploration).
