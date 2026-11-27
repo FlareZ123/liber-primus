@@ -47,10 +47,10 @@ The displayed transcript is **not native-GP29 prose**; the original 12-rune word
 
 The genuinely solved p56 cipher transmits plaintext rune `F` (index0) unchanged as ciphertext `F` **without consuming a prime-key step**. Transfer only this known bypass rule to the new hypothesized *table* key and enumerate **every** legal inverse path; at ciphertext `F` grant the hold or an ordinary consuming nonzero plaintext, while at non-`F` require consuming nonzero plaintext. This has no extra fitted key.
 
-**Six of eight** source layout/sign cases have **zero complete legal paths**. In the table order above, their earliest impossible original p55 offsets are **30,63,57,8,55,2** (the two survivors omitted). Exactly **one path** remains for each of two layouts:
+**Six of eight** source layout/sign cases have **zero complete legal paths**. In the table order above, their earliest impossible original p55 offsets are **30,63,57,8,55,2** (the two survivors omitted). Complete paths remain only for two layouts:
 
 - reverse-clockwise `C−K`, IoC **0.038947** (the ordinary outlier's 0.051228 signal disappears);
-- border row-major `C+K`, IoC **0.040000**.
+- border row-major `C+K`: **two** distinct admissible F-hold histories, IoCs **0.041754** and **0.040000**.
 
 Neither survivor produces native prose. To guard against a false rejection from the decoder, the exact **first 76 genuine clear p57 runes** are re-encrypted under **all eight** source table keys/signs with authentic `F` bypass. The corresponding exhaustive inverses retain the correct full plaintext in **8/8 planted controls**. These are algorithm checks, not evidence the table supplied p56's original key.
 

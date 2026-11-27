@@ -106,7 +106,7 @@ for(const [name,order] of Object.entries(orders)) {
 }
 assert.deepStrictEqual(output.map(x=>Number(x.direct_ioc.toFixed(6))),
  [0.037895,0.032632,0.051228,0.032982,0.038246,0.035439,0.033684,0.036842]);
-assert.deepStrictEqual(output.map(x=>x.fhold_count),[0,0,1,0,0,1,0,0]);
+assert.deepStrictEqual(output.map(x=>x.fhold_count),[0,0,1,0,0,2,0,0]);
 assert.deepStrictEqual(output.map(x=>x.fhold_first_impossible),[30,63,null,57,8,null,55,2]);
 const obs=Math.max(...output.map(x=>x.direct_ioc));
 // Both controls preserve exact original source inventory; first shuffles GP
