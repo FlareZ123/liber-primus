@@ -1,0 +1,7 @@
+{"start":0,"end":350,"markers":20,"bytes":626620,"result":"sat","seconds":4.708,"trial":0,"a":1,"forbidden":8,"held_zero":26}
+{"start":0,"end":500,"markers":31,"bytes":900911,"result":"sat","seconds":3.281,"trial":1,"a":3,"forbidden":15,"held_zero":38}
+{"start":0,"end":650,"markers":53,"bytes":1177070,"result":"sat","seconds":7.448,"trial":2,"a":9,"forbidden":12,"held_zero":54}
+{"start":0,"end":500,"markers":24,"bytes":903272,"result":"sat","seconds":8.147,"trial":3,"a":19,"forbidden":9,"held_zero":36}
+{"start":0,"end":350,"markers":24,"bytes":624104,"result":"sat","seconds":8.533,"trial":4,"a":22,"forbidden":10,"held_zero":19}
+{"start":0,"end":800,"markers":6,"bytes":1447197,"result":"unsat","seconds":14.713}
+{"start":4000,"end":4800,"markers":12,"bytes":1441111,"result":"unsat","seconds":26.629}
