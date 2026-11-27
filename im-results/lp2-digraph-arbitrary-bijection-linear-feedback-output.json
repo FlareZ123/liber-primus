@@ -499,5 +499,31 @@
       "heldBlocks": 3239,
       "truthHeldRate": 0.007142528872845824
     }
+  ],
+  "openingExactSupport": [
+    {
+      "phase": 0,
+      "n": 363,
+      "best": 267,
+      "key": [
+        278,
+        408
+      ],
+      "ties": 3,
+      "atMost256": 0,
+      "matrices": 707281
+    },
+    {
+      "phase": 1,
+      "n": 363,
+      "best": 261,
+      "key": [
+        644,
+        165
+      ],
+      "ties": 1,
+      "atMost256": 0,
+      "matrices": 707281
+    }
   ]
 }
