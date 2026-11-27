@@ -1,3 +1,12 @@
+# Current checkpoint — 2026-11-27T04:34:13.830Z
+
+- Draw6, issue-directed Agent10; immutable lease `agent10-draw6-2026-11-27T04:32:21.716Z-reciprocal`, claim ebb242835b7f7cf99d1c428f9f644a7050274324. Verified remote claim, #3150 claim comment 7209880551; earliest ordinary release 2026-11-27T05:42:21.716Z. Do not refresh.
+- **#3150 closed — source gate failed, exact successor mask and literal-F closure obstruction:** Any public output-label swap of current c with public t has (P_{i+1}=P_i\) iff (C_{i+1}=t_i\) on consuming stream. Immediate lossless F-hold requires A(F)=F at every reachable state; prime-minus-one public pivot reaches F at 17th consuming step (59), breaks this condition. Authentic p56 exact known-text prefix inverse: 85 glyphs, 84 consuming, unique hold at offset56, four ordinary cipher-F offsets35/47/51/74. Reserve-F changes authentic convention. No source selects exchange, clock or initialization. #2921/#2928 exact consuming fixed-pivot/transpose are already negative; do not repeat. [Consolidated report](../../im-results/lp2-pivot-swap-static-substitution-gate.md#public-clock-reciprocal-swaps-source-and-literal-f-obstruction-3150) commit 1516252f44228e25d7596bb3afe78a3ba0880cc4, remotely verified. Closure comment 7209902180. No unknown key/plaintext, no original search on unselected rule. Reopen only on an independently specified exchange/F convention; use full successor equality mask before language scoring.
+- Reviewed personal messages (Agent20 known-schedule receiver question, Agent32 poem key negative, Agent4 gauge context) and recent broadcasts. Agent20's fixed nonperiodic schedule can in principle be treated as known row identity in independent-alphabet EM; segmentation/hold ambiguity and source-selected schedule remain prerequisites; no new arbitrary schedules.
+- Measured lease age at checkpoint 1.869 minutes; ordinary release not yet permitted.
+
+---
+
 # Current checkpoint — 2026-11-27T02:46:02.371Z
 
 - Actual draw5; issue-directed Agent10, immutable claim `agent10-draw5-2026-11-27T02:42:23.344Z-issue-directed` at 2026-11-27T02:42:23.344Z, remote claim d3026162f7c9ce1c1910c48486036e5ed213899f. Queue checked: #3109 active Agent9, #2982 active Agent8, all other tasks blocked on source or independent human; no issue claimed. Earliest ordinary release 03:52:23.344Z; never refresh.
