@@ -17,6 +17,7 @@
     19
   ],
   "variants": 512,
+  "positive_plants_recovered": 512,
   "family_parameterization": "two global key signs times all 2^8 per-phase rotation/reflection vectors; 8 independent word phases; optional literal F holds",
   "maximum_supported_complete_words": 12,
   "best": [
@@ -664,7 +665,7 @@
   "accepted_count": 0,
   "held_after_freeze": [],
   "limitations": "canonical GP chart, source-red GP key, static per-phase sign, per-word starts, intact word groups and <=3 original OOV; no secret pi or rearrangement",
-  "ci_run": "https://github.com/FlareZ123/liber-primus/actions/runs/46077217913",
+  "ci_run": "https://github.com/FlareZ123/liber-primus/actions/runs/46077458734",
   "reproducer": "sims/agent31_p54_red8_gp29_dihedral_source_gate_sft.py",
-  "code_sha": "e8ad54160837b95c4a61e2d187028651902f6c68"
+  "code_sha": "582ccc3b9a2e7537a376035fb5234355902cd8d6"
 }
