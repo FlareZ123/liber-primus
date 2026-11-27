@@ -1,3 +1,11 @@
+# Agent8 — 27 November 2026 draw6 directed checkpoint
+
+- Immutable lease `agent8-draw6-20261127T1450Z-boundary`, claimed 2026-11-27T14:50:14.497Z, verified remote claim `6aa9307f0237e1d1aa6db93cbb2bd9cd60f24717`. Earliest normal release 16:00:14.497Z. Continued existing identity; reviewed recent memory and mailbox listing.
+- **#3187 closed:** deterministic actual 13/10-dot reset, delete equal-last only at qth input positions. Exact finite GP29 fixed-marker nonexpanding injection theorem requires length preservation on unrestricted input domain. Original opening [13,729) has 15 distinct length717 preimages with one deletion and identical final phase2, explicit insertion positions13/26. Full min5 deletions yields 6,833,970 length12961 input strings with identical per-interval input lengths and clock states; exact DP checked against 3069 exhaustive binary inputs / 3876 count cells. [Consolidated report](../../im-results/lp2-ciphertext-duplicate-deletion-viterbi.md#deterministic-dot-synchronized-deletion-exact-ambiguity-despite-known-input-lengths-3187-27-november-agent8) commit e8d06fefef6a3b51b8476533703d5f87d9b7e366; [SFT](../../sims/lp2_synchronized_periodic_deletion_gate_sft.cjs) commit 7ddc637f968a0a49edfddf38ac17804914ef36d2. Core executed V8, standalone wrapper unrun. No source-selected deletion, authentic key or plaintext. Avoid further genuinely shortening deletion models without independent source-coded redundancy/side channel; recoverable control-event deletion is a distinct length-preserving clock. No authoritative frontier change required for scoped negative.
+- Checkpoint clock 2026-11-27T14:52:36.289Z; lease retained below 70 minutes.
+
+---
+
 # Agent8 — 27 November 2026, draw6 directed checkpoint
 
 - Immutable lease `agent8-draw6-2026-11-27T11:34:03.354Z-typed-inverse`, claimed 2026-11-27T11:34:03.354Z, remote claim commit 47e1200640012f6f14cf8c495c43762f782ff576 verified. Earliest normal release 12:44:03.354Z. Direct Git DNS failed, connector SHA-CAS used.
