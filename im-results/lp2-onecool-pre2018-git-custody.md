@@ -10,9 +10,13 @@ seven-commit tree.
 `onecool/3301-public` (GitLab project id `3833724`), created
 2017-08-02 UTC. A mirror comparison against `onecool/liber_primus` finds
 **59 exact shared Git objects**: `gematria.jpg` plus **all 58 Liber Primus
-page JPEGs (0.jpg through 57.jpg)**. The older repository also contains
-unique participant-derived rune/transcription JSON, text, and mapping code
-that are absent from the 2018 repository.
+page JPEGs (0.jpg through 57.jpg)**. All 59 shared blobs first appear
+together in the 2017 commit
+`d1793880525ca9d74086a45e4ca84c532df38864`
+("Added baseline translation function and json pages and images and memes",
+2017-08-01 23:32:32 -07:00). The older repository also preserves
+participant-derived LP2 page JSON, rune mappings, code, and historical
+annotations that are absent from the 2018 repository.
 
 This satisfies the issue's decisive provenance test: a pre-2018 Git
 object/ref archive with an attributable onecool source trail has survived.
@@ -65,11 +69,17 @@ created 2017-08-02 UTC. The recovered Git history begins:
 There are twenty pre-2018 commits in the recovered history. A later
 2019-01-16 cleanup commit follows them.
 
+The exact custody chronology
+(`sims/lp2_onecool_pre2018_custody_chronology_sft.cjs`, workflow run
+`46129355600`) confirms the root commit contains none of the 59 target
+blobs and `d1793880525ca9d74086a45e4ca84c532df38864` is the first commit
+containing **all 59** byte-identical LP image targets.
+
 ## Exact object bridge
 
 Agent39's isolated bridge probe
-(`sims/lp2_onecool_3301_public_bridge_sft.cjs`, workflow run
-`46128128974`, job `140927178832`) cloned both repositories as mirrors
+(`sims/lp2_onecool_3301_public_bridge_sft.cjs`, workflow runs
+`46128128974` and `46129355600`) cloned both repositories as mirrors
 and intersected their exact Git object IDs.
 
 Counts:
@@ -92,6 +102,44 @@ Representative shared blobs:
 The overlap enumerates all page numbers 0-57 plus `gematria.jpg`; it is
 not a filename-only resemblance.
 
+## Recovered 2017 LP2 numeric transcription
+
+The 2017 repository contains `liber_primus/json/00.json` through
+`57.json`, a page-by-page Gematria-index transcription, plus the
+historical rune-index map. Agent39 compared that source directly against
+`resources/transcriptions/lp2-image-corrected.txt` with
+`sims/lp2_onecool_2017_numeric_transcription_gate_sft.cjs`
+(workflow run `46129355600`, artifact
+`onecool-2017-numeric-transcription-gate`).
+
+The two sources contain the same **13,136 LP2 runes** overall. Minimal
+per-page sequence alignment reduces their rune-stream disagreement to only
+**30 edits (0.22838%)**:
+
+- 18 substitutions;
+- 6 extra runes in the historical transcription;
+- 6 runes omitted by the historical transcription.
+
+Thirty-nine of the 58 physical LP2 pages are rune-identical; the nineteen
+pages with at least one historical rune difference are
+p1, p6, p8, p10, p12, p15, p17, p24, p27, p29, p30, p31, p33, p35,
+p36, p37, p38, p39 and p57.
+
+This is a useful dated witness but not an independent-source proof: its
+upstream transcription lineage is not established here. It also does not
+preserve punctuation with enough fidelity to adjudicate the two separately
+documented single-dot/four-dot corrections in the current transcription.
+
+A direct original-scan audit explains several of the insertion/deletion
+differences without cryptographic interpretation. In particular, the
+historical extra symbols at p36, p37 and p38 coincide with the visible red
+printed numerals **1, 2 and 5** at those line starts; they are transcription
+category errors, not ciphertext runes. The solved p57 historical stream
+also omits visible runes from the printed PARABLE text. The remaining
+localized glyph substitutions are retained as historical witness
+differences until individually image-adjudicated; they are not promoted as
+canonical corrections.
+
 ## Independent 2016 source trail
 
 A preserved 2016 boards.net capture in
@@ -112,16 +160,20 @@ recover the spreadsheet bytes.
 ## Software Heritage and archive status
 
 The narrowed provenance probe found a Software Heritage origin for
-`https://gitlab.com/onecool/liber_primus.git`, with six recorded visits
-and snapshot
-`09d2e23005bd2a58c208ed26be7711b37afd2380`. Snapshot/ref drilldown is
-being tested separately to determine whether SWH preserved any revision no
-longer advertised by GitLab.
+`https://gitlab.com/onecool/liber_primus.git`, with six recorded visits.
+The exact SWH snapshot drilldown
+(`sims/lp2_onecool_swh_snapshot_history_sft.cjs`, workflow run
+`46129355600`) resolves the archived refs to the same visible 2018 tip
+`d81c4a3901a38a4dc097366ff3b58ad369b2bdee`. It recovered **no revision
+target outside the current seven-commit history** (`new_revision_targets:
+[]`).
 
 Direct Wayback CDX queries for the 2018 GitLab project returned no captures.
 The broad 2014-2018 Common Crawl sweep encountered many upstream
 503/timeouts; it is therefore not classified as a complete archival
-negative.
+negative. The recovered 2017 sibling repository makes further blind archive
+sweeps of the 2018 repo lower value unless a specific missing object/hash is
+identified.
 
 ## Classification and consequence
 
@@ -131,14 +183,20 @@ negative.
    Exact identity proves continuity between the repositories, not private
    2014 origin.
 3. **Unique 2017 rune/transcription/mapping artifacts: participant-derived.**
-   These are the useful successor surface. They are being compared against
-   the current canonical/image-corrected transcription to determine whether
-   they preserve an independent historical reading or only duplicate known
-   community data.
-4. **2018 hidden-history hypothesis: rejected for the live Git repository.**
-   Its refs/object closure contains no older Git history.
+   They preserve a dated, highly concordant LP2 numeric witness and
+   historical analysis metadata; they are not hidden author plaintext/key
+   material.
+4. **2018 hidden-history hypothesis: rejected for the live Git repository
+   and its preserved SWH snapshots.**
+   The live refs/object closure contains no older Git history, and SWH adds
+   no lost revision target.
+5. **The unrecovered 2016 spreadsheet is now the concrete missing historical
+   object.** Its original public post establishes onecool research before
+   the 2017 repository, but the live Drive bytes are gone.
 
-This changes the acquisition route: stop searching the 2018 repository for
-lost internal parents. Use the recovered 2017 repository as the concrete
-historical source root, and test its unique derived artifacts against the
-current corpus.
+The acquisition route therefore changes decisively: stop searching the
+2018 repository for lost internal parents. Treat the recovered 2017
+repository as the concrete historical source root, use its unique derived
+artifacts as dated comparison evidence, and pursue the exact 2016
+spreadsheet only through targeted archival custody leads rather than
+unconstrained basename/ref searches.
