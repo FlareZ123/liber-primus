@@ -53,6 +53,24 @@ function detMod(matrix){
 function desc(vals,lengths){
  let at=0;return lengths.map(L=>{const w=vals.slice(at,at+L);at+=L;return{L,S:sum(w),P:prod(w)};});
 }
+function inverseMatrixMod(matrix){
+  const n=matrix.length;
+  const a=matrix.map((row,i)=>row.map(mod).concat(
+    Array.from({length:n},(_,j)=>Number(i===j))));
+  for(let c=0;c<n;c++){
+    let pivot=c;
+    while(pivot<n&&!a[pivot][c])pivot++;
+    if(pivot===n)return null;
+    if(pivot!==c)[a[pivot],a[c]]=[a[c],a[pivot]];
+    const scale=inv(a[c][c]);
+    a[c]=a[c].map(x=>mod(x*scale));
+    for(let r=0;r<n;r++)if(r!==c){
+      const factor=a[r][c];
+      a[r]=a[r].map((x,j)=>mod(x-factor*a[c][j]));
+    }
+  }
+  return a.map(row=>row.slice(n));
+}
 
 const p15=corpus.pages.find(p=>p.page===15);
 const lower=desc(p15.indices.slice(9,20),[4,2,5]);
@@ -82,12 +100,60 @@ assert.deepEqual(rawMatrix,[
 ]);
 
 // Candidate determinant operation on the authored q x q spiral matrix.
+const rawInverse=inverseMatrixMod(rawMatrix);
+assert(rawInverse);
+const lowerOnlyInversePattern=[
+  [K,g,mod(K+g),g],
+  [null,q,null,null],
+  [null,null,q,a],
+  [null,null,null,Ainv],
+];
+for(let r=0;r<q;r++)for(let c=0;c<q;c++)
+  if(lowerOnlyInversePattern[r][c]!==null)
+    assert.equal(rawInverse[r][c],lowerOnlyInversePattern[r][c]);
+
+// Charge all cyclic starts and both directions against the eight lower-only
+// inverse coordinates.  Only the authored red-origin forward traversal fits.
+const inverseTraversalCharge=[];
+for(const reversed of [false,true]){
+  const base=reversed?spiral.slice().reverse():spiral.slice();
+  for(let start=0;start<16;start++){
+    const seq=base.slice(start).concat(base.slice(0,start));
+    const m=Array.from({length:q},(_,i)=>seq.slice(i*q,(i+1)*q));
+    const candidate=inverseMatrixMod(m);
+    if(!candidate)continue;
+    let match=true;
+    for(let r=0;r<q;r++)for(let c=0;c<q;c++){
+      const want=lowerOnlyInversePattern[r][c];
+      if(want!==null&&candidate[r][c]!==want)match=false;
+    }
+    if(match)inverseTraversalCharge.push({reversed,start,inverse:candidate});
+  }
+}
+assert.deepEqual(
+  inverseTraversalCharge.map(x=>[x.reversed,x.start]),
+  [[false,0]]
+);
+
 const p15Det=detMod(rawMatrix);
 assert.equal(p15Det,19);
 const B=p15Det;
 assert.equal(powMod(B,a,p),K);
 const b=dlog(g,B,p),Binv=inv(B),e=invMod(b,p-1);
 assert.deepEqual({B,b,Binv,e},{B:19,b:15,Binv:26,e:3});
+
+assert.deepEqual(rawInverse,[
+  [K,g,mod(K+g),g],
+  [B,q,b,Binv],
+  [e,mod(e+a),q,a],
+  [b,mod(-1),mod(-b),Ainv],
+]);
+assert.deepEqual(rawInverse,[
+  [2,5,7,5],
+  [19,4,15,26],
+  [3,9,4,6],
+  [15,28,14,11],
+]);
 
 // Independent older p7 product circulant has the same determinant B.
 const p7Products=[11,26,8,15,2];
@@ -139,8 +205,9 @@ assert.equal(detVariants.filter(v=>v.closes).length,4);
 
 console.log(JSON.stringify({
  schema:1,
- classification:'candidate determinant bridge plus fully held-out H4 tape',
- p15:{rawMatrix,determinant:p15Det,derived:{B,b,Binv,e}},
+ classification:'candidate matrix determinant/inverse bridge plus fully held-out H4 tape',
+ p15:{rawMatrix,determinant:p15Det,rawInverse,lowerOnlyInversePattern,
+       inverseTraversalCharge,derived:{B,b,Binv,e}},
  p7:{products:p7Products,determinant:p7Det},
  expectedH4Tape:expected,
  h4FamilyCharge:{tested:variants.length,hits:variants.filter(v=>v.match)},
