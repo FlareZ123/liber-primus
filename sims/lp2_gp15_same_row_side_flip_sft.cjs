@@ -152,6 +152,40 @@ for (let r = 0; r < 14; r++) {
 }
 assert.deepEqual(sourceByRow[14], {same: 6, exact: 6});
 
+
+const transcription = read("resources/lp2-transcription.txt");
+const pageParts = transcription.split("%").slice(0, 56);
+let previous = null;
+let between = "";
+const repeatLocations = {internal: 0, wordBoundary: 0, pageBoundary: 0,
+  chapterBoundary: 0};
+for (let p = 0; p < pageParts.length; p++) {
+  between = p === 0 ? "" : "%";
+  for (const ch of pageParts[p]) {
+    const rune = gp.runes.indexOf(ch);
+    if (rune >= 0) {
+      if (previous !== null && rune === previous) {
+        const pageBoundary = between.includes("%");
+        const chapterBoundary = between.includes("$");
+        const wordBoundary = [...between].some((x) =>
+          !gp.runes.includes(x) && x !== "%" && x !== "/" && !/\s/u.test(x));
+        if (pageBoundary) repeatLocations.pageBoundary++;
+        if (chapterBoundary) repeatLocations.chapterBoundary++;
+        if (wordBoundary) repeatLocations.wordBoundary++;
+        if (!pageBoundary && !chapterBoundary && !wordBoundary)
+          repeatLocations.internal++;
+      }
+      previous = rune;
+      between = "";
+    } else {
+      between += ch;
+    }
+  }
+}
+assert.deepEqual(repeatLocations, {
+  internal: 80, wordBoundary: 6, pageBoundary: 0, chapterBoundary: 0
+});
+
 console.log(JSON.stringify({
   source: {
     runes: source.length,
@@ -169,5 +203,6 @@ console.log(JSON.stringify({
   })),
   exhaustiveControlWindows: 562060,
   allPairedRowsBelowAggregateNativeExactRate: true,
-  pairedRowComparison
+  pairedRowComparison,
+  exactRepeatLocations: repeatLocations
 }, null, 2));
