@@ -240,6 +240,47 @@ The signed-word labels on arbitrary mod29 pairs should not be overcounted: every
 
 Reproducer: [`sims/lp2_p3_q_signed2016_map_path_sft.cjs`](../sims/lp2_p3_q_signed2016_map_path_sft.cjs).
 
+## The DH pair self-closes under the already-used H grammar
+
+The canonical `DH` readout also admits a target-free state check using the same two-value H operation already established elsewhere in the manuscript:
+
+```text
+H([p,A]) = [p-A, p+A] mod29
+          = [23-8, 23+8] mod29
+          = [15,2]
+          = [b,K].
+```
+
+Do not count this as an independent cross-holdout: once `[23,8]` is fixed, H is invertible and the numbers15/2 are deterministic. The useful question is whether the resulting pair obeys the ordinary DH equations without importing the labels.
+
+Define for any candidate output `[x,y]`:
+
+```text
+p = x
+A = y
+b = x-y mod29
+K = x+y mod29
+```
+
+and require source-ordinary DH validity: `p` prime, `0<A,K<p`, `0<b<p-1`, and `A^b mod p = K`. Across the complete **29²=841** ordered-pair space only two pairs survive:
+
+```text
+[17,13] -> (p,A,b,K)=(17,13,4,1)
+[23, 8] -> (p,A,b,K)=(23, 8,15,2).
+```
+
+The independently published p29 DIRECTION packet supplies one further state requirement before this charge: `e=b^-1 mod(p-1)` must exist. The `[17,13]` rival has `gcd(4,16)=4` and no inverse. The complete pair-space predicate therefore leaves exactly:
+
+```text
+[p,A,b,K,e] = [23,8,15,2,3].
+```
+
+Under the frozen Q map, p15 first-red is the only one of the **18 printed complete red spans** satisfying this self-closure. Across all **450** cyclic/reverse red-span presentations the only hits are the same two p15 presentations already identified by the exact `DH` token: first-red printed orientation/rotation0, and second-red only after reversal/rotation5.
+
+This is a finite post-discovery structural characterization, not a discovery probability. Its value is operational: the pair that spells the signed opcode `DH` also closes internally into `b,K,e` using a manuscript-established H transform plus the independently existing p29 inverse requirement. It strengthens the interpretation of `[23,8]` as a state packet without adding a new independent statistical factor.
+
+Reproducer: [`sims/lp2_p3_q_tcp_dh_opcode_sft.cjs`](../sims/lp2_p3_q_tcp_dh_opcode_sft.cjs).
+
 ## Signed-2016 numbers-as-direction receiver lock (Agent14, 28 November 2026)
 
 The frozen p15 result `[23,8]` now has a source-licensed navigation interpretation in addition to its `DH` readout. Independently, the established p29 DIRECTION packet already identifies **`ROAD=23=p`** and **`DEVOTED=8=A`**, with ROAD23 driving its physical p23 handoff. The authenticated 2016 clue explicitly says that the words are the map, their meaning is the road, and **their numbers are the direction**. The complete Q pair is therefore exactly `[ROAD23,DEVOTED8]=[p,A]`; reading its already-fixed coordinates as zero-based physical LP2 page numbers repeats the known ROAD23→p23 handoff and adds the parallel **DEVOTED8→p8** receiver.
