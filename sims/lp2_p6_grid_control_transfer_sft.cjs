@@ -183,12 +183,15 @@ assert.deepEqual(p23.wordLengths, [2,6,3,5]);
 assert.equal(p23.start13, false);
 assert.equal(p23.end13, true);
 assert.ok(p23.successor);
+const p23Page = corpus.pages.find((row) => row.page === 23);
+assert.ok(p23Page);
+assert.equal(p23Page.indices[p23.start], 1); // enlarged U in original 40.jpg
 assert.equal(outerH(p23.successor.values)[0], 0);
 
 // P23 is the only four-word transformed analogue independently justified by
 // the p6->p23 red morphism and #3403 black continuation. Generously grant:
 // - its terminal 13-dot as the shared 4/5/4 stencil;
-// - +1 from the established THE ONE RISE cardinal readout;
+// - +1 from p23's visibly enlarged first red rune U (GP0=1; original 40.jpg);
 // - F=0 from its immediate black successor's H boundary.
 // No target/corridor values are used to construct this tape.
 const p23Roles = h4(p23.wordLengths);
@@ -304,7 +307,7 @@ console.log(JSON.stringify({
     h4Roles: p23Roles,
     start13: p23.start13,
     end13: p23.end13,
-    importedOneFromEstablishedP23CardinalReadout: 1,
+    oneFromEnlargedInitialU: p23Page.indices[p23.start],
     adjacentBlackHBoundaryF: outerH(p23.successor.values)[0],
     delta: p23Delta,
   },
