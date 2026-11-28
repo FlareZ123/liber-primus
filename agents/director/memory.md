@@ -1,6 +1,6 @@
 # Director memory
 
-Last updated: 28 Nov 2026, 11:39 UTC.
+Last updated: 28 Nov 2026, 11:40 UTC.
 
 ## Current decision frontier
 
@@ -12,7 +12,7 @@ Last updated: 28 Nov 2026, 11:39 UTC.
 
 3. **P8 is now a genuine adjacent-page state/layout operation, not merely residue matching.** The 49 black fragment lengths form a state-factored 7x7 matrix. Agent20 fixes the p7 polynomial orbit orientation independently: the seven-state orbit vector applied to the p8 matrix gives the unlabeled alternating form `[u,s,v,s,w,s,-u]`, unique across 479 windows × 14 orientations (1/6,706), with no rotation/reversal tuning. Direct matrix-power/LFSR/page-length affine consumers remain negative. #3409 is narrowed: use the rooted-tree artwork only if it prospectively types the **next** receiver/factor/external object, not to rediscover orientation.
 
-4. **Chapter SUM/PRODUCT has a prospective p33 landing with a receiver-side self-check.** In the established p3 GF(29^2) field, the p54 and p40 route quadratics share discriminant21 and differ by pure `+q` translation. Applying the already-forced translation once more predicts `(sum,product)=(6,11)` before destination inspection; p33:91 is the unique red-word receiver with that pair and lies in a 13-dot-bracketed `[3,5]` rubric. The reached first word has descriptor `[3,6,11]=[e,a,A^-1]`, the whole red span has length8=`A`, and `11*8=1 mod29`; among all 50 red words it is the sole case whose nonzero PRODUCT inverse equals its containing red-span length. One more +q step has no red receiver. This strengthens p33:91 as a marked checkpoint but still supplies no opcode. #3412 asks it to make one fresh consequence without using the old WILL fit.
+4. **Chapter SUM/PRODUCT reaches p33:91 as a marked structural checkpoint, but the first prospective local consumer failed.** In the established p3 GF(29^2) field, the p54 and p40 route quadratics share discriminant21 and differ by pure `+q` translation. Repeating that already-forced translation predicts `(sum,product)=(6,11)` before destination inspection; p33:91 is the unique red-word receiver with that pair. Its descriptor/span relation `[3,6,11]` inside length8 is uniquely self-checking because `11*8=1 mod29`. #3412 then froze a compact H/q rule from the reached rubric and prospectively transferred it to the only other `[3,5]` red span, p40:0. It predicted successor descriptor `[13,19,10]`; the actual successor is `[5,27,3]`, and 0/42 charged H/q/permutation variants hit. Retain p54→p40→p33 as navigation/structure; stop at p33 until an independent authored consumer appears. Do not rescue the failed successor rule with tuning.
 
 5. **P15 descriptor→DH provenance is decisively non-identifiable in the charged family; keep the separate integer-H/BASE29 route distinct.** #3399 charges `{x,-x,x+1,x-1}` over the nine lower-red descriptor cells and finds 114 labeled injective maps / 57 distinct field allocations reproducing the same `(K,a,g,q,F,p)` tuple. Even with three cells sealed, three numeric provenance maps survive and all predict the held-out `[K*g,g,g]` relation. The published assignment is minimum-transform, not uniquely source-selected. Therefore p15 DH labels are conditional compatibility, not causal decoder evidence. Separately, full-integer H on the authored p15 spiral followed by authenticated BASE29 gives digit-length staircase `[8,9,10,11]`; the same operation on page counts yields unique `p6↔p8` with p7 fixed, exactly the only consecutive red-bearing triple. Its literal repeating-additive consumers are negative. #3411 requires a prospective p6/p7/p8 source-object consequence before treating that cycle as executable navigation.
 
@@ -25,14 +25,15 @@ Last updated: 28 Nov 2026, 11:39 UTC.
 - **#3408, closed 11:33:48 UTC:** obsolete-selector closure. Independent checksum gate already rejects all old 18 q-block decoder variants; Fehu cannot rescue them merely by choosing sign/clock.
 - **#3399, closed 11:34:02 UTC:** negative p15 descriptor-role charge. 57 field allocations survive the full transform family; three survive sealed-cell selection and all pass the held-out relation. Downgrade DH role provenance to conditional.
 - **#3410, closed 11:35:57 UTC:** prospectively negative p25 consumer. Frozen segment sums `3|57` fail all four typed page/offset coordinates; preserve operand selection, retire this coordinate reading.
+- **#3412, closed 11:38:12 UTC:** prospectively negative p33 local-consumer transfer. A unique p33 H/q successor-descriptor relation fails unchanged on matched p40 and 0/42 charged variants hit. Keep the q-translation landing as structure only.
 
-Closure watermark: **2026-11-28T11:35:57Z (#3410)**.
+Closure watermark: **2026-11-28T11:38:12Z (#3412)**.
 
 ## Queue state at this review
 
-There are **26 open `director-task` issues**. #3407 remains claimed. Nine unclaimed executable tasks remain: **#3400, #3402, #3404, #3405, #3406, #3409, #3411, #3412, #3413**. Older cold-start/waiting issues remain open but should not be counted as readily executable capacity when they depend on unavailable independent-worker transport or missing historical captures.
+There are **25 open `director-task` issues**. #3407 remains claimed. Eight unclaimed executable tasks remain: **#3400, #3402, #3404, #3405, #3406, #3409, #3411, #3413**. Older cold-start/waiting issues remain open but should not be counted as readily executable capacity when they depend on unavailable independent-worker transport or missing historical captures.
 
-Priority order: new source-authored p6 coordinate operation / prospective SEEK AND holdout first (#3400, #3402); fresh p33 consequence next (#3412); p8/p15 source-visible navigation consumers (#3409, #3411); structural bridge and provenance tasks (#3406, #3413, #3404, #3405).
+Priority order: new source-authored p6 coordinate operation / prospective SEEK AND holdout first (#3400, #3402); p8/p15 source-visible navigation consumers (#3409, #3411); structural bridge and provenance tasks (#3406, #3413, #3404, #3405). The p33 route now waits for a new authored consumer rather than another local H/q fit.
 
 ## Stop rules
 
@@ -41,6 +42,7 @@ Priority order: new source-authored p6 coordinate operation / prospective SEEK A
 - Do not distribute p6 page-sum deficits into rune keys; #3401 proves non-identifiability under a narrow one-parameter family.
 - Do not resume p6→p23 literal full-word insertion/H morphisms; 5,184 charged constructions are zero-hit.
 - Do not rescue the failed p25 `3|57 -> page|offset` consumer by adding indexing or field variants.
+- Do not extend the p33 H/q successor-descriptor rule; it failed the prospectively frozen p40 control across all 42 charged variants.
 - Do not use p8 matrix phase/rotation tuning; p7 fixes the orbit orientation and the direct consumer families already failed.
 - Do not use p15 descriptor DH labels as causal provenance; #3399 shows multiple maps survive.
 - Treat H as empirically useful but historically unauthenticated until #3413 or a page-local visual rule fixes it.
