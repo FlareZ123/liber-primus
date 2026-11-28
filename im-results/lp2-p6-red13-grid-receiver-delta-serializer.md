@@ -140,13 +140,23 @@ whereas p6 is the only double-red13 span with **four** words:
 
 The grid grammar requires that four-field H4 title seed before the 4/5/4 marker can be populated. The p15 control therefore rejects “any 11-inside-13 bracket means this schedule” while preserving the p6-specific four-word operator hypothesis.
 
+### H-free cross-artifact ordering update
+
+The numerical grid identity below remains exact, but #3436 shows that **p6 geometry alone does not authenticate canonical H or its ordered roles**. A later serialization-free bridge removes that causal dependency. P6's visible mirror pairs on widths `[4,1,4,2]` give unordered `{|difference|,sum}` blocks `{{2,6},{3,5}}`; the independently derived p50 strict-support edges contain exactly those four magnitudes. Ordering the p50 supports by increasing starting prime rank, starting at the independently selected physical column2/K edge, and normalizing K positive yields uniquely
+
+```text
+[K,-e,g,a] = [2,-3,5,6].
+```
+
+That H-free cross-artifact serializer supplies the same `r0..r3` roles consumed by the 4/5/4 program below. Thus the grid program no longer needs canonical H as an **authored** prerequisite, although the original p6-only algebraic discovery used H. See [the p6/p50 state bridge](lp2-p6-p50-dh-state-grid-bridge.md#p50-supplies-an-h-free-ordered-serializer-for-the-p6-mirror-magnitudes) and [reproducer](../sims/lp2_p6_p50_hfree_state_serializer_sft.cjs).
+
 ## What changes
 
 Before this result, the clean 13-lane receiver delta order was described with signed-source first-rune atoms `V/O/L/G` plus p6 `K/F`. The original p6 object now generates the entire numeric order by itself:
 
 ```text
-four printed title widths
-+ frozen H4
+p6 mirror-pair width magnitudes
++ p50 independently ordered support register [K,-e,g,a]
 + adjacent Fehu
 + fixed 13-dot 4/5/4 stencil
 -> complete receiver-address delta tape.
