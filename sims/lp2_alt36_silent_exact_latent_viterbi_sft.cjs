@@ -137,12 +137,16 @@ function experiment(raw, options={}) {
   function hide(z,K,LM,maxJ){
     const rows=[];
     const j0=z.j+1;if(j0>=K.length||j0>maxJ)return rows;
-    // Exactly seven possible nonprinting ciphertext symbols; any
-    // nonprintable outcome that would repeat is rejected as key skip.
-    for(let c=29;c<36;c++){
-      if(c===z.prev)continue;
-      const p=mod(c-K[j0]);
-      if(p<=29) rows.push(advance(z,p,c,j0,LM,false));
+    // Exactly seven possible nonprinting ciphertext symbols, including
+    // every strict-repeat key rejection before the hidden emission.
+    for(let c=29;c<36;c++)for(let h=0;h<=3;h++){
+      const j=j0+h;
+      if(j>=K.length||j>maxJ||c===z.prev)continue;
+      const p=mod(c-K[j]);
+      if(p>29)continue;
+      let okay=true;
+      for(let k=j0;k<j;k++)if(mod(p+K[k])!==z.prev){okay=false;break;}
+      if(okay)rows.push(advance(z,p,c,j,LM,false));
     }
     return rows;
   }
