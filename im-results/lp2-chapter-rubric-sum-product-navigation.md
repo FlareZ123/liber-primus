@@ -146,6 +146,26 @@ The control matters: the other repeated RISE pages do not obey a generic “firs
 
 Reproducer: `sims/lp2_p23_one_rise_firstblack_sum25_crossholdout_sft.cjs`.
 
+## Independent red→black boundary authentication on the route tail
+
+A source-exact audit of all 13 original red spans that are immediately followed by a complete black word now gives three different, individually unique boundary grammars on consecutive route-tail pages:
+
+```text
+p27: black [7,2,19] = [g+K,K,B]
+     black length = first+last red-word lengths = 3+4
+     black PRODUCT = red length = red first rune = 19
+
+p54: black [8,19,27] = [A,B,-K]
+     black descriptor = [red PRODUCT, red last rune, red center rune]
+
+p40: red word lengths [3,5] = [e,g]
+     black [5,27,3] = [second length, first-second, first]
+```
+
+Each exact predicate has one hit in the full 13-span eligible family: its stated page. P8 already had an independent full red-H/DH state reconstruction with a manuscript-unique adjacent `[e,p,K]=[3,23,2]` operand. Thus four of the five route nodes now have local manuscript structure typing the exact adjacent black word and its elementary fields. P0 remains weaker: its red first rune `b=15` equals black SUM15, but no complete boundary grammar was found.
+
+This does not make the page-specific red relations a universal decoder. It materially strengthens the route's **first-black selection and PRODUCT/SUM operand usage**, leaving p0's start grammar and terminal3→physical-p3 as the main remaining weak assumptions. Full finite charge: [route-tail red→black boundary grammars](lp2-chapter-route-red-black-boundary-grammars.md), reproduced by `sims/lp2_chapter_route_red_black_boundary_sft.cjs`.
+
 ## P3-field q-translation reaches the independently marked p33:91 rubric
 
 A new field-level continuation materially narrows the earlier PRODUCT caveat. The five actual route operands have complete `(length,sum,product)` descriptors `[4,15,23],[3,23,2],[7,2,19],[8,19,27],[5,27,3]`; each triple occurs exactly once among all 2,941 canonical printed groups in the full transcription including solved p56/p57.
