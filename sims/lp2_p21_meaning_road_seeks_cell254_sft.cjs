@@ -187,6 +187,23 @@ assert.deepEqual(sequenceHits, [{
 const seeksGp = [15, 18, 18, 5, 15];
 const seeksGp0 = seeksGp.reduce((a, b) => a + b, 0);
 assert.equal(seeksGp0, 71);
+const seeksH = H(seeksGp);
+assert.deepEqual(seeksH, [0, 13, 18, 23, 1]);
+assert.deepEqual(
+  seeksH.map((index) => signedWords[index]),
+  ['HELLO', 'WAY', 'MAP', 'ROAD', 'THE']
+);
+const roadIndex = seeksH[3];
+assert.equal(roadIndex, 23);
+assert.equal(signedWords[roadIndex], 'ROAD');
+
+// The p21 sentence selects ROAD from the established SEEKS navigation shell;
+// the authenticated source says word numbers are the direction.
+const semanticRoadDestination = roadIndex;
+assert.equal(semanticRoadDestination, 23);
+const p23Groups = pageGroups(semanticRoadDestination);
+assert.ok(p23Groups.length >= 23);
+
 
 let pointer = seeksGp0;
 const seeksPointerPath = [pointer];
