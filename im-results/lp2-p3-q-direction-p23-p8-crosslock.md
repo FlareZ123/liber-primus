@@ -115,6 +115,21 @@ The published deterministic H symmetry/ordinary-DH closure reconstructs the full
 
 The p8 report's manuscript-wide control leaves p8 start0 as the sole `[4,8]` complete-word pair closing the full DH grammar and the first black word as the sole three-rune word with `(sum,product)=(23,2)`.
 
+## Original-art path independently reconstructs the second direction
+
+The first directed receiver also exposes a simple image-only route to the second. Original p23 has **five isolated dots**, so the signed numbers-as-direction grammar sends p23→p5. Original p5 has a bilaterally mirrored ornament with **four spiral curls on each side, eight total**, so the same grammar sends p5→p8.
+
+```text
+Q predicts [23,8]
+p23 --5 dots--> p5 --8 curls--> p8
+```
+
+This is important because the endpoint8 was already frozen by Q. The visual walk therefore reconstructs the second Q coordinate from the first receiver rather than choosing an endpoint after the count. Under the DH opcode it yields `p=23,g=5,A=8`, and `5^a mod23=8` has the unique ordinary-range solution **a=6**. That is a new source-visible route to a6 independent of p15's disputed lower-red descriptor-role assignment.
+
+The five-dot motif is reused elsewhere in LP2 and p5's curl count was recognized after the state was known, so no discovery probability is claimed. The route depends on p23 already being selected by Q/ROAD23. No p8 tree count is promoted; the obvious continuation to b15 is not currently source-selected.
+
+[Original-art p23→p5→p8 audit](lp2-p23-p5-p8-visual-dh-navigation.md).
+
 ## P23 completes the state; p8 independently reproduces it
 
 The directed receivers support an executable state reconstruction, not only coordinate labels.
