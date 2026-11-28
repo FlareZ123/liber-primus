@@ -187,6 +187,21 @@ function experiment(raw, options={}) {
   }
   const lm=makeLM(),beam=options.beam||700,results=[];
   const separateLM=options.crossAuthor?new Map(datasets.map(d=>[d.name,makeLM(d.name)])):null;
+  if(options.decodeInput){
+    const C=options.decodeInput.cipher,K=options.decodeInput.key;
+    if(!Array.isArray(C)||!Array.isArray(K)||!C.length||
+       !C.every(v=>Number.isInteger(v)&&v>=0&&v<29)||
+       !K.every(v=>Number.isInteger(v)&&v>=0&&v<29)||
+       K.length<C.length)throw Error("decodeInput: require GP29 cipher and key index arrays, key length>=cipher");
+    const a=decode(C,K,lm,beam,options.maxDeleted||3);
+    if(!a.P)return {status:"no candidate under bounded receiver",failed:a.failedAt,explored:a.visited};
+    return {status:"conditional decoder candidate (not authenticated LP2 plaintext)",
+      hypothesis:"GP29 strict-repeat output with 18.7% deleted emits and latent plaintext spaces",
+      inputRunes:C.length,providedKeyValues:K.length,score:a.score,
+      lastConsumedKeyIndex:a.lastKeyIndex,visited:a.visited,
+      indices:a.P,runes:a.P.map(p=>gp.runes[p]).join(""),
+      transliteration:a.P.map(p=>gp.translit[p]).join("")};
+  }
   if(options.primeMode){
     // One frozen source-literal transfer: the p56 prime-minus-one stream
     // starts from prime(1)=2, no transferred plaintext-F holds asserted.
@@ -237,12 +252,15 @@ if(typeof module!=="undefined")module.exports={experiment};
 if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===module){
   const fs=require("node:fs"),path=require("node:path"),root=path.resolve(__dirname,"..");
   const read=p=>fs.readFileSync(path.join(root,p),"utf8");
+  const inputArg=process.argv.find(v=>v.startsWith("--input="));
+  const inputJson=inputArg?JSON.parse(fs.readFileSync(inputArg.slice("--input=".length),"utf8")):null;
   console.log(JSON.stringify(experiment({
     gp:read("resources/liber-primus/lp2-corpus.json"),
     shakespeare:read("resources/control/shakespeare_first300k.txt"),
     gibran:read("resources/control/gibran_prophet_58585.txt"),
     emerson:read("resources/control/emerson_essays_2944.txt")},
-    {beam:process.argv.includes("--wide")?2000:500,plants:3,
+    {beam:inputJson?.beam|| (process.argv.includes("--wide")?2000:500),plants:3,
+    maxDeleted:inputJson?.maxDeleted||3,decodeInput:inputJson,
     primeMode:process.argv.includes("--prime-original")?"original":
       process.argv.includes("--prime-plant")?"plant":undefined,
     maxDeleted:3}),null,2));
