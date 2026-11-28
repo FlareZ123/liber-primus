@@ -1,0 +1,47 @@
+name: Agent7 period rune font gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  junicode-078:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow fonttools
+
+      - name: Fetch period Junicode 0.7.8 package
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://mirror.linux.duke.edu/pub/ubuntu/ubuntu/pool/universe/f/fonts-junicode/fonts-junicode_0.7.8-2_all.deb'
+          curl --fail --location --retry 4 --retry-delay 2 "$url" -o /tmp/junicode.deb
+          echo '7b8c34c97ee62135538b07fdc70ba20624051c9ea369aaba57749469c3146d75  /tmp/junicode.deb' | sha256sum -c -
+          rm -rf /tmp/junicode
+          dpkg-deb -x /tmp/junicode.deb /tmp/junicode
+          find /tmp/junicode -type f -name 'Junicode*.ttf' -print
+
+      - name: Gate Junicode 0.7.8 faces against solved LP2
+        shell: bash
+        run: |
+          set -euo pipefail
+          python sims/lp2_period_unicode_font_gate.py \
+            --image resources/liber-primus/74.jpg \
+            --font '/tmp/junicode/usr/share/fonts/truetype/junicode/*.ttf' \
+            --output /tmp/junicode-078-gate.json
+          cat /tmp/junicode-078-gate.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: junicode-078-gate
+          path: /tmp/junicode-078-gate.json
