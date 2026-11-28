@@ -95,6 +95,71 @@ No other 11-word window and no other permutation of the p6 layout satisfies any 
 
 This is a finite family result. It is not a discovery-wide probability because the broad role family itself was motivated after the corridor existed.
 
+## Independent GP0-block charge
+
+The same printed p6 partition also selects the corridor when the source statistic is changed from GP-rune **length** to canonical **GP0**.
+
+For the selected window, sum each p6-defined block's word GP0 values modulo29:
+
+~~~text
+YOU WILL BE FOUND       -> 13 = b-K
+GOOD                    ->  6 = a
+LUCK BEWARE FALSE PATHS -> 18 = p-g
+VERIFY OPENPGP          -> 18 = p-g
+
+raw GP0 block sums = [13,6,18,18].
+~~~
+
+Apply the already frozen H4 orientation:
+
+~~~text
+H4([13,6,18,18])
+=
+[24,17,24,2]
+=
+[-g,K+b,-g,K].
+~~~
+
+Every output is directly visible from p6: `-g` and `K+b` are W1 fields, while `K` is the first coordinate of `H4(titleLengths)=[K,-e,g,a]`.
+
+Again charge roles rather than keeping this successful shell fixed. Use the p6-visible family:
+
+~~~text
+[signed W1[i],
+ signed W1[j] with j != i,
+ repeat first coordinate,
+ signed H4(titleLengths)[k]]
+~~~
+
+with all four W1 choices, both signs, three distinct second-W1 choices, both signs, four title-H choices, and both signs:
+
+~~~text
+4 * 2 * 3 * 2 * 4 * 2
+= 384 H-shells.
+~~~
+
+Across all 33 source windows and all 12 permutations of the p6 layout:
+
+~~~text
+33 * 12 * 384
+= 152,064 configurations.
+~~~
+
+There is again exactly **one** hit:
+
+~~~text
+window 32..42
+layout [4,1,4,2]
+GP0 block sums [13,6,18,18]
+H4 shell [24,17,24,2]
+roles [W1[0],W1[3],W1[0],H4(lengths)[0]]
+      = [-g,K+b,-g,K].
+~~~
+
+No other source window or p6-layout permutation matches any member of this 384-shell family.
+
+The length and GP0 charges are not independent discovery-wide probabilities: they use the same authenticated words and both role families were formulated after the corridor was known. They are, however, **different canonical source statistics** that independently reduce to p6-visible state and single out the same printed-order interval.
+
 ## State closure
 
 The selected block sums are already direct authenticated-state values:
@@ -204,8 +269,10 @@ The SFT:
 - reconstructs the p6 title directly from the canonical transcription;
 - parses the authenticated signed message to the 43-word register;
 - recomputes canonical GP lengths;
-- charges all 12 p6-layout permutations and all 48 W1/q/W2 role/sign vectors;
-- checks all 33 contiguous 11-word windows;
-- asserts the sole hit at words32..42;
-- verifies the `[-b,q,B,b-K]` raw state and `[a-g,-b,p,-K]` H4 closure;
+- charges all 12 p6-layout permutations and all 48 W1/q/W2 length-role/sign vectors;
+- independently charges all 384 p6-visible GP0 H-shells under the same 12 layouts;
+- checks all 33 contiguous 11-word windows for both canonical source statistics;
+- asserts that both finite families have their sole hit at words32..42 in printed p6 order;
+- verifies length-state closure `[-b,q,B,b-K] -> [a-g,-b,p,-K]`;
+- verifies GP0-state closure `[b-K,a,p-g,p-g] -> [-g,K+b,-g,K]`;
 - verifies the held-out boundary consistencies `K=2` and `e=3`.
