@@ -31,6 +31,20 @@ function mul(x, y, r = 3, t = 8) {
   return [mod(a * c + t * b * d), mod(a * d + b * c + r * b * d)];
 }
 
+/** @param {[number,number]} base @param {number} exponent @param {number} r @param {number} t @returns {[number,number]} */
+function powField(base, exponent, r = 3, t = 8) {
+  /** @type {[number,number]} */
+  let out = [1, 0];
+  let x = base;
+  let n = exponent;
+  while (n > 0) {
+    if (n & 1) out = mul(out, x, r, t);
+    x = mul(x, x, r, t);
+    n = Math.floor(n / 2);
+  }
+  return out;
+}
+
 /** @param {number[]} coefficients @param {number} r @param {number} t @returns {[number, number]} */
 function evaluate(coefficients, r = 3, t = 8) {
   /** @type {[number, number]} */
@@ -121,6 +135,34 @@ const matrix = multiplicationMatrix(EQ, sourceRelation.r, sourceRelation.t);
 assert.deepStrictEqual(matrix, [[17, 18], [24, 2]]);
 const matrixWords = flatten(matrix).map((index) => words[index].toUpperCase());
 assert.deepStrictEqual(matrixWords, ['THE', 'MAP', 'AND', 'PATH']);
+
+// Carrier-derived exponents: g=5 and p-g=18 recover the two exact signed clue
+// phrases THE MAP and THE WAY under the already fixed zero-based word register.
+const carrierG = 5;
+const carrierPMinusG = 18;
+const qToG = powField(EQ, carrierG, sourceRelation.r, sourceRelation.t);
+const qToPMinusG = powField(EQ, carrierPMinusG, sourceRelation.r, sourceRelation.t);
+assert.deepStrictEqual(qToG, [12, 18]);
+assert.deepStrictEqual(qToPMinusG, [1, 13]);
+const carrierPowerWords = [qToG, qToPMinusG].map((pair) =>
+  pair.map((index) => words[index].toUpperCase())
+);
+assert.deepStrictEqual(carrierPowerWords, [['THE', 'MAP'], ['THE', 'WAY']]);
+
+// Within the natural H-operator cycle 1..28, these exact word-identity phrases
+// occur only at exponents g and p-g.
+const targetPhrases = new Set(['THE MAP', 'THE WAY']);
+const targetPowerHits = [];
+for (let exponent = 1; exponent <= 28; exponent += 1) {
+  const pair = powField(EQ, exponent, sourceRelation.r, sourceRelation.t);
+  const phrase = pair.map((index) => words[index].toUpperCase()).join(' ');
+  if (targetPhrases.has(phrase)) targetPowerHits.push({ exponent, pair, phrase });
+}
+assert.deepStrictEqual(targetPowerHits, [
+  { exponent: 5, pair: [12, 18], phrase: 'THE MAP' },
+  { exponent: 18, pair: [1, 13], phrase: 'THE WAY' },
+]);
+
 
 
 /** @param {[number, number]} element @param {number} r @param {number} t @param {number} limit @returns {number|null} */
@@ -259,6 +301,8 @@ console.log(JSON.stringify({
   E_Q: EQ,
   multiplication_matrix: matrix,
   matrix_words: matrixWords,
+  carrier_power_words: carrierPowerWords,
+  target_power_hits_1_to_28: targetPowerHits,
   source_discriminant: sourceDiscriminant,
   q_multiplicative_order: qOrder,
   q_nonzero_orbit_size: qOrder,

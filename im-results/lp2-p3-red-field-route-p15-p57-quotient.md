@@ -400,7 +400,16 @@ H^g(G) = H^5(G)
 
 The first pair is exactly the independently derived **`E(Q)=[17,24]`**, and no other orbit step has that leading pair. The source p3 relation itself is `u^2=3u+8=e*u+A`, so Q multiplication is completely state-valued: `M_Q=[[b+K,p-g],[-g,K]]=[[17,18],[24,2]]`, the same fixed matrix whose authenticated-2016 readout is **THE MAP / AND PATH**.
 
-Conditional on 23 grayscale pages split into five positive runs, 11 of 7,315 compositions satisfy the fixed DH closure; 15 have `H^5` begin with frozen Q; exactly **one** satisfies both, the observed vector. Both the JPEG census and Q were already known before this bridge, and component mode is visibly correlated with page design: every annotated red-span page is RGB under a common Artifex export substrate. The advance is therefore a coherent independent **source layer -> DH -> p3 field -> Q** construction, not a calibrated authorship probability or body plaintext.
+Conditional on 23 grayscale pages split into five positive runs, 11 of 7,315 compositions satisfy the fixed DH closure; 15 have `H^5` begin with frozen Q; exactly **one** satisfies both, the observed vector. Both the JPEG census and Q were already known before this bridge, and component mode is visibly correlated with page design: every annotated red-span page is RGB under a common Artifex export substrate. The same fixed state gives a second signed-source readout without choosing a new multiplier. Exponentiate the already frozen Q by the carrier-derived `g=5` and by the `p-g=18` coordinate emitted in `H^g(G)`:
+
+```text
+Q^g       = Q^5  = [12,18] -> THE MAP
+Q^(p-g)   = Q^18 = [1,13]  -> THE WAY
+```
+
+The arrow is the already established zero-based authenticated-2016 word register. Across the natural H cycle exponents **1..28**, these are the **only** powers whose word identities equal either exact clue phrase `THE MAP` or `THE WAY`. This is another post-discovery cross-lock—the target phrases were known—rather than a blind plaintext recovery, but it gives the carrier-derived `g` and `p-g` operational consequences inside the independently frozen field.
+
+The advance is therefore a coherent independent **source layer -> DH -> p3 field -> Q** construction, not a calibrated authorship probability or body plaintext.
 
 [Original carrier census and finite charge](lp2-2014-original-distribution-carrier-gate.md).
 
