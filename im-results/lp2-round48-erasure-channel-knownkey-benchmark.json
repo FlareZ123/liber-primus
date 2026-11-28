@@ -1,0 +1,296 @@
+{
+  "created_utc": "2026-11-28T02:29:28.479Z",
+  "source": "Round48 independent alternate-channel generative models; reproduced with agent6 source-native fixed literary donor splits; no unknown LP2 key",
+  "method": "Exact latent-deletion / latent-silent ciphertext receiver, strict repeat-rejected key clock, GP29/30 native 4gram prior, beam400 silent or 500 deletion, first57% donor training, last43% donor plants, 0-3 hidden emissions, one independent random wrong key per plant",
+  "deletion": {
+    "source_script": "sims/lp2_alt29_delete_exact_latent_wordgap_sft.cjs",
+    "plants": 12,
+    "above85": 12,
+    "meanRecovery": 0.9270098775268942,
+    "minRecovery": 0.8798283261802575,
+    "meanWrongRecovery": 0.34691250626977893,
+    "minimumPairwiseScoreMargin": 1.0776052183659695,
+    "rows": [
+      {
+        "i": 0,
+        "source": "Shakespeare",
+        "seed": 80421,
+        "recovery": 0.921161825726141,
+        "wrongRecovery": 0.34854771784232363,
+        "scoreMargin": 1.0776052183659695
+      },
+      {
+        "i": 1,
+        "source": "Gibran",
+        "seed": 80968,
+        "recovery": 0.8798283261802575,
+        "wrongRecovery": 0.33047210300429186,
+        "scoreMargin": 1.1300236372645864
+      },
+      {
+        "i": 2,
+        "source": "Emerson",
+        "seed": 81515,
+        "recovery": 0.9539748953974896,
+        "wrongRecovery": 0.3305439330543933,
+        "scoreMargin": 1.3607338867161936
+      },
+      {
+        "i": 3,
+        "source": "Shakespeare",
+        "seed": 82062,
+        "recovery": 0.9367088607594937,
+        "wrongRecovery": 0.35443037974683544,
+        "scoreMargin": 1.121587905434711
+      },
+      {
+        "i": 4,
+        "source": "Gibran",
+        "seed": 82609,
+        "recovery": 0.9094650205761317,
+        "wrongRecovery": 0.3497942386831276,
+        "scoreMargin": 1.4100098808606183
+      },
+      {
+        "i": 5,
+        "source": "Emerson",
+        "seed": 83156,
+        "recovery": 0.9256198347107438,
+        "wrongRecovery": 0.35537190082644626,
+        "scoreMargin": 1.2243508019420117
+      },
+      {
+        "i": 6,
+        "source": "Shakespeare",
+        "seed": 83703,
+        "recovery": 0.9462809917355371,
+        "wrongRecovery": 0.34297520661157027,
+        "scoreMargin": 1.2436598891727821
+      },
+      {
+        "i": 7,
+        "source": "Gibran",
+        "seed": 84250,
+        "recovery": 0.9310344827586207,
+        "wrongRecovery": 0.3448275862068966,
+        "scoreMargin": 1.1000466305123502
+      },
+      {
+        "i": 8,
+        "source": "Emerson",
+        "seed": 84797,
+        "recovery": 0.9465020576131687,
+        "wrongRecovery": 0.37448559670781895,
+        "scoreMargin": 1.1533048599388174
+      },
+      {
+        "i": 9,
+        "source": "Shakespeare",
+        "seed": 85344,
+        "recovery": 0.9384615384615385,
+        "wrongRecovery": 0.34615384615384615,
+        "scoreMargin": 1.2252084566945212
+      },
+      {
+        "i": 10,
+        "source": "Gibran",
+        "seed": 85891,
+        "recovery": 0.889344262295082,
+        "wrongRecovery": 0.3442622950819672,
+        "scoreMargin": 1.24908241477543
+      },
+      {
+        "i": 11,
+        "source": "Emerson",
+        "seed": 86438,
+        "recovery": 0.9457364341085271,
+        "wrongRecovery": 0.34108527131782945,
+        "scoreMargin": 1.6316095486341426
+      }
+    ]
+  },
+  "silent": {
+    "source_script": "sims/lp2_alt36_silent_exact_latent_viterbi_sft.cjs",
+    "plants": 12,
+    "above85": 12,
+    "meanRecovery": 0.9861553598700233,
+    "minRecovery": 0.9761904761904762,
+    "meanWrongRecovery": 0.3162671296323018,
+    "minimumPairwiseScoreMargin": 2.6823729060648023,
+    "rows": [
+      {
+        "i": 0,
+        "source": "Shakespeare",
+        "seed": 91923,
+        "printed": 249,
+        "truthLength": 197,
+        "hidden": 65,
+        "recovery": 0.9847715736040609,
+        "wrongRecovery": 0.28879310344827586,
+        "scoreMargin": 2.825812348225397,
+        "actualClock": 323,
+        "predictedClock": 323
+      },
+      {
+        "i": 1,
+        "source": "Gibran",
+        "seed": 92914,
+        "printed": 262,
+        "truthLength": 219,
+        "hidden": 52,
+        "recovery": 0.9772727272727273,
+        "wrongRecovery": 0.31645569620253167,
+        "scoreMargin": 3.2139160304351613,
+        "actualClock": 319,
+        "predictedClock": 319
+      },
+      {
+        "i": 2,
+        "source": "Emerson",
+        "seed": 93905,
+        "printed": 257,
+        "truthLength": 207,
+        "hidden": 57,
+        "recovery": 0.9951690821256038,
+        "wrongRecovery": 0.34934497816593885,
+        "scoreMargin": 3.020661772261392,
+        "actualClock": 322,
+        "predictedClock": 322
+      },
+      {
+        "i": 3,
+        "source": "Shakespeare",
+        "seed": 94896,
+        "printed": 269,
+        "truthLength": 220,
+        "hidden": 45,
+        "recovery": 0.9819004524886877,
+        "wrongRecovery": 0.3048780487804878,
+        "scoreMargin": 3.0228215406932715,
+        "actualClock": 321,
+        "predictedClock": 321
+      },
+      {
+        "i": 4,
+        "source": "Gibran",
+        "seed": 95887,
+        "printed": 257,
+        "truthLength": 202,
+        "hidden": 57,
+        "recovery": 0.9802955665024631,
+        "wrongRecovery": 0.32051282051282054,
+        "scoreMargin": 3.385020151359287,
+        "actualClock": 324,
+        "predictedClock": 324
+      },
+      {
+        "i": 5,
+        "source": "Emerson",
+        "seed": 96878,
+        "printed": 259,
+        "truthLength": 209,
+        "hidden": 55,
+        "recovery": 0.9904306220095693,
+        "wrongRecovery": 0.32051282051282054,
+        "scoreMargin": 3.1530879248854156,
+        "actualClock": 321,
+        "predictedClock": 321
+      },
+      {
+        "i": 6,
+        "source": "Shakespeare",
+        "seed": 97869,
+        "printed": 260,
+        "truthLength": 210,
+        "hidden": 54,
+        "recovery": 0.9761904761904762,
+        "wrongRecovery": 0.3021276595744681,
+        "scoreMargin": 2.8511882019050137,
+        "actualClock": 319,
+        "predictedClock": 319
+      },
+      {
+        "i": 7,
+        "source": "Gibran",
+        "seed": 98860,
+        "printed": 258,
+        "truthLength": 211,
+        "hidden": 56,
+        "recovery": 0.985781990521327,
+        "wrongRecovery": 0.3235294117647059,
+        "scoreMargin": 2.6823729060648023,
+        "actualClock": 322,
+        "predictedClock": 324
+      },
+      {
+        "i": 8,
+        "source": "Emerson",
+        "seed": 99851,
+        "printed": 254,
+        "truthLength": 202,
+        "hidden": 60,
+        "recovery": 0.9900990099009901,
+        "wrongRecovery": 0.3185840707964602,
+        "scoreMargin": 2.874631670725305,
+        "actualClock": 321,
+        "predictedClock": 321
+      },
+      {
+        "i": 9,
+        "source": "Shakespeare",
+        "seed": 100842,
+        "printed": 280,
+        "truthLength": 218,
+        "hidden": 34,
+        "recovery": 0.9862385321100917,
+        "wrongRecovery": 0.2992125984251969,
+        "scoreMargin": 3.1692923607021974,
+        "actualClock": 319,
+        "predictedClock": 319
+      },
+      {
+        "i": 10,
+        "source": "Gibran",
+        "seed": 101833,
+        "printed": 254,
+        "truthLength": 206,
+        "hidden": 60,
+        "recovery": 1,
+        "wrongRecovery": 0.3263598326359833,
+        "scoreMargin": 3.0768469359879713,
+        "actualClock": 321,
+        "predictedClock": 321
+      },
+      {
+        "i": 11,
+        "source": "Emerson",
+        "seed": 102824,
+        "printed": 252,
+        "truthLength": 210,
+        "hidden": 62,
+        "recovery": 0.9857142857142858,
+        "wrongRecovery": 0.32489451476793246,
+        "scoreMargin": 3.2275408338201013,
+        "actualClock": 317,
+        "predictedClock": 317
+      }
+    ]
+  },
+  "original_transfer": {
+    "target": "original LP2 physical pages54-55; full308 runes",
+    "source_key": "K_j=(prime_j-1)%29 from solved LP2 p56, zero origin; hypothetical overlay exact deletion codec",
+    "noF": {
+      "positive_held_310_printed_recovery": 0.9548387096774194,
+      "positive_score": -2.871745397673606,
+      "original_score": -4.159520702786693,
+      "recognizable_plaintext": false
+    },
+    "transparentF": {
+      "positive_held_310_printed_recovery": 0.9193548387096774,
+      "positive_score": -2.8464912545432437,
+      "original_score": -4.190370695005824,
+      "recognizable_plaintext": false
+    }
+  },
+  "limitations": "Paired wrong-key score is not official C11 95th-percentile wrong-key bar; plant construction native donor and fixed 0-3 hidden-emission beam differ from C11. Most important, original unknown LP2 keystream is unavailable."
+}
