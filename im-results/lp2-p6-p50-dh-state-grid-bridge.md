@@ -204,6 +204,8 @@ The provisional chapter SUM→PRODUCT route independently reaches p40 and then s
 
 P40's terminal first-black word has `[length,IN,OUT]=[5,27,3]=[g,-K,e]`; the `IN` was consumed to enter p40, leaving `[length,OUT]=[5,3]`. Those values exactly name this report's already-fixed **ROAD row5** and **MAP column3**, selecting cell43 without treating `3` as a page number. Across all nine chapter first-black operands, p40 alone has a `[length,OUT]` pair whose first coordinate is the strict horizontal support and whose second coordinate is a strict vertical support.
 
+There is also a genuinely independent, older route-level convergence on the **same physical cell43**. The provisional p55/p27 fold navigation selects the p27 title's equal `P/P` pair and then uses `P`'s GP prime **43** as the p50 start cell; its subsequently tested base60 pointer-displacement decoder for p55 failed decisively and remains retired. That route did not use p40's chapter operand, MAP/ROAD geometry, or the cell43→72 midpoint property. Conversely, the p40 handoff does not use the p55 fold, `P`, or prime43. The agreement therefore strengthens the **address** as a cross-route meeting point while validating neither route's downstream cipher nor a global table radix.
+
 Under the pre-existing missing-`f` base59 pointer codec, cell43's token `1D` has value **72**. This is not just another pointer into the sink basin: 72 is the exact midpoint of the independently established horizontal-reflection return path
 
 ```text
