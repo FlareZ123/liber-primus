@@ -80,6 +80,8 @@ Row14 is the expected structural control: it contains only the unpaired left-tab
 
 That all 14 paired rows move in the same direction strongly disfavors a few symbol-specific substitutions. The side-avoidance pressure is a chart-wide property.
 
+The 452 mate flips are also exactly direction-balanced: **226 left→right and 226 right→left**. The conditional side avoidance is therefore symmetric at the full-book level rather than a directional drift toward one table.
+
 This strengthens the earlier GP15 row-tape result. The ciphertext is not merely suppressing vertical-row repetition and exact-rune repetition independently. Conditional on the rare event that the row does repeat, the **side coordinate is strongly anti-persistent**.
 
 ## Architectural consequence
