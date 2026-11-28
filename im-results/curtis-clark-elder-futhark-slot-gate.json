@@ -1,0 +1,153 @@
+{
+  "test": "unencoded-font full-cmap injective oracle slot gate",
+  "observed_classes": 18,
+  "segmentation_line_counts": [
+    17,
+    18,
+    23
+  ],
+  "lp2_repeat_noise": {
+    "pairs": 106,
+    "mean": 0.028279,
+    "p95": 0.086957,
+    "max": 0.101262
+  },
+  "ranking": [
+    {
+      "font": "RUNE.TTF",
+      "path": "/tmp/curtis/RUNE.TTF",
+      "metadata": {
+        "family": [
+          "Elder Futhark"
+        ],
+        "subfamily": [
+          "Regular"
+        ],
+        "unique": [
+          "Elder Futhark"
+        ],
+        "version": [
+          "1.1 jcclark@csupomona.edu"
+        ],
+        "created_mac_epoch": 3972085598
+      },
+      "distinct_rendered_cmap_slots": 55,
+      "mean_iou_distance": 0.473903,
+      "mapping": [
+        {
+          "rune": "ᚹ",
+          "slot_codepoint": 108,
+          "slot_char": "l",
+          "distance": 0.485186
+        },
+        {
+          "rune": "ᛖ",
+          "slot_codepoint": 101,
+          "slot_char": "e",
+          "distance": 0.427505
+        },
+        {
+          "rune": "ᛗ",
+          "slot_codepoint": 109,
+          "slot_char": "m",
+          "distance": 0.350355
+        },
+        {
+          "rune": "ᚢ",
+          "slot_codepoint": 117,
+          "slot_char": "u",
+          "distance": 0.482224
+        },
+        {
+          "rune": "ᛋ",
+          "slot_codepoint": 85,
+          "slot_char": "U",
+          "distance": 0.610791
+        },
+        {
+          "rune": "ᛏ",
+          "slot_codepoint": 44,
+          "slot_char": ",",
+          "distance": 0.478473
+        },
+        {
+          "rune": "ᚻ",
+          "slot_codepoint": 73,
+          "slot_char": "I",
+          "distance": 0.45336
+        },
+        {
+          "rune": "ᛞ",
+          "slot_codepoint": 104,
+          "slot_char": "h",
+          "distance": 0.531263
+        },
+        {
+          "rune": "ᚩ",
+          "slot_codepoint": 114,
+          "slot_char": "r",
+          "distance": 0.551634
+        },
+        {
+          "rune": "ᚱ",
+          "slot_codepoint": 98,
+          "slot_char": "b",
+          "distance": 0.5041
+        },
+        {
+          "rune": "ᚾ",
+          "slot_codepoint": 46,
+          "slot_char": ".",
+          "distance": 0.464827
+        },
+        {
+          "rune": "ᚳ",
+          "slot_codepoint": 112,
+          "slot_char": "p",
+          "distance": 0.496056
+        },
+        {
+          "rune": "ᛁ",
+          "slot_codepoint": 45,
+          "slot_char": "-",
+          "distance": 0.15918
+        },
+        {
+          "rune": "ᚠ",
+          "slot_codepoint": 118,
+          "slot_char": "v",
+          "distance": 0.413977
+        },
+        {
+          "rune": "ᚦ",
+          "slot_codepoint": 120,
+          "slot_char": "x",
+          "distance": 0.502363
+        },
+        {
+          "rune": "ᚣ",
+          "slot_codepoint": 77,
+          "slot_char": "M",
+          "distance": 0.647535
+        },
+        {
+          "rune": "ᚪ",
+          "slot_codepoint": 97,
+          "slot_char": "a",
+          "distance": 0.409933
+        },
+        {
+          "rune": "ᚷ",
+          "slot_codepoint": 103,
+          "slot_char": "g",
+          "distance": 0.561496
+        }
+      ],
+      "render_jpeg_control": {
+        "mean_nearest_iou_distance": 0.047507,
+        "p95": 0.093676,
+        "max": 0.10876
+      }
+    }
+  ]
+}
