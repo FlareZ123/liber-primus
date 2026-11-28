@@ -62,8 +62,6 @@ lengths [2,4,9,13,16,2].
 
 Thus the p15 run **end and length depend on which vertical portion of the repeated frame is used**. The fixed-crop `[K,e,a,e,b,F]` difference tape remains an exact computational observation for that declared crop, but the artifact does not uniquely select it. It must not be treated as an authored state serializer or a cipher key.
 
-A local offline sensitivity sweep over border widths 250–500 pixels and five natural vertical ranges reproduced exactly these two segmentations: ranges extending into the upper/lower frame split at p21, while central ranges continue through p23. Width did not change the start positions. The repository SFT preserves the decisive two-crop source control directly.
-
 ## What survives
 
 The useful, source-stable facts are:
