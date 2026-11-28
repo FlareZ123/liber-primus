@@ -142,6 +142,24 @@ before any modular exponentiation is performed. The standard DH equations then r
 
 This is a stronger description than saying row23/column5 is numerically suggestive: **the row/column coordinates and the historically authenticated BASE29 digits divide the same unique fixed-point address into the four DH input parameters.** The remaining unsupported step is the composition itself—no first-party sentence yet says to BASE29-encode a p50 address.
 
+## Historical BASE29 independently reproduces both private exponents
+
+The prior p27/circumference route had already recovered the two private exponents from **different original manuscript operations** before this address conversion was noticed:
+
+- server/private `a=6` from the visible p27 count `19-13`;
+- client/private `b=15` as the orientation-invariant shortest distance between addresses186 and189 after the clear p57 instruction sheds exactly `K=2` circumferences.
+
+The new historical-BASE29 reading reproduces those held state values directly:
+
+```text
+BASE29(186) = 6C  -> leading digit 6 = a
+BASE29(189) = 6F  -> leading digit 6 = a, trailing digit F=15 = b
+```
+
+This is materially stronger than using the DH tuple to label arbitrary digits after the fact. The p27 gap and p57 ring distance are independent manuscript-side derivations of `6` and `15`; the already-established pointer start/sink addresses were also fixed before this BASE29 conversion was inspected. The new operation therefore gives a genuine **cross-object state prediction**: the p50 address pair, passed through a historically authenticated Cicada command, returns the same two private exponents.
+
+It still does not prove that LP2 instructs the player to invoke BASE29 on p50 addresses. The evidence supports a compact state-handoff hypothesis, not a plaintext claim.
+
 ## The start and sink are the same `+e` move in both coordinate systems
 
 The two p27/DH endpoint addresses have a stronger relation than merely being three integers apart.
