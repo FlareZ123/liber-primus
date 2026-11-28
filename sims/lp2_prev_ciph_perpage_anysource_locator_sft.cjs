@@ -142,10 +142,52 @@ for(const page of pages){
   at+=L;
 }
 assert.equal(at,N);assert.equal(expectedRepeats,100);
+
+// p49 is unusually short (66 runes), making source-compatible charts
+// possible by collision chance. Freeze that page's *exact original symbol
+// inventory* and *zero adjacent duplicates*, shuffle only order, and
+// rerun exactly the source matcher. These are matched-shape diagnostics,
+// not additional decryptions or a familywise significant discovery.
+function randomSourceNulls(){
+  const target=pages.find(p=>p.page===49);
+  assert.equal(target.indices.length,66);
+  let repeats=0;
+  for(let i=1;i<target.indices.length;i++)
+    if(target.indices[i]===target.indices[i-1])repeats++;
+  assert.equal(repeats,0);
+  const base=target.indices.slice();
+  const originalMatched=scan.find(p=>p.page===49).distinct_matching_source_windows;
+  assert.equal(originalMatched,74);
+  const trialNumbers=[];
+  const shuffleRand=randGen(0x49CA3301);
+  for(let trial=0;trial<20;trial++){
+    let candidate,valid=false,attempts=0;
+    while(!valid&&attempts<3000){
+      attempts++;
+      candidate=base.slice();
+      for(let i=candidate.length-1;i>0;i--){
+        const j=shuffleRand()%(i+1);
+        [candidate[i],candidate[j]]=[candidate[j],candidate[i]];
+      }
+      valid=candidate.every((x,i)=>!i||x!==candidate[i-1]);
+    }
+    assert.ok(valid,"failed to find zero-repeat histogram shuffle");
+    const perDonor=references.map(ref=>sourceScan(candidate,ref.gp,true,0).matching_source_windows);
+    trialNumbers.push({trial,source_hits:perDonor,sum:perDonor.reduce((a,b)=>a+b,0)});
+  }
+  const sums=trialNumbers.map(z=>z.sum),mean=sums.reduce((a,b)=>a+b,0)/sums.length;
+  return {null_condition:"20 xorshift32 seeded original-p49 exact rune-count multiset permutations, rejecting all repeated-neighbor shuffles",
+    seed:"0x49CA3301",original_matched_66rune_windows:originalMatched,trial_numbers:trialNumbers,
+    mean,minimum:Math.min(...sums),maximum:Math.max(...sums),
+    plus_one_upper_tail:(sums.filter(n=>n>=originalMatched).length+1)/(sums.length+1)};
+}
+
 const sampled=scan.filter(x=>x.distinct_matching_source_windows>0);
+const page49Null=randomSourceNulls();
 console.log(JSON.stringify({original:{runes:N,pages:pages.length,sources:references.map(x=>({name:x.name,runes:x.runes})),
   total_page_source_windows:scan.reduce((s,p)=>s+p.donors.reduce((a,d)=>a+d.windows,0),0),
   page_level_match_count:sampled.length,pages_with_candidate_source:sampled,
+  page49_chance_controls:page49Null,
   scan_summary:scan.map(x=>({page:x.page,n:x.runes,source_match_total:x.distinct_matching_source_windows,
     longest_failure_or_success:x.donors.map(y=>[y.name,y.max_compatible_runes,y.matching_source_windows])}))},
   positive:{runes:N,pages:plantCheck.length,exact_runes_recovered:N,source_start:18000,
