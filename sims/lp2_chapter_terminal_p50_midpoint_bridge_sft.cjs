@@ -274,6 +274,45 @@ const base60Walk=walk60(selectedCell);
 assert.equal(base60Walk.hitSink,false);
 assert.equal(base60Walk.path.includes(72),false);
 
+// Director #3442 — prospective target was frozen on the Issue before cell79 reveal.
+// Mirror is the original row-wise reflection M(r,c) = (r,7-c). A reusable
+// midpoint-switch would make D59(M(72)) = M(D59(72)) = 166 and would land
+// at M(189)=186 after four more steps. These claims fail without tuning.
+const M=cell=>8*Math.floor(cell/8)+(7-cell%8);
+const hop=(D,start,count)=>{
+  const path=[start];
+  for(let n=0;n<count;n+=1)path.push(D[path.at(-1)]);
+  return path;
+};
+const mirrorMidpoint=M(selectedValue59);
+assert.equal(mirrorMidpoint,79);
+const predictedMirrorNext=M(values59[selectedValue59]);
+const actualMirrorNext=values59[mirrorMidpoint];
+assert.equal(predictedMirrorNext,166);
+assert.equal(actualMirrorNext,81);
+const mirrorMidpointPath4=hop(values59,mirrorMidpoint,4);
+const predictedMirrorEndpoint=M(hop(values59,selectedValue59,4).at(-1));
+assert.equal(predictedMirrorEndpoint,186);
+assert.deepEqual(mirrorMidpointPath4,[79,81,57,116,53]);
+const mirrorMidpointPath4Base60=hop(values60,mirrorMidpoint,4);
+assert.deepEqual(mirrorMidpointPath4Base60,[79,82,201,74,205]);
+const mirroredEdgeHits=values59.filter((value,i)=>values59[M(i)]===M(value)).length;
+const mirrored4HopHits=values59.filter((value,i)=>hop(values59,M(i),4).at(-1)===M(hop(values59,i,4).at(-1))).length;
+assert.equal(mirroredEdgeHits,0);
+assert.equal(mirrored4HopHits,4);
+const mirroredMidpointTransfer={
+  frozenAt:'https://github.com/FlareZ123/liber-primus/issues/3442#issuecomment-7239016265',
+  mirrorMidpoint,token:tokens[mirrorMidpoint],
+  predictedMirrorNext,actualMirrorNext,oneHopHit:predictedMirrorNext===actualMirrorNext,
+  predictedMirrorEndpoint,mirrorMidpointPath4,
+  fourHopHit:mirrorMidpointPath4.at(-1)===predictedMirrorEndpoint,
+  mirrorMidpointPath4Base60,
+  completeGridCommutingEdges:mirroredEdgeHits,
+  completeGridCommutingFourHopPairs:mirrored4HopHits,
+  alreadyKnownForwardFrom72:hop(values59,selectedValue59,4),
+  distinctInverseParents:midpointPredecessors,
+};
+
 console.log(JSON.stringify({
   status:'PASS',
   classification:'post-discovery source-typed p40->p50 continuation; no plaintext/key claim',
@@ -294,8 +333,9 @@ console.log(JSON.stringify({
       globalDistanceEqualsRow,
     },
     midpointPredecessors,
+    mirroredMidpointTransfer,
     base60Value:values60[selectedCell],
     base60Walk,
   },
-  decision:'Within the reached p40 chapter, terminal [length,OUT]=[5,3] selects ROAD row5/MAP col3; base59 sends their cell43 intersection to the exact midpoint of the independently established mirror186->sink189 return path. Hex is unnecessary.',
+  decision:'Within the reached p40 chapter, terminal [length,OUT]=[5,3] selects ROAD row5/MAP col3; base59 sends their cell43 intersection to the exact midpoint of the independently established mirror186->sink189 return path. Hex is unnecessary, and the frozen midpoint mirror-transfer predictions fail; no post-midpoint opcode is source-selected.',
 },null,2));
