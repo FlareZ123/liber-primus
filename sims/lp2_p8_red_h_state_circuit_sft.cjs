@@ -407,7 +407,7 @@ function seamWords(pageRange) {
         if (!current.length) first = { page, local: offset };
         current.push(value);
         offset += 1;
-      } else if (ch === '/' || /\\s/u.test(ch)) {
+      } else if (ch === '/' || /\s/u.test(ch)) {
         continue;
       } else {
         flush();
