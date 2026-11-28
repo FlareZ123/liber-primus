@@ -182,16 +182,21 @@ for(const [name,A] of matrices)for(const origin of [0,1]){
 // 602 and391. Calculate the complete phase control, never select best.
 const inverseKeys=clock(Minv,0);
 const phaseCensus=[];
-for(let phase=0;phase<original.length;phase++){
- const shifted=inverseKeys.map((_,i)=>inverseKeys[(i+phase)%original.length]);
- const fitted=argmaxLookup(original,shifted,folds[0].train);
- const tested=score(original,shifted,fitted,folds[0].holdout);
- phaseCensus.push({phase,ll:tested.loglikelihoodPerRune});
+for(const fold of folds){
+ const shifts=[];
+ for(let phase=0;phase<original.length;phase++){
+  const rotated=inverseKeys.map((_,i)=>inverseKeys[(i+phase)%original.length]);
+  const fitted=argmaxLookup(original,rotated,fold.train);
+  const held=score(original,rotated,fitted,fold.holdout);
+  shifts.push({phase,ll:held.loglikelihoodPerRune});
+ }
+ const sorted=shifts.slice().sort((a,b)=>b.ll-a.ll);
+ const rank=sorted.findIndex(x=>x.phase===0)+1;
+ phaseCensus.push({fold:fold.name,sourceRank:rank,nullSize:shifts.length,
+  empiricalFractionAtLeastAsHigh:rank/shifts.length,sourceLL:shifts[0].ll,
+  bestThree:sorted.slice(0,3)});
 }
-const sorted=phaseCensus.slice().sort((a,b)=>b.ll-a.ll);
-const rank=sorted.findIndex(x=>x.phase===0)+1;
-assert.equal(phaseCensus.length,1717);
-assert.equal(rank,53);
+assert.deepEqual(phaseCensus.map(x=>x.sourceRank),[53,602,391]);
 
 console.log(JSON.stringify({
  verdict:'NO authentic LP2 plaintext recovered; all-29-state static shift lookup fails independent held-out GP29-language test',
@@ -199,10 +204,6 @@ console.log(JSON.stringify({
    bodyLength:243,chapterBodyLength:original.length},
  register:{nativeReferenceLength:reference.length,independentNativePlantLength:separatePlant.length,
    laplacePseudocount:0.5,folds:folds.map(x=>({name:x.name,train:x.train.length,holdout:x.holdout.length}))},
- phaseCensus:{clock:'M-inverse origin0; first850 train, last867 holdout',
-   phase0Rank:rank,numberOfCircularControls:1717,
-   empiricalFractionAtLeastAsHigh:rank/1717,
-   sourceLL:phaseCensus[0].ll,
-   bestThree:sorted.slice(0,3)},
+ phaseCensus:{clock:'M-inverse origin0; source-selected fixed phase0', folds:phaseCensus},
  cases
 },null,2));
