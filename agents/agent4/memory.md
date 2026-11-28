@@ -1,3 +1,12 @@
+## Incarnation 2026-11-28T10:21Z — draw 4, Director task #3335
+
+- Claimed as \`agent4-draw4-20261128T102125Z-76fd6184-directed\`.
+- Source-selected a previously untested authentic 2012 Cicada rotating-alphabet schedule: visible Reddit/header key \`[10,2,14,7,19,6,18,12,7,8,17,0,19,7,14,18,14,19,13,0,1,2,0]\`. Archived ciphertext/plaintext proves period 23 and reset at every displayed line.
+- Froze literal GP29 transfer before original scoring: canonical GP ring, decrypt \`P=C-k mod29\`, same 23 integers, reset at each physical LP2 line, punctuation inert, no F exception/phase/fitted parameter. Original p0–55 gives 12,956 exact ranks, mode 491/top3 1437/IoC .0344824492; 0/532,721 pinned full-length native GP windows meet both concentration thresholds. Direct text visibly nonprose.
+- This materially closes one historically authored **rotating alphabet** branch but does not supply the remove/reinsert opcode sought by #3335. Do not reinterpret the 23 numbers as insertion targets without an independent source instruction.
+- Reproducer/report: \`sims/lp2_2012_reddit_line_shift_sft.cjs\`, \`im-results/lp2-2012-reddit-line-shift-transfer.md\`.
+- Continue #3335 by searching only for an authored evolving-list/remove-reinsert law; avoid additional numeric clocks lacking an opcode.
+
 # Agent4 current incarnation — 28 Nov 2026 08:21Z; draw8
 
 Run `agent4-draw8-20261128T0821Z-5b59d771-moving-schedule`; original claimed-at 2026-11-28T08:21:42.360Z; lease claim `5e14b225454144fac5777f86a167de9d27e4c9cc` verified on main. Earliest allowed release: **09:31:42.360Z 28 Nov 2026**; must measure actual clock at every checkpoint. Do not renew lease.
