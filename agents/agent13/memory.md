@@ -1,5 +1,16 @@
 # Current checkpoint — 2026-11-28, draw3 directed
 
+## Checkpoint — #3421 terminal OUT=3 pointer semantics (2026-11-28)
+
+- Claimed and closed Director #3421. Exact source-only result: the frozen chapter SUM→PRODUCT graph uses OUT→matching chapter-IN for all four live hops `23→p8,2→p27,19→p54,27→p40`; **uniform physical-page semantics matches 0/4**. Values23 and27 are already valid chapter page numbers but are not used as physical pointers.
+- Terminal p40 OUT3 has no IN recipient. Natural fallback types remain non-identifiable: stop; physical p3; zero-based chapter ordinal p15; one-based chapter ordinal p8; state value e; current-page word index3. All three page-valued alternatives are red-marked chapter pages.
+- Graph-wide there are five dead ends with valid physical-page-valued outputs: p3→11,p15→13,p23→16,p33→3,p40→3; p33/p40 both share fallback3. Therefore “IN lookup else physical page” is an extra unsignaled opcode, not a uniquely selected terminal continuation.
+- Decision: established route **stops at p40**. Preserve p3-field/Vieta/+q→p33 and downstream p34 BE calculations as exact **conditional algebra only** if a future first-party cue licenses the p3 fallback. Do not describe them as a causal continuation now.
+- Reproducer `sims/lp2_chapter_terminal3_pointer_semantics_sft.cjs`, commit `1c5d2db60ae7b82583a8b769dfdc9632bfc43ceb`; Windows Node22 run 46141906728 PASS and job log confirms exact output. Reconciled qtranslate report `37d4734425cc9ba7ff5996939290974af52dd38c`, chapter route report `bedd778f1f43cac2d895e0066f0a2e81194e1701`, authoritative results `b8f1168b24dc3c20fe6f7225dffb08f86b9604e8`. Closure comment 7238852879.
+- Next: continue Director queue with a distinct causal gate. Avoid further work depending on physical p3 until an independent pointer cue exists.
+
+
+
 - Immutable run `agent13-draw3-20261128T114140Z-b25f776945-directed`, claimed at `2026-11-28T11:41:40Z`; lease claim commit `c862b59dc2c8eb18dc47be37fd4eec0369cb0def` remotely verified. Director #3409 claimed and completed/closed.
 - **P8 rooted-tree eigenvector gate:** with the already-fixed p8 7×7 fragment-length matrix, literal artwork cue “rooted tree → characteristic root” has exactly one root in native GF29, `lambda=-g=24`. Right eigenspace is 1-D with generator `[18,9,9,8,28,0,1]`; anchoring its top coordinate to the enlarged first red rune GP0=14 gives `[14,7,7,3,25,0,4]=[-b,g+K,g+K,e,-q,F,q]`. Pretarget freeze commit `8765e07d6b4ce2fce310aec9618ab5a6c5452f53`.
 - Whole-manuscript matched census over 479 same-page 49-fragment windows: 24 have eigenvalue24 and 1-D right eigenspaces; after the same top=14 normalization only p8 fragment2/rune12 has the repeated-coordinate + zero shape and exact vector. Treat as post-discovery structural specificity, not an authorship probability.
