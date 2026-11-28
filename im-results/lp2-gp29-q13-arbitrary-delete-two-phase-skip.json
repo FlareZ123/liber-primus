@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-28T08:32:55.227Z",
+  "method": "GP29 q13 arbitrary accepted-output deletion plus at most two arbitrary phase skips; necessary relaxation of <=2 strict adjacent-repeat retries",
+  "tape": "LP2 p0-p55, 12956 runes, spacing-free",
+  "visibility_gate": "m=max(ceil(0.75*L),q+5)",
+  "controls": {
+    "plants": 32,
+    "true_key_recovered": 32
+  },
+  "original": [
+    {
+      "ci": 0,
+      "L": 42,
+      "m": 32,
+      "workflow_run": 46124749818,
+      "threads": 4,
+      "nodes": 405943671348,
+      "relaxed_leaves": 0,
+      "hit": false
+    },
+    {
+      "ci": 1,
+      "L": 41,
+      "m": 31,
+      "workflow_run": 46124752336,
+      "threads": 4,
+      "nodes": 406377962344,
+      "relaxed_leaves": 0,
+      "hit": false
+    },
+    {
+      "ci": 2,
+      "L": 37,
+      "m": 28,
+      "workflow_run": 46124755670,
+      "threads": 4,
+      "nodes": 199696255222,
+      "relaxed_leaves": 0,
+      "hit": false
+    },
+    {
+      "ci": 3,
+      "L": 29,
+      "m": 22,
+      "workflow_run": 46124758559,
+      "threads": 4,
+      "nodes": 44589261604,
+      "relaxed_leaves": 0,
+      "hit": false
+    }
+  ],
+  "total_nodes": 1056607150518,
+  "code": "sims/lp2_gp29_q13_arbitrary_delete_phase_skip_sft.cpp",
+  "interpretation": "No >=75%-visible embedding of the four q13 source cribs survives even a necessary relaxation permitting arbitrary accepted-output deletions and up to two unconstrained key-phase skips. Any real q13 GP29 strict-repeat sender occurrence of these cribs at this visibility floor must therefore incur at least three rejected key draws before the m-th retained rune. The conclusion is conditional on these source cribs/q13 and does not constrain unrelated plaintext."
+}
