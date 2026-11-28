@@ -1,6 +1,6 @@
 # Signed 2016 tail: exact local candidates on every physical page p32–p42
 
-**Consolidated 28 November 2026; p41/p42 extensions by Agent3; identifiability audit by Agent9. Classification: provisional known-source corridor. All eleven same-number pages carry target-conditioned exact additive fits for the authenticated signed tail. The receiver/serialization rules are heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext. An exact audit shows that coordinatewise p6-state “expressibility” is non-discriminating: the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
+**Consolidated 28 November 2026; p41/p42 extensions by Agent3; identifiability audit by Agent9; source-interval and q/F schedule upgrade by Agent14. Classification: provisional known-source corridor with a new source-only p6 interval selector and target-blind receiver grammar for the exceptional p36 and p41/p42 blocks. All eleven same-number pages carry target-conditioned exact additive fits for the authenticated signed tail. The complete key/serialization rules remain heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext. An exact audit shows that coordinatewise p6-state “expressibility” is non-discriminating: the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
 
 ## Coordinate convention
 
@@ -22,6 +22,71 @@ The authenticated tail is:
 42 OPENPGP
 ~~~
 
+## P6 now independently selects the exact 11-word source interval
+
+The p6 red title has printed word lengths:
+
+~~~text
+[4,1,4,2] = [q,1,q,K]
+~~~
+
+and visible state words beginning:
+
+~~~text
+W1 = [24,16,14,17] = [-g,K-b,-b,K+b]
+W2 = [19] = [B].
+~~~
+
+Use only the authenticated 43-word signed source and canonical GP spelling. For every contiguous 11-word source window, partition by the p6 printed layout.
+
+Two finite post-discovery charges independently leave the same sole source interval:
+
+1. **GP-rune lengths.** The p32..p42 block sums are `[14,4,19,13]=[-b,q,B,b-K]`. Charging all 33 windows, all 12 distinct permutations of `[4,1,4,2]`, and a 48-member signed W1/q/W2 role family gives **1 hit / 19,008 configurations**: words32..42 in the original p6 layout.
+2. **Canonical GP0.** The same four blocks sum modulo29 to `[13,6,18,18]`, whose fixed H4 image is `[24,17,24,2]=[-g,K+b,-g,K]`. Charging a broader 384-shell p6-visible family over the same 33 windows and 12 layouts gives **1 hit / 152,064 configurations**, again words32..42 in printed p6 order.
+
+These are not discovery-wide p-values: both role families were formulated after this corridor was known. Their important causal property is different: **neither charge reads unknown LP2 ciphertext or fitted page keys.** P6 itself now supplies a bounded source-only reason to treat exactly `YOU ... OPENPGP` as one 11-word object.
+
+This aligns with the already established DIRECTION=29 fold. The 13 post-DIRECTION words are source indices30..42; the p6 selector keeps residues3..13, omitting exactly the leading `SEEK AND` count `K=2`, and begins at residue `e=3`. Those boundary equalities are held-out consequences of the selected interval, not search conditions.
+
+See `im-results/lp2-p6-source-tail-corridor-selector.md` and `sims/lp2_p6_source_tail_corridor_selector_sft.cjs`; Windows/Node22 workflow run **46129269499** passed both finite charges.
+
+## P6 schedule also constrains the exceptional receiver blocks
+
+The source selector partitions the corridor as:
+
+~~~text
+[q=4]  YOU WILL BE FOUND
+[1]    GOOD
+[q=4]  LUCK BEWARE FALSE PATHS
+[K=2]  VERIFY OPENPGP.
+~~~
+
+The two non-q blocks now have target-blind manuscript-side marker rules.
+
+For the singleton block, enumerate `p_i / local word_i` over authenticated indices1..42. **Only p36/word36** has odd center `q=4`:
+
+~~~text
+p36 word36 start169
+[2,22,4,1,20]
+       ^
+       q
+~~~
+
+Removing the checked q gives the already published four-rune GOOD receiver. Thus p36 is no longer merely selected from the nine manuscript-wide q-centered five-rune words after target inspection.
+
+For the terminal block, enumerate `p_i / local word_(i+1)`. The only consecutive width-`K=2` page pair whose selected ordinal words both have center `F=0` is **p41/p42**:
+
+~~~text
+p41 word42 start178 [27,12,5,0,17,13,19]
+p42 word43 start206 [16,0,14].
+~~~
+
+P41 removes the checked center F before the existing VERIFY inverse. P42 is stronger: Hpair of its selected word is exactly `[2,1,0]=[K,1,F]`, a manuscript-unique three-rune packet. It literally advances K words, checks rune index1 for F, and removes that F from word45 before the existing OPENPGP inverse.
+
+This upgrades receiver selection for p36, p41 and p42 while leaving their post-target key-shell chronology explicit. It does **not** yet supply the complete serializer for the two q-length ordinary blocks p32..p35 and p37..p40.
+
+See `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md` and `sims/lp2_p6_schedule_qF_numbered_receiver_sft.cjs`.
+
 ## Complete local-inverse corridor
 
 | Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
@@ -30,13 +95,13 @@ The authenticated tail is:
 | 33 / p33 | WILL | canonical body word33, start132 | H4 `[0,-K,g,2a]` | strong local |
 | 34 / p34 | BE | body34 receiver from p33 THEIR-RISE handoff | direct `[K,K]` | strong local |
 | 35 / p35 | FOUND | canonical body word35 | H5 `[-e,e,g,K,-g]` | strong local |
-| 36 / p36 | GOOD | start169; delete center `q=4` | `[p+K,B,-K,-e]` | strong local |
+| 36 / p36 | GOOD | p6 singleton block; unique `p_i/word_i` center-q receiver start169; delete `q=4` | `[p+K,B,-K,-e]` | target-blind receiver; strong local |
 | 37 / p37 | LUCK | canonical word37, start146 | H4 `[B,0,K,g]` | strong local |
 | 38 / p38 | BEWARE | section5 first word, start57 | H6 `[K-b,-g,p,p-e,0,-b]` | strong local |
 | 39 / p39 | FALSE | prospectively selected first `g=5` word after red span, start132 | H5 `[-b,-g,Kg,-b,B]` | strong local |
 | 40 / p40 | PATHS | p6-addressed local offset71 | direct `[qg,qg,aK,a]` | target-blind receiver conditional on same-offset transfer |
-| 41 / p41 | VERIFY | ordinal42 -> canonical word42 start178; delete center `F=0` | H6 `[q,Kg,p,A,g+K,B]` | strong local |
-| 42 / p42 | OPENPGP | ordinal43 word43 gives unique `[K,1,F]`; +K -> word45 start211; delete rune1 `F=0` | H7 `[B-1,p+K,-1,e,-1,p+K,p]` | target-blind receiver selector; strong local |
+| 41 / p41 | VERIFY | p6 terminal block; ordinal42 start178 in unique consecutive K=2 center-F pair; delete `F=0` | H6 `[q,Kg,p,A,g+K,B]` | target-blind receiver; strong local |
+| 42 / p42 | OPENPGP | p6 terminal block; ordinal43 in unique consecutive K=2 center-F pair; word43 gives unique `[K,1,F]`; +K -> word45 start211; delete rune1 `F=0` | H7 `[B-1,p+K,-1,e,-1,p+K,p]` | target-blind receiver selector; strong local |
 
 The important descriptive change is completeness: every same-number page p32–p42 now has a published target-conditioned local fit for its assigned authenticated word. Exact replay itself is not evidence: once an equal-length receiver and known target are fixed, subtraction uniquely supplies `K=C-P mod29`.
 
@@ -133,6 +198,8 @@ The corridor remains a useful known-source alignment and receiver-selection prog
 
 Prospective transfers are mixed and often negative. Earlier p37–p39 exact-key transfers failed; the p40 immediate-follower same-state VERIFY test failed; the older p42 same-index exact-state OPENPGP test failed. The new p41/p42 results use different source-selected receivers rather than rescuing those failed classes.
 
+Two Agent14 precommits also reject obvious post-OPENPGP continuations without retuning. Before revealing p43 canonical word44, one test required a four-rune receiver for the GnuPG-success consequence `GOOD`; another required eight runes for literal subtraction by OpenPGP key-ID nibbles `7A35090F -> [7,10,3,5,0,9,0,15]`. The frozen receiver is **seven runes**, so both exact continuations fail at their target-independent length gates. Separately, a preregistered p39 selector `GP0(FALSE)=77 -> p50[77]=2O -> base60 offset144` lands on a five-rune word, but the already frozen FALSE key decodes it to nonplaintext rather than FALSE. Reject that exact GP0→p50→same-page-offset rule instead of moving the receiver.
+
 ## Research consequence
 
 Treat p6 as a strongly constrained **state packet**, while treating coordinatewise reuse of its values as free under the saturation theorem above. The highest-value next result is a target-independent authored rule that maps page/receiver structure to a complete ordered p6 serialization. Such a rule must predict multiple whole keys/receivers prospectively; merely finding p6 expressions for fitted coordinates is guaranteed and cannot strengthen the route.
@@ -143,6 +210,8 @@ Do not spend compute fitting additional free-form keys to these eleven known tar
 
 - `im-results/lp2-p6-state-expression-saturation-audit.md`
 - `im-results/lp2-p6-master-state-packet.md`
+- `im-results/lp2-p6-source-tail-corridor-selector.md`
+- `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md`
 - `im-results/lp2-p6-p36-good-qcenter-family.md`
 - `im-results/lp2-p6-p39-false-five-rune-family.md`
 - `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`
