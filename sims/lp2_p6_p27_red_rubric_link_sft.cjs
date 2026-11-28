@@ -68,6 +68,14 @@ assert.equal(p27.red_start,0);assert.equal(p27.red_end,19);
 assert.deepEqual([p27.following_black_word_start,p27.following_black_word_length,
   p27.following_black_word_sum,p27.following_black_word_gp0],[19,7,60,2]);
 assert.equal(unknown[27].indices[0],19); // same M as p6 singleton
+const p27Red=unknown[27].indices.slice(p27.red_start,p27.red_end);
+const p27RedSum=p27Red.reduce((a,b)=>a+b,0);
+assert.equal(p27Red.length,19);      // same as DH public B
+assert.equal(p27RedSum,305);
+assert.equal(p27RedSum%29,15);      // numerically matches DH private b
+assert.equal(p27Red.slice(0,3).reduce((a,b)=>a+b,0),58);
+assert.equal(p6.following_black_word_sum-p27.following_black_word_sum,58);
+assert.equal(p27.following_black_word_gp0,2); // matches DH shared K
 const chapterStarts=[0,3,8,15,23,27,33,40,54];
 const chapterMatches=chapterStarts.filter(p=>unknown[p].indices[0]===19);
 assert.deepEqual(chapterMatches,[27]); // a unique red-chapter opening M
@@ -89,7 +97,11 @@ console.log(JSON.stringify({
   classification:'retrospective source-visible navigation, no cipher key or plaintext',
   physically_printed_ink_spans:table.length,chapterStarts,
   unique_chapter_matching_p6_red_singleton_M:chapterMatches,
-  p6,p27,all_red_spans:table,duplicatedSuccessorPairs,
+  p6,p27,p27_red_sum:p27RedSum,
+  p27_red_sum_mod29:p27RedSum%29,
+  p27_first_red_word_sum:58,
+  black_successor_integer_sum_difference:58,
+  all_red_spans:table,duplicatedSuccessorPairs,
   p6_p27_successor_differences_gp29:delta,
   missing_instruction:'no authored rule selects a seven-rune recipient or inverse'
 },null,2));
