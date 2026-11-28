@@ -113,6 +113,38 @@ p54 -> {{1,3},{2,6}}.
 
 Only p6 matches the frozen p50 support blocks. This is still a post-discovery cross-artifact relation and does not establish plaintext, but it **salvages the p6→p50 state-coordinate content without the unauthenticated H ordering**. Reproducer: [`sims/lp2_p6_mirror_invariant_p50_support_sft.cjs`](../sims/lp2_p6_mirror_invariant_p50_support_sft.cjs).
 
+## P50 supplies an H-free ordered serializer for the p6 mirror magnitudes
+
+The invariant result above can be pushed one step further **without reintroducing canonical H**. The four strict p50 support edges already have a source-defined order by increasing starting prime rank and a physical direction:
+
+```text
+rank17: coord3 north
+rank22: coord5 east
+rank38: coord6 south
+rank39: coord2 south
+```
+
+Their coordinate magnitudes are exactly the p6 mirror-invariant set `{2,3,5,6}`. Independently, the pre-existing p50 tunnel/reflection work selects **physical column2** before the p6 overlay; the p6 outer mirror difference names magnitude2 as `K`. Treat the four support edges as a cyclic register, start at that independently selected K edge, preserve increasing-prime-rank traversal, and normalize the global coordinate sign so K is positive. The resulting packet is uniquely
+
+```text
+[K,-e,g,a] = [2,-3,5,6].
+```
+
+Charging all four cyclic starts × forward/reverse traversal × global sign gives **16** variants. The source constraints above leave exactly **one**: start at coord2/K, forward in increasing prime rank, K positive.
+
+This means the ordered state packet previously written as `H4([4,1,4,2])` can be reconstructed from **p6 mirror-pair magnitudes + independently derived p50 support geometry**, with no appeal to H provenance or p6-local H serialization. Feeding this packet into the existing 4/5/4 red13 program reproduces exactly
+
+```text
+L=[-e,1,e,K]   = [26,1,3,2]
+C=[-e,1,F,1,e] = [26,1,0,1,3]
+T=[-a,g,-K,1]  = [23,5,27,1]
+R=L+T           = [20,6,1,3].
+```
+
+The important limitation is discovery order: the p50 support family, K-column tunnel and p6 grid program were all known before this synthesis. So this is a **source-constrained causal rewrite of existing structure**, not a temporally blind plaintext prediction. It materially removes canonical H as a required dependency of the p6/p50 state/grid architecture.
+
+Reproducer: [`sims/lp2_p6_p50_hfree_state_serializer_sft.cjs`](../sims/lp2_p6_p50_hfree_state_serializer_sft.cjs).
+
 ## Directed support-line schedule equals a cyclic p6 H(title) schedule
 
 The line-coordinate equality becomes substantially sharper when the physical edge directions are retained.
