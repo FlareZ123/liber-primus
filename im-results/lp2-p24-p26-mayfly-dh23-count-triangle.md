@@ -135,9 +135,33 @@ H(short incoming count gap, long incoming count gap)
 
 Charging all three possible triangle vertices and both input orders gives **60** terminal presentations; the same p26 final-vertex, unswapped presentation is the **only** hit. Thus the visible terminal mark and page number jointly select the vertex, input order and both H channels. This is a source-typed local packet operation; it does not promote H to a manuscript-wide plaintext transform.
 
+The typed packet has a direct body receiver before any language score is consulted. Read `[26,16]` as the ordinary project-page/local-rune coordinate **p26 offset16**. Offset16 is a canonical printed word boundary: the selected word crosses the first physical line break and has five runes
+
+```
+GP0 values = [13,28,8,27,1]
+(length, sum, product mod29) = (5,19,5).
+```
+
+Under the independently reconstructed DH23 tuple this descriptor is exactly
+
+```
+[g, B, g] = [5,19,5].
+```
+
+The receiver is selective independently of those labels. Parsing all **2,928** canonical p0–p55 words without splitting physical line wraps, exactly **one** word has `(length,sum,product)=(5,19,5)`: **p26 offset16** itself. Thus the page-count packet does not merely return metadata; it lands on a manuscript-unique body object carrying the public DH pair `g=5, B=19` in two elementary descriptors.
+
+Ordinary DH supplies the next state value without choosing a new cipher family:
+
+```
+5^b mod23 = 19
+=> b = 15  (unique for 1 <= b <= 22).
+```
+
+The independently audited zero-based authenticated-2016 DH register already identifies source word15 as **WORDS**. This is a cross-source state consequence, not unknown plaintext: the selected p26 word remains ciphertext, and its `[g,B,g]` descriptor is a numerical receiver/state packet.
+
 Only after that source-only lock is established, the authenticated-2016 register gives an optional semantic echo: zero-based indices `[26,16]` read **NUMBERS ARE**. The exact numeric output `[26,16]` is unique over all **324** contiguous-triple vertex/input-order presentations. This phrase remains secondary evidence: zero-based word indexing is not fully authenticated, `ARE` is duplicated, and 33/324 charged presentations map to some token bigram occurring somewhere in the signed message. Under the single canonical final-vertex presentation there are three such bigram-token hits across 54 triples: p24 **NUMBERS ARE**, p35 **EMPTY EPIPHANY**, and p38 **THE ROAD**.
 
-**Decision:** the mayfly triangle now has both a source-fixed sign/order and a source-typed local consumer. Printed page order and the terminal p26 mark select the final vertex, lock the oriented packet `[+e,-g,-A]`, and validate the fixed H readout as `[page,-mark]`. This materially strengthens the state-serialization interpretation without recovering body plaintext. The next useful step is to ask what source-visible object receives the resulting page/state packet; do not regain freedom by switching triangle vertex, sign, H input order or a different linear transform.
+**Decision:** the mayfly triangle now has a source-fixed sign/order, a source-typed local H consumer, and a concrete body receiver. Printed page order and the terminal p26 mark select the final vertex, lock the oriented packet `[+e,-g,-A]`, validate the fixed H readout as `[page,-mark]`, and land at p26 offset16, whose manuscript-unique descriptor is `[g,B,g]`. Standard DH then recovers `b=15`. This materially advances the route from artwork/count structure into an original ciphertext operand without claiming plaintext. The next useful test must start from this frozen p26 word or recovered `b`; do not regain freedom by switching triangle vertex, sign, H input order, coordinate origin, or a different linear transform.
 
 Reproduction: `sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs`.
 
