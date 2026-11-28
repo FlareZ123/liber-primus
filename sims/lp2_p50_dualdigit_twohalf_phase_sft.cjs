@@ -70,6 +70,22 @@ const secondResidues=new Set(halves[1].ev.map(x=>x&255));
 const repeatedOriginalCells=[...firstResidues].filter(x=>secondResidues.has(x));
 console.log('Distinct source table residues first/last/shared:',
   firstResidues.size,secondResidues.size,repeatedOriginalCells.length);
+// Resampling the same table cell in both chronological halves is a dependence,
+// NOT a fresh-source control. Exclude every cell appearing in the opposite half
+// before rescoring, preventing any phase candidate from reusing a cell across
+// source halves; this tests transfer to 33 previously unseen table residues.
+for(let n=0;n<2;n++){
+  const opposite=new Set(halves[1-n].ev.map(i=>i&255));
+  const clean={...halves[n],
+    ev:halves[n].ev.filter(i=>!opposite.has(i&255)),
+    changes:halves[n].changes.filter(x=>!opposite.has(x.pos&255))};
+  const ranks=phaseRows(clean,tokens).rows;
+  const phase0=ranks.find(x=>x.phase===0);
+  console.log('TABLE-CELL-DISJOINT',JSON.stringify({
+    half:clean.name,eventCount:clean.ev.length,updateCount:clean.changes.length,
+    phase0Rank:ranks.indexOf(phase0)+1,source:phase0,best:ranks[0]
+  }));
+}
 console.log('Source letters:',gp.length,'equal adjacent events:',ev.length,
   'nonzero interior gap updates:',changes.length);
 console.log('Unshifted original-table 2-field phase-half results:\n'+JSON.stringify(summaries,null,2));
