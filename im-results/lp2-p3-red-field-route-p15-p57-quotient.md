@@ -240,6 +240,10 @@ The signed-word labels on arbitrary mod29 pairs should not be overcounted: every
 
 Reproducer: [`sims/lp2_p3_q_signed2016_map_path_sft.cjs`](../sims/lp2_p3_q_signed2016_map_path_sft.cjs).
 
+## Q-selected HELLO..MEANING interval does not directly key terminal plaintext
+
+A prospective first cipher-consumer test of the held-out p54 nine-red field output `[0,20]` has now used precisely the authenticated 2016 words **HELLO through MEANING** as a source-selected key interval. On the original directly attached **p54 black223+p55 76=299** runes, four frozen GP29 additive variants used (i) the actual 21 signed words encoded as GP84, and (ii) the 21 canonically interpreted p49 table bytes modulo29; each under the two historical ± signs and phase0. All four exact original inverses have IoC **0.03454–0.03486**, against a minimum **0.05562** across1,177 matched solved-native GP299 windows, and no contiguous prose. Full299 source-native ciphertext plants replay exactly. The p54 field state remains a conditional navigation identity, **not a recovered additive cipher key or plaintext**. [Pretarget lock](../workplace/lp2-p54-q-hello-meaning-signed-interval-body-pretarget.md) · [complete original gate](lp2-p54-q-signed21-hello-meaning-body-gate.md) · [SFT](../sims/lp2_p54_q_signed21_body_additive_sft.cjs).
+
 ## The DH pair self-closes under the already-used H grammar
 
 The canonical `DH` readout also admits a target-free state check using the same two-value H operation already established elsewhere in the manuscript:
