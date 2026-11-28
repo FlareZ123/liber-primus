@@ -386,6 +386,95 @@ assert.deepEqual(p31ExactKeyHits, [
   { page: 33, start: 116, sign: -1, targetIndex: 32, target: "YOU" },
 ]);
 
+// Coupled source-only serializer charge. The family shares one W1 field
+// between the two page keys, chooses p30 x from the signed title-length H4,
+// p31 u/v as distinct literal W1 fields, and p31 w from H4(W1). Charge both
+// additive directions and every consecutive authenticated [4,3] source pair.
+const titleLengths = [state.q, 1, state.q, state.K];
+const titleH = h4(titleLengths);
+assert.deepEqual(titleH, [state.K, mod29(-state.e), state.g, state.a]);
+const W1 = [mod29(-state.g), mod29(state.K - state.b), mod29(-state.b), mod29(state.K + state.b)];
+assert.deepEqual(W1, [24, 16, 14, 17]);
+const W1H = h4(W1);
+assert.deepEqual(W1H, [mod29(state.g + state.K), state.K, mod29(state.a - state.g), aK]);
+
+const source43Pairs = [];
+for (let index = 0; index + 1 < sourceWords.length; index += 1) {
+  if (sourceWords[index].length === 4 && sourceWords[index + 1].length === 3) {
+    source43Pairs.push({
+      index,
+      left: sourceWords[index],
+      right: sourceWords[index + 1],
+    });
+  }
+}
+assert.deepEqual(source43Pairs.map((entry) => [entry.index, entry.left.word, entry.right.word]), [
+  [23, "ROAD", "AND"],
+  [30, "SEEK", "AND"],
+]);
+
+const jointSerializerHits = [];
+let jointSerializerCases = 0;
+for (let xIndex = 0; xIndex < titleH.length; xIndex += 1) {
+  for (const xSign of [1, -1]) {
+    const x = mod29(xSign * titleH[xIndex]);
+    for (let uIndex = 0; uIndex < W1.length; uIndex += 1) {
+      for (let vIndex = 0; vIndex < W1.length; vIndex += 1) {
+        if (uIndex === vIndex) continue;
+        for (let wIndex = 0; wIndex < W1H.length; wIndex += 1) {
+          const key30 = [x, W1[vIndex], mod29(-x), x];
+          const key31 = [W1[uIndex], W1[vIndex], W1H[wIndex]];
+          for (const direction30 of [-1, 1]) {
+            for (const direction31 of [-1, 1]) {
+              for (const pair of source43Pairs) {
+                jointSerializerCases += 1;
+                const out30 = p30Receiver.map((value, index) =>
+                  mod29(value + direction30 * key30[index])
+                );
+                const out31 = p31Receiver.map((value, index) =>
+                  mod29(value + direction31 * key31[index])
+                );
+                if (
+                  out30.every((value, index) => value === pair.left.values[index]) &&
+                  out31.every((value, index) => value === pair.right.values[index])
+                ) {
+                  jointSerializerHits.push({
+                    xIndex,
+                    xSign,
+                    uIndex,
+                    vIndex,
+                    wIndex,
+                    key30,
+                    key31,
+                    direction30,
+                    direction31,
+                    sourcePairIndex: pair.index,
+                    targets: [pair.left.word, pair.right.word],
+                  });
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(jointSerializerCases, 3072);
+assert.deepEqual(jointSerializerHits, [{
+  xIndex: 3,
+  xSign: 1,
+  uIndex: 3,
+  vIndex: 2,
+  wIndex: 0,
+  key30: [state.a, mod29(-state.b), state.p, state.a],
+  key31: [mod29(state.K + state.b), mod29(-state.b), mod29(state.K + state.g)],
+  direction30: -1,
+  direction31: -1,
+  sourcePairIndex: 30,
+  targets: ["SEEK", "AND"],
+}]);
+
 const result = {
   status: "PASS",
   classification:
@@ -412,6 +501,16 @@ const result = {
     key: p31Key,
     keyShell: p31KeyShell,
     exactKeyManuscriptHits: p31ExactKeyHits,
+  },
+  jointSerializerCharge: {
+    titleH,
+    W1,
+    W1H,
+    familySerializers: 8 * 12 * 4,
+    source43Pairs: source43Pairs.map((entry) => [entry.index, entry.left.word, entry.right.word]),
+    configurations: jointSerializerCases,
+    hits: jointSerializerHits,
+    note: "finite post-discovery charge, not a discovery-wide probability",
   },
   counts: {
     completeFourRuneWords: canonical.filter((word) => word.values.length === 4).length,
