@@ -277,3 +277,8 @@ Do not spend compute fitting additional free-form keys to these eleven known tar
 - `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`
 - `im-results/lp2-p6-p41-verify-centerF-family.md`
 - `im-results/lp2-p6-p42-openpgp-k1f-selector.md`
+
+
+### Checksum-completed title-tape refinement negative
+
+A separately frozen checksum-completed coordinate family excludes the simplest literal refinement: 176 laws built from cyclic reads of `T`, companion `D`, `sigma`, or `T-D`, with all 11 phases, both directions/signs, and the final coordinate forced by `sigma`. None recovers the 11 fitted keys; the best law gets at most one exact page key and 7/50 coordinates. Thus the checksum positive does not imply a title-tape coordinate serializer. [Frozen-family negative](lp2-p6-checksum-completed-title-tape-negative.md).
