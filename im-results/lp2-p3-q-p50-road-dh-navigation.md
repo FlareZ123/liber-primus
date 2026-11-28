@@ -130,6 +130,36 @@ ROAD is the only one whose row stride equals the independently derived p3 coeffi
 Supporting finite-family reproducer:
 [`sims/lp2_p3_q_p50_road_red_path_sft.cjs`](../sims/lp2_p3_q_p50_road_red_path_sft.cjs).
 
+### Full 840-state functional graph
+
+The ROAD rule has a natural uniform extension to every Q exponent:
+
+```text
+f(k) = k + table[k mod29]  (mod840)
+```
+
+where `k mod29` is the signed-word/table address supplied by the Q-discrete-log column.
+
+The complete canonical-base60 map has eight cycles: seven of length4 and one of length54. The 54-cycle has a large 753-state basin, so **eventual entry into that basin is weak evidence**.
+
+Cycle membership is more selective. Four distinct printed nonzero red residues lie directly on cycles, and all four lie on the same 54-cycle:
+
+```text
+from p39 start:
+step  0  k516 [17,23] = THE / ROAD       p39 red
+step  1  k603 [20,23] = MEANING / ROAD   p7 red
+step  7  k456 [15,21] = WORDS / IS       p6 red
+step 19  k748 [25,23] = THEIR / ROAD     p15-second = solved p57 red
+... 54 steps total, then back to k516
+```
+
+Thus the uniform dlog-coordinate walk itself reaches the solved/Q-defining p57 residue without switching to the separate plain-Q-output representation.
+
+The matched historical-base59 map has only three cycles (lengths14,14,53) and **no printed red residue lies on any base59 cycle**. This is a finite radix discriminator. It is still post-discovery structural evidence; the dominant base60 basin and the prior visibility of p39/p7 prevent treating the cycle enrichment as a discovery-wide probability.
+
+Full graph reproducer:
+[`sims/lp2_q_dlog_table_functional_graph_sft.cjs`](../sims/lp2_q_dlog_table_functional_graph_sft.cjs).
+
 ## Independent one-step entry: plain Q uniquely exposes HELLO / MEANING
 
 The solved-p56-selected **plain Q** map supplies a separate one-step source/table transition. It must be kept distinct from the Q-discrete-log ROAD walk above.
