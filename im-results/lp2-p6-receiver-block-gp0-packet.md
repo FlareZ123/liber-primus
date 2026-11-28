@@ -86,6 +86,10 @@ p40 start216  -> [13,16,26,12].
 
 Only start71 equals the literal p6 packet. This supplies an aggregate tie-break independent of the separate p6 address71 route and without using `GP0(PATHS)`.
 
+**Later chronological cross-holdout.** This p40 candidate set and start71 selection were already present in commit `59f78d11810630de64cee1924478f5fe33c0b9f2` at 10:00:11Z. Four minutes later, the independently developed chapter-rubric sum→product route first appeared. Its terminal p40 first-black word has `(sum,product)=(27,3)`: exactly the two GP0 residues rejected here, while this checksum retains25. Across all 53 original black words on p40, that unordered `{3,27}` pair occurs once, on the route-selected first black word. This strengthens cross-structure coherence without changing this report's evidence boundary: the connection was recognized after both analyses and still supplies no ordered full rune key.
+
+Cross-reproducer: `sims/lp2_p40_route_rejected_residue_crossholdout_sft.cjs`.
+
 P32 remains unresolved by this checksum: its two residue/arity candidates at starts1 and30 both have GP0=5, so the existing first-full-stop endpoint is still needed to choose start30.
 
 ## Finite p6-visible family charge

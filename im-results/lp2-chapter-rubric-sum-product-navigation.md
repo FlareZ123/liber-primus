@@ -95,6 +95,17 @@ The route's already-frozen nine-operation census contains the direct GP-prime an
 **Decision:** historical Cicada material supports sums and products as operations in the creators' general toolbox, but it does **not** source-select this route's GP0 index register or its sum-to-product direction. Preserve the route as a specific structural candidate and its post-discovery state matches as conditional evidence; do not cite the 2012/2013 arithmetic precedents as authentication of the chapter rule.
 
 Archive qualification and pinned public-mirror objects: `resources/external/2012-2013-arithmetic-operation-register-note.md`.
+## Chronological p40 cross-holdout: the route names both p6-rejected residues
+
+A new cross-analysis check has asymmetric discovery order. The p6 all-block receiver checksum was committed at `59f78d11810630de64cee1924478f5fe33c0b9f2` on **2026-11-28 10:00:11Z**, before this chapter route's first commit `4d25c98a774f5da4561fc11b9895efea80ce1303` at **10:04:11Z**. The earlier p6 analysis fixed a p40 residue/arity candidate set with GP0 values `{3,25,27}` at starts `{13,71,216}` and independently selected start71 / GP0=25 from its four-block checksum.
+
+The later chapter route terminates on p40's first post-rubric black word `APXYH = [24,13,14,26,8]`, whose frozen `(IN,OUT)` is `(27,3)`. Thus its two terminal values are **exactly the two p6 receiver residues rejected before the route existed**, leaving the p6-selected residue25 as the complement.
+
+This is not a loose same-length coincidence. P40 contains **53 genuine black words** after the red opener. Recompute GP0 sum and product for every one: exactly **one** has unordered pair `{3,27}`, and it is the first post-rubric word at start8. There are eight length-5 black words, so it is also unique inside the route's earlier same-length control pool. Conditional on a target unordered pair of distinct GP29 residues fixed in advance, the full residue-pair space is `C(29,2)=406`; the observed complement is one member. These figures are conditional diagnostics only—do not multiply them into an authorship probability.
+
+**Consequence:** this is the route's strongest chronological cross-holdout so far. It independently couples the terminal chapter selector to a p6 p40 receiver decision that predates the navigation hypothesis. It still does not provide the missing ordered rune-key serializer or recover unknown plaintext, so promotion to a decipherment mechanism remains gated on a source-selected receiver operation.
+
+Reproducer: `sims/lp2_p40_route_rejected_residue_crossholdout_sft.cjs`.
 ## Decision for the solve frontier
 
 This **provisional candidate is materially more operational than a visual theme**: it specifies a finite original-cipher input class, two exact field operations, a deterministic graph, one unique start at book opener p0, five reproducible hops and a plausible final *artifact class*—the numeric table on p50. Unlike a fitted key shell, it requires **no comparison to preselected 2016 signed prose or any guessed LP2 plaintext**. The same route can be checked by a human from original pages.
