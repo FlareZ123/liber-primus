@@ -7,6 +7,8 @@ function load(p){return fs.readFileSync(path.join(ROOT,p),'utf8');}
 function json(p){return JSON.parse(load(p));}
 const N=29, SYM='0123456789abcdefghijklmnopqrs';
 const ALPHA=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','ING','OE','D','A','AE','Y','IA','EA'];
+if(process.env.Q8_GP21==='NG')ALPHA[21]='NG';
+if(process.env.Q8_GP27==='IO')ALPHA[27]='IO';
 const native=json('resources/external/relikd-solved-gp29-native-v1.json');
 const planted=json('im-results/lp2-q8-seven-crib-conditional-chart-recovery.json');
 const index=new Map(native.runes.map((r,i)=>[r,i]));
@@ -167,6 +169,7 @@ for(let plant=0;plant<2;plant++){
 }
 function countwins(a,b){let w=0,t=0;for(const x of outputs){if(x.scores[a]>x.scores[b]+1e-8)w++;else if(Math.abs(x.scores[a]-x.scores[b])<=1e-8)t++;}return {wins:w,ties:t,total:outputs.length};}
 const summary={status:'true action only, no phase oracle, no original unknown LP2; synthetic phase-masked solved-native controls',
+  rune_latin_mapping:{gp21:ALPHA[21],gp27:ALPHA[27]},
   sources:{native:'resources/external/relikd-solved-gp29-native-v1.json',charts:'im-results/lp2-q8-seven-crib-conditional-chart-recovery.json',
     general_language:'Gibran Gutenberg 58585 + Emerson Gutenberg 2944 + leave-one-source-out solved native; fixed unknown-word mass 0.04, bigram backoff 12'},
   controls:outputs.length,word_groups:outputs.reduce((s,x)=>s+x.groups,0),runes:outputs.reduce((s,x)=>s+x.runes,0),
