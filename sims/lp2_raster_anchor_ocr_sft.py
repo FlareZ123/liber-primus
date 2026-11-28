@@ -130,6 +130,42 @@ def compare_page(visual,expected):
     return ctr,hits,dp[n][m]
 
 
+
+def source_shaped_joined_doublet(item, anchors):
+    """Decode touching rune pair with no canonical-word, dictionary or crib input.
+
+    The two glyphs share one connected ink component. Their x-axis union is
+    matched using the original 29 separately sourced glyph anchor silhouettes.
+    Candidate x-shift is fixed by the rightmost ink edge. Charge all 841 pairs,
+    and require a low error and a clear runner-up margin before accepting.
+    """
+    if item['width']<60:
+        return None
+    w=item['width']
+    b=item['bits']
+    area=b.bit_count()
+    scores=[]
+    for left in range(29):
+        a=anchors[left]
+        for right in range(29):
+            z=anchors[right]
+            dx=int(w-z['width'])
+            if dx<0 or dx>a['width']+3 or a['width']>w+4:
+                continue
+            if abs(w-(a['width']+z['width']))>9:
+                continue
+            combined=a['bits'] | (z['bits']>>dx)
+            symdiff=(b^combined).bit_count()
+            error=symdiff/(area+combined.bit_count()+symdiff)
+            scores.append((error,left,right,dx))
+    scores.sort()
+    if len(scores)<2:
+        return None
+    best,runner=scores[:2]
+    if best[0]>.055 or runner[0]-best[0]<.015:
+        return None
+    return best,runner[0]-best[0]
+
 def spacing_gate(visual):
     """Test a visible multi-pixel inter-glyph spacing channel.
 
@@ -237,6 +273,33 @@ def main():
     print('P41_ORIGINAL_GPOS9877',json.dumps(source_check))
     report['source_pixel_spacing']=spacing_gate(visual)
     print('SOURCE_PIXEL_SPACING',json.dumps(report['source_pixel_spacing']))
+    decomp_cache={}
+    merged=[]
+    for x in data:
+        if x['hash'] in decomp_cache:
+            candidate=decomp_cache[x['hash']]
+        elif x['hash'] in calls and (calls[x['hash']][0]<=.06
+                                 and calls[x['hash']][2]>=.01):
+            candidate=None
+            decomp_cache[x['hash']]=candidate
+        else:
+            candidate=source_shaped_joined_doublet(x,sources)
+            decomp_cache[x['hash']]=candidate
+        if candidate is None:
+            continue
+        (error,left,right,dx),margin=candidate
+        visual.append(dict(page=x['page'],x=x['x'],y=x['y'],
+                           width=sources[left]['width'],rune=left,
+                           distance=error,margin=margin))
+        visual.append(dict(page=x['page'],x=x['x']+dx,y=x['y'],
+                           width=sources[right]['width'],rune=right,
+                           distance=error,margin=margin))
+        merged.append(dict(page=x['page'],x=x['x'],y=x['y'],width=x['width'],
+                           first=GP[left],second=GP[right],separation=dx,
+                           distance=round(error,5),margin=round(margin,5)))
+    report['independently_read_joined_pairs']=merged
+    print('CONNECTED_RUNE_DOUBLETS',len(merged))
+    print('CONNECTED_RUNE_DOUBLET_EXAMPLES',json.dumps(merged[:16]))
     canonical=folder/'lp2-corpus.json'
     if canonical.exists():
         book=json.loads(canonical.read_text(encoding='utf-8'))
