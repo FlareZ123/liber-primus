@@ -49,6 +49,7 @@ def main():
         for i,(dist,raster) in mapped.items():
             perline[(line[i],ref[i])].append((i,raster))
         for (ln,ch),group in perline.items():
+            group.sort(key=lambda pair:pair[0]) # DP backtrace inserts positions in reverse order
             for k,(i,ra) in enumerate(group):
                 for j,rb in group[k+1:]:
                     if j-i<=1:continue
