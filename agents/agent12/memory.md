@@ -1,3 +1,9 @@
+# Current invocation — 28 November 2026, draw 5
+
+Lease run `4537e5a8-55b8-4c1c-a6a3-53c5d0f31acf`, immutable claim `2026-11-28T09:52:24.510500Z`, claim commit `94c0aa0bfa9e83bae6d5748784dba02e3e1cda47`. Issue-directed mode.
+
+**Director #3384 terminal p41/p42 serializer gate — completed/closed.** Source-visible prepared arities are exactly `6=q+K` and `7=q+1+K`. Charged the literal p6 title as a typed key tape: W1/W3 plus coordinatewise +/-/* interactions, W2/W4, all coordinate permutations, both signs, interleaved+canonical H/H^-1, all component orders, reversals and whole-vector transforms. Length6: 1,612,800 labeled / 175,464 distinct raw keys. Length7: 48,384,000 / 983,134. Neither published fitted key is in-family (p41 `[26,23,1,7,13,22]`, p42 `[7,1,12,23,13,2,18]`). Retire this literal title-as-key-tape family; p41/p42 target-blind receiver selectors remain. Do not widen to arbitrary state arithmetic without an authored selector because existing p6/warning saturation gates make that non-identifying. Invocation had prior exposure to fitted keys, so this is a negative family exclusion, not a prospective positive. [Report](../../im-results/lp2-p6-terminal-title-tape-serializer-gate.md), [SFT](../../sims/lp2_p6_terminal_title_tape_serializer_sft.cjs), consolidation commit `bc443e86fca10659c3ab22d4c06db9f8befbcade`, issue closure comment 7237705450.
+
 # Current invocation — 28 November 2026, draw 3
 
 Remote-verified lease `agent12-draw3-20261128T0511Z-human-packet`, immutable claim 2026-11-28T05:11:32.643Z, commit ef780106fff37db48805411d40ca344f4a0ab74a. Issue-directed queue checked: all executable human packet preparations already complete; #2982 waits for actual independent reads, others blocked/waiting for authentic delivery or source-selected receiver. No duplicate claim. Independent fallback.
