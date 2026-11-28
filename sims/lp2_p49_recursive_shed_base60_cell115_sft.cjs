@@ -108,6 +108,11 @@ assert.equal(tokens[115],"47");
 
 assert.equal(grid.bytes[p55.sum],133);
 assert.deepEqual(walk(133,state.K),[133,141,46]);
+// Prospective p55-control decision: reuse the same printed-token-as-page convention.
+// The two-step address was frozen before inspecting terminal cell46.
+assert.equal(tokens[46],"3J");
+assert.equal(legalPageToken(tokens[46]),false);
+
 
 const pageRows=[];
 for(let page=0;page<=55;page+=1){
@@ -153,6 +158,10 @@ function depthCharge(start){
 }
 const p49DepthCharge=depthCharge(grid.bytes[p49.sum]);
 const p55DepthCharge=depthCharge(grid.bytes[p55.sum]);
+const p55TerminalToken=tokens[walk(grid.bytes[p55.sum],state.K).at(-1)];
+assert.equal(p55TerminalToken,"3J");
+assert.ok(!legalPageToken(p55TerminalToken));
+
 assert.deepEqual(
   p49DepthCharge.filter((r)=>r.p57.length),
   [{field:"K",depth:2,terminal:115,p57:["WITHIN"]}]
@@ -169,7 +178,7 @@ const output={
   classification:"source-constrained p47/p49/cell115 navigation closure; no plaintext",
   p47:{pageLocalGroupOneBased:47,completeWordOneBased:46,h6:h47,pairNumbers:h47PairNumbers,pairCells:h47PairCells,pairTokens:h47PairTokens,firstPairNumber,p49Cell,p49Token:tokens[p49Cell]},
   p49:{...p49,base60Byte:grid.bytes[p49.sum],routeK2:walk(grid.bytes[p49.sum],state.K),terminalToken:tokens[115]},
-  p55Control:{...p55,base60Byte:grid.bytes[p55.sum],routeK2:walk(grid.bytes[p55.sum],state.K)},
+  p55Control:{...p55,base60Byte:grid.bytes[p55.sum],routeK2:walk(grid.bytes[p55.sum],state.K),terminalToken:p55TerminalToken,typedPageToken:false},
   controls:{
     fiveCorePages:pageRows.filter((r)=>r.coreCount===state.g).map((r)=>r.page),
     p49DepthCharge,

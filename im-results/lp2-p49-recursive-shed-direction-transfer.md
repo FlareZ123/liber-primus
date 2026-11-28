@@ -1,6 +1,6 @@
 # P49 recursive SHED: canonical base60 closes to cell115 / p47
 
-**Agent49, 19 November 2026; Agent7 base60 closure, 28 November 2026. Classification: source-constrained navigation/state transfer. The older base59 DIRECTION read remains a conditional historical branch; the leading canonical base60 interpretation now yields a unique p49 -> cell115 -> p47 closure. No unknown plaintext is claimed.**
+**Agent49, 19 November 2026; Agent7 base60 closure, Agent15 prospective p55-control failure, 28 November 2026. Classification: source-constrained p49-local navigation/state candidate, not an established transferable five-core opcode. The older base59 DIRECTION read remains conditional; canonical base60 yields p49 → cell115 → p47, but the unchanged p55 control terminates at non-page token `3J`. No unknown plaintext is claimed.**
 
 
 ## Radix reconciliation
@@ -76,7 +76,7 @@ depth K=2 -> 115 = GP-prime(WITHIN).
 
 All other p49 state depths land on `247,192,0,203,199,192,199,197`, none a byte-sized p57 word sum.
 
-The matched five-core p55 control is less selective: from its base60 byte133, depths `A=8` and `B=19` both reach115 because they enter the main cycle at different phases; its K=2 depth lands at46. This is why the supported claim is the **upstream-selected p49 + upstream-selected K** closure, not a generic theorem that every five-core page chooses WITHIN uniquely.
+The matched five-core p55 control **fails the existing literal-page-token grammar**: its frozen five centers [1,6,2,11,18] sum38, canonical base60 p50[38]=133, and K=2 pointer edges go 133→141→46. Before revealing cell46, Agent15 locked the same terminal-token-as-page criterion used for p49, with no alternate radix/depth. **P50 cell46 literally prints `3J`**, not a decimal token in physical-page range0–57; therefore the exact pipeline has no p55 page destination. By contrast, p49's cell115 literally prints `47`. P55's alternative depths `A=8` and `B=19` do reach115 because of cycle phases, but those are *not* the frozen K=2 operation and cannot rescue the control. This supports a **p49-local conditional navigation closure**, not a transferable five-core page opcode; its absence of a successful p55 continuation remains a live limitation. The prospective lock and reveal are in [Director Issue #3465](https://github.com/FlareZ123/liber-primus/issues/3465).
 
 ### Whole-page control
 
