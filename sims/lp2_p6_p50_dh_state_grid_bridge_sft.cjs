@@ -75,6 +75,49 @@ assert.deepEqual(
   [e,g,a,K]
 );
 
+// Order the strict support edges by their starting prime rank. Give each fixed
+// support-line coordinate the sign of forward physical movement in row-major
+// screen coordinates (north/west negative, south/east positive).
+const orderedEdges=[
+  {name:'map',startRank:17,cells:[219,211]},
+  {name:'road',startRank:22,cells:[40,41]},
+  {name:'bewareFalse',startRank:38,cells:[126,182]},
+  {name:'falsePaths',startRank:39,cells:[2,26]},
+];
+function signedSupportCoordinate(edge){
+  const [i,j]=edge.cells;
+  const r0=Math.floor(i/cols),c0=i%cols,r1=Math.floor(j/cols),c1=j%cols;
+  if(c0===c1){
+    const sign=Math.sign(r1-r0);assert.notEqual(sign,0);
+    return M(sign*c0);
+  }
+  assert.equal(r0,r1);
+  const sign=Math.sign(c1-c0);assert.notEqual(sign,0);
+  return M(sign*r0);
+}
+const orientedLineVector=orderedEdges.map(signedSupportCoordinate);
+assert.deepEqual(orientedLineVector,[26,5,6,2]);
+
+function rotateLeft(values,n){return values.map((_,i)=>values[(i+n)%values.length]);}
+const dihedral=[];
+for(const reversed of [false,true]){
+  const base=reversed?titleH.slice().reverse():titleH.slice();
+  for(let rotation=0;rotation<4;rotation++){
+    for(const globalSign of [1,-1]){
+      const candidate=rotateLeft(base,rotation).map(x=>M(globalSign*x));
+      dihedral.push({reversed,rotation,globalSign,candidate,match:candidate.join(',')===orientedLineVector.join(',')});
+    }
+  }
+}
+const orientedMatches=dihedral.filter(x=>x.match);
+assert.deepEqual(orientedMatches,[{
+  reversed:false,
+  rotation:1,
+  globalSign:1,
+  candidate:[26,5,6,2],
+  match:true,
+}]);
+
 const bridge={
   a:cell(M(-e),K),
   b:cell(K,K),
@@ -136,7 +179,7 @@ console.log(JSON.stringify({
   p6State:state,
   title:{W1,W2,W3,W4,lengths,H:titleH},
   p50Shape:{rows,cols,cells,relations:['cols=2^e=A','rows=2^g','cells=2^A']},
-  independentSupportLines:{support,coordinateTuple:[support.map.coord,support.road.coord,support.bewareFalse.coord,support.falsePaths.coord],p6Tuple:[e,g,a,K]},
+  independentSupportLines:{support,coordinateTuple:[support.map.coord,support.road.coord,support.bewareFalse.coord,support.falsePaths.coord],p6Tuple:[e,g,a,K],orderedEdges,orientedLineVector,titleH,dihedralCharge:{tested:dihedral.length,matches:orientedMatches}},
   exactKColumnBridge:bridge,
   primitiveStateAddressCharge:{legal:legal.length,hits:hits.length,hitRows:hits},
   titleHAddressCharge:{legal:hFrame.length,hits:hFrameHits.length,hitRows:hFrameHits},
