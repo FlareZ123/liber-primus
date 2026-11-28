@@ -76,6 +76,19 @@ for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++)
  if(all[i].eval.join(',')===all[j].eval.join(','))collisions.push(
  [[all[i].page,all[i].span],[all[j].page,all[j].span]]);
 assert.deepEqual(collisions,[[[15,1],[57,0]]]);
+// Exhaust the weaker, one-coordinate carrier relation across all 18 spans.
+// Only four pairs share a constant; three of these are cross-page and they
+// exactly exhaust the independently typed page-map/DH/solved-page bridges.
+const constantCollisions=[];
+for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++)
+ if(all[i].eval[0]===all[j].eval[0])
+  constantCollisions.push([[all[i].page,all[i].span],[all[j].page,all[j].span]]);
+assert.deepEqual(constantCollisions,[
+ [[3,0],[3,1]],
+ [[6,0],[8,0]],
+ [[15,1],[57,0]],
+ [[27,0],[40,0]]
+]);
 // Charge every field coefficient pair (r,t) in GF29^2 without fitting an
 // original plaintext or changing any selected red span contents/coordinates.
 const census=[];
@@ -100,6 +113,29 @@ assert.deepEqual(census.map(x=>x.count),[
 ]);
 assert.deepEqual(census[0].hits.map(x=>[x.r,x.t]),[[3,8]]);
 assert.deepEqual(census[1].hits,[]);
+// Exact p15-second↔p57 equality holds for only two entire monic field
+// presentations. Charge the alternate ring without changing any operands:
+// even under a generously adapted coefficient-2 factor, the natural product
+// with the untouched first p15 red span no longer gives (p,A).
+const quotientAlternatives=[];
+for(let r=0;r<29;r++)for(let t=0;t<29;t++){
+ const equal=evaluate(p15b,r,t).join(',')===evaluate(p57,r,t).join(',');
+ if(!equal)continue;
+ const physicalFactor=[mod(-2*t),mod(-2*r),2];
+ const w=difference.slice(),Q=Array(difference.length-2).fill(0);
+ for(let i=Q.length-1;i>=0;i--){
+  const scale=mod(w[i+2]*15);Q[i]=scale;
+  for(let j=0;j<3;j++)w[i+j]=mod(w[i+j]-scale*physicalFactor[j]);
+ }
+ assert.deepEqual(w.slice(0,2),[0,0]);
+ quotientAlternatives.push({r,t,physicalFactor,Q,fieldQuotient:evaluate(Q,r,t),
+  fieldFirstP15:evaluate(firstP15,r,t),
+  fieldProduct:mulField(evaluate(Q,r,t),evaluate(firstP15,r,t),r,t)});
+}
+assert.deepEqual(quotientAlternatives.map(x=>[x.r,x.t,x.fieldProduct]),[
+ [3,8,[DH.p,DH.A]],
+ [18,12,[0,21]]
+]);
 // The p3 triad also divides the polynomial difference of the p15 second
 // (11 rune) and solved p57 red opener (7 rune) with ZERO remainder.
 const p15b=picked['15b'],p57=picked['57'],divisor=p3.raw;
@@ -115,6 +151,23 @@ const recomposed=Array(p15b.length).fill(0);
 for(let i=0;i<quotient.length;i++)for(let j=0;j<divisor.length;j++)
  recomposed[i+j]=mod(recomposed[i+j]+quotient[i]*divisor[j]);
 assert.deepEqual(recomposed,difference);
+// The nine-rune exact quotient has the same physical rune arity as p15's
+// OTHER red span (first red span length9); the two are independently selected
+// on original ink before reading any field numbers. Their natural GF29^2
+// product reproduces the authenticated 2013 DH public tuple (p,A)=(23,8).
+// This was found after the quotient had already been committed and is a
+// source-number structural consequence, not a plaintext prediction.
+const mulField=(x,y,r,t)=>[
+ mod(x[0]*y[0]+t*x[1]*y[1]),
+ mod(x[0]*y[1]+x[1]*y[0]+r*x[1]*y[1])
+];
+const firstP15=span(15,0).raw;
+assert.equal(firstP15.length,quotient.length);
+const quotientField=evaluate(quotient,3,8),firstP15Field=evaluate(firstP15,3,8);
+assert.deepEqual(quotientField,[17,24]);
+assert.deepEqual(firstP15Field,[24,6]);
+const dhProduct=mulField(quotientField,firstP15Field,3,8);
+assert.deepEqual(dhProduct,[DH.p,DH.A]);
 // Matched source-phase controls: rotate complete original red spans but preserve
 // every rune, length and field law. This is calibration, not an authorship p-value.
 const rotate=(x,i)=>x.slice(i).concat(x.slice(0,i));
@@ -137,7 +190,8 @@ const result={classification:'source-selected red-span GF29 quadratic quotient; 
  sourceSelectors:{p15PageMap:'6<->8;7 fixed',DHtitleLengthPair:[27,40],p15RemainderSumToPage:57,
   p15RedCandidates:2,p15UniqueBracket11:1,p57RedCandidates:1},
  DH,redEvaluations:E,onlyCompleteRedSpanCollision:collisions,
- census,phase,fixedPointPhases,
+ census,phase,fixedPointPhases,constantCollisions,quotientAlternatives,
+ quotientMultiplicativeDH:{quotientField,firstP15Field,product:dhProduct,matchedAuthenticatedFields:['p','A']},
  quotient:{dividendPage:15,dividendRedSpan:1,subtractPage:57,subtractRedSpan:0,
   divisorPage:3,divisorRedSpan:1,coefficientOrder:'printed GP0 powers from zero',
   keyCandidate:quotient,translit:quotient.map(x=>corpus.translit[x]).join(''),
