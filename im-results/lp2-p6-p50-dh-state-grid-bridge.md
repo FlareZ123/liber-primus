@@ -54,6 +54,17 @@ row p  -> B
 
 with all three readouts radix-invariant.
 
+## Independent physical selection of column K
+
+The strongest part of this bridge is that column2 was not chosen by the p6 overlay. Agent10's already frozen p50 route had independently projected from cell74 `(row9,col2)` straight to the surface at cell2, explicitly opening the literal physical column2 tunnel:
+
+~~~text
+cells 2,10,18,26,34,42,50,58,66,74
+~~~
+
+That pre-existing tunnel therefore already passes through cell18=`0F=15`, which the p6 state identifies as `b`. Separately, the origin-robust numeric movement subroute reaches cell186=`0J=19=B`, also in physical column2. Only afterward does the p6 state packet label the shared physical column as `K=2`.
+
+This removes the main post-hoc degree of freedom from the column choice. The state-role interpretation and the additional row `-e` observation remain post-discovery.
 ## Finite state-address charges
 
 These relations are post-discovery, so the relevant question is how saturated the obvious state-address family already is.
