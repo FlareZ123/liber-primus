@@ -331,6 +331,52 @@ function solve() {
     .map((p) => p.page);
   assert(JSON.stringify(remainder22) === JSON.stringify([6]), 'unique p-1 page-count remainder');
 
+  const selfIndexRunsByBase = [];
+  for (let base = 2; base <= 60; base++) {
+    const flags = [];
+    for (let page = 0; page <= 55; page++) {
+      flags.push(Math.floor(countByPage.get(page) / base) === page);
+    }
+    const runs = [];
+    let start = null;
+    for (let page = 0; page <= flags.length; page++) {
+      if (flags[page] && start === null) start = page;
+      if ((page === flags.length || !flags[page]) && start !== null) {
+        runs.push([start, page - 1, page - start]);
+        start = null;
+      }
+    }
+    const max = runs.length ? Math.max(...runs.map((r) => r[2])) : 0;
+    if (max >= 2) selfIndexRunsByBase.push({ base, max, runs: runs.filter((r) => r[2] === max) });
+  }
+  const base29SelfIndex = selfIndexRunsByBase.find((x) => x.base === 29);
+  assert(
+    JSON.stringify(base29SelfIndex) === JSON.stringify({ base: 29, max: 4, runs: [[6, 9, 4]] }),
+    'base29 self-index run',
+  );
+  assert(
+    selfIndexRunsByBase.filter((x) => x.max >= 4).length === 1,
+    'base29 must be sole radix 2..60 with a four-page self-index run',
+  );
+  const p6p9 = [6, 7, 8, 9].map((page) => {
+    const count = countByPage.get(page);
+    return [page, count, Math.floor(count / 29), count % 29];
+  });
+  assert(
+    JSON.stringify(p6p9) === JSON.stringify([
+      [6, 196, 6, 22],
+      [7, 208, 7, 5],
+      [8, 255, 8, 23],
+      [9, 268, 9, 7],
+    ]),
+    'p6-p9 base29 self-index values',
+  );
+  const p6p9RemainderH = h4(p6p9.map((row) => row[3])).map((x) => mod(x));
+  assert(
+    JSON.stringify(p6p9RemainderH) === JSON.stringify([15, 11, 28, 0]),
+    'p6-p9 remainder H packet',
+  );
+
   const nativeWords = (lp1.match(/[A-Z]+/g) || [])
     .map((word) => encode(word))
     .filter(Boolean);
@@ -401,6 +447,9 @@ function solve() {
       unique_consecutive_red_triple: redTriples,
       p6_count_base29: base29String(196),
       pages_with_remainder_p_minus_1: remainder22,
+      base29_self_index_p6_p9: p6p9,
+      base29_self_index_remainder_h: p6p9RemainderH,
+      self_index_radix_control_2_to_60: selfIndexRunsByBase,
     },
     fixed_width_keys: {
       raw: keys.raw,
