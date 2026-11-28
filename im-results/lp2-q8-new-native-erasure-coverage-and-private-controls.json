@@ -847,12 +847,13 @@
     }
   ],
   "source_input_blob_shas": {
-    "sims/lp2_q8_erasured_new_native_quotient_sft.cjs": "36954dde0529ce70f7ff8e718ddb24b7e3b21895",
+    "sims/lp2_q8_erasured_new_native_quotient_sft.cjs": "fa557698e8801e568d00eb2646b3c88f9162cf53",
     "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
     "im-results/lp2-q8-seven-crib-conditional-chart-recovery.json": "2546147d60d24d19c88dfaac7eba7c1273a3d89e",
     "im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json": "037beb1c7d6d3fa7d435bba7b44259f83fe71712",
     "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
   },
   "generated_utc": "2026-11-28T00:49:26.138Z",
-  "scope_note": "All new plants preserve exact source words, q8 vectors, and phases matched between shared and private chart worlds; private linear inconsistency is only for TRUE supplied phases, not existential over hidden phase guesses"
+  "scope_note": "All new plants preserve exact source words, q8 vectors, and phases matched between shared and private chart worlds; private linear inconsistency is only for TRUE supplied phases, not existential over hidden phase guesses",
+  "reproducer_verified": true
 }
