@@ -265,6 +265,65 @@ This is the best current human solve-path interpretation of the p15 state circui
 
 Reproducer: sims/lp2_p15_spiral_qblock_h4_state_sft.cjs.
 
+## Candidate matrix determinant/inverse bridge makes H4 fully held out
+
+Take the authored spiral residues and reshape the q=4 consecutive groups as a 4x4 matrix:
+
+~~~text
+22 21 19 17
+11  1 10  3
+20 22 25  7
+22 12 17 21
+~~~
+
+Its GF29 inverse is
+
+~~~text
+ 2  5  7  5
+19  4 15 26
+ 3  9  4  6
+15 28 14 11
+~~~
+
+Before B, b or e are known, lower red11 already predicts **eight fixed inverse entries**:
+
+~~~text
+row1 = [K,g,K+g,g]
+row2 column2 = q
+row3 columns3..4 = [q,a]
+row4 column4 = A^-1.
+~~~
+
+Charge all sixteen cyclic spiral starts and both directions while holding those eight matrix positions fixed. Exactly **1/32** inverse matrices matches: the authored red-origin forward traversal.
+
+The raw spiral matrix determinant is also **19**. Independently, the older p7 five-red-product right-circulant has determinant **19**. Interpreting that shared scalar as B passes the discriminating DH closure
+
+~~~text
+B^a mod p = 19^6 mod23 = 2 = K,
+~~~
+
+then fixes b=15, B^-1=26 and e=3. The complete inverse is consequently
+
+~~~text
+[K,g,K+g,g]
+[B,q,b,B^-1]
+[e,e+a,q,a]
+[b,-1,-b,A^-1].
+~~~
+
+With the state fixed this way **before H4 is consulted**, the entire sixteen-coordinate authored-spiral H4 tape becomes held out and matches exactly
+
+~~~text
+[g,K,A^-1,Kg | A,qg,A^-1,-b |
+ b-K,B^-1,p-g,-K | 1,g+B,F,-b].
+~~~
+
+The same 160 transform/direction/start charge against this complete predicted tape leaves only H4, forward direction, red-origin start.
+
+This is a useful separation of candidate operations: matrix inverse/determinant can recover/check state while H4 becomes a complete held-out structural prediction. It does **not** prove the manuscript instructs matrix inversion or determinant. A determinant-only 32-way cyclic/directional charge has four DH-closing presentations because of determinant symmetries; the independently solved spiral fixes the actual traversal. Count this as original-artifact matrix-state evidence, not a body decoder.
+
+Reproducer: sims/lp2_p15_spiral_determinant_p7_crossholdout_sft.cjs.
+
 ## Strongest causal gate: lower red11 + one grid scalar predicts the remaining p15 state
 
 The five-word interpretation above can be made substantially less circular. Hold the **entire upper red9 span out**. Read only the lower red11 descriptors
