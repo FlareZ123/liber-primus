@@ -167,16 +167,22 @@ step 21  p15 second red  k748 = solved p57 red
 
 The first two moves are the transient `236 -> 333 -> 516`; after that the walk follows the 54-cycle. The historical base59 walk starting from the same p15-first state **never reaches k748 before entering its own cycle**.
 
-There is also a direct manuscript-internal control. Only p15 and p33 contain two nonzero red spans. Charge both directions on both pages under both radices:
+There is also a direct manuscript-internal control. Only p15 and p33 contain two nonzero red spans. Charge the full natural family
 
 ```text
-p15 first  -> second : base60 21 steps; base59 no reach
-p15 second -> first  : no reach under either radix
-p33 first  -> second : no reach under either radix
-p33 second -> first  : no reach under either radix
+radix:          base60 / base59
+table origin:   zero-based / one-based
+direction sign: forward / backward
 ```
 
-Thus canonical p15 first→second is the **only same-page red-pair reachability** in this finite class. This closure, with p39→p7→p6 and the solved-p57 equivalence as waypoints, is the strongest structural consequence of the uniform dlog/table rule found in this run.
+over both ordered red pairs on both pages. Across all eight variants, there is exactly **one** same-page red-pair reachability:
+
+```text
+base60 + zero-based + forward:
+p15 first k236 -> p15 second k748 in 21 steps
+```
+
+Every other radix/origin/sign variant gives zero same-page pair hits; p15 reverse and both p33 directions are also null. Thus canonical p15 first→second is the **only same-page red-pair reachability** in this finite class. This closure, with p39→p7→p6 and the solved-p57 equivalence as waypoints, is the strongest structural consequence of the uniform dlog/table rule found in this run.
 
 The matched historical-base59 map has only three cycles (lengths14,14,53) and **no printed red residue lies on any base59 cycle**. This is a finite radix discriminator. It is still post-discovery structural evidence; the dominant base60 basin and the prior visibility of p39/p7 prevent treating the cycle enrichment as a discovery-wide probability.
 
