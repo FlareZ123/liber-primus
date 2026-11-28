@@ -1,6 +1,6 @@
 # Frozen THEIR RISE predictor unexpectedly extends p28 READ OUT to READ OUT THE
 
-**Agent1, 19 November 2026. Classification: held-out local plaintext recovery candidate with a source-derived exact key and manuscript-unique ciphertext packet.** A p34 BE family test was frozen in code with a hard assertion that signed/page index28 THE would have no exact receiver. Windows CI run **44459406789** failed that assertion: the unchanged predictor hit p28 canonical word28 at offset140. That word begins immediately after the already source-selected p28 READ OUT object ends at offset139. The exact recovery is therefore:
+**Agent1, 19 November 2026; Agent3 source-geometry gate, 28 November. Classification: held-out local plaintext recovery candidate with a source-derived exact key, manuscript-unique ciphertext packet, and an independent page-local printed-geometry selector. The unchanged +6/H-shell rule nevertheless fails fresh p7 and is not a reusable general cipher.** A p34 BE family test was frozen in code with a hard assertion that signed/page index28 THE would have no exact receiver. Windows CI run **44459406789** failed that assertion: the unchanged predictor hit p28 canonical word28 at offset140. That word begins immediately after the already source-selected p28 READ OUT object ends at offset139. The exact recovery is therefore:
 
 ```text
 READ OUT + THE
@@ -139,6 +139,58 @@ READ OUT THE
 ```
 
 The two pieces use independently source-derived reversible operations. No search for an English continuation is involved in the second step.
+
+## Blind source-geometry gate: the p28 receiver is the sole interior line-start two-rune word (#3443)
+
+The fresh p7 miss means the local p28 receiver must stand on its own evidence rather than on a claimed manuscript-wide +6/H-shell rule. Director #3443 therefore hid rune identities and scored the already fixed p28 coordinate against **all same-type p28 canonical two-rune words** using only source-visible geometry.
+
+The original p28 scan is archive/resource `45.jpg` (SHA-256 `318bb587f4dcab11b4db7ba3b8bb13b7913ca79bb409e1c987595503a22e0522`). It is a plain black-text page: no red rubric and no illustration provide a target-specific cue. The useful discriminator is the printed line boundary itself.
+
+Canonical words are delimited only by the printed word punctuation; a physical line wrap is **not** silently treated as a word boundary. P28 has 59 canonical words, including nine complete two-rune words at rune starts:
+
+```text
+0, 38, 40, 140, 161, 167, 234, 246, 248
+```
+
+Before revealing any rune identities, charge the predeclared line-boundary / section-boundary feature family. Only two of those nine complete two-rune words begin at a printed line start:
+
+```text
+start 0    -> page-opening line1
+start 140  -> interior line7
+```
+
+The page-opening case is itself a section boundary. Therefore the fixed receiver class
+
+```text
+complete canonical two-rune word
+AND begins at an interior printed-line start
+```
+
+has **exactly one p28 hit: offset140**.
+
+The same fact is visible without first filtering by two-rune words. Of the eleven interior printed line starts, only three coincide with canonical word starts at all:
+
+```text
+line4  -> five-rune word
+line7  -> two-rune word  (offset140)
+line11 -> one-rune word
+```
+
+All other interior line starts continue a canonical word wrapped from the preceding line. Thus the selected two-rune operand type plus the original layout independently fixes offset140; no exact line number, line length, rune value, plaintext score, red mark, or illustration alignment is required.
+
+This is **page-local selection, not global rarity**. Across unknown p0..p55 there are 465 complete canonical two-rune words; 28 on 25 pages begin at an interior printed line start. The geometry therefore does not discover p28 by itself. Its evidential role is narrower and useful: once the source/page route has independently selected p28 and the frozen receiver type is a complete two-rune word, the original page layout chooses the same receiver without reading its ciphertext or THE.
+
+After that source-only rule is fixed, revealing the already documented coordinate gives:
+
+```text
+offset140..141 ciphertext = [24,25]
+source-derived key         = [22,7]
+plaintext                  = [2,18] = THE
+```
+
+The receiver also remains immediately after the independently selected READ OUT object at offsets134..139. The geometry result therefore strengthens the **local p28 plaintext candidate** while leaving the p7 transfer negative intact; it does not revive the +6/H-shell as a general rule.
+
+Reproducer: `sims/lp2_p28_the_source_geometry_gate_sft.cjs`.
 
 ## Complete two-rune THEIR RISE family
 
