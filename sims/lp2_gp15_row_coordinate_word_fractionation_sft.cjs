@@ -375,6 +375,37 @@ for (let i = 0; i < chapterBounds.length; i++) {
     nativeWindows: windows, nativeMinIoc: minIoc});
 }
 
+
+// Finest obvious source frame: allow an independent fixed secret row-label
+// permutation on every physical page. IoC is permutation-invariant.
+const pageMinCache = new Map();
+function nativeMinIocForLength(n) {
+  if (pageMinCache.has(n)) return pageMinCache.get(n);
+  let minIoc = Infinity;
+  for (const [, words] of corpora) {
+    const result = exhaustiveRowMin(words.flat(), n);
+    minIoc = Math.min(minIoc, result.minIoc);
+  }
+  pageMinCache.set(n, minIoc);
+  return minIoc;
+}
+
+const pagePrivateRowGate = gp.pages
+  .filter((p) => p.page < 56 && p.indices.length)
+  .map((p) => {
+    const originalIoc = rowTapeStats(p.indices).ioc;
+    const nativeMinIoc = nativeMinIocForLength(p.indices.length);
+    return {page: p.page, n: p.indices.length, originalIoc, nativeMinIoc,
+      gap: nativeMinIoc - originalIoc};
+  });
+assert.equal(pagePrivateRowGate.length, 55);
+assert.ok(pagePrivateRowGate.every((x) => x.gap > 0));
+const closestPage = pagePrivateRowGate.slice().sort((a, b) => a.gap - b.gap)[0];
+assert.equal(closestPage.page, 55);
+assert.equal(closestPage.n, 76);
+assert.ok(Math.abs(closestPage.originalIoc - 0.0687719298245614) < 1e-15);
+assert.ok(Math.abs(closestPage.nativeMinIoc - 0.07087719298245614) < 1e-15);
+
 // Genuine creator-authentic p57 source spelling + reversible positives.
 const reference = read("resources/liber-primus/lp1-plaintext-reference.txt");
 const p57Text = reference.split("### 57\n")[1].trim();
@@ -418,5 +449,10 @@ console.log(JSON.stringify({
     controls: rowWindowBounds
   },
   chapterPrivateRowPermutationGate: chapterRowGate,
+  pagePrivateRowPermutationGate: {
+    pages: pagePrivateRowGate.length,
+    allBelowNativeEnvelope: pagePrivateRowGate.every((x) => x.gap > 0),
+    closest: closestPage
+  },
   positive: "p57 exact GP source + reversible vertical-row plants PASS"
 }, null, 2));

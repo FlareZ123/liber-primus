@@ -158,6 +158,8 @@ The original transcription contains eight nonempty dollar-delimited chapters of 
 
 All eight originals are strictly below the complete finite native-control envelope. Since IoC is unchanged by a bijective relabeling of the 15 rows, the same rejection holds even when each chapter gets its own arbitrary secret row permutation, plus arbitrary separator movement and arbitrary left/right-table changes.
 
+The same exhaustive test at the finest obvious source frame is even stronger: **all 55 nonempty unknown physical pages** have row-IoC below every same-length contiguous native-GP control window. The closest page is p55 (76 runes), with original row-IoC **0.06877193** versus finite-control minimum **0.07087719**. P49 (66 runes) is 0.05920746 vs0.06806527; all longer pages have larger gaps. Therefore even a different arbitrary fixed 15-row permutation on every physical page cannot produce the native-control row concentration.
+
 ## Exact length breakdown against the 149,072-word controls
 
 For the broader row-multiset family:
@@ -207,9 +209,9 @@ Established computational result:
 
 > Under the published 15-row GP chart, word-preserving decoders that retain each word's vertical-row multiset fail essentially every long original word; more strongly, **even with arbitrary separator movement**, any decoder that preserves the global literal vertical-row tape is incompatible with every sampled same-length native-GP control window on both adjacent-row equality and 15-symbol IoC.
 
-This materially narrows chart-coordinate cryptanalysis. It removes arbitrary per-position left/right substitutions, word-local side-bit fractionation, arbitrary within-word permutations of the fixed row tape, segmentation-changing transforms that alter only spaces/side bits while leaving row positions fixed, and even fixed secret row-label permutations globally or independently per authentic chapter.
+This materially narrows chart-coordinate cryptanalysis. It removes arbitrary per-position left/right substitutions, word-local side-bit fractionation, arbitrary within-word permutations of the fixed row tape, segmentation-changing transforms that alter only spaces/side bits while leaving row positions fixed, and even fixed secret row-label permutations globally, independently per authentic chapter, or independently per physical page.
 
-Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still use position/state-dependent row changes inside a chapter, move row coordinates across positions, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
+Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still use position/state-dependent row changes *inside a physical page*, move row coordinates across positions, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
 
 ## Reproduction
 
@@ -219,4 +221,4 @@ Run:
 node sims/lp2_gp15_row_coordinate_word_fractionation_sft.cjs
 ```
 
-The SFT reads only committed source/control files, asserts the exact 2,896-word / 12,956-rune original corpus, reconstructs the source-calibrated English controls, reproduces the full-book sequence/multiset counts, leave-one-out calibration and boundary-free row-tape repeat/IoC window bounds plus exhaustive eight-chapter row-IoC bounds, checks the independent TextBlob lexicon sensitivity, and round-trips two nontrivial solved-p57 positive transforms.
+The SFT reads only committed source/control files, asserts the exact 2,896-word / 12,956-rune original corpus, reconstructs the source-calibrated English controls, reproduces the full-book sequence/multiset counts, leave-one-out calibration and boundary-free row-tape repeat/IoC bounds plus exhaustive eight-chapter and 55-page row-IoC bounds, checks the independent TextBlob lexicon sensitivity, and round-trips two nontrivial solved-p57 positive transforms.
