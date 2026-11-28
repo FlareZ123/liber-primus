@@ -19,13 +19,19 @@ const study = function(read){
   }
   const a=layout(7),b=layout(23);if(a.cipher.length!==208||b.cipher.length!==213||a.words.length!==50||b.words.length!==46||a.lines.length!==10||b.lines.length!==10)throw Error("layout");
   const ord=Array.from({length:213},(_,i)=>i),mir=b.lines.slice().reverse().flat(),alignments=[["direct-first",ord.slice(0,208)],["direct-last",ord.slice(5)],["mirror-first",mir.slice(0,208)],["mirror-last",mir.slice(5)]];
-  const n=a.words.length,sizes=[...a.words,...b.words].map(w=>w.length),full=sizes.map(l=>{const ws=byLen.get(l);if(!ws)throw Error("no dictionary length "+l);return ws;});
-  function makeEdges(al,ca,cb,sign){const map=new Map();for(let i=0;i<208;i++){const j=al[i], [u,x]=a.positions[i],[v0,y]=b.positions[j],v=v0+n,k=u+":"+v;let e=map.get(k);if(!e){e={u,v,p:[]};map.set(k,e);}e.p.push([x,y,mod(ca[i]+sign*cb[j])]);}return [...map.values()];}
+  const n=a.words.length,sizes=[...a.words,...b.words].map(w=>w.length);
+  // Source page breaks cut the p6→p7 and p23→p24 groups.
+  function edgeCount(page,fromEnd){const chars=[...pages[page]].filter(c=>c!=='/'&&c!=='\n'&&c!=='\r');if(fromEnd)chars.reverse();let count=0;for(const c of chars){if(!glyph.has(c))break;count++;}return count;}
+  const prefix=edgeCount(6,true),suffix=edgeCount(24,false);
+  if(prefix!==1||suffix!==3||sizes[0]!==2||sizes.at(-1)!==4)throw Error("carry source changed");
+  const full=sizes.map((l,i)=>{const pre=i===0?prefix:0,post=i===sizes.length-1?suffix:0;const ws=byLen.get(l+pre+post);if(!ws)throw Error("no dictionary length "+(l+pre+post));if(!pre&&!post)return ws;const projected=new Map();for(const w of ws){const a=w.a.slice(pre,pre+l),key=a.join(",");if(!projected.has(key))projected.set(key,{...w,a});}return [...projected.values()];});
+  const lexicalSets=full.map(ws=>new Set(ws.map(w=>w.a.join(","))));
+  function makeEdges(al,ca,cb,sign,omitHeading){const map=new Map();for(let i=0;i<208;i++){const j=al[i];if(omitHeading&&j<16)continue;const [u,x]=a.positions[i],[v0,y]=b.positions[j],v=v0+n,k=u+":"+v;let e=map.get(k);if(!e){e={u,v,p:[]};map.set(k,e);}e.p.push([x,y,mod(ca[i]+sign*cb[j])]);}return [...map.values()];}
   function sig(w,e,node,sign){return String.fromCharCode(...e.p.map(([x,y,t])=>node===e.u?mod(sign*(t-w.a[x])):w.a[y]));}
   // Lexical domains plus one unrestricted wildcard. Each position has only
   // one counterpart, so wildcard letters can be chosen independently.
-  function solve(al,ca,cb,sign){
-    const edges=makeEdges(al,ca,cb,sign),N=sizes.length,adj=Array.from({length:N},()=>[]),uf=Array.from({length:N},(_,i)=>i);
+  function solve(al,ca,cb,sign,omitHeading){
+    const edges=makeEdges(al,ca,cb,sign,omitHeading),N=sizes.length,adj=Array.from({length:N},()=>[]),uf=Array.from({length:N},(_,i)=>i);
     const find=x=>{while(uf[x]!==x){uf[x]=uf[uf[x]];x=uf[x];}return x;};
     let dropped=0;
     for(const e of edges){const x=find(e.u),y=find(e.v);if(x===y){dropped++;continue;}uf[x]=y;adj[e.u].push([e.v,e]);adj[e.v].push([e.u,e]);}
@@ -51,20 +57,20 @@ const study = function(read){
     for(const e of edges)for(const [x,y,t] of e.p){const A=plain[e.u],B=plain[e.v];if(A[x]===null&&B[y]===null){A[x]=0;B[y]=mod(sign*t);}else if(A[x]===null)A[x]=mod(t-sign*B[y]);else if(B[y]===null)B[y]=mod(sign*(t-A[x]));else if(mod(A[x]+sign*B[y])!==t)conflict++;}
     for(const p of plain)for(let i=0;i<p.length;i++)if(p[i]===null)p[i]=0;
     const ap=a.positions.map(([w,p])=>plain[w][p]),bp=b.positions.map(([w,p])=>plain[w+n][p]);
-    let replay=0;for(let i=0;i<208;i++){const k=mod(ca[i]-ap[i]),j=al[i];if(mod(bp[j]-sign*k)===cb[j])replay++;}
-    const actualOov=plain.filter(p=>!dict.has(p.join(","))).length;
-    if(!conflict&&(replay!==208||actualOov<min))throw Error("bad optimum or replay");
-    const result={edgeCount:edges.length,components:roots.length,dropped,minOovLowerBound:min,exact:conflict===0,conflict,replay,actualOov,wildcardWordIds:wild.flatMap((yes,i)=>yes?[i<n?`p7:${i}`:`p23:${i-n}`]:[]),witness:plain.map(p=>p.map(i=>corpus.translit[i]).join(""))};
+    let replay=0,compared=0;for(let i=0;i<208;i++){const k=mod(ca[i]-ap[i]),j=al[i];if(omitHeading&&j<16)continue;compared++;if(mod(bp[j]-sign*k)===cb[j])replay++;}
+    const actualOov=plain.filter((p,i)=>!lexicalSets[i].has(p.join(","))).length;
+    if(!conflict&&(replay!==compared||actualOov<min))throw Error("bad optimum or replay");
+    const result={edgeCount:edges.length,components:roots.length,dropped,minOovLowerBound:min,exact:conflict===0,conflict,replay,compared,actualOov,wildcardWordIds:wild.flatMap((yes,i)=>yes?[i<n?`p7:${i}`:`p23:${i-n}`]:[]),witness:plain.map(p=>p.map(i=>corpus.translit[i]).join(""))};
     return result;
   }
   let seed=127031;function rand(m){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%m;}
-  const results=[];for(const [name,al] of alignments)for(const sign of [1,-1]){
-    const original=solve(al,a.cipher,b.cipher,sign);
+  const results=[];for(const [name,al] of alignments)for(const sign of [1,-1])for(const omitHeading of [false,true]){
+    const original=solve(al,a.cipher,b.cipher,sign,omitHeading);
     const truth=full.map(ws=>ws[rand(Math.min(ws.length,50))]);const ap=a.positions.map(([w,p])=>truth[w].a[p]),bp=b.positions.map(([w,p])=>truth[w+n].a[p]);const ca=ap.map(x=>mod(x+rand(29))),cb=bp.map(x=>mod(x+rand(29)));for(let i=0;i<208;i++)cb[al[i]]=mod(bp[al[i]]-sign*mod(ca[i]-ap[i]));
-    const plant=solve(al,ca,cb,sign);if(plant.minOovLowerBound!==0||!plant.exact||plant.replay!==208)throw Error("planted dictionary support failed");
-    results.push({name,sign,original,plant:{minOov:plant.minOovLowerBound,exact:plant.exact,replay:plant.replay}});
+    const plant=solve(al,ca,cb,sign,omitHeading);if(plant.minOovLowerBound!==0||!plant.exact||plant.replay!==plant.compared)throw Error("planted dictionary support failed");
+    results.push({name,sign,omitHeading,original,plant:{minOov:plant.minOovLowerBound,exact:plant.exact,replay:plant.replay,compared:plant.compared}});
   }
-  return{dictionarySize:dict.size,initialCandidateCount:full.reduce((s,d)=>s+d.length,0),wordSizes:sizes,results};
+  return{dictionarySize:dict.size,initialCandidateCount:full.reduce((s,d)=>s+d.length,0),wordSizes:sizes,carry:{p7Prefix:prefix,p23Suffix:suffix},results};
 };
 const result = study(p => fs.readFileSync(path.resolve(__dirname, '..', p), 'utf8'));
 process.stdout.write(JSON.stringify(result, null, 2) + '\n');
