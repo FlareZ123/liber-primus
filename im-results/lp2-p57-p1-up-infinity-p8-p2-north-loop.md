@@ -22,7 +22,7 @@ DIUINITY
 
 The exact two-letter center is therefore **IN**. This extends, rather than replaces, the older p57 DIVINITY lineage: prior work froze the first shed layer `DIUINITY -> IUINIT` and pursued its prime-sum/p50 consequences, but did not continue the literal shedding recursively to `UINI -> IN`.
 
-The local p57 control is useful. Applying the same recursive outer-pair shedding to all 20 solved p57 words yields center `IN` on exactly two words: **FIND** and **DIUINITY**. They are the two operative words in the same clause, `FIND THE DIUINITY...`. `WITHIN` itself also visibly ends in `IN`. Across the broader pinned solved-GP corpus, however, center-`IN` occurs 12 times in 735 words (FIND, THINC, DIUINITY, MIND and literal IN), so this is **local instruction redundancy, not a discovery-wide rarity claim**.
+The local p57 control is useful. Applying the same recursive outer-pair shedding to all 20 solved p57 words yields center `IN` on exactly two words: **FIND** and **DIUINITY**. They are the two operative words in the same clause, `FIND THE DIUINITY...`. `WITHIN` itself also visibly ends in `IN`. Across the broader pinned solved-GP corpus, however, center-`IN` occurs 12 times in 735 words (FIND, THINC, DIUINITY, MIND and literal IN), so the individual word hit is **local instruction redundancy, not a discovery-wide rarity claim**. The stronger complete-window control preserves source order: center-strip every adjacent three-word window inside each solved section. There are **717** such windows, and exactly **one** has centers `IN / THE / IN`: p57's consecutive **FIND / THE / DIUINITY** at word indices14–16. This is a post-discovery finite discriminator, not a blind authorship probability.
 
 The sentence then immediately says **AND EMERGE**, whose ordinary directional complement is **OUT**.
 
@@ -118,7 +118,7 @@ Thus `UP` truly chooses one member of a repeated upper/lower object pair. The or
 
 - p57 plaintext and terminal onion `[14,8,1]`;
 - prior p57 work established the first shed layer `DIUINITY -> IUINIT`; continuing the identical operation recursively gives `IUINIT -> UINI -> IN`;
-- across all 20 p57 words the only recursive center-`IN` words are FIND and DIUINITY; the broader solved-GP control has 12/735 center-`IN` words, so this is a local semantic control rather than global rarity;
+- across all 20 p57 words the only recursive center-`IN` words are FIND and DIUINITY; the broader solved-GP control has 12/735 center-`IN` words; across all 717 solved within-section three-word windows, p57 `FIND / THE / DIUINITY` is the sole window whose recursive centers are exactly `IN / THE / IN`;
 - existing chapter graph uses first-black SUM as IN and PRODUCT as OUT and has the exact reverse operator-order rival;
 - p8 first black is `[27,9,16]`, SUM23/PRODUCT2, and chapter OUT2 addresses p27 via IN2;
 - p1 center `H(right,left)=[1,13]=UP`, unique under the frozen orientation across the 23 even nonempty pages;
