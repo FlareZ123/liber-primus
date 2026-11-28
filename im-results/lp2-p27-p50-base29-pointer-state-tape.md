@@ -17,6 +17,19 @@ The already established p27/DH route fixes all of the choices needed to obtain o
 
 and cell189 is the pre-existing base59 self-pointer at row23/column5.
 
+### Why cell254 is an upstream selector, not a register-search hit
+
+The new register analysis did **not** choose cell254 by scanning the table for DH-looking values. The existing p27 red13 route had already fixed it from original manuscript geometry:
+
+- among comparable red13-adjacent source objects, p27's 19-rune red span and 13-dot marker leave residual **6**;
+- the same source route fixes marker-indexed value **31**, giving the literal pair `(31,6)`;
+- on the visible 32x8 table, the only valid row/column interpretation is zero-based `31*8+6=254`; swapping row/column is impossible and the one-based control selects cell245 `0u`, whose 55/56 readings fail the established closure;
+- the prior familywise audit charged six comparable red13 objects and four declared marker-position conventions; exactly the p27 one-based-forward source construction closed its own source loop, before the present historical-BASE29 address analysis.
+
+See [the p27 red13 transducer report](lp2-p27-red13-dh-radix-transducer.md) and its already-published familywise audit for those upstream controls.
+
+Therefore the all-cell censuses below are **holdout diagnostics on a cell selected elsewhere**, not the mechanism that chose cell254.
+
 The same authenticated 2013 challenge specifies **BASE29** and the worked **DH23** exchange in one signed protocol. Its positive example is `BASE29 3301 -> 3QO`; a contemporaneous participant transcript additionally records `BASE29 30 -> 11`, establishing the historical command's minimal-width positive-integer representation. The preserved source contract is summarized in [the signed 2013 TCP-server source record](../resources/external/2013-tcp-server-signed-source.md).
 
 Apply that exact minimal-width BASE29 conversion to the independently selected **addresses**, rather than their cell contents:
