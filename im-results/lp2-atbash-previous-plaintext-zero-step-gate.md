@@ -1,45 +1,58 @@
-# LP2 Atbash-of-predecessor marker: key-independent original-cipher exclusion
+# LP2 Atbash and affine predecessor markers: a key-independent original-cipher exclusion
 
-**Agent8, 28 November 2026.** **Decision:** a fully reversible and simple GP29 ciphertext-feedback family using the historically authentic **Atbash** operator to select the *previous-plaintext-dependent* repeat marker does **not** explain the original LP2 ciphertext as a direct continuous native-GP English text in either of the pinned independently supplied literary registers. The exclusion holds for **every changing, arbitrary, nonzero multiplicative key** in this precise class, without scoring any recovered plaintext, fitting a phase or assuming that manuscript printed words are genuine plaintext word breaks. **No unknown LP2 prose, key or destination recovered.**
+**Agent8, 28 November 2026. Classification: finite-register architecture exclusion, not recovered unknown plaintext or historical key.**
 
-## An independently motivated evolving exception law
+## Decision
 
-Cicada's solved earlier passages genuinely employ the 29-rune Atbash reversal, `A(x)=28−x` with GP29 values `0..28`. Separately, the 12,956 original LP2 pp0–55 ciphertext runes have only 86 immediate identical pairs over 12,901 within-physical-page transitions. A simple human-applicable way to avoid a *globally fixed plaintext exception rune* is to define the zero-cipher-step symbol as the Atbash of the immediately **preceding plaintext** rune.
+A **complete 812-member family** of reversible GP29 ciphertext-feedback mechanisms, in which the reserved zero-cipher-step plaintext symbol is an invertible *affine function of the preceding plaintext rune*, fails the original p0–p55 doublet constraint against **every complete-length window in each of two independently pinned native-GP English sources**. This holds even when the remaining secret multiplicative key is allowed to change arbitrarily on *every rune*. Across 34,674 Gibran and 204,151 Shakespeare windows, the most favorable of all 812 affine marker rules still forces **124 and 115** equal-neighbor ciphertext events respectively; original LP2 has **only 86** in the same 12,901 within-page positions. No source-selected unknown-message inverse or authentic cipher key follows.
 
-Consider the exact source-motivated, **new and unselected** architecture
+This result eliminates a **typed class of direct, order-preserving native-GP29 English decoders**. It does not eliminate other plaintext languages, non-GP streams, variable-length transport, added encoding layers, changing or nonlinear marker functions, or an unknown historical author-supplied state.
+
+## Motivation and complete mathematical family
+
+The original Cicada-solved GP29 **Atbash** map reverses the alphabet, `A(x)=28−x` for rune indices `0..28`. Placing `A(P[i−1])` in the zero-step position of a GP29 feedback cipher would be a short, mechanically reversible, human-applicable way to avoid the previously rejected assumption of *one stationary reserved plaintext rune*. This is an original **hypothesis**, not an authorial instruction. Rather than testing only that attractive map, charge its entire small algebraic family with parameters independently identifiable as affine bijections of `Z_29`:
 
 ```text
+a ∈ {1,…,28}, b ∈ {0,…,28};       exactly 28×29=812 maps
+M(x) = (a*x + b) mod 29
 C[0] = P[0]
-C[i] = C[i−1] + k[i] · (P[i] − (28 − P[i−1])) (mod 29)
-k[i] ∈ {1,…,28}, for every i>=1.
+C[i] = (C[i−1] + k[i]*(P[i] − M(P[i−1]))) mod29,
+       k[i] ∈ {1,…,28} for every i>=1
+Atbash predecessor: a=28, b=28
 ```
 
-Atbash is an authentic historical operator; the decision to place it on the previous plaintext, combine it with feedback this way, initialize with `C[0]=P[0]`, or allow any `k` is **not** in a first-party LP2 instruction. This is intentionally one bounded, falsifiable proposal rather than an exhaustive moving-marker search.
-
-Because `k[i]` is invertible in the prime field, **for every possible secret key stream** the repeat condition is exact:
+Every `a` and every nonzero multiplier `k[i]` is invertible modulo29. For *any* key stream, even one chosen after observing all original plaintext, the following exact equivalence is unavoidable:
 
 ```text
-C[i] == C[i−1]    ⟺    P[i] + P[i−1] == 28 (as GP29 integers).
+C[i] = C[i−1]  ⟺  P[i] = (a*P[i−1] + b) mod29.
 ```
 
-For `k=1`, the inverse is `P[i]=C[i]−C[i−1]+28−P[i−1] mod29`. Other invertible `k[i]` change the nonzero symbols, **not** the zero-step event sites. This invariant does not care about printed hyphens, source words or punctuation at all: it applies to the entire runic plaintext stream, although physical page seams are excluded from the *count comparison* to match the original 12,901 opportunities.
+The key may determine the nonzero differences, but **cannot move or erase a single zero-step site**. No case-specific phrase scoring, secret-key search, page/word reset choice, phase adjustment, fitted dictionary, or assumed plaintext word segmentation enters this necessary-condition test. A `k[i]=1` inverse for the authentic Atbash special case, `P[i]=(C[i]−C[i−1]+28−P[i−1]) mod29`, exactly roundtrips all 12,956 original ciphertext runes yet leaves uniform-looking output (IoC approximately 0.03445969). Roundtrip does not authenticate plaintext; independent solved-GP plants confirm the reversible formula.
 
-## Exact source-native original test and language controls
+## Frozen original material and two full-length plaintext registers
 
-Use the unchanged canonical p0–55 indices and the project's source-native GP tokenization (TH,NG,EO,OE,AE,IA,EA; solved `ING→NG`, `IO→IA`, K/C, V/U, Z/S). From the solved LP1 source use sections1,3,5,6,9–15, rejecting editorial continuation duplications; from the 2019 Gutenberg *Prophet* control retain only the **actual book interior** between its `START/END OF THIS PROJECT GUTENBERG EBOOK` markers (not its long legal license). No source tuning or ciphertext-derived key choice.
+Original LP2 physical pp0–55: **12,956 canonical runes**, **86** equal-neighbor pairs after omitting the **54 actual nonempty physical page seams** from all 12,955 consecutive rune pairs; exactly **12,901** eligible within-page transitions. The physical p50 numeric page has *no runes*, so it does not contribute a second seam; original printed group/word breaks are deliberately **not** assumed to mark plaintext words.
 
-| Independently fixed source/control | Native GP29 runes | Atbash-adjacent pairs | Interpretation |
-| --- | ---: | ---: | --- |
-| Original unknown LP2 p0–55 cipher | **12,956** | **86 identical ciphertext pairs** on 12,901 same-page edges | Under candidate, **requires exactly 86** plaintext Atbash-adjacent pairs on those edges |
-| Already solved Cicada reference | 2,648 | 82 Atbash-adjacent pairs in 2,647 consecutive edges | 3.098% of native-GP prose edges |
-| Gibran *The Prophet*, Gutenberg book interior | 47,629 | 1,193 Atbash-adjacent pairs in 47,628 consecutive edges | 2.505% of native-GP prose edges |
-| **Every contiguous 12,956-rune Gibran control window** | 34,674 windows, omitting the same 54 physical-page seam offsets within each | **minimum 285, mean 320.287, maximum 359** native Atbash pairs in 12,901 eligible edges | **0/34,674** full-length source windows has the required ≤86 events |
+English controls use the repository's already fixed Gematria Primus normalization, preserving the special symbols TH, NG, EO, OE, AE, IA and EA, plus solved-source `ING→NG`, `IO→IA`, K/Q→C, V→U and Z→S. Both controls are independently supplied text, not obtained by decoding the target. The 2019 Gutenberg *The Prophet* is clipped to its **proper literary book interior**, excluding publisher metadata and the appended license. The Shakespeare source is the pinned `shakespeare_first300k.txt` fixture. A source-native solved-LP1 sample supplies 2,648 GP runes containing 82 adjacent Atbash-pair relations among 2,647 edges; it is a control of the alphabet mapping, not another complete-length window.
 
-The full-window search is exact, not an iid random sample: all 34,674 overlapping start positions are evaluated with the **54 real original page-seam offsets** removed from each donor. The original physical p50 is rune-free and produces no extra seam; treating its zero-rune boundary twice would be an error. The source-native donor minimum **285** exceeds original **86** by 199 fixed event obligations. This rejects all residual nonzero-key schedules in the direct Atbash-predecessor model for each of these **finite authentic/literary comparison streams**. Overlapping source windows are correlated: `0/34,674` is not a model-independent statistical p-value, and other intentional registers, rune reorderings or an additional outer transform could escape it.
+| Frozen control | Source GP runes | Exact consecutive 12,956-rune windows | **Minimum** zero-step sites across all 812 maps and all windows, excluding original 54 seams | Winning marker and earliest window | Models exactly seam-scanned / mathematically bounded |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Gibran, *The Prophet* book only | 47,629 | **34,674** | **124** (vs LP2 86) | `M(x)=3x+9 mod29`, start6917 | 13 / 799 |
+| Shakespeare pinned fixture | 217,106 | **204,151** | **115** (vs LP2 86) | `M(x)=20x+16 mod29`, start70708 | 13 / 799 |
 
-The `k=1` algebraic inverse reencrypts **all 12,956 original GP ciphertext runes exactly** and necessarily has 86 native-Atbash pair sites, but its resulting IoC is about **0.03445969**, not readable GP-native text. This round trip is **not** plaintext recovery. A separate planted native-GP passage is encrypted/decrypted exactly and its zero-step sites reproduce the required plaintext Atbash pairs.
+The census covers **193,907,900** affine-map × source-window hypotheses in total, and **none** is compatible with the original **86** event requirement. For the historically motivated Atbash special case `a=b=28`, the Gutenberg windows contain **285–359** relations (mean320.287), while the complete Gibran literary extract has 1,193 such pairs in 47,628 adjacent edges (2.505%). Solved-source prose has 82/2647 (3.098%). Thus the specific Atbash-predecessor cipher was already disfavored, but the significant contribution is that **all 812 invertible affine replacements of Atbash fail in both independent registers**.
 
-**Scope and decision:** The source-authored *Atbash* itself is **not** evidence the author selected this feedback architecture. The experiment nevertheless closes a clear, small, source-led evolving-marker possibility, unlike the already rejected fixed-F mechanism and the separate p15 time-periodic Fibonacci-prime marker. Since the zero-step invariant is independent of all nonzero multipliers **and of printed word-break truth**, additional Vigenère key/phase/permutation sweeps cannot rescue this exact architecture on source-native direct prose. The unresolved alternatives are a different prior-state marker rule, extra layer/non-GP plaintext, lossy or variable-length transport, or authentic key/receiver material yet to be found; there is no justification for enlarging this already-failed model by tuned exceptions.
+### Exact algorithm, not a huge phase sweep
 
-[Self-contained source-exact SFT](../sims/lp2_atbash_previous_plaintext_marker_gate_sft.cjs) reads the canonical original corpus, solved GP source, and independent pinned Gibran control; its mathematical counts and complete-window computation were executed independently in the live V8 analysis runtime. The standalone Node22 wrapper has not been separately run under CI. Related independent scopes: [fixed literal-F zero-step word-pattern gate](lp2_gp29_fzero_two_word_source_invariant.md), [time-periodic Fibonacci-prime evolving marker](lp2-fibprime-evolving-marker-original-source-gate.md), and [overall cryptanalytic constraints](../results/README.md).
+For each map `(a,b)`, form the donor equality predicate `H[i]=1[P[i]=M(P[i−1])]`. Sliding a contiguous length12,956 window over the donor takes linear time using `H`. Its **raw minimum** over all windows, `r`, is a rigorous lower bound `r−54` for the exact source-window minimum after removing the 54 original physical page-cut positions. Sort the **812 frozen maps** by raw minimum. Exactly scan the seams for the rare best raw candidates; once the next map's `r−54` exceeds the best exact minimum already found, every remaining candidate is **mathematically certified** unable to win. This yields 13 exact scans and 799 certified eliminations for **each** donor. No approximation, random sampling, or decision-dependent stopping is used.
+
+The exact winner for Gibran has raw minimum125 and seam-removed minimum124; the exact Shakespeare winner has raw117 and seam-removed minimum115. A native-GP planted English passage passed full encryption/decryption and event-count identity with the simple Atbash `k=1` demonstrator; the full original ciphertext likewise reencrypts exactly. The real original inverse has no readable unknown text.
+
+## Interpretation, restrictions and next decision
+
+**Historical selection remains absent:** the solved Atbash map is genuine Cicada material, but no first-party LP2 clue selects preceding-*plaintext* affine marker feedback, its initial condition, or arbitrary nonzero keys. The 812-member census is a **hypothesis-family exclusion**, not evidence that the author attempted this cipher or that its failure points to any particular alternate algorithm. The full-length donor windows overlap heavily, so the count `0/193,907,900` is **not** a p-value or proof across all English writing, let alone all languages. It does show that simply swapping a different constant GP affine rule, choosing a secret per-rune multiplier or treating printed word spaces as false cannot rescue this family on the tested source-native direct-prose interpretation.
+
+A successor should seek an **independently authored nonaffine/stateful marker, non-GP plaintext channel, legitimate pre-cipher variable-width representation or complete invertible historical decoder**. Do not retread the 812 affine variants or optimize free nonzero key streams. The standing fixed-literal-F and p15 time-periodic marker negatives are different model families; see [literal-F family gate](lp2_gp29_fzero_two_word_source_invariant.md) and [p15 prime-time marker](lp2-fibprime-evolving-marker-original-source-gate.md).
+
+**Reproducer:** [standalone source-exact CommonJS](../sims/lp2_atbash_previous_plaintext_marker_gate_sft.cjs) reads the original LP2 ciphertext, authentic solved-prose controls, the original Shakespeare fixture and the full Gutenberg proper-book text, asserts full familywide minima and model pruning, performs exact native-GP plant/real-cipher roundtrips, and prints the certified census. Its mathematical core and all reported counts were executed independently in the live V8 analysis environment; the committed Node22 filesystem wrapper has **not** been separately run through CI.
 
