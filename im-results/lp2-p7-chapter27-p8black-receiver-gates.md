@@ -59,6 +59,26 @@ Again exact forward replay passes, but the output scores **−1.6601316748**, Io
 
 Pretarget reproducer: `sims/lp2_p7_chapter27_p8black_multiplicative_pretarget_sft.cjs`.
 
+## Gate 4 — state9 × chapter27 affine receiver
+
+Pretarget commit: `b5a17ba3dceaf24dd2646a956e32ba74f0fa36d1`.
+
+The new dimensions themselves close on the prior state: the chapter-word operand has **27 = −K** runes and p8 black has **243 = 9×27 = (q+g)(−K)** runes. P8's printed text has 12 physical lines rather than a visual 9×27 grid, so this is an arithmetic receiver shape, not an image-layout claim.
+
+The established nine-value source-only state donor `[p,e,g,a,b,A,B,K,q]=[23,3,5,6,15,8,19,2,4]` supplies one nine-element axis and the chapter27 runes supply the other. Before grading, freeze the two ordinary GF29 affine role assignments under `C=aP+b` on row-major arithmetic coordinates `row=floor(i/27)`, `col=i mod27`:
+
+- state multiplier: `a=state9[row]`, `b=chapter27[col]`;
+- chapter multiplier: `a=chapter27[col]`, `b=state9[row]`.
+
+The state-multiplier branch is plainly negative: native bigram score **−1.6705520629**, rank **399/2001** against matched random nonzero 9×27 operands.
+
+The chapter-multiplier branch initially looked mildly better: bigram **−1.3316873107** (rank **1884/2001**) and solved-source trigram **−10.6929871648** (rank **1867/2001**) against matched random affine operands. However, the output is visibly nonprose and still far below the worst **76-rune** native solved-source window (**−8.0613439539**). More importantly, preserve the exact p7 product multiset and charge its **10** natural cyclic/reversal ring orientations. All ten still address the same five chapter words and retain total key length27; the frozen original printed orientation ranks only **4th/10** by trigram score. The best alternative orientation scores **−10.6474728517**, still nonnative.
+
+**Decision:** retire this exact 9×27 affine family. Its moderate score uplift is not specific to the independently selected p7 printed order and therefore cannot support a decipherment claim. Do not tune state order, row/column convention, affine signs, or p7 orientation after this control.
+
+Pretarget reproducer: `sims/lp2_p7_state9_chapter27_p8black_affine_pretarget_sft.cjs`.  
+Grader: `sims/lp2_p7_state9_chapter27_p8black_affine_grade_sft.cjs`.
+
 ## Decision
 
 The **handoff itself remains materially interesting**: it composes three independently developed original-artifact structures and produces an exact 27-rune operand whose length tiles the immediately following p8 black body exactly nine times. The three most direct reversible consumers are now bounded negatives.
