@@ -67,4 +67,4 @@ const report={schema:1,classification:'SOURCE-ONLY PRETARGET FINITE QUADRATIC EN
  multiplicity:{labeledQuadratics:8,equalDiscriminant:2,quadraticPlusFrobeniusPresentations:16,
   equalDiscriminantPlusFrobenius:4,distinctSurvivorRawPredictions:1},
  result:'Only unswapped, positive-P polynomials allow a pure translation; both sum signs and either p3 conjugate basis survive and predict the identical raw pair. No source-visible operand distinguishes their sign/basis roles.'};
-console.log(JSON.stringify(report,null,2));
+console.log(JSON.stringify(report));
