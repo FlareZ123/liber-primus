@@ -56,6 +56,23 @@ A maximally literal p55 reader is nevertheless testable. The original **17 p55 w
 
 All four originals re-encrypt **43/43** under their own fixed key streams, validating implementation but not plaintext. This rejects the simplest **scalar-additive p55 inner-page consumer** of the newly derived packets; it does not reject a genuinely source-selected nonadditive instruction, the p57 circumference clue itself, or the exact GP29 key-like source identities.
 
+### A simpler mirror-difference route: recovering g and K without spectral algebra
+
+The two original **5×5** squares become two original **3×3 centrosymmetric cores** after the p57-directed removal of their outer borders. Each has the exact left–right/middle-top pattern `[[a,b,c],[d,e,d],[c,b,a]]`. Reflection `[1,0,−1]` is a **visible antisymmetric eigenvector**: the only required operation to recover its eigenvalue is `a−c`—**one subtraction between the two top corners**. The numerical original-source calculation is simply:
+
+```text
+first 5×5 source after removing perimeter:   top corners 812  ... 280
+  Δ_first = 812 − 280 = +532 ≡ 10 (mod29) = gK
+
+last 5×5 source after removing perimeter:    top corners 199  ... 320
+  Δ_last  = 199 − 320 = −121 ≡ 24 (mod29) = −g
+
+g = −Δ_last mod29 = 5
+K = −Δ_first / Δ_last mod29 = 10/5 mod29 = 2
+```
+
+The middle row of each original 3×3 core has equal endpoints, and the final row gives the exact opposite difference, so this is a verifiable original reflection invariant rather than an algebraic artifact of computing characteristic polynomials. It extracts the same candidate **DH generator5 and shared value2** from just four visible *2014 source cells*, the actual solved p57 **circumference removal**, and two identical source-shaped 5×5 matrices; the unused 7×7 still independently has full determinant2. This is more feasible for a human puzzle solver than diagonalizing the 7×7 matrix. Crucially, **neither p57 nor the 2014 squares explicitly commands left–right top-corner subtraction, modulo29 conversion, or the quotient**. Thus the arithmetic is real and economical, but identifying these exact historical values as *authored* DH keys is still a prospective hypothesis needing a target-frozen original-ciphertext decryption or an explicit mirror/key-extraction cue. No derived 3×3 eigenroot is an independent second witness to these same two corner differences: they are algebraically the same observation.
+
 ## How much exact alignment survives matched source-order controls?
 
 We exhaust every independent permutation of the **whole printed columns** within each historical square, retaining every original number, each original row's sum, and matrix size; this disrupts original diagonals and 180° symmetry and therefore is a **conditional orientation diagnostic, not a null distribution for authored magic squares**. With the independently fixed register labels `A=8, −g=24`:

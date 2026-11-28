@@ -83,6 +83,36 @@ assert.equal(corpus.pages.find(p=>p.page===8).indices.slice(0,3).map(i=>corpus.t
 const cores=squares.map(A=>A.slice(1,-1).map(row=>row.slice(1,-1)));
 assert.deepEqual(cores.map(A=>A.length),[3,5,3]);
 const coreDeterminants=cores.map(det),coreRoots=cores.map(roots);
+
+/* The two source 3x3 corners have a human-executable matrix invariant.
+ * Under original central reflection, [1,0,-1] is an exact 3x3 right
+ * eigenvector, so its eigenroot is simply top-left - top-right.
+ * No 7x7 determinant, characteristic polynomial or solution fit is needed.
+ */
+const ends=[cores[0],cores[2]];
+assert.ok(ends.every(A=>A.length===3&&A.every((row,i)=>row.every((value,j)=>value===A[2-i][2-j]))));
+const reflectedCornerPairs=ends.map(A=>({
+  topLeft:A[0][0],topRight:A[0][2],
+  rawTopDifference:A[0][0]-A[0][2],
+  gp29TopDifference:mod(A[0][0]-A[0][2]),
+  middleRowDifference:A[1][0]-A[1][2],
+  bottomDifference:A[2][0]-A[2][2],
+}));
+assert.deepEqual(reflectedCornerPairs,[
+  {topLeft:812,topRight:280,rawTopDifference:532,gp29TopDifference:10,middleRowDifference:0,bottomDifference:-532},
+  {topLeft:199,topRight:320,rawTopDifference:-121,gp29TopDifference:24,middleRowDifference:0,bottomDifference:121},
+]);
+const gFromMirroredCorners=mod(-reflectedCornerPairs[1].gp29TopDifference);
+const kFromMirroredCorners=mod(reflectedCornerPairs[0].gp29TopDifference*inv(gFromMirroredCorners));
+assert.deepEqual([gFromMirroredCorners,kFromMirroredCorners],[5,2]);
+const antisym3=(A)=>[1,0,-1].map((v,i)=>v);
+for(const pair of ends){
+  const e=[1,0,-1];
+  const image=pair.map(row=>mod(row[0]-row[2]));
+  const lambda=mod(pair[0][0]-pair[0][2]);
+  assert.deepEqual(image,e.map(x=>mod(lambda*x)));
+}
+
 assert.deepEqual(coreDeterminants,[24,8,24]);
 assert.deepEqual(coreRoots,[[10],[2],[24]]);
 assert.equal(coreRoots[0][0],mod(-coreRoots[1][0]*coreRoots[2][0]));
@@ -145,4 +175,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
