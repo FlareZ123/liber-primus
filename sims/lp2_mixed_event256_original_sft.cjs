@@ -27,7 +27,7 @@ const printed = physical.filter(e => e.symbol === '⁜' || (e.symbol === '⁘' &
 assert.equal(printed.length, 170);
 assert.equal(printed.filter(e => e.symbol === '⁜').length, 31);
 assert.equal(printed.filter(e => e.symbol === '⁘').length, 139);
-const marks = printed.map(e => ({offset: e.rune_offset, kind: 'mark', source_id: e.index}));
+const marks = printed.map(e => ({offset: e.rune_offset, kind: 'mark', source_id: e.index, mark_type:e.symbol}));
 const pages = corpus.pages.filter(p => p.page <= 55);
 const tape = [];
 const repeats = [];
@@ -52,6 +52,20 @@ const events = [...marks, ...repeats].sort((a,b) =>
 assert.equal(events.length, 256);
 assert.equal(events[0].offset, 13);
 assert.equal(events[255].offset, 12956);
+const largeSlots=events.map((e,i)=>e.mark_type==='⁜'?i:-1).filter(i=>i>=0);
+const largeResidues=Array.from({length:8},(_,i)=>largeSlots.filter(k=>k%8===i).length);
+assert.deepEqual(largeResidues,[4,3,6,3,5,2,2,6]);
+let prevLarge=-1;
+const largeBlockLengths=[];
+for(const slot of largeSlots){
+  largeBlockLengths.push(slot-prevLarge);prevLarge=slot;
+}
+assert.equal(largeSlots.length,31);
+assert.equal(prevLarge,255);
+assert.equal(largeBlockLengths.length,31);
+assert.equal(largeBlockLengths.reduce((a,b)=>a+b,0),256);
+assert.equal(largeBlockLengths.filter(k=>k===8).length,1);
+assert.equal(Math.max(...largeBlockLengths),51);
 const dup = events.map((e,i) => (i>0 && e.offset===events[i-1].offset) ? e.offset : -1).filter(x=>x>=0);
 assert.deepEqual(dup, [1860, 3603, 8385, 9358]);
 const keyBits = events.map(e => e.kind === 'repeat' ? '1' : '0').join('');
@@ -144,6 +158,7 @@ assert.equal(sha256(aesPlain),'a86357e6320bc2cd06ac43db3e67478d2901b028b0c12b0a7
 const output={
   source_events:{repeats:repeats.length,four_dots:139,large:31,commas_excluded:5,total:events.length,distinct_boundaries:new Set(events.map(x=>x.offset)).size,empty_intervals:dup},
   event_mask_hex:key.toString('hex'),
+  eight_cell_row_gate:{large_mark_slots:largeSlots.length,large_mark_residues:largeResidues,large_mark_block_lengths:largeBlockLengths,row_exact_eight_count:largeBlockLengths.filter(k=>k===8).length},
   phase_realign:{cv2:align0.cv2,cv_lower_rank:cvLow,maximum_gap:align0.max,max_lower_rank:maxLow,rr:align0.rr,rr_lower_rank:rrLow,rr_null_mean:rrSum/circle,shifts:circle},
   gap_source_exclusion:{max_gap:292,max_panel_byte:255,zero_gap_count:4,zero_panel_byte_count:2,gap_base60_high_hist:hist60(gaps),panel_base60_high_hist:hist60([...bytes])},
   interval_GP29_subtractive:{original_ioc:origIoC,decoded_ioc:decIoC,forward_exact:true,first_32:plain.slice(0,32).map(x=>corpus.translit[x]).join('')},
