@@ -162,6 +162,32 @@ A fresh **eighth full-length GP29 positive plant** is made from the *already ind
 
 **Interpretation:** this independently rejects a broad native Latin register for the stated predecessor-only cipher mechanisms, alongside three English sources, and makes it less plausible that changing the hidden plaintext language alone would rescue this specific cipher class. It does not exclude all Latin composition, altered punctuation or spelling, other GP languages, any genuine source key, or a different emission mechanism. Original LP2 remains unsolved.
 
+## Complete ordered source-copy inversion for the page-private loophole
+
+The earlier unigram test deliberately **does not exclude** a different secret 29-row alphabet at every physical page, because 55×29 independently chosen charts have enough aggregate capacity to represent all four native text inventories. There is nevertheless a stronger, **key-independent necessary-and-sufficient test for any *specific ordered plaintext passage***, even though the full unknown plaintext remains unobserved.
+
+For one original physical page, the reversible typed cipher is C(i)=K[page, preceding **published** C](P(i)). Each K row is an unknown permutation of the 29 GP indices, otherwise entirely unrestricted. Every observed plaintext/ciphertext aligned pair demands a row assignment **P(i) ↦ C(i)**. Two different conflicts are fatal:
+
+1. The same (page, preceding C, plaintext index) is observed mapping to **different** printed cipher runes.
+2. The same (page, preceding C, printed cipher rune) is observed arising from **different** plaintext indices.
+
+Conversely, if both forward and inverse partial row maps are consistent at **every noninitial site**, each row is a finite partial injection on 29 labels and can *always be completed* to a secret full permutation by arbitrarily matching the remaining unused 29-element domain and codomain sets. The page initial printed rune is freely provided as IV. Thus the test is not a language-likelihood heuristic: it is an **iff exact ordered-source key-existence proof** for this fully arbitrary 1,595-row page-private family, with no enumeration of the charts. A second mode skips *all original 86 repeated-neighbor second-rune sites* as wholly arbitrary special emissions; their printed cipher glyphs still select the next normal row.
+
+[Exact source-copy locator and constructive inverse](../sims/lp2_prev_ciph_page_private_exact_source_locator_sft.cjs) scans **all 753,907** length-12,956 native English and GP-indexed Latin contiguous donor windows against the unchanged **12,901 within-page** original transitions. It uses a row-wise stamped sparse forward/inverse consistency table and stops a window as soon as one row becomes noninjective. The output reports the **first original global rune offset of contradiction** (zero-based). The four sources have:
+
+| Native register | Exact source windows | Windows with a valid full 55-page secret-chart assignment | Latest first contradiction anywhere | Typical first contradiction (mean original offset) |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran | 49,537 | **0** | **63** | 29.397 |
+| Shakespeare | 204,151 | **0** | **62** | 29.383 |
+| Emerson | 308,372 | **0** | **69** | 29.049 |
+| Latin Vulgate | 191,847 | **0** | **66** | 26.985 |
+
+The original first physical page continues to rune offset 228 and beyond, so **every one of these full-length donor passages is already impossible within the first 70 original runes**, before the first physical page ends. All of these original first-contradiction statistics are **unchanged** when the actual 86 observed repeat sites are exempt, because the source contradictions occur before any original repeat event. An exact fixed-passage reader keyed by previous printed C, even with an independent chart for every later page and independent free first rune, **cannot decrypt a verbatim copied passage from these four specific donor files**. This conclusion is about *exact source identity and original order*, not an ordinary-language frequency envelope; it does not exclude original prose in similar style, a noncontiguous hidden source, reordering of plaintext, extra evolving state, or 2+ phase charts within page.
+
+**One genuine key-recovery and source-location control, not only encryption replay:** independently choose a GP Gibran window beginning at **source rune 18,000**, encrypt it as 12,956 original-sized runes with hidden independently shuffled 29-permutation rows per physical page and a rare-NG-implies-repeat output law, then hide both the source start and all row keys from the source locator. The full inverse scan of **all 49,537** candidate Gibran windows retains **exactly one source start, 18,000**, constructs mutually consistent forward/inverse partial row assignments for every observed transition, and recovers the **entire 12,956-rune correct native plaintext** at that unique start. The planted cipher has **100 adjacent identical rune pairs**; the same true start is uniquely retained if those 100 planted repeat sites are exempt. The source registry is original donor prose, but the cipher and its secret key are fresh independent positive data.
+
+This makes the page-private necessary-capacity loophole executable as a real plaintext-source recovery algorithm: an authentic Cicada-authorized book or witness could be indexed and subjected to the same **complete exact row-chart reconstruction**, which immediately identifies its matching passage if the typed mechanism is correct. The important missing input is **source selection** and whether LP2 really retains raw native GP29 rune order. Random keyword or document scanning is not justified as evidence of a historical decoder merely because the forward algorithm can locate a planted source.
+
 ## Decision and missing authentic step
 
 The original conditional row histograms are close to uniform and cannot supply sufficiently many outputs for the most frequent GP-native letters, even if a secret 29-permutation chart is selected by the previous ciphertext glyph at every step. **Retire full-book q≤12 previous-ciphertext-only row-alphabet brute-force searches** under either original physical-page or large-mark reset. A key search cannot repair this key-independent mathematical contradiction under the stated donor envelope.
