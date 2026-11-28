@@ -85,13 +85,14 @@ def run(images,ink):
         for _,typ,color in p.get('large_punctuation',[]):
             expected[p['page']][(typ,color)]+=1
     found=[]
+    # Blindly enumerate every source scan, both visible ink classes and all
+    # three learned glyph geometries. Compare to the separately derived
+    # transcription only AFTER detection; a missing/extra ornament fails.
     for page in range(58):
-        if page not in expected:continue
         img=np.asarray(Image.open(images/f'{page+17:02d}.jpg').convert('RGB'))
-        for color in {k[1] for k in expected[page]}:
+        for color in ('red','black'):
             ids,stats,centers=components(img,color)
-            for typ in (13,10,23):
-                if not expected[page][(typ,color)]:continue
+            for typ in (10,13,23):
                 hits=find_shapes(ids,stats,centers,img,typ,page,color)
                 assert len(hits)==expected[page][(typ,color)], (
                     page,typ,color,len(hits),expected[page][(typ,color)])
