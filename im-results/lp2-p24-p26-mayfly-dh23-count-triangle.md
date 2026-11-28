@@ -76,7 +76,7 @@ Thus the p32 oak checksum selects p24 before the p24–26 DH-state triangle is e
 
 See `im-results/lp2-rune-poem-artwork-ordinal-navigation-gate.md`.
 
-## Ordered terminal-curvature lock fixes the triangle sign/orientation (Agent3, 28 November 2026)
+## Ordered terminal-imbalance lock fixes the triangle sign/orientation (Agent3, 28 November 2026)
 
 The earlier result identified the three edge magnitudes but left the sign/order of the triangle as an unresolved source-selection question. Natural manuscript order plus the **terminal p26 red 13-dot mark** now removes that freedom without reading any unknown plaintext.
 
@@ -95,7 +95,7 @@ N26-N25 = -8  ≡ 21 (mod29)
 N26-N24 = -5  ≡ 24 (mod29)
 ```
 
-and the exact integer second difference at that endpoint is
+and the exact sum of those two inward count gaps is encoded by
 
 ```
 N24 + N25 - 2*N26
@@ -103,7 +103,7 @@ N24 + N25 - 2*N26
 = 13.
 ```
 
-That **13 is exactly the count of p26's red terminal large-punctuation mark**, located after rune265. This is not a modulo coincidence: the ordered page-count curvature equals the visible endpoint mark as an ordinary integer. Consequently the natural chronological edge signs are fixed as
+That **13 is exactly the count of p26's red terminal large-punctuation mark**, located after rune265. This is not a modulo coincidence: the ordinary integer endpoint imbalance equals the visible mark count. It is the negative sum of the two signed incoming count gaps, not the standard second finite difference. Consequently the natural chronological edge signs are fixed as
 
 ```
 p24 -> p25 : +3 = +e
@@ -113,7 +113,7 @@ p25 -> p26 : -8 = -A
 
 rather than only the unsigned set `{e,g,A}`.
 
-The manuscript-wide source control is finite. Across all 54 contiguous p0–p55 triples, exactly **10** end on a page whose large punctuation lies after its final rune. P24–p26 is the **only** such triple for which the absolute ordered second difference equals that terminal mark count. Broadening the comparison to every large mark on the third page gives 30 comparisons and one additional match, p36–p38 with curvature10 against an **internal** 10-dot mark at offset186; it is not a terminal closure. Thus the p26 endpoint condition is doing real selection work.
+The manuscript-wide source control is finite. Across all 54 contiguous p0–p55 triples, exactly **10** end on a page whose large punctuation lies after its final rune. P24–p26 is the **only** such triple for which the absolute endpoint imbalance equals that terminal mark count. Broadening the comparison to every large mark on the third page gives 30 comparisons and one additional match, p36–p38 with endpoint imbalance10 against an **internal** 10-dot mark at offset186; it is not a terminal closure. Thus the p26 endpoint condition is doing real selection work.
 
 The same geometry also explains a previously uncharged local H presentation. With the already-frozen conditional-local map `H(x,y)=(x-y,x+y) mod29`, applying H to the two source-ordered incoming edges gives
 
@@ -292,10 +292,10 @@ What makes it worth preserving is the concentration of independent source constr
 
 Treat the p23–26 illustrated chapter plus the solved p57 terminal mark as a **second original-manuscript reconstruction of the complete p28 DH state candidate**. The triangle itself serializes [e,g,A]; the charged source frame uniquely recovers the remaining a,b,B,K once g=5 is source-fixed. This strengthens the hypothesis that the p28 DH tuple is a real organizing register rather than an isolated arithmetic reconstruction.
 
-Do not infer a new additive/multiplicative key from 3,5,8. Natural page order plus the terminal-curvature closure now fixes the triangle's sign/order as `[+e,-g,-A]`; the remaining missing input is an independently selected **consumer/receiver** for that oriented packet. Test that fixed packet prospectively rather than reopening vertex, sign, or H-order choices.
+Do not infer a new additive/multiplicative key from 3,5,8. Natural page order plus the terminal-imbalance closure now fixes the triangle's sign/order as `[+e,-g,-A]`; the remaining missing input is an independently selected **consumer/receiver** for that oriented packet. Test that fixed packet prospectively rather than reopening vertex, sign, or H-order choices.
 
 ## Reproduction
 
-- Count-triangle census: `sims/lp2_p24_26_mayfly_dh23_count_triangle_sft.cjs`.\n- Ordered terminal-curvature/orientation gate: `sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs`.
+- Count-triangle census: `sims/lp2_p24_26_mayfly_dh23_count_triangle_sft.cjs`.\n- Ordered terminal-imbalance/orientation gate: `sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs`.
 - Original mayfly source and pixel identity: `im-results/lp2-p23-26-original-art-source-gate.md`.
 - Independent p28 DH reconstruction: `im-results/lp2-p28-dh-line6-source-reconstruction.md`.
