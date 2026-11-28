@@ -20,7 +20,7 @@ A 28 November Agent9 audit places a strict limit on how the packet may be used a
 
 This does **not** weaken the source-visible uniqueness of the p6 four-word packet itself, nor a multi-coordinate rule whose field roles were frozen before testing. It invalidates “each coordinate can be expressed with p6 values” as independent support. Future consumers must charge a joint ordered grammar and receiver selection prospectively. [Exact audit and reproducer](lp2-p6-state-expression-saturation-audit.md).
 
-The same audit proves a stronger identifiability limit. For any fixed equal-length ciphertext receiver `C` and known target `P`, `K=C-P mod29` is the unique additive key and therefore replays exactly. The canonical H pair transform is bijective because `2^-1=15 mod29`, so every fitted key also has one exact H shell. Since every shell scalar is p6-nameable under the weak saturation grammar, **a post-target exact inverse plus a p6-labelled shell is guaranteed**. In the consumer sections below, exact replay is therefore an implementation check; evidentiary weight comes only from receiver selection and any joint field-role grammar frozen before the target was used.
+The same audit proves a stronger identifiability limit. For any fixed equal-length ciphertext receiver `C` and known target `P`, `K=C-P mod29` is the unique additive key and therefore replays exactly. The pair transform `H(x,y)=(x-y,x+y)` is bijective because `2^-1=15 mod29`, so every fitted key also has one exact H shell. Since every shell scalar is p6-nameable under the weak saturation grammar, **a post-target exact inverse plus a p6-labelled shell is guaranteed**. The 28 November historical and p6-local geometry gates additionally show that canonical H is **not independently authenticated as an authored p6 operation**; H shells below are algebraic coordinates unless a separate source object selects them. In the consumer sections below, exact replay is therefore an implementation check; evidentiary weight comes only from receiver selection and any joint field-role grammar frozen before the target was used.
 
 The canonical reversible pair transform is also pre-existing:
 
@@ -51,13 +51,19 @@ So the title has word lengths
 
 Across all **2,699** page-local consecutive four-word windows in the canonical unknown-page corpus, this exact length pattern occurs once, at p6 offsets `71,75,76,80`.
 
-Applying the already frozen canonical four-item H transform to the lengths gives
+An earlier version of this report treated canonical H on the width vector as an independently frozen authored operation:
 
 ```text
 H([4,1,4,2]) = [2,26,5,6] = [K,-e,g,a].
 ```
 
-The title therefore exposes `K`, `e`, `g`, and `a` from layout alone. Since `-a mod29 = 23`, it also supplies `p`. The repeated maximum length gives `q=4`, hence `A=q+q=8`.
+That **provenance claim is superseded**. The bounded historical audit and p6-local visual charge leave canonical H unauthenticated. The same ordered state packet now has an H-free cross-artifact derivation: p6's visible mirror pairs give unordered integer blocks `{2,6}` from `(4,2)` and `{3,5}` from `(1,4)`; independently derived p50 strict-support edges contain exactly those magnitudes. Ordering the supports by increasing starting prime rank, starting at the independently selected physical column2/K edge, and normalizing K positive uniquely gives
+
+```text
+[K,-e,g,a] = [2,26,5,6] mod29
+```
+
+among 16 cyclic-start × traversal × global-sign variants. Thus the numeric state packet remains reproducible, but its causal support is now **p6 mirror geometry + p50 support geometry**, not p6-local H. P6 itself directly exposes `q=4` and `K=2` in the printed lengths. With the H-free packet, `a=6` gives `p=-a=23`, and `A=q+q=8`. See `lp2-p6-p50-dh-state-grid-bridge.md` and `../sims/lp2_p6_p50_hfree_state_serializer_sft.cjs`.
 
 The rune values add a redundant state grammar:
 
@@ -386,7 +392,7 @@ The exact subtraction key for authenticated `YOU=[26,3,1]` is:
 H3(key) = [2,0,4] = [K,0,q].
 ```
 
-All three shell atoms are available from the pre-existing p6 packet. The title-length H transform gives `K`, the adjacent large Fehu gives GP zero, and the repeated maximum title length gives `q`.
+All three shell atoms are available source-visibly without treating title-length H as authored: `K=2` is the terminal printed title-word length, the adjacent large Fehu gives GP zero, and the repeated maximum title length gives `q=4`. The later H-free p6/p50 serializer independently reproduces the same K assignment.
 
 To charge role discovery, choose one value from p6 `H([q,1,q,K])=[K,-e,g,a]`, zero, and one distinct title-length value from `{q,1,K}`; allow every coordinate order and deduplicate. The resulting **69-shell** family, both signs, has one hit on the independently selected p32 receiver: `[K,0,q]` subtraction to `YOU`.
 
