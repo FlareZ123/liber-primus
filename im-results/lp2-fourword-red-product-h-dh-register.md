@@ -81,6 +81,51 @@ Result: **0/24** satisfies all thirteen page sums. Nineteen satisfy none and fiv
 Reproduction: `node sims/lp2_p6_black_successor_corridor_key_gate_sft.cjs`.
 
 
+### Literal p6→p23 black-successor morphism is negative
+
+The two immediate black successor words are source-selected, but a direct
+extension of the red H morphism can now be rejected under a broad finite
+presentation family.
+
+Freeze the exact successor values:
+
+- p6: `[6,9,28,25,6,21,23]` (seven runes);
+- p23: `[28,6,15,25,13,7,19,28]` (eight runes).
+
+The arity difference requires exactly one inserted field if the p6 object is
+to become an eight-rune object. Restrict that inserted value to the nine
+distinct p6-visible red state values already present in the same source page:
+
+`{1,2,3,4,5,6,8,20,23}`
+
+from the union of raw red lengths, adjacent-H(lengths), and
+adjacent-H(word-products).
+
+Charge:
+
+1. six seven-rune source presentations:
+   raw, reverse, outside-H, outside-H(reverse), outside-H^-1(raw),
+   outside-H^-1(reverse);
+2. all nine allowed inserted values;
+3. all eight insertion positions;
+4. twelve eight-rune target presentations:
+   direct, reverse, outside-H, outside-H(reverse), outside-H^-1,
+   outside-H^-1(reverse), adjacent-H, adjacent-H(reverse),
+   adjacent-H^-1, adjacent-H^-1(reverse), half-swap, half-swap(reverse).
+
+This is `6×9×8×12 = 5,184` exact constructions. **Zero** equals the p23
+successor word.
+
+Therefore the black-state continuation is real at the descriptor level, but
+the natural literal interpretation “insert one visible p6 state field and
+reuse the small red H presentation grammar to transport the full successor
+word” is rejected. Any authored consumer for these successors must be a
+different state/descriptor operation; do not tune insertion phase or H
+orientation further inside this family.
+
+Reproduction:
+`node sims/lp2_p6_p23_black_successor_literal_morphism_gate_sft.cjs`.
+
 ## Exact corpus control
 
 With the physical p50 omission handled correctly, the parser yields **2,973** page-local word fragments and **2,802** page-local consecutive four-word windows across p0–p57.
