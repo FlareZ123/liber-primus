@@ -391,3 +391,66 @@ console.log(JSON.stringify({
   status: 'PASS: literal (carry-block length-1, block GP-sum) does not encode the p50 rim tokens',
   digitPairGate,
 }, null, 2));
+
+
+/**
+ * Fourth typed bridge: use the terminal carry partition to compress all 180
+ * p50 interior cells into 76 literal two-digit table tokens. The carry-block
+ * length supplies high digit 0..4; the sum of the same-length interior block
+ * modulo the active table radix supplies the low digit.
+ */
+function compressInteriorTokens(inner, radix) {
+  let offset = 0;
+  const out = terminalBlocks.map(({ lengthDigit }) => {
+    const length = lengthDigit + 1;
+    const low = inner.slice(offset, offset + length)
+      .reduce((sum, value) => sum + value, 0) % radix;
+    offset += length;
+    return [lengthDigit, low];
+  });
+  assert.equal(offset, 180);
+  return out;
+}
+
+const interiorTokenGate = {};
+for (const [radix, base, inner, alphabet] of [
+  ['base60', 60, inner60, grid.alphabet],
+  ['base59', 59, inner59, alphabet59],
+]) {
+  const compressed = compressInteriorTokens(inner, base);
+  const comparisons = {};
+  for (const [order, rimTokens] of Object.entries({
+    rowMajor: rimRowMajor(grid.rows),
+    clockwise: rimClockwise(grid.rows),
+  })) {
+    let high = 0;
+    let low = 0;
+    let pair = 0;
+    for (let i = 0; i < 76; i++) {
+      const hi = alphabet.indexOf(rimTokens[i][0]);
+      const lo = alphabet.indexOf(rimTokens[i][1]);
+      assert.ok(hi >= 0 && lo >= 0);
+      if (hi === compressed[i][0]) high++;
+      if (lo === compressed[i][1]) low++;
+      if (hi === compressed[i][0] && lo === compressed[i][1]) pair++;
+    }
+    comparisons[order] = { high, low, pair };
+  }
+  interiorTokenGate[radix] = comparisons;
+}
+
+assert.deepEqual(interiorTokenGate, {
+  base60: {
+    rowMajor: { high: 15, low: 1, pair: 1 },
+    clockwise: { high: 23, low: 1, pair: 0 },
+  },
+  base59: {
+    rowMajor: { high: 15, low: 1, pair: 1 },
+    clockwise: { high: 23, low: 1, pair: 0 },
+  },
+});
+
+console.log(JSON.stringify({
+  status: 'PASS: carry-partitioned interior-token compressor does not reproduce the p50 rim',
+  interiorTokenGate,
+}, null, 2));
