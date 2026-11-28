@@ -188,6 +188,38 @@ function experiment(raw, options={}) {
     return p[b.length];
   }
   const LM=language(),beam=options.beam||600,rows=[];
+  if(options.primeMode){
+    // One bounded transfer from the authenticated LP2 p56 successive
+    // prime-minus-one schedule into a conjectural mod36 silent-output channel.
+    const primes=[];
+    for(let n=2;primes.length<3500;n++){
+      let isP=true;for(let j=2;j*j<=n;j++)if(n%j===0){isP=false;break;}
+      if(isP)primes.push(n);
+    }
+    const K=primes.map(p=>(p-1)%36),offset=1,
+      Kshift=K.slice(offset);
+    let C,truth=null,target;
+    if(options.primeMode==="plant"){
+      const source=sources[1],test=tape(source.W.slice(Math.floor(source.W.length*.57)));
+      const P=test.slice(5000,5314),A=strict(P,K);
+      C=A.filter(x=>x.c<29).map(x=>x.c);
+      truth=A.filter(x=>x.c<29&&x.p<29).map(x=>x.p);
+      target="Gibran held-out native GP positive under mod36 prime-minus-one";
+    }else if(options.primeMode==="original"){
+      C=gp.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices);
+      if(C.length!==308)throw Error("original terminal count");
+      target="original physical LP2 p54-p55, all308 runes";
+    }else throw Error("invalid primeMode");
+    const a=solve(C,K,LM,beam,options.maxHidden||3);
+    const b=solve(C,Kshift,LM,beam,options.maxHidden||3);
+    const report=z=>({score:z.score,estimatedKeyIndex:z.keyLast,
+      recovery:truth&&z.P?lcs(z.P,truth)/Math.max(truth.length,z.P.length):null,
+      runeOutput:z.P?.map(p=>gp.runes[p]).join(""),
+      gpTransliteration:z.P?.map(p=>gp.translit[p]).join("")});
+    return {target,inputCount:C.length,truthCount:truth?.length,
+      hypothesis:"mod36 strict-repeat with outputs>=29 silent, successive prime_minus_one residues mod36, fixed origin0",
+      origin0:report(a),origin1:report(b)};
+  }
   for(let i=(options.start||0);i<(options.start||0)+(options.plants||3);i++){
     const source=sources[i%sources.length],s=plant(source,91923+i*991);
     const right=solve(s.C,s.K,LM,beam,options.maxHidden||3),
@@ -213,5 +245,7 @@ if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===mod
     gibran:read("resources/control/gibran_prophet_58585.txt"),
     emerson:read("resources/control/emerson_essays_2944.txt")};
   console.log(JSON.stringify(experiment(raw,
-    {beam:process.argv.includes("--wide")?1500:600,plants:3}),null,2));
+    {beam:process.argv.includes("--wide")?1500:600,plants:3,
+      primeMode:process.argv.includes("--prime-plant")?"plant":
+        process.argv.includes("--prime-original")?"original":undefined}),null,2));
 }
