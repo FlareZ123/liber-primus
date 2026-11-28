@@ -2,9 +2,9 @@
 
 **Agent9, 19 November 2026. Classification: strong cross-page key-schedule evidence.**
 
-The small red title on physical p6 forms a source-selected state packet that connects four previously separate local inverses. Its printed layout and rune values recover authenticated DH state fields, its layout is globally unique under a finite manuscript-wide family, and the same packet reconstructs the established p33 WILL, p40 PATHS, and p38 BEWARE key shells. The packet also contains a source-visible target selector for BEWARE.
+The small red title on physical p6 forms a source-selected state packet that connects several previously separate local inverses. Its printed layout and rune values recover authenticated DH state fields and its layout is globally unique under a finite manuscript-wide family. A newer, independent source route comes from the authenticated 2016 warning itself: its first runes, lengths, and carrier-H coordinates reproduce exact key material for the p36–p39 warning corridor, while the signed-tail clauses select the p6 geometry used for p40 PATHS. The p6 packet is therefore best treated as one member of a coupled source vocabulary rather than the sole origin of every corridor key.
 
-The strongest reproducible statement is narrower than a universal decoder. The packet explains several local keys while two prospective extensions fail: the four-rune shell family does not reduce successfully to the two-rune same-index class, and the p38-derived six-rune family does not transfer to the independently selected p0 VERIFY receiver.
+The strongest reproducible statement is narrower than a universal decoder. P6 and the signed-warning tape converge on several local keys, but simple common schedulers over the warning initial/length tape fail, the four-rune shell family does not reduce successfully to the two-rune same-index class, and the p38-derived six-rune key does not transfer to the independently selected p0 VERIFY receiver.
 
 ## Independent inputs
 
@@ -481,9 +481,42 @@ After removing FALSE/zero, the established packet order `OPENPGP PATHS VERIFY BE
 
 Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
 
+## Independent warning-carrier key routes (Agent22, 28 November)
+
+The authenticated warning now supplies source-visible numeric routes to the corridor keys independently of the p6 shell expressions. These are finite, charged local mechanisms rather than a universal scheduler:
+
+```text
+p36 GOOD
+  [FALSE.Hsum, PATHS.Hsum, -BEWARE.Hdiff, -OPENPGP.first]
+  = [25,19,27,26]
+
+p37 LUCK shell
+  [PATHS.Hsum, FALSE.first, BEWARE.Hdiff, VERIFY.Hdiff]
+  = [19,0,2,5]
+
+p38 BEWARE
+  [LUCK.first, OPENPGP.length repeated OPENPGP.first times, PATHS.first, PATHS.length]
+  = [20,7,7,7,13,4]
+
+p39 FALSE
+  [x,y*z,x,z,w]
+  with x=PATHS.Hsum, y=BEWARE.length, z=BEWARE.Hdiff, w=FALSE.length
+  = [19,12,19,2,5]
+
+p40 PATHS
+  signed-tail selectors choose p6 qg=20 and the unique red [-K,q] title word,
+  yielding [qg,qg,aK,a] = [20,20,12,6].
+```
+
+The charges have different strengths. P39 is familywise unique numerically across 13,056 direct warning-carrier keys and seven five-rune targets. P38 is the sole authenticated six-rune hit in its 589-key / 1,178-sign source family. P37 has one additional numeric MEANING operation in the broad carrier-field family, so its warning route is target-specific corroboration. P36's very broad signed-field family reaches several four-rune targets, though the independently assigned GOOD target has one numeric operation.
+
+This changes the causal interpretation: p6 remains an important original-manuscript packet and supplies the p40 geometric selector, but p36–p39 no longer depend exclusively on retrospective p6 shell-role assignments. The authenticated warning itself contains enough typed numeric fields to reproduce their exact local key material. No single source-selected serialization rule yet predicts all five page mechanisms.
+
+Reproducer for the warning-field charges: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## Decision
 
-P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
+P6's red title and the authenticated warning tape are now two convergent source-visible explanations for several previously isolated key shells:
 
 ```text
 p6  -> SEEKS locally
@@ -496,7 +529,7 @@ p6  -> p32 YOU three-rune shell on an independently selected receiver
 
 The packet grammar itself is globally unique under a finite, charged family and survives all 24 word-role permutations. The p38 derivation is additionally selective under a 48-role family and under the manuscript-wide six-rune control.
 
-The current boundary is clear. The packet supports local key scheduling across multiple rune lengths. It does not provide a general manuscript cipher, and its prospective two-rune reduction and p0 VERIFY transfer both fail. Future work should seek a fresh receiver whose target and packet-role semantics can be fixed before opening its ciphertext. The p39 FALSE family adds a selective five-rune consumer. The subsequent prospectively selected WORDS16 transfer fails unchanged, so the five-rune family remains local and does not remove that holdout requirement.
+The current boundary is clear. The coupled p6/warning vocabulary supports local key scheduling across multiple rune lengths, but no authored common serializer has been recovered. Two simple common scheduler families over `(first GP rune, GP length)` are exact negatives; the p38 key fails unchanged on p0 VERIFY; and the p39 five-rune family fails the prospective WORDS16 and matched-red-span p3 transfers. The strongest next test is therefore a fresh receiver whose target and warning-field serialization can be fixed before its ciphertext is opened, rather than another post-target role fit.
 
 ## Reproduction
 
