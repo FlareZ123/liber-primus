@@ -16,6 +16,17 @@ This preserves the printed 32×8 layout, needs neither an invented 16×16 reshap
 
 ## Exact original-source outputs
 
+The solved terminal page independently supplies a complete four-clause arithmetic fixture: PARABLE heading sum **449**; first body-clause sum **1259**; second **1031**; third **1229**. The last three multiply to the original 2013 audio metadata integer **1,595,277,641**, so they are not guessed LP2 keys. Under the single previously frozen cell-address operation, all four original outputs are:
+
+| Printed p57 clause | GP-prime sum `n` | Cell `n mod 256` | Literal token | Radix60 byte | Radix59 byte |
+| --- | ---: | ---: | --- | ---: | ---: |
+| PARABLE title | 449 | 193 | `2Z` | 155 | 153 |
+| INSTAR / SURFACE | 1259 | 235 | `21` | **121** | 119 |
+| SHED CIRCUMFERENCES | 1031 | 7 | `33` | 183 | **180** |
+| DIVINITY / EMERGE | 1229 | 205 | `1G` | **76** | 75 |
+
+The conventional radix60 outputs **121** and **76** equal the **unique complete rune counts** of physical p32 and p55 respectively. Those two pages also have related tree artwork ([shared-stock evidence](lp2-tree-common-stock-source-reopening.md)), independently of this table lookup. This produces a second, uniform-byte *conditional* recipient pair p32/p55 from the outer p57 body clauses. It does not specify a ciphertext operation, and the middle output183 names no rune-bearing page by count. A literal filename interpretation of middle token `33` instead reaches p33; these are **incompatible recipient types unless a separate author cue selects when to switch**. The tempting interpretation of base59 `33` as the 180 interior cells and base60 `1G` as the 76 border cells cannot be a single uniform positional radix: `3r+3=180` forces `r=59`, while `r+16=76` forces `r=60`. This directly rejects that purported combined 180/76 numerical decoding rule without an authenticated mixed-radix instruction.
+
 | Original source number | Cell `n mod 256` | Original table location | Printed token | Natural conditional destination |
 | --- | ---: | --- | --- | --- |
 | Solved p57 middle-clause sum **1031** | **7** | p49 row1 col8 | **33** | conditional `33.jpg`, original LP2 p33 with the 1033 cuneiform number |
@@ -43,8 +54,8 @@ $
 
 ## Next decision that could lead to plaintext
 
-**Preserve the exact source lookup as a high-specificity clue candidate** and seek an **independent first-party selector** for (a) modulo-256 row-major addresses and (b) consuming the resulting two-character filename/byte pointer. The conditional p57→p33→p49 chain is now fully spelled out, but no source says that literal two-character numerals are page indices instead of base60 bytes or what operation the selected page contributes to decryption. A serious next decision requires a new, independently legible instruction that selects this navigation grammar and yields an original **GP29 operand and receiving ciphertext interval**, frozen before those runes are scored. Additional retrospective number-to-token coincidences are not such an instruction.
+**Preserve the exact source lookup as a conditional clue candidate, not a key** and seek an **independent first-party selector** for (a) modulo-256 row-major addresses and (b) consuming the resulting two-character filename/byte pointer. The p57→p33→p49 filename chain and separate p57→p32/p55 page-length match are now both exact under the *same source-frozen addresses*, but differ in the interpretation of their outputs. No source says whether a literal two-character numeral denotes a physical page index, a conventional byte, a count, or a GP29 receiver. The complete four-clause control includes `2Z` and `1G`, which cannot be literal decimal page filenames. Prefer a new first-party type selector over postselected mixed-type readings. A serious next decision requires a new, independently legible instruction that selects this navigation grammar and yields an original **GP29 operand and receiving ciphertext interval**, frozen before those runes are scored. Additional retrospective number-to-token coincidences are not such an instruction.
 
 A successful independently forecast lookup could validate the table as navigation infrastructure. A decoder would still need an exact operation on original GP ciphertext and a full withheld plaintext prediction. Do not promote this to `results/` without those missing steps.
 
-[Read-only standalone Node22 CommonJS SFT](../sims/lp2_source1033_3299_3301_grid_pointer_sft.cjs) checks original table positions, the newly added authentic p57 1031 GP-prime sum and `1031→33` at cell7, exact source tokens, red-cell uniqueness, 158↔249 cycle, reversed indexing contrast and combinatorial arithmetic. Uses `resources/liber-primus/lp2-grid-256.json` and original-index archive `resources/cicada2014-onion7-index.html`. No synthetic cipher recovery is claimed.
+[Read-only standalone Node22 CommonJS SFT](../sims/lp2_source1033_3299_3301_grid_pointer_sft.cjs) checks all four authentic p57 clause sums and their original table projections, the added `1031→33` at cell7, base60 p32/p55 rune-count matches, the mixed-radix contradiction, exact source tokens, red-cell uniqueness, 158↔249 cycle, reversed indexing contrast and combinatorial arithmetic. Uses `resources/liber-primus/lp2-grid-256.json` and original-index archive `resources/cicada2014-onion7-index.html`. No synthetic cipher recovery is claimed.
