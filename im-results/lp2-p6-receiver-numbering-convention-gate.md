@@ -69,6 +69,48 @@ signed-source array index (0-based)
 -> manuscript local word ordinal (1-based).
 ~~~
 
+## Forward-order and sign charge
+
+With the selected zero-based/one-based numbering fixed, charge the remaining cheap direction conventions:
+
+- authenticated source window forward or reversed;
+- physical 13-page interval forward or reversed;
+- add or subtract the grid delta.
+
+Across all 3,072 grids and all source/page intervals:
+
+| source direction | page direction | delta sign | full configs |
+| --- | --- | --- | ---: |
+| forward | forward | + | 4 at source30/page30 |
+| forward | forward | - | 4 at source30/page30 |
+| forward | reverse | either | 0 |
+| reverse | forward | either | 0 |
+| reverse | reverse | either | 0 |
+
+The +/- rows are not distinct placements: because the 3,072 family already charges independent role signs, negating the final delta simply relabels signed grid variants. It does **not** create a second address tape or placement.
+
+Thus the actual direction is source-forward/page-forward.
+
+## Original chapter-map narrowing
+
+The source-visible chapter map independently contains exactly two seven-page chapters:
+
+~~~text
+p8-p14
+p33-p39.
+~~~
+
+A 13-page window that places one whole seven-page chapter in the middle with equal three-page flanks can therefore start only at:
+
+~~~text
+p5  -> p5-p17  = 3 + 7 + 3
+p30 -> p30-p42 = 3 + 7 + 3.
+~~~
+
+The charged p6 address family selects only the second. Its center is p36, also the center page of the complete p33-p39 chapter.
+
+This does not prove that the authors meant the 13-dot stencil to encode a 3-7-3 chapter composition; it does supply a concrete human route that narrows 44 raw page intervals to two independently visible candidates before the receiver test.
+
 ## Reproduction
 
 ~~~text

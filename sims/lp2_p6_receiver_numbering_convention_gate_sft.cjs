@@ -298,6 +298,105 @@ assert.deepEqual(results, [
   { sourceBase:1, localBase:1, full:0, placements:[] },
 ]);
 
+const directionResults = [];
+
+for (const sourceDirection of [1,-1]) {
+  for (const pageDirection of [1,-1]) {
+    for (const deltaSign of [1,-1]) {
+      let full = 0;
+      const placements = new Map();
+
+      for (const delta of grids) {
+        for (let sourceStart = 0; sourceStart <= 30; sourceStart += 1) {
+          for (let pageStart = 0; pageStart <= 43; pageStart += 1) {
+            let complete = true;
+
+            for (let lane = 0; lane < 13; lane += 1) {
+              const sourceWord = source[
+                sourceDirection === 1
+                  ? sourceStart + lane
+                  : sourceStart + 12 - lane
+              ];
+              const page =
+                pageDirection === 1
+                  ? pageStart + lane
+                  : pageStart + 12 - lane;
+              const residue = mod29(
+                sourceWord.index + deltaSign * delta[lane]
+              );
+
+              if (!structuralCount(
+                page,
+                lane,
+                sourceWord.length,
+                residue,
+                1
+              )) {
+                complete = false;
+                break;
+              }
+            }
+
+            if (complete) {
+              full += 1;
+              const key = sourceStart + '|' + pageStart;
+              placements.set(key, (placements.get(key) || 0) + 1);
+            }
+          }
+        }
+      }
+
+      directionResults.push({
+        sourceDirection,
+        pageDirection,
+        deltaSign,
+        full,
+        placements: [...placements.entries()].map(([key,count]) => {
+          const [sourceStart,pageStart] = key.split('|').map(Number);
+          return { sourceStart, pageStart, count };
+        }),
+      });
+    }
+  }
+}
+
+assert.deepEqual(directionResults, [
+  {
+    sourceDirection:1,
+    pageDirection:1,
+    deltaSign:1,
+    full:4,
+    placements:[{ sourceStart:30, pageStart:30, count:4 }],
+  },
+  {
+    sourceDirection:1,
+    pageDirection:1,
+    deltaSign:-1,
+    full:4,
+    placements:[{ sourceStart:30, pageStart:30, count:4 }],
+  },
+  { sourceDirection:1, pageDirection:-1, deltaSign:1, full:0, placements:[] },
+  { sourceDirection:1, pageDirection:-1, deltaSign:-1, full:0, placements:[] },
+  { sourceDirection:-1, pageDirection:1, deltaSign:1, full:0, placements:[] },
+  { sourceDirection:-1, pageDirection:1, deltaSign:-1, full:0, placements:[] },
+  { sourceDirection:-1, pageDirection:-1, deltaSign:1, full:0, placements:[] },
+  { sourceDirection:-1, pageDirection:-1, deltaSign:-1, full:0, placements:[] },
+]);
+
+const visualChapters = [
+  [0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55],
+];
+const sevenPageChapterStarts = visualChapters
+  .filter(([start,end]) => end - start + 1 === 7)
+  .map(([start]) => start);
+const centeredThirteenPageStarts = sevenPageChapterStarts
+  .map((chapterStart) => chapterStart - 3)
+  .filter((start) => start >= 0 && start + 12 <= 55);
+
+assert.deepEqual(sevenPageChapterStarts, [8,33]);
+assert.deepEqual(centeredThirteenPageStarts, [5,30]);
+
 console.log(JSON.stringify({
   status:'PASS',
   family: {
@@ -305,8 +404,17 @@ console.log(JSON.stringify({
     sourceWindows: 31,
     pageIntervals: 44,
     numberingConventions: 4,
+    sourceDirections: 2,
+    pageDirections: 2,
+    deltaSigns: 2,
   },
-  results,
+  numberingResults: results,
+  directionResults,
+  sourceVisibleChapterConsequence: {
+    sevenPageChapterStarts,
+    thirteenPageIntervalsWithThreePageFlanks: centeredThirteenPageStarts,
+    selectedByFullAddressFamily: 30,
+  },
   decision:
-    'Only zero-based signed-source indices combined with one-based local manuscript ordinals admit any full 13-lane schedule, and all four survivors are source30/page30.',
+    'Only zero-based source indices, one-based local ordinals, forward source order and forward page order admit a full placement. Delta sign is a label symmetry of the signed grid family, not a second placement.',
 }, null, 2));

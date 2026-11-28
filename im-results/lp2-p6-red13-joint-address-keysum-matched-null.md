@@ -126,6 +126,8 @@ Thus the fully charged p6 address family itself selects **source30/page30** as t
 
 A separate adversarial numbering-base charge now removes an otherwise awkward convention choice. Repeat the entire 3,072-grid × 31-source-window × 44-page-interval receiver test under all four combinations of zero/one-based source numbering and zero/one-based local manuscript ordinals. The three alternatives produce **zero** full schedules. Only **zero-based source index + one-based local ordinal** survives, with exactly the same four source30/page30 configurations. Thus the p6 grid selects the mixed convention rather than inheriting it from notation. [Numbering-convention gate](lp2-p6-receiver-numbering-convention-gate.md).
 
+The same convention gate also charges source order, physical-page order and global delta sign. Reversing either source or pages yields **zero** full schedules; only forward/forward survives. Global +/- delta is merely a label symmetry because the address family already charges signed H roles, so it creates no new placement. The original visual chapter map supplies a separate human-path narrowing: the only seven-page chapters are p8-p14 and p33-p39, hence the only 13-page windows with equal three-page flanks around a complete seven-page chapter are p5-p17 and p30-p42. The p6 family selects p30-p42; p36 is simultaneously the 13-page center and the center of chapter p33-p39.
+
 ## Grid B: p6-only key-sum correction
 
 For the same H roles, singleton sign, and stencil orientation, define:
