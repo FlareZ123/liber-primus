@@ -1,4 +1,4 @@
-# The p27-selected p50 base59 pointer path is a BASE29 DH-state tape
+# The p27-selected p50 base59 pointer path is a historical-BASE29 DH-state tape
 
 **Agent11, 28 November 2026. Classification: new source-constrained state serialization on an independently selected p50 path; no unknown plaintext, key schedule, cipher inverse, or destination.**
 
@@ -17,38 +17,40 @@ The already established p27/DH route fixes all of the choices needed to obtain o
 
 and cell189 is the pre-existing base59 self-pointer at row23/column5.
 
-Taking the canonical Euclidean quotient/remainder `divmod(address,29)` of those already selected **addresses**, rather than their cell contents, exposes a complete state tape. The modulus29 is source-authenticated by Cicada's 2013 BASE29 command, but the fixed two-coordinate address representation used here is newly inferred. The eight pre-terminal addresses are
+The same authenticated 2013 challenge specifies **BASE29** and the worked **DH23** exchange in one signed protocol. Its positive example is `BASE29 3301 -> 3QO`; a contemporaneous participant transcript additionally records `BASE29 30 -> 11`, establishing the historical command's minimal-width positive-integer representation. The preserved source contract is summarized in [the signed 2013 TCP-server source record](../resources/external/2013-tcp-server-signed-source.md).
+
+Apply that exact minimal-width BASE29 conversion to the independently selected **addresses**, rather than their cell contents:
 
 ```text
-186 = 6*29 + 12 = [a,     aK]
- 19 = 0*29 + 19 = [F,      B]
- 33 = 1*29 +  4 = [1,      q]
-112 = 3*29 + 25 = [e,     -q]
- 72 = 2*29 + 14 = [K,     -b]
-161 = 5*29 + 16 = [g,     AK]
-214 = 7*29 + 11 = [g+K, A^-1]
-247 = 8*29 + 15 = [A,      b]
+address   historical BASE29    digit values / DH-state reading
+186       6C                   [a,     aK] = [6,12]
+ 19       J                    B          = 19
+ 33       14                   [1,      q] = [1,4]
+112       3P                   [e,     -q] = [3,25]
+ 72       2E                   [K,     -b] = [2,14]
+161       5G                   [g,     AK] = [5,16]
+214       7B                   [g+K, A^-1] = [7,11]
+247       8F                   [A,      b] = [8,15]
+189       6F                   [a,      b] = [6,15]
 ```
 
-for the independently reconstructed state
+The letters above are literal historical BASE29 digits under the source alphabet `0123456789ABCDEFGHIJKLMNOPQRS`: `C=12`, `J=19`, `P=25`, `E=14`, `G=16`, `B=11`, and `F=15`.
+
+For the independently reconstructed state
 
 ```text
-(p,g,a,b,A,B,K,e,q) = (23,5,6,15,8,19,2,3,4).
+(p,g,a,b,A,B,K,e,q) = (23,5,6,15,8,19,2,3,4),
 ```
 
-The endpoint itself is
+every digit value is therefore a compact DH/state field or elementary state expression. Crucially, **no leading-zero convention is required**: address19 is historically encoded as the one-digit `J`, which is already exactly `B=19`.
+
+For later structural controls it is also useful to take the ordinary Euclidean quotient/remainder `divmod(address,29)`. That mathematical view assigns address19 the pair `[0,19]=[F,B]`, but the zero quotient is not claimed to be a printed historical digit. The source-authentic textual tape is the minimal-width sequence
 
 ```text
-189 = 6*29 + 15 = [a,b].
+6C -> J -> 14 -> 3P -> 2E -> 5G -> 7B -> 8F -> 6F.
 ```
 
-### Historical BASE29 representation caveat
-
-The authenticated 2013 challenge gives `BASE29 3301 -> 3QO`, and a contemporaneous participant transcript records `BASE29 30 -> 11`. The latter is important: the observed command uses **minimal-width positive-integer output**, so an address below29 is not printed with a leading zero. Under that historical textual convention, address19 is the one-digit value corresponding to GP index19, not a printed two-digit `[0,19]` word.
-
-Accordingly, the high coordinate `F=0` at address19 is a canonical mathematical quotient from `divmod(19,29)`, **not** an authenticated fixed-width BASE29 serialization rule. The stronger remainder tape and adjacent-H packet below do not depend on that padding convention: every low coordinate is simply `address mod29`, including `19 mod29=19`.
-
-Thus the source-selected eight-hop pointer path is simultaneously a sequence of nine compact mod29 quotient/remainder state pairs under one newly inferred fixed-width view. This address-level state view was **not** used to choose the start, radix, hop count, or endpoint.
+This historical-BASE29 address view was **not** used to choose the start, radix, hop count, or endpoint. Applying BASE29 to table addresses remains an inferred composition: the signed protocol authenticates both operations separately but does not explicitly instruct an LP2 solver to compose p50 pointer addresses with BASE29.
 
 ## Strongest algebraic compression: adjacent H of the low BASE29 digits
 
@@ -107,7 +109,7 @@ At the base59 fixed-point sink:
 cell189(base59) = 189
 ```
 
-The first decomposition is the already published 32x8 table/DH geometry. The second decomposition is new. In particular, the same fixed point that encodes the public setup `(p,g)` in table coordinates also encodes the two private exponents `(a,b)` in BASE29.
+The first decomposition is the already published 32x8 table/DH geometry. The second decomposition is new. In particular, the same fixed point that encodes the public setup `(p,g)` in table coordinates is literally historical BASE29 `6F`, whose two digits are the private exponents `(a,b)=(6,15)`.
 
 This is unusually compact because the table width is itself `A=8`, so the row-major address grammar is `p*A+column`, while the independently authenticated runic radix supplies the second quotient/remainder grammar.
 
@@ -242,4 +244,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also executes the bounded p49/p51 flank consumer, matched base60-rival control, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`.
