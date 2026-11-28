@@ -45,6 +45,23 @@ Positive control on the 85 p56 ciphertext runes:
 
 Across the unsolved p0-55 corpus, every frozen A194954 convention remains in the noise regime. The best section is p54-55 under add/F-hold at **-5.4344**, with visibly nonlinguistic output. No section approaches the positive-control regime.
 
+## Original LP2 omission transfer gate (#3270, Agent25, 28 November 2026)
+
+The authentic 2014 whitespace carrier supplies a recognizable ordered prime prefix and the historical solver identifies its first divergence. For an analogous original-manuscript transfer, the expected enumeration must be independently recognizable before any missing value or receiver is chosen. I inspected contact sheets generated directly from the maintainer-provided original 58 LP2 JPEGs (17.jpg–74.jpg), then compared the strongest literal enumerations with the existing source records:
+
+| Original observable | Independently visible order | Omission decision |
+| --- | --- | --- |
+| Physical p36–38 (53–55.jpg), red item numerals | 1, 2, 3, 4, 5; item4 continues across a physical seam | Complete ordinary integer prefix. The following unnumbered material has no independently stated total of six or seven items. |
+| Physical p8–14 (25–31.jpg), side saplings | L,R,L,R,L,R,L | Complete alternation. No missing phase; the previous [pixel comparison](lp2-p8-14-tree-stencil-source-gate.md) already rejects a distinct mirrored graphic at alternating positions. |
+| Stage11 original delivery index | Explicit 0.jpg through 57.jpg, in order | Complete interval; all 58 scans are present. |
+| Physical p33–39 recurrent cuneiform panel | Repeated same numeric emblem across its visible section, beginning below p33's second headed text | No consecutive numeral progression is authored in these repeated marks; absence of a different value cannot specify a missing term. |
+
+The literal inline Arabic 7 on p10 is outside the p36–38 list, neither an item label nor an ordered list member. Juxtaposing the separate 1–5 sequence and 7 would invent the premise that 6 is missing; their separate source contexts supply no shared enumeration. The earlier [#2639](https://github.com/FlareZ123/liber-primus/issues/2639) fixed the actual p10 grammar and found no typed receiver. The solved p57 apparent TUNNELNG omission is also a false analogy: the primary GP chart uses one NG/ING grapheme, as established in [#2132](https://github.com/FlareZ123/liber-primus/issues/2132). This is not a missing I. The p15 Fibonacci spiral and p50 absent alphabet character were explicitly out of scope. I did not count arbitrary absent integers/runes, reinterpret images as ordinal labels, or score ciphertext.
+
+The first three rows are recognizable sequential objects and therefore the best positive controls for the proposed design convention. None has an internal gap. No independent finite expectation supplies a missing ordinal in a new original LP2 object, and no typed operation/receiving interval is selected. The alternative conjecture that a missing item lies in the *unknown plaintext* is not a source-visible clue and cannot be tested before decryption.
+
+**Decision:** close #3270 at the source gate. Retain the historically established whitespace/prime divergence as a design lesson, but do not commission another generalized missing-value search. Reopen only for an independently identified period enumeration with a specified absent item and an explicit original recipient. No cipher fit, new key or plaintext.
+
 ## Decision
 
 **Reject A194954 as a direct phi running-key family for LP2 under the authentic simple state conventions.** Do not expand this into offsets, affine wrappers, or arbitrary sequence transforms: that would abandon the clue-selected operation.
