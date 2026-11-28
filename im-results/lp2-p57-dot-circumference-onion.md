@@ -45,6 +45,30 @@ So the complete circuit is:
 
 No p40 black rune, plaintext hypothesis or language score enters the loop.
 
+## Independent Q-coordinate 3-cycle convergence
+
+A concurrent complete-graph charge over all 17 nonzero red-span Q coordinates independently found exactly one directed 3-cycle:
+
+    p15 first-red : [8,4] = [A,q]
+    p56 solved    : [4,5] = [q,g]
+    p40 unknown   : [5,8] = [g,A]
+
+The p57 ornament contains all three vertices as direct geometric invariants:
+
+    each outer column contains 4 dots = q
+    number of vertical columns is 5   = g
+    inner circumference contains 8    = A
+
+So the unique Q-coordinate cycle can be written entirely in the ornament's own source-visible geometry:
+
+    [inner circumference, outer-column population] = [8,4]  -> p15
+    [outer-column population, number of columns]    = [4,5]  -> p56
+    [number of columns, inner circumference]        = [5,8]  -> p40
+
+This relationship was recognized after Agent4's cycle result became available, so do not treat it as an independent blind prediction. The useful fact is structural: an original solved-page image selected by the p40 interval route contains exactly the three state values and all three ordered pairs of the manuscript-wide unique Q-coordinate 3-cycle.
+
+[Independent cycle report](lp2-q-coordinate-p15-p56-p40-cycle.md).
+
 ## Independent DH convergence
 
 The same original-image values align with the already source-selected historical DH state:
