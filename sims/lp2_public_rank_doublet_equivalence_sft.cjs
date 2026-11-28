@@ -254,7 +254,8 @@ function plantNull(plain,mode,phase,seed){
   outputPages.push({page:page.page,indices:c});
  }
  assert.equal(index,activeN);
- const groups=periodicGroups(outputPages,mode,16);
+ const cleaned=outputPages.map(page=>({page:page.page,indices:page.indices.filter(x=>x!==0)}));
+ const groups=periodicGroups(cleaned,mode,16);
  assert.equal(groups.N,activeN);
  const matched=periodicGate(groups,input,0,true);
  assert(matched.possible,'null-interrupt native plant rejected');
