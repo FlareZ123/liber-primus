@@ -141,6 +141,25 @@ const p54=red.find(r=>r.page===54&&r.start===0);assert(p54);
 assert.equal(p54.k+meaningCell.base60,748);
 assert.deepEqual([Math.floor(748/29),748%29],[25,23]);
 
+// Representation-continuity control: if the first hop's rule is iterated
+// without changing representation, the target is first mapped by plain Q
+// again. At k748 that output is [21,9]=IS/LIBER, not [25,23]=THEIR/ROAD.
+const target748=red.find(r=>r.k===748);assert(target748);
+assert.deepEqual(target748.qout,[21,9]);
+assert.deepEqual(target748.qwords,['IS','LIBER']);
+const uniformSecondAddress=target748.qout[1];
+assert.equal(uniformSecondAddress,9);
+assert.equal(bytes60[uniformSecondAddress],249);
+const uniformSecondNextK=mod840(748+249);
+assert.equal(uniformSecondNextK,157);
+assert.equal(statesByK.has(uniformSecondNextK),false);
+const uniformFirstAddress=target748.qout[0];
+assert.equal(uniformFirstAddress,21);
+assert.equal(bytes60[uniformFirstAddress],137);
+const uniformFirstNextK=mod840(748+137);
+assert.equal(uniformFirstNextK,45);
+assert.equal(statesByK.has(uniformFirstNextK),false);
+
 const roadCell={index:23,token:tokens[23],base60:bytes60[23],base59:value(tokens[23],a59,59)};
 assert.deepEqual(roadCell,{index:23,token:'1R',base60:87,base59:86});
 assert.deepEqual(bytes60.map((v,i)=>[v,i]).filter(([v])=>v===87),[[87,23]]);
@@ -182,8 +201,16 @@ const result={
    p57SolvedRedPlaintext:'PARABLE',
    sameFieldResidue:true,
  },
+ representationContinuity:{
+   targetK:748,
+   targetPlainQOutput:target748.qout,
+   targetPlainQWords:target748.qwords,
+   sameRuleSecondCoordinate:{address:uniformSecondAddress,step:249,nextK:uniformSecondNextK,printedRedLanding:false},
+   sameRuleFirstCoordinate:{address:uniformFirstAddress,step:137,nextK:uniformFirstNextK,printedRedLanding:false},
+   mixedDlogCoordinateRoadContinuation:{address:23,step:87,nextK:afterRoad,note:'requires switching from plain-Q output coordinates to Q-discrete-log base29 coordinates'},
+ },
  continuation:{roadCell,afterRoad:{k:afterRoad,coord:afterRoadCoord,words:afterRoadCoord.map(i=>words[i])},base59Meaning:{k:base59MeaningTarget,words:[Math.floor(base59MeaningTarget/29),base59MeaningTarget%29].map(i=>words[i])},base59Road:{k:base59RoadTarget,words:[Math.floor(base59RoadTarget/29),base59RoadTarget%29].map(i=>words[i])}},
- interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction; the seven-rune solved p57 red opener is PARABLE. ROAD23 then uniquely addresses87 and advances to k835=[28,23]=THE/ROAD. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the zero-based 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. Charging one-based table-address origin adds one unrelated base60 p33->p40 hit, but destroys the MEANING and ROAD checkpoints; the source-word reading itself also requires zero-based origin because p54's first field coordinate is literal HELLO0. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
+ interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction; the seven-rune solved p57 red opener is PARABLE. A previously noted ROAD23 continuation to k835=[28,23]=THE/ROAD uses the target's Q-discrete-log coordinate and therefore switches representation. Iterating the first hop uniformly instead maps k748 by plain Q to [21,9]=IS/LIBER; the second-coordinate rule then uses cell9=249 and reaches k157, which is not a printed red state. The ROAD continuation is retained only as a separate dlog-coordinate hypothesis, not as the next step of this plain-Q-output algorithm. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the zero-based 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. Charging one-based table-address origin adds one unrelated base60 p33->p40 hit, but destroys the MEANING and ROAD checkpoints; the source-word reading itself also requires zero-based origin because p54's first field coordinate is literal HELLO0. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
