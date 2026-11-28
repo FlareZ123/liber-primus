@@ -110,6 +110,14 @@ A generated native p57 control encrypted under the exact same five-shift/F-hold 
 
 This rejects the most literal transfer of the authentic p56 cipher semantics to the newly authenticated p47→p23 state-line receiver. It is stronger than the older four-red-word raw-cardinal test: the key here uses the complete independently predicted five-word line and the genuine prime-minus-one serializer. It does not exclude a different clock, nonrepeating use, word-level operation, or another cipher family.
 
+### THE ORIGIN -> p0 and the phase0 survivor census
+
+A separately committed preregistration froze `THE ORIGIN` as physical p0/rune0 under the identical five shifts and solved-p56 F-hold semantics. P0 collapses after four legal symbols: at offset4 `C=6` equals the current key lane6, forcing an illegal consuming plaintext F; a hold is impossible because ciphertext is not F.
+
+A post-failure diagnostic applies the exact phase0 decoder to every rune-bearing page. Only p24 and p43 traverse legally, with **14** and **27** exact plaintext histories once F-branch histories are counted rather than merged by key index. Their best source-native LP1 trigram scores are **-3.3946140** and **-3.4083711**. Those are worse than every matched Gibran control: among all 62,223 length270 windows the floor is **-3.1693961**, and among all 62,219 length274 windows the floor is **-3.1690795**. Thus the legal survivors are nonlinguistic coincidences, not plaintext.
+
+The census is exploratory and does not source-select p24/p43. It establishes that mere F-hold legality is insufficient evidence and closes the direct `THE ORIGIN -> p0` transfer without phase/sign rescue.
+
 ## Evidence boundary
 
 This does not decrypt new p23 rune text. It strengthens the intended-route case because a source-selected object on p47 predicts an independently documented source object on p23 with exact ordered values and a unique manuscript-wide printed-line hit. The direct H-free origin-coordinate continuation is now prospectively rejected, so the supported claim stops at navigation/state closure unless a different page-local operation is independently selected.

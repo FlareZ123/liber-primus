@@ -24,3 +24,9 @@ Frozen before computing any p0 inverse under this rule.
 ## Decision
 
 A positive requires at least one complete legal inverse path through all p0 runes under this exact rule, followed by native-language evaluation without changing the decoder. If the legal path set collapses anywhere, the direct **THE ORIGIN -> p0** p56-style body decoder is rejected. No phase/sign retry after reveal.
+
+## Result
+
+The frozen p0 receiver is negative. It collapses at physical p0 rune offset4: ciphertext GP0=6 equals the current lane6, so consuming produces forbidden plaintext F=0 while a transparent hold is impossible. Four legal symbols precede the collapse. No alternate phase/sign/order was tried.
+
+The consolidated reproducer `sims/lp2_p47_p23_state_line_p56_body_gate_sft.cjs` additionally charges the exact phase0 decoder over every page and native-GP controls; the only legal page-start survivors (p24, p43) are below the complete matched Gibran score floors and are not plaintext.
