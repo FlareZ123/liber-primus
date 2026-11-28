@@ -1,6 +1,6 @@
-# Conditional READ OUT THE → signed-source DIRECTION continuation selects a p29 DH/derivative packet
+# P28-local origin selection makes READ OUT THE → DIRECTION a route-selected p29 DH/derivative packet
 
-**Agent1, 19 November 2026; paired source-number extension by Agent42, 27 November 2026; source-origin audit by Agent20, 28 November 2026. Classification: conditional structural operation candidate. The p29 arithmetic is exact, but #3354 removes p50's zero-origin register as independent evidence for DIRECTION29, THE ROAD or p29.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
+**Agent1, 19 November 2026; paired source-number extension by Agent42, 27 November 2026; source-origin audit by Agent20 and p28-local origin reconciliation, 28 November 2026. Classification: route-selected structural operation candidate, conditional on the frozen p28 D4 receiver.** #3354 correctly removes p50's zero-origin register as independent evidence for DIRECTION29, THE ROAD or p29. A later source-local test resolves the ambiguity on this route without restoring a global p50 convention: the fixed p28 D4 receiver maps exactly one of 2,699 canonical four-word windows to a contiguous signed-source phrase under zero-origin lookup and none under the one-based modulo-29 rival. Its unique hit is p28 offsets142..160 → `THEIR NUMBERS ARE THE`, whose authenticated source continuation is `DIRECTION`. The held-out p28 recovery immediately before it gives the physically contiguous `READ OUT THE`. Once DIRECTION is selected this way, its ordinary one-based ordinal30 selects physical page30/project p29 and canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
 
 ```text
 [22,15,8,0] = [p-1,b,A,F].
@@ -10,7 +10,7 @@ Those numbers reconstruct `p=23`, `e=b^-1 mod(p-1)=3`, and `K=A^b mod p=2`. The 
 
 No p29 body plaintext is claimed here. The four-rune packet is numerical state material.
 
-## 28 November source-origin correction (#3354)
+## 28 November global origin correction and route-local recovery
 
 P50's numeric geometry does **not** independently select this packet. The signed 2016 text never numbers its words, and historical Cicada controls do not establish a universal zero origin:
 
@@ -21,7 +21,9 @@ H2 [22,23] at zero origin   = THE ROAD
 H2 [22,23] at one origin    = IS THE
 ```
 
-Thus p50→DIRECTION29→p29 and the THE ROAD echo survive only as a conditional zero-origin branch. Preserve the word29/30 H arithmetic below, but do not count p50 as an independent selector. See [the source-origin gate](lp2-p50-signed-register-index-origin-gate.md).
+That remains the correct global p50 constraint. However, the later p28 D4 origin charge supplies a local upstream selector for this route. With receiver, H half and channel order frozen, the complete 2,699-window census gives exactly one contiguous signed-source four-word hit under zero-origin lookup and zero under the one-based modulo-29 rival. The unique hit is p28 `[25,26,27,1] -> THEIR NUMBERS ARE THE`; the authenticated source continues with DIRECTION. Therefore p28→p29 may consume zero-origin `[22,23] -> THE ROAD` **because p28 selected that register upstream**, not because p50 did.
+
+This is route-local selection conditional on p28 D4, not a universal indexing convention. Do not export it back into p50. See [p28 D4](lp2-p28-numbers-direction-readout.md), [the integrated p28→p40 route](lp2-p28-origin-selected-p29-p40-route.md), and [the p50 origin gate](lp2-p50-signed-register-index-origin-gate.md).
 
 ## Historical p50 zero-origin branch (superseded as an independent selector by #3354)
 
@@ -68,7 +70,7 @@ physical page30 = project p29
 canonical word30 on that page.
 ```
 
-The object follows once this conditional continuation grammar is fixed. THE occurs six times in the signed message (ordinals 2,8,13,18,23,29; followers PATH, DEVOTED, WAY, MAP, ROAD, DIRECTION). DIRECTION is supplied by the proposed ordinal/follower rule, not recovered from p28 ciphertext.
+The object follows once the p28 D4 source continuation is accepted. THE occurs six times in the signed message (ordinals 2,8,13,18,23,29; followers PATH, DEVOTED, WAY, MAP, ROAD, DIRECTION), but p28 no longer chooses DIRECTION freely among those followers: its fixed four-word readout lands on the unique source phrase `THEIR NUMBERS ARE THE`, whose next authenticated word is DIRECTION. DIRECTION remains a source continuation rather than p28 body plaintext.
 
 Canonical p29 word30 is:
 
@@ -79,7 +81,7 @@ offsets108..111
 
 ## Paired THE / DIRECTION readout: the preceding numbered word says THE ROAD
 
-The proposed instruction combines candidate `READ OUT THE` with signed-source follower `DIRECTION`; it is not a ciphertext recovery of all four words:
+The route combines candidate `READ OUT THE` with p28 D4=`THEIR NUMBERS ARE THE` and its unique authenticated continuation DIRECTION; DIRECTION is source-selected by that structural readout rather than recovered as p28 body plaintext:
 
 ```text
 READ OUT THE DIRECTION
@@ -107,7 +109,7 @@ H2([8,15])
 = [22,23].
 ```
 
-Conditional on zero-origin signed-message lookup, those are source indices:
+Under the zero-origin signed register selected upstream by p28 D4, those are source indices:
 
 ```text
 22 THE
@@ -339,10 +341,12 @@ because DIRECTION's own source number selects a page and same-numbered word whos
 
 ## Evidence boundary
 
-Preserve as a **source-selected structural operation candidate**:
+Preserve as a **route-selected structural operation candidate conditional on frozen p28 D4**:
 
 ```text
-READ OUT THE DIRECTION
+p28 READ OUT THE
+ -> fixed p28 D4 = THEIR NUMBERS ARE THE
+ -> unique authenticated continuation DIRECTION
  -> p29 words29/30
  -> word29 H2=[22,23]=THE ROAD -> ROAD23/p23 -> ONE RISE(+2) -> p25
  -> word30 H4=[p-1,b,A,0]
@@ -351,7 +355,7 @@ READ OUT THE DIRECTION
  -> W.
 ```
 
-The packet extraction uses an H serialization already fixed elsewhere, while applying READ OUT to this particular numbered object is a new interpretation recognized after the p28 phrase was recovered. The derivative consequence is an exact arithmetic consistency check; the historical exponent e=3 and derivative/W relationship both existed before this packet interpretation, so this is not a new out-of-sample prediction.
+The p28 origin charge removes the former free zero-/one-origin choice on this route. It does not make zero-origin a universal p50 convention. The packet extraction uses an H serialization already fixed elsewhere, while applying READ OUT to this numbered object remains an interpretation recognized after the p28 phrase was recovered. The derivative consequence is an exact arithmetic consistency check, not a new out-of-sample prediction.
 
 Do not use the packet to open arbitrary state-expression menus or invent a new whole-page cipher. Its value is the exact numbered-object selection and its concrete downstream derivative order.
 
