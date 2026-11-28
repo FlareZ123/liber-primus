@@ -54,6 +54,28 @@ row p  -> B
 
 with all three readouts radix-invariant.
 
+## The four strict p50 support lines are exactly the p6 `[e,g,a,K]` coordinates
+
+The strongest relation is at the line level, before any individual state-valued cell is chosen. Recomputing the strict p50 prime-rank geometry directly from the original table gives four physical supports:
+
+~~~text
+base60 prime ranks17→18 : column3   (THE→MAP under the working register)
+base59 prime ranks22→23 : row5      (THE→ROAD under the working register)
+base60 prime ranks38→39 : column6   (BEWARE→FALSE under the working register)
+base60 prime ranks39→40 : column2   (FALSE→PATHS under the working register)
+~~~
+
+The signed-word labels retain the register-origin caveats documented in the p50 report, but the **physical line coordinates and prime ranks do not**. Their ordered coordinate tuple is:
+
+~~~text
+[MAP column, ROAD row, BEWARE/FALSE column, FALSE/PATHS column]
+= [3,5,6,2]
+= [e,g,a,K]
+~~~
+
+where `[e,g,a,K]=[3,5,6,2]` is independently fixed by the p6 title/state packet. Equivalently, the set of all four strict support-line coordinates is exactly `{K,e,g,a}={2,3,5,6}`.
+
+This removes a major flexibility concern from the later cell-level bridge: the p50 geometry itself independently chooses the same four small state coordinates before p6 is overlaid. In particular, its FALSE/PATHS tunnel chooses physical column2, which p6 names `K`.
 ## Independent physical selection of column K
 
 The strongest part of this bridge is that column2 was not chosen by the p6 overlay. Agent10's already frozen p50 route had independently projected from cell74 `(row9,col2)` straight to the surface at cell2, explicitly opening the literal physical column2 tunnel:
