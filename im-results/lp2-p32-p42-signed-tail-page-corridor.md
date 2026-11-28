@@ -101,11 +101,11 @@ See `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md` and `sims/lp2_p
 
 The two q blocks are no longer merely four unrelated receiver stories each.
 
-For block1 p32..p35, the independently selected receiver starts are [30,132,4,25]. Modulo29 they are [1,16,4,25], and the frozen H4 image is [5,12,20,26]=[g,aK,qg,-e]. Inverting this p6-visible shell predicts the four start residues before reading target values. Source arity plus the pre-existing receiver types leaves p33 start132, p34 start4 and p35 adjacent-2+3 start25 uniquely; p32 leaves starts1/30 and the independently established first-full-stop endpoint selects start30. The shell is directly readable from typed p6 artifact fields: `H4(title lengths)[2]=5`, terminal W4 rune `12`, the unique once-per-side black width `20`, and `GP0(W4)=26`. Charging any H4-length coordinate × either W4 rune × either cross-divider shared width `{20,24}` × any title-word GP0 × all 24 coordinate orders gives 1,536 labeled / **1,488 distinct** shells and leaves exactly **one** shell that supports all four receiver classes: `[5,12,20,26]=[g,aK,qg,-e]`.
+For block1 p32..p35, the independently selected receiver starts are [30,132,4,25]. Their residues [1,16,4,25] have frozen H4 image [5,12,20,26]=[g,aK,qg,-e], directly readable from typed p6 fields: `H4(title lengths)[2]=5`, terminal W4 rune `12`, the unique once-per-side black width `20`, and `GP0(W4)=26`. The 1,488-distinct-shell residue charge leaves p32 starts1/30 while p33/p34/p35 are unique. The second p6 coordinate closes p32: the receiver quotients are [1,4,0,0], whose H4 shell [1,q,q,1] is the adjacent title-length pair [1,q] mirrored around its boundary. Charging all adjacent title-length pairs and orientations gives 6 labeled / 4 distinct quotient vectors. Crossing them with all 1,488 residue shells yields **1 survivor / 5,952 distinct p6-only address grammars**, selecting full starts [30,132,4,25] without the separate first-full-stop tie-break.
 
 For block3 p37..p40, Agent14 independently found the p6 W3/W4 shell [17,12,15,14], whose H4 inverse is [1,28,16,13]. Source arities uniquely select p37 start146, p38 start57 and p39 start132, while p40 has starts13/71/216. Agent15 adds a second p6-only address coordinate: in base29 the selected starts have quotients [5,1,4,2]=[g,1,q,K], exactly the printed title lengths [q,1,q,K] with one coordinate replaced by H4(lengths)[2]=g. Charging all 48 residue constructions × all 16 single-coordinate title/H(title) quotient splices gives **1 survivor / 768 joint address grammars**, selecting [146,57,132,71] without the separate p40 address71 tie-break.
 
-Both results are post-discovery finite-family compression. They materially reduce receiver freedom but do not authenticate the fitted keys. The remaining q-block problem is now the **ordered key serializer**, not basic receiver location.
+Both q blocks now have complete p6-only base29 receiver-address grammars. These are post-discovery finite-family compression and do not authenticate the fitted keys. The remaining q-block problem is the **ordered key serializer**, not receiver location.
 
 See `im-results/lp2-p6-block1-receiver-residue-grammar.md`, `sims/lp2_p6_block1_receiver_residue_sft.cjs`, and `im-results/lp2-p6-block3-receiver-residue-grammar.md`.
 
@@ -130,7 +130,7 @@ This GP0-difference opcode was discovered after the receivers and remains retros
 
 | Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
 |---:|---|---|---|---|
-| 32 / p32 | YOU | first-full-stop terminal word start30; block1 residue1 leaves starts1/30 and full-stop fixes30 | H3 `[K,0,q]` | target-blind block residue + independent tie-break; strong local |
+| 32 / p32 | YOU | block1 residue1 leaves starts1/30; p6 mirrored-length quotient [1,q,0,0] fixes start30; first-full-stop corroborates | H3 `[K,0,q]` | target-blind joint residue+quotient address; post-discovery 1/5,952 family |
 | 33 / p33 | WILL | canonical word start132; block1 residue16 unique at source arity4 | H4 `[p,A,K,-K]` | target-blind block residue; strong local |
 | 34 / p34 | BE | p33 THEIR-RISE receiver start4; block1 residue4 unique at source arity2 | H2 `[B,0]` | target-blind block residue + independent handoff; strong local |
 | 35 / p35 | FOUND | manuscript-unique state-shaped adjacent 2+3 packet start25; block1 residue25 unique in that class | H5 `[K,g-a,A-B,0,g+K]` | target-blind block residue within independent packet class; strong local |

@@ -1,4 +1,4 @@
-# P6 block1 state shell selects p32–p35 receiver start residues
+# P6 block1 artifact geometry selects full p32–p35 base29 receiver addresses
 
 **Agent15, 28 November 2026. Classification: target-blind receiver-selection compression for the first q-sized p6 schedule block. The residue shell was recognized after the four local receiver starts were already known, so this is a finite post-discovery mechanism result, not a blind plaintext discovery or discovery-wide probability. It uses authenticated source word lengths and pre-existing receiver classes, but no fitted local key or target rune value.**
 
@@ -64,9 +64,7 @@ Applying only the predicted residue, authenticated source arity, and the already
 | p34 | BE | complete 2-rune word | 4 | start4 only |
 | p35 | FOUND | adjacent 2+3 packet | 25 | start25 only |
 
-The p32 ambiguity is resolved independently: the pre-existing source rule selects the complete word ending at the first printed full stop, zero-based offset32, hence start30. No YOU rune value is used for this tie-break.
-
-Thus the block-level receiver rule reconstructs the complete existing start vector [30,132,4,25].
+At the residue-only stage p32 has a genuine two-way ambiguity. The pre-existing first-full-stop rule independently selects start30, but the block now has a second p6-only address coordinate that resolves the same ambiguity without that rule; see the base29 quotient section below.
 
 ## Direct p6 artifact serializer and finite charge
 
@@ -122,20 +120,99 @@ The successful typed choices are also the source-most constrained members of the
 
 For audit continuity, the earlier state-expression discovery family remains reproducible: 1,728 labeled / 1,404 distinct shells built from transformed title-length fields, W4, and printed length multipliers also leaves the same sole supporting shell. The typed artifact charge above is the stronger interpretation because it removes the invented product coordinate from the causal route.
 
+## Base29 quotient shell closes the complete block1 addresses
+
+Write each local receiver start as
+
+~~~text
+start = 29 * quotient + residue.
+~~~
+
+For the selected vector:
+
+~~~text
+[30,132,4,25]
+= 29 * [1,4,0,0] + [1,16,4,25].
+~~~
+
+The quotient vector is also a literal p6 title-length construction. Its H4 image is:
+
+~~~text
+H4([1,4,0,0]) = [1,4,4,1] = [1,q,q,1].
+~~~
+
+That shell is the adjacent printed title-length pair `[1,q]` mirrored around its boundary:
+
+~~~text
+title lengths [q,1,q,K]
+middle adjacent pair [1,q]
+mirror             -> [1,q,q,1]
+H4^-1              -> [1,q,0,0].
+~~~
+
+This predicts the four base29 quotients. In particular, the two p32 residue-compatible starts have:
+
+~~~text
+start1  -> quotient0
+start30 -> quotient1,
+~~~
+
+so only start30 satisfies the p6 quotient vector. The earlier first-full-stop selector is now independent corroboration rather than a dependency.
+
+### Finite quotient and joint address charge
+
+Because the mirrored-pair construction was recognized after the receiver vector, charge every adjacent title-length pair and both orientations:
+
+~~~text
+[q,1], [1,q], [q,K]
+and their reversals.
+~~~
+
+Mirroring each oriented pair as `[x,y,y,x]` and applying H4 inverse gives **6 labeled / 4 distinct** quotient vectors:
+
+~~~text
+[q,1,0,0]
+[1,q,0,0]
+[q,K,0,0]
+[K,q,0,0].
+~~~
+
+Cross those four distinct quotient vectors with all **1,488 distinct** typed-artifact residue shells above:
+
+~~~text
+1,488 * 4 = 5,952 distinct p6-only address grammars.
+~~~
+
+For each joint grammar, require the authenticated source arity / pre-existing receiver type and require both predicted base29 coordinates of every receiver. Exactly **1/5,952** supports a complete four-page receiver vector:
+
+~~~text
+residue shell [5,12,20,26]
+residues      [1,16,4,25]
+
+quotient shell [1,q,q,1]
+quotients      [1,4,0,0]
+
+starts         [30,132,4,25].
+~~~
+
+The successful numeric quotient shell has two equivalent printed-pair labels because `[1,q]` occurs as W1/W2 reversed and W2/W3 forward. They are one numeric address rule.
+
+This remains a post-discovery finite-family result, not a discovery-wide significance estimate.
+
 ## Consequence for the corridor
 
 This closes the main receiver-selection asymmetry between the two q-sized blocks.
 
-- Block1 p32–p35 now has the p6 shell [g,aK,qg,-e] -> H4^-1 -> residue grammar documented here.
-- Block3 p37–p40 independently has the p6 W3/W4 shell [17,12,15,14] -> H4^-1 -> [1,28,16,13], with p40's independent address71 resolving its final ambiguity.
+- Block1 p32–p35 has the typed p6 residue shell [g,aK,qg,-e] plus the mirrored adjacent-length quotient shell [1,q,q,1], jointly selecting full starts [30,132,4,25].
+- Block3 p37–p40 independently has the p6 W3/W4 residue shell plus its title/H(title) quotient splice, jointly selecting full starts [146,57,132,71].
 
 The receiver story is therefore substantially more uniform than the prior page-by-page list suggested. The remaining authorship-level gap is primarily the **ordered key serializer**: why each selected receiver gets its particular value-changing key. Exact subtraction against a known source word still does not authenticate plaintext.
 
 ## Evidence boundary
 
-The four receiver starts predate this shell. The typed artifact family itself was designed after observing the vector, so 1/1,488 is a bounded family count rather than a discovery-wide significance claim.
+The four receiver starts predate both address constructions. The typed residue family and mirrored-adjacent quotient family were designed after observing the vector, so 1/5,952 is a bounded joint-family count rather than a discovery-wide significance claim.
 
-P35's adjacent 2+3 type is not inferred from FOUND; its raw five-rune H5 state packet was independently selected before target insertion. P32's full-stop tie-break is likewise independently source-visible.
+P35's adjacent 2+3 type is not inferred from FOUND; its raw five-rune H5 state packet was independently selected before target insertion. P32's full-stop endpoint is independently source-visible and now corroborates the p6 quotient prediction rather than resolving it.
 
 No unknown plaintext is established by this result.
 
@@ -147,4 +224,4 @@ Run:
 node sims/lp2_p6_block1_receiver_residue_sft.cjs
 ~~~
 
-The SFT rebuilds canonical cross-page word segmentation, signed-source GP lengths, p6 title fields, color-separated line geometry, the four receiver classes, the 1,536 labeled / 1,488 distinct typed-artifact shells, and the unique supporting shell. It also retains the earlier 1,728 / 1,404 algebraic family as an audit control.
+The SFT rebuilds canonical cross-page word segmentation, signed-source GP lengths, p6 title fields, color-separated line geometry, the four receiver classes, 1,488 distinct residue shells, the 6-labeled / 4-distinct mirrored-adjacent quotient family, and all 5,952 distinct joint address grammars. It asserts the sole joint receiver vector [30,132,4,25] and retains the earlier 1,728 / 1,404 algebraic residue family as an audit control.

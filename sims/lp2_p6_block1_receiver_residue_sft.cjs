@@ -12,6 +12,8 @@ function h4(x){assert.equal(x.length,4);return[mod29(x[0]-x[3]),mod29(x[1]-x[2])
 function h4Inv(h){assert.equal(h.length,4);const inv2=15;return[mod29((h[0]+h[3])*inv2),mod29((h[1]+h[2])*inv2),mod29((h[2]-h[1])*inv2),mod29((h[3]-h[0])*inv2)];}
 /** @param {number[]} values @returns {number[][]} */
 function permutations(values){const out=[];function visit(prefix,rest){if(rest.length===0){out.push(prefix);return;}for(let i=0;i<rest.length;i+=1)visit(prefix.concat(rest[i]),rest.slice(0,i).concat(rest.slice(i+1)));}visit([],values);return out;}
+/** @param {number[][]} arrays @returns {number[][]} */
+function cartesian(arrays){let out=[[]];for(const array of arrays){const next=[];for(const prefix of out)for(const value of array)next.push(prefix.concat(value));out=next;}return out;}
 
 const root=path.resolve(__dirname,"..");
 const corpus=JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
@@ -147,6 +149,52 @@ assert.deepEqual(typedSupported[0].residues,[1,16,4,25]);
 assert.deepEqual(typedSupported[0].hits,[[1,30],[132],[4],[25]]);
 assert.deepEqual(typedSupported[0].labels,[{a:5,b:12,c:20,d:26}]);
 
+// Second p6-only address coordinate: mirror every adjacent title-length pair,
+// both orientations, then invert H4 to obtain a base29 quotient vector.
+const quotientLabeled=[];
+const quotientUnique=new Map();
+for(let pairIndex=0;pairIndex+1<titleLengths.length;pairIndex+=1){
+  for(const reverse of [false,true]){
+    let pair=[titleLengths[pairIndex],titleLengths[pairIndex+1]];
+    if(reverse)pair=pair.slice().reverse();
+    const shell=[pair[0],pair[1],pair[1],pair[0]];
+    const quotient=h4Inv(shell);
+    quotientLabeled.push({pairIndex,reverse,pair,shell,quotient});
+    const key=quotient.join(",");
+    if(!quotientUnique.has(key))quotientUnique.set(key,{quotient,labels:[]});
+    quotientUnique.get(key).labels.push({pairIndex,reverse,pair,shell});
+  }
+}
+assert.equal(quotientLabeled.length,6);
+assert.equal(quotientUnique.size,4);
+assert.deepEqual([...quotientUnique.values()].map((entry)=>entry.quotient),[
+  [4,1,0,0],
+  [1,4,0,0],
+  [4,2,0,0],
+  [2,4,0,0],
+]);
+
+const jointAddress=[];
+for(const residueEntry of typedUniqueShells.values()){
+  const residues=h4Inv(residueEntry.shell);
+  const hits=residues.map((residue,slot)=>pools[slot].filter((receiver)=>receiver.start%29===residue).map((receiver)=>receiver.start));
+  if(!hits.every((row)=>row.length>0))continue;
+  for(const starts of cartesian(hits)){
+    const quotients=starts.map((start)=>Math.floor(start/29));
+    const quotientEntry=quotientUnique.get(quotients.join(","));
+    if(quotientEntry)jointAddress.push({shell:residueEntry.shell,residues,hits,starts,quotients,quotientLabels:quotientEntry.labels});
+  }
+}
+assert.equal(typedUniqueShells.size*quotientUnique.size,5952);
+assert.equal(jointAddress.length,1);
+assert.deepEqual(jointAddress[0].shell,[5,12,20,26]);
+assert.deepEqual(jointAddress[0].residues,[1,16,4,25]);
+assert.deepEqual(jointAddress[0].quotients,[1,4,0,0]);
+assert.deepEqual(jointAddress[0].starts,[30,132,4,25]);
+assert.deepEqual(h4(jointAddress[0].quotients),[1,4,4,1]);
+assert.equal(jointAddress[0].quotientLabels.length,2);
+assert.equal(firstPeriodEnd(32),32);
+
 // Preserve the original algebraic discovery family as a reproducibility
 // control. It is weaker causally because q*g was constructed after discovery.
 const multipliers=[state.q,1,state.K];
@@ -164,5 +212,7 @@ console.log(JSON.stringify({
   p6:{titleStarts:p6Title.map((word)=>word.start),titleLengths,lengthShell,w4,titleGp0,upperLineCounts,lowerLineCounts,sharedLineWidths,balancedLineWidths,typedVisualShell},
   block1:{sourceWords:signedWords.slice(32,36),sourceLengths,selectedStarts,selectedResidues,selectedShell,targetBlindHits:directHits,p32FirstPeriodEnd:firstPeriodEnd(32)},
   typedFamily:{labeledConstructions:typedLabeledCount,distinctShells:typedUniqueShells.size,supportedShells:typedSupported.length,survivor:typedSupported[0]},
+  quotientFamily:{labeledConstructions:quotientLabeled.length,distinctVectors:quotientUnique.size,vectors:[...quotientUnique.values()]},
+  jointAddressFamily:{distinctGrammars:typedUniqueShells.size*quotientUnique.size,survivors:jointAddress.length,survivor:jointAddress[0]},
   algebraicAudit:{labeledConstructions:algebraicLabeledCount,distinctShells:algebraicUniqueShells.size,supportedShells:algebraicSupported.length,survivor:algebraicSupported[0]},
 },null,2));
