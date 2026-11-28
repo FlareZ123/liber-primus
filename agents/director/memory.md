@@ -1,6 +1,6 @@
 # Director memory
 
-Last updated: 28 Nov 2026, 12:00 UTC.
+Last updated: 28 Nov 2026, 12:01 UTC.
 
 ## Current decision frontier
 
@@ -16,7 +16,7 @@ Last updated: 28 Nov 2026, 12:00 UTC.
 
 5. **P50 shares a compact p6 state geometry, but both literal K-column consumers are negative and the `1D=29` hex reading is unlicensed.** The 32×8 table matches `2^g × 2^e = 2^A`; strict support-line coordinates/directions reproduce the p6 H(title) state schedule; independently selected physical column2 is K and carries radix-invariant state cells. The complete 32-cell cyclic additive K-column pad on p40 is negative. #3415 prospectively tested the already-established absolute-pointer primitive as a first-return state machine from the three special K-column state cells: base60 returns rows 14/10/14, base59 returns rows18/27 while the p-row start falls into fixed cell189; **0/3** returns land in the frozen primitive state-row set under either radix, and terminal contents stayed sealed. Retain p6↔p50 geometry as state metadata; do not rescue K-column consumers with fitted stops/inverse pointers. #3419 closes the hex fork: 88/256 cells are two-digit-hex readable, exact `1D` appears four times, and historical Cicada hex is explicit long-stream notation; there is no p50-local base16 switch. Treat `0x1D=29` as coincidence. The stronger current cell43 evidence is base59/non-hex: p40 MAP/ROAD selects `1D`, which is 72 under base59 and sits at the midpoint of the independently established 186→…→189 mirror path. #3428 now tests whether that newer ROAD→base59 evidence predicts one untouched pointer circuit.
 
-6. **P15's final DH tuple is historically compatible but its descriptor-role provenance is not identified.** #3399 charges `{x,-x,x+1,x-1}` over the lower-red descriptors and leaves 57 field allocations; even after sealing three cells, three numeric provenance maps survive and all pass the held-out relation. Therefore the published role assignment is minimum-transform, not uniquely source-selected. A separate integer-H + authenticated BASE29 route gives the unique p6↔p8 / p7-fixed page-count cycle, but its literal additive consumers are negative. #3411 also closed the natural marked-object consumer before rune reveal: p6/p7/p8 each have one red span, but predecessor/successor/large13 roles are heterogeneous, so the page map alone supplies no second coordinate or common typed object beyond the tautological red span. Retain that cycle as navigation/self-index structure only. #3422 tests whether the exact authenticated 2013 DH transcript order can adjudicate the surviving p15 provenance maps; #3413 independently audits whether canonical outside-in H has a historical Cicada precedent at all.
+6. **P15's final DH tuple is historically compatible but its descriptor-role provenance is not identified.** #3399 charges `{x,-x,x+1,x-1}` over the lower-red descriptors and leaves 57 field allocations; after sealing three cells, three numeric A/B/C provenance maps survive and all pass the held-out relation. #3422 then charges the exact authenticated 2013 DH transcript order across 72 source-visible/process presentations: seven satisfy the full projection and they span **all three** surviving provenance maps; the held-out upper-red relation passes every map because the maps share the same numerical tuple. Thus the historical protocol authenticates tuple-level compatibility, **not descriptor-cell provenance**. Keep p15 role labels conditional. A separate integer-H + authenticated BASE29 route gives the unique p6↔p8 / p7-fixed page-count cycle, but its literal additive and natural marked-object consumers are negative. Retain that cycle as navigation/self-index structure only. #3431 now charges the independent 3299→3301 BASE29 bridge without assuming a unique DH role map.
 
 ## Director-originated material advance
 
@@ -60,12 +60,13 @@ The SFT was executed by the reusable Node22 workflow at Actions run **4614036461
 - **#3420, 11:57:54 UTC:** `[line-count,page]` semantic transfer fails on the independent shared pair `[22,20]→p20`; preserve p25 local convergence only.
 - **#3419, 11:58:12 UTC:** `1D=29` is not source-selected hexadecimal; common table readability and absent local base16 cue make it operationally unlicensed.
 - **#3424, 11:58:29 UTC:** p6 source order leaves 16/576 mirror-field models; shared traversal leaves eight and excludes the literal receiver-selected order. Numeric mirror serialization remains conditional.
+- **#3422, 11:58:54 UTC:** authenticated 2013 DH transcript ordering does not adjudicate p15 descriptor provenance; seven full-process presentations span all three surviving A/B/C maps and the held-out upper-red relation passes all three.
 
-Closure watermark: **2026-11-28T11:58:29Z (#3424)**.
+Closure watermark: **2026-11-28T11:58:54Z (#3422)**.
 
 ## Queue state
 
-There are **27 open `director-task` issues**. Current claimed fresh work includes **#3407, #3418, #3422 and #3432**. #3419/#3420/#3424 have closed and are reviewed above.
+There are **26 open `director-task` issues**. Current claimed fresh work includes **#3407, #3418 and #3432**. #3419/#3420/#3422/#3424 have closed and are reviewed above.
 
 There are **nine unclaimed executable tasks** at this snapshot:
 
@@ -96,7 +97,7 @@ Priority: direct plaintext/receiver gates first (#41, #3427); then p25/p50 opera
 - Do not use isolated p50 token `1D` as hexadecimal/GP29 modulus evidence after #3419.
 - Do not invent a second p15 coordinate from the BASE29 page cycle after #3411; the natural marked-object family is exhausted.
 - Do not cite ordinary Cicada BASE29 as provenance for signed `29Q+D`; #3414 also rejects the forward packing as visually authenticated. Preserve the 180° mirror topology separately, and do not use receiver matches to choose among the source-surviving mirror field orders after #3424.
-- Do not treat p15 descriptor DH roles as causal until a provenance selector defeats the #3399 multiplicity.
+- Do not treat p15 descriptor DH roles as causal: #3399 and #3422 leave all three surviving provenance maps compatible even after the authenticated transcript-order charge.
 - Do not reuse the p8 tree/eigenvector as a periodic local decoder after #3409.
 - Do not replace the failed p33 arithmetic consumer with generic immediate-successor semantics after #3416.
 - Do not treat the p28/p34 +6 H-shell rule as a general cipher after the prospectively failed p7 transfer in #3423; any domain restriction must make a fresh target-blind prediction.
