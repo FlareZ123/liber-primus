@@ -171,6 +171,17 @@ assert.deepEqual(
 );
 assert.deepEqual(outNames.filter(name=>typedCoverage[name].complete),['rune_product']);
 
+// The same robust frame starts viewed cyclically from p4 over LP2's 58 pages.
+// Define this before the instance partition so both controls share one frozen
+// visual recipient multiset.
+const lp2PageCount=58;
+const startsFromP4=[4,15,27,40,56,1];
+const cyclicFrameGaps=startsFromP4.map((x,i)=>{
+  const y=startsFromP4[(i+1)%startsFromP4.length];
+  return mod29((y-x+lp2PageCount)%lp2PageCount);
+});
+assert.deepEqual(cyclicFrameGaps,[11,12,13,16,3,3]);
+
 // Stronger instance-level partition: for each frozen OUT statistic, send every
 // chapter output that already appears in the chapter-IN register to that class.
 // Ask whether the remaining output multiset is a submultiset of the six exact
@@ -242,14 +253,6 @@ assert.deepEqual(unmatchedGaps,[12]);
 // chapters in printed chapter order are [11,13,16,3,3]: exact after deleting
 // the single u=aK=12 marker. Charge this exact "one deletion from a cyclic
 // frame-gap sequence" relation against every other frozen OUT statistic.
-const lp2PageCount=58;
-const startsFromP4=[4,15,27,40,56,1];
-const cyclicFrameGaps=startsFromP4.map((x,i)=>{
-  const y=startsFromP4[(i+1)%startsFromP4.length];
-  return mod29((y-x+lp2PageCount)%lp2PageCount);
-});
-assert.deepEqual(cyclicFrameGaps,[11,12,13,16,3,3]);
-
 function oneDeletionMatches(sequence){
   const hits=[];
   for(let rotation=0;rotation<cyclicFrameGaps.length;rotation+=1){
