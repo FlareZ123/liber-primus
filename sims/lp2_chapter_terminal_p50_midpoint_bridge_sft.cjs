@@ -233,6 +233,23 @@ assert.deepEqual(roadCrossings,[
   {col:6,cell:46,token:'3J',next:196,mirrorIndex:-1,successorDistance:29},
 ]);
 
+// Distance-to-sink supplies a second exact state check. Cell43 itself is five
+// pointer edges from the sink, equal to terminal length/ROAD row g=5. Its
+// first successor72 is four edges from the sink, equal to q=4. No other cell
+// in physical row5 has distance5.
+const distanceToSink=Array.from({length:256},(_,i)=>pathToSink59(i).length-1);
+assert.equal(distanceToSink[selectedCell],5);
+assert.equal(distanceToSink[selectedValue59],4);
+const row5Distance5=Array.from({length:8},(_,col)=>8*5+col)
+  .filter(cell=>distanceToSink[cell]===5);
+assert.deepEqual(row5Distance5,[43]);
+const globalDistanceEqualsRow=[];
+for(let cell=0;cell<256;cell+=1){
+  const row=Math.floor(cell/8);
+  if(distanceToSink[cell]===row) globalDistanceEqualsRow.push(cell);
+}
+assert.deepEqual(globalDistanceEqualsRow,[34,43,158,230,233]);
+
 // Global multiplicity: 72 has four predecessors; geometry selects one of them.
 const midpointPredecessors=values59
   .map((x,i)=>x===72?i:null)
@@ -270,6 +287,12 @@ console.log(JSON.stringify({
     mirrorPath,
     midpointIndex:mirrorPath.indexOf(selectedValue59),
     roadCrossings,
+    distanceSelfCheck:{
+      selectedDistance:distanceToSink[selectedCell],
+      successorDistance:distanceToSink[selectedValue59],
+      row5Distance5,
+      globalDistanceEqualsRow,
+    },
     midpointPredecessors,
     base60Value:values60[selectedCell],
     base60Walk,
