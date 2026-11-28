@@ -84,6 +84,26 @@ OPENPGP.
 
 Forward replay is exact.
 
+## Direct authenticated-source key
+
+The exact key also has a compact warning-field construction:
+
+```text
+[OPENPGP.length, VERIFY.first, BEWARE.length*BEWARE.Hdiff, p, PATHS.first, BEWARE.Hdiff, OPENPGP.Hdiff]
+= [7,1,12,23,13,2,18].
+```
+
+Charge `[len(X),first(Y),len(Z)*Hdiff(Z),p,first(W),Hdiff(Z),Hdiff(X)]` for `X,Y,Z,W` over the five final-warning words. All **625** substitutions are distinct. On the already target-blind `[K,1,F]`-selected p42 receiver, across both signs and authenticated seven-rune targets (`DEVOTED`, `NUMBERS`, `OPENPGP`), exactly one hit exists:
+
+```text
+X=OPENPGP, Y=VERIFY, Z=BEWARE, W=PATHS
+subtraction -> OPENPGP.
+```
+
+The grammar was recognized after OPENPGP, but the numeric key no longer depends on a post-target seven-role p6 shell choice.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## H7 family charge
 
 The shell-role multiset was recognized after OPENPGP was available, so charge its ordering and signs.

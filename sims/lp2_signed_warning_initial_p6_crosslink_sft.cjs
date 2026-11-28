@@ -245,6 +245,34 @@ assert.deepEqual(p36GoodHits,[
   {key:[4,10,2,3],sign:1,target:'GOOD',plain:signed[36].gp},
   {key:[25,19,27,26],sign:-1,target:'GOOD',plain:signed[36].gp},
 ]);
+// Direct authenticated-source key families for target-blind p41/p42 receivers.
+const pconst=23;
+const p41DirectKeys=new Map(),p41DirectLabels=[];
+for(const X of carrierWarning)for(const Y of carrierWarning)for(const Z of carrierWarning){
+ const key=[mod29(-X.fields.first),pconst,Y.fields.first,X.fields.len,Z.fields.first,mod29(-X.fields.len)];
+ p41DirectKeys.set(key.join(','),{key});
+ if(key.join(',')==='26,23,1,7,13,22')p41DirectLabels.push({X:X.label,Y:Y.label,Z:Z.label});
+}
+assert.equal(p41DirectKeys.size,125);
+assert.deepEqual(p41DirectLabels,[{X:'OPENPGP',Y:'VERIFY',Z:'PATHS'}]);
+const p41Prepared=[27,12,5,17,13,19];
+const sixTargetMap2=new Map();for(const word of signed)if(word.gp.length===6)sixTargetMap2.set(word.gp.join(','),word.label);
+const p41DirectHits=[];
+for(const {key} of p41DirectKeys.values())for(const sign of [-1,1]){const plain=p41Prepared.map((value,index)=>mod29(value+sign*key[index]));const target=sixTargetMap2.get(plain.join(','));if(target)p41DirectHits.push({key,sign,target,plain});}
+assert.deepEqual(p41DirectHits,[{key:[26,23,1,7,13,22],sign:-1,target:'VERIFY',plain:signed[41].gp}]);
+const p42DirectKeys=new Map(),p42DirectLabels=[];
+for(const X of carrierWarning)for(const Y of carrierWarning)for(const Z of carrierWarning)for(const W of carrierWarning){
+ const key=[X.fields.len,Y.fields.first,mod29(Z.fields.len*Z.fields.diff),pconst,W.fields.first,Z.fields.diff,X.fields.diff];
+ p42DirectKeys.set(key.join(','),{key});
+ if(key.join(',')==='7,1,12,23,13,2,18')p42DirectLabels.push({X:X.label,Y:Y.label,Z:Z.label,W:W.label});
+}
+assert.equal(p42DirectKeys.size,625);
+assert.deepEqual(p42DirectLabels,[{X:'OPENPGP',Y:'VERIFY',Z:'BEWARE',W:'PATHS'}]);
+const p42Prepared=[10,14,1,3,26,8,2];
+const sevenTargetMap=new Map();for(const word of signed)if(word.gp.length===7)sevenTargetMap.set(word.gp.join(','),word.label);
+const p42DirectHits=[];
+for(const {key} of p42DirectKeys.values())for(const sign of [-1,1]){const plain=p42Prepared.map((value,index)=>mod29(value+sign*key[index]));const target=sevenTargetMap.get(plain.join(','));if(target)p42DirectHits.push({key,sign,target,plain});}
+assert.deepEqual(p42DirectHits,[{key:[7,1,12,23,13,2,18],sign:-1,target:'OPENPGP',plain:signed[42].gp}]);
 const schedulerSegments = [
   { seed:[3,7], key:[23,3,24,1,18,17,27], shell:[25,21,15,20,6,13,1] },
   { seed:[13,4], key:[9,13,18,13], shell:[25,22,24,2] },
@@ -262,4 +290,4 @@ function recurrenceReadout(seed,length,A,B,C,reverse,includeSeeds){let u=reverse
 let recurrenceSchedulerHits=0;
 for(const reverse of [false,true])for(const includeSeeds of [false,true])for(let A=0;A<29;A++)for(let B=0;B<29;B++)for(let C=0;C<29;C++)for(const targetType of ["key","shell"]){let ok=true;for(const segment of schedulerSegments){if(recurrenceReadout(segment.seed,segment[targetType].length,A,B,C,reverse,includeSeeds).join(",")!==segment[targetType].join(",")){ok=false;break;}}if(ok)recurrenceSchedulerHits++;}
 assert.equal(recurrenceSchedulerHits,0);
-console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes,p39CarrierKeyCount:p39CarrierKeys.size,p39ExactKeyLabels,p39CarrierHits,p36CarrierKeyCount:p36CarrierKeys.size,p36ExactLabels,p36CarrierHits},null,2));
+console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes,p39CarrierKeyCount:p39CarrierKeys.size,p39ExactKeyLabels,p39CarrierHits,p36CarrierKeyCount:p36CarrierKeys.size,p36ExactLabels,p36CarrierHits,p41DirectKeyCount:p41DirectKeys.size,p41DirectLabels,p41DirectHits,p42DirectKeyCount:p42DirectKeys.size,p42DirectLabels,p42DirectHits},null,2));

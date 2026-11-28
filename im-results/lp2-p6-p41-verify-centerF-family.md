@@ -30,6 +30,26 @@ H6(key) = [4,10,23,8,7,19]
 
 Exact subtraction recovers VERIFY and forward replay is exact.
 
+## Direct authenticated-source key
+
+The exact key has a compact construction from the authenticated warning plus historical modulus `p=23`:
+
+```text
+[-OPENPGP.first, p, VERIFY.first, OPENPGP.length, PATHS.first, -OPENPGP.length]
+= [26,23,1,7,13,22].
+```
+
+Charge `[-first(X),p,first(Y),len(X),first(Z),-len(X)]` for `X,Y,Z` over the five final-warning words. All **125** substitutions are distinct. On the already independently numbered / center-F-removed p41 receiver, across both signs and authenticated six-rune targets (`PRIMUS`, `BEWARE`, `VERIFY`), exactly one hit exists:
+
+```text
+X=OPENPGP, Y=VERIFY, Z=PATHS
+subtraction -> VERIFY.
+```
+
+The serialization grammar was recognized after VERIFY, but the exact numeric key no longer requires selecting a p6 H6 role multiset from a large post-target vocabulary.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## Family charge
 
 Because that six-role multiset was recognized after VERIFY was known, charge all 720 coordinate permutations and all 64 independent sign choices of `[q,K*g,p,A,g+K,B]`. H-inversion leaves **23,040 distinct numeric keys**.
