@@ -53,9 +53,18 @@ def segments(v):
 def components(jpeg,p):
     ink=np.asarray(Image.open(io.BytesIO(jpeg)).convert('L'))<180
     rows=np.flatnonzero(ink[500:3200,590:1810].sum(1)>30)+500
-    for y0,y1 in segments(rows):
+    bands=[(y0,y1) for y0,y1 in segments(rows)
+           if 113<=y1-y0+1<=115]
+    # Independent central text-strip projection recovers rune lines otherwise
+    # suppressed by illustrations/large punctuation outside the middle strip.
+    # Keep intact wide-strip lines and add only genuinely missing baselines.
+    center=np.flatnonzero(ink[500:3200,850:1500].sum(1)>40)+500
+    for y0,y1 in segments(center):
+        if not 113<=y1-y0+1<=115:continue
+        if min((abs(y0-z) for z,_ in bands),default=999)>5:
+            bands.append((y0,y1))
+    for y0,y1 in sorted(bands):
         h=y1-y0+1
-        if not 113<=h<=115:continue
         cols=np.flatnonzero(ink[y0:y1+1,590:1810].sum(0)>0)+590
         for x0,x1 in segments(cols):
             w=x1-x0+1
