@@ -76,12 +76,18 @@ assert.deepStrictEqual(hits, [
   { start: 24, pages: [24, 25, 26], counts: [270, 273, 265], diffs: [3, 5, 8] },
 ]);
 
-// Source punctuation: p22 locally terminates with 13 dots; p57 terminates
-// with the corpus-unique 23-dot mark. P23's separate five-black-dot graphic
-// and the external image's specimen-5 label independently select g=5.
+// Source punctuation: the mayfly chapter is locally framed by red 13-dot
+// marks after p23's heading and at p26's end, with p22's terminal13 as an
+// additional outer bracket. P57 terminates with the corpus-unique 23-dot mark.
+// P23's separate five-black-dot graphic and the external image's specimen-5
+// label independently select g=5.
 const p22Ink = ink.pages.find((row) => row.page === 22);
+const p23Ink = ink.pages.find((row) => row.page === 23);
+const p26Ink = ink.pages.find((row) => row.page === 26);
 const p57Ink = ink.pages.find((row) => row.page === 57);
 assert.deepStrictEqual(p22Ink.large_punctuation, [[131, 13, "red"]]);
+assert.deepStrictEqual(p23Ink.large_punctuation, [[16, 13, "red"]]);
+assert.deepStrictEqual(p26Ink.large_punctuation, [[265, 13, "red"]]);
 assert.deepStrictEqual(p57Ink.large_punctuation, [
   [7, 13, "red"],
   [95, 23, "red"],
