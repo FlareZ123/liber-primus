@@ -295,6 +295,55 @@ assert.deepEqual(
 );
 assert.notDeepEqual(adjacentH(path60.nodes.map((address) => address % 29)), hPacket);
 
+assert.notDeepEqual(adjacentH(path60.nodes.map((address) => address % 29)), hPacket);
+
+// Dual-radix closure over the literal table tokens: interpret each token in
+// both surviving radices and ask whether A=8 base59 pointer hops from its
+// base59 value land on its base60 value. The only hits are the two literal
+// copies of token 39, including the independently p27-selected cell254.
+const token39Positions = tokens
+  .map((token, address) => ({ token, address }))
+  .filter(({ token }) => token === '39')
+  .map(({ address }) => address);
+assert.deepEqual(token39Positions, [151, 254]);
+
+const dualRadixHopClosure = [];
+for (let cell = 0; cell < tokens.length; cell += 1) {
+  const start59 = values59[cell];
+  const target60 = values60[cell];
+  assert.ok(start59 >= 0 && start59 < 256);
+  assert.ok(target60 >= 0 && target60 < 256);
+  const run = walk(values59, start59, state.A);
+  if (run.end === target60) {
+    dualRadixHopClosure.push({
+      cell,
+      token: tokens[cell],
+      start59,
+      target60,
+      delta: target60 - start59,
+      endpointFixed59: values59[target60] === target60,
+    });
+  }
+}
+assert.deepEqual(dualRadixHopClosure, [
+  {
+    cell: 151,
+    token: '39',
+    start59: 186,
+    target60: 189,
+    delta: state.e,
+    endpointFixed59: true,
+  },
+  {
+    cell: 254,
+    token: '39',
+    start59: 186,
+    target60: 189,
+    delta: state.e,
+    endpointFixed59: true,
+  },
+]);
+
 // Post-discovery exact census: charge every possible start under each live radix.
 // This is descriptive specificity, not a discovery-adjusted authorship p-value.
 const targetLowSet = [...sourceNodeLows].sort((a, b) => a - b);
@@ -475,6 +524,8 @@ const summary = {
   dhState: state,
   path59: expectedPath59,
   historicalBase29Path,
+  dualRadixHopClosure,
+  token39Positions,
   radixCarrySelfCheck: {
     selectedCarries: carryTape59.carries,
     selectedByte: carryTape59.byte,
