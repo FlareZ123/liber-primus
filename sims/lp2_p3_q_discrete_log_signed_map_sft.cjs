@@ -156,6 +156,41 @@ assert.deepStrictEqual(adjacentDistinctHits.map((item) => [item.page, item.start
   [56, 0, [4, 5]],
 ]);
 
+
+// Charge every cyclic start and both orientations of every complete red span against
+// the independently selected p50 MAP/ROAD numeric interval [17,23].
+const p50IntervalPresentationHits = [];
+const punctuationPresentationHits = [];
+let presentationCount = 0;
+for (const pageRecord of ink.pages) {
+  for (const span of pageRecord.red_spans || []) {
+    const source = [...span.runes].map((rune) => runeIndex.get(rune));
+    for (const reversed of [false, true]) {
+      const oriented = reversed ? source.slice().reverse() : source;
+      for (let rotation = 0; rotation < oriented.length; rotation += 1) {
+        presentationCount += 1;
+        const candidate = oriented.slice(rotation).concat(oriented.slice(0, rotation));
+        const residue = evaluate(candidate);
+        if (residue[0] === 0 && residue[1] === 0) continue;
+        const coordinate = orbitCoordinate(residue);
+        const key = coordinate.row + ',' + coordinate.col;
+        if (key === '17,23') {
+          p50IntervalPresentationHits.push([pageRecord.page, span.start, span.length, reversed, rotation]);
+        }
+        if (punctuationClauses.has(key)) {
+          punctuationPresentationHits.push([pageRecord.page, span.start, span.length, reversed, rotation, key]);
+        }
+      }
+    }
+  }
+}
+assert.strictEqual(presentationCount, 450);
+assert.deepStrictEqual(p50IntervalPresentationHits, [[39, 119, 3, false, 0]]);
+assert.strictEqual(punctuationPresentationHits.length, 4);
+assert.deepStrictEqual(punctuationPresentationHits.filter((hit) => hit[3] === false && hit[4] === 0), [
+  [40, 0, 8, false, 0, '5,8'],
+]);
+
 const p39 = selectedOutputs.find((item) => item.name === 'p39');
 assert(p39);
 assert.strictEqual(p39.exponent, 516);
@@ -177,6 +212,9 @@ console.log(JSON.stringify({
   exact_punctuation_clause_hits: exactClauseHits,
   distinct_adjacent_coordinate_hits: adjacentDistinctHits,
   p39_independent_p50_interval: independentP50MapRoadInterval,
+  charged_presentations: presentationCount,
+  p50_interval_presentation_hits: p50IntervalPresentationHits,
+  punctuation_presentation_hits: punctuationPresentationHits,
   complete_red_span_count: census.length,
   census,
 }, null, 2));
