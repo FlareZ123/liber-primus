@@ -89,6 +89,49 @@ Thus the omitted coordinate **6=SEEKS is itself fixed by the sole familywise seq
 
 This control charges the sequence property directly; it does not score English after searching arbitrary permutations.
 
+### Source-index origin rival: this circuit locally selects zero origin
+
+The numeric sequence `[20,21,22,23]` is origin-independent, but its source-text reading is not:
+
+```text
+zero-origin source[20..23] = MEANING IS THE ROAD
+one-based words20..23      = THEIR MEANING IS THE.
+```
+
+Likewise the omitted coordinate6 reads:
+
+```text
+zero-origin source[6] = SEEKS
+one-based word6       = EPIPHANY.
+```
+
+Charge those two conventional rivals under the **same already frozen downstream operations**, without changing a step count or consumer.
+
+Zero-origin:
+
+```text
+GP(SEEKS)=[15,18,18,5,15], GP0=71
+H(GP(SEEKS))=[0,13,18,23,1]
+             = HELLO / WAY / MAP / ROAD / THE
+23 raw p50 byte-pointer edges from71 -> cell32
+p50 byte32=115 -> token115=47 -> p47.
+```
+
+One-based rival:
+
+```text
+GP(EPIPHANY)=[18,13,10,13,8,24,9,26], GP0=121
+H(GP(EPIPHANY))=[21,4,15,5,21,5,22,15]
+23 raw p50 byte-pointer edges from121 -> cell114
+p50 byte114=197 -> token197=1t.
+```
+
+EPIPHANY's H shell contains none of the complete `{WAY=13, MAP=18, ROAD=23}` navigation triad, and the same pointer consumer does not return to p47.
+
+Therefore this **specific p21 semantic circuit favors zero-origin source indexing by two independent frozen consequences**: coherent ROAD selection and closure to the already selected source page. This is a local route discriminator, not evidence that every Cicada textual coordinate system is universally zero-based. Preserve Agent10's broader origin warning outside this circuit.
+
+
+
 ## SEEKS closes the corridor back to p47
 
 The remaining H coordinate **6** selects authenticated source word **SEEKS** under the same zero-based register. This is not a new source role: prior repository work established the exact first-party relation
