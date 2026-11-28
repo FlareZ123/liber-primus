@@ -358,6 +358,31 @@ Charge the obvious cyclic presentation freedom rather than keeping only the succ
 This is a genuine original-artifact cross-holdout: p15's state is derived without p7 or the 2013 tuple, while the p7 circulant identity was established before the p15 route existed. It still does **not** authenticate 'circulant' as an authorial cipher opcode—the five-dot/five-word motivation remains candidate-level—and p7's direct p8 Hill consumer is already negative. The result strengthens a shared state-serialization interpretation, not a plaintext claim.
 
 Cross-reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
+## Independent transcription holdout: lower-red/grid state predicts p15 offset6 = Y
+
+The upper red9 confirmation contains one historically disputed rune. The
+August-2017 onecool witness reads **D** at p15 page-local offset6; the
+original scan and canonical corpus read **Y**. Issue #3380 adjudicated that
+pixel as Y before this state prediction was noticed.
+
+Offset6 lies in the upper span, so it is excluded from the strongest state
+derivation. From lower red11 alone derive
+`(p,g,a,K,q,F,A)=(23,5,6,2,4,0,8)`. The source number square and frozen H4
+column selector then give `b=15`, `B=19` and `B^-1=26 mod29`. Before
+opening upper red9, its two printed word descriptors are predicted as
+`(4,11,0)` and `(5,8,26)`.
+
+Vary only p15 offset6 over all **29 GP29 glyphs**, leaving every other source
+rune fixed. Exactly **1/29** candidates satisfies that complete held-out
+descriptor pair: index26 **Y (ᚣ)**. The historical onecool **D (ᛞ,
+index23)** changes upper word2 from `(5,8,26)` to `(5,5,23)` and fails.
+
+This independently adjudicates a real historical transcription ambiguity:
+the disputed coordinate was excluded from state derivation and then
+predicted. It strengthens the p15 packet without supplying a body receiver.
+
+Reproducer: `sims/lp2_p15_offset6_transcription_holdout_sft.cjs`.
+
 ## A natural q-block key use was frozen before grading and fails
 
 The new four-scalar packet
