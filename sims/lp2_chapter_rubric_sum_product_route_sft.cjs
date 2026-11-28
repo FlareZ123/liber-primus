@@ -291,7 +291,7 @@ assert.equal(augmentedP0FiveCount,1);
 // all nine original products, permute products among the nine page labels.
 // This preserves *every* observed marginal value, including duplicate 3.
 const n=chapters.length,used=Array(n).fill(false),perm=Array(n);
-let total=0,any5=0,p05=0,p0ToP40=0,any6=0,exactDhEdgePacket=0;
+let total=0,any5=0,p05=0,p0ToP40=0,any6=0,exactIntegratedStatePacket=0;
 function exhaust(k){
  if(k===n){
    total++;
@@ -299,12 +299,13 @@ function exhaust(k){
    if(p0.max>=5)p05++;
    if(p0.reaches)p0ToP40++;
    // Stronger conditional charge noticed after integration with the
-   // independently reconstructed historical DH23 packet. Require the exact
-   // five route outputs [p,K,B,-K,e]=[23,2,19,27,3] at p0,p8,p27,p54,p40.
-   // This is NOT a discovery-adjusted p-value: the DH labels were known when
+   // pre-existing cross-artifact state packet. The first three outputs are
+   // historical DH values [p,K,B]; -K and e are derived p28/p29 operands that
+   // also predate this route. Require [23,2,19,27,3] at p0,p8,p27,p54,p40.
+   // This is NOT a discovery-adjusted p-value: all labels were known when
    // the route was interpreted.
    if(perm[0]===23&&perm[2]===2&&perm[5]===19&&perm[8]===27&&perm[7]===3)
-     exactDhEdgePacket++;
+     exactIntegratedStatePacket++;
    let m=0;
    for(let i=0;i<n;i++)m=Math.max(m,pathInfo(es,i,7).max);
    if(m>=5)any5++;
@@ -316,7 +317,7 @@ function exhaust(k){
  }
 }
 exhaust(0);
-assert.deepEqual([total,any5,p05,p0ToP40,any6,exactDhEdgePacket],
+assert.deepEqual([total,any5,p05,p0ToP40,any6,exactIntegratedStatePacket],
  [362880,14400,2880,720,0,48]);
 // Location-selector charge on the five route pages. Inside each page's pool
 // of genuine all-black words with the same rune length as the selected first
@@ -379,10 +380,10 @@ console.log(JSON.stringify({
    permutations:total,any_chain_at_least_5:any5,p0_chain_at_least_5:p05,
    p0_to_numeric_chapter_p40_at_depth_at_least_5:p0ToP40,
    chains_at_least_6:any6,
-   exact_integrated_DH_edge_packet_assignments:exactDhEdgePacket,
-   exact_integrated_DH_edge_packet_rate:exactDhEdgePacket/total
+   exact_integrated_state_edge_packet_assignments:exactIntegratedStatePacket,
+   exact_integrated_state_edge_packet_rate:exactIntegratedStatePacket/total
  },
- exact_integrated_DH_location_charge:{
+ exact_integrated_state_location_charge:{
    route_pages:[0,8,27,54,40],
    exact_in_out_pairs:[[15,23],[23,2],[2,19],[19,27],[27,3]],
    matching_words_per_same_page_same_length_pool:exactPairMultiplicities,
