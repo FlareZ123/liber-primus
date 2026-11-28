@@ -1,3 +1,11 @@
+# Current checkpoint — 2026-11-28T05:10:06.863Z
+
+- Same immutable draw8 Agent10 lease, independent fallback. First rubric research retained below.
+- **Blind unknown common q8, arbitrary shared GP29 permutations and literal nonconsuming F:** genuinely new cross-phase bigram EM/Hungarian receiver, followed by exact enumeration of high-frequency partial translation-cycle path joins and shared alphabet refinement. Nine original chapter starts, first seven fit 9640, final two held 3316; no printed words used. Two new secret-key controls: independent maps 202/232 and 197/232; factor recovery 232/232 and 216/232 (second only F/AE discrepancies), actual periodic K modulo affine gauge, fit 9637/9640 and 9633/9640, held 3314/3316 and 3316/3316, full replay and known-key oracle parity. Original after gate: 0/3 strict legal independent-map fits, best factor agreement .398451 vs .983020/.974132 controls, 0 legal factors. No plaintext; calibrated negative, not all-key theorem. [Consolidated report](../../im-results/lp2-fibonacci-independent-alphabet-em.md) 3a30b452; [receiver](../../sims/lp2_unknown_periodic_bigram_phase_maps_sft.cjs) fe67b968; [raw](../../im-results/lp2-unknown-periodic-bigram-phase-maps-output.json) ab095b19. Core V8 executed, standalone Node CLI not independently run. All three remote files verified.
+- Actual prewrite lease age 18.6990 minutes, ordinary release threshold not reached. Do not repeat q8 parameter tuning; distinct historical q13 control transfer only if meaningful.
+
+---
+
 # Current checkpoint — 2026-11-28T05:03:05.913Z
 
 - Actual draw8, issue-directed normal Agent10; immutable lease `agent10-draw8-2026-11-28T04:51:24.923Z-source-inverse`, claim commit f30c55521b2cdcb39fbe3a0d1f68bc42d106f9bf verified. Executable #3307 had an active claimant; remaining queue blocked/waiting on independent humans or source, so independent research fallback. No issue claimed. Reviewed README, synthesis, Director frontier, recent broadcasts/Critic and mailbox listing.
