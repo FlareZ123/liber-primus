@@ -1,0 +1,5735 @@
+{
+  "schema": 1,
+  "author": "Agent11",
+  "date": "2026-11-28",
+  "grading": "PRETARGET NO-PLAINTEXT",
+  "rule": "outer-H-sum projection of each p6 base key onto frozen p6 companion key sum",
+  "formula": "delta=sigma-sum(K0); h=delta/2; K[0]=K0[0]+h; K[n-1]=K0[n-1]+h",
+  "invariant": "outer raw-key difference preserved; total key sum forced to sigma",
+  "baseFamily": {
+    "encodings": [
+      "direct",
+      "H4",
+      "H2adjacent"
+    ],
+    "signs": [
+      1,
+      -1
+    ],
+    "clocks": [
+      "word-constant",
+      "word-local-cycle",
+      "block-continuous-rune"
+    ],
+    "count": 18
+  },
+  "distinctCompleteKeys": 18,
+  "candidates": [
+    {
+      "encoding": "direct",
+      "sign": 1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                19,
+                24,
+                19
+              ],
+              "decoded": [
+                10,
+                8,
+                12
+              ],
+              "baseKey": [
+                24,
+                24,
+                24
+              ],
+              "baseSum": 14,
+              "delta": 19,
+              "half": 24,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                13,
+                16,
+                16,
+                13
+              ],
+              "decoded": [
+                19,
+                28,
+                1,
+                9
+              ],
+              "baseKey": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "baseSum": 6,
+              "delta": 23,
+              "half": 26,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                0,
+                0
+              ],
+              "decoded": [
+                12,
+                23
+              ],
+              "baseKey": [
+                14,
+                14
+              ],
+              "baseSum": 28,
+              "delta": 1,
+              "half": 15,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                16,
+                17,
+                17,
+                17,
+                16
+              ],
+              "decoded": [
+                3,
+                0,
+                2,
+                7,
+                24
+              ],
+              "baseKey": [
+                17,
+                17,
+                17,
+                17,
+                17
+              ],
+              "baseSum": 27,
+              "delta": 27,
+              "half": 28,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                12,
+                6,
+                6,
+                12
+              ],
+              "decoded": [
+                20,
+                25,
+                0,
+                15
+              ],
+              "baseKey": [
+                6,
+                6,
+                6,
+                6
+              ],
+              "baseSum": 24,
+              "delta": 12,
+              "half": 6,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                4,
+                27,
+                27,
+                27,
+                27,
+                4
+              ],
+              "decoded": [
+                4,
+                27,
+                16,
+                4,
+                19,
+                18
+              ],
+              "baseKey": [
+                27,
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "baseSum": 17,
+              "delta": 12,
+              "half": 6,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                6,
+                15,
+                15,
+                15,
+                6
+              ],
+              "decoded": [
+                13,
+                21,
+                24,
+                2,
+                17
+              ],
+              "baseKey": [
+                15,
+                15,
+                15,
+                15,
+                15
+              ],
+              "baseSum": 17,
+              "delta": 11,
+              "half": 20,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                12,
+                17,
+                17,
+                12
+              ],
+              "decoded": [
+                21,
+                27,
+                26,
+                9
+              ],
+              "baseKey": [
+                17,
+                17,
+                17,
+                17
+              ],
+              "baseSum": 10,
+              "delta": 19,
+              "half": 24,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": 1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                28,
+                16,
+                18
+              ],
+              "decoded": [
+                1,
+                16,
+                13
+              ],
+              "baseKey": [
+                24,
+                16,
+                14
+              ],
+              "baseSum": 25,
+              "delta": 8,
+              "half": 4,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                24,
+                14,
+                17,
+                3
+              ],
+              "decoded": [
+                8,
+                1,
+                0,
+                19
+              ],
+              "baseKey": [
+                16,
+                14,
+                17,
+                24
+              ],
+              "baseSum": 13,
+              "delta": 16,
+              "half": 8,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                13,
+                16
+              ],
+              "decoded": [
+                28,
+                7
+              ],
+              "baseKey": [
+                14,
+                17
+              ],
+              "baseSum": 2,
+              "delta": 27,
+              "half": 28,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                0,
+                24,
+                16,
+                14,
+                0
+              ],
+              "decoded": [
+                19,
+                22,
+                3,
+                10,
+                11
+              ],
+              "baseKey": [
+                17,
+                24,
+                16,
+                14,
+                17
+              ],
+              "baseSum": 1,
+              "delta": 24,
+              "half": 12,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                6,
+                27,
+                15,
+                17
+              ],
+              "decoded": [
+                26,
+                4,
+                20,
+                10
+              ],
+              "baseKey": [
+                6,
+                27,
+                15,
+                17
+              ],
+              "baseSum": 7,
+              "delta": 0,
+              "half": 0,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                17,
+                15,
+                17,
+                6,
+                27,
+                5
+              ],
+              "decoded": [
+                20,
+                10,
+                26,
+                25,
+                19,
+                17
+              ],
+              "baseKey": [
+                27,
+                15,
+                17,
+                6,
+                27,
+                15
+              ],
+              "baseSum": 20,
+              "delta": 9,
+              "half": 19,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                18,
+                17,
+                6,
+                27,
+                18
+              ],
+              "decoded": [
+                1,
+                19,
+                4,
+                19,
+                5
+              ],
+              "baseKey": [
+                15,
+                17,
+                6,
+                27,
+                15
+              ],
+              "baseSum": 22,
+              "delta": 6,
+              "half": 3,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                28,
+                6,
+                27,
+                26
+              ],
+              "decoded": [
+                5,
+                9,
+                16,
+                24
+              ],
+              "baseKey": [
+                17,
+                6,
+                27,
+                15
+              ],
+              "baseSum": 7,
+              "delta": 22,
+              "half": 11,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": 1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                28,
+                16,
+                18
+              ],
+              "decoded": [
+                1,
+                16,
+                13
+              ],
+              "baseKey": [
+                24,
+                16,
+                14
+              ],
+              "baseSum": 25,
+              "delta": 8,
+              "half": 4,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                25,
+                24,
+                16,
+                22
+              ],
+              "decoded": [
+                7,
+                20,
+                1,
+                0
+              ],
+              "baseKey": [
+                17,
+                24,
+                16,
+                14
+              ],
+              "baseSum": 13,
+              "delta": 16,
+              "half": 8,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                11,
+                18
+              ],
+              "decoded": [
+                1,
+                5
+              ],
+              "baseKey": [
+                17,
+                24
+              ],
+              "baseSum": 12,
+              "delta": 17,
+              "half": 23,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                14,
+                14,
+                17,
+                24,
+                14
+              ],
+              "decoded": [
+                5,
+                3,
+                2,
+                0,
+                26
+              ],
+              "baseKey": [
+                16,
+                14,
+                17,
+                24,
+                16
+              ],
+              "baseSum": 0,
+              "delta": 25,
+              "half": 27,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                6,
+                27,
+                15,
+                17
+              ],
+              "decoded": [
+                26,
+                4,
+                20,
+                10
+              ],
+              "baseKey": [
+                6,
+                27,
+                15,
+                17
+              ],
+              "baseSum": 7,
+              "delta": 0,
+              "half": 0,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                15,
+                27,
+                15,
+                17,
+                6,
+                7
+              ],
+              "decoded": [
+                22,
+                27,
+                28,
+                14,
+                11,
+                15
+              ],
+              "baseKey": [
+                6,
+                27,
+                15,
+                17,
+                6,
+                27
+              ],
+              "baseSum": 11,
+              "delta": 18,
+              "half": 9,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                18,
+                17,
+                6,
+                27,
+                18
+              ],
+              "decoded": [
+                1,
+                19,
+                4,
+                19,
+                5
+              ],
+              "baseKey": [
+                15,
+                17,
+                6,
+                27,
+                15
+              ],
+              "baseSum": 22,
+              "delta": 6,
+              "half": 3,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                28,
+                6,
+                27,
+                26
+              ],
+              "decoded": [
+                5,
+                9,
+                16,
+                24
+              ],
+              "baseKey": [
+                17,
+                6,
+                27,
+                15
+              ],
+              "baseSum": 7,
+              "delta": 22,
+              "half": 11,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": -1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                14,
+                5,
+                14
+              ],
+              "decoded": [
+                15,
+                27,
+                17
+              ],
+              "baseKey": [
+                5,
+                5,
+                5
+              ],
+              "baseSum": 15,
+              "delta": 18,
+              "half": 9,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                16,
+                13,
+                13,
+                16
+              ],
+              "decoded": [
+                16,
+                2,
+                4,
+                6
+              ],
+              "baseKey": [
+                13,
+                13,
+                13,
+                13
+              ],
+              "baseSum": 23,
+              "delta": 6,
+              "half": 3,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                0,
+                0
+              ],
+              "decoded": [
+                12,
+                23
+              ],
+              "baseKey": [
+                15,
+                15
+              ],
+              "baseSum": 1,
+              "delta": 28,
+              "half": 14,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                9,
+                12,
+                12,
+                12,
+                9
+              ],
+              "decoded": [
+                10,
+                5,
+                7,
+                12,
+                2
+              ],
+              "baseKey": [
+                12,
+                12,
+                12,
+                12,
+                12
+              ],
+              "baseSum": 2,
+              "delta": 23,
+              "half": 26,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                24,
+                23,
+                23,
+                24
+              ],
+              "decoded": [
+                8,
+                8,
+                12,
+                3
+              ],
+              "baseKey": [
+                23,
+                23,
+                23,
+                23
+              ],
+              "baseSum": 5,
+              "delta": 2,
+              "half": 1,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                25,
+                2,
+                2,
+                2,
+                2,
+                25
+              ],
+              "decoded": [
+                12,
+                23,
+                12,
+                0,
+                15,
+                26
+              ],
+              "baseKey": [
+                2,
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "baseSum": 12,
+              "delta": 17,
+              "half": 23,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                22,
+                14,
+                14,
+                14,
+                22
+              ],
+              "decoded": [
+                26,
+                22,
+                25,
+                3,
+                1
+              ],
+              "baseKey": [
+                14,
+                14,
+                14,
+                14,
+                14
+              ],
+              "baseSum": 12,
+              "delta": 16,
+              "half": 8,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                17,
+                12,
+                12,
+                17
+              ],
+              "decoded": [
+                16,
+                3,
+                2,
+                4
+              ],
+              "baseKey": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "baseSum": 19,
+              "delta": 10,
+              "half": 5,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": -1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                5,
+                13,
+                15
+              ],
+              "decoded": [
+                24,
+                19,
+                16
+              ],
+              "baseKey": [
+                5,
+                13,
+                15
+              ],
+              "baseSum": 4,
+              "delta": 0,
+              "half": 0,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                5,
+                15,
+                12,
+                26
+              ],
+              "decoded": [
+                27,
+                0,
+                5,
+                25
+              ],
+              "baseKey": [
+                13,
+                15,
+                12,
+                5
+              ],
+              "baseSum": 16,
+              "delta": 13,
+              "half": 21,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                16,
+                13
+              ],
+              "decoded": [
+                25,
+                10
+              ],
+              "baseKey": [
+                15,
+                12
+              ],
+              "baseSum": 27,
+              "delta": 2,
+              "half": 1,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                25,
+                5,
+                13,
+                15,
+                25
+              ],
+              "decoded": [
+                23,
+                12,
+                6,
+                9,
+                15
+              ],
+              "baseKey": [
+                12,
+                5,
+                13,
+                15,
+                12
+              ],
+              "baseSum": 28,
+              "delta": 26,
+              "half": 13,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                1,
+                2,
+                14,
+                19
+              ],
+              "decoded": [
+                2,
+                0,
+                21,
+                8
+              ],
+              "baseKey": [
+                23,
+                2,
+                14,
+                12
+              ],
+              "baseSum": 22,
+              "delta": 14,
+              "half": 7,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                12,
+                14,
+                12,
+                23,
+                2,
+                24
+              ],
+              "decoded": [
+                25,
+                11,
+                2,
+                8,
+                15,
+                27
+              ],
+              "baseKey": [
+                2,
+                14,
+                12,
+                23,
+                2,
+                14
+              ],
+              "baseSum": 9,
+              "delta": 20,
+              "half": 10,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                10,
+                12,
+                23,
+                2,
+                10
+              ],
+              "decoded": [
+                9,
+                24,
+                16,
+                15,
+                13
+              ],
+              "baseKey": [
+                14,
+                12,
+                23,
+                2,
+                14
+              ],
+              "baseSum": 7,
+              "delta": 21,
+              "half": 25,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                1,
+                23,
+                2,
+                3
+              ],
+              "decoded": [
+                3,
+                21,
+                12,
+                18
+              ],
+              "baseKey": [
+                12,
+                23,
+                2,
+                14
+              ],
+              "baseSum": 22,
+              "delta": 7,
+              "half": 18,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": -1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                5,
+                13,
+                15
+              ],
+              "decoded": [
+                24,
+                19,
+                16
+              ],
+              "baseKey": [
+                5,
+                13,
+                15
+              ],
+              "baseSum": 4,
+              "delta": 0,
+              "half": 0,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                4,
+                5,
+                13,
+                7
+              ],
+              "decoded": [
+                28,
+                10,
+                4,
+                15
+              ],
+              "baseKey": [
+                12,
+                5,
+                13,
+                15
+              ],
+              "baseSum": 16,
+              "delta": 13,
+              "half": 21,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                18,
+                11
+              ],
+              "decoded": [
+                23,
+                12
+              ],
+              "baseKey": [
+                12,
+                5
+              ],
+              "baseSum": 17,
+              "delta": 12,
+              "half": 6,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                11,
+                15,
+                12,
+                5,
+                11
+              ],
+              "decoded": [
+                8,
+                2,
+                7,
+                19,
+                0
+              ],
+              "baseKey": [
+                13,
+                15,
+                12,
+                5,
+                13
+              ],
+              "baseSum": 0,
+              "delta": 25,
+              "half": 27,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                1,
+                2,
+                14,
+                19
+              ],
+              "decoded": [
+                2,
+                0,
+                21,
+                8
+              ],
+              "baseKey": [
+                23,
+                2,
+                14,
+                12
+              ],
+              "baseSum": 22,
+              "delta": 14,
+              "half": 7,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                14,
+                2,
+                14,
+                12,
+                23,
+                22
+              ],
+              "decoded": [
+                23,
+                23,
+                0,
+                19,
+                23,
+                0
+              ],
+              "baseKey": [
+                23,
+                2,
+                14,
+                12,
+                23,
+                2
+              ],
+              "baseSum": 18,
+              "delta": 11,
+              "half": 20,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                10,
+                12,
+                23,
+                2,
+                10
+              ],
+              "decoded": [
+                9,
+                24,
+                16,
+                15,
+                13
+              ],
+              "baseKey": [
+                14,
+                12,
+                23,
+                2,
+                14
+              ],
+              "baseSum": 7,
+              "delta": 21,
+              "half": 25,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                1,
+                23,
+                2,
+                3
+              ],
+              "decoded": [
+                3,
+                21,
+                12,
+                18
+              ],
+              "baseKey": [
+                12,
+                23,
+                2,
+                14
+              ],
+              "baseSum": 22,
+              "delta": 7,
+              "half": 18,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": 1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                13,
+                7,
+                13
+              ],
+              "decoded": [
+                16,
+                25,
+                18
+              ],
+              "baseKey": [
+                7,
+                7,
+                7
+              ],
+              "baseSum": 21,
+              "delta": 12,
+              "half": 6,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                2,
+                2,
+                27
+              ],
+              "decoded": [
+                5,
+                13,
+                15,
+                24
+              ],
+              "baseKey": [
+                2,
+                2,
+                2,
+                2
+              ],
+              "baseSum": 8,
+              "delta": 21,
+              "half": 25,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                0,
+                0
+              ],
+              "decoded": [
+                12,
+                23
+              ],
+              "baseKey": [
+                1,
+                1
+              ],
+              "baseSum": 2,
+              "delta": 27,
+              "half": 28,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                9,
+                12,
+                12,
+                12,
+                9
+              ],
+              "decoded": [
+                10,
+                5,
+                7,
+                12,
+                2
+              ],
+              "baseKey": [
+                12,
+                12,
+                12,
+                12,
+                12
+              ],
+              "baseSum": 2,
+              "delta": 23,
+              "half": 26,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                0,
+                18,
+                18,
+                0
+              ],
+              "decoded": [
+                3,
+                13,
+                17,
+                27
+              ],
+              "baseKey": [
+                18,
+                18,
+                18,
+                18
+              ],
+              "baseSum": 14,
+              "delta": 22,
+              "half": 11,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                5,
+                12,
+                12,
+                12,
+                12,
+                5
+              ],
+              "decoded": [
+                3,
+                13,
+                2,
+                19,
+                5,
+                17
+              ],
+              "baseKey": [
+                12,
+                12,
+                12,
+                12,
+                12,
+                12
+              ],
+              "baseSum": 14,
+              "delta": 15,
+              "half": 22,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                9,
+                13,
+                13,
+                13,
+                9
+              ],
+              "decoded": [
+                10,
+                23,
+                26,
+                4,
+                14
+              ],
+              "baseKey": [
+                13,
+                13,
+                13,
+                13,
+                13
+              ],
+              "baseSum": 7,
+              "delta": 21,
+              "half": 25,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                6,
+                23,
+                23,
+                6
+              ],
+              "decoded": [
+                27,
+                21,
+                20,
+                15
+              ],
+              "baseKey": [
+                23,
+                23,
+                23,
+                23
+              ],
+              "baseSum": 5,
+              "delta": 24,
+              "half": 12,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": 1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                4,
+                2,
+                27
+              ],
+              "decoded": [
+                25,
+                1,
+                4
+              ],
+              "baseKey": [
+                7,
+                2,
+                1
+              ],
+              "baseSum": 10,
+              "delta": 23,
+              "half": 26,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                20,
+                1,
+                12,
+                25
+              ],
+              "decoded": [
+                12,
+                14,
+                5,
+                26
+              ],
+              "baseKey": [
+                2,
+                1,
+                12,
+                7
+              ],
+              "baseSum": 22,
+              "delta": 7,
+              "half": 18,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                9,
+                20
+              ],
+              "decoded": [
+                3,
+                3
+              ],
+              "baseKey": [
+                1,
+                12
+              ],
+              "baseSum": 13,
+              "delta": 16,
+              "half": 8,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                22,
+                7,
+                2,
+                1,
+                22
+              ],
+              "decoded": [
+                26,
+                10,
+                17,
+                23,
+                18
+              ],
+              "baseKey": [
+                12,
+                7,
+                2,
+                1,
+                12
+              ],
+              "baseSum": 5,
+              "delta": 20,
+              "half": 10,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                3,
+                12,
+                13,
+                8
+              ],
+              "decoded": [
+                0,
+                19,
+                22,
+                19
+              ],
+              "baseKey": [
+                18,
+                12,
+                13,
+                23
+              ],
+              "baseSum": 8,
+              "delta": 28,
+              "half": 14,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                10,
+                13,
+                23,
+                18,
+                12,
+                11
+              ],
+              "decoded": [
+                27,
+                12,
+                20,
+                13,
+                5,
+                11
+              ],
+              "baseKey": [
+                12,
+                13,
+                23,
+                18,
+                12,
+                13
+              ],
+              "baseSum": 4,
+              "delta": 25,
+              "half": 27,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                2,
+                23,
+                18,
+                12,
+                2
+              ],
+              "decoded": [
+                17,
+                13,
+                21,
+                5,
+                21
+              ],
+              "baseKey": [
+                13,
+                23,
+                18,
+                12,
+                13
+              ],
+              "baseSum": 21,
+              "delta": 7,
+              "half": 18,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                19,
+                18,
+                12,
+                9
+              ],
+              "decoded": [
+                14,
+                26,
+                2,
+                12
+              ],
+              "baseKey": [
+                23,
+                18,
+                12,
+                13
+              ],
+              "baseSum": 8,
+              "delta": 21,
+              "half": 25,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": 1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                4,
+                2,
+                27
+              ],
+              "decoded": [
+                25,
+                1,
+                4
+              ],
+              "baseKey": [
+                7,
+                2,
+                1
+              ],
+              "baseSum": 10,
+              "delta": 23,
+              "half": 26,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                1,
+                7,
+                2,
+                19
+              ],
+              "decoded": [
+                2,
+                8,
+                15,
+                3
+              ],
+              "baseKey": [
+                12,
+                7,
+                2,
+                1
+              ],
+              "baseSum": 22,
+              "delta": 7,
+              "half": 18,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                17,
+                12
+              ],
+              "decoded": [
+                24,
+                11
+              ],
+              "baseKey": [
+                12,
+                7
+              ],
+              "baseSum": 19,
+              "delta": 10,
+              "half": 5,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                17,
+                1,
+                12,
+                7,
+                17
+              ],
+              "decoded": [
+                2,
+                16,
+                7,
+                17,
+                23
+              ],
+              "baseKey": [
+                2,
+                1,
+                12,
+                7,
+                2
+              ],
+              "baseSum": 24,
+              "delta": 1,
+              "half": 15,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                3,
+                12,
+                13,
+                8
+              ],
+              "decoded": [
+                0,
+                19,
+                22,
+                19
+              ],
+              "baseKey": [
+                18,
+                12,
+                13,
+                23
+              ],
+              "baseSum": 8,
+              "delta": 28,
+              "half": 14,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                28,
+                12,
+                13,
+                23,
+                18,
+                22
+              ],
+              "decoded": [
+                9,
+                13,
+                1,
+                8,
+                28,
+                0
+              ],
+              "baseKey": [
+                18,
+                12,
+                13,
+                23,
+                18,
+                12
+              ],
+              "baseSum": 9,
+              "delta": 20,
+              "half": 10,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                2,
+                23,
+                18,
+                12,
+                2
+              ],
+              "decoded": [
+                17,
+                13,
+                21,
+                5,
+                21
+              ],
+              "baseKey": [
+                13,
+                23,
+                18,
+                12,
+                13
+              ],
+              "baseSum": 21,
+              "delta": 7,
+              "half": 18,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                19,
+                18,
+                12,
+                9
+              ],
+              "decoded": [
+                14,
+                26,
+                2,
+                12
+              ],
+              "baseKey": [
+                23,
+                18,
+                12,
+                13
+              ],
+              "baseSum": 8,
+              "delta": 21,
+              "half": 25,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": -1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                20,
+                22,
+                20
+              ],
+              "decoded": [
+                9,
+                10,
+                11
+              ],
+              "baseKey": [
+                22,
+                22,
+                22
+              ],
+              "baseSum": 8,
+              "delta": 25,
+              "half": 27,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                27,
+                27,
+                2
+              ],
+              "decoded": [
+                1,
+                17,
+                19,
+                20
+              ],
+              "baseKey": [
+                27,
+                27,
+                27,
+                27
+              ],
+              "baseSum": 21,
+              "delta": 8,
+              "half": 4,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                0,
+                0
+              ],
+              "decoded": [
+                12,
+                23
+              ],
+              "baseKey": [
+                28,
+                28
+              ],
+              "baseSum": 27,
+              "delta": 2,
+              "half": 1,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                16,
+                17,
+                17,
+                17,
+                16
+              ],
+              "decoded": [
+                3,
+                0,
+                2,
+                7,
+                24
+              ],
+              "baseKey": [
+                17,
+                17,
+                17,
+                17,
+                17
+              ],
+              "baseSum": 27,
+              "delta": 27,
+              "half": 28,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                7,
+                11,
+                11,
+                7
+              ],
+              "decoded": [
+                25,
+                20,
+                24,
+                20
+              ],
+              "baseKey": [
+                11,
+                11,
+                11,
+                11
+              ],
+              "baseSum": 15,
+              "delta": 21,
+              "half": 25,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                24,
+                17,
+                17,
+                17,
+                17,
+                24
+              ],
+              "decoded": [
+                13,
+                8,
+                26,
+                14,
+                0,
+                27
+              ],
+              "baseKey": [
+                17,
+                17,
+                17,
+                17,
+                17,
+                17
+              ],
+              "baseSum": 15,
+              "delta": 14,
+              "half": 7,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                19,
+                16,
+                16,
+                16,
+                19
+              ],
+              "decoded": [
+                0,
+                20,
+                23,
+                1,
+                4
+              ],
+              "baseKey": [
+                16,
+                16,
+                16,
+                16,
+                16
+              ],
+              "baseSum": 22,
+              "delta": 6,
+              "half": 3,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                23,
+                6,
+                6,
+                23
+              ],
+              "decoded": [
+                10,
+                9,
+                8,
+                27
+              ],
+              "baseKey": [
+                6,
+                6,
+                6,
+                6
+              ],
+              "baseSum": 24,
+              "delta": 5,
+              "half": 17,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": -1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                0,
+                27,
+                6
+              ],
+              "decoded": [
+                0,
+                5,
+                25
+              ],
+              "baseKey": [
+                22,
+                27,
+                28
+              ],
+              "baseSum": 19,
+              "delta": 14,
+              "half": 7,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                9,
+                28,
+                17,
+                4
+              ],
+              "decoded": [
+                23,
+                16,
+                0,
+                18
+              ],
+              "baseKey": [
+                27,
+                28,
+                17,
+                22
+              ],
+              "baseSum": 7,
+              "delta": 22,
+              "half": 11,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                20,
+                9
+              ],
+              "decoded": [
+                21,
+                14
+              ],
+              "baseKey": [
+                28,
+                17
+              ],
+              "baseSum": 16,
+              "delta": 13,
+              "half": 21,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                3,
+                22,
+                27,
+                28,
+                3
+              ],
+              "decoded": [
+                16,
+                24,
+                21,
+                25,
+                8
+              ],
+              "baseKey": [
+                17,
+                22,
+                27,
+                28,
+                17
+              ],
+              "baseSum": 24,
+              "delta": 1,
+              "half": 15,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                4,
+                17,
+                16,
+                28
+              ],
+              "decoded": [
+                28,
+                14,
+                19,
+                28
+              ],
+              "baseKey": [
+                11,
+                17,
+                16,
+                6
+              ],
+              "baseSum": 21,
+              "delta": 15,
+              "half": 22,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                19,
+                16,
+                6,
+                11,
+                17,
+                18
+              ],
+              "decoded": [
+                18,
+                9,
+                8,
+                20,
+                0,
+                4
+              ],
+              "baseKey": [
+                17,
+                16,
+                6,
+                11,
+                17,
+                16
+              ],
+              "baseSum": 25,
+              "delta": 4,
+              "half": 2,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                26,
+                6,
+                11,
+                17,
+                26
+              ],
+              "decoded": [
+                22,
+                1,
+                28,
+                0,
+                26
+              ],
+              "baseKey": [
+                16,
+                6,
+                11,
+                17,
+                16
+              ],
+              "baseSum": 8,
+              "delta": 20,
+              "half": 10,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                10,
+                11,
+                17,
+                20
+              ],
+              "decoded": [
+                23,
+                4,
+                26,
+                1
+              ],
+              "baseKey": [
+                6,
+                11,
+                17,
+                16
+              ],
+              "baseSum": 21,
+              "delta": 8,
+              "half": 4,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": -1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                0,
+                27,
+                6
+              ],
+              "decoded": [
+                0,
+                5,
+                25
+              ],
+              "baseKey": [
+                22,
+                27,
+                28
+              ],
+              "baseSum": 19,
+              "delta": 14,
+              "half": 7,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                28,
+                22,
+                27,
+                10
+              ],
+              "decoded": [
+                4,
+                22,
+                19,
+                12
+              ],
+              "baseKey": [
+                17,
+                22,
+                27,
+                28
+              ],
+              "baseSum": 7,
+              "delta": 22,
+              "half": 11,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                12,
+                17
+              ],
+              "decoded": [
+                0,
+                6
+              ],
+              "baseKey": [
+                17,
+                22
+              ],
+              "baseSum": 10,
+              "delta": 19,
+              "half": 24,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                8,
+                28,
+                17,
+                22,
+                8
+              ],
+              "decoded": [
+                11,
+                18,
+                2,
+                2,
+                3
+              ],
+              "baseKey": [
+                27,
+                28,
+                17,
+                22,
+                27
+              ],
+              "baseSum": 5,
+              "delta": 20,
+              "half": 10,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                4,
+                17,
+                16,
+                28
+              ],
+              "decoded": [
+                28,
+                14,
+                19,
+                28
+              ],
+              "baseKey": [
+                11,
+                17,
+                16,
+                6
+              ],
+              "baseSum": 21,
+              "delta": 15,
+              "half": 22,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                1,
+                17,
+                16,
+                6,
+                11,
+                7
+              ],
+              "decoded": [
+                7,
+                8,
+                27,
+                25,
+                6,
+                15
+              ],
+              "baseKey": [
+                11,
+                17,
+                16,
+                6,
+                11,
+                17
+              ],
+              "baseSum": 20,
+              "delta": 9,
+              "half": 19,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                26,
+                6,
+                11,
+                17,
+                26
+              ],
+              "decoded": [
+                22,
+                1,
+                28,
+                0,
+                26
+              ],
+              "baseKey": [
+                16,
+                6,
+                11,
+                17,
+                16
+              ],
+              "baseSum": 8,
+              "delta": 20,
+              "half": 10,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                10,
+                11,
+                17,
+                20
+              ],
+              "decoded": [
+                23,
+                4,
+                26,
+                1
+              ],
+              "baseKey": [
+                6,
+                11,
+                17,
+                16
+              ],
+              "baseSum": 21,
+              "delta": 8,
+              "half": 4,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": 1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                27,
+                8,
+                27
+              ],
+              "decoded": [
+                2,
+                24,
+                4
+              ],
+              "baseKey": [
+                8,
+                8,
+                8
+              ],
+              "baseSum": 24,
+              "delta": 9,
+              "half": 19,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                18,
+                11,
+                11,
+                18
+              ],
+              "decoded": [
+                14,
+                4,
+                6,
+                4
+              ],
+              "baseKey": [
+                11,
+                11,
+                11,
+                11
+              ],
+              "baseSum": 15,
+              "delta": 14,
+              "half": 7,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                0,
+                0
+              ],
+              "decoded": [
+                12,
+                23
+              ],
+              "baseKey": [
+                26,
+                26
+              ],
+              "baseSum": 23,
+              "delta": 6,
+              "half": 3,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                24,
+                2,
+                2,
+                2,
+                24
+              ],
+              "decoded": [
+                24,
+                15,
+                17,
+                22,
+                16
+              ],
+              "baseKey": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "baseSum": 10,
+              "delta": 15,
+              "half": 22,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                10,
+                8,
+                8,
+                10
+              ],
+              "decoded": [
+                22,
+                23,
+                27,
+                17
+              ],
+              "baseKey": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "baseSum": 3,
+              "delta": 4,
+              "half": 2,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                21,
+                4,
+                4,
+                4,
+                4,
+                21
+              ],
+              "decoded": [
+                16,
+                21,
+                10,
+                27,
+                13,
+                1
+              ],
+              "baseKey": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "baseSum": 24,
+              "delta": 5,
+              "half": 17,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                17,
+                27,
+                27,
+                27,
+                17
+              ],
+              "decoded": [
+                2,
+                9,
+                12,
+                19,
+                6
+              ],
+              "baseKey": [
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "baseSum": 19,
+              "delta": 9,
+              "half": 19,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                26,
+                3,
+                3,
+                26
+              ],
+              "decoded": [
+                7,
+                12,
+                11,
+                24
+              ],
+              "baseKey": [
+                3,
+                3,
+                3,
+                3
+              ],
+              "baseSum": 12,
+              "delta": 17,
+              "half": 23,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": 1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                2,
+                11,
+                20
+              ],
+              "decoded": [
+                27,
+                21,
+                11
+              ],
+              "baseKey": [
+                8,
+                11,
+                26
+              ],
+              "baseSum": 16,
+              "delta": 17,
+              "half": 23,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                26,
+                2,
+                28
+              ],
+              "decoded": [
+                1,
+                18,
+                15,
+                23
+              ],
+              "baseKey": [
+                11,
+                26,
+                2,
+                8
+              ],
+              "baseSum": 18,
+              "delta": 11,
+              "half": 20,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                12,
+                17
+              ],
+              "decoded": [
+                0,
+                6
+              ],
+              "baseKey": [
+                26,
+                2
+              ],
+              "baseSum": 28,
+              "delta": 1,
+              "half": 15,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                19,
+                8,
+                11,
+                26,
+                19
+              ],
+              "decoded": [
+                0,
+                9,
+                8,
+                27,
+                21
+              ],
+              "baseKey": [
+                2,
+                8,
+                11,
+                26,
+                2
+              ],
+              "baseSum": 20,
+              "delta": 5,
+              "half": 17,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                5,
+                4,
+                27,
+                0
+              ],
+              "decoded": [
+                27,
+                27,
+                8,
+                27
+              ],
+              "baseKey": [
+                8,
+                4,
+                27,
+                3
+              ],
+              "baseSum": 13,
+              "delta": 23,
+              "half": 26,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                11,
+                27,
+                3,
+                8,
+                4,
+                5
+              ],
+              "decoded": [
+                26,
+                27,
+                11,
+                23,
+                13,
+                17
+              ],
+              "baseKey": [
+                4,
+                27,
+                3,
+                8,
+                4,
+                27
+              ],
+              "baseSum": 15,
+              "delta": 14,
+              "half": 7,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                21,
+                3,
+                8,
+                4,
+                21
+              ],
+              "decoded": [
+                27,
+                4,
+                2,
+                13,
+                2
+              ],
+              "baseKey": [
+                27,
+                3,
+                8,
+                4,
+                27
+              ],
+              "baseSum": 11,
+              "delta": 17,
+              "half": 23,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                11,
+                8,
+                4,
+                6
+              ],
+              "decoded": [
+                22,
+                7,
+                10,
+                15
+              ],
+              "baseKey": [
+                3,
+                8,
+                4,
+                27
+              ],
+              "baseSum": 13,
+              "delta": 16,
+              "half": 8,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": 1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                2,
+                11,
+                20
+              ],
+              "decoded": [
+                27,
+                21,
+                11
+              ],
+              "baseKey": [
+                8,
+                11,
+                26
+              ],
+              "baseSum": 16,
+              "delta": 17,
+              "half": 23,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                22,
+                8,
+                11,
+                17
+              ],
+              "decoded": [
+                10,
+                7,
+                6,
+                5
+              ],
+              "baseKey": [
+                2,
+                8,
+                11,
+                26
+              ],
+              "baseSum": 18,
+              "delta": 11,
+              "half": 20,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                26,
+                3
+              ],
+              "decoded": [
+                15,
+                20
+              ],
+              "baseKey": [
+                2,
+                8
+              ],
+              "baseSum": 10,
+              "delta": 19,
+              "half": 24,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                9,
+                26,
+                2,
+                8,
+                9
+              ],
+              "decoded": [
+                10,
+                20,
+                17,
+                16,
+                2
+              ],
+              "baseKey": [
+                11,
+                26,
+                2,
+                8,
+                11
+              ],
+              "baseSum": 0,
+              "delta": 25,
+              "half": 27,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                5,
+                4,
+                27,
+                0
+              ],
+              "decoded": [
+                27,
+                27,
+                8,
+                27
+              ],
+              "baseKey": [
+                8,
+                4,
+                27,
+                3
+              ],
+              "baseSum": 13,
+              "delta": 23,
+              "half": 26,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                10,
+                4,
+                27,
+                3,
+                8,
+                6
+              ],
+              "decoded": [
+                27,
+                21,
+                16,
+                28,
+                9,
+                16
+              ],
+              "baseKey": [
+                8,
+                4,
+                27,
+                3,
+                8,
+                4
+              ],
+              "baseSum": 25,
+              "delta": 4,
+              "half": 2,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                21,
+                3,
+                8,
+                4,
+                21
+              ],
+              "decoded": [
+                27,
+                4,
+                2,
+                13,
+                2
+              ],
+              "baseKey": [
+                27,
+                3,
+                8,
+                4,
+                27
+              ],
+              "baseSum": 11,
+              "delta": 17,
+              "half": 23,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                11,
+                8,
+                4,
+                6
+              ],
+              "decoded": [
+                22,
+                7,
+                10,
+                15
+              ],
+              "baseKey": [
+                3,
+                8,
+                4,
+                27
+              ],
+              "baseSum": 13,
+              "delta": 16,
+              "half": 8,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": -1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                6,
+                21,
+                6
+              ],
+              "decoded": [
+                23,
+                11,
+                25
+              ],
+              "baseKey": [
+                21,
+                21,
+                21
+              ],
+              "baseSum": 5,
+              "delta": 28,
+              "half": 14,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                11,
+                18,
+                18,
+                11
+              ],
+              "decoded": [
+                21,
+                26,
+                28,
+                11
+              ],
+              "baseKey": [
+                18,
+                18,
+                18,
+                18
+              ],
+              "baseSum": 14,
+              "delta": 15,
+              "half": 22,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                0,
+                0
+              ],
+              "decoded": [
+                12,
+                23
+              ],
+              "baseKey": [
+                3,
+                3
+              ],
+              "baseSum": 6,
+              "delta": 23,
+              "half": 26,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                1,
+                27,
+                27,
+                27,
+                1
+              ],
+              "decoded": [
+                18,
+                19,
+                21,
+                26,
+                10
+              ],
+              "baseKey": [
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "baseSum": 19,
+              "delta": 6,
+              "half": 3,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                26,
+                21,
+                21,
+                26
+              ],
+              "decoded": [
+                6,
+                10,
+                14,
+                1
+              ],
+              "baseKey": [
+                21,
+                21,
+                21,
+                21
+              ],
+              "baseSum": 26,
+              "delta": 10,
+              "half": 5,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                8,
+                25,
+                25,
+                25,
+                25,
+                8
+              ],
+              "decoded": [
+                0,
+                0,
+                18,
+                6,
+                21,
+                14
+              ],
+              "baseKey": [
+                25,
+                25,
+                25,
+                25,
+                25,
+                25
+              ],
+              "baseSum": 5,
+              "delta": 24,
+              "half": 12,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                11,
+                2,
+                2,
+                2,
+                11
+              ],
+              "decoded": [
+                8,
+                5,
+                8,
+                15,
+                12
+              ],
+              "baseKey": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "baseSum": 10,
+              "delta": 18,
+              "half": 9,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                3,
+                26,
+                26,
+                3
+              ],
+              "decoded": [
+                1,
+                18,
+                17,
+                18
+              ],
+              "baseKey": [
+                26,
+                26,
+                26,
+                26
+              ],
+              "baseSum": 17,
+              "delta": 12,
+              "half": 6,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": -1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                2,
+                18,
+                13
+              ],
+              "decoded": [
+                27,
+                14,
+                18
+              ],
+              "baseKey": [
+                21,
+                18,
+                3
+              ],
+              "baseSum": 13,
+              "delta": 20,
+              "half": 10,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                3,
+                27,
+                1
+              ],
+              "decoded": [
+                5,
+                12,
+                19,
+                21
+              ],
+              "baseKey": [
+                18,
+                3,
+                27,
+                21
+              ],
+              "baseSum": 11,
+              "delta": 18,
+              "half": 9,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                17,
+                12
+              ],
+              "decoded": [
+                24,
+                11
+              ],
+              "baseKey": [
+                3,
+                27
+              ],
+              "baseSum": 1,
+              "delta": 28,
+              "half": 14,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                6,
+                21,
+                18,
+                3,
+                6
+              ],
+              "decoded": [
+                13,
+                25,
+                1,
+                21,
+                5
+              ],
+              "baseKey": [
+                27,
+                21,
+                18,
+                3,
+                27
+              ],
+              "baseSum": 9,
+              "delta": 16,
+              "half": 8,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                2,
+                25,
+                2,
+                7
+              ],
+              "decoded": [
+                1,
+                6,
+                4,
+                20
+              ],
+              "baseKey": [
+                21,
+                25,
+                2,
+                26
+              ],
+              "baseSum": 16,
+              "delta": 20,
+              "half": 10,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                18,
+                2,
+                26,
+                21,
+                25,
+                24
+              ],
+              "decoded": [
+                19,
+                23,
+                17,
+                10,
+                21,
+                27
+              ],
+              "baseKey": [
+                25,
+                2,
+                26,
+                21,
+                25,
+                2
+              ],
+              "baseSum": 14,
+              "delta": 15,
+              "half": 22,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                7,
+                26,
+                21,
+                25,
+                7
+              ],
+              "decoded": [
+                12,
+                10,
+                18,
+                21,
+                16
+              ],
+              "baseKey": [
+                2,
+                26,
+                21,
+                25,
+                2
+              ],
+              "baseSum": 18,
+              "delta": 10,
+              "half": 5,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                18,
+                21,
+                25,
+                23
+              ],
+              "decoded": [
+                15,
+                23,
+                18,
+                27
+              ],
+              "baseKey": [
+                26,
+                21,
+                25,
+                2
+              ],
+              "baseSum": 16,
+              "delta": 13,
+              "half": 21,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": -1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "sigma": [
+            4,
+            0,
+            0,
+            25
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                2,
+                18,
+                13
+              ],
+              "decoded": [
+                27,
+                14,
+                18
+              ],
+              "baseKey": [
+                21,
+                18,
+                3
+              ],
+              "baseSum": 13,
+              "delta": 20,
+              "half": 10,
+              "keySum": 4
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                7,
+                21,
+                18,
+                12
+              ],
+              "decoded": [
+                25,
+                23,
+                28,
+                10
+              ],
+              "baseKey": [
+                27,
+                21,
+                18,
+                3
+              ],
+              "baseSum": 11,
+              "delta": 18,
+              "half": 9,
+              "keySum": 0
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                3,
+                26
+              ],
+              "decoded": [
+                9,
+                26
+              ],
+              "baseKey": [
+                27,
+                21
+              ],
+              "baseSum": 19,
+              "delta": 10,
+              "half": 5,
+              "keySum": 0
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                16,
+                3,
+                27,
+                21,
+                16
+              ],
+              "decoded": [
+                3,
+                14,
+                21,
+                3,
+                24
+              ],
+              "baseKey": [
+                18,
+                3,
+                27,
+                21,
+                18
+              ],
+              "baseSum": 0,
+              "delta": 25,
+              "half": 27,
+              "keySum": 25
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "sigma": [
+            7,
+            0,
+            28,
+            0
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                2,
+                25,
+                2,
+                7
+              ],
+              "decoded": [
+                1,
+                6,
+                4,
+                20
+              ],
+              "baseKey": [
+                21,
+                25,
+                2,
+                26
+              ],
+              "baseSum": 16,
+              "delta": 20,
+              "half": 10,
+              "keySum": 7
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                19,
+                25,
+                2,
+                26,
+                21,
+                23
+              ],
+              "decoded": [
+                18,
+                0,
+                12,
+                5,
+                25,
+                28
+              ],
+              "baseKey": [
+                21,
+                25,
+                2,
+                26,
+                21,
+                25
+              ],
+              "baseSum": 4,
+              "delta": 25,
+              "half": 27,
+              "keySum": 0
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                7,
+                26,
+                21,
+                25,
+                7
+              ],
+              "decoded": [
+                12,
+                10,
+                18,
+                21,
+                16
+              ],
+              "baseKey": [
+                2,
+                26,
+                21,
+                25,
+                2
+              ],
+              "baseSum": 18,
+              "delta": 10,
+              "half": 5,
+              "keySum": 28
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                18,
+                21,
+                25,
+                23
+              ],
+              "decoded": [
+                15,
+                23,
+                18,
+                27
+              ],
+              "baseKey": [
+                26,
+                21,
+                25,
+                2
+              ],
+              "baseSum": 16,
+              "delta": 13,
+              "half": 21,
+              "keySum": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
