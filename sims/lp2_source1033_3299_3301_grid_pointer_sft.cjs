@@ -30,7 +30,13 @@ function main() {
     return symbols[Math.floor(byte / 60)] + symbols[byte % 60];
   }
 
+  const canonical = JSON.parse(fs.readFileSync(
+    path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
+  const p57 = canonical.pages.find(p => p.page === 57);
+  assert.equal(p57.indices.slice(37, 67)
+    .reduce((acc, glyph) => acc + canonical.prime[glyph], 0), 1031);
   const seeds = [
+    { source: 'Solved p57 middle body-clause sum 1031 (2013 metadata factor)', n: 1031, expected: '33' },
     { source: 'LP1 original 1033 magic-square sum', n: 1033, expected: '49' },
     { source: 'LP2 p15 unique highlighted red 3299', n: 3299, expected: '49' },
     { source: 'LP1 original 3301 magic-square sum', n: 3301, expected: '00' }
@@ -43,13 +49,15 @@ function main() {
     seed.token = observed;
     seed.oneBasedToken = token(bytes[(seed.n - 1) % 256]);
   }
-  assert.deepEqual(seeds.map(seed => seed.cell), [9, 227, 229]);
-  assert.deepEqual(seeds.map(seed => seed.oneBasedToken), ['1W', '1D', '2O']);
+  assert.deepEqual(seeds.map(seed => seed.cell), [7, 9, 227, 229]);
+  assert.deepEqual(seeds.map(seed => seed.oneBasedToken), ['26', '1W', '1D', '2O']);
 
   /** @param {number} value @returns {number[]} */
   function positions(value) {
     return bytes.flatMap((b, index) => b === value ? [index] : []);
   }
+  assert.deepEqual(positions(33 * 60 + 33), []); // Literal token '33' is byte183, not decimal33.
+  assert.deepEqual(positions(183), [7, 14]);
   assert.deepEqual(positions(249), [9, 158, 227]);
   assert.deepEqual(positions(0), [192, 229]);
   assert.equal(bytes[249], 158);
@@ -70,6 +78,12 @@ function main() {
   const numerator = 3 * 2 * 2;
   assert.equal(denominator / numerator, 1381760);
 
+  // The additional 1031->33 output is a finite out-of-family extension
+  // of a previously published *conditional* pointer rule, not a historically
+  // authenticated opcode or a controlled blinded original prediction.
+  assert.equal(token(bytes[7]), '33');
+  assert.equal(token(bytes[6]), '26');
+
   // A planted table must be recognized by the same complete input check.
   const planted = bytes.slice();
   planted[9] = 249;
@@ -80,6 +94,7 @@ function main() {
 
   console.log(JSON.stringify({
     indexedSourceSeeds: seeds,
+    all33Cells: positions(183),
     all49Cells: positions(249),
     all00Cells: positions(0),
     twoCellCycle: [158, 249],
