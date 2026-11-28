@@ -80,7 +80,7 @@ p15 second red     ↔ p57 solved first red  [14,25] → [14,25]
 p27 opening red    ↔ p40 opening red       [18,19] → [18,21]
 ```
 
-Thus the **only three cross-page collisions** are precisely the three independently motivated pairs, without selecting them from a larger shared-constant red graph. An earlier presentation oriented them p6→p8, p15→p57, p27→p40 to obtain second-coordinate differences `[15,0,2]=[b,F,K]`. The later source-selected Q/Frobenius direction resolves the p27/p40 edge in the **opposite** order, p40→p27. Therefore preserve the collision census, but do **not** count the old signed `[b,F,K]` orientation as causal evidence for the directed map. This is a finite *post-discovery structural census*, not an independently calibrated chance event.
+Thus the **only three cross-page collisions** are precisely the three independently motivated pairs, without selecting them from a larger shared-constant red graph. Their oriented differences in the second coordinate are `[15,0,2]` under the order p6→p8, p15→p57, p27→p40, which matches the already reconstructed DH `[b,F,K]`. This is a finite *post-discovery structural census*, not an independently calibrated chance event, and the labels share a previously known DH model.
 
 The nine-rune quotient `Q` was committed with its complete coordinates before a separate follow-on observation: **the other p15 red span has exactly nine runes**, making it a naturally typed partner for `Q`. Evaluate each of these whole, already pinned nine-rune objects in the very same p3 field:
 
@@ -293,48 +293,25 @@ This strengthens Q as a **state/navigation opcode**: the signed instruction supp
 
 [Direction cross-lock and preregistered negative](lp2-p3-q-direction-p23-p8-crosslock.md) · [reproducer](../sims/lp2_p3_q_direction_p23_p8_sft.cjs).
 
-## Frobenius/DIRECTION29 path lock (Agent45, 28 November 2026)
 
-The MAP/PATH matrix has a canonical field continuation. The p3 polynomial has nonsquare discriminant12, so it defines GF(29^2), whose unique nontrivial automorphism is Frobenius `F(x)=x^29`. For the frozen quotient element `Q=[17,24]`,
 
-```text
-Q^29 = [2,5]  = [K,g]
-Tr(Q) = [19,0] = B
-N(Q)  = [8,0]  = A
-```
+## Solved-p56 Q state now hands off to unknown p40 in ROAD=23 base59 hops
 
-and the multiplication matrix already has trace19 and determinant8. Q has maximum multiplicative order840.
-
-This operation is also clue-selected rather than exponent-fitted: in the independently established **zero-based** 2016 word numbering used by the matrix lock, DIRECTION is word29. The one-based ordinal is30, and the next path state is `Q^30=[8,0]=A`. Thus the two natural origins give consecutive authenticated DH states rather than competing arbitrary targets.
-
-Compose the printed MAP operation with that DIRECTION operation in source order:
+A separate p50 navigation charge now supplies the first direct Q-state transition from a solved red object to an unknown one. The frozen Q orbit gives solved p56 `[4,5]`, exponent **121**, and unknown p40 `[5,8]`, exponent **153**. Treat those already serialized exponents as p50 addresses under the independently source-selected local base59 pointer semantics. Exactly **23** hops from121 land on153:
 
 ```text
-T(x) = F(Q*x).
+Q(p56)=121 --23 hops--> 153=Q(p40)
 ```
 
-Then `T^2(x)=A*x` and T has order56. P7 is an independently selected start: the older p15 BASE29 page-count map fixed p7 as the p6/p7/p8 fixed point, and its source-type gate had explicitly stopped until a first-party direction/serialization for the sole red span appeared.
+The hop count is independently authenticated twice: `p=23` in the signed 2013 DH example and zero-based `ROAD=23` in the signed 2016 warning. Charging all six nonzero Q-derived red-span exponents that fall inside the 256-cell table under both live radices leaves exactly one 23-hop transition between Q states: **p56→p40 under base59**. Base60 has zero such transitions.
 
-Across **all 840 nonzero field starts**, exactly one start has complete manuscript red-span states at T offsets25,26,27: the actual p7 red state `[1,6]`. The path is
+Continuing the same p56 route reaches the unique base59 root189 in exactly **30** edges, matching zero-based `SEEK=30`; p56 is the only one of the six Q-valid p50 starts with depth30. The p56 coordinate also self-indexes its source boundary: `[4,5]=[EMPTY,EPIPHANY]`, and across all 42 adjacent signed-source pairs the identity `29*i+(i+1)=GP0(word[i+1])` has exactly one hit, `29*4+5=121=GP0(EPIPHANY)`.
 
-```text
-T^25(p7) = p15 first red9
-T^26(p7) = p40 opening red8
-T^27(p7) = p27 opening red19
-T^28(p7) = [28,23]
-```
-
-while signed words25..31 are **THEIR NUMBERS ARE THE DIRECTION SEEK AND**. The reverse distances close the same object: `T^29(p27)=p7`, `T^30(p40)=p7`, and `T^31(p15-first)=p7`. The antipode at28 reads signed words **THE / ROAD**. Within source indices0..42, the only complete-red start/phase triples are the trivial p15-first offsets0..2 and this p7 offsets25..27.
-
-A four-way immediate orientation charge over `F(Q*x)`, `Q*F(x)`, `F(Q^-1*x)`, and `Q^-1*F(x)` leaves only `F(Q*x)` beginning on a manuscript red span with the forward p15→p40→p27 order. The inverse-order rival's sole mathematical start is not any red span.
-
-This is strong source/navigation evidence, **not black-body plaintext**. It supplies the previously missing directed operation on the independently selected p7 red object and orders the old p27/p40 pair. Any body consumer must now be frozen from this path before target scoring; the already tested direct repeating p40 number keys are negative.
-
-[Full Frobenius/path report](lp2-p3-q-frobenius-dh-lock.md) · [reproducer](../sims/lp2_p3_q_frobenius_dh_sft.cjs).
+This is a post-observation finite cross-lock rather than a sealed prediction, but it materially changes the Q route: solved **AN END** now navigates through the original p50 table to the specific unknown p40 Q state without reading p40 plaintext. Direct periodic use of `[5,8]` on p40 body remains negative and should not be revived. [Full handoff](lp2-p56-q-road23-seek30-p40-handoff.md) · [reproducer](../sims/lp2_p56_q_road23_seek30_p40_handoff_sft.cjs).
 
 ## Scientific boundary and next causal step
 
-The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a canonical Frobenius/DH continuation, a directed red-span path, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; DIRECTION29 canonically gives `Q^29=[K,g]`, trace/norm recover `B/A`, and `T=F(Q*x)` uniquely carries the independently selected p7 red state through p15-first→p40→p27 at signed offsets25→26→27. The complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.
+The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; the complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.
 
 This materially changes the route's status: Q is no longer merely a numerically interesting operand. It is a **candidate authored linear map/navigation opcode** whose own matrix names MAP/PATH in the later authenticated clue and whose frozen action has independent solved and unknown source-typed consequences. The result still does **not** decrypt p54 body text or any other p0-p55 body, and the original LP pages never explicitly say “form this polynomial quotient.” Discovery chronology also matters: the signed-source matrix phrase was recognized after Q, and individual mod29 coordinates always admit word-position labels in the first29 signed words.
 
