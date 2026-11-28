@@ -56,6 +56,21 @@ The prior historical type-bridge audit already established an authenticated oper
 
 The p6/p15/p28 and other current H results are therefore evidence only to the extent that **their own original artifact geometry or independently selected operand grammar motivates H**. Reusing “repository-canonical H” is not independent evidence that Cicada authored that operation.
 
+## P6 local-geometry follow-up
+
+Director #3436 tests the strongest remaining rescue allowed by the historical negative: perhaps p6 itself visually instructs H. The original p6 page does supply a **bilaterally symmetric four-word red title**, so grant the transform its strongest favorable premise and let that symmetry fix the mirror pairing `(0,3),(1,2)` over the other two perfect matchings.
+
+That still does not identify canonical H. Before reading any H output or matched transfer, charge four binary presentation choices left unlabeled by the image:
+
+- traverse the nested mirror pairs outer→inner or inner→outer;
+- orient subtraction left−right or right−left;
+- emit differences first or sums first;
+- traverse the second channel by bouncing back through the nesting or in the same direction.
+
+This leaves **16 distinct source-compatible presentations** even after the mirror pairing is granted. Canonical `H4=[d03,d12,s12,s03]` is exactly one member: outer→inner, left−right, difference-first, bounce. The page contains no arithmetic labels or directional marks that select those four choices. Therefore p6 local geometry does **not** authenticate canonical H, and the prospective matched-object transfer remains unopened.
+
+This is a stronger causal negative than the historical audit alone: current p6 H equalities remain reproducible arithmetic identities, but they cannot be promoted on the claim that the visible frame uniquely instructs the transform. Reproducer: [`sims/lp2_p6_h_geometry_identifiability_sft.cjs`](../sims/lp2_p6_h_geometry_identifiability_sft.cjs).
+
 ## Decision
 
 **Negative historical fork.** No bounded first-party or contemporaneous source currently fixes the exact outside-in H transform, its direction, serialization, and modulo29 arithmetic before the modern LP2 constructions.
