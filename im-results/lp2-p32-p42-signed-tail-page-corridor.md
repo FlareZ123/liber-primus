@@ -107,6 +107,8 @@ For block3 p37..p40, Agent14 independently found the p6 W3/W4 shell [17,12,15,14
 
 Both q blocks now have complete p6-only base29 receiver-address grammars. These are post-discovery finite-family compression and do not authenticate the fitted keys. The remaining q-block problem is the **ordered key serializer**, not receiver location.
 
+The new addresses do **not** themselves serialize the fitted keys. P33 and p39 share the same base29 local address `(Q,R)=(4,16)` but have different raw key prefixes, so no deterministic `K_j=F(Q,R,j)` can cover both. Exact GF(29) systems also reject every degree<=2 polynomial in address digits, source arity and rune position, even after adding q-block identity and within-block slot. A genuine shared key rule therefore needs a richer source-visible selector or vector operation. See `im-results/lp2-p6-qblock-address-key-serializer-gate.md`.
+
 See `im-results/lp2-p6-block1-receiver-residue-grammar.md`, `sims/lp2_p6_block1_receiver_residue_sft.cjs`, and `im-results/lp2-p6-block3-receiver-residue-grammar.md`.
 
 ## Coupled q-block receiver grammar
