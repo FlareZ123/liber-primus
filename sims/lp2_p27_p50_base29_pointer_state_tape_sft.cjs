@@ -337,6 +337,22 @@ const token39Positions = tokens
   .map(({ address }) => address);
 assert.deepEqual(token39Positions, [151, 254]);
 
+// Both literal copies of token 39 are themselves compact historical-BASE29
+// state words. Their source-address separation is another state word.
+assert.equal(encodeHistoricalBase29(151), '56');
+assert.deepEqual([Math.floor(151 / 29), 151 % 29], [state.g, state.a]);
+assert.equal(encodeHistoricalBase29(254), '8M');
+assert.deepEqual(
+  [Math.floor(254 / 29), 254 % 29],
+  [state.A, state.p - state.one]
+);
+assert.equal(254 - 151, 103);
+assert.equal(encodeHistoricalBase29(103), '3G');
+assert.deepEqual(
+  [Math.floor(103 / 29), 103 % 29],
+  [state.e, mod(state.A * state.K, 29)]
+);
+
 const dualRadixHopClosure = [];
 for (let cell = 0; cell < tokens.length; cell += 1) {
   const start59 = values59[cell];
@@ -593,6 +609,11 @@ const summary = {
   historicalBase29Path,
   dualRadixHopClosure,
   token39Positions,
+  token39Base29State: {
+    cell151: encodeHistoricalBase29(151),
+    cell254: encodeHistoricalBase29(254),
+    separation: encodeHistoricalBase29(254 - 151),
+  },
   radixCarrySelfCheck: {
     selectedCarries: carryTape59.carries,
     selectedByte: carryTape59.byte,
