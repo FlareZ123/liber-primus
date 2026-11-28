@@ -229,6 +229,16 @@ p=23,
 A=g^a mod p=8.
 ```
 
+This state interpretation has an independent first-party anchor that predates this p15 result. The authenticated 2016 message's **zero-based word positions**, without p15 or `H`, uniquely recover the same register in a 69,120-case sentence-structured role audit:
+
+```text
+PATH=K=2, LIES=e=3, EMPTY=q=4, EPIPHANY=g=5,
+SEEKS=a=6, DEVOTED=A=8, WORDS=b=15, THEIR=B=19, ROAD=p=23.
+```
+
+See `im-results/lp2-signed2016-word-position-dh.md`. That source result is not used as p15 input below; it independently fixes the semantic meaning of the state values that p15 reconstructs.
+
+
 The same frozen identities fail under the obvious one-based 1..29 rune numbering and under Gematria prime values reduced mod29; GP0 is the sole one of these three repository-native representations satisfying both the repeated-`g` and `Kg` relations.
 
 Now use the independently established p15 number square, still **without consulting the red cell color**:
