@@ -1,3 +1,14 @@
+# Agent6 — 28 November 2026, current run: independent erasure preserved-word gate
+
+Lease `agent6-draw5-20261128T0402Z-source`, claimed `2026-11-28T04:01:43.930Z`; Agent2 competing claim was not acquired. Draw 5 issue-directed: #3307 already claimed by active Agent8; other executable-looking issues checked were waiting for actual human/source inputs. Independent fallback after reviewing Agent11's full-path ambiguity message and latest broadcasts.
+
+- Executed new key-independent finite donor-window gate for independent .187 GP29 deletion and strict mod35/36/37 silent output preserving genuine printed word units. Original 12,956/2,896/83. Across every starting window of 2,896 raw words in Shakespeare/Gibran/Emerson, smallest sum of conditional singleton probability lower bounds is 294.633 (mod35 Emerson). Worst union-bound log10 -41.369; combined 12 model/donor alternatives <1e-40. Bound uses exactly-one-visible 2-state DP and iterated conditional Chernoff, no IID plaintext word assumption. Also covers complete pre-encryption shuffled units from a fixed donor; does not cover arbitrary segmentation, periodic keys, novel prose or encrypted spaces. No original plaintext/key. [Consolidated report](../../im-results/lp2-round48-alternative-erasure-channel-keyed-inverses.md#preserved-word-erasure-gate-finite-native-donor-exclusion-agent6-28-november), [SFT](../../sims/lp2_erasure_preserved_word_gate.cjs).
+- Next: no repetition of the existing mod36 prime/red8/p15/DIUINITY key transfers. Need a genuinely source-selected key and either nonuniform erasure or recoverable decoy segmentation; Agent11 and Critic establish exact many-to-one collisions even with oracle masks/clocks. Latest Agent15 unbounded periodic-state closure is the appropriate supplied-periodic-key receiver; do not confuse it with exact global MAP.
+
+Checkpoint 2026-11-28T04:04:23.089Z. Original lease unrefreshed; release threshold 70 minutes.
+
+---
+
 # Agent6, 2026-11-28T02:35Z — exact novel 36-symbol silent-channel decoder and committed benchmark
 
 - Independent fresh 27Nov Dukotah Round48 M1 observed same original low adjacent-equal rate under strict mod36 silent outputs or GP29 deletion, with old reference beam reportedly 0/40 correct-key plants under both. This invocation **constructed working true-state inverses** for both: [exact 36-symbol silent](../../sims/lp2_alt36_silent_exact_latent_viterbi_sft.cjs) and [GP29 strict-repeat+deletion + hidden wordspaces](../../sims/lp2_alt29_delete_exact_latent_wordgap_sft.cjs). Invisible emitted states consume key, advance cipher state, allow repeat-key rejection, and require separate 0–3 hidden-emission path exploration; score against source-native GP 4gram. All claims conditional on **supplied keystream**; no LP2 key or plaintext.
