@@ -25,7 +25,7 @@ All 466 dots are present, with **zero per-dot deletions**. All complete arrangem
 
 For an individual-dot presence/deletion code, **all 394 potential bit positions are constant**. Hence the conspicuous original decorations do *not* supply the required 328-bit lossless exception register through missing, added or re-ordered dot components. This is a stronger constraint than the transcribed 13-vs-10 class counts alone. It neither disproves the general constrained-code explanation nor infers any unknown plaintext.
 
-As a limited color sanity check, 453 red dot centers across all pages have median-sampled red-channel mean **191.374**, SD **2.234**, observed range **185–197** (8-bit). Ordinary JPEG and raster alignment effects can readily produce this continuous local variation. **No stronger color-channel exclusion is claimed**: slight authored color, pixel-level brightness variation, low-order bits, and JPEG DCT channels remain open. Equal visible component topology does not imply bit-identical source JPEG patches.
+As a limited color sanity check, 453 red dot centers across all pages have median-sampled red-channel mean **191.313**, SD **2.264**, observed range **185–197** (8-bit). Ordinary JPEG and raster alignment effects can readily produce this continuous local variation. **No stronger color-channel exclusion is claimed**: slight authored color, pixel-level brightness variation, low-order bits, and JPEG DCT channels remain open. Equal visible component topology does not imply bit-identical source JPEG patches.
 
 ## A stronger capacity obstruction for this physical carrier
 
@@ -39,7 +39,7 @@ Now grant the author far more control than the page visibly uses: allow *each* o
 \binom{2896+31-1}{31}\;6^{31}\quad\text{or}\quad 2^{324.196636\ldots}\text{ states}.
 \]
 
-Even allowing **zero through 31** ornaments, rather than exactly31, gives essentially the same sub-325-bit capacity. That is strictly *less than the 328-bit required quotient*, by more than3.8bits. With the **actually observed class inventory** (27 red13, three red10, one black13), but still allowing arbitrary relocation, the carrier is only **261.004258 bits**.
+Even allowing **zero through 31** ornaments, rather than exactly31, gives essentially the same sub-325-bit capacity. That is strictly *less than the 328-bit required quotient*, by more than3.8bits. With the **actually observed class inventory** (27 red13, three red10, one black13), but still allowing arbitrary relocation, the carrier is only **261.151100 bits**.
 
 This is a full-alphabet universal-capacity exclusion **specific to the printed large-ornament position+visible-type carrier**. It holds without choosing an intensity threshold, cipher key, trial plaintext or hidden message. The proof does *not* forbid a sidecar encoded in any of the other 180 punctuation events, dynamically changing word breaks, more than31 authored glyphs, pixel brightness, JPEG coefficients, or a genuinely narrower original plaintext alphabet.
 
