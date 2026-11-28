@@ -119,14 +119,103 @@ function plant(plain,mode,phase,seed){
  assert(test.positives&&test.full);
  // There may be multiple compatible bijections; the planted one is known valid.
  for(const {i,k,equal} of e)assert.equal(equal,rankToGp[k]===p[i]);
+ if(mode==='page-local'){
+  const g=periodicGroups(originalPages,'page-local',16);
+  // The planted ciphertext is per-page-restarted, so use the same literal
+  // within-page group structure, rather than the unrelated original tape.
+  const gpPages=[];let pos=0;
+  for(const page of originalPages){gpPages.push({page:page.page,indices:c.slice(pos,pos+page.indices.length)});pos+=page.indices.length;}
+  const plantedG=periodicGroups(gpPages,'page-local',16);
+  assert(periodicGate(plantedG,p,0,true).possible,'period-free planted native gate failed');
+ }
  return {mode,phase,runeCount:c.length,checkedPairs:e.length,
    doublets:e.filter(x=>x.equal).length,matched:true};
 }
+
+// Entire PERIOD-T family theorem (not restricted to the p15 numeral values):
+// If the public insertion target repeats every T nonseam runes, then all
+// observed repeated-ciphertext events at the same residue must have the
+// exact same plaintext rank. A FIXED unknown GP relabel pi only replaces
+// that rank by one unknown rune q_r. Conversely, choosing q_r independently
+// is sufficient for satisfying the EQUALITY PATTERN under some period-T
+// targets: take rankToGp=identity and target[r]=q_r. This does not recover
+// the rest of ciphertext or prove decryption: it is an exact necessary
+// filter for any period-T public insertion, all starting decks / keys.
+function periodicGroups(pages,mode,T=16){
+ const c=pages.flatMap(p=>p.indices),E=Array.from({length:T},()=>({pos:[],neg:[]}));
+ let offset=0,checked=0;
+ for(const page of pages){
+  for(let j=0;j<page.indices.length;j++){
+   const i=offset+j;
+   if(i===0||(mode==='page-local'&&j===0))continue;
+   const prev=mode==='page-local'?j-1:i-1;
+   const group=E[prev%T];
+   group[c[i]===c[i-1]?'pos':'neg'].push(i);
+   checked++;
+  }
+  offset+=page.indices.length;
+ }
+ return {N:c.length,checked,E};
+}
+function periodicGate(source,p,start,diagnostic=false){
+ const targets=Array(source.E.length).fill(-1);
+ for(let t=0;t<source.E.length;t++){
+  const group=source.E[t];let fixed=-1;
+  for(const i of group.pos){
+   const v=p[start+i];
+   if(fixed>=0&&fixed!==v)return diagnostic?{possible:false,reason:'conflicting positives',t}:false;
+   fixed=v;
+  }
+  let prohibited=0;
+  for(const i of group.neg)prohibited|=1<<p[start+i];
+  if(fixed>=0){
+   if(prohibited&(1<<fixed))return diagnostic?{possible:false,reason:'positive also forbidden',t}:false;
+   targets[t]=fixed;
+  }else{
+   const available=FULL&~prohibited;
+   if(!available)return diagnostic?{possible:false,reason:'every rune forbidden',t}:false;
+   targets[t]=lo(available);
+  }
+ }
+ if(diagnostic){
+  for(let t=0;t<source.E.length;t++){
+   for(const i of source.E[t].pos)assert.equal(targets[t],p[start+i]);
+   for(const i of source.E[t].neg)assert.notEqual(targets[t],p[start+i]);
+  }
+  return{possible:true,targets};
+ }
+ return true;
+}
+function periodicScans(texts){
+ const scans=[];
+ for(const [loPage,hiPage] of [[16,22],[40,53],[0,55]]){
+  const pages=gp.pages.filter(p=>p.page>=loPage&&p.page<=hiPage);
+  for(const mode of ['continuous','page-local']){
+   const g=periodicGroups(pages,mode,16);
+   const counts=[];
+   for(const d of texts){
+    const eligible=d.p.length-g.N+1;let pass=0,first=null;
+    for(let start=0;start<eligible;start++){
+     if(periodicGate(g,d.p,start)){pass++;first??=start;}
+    }
+    counts.push({file:d.file,windows:eligible,passingAllPeriod16Schedules:pass,first});
+   }
+   scans.push({pages:[loPage,hiPage],mode,N:g.N,
+    eligiblePairs:g.checked,doublets:g.E.reduce((a,z)=>a+z.pos.length,0),
+    repeatedPhaseCounts:g.E.map(z=>z.pos.length),counts});
+  }
+ }
+ assert.equal(scans.length,6);
+ assert(scans.every(x=>x.counts.every(y=>y.passingAllPeriod16Schedules===0)));
+ return scans;
+}
+
 function main(){
  const e0=edges(original,'continuous',0);
  assert.equal(e0.length,1737);
  assert.equal(e0.filter(x=>x.equal).length,10);
  const texts=donors(),scans=[];
+ const allPeriod16=periodicScans(texts);
  for(const mode of ['continuous','page-local']){
   for(let phase=0;phase<clock.length;phase++){
    const e=edges(original,mode,phase),counts=[];
@@ -153,11 +242,11 @@ function main(){
   plant(texts[2].p,'page-local',0,5503),
   plant(texts[0].p,'page-local',7,6607),
  ];
- console.log(JSON.stringify({schema:'lp2-public-rank-doublet-equivalence-v1',
-   claim:'exact GP-native donor exclusion for two 16-phase insertion-clock semantics; no LP2 plaintext',
+ console.log(JSON.stringify({schema:'lp2-public-rank-doublet-equivalence-v2',
+   claim:'entire 29^16 period16 public-rank family excluded on finite GP-native windows, allowing all secret decks and static relabelings; no LP2 plaintext',
    originalPages:[16,22],N:original.length,pageStarts,clock,
    scope:'29! unknown initial decks; all 29! fixed GP-rank relabelings; three finite native corpora',
-   scans,plants},null,2));
+   scans,allPeriod16,plants},null,2));
 }
 if(require.main===module)main();
-module.exports={gate,edges,matching,clock};
+module.exports={gate,edges,matching,periodicGroups,periodicGate,clock};
