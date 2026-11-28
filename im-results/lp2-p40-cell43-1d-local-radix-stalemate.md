@@ -49,6 +49,11 @@ The two intact table-flanking sentences contain `33+40=73` complete words. There
 ```
 
 Exact token `1D` has this `[72,73]` base59/base60 pair at four table cells (43,69,112,226); the p40 route independently selects **43** before token inspection. This makes the ambiguity potentially useful as an endpoint/count convention, but it still does not specify what operation to apply to the 73-word encrypted corpus.
+## Successor: DIRECTION/SEEK resolves the local cell43 radix
+
+The token/count equalities above remain a genuine stalemate **when considered alone**. A later source-word test adds information that this report did not use: the authenticated boundary words have literal lengths `DIRECTION=9` and `SEEK=4`. Interpreting 72/73 as row-major p50 destinations puts both on row9; then only the base59 destination72 reaches the established root189 in exactly four pointer edges (`72→161→214→247→189`). Base60 destination73 cycles.
+
+Therefore the later gate selects **base59 for the local cell43 continuation**, without promoting base59 to a global table codec. Keep the count/endpoint observations as supporting ambiguity analysis, but do not cite this report as evidence that the local radix remains unresolved. See [`lp2-p40-cell43-direction-seek-local-base59-gate.md`](lp2-p40-cell43-direction-seek-local-base59-gate.md).
 ## Decision
 
 Cell43 is now independently selected, but **its token value cannot be used as an independent radix selector or receiver-count instruction** under the natural local count family. Any claim that `1D` means “73 surrounding words” must explain why the equally exact `72` and `29` readings are excluded by another source cue.
