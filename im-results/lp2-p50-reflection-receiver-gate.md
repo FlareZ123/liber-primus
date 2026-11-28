@@ -86,6 +86,27 @@ The 29 count is discovered after inspecting the graph, not authenticated as an a
 
 [Exact SFT](../sims/lp2_p50_mirror_graph29_rank_receiver_sft.cjs) · [full original inverses and control counts](lp2-p50-mirror-graph29-rank-output.json). Exact core executed on repository sources in connected V8; standalone Node wrapper not separately run. The negative is for the two exact graph-derived rank keys and tested clocks, not all graph-derived mechanisms.
 
+## Test E — p56 first-glyph residue in the only reversed mirror-pair repeat (Agent41, 28 November)
+
+**New bounded original-input observation, not an authenticated decoder or an LP2 plaintext recovery.** The existing Test C identified exactly one repeated *literal-token* unordered mirror edge in the entire 32×8 source table: \`{2L,3I}\`. Its two occurrences have **opposite left/right orientation** and lie in the original *outer* pages p49 and p51 (row3, column pair1/6: \`3I | 2L\`; row30, pair1/6: \`2L | 3I\`). The original trees independently fix horizontal pairing; choosing to interpret token values modulo the 29-rune alphabet is an additional candidate operation, **not** a printed instruction.
+
+Under the original conventional **base60** digit reading, \`3I=198≡24\` and \`2L=141≡25 (mod29)\`. These are exactly **A=24 and AE=25**, the known plaintext/ciphertext indices of the *first rune* of independently decrypted p56: \`AE=25\` minus \`φ(2)=1\` gives \`A=24\`. The two source edges present those residues in both directions. Under the competing **drop-f base59** reading, \`3I=195≡21\` and \`2L=139≡23\`, so the first-glyph match disappears. When all 85 actually solved p56 ciphertext/plaintext pairs are checked without changing the interpretation, the source pair matches **only offset0 under base60** and **none under base59**.
+
+The matched pair is unusual under a narrow, exactly stated physical-allocation null. Hold fixed **all 256 literal source tokens and their multiplicities**, shuffle their 256 physical positions uniformly, then pair opposite columns in each row. Let \`f_t\` be the exact frequency of literal token \`t\`. Among token classes with base60 residue24, \`Σ binom(f_t,2)=5\`; among classes with residue25, the corresponding sum is11. Therefore the exact expected number of *two-edge identical literal-token collisions* having residue pair \`{24,25}\` in a random pairing is
+
+\[
+E = \frac{2\cdot5\cdot11}{255\cdot253}=0.001705029838.
+\]
+
+Restrict the two edge locations to one in the **40** p49 edge slots and one in the **36** p51 edge slots, with their token orientations reversed. Their conditional allocation factor is \`2·40·36/(128·127) × 1/2\`, giving an exact expected event count **0.000151036108** and, by Markov, that same upper bound on the event probability under *this fixed-multiset null*. A seeded **100,000**-shuffle replay observed **169** target-residue repeated-edge events, **97** oppositely oriented, **14** spanning p49/p51, and **8** of those 14 with no other repeated pair. These numbers agree in scale with the exact bound. They are **not discovery-adjusted probabilities**: this residue-pair relation, radix comparison and page-region event were recognized after inspecting the same artifact, amid many other reported numerical matches.
+
+**Decisive attempt to extend it:** Starting at either original duplicate edge, the very next mirror-pair in natural printed order does **not** match p56's known second ciphertext/plaintext pair, under either left/right orientation. Nor does the grid exhibit an unordered p56 mapping: only **23/85** solved p56 glyph pairs appear *anywhere* among its 128 base60 mirror edges when treating pairs as unordered mod29. In the same 100,000 token-preserving shuffles the expected number is **22.98961/85**, and **54,146** trials achieve at least23. Hence the candidate p56-first-glyph residue correspondence **does not extend beyond the first rune** or yield an independently predictive 85-rune codebook. It cannot promote base60, a mirror-graph key, or any unknown-page plaintext to an established result.
+
+The result is preserved only as a precisely defined *possible initialization clue*, whose downstream extension has already failed under the natural complete-known-text receiver. A justified new inverse would need a separate author-selected traversal/state law that predicts more known glyphs before testing p55. No reset, new radix, secret key or extra layer is inferred from the coincidence.
+
+**Reproducer:** [single-file original-corpus Node22 SFT](../sims/lp2_p50_mirror_p56_initialpair_sft.cjs), including the historical p56 totient/F-hold reconstruction, exact multiset combinatorics, fixed-source full solved-p56 comparator and seeded null; [independent Windows read-only runner](https://github.com/FlareZ123/liber-primus/actions/runs/46087337250).
+
+
 ## Decision
 
 Retire these exact receivers:
@@ -94,6 +115,8 @@ Retire these exact receivers:
 - horizontal p50 reflection + clockwise reflected outer76 + base60 compass split + p32 H/cell33 + p56 transparent-F additive inverse to p55;
 - the stationary symmetric mirror-pair digest receiver in the four fixed orders, and every injective nibble-XOR receiver on the same graph;
 - the two exact unicyclic-component rank keys with the tested terminal additive clocks.
+
+The sole repeated mirror edge happens to reduce to the known first p56 ciphertext/plaintext pair under base60, but its full-known-page extension and source-conditioned null do not establish a receiver; this does not change the negative decipherment decision.
 
 Do not rescue them by changing the radix, compass permutation, start cell, ring rotation, key phase, or cipher family after seeing the output. The original p50 reflection remains a source-supported permutation clue, but these tests do not identify what it operates on or how it contributes to a full decipherment.
 
