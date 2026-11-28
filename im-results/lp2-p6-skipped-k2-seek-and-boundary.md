@@ -130,6 +130,52 @@ Again the H3 inverse reconstructs the exact key and forward addition replays the
 
 A necessary caution is stronger here: the **key alone is not manuscript-unique**. The same three-rune key also maps p33 start116 to authenticated `YOU`; the two `AND` source occurrences at indices24 and31 are text-identical and both match the p31 receiver. The evidence is therefore the manuscript-unique receiver shell plus its source-boundary ordinal, not uniqueness of the key.
 
+## Joint p6-only serializer charge
+
+The two exact raw keys have a simpler shared source description than their H-shells first suggest:
+
+```text
+p30 key = [6,14,23,6]
+        = [a,-b,-a,a]
+        = [a,-b,p,a]
+
+p31 key = [17,14,7]
+        = [K+b,-b,K+g].
+```
+
+Both can be serialized directly from the already visible p6 title packet. Let:
+
+```text
+W1 = [-g,K-b,-b,K+b] = [24,16,14,17]
+H4(title lengths) = [K,-e,g,a] = [2,26,5,6]
+H4(W1) = [K+g,K,a-g,aK] = [7,2,1,12].
+```
+
+A conservative coupled family was charged after recognizing this pattern:
+
+- choose signed `x` from the four H4(title-length) coordinates (8 choices);
+- choose distinct literal `u,v` from W1 in ordered positions (12 choices);
+- choose `w` from H4(W1) (4 choices);
+- use `key30=[x,v,-x,x]` and `key31=[u,v,w]`;
+- charge both additive directions independently;
+- test every consecutive authenticated source pair whose GP lengths are [4,3]. There are exactly two: `ROAD AND` and `SEEK AND`.
+
+This is 384 source-only serializers and **3,072 charged serializer/direction/target-pair configurations**. Exactly one joint hit survives:
+
+```text
+x = H4(title lengths)[3] = a = 6
+u = W1[3] = K+b = 17
+v = W1[2] = -b = 14
+w = H4(W1)[0] = K+g = 7
+
+key30 = [a,-b,-a,a] = [6,14,23,6]
+key31 = [K+b,-b,K+g] = [17,14,7]
+directions = subtraction, subtraction
+target pair = SEEK AND at source indices30-31.
+```
+
+This finite charge is **not** a discovery-wide probability: the serializer skeleton was formulated after the local inverses were noticed. Its value is mechanistic compression. The two pages no longer require unrelated fitted key vectors; one small p6-only family contains a unique coupled serializer for the already source-selected omitted pair.
+
 ## Why this changes the frontier
 
 Before this check, p6's source-only selector treated `SEEK AND` mainly as the exact `K=2` prefix omitted from the selected p32–p42 interval. The omitted pair is now itself highly structured:
