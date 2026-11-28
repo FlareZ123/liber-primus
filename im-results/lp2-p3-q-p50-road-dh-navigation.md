@@ -37,6 +37,16 @@ THEIR NUMBERS ARE THE DIRECTION
 
 as **signed word number → physical table cell → numeric direction**.
 
+There is also an exact domain boundary: the Q/GF(29²) coordinate alphabet is `0..28`, so it has **29** possible word-number labels. The signed source's zero-based word **29 is DIRECTION**. Therefore signed words0..28 fill the entire coordinate-label domain, and the immediately following word names the operation/radix at the exact modulus boundary:
+
+```text
+coordinate labels: signed words 0..28
+first word outside: signed word29 = DIRECTION
+field/map width:   29
+```
+
+This is source-visible before any p39/p7 landing is considered and strengthens the human instruction reading.
+
 Reproducer for this source/table alignment and the navigation below:
 [`sims/lp2_signed_source_p49_map_direction_road_sft.cjs`](../sims/lp2_signed_source_p49_map_direction_road_sft.cjs).
 
