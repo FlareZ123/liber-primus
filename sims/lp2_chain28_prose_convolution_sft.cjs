@@ -197,6 +197,67 @@ const alias=scan(aliased);
 assert(base.global.statistic > 150 && alias.global.statistic > 150);
 const cal=controls(standard);
 assert(cal.nativeProfileChiQuantiles[4] < base.global.statistic);
+
+/*
+ * Source-derived no-secret-key attack. The original pp0–2 source contributes
+ * exactly 729=27^2 glyphs; treat them either as one repeating public pad or
+ * as a 729-lag causal key from previously emitted ciphertext. Treat the key
+ * values as raw GP glyph indices or their predecessor differences. Nothing
+ * in the manuscript authenticates these four readings. This is a single
+ * finite, reversible original-source gate, not a fitted key search.
+ */
+function coincidence(stream) {
+  const h = counts(stream), n=stream.length;
+  return h.reduce((sum,v)=>sum+v*(v-1),0)/(n*(n-1));
+}
+function opening729(donors) {
+  const prefix=corpus.pages.filter(p=>p.page<=2).flatMap(p=>p.indices);
+  assert.equal(prefix.length,729);
+  assert.equal(prefix.length,27*27);
+  const native=donors.find(x=>x.name==="Shakespeare").stream.slice(0,ORIGINAL.length-prefix.length);
+  assert.equal(native.length,12227);
+  const fullDifferences=[ORIGINAL[0]];
+  for(let i=1;i<ORIGINAL.length;i++)
+    fullDifferences.push((ORIGINAL[i]-ORIGINAL[i-1]+29)%29);
+  function keyAt(glyphs,deltas,i,type,clock) {
+    const j=clock==="periodic" ? (i-prefix.length)%prefix.length : i-prefix.length;
+    const x=type==="glyph" ? glyphs[j] : deltas[j];
+    return type==="glyph" ? x%28 : x===0 ? 0 : x-1;
+  }
+  const result=[];
+  for(const type of ["glyph","difference"]) for(const clock of ["periodic","sliding"])
+    for(const sign of [-1,1]) {
+      const decode=(glyphs,deltas)=>{
+        const plain=[];
+        for(let i=prefix.length;i<glyphs.length;i++){
+          const d=deltas[i];
+          const k=keyAt(glyphs,deltas,i,type,clock);
+          plain.push(d===0?28:mod(d-1+sign*k));
+        }
+        return plain;
+      };
+      const originalPlain=decode(ORIGINAL,fullDifferences);
+      const synthesized=prefix.slice();
+      const synthesizedDelta=fullDifferences.slice(0,prefix.length);
+      for(let i=prefix.length;i<ORIGINAL.length;i++){
+        const k=keyAt(synthesized,synthesizedDelta,i,type,clock);
+        const p=native[i-prefix.length];
+        const d=p===28 ? 0 : 1+mod(p-sign*k);
+        synthesizedDelta.push(d);
+        synthesized.push((synthesized[i-1]+d)%29);
+      }
+      assert.deepEqual(decode(synthesized,synthesizedDelta),native);
+      result.push({type,clock,sign,originalIoC:coincidence(originalPlain),
+        originalP3IoC:coincidence(originalPlain.slice(0,corpus.pages[3].indices.length))});
+    }
+  return {sourceRunes:prefix.length,sourcePages:[0,1,2],
+    untouchedSourceStartPage:3,originalTestRunes:12227,
+    nativeControlIoC:coincidence(native),cases:result,
+    allPlantReplaysExact:true};
+}
+const originalOpening729 = opening729(standard);
+assert(Math.max(...originalOpening729.cases.map(c=>c.originalIoC))<0.036);
+
 const output={
   observed:{runes:ORIGINAL.length,zeroSteps:observed.doubles,
     nonzeroSteps:N,nonzeroVsUniformPearson:originalVsUniform},
@@ -207,6 +268,7 @@ const output={
   standard:{best:base.global,pairMinimum:base.pairs.map(x=>[x.plaintext,x.key,x.statistic])},
   aliasINGIO:{best:alias.global},
   controls:cal,
+  opening729:originalOpening729,
   conclusion:"No authenticated unknown LP2 plaintext/key; exclusion conditional on independent donor-like plaintext/key unigram statistics and this exact GP28 chain emission."
 };
 process.stdout.write(JSON.stringify(output,null,2)+"\n");
