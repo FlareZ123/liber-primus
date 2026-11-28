@@ -444,6 +444,38 @@ assert.deepEqual(localFramePhraseHits, [{
   tokens: ['THE', 'DEVOTED', 'ARE', 'THE', 'WAY'],
 }]);
 
+
+function orientUniqueMarkerToTerminal(values, marker, reversed = false) {
+  const base = reversed ? [...values].reverse() : [...values];
+  const positions = base
+    .map((value, index) => value === marker ? index : -1)
+    .filter((index) => index >= 0);
+  if (positions.length !== 1) return null;
+  const start = (positions[0] + 1) % base.length;
+  return rotate(base, start);
+}
+
+const sourceOrientedForward = orientUniqueMarkerToTerminal(
+  p26Word16.values,
+  13,
+  false,
+);
+const sourceOrientedReverse = orientUniqueMarkerToTerminal(
+  p26Word16.values,
+  13,
+  true,
+);
+assert.deepEqual(sourceOrientedForward, [28, 8, 27, 1, 13]);
+assert.deepEqual(sourceOrientedReverse, [1, 27, 8, 28, 13]);
+assert.deepEqual(
+  sourceOrientedForward.map((value) => sourceWords[value]),
+  ['THE', 'DEVOTED', 'ARE', 'THE', 'WAY'],
+);
+assert.deepEqual(
+  sourceOrientedReverse.map((value) => sourceWords[value]),
+  ['THE', 'ARE', 'DEVOTED', 'THE', 'WAY'],
+);
+
 const coordinateOriginVariants = [];
 for (const pageOrigin of ['zero', 'one']) {
   for (const offsetOrigin of ['zero', 'one']) {
@@ -517,7 +549,7 @@ assert.deepEqual(terminalChecksumCandidates, [{
     allThirdPageLargeMarkComparisons: broadComparisons.length,
     allAbsoluteEndpointImbalanceMatches: broadMatches,
     chargedVertexOrderPresentations: (pages.length - 2) * 6,
-    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n      markerMatchedLeadingRune: p26Word16.values[0],\n      coreAfterLeadingMarker: markerShedCore,\n      coreDescriptor: descriptor({ values: markerShedCore }),\n      coreH4: H4(markerShedCore),\n      markerToTerminalValues: markerToTerminal,\n      markerToTerminalWords,\n      length5CyclicReversePresentations: length5Words.length * 10,\n      highBigramPresentations,\n      terminalMarkerLength5Candidates,\n      coordinateOriginVariants,\n      terminalChecksumCandidates,\n      localMayflyFrame: [...localMayflyFrame],\n      localFramePhraseHits,\n    },
+    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n      markerMatchedLeadingRune: p26Word16.values[0],\n      coreAfterLeadingMarker: markerShedCore,\n      coreDescriptor: descriptor({ values: markerShedCore }),\n      coreH4: H4(markerShedCore),\n      markerToTerminalValues: markerToTerminal,\n      markerToTerminalWords,\n      length5CyclicReversePresentations: length5Words.length * 10,\n      highBigramPresentations,\n      terminalMarkerLength5Candidates,\n      coordinateOriginVariants,\n      terminalChecksumCandidates,\n      localMayflyFrame: [...localMayflyFrame],\n      localFramePhraseHits,\n      terminalMarkerOrientation: {\n        printedDirection: sourceOrientedForward,\n        printedDirectionWords: sourceOrientedForward.map((value) => sourceWords[value]),\n        reversedDirection: sourceOrientedReverse,\n        reversedDirectionWords: sourceOrientedReverse.map((value) => sourceWords[value]),\n      },\n    },
     canonicalSignedSourceBigramHits: canonicalBigramHits,
   },
   decision:
