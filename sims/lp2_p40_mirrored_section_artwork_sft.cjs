@@ -143,24 +143,22 @@ assert.deepEqual(cyclicDiffs,[2,3,6,3,15,0]);
 
 // Fixed primitive state vocabulary already established independently by the
 // DH/state work. F=0 is admitted only for the cyclic closure.
-const primitiveState={
-  p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4,F:0,
-};
-const primitiveValues=new Set(Object.values(primitiveState));
-assert.ok(cyclicDiffs.every(x=>primitiveValues.has(x)));
+const cycleState={K:2,e:3,a:6,b:15,F:0};
+const cycleValues=new Set(Object.values(cycleState));
+assert.ok(cyclicDiffs.every(x=>cycleValues.has(x)));
 assert.deepEqual(
-  cyclicDiffs.map(x=>Object.entries(primitiveState).find(([,v])=>v===x)?.[0]),
+  cyclicDiffs.map(x=>Object.entries(cycleState).find(([,v])=>v===x)?.[0]),
   ['K','e','a','e','b','F']
 );
 
 // Reverse printed page order does not close in the same fixed vocabulary.
 const reversed=runLengths.slice().reverse();
 const reverseDiffs=reversed.map((x,i)=>mod29(reversed[(i+1)%reversed.length]-x));
-assert.ok(!reverseDiffs.every(x=>primitiveValues.has(x)));
+assert.ok(!reverseDiffs.every(x=>cycleValues.has(x)));
 
 // Bounded permutation charge: among all distinct permutations of the observed
 // multiset, only the six rotations of this one cyclic order have every cyclic
-// edge difference inside the fixed primitive+F state vocabulary. Equivalently
+// edge difference inside the fixed {K,e,a,b,F} state vocabulary. Equivalently
 // there is exactly one qualifying cyclic arrangement among 60 distinct cycles.
 const permSet=new Set();
 function permute(a,l=0){
@@ -180,7 +178,7 @@ const qualifying=[];
 for(const encoded of permSet){
   const seq=encoded.split(',').map(Number);
   const diffs=seq.map((x,i)=>mod29(seq[(i+1)%seq.length]-x));
-  if(diffs.every(x=>primitiveValues.has(x))) qualifying.push({seq,diffs});
+  if(diffs.every(x=>cycleValues.has(x))) qualifying.push({seq,diffs});
 }
 assert.equal(qualifying.length,6);
 const canonicalCycle=seq=>{
