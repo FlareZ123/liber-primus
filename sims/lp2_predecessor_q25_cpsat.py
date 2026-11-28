@@ -2,16 +2,18 @@
 """Exact q=25 feasibility gate for arbitrary predecessor-conditioned GP29 bijections."""
 
 import json
+import os
 from pathlib import Path
 from ortools.sat.python import cp_model
 
 A = 29
 F = 0
-START = 5283
+START = int(os.environ.get("LP2_START", "5283"))
+CONTROL_FILE = os.environ.get("LP2_CONTROL", "gibran_prophet_58585.txt")
 ROOT = Path(__file__).resolve().parents[1]
 
 corpus = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text())
-text = (ROOT / "resources/control/gibran_prophet_58585.txt").read_text()
+text = (ROOT / "resources/control" / CONTROL_FILE).read_text()
 
 tokens = sorted([(s, i) for i, s in enumerate(corpus["translit"])], key=lambda z: -len(z[0]))
 
@@ -97,6 +99,7 @@ status = solver.solve(m)
 name = solver.status_name(status)
 print(json.dumps({
     "status": name,
+    "control": CONTROL_FILE,
     "start": START,
     "distinct_local_edges": edge_count,
     "wall_time": solver.wall_time,
