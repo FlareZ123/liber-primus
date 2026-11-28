@@ -20,6 +20,8 @@ A 28 November Agent9 audit places a strict limit on how the packet may be used a
 
 This does **not** weaken the source-visible uniqueness of the p6 four-word packet itself, nor a multi-coordinate rule whose field roles were frozen before testing. It invalidates “each coordinate can be expressed with p6 values” as independent support. Future consumers must charge a joint ordered grammar and receiver selection prospectively. [Exact audit and reproducer](lp2-p6-state-expression-saturation-audit.md).
 
+The same audit proves a stronger identifiability limit. For any fixed equal-length ciphertext receiver `C` and known target `P`, `K=C-P mod29` is the unique additive key and therefore replays exactly. The canonical H pair transform is bijective because `2^-1=15 mod29`, so every fitted key also has one exact H shell. Since every shell scalar is p6-nameable under the weak saturation grammar, **a post-target exact inverse plus a p6-labelled shell is guaranteed**. In the consumer sections below, exact replay is therefore an implementation check; evidentiary weight comes only from receiver selection and any joint field-role grammar frozen before the target was used.
+
 The canonical reversible pair transform is also pre-existing:
 
 ```text
