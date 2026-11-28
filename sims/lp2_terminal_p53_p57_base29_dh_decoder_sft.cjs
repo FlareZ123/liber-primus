@@ -127,6 +127,54 @@ assert.deepEqual(hits, [{
   state: { a: 6, g: 5, p: 23, A: 8, K: 2, e: 3, b: 15, B: 19 },
 }]);
 
+const radixHits = [];
+for (let base = 2; base <= 60; base++) {
+  const radixPages = corpus.pages
+    .filter((p) => p.page >= 0 && p.page <= 57)
+    .sort((a, b) => a.page - b.page)
+    .map((p) => ({
+      page: p.page,
+      count: p.runic_count,
+      q: Math.floor(p.runic_count / base),
+      r: p.runic_count % base,
+    }));
+
+  for (let start = 0; start + 4 < radixPages.length; start++) {
+    const w = radixPages.slice(start, start + 5);
+    // This decoder treats q,r as two radix digits, so q must itself be a digit.
+    if (w.some((x) => x.q >= base)) continue;
+    if (w[2].q !== w[3].q) continue;
+    if (w[3].r !== ((base - w[3].q) % base)) continue;
+    if (w[1].q !== w[4].r) continue;
+    if (w[1].r !== 0) continue;
+
+    const a = w[0].q;
+    const g = w[0].r;
+    const A = w[1].q;
+    const K = w[2].q;
+    const e = w[4].q;
+    const p = g + w[2].r;
+    if (!prime(p) || g <= 0 || g >= p) continue;
+    const b = inverse(e, p - 1);
+    if (b === null) continue;
+    if (modPow(g, a, p) !== A) continue;
+    if (modPow(A, b, p) !== K) continue;
+
+    radixHits.push({
+      base,
+      start: w[0].page,
+      pairs: w.map((x) => [x.q, x.r]),
+      state: { a, g, p, A, K, e, b, B: modPow(g, b, p) },
+    });
+  }
+}
+assert.deepEqual(radixHits, [{
+  base: 29,
+  start: 53,
+  pairs: [[6,5], [8,0], [2,18], [2,27], [3,8]],
+  state: { a: 6, g: 5, p: 23, A: 8, K: 2, e: 3, b: 15, B: 19 },
+}]);
+
 assert.match(tcp, /C: DH 23\s+S: 01 OK 5 8\s+C: 19\s+S: 03 DATA 2/);
 assert.match(tcp, /C: BASE29 3301\s+S: 01 OK 3QO/);
 
@@ -165,10 +213,15 @@ const output = {
   },
   reconstructedState: terminal.state,
   corpusCharge: stages,
+  radixCharge: {
+    bases: [2, 60],
+    trueTwoDigitRequired: true,
+    hits: radixHits,
+  },
   historicalHoldout:
     'Matches authenticated 2013 DH 23 -> 5 8 -> 19 -> 2 exactly.',
   decision:
-    'Preserve the unique p53-p57 BASE29 page-count DH decoder as a source-exact terminal-page structural result. It reconstructs the authenticated DH state without unknown-ciphertext language scoring; it does not by itself specify a body cipher.',
+    'Preserve the unique p53-p57 BASE29 page-count DH decoder as a source-exact terminal-page structural result. Across bases2-60 and all consecutive five-page windows it is the sole two-digit-radix DH closure. It reconstructs the authenticated DH state without unknown-ciphertext language scoring; it does not by itself specify a body cipher.',
 };
 
 const json = JSON.stringify(output, null, 2);
