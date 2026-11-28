@@ -1,0 +1,18 @@
+name: Agent31 chapter-private two-chart original gate
+on:
+  workflow_dispatch:
+jobs:
+  original-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-pinned exact original and native controls
+        run: node sims/lp2_chapter_private_twochart_capacity_sft.cjs > "$RUNNER_TEMP/capacity.json"
+      - name: Inspect guarded decision and summarize
+        shell: bash
+        run: |
+          node -e 'const fs=require("node:fs"),x=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+"/capacity.json","utf8")); if(x.source.N!==3008||x.source.literalFCount!==125||x.source.skipQ2Capacity!==234||x.trigramBoxes[0].cap!==10||x.plant.decoded!==2995)throw Error("unexpected original capacity or plant"); if(x.controls.some(c=>Object.values(c.variants).some(v=>v.slack<=0||v.skipFNonFSlack<=0||v.maxF>=125)))throw Error("native control violated"); console.log(JSON.stringify({original:x.source, boxes:x.trigramBoxes.map(b=>({q:b.q,cap:b.cap,visited:b.visited})), plant:x.plant, variants:x.controls.map(c=>({name:c.name,worstOrdinary:Math.min(...Object.values(c.variants).map(v=>v.slack)),worstLiteralF:Math.min(...Object.values(c.variants).map(v=>v.skipFNonFSlack))}))},null,2));'
