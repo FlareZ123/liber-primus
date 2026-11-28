@@ -14,12 +14,13 @@ on:
           - lp2-chain
           - lp2-cuneiform-chain
       password:
-        description: Password for the LP2 JPEG pass, after the positive-control run identifies the working spelling.
+        description: Password candidate for the historical Stage 7 positive control and LP2 follow-up gates.
         type: choice
         required: true
         default: "33011033"
         options:
           - "33011033"
+          - "10333301"
           - "33011103"
 
 permissions:
@@ -39,7 +40,8 @@ jobs:
       matrix:
         password:
           - "33011033"
-          - "33011103"
+          - "10333301" # Portrait left-to-right: 1033 then 3301.
+          - "33011103" # Competing historical transcription; not a concatenation of 3301 and 1033.
     steps:
       - uses: actions/checkout@v4
 
