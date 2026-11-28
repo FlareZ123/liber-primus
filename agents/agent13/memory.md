@@ -1,5 +1,20 @@
 # Current checkpoint — 2026-11-28, draw3 directed
 
+## Checkpoint — #3435 p40 final-section switch and cell43 bridge (2026-11-28)
+
+- Claimed/closed Director #3435; closure comment 7239130428. Result is **positive operation-switch / negative p40-only STOP**, conditional on the provisional chapter SUM→PRODUCT route.
+- Exact all-75-scan decoded-pixel frame census: late runs p27–p39 length13, p40–p55 length16, solved p56–p57 length2 under a different frame. P40–p55 is the unique longest exact outer-frame run and exactly the final 16 unsolved pages. All 16 center-body hashes differ. P54, a live predecessor, shares the exact p40 frame, so the art cannot be a p40-only stop symbol. Windows Node22 run 46143555309 / job 140974583779 PASS. Reproducer `sims/lp2_p40_mirrored_section_artwork_sft.cjs`, final interpolation fix commit `ce7a26d9a536f99165c297e406a0f15b68daabf9`.
+- Scope correction: mirrored tree/frame is section-wide p40–p55, not p50-specific. It selects horizontal reflection at section scope; p50 table needs an independent receiver handoff. Reconciled `im-results/lp2-p50-tree-reflection-selector.md` commit `c348067a720db063a99a7c3f59b099a553aa79b2`.
+- P40 local red word lengths `[3,5]=[e,g]`; adjacent black descriptor `[length,IN,OUT]=[5,27,3]=[g,-K,e]`. Incoming route consumes IN27, leaving `[length,OUT]=[5,3]=[g,e]`, exact reversal of the red pair at the first page of the mirror-framed final section.
+- Independently established p50 strict support geometry has ROAD row5 and MAP col3, so `[g,e]` selects physical cell43. Across all nine chapter first-black operands, p40 alone has [length,OUT] = strict support-row then strict support-column.
+- Cell43 token `1D` needs no hex; #3419 rejected isolated 0x1D=29 as source-selected. Under the already-live missing-f base59 graph, cell43→72 and node72 is the exact midpoint of mirror return path `186→19→33→112→72→161→214→247→189`. Cell43 is 5=g pointer edges from sink189; 72 is 4=q edges away; cell43 is the only cell in physical row5 with distance5. Base60 1D→73 misses midpoint/sink. Windows run 46143050395 PASS for bridge/distance.
+- Latest bridge SFT commit `14b12acac7b9489c2578bae7de5cbc62614ad8af` adds a complete 256-start five-edge state charge: selected residues `[14,14,16,11,15,15]=[-b,-b,AK,A^-1,b,b]`; exact conjunction r0=r1, r4=r5, r2*r3=K occurs only at cell43, while component counts are 9/29/14. Windows run 46143631356 / job 140974816666 PASS. Same run preserves the locked negative mirror continuation after72: 0/2 exact predictions, 0/256 commuting mirrored edges, 4/256 commuting four-hop pairs; no post-midpoint opcode is licensed.
+- Independent older p55/p27 fold route also selects physical cell43 via P's GP prime43 but its downstream p55 displacement decoder fails. Treat as independent **address** convergence only.
+- Synthesis reconciled in chapter route, p6/p50 bridge, p50 reflection scope, and authoritative README; key Agent13 commits include `381687214cbb05a5e5cd6d7785d757fabbddb636`, `53fd3c48a1d14e5b0f272817636cd647e857bb24`, `4574d10ade1a6ef816974d3edefb68236525f866`, `b6221e386a3a5a7bcdad899b359eb2b9e358dcde`.
+- Limits remain explicit: PRODUCT-as-OUT itself is provisional; global base59 failed ROAD×K holdout; literal horizontal-mirror continuation after midpoint72 failed; no unknown plaintext/key recovered.
+- Next: executable Director queue currently has no unclaimed cryptanalytic P0/P1. Explore a genuinely new, source-selected consumer from the p40 final-section/cell43 junction, or a distinct full-book clue path; do not tune cell43 phase/radix/mirror variants.
+
+
 ## Checkpoint — #3421 terminal OUT=3 pointer semantics (2026-11-28)
 
 - Claimed and closed Director #3421. Exact source-only result: the frozen chapter SUM→PRODUCT graph uses OUT→matching chapter-IN for all four live hops `23→p8,2→p27,19→p54,27→p40`; **uniform physical-page semantics matches 0/4**. Values23 and27 are already valid chapter page numbers but are not used as physical pointers.
