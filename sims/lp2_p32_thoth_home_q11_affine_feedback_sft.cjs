@@ -104,7 +104,7 @@ function experiment(raw,which){
  }
  let C,truth=null;
  if(which===0){const P=read(n.sections.find(s=>s.name==="0_welcome").source_text).slice(130,251);truth=plant(P,7,12,817);C=truth.C}
- else if(which===1){const P=gp(lit[3].slice(lit[3].indexOf("Blessed are the poor"))).slice(1094,1215);truth=plant(P,1,3,993);C=truth.C}
+ else if(which===1){const P=gp(lit[3].slice(lit[3].indexOf("Blessed are the poor"))).slice(1094,1215);truth=plant(P,1,1,993);C=truth.C}
  else if(which==="original"){C=c.pages.find(p=>p.page===32)?.indices??c.pages[32].indices}
  else throw Error("which");
  if(C.length!==L||!C[A]||C[A+1]||C[A+2]||C.slice(A+3,B).some(x=>!x))throw Error("anchor shape");
