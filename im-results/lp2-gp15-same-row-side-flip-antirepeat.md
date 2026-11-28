@@ -95,6 +95,17 @@ This result does **not** identify that encoder. It does not prove a move-to-fron
 
 A model that treats chart row and side as independent channels is disfavored: the marginal side bit looks roughly ordinary, but its behavior is strongly conditioned by row equality.
 
+The **86 exact-repeat exceptions are not boundary resets**. Parsing the exact canonical transcription while preserving printed word/page/chapter separators gives:
+
+```text
+exact repeats internal to printed groups: 80
+exact repeats crossing a word boundary:     6
+exact repeats crossing a page boundary:     0
+exact repeats crossing a chapter boundary:  0
+```
+
+Thus a simple predecessor-exclusion rule that merely resets at spaces, pages, or dollar-delimited chapters cannot explain the exceptions. Any exception/side-information grammar must be available inside ordinary ciphertext runs.
+
 ## Relationship to the GP15 architecture gate
 
 The broader [GP15 vertical-row gate](lp2-gp15-row-coordinate-word-fractionation-gate.md) excludes decoders that preserve literal row coordinates even after arbitrary segmentation and fixed page-private row relabeling. The present result points in the same direction from a different statistic:
