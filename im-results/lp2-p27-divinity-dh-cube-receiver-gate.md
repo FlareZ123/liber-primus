@@ -23,6 +23,14 @@ Since gcd(3,28)=1, cubing is a reversible permutation on GP29; its inverse expon
 
 The p28 cube-bridge report tested its p28 selector word and broad p0 consumers, but not this exact p27 DIVINITY core. This is the fixed direct-cube receiver test; a separate provisional additive-pad candidate is assessed below.
 
+## Receiver-selection update: B=19, K=2 select this core directly (Agent16, 28 November)
+
+The receiver itself is now more strongly constrained than when this negative was written. The p6→p23 state handoff plus p24–p26 count triangle leaves exactly two ordinary DH continuations; p27's literal red fields `[length,sum,following-sum]=[19,15,2]=[B,b,K]` select `(b,B)=(15,19)`. Using the selected **B=19** as a zero-based p27 word number lands exactly on `EORNSOOCAEYEE`; using **K=2** as the symmetric shedding depth gives `NSOOCAEY`.
+
+A discovery-aware finite charge grants every state value `{K,e,q,g,a,A,b,B,p}` as the p27 word number, both zero/one-based origins, every state value as the shedding depth, and every complete p57 word as the checksum target. Requiring both core length and GP-prime sum leaves exactly one hit: **B=19, zero-based; K=2; NSOOCAEY → DIUINITY (8 runes, prime sum376)**. See [the focused receiver report](lp2-p27-dh-state-word19-divinity-receiver.md) and `sims/lp2_p27_dh_state_word19_divinity_receiver_sft.cjs`.
+
+This strengthens the receiver selection but does not alter the cipher verdict below: direct cube/inverse-cube still fail exactly, and no rune-level inverse follows from the checksum.
+
 ## Frozen operation
 
 On the eight GP29 indices of NSOOCAEY, apply exactly one of:
@@ -54,9 +62,9 @@ Neither output equals the solved p57 target DIUINITY or any complete p57 word. N
 
 The direct cube/inverse-cube result above remains negative. A distinct candidate is now recorded in [`lp2-p27-dh-additive-pad-candidate.md`](lp2-p27-dh-additive-pad-candidate.md), with a source-locked reproducer at [`lp2_p27_dh_additive_pad_candidate_sft.cjs`](../sims/lp2_p27_dh_additive_pad_candidate_sft.cjs).
 
-The signed 2016 message has one-based words20 `their` and27 `numbers`, but it does not fix which is page versus word or whether page numbers are printed, physical, or zero-based LP2 labels. Thus p27 word20 is only the candidate object used in this fit, not a source-selected coordinate. Its twice-shed core is `NSOOCAEY`. The p28 DH readout and word28 shell, together with the candidate p29 word30 H4 packet, supply the values for `[b,g,K,p−1,p+K,g⁻¹ mod p,K,F]=[15,5,2,22,25,14,2,0]`. Subtracting this vector modulo29 maps the core to the expected p57 target `DIUINITY`.
+The earlier signed-2016 page/word orientation was underdetermined, but the newer local DH-state route now selects this same receiver without that guess: p27 red fields fix `B=19,K=2`, zero-based p27 word19 is `EORNSOOCAEYEE`, and shedding two runes from each side gives `NSOOCAEY`. The p28 DH readout and word28 shell, together with the candidate p29 word30 H4 packet, supply the values for `[b,g,K,p−1,p+K,g⁻¹ mod p,K,F]=[15,5,2,22,25,14,2,0]`. Subtracting this vector modulo29 maps the core to the expected p57 target `DIUINITY`.
 
-The candidate has useful checksum closures (`sumPrime(key)=309=3×sumGP0(core)=3×103`; `sumPrime(target)−sumPrime(key)=67`, the 19th prime), but neither the page/word coordinate convention nor the exact serialization order is **source-fixed**. The pad fails as a repeated period-8 page key. Agent42 subsequently exhausted all 2,520 cyclic orders of its exact multiset, both signs, arbitrary group phases and ordinary/F-hold modes: best original support 21/47, 17/52 and 29/68 on p27/p28/p29, even with per-page key choices. Four planted keys recovered exactly with 160/160 withheld true words retained. See the consolidated additive-pad report for the finite-register scope. It is a retrospective mapping of an already expected word, not an authenticated KDF, unknown plaintext recovery, or page decoder. The direct cube rejection above is unchanged.
+The candidate has useful checksum closures (`sumPrime(key)=309=3×sumGP0(core)=3×103`; `sumPrime(target)−sumPrime(key)=67`, the 19th prime). The receiver coordinate is now independently constrained by the local `B=19,K=2` route, but the exact serialization order is still **not source-fixed**. The pad fails as a repeated period-8 page key. Agent42 subsequently exhausted all 2,520 cyclic orders of its exact multiset, both signs, arbitrary group phases and ordinary/F-hold modes: best original support 21/47, 17/52 and 29/68 on p27/p28/p29, even with per-page key choices. Four planted keys recovered exactly with 160/160 withheld true words retained. See the consolidated additive-pad report for the finite-register scope. It is a retrospective mapping of an already expected word, not an authenticated KDF, unknown plaintext recovery, or page decoder. The direct cube rejection above is unchanged.
 
 ## Decision
 
