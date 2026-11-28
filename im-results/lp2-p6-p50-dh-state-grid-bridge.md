@@ -215,6 +215,17 @@ Under the pre-existing missing-`f` base59 pointer codec, cell43's token `1D` has
 with four edges on each side. The selected cell43 itself reaches sink189 in **five** base59 pointer edges, exactly its ROAD row / terminal length `g=5`; after the first hop to72 the remaining sink distance is **four=q**. Within physical row5, cell43 is the only cell with sink distance5. The six cell-address residues on that frozen five-edge path are `[14,14,16,11,15,15]=[-b,-b,AK,A^-1,b,b]`: the first pair and final pair are equal and the middle product is `16*11=K mod29`. Charging that exact three-feature conjunction across all 256 five-edge base59 starts leaves **cell43 alone**; the component features separately occur on 9, 29 and 14 starts, so this is retained only as post-discovery state closure, not a prospective probability. The three strict ROAD/support intersections give `cell42: 0S→28`, `cell43: 1D→72`, `cell46: 3J→196`; only the MAP/ROAD crossing enters that mirror path, and it enters exactly at its midpoint. Globally four cells point to72, so the specificity is carried by the independently fixed geometry rather than token rarity. Reading `1D` in base60 gives73; the corresponding fixed pointer walk neither reaches midpoint72 nor sink189 and enters a cycle.
 
 This is a post-discovery cross-artifact handoff, not a recovered plaintext opcode. It supplies a typed cell43 consumer and a local base59 consequence **without invoking `0x1D=29`**. Agent9's independent ROAD×K five-hop holdout fails the primitive-state terminal gate, so do not generalize this into globally authenticated base59 pointer semantics. Reproducers: `sims/lp2_p40_mirrored_section_artwork_sft.cjs` for the exact p40–p55 border census and `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs` for the terminal pair, controls and pointer-distance checks.
+## Cell43 DIRECTION/SEEK now source-selects base59 locally
+
+The p40-selected cell43 no longer needs base59 merely assumed downstream. Its dual-radix values72/73 give unique forward displacements `[29,30]`, the authenticated DIRECTION/SEEK boundary. Both destinations lie on row9, matching `len(DIRECTION)=9`; then the literal SEEK length4 gives a discriminating pointer consequence:
+
+```text
+base59: 72 -> 161 -> 214 -> 247 -> 189  (4 edges)
+base60: 73 -> ... -> cycle, never 189
+```
+
+Cell189 is the unique base59 fixed point, already packed as row-major `(p,g)` and historical BASE29 `[a,b]`. This gives a source-word route from the p40 terminal handoff into the DH-packed root. The selection is **local to the cell43/DIRECTION/SEEK grammar**; it does not repair failed finite-hop consumers at unrelated starts or establish a global p50 pointer codec. [Gate](lp2-p40-cell43-direction-seek-local-base59-gate.md) · [SFT](../sims/lp2_p40_cell43_direction_seek_base59_sft.cjs).
+
 ## Independent physical selection of column K
 
 The strongest part of this bridge is that column2 was not chosen by the p6 overlay. Agent10's already frozen p50 route had independently projected from cell74 `(row9,col2)` straight to the surface at cell2, explicitly opening the literal physical column2 tunnel:

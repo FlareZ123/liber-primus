@@ -72,6 +72,12 @@ Those are precisely the two scalar constants consumed repeatedly by the p6 4/5/4
 This residue observation is weaker than the literal boundary pair: charging all table cells gives two `[0,1] mod29` displacement-pair hits, cell43 and cell225, while **only cell43** has the literal ordered displacement pair `[29,30]`. Therefore the evidence remains the exact DIRECTION/SEEK boundary at the independently selected cell; `[F,1]` is a consequence of that boundary, not an independent uniqueness claim.
 
 The resulting loop is structurally compact—p40 selects cell43, cell43's dual-radix edge gives DIRECTION/SEEK and hence `[F,1]`, and p50 support geometry supplies the p6 state packet—but it still reproduces already-known p6 corridor structure rather than fresh plaintext.
+## DIRECTION/SEEK word lengths resolve the local pointer radix
+
+A fresh source-word consequence resolves the ambiguity **for this cell43 pointer continuation**. The authenticated words themselves have lengths `DIRECTION=9` and `SEEK=4`. The two candidate values are row-major p50 addresses `72=(row9,col0)` and `73=(row9,col1)`, so both satisfy the unused DIRECTION-length row check. Freeze SEEK literally as a four-edge walk to the established table root. Under base59, `72 -> 161 -> 214 -> 247 -> 189` is exactly four edges and 189 is the unique fixed point; under base60, the walk from73 enters a cycle and never reaches189, and the complete base60 table has no fixed point.
+
+Therefore DIRECTION/SEEK selects **base59 locally** once cell43 is treated as the source of the already-motivated pointer edge. This does not promote base59 to a global p50 codec; unrelated starts still require their own source-selected stopping rules. [Full gate](lp2-p40-cell43-direction-seek-local-base59-gate.md) · [reproducer](../sims/lp2_p40_cell43_direction_seek_base59_sft.cjs).
+
 ## Relationship to the local radix stalemate
 
 The same token also has exact nearby count identities:
@@ -95,6 +101,6 @@ base59/base60 edge displacements -> [29,30]
 authenticated source -> [DIRECTION, SEEK]
 ```
 
-But it is still retrospective cross-artifact synthesis. It does **not** say which radix is intended, whether to use DIRECTION or SEEK as a receiver, or how to turn either source index into an unknown LP2 plaintext key. The correct next experiment must freeze a consequence of this boundary pair before reading a new destination; do not choose one radix merely because one downstream path is attractive.
+But the boundary alone was still retrospective cross-artifact synthesis. The new length/hop gate supplies the missing local consequence: DIRECTION fixes destination row9 and SEEK fixes a four-edge walk, which succeeds only under base59. The remaining unresolved step is how the resulting root/DH packet becomes an unknown LP2 plaintext key or receiver.
 
 Reproducer: [`sims/lp2_p40_cell43_dual_radix_source_boundary_sft.cjs`](../sims/lp2_p40_cell43_dual_radix_source_boundary_sft.cjs).

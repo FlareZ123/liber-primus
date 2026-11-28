@@ -58,3 +58,12 @@ This narrows the p40→cell43 continuation. The handoff remains useful as an add
 The result is especially relevant to the intact p48–p52 table-flanking-sentence problem: it links the newly selected cell43 to those source boundaries while simultaneously showing that the link is **radix-ambiguous rather than a decoder**.
 
 Reproducer: [`sims/lp2_p40_cell43_1d_local_radix_stalemate_sft.cjs`](../sims/lp2_p40_cell43_1d_local_radix_stalemate_sft.cjs).
+
+
+## Successor resolution: the token remains ambiguous, but DIRECTION/SEEK selects base59 for the pointer continuation
+
+The count equalities above remain exact and still show that **`1D` by itself** does not choose a radix. A later, independently constrained operation resolves the narrower question that this report left open.
+
+Cell43's dual-radix forward displacements are uniquely `[29,30]`, the authenticated DIRECTION/SEEK boundary. Their literal word lengths are `[9,4]`. Values72 and73 are both row9 of the eight-column panel, satisfying DIRECTION's length9 without preferring a radix. Requiring SEEK to mean a four-edge pointer walk then separates the codecs: base59 gives `72 -> 161 -> 214 -> 247 -> 189`, exactly four edges to the unique base59 fixed point; base60 from73 cycles and never reaches189.
+
+So the historical/count-based **token stalemate remains**, while the larger p40→cell43→DIRECTION/SEEK pointer grammar now selects **base59 locally**. See [the local base59 gate](lp2-p40-cell43-direction-seek-local-base59-gate.md).
