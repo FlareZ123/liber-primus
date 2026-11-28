@@ -46,6 +46,25 @@ function edgeCensus(radix,alphabet){
 const base60=edgeCensus(60,a60),base59=edgeCensus(59,a59);
 assert.equal(base60.length,1);
 assert.equal(base59.length,0);
+
+const byK=new Map(red.map(x=>[x.k,x]));
+const mod840=x=>((x%840)+840)%840;
+const variants=[];
+for(const [radix,alphabet] of [[60,a60],[59,a59]])for(const coordIndex of [0,1])for(const sign of [1,-1]){
+ const hits=[];
+ for(const from of red){
+   const address=from.coord[coordIndex],token=tokens[address],step=value(token,alphabet,radix);
+   const to=byK.get(mod840(from.k+sign*step));
+   if(to)hits.push({from:[from.page,from.coord],address,word:words[address]||null,token,step,to:[to.page,to.coord]});
+ }
+ variants.push({radix,coordinate:coordIndex===0?'row':'col',direction:sign===1?'forward':'backward',hits});
+}
+assert.deepEqual(variants.map(v=>[v.radix,v.coordinate,v.direction,v.hits.length]),[
+ [60,'row','forward',0],[60,'row','backward',0],
+ [60,'col','forward',1],[60,'col','backward',1],
+ [59,'row','forward',0],[59,'row','backward',0],
+ [59,'col','forward',0],[59,'col','backward',0],
+]);
 const edge=base60[0];
 assert.deepEqual([edge.from.page,edge.from.start,edge.from.k,edge.from.coord],[39,119,516,[17,23]]);
 assert.deepEqual([edge.to.page,edge.to.start,edge.to.k,edge.to.coord],[7,194,603,[20,23]]);
@@ -72,7 +91,7 @@ const result={
  schema:'lp2-p3-q-p50-road-red-path-v1',
  classification:'post-discovery exact red-state/p50 path edge with radix discrimination; no unknown plaintext',
  model:'For each printed nonzero red span, take Q-discrete-log coordinate [row,col], read p50[col] as a step, and advance the Q exponent by that value.',
- finiteControls:{printedNonzeroRedSpans:red.length,orderedCandidateEdges:red.length*(red.length-1),base60Hits:base60.length,base59Hits:base59.length},
+ finiteControls:{printedNonzeroRedSpans:red.length,orderedCandidateEdges:red.length*(red.length-1),base60Hits:base60.length,base59Hits:base59.length,variantFamily:variants},
  uniqueEdge:{
    from:{page:39,k:edge.from.k,coord:edge.from.coord,endpointWords:edge.from.coord.map(i=>words[i])},
    address:{cell:edge.address,word:words[edge.address],token:edge.token,base60:edge.step,base59:value(edge.token,a59,59)},
