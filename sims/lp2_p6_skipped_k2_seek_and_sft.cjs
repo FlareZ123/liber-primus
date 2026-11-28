@@ -415,6 +415,21 @@ assert.deepEqual(p31ExactKeyHits, [
   { page: 33, start: 116, sign: -1, targetIndex: 32, target: "YOU" },
 ]);
 
+const source43Pairs = [];
+for (let index = 0; index + 1 < sourceWords.length; index += 1) {
+  if (sourceWords[index].length === 4 && sourceWords[index + 1].length === 3) {
+    source43Pairs.push({
+      index,
+      left: sourceWords[index],
+      right: sourceWords[index + 1],
+    });
+  }
+}
+assert.deepEqual(source43Pairs.map((entry) => [entry.index, entry.left.word, entry.right.word]), [
+  [23, "ROAD", "AND"],
+  [30, "SEEK", "AND"],
+]);
+
 // Original-layout geometric serializer charge. Identify the four red p6
 // title words directly from their canonical starts. W3/W4 is the unique
 // adjacent [q,K] pair and W1 is the other q word.
@@ -559,6 +574,150 @@ assert.deepEqual(p31Key, [
   h2([geomW1[0], geomW1[geomW1.length - 1]])[0],
 ]);
 
+// Page-blind full family charge. Build receiver shells only from the p6
+// unique [q,K] adjacency, signed H4(title-length) fields, and literal W3
+// runes. Search every complete manuscript word, then cross surviving receivers
+// with every layout key, both signs, and both authenticated [4,3] source pairs.
+const geometryTitleH = h4(titleWords.map((word) => word.values.length));
+assert.deepEqual(geometryTitleH, [state.K, mod29(-state.e), state.g, state.a]);
+const qkLengthOrders = [[state.q, state.K], [state.K, state.q]];
+
+const receiverShell4Family = new Map();
+for (const lengths of qkLengthOrders) {
+  for (const multiplierField of geometryTitleH) {
+    for (const multiplierSign of [1, -1]) {
+      const multiplier = mod29(multiplierSign * multiplierField);
+      for (const literal of geomW3) {
+        for (const tailField of geometryTitleH) {
+          for (const tailSign of [1, -1]) {
+            const shell = [
+              mod29(multiplier * lengths[0]),
+              mod29(multiplier * lengths[1]),
+              literal,
+              mod29(tailSign * tailField),
+            ];
+            receiverShell4Family.set(shell.join(","), shell);
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(receiverShell4Family.size, 512);
+
+const receiverShell3Family = new Map();
+for (const lengths of qkLengthOrders) {
+  for (const literal of geomW3) {
+    for (const middleField of geometryTitleH) {
+      for (const middleSign of [1, -1]) {
+        const shell = [
+          mod29(literal - lengths[0]),
+          mod29(middleSign * middleField),
+          mod29(literal - lengths[1]),
+        ];
+        receiverShell3Family.set(shell.join(","), shell);
+      }
+    }
+  }
+}
+assert.equal(receiverShell3Family.size, 64);
+
+const receiver4Occurrences = canonical
+  .filter((word) =>
+    word.values.length === 4 &&
+    receiverShell4Family.has(h4(word.values).join(","))
+  )
+  .map((word) => ({
+    word,
+    page: word.page,
+    ordinal: localWords(word.page).indexOf(word) + 1,
+    start: word.start,
+    shell: h4(word.values),
+  }));
+assert.deepEqual(receiver4Occurrences.map((entry) => ({
+  page: entry.page,
+  ordinal: entry.ordinal,
+  start: entry.start,
+  values: entry.word.values,
+  shell: entry.shell,
+})), [
+  { page: 30, ordinal: 27, start: 112, values: [21, 3, 12, 11], shell: [10, 20, 15, 3] },
+  { page: 40, ordinal: 21, start: 92, values: [9, 11, 16, 26], shell: [12, 24, 27, 6] },
+]);
+
+const receiver3Occurrences = canonical
+  .filter((word) =>
+    word.values.length === 3 &&
+    receiverShell3Family.has(h3(word.values).join(","))
+  )
+  .map((word) => ({
+    word,
+    page: word.page,
+    ordinal: localWords(word.page).indexOf(word) + 1,
+    start: word.start,
+    shell: h3(word.values),
+  }));
+assert.deepEqual(receiver3Occurrences.map((entry) => ({
+  page: entry.page,
+  ordinal: entry.ordinal,
+  start: entry.start,
+  values: entry.word.values,
+  shell: entry.shell,
+})), [
+  { page: 11, ordinal: 55, start: 270, values: [14, 24, 1], shell: [13, 24, 15] },
+  { page: 31, ordinal: 32, start: 126, values: [12, 23, 1], shell: [11, 23, 13] },
+]);
+
+const fullFamilyHits = [];
+let fullFamilyCases = 0;
+for (const receiver4 of receiver4Occurrences) {
+  for (const receiver3 of receiver3Occurrences) {
+    for (const key4 of p30GeometryKeys.values()) {
+      for (const key3 of p31GeometryKeys.values()) {
+        for (const direction4 of [-1, 1]) {
+          for (const direction3 of [-1, 1]) {
+            for (const pair of source43Pairs) {
+              fullFamilyCases += 1;
+              const out4 = receiver4.word.values.map((value, index) =>
+                mod29(value + direction4 * key4[index])
+              );
+              const out3 = receiver3.word.values.map((value, index) =>
+                mod29(value + direction3 * key3[index])
+              );
+              if (
+                out4.every((value, index) => value === pair.left.values[index]) &&
+                out3.every((value, index) => value === pair.right.values[index])
+              ) {
+                fullFamilyHits.push({
+                  receiver4: { page: receiver4.page, ordinal: receiver4.ordinal, start: receiver4.start, shell: receiver4.shell },
+                  receiver3: { page: receiver3.page, ordinal: receiver3.ordinal, start: receiver3.start, shell: receiver3.shell },
+                  key4,
+                  key3,
+                  direction4,
+                  direction3,
+                  sourcePairIndex: pair.index,
+                  targets: [pair.left.word, pair.right.word],
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(fullFamilyCases, 65472);
+assert.deepEqual(fullFamilyHits, [{
+  receiver4: { page: 30, ordinal: 27, start: 112, shell: [10, 20, 15, 3] },
+  receiver3: { page: 31, ordinal: 32, start: 126, shell: [11, 23, 13] },
+  key4: [6, 14, 23, 6],
+  key3: [17, 14, 7],
+  direction4: -1,
+  direction3: -1,
+  sourcePairIndex: 30,
+  targets: ["SEEK", "AND"],
+}]);
+
 // Coupled source-only serializer charge. The family shares one W1 field
 // between the two page keys, chooses p30 x from the signed title-length H4,
 // p31 u/v as distinct literal W1 fields, and p31 w from H4(W1). Charge both
@@ -570,21 +729,6 @@ const W1 = [mod29(-state.g), mod29(state.K - state.b), mod29(-state.b), mod29(st
 assert.deepEqual(W1, [24, 16, 14, 17]);
 const W1H = h4(W1);
 assert.deepEqual(W1H, [mod29(state.g + state.K), state.K, mod29(state.a - state.g), aK]);
-
-const source43Pairs = [];
-for (let index = 0; index + 1 < sourceWords.length; index += 1) {
-  if (sourceWords[index].length === 4 && sourceWords[index + 1].length === 3) {
-    source43Pairs.push({
-      index,
-      left: sourceWords[index],
-      right: sourceWords[index + 1],
-    });
-  }
-}
-assert.deepEqual(source43Pairs.map((entry) => [entry.index, entry.left.word, entry.right.word]), [
-  [23, "ROAD", "AND"],
-  [30, "SEEK", "AND"],
-]);
 
 const jointSerializerHits = [];
 let jointSerializerCases = 0;
@@ -746,6 +890,18 @@ const result = {
     observed: { start: p29GStepReceiver.start, length: p29GStepReceiver.values.length },
     pass: false,
     decision: "reject the 27->32 ordinal +g recurrence; do not retune the address",
+  },
+  pageBlindFullFamilyCharge: {
+    receiverShell4FamilySize: receiverShell4Family.size,
+    receiver4Occurrences: receiver4Occurrences.map((entry) => ({ page: entry.page, ordinal: entry.ordinal, start: entry.start, shell: entry.shell })),
+    receiverShell3FamilySize: receiverShell3Family.size,
+    receiver3Occurrences: receiver3Occurrences.map((entry) => ({ page: entry.page, ordinal: entry.ordinal, start: entry.start, shell: entry.shell })),
+    key4FamilySize: p30GeometryKeys.size,
+    key3FamilySize: p31GeometryKeys.size,
+    source43Pairs: source43Pairs.map((entry) => [entry.index, entry.left.word, entry.right.word]),
+    configurations: fullFamilyCases,
+    hits: fullFamilyHits,
+    note: "page-blind and target-blind receiver/key family; family grammar remains post-discovery",
   },
   geometrySerializerCharge: {
     titleStarts,
