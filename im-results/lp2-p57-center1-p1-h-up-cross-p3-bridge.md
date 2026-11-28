@@ -159,4 +159,4 @@ Related earlier evidence:
 - [punctuation circumference morphology](lp2-punctuation-circumference-morphology.md)
 - [opening cross geometry and reversal gate](lp2-opening-cross-geometry-and-reversal-gate.md)
 - [orthodox cross source plate gate](lp2-p0-p2-orthodox-cross-source-plate-gate.md)
-- [p3/Q field route](lp2-p3-q-frobenius-dh.md)
+- [p3/Q field route](lp2-p3-q-frobenius-dh-lock.md)
