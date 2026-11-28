@@ -53,3 +53,12 @@ jobs:
           path: ${{ runner.temp }}/onecool-2017-text-artifacts.json
           if-no-files-found: error
           retention-days: 7
+      - name: Compare 2017 transcription with canonical LP2
+        run: node sims/lp2_onecool_2017_transcription_diff_sft.cjs
+      - name: Upload transcription comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2017-transcription-diff
+          path: ${{ runner.temp }}/onecool-2017-transcription-diff.json
+          if-no-files-found: error
+          retention-days: 7
