@@ -45,6 +45,10 @@ We froze two simplest consumers rather than fitting per-page language, signs, ph
 
 The direct event-type-to-panel-letter hypothesis also lacks distinctive positive support: the original 86 R positions coincide with just **20** literal leading-zero panel cells (about the 60/256 table frequency), while the source panel byte reduced mod29 matches the duplicated ciphertext rune on **4/86** repeat slots. Neither simple relation authenticates the event pairing. These are descriptive observations, not p-values.
 
+## Key-free multiset obstruction for a direct length table
+
+If the 256 sorted mixed events were meant to delimit source lengths literally copied into the 256 printed p50 cells, the hypothesis is false **under every permutation of the cells**, not merely the printed order. The 256 original interval lengths have maximum **292** and **four** zero-length intervals; the printed base60 cell bytes have maximum **255** and exactly **two** zero-valued cells. The respective base60 high-digit histograms (quotient by60) are **[171,62,16,5,2]** and **[60,58,65,56,17]**. These cannot be the same multiset, regardless of rotation, reflection or arbitrary bijective cell ordering. This is a source-level necessary-condition exclusion of literal **length = cell value**, not a rejection of transformed lengths, encryption or a cell-dependent pointer.
+
 ## Decision and reproducibility
 
 The arithmetic count is exact and the construction yields a concrete, low-information 256-bit source object, but **it is retrospective**. No original instruction says to combine rare repeated glyphs with only non-comma punctuation, to order them in continuous manuscript time, or to interpret their event types as bits. The p50/source-repeat connection, including the phase-zero leading-zero enrichment, was investigated already; the 256 count is **not** an independent statistical confirmation of that clock. The visible illustration/tables have yet to select a reversible receiver or decipher an unknown rune.
