@@ -52,6 +52,18 @@ const reversedJpeg = trailer.subarray(360);
 assert.equal(reversedJpeg.length, jpeg.length);
 assert.deepEqual(Buffer.from(reversedJpeg).reverse(), jpeg);
 
+// LP1 10.jpg source operation: p10 followed by exact standalone p11-p13 JPEGs.
+const lp10 = read('resources/liber-primus/10.jpg');
+const lp11 = read('resources/liber-primus/11.jpg');
+const lp12 = read('resources/liber-primus/12.jpg');
+const lp13 = read('resources/liber-primus/13.jpg');
+const lp10Tail = Buffer.concat([lp11, lp12, lp13]);
+assert.ok(lp10.length > lp10Tail.length);
+assert.deepEqual(lp10.subarray(lp10.length - lp10Tail.length), lp10Tail);
+const lp10Prefix = lp10.subarray(0, lp10.length - lp10Tail.length);
+assert.deepEqual([...lp10Prefix.subarray(0,2)], [0xff,0xd8]);
+assert.deepEqual([...lp10Prefix.subarray(-2)], [0xff,0xd9]);
+
 // p33 exact word-sum capacity under demonstrated digit reversal.
 const gp = JSON.parse(readText('resources/liber-primus/lp2-corpus.json'));
 const squares = readText('resources/cicada2014-openpuff-magic-squares.txt')
@@ -142,6 +154,18 @@ for (const [family,b] of [['base60',b60],['base59',b59],['literal',literal]]) {
   ]) variants.push({family,op,sha512:sha512(x),blake2b512:blake2b512(x)});
 }
 variants.push({family:'literal',op:'per_token_character_reverse',sha512:sha512(perTokenReverse),blake2b512:blake2b512(perTokenReverse)});
+
+const p49 = read('resources/liber-primus/66.jpg');
+const p50 = read('resources/liber-primus/67.jpg');
+const p51 = read('resources/liber-primus/68.jpg');
+const imageConcat = Buffer.concat([p49,p50,p51]);
+for (const [op,x] of [
+  ['whole_reverse',Buffer.from(imageConcat).reverse()],
+  ['nibble_swap',nibbleSwap(imageConcat)],
+  ['whole_reverse+nibble_swap',nibbleSwap(Buffer.from(imageConcat).reverse())],
+  ['per_jpeg_reverse',Buffer.concat([Buffer.from(p49).reverse(),Buffer.from(p50).reverse(),Buffer.from(p51).reverse()])],
+  ['per_jpeg_reverse+nibble_swap',Buffer.concat([nibbleSwap(Buffer.from(p49).reverse()),nibbleSwap(Buffer.from(p50).reverse()),nibbleSwap(Buffer.from(p51).reverse())])],
+]) variants.push({family:'p49-p51_jpeg_concat',op,sha512:sha512(x),blake2b512:blake2b512(x)});
 for(const v of variants) {
   assert.notEqual(v.sha512,TARGET, `${v.family}/${v.op} SHA-512 unexpectedly matches p56`);
   assert.notEqual(v.blake2b512,TARGET, `${v.family}/${v.op} BLAKE2b-512 unexpectedly matches p56`);
