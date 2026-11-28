@@ -70,6 +70,13 @@ for(let i=0;i<256;i++){
 assert.equal(segments.reduce((s,x)=>s+x.end-x.start,0),12956);
 assert.equal(segments.filter(x=>x.end===x.start).length,4);
 assert.equal(segments[0].end-segments[0].start,13);
+const gaps = segments.map(x=>x.end-x.start);
+const hist60 = xs => Array.from({length:6},(_,i)=>xs.filter(x=>Math.floor(x/60)===i).length);
+assert.deepEqual(hist60(gaps),[171,62,16,5,2,0]);
+assert.deepEqual(hist60([...bytes]),[60,58,65,56,17,0]);
+assert.equal(Math.max(...gaps),292);
+assert.equal(Math.max(...bytes),255);
+assert.equal(bytes.filter(x=>x===0).length,2);
 const decode = input => {
   const out=Array(input.length);
   for(const {start,end,key} of segments)for(let i=start;i<end;i++)out[i]=(input[i]-key+29)%29;
@@ -100,6 +107,7 @@ assert.equal(sha256(aesPlain),'a86357e6320bc2cd06ac43db3e67478d2901b028b0c12b0a7
 const output={
   source_events:{repeats:repeats.length,four_dots:139,large:31,commas_excluded:5,total:events.length,distinct_boundaries:new Set(events.map(x=>x.offset)).size,empty_intervals:dup},
   event_mask_hex:key.toString('hex'),
+  gap_source_exclusion:{max_gap:292,max_panel_byte:255,zero_gap_count:4,zero_panel_byte_count:2,gap_base60_high_hist:hist60(gaps),panel_base60_high_hist:hist60([...bytes])},
   interval_GP29_subtractive:{original_ioc:origIoC,decoded_ioc:decIoC,forward_exact:true,first_32:plain.slice(0,32).map(x=>corpus.translit[x]).join('')},
   aes256_ecb_base60_grid:{first_16_hex:aesPlain.subarray(0,16).toString('hex'),printable_octets:printable(aesPlain),sha256:sha256(aesPlain)}
 };
