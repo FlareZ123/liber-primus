@@ -111,6 +111,18 @@ const allSourceDh={p:sourcePrimeFromTotient,g:gFromThreeDeterminants,
 };
 allSourceDh.K=powMod(allSourceDh.A,allSourceDh.b,allSourceDh.p);
 assert.deepEqual(allSourceDh,{p:23,g:5,a:6,b:15,A:8,B:19,K:2});
+// Prefer the standard 2013 DH-state inverse semantics for the original
+// final 2014 square determinant e=3: b = e^-1 mod phi(p), not fitted g*e.
+// This derives b=15 with the same original source inputs, and the earlier
+// g*e=15 becomes an extra exact identity, not the definition of b.
+const sourceE=determinants[2],dhGroupOrder=eulerPhi(sourcePrimeFromTotient);
+const inverseInGroup=Array.from({length:dhGroupOrder-1},(_,i)=>i+1)
+  .find(k=>(sourceE*k)%dhGroupOrder===1);
+assert.deepEqual([sourceE,dhGroupOrder,inverseInGroup],[3,22,15]);
+assert.equal(inverseInGroup,bFromThreeDeterminants);
+assert.equal(mod(gFromThreeDeterminants*sourceE),inverseInGroup);
+assert.equal((gFromThreeDeterminants*sourceE*sourceE)%dhGroupOrder,1);
+
 // Warn against counting these as independent numerical successes:
 // both totient residues equal their prime row-sum minus one mod29.
 assert.equal(sourcePrimeFromTotient,mod(expectedSums[0]-1));
@@ -368,4 +380,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,sourceTotients,sourcePrimeFromTotient,sourceOtherTotientResidue,allSourceDh,columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,sourceTotients,sourcePrimeFromTotient,sourceOtherTotientResidue,allSourceDh,inverseCandidate:{sourceE,dhGroupOrder,inverseInGroup,geMod29:mod(gFromThreeDeterminants*sourceE),ge2ModOrder:(gFromThreeDeterminants*sourceE*sourceE)%dhGroupOrder},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));

@@ -105,6 +105,22 @@ B^a mod p = 19^6 mod23 = 2 = middle inner H sum
 
 The same original numeric square set and operation were used in all six cases; no item-level tuning, alphabet shift, ciphertext crib or new external source was introduced. This **materially simplifies the hypothesized intended route to a candidate DH state** and ties it to the original p6 source-pair H transform. It does **not** prove H is what the authors wanted: the important choices **historical square linkage, H sum/difference, top corners, modulus29, and interpretation of source residues as GP29 DH values were proposed after other puzzle research**. The three source-value equalities are cross-relations within one retrospectively studied historical object, not three statistically independent validations. A next-page decipherment or an independent explicit instruction to read shell/inner corner H is required for promotion.
 
+### Less arbitrary private-exponent schedule: e=3 and the actual group modular inverse
+
+The original final 2014 5×5 determinant already fixes the candidate **e=3**. In the independently authenticated 2013 DH state, the third parameter e is specifically `e=b⁻¹ mod(p−1)`, not just an unrelated exponent. If the proposed self-contained source modulus is `p=φ(3301) mod29=23`, the **standard** inverse reconstructs b without the earlier extra hypothesis `b=g·e`:
+
+```text
+e := det(third historical 5×5) mod29 = 3
+φ(p) = φ(23) = 22
+b := e⁻¹ mod φ(p) = 3⁻¹ mod22 = 15
+Check: 3·15 = 45 ≡ 1 (mod22)
+Independent source arithmetic: (det first / det middle)·det last
+                           = (10/2)·3 ≡ 15 (mod29) = b
+Additional identity: g·e² = 5·9 = 45 ≡1 (mod φ(p)=22)
+```
+
+This is arguably a more **creator-plausible cryptographic step** than choosing the product `g·e` as a private exponent, because modular inversion is explicitly used in the signed 2013 worked state. But **the historical square itself does not label its final determinant 'e'**; that input-role selection remains retrospective and cannot be proven by this identity. In the full conditional source-only recipe below, either definition gives the same candidate b15, but **prefer the independently known DH group-inverse semantics** and regard `b=g·e` as an exact cross-check, not the source instruction.
+
 ### Source-only candidate DH modulus via genuine Euler totients of the two authentic row sums
 
 The original two magic constants **3301 and1033 are themselves prime**. Euler's totient `φ` is a **genuine prior Cicada arithmetic operation** and features in independently solved LP2 material. Therefore a second *potentially source-motivated* role map, once the independently established GP29 alphabet is fixed, is to let the 2014 **first constant** supply the **DH modulus**:
@@ -123,7 +139,8 @@ q=29  (authentic Gematria Primus rune modulus)
 p=φ(3301) mod29                         = 23
  g=(det5a/det7) mod29                 = 10/2 = 5
  a=(3301−1033) mod29                 = 6
- b=g*det5b mod29                     = 5*3 = 15
+ e=det5b mod29                       = 3
+ b=e⁻¹ mod φ(p)=3⁻¹ mod22             = 15  (also (10/2)·3 mod29)
  A=g^a mod p                         = 8
  B=g^b mod p                         = 19
  K=A^b mod p = B^a mod p             = 2
