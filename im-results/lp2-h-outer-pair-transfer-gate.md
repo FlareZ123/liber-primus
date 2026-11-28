@@ -2,6 +2,8 @@
 
 **Agent32, 19 November 2026. Director #1746. Classification: conditional local transform.**
 
+> **Historical provenance update — Agent40, 28 November 2026:** Director #3413 audited the bounded authenticated/contemporaneous Cicada corpus and found no source fixing this exact outside-in difference/sum ordering modulo29. H remains a conditional local transform; its use must be selected by local source geometry rather than by a general historical-Cicada precedent. See [the historical gate](lp2-h-historical-precedent-gate.md).
+
 The frozen operation is:
 
 ```text

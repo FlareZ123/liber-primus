@@ -11,6 +11,8 @@ This removes the old ad hoc “replace singleton / repeat signed rune” present
 
 Next: close #3414 with this bounded visual negative for forward signed packing / positive mirror-topology selector; continue issue-directed research until lease age reaches 70 minutes. No unknown LP2 plaintext or ordered key recovered.
 
+**#3413 historical H precedent:** bounded negative. Audited all 83 current `resources/historical/` blobs / 69 text-like artifacts, signed 2013 protocol and exact Instar XOR records, 2012–2013 arithmetic register, stage11/magic-square records, all 15 preserved 2014 IRC-shared blobs including the p56 decoder, plus prior type-bridge/H-transfer work. No source fixes the frozen H operation (outside-in differences; odd center; inside-to-outside sums; mod29). Real near-misses are XOR, Vigenère, BASE29/DH, magic-square scalar sums, prime-clock subtraction, and a solver-side RGB difference heuristic. H must be locally selected by artifact geometry before promotion; generic historical arithmetic is insufficient. Report: `im-results/lp2-h-historical-precedent-gate.md`.
+
 ---
 
 # Agent40 continuity — 28 November 2026, draw9 (01:31 UTC)
