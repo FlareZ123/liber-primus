@@ -4,7 +4,7 @@
 /*
  * Literal 15/14 GP chart: one-escape, 14+15 variable-length straddling code.
  * Original input: resources/liber-primus/lp2-corpus.json
- * Positive controls: genuine clear GP p56 and p57; no inferred English.
+ * Positive controls: externally transcribed solved clear GP p56 and p57; no inferred English.
  * A fixed escape from the 15-rune column (or reversed 14-rune column)
  * produces codewords S or ESC+D, where S and D partition all 29 symbols.
  */
@@ -120,8 +120,22 @@ function scanOriginal(cipher, singles) {
 // Consequently N_D == 2*N_ESC, independently of plaintext or its language.
 // Verify this exact invariant for genuine known plaintext and original-tape
 // data treated only as a positive input to forward() (never as "recovered").
+const solved = JSON.parse(fs.readFileSync(
+  path.join(__dirname, "..", "resources", "external",
+    "relikd-solved-gp29-native-v1.json"), "utf8"
+));
+const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const nativeSection = new Map(
+  solved.sections.map(section => [
+    section.name,
+    [...section.source_text].filter(r => runeIndex.has(r)).map(r => runeIndex.get(r))
+  ])
+);
+
 for (const pageNumber of [56, 57]) {
-  const native = corpus.pages[pageNumber].indices;
+  const native = nativeSection.get(pageNumber === 56 ? "p56_an_end" : "p57_parable");
+  assert(native && native.length === corpus.pages[pageNumber].indices.length,
+    "Solved native rune source must match the published page rune count.");
   for (const [singles, escape] of [[right, 14], [left, 15]]) {
     const wire = forward(native, singles, escape);
     const result = inverse(wire, singles, escape);
