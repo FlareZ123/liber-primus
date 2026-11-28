@@ -50,6 +50,33 @@ Thus the source-visible/pointer geometry now packs five authenticated public/sta
 
 This is a substantially cleaner human-solve-path closure than the older `p×A+K` lookup because the artwork supplies the `g -> K` column move.
 
+
+## Independent eight-step pointer-return cross-check (Agent10, 28 November 2026)
+
+**New exact original-source observation; provisional intended-route evidence, not an authenticated decoder.** The already-selected reflected sink **186** is not a terminal. Continue following the *same* source-anchored base59 successor law without a new key, address choice or transformation. Its **first value** is independent DH public **B=19**, and the walk returns to original sink189 after **eight** pointer edges, equal to independently authenticated public **A=8** (and the panel's eight columns). The pair A/B is thus encoded by the length and first value of a source-selected return trajectory, not merely the table width/one mirrored cell:
+
+```text
+189 --original horizontal reflection--> 186
+186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189
+       B=19                                unique sink
+       ^----------- 8 pointer edges --------------^
+```
+
+This is a second *readout* of A=8 in the same geometric structure; the historical source did not explicitly instruct taking the return depth as a DH value. The equality was noticed **after** the sink, mirror and DH values were known, and is not an independently preregistered prediction. It suggests one coherent human-executable circuit (`mirror once, follow eight pointers, close at sink`) but establishes neither a GP29 key serializer nor unknown plaintext.
+
+A standalone original-input Node22 control (`sims/lp2_p50_sink_mirror_dh_dualstate_sft.cjs`) rechecks all 256 printed tokens and both radices, the complete path, original DH modular exponentiation, and two 400,000-draw token-permutation nulls. Controls are deterministic with xorshift32 seed **20261128**, first 400,000 whole-table Fisher–Yates permutations followed by 400,000 permutations preserving each printed eight-token row. The predicates accumulate from exact self-point at189, to all 256 nodes flowing to189, to additional return depth8 and B=19 at cell186:
+
+| Null, 400,000 trials each | Radix | 189 self-point | All-to-189 sink | Sink + depth8 | Sink + B19 | Sink + both |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Whole-table token shuffle | 59 | 6365 | 65 | 1 | 0 | **0** |
+| Whole-table token shuffle | 60 | 3137 | 10 | 1 | 0 | **0** |
+| Within-row shuffle | 59 | 50090 | 683 | 27 | 95 | **4** |
+| Within-row shuffle | 60 | 0 | 0 | 0 | 0 | **0** |
+
+Four of 400,000 row-preserving nulls satisfy the complete matched triple (`1e-5`). The zero whole-table hits are a limited Monte Carlo outcome, **not a mathematical impossibility**; the earlier importance-sampled two-constraint results in the previous section estimate that partial event better. Because the depth8 hypothesis was noticed after the graph and the historical DH packet were studied, these tests are **not** calibrated discovery-wide p-values and should not be multiplied across linked reports. The row-preserving null does, however, show the three-coordinate closure is not an automatic consequence of the particular original row token inventory.
+
+**Causal next gate:** an independently sourced *consumer* is still missing. The eight-edge trajectory freezes a reproducible eight-node operand sequence, but without a source-defined GP29 serialization, page recipient and reversible operation, direct key/phase sweeps would be overfitting. Do not promote fitted plaintext from this state coincidence.
+
 ## Corrected locked-target controls
 
 The target is frozen by the authenticated DH tuple plus the already-established mirror: address189 must be the pointer sink and its mirror address186 must contain value19.
