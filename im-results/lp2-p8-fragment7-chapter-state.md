@@ -372,6 +372,35 @@ The known chapter total also has the state-native factorization
 
 The integer 1,729 and the factorization 7×13×19 were already documented in the older taxicab/Onion7 branch. The new evidence is the coupling to the independently reconstructed local state and the individual base29 page-length packet.
 
+## Rooted-tree native-field root and a prospectively rejected local receiver
+
+Issue #3409 asked whether p8's original rooted-tree artwork can type a matrix operation beyond the already fixed p7→p8 orientation. The smallest literal interpretation is **rooted tree → take a characteristic root**. This is unusually constrained in the native field: of the established factorization, only the linear factor has a root in GF(29),
+
+```text
+lambda = -g = 24.
+```
+
+The right eigenspace of the literal fragment matrix at 24 is one-dimensional. With its final coordinate normalized to one it is
+
+```text
+[18,9,9,8,28,0,1].
+```
+
+The original p8 image supplies a source-visible scale anchor at the same top/heading origin: its enlarged first red rune is GP0 **14**. On the 2400×3600 original JPEG its red component occupies x=602..884, y=667..1164 inclusive. Normalizing the right eigenvector's first coordinate to 14 therefore fixes
+
+```text
+[14,7,7,3,25,0,4]
+= [-b,g+K,g+K,e,-q,F,q].
+```
+
+The left eigenspace, top/bottom anchoring, exact reversal and both additive signs were charged before any body decode. The exact pretarget contract is commit `8765e07d6b4ce2fce310aec9618ab5a6c5452f53`; no cyclic rotation, fitted phase, F exception or rescaling was allowed afterward.
+
+A complete matched census sharpens the structural observation without turning it into an authorship probability. Among all **479** same-page 49-fragment windows, **24** have eigenvalue 24 and all 24 corresponding right eigenspaces are one-dimensional. Normalize each available first coordinate to 14. Only **one** resulting vector simultaneously has coordinate 2 = coordinate 3 and coordinate 6 = 0: **p8 black start, fragment 2 / rune offset 12**, exactly `[14,7,7,3,25,0,4]`. The same p8 window is the sole exact-vector hit. This is post-discovery specificity: the root/eigenvector rule was motivated after the p8 matrix factorization was already known.
+
+The prospective cipher prediction fails decisively. Freeze the p8 black body (243 runes), phase-zero repetition, the four top/bottom × right/left anchored vectors and their reversals, then test both additive signs: all **16** exact reversible outputs score below the solved-native GP29 floor **+0.709965**. The source-selected primary right/top vector scores **−1.585376** and **−1.745856**; the best charged alternative is still only **−1.323336**. Thus the artwork supplies a compact root/eigenvector **state closure**, but the simplest local periodic use is rejected and must not be rescued by phase or transform tuning.
+
+Reproducer: `sims/lp2_p8_tree_root_eigenvector_receiver_sft.cjs`. It independently reconstructs the eigenspaces, the 479-window census, exact forward replay, and all 16 frozen receiver scores.
+
 ## Direct cipher consumers: two bounded negatives
 
 There is now also a source-complete **autonomous generator** trial, distinct from moving Hill blocks: seed M with the already fixed p7 seven-cycle `v`, advance the field state per rune or printed fragment, and sample GP29 key coordinate `K=2` from the actual first black-word product. The [12 original p8 and continuous p8–p14 additive inverses](lp2-p7-p8-sourcevector-matrix-stream-original-gate.md) all remain below solved-native IoC (best p8 **0.036425** vs native 243-rune minimum **0.054450**), despite the state running its exact **24,388**-step orbit. This eliminates the simplest p7→p8 source-seeded keystream consumer without altering the previously established algebraic source packet. Do not repeat this by fitting generator phase or output coordinate.
