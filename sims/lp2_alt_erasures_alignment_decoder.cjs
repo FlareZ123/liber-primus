@@ -116,8 +116,14 @@ function beamDecode(C,K,variant,model,opts={}) {
   }
   let winner=beam[0],out=Array(winner.outlength),cur=winner.tail;
   for(let i=out.length-1;i>=0;i--){out[i]=cur.plain;cur=cur.prior;}
+  const alternatives=(opts.topN??0)>0 ? beam.slice(0,opts.topN).map(st=>{
+    const o=Array(st.outlength);let node=st.tail;
+    for(let i=o.length-1;i>=0;i--){o[i]=node.plain;node=node.prior;}
+    return {score:st.score,alignmentKeyConsumed:st.j,plain_idx:o};
+  }):undefined;
   return {plain_idx:out,score:winner.score,alignmentKeyConsumed:winner.j,
-    gapSymbols:winner.gap,elapsedMs:Date.now()-t0,minSurvivors:stats?minSurvivors:undefined};
+    gapSymbols:winner.gap,elapsedMs:Date.now()-t0,minSurvivors:stats?minSurvivors:undefined,
+    alternatives};
 }
 function encodePlant(P,K,variant,rng=lcg(17)) {
   const M=variant==="V-SILENT"?36:29;
