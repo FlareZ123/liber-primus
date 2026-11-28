@@ -112,11 +112,11 @@ function run(corpus, sources) {
     for(let i=0;i<N-2;i++)add(idx(i));
     for(let st=0;st+N<=seq.length;st++){
       if(st){rem(idx(st-1));add(idx(st+N-3));}
-      for(const j of excluded)rem(idx(st+j));
+      for(const j of excluded)if(j<N-2)rem(idx(st+j));
       if(mx<min)min=mx;
       if(mx<=trigramBoxes[0].cap)passQ2++;
       if(mx<=trigramBoxes[1].cap)passQ3++;
-      for(const j of excluded)add(idx(st+j));
+      for(const j of excluded)if(j<N-2)add(idx(st+j));
     }
     return {minMaxTrigram:min,q2Pass:passQ2,q3Pass:passQ3};
   }
