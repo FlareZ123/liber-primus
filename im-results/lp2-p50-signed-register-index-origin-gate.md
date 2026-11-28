@@ -138,9 +138,45 @@ The signed phrase “their numbers are the direction” also fails to break the 
 - under zero origin, ROAD is index **23**; `p50[23]=1R`, naturally “one right”, matching the observed rank22→23 ROAD edge from cell40 to cell41;
 - under one-based numbering, ROAD is word **24**; `p50[24]=1n`, naturally “one north”, matching the one-based MAP(rank19 at cell203) → ROAD(rank24 at cell195) adjacent north step.
 
-So the two plausible origins each obtain a locally self-consistent ROAD direction from the corresponding ROAD number. This is evidence for a deliberately structured numerical region, but **not** evidence that zero origin wins. Do not use `1R` versus `1n` to choose an origin without another first-party discriminator.
+So the two plausible origins each obtain a locally self-consistent ROAD direction from the corresponding ROAD number. This is evidence for a deliberately structured numerical region, but **does not choose the origin by itself**. The cross-page test below supplies a separate discriminator; the local `1R` versus `1n` pair is retained as a genuine competing signal rather than being used to choose an origin.
 
 A whole-table control also rejects turning this local observation into a general word-number movement decoder. Freeze the same minimal token grammar used by the navigation experiments — a positive decimal digit followed by one of `N/S/E/W/L/R/U/D`, case-insensitive. There are **60/256** matching cells in the full table and **12/43** among addresses0..42 corresponding to the 43 signed-word-number slots. Under the exact hypergeometric null that uniformly chooses 43 cells from the fixed 256-cell token multiset, the expected count is **10.078125** and `P(X >= 12) = 0.2821018581`. The signed-register address band is therefore **not enriched** for movement-looking tokens. Preserve the specific ROAD23/ROAD24 duality as local geometry; do not promote it to “all word numbers are opcodes.”
+
+## Cross-page ROAD-radix test prefers zero origin
+
+The p27 red13/DH route supplies a discriminator that was established independently of the signed-word-origin question. Its charged pointer family starts at the independently selected cell186, tests both live radices, both directions and every signed public value `{2,5,8,19,23}` as a first-arrival count, and has exactly one original-table hit: **base59 forward at 8**, reaching the independently selected endpoint189. The corresponding base60 eight-hop path ends at0.
+
+The two signed-word origins assign ROAD to different members of the origin-invariant p50 scaffold, and those two anchors have opposite radix specificity:
+
+```text
+zero-origin ROAD = rank23, cell41 = 1O
+  base59: 83 = ordinary prime #23
+  base60: 84 = composite
+  ROAD-selected radix -> base59
+
+one-based ROAD = word24 / rank24, cell195 = 1T
+  base59: 88 = composite
+  base60: 89 = ordinary prime #24
+  ROAD-selected radix -> base60
+```
+
+Now hold the already selected p27 start cell186 and the signed server-public count8 fixed, and let each ROAD hypothesis choose the radix supplied by its own scaffold anchor:
+
+```text
+zero-origin / ROAD23 / base59:
+  186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189
+  result: reaches the independent p27 endpoint189
+
+one-based / ROAD24 / base60:
+  186 -> 19 -> 33 -> 114 -> 197 -> 115 -> 247 -> 192 -> 0
+  result: misses189
+```
+
+This is a **cross-page local preference for zero-origin signed-word numbering**. Unlike the hard-wrap observation, the pointer/radix fact comes from a separately frozen p27 source family and does not depend on the 2016 word numbering. It also explains a creator-facing reading of the authenticated sentence: the word ROAD labels the radix used for the pointer traversal.
+
+The evidentiary boundary remains important. “ROAD labels the pointer radix” is a semantic interpretation inferred after both structures were known; the signed 2016 prose still does not publish an index origin. The one-based ROAD24→`1n` local movement remains real, and DIRECTION29→p29 therefore remains conditional. The result promotes zero origin from a near-tie to the **stronger working hypothesis**, not to an authenticated universal indexing convention.
+
+[Reproducer](../sims/lp2_p50_signed_origin_road_radix_gate_sft.cjs) charges the two origin hypotheses directly and verifies both pointer paths against the original table.
 
 ## Historical controls
 
@@ -152,7 +188,7 @@ The 2016 signed prose has no array syntax, index-zero marker or coordinate tuple
 
 ## Consequence
 
-Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, its seven-word origin-invariant source overlap **THE MAP THEIR MEANING IS THE ROAD**, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every exact origin-specific signed-message rank↔word label, plus DIRECTION29→p29 and ROAD23/ROAD24 **word-number** labeling, to a **conditional origin hypothesis**. The signed hard wrap after zero-based index19 gives zero origin a local source preference exactly at the scaffold's direct-cell→distance switch, but its plausible ordinary line-wrapping explanation prevents treating that preference as a general indexing rule. The `ROAD23→1R` / `ROAD24→1n` duality still does not resolve the signed-message origin.
+Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, its seven-word origin-invariant source overlap **THE MAP THEIR MEANING IS THE ROAD**, cell43 `1D` and its numeric values, and finite token censuses. Exact origin-specific signed-message rank↔word labels, including DIRECTION29→p29 and ROAD23/ROAD24 **word-number** labeling, remain hypotheses rather than authenticated coordinates. However, zero origin is now the stronger working interpretation for two materially different reasons: the signed hard wrap aligns with the scaffold's direct-cell→distance switch, and the independently frozen p27 pointer family selects base59 forward-at8, matching the zero-origin ROAD23 anchor's unique radix and rejecting the one-based ROAD24/base60 rival at the same fixed start/count. Neither observation is a published indexing rule, so DIRECTION29 remains conditional.
 
 A later finite address-origin audit separates the narrower cell186 movement consequence from that text-origin failure. The unique numeric scaffold itself contains rank24 at cell195; no English label is needed to obtain that rank. Charging the two conventional table-address origins, zero-based address24 gives `1n → 1L → cell186 = 0J = 19`, while one-based address23 gives `1R → 2u → cell180` and no DH-state endpoint. Across all seven cell anchors of the scaffold and both origins, only the zero-address rank24 branch reaches the independently preselected p27/DH cell186 and public value B=19; the result is unchanged whether L/R are treated as relative turns or absolute left/right. This selects **zero-based p50 table addressing inside the already declared movement grammar**, not zero-based 2016 word indexing, DIRECTION29, or a ciphertext decoder. See [the address-origin gate](lp2-p50-scaffold-address-origin-dh19-gate.md).
 
@@ -160,6 +196,6 @@ Issue #3347 must not treat DIRECTION29 as source-supported navigation unless a f
 
 ## Reproduction
 
-Run `node sims/lp2_p50_signed_register_origin_sft.cjs`. It parses the committed signed 2016 message, asserts the 43-word rival table, proves line-local29 impossible, checks the local signed 2012 coordinate markers, reconstructs the original 256-cell table, exhaustively proves the unique k=17 numerical scaffold even when every required cell may choose either live radix, and verifies the ROAD23→1R / ROAD24→1n dual-origin direction readouts. The separate `lp2_p50_signed_hardwrap_origin_sft.cjs` reproduces the exact signed-byte line boundary and its alignment with the rank19→distance20 representation switch.
+Run `node sims/lp2_p50_signed_register_origin_sft.cjs`. It parses the committed signed 2016 message, asserts the 43-word rival table, proves line-local29 impossible, checks the local signed 2012 coordinate markers, reconstructs the original 256-cell table, exhaustively proves the unique k=17 numerical scaffold even when every required cell may choose either live radix, and verifies the ROAD23→1R / ROAD24→1n dual-origin direction readouts. `lp2_p50_signed_hardwrap_origin_sft.cjs` reproduces the exact signed-byte line boundary and its alignment with the rank19→distance20 representation switch. `lp2_p50_signed_origin_road_radix_gate_sft.cjs` charges the new ROAD-radix cross-page discriminator and verifies base59 186→189 versus base60 186→0 at the fixed eight-hop count.
 
 Pinned reconstruction: `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`; 2012 README blob `96c7d5ddc613fa9b26c3007fecd9072937802c2e`; 2014 README blob `7f2f414d13fa964d54cd1fdd5823f623e32c0059`.
