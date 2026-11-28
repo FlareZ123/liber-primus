@@ -116,7 +116,15 @@ const out={
 };
 const artifact=path.resolve(__dirname,"..","im-results","lp2_gf29quadratic_power_exact_original_output.json");
 const pinned=JSON.parse(fs.readFileSync(artifact,"utf8"));
-assert.deepEqual(out,pinned,"committed original-output JSON differs from exact SFT");
+function firstDiff(a,b,p="root"){
+  if(Object.is(a,b))return null;
+  if(a===null||b===null||typeof a!==typeof b||typeof a!=="object")return {path:p,left:a,right:b};
+  const keys=new Set([...Object.keys(a),...Object.keys(b)]);
+  for(const k of keys){const d=firstDiff(a[k],b[k],p+"."+k);if(d)return d;}
+  return null;
+}
+const mismatch=firstDiff(out,pinned);
+assert.equal(mismatch,null,"committed result mismatch: "+JSON.stringify(mismatch));
 console.log(JSON.stringify({
   passed:true,
   eCount:units.length,axisInvariance,
