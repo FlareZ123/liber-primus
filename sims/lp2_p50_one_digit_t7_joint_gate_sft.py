@@ -90,6 +90,53 @@ def hypergeom_upper(population: int, marked: int, draws: int, observed: int) -> 
     return math.exp(m) * sum(math.exp(x - m) for x in logs)
 
 
+def gamma_q(a: float, x: float) -> float:
+    """Regularized upper incomplete gamma Q(a,x), standard-library only."""
+    if a <= 0 or x < 0:
+        raise ValueError((a, x))
+    if x == 0:
+        return 1.0
+    eps = 3e-14
+    fpmin = 1e-300
+    gln = math.lgamma(a)
+    if x < a + 1:
+        ap = a
+        total = term = 1.0 / a
+        for _ in range(10000):
+            ap += 1.0
+            term *= x / ap
+            total += term
+            if abs(term) < abs(total) * eps:
+                p = total * math.exp(-x + a * math.log(x) - gln)
+                return max(0.0, min(1.0, 1.0 - p))
+        raise RuntimeError("gamma series did not converge")
+    b = x + 1.0 - a
+    c = 1.0 / fpmin
+    d = 1.0 / b
+    h = d
+    for i in range(1, 10001):
+        an = -i * (i - a)
+        b += 2.0
+        d = an * d + b
+        if abs(d) < fpmin:
+            d = fpmin
+        c = b + an / c
+        if abs(c) < fpmin:
+            c = fpmin
+        d = 1.0 / d
+        delta = d * c
+        h *= delta
+        if abs(delta - 1.0) < eps:
+            return max(0.0, min(1.0, math.exp(-x + a * math.log(x) - gln) * h))
+    raise RuntimeError("gamma continued fraction did not converge")
+
+
+def pearson_chi2(observed: list[int], expected: list[float]) -> tuple[float, float]:
+    assert len(observed) == len(expected)
+    stat = sum((o - e) ** 2 / e for o, e in zip(observed, expected))
+    return stat, gamma_q((len(observed) - 1) / 2, stat / 2)
+
+
 assert GRID["alphabet"] == BASE60
 assert len(TOKENS) == 256
 assert all(token[0] == "0" for token in TOKENS if decode(token, BASE60) < 60)
@@ -270,6 +317,41 @@ def simulate_m35_open_gate(reps: int = 30000, seed: int = 3308) -> dict[str, obj
     )
     assert abs(homogeneous_open_upper - 4.2042647617336424e-06) < 1e-18
 
+    # Held-out full transition-shape prediction. If the 0D gate truly opens
+    # the no-repeat restriction, GP29 deltas at that gate should be uniform.
+    gate_delta = [0] * 29
+    closed_delta = [0] * 29
+    gate_from = [0] * 29
+    gate_to = [0] * 29
+    for i in valid:
+        is_open = (i & 255) in small_decimal_set
+        delta = (tape[i + 1] - tape[i]) % 29
+        (gate_delta if is_open else closed_delta)[delta] += 1
+        if is_open:
+            gate_from[tape[i]] += 1
+            gate_to[tape[i + 1]] += 1
+
+    gate_delta_chi2, gate_delta_p = pearson_chi2(
+        gate_delta, [n_in / 29] * 29
+    )
+    gate_from_chi2, gate_from_p = pearson_chi2(
+        gate_from, [n_in / 29] * 29
+    )
+    gate_to_chi2, gate_to_p = pearson_chi2(
+        gate_to, [n_in / 29] * 29
+    )
+    closed_expected = [n_out * p_out] + [n_out * (1 - p_out) / 28] * 28
+    closed_delta_chi2, closed_delta_p = pearson_chi2(closed_delta, closed_expected)
+    closed_nonzero_chi2, closed_nonzero_p = pearson_chi2(
+        closed_delta[1:], [sum(closed_delta[1:]) / 28] * 28
+    )
+    assert abs(gate_delta_chi2 - 22.015936254980083) < 1e-12
+    assert abs(gate_delta_p - 0.7805528337231691) < 1e-12
+    assert abs(gate_from_p - 0.6014903255796571) < 1e-12
+    assert abs(gate_to_p - 0.23180599175844782) < 1e-12
+    assert abs(closed_delta_p - 0.03942191267652163) < 1e-12
+    assert abs(closed_nonzero_p - 0.029903882020027823) < 1e-12
+
     # Conditional distribution of open-gate count given exactly 86 events.
     states: list[int] = []
     logs: list[float] = []
@@ -319,6 +401,14 @@ def simulate_m35_open_gate(reps: int = 30000, seed: int = 3308) -> dict[str, obj
         "m34_likelihood_ratio_vs_m35": likelihood_ratio[34],
         "m36_likelihood_ratio_vs_m35": likelihood_ratio[36],
         "homogeneous_m35_open_hits_ge_10_upper": homogeneous_open_upper,
+        "gate_delta_counts": gate_delta,
+        "gate_delta_chi2": gate_delta_chi2,
+        "gate_delta_p": gate_delta_p,
+        "gate_from_p": gate_from_p,
+        "gate_to_p": gate_to_p,
+        "closed_delta_chi2": closed_delta_chi2,
+        "closed_delta_p": closed_delta_p,
+        "closed_nonzero_delta_p": closed_nonzero_p,
         "conditional_mean_open_hits_given_86": conditional_mean_open,
         "conditional_tail_open_hits_ge_10_given_86": conditional_tail_ge_10,
         "reps": reps,
