@@ -11,7 +11,11 @@ const grid=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/bas
 const signed=fs.readFileSync(path.join(ROOT,'resources/historical/cicada2016-4gq25-outguess.asc'),'utf8');
 const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
 const mod=x=>((x%MOD)+MOD)%MOD;
-const mul=(x,y)=>[mod(x[0]*y[0]+8*x[1]*y[1]),mod(x[0]*y[1]+x[1]*y[0]+3*x[1]*y[1])];
+const inverse=x=>{for(let i=1;i<MOD;i++)if(mod(x*i)===1)return i;throw new Error('no inverse');};
+const p3=[13,23,2],leadInverse=inverse(p3[2]);
+const fieldR=mod(-p3[1]*leadInverse),fieldT=mod(-p3[0]*leadInverse);
+assert.deepEqual([fieldR,fieldT],[3,8]);
+const mul=(x,y)=>[mod(x[0]*y[0]+fieldT*x[1]*y[1]),mod(x[0]*y[1]+x[1]*y[0]+fieldR*x[1]*y[1])];
 const ev=a=>{let z=[0,0],p=[1,0];for(const c of a){z=[mod(z[0]+c*p[0]),mod(z[1]+c*p[1])];p=mul(p,[0,1]);}return z;};
 const Q=[17,24],DH={p:23,g:5,A:8,K:2};
 const body=signed.split('-----BEGIN PGP SIGNATURE-----')[0];
@@ -72,8 +76,19 @@ assert.equal(edge.address,23);
 assert.equal(words[23],'ROAD');
 assert.equal(edge.token,'1R');
 assert.equal(edge.step,87);
-assert.equal(87,3*29);
+assert.equal(edge.step,fieldR*MOD);
+assert.equal(words[MOD],'DIRECTION');
 assert.equal(value(edge.token,a59,59),86);
+
+const mapRegisterMultiples=[];
+for(let cell=0;cell<MOD;cell++){
+ const v=value(tokens[cell],a60,60);
+ if(v%MOD===0)mapRegisterMultiples.push({cell,word:words[cell],token:tokens[cell],value:v,rows:v/MOD});
+}
+assert.deepEqual(mapRegisterMultiples,[
+ {cell:0,word:'HELLO',token:'3N',value:203,rows:7},
+ {cell:23,word:'ROAD',token:'1R',value:87,rows:fieldR},
+]);
 
 const nextK=(edge.to.k+edge.step)%840;
 assert.equal(nextK,690);
@@ -91,7 +106,7 @@ const result={
  schema:'lp2-p3-q-p50-road-red-path-v1',
  classification:'post-discovery exact red-state/p50 path edge with radix discrimination; no unknown plaintext',
  model:'For each printed nonzero red span, take Q-discrete-log coordinate [row,col], read p50[col] as a step, and advance the Q exponent by that value.',
- finiteControls:{printedNonzeroRedSpans:red.length,orderedCandidateEdges:red.length*(red.length-1),base60Hits:base60.length,base59Hits:base59.length,variantFamily:variants},
+ finiteControls:{printedNonzeroRedSpans:red.length,orderedCandidateEdges:red.length*(red.length-1),base60Hits:base60.length,base59Hits:base59.length,variantFamily:variants,mapRegisterMultiples},
  uniqueEdge:{
    from:{page:39,k:edge.from.k,coord:edge.from.coord,endpointWords:edge.from.coord.map(i=>words[i])},
    address:{cell:edge.address,word:words[edge.address],token:edge.token,base60:edge.step,base59:value(edge.token,a59,59)},
@@ -99,7 +114,7 @@ const result={
  },
  continuation:{repeatRoadStepFromP7:{k:nextK,coord:nextCoord,words:nextCoord.map(i=>words[i]),interpretation:'diagonal ROAD/ROAD numerically selects signed index23 / physical p23 as a candidate stop'}},
  independentP23Crosslock:{p40Coord:p40.coord,p40Typed:'[g,A]',step:'K=2',p23RedCoord:p23.coord,p23Page:'p=23'},
- interpretation:'The endpoint-number-as-p50-address rule has exactly one printed-red transition under canonical base60: p39 -> p7 through ROAD23 -> 87 = 3*29. Base59 has none. Repeating the same ROAD step reaches [23,23]=ROAD/ROAD; separately the DH-typed p40 [g,A] state advances by K to the actual p23 red state on physical p=23. This makes p23 a convergent Q-path node, while the diagonal-to-page interpretation remains a hypothesis.',
+ interpretation:'The endpoint-number-as-p50-address rule has exactly one printed-red transition under canonical base60: p39 -> p7 through ROAD23 -> 87 = fieldR3 * DIRECTION29. It advances three base29 rows while preserving ROAD as the column. Of the first29 map-register cells, only HELLO0 and ROAD23 contain base60 values divisible by29, and ROAD is the one whose quotient equals the source-derived p3 field coefficient. Base59 has no printed-red edge. Repeating the same ROAD step reaches [23,23]=ROAD/ROAD; separately the DH-typed p40 [g,A] state advances by K to the actual p23 red state on physical p=23. This makes p23 a convergent Q-path node, while the diagonal-to-page interpretation remains a hypothesis.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
