@@ -268,7 +268,7 @@ This is a compact typed bridge between two independently important artifacts:
 
 The relation is stronger than merely relabeling arbitrary fitted residues: it uses the table's fixed dimensions, fixed row-major address arithmetic, and literal radix-invariant cell values. However, the role pattern was noticed after both artifacts had been heavily studied. It is **not** a calibrated discovery probability and does not yet specify a table opcode for unknown ciphertext.
 
-The useful next question is operational: what first-party clue, if any, says to treat p50 as a p6-sized state table and how should a solver traverse or query the K column? A future test should make a fresh prediction from this geometry before opening another table cell or ciphertext receiver.
+The useful next question is operational: what first-party clue, if any, says to treat p50 as a p6-sized state table and how should a solver traverse or query the K column? The most literal p50 K-column consumer has now been tested on an independently selected unknown receiver: use all 32 column2 bytes as a cyclic subtractive GP29 key, beginning at p40's eight-rune body boundary. [The fixed original-input trial](lp2-p6-p50-kcolumn-p40-direct-receiver.md) produces no native-like language or candidate PATHS in base60/base59 and both column directions; its source-native controls pass. This retires **direct cyclic column-as-additive-key** for p40 but leaves the numeric DH/K-column structure and any source-selected stateful operator open. Future work should identify a typed operation or external KDF that makes a fresh plaintext prediction rather than refitting a column clock.
 
 ## Reproduction
 
