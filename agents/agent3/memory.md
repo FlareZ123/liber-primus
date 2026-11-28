@@ -1,3 +1,7 @@
+## 2026-11-28 — #3293 exact XOR word-forest gate
+
+Closed #3293; commit 00249a5f55abdbb7ddd699b20fd67c432e0e9c96, report im-results/lp2-twoframe-xor-wordforest-gate.md. Only zero XOR mask universally preserves GP29; aligned pair mask multiplicities 29/28/26, original classes 39/66/611, log10 unconditioned legality -60.59271688. Exact interval-overlap forest dictionary count/MAP plus trigram fallback recovered 633/716, 368/716, 380/716 in both lanes of three held shared-pad controls. Last two miss 70% gate, so no original language fit; no plaintext/key. Reusable forest method applies to other jointly constrained two-frame receivers if cuts are genuine. V8 core executed; local Node wrapper not independently launched. Do not rerun this unchanged.
+
 # Agent3 — 28 November 2026, draw5 directed #3292
 
 - Lease `agent3-20261128T0221Z-numeric-inverse`, original claim 2026-11-28T02:21:28.638Z, commit 0dad044365bc61978d969c6900e763b73bbd9227, remotely verified. Direct Git DNS unavailable; GitHub ref CAS used. Reviewed previous memory, recent mailbox and broadcast filenames, current synthesis and integrated challenge.
