@@ -124,6 +124,20 @@ Importantly **the four prominent GP29 DH coordinates** `B19,A8,K2,g5` occur as f
 
 **One original-cipher sanity gate, not a key rescue:** Full outer+inner H extraction supplies **exactly 12 source residues**, matching the original p8 **12 red title runes**. Fix the printed GP29 header and grant only four natural all-source readout orders (all outer then all inner, reverse, or square-by-square outer-first/inner-first), and the two native GP29 additive signs. The exact eight original output sequences (all available from the reproduction program) yield **no coherent native GP two-word header**, while their complete 12/12 round trips pass. A 12-rune failure does not exclude p8 being an encrypted key/header or another unselected transform. It specifically rejects the simplest source-key addition without tuned phase or extra processing.
 
+### Original p55 43-rune H-pair inverse and two-sided historical core-matrix similarity (all bounded negative)
+
+The three authentic p57-stripped cores exactly select the 9/25/9 shapes of **43 p55 strict word-interior runes**, and the historical source cores are *centrosymmetric under 180° half-turn*. This licenses one more inexpensive original-cipher operation different from the previously rejected simple scalar shifts and one-sided Hill inverses. Pair the outer positions `i` and `n²−1−i` of each **unchanged** source-shaped p55 core, leave its single center alone, and apply the same original GP29 `H(x,y)=[x−y,x+y]` to every pair. Grant both original output orders and their exact inverses, without a skipped rune, word reshape, phase/key search or language-dependent fit. These are **all four** fixed source-reflection cases:
+
+| Fixed mirror pair map on 43 original p55 interiors | Native GP29 IoC | Recover native text? |
+| --- | ---: | --- |
+| Original unchanged | 0.03433001 | unconfirmed cipher |
+| `H` (difference at left, sum at opposite position) | **0.02879291** | no coherent plaintext |
+| `reverseH` | 0.02879291 | no coherent plaintext |
+| `H⁻¹` | 0.03543743 | no coherent plaintext |
+| `reverseH⁻¹` | 0.02768549 | no coherent plaintext |
+
+Both inverse pairs roundtrip **all 43/43** original values exactly. A distinct original numerical-source operation is two-sided similarity by each authentic 2014 core: `P=K⁻¹CK` or `P=KCK⁻¹` for the 3×3/5×5/3×3 source-key `K`, treating original p55 interiors as matrix `C` under exactly the same 9/25/9 segmentation. Both invert exactly 43/43, but outputs remain nonlinguistic at respective IoC **0.03322259** and **0.03100775**. Their only source-specific advantage over ordinary Hill is preservation of similarity invariants, not any encoded message. Full original per-rune outputs and exact encryption inverses are printed by the same reproducible program. Therefore **neither the canonical p6 H mirror transform nor a two-sided historical matrix conjugation recovers the missing 43-rune p55 interior plaintext**. This negative does not invalidate the stronger source-only candidate DH key-packet extraction; it constrains which *cipher consumer* could employ it.
+
 ## How much exact alignment survives matched source-order controls?
 
 We exhaust every independent permutation of the **whole printed columns** within each historical square, retaining every original number, each original row's sum, and matrix size; this disrupts original diagonals and 180° symmetry and therefore is a **conditional orientation diagnostic, not a null distribution for authored magic squares**. With the independently fixed register labels `A=8, −g=24`:

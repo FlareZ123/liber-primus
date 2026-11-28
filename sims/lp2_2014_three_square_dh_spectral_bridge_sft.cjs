@@ -146,6 +146,90 @@ assert.equal(alignedState.eSquared,mod(determinants[2]*determinants[2]));
 assert.equal(alignedState.minusATimesK,mod(-aFromSums*alignedState.K));
 assert.equal(alignedState.A,powMod(alignedState.g,aFromSums,borrowedDhPrime));
 assert.equal(alignedState.K,powMod(alignedState.B,aFromSums,borrowedDhPrime));
+// A second intact-original, source-selected inverse: the authentic two-ring
+// mirror H operation on ORIGINAL p55's 43 strict interior runes, reshaped
+// 3x3/5x5/3x3 by p57's perimeter instruction and the 2014 cores. The
+// 2014 original matrices are centrosymmetric under 180-degree reversal.
+// Test both possible output directions and the forward/inverse H convention
+// without fitting a reading order, hidden rune, key shift, phase or language.
+const word55=()=>{
+  const raw=transcription.split(/\n%\n/)[54];
+  const index=new Map(corpus.runes.map((symbol,i)=>[symbol,i]));
+  const words=[],word=[];
+  const flush=()=>{if(word.length){words.push(word.splice(0));}};
+  for(const ch of raw){
+    if(index.has(ch))word.push(index.get(ch));
+    else if(ch==='/'||/\s/u.test(ch))continue;
+    else flush();
+  }
+  flush();return words;
+};
+const words55=word55(),inner55=words55.flatMap(w=>w.slice(1,-1));
+assert.equal(words55.length,17);assert.equal(inner55.length,43);
+assert.deepEqual(inner55.length,cores.reduce((sum,A)=>sum+A.length*A.length,0));
+const insideChunks=[inner55.slice(0,9),inner55.slice(9,34),inner55.slice(34)];
+const mirrorH=(items,mode)=>{
+  const n=items.length,output=Array(n).fill(0);
+  for(let i=0;i<Math.floor(n/2);i++){
+    const x=items[i],y=items[n-1-i];let a,b;
+    if(mode==='H'){a=mod(x-y);b=mod(x+y);}
+    else if(mode==='reverseH'){a=mod(x+y);b=mod(x-y);}
+    else if(mode==='inverseH'){a=mod(15*(x+y));b=mod(15*(y-x));}
+    else if(mode==='inverseReverseH'){a=mod(15*(x+y));b=mod(15*(x-y));}
+    else throw Error('invalid frozen H direction');
+    output[i]=a;output[n-1-i]=b;
+  }
+  output[Math.floor(n/2)]=items[Math.floor(n/2)];
+  return output;
+};
+const ioc29=values=>{
+  const n=values.length,count=Array(29).fill(0);
+  for(const x of values)count[x]++;
+  return count.reduce((sum,n)=>sum+n*(n-1),0)/(values.length*(values.length-1));
+};
+const p55GeometryH={input43Ioc:ioc29(inner55)};
+for(const mode of ['H','reverseH','inverseH','inverseReverseH']){
+  const values=insideChunks.flatMap(chunk=>mirrorH(chunk,mode));
+  p55GeometryH[mode]={ioc:ioc29(values),runes:values};
+}
+assert.ok(Math.abs(p55GeometryH.H.ioc-0.028792912513842746)<1e-14);
+assert.ok(Math.abs(p55GeometryH.reverseH.ioc-0.028792912513842746)<1e-14);
+assert.ok(Math.abs(p55GeometryH.inverseH.ioc-0.035437430786267994)<1e-14);
+assert.ok(Math.abs(p55GeometryH.inverseReverseH.ioc-0.02768549280177187)<1e-14);
+for(const chunk of insideChunks){
+  assert.deepEqual(mirrorH(mirrorH(chunk,'H'),'inverseH'),chunk);
+  assert.deepEqual(mirrorH(mirrorH(chunk,'reverseH'),'inverseReverseH'),chunk);
+}
+// Direct source-matrix 2-sided similarity, distinct from the previously
+// rejected 1-sided Hill K^-1*C and C*K^-1. The actual inner source matrices
+// are invertible GF29, and all source/plaintext directions fully roundtrip.
+const matrixInverse=A=>{
+  const n=A.length,eye=Array.from({length:n},(_,i)=>Array.from({length:n},(_,j)=>+(i===j)));
+  const R=A.map((row,i)=>row.map(mod).concat(eye[i]));
+  for(let j=0;j<n;j++){
+    let pivot=j;while(pivot<n&&!R[pivot][j])pivot++;
+    assert.notEqual(pivot,n,'noninvertible original core');
+    [R[pivot],R[j]]=[R[j],R[pivot]];
+    const scale=inv(R[j][j]);R[j]=R[j].map(v=>mod(v*scale));
+    for(let k=0;k<n;k++)if(k!==j){const t=R[k][j];R[k]=R[k].map((v,i)=>mod(v-t*R[j][i]));}
+  }
+  return R.map(row=>row.slice(n));
+};
+const matrixSimilarGate={};
+for(const side of ['inverseLeft','inverseRight']){
+  const output=insideChunks.map((chunk,i)=>{
+    const n=cores[i].length,C=Array.from({length:n},(_,j)=>chunk.slice(n*j,n*(j+1)));
+    const K=cores[i].map(row=>row.map(mod)),IK=matrixInverse(K);
+    const P=side==='inverseLeft'?mul(mul(IK,C),K):mul(mul(K,C),IK);
+    const forward=side==='inverseLeft'?mul(mul(K,P),IK):mul(mul(IK,P),K);
+    assert.deepEqual(forward,C);
+    return P.flat();
+  }).flat();
+  matrixSimilarGate[side]={ioc:ioc29(output),runes:output};
+}
+assert.ok(Math.abs(matrixSimilarGate.inverseLeft.ioc-0.03322259136212625)<1e-14);
+assert.ok(Math.abs(matrixSimilarGate.inverseRight.ioc-0.031007751937984496)<1e-14);
+
 // A no-tuning actual encrypted-register gate: all 12 outer+inner H values
 // as a full 12-symbol additive key on the original p8 12-rune red header.
 // Four author-natural orderings and both signs; no word resegmentation,
@@ -251,4 +335,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
