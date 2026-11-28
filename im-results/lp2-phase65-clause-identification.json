@@ -1,0 +1,774 @@
+{
+  "externalBlob": "c33c2540d1a8c42426ac193276fd6d02f74a75e6",
+  "localBlob": "ba553b1d43bc491a1bab66ebd02534249263ae90",
+  "external": [
+    {
+      "id": 0,
+      "n": 184,
+      "units": 10,
+      "obs": {
+        "prime": 9,
+        "odd": 9,
+        "sums": [
+          332,
+          757,
+          1009,
+          691,
+          353,
+          769,
+          911,
+          1051,
+          859,
+          677
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 184
+      },
+      "raw": 1,
+      "short": 10,
+      "reverseChangesRunes": 168
+    },
+    {
+      "id": 1,
+      "n": 515,
+      "units": 14,
+      "obs": {
+        "prime": 7,
+        "odd": 10,
+        "sums": [
+          317,
+          2113,
+          2647,
+          4632,
+          1791,
+          2324,
+          1691,
+          2024,
+          270,
+          1009,
+          991,
+          991,
+          941,
+          1271
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 7,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 7,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 2,
+        "max": 7,
+        "total": 515
+      },
+      "raw": 3,
+      "short": 9,
+      "reverseChangesRunes": 490
+    },
+    {
+      "id": 2,
+      "n": 157,
+      "units": 6,
+      "obs": {
+        "prime": 4,
+        "odd": 4,
+        "sums": [
+          468,
+          853,
+          1039,
+          1237,
+          157,
+          3274
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 1,
+        "ties": 3,
+        "max": 5,
+        "total": 157
+      },
+      "raw": 4,
+      "short": 5,
+      "reverseChangesRunes": 140
+    },
+    {
+      "id": 3,
+      "n": 778,
+      "units": 22,
+      "obs": {
+        "prime": 3,
+        "odd": 11,
+        "sums": [
+          243,
+          1861,
+          955,
+          1922,
+          1460,
+          2032,
+          1853,
+          1950,
+          1895,
+          1173,
+          1000,
+          1656,
+          1340,
+          2193,
+          3520,
+          1555,
+          1173,
+          1174,
+          2784,
+          2803,
+          520,
+          1229
+        ]
+      },
+      "shift": {
+        "higher": 10,
+        "ties": 9,
+        "max": 6,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 9,
+        "ties": 7,
+        "max": 6,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 268,
+        "ties": 215,
+        "max": 9,
+        "total": 778
+      },
+      "raw": 1,
+      "short": 13,
+      "reverseChangesRunes": 720
+    },
+    {
+      "id": 4,
+      "n": 755,
+      "units": 23,
+      "obs": {
+        "prime": 9,
+        "odd": 13,
+        "sums": [
+          643,
+          2414,
+          414,
+          2566,
+          1106,
+          3339,
+          894,
+          547,
+          1763,
+          1976,
+          719,
+          973,
+          463,
+          3315,
+          1556,
+          4136,
+          468,
+          773,
+          1399,
+          1583,
+          520,
+          601,
+          643
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 4,
+        "max": 9,
+        "total": 755
+      },
+      "raw": 9,
+      "short": 17,
+      "reverseChangesRunes": 690
+    },
+    {
+      "id": 5,
+      "n": 319,
+      "units": 7,
+      "obs": {
+        "prime": 2,
+        "odd": 5,
+        "sums": [
+          243,
+          1637,
+          1219,
+          3894,
+          3389,
+          3535,
+          1414
+        ]
+      },
+      "shift": {
+        "higher": 2,
+        "ties": 8,
+        "max": 3,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 5,
+        "ties": 10,
+        "max": 4,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 49,
+        "ties": 70,
+        "max": 4,
+        "total": 319
+      },
+      "raw": 1,
+      "short": 4,
+      "reverseChangesRunes": 294
+    },
+    {
+      "id": 6,
+      "n": 89,
+      "units": 6,
+      "obs": {
+        "prime": 5,
+        "odd": 5,
+        "sums": [
+          520,
+          727,
+          971,
+          383,
+          571,
+          157
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 5,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 5,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 1,
+        "max": 5,
+        "total": 89
+      },
+      "raw": 5,
+      "short": 6,
+      "reverseChangesRunes": 84
+    },
+    {
+      "id": 16,
+      "n": 85,
+      "units": 3,
+      "obs": {
+        "prime": 1,
+        "odd": 2,
+        "sums": [
+          311,
+          1924,
+          1685
+        ]
+      },
+      "shift": {
+        "higher": 1,
+        "ties": 10,
+        "max": 2,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 1,
+        "ties": 10,
+        "max": 2,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 5,
+        "ties": 40,
+        "max": 2,
+        "total": 85
+      },
+      "raw": 1,
+      "short": 3,
+      "reverseChangesRunes": 80
+    },
+    {
+      "id": 17,
+      "n": 95,
+      "units": 4,
+      "obs": {
+        "prime": 4,
+        "odd": 4,
+        "sums": [
+          449,
+          1259,
+          1031,
+          1229
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 95
+      },
+      "raw": 4,
+      "short": 4,
+      "reverseChangesRunes": 86
+    }
+  ],
+  "local": [
+    {
+      "id": 0,
+      "n": 184,
+      "units": 10,
+      "obs": {
+        "prime": 9,
+        "odd": 9,
+        "sums": [
+          332,
+          757,
+          1009,
+          691,
+          353,
+          769,
+          911,
+          1051,
+          859,
+          677
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 184
+      },
+      "raw": 1,
+      "short": 10,
+      "reverseChangesRunes": 168
+    },
+    {
+      "id": 1,
+      "n": 515,
+      "units": 14,
+      "obs": {
+        "prime": 7,
+        "odd": 10,
+        "sums": [
+          317,
+          2113,
+          2647,
+          4632,
+          1791,
+          2324,
+          1691,
+          2024,
+          270,
+          1009,
+          991,
+          991,
+          941,
+          1271
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 7,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 7,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 2,
+        "max": 7,
+        "total": 515
+      },
+      "raw": 3,
+      "short": 9,
+      "reverseChangesRunes": 490
+    },
+    {
+      "id": 2,
+      "n": 157,
+      "units": 6,
+      "obs": {
+        "prime": 4,
+        "odd": 4,
+        "sums": [
+          468,
+          853,
+          1039,
+          1237,
+          157,
+          3274
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 1,
+        "ties": 3,
+        "max": 5,
+        "total": 157
+      },
+      "raw": 4,
+      "short": 5,
+      "reverseChangesRunes": 140
+    },
+    {
+      "id": 3,
+      "n": 778,
+      "units": 22,
+      "obs": {
+        "prime": 3,
+        "odd": 11,
+        "sums": [
+          243,
+          1861,
+          955,
+          1922,
+          1460,
+          2032,
+          1853,
+          1950,
+          1895,
+          1173,
+          1000,
+          1656,
+          1340,
+          2193,
+          3520,
+          1555,
+          1173,
+          1174,
+          2784,
+          2803,
+          520,
+          1229
+        ]
+      },
+      "shift": {
+        "higher": 10,
+        "ties": 9,
+        "max": 6,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 9,
+        "ties": 7,
+        "max": 6,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 268,
+        "ties": 215,
+        "max": 9,
+        "total": 778
+      },
+      "raw": 1,
+      "short": 13,
+      "reverseChangesRunes": 720
+    },
+    {
+      "id": 4,
+      "n": 755,
+      "units": 23,
+      "obs": {
+        "prime": 9,
+        "odd": 13,
+        "sums": [
+          643,
+          2414,
+          414,
+          2566,
+          1106,
+          3339,
+          894,
+          547,
+          1763,
+          1976,
+          719,
+          973,
+          463,
+          3315,
+          1556,
+          4136,
+          468,
+          773,
+          1399,
+          1583,
+          520,
+          601,
+          643
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 9,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 4,
+        "max": 9,
+        "total": 755
+      },
+      "raw": 9,
+      "short": 17,
+      "reverseChangesRunes": 690
+    },
+    {
+      "id": 5,
+      "n": 319,
+      "units": 7,
+      "obs": {
+        "prime": 2,
+        "odd": 5,
+        "sums": [
+          243,
+          1637,
+          1219,
+          3894,
+          3389,
+          3535,
+          1414
+        ]
+      },
+      "shift": {
+        "higher": 2,
+        "ties": 8,
+        "max": 3,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 5,
+        "ties": 10,
+        "max": 4,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 49,
+        "ties": 70,
+        "max": 4,
+        "total": 319
+      },
+      "raw": 1,
+      "short": 4,
+      "reverseChangesRunes": 294
+    },
+    {
+      "id": 6,
+      "n": 89,
+      "units": 6,
+      "obs": {
+        "prime": 5,
+        "odd": 5,
+        "sums": [
+          520,
+          727,
+          971,
+          383,
+          571,
+          157
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 5,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 5,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 1,
+        "max": 5,
+        "total": 89
+      },
+      "raw": 5,
+      "short": 6,
+      "reverseChangesRunes": 84
+    },
+    {
+      "id": 16,
+      "n": 85,
+      "units": 3,
+      "obs": {
+        "prime": 1,
+        "odd": 2,
+        "sums": [
+          311,
+          1924,
+          1685
+        ]
+      },
+      "shift": {
+        "higher": 1,
+        "ties": 10,
+        "max": 2,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 1,
+        "ties": 10,
+        "max": 2,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 5,
+        "ties": 40,
+        "max": 2,
+        "total": 85
+      },
+      "raw": 1,
+      "short": 3,
+      "reverseChangesRunes": 80
+    },
+    {
+      "id": 17,
+      "n": 95,
+      "units": 4,
+      "obs": {
+        "prime": 4,
+        "odd": 4,
+        "sums": [
+          449,
+          1259,
+          1031,
+          1229
+        ]
+      },
+      "shift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 29
+      },
+      "fshift": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 28
+      },
+      "rotation": {
+        "higher": 0,
+        "ties": 1,
+        "max": 4,
+        "total": 95
+      },
+      "raw": 4,
+      "short": 4,
+      "reverseChangesRunes": 86
+    }
+  ]
+}

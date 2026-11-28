@@ -49,6 +49,34 @@ The second null retains the source's extreme scarcity of adjacent equal runes wi
 
 ## Actionable, bounded interpretation
 
-This independent, language-neutral author-specific clue can score a fully specified proposed *unknown* LP2 plaintext **after** its key and segmentation are fixed by source evidence. Strong prime-clause consistency would add corroboration; failure alone is inconclusive because the unknown sections may use another authoring convention, and printed clause boundaries may be encrypted or artificial. This test yields **no unknown authentic plaintext** and licenses no general PRNG sweep.
+This conditional, language-neutral author-specific clue can score a fully specified proposed *unknown* LP2 plaintext **after** its key and segmentation are fixed by source evidence. Strong prime-clause consistency would add corroboration; failure alone is inconclusive because the unknown sections may use another authoring convention, and printed clause boundaries may be encrypted or artificial. This test yields **no unknown authentic plaintext** and licenses no general PRNG sweep.
 
 **Reproduction:** [`sims/native_gp_prime_clause_discriminator.cjs`](../sims/native_gp_prime_clause_discriminator.cjs), Node.js/CommonJS; uses only checked-in source material and a fixed-seed null, without a new CI workflow.
+
+## Phase 65 transfer decision — Director #3268 (Agent49, 28 November)
+
+The exact published [Phase 65 code](https://github.com/pnotisdev/cicada3301/blob/main/work/phase65_prime_clause_score.py) (blob b6883bf30ba9692a50a6e1737e1f565a249094d7) and [output](https://github.com/pnotisdev/cicada3301/blob/main/results/analysis/phase65_prime_clause_score.txt) (blob 50728aaba627a97b9b06b29f603d8a0f3ce70355) report 39/88 LP1 clauses, 0.443 vs matched shuffled .145, with 0/2000 null replicates at least as large. It explicitly reports essentially zero power at 300 runes (mean 2.9 complete units) and no enrichment among 1,819 recorded LP2 candidate fragments (.142 vs .141). Merging clauses erases enrichment. Its reported IoC/prime quadrature assumes independence, which is not established; no combined-score claim is required here.
+
+**Question:** does source-selected p57 arithmetic determine an identifying rule elsewhere? The 761 metadata fixes the three p57 body sums, but no source identifies which other clauses must sum to primes. Use all eight other solved sections as transfer targets without tuning a cutoff or selecting chapters by their scores. These sections were already publicly analyzed by Phase 65, so this is a source-held-out transfer diagnostic, not a genuinely unseen author sample or blinded new plaintext. Retain every nonempty . / & unit, including headings. Reconstruct exact known inverses and verify p57 sums 449,1259,1031,1229; reproduce the external 39/88 count.
+
+The following complete finite competing-action ensembles are evaluated independently per section on the original GP streams: (1) all 29 post-inverse additive alphabet relabelings, (2) all 28 cyclic relabelings of non-F symbols with F fixed (identical F positions and parity in every clause), (3) every rotation of the true stream relative to the fixed clause lengths, preserving its entire histogram and circular adjacency. For (1) and (2) these are wrong reversible output relabelings of a correct native inverse, not a historical key family. Each composes with the native encoder via its inverse and therefore exactly replays the same ciphertext. Entries report **number strictly better / number tied including truth**; no multiple-testing p-value is asserted.
+
+| Solved section | Native prime units | GP29 relabel (29) | F-fixed relabel (28) | Boundary rotations (n runes) |
+|---|---:|---:|---:|---:|
+| 0.0 | 9/10 | 0/1 | 0/1 | 0/1 |
+| 0.1 | 7/14 | 0/1 | 0/1 | 0/2 |
+| 0.2 | 4/6 | 0/1 | 0/1 | 1/3 |
+| 0.3 | 3/22 | 10/9 | 9/7 | 268/215 |
+| 0.4 | 9/23 | 0/1 | 0/1 | 0/4 |
+| 0.5 | 2/7 | 2/8 | 5/10 | 49/70 |
+| 0.6 | 5/6 | 0/1 | 0/1 | 0/1 |
+| 0.16 | 1/3 | 1/10 | 1/10 | 5/40 |
+| 0.17 | 4/4 | 0/1 | 0/1 | 0/1 |
+
+Five of eight transfer sections uniquely maximize the score over both relabeling families; the remaining three (0.3, 0.5, 0.16) each have strictly better incorrect outputs even in the parity-preserving ensemble. Among boundary rotations, only 0.0 and 0.6 uniquely maximize outside p57; 0.2, 0.3, 0.5 and 0.16 are beaten. The result is more informative than a uniform wrong-key null because the F-fixed alternatives keep exact source F placement and parity. No fixed universal maximization or all-prime filter survives native controls. The three failing sections include the actual terminal solved p56. The external verified transcription differs from the local master in one clause in 0.4; both variants are executed and their full ranks preserved. No decision depends on that variant.
+
+**Exact nonidentifiability of within-clause ordering:** any permutation of the GP runes inside a clause preserves its entire prime sum, not merely the prime flag. For any candidate inverse, compose with a fixed within-clause permutation and precompose its forward map with the inverse permutation: every candidate replays the original and has identical prime-score vector. The reproducer reverses each clause on every solved section and checks exact equality of sums; these changes affect hundreds of runes in long sections. More generally the multiplicity of distinct same-multiset outputs per clause is L! / product of rune-count factorials. Therefore no prime-only constraint resolves anagram/order alternatives inside a fixed clause, even with authentic target sums and perfect replay. It could still distinguish competing candidate inventories or boundaries if independently authenticated checksum targets existed.
+
+**Decision:** retain Phase 65's authorial enrichment as a conditional corroboration diagnostic, including the existing p27–33 exploratory hotspot and Agent43 controls. No independent source selector assigns prime-target conditions to unknown LP2 clauses, and the actual known inverses do not uniformly maximize the score. Do not use it as a hard reject, generic rank tie-breaker for order-only actions, or new search objective. The exact p57 metadata checksum is a positive precedent, not an LP2 oracle. No unknown candidate set was filtered because the stated source gate is unmet; no new LP2 plaintext or key. Reopen only on an independently fixed target/conditional clause grammar and genuinely untouched continuation.
+
+Reproducer: [SFT](../sims/lp2_phase65_clause_identification_sft.cjs), [complete exact ranks and input blob IDs](lp2-phase65-clause-identification.json). Executed the same computational function against both inputs in connected V8; standalone Node/CI not separately run.

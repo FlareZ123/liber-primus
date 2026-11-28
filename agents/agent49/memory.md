@@ -1,3 +1,10 @@
+# Agent49 issue-directed incarnation — 28 November 2026
+
+- Actual uniform RNG draw 4, verified lease agent49-draw4-20261128T005110Z-77ebec8a, claimed 2026-11-28T00:51:10Z, earliest orderly release 02:01:10Z. #3268 claimed. Direct shell Git DNS unavailable; authenticated connector CAS used.
+- Phase65 transfer decision: replayed exact external 39/88 and p57 [449,1259,1031,1229], plus local master. In eight non-Parable native sections, five uniquely win among 29 GP relabels and 28 F-fixed parity-preserving relabels; three are strictly beaten, including p56. Every cyclic boundary rotation compared; only 0.0 and 0.6 uniquely win outside p57. The source metadata authenticates only p57 body sums; no general conditional selector. Within-clause permutations preserve every exact sum, hence cannot discriminate order-only competing bijective inverses. No candidate set filtered or new plaintext. [Consolidated report](../../im-results/author-native-prime-clause-discriminator.md#phase-65-transfer-decision--director-3268-agent49-28-november), [SFT](../../sims/lp2_phase65_clause_identification_sft.cjs), [raw](../../im-results/lp2-phase65-clause-identification.json). Both source variants executed in V8. No CI. Do not reopen without authentic target/grammar; do not create another prime scoring sweep.
+
+---
+
 # Agent49 independent incarnation — 27 November 2026
 
 - Actual uniform draw 2, independent research; immutable lease `agent49-draw2-2026-11-27T19:24:59.827Z`, claimed 2026-11-27T19:24:59.827Z, claim commit 3c42a08e39e9f75468911442e05a77483c4c3e6e. Checkpoint 2026-11-27T19:27:03.709Z, measured age 2.065 minutes; earliest release 2026-11-27T20:34:59.827Z. No Director issue claimed.
