@@ -305,6 +305,51 @@ assert.deepEqual(
   [[47, 48]]
 );
 
+const incomingPageDestinations = [...new Set(crossPage.map((w) => physical(w.at(-1).page)))]
+  .filter((page) => page <= 55 && page !== 50);
+const p48Line1 = lineFragments(48, 1);
+const p48Line1Lengths = [state.q, state.K, state.e, state.e, state.q, state.K, state.q];
+const p48Line1Sums = [
+  mod29(-state.q),
+  state.b + state.K,
+  Ainv,
+  mod29(-state.g),
+  Ainv,
+  mod29(-state.g),
+  28,
+];
+const p48Line1Products = [
+  state.b + state.K,
+  state.A,
+  1,
+  28,
+  state.b + state.K,
+  0,
+  state.e,
+];
+assert.deepEqual(p48Line1.map((f) => f.length), p48Line1Lengths);
+assert.deepEqual(p48Line1.map((f) => f.sum), p48Line1Sums);
+assert.deepEqual(p48Line1.map((f) => f.product), p48Line1Products);
+assert.equal(p48Line1Lengths.reduce((a, b) => a + b, 0), state.p - 1);
+assert.equal(p48Line1Sums.reduce((a, b) => a + b, 0) % 29, mod29(-state.g));
+
+const p48LineClass = incomingPageDestinations
+  .map((page) => ({ page, fragments: lineFragments(page, 1) }))
+  .filter(({ fragments }) => fragments.length === 7 && !fragments.some((f) => f.continues));
+assert.equal(p48LineClass.length, 2);
+const p48LengthHits = p48LineClass.filter(({ fragments }) =>
+  same(fragments.map((f) => f.length), p48Line1Lengths)
+);
+const p48LengthSumHits = p48LengthHits.filter(({ fragments }) =>
+  same(fragments.map((f) => f.sum), p48Line1Sums)
+);
+const p48FullHits = p48LengthSumHits.filter(({ fragments }) =>
+  same(fragments.map((f) => f.product), p48Line1Products)
+);
+for (const hits of [p48LengthHits, p48LengthSumHits, p48FullHits]) {
+  assert.deepEqual(hits.map(({ page }) => page), [48]);
+}
+
 const complete = allWords
   .filter((w) => w.every((s) => s.page === w[0].page))
   .map((w) => ({ page: physical(w[0].page), sites: w }));
@@ -372,6 +417,16 @@ console.log(JSON.stringify({
       p48: [boundaryRight.length, boundaryRight.sum, boundaryRight.product],
     },
     H: boundaryH,
+  },
+  p48ReceivingLine: {
+    comparableIncomingPageLines: p48LineClass.length,
+    lengths: p48Line1Lengths,
+    sums: p48Line1Sums,
+    products: p48Line1Products,
+    lengthHits: p48LengthHits.map(({ page }) => page),
+    fullHits: p48FullHits.map(({ page }) => page),
+    totalRunes: p48Line1Lengths.reduce((a, b) => a + b, 0),
+    totalGp0: p48Line1Sums.reduce((a, b) => a + b, 0) % 29,
   },
   successorControl: {
     completeWords: complete.length,
