@@ -17,6 +17,7 @@ import numpy as np
 from PIL import Image
 from scipy.spatial import cKDTree
 
+R4 = [(0,0),(-15.5,17),(15.5,17),(0,34)]
 R13 = [(15,0),(0,12),(30,12),(15,19.5),(0,29.5),(30,29.5),
        (15,38),(0,46.5),(30,46.5),(15,57.5),(0,63.5),(30,63.5),(15,76)]
 R10 = [(15,0),(0,5.5),(30,5.5),(15,17.5),(0,26),(30,26),
@@ -26,7 +27,8 @@ R23 = [(15,0),(45,0),(30,0),(0,12),(60,12),(15,19.1),
        (45,38),(0,46.5),(60,46.5),(45,57.1),(15,57.1),
        (30,57.1),(0,63.1),(60,63.1),(15,76),(45,76),(30,76)]
 # Source-typed glyph shapes (not learned from other ciphertext).
-REF = {13: [(x-15,y) for x,y in R13],
+REF = {4: R4,
+       13: [(x-15,y) for x,y in R13],
        10: [(x-15,y) for x,y in R10],
        23: [(x-15,y) for x,y in R23]}
 
@@ -85,6 +87,7 @@ def run(images,ink):
         for _,typ,color in p.get('large_punctuation',[]):
             expected[p['page']][(typ,color)]+=1
     found=[]
+    small=[]
     # Blindly enumerate every source scan, both visible ink classes and all
     # three learned glyph geometries. Compare to the separately derived
     # transcription only AFTER detection; a missing/extra ornament fails.
@@ -92,21 +95,50 @@ def run(images,ink):
         img=np.asarray(Image.open(images/f'{page+17:02d}.jpg').convert('RGB'))
         for color in ('red','black'):
             ids,stats,centers=components(img,color)
-            for typ in (10,13,23):
+            for typ in (4,10,13,23):
                 hits=find_shapes(ids,stats,centers,img,typ,page,color)
-                assert len(hits)==expected[page][(typ,color)], (
-                    page,typ,color,len(hits),expected[page][(typ,color)])
-                found.extend(hits)
+                if typ==4:
+                    small.extend(hits)
+                else:
+                    assert len(hits)==expected[page][(typ,color)], (
+                        page,typ,color,len(hits),expected[page][(typ,color)])
+                    found.extend(hits)
     counts=Counter((h['typ'],h['ink']) for h in found)
     assert counts=={(13,'red'):30,(10,'red'):4,(13,'black'):1,(23,'red'):1}
     unsolved=[h for h in found if h['page']<56]
     assert len(unsolved)==31 and sum(h['typ'] for h in unsolved)==394
+    # The original book's four-dot sentence punctuation is not the
+    # 13-dot/10-dot chapter ornament. Compare source-derived event
+    # inventory only AFTER blind physical recovery of all small glyphs.
+    punct=json.loads((ink.parent/'lp2-punctuation-identity.json').read_text(encoding='utf8'))
+    physical_claim=Counter(x['page'] for x in punct['events']
+      if x['symbol']=='⁘' and x['index'] not in {57,58,59,60})
+    actual=Counter(h['page'] for h in small)
+    corrections={p:actual[p]-physical_claim[p]
+      for p in range(58) if actual[p]!=physical_claim[p]}
+    # p37 spurious derivative period; p38 originally a comma-form;
+    # solved p57 has two real periods but is absent from unsolved register.
+    assert corrections=={37:-1,38:-1,57:2}, corrections
+    assert len(small)==141 and sum(h['page']<56 for h in small)==139
+    assert Counter(h['ink'] for h in small)=={'black':140,'red':1}
+    assert all(len(h['area'])==4 for h in small)
     reds=[r for h in found if h['ink']=='red' for r in h['centerR']]
     return {
       'source':'Original LP2 scanned JPEG 17.jpg..74.jpg; source image count 58',
       'source_annotations':'resources/liber-primus/lp2-ink-annotations.json',
       'glyphs':{f'{typ}-{color}':v for (typ,color),v in sorted(counts.items())},
       'bookOriginalPhysicalDots':sum(h['typ'] for h in found),
+      'fourDotPunctuation':{
+        'originalDetectedAll58':len(small),
+        'unknownPages0to55':sum(h['page']<56 for h in small),
+        'fullVisibleDotSitesUnknownPages':4*sum(h['page']<56 for h in small),
+        'sourcePeriodEventsAfterP15EditorialSubtraction':sum(physical_claim.values()),
+        'sourceVersusOriginalImageCorrections':corrections,
+        'redMarks':sum(h['ink']=='red' for h in small),
+        'blackMarks':sum(h['ink']=='black' for h in small),
+        'maxFittedDotErrorPx':round(max(h['maxError'] for h in small),4),
+        'allPhysicallyCompleteFourDotDiamonds':True
+      },
       'unsolved0to55Marks':len(unsolved),
       'unsolved0to55PhysicalDots':sum(h['typ'] for h in unsolved),
       'glyphsFailingTemplate':0,
@@ -114,6 +146,9 @@ def run(images,ink):
       'centerRedChannel':{'samples':len(reds),'mean':round(float(np.mean(reds)),3),
         'sd':round(float(np.std(reds)),3),'min':min(reds),'max':max(reds)},
       'negativeScope':'No dot missing/reordered/relocated beyond observed subpixel geometry; no claim about subtle per-pixel intensities, JPEG DCT or keys.',
+      'fourDotPositions':[{'page':h['page'],'ink':h['ink'],
+        'x':h['offset'][0],'y':h['offset'][1],
+        'maxErrorPx':h['maxError']} for h in sorted(small,key=lambda h:(h['page'],h['offset'][1],h['offset'][0]))],
       'positions':[{'page':h['page'],'type':h['typ'],'ink':h['ink'],
         'x':h['offset'][0],'y':h['offset'][1],
         'maxErrorPx':h['maxError']} for h in sorted(found,key=lambda h:(h['page'],h['offset'][1],h['offset'][0]))]
