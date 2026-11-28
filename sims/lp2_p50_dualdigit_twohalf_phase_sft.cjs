@@ -58,6 +58,21 @@ function phaseRows(half,bytes){
   rows.sort((a,b)=>b.score-a.score||a.phase-b.phase);
   return {rows,meanH,meanD,sdH,sdD};
 }
+// A smaller, more human-readable primary check uses no variance fitting:
+// count one point per high-zero repeat hit and one point per correctly
+// predicted increase/decrease. No phase-dependent weight is learned.
+const rawSummaries=halves.map(half=>{
+  const arr=phaseRows(half,tokens).rows.map(x=>({
+    phase:x.phase,high:x.high,correct:x.correct,tally:x.high+x.correct
+  })).sort((a,b)=>b.tally-a.tally||a.phase-b.phase);
+  const phase0=arr.find(x=>x.phase===0);
+  return {name:half.name,phase0,rank:arr.indexOf(phase0)+1,
+    tiesAtMaximum:arr.filter(x=>x.tally===arr[0].tally).length,
+    runnerUp:arr[1]};
+});
+console.log('Equal-weight exact source-field tallies:',JSON.stringify(rawSummaries,null,2));
+if(rawSummaries.some(x=>x.rank!==1||x.tiesAtMaximum!==1))
+  throw Error('printed phase0 is not unique top in both integer-tally halves');
 const summaries=halves.map(half=>{
   const obj=phaseRows(half,tokens);
   const original=obj.rows.find(x=>x.phase===0);
@@ -118,6 +133,7 @@ function rand32(){
 const TRIALS=10000;
 let bothSourceTop=0,anySharedTop=0,jointOriginalScoreExceed=0;
 let sourceHalf1ScoreExceed=0,sourceHalf2ScoreExceed=0;
+let bothRawSourceTalliesExceed=0;
 const src1=summaries[0].source.score,src2=summaries[1].source.score;
 for(let iteration=0;iteration<TRIALS;iteration++){
   const shuffled=tokens.slice();
@@ -130,6 +146,9 @@ for(let iteration=0;iteration<TRIALS;iteration++){
   if(z1>=src1)sourceHalf1ScoreExceed++;
   if(z2>=src2)sourceHalf2ScoreExceed++;
   if(z1>=src1&&z2>=src2)jointOriginalScoreExceed++;
+  const p1=h1.rows.find(x=>x.phase===0),p2=h2.rows.find(x=>x.phase===0);
+  if(p1.high+p1.correct>=rawSummaries[0].phase0.tally &&
+     p2.high+p2.correct>=rawSummaries[1].phase0.tally)bothRawSourceTalliesExceed++;
 }
 console.log('Whole-two-character-token shuffle null',JSON.stringify({
   seed:330126,trials:TRIALS,
@@ -138,6 +157,7 @@ console.log('Whole-two-character-token shuffle null',JSON.stringify({
   sourcePhaseScoreAtLeastOriginalHalf1:sourceHalf1ScoreExceed,
   sourcePhaseScoreAtLeastOriginalHalf2:sourceHalf2ScoreExceed,
   jointSourcePhaseScoresAtLeastOriginal:jointOriginalScoreExceed,
+  jointIntegerTallyAtLeastOriginal:bothRawSourceTalliesExceed,
   addOneJointExceed:(jointOriginalScoreExceed+1)/(TRIALS+1)
 },null,2).replace(/,\s*"allP":\s*\{\}/,''));
 console.log('CAUTION: all test features and table came from the same originally scanned book; retrospective split is not independent feature discovery. No unknown LP2 plaintext/key/decoder.');
