@@ -87,6 +87,58 @@ function setDiff(a,b){
   };
 }
 
+/** @param {number[]} a @param {number[]} b @param {string[]} indexToRune */
+function minimalEdits(a,b,indexToRune){
+  const n=a.length,m=b.length;
+  const dp=Array.from({length:n+1},()=>new Uint16Array(m+1));
+  for(let i=0;i<=n;i++) dp[i][0]=i;
+  for(let j=0;j<=m;j++) dp[0][j]=j;
+  for(let i=1;i<=n;i++){
+    for(let j=1;j<=m;j++){
+      const sub=dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1);
+      const del=dp[i-1][j]+1;
+      const ins=dp[i][j-1]+1;
+      dp[i][j]=Math.min(sub,del,ins);
+    }
+  }
+
+  const edits=[];
+  let i=n,j=m;
+  while(i>0||j>0){
+    if(i>0&&j>0&&a[i-1]===b[j-1]&&dp[i][j]===dp[i-1][j-1]){
+      i--;j--;continue;
+    }
+    if(i>0&&j>0&&dp[i][j]===dp[i-1][j-1]+1){
+      edits.push({
+        type:"substitute",
+        old_offset:i-1,current_offset:j-1,
+        old_index:a[i-1],current_index:b[j-1],
+        old_rune:indexToRune[a[i-1]],current_rune:indexToRune[b[j-1]]
+      });
+      i--;j--;continue;
+    }
+    if(i>0&&dp[i][j]===dp[i-1][j]+1){
+      edits.push({
+        type:"delete_historical",
+        old_offset:i-1,current_offset:j,
+        old_index:a[i-1],old_rune:indexToRune[a[i-1]]
+      });
+      i--;continue;
+    }
+    if(j>0&&dp[i][j]===dp[i][j-1]+1){
+      edits.push({
+        type:"insert_current",
+        old_offset:i,current_offset:j-1,
+        current_index:b[j-1],current_rune:indexToRune[b[j-1]]
+      });
+      j--;continue;
+    }
+    throw new Error("alignment backtrace failure");
+  }
+  edits.reverse();
+  return {distance:dp[n][m],edits};
+}
+
 /** @param {string} clone */
 function loadRuneMap(clone){
   const raw=JSON.parse(fs.readFileSync(path.join(clone,"liber_primus","rune.json"),"utf8"));
@@ -131,8 +183,9 @@ function main(){
       currentTokens(segments[segmentIndex],runeToIndex);
 
     const runeDiff=arrayDiff(old.runes,cur.runes);
+    const alignment=minimalEdits(old.runes,cur.runes,indexToRune);
     const boundaryDiff=setDiff(old.explicitWordBoundaries,cur.explicitWordBoundaries);
-    const exactRunes=runeDiff.mismatch_count===0&&runeDiff.length_delta===0;
+    const exactRunes=alignment.distance===0;
     const exactWordBoundaries=boundaryDiff.old_only.length===0&&boundaryDiff.current_only.length===0;
 
     oldTotal+=old.runes.length;
@@ -148,6 +201,8 @@ function main(){
       current_runes:cur.runes.length,
       exact_runes:exactRunes,
       rune_diff:runeDiff,
+      minimal_rune_edit_distance:alignment.distance,
+      minimal_rune_edits:alignment.edits,
       old_word_boundaries:old.explicitWordBoundaries.length,
       current_word_boundaries:cur.explicitWordBoundaries.length,
       exact_word_boundaries:exactWordBoundaries,
@@ -174,6 +229,10 @@ function main(){
     },
     exact_rune_pages:pages.filter(p=>p.exact_runes).map(p=>p.page),
     differing_rune_pages:pages.filter(p=>!p.exact_runes).map(p=>p.page),
+    total_minimal_rune_edits:pages.reduce((sum,p)=>sum+p.minimal_rune_edit_distance,0),
+    rune_edit_type_counts:pages.flatMap(p=>p.minimal_rune_edits).reduce((acc,e)=>{
+      acc[e.type]=(acc[e.type]||0)+1; return acc;
+    },{}),
     exact_word_boundary_pages:pages.filter(p=>p.exact_word_boundaries).map(p=>p.page),
     differing_word_boundary_pages:pages.filter(p=>!p.exact_word_boundaries).map(p=>p.page),
     pages
