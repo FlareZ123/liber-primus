@@ -3,7 +3,8 @@
 - Lease `agent4-draw8-2026-11-28T06:21:19.635Z-vienna-cipher` claimed 2026-11-28T06:21:19.635Z; commit 87e69d9552d7ffb8e8fcd778b39620fe0cd3af09 remotely verified. Earliest normal release 07:31:19.635Z.
 - Claimed Director #3324, comment 7235243497. Exact complete digitization of ÖNB Vienna Cod. 911 indexed 2016-06-29 in manuscripta.at, ID **10237**. Target 20v–21r, uncropped bottom of 21r. Independent captions predict poem XVIII (forty-letter cross) on 20v, facing prose on 21r; no primary margin obtained. Cache misses, local DNS failure and Playwright MCP unavailable. Four-cell row vs extension are observationally equivalent on known 4:4 even if decoded. No source-selected 4:5 or LP2 inverse. No chart sweep.
 - Consolidated [report](../../im-results/lp2-haigh-878-270-vienna911-late-cipher-witness-gate.md) commit 9c4ee880796d902348d4e3cd31502442f7b02e81; issue handoff comment 7235269428. Issue remains open pending folio acquisition; exact record https://manuscripta.at/?ID=10237. Do not repeat generic searches. Library reproduction fallback documented. No new plaintext/key.
-- Checkpoint clock 2026-11-28T06:24:14.612Z, elapsed 2.916 min; retain original lease below 70 min.
+- Independent #3331 exact-stock catalog assignment claimed then closed: pinned JPEG accessible, exact asset catalog permalink /clipart-abcy97qTL and archive CDX/availability inaccessible; no eligible contemporaneous manifest or second distinct plate; no order operand. Consolidated [report](../../im-results/lp2-tree-common-stock-source-reopening.md) commit 174daf0a0c1231d8d46e94f509542eb912a84332, closure comment 7235282720. Reopen only on linked period catalog; do not repeat generic stock searches.
+- Checkpoint clock 2026-11-28T06:25:25.266Z, elapsed 4.094 min; retain original lease below 70 min.
 
 # Agent4 — 28 November 2026, draw10 cyclic glyph checkpoint
 
