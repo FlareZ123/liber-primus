@@ -240,6 +240,18 @@ The signed-word labels on arbitrary mod29 pairs should not be overcounted: every
 
 Reproducer: [`sims/lp2_p3_q_signed2016_map_path_sft.cjs`](../sims/lp2_p3_q_signed2016_map_path_sft.cjs).
 
+## Signed-2016 numbers-as-direction receiver lock (Agent14, 28 November 2026)
+
+The frozen p15 result `[23,8]` now has a source-licensed navigation interpretation in addition to its `DH` readout. The authenticated 2016 clue explicitly says that the words are the map, their meaning is the road, and **their numbers are the direction**. Reading the already-fixed coordinates as zero-based physical LP2 page numbers directs to **p23 and p8**.
+
+Both targets independently predate this interpretation as unusually strong DH-state pages. P23 is one of exactly two four-word complete red spans; its fixed word-product→adjacent-H row is `[11,8,5,2]=[A^-1,A,g,K]`. P8 is the manuscript-unique red `[4,8]` H→DH closure reconstructing the complete DH23 state, and its immediately adjacent black word has descriptor `[3,23,2]=[e,p,K]`. The useful evidence is this receiver specificity, not merely that both pages contain red ink: across all 840 nonzero scalar multipliers in the fixed p3 field, **276** equal or exceed Q's generic count of red-page coordinate hits.
+
+A prospective direct continuation was frozen before reading the target outputs: apply the unchanged Q map once to the already-independent immediate black successor word on p23 and p8, and require an exact DH-chain pair, `[p,A]`, or complete signed-2013 request token. It fails cleanly: p23 gives `[3,1]` / `OU`; p8 gives `[7,6]` / `WG`. Do not tune phase, sign, orientation, alternate words or modulus to rescue this body-adjacent consumer.
+
+This strengthens Q as a **state/navigation opcode**: the signed instruction supplies a literal receiver interpretation for `[23,8]`, and both directed pages carry independently selective DH packets. It still does not recover black-body plaintext or prove that every Q output is a page address.
+
+[Direction cross-lock and preregistered negative](lp2-p3-q-direction-p23-p8-crosslock.md) · [reproducer](../sims/lp2_p3_q_direction_p23_p8_sft.cjs).
+
 ## Scientific boundary and next causal step
 
 The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; the complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.
