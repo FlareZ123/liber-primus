@@ -1,81 +1,137 @@
-# One full-stop tie-break completes the eight p6 q-block receiver locations
+# P6 integer-address transport and physical-period control select all eight q-block receivers
 
-**Agent28, 28 November 2026. Classification: target-rune-blind receiver selection and a bounded post-discovery control. No unknown LP2 plaintext or ordered key was recovered.** The physical-punctuation rule unifies two previously separate receiver tie-breaks, but both underlying p6 shells and the common period rule were articulated after the p32–p40 corridor had already been studied. Do not count its retrospective uniqueness as plaintext authentication.
+**Agent28, 28 November 2026. Classification: stronger target-rune-blind eight-page receiver-address construction, with a finite charged post-discovery family.** The printed p6 title can describe a complete *integer* transfer between the two q-sized manuscript blocks, not only the previously published mod29 receiver-start residue shells. It selects all eight required original-cipher locations without source-target rune values, fitted additive keys, or English scoring. An independent one-line printed-full-stop tie-break agrees with both ambiguous endpoints. **Neither the integer opcode nor the source-selected H4 shell is independently authenticated as an author instruction; no unknown-page plaintext or ordered key is established.**
 
-## Decipherment dependency and fixed inputs
+## Source-visible operands, original physical inputs and prior dependency
 
-The independently reported p6 schedule source selector is `[q,1,q,K]=[4,1,4,2]`, with q-block pages p32–35 and p37–40 and page-wise GP arities `[e,q,K,g | q,a,g,q]=[3,4,2,5 | 4,6,5,4]`. The *printed p6 title* consists of four consecutive groups beginning at rune offsets 71, 75, 76 and 80; their canonical GP29 rune vectors are `W1=[24,16,14,17]`, `W2=[19]`, `W3=[6,27,15,17]`, `W4=[14,12]`. The adjacent large Fehu is `F=0`.
-
-With the existing, already-published `H4([x0,x1,x2,x3])=[x0-x3,x1-x2,x1+x2,x0+x3] mod29`, its inverse (using `2^-1=15 mod29`), and state names `K=2,e=3,q=4,g=5,a=6,b=15`, the fixed source-derived shells are:
+The p6 red title's four contiguous complete groups begin at original zero-based rune starts 71,75,76,80. In canonical GP29 encoding they are
 
 ```text
-S1 = [g,a*K,q*g,-e] = [5,12,20,26]
-R1 = H4^-1(S1)      = [1,16,4,25]
-T  = [W4.last,F,W1.first,W1.last] = [12,0,24,17]
-S3 = S1+T mod29     = [17,12,15,14]
-R3 = H4^-1(S3)      = [1,28,16,13]
+W1=[24,16,14,17]  W2=[19]  W3=[6,27,15,17]  W4=[14,12]
+printed lengths L=[4,1,4,2]=[q,1,q,K]
+large adjacent red Fehu F=0
+H4(L)=[2,26,5,6]=[K,-e,g,a]  (all mod29)
+K=2, e=3, g=5, a=6, q=4
 ```
 
-This is an inherited *post-discovery p6 reading*, not a newly prospectively established instruction. The present test **does not use any signed-source plaintext rune, fitted additive key, or English language score**. It uses only manuscript page text, the previously fixed source-derived p6 states, word boundary punctuation and source-selected arities.
+The existing, previously published source-only first-block `H4` residue shell is
 
-## Unified receiver rule
+```text
+S1=[g,a*K,q*g,-e]=[5,12,20,26]
+R1=H4^-1(S1)     =[1,16,4,25].
+```
 
-For each of the eight pages, enumerate **all contiguous concatenations of complete printed rune groups** (including a single group) with the scheduled arity. Keep only starts with `start mod29 = R1 or R3` in lane order. If exactly one survives, select it. If multiple survive, select the **single candidate whose last printed group is followed by an original full stop**, otherwise leave the page unresolved. Do not treat a full stop as required when there is only one candidate. This is one identical policy for all eight pages, with no p32/p40-specific branch, name lookup, word-value crib, or page-selected key.
+Here `H4([x0,x1,x2,x3])=[x0-x3,x1-x2,x1+x2,x0+x3] mod29`, and its inverse uses `2^-1=15 mod29`. Source-selected per-page arities are `L1=[e,q,K,g]=[3,4,2,5]` on p32–p35, and `L3=[q,a,g,q]=[4,6,5,4]` on p37–p40. These are inherited p6/signed-source schedule choices; see the prior [q-block shell transition](lp2-p6-qblock-shell-transition.md) and [q-block arity relation](lp2-p6-qblock-edge-gp0-coupling.md).
 
-| Physical page | Arity | Residue | All candidate starts (trailing separator) | Gate result |
+For each physical page, a candidate is a **complete printed group** or a **contiguous concatenation of complete printed groups** of exactly its scheduled arity; a candidate's numeric address is its first zero-based rune offset. Initial block1 screening uses only `start mod29=R1`. It leaves:
+
+```text
+p32 arity3 residue1  -> starts [1,30]
+p33 arity4 residue16 -> starts [132]
+p34 arity2 residue4  -> starts [4]
+p35 arity5 residue25 -> starts [25] (adjacent 2+3 groups).
+```
+
+This is where the new *absolute-address* rule begins: it takes both p32 starts into the same experiment without choosing the one with an English crib or period.
+
+## Integer transport generated by two compact p6 packets
+
+In addition to the modular residue shell, p6 supplies a candidate full-integer address opcode. Take the printed length vector and replace **only its singleton slot** by the balanced signed representative of the second `H4(L)` output, `26 ≡ -3 mod29`:
+
+```text
+Q=[L0, balanced(H4(L)1), L2, L3]
+ =[4,-3,4,2]=[q,-e,q,K].
+```
+
+Take the large Fehu `F=0` and terminal printed p6 title rune `u=W4.last=12=a*K`, with a repeated magnitude and a final direction reversal:
+
+```text
+D=[F,u,u,-u]=[0,12,12,-12].
+```
+
+A literal integer translation `T=29*Q+D` (GP alphabet radix29, coordinatewise) is
+
+```text
+T=[116,-75,128,46].
+```
+
+Apply the same four-lane operator once, without page-specific tuning, to the first q block's candidate absolute starts:
+
+```text
+X = [30,132,4,25]   (only viable first-block start combination)
+Y = X + T
+  = [146,57,132,71] (four complete printed-group receivers)
+```
+
+The only competing p32 absolute start, `X0=1`, would predict p37 start117 rather than a complete four-rune group. P37–p40 original complete-group pools of arities `[4,6,5,4]` respectively contain **14, 8, 11, 16** starts; the operator hits all four only for `X0=30`. It therefore selects p32 **and** p40=71 without any target plaintext, GP0-fitted key, period rule or separately selected address71 prerequisite.
+
+The arithmetic also decomposes directly under `start=29*quotient+remainder`:
+
+```text
+first quotient Q1=[1,4,0,0]
+third quotient Q3=[5,1,4,2]
+Q3-Q1        =[4,-3,4,2]=Q
+
+first remainder R1=[1,16,4,25]
+third remainder R3=[1,28,16,13]
+R3-R1 (signed)    =[0,12,12,-12]=D
+```
+
+The *signed* remainder difference is crucial: it can be negative even though both residues are 0..28. The resulting `29*Q+D` is a full address displacement, **not** merely the earlier mod29 shell transition or GP0 difference. It is independent of the ciphertext runes *inside* the selected receivers.
+
+## Frozen punctuation cross-check: one uniform rule independently chooses both ambiguous starts
+
+A second source-independent, physical-manuscript tie-break exists. For each page, after restricting to the scheduled complete-group arity and block residue, choose a sole candidate; if there are multiple, choose the *only candidate ending at a literal printed full stop*; otherwise leave the page unresolved. This gate uses no target runes and no candidate name. It returns exactly the same eight starts:
+
+| Page | Arity | Start residue | Residue/arity candidate starts and trailing separator | Selected start |
 | --- | ---: | ---: | --- | ---: |
-| p32 | 3 | 1 | 1 (`-`), **30 (`.`)** | 30 |
-| p33 | 4 | 16 | 132 (`-`) | 132 |
-| p34 | 2 | 4 | 4 (`-`) | 4 |
-| p35 | 5 | 25 | 25 (`-`, contiguous 2+3 groups) | 25 |
-| p37 | 4 | 1 | 146 (`-`) | 146 |
-| p38 | 6 | 28 | 57 (`-`) | 57 |
-| p39 | 5 | 16 | 132 (`-`) | 132 |
-| p40 | 4 | 13 | 13 (`-`), **71 (`.`)**, 216 (`-`) | 71 |
+| p32 | 3 | 1 | 1 `-`, **30 `.`** | 30 |
+| p33 | 4 | 16 | 132 `-` | 132 |
+| p34 | 2 | 4 | 4 `-` | 4 |
+| p35 | 5 | 25 | 25 `-` (2+3 consecutive groups) | 25 |
+| p37 | 4 | 1 | 146 `-` | 146 |
+| p38 | 6 | 28 | 57 `-` | 57 |
+| p39 | 5 | 16 | 132 `-` | 132 |
+| p40 | 4 | 13 | 13 `-`, **71 `.`**, 216 `-` | 71 |
 
-The original 2400×3600 JPEGs for p32 and p40 independently show the printed full stops at the selected endpoints; the corresponding `.` characters occur in `resources/liber-primus/lp2-transcription.txt`. P32's first full-stop selector and p40's p6-address71 selector were already known as separate checks. Their **common punctuation role** eliminates two previously independent tie-break descriptions but is not an unseen original-cipher prediction.
+Both stops are present in the original images and the normalized manuscript transcription. P32's first full-stop endpoint and p40's address71 were already argued individually; this unifies them as an exact **cross-check** of the new independent integer-packet selection, not an additional plaintext discovery. The earlier period-only script remains valid.
 
-The single frozen rule therefore yields, in page order:
+## Visual-family and all-manuscript controls
+
+### Broader p6-only integer-packet family
+
+The exact `Q` and `D` operands were recognized **after** the corridor receiver starts had been studied; their literal role/sign choices must be charged. The independently executable family is:
+
+1. Permit every *distinct* permutation of the printed length vector `[4,1,4,2]`; replace **any one** of its four positions by either sign of **any** balanced `H4` length output `[2,-3,5,6]`. Deduplicate numeric vectors: **366 distinct quotient packets**.
+2. Permit `u` to be any of **all 11 original p6 title rune positions**, either sign, and allow every permutation of `[F,u,u,-u]`. Deduplicate numeric vectors: **216 distinct residual packets**.
+3. Keep the first-block source-residue/arity pools fixed and allow **both** possible p32 starts. For each `X`, all `366 × 216` complete-integer translations `Y=X+29*Q+D` are tested against all four second-block page-local complete-group pools.
+
+This charges **2 × 366 × 216 = 158,112 complete configurations**. **Exactly one** survives all four receiving pages:
 
 ```text
-p32..35: 30, 132, 4, 25
-p37..40: 146, 57, 132, 71
+X=[30,132,4,25]
+Q=[4,-3,4,2]
+D=[0,12,12,-12]
+Y=[146,57,132,71]
 ```
 
-## Finite controls and missing discrimination
+A second, different control locks this exact relation and shifts the `4+1+4` page shape to *every* possible physical start, 0..47. Each shift must supply all four source-residue/arity candidates and all four exact predicted destination complete-group packets. **Only start32 succeeds** among 48 shifts. This includes the rune-free p50 panel and does not score language.
 
-**Shifted-manuscript control:** without changing any residue, arity, position offset, or full-stop rule, apply the same eight-page offset shape `[0,1,2,3,5,6,7,8]` at every admissible physical start from 0 to 47. This includes the rune-free p50 panel, which cannot supply a receiver. The histogram of numbers of deterministically selected pages (0 to 8) is:
+For the *older independent uniform period gate*, hold the published `S1` and source-visible **modular** edge transition fixed, then shift the eight-page shape over the same 48 physical starts. The number of deterministically resolved pages has histogram (0 through 8) `[6,11,13,10,6,0,1,0,1]`; only start32 gives 8/8. Charging broader edge permutations still leaves **5 / 192** distinct numeric edge packets with four deterministically selected block3 receivers. The integer-transport family resolves that specific direction/order ambiguity **within its charged arithmetic family**, but only conditionally, because the absolute-address opcode was post-selected.
 
-```text
-chosen pages  0  1  2  3  4  5  6  7  8
-start counts  6 11 13 10  6  0  1  0  1
-```
+**Neither 1/158,112 nor 1/48 is a discovery-wide probability:** researchers first studied the p32–p40 receiver corridor, then recognized these visual combinations. The family tests assess *how identifying the specific compact formula is among closely related human-readable alternatives*, not the chance of finding some equally ornate coincidence after arbitrary analysis.
 
-Only start **32** yields eight deterministic selections. The next best is start19, with six. This is a *conditional* control: the p6 shells and target pages were known before this test. **1/48 is not a valid discovery-wide p-value**.
+## Reproducibility and decipherment decision
 
-**Transition-choice control:** the literal edge packet `T` has not been independently licensed as an opcode. If instead either four-rune p6 title word can contribute either endpoint orientation, either terminal W4 rune and the large Fehu can be permuted in all 24 orders, and either global sign can be used, the 384 labels collapse to **192 distinct transition vectors**. Keeping the already fixed block1 shell and allowing the same complete-group and full-stop policy on block3, **five distinct vectors** select all four block3 pages. In addition to the literal `T=[12,0,24,17]` (starts `[146,57,132,71]`), the four surviving transition/starts are:
+Run both independently committed, read-only Node22 scripts on the canonical original-source files:
 
 ```text
-[24,17,14,0] -> [71,75,17,71]
-[24,17,12,0] -> [71,103,132,71]
-[ 6,17,14,0] -> [4,75,17,225]
-[ 6,17,12,0] -> [4,103,132,225]
-```
-
-(The last two use multi-group four-rune p40 receiver packets; requiring one printed word there removes these.) **The full-stop policy does not identify the intended edge transition among this broad family.** Its value is that, once a source-justified shell has been selected, one deterministic original-punctuation rule handles every ambiguous local receiver.
-
-## Consequence and next decipherment decision
-
-The eight q-block receiver locations can now be recovered by one fully specified procedure using p6 fields, original printed group geometry and punctuation, with no recipient plaintext or key values. The remaining independent assumptions are: (1) the interpretation of p6's `H4` source shell; (2) the choice of the literal title-edge transition over four other structural survivors; and (3) the common full-stop policy, recognized retrospectively.
-
-**Do not promote the proposed YOU..PATHS plaintext** from this receiver selection. It only prepares eight ciphertext packets. To advance to plaintext, require an original p6 opcode that selects the literal transition and emits **complete ordered keys**, or freeze this rule and test a genuinely unseen manuscript receiver. Further target-conditioned key-shell fitting cannot authenticate the corridor.
-
-## Reproduction
-
-```text
+node sims/lp2_p6_qblock_integer_address_transport_sft.cjs
 node sims/lp2_p6_eightpage_period_tiebreak_sft.cjs
 ```
 
-The self-contained Node22/CommonJS test reconstructs the p6 title and both shells from the canonical original-input files, parses complete printed groups with trailing punctuation, enumerates all candidate pools and the eight deterministic outputs, checks all 48 physical shifts, and charges all 192 distinct edge variants. The test contains no source target word values or fitted decryption key vectors.
+The integer SFT derives both packets directly from p6's printed title, admits both p32 candidate starts, checks the full arity/absolute-address prediction against original group boundaries, enumerates the complete 158,112-member visual charge, and applies the frozen formula across all 48 physical shifts. The period SFT reconstructs trailing punctuation and the modular shells, eight candidate pools, and the 192-edge-family counterexample. Neither consumes the signed-source target word values or the key vectors fitted from them.
 
-Context: [earlier q-block shell transition](lp2-p6-qblock-shell-transition.md) · [GP0 edge coupling](lp2-p6-qblock-edge-gp0-coupling.md) · [receiver checksum](lp2-p6-receiver-block-gp0-packet.md).
+**What materially changes:** an eight-page *full-integer* receiver address law now jointly selects p32 and p40 and reproduces p37–p40 without their earlier page-specific diagnostics. It is a stronger joint structural mechanism than any one scalar key-sum correspondence and avoids reusing fitted plaintext. The literal Fehu and final title rune participate in a complete, fixed-width, four-lane operation.
+
+**What remains unknown:** why the puzzle author would instruct a player to replace a title-width singleton with an H4 value, replicate/sign the terminal rune as `[F,u,u,-u]`, or apply a 29-step absolute-address update. These are compact guesses, not a first-party decoding instruction. The equally essential **ordered key serializer** remains absent: there is still no authenticated unknown LP2 plaintext. The decisive next test is an independent visual/historical opcode or a prospectively selected fresh receiver and ordered key, not more arithmetic names for target-fitted values.
