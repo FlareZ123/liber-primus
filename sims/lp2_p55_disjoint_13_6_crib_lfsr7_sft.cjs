@@ -119,10 +119,12 @@ for(const law of ['direct','feedback','beaufort']){
 }
 assert.deepEqual(results.map(x=>x.bestOf6),[2,1,2,2,1,2,1,1,2]);
 assert.equal(p55[29],1); // CIRCUMFERENCE plaintext F falls here; p56 literal-F bypass would emit 0.
-console.log(JSON.stringify({
+if(require.main===module)console.log(JSON.stringify({
  target:'canonical physical p55 original 76 GP29 cipher runes, unmodified',
  firstCribOffsets:[23,35],terminalOffsets:[70,75],conditionalTerminal:'THEEND',
  family:'order7 GF29 linear additive key, with direct / ciphertext-feedback / Beaufort',
  authenticSolves:'three independent planted 76-rune p57 native-language controls recovered 76/76 with unique 7-tap key',
  results, status:'No full six-symbol held-out prediction; no unknown LP2 plaintext or key recovered'
 },null,2));
+
+module.exports={recover,encrypt,decrypt,plain,p55,donor,C,mod,norm,terminal};
