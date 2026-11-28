@@ -56,8 +56,7 @@ function main() {
   function positions(value) {
     return bytes.flatMap((b, index) => b === value ? [index] : []);
   }
-  assert.deepEqual(positions(33 * 60 + 33), []); // Literal token '33' is byte183, not decimal33.
-  assert.deepEqual(positions(183), [7, 14]);
+  assert.deepEqual(positions(3 * 60 + 3), [7, 14]); // Literal token '33' is radix60 byte183.
   assert.deepEqual(positions(249), [9, 158, 227]);
   assert.deepEqual(positions(0), [192, 229]);
   assert.equal(bytes[249], 158);
