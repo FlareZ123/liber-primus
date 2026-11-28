@@ -18,7 +18,9 @@ offset71: 13 dots
 offset82: 13 dots.
 ```
 
-The established p6/DH packet has `K=2`. Therefore the original artifact contains the literal count relation:
+The established p6/DH packet has `K=2`. **Original-source countercontrol:** p15 also has an 11-rune red span (offsets9–20) bracketed by 13-dot red markers, although its three words have lengths `[4,2,5]` rather than p6's `[4,1,4,2]`. In the complete 18-red-span census, seven have red13 marks at both endpoints and **two** contain 11 runes (p6 and p15). Thus this *numeric bracket equation* is **not unique** and cannot by itself select the signed 13-word tail; the p6 **four-word partition** is the source-distinguishing feature. [Full source-only internal control and script](lp2-p6-red13-bracket-internal-control-gate.md).
+
+The p6 artifact contains the literal count relation:
 
 ```text
 11 red runes + K=2 = 13 boundary dots.
@@ -60,7 +62,7 @@ p6:     11 red runes + K = 13 dots
 source: 11 selected words + K = 13 post-DIRECTION words.
 ```
 
-This is a direct human-puzzle-style reason to extend the source object two words left to `SEEK AND`, independently of the p30/p31 ciphertext fits.
+This is a plausible human-puzzle-style *prompt* to extend the source object two words left to `SEEK AND`, independently of the p30/p31 ciphertext fits. **It is not an independent uniqueness test on its own**, because p15 exhibits the same 11-red/13-dot bracket count; only the full printed p6 four-word partition and the independently charged signed-source word selection distinguish the proposed p6 schedule.
 
 ## The full schedule is palindromic
 
