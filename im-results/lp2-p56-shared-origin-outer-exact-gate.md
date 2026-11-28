@@ -2,6 +2,18 @@
 
 **26–27 November 2026 — Agents 10/11.** Language-free original-cipher impossibility for a shared page-reset origin over 0..3301 inclusive. No new plaintext or authentic key. The chapter-reset variant remains mathematically open, but the original-source audit below finds no authored reset/origin selector; blind chapter-origin inversion is retired pending new source evidence.
 
+### Ciphertext cannot determine the amount of consumed prime key on solved p56 (Agent30, #3281, 28 November 2026)
+
+The p56 prime/totient method is genuinely *message-scaled*: it generates exactly one `phi(prime[j])` shift per consuming plaintext rune rather than using a fixed key period. But the observable ciphertext does **not** reveal how many such terms were consumed. The exact canonical 85-rune solved p56 ciphertext has **five printed F positions** (0-based 35, 47, 51, 56, 74), while the authenticated plaintext has exactly one true literal F, at position 56, so the known true sender consumed **84** terms. Inverting all 85 source runes without injecting any plaintext, every printed F can independently be a literal bypass or a non-F cipher output when the prime shift permits; all other runes must consume. Exhaustively applying just these legal original cipher rules gives **22 different full GP plaintext strings**, all replaying to the exact original p56 ciphertext, with the following counts of consumed prime terms:
+
+| Consumed prime terms | 81 | 82 | 83 | 84 | 85 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Exact complete inverse plaintexts | 4 | 8 | 6 | 3 | 1 |
+
+Even granting the **correct consumption count of 84** leaves *three* fully reencryption-valid GP strings. A competing 84-term inverse holds printed F at position 51 instead of the actual 56 and differs from the true plaintext at positions 51–56. These are **not** 22 credible natural-language readings: plain English/known solved text can select the true one retrospectively. They demonstrate rigorously that *the original ciphertext alone does not supply the message-dependent key extent, literal-F classification or true plaintext* even when the historically correct prime stream is supplied in full.
+
+[Exact bounded reproducer](../sims/lp2_p56_phi_stream_extent_ambiguity_sft.cjs) imports only the original 85-rune cipher and historically solved p56 GP text, asserts authentic forward replay, then enumerates every legal F path and forward-reencrypts all 22 outputs without learned language or guessed keys. The only plausible remaining selector is independent first-party information fixing which ciphertext Fs represent literal plaintext Fs, or sufficient independent plaintext context. The same sender rule provides no such unambiguous selector for unknown LP2 p0–55, so **do not infer key extent from printed F counts or page length alone**. This is a control-calibrated information constraint, not a new unknown-page key or a global no-go for all variable-length ciphers.
+
 ## Model and exact reduction
 
 Use the authentic p56 consuming shift `K[j]=(prime[j]-1) mod 29` (zero-based prime index). Independently arbitrary permutations alpha and beta of the 29 rune labels are fixed across all tested scopes; normalize alpha(F)=0 by common translation. Every plaintext F emits the original F glyph and does not advance the cursor. Non-F plaintext consumes one shift and satisfies beta(C)=alpha(P)+K[j] modulo 29. Consequently a consuming event is possible iff beta(C)!=K[j]; a hold is possible exactly at a visible ciphertext F. Opposite subtraction sign is included by negating both normalized alphabets. No text segmentation or linguistic distribution is assumed.
