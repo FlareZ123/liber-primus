@@ -68,6 +68,25 @@ If carry selection were exposing a literal table copy of the event state, the se
 
 For base60, exact residue matches across 76 selected cells are respectively **2, 5, 1, 1**. For base59 they are **4, 3, 3, 1**. Even granting one global GP29 shift after the fact, the best match count is only **5–7/76** depending on register/radix. There is no hidden near-identity that would explain the composition as a copied event tape.
 
+## Carry-interval compression versus the p50 rim
+
+The same source register supplies a second, stronger test that does not involve p55 language at all. The 76 carry endpoints partition all 180 terminal positions into 76 consecutive intervals, with lengths:
+
+`[2,2,2,4,3,1,2,2,3,2,2,2,2,1,2,2,2,3,1,2,2,3,2,3,2,1,5,2,2,2,3,3,1,3,4,3,1,2,2,2,1,2,3,2,3,1,3,3,2,1,4,1,4,3,2,3,1,3,4,4,4,4,2,2,4,2,1,4,2,2,4,1,2,2,1,3]`.
+
+Those lengths sum to 180. Apply them, unchanged and in source order, to the row-major 30×6 p50 interior. For each interval, sum its printed numeric values and reduce modulo29. This produces a 76-value compression with no p55 operand, no language score and no chosen phase. Compare it directly with the literal 76-cell table circumference.
+
+Two perimeter serializations are worth distinguishing without tuning: (a) source row-major order after filtering to rim cells; (b) the ordinary clockwise walk starting at the printed top-left cell. Under conventional base60 and documented drop-`f` base59, the exact residue matches are:
+
+| Reading | 76 interval sums vs row-major rim | 76 interval sums vs clockwise rim |
+|---|---:|---:|
+| base60 | **0/76** | **2/76** |
+| base59 | **4/76** | **2/76** |
+
+For comparison, sampling the **cumulative** interior residue at the same 76 carry endpoints gives base60 **1/76** row-major and **2/76** clockwise; base59 gives **3/76** and **2/76**. One unrestricted global residue shift does not rescue the relation: the best shifted agreement is only 5–7/76 across these cases. The previously tested direct carry-position cell selector is therefore not hiding a simple cumulative/interval-sum perimeter identity.
+
+This is a useful architecture-level negative: the exact 180 terminal register, exact 76 carry partition, literal 180-cell table interior and literal 76-cell rim do **not** close into the simplest GP29 compression identity under either live radix. A more complicated combiner, traversal or nonlinear map now needs a separate source instruction; the 180/76 cardinality match alone does not authorize it.
+
 ## Decision
 
 The new composition is attractive because every cardinality and address is source-derived: terminal solved text supplies a 180-position event register, its 76 ordinal carries choose 76 positions, and the literally stripped p50 interior supplies 180 addressable cells. It nevertheless fails the two historically motivated direct consumer families and the actual p54→p55 chapter clock.
