@@ -36,6 +36,13 @@ function experiment(raw, options={}) {
     {name:"Gibran",W:words(raw.gibran)},
     {name:"Emerson",W:words(raw.emerson)}
   ];
+  // If extra held-out source strings are provided, they are NEVER included
+  // in language-model training. This supports true out-of-corpus test texts
+  // from the independent C11 challenge: Mill and Shelley.
+  const testSources=options.external&&raw.mill&&raw.shelley?[
+    {name:"Mill",W:words(raw.mill)},
+    {name:"Shelley",W:words(raw.shelley)}
+  ]:sources;
   function tape(W){const P=[];for(const w of W){P.push(...w,SPACE);}return P;}
   function rng(seed){let s=seed>>>0;return n=>{s^=s<<13;s^=s>>>17;s^=s<<5;return(s>>>0)%n;};}
   function language(excludeSource=null){
@@ -258,7 +265,7 @@ function experiment(raw, options={}) {
       origin0:report(a),origin1:report(b)};
   }
   for(let i=(options.start||0);i<(options.start||0)+(options.plants||3);i++){
-    const source=sources[i%sources.length],s=plant(source,91923+i*991),
+    const source=testSources[i%testSources.length],s=plant(source,91923+i*991),
       lm=separateLM?.get(source.name)||LM;
     const right=solve(s.C,s.K,lm,beam,options.maxHidden||3),
       wrong=solve(s.C,s.WK,lm,beam,options.maxHidden||3);
@@ -272,7 +279,7 @@ function experiment(raw, options={}) {
   }
   return {scope:"Independent exact generative mod36 V-SILENT inverse for known keystream, not original LP2 solve",
     training:"first57% words for 3 fixed donors; test exclusively last43%",
-    beam,maxHidden:options.maxHidden||3,crossAuthor:!!options.crossAuthor,rows};
+    beam,maxHidden:options.maxHidden||3,crossAuthor:!!options.crossAuthor,external:!!options.external,rows};
 }
 if(typeof module!=="undefined")module.exports={experiment};
 if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===module){
