@@ -260,6 +260,103 @@ const keyBlockSums = expectedPacket.map((value, index) =>
 );
 assert.deepEqual(keyBlockSums, [0, 10, 6, 23]);
 
+// The block-key shift is itself a literal inner-title packet.
+const W2 = p6Title[1].values;
+const W3 = p6Title[2].values;
+assert.deepEqual(W2, [19]);
+assert.deepEqual(W3, [6, 27, 15, 17]);
+const w3EndpointH = H(W3[0], W3[W3.length - 1]);
+assert.deepEqual(w3EndpointH, [18, 23]);
+
+const innerTitleShift = [
+  F,
+  mod29(-W2[0]),
+  W3[0],
+  w3EndpointH[1],
+];
+assert.deepEqual(innerTitleShift, keyBlockSums);
+
+// Charge the complete inner-title role/sign/permutation family.
+const innerFamily = new Set();
+let innerLabeled = 0;
+for (const sign of [1, -1]) {
+  const singleton = mod29(sign * W2[0]);
+  for (const rune of W3) {
+    for (const endpointCoordinate of w3EndpointH) {
+      for (const permutation of permutations([
+        F,
+        singleton,
+        rune,
+        endpointCoordinate,
+      ])) {
+        innerLabeled += 1;
+        innerFamily.add(permutation.join(","));
+      }
+    }
+  }
+}
+assert.equal(innerLabeled, 384);
+assert.equal(innerFamily.size, 384);
+
+const candidateKeyBlockSums = candidatePackets.map(({ start, packet }) => ({
+  start,
+  shift: packet.map((value, index) =>
+    mod29(value - sourceBlockGp0[index])
+  ),
+}));
+assert.deepEqual(candidateKeyBlockSums, [
+  { start: 13, shift: [0, 10, 13, 23] },
+  { start: 71, shift: [0, 10, 6, 23] },
+  { start: 216, shift: [0, 10, 8, 23] },
+]);
+
+const innerHits = candidateKeyBlockSums.filter(({ shift }) =>
+  innerFamily.has(shift.join(","))
+);
+assert.deepEqual(innerHits, [
+  { start: 71, shift: [0, 10, 6, 23] },
+]);
+
+let exactInnerLabels = 0;
+for (const sign of [1, -1]) {
+  const singleton = mod29(sign * W2[0]);
+  for (let runeIndex = 0; runeIndex < W3.length; runeIndex += 1) {
+    const rune = W3[runeIndex];
+    for (let endpointIndex = 0; endpointIndex < w3EndpointH.length; endpointIndex += 1) {
+      const endpointCoordinate = w3EndpointH[endpointIndex];
+      for (const permutation of permutations([
+        F,
+        singleton,
+        rune,
+        endpointCoordinate,
+      ])) {
+        if (permutation.join(",") === keyBlockSums.join(",")) {
+          exactInnerLabels += 1;
+          assert.equal(sign, -1);
+          assert.equal(runeIndex, 0);
+          assert.equal(endpointIndex, 1);
+          assert.deepEqual(permutation, [0, 10, 6, 23]);
+        }
+      }
+    }
+  }
+}
+assert.equal(exactInnerLabels, 1);
+
+const keyBlockH4 = [
+  mod29(keyBlockSums[0] - keyBlockSums[3]),
+  mod29(keyBlockSums[1] - keyBlockSums[2]),
+  mod29(keyBlockSums[1] + keyBlockSums[2]),
+  mod29(keyBlockSums[0] + keyBlockSums[3]),
+];
+assert.deepEqual(keyBlockH4, [6, 4, 16, 23]);
+assert.deepEqual(keyBlockH4, [
+  W3[0],
+  p6Title[0].length,
+  W1[1],
+  w3EndpointH[1],
+]);
+
 console.log(JSON.stringify({
   status: "PASS: p6 Fehu/title packet matches scheduled receiver-block GP0 sums",
   p6: { titleStarts: p6TitleStarts, titleTape, W1, W4, expectedPacket },
@@ -271,5 +368,14 @@ console.log(JSON.stringify({
   },
   sourceBlockGp0,
   keyBlockSums,
+  innerTitle: {
+    shift: innerTitleShift,
+    keyBlockH4,
+    labeledConstructions: innerLabeled,
+    distinctNumericPackets: innerFamily.size,
+    candidateShifts: candidateKeyBlockSums,
+    hits: innerHits,
+    exactLabeledRealizations: exactInnerLabels,
+  },
   note: "p32 starts1 and30 have identical GP0=5, so this checksum does not replace the first-full-stop tie-break",
 }, null, 2));

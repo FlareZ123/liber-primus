@@ -147,7 +147,80 @@ H4([0,10,6,23])
 = [a,q,K-b,p].
 ```
 
-This is an aggregate constraint only. It does not specify any page's complete ordered key.
+This aggregate shift has a direct **inner-title** realization, which is stronger than merely relabeling its four residues with the saturated state vocabulary. P6's singleton title word and second q-word are:
+
+```text
+W2 = [19]
+W3 = [6,27,15,17].
+```
+
+The fixed endpoint H pair for W3 is:
+
+```text
+H(W3[0],W3[3])
+= H(6,17)
+= [18,23].
+```
+
+Therefore the complete block-key shift is read from the inner title as:
+
+```text
+D
+= [F, -W2[0], W3[0], Hsum(W3 endpoints)]
+= [0,10,6,23].
+```
+
+This gives a causal checksum grammar:
+
+```text
+source block totals P = [13,6,18,18]
+p6 inner-title shift D = [0,10,6,23]
+------------------------------------------------
+predicted receiver totals C = P + D
+                            = [13,16,24,12].
+```
+
+No unknown receiver GP0 is needed to compute the prediction.
+
+Charge the inner-title extraction broadly. Keep the visible Fehu `F=0`; allow either sign of the singleton W2 rune; choose any of the four W3 runes; choose either endpoint-H coordinate of W3; and allow all 24 coordinate permutations. This gives exactly
+
+```text
+2 * 4 * 2 * 24 = 384
+```
+
+labeled constructions, all **384 numerically distinct**.
+
+For the three target-blind p40 residue/arity candidates, subtract the independently source-selected `Pblock` from each candidate receiver-block checksum:
+
+```text
+p40 start13   -> D=[0,10,13,23] -> no family hit
+p40 start71   -> D=[0,10, 6,23] -> one family hit
+p40 start216  -> D=[0,10, 8,23] -> no family hit.
+```
+
+The successful vector has exactly **one labeled realization** in the 384-case family:
+
+```text
+W2 sign       = negative
+W3 rune       = first
+W3 endpoint H = sum
+coordinate order = printed block order
+
+=> [F,-W2[0],W3[0],Hsum(W3 endpoints)]
+ = [0,10,6,23].
+```
+
+The frozen H4 image of the same key-block shift is also literal p6 title data:
+
+```text
+H4(D)
+= [6,4,16,23]
+= [W3[0], len(W1), W1[1], Hsum(W3 endpoints)].
+```
+
+Thus the title supplies both raw and H-serialized forms without invoking a coordinatewise state-name search.
+
+This remains an aggregate constraint: it predicts the four **block key sums**, not any page's complete ordered rune key. The grammar was recognized after the corridor, so it is a post-discovery mechanism candidate rather than plaintext authentication.
 
 ## Evidence boundary and decision
 
