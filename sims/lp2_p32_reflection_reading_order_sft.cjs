@@ -52,6 +52,14 @@ const fullRasterMirror = lines.flatMap(line =>
   [...line].reverse().map(ch => mirrorMap.get(ch))
 );
 
+// The reversible alphabet-level interpretation of a reflection clue: GP29
+// Atbash, v -> 28-v, with and without the same physical line reversal.
+const atbashMap = new Map(corpus.runes.map((r, i) => [r, corpus.runes[28 - i]]));
+const atbash = original.map(ch => atbashMap.get(ch));
+const atbashLineMirror = lines.flatMap(line =>
+  [...line].reverse().map(ch => atbashMap.get(ch))
+);
+
 const index = new Map(corpus.runes.map((r, i) => [r, i]));
 const counts = Array.from({length:29}, () => Array(29).fill(0.5));
 const totals = Array(29).fill(29 * 0.5);
@@ -94,6 +102,8 @@ const sMirror = score(mirrored);
 const sWhole = score(wholeReverse);
 const sGlyphOnly = score(glyphOnly);
 const sFullRaster = score(fullRasterMirror);
+const sAtbash = score(atbash);
+const sAtbashLine = score(atbashLineMirror);
 const nativeMin = native[0];
 const q = p => native[Math.min(native.length - 1, Math.floor(p * native.length))];
 
@@ -102,7 +112,10 @@ assert.ok(sMirror < nativeMin, "mirrored p32 must remain below every matched nat
 assert.ok(sWhole < nativeMin, "whole reverse control must remain below every matched native window");
 assert.ok(sGlyphOnly < nativeMin, "fixed glyph reflection must remain below every matched native window");
 assert.ok(sFullRaster < nativeMin, "complete raster mirror must remain below every matched native window");
+assert.ok(sAtbash < nativeMin, "GP29 Atbash must remain below every matched native window");
+assert.ok(sAtbashLine < nativeMin, "Atbash plus line mirror must remain below every matched native window");
 assert.equal(new Set(glyphOnly).size, 17, "p32 uses all29 inputs, so fixed glyph mirror collapses to 17 outputs");
+assert.equal(new Set(atbash).size, 29, "Atbash must remain a bijection on p32's complete alphabet");
 
 const translit = seq => seq.map(ch => corpus.translit[index.get(ch)]).join("");
 
@@ -116,6 +129,8 @@ console.log(JSON.stringify({
     wholePageReverseControl: sWhole,
     fixedGlyphReflection: sGlyphOnly,
     fullRasterMirrorGlyphPlusLineOrder: sFullRaster,
+    gp29Atbash: sAtbash,
+    gp29AtbashPlusLineMirror: sAtbashLine,
   },
   invertibility: {
     p32DistinctInputRunes: new Set(original).size,
@@ -132,5 +147,7 @@ console.log(JSON.stringify({
   mirroredMarginBelowWorstNative: nativeMin - sMirror,
   mirroredTransliteration: translit(mirrored),
   fullRasterMirrorTransliteration: translit(fullRasterMirror),
+  atbashTransliteration: translit(atbash),
+  atbashLineMirrorTransliteration: translit(atbashLineMirror),
   decision: "HORIZONTAL_REFLECTION_DOES_NOT_RECOVER_AN_INVERTIBLE_OR_NATIVE_GP29_TEXT",
 }, null, 2));
