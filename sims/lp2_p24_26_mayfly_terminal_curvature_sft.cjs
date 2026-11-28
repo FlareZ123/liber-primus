@@ -19,6 +19,10 @@ const signed2016 = fs.readFileSync(
   path.join(ROOT, 'resources/historical/cicada2016-4gq25-outguess.asc'),
   'utf8',
 );
+const transcription = fs.readFileSync(
+  path.join(ROOT, 'resources/liber-primus/lp2-transcription.txt'),
+  'utf8',
+);
 
 const mod = (n) => ((n % MOD) + MOD) % MOD;
 const H = (x, y) => [mod(x - y), mod(x + y)];
@@ -222,6 +226,87 @@ assert.deepEqual(chargedTypedTerminalHits, [{
   output: [26, 16],
   target: [26, 16],
 }]);
+\n
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const transcriptionParts = transcription.split(/^\s*%\s*$/m);
+
+function physicalPart(page) {
+  if (page === 50) return '';
+  return transcriptionParts[page >= 51 ? page - 1 : page] ?? '';
+}
+
+function canonicalWords(page) {
+  const source = physicalPart(page);
+  const out = [];
+  let offset = 0;
+  let start = 0;
+  let current = [];
+
+  function finish() {
+    if (current.length === 0) return;
+    out.push({ page, start, values: current });
+    current = [];
+  }
+
+  for (const char of source) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) {
+      if (current.length === 0) start = offset;
+      current.push(value);
+      offset += 1;
+    } else if ((char === '-' || char === '.') && current.length > 0) {
+      finish();
+    }
+  }
+  finish();
+  return out;
+}
+
+function productMod29(values) {
+  return values.reduce((acc, value) => mod(acc * value), 1);
+}
+
+function descriptor(word) {
+  return {
+    length: word.values.length,
+    sum: mod(word.values.reduce((acc, value) => acc + value, 0)),
+    product: productMod29(word.values),
+  };
+}
+
+const allCanonicalWords = [];
+for (let page = 0; page <= 55; page += 1) {
+  allCanonicalWords.push(...canonicalWords(page));
+}
+assert.equal(allCanonicalWords.length, 2928);
+
+const p26Word16 = canonicalWords(26).find((word) => word.start === 16);
+assert(p26Word16);
+assert.deepEqual(p26Word16.values, [13, 28, 8, 27, 1]);
+assert.deepEqual(descriptor(p26Word16), {
+  length: 5,
+  sum: 19,
+  product: 5,
+});
+
+const descriptor5195 = allCanonicalWords.filter((word) => {
+  const d = descriptor(word);
+  return d.length === 5 && d.sum === 19 && d.product === 5;
+});
+assert.deepEqual(
+  descriptor5195.map((word) => [word.page, word.start]),
+  [[26, 16]],
+);
+
+let recoveredB = null;
+for (let exponent = 1; exponent <= 22; exponent += 1) {
+  if ((5n ** BigInt(exponent)) % 23n === 19n) {
+    assert.equal(recoveredB, null);
+    recoveredB = exponent;
+  }
+}
+assert.equal(recoveredB, 15);
+assert.equal(sourceWords[recoveredB], 'WORDS');
 \nconst result = {
   source: {
     mayflyPages: [24, 25, 26],
@@ -244,7 +329,7 @@ assert.deepEqual(chargedTypedTerminalHits, [{
     allThirdPageLargeMarkComparisons: broadComparisons.length,
     allAbsoluteEndpointImbalanceMatches: broadMatches,
     chargedVertexOrderPresentations: (pages.length - 2) * 6,
-    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,
+    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n    },
     canonicalSignedSourceBigramHits: canonicalBigramHits,
   },
   decision:
