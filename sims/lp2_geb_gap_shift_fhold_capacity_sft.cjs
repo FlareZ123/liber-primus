@@ -18,6 +18,28 @@ const expected=[
   "1b064ef6d85819b7d96adaff31a82d1ec551598f"
 ];
 const input=paths.map((p,i)=>{const b=fs.readFileSync(path.join(__dirname,"..",p));const h=crypto.createHash("sha1").update("blob "+b.length+"\0").update(b).digest("hex");if(h!==expected[i])throw Error("source changed: "+p+" "+h);return b.toString("utf8")});
+function allStartNative(a,n,bounds,k){
+  const c=Array(29).fill(0);for(let i=0;i<n;i++)c[a[i]]++;
+  const order=Array.from({length:28},(_,i)=>i+1).sort((i,j)=>c[j]-c[i]||i-j);
+  const survivors=bounds.map(()=>0);let minimum=Infinity,at=0;
+  function move(x,delta){
+    c[x]+=delta;if(x===0)return;
+    let j=order.indexOf(x);
+    if(delta>0){
+      while(j>0&&c[order[j]]>c[order[j-1]]){[order[j],order[j-1]]=[order[j-1],order[j]];j--}
+    }else{
+      while(j<27&&c[order[j]]<c[order[j+1]]){[order[j],order[j+1]]=[order[j+1],order[j]];j++}
+    }
+  }
+  for(let start=0;start+n<=a.length;start++){
+    let mass=0;for(let i=0;i<k;i++)mass+=c[order[i]];
+    if(mass<minimum){minimum=mass;at=start}
+    for(let i=0;i<bounds.length;i++)if(mass<=bounds[i])survivors[i]++;
+    if((start%4096===0||start+n===a.length)&&order.some((v,j)=>j>0&&c[v]>c[order[j-1]]))throw Error("rolling order");
+    if(start+n<a.length){move(a[start],-1);move(a[start+n],1)}
+  }
+  return {windows:a.length-n+1,minimum,at,survivors};
+}
 function analyze(input) {
   const ok=(x,msg)=>{if(!x)throw Error(msg)};
   const [corpusRaw,raw,...donorRaw]=input;
@@ -242,7 +264,9 @@ function analyze(input) {
       upperNonF:certs.map(x=>x.upper),certificate9:certs[8],donorExclusions,fixedKeys,plants})
   }
   const refs=references.map(({chapterWindows,...r})=>r);
-  return {workedExample:example,originalWords:words.length,originalRunes:tape.length,
+  const allStartReferences=donors.map((a,i)=>({name:names[i],book:allStartNative(a,12956,records.map(r=>r.book.hold.top4),4),chapter:allStartNative(a,3008,records.map(r=>r.upperNonF[8]),9)}));
+  ok(allStartReferences.every(r=>[...r.book.survivors,...r.chapter.survivors].every(n=>n===0)),"all-start donor support");
+  return {allStartReferences,workedExample:example,originalWords:words.length,originalRunes:tape.length,
     native:refs,solved:{runes:solved.length,...hist(solved)},lexiconSize:lex.size,records,
     fixedKeyPositiveWords:100*2*2}
 }

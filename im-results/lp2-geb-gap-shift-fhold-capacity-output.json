@@ -9765,5 +9765,76 @@
     "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
     "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
     "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
-  }
+  },
+  "allStartReferences": [
+    {
+      "name": "Gibran",
+      "book": {
+        "windows": 49537,
+        "minimum": 4368,
+        "at": 38486,
+        "survivors": [
+          0,
+          0,
+          0
+        ]
+      },
+      "chapter": {
+        "windows": 59485,
+        "minimum": 1870,
+        "at": 20195,
+        "survivors": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Shakespeare",
+      "book": {
+        "windows": 204151,
+        "minimum": 4259,
+        "at": 190681,
+        "survivors": [
+          0,
+          0,
+          0
+        ]
+      },
+      "chapter": {
+        "windows": 214099,
+        "minimum": 1792,
+        "at": 150826,
+        "survivors": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Emerson",
+      "book": {
+        "windows": 308372,
+        "minimum": 4429,
+        "at": 272579,
+        "survivors": [
+          0,
+          0,
+          0
+        ]
+      },
+      "chapter": {
+        "windows": 318320,
+        "minimum": 1907,
+        "at": 157418,
+        "survivors": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ]
 }
