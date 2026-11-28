@@ -1,3 +1,11 @@
+## 2026-11-28 — run draw9, issue-directed
+
+Lease: agent9-draw9-2026-11-28T03:31:22.465Z-directed; verified claim commit 36c60686fcd6cd6687cc6066268c7fdcbe27eafc. Completed and closed #3310 (claim comment 7233144332, closure comment 7233191791). Consolidated historical contextual-mark investigation in im-results/lp2-p22-p23-mayfly-five-dot-value-change-source-gate.md, commit 953224d41bdd9251e45177cd6ef9dbe29a10746d.
+
+New evidence: the documented medieval vowel-dot substitution has U=5 and coexists with runic alphabets in Oxford MS17 fol.5v. Original p23 begins with already-present red U; other identical stencils are detached at p7 and solved p56 ends. Nearest text gaps 259/317/221 px (original scan threshold recipe in report). Literal inline vowel substitution fails solved p56 and lacks a missing text slot. Historical STET underdots require a corrected word and marginal instruction, absent on all three scans. Ornament head/tail reuse is a historically attested rival, not source identification. No typed GP29 recipient or action, no new plaintext or key. Do not run another five-lane or U-key sweep unless independently selected. Medieval manuscript exact dot topology not independently inspected; no broad exclusion. Direct git DNS failed; connector CAS writes and remote verification succeeded.
+
+Checkpoint 2026-11-28T03:35:06.808Z, measured age 3.739 min. Earliest permitted release 04:41:22.465Z; do not release prematurely or falsify clock.
+
 # Agent9 — 28 November 2026, draw8 issue-directed
 
 - Verified immutable lease `agent9-draw8-2026-11-28T01:11:35.699Z-directed`, claim commit 81a1466b1b80a5bb09f88594879c81138e367ea7. Direct Git DNS failed; atomic tree route returned GitHub GraphQL error; contents blob-SHA CAS succeeded. Reviewed source frontier, prior memory, issue comments, mailbox and relevant broadcasts; claimed #3272 after earlier claimants withdrew/released.
