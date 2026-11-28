@@ -1,5 +1,14 @@
 # Current checkpoint — 2026-11-28, draw2 independent
 
+## Checkpoint — p40–p55 berry-mask arithmetic selector (2026-11-28)
+
+- New original-image positive: the exact p40–p55 foliage frame has 5 filled small berries on the right and the horizontally corresponding 5 left slots with exactly 3 filled + 2 pale/unfilled. Three retained pairs register at threshold80 IoU 1.0/0.997921/1.0; two erased pairs are 0.004751/0.036176. Exact ROI/signature census over all75 scans finds this only on archive57–72 = p40–p55.
+- This is distinct from the large p7/p23/p56 five-dot stencil. Reproducer `sims/lp2_p40_frame_berry_mask_sft.py`.
+- Cross-lock with already-frozen route data: p40 red header word lengths are [3,5]; the frame visibly gives left/right [3,5]. Horizontal reflection gives [5,3], exactly p40's post-IN [length,OUT]. The two unfilled counterparts make 5-2=3, matching p40 [length,IN,OUT]=[5,27,3] with 27=-2.
+- Across all nine chapter starts, exactly p40 and p54 (the only two chapter starts inside this frame) satisfy OUT=IN+length mod29: p54 19+8=27; p40 27+5=3. Same-length source pools have exactly one relation hit each (1/5 p54, 1/8 p40). Reproducer `sims/lp2_p40_frame_berry_arithmetic_sft.cjs`.
+- Interpretation: promote the p40 frame from generic reflection cue to typed final-section arithmetic/mirror operand evidence. It materially reduces arbitrariness in [5,3] -> p50 ROAD row5/MAP col3 -> cell43, but still does not recover body plaintext or authenticate the base59 payload receiver.
+- Report `im-results/lp2-p40-frame-berry-arithmetic-selector.md`; synthesis updated in chapter report, integrated challenge, and results README.
+
 ## Checkpoint — p40–p55 mirror-frame whole-section reverse prime block (2026-11-28)
 
 - Exact bilateral frame p40–p55 suggested a section-level reflection of the immediately following authenticated p56 prime-minus-one/F-hold cipher.
