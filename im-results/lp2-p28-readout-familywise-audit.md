@@ -12,6 +12,8 @@ Charge `[55,20]` against every reversible uniform GP29 power map on the fixed p2
 
 P53 independently exposes `[e,-K]=[3,27]`, and authenticated source word numbers independently select `C(x)=x^3 mod29`. These sources provide the operator and parameter pair without the low-digit hypothesis.
 
+**28 November p50 external-state transfer.** The later base59 sink + source-mirror closure now reconstructs the same full DH state from the numeric panel without reading p28's literal-DH line. It independently yields `e=15^-1 mod22=3` and `K=2`; the p28 word's three visible layers then give `e^3 mod28=27`, numerically matching `-K mod29`. Applying this externally obtained `(3,27)` pair to the fixed p28 object reproduces READ OUT exactly. This is post-discovery corroboration, not a prospective plaintext hit, but it removes the local dependency in which p28 first reconstructed DH and then used that state to choose its own cube direction. See `lp2-p50-dh-state-p28-readout-transfer.md`.
+
 An earlier selector used `READ -> OUT -> FIND -> p28` under the native-base60 p50 low/right transition. Preserve it as route-specific corroboration only. Director #1787 sealed GOOD→LUCK prospectively; all 16 modes miss, and the preferred mode has 0/84 held-out adjacent-word transitions across authenticated 2016 plus solved p56/p57. The low/right transition is not a generally authenticated navigation opcode.
 
 The remaining premise is why the sourced `[3,27]` pair should act separately on the exact p28 center singleton and adjacent five-rune word. P28's geometry and literal DH line motivate that split, while the cross-object selectors remain post-discovery corroboration.
