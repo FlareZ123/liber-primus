@@ -52,6 +52,34 @@ For later structural controls it is also useful to take the ordinary Euclidean q
 
 This historical-BASE29 address view was **not** used to choose the start, radix, hop count, or endpoint. Applying BASE29 to table addresses remains an inferred composition: the signed protocol authenticates both operations separately but does not explicitly instruct an LP2 solver to compose p50 pointer addresses with BASE29.
 
+## The two literal `39` cells are the only dual-radix eight-hop closures
+
+The original p27 route selected cell254 before the present BASE29 work. Its literal printed token is `39`, with the two surviving numeral interpretations
+
+```text
+base59("39") = 186
+base60("39") = 189.
+```
+
+The independently fixed public share `A=8` then gives the exact base59 pointer closure
+
+```text
+walk59(base59("39"), 8) = 189 = base60("39").
+```
+
+An exhaustive test over **every one of the 256 literal table cells** asks the same question for its own token: start at that token's base59 value, take exactly eight base59 pointer hops, and compare the endpoint with that same token's base60 value. There are exactly two hits:
+
+| table cell | literal token | base59 start | base60 target | 8-hop endpoint |
+| ---: | --- | ---: | ---: | ---: |
+| 151 | `39` | 186 | 189 | 189 |
+| 254 | `39` | 186 | 189 | 189 |
+
+Those are also exactly the **two occurrences of literal `39`** in the original 256-cell table; no other printed token satisfies the dual-radix closure. The common target189 is the unique base59 fixed point and the radix gap is `189-186=3=e`.
+
+Cell254 is selected by the p27 red13 coordinate route. Cell151 is separately named inside the already published p57 FIND radial continuation: `FIND` has prime sum151, its `phi(151)=150` step reaches the base59 151 pointer, and the immediately outward cell151 has base59 value186=`MUST`. Inspecting the canonical table now shows that this second route lands on the **other literal `39`**.
+
+This second selection is not statistically independent of the complete DH hypothesis—the p57 radial continuation was developed inside the same route—but it was fixed before the present literal-token census. The useful fact is narrower and source-exact: **both manuscript-selected appearances of the value186 are the only two literal tokens whose base59 and base60 readings are joined by the authenticated eight-hop pointer count.**
+
 ## Radix-carry self-check: the eight hops reproduce `6C`
 
 The BASE59-to-BASE29 conversion along the pointer walk has a simple digit-level form. If a printed base59 token has digit values `(u,v)`, then
@@ -379,4 +407,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`.
