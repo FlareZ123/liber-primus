@@ -159,9 +159,57 @@ Ordinary DH supplies the next state value without choosing a new cipher family:
 
 The independently audited zero-based authenticated-2016 DH register already identifies source word15 as **WORDS**. This is a cross-source state consequence, not unknown plaintext: the selected p26 word remains ciphertext, and its `[g,B,g]` descriptor is a numerical receiver/state packet.
 
+### Conditional marker-to-terminal word-map payload
+
+The preselected p26 receiver contains one further source coincidence that is strong enough to preserve but not yet strong enough to call solved plaintext. Its first GP0 value is **13**, exactly the p26 terminal mark count and exactly the value negated by the second H packet field:
+
+```
+H incoming packet = [26,-13]
+selected word      = [13,28,8,27,1].
+```
+
+If the physical terminal 13-mark is interpreted literally as telling the solver to move the marker-matched leading value13 to the **terminal** position of this already selected word, the resulting fixed rotation is
+
+```
+[28,8,27,1,13].
+```
+
+Before using English, the four-rune core left after the matched 13 is moved has two independent state checks:
+
+```
+core = [28,8,27,1]
+(length, sum, product mod29) = [4,6,16] = [q,a,A*K]
+
+H4(core) = [27,10,6,0] = [-K,K*g,a,F].
+```
+
+Thus the proposed rotation does not merely improve language; it exposes the same DH state through elementary descriptors and the already-fixed local H serialization.
+
+Using the independently audited **zero-based** authenticated-2016 word register as the map then gives
+
+```
+28 -> THE
+ 8 -> DEVOTED
+27 -> ARE
+ 1 -> THE
+13 -> WAY
+
+THE DEVOTED ARE THE WAY
+```
+
+This is a candidate decoded instruction/statement, **not established unknown LP2 plaintext**. The remaining unsupported step is the opcode: a terminal 13-dot mark plus a leading rune value13 makes “move 13 to the terminal” a compact human-puzzle reading, but no authenticated text explicitly says to rotate this word.
+
+Finite controls keep the evidence bounded:
+
+- There are **318** canonical five-rune words in p0–p55. Charging both directions and all five cyclic starts gives **3,180** presentations. Only **4** presentations from **2** words reach at least 3/4 token-bigram matches against the authenticated 2016 message; two are rotations of this p26 word. The other word is p28 offset207 and produces `SEEKS THE HELLO THE ROAD` / `HELLO THE ROAD SEEKS THE`, not a comparable sentence.
+- A generic post-hoc grammar `THE _ ARE THE _` is insufficient: 12 charged presentations satisfy it.
+- Across **all** canonical five-rune words on pages with a terminal large mark, requiring the word's leading GP0 value to equal that page's terminal mark leaves exactly **one** candidate: p26 offset16. Broadening to all word lengths yields 11 marker-leading candidates, including a p39 three-rune `SEEKS THE WAY` token sequence after the same rotation. Therefore the independent p26 address and five-rune receiver type are essential; marker rotation alone is not a global decoder.
+
+Preserve this phrase as a high-priority **conditional payload**. Promote it only if an independent source clue fixes the marker-to-terminal rotation or if the same exact operation predicts a second typed receiver without language tuning.
+
 Only after that source-only lock is established, the authenticated-2016 register gives an optional semantic echo: zero-based indices `[26,16]` read **NUMBERS ARE**. The exact numeric output `[26,16]` is unique over all **324** contiguous-triple vertex/input-order presentations. This phrase remains secondary evidence: zero-based word indexing is not fully authenticated, `ARE` is duplicated, and 33/324 charged presentations map to some token bigram occurring somewhere in the signed message. Under the single canonical final-vertex presentation there are three such bigram-token hits across 54 triples: p24 **NUMBERS ARE**, p35 **EMPTY EPIPHANY**, and p38 **THE ROAD**.
 
-**Decision:** the mayfly triangle now has a source-fixed sign/order, a source-typed local H consumer, and a concrete body receiver. Printed page order and the terminal p26 mark select the final vertex, lock the oriented packet `[+e,-g,-A]`, validate the fixed H readout as `[page,-mark]`, and land at p26 offset16, whose manuscript-unique descriptor is `[g,B,g]`. Standard DH then recovers `b=15`. This materially advances the route from artwork/count structure into an original ciphertext operand without claiming plaintext. The next useful test must start from this frozen p26 word or recovered `b`; do not regain freedom by switching triangle vertex, sign, H input order, coordinate origin, or a different linear transform.
+**Decision:** the mayfly triangle now has a source-fixed sign/order, a source-typed local H consumer, and a concrete body receiver. Printed page order and the terminal p26 mark select the final vertex, lock the oriented packet `[+e,-g,-A]`, validate the fixed H readout as `[page,-mark]`, and land at p26 offset16, whose manuscript-unique descriptor is `[g,B,g]`. Standard DH then recovers `b=15`. The marker-matched leading13 additionally supports the conditional word-map payload **THE DEVOTED ARE THE WAY**, with independent state checks on its four-rune core, but the marker-to-terminal rotation remains an unproven opcode. This materially advances the route from artwork/count structure into an original ciphertext operand and a bounded candidate instruction. The next useful test must independently select or falsify that rotation; do not regain freedom by switching triangle vertex, sign, H input order, coordinate origin, or a different linear transform.
 
 Reproduction: `sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs`.
 
