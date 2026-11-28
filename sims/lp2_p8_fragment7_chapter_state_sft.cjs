@@ -459,6 +459,101 @@ const factored = polynomialMultiply(
 );
 assert.deepEqual(factored, characteristicTarget);
 
+// P57's newly recovered "IN THE INNER" instruction now source-selects a
+// previously untested operation on this 7x7 matrix: recursively remove one
+// outer row/column circumference, giving centered 7->5->3->1 squares.
+/** @param {number[][]} A @returns {number[][]} */
+function centeredInner(A) {
+  if (A.length <= 1) return [];
+  return A.slice(1, -1).map((row) => row.slice(1, -1));
+}
+
+/** Evaluate descending-degree coefficients at x in GF29. */
+function polynomialEvaluateDescending(coefficients, value) {
+  let out = 0;
+  for (const coefficient of coefficients) out = mod(out * value + coefficient);
+  return out;
+}
+
+const nestedSquares = [matrix];
+while (nestedSquares.at(-1).length > 1) {
+  nestedSquares.push(centeredInner(nestedSquares.at(-1)));
+}
+assert.deepEqual(nestedSquares.map((square) => square.length), [7, 5, 3, 1]);
+assert.deepEqual(nestedSquares[1], [
+  [2,6,3,7,3],
+  [8,4,3,4,5],
+  [3,4,4,7,5],
+  [12,4,5,3,2],
+  [4,9,6,5,6],
+]);
+assert.deepEqual(nestedSquares[2], [
+  [4,3,4],
+  [4,4,7],
+  [4,5,3],
+]);
+assert.deepEqual(nestedSquares[3], [[q]]);
+
+const nestedCharacteristic = nestedSquares.map(characteristicCoefficients29);
+assert.deepEqual(nestedCharacteristic, [
+  characteristicTarget,
+  [1,10,13,12,26,16],
+  [1,18,6,28],
+  [1,25],
+]);
+
+// Inner5 factorization:
+// (x+a)(x^4 + q*x^3 + (p-g)*x^2 + (p-e)*x + (p-1)).
+const inner5Target = polynomialMultiply(
+  [1, a],
+  [1, q, mod(p - g), mod(p - e), mod(p - 1)]
+);
+assert.deepEqual(inner5Target, nestedCharacteristic[1]);
+
+// Inner3 factorization:
+// (x-A)(x-a)(x+e), with roots [A,a,-e]=[8,6,26].
+const inner3Target = polynomialMultiply(
+  polynomialMultiply([1, mod(-A)], [1, mod(-a)]),
+  [1, e]
+);
+assert.deepEqual(inner3Target, nestedCharacteristic[2]);
+
+const nestedTrace = nestedSquares.map((square) =>
+  mod(square.reduce((z, row, i) => z + row[i], 0))
+);
+const nestedDeterminant = nestedSquares.map(determinant29);
+assert.deepEqual(nestedTrace, [p, B, inv(A), q]);
+assert.deepEqual(nestedDeterminant, [p - g, b - K, 1, q]);
+assert.deepEqual(H(nestedTrace), [B, A, 1, mod(-K)]);
+assert.deepEqual(H(nestedDeterminant), [mod(-b), a * K, mod(-b), p - 1]);
+
+// Location controls inside the fixed 7x7: the central 5x5 is the only
+// contiguous 5x5 whose characteristic polynomial has root p=23.
+const fiveWindowPRootHits = [];
+for (let r = 0; r <= 2; r += 1) {
+  for (let col = 0; col <= 2; col += 1) {
+    const square = matrix.slice(r, r + 5).map((row) => row.slice(col, col + 5));
+    const coefficients = characteristicCoefficients29(square);
+    if (polynomialEvaluateDescending(coefficients, p) === 0) {
+      fiveWindowPRootHits.push([r, col]);
+    }
+  }
+}
+assert.deepEqual(fiveWindowPRootHits, [[1, 1]]);
+
+// Likewise, the central 3x3 is the only contiguous 3x3 with the exact
+// state factor (x-A)(x-a)(x+e).
+const threeWindowStateHits = [];
+for (let r = 0; r <= 4; r += 1) {
+  for (let col = 0; col <= 4; col += 1) {
+    const square = matrix.slice(r, r + 3).map((row) => row.slice(col, col + 3));
+    if (JSON.stringify(characteristicCoefficients29(square)) === JSON.stringify(inner3Target)) {
+      threeWindowStateHits.push([r, col]);
+    }
+  }
+}
+assert.deepEqual(threeWindowStateHits, [[2, 2]]);
+
 const cubicA = factorCubicA.slice(1);
 const cubicB = factorCubicB.slice(1);
 const companionA = cubicCompanion(cubicA);
@@ -944,6 +1039,18 @@ for (const [polyName, polynomial, seedName, seed] of [
 assert.ok(lfsrResults.every((x) => x.score < nativeMin));
 
 console.log(JSON.stringify({
+  hiddenInnerNested: {
+    sizes: nestedSquares.map((square) => square.length),
+    characteristic: nestedCharacteristic,
+    inner5Factor: [[1,a],[1,q,p-g,p-e,p-1].map(mod)],
+    inner3Roots: [A,a,mod(-e)],
+    traces: nestedTrace,
+    determinants: nestedDeterminant,
+    hTraces: H(nestedTrace),
+    hDeterminants: H(nestedDeterminant),
+    fiveWindowPRootHits,
+    threeWindowStateHits
+  },
   status: 'PASS',
   classification: 'source-only p8/chapter state-layout serialization; no plaintext or cipher',
   state: { p,g,a,b,A,B,K,e,q,F },
