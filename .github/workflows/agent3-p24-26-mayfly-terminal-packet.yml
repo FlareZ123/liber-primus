@@ -14,3 +14,6 @@ jobs:
       - name: Run source-typed mayfly packet test
         shell: pwsh
         run: node sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs
+      - name: Run authenticated-2016 WAY-codeword gate
+        shell: pwsh
+        run: node sims/lp2_2016_wordmap_way_codewords_sft.cjs
