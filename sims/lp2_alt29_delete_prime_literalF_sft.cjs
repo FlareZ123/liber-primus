@@ -257,5 +257,8 @@ if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===mod
     shakespeare:read("resources/control/shakespeare_first300k.txt"),
     gibran:read("resources/control/gibran_prophet_58585.txt"),
     emerson:read("resources/control/emerson_essays_2944.txt")},
-    {beam:process.argv.includes("--wide")?2000:700,plants:3}),null,2));
+    {beam:process.argv.includes("--wide")?2000:500,plants:3,fhold:true,
+    primeMode:process.argv.includes("--prime-original")?"original":
+      process.argv.includes("--prime-plant")?"plant":undefined,
+    maxDeleted:3}),null,2));
 }
