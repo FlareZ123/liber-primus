@@ -1,0 +1,19 @@
+name: p55 horizontal spacing sidecar gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p55 source-geometry gate
+        run: node sims/lp2_p55_horizontal_spacing_sidecar_sft.cjs
