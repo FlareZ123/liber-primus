@@ -1,0 +1,226 @@
+{
+  "source": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "grid": "2550eae357442912220e05dc51147523a61dd75a"
+  },
+  "p56Replay": 85,
+  "primeTerms": 84,
+  "results": [
+    {
+      "radix": 59,
+      "layout": "row",
+      "internal": 23,
+      "shared": {
+        "tested": 22736,
+        "most": 8,
+        "best": [
+          4,
+          5,
+          13
+        ],
+        "fit": []
+      },
+      "split": {
+        "maxRaw": 6,
+        "maxDec": 6,
+        "upper": 12,
+        "fitPairs": []
+      },
+      "arbitraryShared": {
+        "clauses": 31,
+        "unsat": false,
+        "conflicts": []
+      },
+      "arbitrarySplit": {
+        "clauses": 20,
+        "unsat": false,
+        "conflicts": []
+      },
+      "plant": {
+        "sharedKeyCount": 1,
+        "splitKeyPairCount": 1,
+        "sharedHeld": 171,
+        "splitHeld": 171,
+        "sharedKey": [
+          3,
+          2,
+          7
+        ],
+        "splitKeys": [
+          [
+            3,
+            2,
+            7
+          ],
+          [
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "radix": 59,
+      "layout": "rim",
+      "internal": 27,
+      "shared": {
+        "tested": 22736,
+        "most": 8,
+        "best": [
+          2,
+          10,
+          8
+        ],
+        "fit": []
+      },
+      "split": {
+        "maxRaw": 7,
+        "maxDec": 7,
+        "upper": 14,
+        "fitPairs": []
+      },
+      "arbitraryShared": {
+        "clauses": 27,
+        "unsat": false,
+        "conflicts": []
+      },
+      "arbitrarySplit": {
+        "clauses": 12,
+        "unsat": false,
+        "conflicts": []
+      },
+      "plant": {
+        "sharedKeyCount": 1,
+        "splitKeyPairCount": 1,
+        "sharedHeld": 171,
+        "splitHeld": 171,
+        "sharedKey": [
+          3,
+          2,
+          7
+        ],
+        "splitKeys": [
+          [
+            3,
+            2,
+            7
+          ],
+          [
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "radix": 60,
+      "layout": "row",
+      "internal": 22,
+      "shared": {
+        "tested": 23548,
+        "most": 7,
+        "best": [
+          8,
+          10,
+          19
+        ],
+        "fit": []
+      },
+      "split": {
+        "maxRaw": 5,
+        "maxDec": 6,
+        "upper": 11,
+        "fitPairs": []
+      },
+      "arbitraryShared": {
+        "clauses": 22,
+        "unsat": false,
+        "conflicts": []
+      },
+      "arbitrarySplit": {
+        "clauses": 17,
+        "unsat": false,
+        "conflicts": []
+      },
+      "plant": {
+        "sharedKeyCount": 1,
+        "splitKeyPairCount": 1,
+        "sharedHeld": 171,
+        "splitHeld": 171,
+        "sharedKey": [
+          3,
+          2,
+          7
+        ],
+        "splitKeys": [
+          [
+            3,
+            2,
+            7
+          ],
+          [
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    },
+    {
+      "radix": 60,
+      "layout": "rim",
+      "internal": 29,
+      "shared": {
+        "tested": 23548,
+        "most": 10,
+        "best": [
+          26,
+          16,
+          19
+        ],
+        "fit": []
+      },
+      "split": {
+        "maxRaw": 7,
+        "maxDec": 7,
+        "upper": 14,
+        "fitPairs": []
+      },
+      "arbitraryShared": {
+        "clauses": 23,
+        "unsat": false,
+        "conflicts": []
+      },
+      "arbitrarySplit": {
+        "clauses": 14,
+        "unsat": false,
+        "conflicts": []
+      },
+      "plant": {
+        "sharedKeyCount": 1,
+        "splitKeyPairCount": 1,
+        "sharedHeld": 171,
+        "splitHeld": 171,
+        "sharedKey": [
+          3,
+          2,
+          7
+        ],
+        "splitKeys": [
+          [
+            3,
+            2,
+            7
+          ],
+          [
+            5,
+            4,
+            11
+          ]
+        ]
+      }
+    }
+  ]
+}
