@@ -54,7 +54,7 @@ function inverse(c,pi,key){
   const inv=Array(N);pi.forEach((v,i)=>inv[v]=i);
   const ans=new Map();
   function rec(i,phase,got,start){
-    if(i===c.length){const g=gpword(got),w=roman(got);let obj=ans.get(g);if(!obj){obj={w,gp:g,starts:[]};ans.set(g,obj);}if(!obj.starts.includes(start))obj.starts.push(start);return;}
+    if(i===c.length){assert(encrypt(got,pi,key,start).every((v,j)=>v===c[j]),'inverse forward-reencryption failed');const g=gpword(got),w=roman(got);let obj=ans.get(g);if(!obj){obj={w,gp:g,starts:[]};ans.set(g,obj);}if(!obj.starts.includes(start))obj.starts.push(start);return;}
     if(c[i]===0){got.push(0);rec(i+1,phase,got,start);got.pop();}
     const decoded=inv[((pi[c[i]]-key[phase])%N+N)%N];
     if(decoded!==0){got.push(decoded);rec(i+1,(phase+1)&7,got,start);got.pop();}
