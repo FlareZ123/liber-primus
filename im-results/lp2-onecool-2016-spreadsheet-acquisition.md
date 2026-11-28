@@ -146,7 +146,7 @@ Under `decoded = cipher + modifier (mod 29)`, the implied ciphertext is `[15,8,1
 
 An exhaustive scan of every eight-rune window in the canonical 58-page LP2 corpus finds **exactly one hit across both sign conventions**: the first vector is **p0, rune offset 0**. The reversed-sign vector occurs nowhere. The separate `wZVmpq9` screenshot independently shows `CIPHER_DEC 15 8 18`, exactly the first three p0 values, fixing the arithmetic convention without relying only on the crib label.
 
-Thus the December 2016 workbook screenshots are specifically a **p0 opening workbench**.
+Thus the December 2016 workbook screenshots are specifically a **p0 opening workbench**. More precisely, offsets 0–7 are the complete **first eight-rune red heading word** on original p0, immediately before its small red word divider. The three yellow eight-position trials are therefore candidate readings of that first red title word, not guesses at the black body.
 
 Applying the other visible modifier rows to the same first eight p0 ciphertext runes reconstructs the displayed trials:
 
