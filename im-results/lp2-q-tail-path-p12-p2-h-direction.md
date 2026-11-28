@@ -130,7 +130,7 @@ Not established:
 - a universal tail-concatenation rule outside this source-selected receiver;
 - how p12/p2 should be consumed next.
 
-P2 carries a visible terminal red 13-dot mark and p12 is a tree-illustrated page. Those are now source-selected candidate receiver features, but no operation on them is asserted here.
+P2 carries a visible terminal red 13-dot mark and p12 is a tree-illustrated page. A separate charged continuation now shows that the only count-indistinguishable scalar rival is Q^13->[4,2]=EMPTY/PATH, while fixed Q gives [12,2]=THE/PATH; using H=[2,27] as direction returns to p2/p27 and closes onto the independent upstream p27 state. See [PATH branch discriminator / p27 cycle](lp2-q-tail-path-branch-cycle.md). No operation on the p2 artwork itself is asserted.
 
 Reproducer: ../sims/lp2_q_tail_path_p12_p2_h_sft.cjs
 

@@ -1,3 +1,9 @@
+### 2026-11-28 — THE PATH / EMPTY PATH branch and p27 closure
+
+For fixed tail residue [13,19], all840 scalars contain exactly two outputs whose directed page-count residues H-close to [K,-K]=[2,27]: Q->[12,2]=THE/PATH and Q^13->[4,2]=EMPTY/PATH. P12 and p4 both have261 runes, so the count receiver cannot distinguish them; authenticated signed words do. Across all841 ordered physical page pairs, [12,2] and [4,2] are the only [K,-K] aliases.
+
+Reusing numbers-as-direction on H=[2,27] selects p2,p27. Their count residues [27,2]=[-K,K], and H gives [25,0]=[-q,0]. P27 is the independent upstream DH state where the private-exponent path begins, so the navigation route closes there; stop recursive page-count iteration rather than generate a generic map. Report im-results/lp2-q-tail-path-branch-cycle.md; SFT sims/lp2_q_tail_path_branch_cycle_sft.cjs.
+
 ### 2026-11-28 — tail contents extend Q/H route to p12/p2
 
 The four Q-directed H-tree pages leave source-aligned tails [10,8|0,4], total22=p-1. Concatenating actual nonempty tail runes in fixed Q-tree order p17||p19||p16 gives GF(29²) residue [13,19]; fixed plain Q sends it to [12,2], signed words THE/PATH. Numeric direction selects physical p12,p2, whose full counts261,201 reduce mod29 to [0,27]; H gives [2,27]=[K,-K].
