@@ -128,6 +128,32 @@ D-grid value sums: perimeter  4, interior 2, total  6  (mod29)
 
 Thus the same object reads `(10,3,13)=[Kg,e,b-K]` by count and `(4,2,6)=[q,K,a]` by value sum. This is supportive post-discovery closure, not a separate probability claim.
 
+## Post-commit p6 title-content cross-holdout
+
+Commit `5e575df8a5df67f8390897a871c416c4d5afa6f5` fixed the local canonical-H selector above **before** this invocation opened the p6 title's rune-value descriptor channels. That makes the title contents a useful operation holdout, although the particular cross-channel formula below was recognized after opening and is therefore supporting evidence rather than a prospectively specified prediction.
+
+For the four red title words, let `L` be the selected H4 image of their word lengths and `R` the same selected H4 image of their final GP0 rune indices:
+
+```text
+widths     = [4,1,4,2]
+last runes = [17,19,17,12]
+
+L = H4(widths)     = [2,26,5,6] = [K,-e,g,a]
+R = H4(last runes) = [5,2,7,0]  = [g,K,g+K,F].
+```
+
+Numerically, the two independently observed channels close under the compact relation
+
+```text
+R = [L2, L0, L2+L0, 0].
+```
+
+This relation is not an identity of H and was not used to select the operator. Charging it against **every 2,699 complete four-word window on physical p0-p55 and all 16 source-compatible H presentations** gives exactly **one hit in 43,184 tests**: p6 offset71 under canonical outer-first / left-minus-right / difference-first / bounce H.
+
+The finite charge matters because it shows the committed operator does not merely fit the width channel: the previously unopened title-ending channel lands on a uniquely coupled state packet under the same presentation. The formula itself remains post-opened and must not be converted into a discovery-wide probability claim or a general key serializer.
+
+Reproducer: `sims/lp2_p6_h_last_rune_crosshold_sft.cjs`.
+
 ## Evidence boundary
 
 This result does **not** establish canonical H as a universal Liber Primus cipher or as a historically explicit operation before 2016. The exact arithmetic words "difference" and "sum" still do not appear in the p57 instruction; p50 supplies that discrimination locally. The result also does not authenticate the target-conditioned p30-p42 coordinate keys or recover new plaintext.
