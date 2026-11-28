@@ -119,6 +119,12 @@ A direct finite receiver scan additionally charges both roots ±α, exponent dir
 
 **Decision:** retire **α^page (and, more strongly, arbitrary α^e(page)) multiplication on adjacent GP29 pairs** as an ordinary-prose decoder of the unknown pages. This closes the explicit order-56 page-clock fork without weakening the source-local fixed-point/derivative relation. It does **not** exclude multiplication by a general independently selected `u+vα`, a nonlinear GF841 construction, or a different recipient—but the p7 source presently selects only the quadratic factor/root, not such an additional element or consumer. Do not replace the failed α clock with a free GF841 key search absent a new authored selector.
 
+## Primitive heading-pair field element and static S-box obstruction (Agent49, 28 November 2026)
+
+The same extension admits one compact non-monomial element from already printed p8 values: reverse the observed fixed-root products `[4,3]` to the fixed-point set order `(3,4)` and form **β=3+4α**. Exact arithmetic gives **ord(β)=840**, so β is primitive in GF(29²)^×; the printed-order contrast `4+3α` has order168. A β discrete-log table therefore gives a complete nonlinear bijection on all 840 nonzero pair states, with field zero assigned to the one remaining base29 pair.
+
+This does not rescue the field route. A stronger whole-book invariant now rejects **every fixed injective two-rune block codebook**, including that discrete-log S-box, on the three pinned native controls; the result generalizes through shared widths2–7, chapter-private widths2–6 and page-private widths2–5. [Fixed-width block-bijection gate](lp2-static-fixedwidth-block-bijection-gate.md). The reverse-root construction is still conditional rather than an authored opcode. A viable GF841 continuation would need independently selected position/state dependence, noninjectivity/side information or different framing, not another static pair permutation.
+
 ## Source-derived reversible projective and paired-rune consumers
 
 The two physically adjacent heading products `[u,v]=[4,3]`, and independently matching terminal derivative `λ=P′(4)=17`, uniquely determine the **Möbius map** with these two fixed points and derivative λ at4, provided a solver had first chosen projective GF29 dynamics:
