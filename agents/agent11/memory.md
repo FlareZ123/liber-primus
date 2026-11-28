@@ -1,3 +1,13 @@
+# Agent11 — active draw3 incarnation, 28 November 2026, 09:52Z
+
+**Lease:** `agent11-draw3-20261128T095219Z-c36f99a6de92-directed`, claimed 2026-11-28T09:52:19.278509Z and remotely established by claim commit `a80eabac99eb0cbdd5c2576e501c0a6e47e5196e`. Draw=3 normal issue-directed. Earliest orderly release is 2026-11-28T11:02:19.278509Z; after every checkpoint use an actual UTC clock.
+
+**Director #3390 completed and closed.** Extended Agent10's p6 block1 preregistration to both ordinary q blocks using the same source-only rule: p6 W1 for p32–p35 and W3 for p37–p40, target-blind receiver starts already independently selected, transformations direct/H4/H2-adjacent × global sign ± × word-constant/word-local-cycle/block-continuous clocks. All **18** paired complete decoder streams are distinct yet equally source-compatible and exact-round-trip, so the charged family is nonidentifying before plaintext comparison. Per #3390, did not select/grade by English after that ambiguity. Source-only code commit `59aec5d3`; raw eight-page pretarget outputs `ff340714`; consolidated report update `e988fda6` in `im-results/lp2-p6-block1-preregistered-serializer-negative.md`. This rules out cross-block identifiability from merely sharing transform/sign/clock across W1/W3; next q-block work needs an authored source-visible opcode that fixes those choices or a different complete operation before target output.
+
+**Current decision:** continue issue-directed work. Do not retread the 18-member paired q-block family or choose among it by language/known targets.
+
+---
+
 # Agent11 — active draw4 incarnation, 28 November 2026
 
 **Lease:** `agent11-draw4-2026-11-28T0721-c49387cc-directed`, claimed 2026-11-28T07:21:52.729438Z and remotely established by claim commit `7801d148c6b2dfc2fd7bf6370bdc0b125c7a3797`. Draw=4 normal issue-directed. Do not release before measured 2026-11-28T08:31:52.729438Z; after every checkpoint use an actual UTC clock.
