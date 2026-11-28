@@ -69,6 +69,41 @@ R_p15_second(u) − R_p57_red(u)
 
 The reproducer independently multiplies the original p3 triad by the quotient and asserts equality to **all eleven difference coefficients**, not merely to the first two. The nine-rune quotient is an exact, compact, source-derived *potential operand*. It is not recognizable plaintext, does not identify a receiver, and is not authenticated as a Cicada key. Its length9 equals the separate p15 first red span's length9, but that equality alone does **not** authorize using one as the other's cipher key.
 
+## Complete red-span graph and a second GF(29²) operation
+
+The exhaustive census of the weaker **constant-coordinate equality** on all 18 original red spans has exactly **four** pairs among 153 unordered pairs:
+
+```text
+p3 first red       ↔ p3 marked triad       same page, zero constant
+p6 sole red        ↔ p8 sole red           [10,18] → [10,4]
+p15 second red     ↔ p57 solved first red  [14,25] → [14,25]
+p27 opening red    ↔ p40 opening red       [18,19] → [18,21]
+```
+
+Thus the **only three cross-page collisions** are precisely the three independently motivated pairs, without selecting them from a larger shared-constant red graph. Their oriented differences in the second coordinate are `[15,0,2]` under the order p6→p8, p15→p57, p27→p40, which matches the already reconstructed DH `[b,F,K]`. This is a finite *post-discovery structural census*, not an independently calibrated chance event, and the labels share a previously known DH model.
+
+The nine-rune quotient `Q` was committed with its complete coordinates before a separate follow-on observation: **the other p15 red span has exactly nine runes**, making it a naturally typed partner for `Q`. Evaluate each of these whole, already pinned nine-rune objects in the very same p3 field:
+
+```text
+E(Q)                    = [17,24]
+E(p15 first red, len9)  = [24,6]
+
+E(Q) * E(p15 first red)
+                       = [23,8]
+                       = [p,A]  (authenticated Cicada 2013 DH fields).
+```
+
+The multiplication is the ordinary field law `(a+bu)(c+du)=(ac+8bd)+(ad+bc+3bd)u`. No coordinate ordering, phase, exponent or scalar was tuned to the `[p,A]` observation. It is an exact second original-field operation on the quotient and *the complementary marked p15 red span*, rather than arbitrary state naming of individual residues.
+
+To charge the most immediate algebraic rival, keep all original operands fixed and enumerate all **841** possible monic quadratic relations. Full p15-second/p57 residue equality holds for only two: the original p3 relation `u²=3u+8`, and an alternate `u²=18u+12`. For each, divide the difference by the uniquely scaled degree-two factor with leading coefficient2 and multiply the resulting quotient evaluation by the unchanged p15 first-red evaluation:
+
+| Quadratic relation | Quotient × first-red, GF29² coordinates | Equals authenticated `[p,A]`? |
+| --- | --- | --- |
+| **p3 original** `u²=3u+8` | **`[23,8]`** | **Yes** |
+| Alternate `u²=18u+12` | `[0,21]` | No |
+
+The p3 physical field polynomial is source-selected independently. The alternate quadratic is only a finite comparator; it need not be irreducible. `[p,A]` is not an unknown 2016 plaintext target, and this matching operator/result was noticed *after* the 9-rune quotient was frozen. Therefore treat the DH product as a **new internally consistent state serialization**, not as a prospective blind key-discovery claim. There remains no author-licensed use of `Q` as a cipher key on an untouched body interval.
+
 ## Charged finite controls; no coincidence p-value
 
 Charge **all 29²=841** residue-ring presentations `u²=r u+t` against the three already typed original pairs. Predicate A: p6/p8 **constant coordinates** agree. B: p27/p40 **constant coordinates** agree. C: the complete p15 second/p57 residues agree.
@@ -95,7 +130,7 @@ These gates prevent retrospective cyclic reindexing from being presented as an a
 
 ## Scientific boundary and next causal step
 
-The reproducible result is the **exact original GP29 polynomial-factor bridge** between two source-typed marked rubrics, and a derived, complete nine-rune vector. It supplies a concrete candidate operation and material that can be tested on another independently selected receiver without guessing key coordinates, a better starting point than relabeling arbitrary fitted key vectors with DH-field numbers. However, no untouched original ciphertext was decoded, and no first-party instruction yet mandates the polynomial-reduction operation or specifies a plaintext consumer for Q. The **p15 second-span receiver selection itself is independently supported** by the previously documented p6-like 11-rune/double-red13 source type; this should not be conflated with authorship of the GF29 polynomial cipher. The already-published DH and p15/p57 navigation premises were themselves partly recognized retrospectively.
+The reproducible result is the **exact original GP29 polynomial-factor bridge** between two source-typed marked rubrics, and a derived, complete nine-rune vector. It supplies a concrete candidate operation, a nine-rune operand, and a second exact source-field multiplication that recovers the authenticated DH pair `[p,A]` from the two complementary p15 red spans. These improve the model's internal causal structure without determining an ordered body-cipher key or decrypting unknown ciphertext. However, no untouched original ciphertext was decoded, and no first-party instruction yet mandates the polynomial-reduction operation or specifies a plaintext consumer for Q. The **p15 second-span receiver selection itself is independently supported** by the previously documented p6-like 11-rune/double-red13 source type; this should not be conflated with authorship of the GF29 polynomial cipher. The already-published DH and p15/p57 navigation premises were themselves partly recognized retrospectively.
 
 A genuinely upgrading successor must **freeze a target-blind receiver and a complete use for the nine-rune quotient before opening that receiver's rune identities**. The lowest-description source-typed follow-up is the other p15 red nine-rune span, but its mere length agreement is inadequate; test only an independently justified operation, and do not tune signs/phases to English. If such a receiver or opcode cannot be sourced, retain the p3/p15/p57 identity as structural work in `im-results/`, not as a solved-page claim.
 
