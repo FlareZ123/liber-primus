@@ -1,0 +1,175 @@
+# Onecool 2016 rune-decrypting spreadsheet acquisition
+
+**Agent12, 28 November 2026. Classification: partial historical artifact recovery. The original spreadsheet bytes remain unrecovered; five contemporaneously linked workbook screenshots are recovered exactly and now form a concrete 2016 witness.**
+
+## Executive result
+
+The exact Google Drive object linked by onecool on 16 December 2016 is no longer available through the current Drive endpoints tested by the existing acquisition probe. This invocation did **not** recover the original workbook/export bytes, formulas, comments, or revision history.
+
+It did recover all five screenshots linked in the same 2016 forum post directly from Imgur's CDN. These are not later reconstructions: the identifiers are the exact five links embedded beside onecool's workbook guide. They materially narrow what the lost workbook was and what it contained.
+
+The screenshots show a Microsoft Excel desktop interface, including the worksheet-tab context menu with **Protect Sheet...**, **Tab Color**, **Hide**, **Unhide...**, and **Select All Sheets**. This is positive evidence that the workbook existed in an Excel-compatible Office representation at the time of the screenshots. It does not distinguish `.xls` from `.xlsx`, and it does not by itself prove whether the Drive object was originally uploaded as an Office file or exported from a native Google Sheet.
+
+The working pane also preserves concrete cryptanalytic content: a `COUNT` row, `MODIFIER` row, numeric and English decoded rows, a `Möbius` row, and trial modifier sequences producing the displayed English candidates **DISCOVER**, **DIRECTION**, and a rune U/V rendering of **DIVINITY**. This is much stronger historical evidence than the surviving prose guide alone.
+
+## Dated source witness
+
+A preserved forum capture in the external `Dukotah/cicada3301` corpus contains onecool's post with timestamp:
+
+```text
+Dec 16, 2016 8:31:16 GMT
+data-timestamp = 1481877076000
+```
+
+The exact Drive identifier is:
+
+```text
+0BzOKQofOkvB3YmR1cjJCZGNCdXM
+```
+
+A 19 December 2016 Wayback-captured copy is preserved as:
+
+```text
+corpus/C-community/forums/boards_net/
+20161219190911__cicada3301.boards.net_80_thread_43_rune-decrypting-spreadsheet.html
+```
+
+The post's guide states that:
+
+- `Sheet2` converts Gematria to shifts using the prime-counting function `Pi(p)` on Gematria primes;
+- sheets run from `page_0` through `page_57`;
+- many page sheets are hidden for organization;
+- visible sheets begin distinct sections, under the then-current theory that sections use different keys;
+- the top row is original ciphertext;
+- rows 3–32 are numeric shifts;
+- rows 35–64 are English-letter renderings of those shifts;
+- rows 66–70 are the working rows;
+- `COUNT` is the letter-position index;
+- `MODIFIER` is the encryption key applied to ciphertext to obtain `DECODED`;
+- page 56 uses the Count row to obtain the prime corresponding to `Pi(count)` and subtract it from 59 modulo 29.
+
+This is a contemporaneous description of the workbook's intended operation, not a reconstruction from later Git code.
+
+## Exact recovered screenshots
+
+The five original Imgur IDs remain live. Direct requests to each `i.imgur.com/<id>.png` returned PNG bytes; alternate `.jpg` and `.jpeg` suffixes returned the same PNG payload for each identifier.
+
+| ID | bytes | SHA-256 | 2016-post role |
+|---|---:|---|---|
+| `asLy62L` | 10,739 | `9a237530603110bae88e7421ef8899b826e94b2567e12f112598078123eba818` | hidden-sheet demonstration |
+| `wZVmpq9` | 2,547 | `516eaa6dc8df0bed059932304fb9a23d3f2bb5b25c72e1532970cbba68e77d22` | original cipher row |
+| `UasnRcL` | 3,218 | `da37d432a90530156ee41f661229039edbdbf253b6c568ad58c87e8a78331a9c` | numeric shift rows |
+| `RQANPSJ` | 5,706 | `e89ae0b8487276f03b1da352752bd790e9c45f9df0afb4b7b373bd3f609db027` | English shift rows |
+| `RHV0bYJ` | 18,644 | `cddaac3ab5afe4872deb068b3a4e2f732dcf537e38122202f471ab667071257f` | working rows 66–70 |
+
+The exact acquisition and hashes are reproducible with:
+
+```text
+node sims/lp2_onecool_2016_archive_probe.cjs
+```
+
+and the manual workflow:
+
+```text
+.github/workflows/onecool-2016-spreadsheet-archive-probe.yml
+```
+
+Successful run `46134733617` recovered all five CDN payloads. Run `46134981959` additionally emitted the PNG bytes for direct inspection/preservation.
+
+### Screenshot-visible workbook state
+
+`asLy62L` shows the Excel worksheet context menu and tabs including `Sheet2` plus a `page...` sheet. The menu exposes `Hide` and `Unhide...`, matching onecool's prose instruction about hidden page sheets.
+
+`wZVmpq9` shows:
+
+```text
+CIPHER_DEC    15   8   18
+CIPHER_ENG    S/Z  H   E
+```
+
+`UasnRcL` shows a numeric shift ladder around 15:
+
+```text
+ +1 -> 16
+ -1 -> 14
+ +2 -> 17
+ -2 -> 13
+ +3 -> 18
+ -3 -> 12
+```
+
+`RQANPSJ` shows English renderings for the corresponding shifted rune values:
+
+```text
+DECRYPTED CIPHER +1 -> T
+DECRYPTED CIPHER -1 -> X
+DECRYPTED CIPHER +2 -> B
+DECRYPTED CIPHER -2 -> P
+DECRYPTED CIPHER +3 -> E
+DECRYPTED CIPHER -3 -> EO
+```
+
+`RHV0bYJ` preserves the most informative working pane. The first eight visible positions are:
+
+```text
+COUNT:           0   1   2   3   4   5   6   7
+MODIFIER:        8   2  -3   2  -3  11  -9   4
+DECODED:        23  10  15   5   3   1  18   4
+DECODED ENGLISH: D   I  S/Z C/K  O   U   E   R
+Möbius:          0   1  -1  -1   0  -1   1  -1
+```
+
+The pane then shows three yellow modifier/key trials:
+
+```text
+8  2  -3   2  -3  11  -9   4   -> DISCOVER
+8  2  15  15  -1  26   0   9   -> DIRECTION
+8  2  12   7   3  -9 -11  -3   -> DIVINITY
+```
+
+The screenshot uses the manuscript's rune-to-English ambiguity, so the last word is visibly rendered with the U/V rune convention rather than as a clean Latin-font V. The semantic candidate is nevertheless clear from the displayed sequence.
+
+No formula bar or cell formulas are visible in these crops. The screenshots therefore establish values, labels, workbook UI and trial-key content, but do **not** establish exact formula strings.
+
+## Archive acquisition surfaces
+
+### Google Drive
+
+The earlier current-endpoint probe established that the historical Drive ID no longer yields the workbook through the tested current open/export surfaces.
+
+This invocation queried Wayback CDX for the exact HTTP and HTTPS `drive.google.com/open?id=...` URLs. Both exact queries returned zero successful captures in the tested 2014–2020 interval. Broader wildcard CDX queries were intermittently unavailable with Internet Archive 503 responses, so those failures are not evidence of absence.
+
+### Imgur
+
+Unlike the Drive object, all five exact image IDs remain directly recoverable. One `asLy62L` Imgur page also has a successful 2020 Wayback capture. The live CDN bytes above are the strongest preserved artifact recovered in this task.
+
+### Common Crawl
+
+A dedicated post-publication Common Crawl probe was run across 16 crawl labels from late 2016 through early 2018, with exact/prefix forms for the Drive open, Drive file, and Google Sheets URL shapes:
+
+```text
+sims/lp2_onecool_2016_commoncrawl_probe.cjs
+.github/workflows/onecool-2016-spreadsheet-commoncrawl-probe.yml
+run 46135029639
+```
+
+All 48 index requests errored in that run. This surface is therefore **inconclusive** and is not counted as a negative search result.
+
+### Indexed code/text mirrors
+
+Distinctive searches for the exact Drive ID, screenshot IDs, and the workbook-guide language locate the preserved forum/wiki witnesses but did not reveal an indexed copy of the workbook binary. The known `onecool/liber_primus` Git repository begins in December 2017 and is valuable independent custody evidence, but it is not the December 2016 workbook.
+
+## Decision
+
+Issue #3379's central acquisition goal is only partially met: **the exact workbook bytes are still missing**. However, the task materially improves the evidence state by recovering the exact five linked 2016 screenshots and converting the vanished Drive link from a prose-only reference into a reproducible visual artifact set.
+
+The historical workbook should now be modeled as:
+
+1. a page-per-sheet Excel-compatible workbook with many hidden page tabs;
+2. a numeric Gematria/prime-counting shift workbench;
+3. a key-testing environment with explicit `COUNT`, `MODIFIER`, decoded-rune and decoded-English rows;
+4. a workspace that explicitly tested Möbius-function values and the English candidates DISCOVER, DIRECTION and DIVINITY.
+
+Future acquisition work should be triggered by a **new concrete locator**—for example an original filename, author-side archive, attachment mirror, Drive metadata witness, or another preserved binary reference. Repeating current Drive endpoints or generic repository searches is unlikely to add information.
+
+The recovered screenshots should be treated as historical research inputs. They document solver tooling and hypotheses; they are not evidence that DISCOVER, DIRECTION, DIVINITY, or the Möbius row are creator-authored keys or plaintext.
