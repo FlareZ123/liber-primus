@@ -1,0 +1,464 @@
+{
+  "schema": 1,
+  "classification": "PRETARGET frozen p6 receiver-delta arithmetic-progression key serializer",
+  "frozenAt": "2026-11-28",
+  "rule": "K_j = base_i + D_i*j mod29; base_i is uniquely fixed by sum(K)=sigma_i",
+  "orientation": "forward local j=0..n-1; no sign, reversal, phase, or alternative slope",
+  "inputs": {
+    "deltas": [
+      26,
+      1,
+      3,
+      2,
+      26,
+      1,
+      0,
+      1,
+      3,
+      20,
+      6,
+      1,
+      3
+    ],
+    "keySums": [
+      20,
+      9,
+      4,
+      0,
+      0,
+      25,
+      10,
+      7,
+      0,
+      28,
+      0,
+      5,
+      18
+    ],
+    "receiverSpecs": [
+      {
+        "page": 30,
+        "start": 112,
+        "length": 4
+      },
+      {
+        "page": 31,
+        "start": 126,
+        "length": 3
+      },
+      {
+        "page": 32,
+        "start": 30,
+        "length": 3
+      },
+      {
+        "page": 33,
+        "start": 132,
+        "length": 4
+      },
+      {
+        "page": 34,
+        "start": 4,
+        "length": 2
+      },
+      {
+        "page": 35,
+        "start": 25,
+        "length": 5
+      },
+      {
+        "page": 36,
+        "start": 169,
+        "length": 5,
+        "remove": 2
+      },
+      {
+        "page": 37,
+        "start": 146,
+        "length": 4
+      },
+      {
+        "page": 38,
+        "start": 57,
+        "length": 6
+      },
+      {
+        "page": 39,
+        "start": 132,
+        "length": 5
+      },
+      {
+        "page": 40,
+        "start": 71,
+        "length": 4
+      },
+      {
+        "page": 41,
+        "start": 178,
+        "length": 7,
+        "remove": 3
+      },
+      {
+        "page": 42,
+        "start": 211,
+        "length": 8,
+        "remove": 1
+      }
+    ]
+  },
+  "rows": [
+    {
+      "page": 30,
+      "receiver": [
+        21,
+        3,
+        12,
+        11
+      ],
+      "arity": 4,
+      "delta": 26,
+      "keySum": 20,
+      "base": 24,
+      "key": [
+        24,
+        21,
+        18,
+        15
+      ],
+      "decodedIndices": [
+        26,
+        11,
+        23,
+        25
+      ],
+      "decodedTranslit": "YJDAE"
+    },
+    {
+      "page": 31,
+      "receiver": [
+        12,
+        23,
+        1
+      ],
+      "arity": 3,
+      "delta": 1,
+      "keySum": 9,
+      "base": 2,
+      "key": [
+        2,
+        3,
+        4
+      ],
+      "decodedIndices": [
+        10,
+        20,
+        26
+      ],
+      "decodedTranslit": "ILY"
+    },
+    {
+      "page": 32,
+      "receiver": [
+        0,
+        3,
+        2
+      ],
+      "arity": 3,
+      "delta": 3,
+      "keySum": 4,
+      "base": 8,
+      "key": [
+        8,
+        11,
+        14
+      ],
+      "decodedIndices": [
+        21,
+        21,
+        17
+      ],
+      "decodedTranslit": "NGNGB"
+    },
+    {
+      "page": 33,
+      "receiver": [
+        3,
+        15,
+        17,
+        22
+      ],
+      "arity": 4,
+      "delta": 2,
+      "keySum": 0,
+      "base": 26,
+      "key": [
+        26,
+        28,
+        1,
+        3
+      ],
+      "decodedIndices": [
+        6,
+        16,
+        16,
+        19
+      ],
+      "decodedTranslit": "GTTM"
+    },
+    {
+      "page": 34,
+      "receiver": [
+        12,
+        23
+      ],
+      "arity": 2,
+      "delta": 26,
+      "keySum": 0,
+      "base": 16,
+      "key": [
+        16,
+        13
+      ],
+      "decodedIndices": [
+        25,
+        10
+      ],
+      "decodedTranslit": "AEI"
+    },
+    {
+      "page": 35,
+      "receiver": [
+        19,
+        17,
+        19,
+        24,
+        11
+      ],
+      "arity": 5,
+      "delta": 1,
+      "keySum": 25,
+      "base": 3,
+      "key": [
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "decodedIndices": [
+        16,
+        13,
+        14,
+        18,
+        4
+      ],
+      "decodedTranslit": "TPXER"
+    },
+    {
+      "page": 36,
+      "receiver": [
+        2,
+        22,
+        1,
+        20
+      ],
+      "arity": 4,
+      "delta": 0,
+      "keySum": 10,
+      "base": 17,
+      "key": [
+        17,
+        17,
+        17,
+        17
+      ],
+      "decodedIndices": [
+        14,
+        5,
+        13,
+        3
+      ],
+      "decodedTranslit": "XCPO"
+    },
+    {
+      "page": 37,
+      "receiver": [
+        3,
+        2,
+        6,
+        27
+      ],
+      "arity": 4,
+      "delta": 1,
+      "keySum": 7,
+      "base": 22,
+      "key": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "decodedIndices": [
+        10,
+        8,
+        11,
+        2
+      ],
+      "decodedTranslit": "IHJTH"
+    },
+    {
+      "page": 38,
+      "receiver": [
+        8,
+        25,
+        14,
+        2,
+        17,
+        22
+      ],
+      "arity": 6,
+      "delta": 3,
+      "keySum": 0,
+      "base": 7,
+      "key": [
+        7,
+        10,
+        13,
+        16,
+        19,
+        22
+      ],
+      "decodedIndices": [
+        1,
+        15,
+        1,
+        15,
+        27,
+        0
+      ],
+      "decodedTranslit": "USUSIAF"
+    },
+    {
+      "page": 39,
+      "receiver": [
+        19,
+        7,
+        10,
+        17,
+        23
+      ],
+      "arity": 5,
+      "delta": 20,
+      "keySum": 28,
+      "base": 12,
+      "key": [
+        12,
+        3,
+        23,
+        14,
+        5
+      ],
+      "decodedIndices": [
+        7,
+        4,
+        16,
+        3,
+        18
+      ],
+      "decodedTranslit": "WRTOE"
+    },
+    {
+      "page": 40,
+      "receiver": [
+        4,
+        15,
+        14,
+        21
+      ],
+      "arity": 4,
+      "delta": 6,
+      "keySum": 0,
+      "base": 20,
+      "key": [
+        20,
+        26,
+        3,
+        9
+      ],
+      "decodedIndices": [
+        13,
+        18,
+        11,
+        12
+      ],
+      "decodedTranslit": "PEJEO"
+    },
+    {
+      "page": 41,
+      "receiver": [
+        27,
+        12,
+        5,
+        17,
+        13,
+        19
+      ],
+      "arity": 6,
+      "delta": 1,
+      "keySum": 5,
+      "base": 8,
+      "key": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "decodedIndices": [
+        19,
+        3,
+        24,
+        6,
+        1,
+        6
+      ],
+      "decodedTranslit": "MOAGUG"
+    },
+    {
+      "page": 42,
+      "receiver": [
+        10,
+        14,
+        1,
+        3,
+        26,
+        8,
+        2
+      ],
+      "arity": 7,
+      "delta": 3,
+      "keySum": 18,
+      "base": 6,
+      "key": [
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24
+      ],
+      "decodedIndices": [
+        4,
+        5,
+        18,
+        17,
+        8,
+        16,
+        7
+      ],
+      "decodedTranslit": "RCEBHTW"
+    }
+  ]
+}
