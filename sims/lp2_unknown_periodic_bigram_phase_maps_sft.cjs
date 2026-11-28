@@ -1,6 +1,6 @@
 'use strict';
-function study(raw,which=0,restarts=8) {
-const [rawC,emerson,shakespeare,gibran]=raw,c=JSON.parse(rawC),Q=29,id=Array.from({length:Q},(_,i)=>i),m=x=>(x%Q+Q)%Q,q=8,W=2*q;
+function study(raw,which=0,restarts=3,q=8) {
+const [rawC,emerson,shakespeare,gibran]=raw,c=JSON.parse(rawC),Q=29,id=Array.from({length:Q},(_,i)=>i),m=x=>(x%Q+Q)%Q,W=2*q;
  const R=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'],ri=new Map(R.map((r,i)=>[r,i]));
  function gp(s){let out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/ING/g,"NG").replace(/IO/g,"IA").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let i=0;i<w.length;){let x=w.slice(i,i+2);if(!ri.has(x))x=w[i];out.push(ri.get(x));i+=x.length}}return out}
 
@@ -25,8 +25,8 @@ const prob=Float64Array.from(LM,Math.exp),logfreq=Float64Array.from(freq,Math.lo
 const offsets=[0,729,1874,3603,5506,6527,7960,9640,12648,12956];
 const tape=c.pages.slice(0,56).flatMap(p=>p.indices);
 let C,truth=null,truthA=null,truthB=null,truthK=null;
-if(which<2){const rand=random(0x28112500+which);truthA=perm(rand,true);truthB=perm(rand,false);truthK=[0,...Array.from({length:q-1},()=>Math.floor(rand()*Q))];
-const donor=gp(which?gibran:shakespeare).slice(which?1536:4096,(which?1536:4096)+12956);
+if(which<2){const rand=random(0x28112500+which+(q-8)*0x100);truthA=perm(rand,true);truthB=perm(rand,false);truthK=[0,...Array.from({length:q-1},()=>Math.floor(rand()*Q))];
+const donor=gp(which?gibran:shakespeare).slice((which?1536:4096)+(q-8)*521,(which?1536:4096)+(q-8)*521+12956);
 truth=offsets.slice(0,-1).map((v,i)=>donor.slice(v,offsets[i+1]));C=truth.map(P=>encrypt(P,truthK,truthA,truthB))}
 else C=offsets.slice(0,-1).map((v,i)=>tape.slice(v,offsets[i+1]));
 const fit=C.slice(0,7),held=C.slice(7);
@@ -87,7 +87,7 @@ for(let i=0;i<n;i++){D.fill(-Infinity);const c=C[i];for(let a=0;a<W;a++){if(!Num
  }[F,D]=[D,F]}
  let a=-1,score=-Infinity;for(let j=0;j<W;j++)if(F[j]>score){score=F[j];a=j}if(a<0)return null;const P=new Int8Array(n);for(let i=n-1;i>=0;i--){P[i]=(a&1)?0:T[((a>>1)+q-1)%q][C[i]];a=back[i*W+a]}return {P:Array.from(P),score}}
 function evaluate(T){const D=C.map(row=>decode(row,T)),count=D.map((d,i)=>d&&truth?d.P.reduce((s,p,j)=>s+(p===truth[i][j]),0):0);return {fit:truth?count.slice(0,7).reduce((a,b)=>a+b,0):null,held:truth?count.slice(7).reduce((a,b)=>a+b,0):null,fitN:9640,heldN:3316,legal:D.filter(Boolean).length,fitScore:D.slice(0,7).every(Boolean)?D.slice(0,7).reduce((s,d)=>s+d.score,0):null,heldScore:D.slice(7).every(Boolean)?D.slice(7).reduce((s,d)=>s+d.score,0):null}}
-const rand=random(0x28112600+which),records=[],candidates=[];
+const rand=random(0x28112600+which+(q-8)*0x100),records=[],candidates=[];
 for(let r=0;r<restarts;r++){
  let T=seedMaps(rand,r===0?0:r<4?1.2:2.5),initAcc=accuracy(T),trace=[];
  for(let it=0;it<24;it++){const eps=10**(-Math.min(6,1+Math.floor(it/5))),s=posterior(fit,T,eps);if(!s.CC)break;T=update(T,s,eps,rand,2);if(it%6===5)trace.push({it,ll:s.ll,acc:accuracy(T)})}
@@ -143,8 +143,8 @@ for(const item of legalKeys.slice(0,5)){let {A,B,K}=item,T=fromKey(A,B,K),ll=ite
 }
 if(bestFactor){const {A,B,K,T}=bestFactor;bestFactor.evaluation=evaluate(T);bestFactor.evaluation.replay=C.every((row,i)=>{const d=decode(row,T);return !!d&&encrypt(d.P,K,A,B).join()===row.join()});bestFactor.effectiveCorrect=accuracy(T);if(!truth)bestFactor.P=C.map(row=>decode(row,T)?.P??null)}
 
-return {which,truthK,truthMaps:mapTruth,oracle:truth?evaluate(mapTruth):null,records,best:candidates[0]?{...candidates[0],evaluation:evaluate(candidates[0].T)}:null,factoring,legalFactorKeys:legalKeys.length,bestFactor};
+return {which,q,truthK,truthMaps:mapTruth,oracle:truth?evaluate(mapTruth):null,records,best:candidates[0]?{...candidates[0],evaluation:evaluate(candidates[0].T)}:null,factoring,legalFactorKeys:legalKeys.length,bestFactor};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"];
-if(typeof require!=="undefined"&&require.main===module){const fs=require('node:fs'),path=require('node:path');console.log(JSON.stringify(study(paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),Number(process.argv[2]||0),Number(process.argv[3]||8)),null,2))}
+if(typeof require!=="undefined"&&require.main===module){const fs=require('node:fs'),path=require('node:path');console.log(JSON.stringify(study(paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),Number(process.argv[2]||0),Number(process.argv[3]||3),Number(process.argv[4]||8)),null,2))}
 if(typeof module!=="undefined")module.exports={study,paths};
