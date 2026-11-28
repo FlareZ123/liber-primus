@@ -185,6 +185,36 @@ function experiment(raw, options={}) {
     return p[b.length];
   }
   const lm=makeLM(),beam=options.beam||700,results=[];
+  if(options.primeMode){
+    // One frozen source-literal transfer: the p56 prime-minus-one stream
+    // starts from prime(1)=2, no transferred plaintext-F holds asserted.
+    const primes=[];
+    for(let n=2;primes.length<3200;n++){
+      let prime=true;for(let k=2;k*k<=n;k++)if(n%k===0){prime=false;break;}
+      if(prime)primes.push(n);
+    }
+    const K=primes.map(x=>(x-1)%29),K1=primes.slice(1).map(x=>(x-1)%29);
+    let C,truth=null,tag;
+    if(options.primeMode==="plant"){
+      const W=datasets[1].arr;
+      const P=W.slice(Math.floor(W.length*.57)).flat().slice(2500,2880);
+      const A=encode(P,K),r=rng(27182818),picked=A.filter(()=>r(10000)>=1870);
+      C=picked.map(x=>x.c);truth=picked.map(x=>x.p);tag="held-out genuine GP29 donor under p56-derived prime key";
+    }else if(options.primeMode==="original"){
+      C=gp.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices);
+      if(C.length!==308)throw Error("original physical terminal length drift");
+      tag="original physical p54-p55"; 
+    }else throw Error("unrecognized primeMode");
+    const a=decode(C,K,lm,beam,options.maxDeleted||3);
+    const b=decode(C,K1,lm,beam,options.maxDeleted||3);
+    return {hypothesis:"V-DELETE with first prime minus one mod29, origin at first rune, no F holds",
+      scope:tag,inputLength:C.length,truthLength:truth?.length??null,
+      origin0:{score:a.score,finalIndex:a.lastKeyIndex,recovery:truth&&a.P?lcs(a.P,truth)/Math.max(a.P.length,truth.length):null,
+        readableGP:a.P?.map(x=>gp.translit[x]).join(""),plaintextRunes:a.P?.map(x=>gp.runes[x]).join("")},
+      origin1Wrong:{score:b.score,finalIndex:b.lastKeyIndex,
+        recovery:truth&&b.P?lcs(b.P,truth)/Math.max(b.P.length,truth.length):null,
+        gpPrefix:b.P?.slice(0,140).map(x=>gp.translit[x]).join("")}};
+  }
   for(let z=0;z<(options.plants||3);z++){
     const donor=datasets[z%datasets.length],plant0=plant(donor,80421+z*547);
     const a=decode(plant0.C,plant0.K,lm,beam,options.maxDeleted||3);
