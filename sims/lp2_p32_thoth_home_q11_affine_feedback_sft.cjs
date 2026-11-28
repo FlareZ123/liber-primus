@@ -99,7 +99,7 @@ function experiment(raw,which){
   for(let attempt=0;attempt<10000;attempt++){
    const key=forced.map(k=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return k??seed%Q});
    const C=enc(P,key,a,b);
-   if(same(C.slice(A,B),P.slice(A,B))&&C.slice(0,A).concat(C.slice(B,cut)).filter(x=>!x).length===1&&C.slice(cut).filter(x=>!x).length===1)return {C,key,a,b,P};
+   if(same(C.slice(A,B),P.slice(A,B))&&C.slice(0,A).concat(C.slice(B,cut)).filter(x=>!x).length<=3&&C.slice(cut).filter(x=>!x).length<=3)return {C,key,a,b,P};
   }throw Error("no matched plant");
  }
  let C,truth=null;
