@@ -446,19 +446,76 @@ These negatives retire the two most direct uses of the new state serialization. 
 
 The repository's stronger [seven-row all-secret gate](lp2-p8-14-sevenrow-allsecret-gate.md) already excludes every **fixed** invertible affine Hill7 matrix in the two natural seven-channel layouts, so no additional fixed-matrix Hill search is warranted.
 
+## Held-out p16–p21 descriptor transfer
+
+The p7→p8 weighted-row receiver does not stop at the two 28-rune operands. Its **held-out fragment descriptors** themselves form three source-fixed seven-entry schedules:
+
+```text
+L = [e,Kg,K,e,K,a,K]
+  = [3,10,2,3,2,6,2]
+
+S = [p,F,K,Kg,-K,K-b,b-K]
+  = [23,0,2,10,27,16,13]
+
+P = [K,A,-g,b+K,b+K,g+K,g]
+  = [2,8,24,17,17,7,5].
+```
+
+Apply those three already-frozen rows as page-local fragment indices on the immediately following physical block p15–p21, preserving page order and descriptor order, and aggregate each selected row as `[length mod29, SUM, PRODUCT]`. The complete block gives
+
+```text
+T15-21 =
+23  1  0
+14 13 23
+10 13 28
+
+chi_T(x) = x^3 + 23x^2 + 8x + 1
+         = (x-b)(x^2 + (q+g)x - K).
+```
+
+That complete matrix is **not independent evidence**: the L and P selections on p15 overlap the lower-red state source already used upstream. It is retained only as the literal full continuation.
+
+Remove the entire p15 anchor contribution and keep the six genuinely held-out pages p16–p21. The same fixed schedules, positions 1–6 only, give
+
+```text
+U16-21 =
+21 24  0
+ 9  2 11
+ 6 20 26
+
+chi_U(x)
+ = x^3 + 9x^2 + x + 20
+ = x^3 + (q+g)x^2 + x + qg
+ = (x-q)(x^2 + (b-K)x - g)            (mod29).
+```
+
+The only native-field root is exactly `q=4`. Its one-dimensional right and left eigenspaces have source-state representatives
+
+```text
+right: [-g,aK,1] = [24,12,1]
+left:  [-1,-K,1] = [28,27,1].
+```
+
+This uses no p16–p21 plaintext grading, language model, phase, sign, transformed key, or target-derived index. A matched census holds the three schedules, L/S/P order, page order and six-page tail semantics fixed while moving the anchor over every legal original interval. There are **42** legal placements. Only anchor **p15** (held-out pages **p16–p21**) has the exact characteristic polynomial above, and it is also the only placement whose characteristic polynomial has `q=4` as its sole native-field root.
+
+The factorization was recognized after this transfer matrix was inspected, so the 1/42 uniqueness is a **post-discovery finite discriminator, not a discovery p-value**. The important advance is causal: a p7-derived operation on p8 creates fragment schedules from p8–p14, and those schedules land on previously unused p16–p21 fragment contents whose aggregate linear algebra reconstructs the same state without reusing p15's anchor glyphs. This materially extends the state-transfer chain beyond p8 while still recovering **no unknown body plaintext or cipher inverse**.
+
+Reproducer: `sims/lp2_p8_p15_descriptor_transfer_sft.cjs`.
+
 ## Research implication
 
-P8 now contains five mutually adjacent/contained representations of the same state:
+P8 now participates in six coupled representations/transfers of the same state:
 
 1. the red H packet reconstructs the DH23 state;
 2. the page composition itself closes as `K/aK`, `e(b+K)/ge(b+K)`, and `(g+K)^2/e^g`;
 3. the immediately following first black word has `(length,sum,product)=[e,p,K]` and `H3=[A^-1,q+g,-b]`;
 4. the 49 black page-local fragment lengths form a 7×7 matrix whose **entire characteristic polynomial factors in DH-state coefficients**;
-5. the seven physical page lengths p8–p14 serialize the state in base29.
+5. the seven physical page lengths p8–p14 serialize the state in base29;
+6. the p7→p8 receiver's three descriptor rows, used as frozen fragment-index schedules, produce a disjoint p16–p21 matrix with `chi=(x-q)(x^2+(b-K)x-g)`, unique across all 42 legal placements.
 
-This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, and its signed output selects a seven-page fragment receiver whose held-out lengths/SUMs/PRODUCTs close on the same state. The evidence points to deliberate **state/layout metadata, a p7→p8 state-transfer step, and a source-derived 28-rune operand** rather than a direct mono-layer Hill cipher.
+This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, its signed output selects a seven-page fragment receiver, and the receiver's descriptors in turn act as an executable indexing grammar on the next physical section. The evidence now supports a **p7→p8→p16–p21 state-transfer chain** and source-derived operand material rather than a direct mono-layer Hill cipher.
 
-The next decisive question is not which extra matrix phase improves language. It is what source-visible operation uses this state packet to select an **untouched receiver or external object**. A successor should predict that recipient or a key coordinate before inspecting its ciphertext outcome.
+The next decisive question is what source-visible operation consumes the new `q` eigenspace or the selected p16–p21 fragments to predict a **new receiver, key coordinate, or reversible body operation before target inspection**. Do not rescue rejected periodic consumers with phase/key tuning.
 
 ## Reproduction
 
