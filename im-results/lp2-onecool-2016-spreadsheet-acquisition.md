@@ -131,6 +131,52 @@ The screenshot uses the manuscript's rune-to-English ambiguity, so the last word
 
 No formula bar or cell formulas are visible in these crops. The screenshots therefore establish values, labels, workbook UI and trial-key content, but do **not** establish exact formula strings.
 
+## Exact localization to LP2 p0 offset 0
+
+The screenshots can now be localized algebraically rather than only described visually.
+
+The working pane shows the first DISCOVER trial as:
+
+```text
+MODIFIER:  8, 2, -3, 2, -3, 11, -9, 4
+DECODED:  23,10, 15, 5,  3,  1, 18, 4
+```
+
+Under `decoded = cipher + modifier (mod 29)`, the implied ciphertext is `[15,8,18,3,6,19,27,0]`. Reversing the sign instead gives `[2,12,12,7,0,12,9,8]`.
+
+An exhaustive scan of every eight-rune window in the canonical 58-page LP2 corpus finds **exactly one hit across both sign conventions**: the first vector is **p0, rune offset 0**. The reversed-sign vector occurs nowhere. The separate `wZVmpq9` screenshot independently shows `CIPHER_DEC 15 8 18`, exactly the first three p0 values, fixing the arithmetic convention without relying only on the crib label.
+
+Thus the December 2016 workbook screenshots are specifically a **p0 opening workbench**.
+
+Applying the other visible modifier rows to the same first eight p0 ciphertext runes reconstructs the displayed trials:
+
+```text
+DISCOVER
+ key      [ 8, 2,-3, 2,-3,11, -9, 4]
+ decoded  [23,10,15, 5, 3, 1, 18, 4]
+ canonical translit D I S C O U E R
+
+DIRECTION trial
+ key      [ 8, 2,15,15,-1,26,  0, 9]
+ decoded  [23,10, 4,18, 5,16, 27, 9]
+ canonical GP translit D I R E C T IA N
+
+DIVINITY trial
+ key      [ 8, 2,12, 7, 3,-9,-11,-3]
+ decoded  [23,10, 1,10, 9,10, 16,26]
+ canonical GP translit D I U I N I T Y
+```
+
+The DIRECTION row uses GP27 in the digraph slot; the repository's canonical transliteration labels that rune `IA`. DIVINITY similarly reflects the U/V rune ambiguity.
+
+The arithmetic shows that the yellow rows are **crib-derived trial modifiers against p0's opening ciphertext**, not independently generated keys. They preserve useful solver history but are not creator-authored plaintext/key evidence.
+
+Reproduce the localization and corpus-wide uniqueness check with:
+
+```text
+node sims/lp2_onecool_2016_workbook_localization_sft.cjs
+```
+
 ## Archive acquisition surfaces
 
 ### Google Drive
