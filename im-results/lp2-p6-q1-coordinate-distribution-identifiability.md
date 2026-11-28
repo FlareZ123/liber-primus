@@ -135,6 +135,41 @@ raw ordered key tuples with the same four page sums.
 
 The normalized-progression gate is much stronger than merely restating that count: even after compressing the entire four-page serializer to **one global slope**, and even after demanding that slope be a numeric value already visible on p6, the source-only evidence still leaves 17 distinct complete ordered serializers.
 
+## H-free p50 state packet supplies page-specific slopes, but the frozen transfer fails
+
+A later cross-artifact result removes the specific nonidentifiability left by Gate B without consulting q-block target runes. P6 mirror-pair widths plus the independently ordered/directed p50 strict supports select the ordered state packet
+
+```text
+[K,-e,g,a] = [2,26,5,6] mod29.
+```
+
+This gives a new, source-constrained coordinate law that was unavailable when #3401 closed: assign those four slopes in printed page order to each q-sized block, and let the already frozen page checksum determine the unique intercept
+
+```text
+K_i[j] = b_i + s_i*j mod29
+b_i = (sigma_i - s_i*n_i*(n_i-1)/2) * n_i^-1 mod29.
+```
+
+The exact serializer was committed **before** target-word grading in `e9e84c46de2e6123a9e41811b491ae40b22a3b67`; all eight raw q1/q3 outputs were frozen separately in `56ab57a383599f4c0ca4b005b108a2780c108865`. The resulting keys are:
+
+```text
+q1 p32 [9,11,13]
+    p33 [19,16,13,10]
+    p34 [12,17]
+    p35 [22,28,5,11,17]
+
+q3 p37 [6,8,10,12]
+    p38 [22,19,16,13,10,7]
+    p39 [13,18,23,28,4]
+    p40 [20,26,3,9]
+```
+
+Post-freeze grading against the authenticated q-block source words gives **0/8 complete words and 2/33 rune-coordinate matches**. The two coordinate matches are p35 final and p40 initial; there is no connected plaintext.
+
+This is a useful negative because it tests the most direct coordinate lift unlocked by the new H-free state serializer while preserving every established receiver and scalar checksum. Do **not** rescue it by wrapping coordinates, reassigning the four slopes, reversing per-page progressions, or adding offsets after target inspection. A successful ordered-key decoder still needs a different independently authored coordinate operation.
+
+Reproducer: [freeze SFT](../sims/lp2_p6_p50_hfree_qblock_slope_freeze_sft.cjs) · [frozen raw outputs](lp2-p6-p50-hfree-qblock-slope-pretarget.json) · [post-freeze grader](../sims/lp2_p6_p50_hfree_qblock_slope_grader_sft.cjs).
+
 ## Consequence for the corridor
 
 The p6 page-key-sum tape remains a real checksum constraint and a useful falsification gate for candidate decoders. It is not, by itself, coordinatewise decoder evidence.
