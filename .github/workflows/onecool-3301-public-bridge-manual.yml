@@ -80,3 +80,12 @@ jobs:
           path: ${{ runner.temp }}/onecool-2017-historical-method-grep.json
           if-no-files-found: error
           retention-days: 7
+      - name: Reproduce 2016 p56 spreadsheet formula
+        run: node sims/lp2_onecool_2016_p56_formula_equivalence_sft.cjs
+      - name: Upload p56 formula equivalence
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2016-p56-formula-equivalence
+          path: ${{ runner.temp }}/onecool-2016-p56-formula-equivalence.json
+          if-no-files-found: error
+          retention-days: 7
