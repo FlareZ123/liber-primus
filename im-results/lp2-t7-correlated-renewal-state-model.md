@@ -146,6 +146,34 @@ These are bounded negatives for the obvious cumulative schedules, not a theorem 
 
 Reproduce these diagnostics with `sims/lp2_p50_dynamic_state_wrap_localization_sft.cjs`.
 
+### The two printed digits have complementary roles in the exception process (Agent 6, 28 November 2026)
+
+The remaining source-native state is not a static p50 cell value. It appears at the **event update** itself. Let the 86 equality sites be E0...E85, let G_n = E_(n+1)-E_n, and for each middle event E_(n+1) read the two printed p50 characters at the already frozen left-endpoint residue E_(n+1) mod 256. Define the gap innovation dG_n = G_(n+1)-G_n.
+
+The **low printed digit** is associated with the direction of this update. Its raw 0..59 value has Pearson correlation **-0.32074195** with dG (Spearman **-0.28846**); the full base60 value is only -0.05247 and the high digit is +0.02454. More importantly, the source-visible half-radix predicate is discrete and codec-stable: the same printed symbols satisfy low digit <30 under both surviving base60 and base59 readings. Among the 84 middle events the two halves occur **42/42**. Their mean innovations are **+51.9286** and **-50.7381** respectively. Excluding the one zero innovation, the source rule
+
+- low digit <30 -> next equality gap increases;
+- low digit >=30 -> next equality gap decreases
+
+is correct at **58/83 = 69.8795%** of the event updates.
+
+This is not a fitted phase effect. Across all 256 circular table phases, source phase zero is the **unique maximum** for correct update direction (58/83). Independently, the already established high-digit-zero repeat gate is also uniquely maximal there (33/86). No other phase reaches both source counts, and phase zero is the sole Pareto point in the pair (high-zero repeat hits, low-half correct updates). The two statistics have only **+0.1432** correlation across phases, so the joint maximum is not a trivial duplicate score.
+
+The result survives two controls that preserve different nuisance structure. First, condition on the complete observed 256-residue event-count vector and randomize only which cycle occurrence of each residue fires. Across 50,000 draws, only **17** reach 58/83 directional accuracy (add-one upper tail **0.00035999**); only **13** simultaneously reach the observed mean half-split innovation difference and the accuracy (add-one **0.00027999**). Second, randomly permute the **whole original two-character tokens** among the 256 table cells, preserving every token and therefore the joint high/low digit distribution. In 50,000 fixed-seed permutations, 218 match the 33 high-zero hits, 2 match the 58 correct directions, and **0 match both** (add-one joint upper bound **0.0000200**).
+
+The source orientation is also selected. Forward row-major gives (33 high-zero hits, 58 correct updates). Full reversal gives (24,40), horizontal reflection (24,37), and vertical reflection (26,39). Among the 32 whole-row rotations and eight within-row column rotations, the unshifted original is again uniquely best in correct direction and jointly dominates the alternatives. The direction rule independently reproduces in both temporal halves (**29/41=70.73%**, **28/40=70.0%**) and across the three physically printed table panels (**17/24=70.83%**, **21/31=67.74%**, **20/28=71.43%**).
+
+The two p50 characters therefore separate into **complementary roles** rather than one numeric key:
+
+- the **high digit** supplies a position-dependent diagonal/repeat gate: high=0 has 33/3,025 repeats versus 53/9,876 outside, while the ordinary off-diagonal substitution channel is unchanged;
+- the **low digit half** supplies an event-driven feedback sign: it has essentially no local repeat-hazard enrichment itself (42/6,807 versus 44/6,094), yet predicts whether the next exception interval expands or contracts.
+
+A literal magnitude recurrence is **not** established. No equality of the form dG = +/-low works, the low digit has only chance-level exact modular matches under 29/59/60/256, and an unconstrained linear fit gives slope about -2.66 rather than a source-selected coefficient. Thus this finding does not yet define a reversible sender. It materially narrows the missing operation: a viable p50-linked mechanism should use the high field to control exception eligibility and the low field to control the **sign/direction of the next interval update**, with an independently source-selected magnitude/state law still required.
+
+A direct count/cycle reading of the two digits fails: only 9 of 66 active residues have high digit = observed event multiplicity, and only four cells' low digits equal any observed event cycle. Likewise the low-digit successor-graph state f^cycle(r) fails both T7 and the high-zero held-out count under exact state conditioning. Do not rescue the dual-field result by treating either printed digit as a literal event count, cycle number, or additive gap value.
+
+Reproduce the dual-field gate with `sims/lp2_p50_dual_digit_feedback_sft.cjs`.
+
 The authentic solved p56 prime-totient cipher is also a negative control. Applying its transparent-F hold and prime-minus-one clock to the 2,979 solved native GP runes gives 95 repeats with gap lag-one **-0.02187** under a continuous clock, or 99 repeats with **+0.05526** when the prime clock resets at each solved section. T7 is not a generic artifact of the known Cicada prime cipher.
 
 Exploratory source screens do not identify the shared operand: raw p50 numeric values at the two equality-event endpoints explain only about **1.10%** of gap variance at the authentic phase (rank 174/256 among circular shifts), endpoint printed-line lengths explain **1.35%**, and endpoint printed-word lengths **2.25%**. These screens are diagnostic rather than preregistered exclusions.
