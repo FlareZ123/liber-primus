@@ -74,3 +74,20 @@ Both directions of both title-key orders invert **all 156 word slots exactly** o
 The **13/12 rectangular word arrangement is a source-motivated human solve-path candidate**, distinct from the earlier proposed 27×27 *rune* square. The most obvious red-heading-key consumer, whether red keys label 13 rows or 13 columns, does not yield the collision footprint of the actual solved Cicada GP register even when the 13 secret alphabets are **completely unrestricted bijections**. Pursuing more additive phases or substitutions within this *stationary-axis model* cannot repair the missing repeated-symbol structure. A concrete next decode would need an independent original clue that selects a **within-band evolving state**, a **cross-axis transposition**, a different source register, or a **nonbijective/length-changing** transformation, followed by a locked unknown-rune plaintext prediction.
 
 [Read-only Windows Node22 CommonJS reproducer](../sims/lp2_p0_red13_wordgrid13x12_allsecret_sft.cjs) checks the original 729-rune tape, 158 title/body words, both exact geometry profiles, both full sets of 2,264 controls, literal source-key reversibility and both arbitrary-secret-alphabet positive plants. It uses only committed sources and produces no generated files.
+
+## Agent 38 — exact all-key gate for arbitrary word order with native F-hold clock (28 November 2026)
+
+A distinct 12×13 grid consumer reorders whole groups and applies the historical periodic F-hold cipher (either layer order), preserving each word internally. Grant each original group an entirely independent start phase, including every word permutation and boundary reset. The two authentic LP1 key lengths 8 and 13 motivate the finite cycle lengths, but no source authenticates the composition.
+
+For every dictionary plaintext P matching ciphertext group C in rune length, plaintext F requires C=F and consumes no shift. Every non-F gives the necessary shift (C-P) mod29. These shifts form a contiguous cyclic key fragment; lengths beyond q must wrap consistently. Two fragments are compatible with some cycle iff they agree at every overlapping position for some relative cyclic displacement. Fix first phase zero without loss and index fragment pairs by overlap, exhausting all q displacements, with arbitrary unfilled key values permitted.
+
+Register: 33,719 distinct GP forms from TextBlob (two spelling modes) plus native solved words. Select the six longest black opening groups solely by length: zero-based indices 3,11,88,129,145,153 (lengths 11,11,10,10,10,10).
+
+| q | Distinct legal fragments in anchor order | Compatible anchor pairs /15 | Maximum anchors under one key |
+|---|---|---:|---:|
+| 8 | 0,0,3,3,1,6 | 0 | 1 |
+| 13 | 1671,1696,2618,2670,2617,2617 | 0 | 1 |
+
+At least five of these six groups must be outside the declared finite register for **every** q8 or q13 key even under arbitrary word order and independently chosen word phases. The bound is attained by one anchor. q13 minimal shared fragment coverage is five slots. This is exact compatibility, not a statistical trial.
+
+Two length-matched controls plant six independently selected dictionary forms, arbitrary initial phases, historical q8 or random q13 cycle. Every true fragment replays, all 15 pairs are compatible, and common true cycle explicitly replays all six. Every indexed compatible pair has an exact merged partial key and forward witness. Original: no unknown plaintext/key. The conclusion is finite lexical register conditional; exotic spellings, grouping changes, rune-internal transpositions, other periods or mechanisms remain outside it. Do not rerun word-order sweeps for the declared family. [Reproducer](../sims/lp2_p0_word_orderfree_fhold_fragments_sft.cjs) · [Raw pair counts and witnesses](lp2-p0-word-orderfree-fhold-fragments.json).

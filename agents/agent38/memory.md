@@ -74,3 +74,9 @@ Lease: agent38-draw2-2026-11-26T02:23:54.650Z-independent, claimed_at 2026-11-26
    - Five-bit XOR: row-major and LCG-filtered interior required-key matches 6/180 and 7/180; perimeter XOR produces 7–8 out-of-range values.
    - LCG state indices filtered by geometry as 76- and 180-position permutations: p55 forward/inverse outputs are nonlinguistic; p56+p57 known-plaintext matches 7/180 and 10/180.
    - Raw LCG-ordere
+
+
+## 28 November 00:06 UTC — constructive opening work
+
+- Blind width-13 ragged column order + authentic F-hold cycle: exact conditional cycle DP, subset-order DP, mask Viterbi, final legal prefix beam; both q13 controls recover key/order and 1432/1432 full native runes (416/416 withheld). Original q13 winner -4.07480 nats/rune, no held/full legal path. Split4 legal but nonprose; no original success. Fixed three q13 cycles fail. q8 independent controls underway. [Code](../../sims/p0-column13-fhold/), [report](../../im-results/lp2-p0-red13-columnar-blind-fhold-original-gate.md), [raw](../../im-results/lp2-p0-column13-blind-native-fhold-q13.json).
+- Arbitrary whole-word order + independent word phases, exact all-key q8/q13 F-hold gate: six longest groups, 33719 GP forms, 0/15 compatible pairs for each period; at most one of six fits. Both planted controls all six replay. [Report](../../im-results/lp2-p0-red13-156words-grid13x12-allsecret-original-gate.md), [raw](../../im-results/lp2-p0-word-orderfree-fhold-fragments.json). Conditional finite-register exclusion, not arbitrary English. Do not repeat these whole-word model sweeps.

@@ -72,3 +72,40 @@ g++ -O3 -std=c++17 sims/lp2_p0_column13_joint_exact_sft.cpp -o column13
 ```
 
 The local compiled executable ran all seven searches, including four native controls and two nulls before the original. Canonical generated input matches local input length 3812 and FNV-1a 0x3e61f706. No CI run claimed. The executable reports all split objectives, keys, permutations and complete decoded sequences.
+
+## Agent 38 — blind transparent-F cycle AND ragged column order (28 November 2026)
+
+This closes the constructive algorithmic gap between the preceding fixed-title-order F-hold search and ordinary-clock joint search. Test the same 716 black opening runes, with authentic plaintext-F hold (F emits F and consumes no key, all other runes consume and cannot decrypt to F) followed by unknown width-13 ragged columnar transposition. The long-column split, column permutation, additive cycle and F mask are secret. No source authenticates this composition.
+
+For a known cycle, a shared column-prefix beam retains starting phase, number of held F's and last hold/consume in every row. Exact remaining-column feasibility allows independent suffix permutations per row solely for pruning; compose phase trajectories across rows. At complete order the objective equals exact legal Viterbi. Beam 256 at every depth, all 13 physical splits.
+
+For unknown cycle, alternate exact conditional optimizations of a row-local bigram objective:
+- Given order and mask, adjacent consuming symbols give pair potentials on a cycle of 29-valued key variables; held F contributions are unary/constant. Enumerate first key value, optimize the cycle by DP.
+- Given key and physical hold mask, phase after visiting subset S is start + |S| - held(S) mod q. Row starts depend only on preceding rows' total holds. Thus decoded adjacent columns depend on subset/last column, enabling exact Held–Karp order DP.
+- Given key/order, Viterbi optimizes hold mask. During alternating search only, permit illegal consuming F with six-nat penalty to traverse disconnected basins; final inverse is strictly legal.
+
+1000 starts per split (13,000 per case), at most 20 iterations, random starts and perturbed elite states, seed 7701033+3301*split. Keep top eight states, refine key cycles with legal prefix beam. Choose best LEGAL_WIN training score across all splits. Native GP unigram smoothing .2, bigram backoff8, quantization128/nat; exclude entire target native section from training. Train rows 1–37 (481 runes), bridge38, withheld39–54 (208 runes); row0 and last singleton also excluded. Across all possible splits training and withheld physical positions are disjoint. Free training initial phase permits cycle rotation. Freeze end phase for bridge and holdout; independent complete inverse must replay ciphertext exactly. Global joint search is heuristic.
+
+| q13 input | Key and order recovered | Train nats/rune | Bridge+held nats/rune | Exact held/full |
+|---|---|---:|---:|---:|
+| KOAN1, historical key plant | both | -2.48379 | -2.77955 | 208/208; 716/716 |
+| LOSS OF DIVINITY, random key plant | both up to cycle rotation | -2.78900 | -2.68701 | 208/208; 716/716 |
+| Original black p0–2 | none established | -4.07480 | no legal path | no legal full inverse |
+
+Both plants recover all 481 training runes. Seeds3301/3302 produce distinct hidden orders, and control2 generates random key after permutation. Original training winner split11 has no legal held or complete path; 12/13 split winners have no complete legal inverse. Split4 does replay fully but scores -4.62807 nats/rune, nonprose. Its existence means no all-key legality exclusion. Known-cycle solver independently recovers both planted orders and 1432/1432 runes with historical q13 key supplied. For original, historical, literal red13, conditional EPIPHANY SEECS difference cycles give train -4.41239/-4.44562/-4.47622, no legal held/full path for each selected order.
+
+**Decision:** working constructive blind algorithm on this composite model, no authentic unknown plaintext or key. Retire bounded q13 attack. q8 is a separately tested possible clock (same width13, title 8+5 and authentic LP1 q8); no arbitrary additional periods selected.
+
+Reproduce from repo root (C++17 GCC/Clang; local Linux GCC executed, no CI claim):
+
+```sh
+node sims/lp2_p0_column13_joint_exact_input.cjs tapes.txt
+g++ -O3 -std=c++17 -DPERIOD=13 sims/p0-column13-fhold/joint_generic.cpp -o joint13
+g++ -O3 -std=c++17 -DPERIOD=13 sims/p0-column13-fhold/solver_generic.cpp -o solver13
+./joint13 tapes.txt control1 4 1000 20 6
+./joint13 tapes.txt control2 0 1000 20 6
+./joint13 tapes.txt original 11 1000 20 6
+./solver13 tapes.txt 256 all
+```
+
+For complete blind selection run each case for splits0..12, choose best training score, never holdout. Both actual source files transferred with exact local Git blob matches; [code](../sims/p0-column13-fhold/), [raw q13 scores](lp2-p0-column13-blind-native-fhold-q13.json).
