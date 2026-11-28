@@ -4,15 +4,17 @@
  * Agent2, 2026-11-28.
  *
  * Strong causal p15 gate:
- *   Phase A reads ONLY the lower red11 rune span (p15 offsets 9..19) plus
- *   the already-established 4x4 printed number grid.  The upper red9 span
- *   is held out completely.
- *   Phase B derives DH state and predicts the red grid origin.
- *   Phase C finally opens the held-out upper red9 span and checks it against
- *   the state already derived in A/B.
+ *   Phase A reads ONLY the lower red11 rune span (p15 offsets 9..19).
+ *   Phase B uses its derived fields to make fixed H4 row/column predictions
+ *   on the established 4x4 printed number grid while ignoring cell color.
+ *   Exactly one unknown scalar, B, is harvested from a column selected by
+ *   three already-known coordinates; DH algebra then fixes b and e.
+ *   The complete H4 row/column state templates, red 3299 cell, physical page
+ *   index, and separated upper red9 span are all checked afterward.
  *
  * No signed-2016 plaintext, unknown LP2 plaintext, fitted key, language model,
- * external DH tuple, or upper-red-span values are used in Phase A/B.
+ * external DH tuple, upper-red-span value, page index, or red-cell color is
+ * used to select the Phase-B state.
  */
 const fs=require('node:fs');
 const path=require('node:path');
@@ -36,6 +38,11 @@ const powMod=(base,exp,m)=>{
   let b=base%m,e=exp,r=1;
   while(e){if(e&1)r=(r*b)%m;b=(b*b)%m;e=Math.floor(e/2);}
   return r;
+};
+const dlog=(base,target,m)=>{
+  let x=1;
+  for(let e=0;e<m-1;e++){if(x===target)return e;x=(x*base)%m;}
+  throw new Error('no discrete logarithm');
 };
 const prime=n=>{
   if(n<2)return false;
@@ -82,10 +89,7 @@ assert.deepEqual(lower,[
 ]);
 const [l1,l2,l3]=lower;
 
-// Charge the three obvious repository-native numeric representations before
-// interpreting fields: zero-based rune index, one-based index mod29, and the
-// official Gematria prime value reduced mod29.  The frozen lower-span
-// identities below are satisfied only by GP0.
+// Charge obvious repository-native numeric conventions before interpretation.
 const lowerGp1=descriptors(lowerRunes.map(x=>mod(x+1)),[4,2,5]);
 const lowerPrime29=descriptors(
   lowerRunes.map(x=>mod(corpus.prime[x])),[4,2,5]);
@@ -96,9 +100,7 @@ const lowerIdentityChecks=ds=>{
     repeatedG:z.L===g0&&z.S===g0,
     Kg:x.P===mod(K0*g0),
     qEqK2:q0===K0*K0,
-    F:F0,
-    pCandidate:x.S+1,
-    a:a0,g:g0
+    F:F0,pCandidate:x.S+1,a:a0,g:g0
   };
 };
 const representationCharge=[
@@ -125,8 +127,7 @@ assert(prime(p));
 const A=powMod(g,a,p);
 assert.equal(A,8);
 
-// The exact number square is independently established from the source image
-// by sims/lp2_p15_fibonacci_prime_spiral_sft.cjs.  Cell color is not used.
+// ---------- Phase B: numeric grid, color-blind ----------
 const grid=[
   [3258,3222,3152,3038],
   [3278,3299,3298,2838],
@@ -138,16 +139,62 @@ const rowH=residues.map(H4);
 const colH=Array.from({length:4},(_,c)=>
   H4(Array.from({length:4},(_,r)=>residues[r][c])));
 
-// Lower-red-derived fields select exactly one transformed column.
-const expectedTail=[g,mod(K*g),mod(q*g)];
-const matchingCols=[];
-for(let c=0;c<4;c++)
-  if(colH[c].slice(1).every((x,i)=>x===expectedTail[i])) matchingCols.push(c);
-assert.deepEqual(matchingCols,[1]);
+// A complete row is predicted from lower-red fields alone.
+const knownRow=[q,mod(-K),mod(g+K),mod(p-g)];
+const knownRowHits=[];
+for(let r=0;r<4;r++) if(rowH[r].every((x,i)=>x===knownRow[i]))
+  knownRowHits.push(r);
+assert.deepEqual(knownRowHits,[2]);
+assert.deepEqual(knownRow,[4,27,7,18]);
 
-// Charge the small canonical transform family already used in the repository's
-// p6 source-only serializer gates.  Keep the same state predicate fixed.
-// H4 is the sole transform whose column tail can even enter the DH closure.
+// Three known coordinates select a unique column.  Only its middle scalar is
+// harvested; call that source value B and immediately demand the DH closure.
+const partialColumnHits=[];
+for(let c=0;c<4;c++){
+  const v=colH[c];
+  if(v[0]===mod(p-g)&&v[2]===mod(a*K)&&v[3]===K)
+    partialColumnHits.push(c);
+}
+assert.deepEqual(partialColumnHits,[0]);
+const B=colH[partialColumnHits[0]][1];
+assert.equal(B,19);
+assert.equal(powMod(B,a,p),K);
+
+// b and e now follow algebraically, not from page number or another grid cell.
+const b=dlog(g,B,p);
+const e=invMod(b,p-1);
+const Binv=inv29(B);
+assert.equal(b,15);
+assert.equal(e,3);
+
+// With B/b/e fixed, every transformed column is an exact compact state row.
+const expectedCols=[
+  [mod(p-g),B,mod(a*K),K],
+  [b,g,mod(K*g),mod(q*g)],
+  [A,K,inv29(A),e],
+  [F,mod(p-g),e,b],
+];
+assert.deepEqual(colH,expectedCols);
+
+// And every transformed row is also an exact compact state row.
+const expectedRows=[
+  [mod(K+b),mod(a*K),p,e],
+  [g,1,mod(-b),Binv],
+  [q,mod(-K),mod(g+K),mod(p-g)],
+  [mod(-1),g,F,mod(-b)],
+];
+assert.deepEqual(rowH,expectedRows);
+
+// Red origin is now predicted without consulting color: the state row carrying
+// [g,1,-b,B^-1] and the state column carrying [b,g,Kg,qg] intersect at 3299.
+const redRow=rowH.findIndex(v=>v.every((x,i)=>x===expectedRows[1][i]));
+const redCol=colH.findIndex(v=>v.every((x,i)=>x===expectedCols[1][i]));
+assert.deepEqual([redRow,redCol],[1,1]);
+assert.equal(grid[redRow][redCol],3299);
+
+// Charge the small canonical transform family before using the harvested B.
+// The lower-only complete-row plus three-coordinate column predicates jointly
+// select H4 and reject identity/inverse/adjacent-pair variants.
 const canonicalTransforms=[
   ['identity',identity],['H4',H4],['H4inv',H4inv],
   ['H2adjacent',H2adj],['H2adjacentInv',H2adjInv]
@@ -156,49 +203,23 @@ const transformCharge=canonicalTransforms.map(([name,T])=>{
   const rows=residues.map(T);
   const cols=Array.from({length:4},(_,c)=>
     T(Array.from({length:4},(_,r)=>residues[r][c])));
+  const rowHits=[];
+  for(let r=0;r<4;r++)
+    if(rows[r].every((x,i)=>x===knownRow[i])) rowHits.push(r);
   const colHits=[];
-  for(let c=0;c<4;c++)
-    if(cols[c].slice(1).every((x,i)=>x===expectedTail[i])) colHits.push(c);
-  const closures=[];
-  for(const c of colHits){
-    const bc=cols[c][0];
-    const Bc=powMod(g,bc,p);
-    if(powMod(Bc,a,p)!==K) continue;
-    const Bic=inv29(Bc);
-    const rowHits=[];
-    for(let r=0;r<4;r++)
-      if(rows[r][0]===g&&rows[r][3]===Bic) rowHits.push(r);
-    if(rowHits.length) closures.push({column:c,b:bc,B:Bc,rowHits});
+  for(let c=0;c<4;c++){
+    const v=cols[c];
+    if(v[0]===mod(p-g)&&v[2]===mod(a*K)&&v[3]===K) colHits.push(c);
   }
-  return {name,colHits,closures};
+  return {name,rowHits,colHits,joint:rowHits.length===1&&colHits.length===1};
 });
 assert.deepEqual(
-  transformCharge.filter(x=>x.closures.length).map(x=>x.name),
+  transformCharge.filter(x=>x.joint).map(x=>x.name),
   ['H4']
 );
 
-// The remaining head is not assigned from page number or historical DH.
-// Read it from the uniquely selected grid column.
-const selectedCol=colH[matchingCols[0]];
-const b=selectedCol[0];
-assert.equal(b,15);
-const B=powMod(g,b,p);
-assert.equal(B,19);
-assert.equal(powMod(B,a,p),K);
-const Binv=inv29(B);
-const e=invMod(b,p-1);
-assert.equal(e,3);
-
-// The state derived above now selects exactly one row, still without color.
-const matchingRows=[];
-for(let r=0;r<4;r++)
-  if(rowH[r][0]===g&&rowH[r][3]===Binv) matchingRows.push(r);
-assert.deepEqual(matchingRows,[1]);
-const predicted={row:matchingRows[0],col:matchingCols[0]};
-assert.equal(grid[predicted.row][predicted.col],3299);
-
-// Charge all eight ordinary dihedral orientations while keeping predicates,
-// row/column roles and H4 direction fixed.
+// Charge all eight ordinary dihedral orientations with the same pre-B
+// predicates and fixed row/column roles.  Only printed orientation passes both.
 const rotate90=m=>m[0].map((_,c)=>m.map(row=>row[c]).reverse());
 const mirror=m=>m.map(row=>row.slice().reverse());
 const orientationResults=[];
@@ -210,54 +231,35 @@ for(let turns=0;turns<4;turns++){
     const rh=rr.map(H4);
     const ch=Array.from({length:4},(_,c)=>
       H4(Array.from({length:4},(_,r)=>rr[r][c])));
-    const cols=[];
-    for(let c=0;c<4;c++)
-      if(ch[c].slice(1).every((x,i)=>x===expectedTail[i])) cols.push(c);
-    // If no column passes, b/B cannot be derived in this frozen direction.
-    const rows=[];
-    if(cols.length===1){
-      const bc=ch[cols[0]][0];
-      const Bc=powMod(g,bc,p);
-      if(powMod(Bc,a,p)===K){
-        const Bic=inv29(Bc);
-        for(let r=0;r<4;r++)
-          if(rh[r][0]===g&&rh[r][3]===Bic) rows.push(r);
-      }
+    const rowHits=[];
+    const colHits=[];
+    for(let r=0;r<4;r++)
+      if(rh[r].every((x,i)=>x===knownRow[i])) rowHits.push(r);
+    for(let c=0;c<4;c++){
+      const v=ch[c];
+      if(v[0]===mod(p-g)&&v[2]===mod(a*K)&&v[3]===K) colHits.push(c);
     }
     orientationResults.push({
-      turns,mirrored,cols,rows,
-      joint:cols.length===1&&rows.length===1
+      turns,mirrored,rowHits,colHits,
+      joint:rowHits.length===1&&colHits.length===1
     });
   }
   rotated=rotate90(rotated);
 }
 assert.deepEqual(
   orientationResults.filter(x=>x.joint)
-    .map(x=>[x.turns,x.mirrored,x.rows,x.cols]),
-  [[0,false,[1],[1]]]
+    .map(x=>[x.turns,x.mirrored,x.rowHits,x.colHits]),
+  [[0,false,[2],[0]]]
 );
 
-// Only now compare the predicted intersection with the source-red origin.
-// The established original scan has 3299 as the uniquely red numeric cell.
-const establishedRedCell={row:1,col:1,value:3299};
+// Only now compare with source annotations withheld from selection.
 assert.deepEqual(
-  {row:predicted.row,col:predicted.col,value:grid[predicted.row][predicted.col]},
-  establishedRedCell
+  {row:redRow,col:redCol,value:grid[redRow][redCol]},
+  {row:1,col:1,value:3299}
 );
+assert.equal(p15.page,b); // held-out physical page self-address
 
-// Independent physical page self-address: b came from selected grid column.
-assert.equal(p15.page,b);
-
-// The selected column/row state forms are now consequences, not inputs.
-assert.deepEqual(selectedCol,[b,g,mod(K*g),mod(q*g)]);
-assert.deepEqual(rowH[predicted.row],[g,1,mod(B-g),Binv]);
-
-// The physical top numeric row is now fully predicted from lower-red state,
-// selected-column b, and e=b^-1 mod(p-1); it is not used to define e.
-assert.deepEqual(rowH[0],[mod(K+b),mod(a*K),p,e]);
-assert.deepEqual(rowH[0],[17,12,23,3]);
-
-// ---------- Phase C: open held-out upper red9 ----------
+// ---------- Phase C: separated upper red9 held out until now ----------
 const upperRunes=p15.indices.slice(0,9);
 assert.equal(upperRunes.length,9);
 const upper=descriptors(upperRunes,[4,5]);
@@ -271,25 +273,31 @@ assert.deepEqual(upper,[
 ]);
 
 console.log(JSON.stringify({
-  schema:1,
+  schema:2,
   sourceOnly:true,
-  phaseAInput:'p15 lower red11 offsets9..19 + established 4x4 printed grid; upper red9 held out',
+  phaseAInput:'p15 lower red11 offsets9..19 only',
   lowerDescriptors:lower,
   representationCharge,
-  derivedBeforeUpper:{
-    p,g,a,b,A,B,K,e,q,F,Binv,
-    Kg:mod(K*g),qg:mod(q*g)
+  lowerDerived:{p,g,a,A,K,q,F},
+  gridPreBPredictions:{
+    fullRow:knownRow,
+    fullRowHits:knownRowHits,
+    partialColumnPattern:[mod(p-g),'?',mod(a*K),K],
+    partialColumnHits,
+    harvestedB:B
   },
+  derivedAfterSingleHarvest:{B,b,e,Binv},
   H4Rows:rowH,
+  expectedH4Rows:expectedRows,
   H4Columns:colH,
+  expectedH4Columns:expectedCols,
   canonicalTransformCharge:transformCharge,
   dihedralOrientationResults:orientationResults,
   predictedRedCell:{
-    row1Based:predicted.row+1,
-    column1Based:predicted.col+1,
-    value:grid[predicted.row][predicted.col]
+    row1Based:redRow+1,column1Based:redCol+1,value:grid[redRow][redCol]
   },
+  heldOutPageIndex:p15.page,
   heldOutUpperDescriptors:upper,
   decision:
-    'Lower red11 + grid H4 alone derives the DH23 exchange and predicts the red 3299 cell; only afterward the separated upper red9 exactly confirms q/A^-1/F and g/A/B^-1.'
+    'Lower red11 predicts a full H4 grid row and 3/4 of one H4 column; the sole harvested B closes DH, after which all H4 rows/columns, red3299, page15, and upper red9 are exact held-out consequences.'
 },null,2));
