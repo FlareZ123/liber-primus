@@ -118,6 +118,7 @@ const artifact=path.resolve(__dirname,"..","im-results","lp2_gf29quadratic_power
 const pinned=JSON.parse(fs.readFileSync(artifact,"utf8"));
 function firstDiff(a,b,p="root"){
   if(Object.is(a,b))return null;
+  if(typeof a==="number"&&typeof b==="number"&&Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<1e-12)return null; // cross-CPU Math.log ULP
   if(a===null||b===null||typeof a!==typeof b||typeof a!=="object")return {path:p,left:a,right:b};
   const keys=new Set([...Object.keys(a),...Object.keys(b)]);
   for(const k of keys){const d=firstDiff(a[k],b[k],p+"."+k);if(d)return d;}
