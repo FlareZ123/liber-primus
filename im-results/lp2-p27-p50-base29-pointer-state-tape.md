@@ -113,6 +113,35 @@ The first decomposition is the already published 32x8 table/DH geometry. The sec
 
 This is unusually compact because the table width is itself `A=8`, so the row-major address grammar is `p*A+column`, while the independently authenticated runic radix supplies the second quotient/remainder grammar.
 
+## Unique fixed cell packs the complete DH input tuple
+
+The endpoint is not one fixed point among many. Exhausting all 256 cells gives:
+
+```text
+missing-f base59 fixed points: [189]
+conventional base60 fixed points: []
+```
+
+So **189 is the unique self-pointer in the complete p50 table under the independently selected base59 codec**.
+
+That one cell has three simultaneous source-constrained readings:
+
+```text
+zero-based table coordinates:  row23, col5 = (p,g)
+historical BASE29(address189):  6F          = (a,b)
+base59 cell content:           189         = self
+```
+
+Thus the unique self-loop cell packs the complete worked-DH input tuple
+
+```text
+(p,g,a,b) = (23,5,6,15)
+```
+
+before any modular exponentiation is performed. The standard DH equations then recover the already known public shares and shared value `(A,B,K)=(8,19,2)`.
+
+This is a stronger description than saying row23/column5 is numerically suggestive: **the row/column coordinates and the historically authenticated BASE29 digits divide the same unique fixed-point address into the four DH input parameters.** The remaining unsupported step is the composition itself—no first-party sentence yet says to BASE29-encode a p50 address.
+
 ## State-label-free structural control
 
 A stronger control does not name any DH value. For every possible start, take the same eight-hop walk and ask only whether the eight pre-terminal addresses have:
@@ -252,4 +281,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`.
