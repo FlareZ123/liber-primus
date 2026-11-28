@@ -35,3 +35,12 @@ jobs:
           path: ${{ runner.temp }}/custody-chronology-output.json
           if-no-files-found: error
           retention-days: 7
+      - name: Run Software Heritage history probe
+        run: node sims/lp2_onecool_swh_snapshot_history_sft.cjs
+      - name: Upload Software Heritage result
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-swh-history
+          path: ${{ runner.temp }}/swh-history-output.json
+          if-no-files-found: error
+          retention-days: 7
