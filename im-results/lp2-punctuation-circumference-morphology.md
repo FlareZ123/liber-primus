@@ -38,6 +38,31 @@ The 23-mark is source image74/p57, exactly as the annotation census says.
 
 This establishes a genuine hidden structural grammar in the original artwork: the large punctuation values are not merely totals. Their internal layouts were drawn as fixed peelable lattices.
 
+## Solved p57 now selects the inner shell explicitly
+
+A later execution resolves the previously open `inner8` versus `center1` choice without changing the raster detector. Continue p57's own circumference-shedding operation recursively on the final six GP words:
+
+```text
+FIND      -> IN
+THE       -> THE
+DIUINITY  -> IN
+WITHIN    -> TH
+AND       -> N
+EMERGE    -> ER
+```
+
+Treat the literal word **WITHIN** as the operator telling the reader where to look and concatenate the exposed centers of the other five words:
+
+```text
+IN + THE + IN + N + ER = IN THE INNER.
+```
+
+Across all 690 within-section solved six-word windows × six single-word omissions, this is the **only** `INTHEINNER` readout among 4,140 presentations, and the omitted word is exactly WITHIN. The target was recognized post-discovery, so this is finite specificity rather than an authorship probability.
+
+That hidden instruction supplies the source-side selector already missing from this morphology: use the **inner circumference/shell**. On the three red classes this gives `13->[10,3]->3`, `10->[8,2]->2`, and `23->[14,8,1]->8`. In particular the unique p57 mark now prefers **inner circumference8 -> p8** over continuing to **center1 -> p1**.
+
+[Full recursive solved-text gate and controls](lp2-p57-p1-up-infinity-p8-p2-north-loop.md).
+
 ## Numbers-as-direction gives a human route to p3 and p2
 
 The authenticated 2016 clue says that the numbers are the direction. The fixed circumference morphology therefore has an immediate page-address reading that does not require a cipher search:
@@ -57,7 +82,7 @@ The p3 receiver is especially important: physical p3 contains the marked red tri
 
 The 10-dot class analogously directs to p2. P2 already has independent historical/source relevance, but its old H4 body-key decoder was falsified; this new pointer does not revive that decoder.
 
-The unique 23-dot p57 mark has two nested circumferences: outer14 leaves9, then inner8 leaves the central1. Its inner circumference8 already points naturally to p8 under the same direction rule, where the independently published full H→DH state register lives. Interpreting the final central1 as p1 is a possible continuation, but it has not yet passed a typed receiver test and is not promoted here.
+The unique 23-dot p57 mark has two nested circumferences: outer14 leaves9, then inner8 leaves the central1. Its **inner circumference8** points naturally to p8 under the same direction rule, where the independently published full H→DH state register lives. The later solved-text readout **IN THE INNER** now supplies a direct source-side reason to stop on that inner circumference. A center1→p1 continuation was subsequently tested and produced real structural cross-locks, but it is demoted to a secondary branch because p57's hidden instruction selects the inner shell first.
 
 ## DH-state convergence
 
@@ -126,6 +151,7 @@ Exact observations:
 - the red raster census matches the independent red annotation census: 30x13, 4x10, 1x23;
 - all members of each count class have exactly one shared column/onion signature;
 - the p57 23-mark executes the solved circumference instruction literally;
+- the solved final clause has a unique 1/4,140 single-omission center readout `IN THE INNER` when WITHIN is treated as the operator;
 - the peeled/interior values are exactly 3, 2, 8 and 1 as stated;
 - together with total23 and five columns, the values close the historical DH equations exactly.
 
@@ -134,4 +160,4 @@ Interpretive boundary:
 - assigning the resulting 23/5/8/3/2 specifically to p/g/A/e/K uses the already established DH state and is post-discovery, not a blind key recovery;
 - the result identifies hidden state structure and an intended-looking visual mechanism; it does not yet specify the black-body cipher or recover unknown plaintext.
 
-Do not mine additional raster thresholds or alternate geometric summaries to fit more state labels. The productive next step is to use this fixed morphology grammar to select an operation or receiver prospectively.
+Do not mine additional raster thresholds or alternate geometric summaries to fit more state labels. The source-selected navigation step is now `inner8 -> p8`; the productive next step is to find an independently visible **body operation** on that already-structured receiver rather than reopening center1→p1 or alternate raster summaries.
