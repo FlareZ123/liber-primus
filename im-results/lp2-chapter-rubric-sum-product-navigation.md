@@ -112,7 +112,7 @@ left  x=0..379,    y=600..2999
 right x=2020..2399,y=600..2999
 ```
 
-from archive `57.jpg` are reproduced **exactly** on archive images **57 through 72 and nowhere else**. Since LP2 p0 is archive17, this is exactly **LP2 p40 through p55**, a 16-page section. The 16 center-body crop hashes are all distinct, so the equality is the reused mirrored foliage frame rather than duplicated page images.
+from archive `57.jpg` are reproduced **exactly** on archive images **57 through 72 and nowhere else**. Since LP2 p0 is archive17, this is exactly **LP2 p40 through p55**, the manuscript's final 16 unsolved pages. The frame ends exactly before solved p56–p57 (archive73–74), which form a different shared outer-frame run. The preceding exact long frame run is p27–p39 (13 pages), so p27 and p40 are successive route nodes that begin the two longest late-unsolved frame runs. The 16 p40–p55 center-body crop hashes are all distinct, so the equality is the reused mirrored foliage frame rather than duplicated page images.
 
 This changes the p40 dead-end interpretation. The border cannot mean “STOP at p40”: p54 is a live predecessor in the route and carries the same exact frame, as do the p49–p51 numeric-panel pages. Instead, p40 is the **first page of a source-visible mirror-framed section**, and the p50 panel is embedded inside that section. Reflection is therefore present as a section-level operation cue before the p50 sink/mirror circuit is consulted.
 
