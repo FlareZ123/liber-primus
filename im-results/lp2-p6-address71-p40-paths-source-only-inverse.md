@@ -37,7 +37,18 @@ source index6  SEEKS   GP0=71
 physical p6 red-span start =71
 ~~~
 
-No other signed word GP0 equals a red-span start on its same-index page. This finite control materially strengthens 71 as a source-selected p6 address rather than a scalar noticed only because p40 contains a useful word there. It still does not itself authorize carrying that address to p40; that cross-page transfer remains the final unsupported step.
+No other signed word GP0 equals a red-span start on its same-index page. This finite control materially strengthens 71 as a source-selected p6 address rather than a scalar noticed only because p40 contains a useful word there.
+
+Another independent source-only charge sharpens it. Across all **18 annotated red spans** in unknown LP2, 16 begin exactly at a complete canonical word. Compare each such word's raw GP0 to that red span's own page-local start. Exactly one is self-addressing:
+
+~~~text
+p6 red span start       71
+p6 first red word GP0   71
+~~~
+
+Every other red-span-start word has a different GP0. Thus p6 is not merely a page where a signed GP0 happens to land on red ink: the red object itself prints a first word whose numeric value equals its own address. Together, `SEEKS6 -> 71`, the red start71, and the first-red-word sum71 form a three-way source pointer independent of p40 ciphertext.
+
+This still does not itself authorize carrying that address to p40; that cross-page transfer remains the final unsupported step.
 
 ### Key
 
@@ -143,7 +154,7 @@ The competing internal spans fail at least one condition. This makes the p6 key 
 
 ## Evidence boundary
 
-This is now an exact local inverse in which the unknown target is not used to choose the receiver or numeric key. The strongest remaining unsupported step is **same-offset transfer**: no first-party text yet explicitly says “take the p6 title start and use it as a local offset on the p25-selected page40.” The repeated SEEKS/71 equalities, the **unique same-index signed-GP0/red-heading match**, and p6's key-packet role make that transfer plausible, but it was recognized after PATHS was known.
+This is now an exact local inverse in which the unknown target is not used to choose the receiver or numeric key. The strongest remaining unsupported step is **same-offset transfer**: no first-party text yet explicitly says “take the p6 title start and use it as a local offset on the p25-selected page40.” The repeated SEEKS/71 equalities, the **unique same-index signed-GP0/red-heading match**, the **unique self-addressing red span**, and p6's key-packet role make that transfer plausible, but it was recognized after PATHS was known.
 
 Accordingly preserve PATHS as a materially stronger plaintext candidate, not yet an established decryption. A fresh page destination selected before its ciphertext is opened, or an authored instruction tying the key packet's local coordinate to another page, would prospectively test the transfer.
 

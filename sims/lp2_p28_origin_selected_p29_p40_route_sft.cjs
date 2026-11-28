@@ -279,6 +279,33 @@ assert.deepEqual(originRows[0].hits, [{
   starts: [71],
 }]);
 
+// Independent visual self-address charge. Every red span is tested against a
+// complete canonical word beginning exactly at that span. P6 alone has first
+// word GP0 equal to the span's own page-local start.
+const redSpanAddressRows = [];
+for (const pageInk of inkAnnotations.pages) {
+  for (const span of pageInk.red_spans || []) {
+    const atStart = pageWords(pageInk.page).filter((word) => word.start === span.start);
+    redSpanAddressRows.push({
+      page: pageInk.page,
+      start: span.start,
+      length: span.length,
+      words: atStart.map((word) => ({ len: word.len, gp0: word.gp0 })),
+    });
+  }
+}
+assert.equal(redSpanAddressRows.length, 18);
+assert.equal(redSpanAddressRows.filter((row) => row.words.length > 0).length, 16);
+const selfAddressingRedSpans = redSpanAddressRows.filter((row) =>
+  row.words.some((word) => word.gp0 === row.start)
+);
+assert.deepEqual(selfAddressingRedSpans, [{
+  page: 6,
+  start: 71,
+  length: 11,
+  words: [{ len: 4, gp0: 71 }],
+}]);
+
 const p6 = pageWords(6);
 const title = [71, 75, 76, 80].map((start) => {
   const word = p6.find((candidate) => candidate.start === start);
@@ -578,7 +605,7 @@ console.log(JSON.stringify({
   },
   p25: { transformed, cuts, originRows },
   p40: { shell, key, receiver: p40Matches[0], plaintext: "PATHS" },
-  signedRedAddressCharge: { signedPagesWithRed, signedRedStartMatches },
+  signedRedAddressCharge: { signedPagesWithRed, signedRedStartMatches, redSpanAddressRows, selfAddressingRedSpans },
   p6LiteralKeyCharge: {
     lineCounts: p6LineCounts,
     repeatedLineCounts,
