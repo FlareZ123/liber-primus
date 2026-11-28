@@ -209,13 +209,26 @@ products = [10,5,12,0]
 
 Thus the two uniquely paired red11 objects are not merely equal-length ornaments: **each one's native word-boundary pattern turns the other's raw eleven runes into a low-complexity packet in the same independently reconstructed DH23 state**.
 
-This is the main positive result of this invocation.
+This mutual segmentation is an independent cross-page consequence; the stronger p15-local held-out grid gate below is the main positive result of this invocation.
 
-## The red-word state predicts the red 3299 grid origin
+## Stronger causal gate: lower red11 + grid predicts both the red cell and the upper red span
 
-A second check reverses the direction of evidence and uses the numeric square without consulting its red coloring.
+The five-word interpretation above can be made substantially less circular. Hold the **entire upper red9 span out**. Read only the lower red11 descriptors
 
-The exact printed p15 grid is
+```text
+(q,p-1,Kg) = (4,22,10)
+(K,a,g)    = (2, 6, 5)
+(g,g,F)    = (5, 5, 0).
+```
+
+Before consulting any upper red rune, these fix
+
+```text
+K=2, a=6, g=5, q=4, F=0,
+p=23, A=g^a mod p=8.
+```
+
+Now use the independently established p15 number square, still **without consulting the red cell color**:
 
 ```text
 3258 3222 3152 3038
@@ -224,33 +237,70 @@ The exact printed p15 grid is
 4516 1206  708 1820
 ```
 
-Reduce all cells modulo29 and apply the already established outside-in `H4` separately to each of the four physical rows and four physical columns.
-
-Use only red-word-derived fields `K=2, g=5, q=4, B^-1=26` as the prediction:
-
-- exactly one transformed **column** has tail `[g,Kg,qg]=[5,10,20]`;
-- exactly one transformed **row** starts with `g=5` and ends with `B^-1=26`.
-
-The selected column is physical column2 and the selected row is physical row2. Their unique intersection predicts **3299** as the distinguished grid cell. Only after this row/column selection is fixed do we consult the source image: 3299 is exactly the uniquely red printed numeral and the independently established Fibonacci-prime spiral origin.
-
-The selected cross is
+Reduce each cell modulo29 and apply the repository's pre-existing canonical outside-in `H4` to all four rows and columns. The lower-red-derived tail
 
 ```text
-H4(row through 3299) = [5,1,14,26]
-H4(col through 3299) = [15,5,10,20].
+[g,Kg,qg] = [5,10,20]
 ```
 
-The column is `[b,g,Kg,qg]`; the row gives a redundant `B=19` because both `14+5=19` and `26^-1=19 mod29`. The physical top row independently transforms to
+occurs on exactly one transformed column:
+
+```text
+H4(column2) = [15,5,10,20].
+```
+
+The otherwise-unassigned head is therefore read directly from that source-selected column as `b=15`. This is not assigned from the page number or from the historical DH example. It immediately closes
+
+```text
+B = g^b mod p = 5^15 mod23 = 19
+B^a mod p     = 19^6 mod23 = 2 = K.
+```
+
+With `B^-1=26 mod29` now derived, exactly one transformed row begins with `g=5` and ends with `B^-1=26`:
+
+```text
+H4(row2) = [5,1,14,26].
+```
+
+The unique row/column intersection is therefore physical row2/column2 = **3299**. Only after this prediction is fixed do we compare with the source image: 3299 is exactly the uniquely red printed numeral and the independently established Fibonacci-prime spiral origin.
+
+The selected row/column also give a compact state cross:
+
+```text
+H4(row through 3299) = [g,1,B-g,B^-1]
+                     = [5,1,14,26]
+
+H4(col through 3299) = [b,g,Kg,qg]
+                     = [15,5,10,20].
+```
+
+The physical top numeric row independently transforms to
 
 ```text
 [17,12,23,3] = [K+b,aK,p,e],
 ```
 
-supplying `p=23,e=3` and two further products already fixed by the red packet. The derived discrete-log exponent `b=15` also equals the physical page number.
+which supplies `e=3` after `p,a,K,b` are already fixed.
 
-This is a genuine source-only prediction of an original visual feature from the rune-state packet, although the use of repository-canonical `H4` on the p15 square remains a cross-page hypothesis rather than an authenticated first-party opcode.
+Two finite controls keep this from being a free orientation/transform fit:
 
-Reproducer: `sims/lp2_p15_red_origin_h4_dh_state_sft.cjs`.
+- charge all eight ordinary rotations/reflections of the 4×4 square while holding the row/column predicates fixed: only the original printed orientation closes both selectors;
+- charge the small canonical transform family already used in source-only p6 work—identity, `H4`, `H4^-1`, adjacent-pair `H2`, and `H2^-1`: **only `H4`** even produces the required column tail and DH closure.
+
+Finally open the previously held-out upper red9 span. Its two word descriptors are exactly
+
+```text
+(q,A^-1,F) = (4,11,0)
+(g,A,B^-1) = (5, 8,26),
+```
+
+matching the state already derived from lower red11 + grid. Thus the separated upper red span is a held-out confirmation rather than an input to the strongest p15 route. The independently derived `b=15` also equals the physical page index, another consequence not used to select the grid column.
+
+This is the strongest positive result here. It is a genuine source-only prediction of the original red 3299 cell and of the upper red-span values from the lower red11 plus the printed number square. The remaining interpretive dependency is the use of repository-canonical `H4` on the p15 grid; the transform-family charge makes that dependency sharply bounded but does not turn `H4` into an authenticated first-party cipher instruction.
+
+Primary reproducer: `sims/lp2_p15_lower_red11_grid_blind_sft.cjs`  
+Five-word/corpus census: `sims/lp2_p15_red_dh_state_packet_sft.cjs`  
+Earlier all-five red-cell check: `sims/lp2_p15_red_origin_h4_dh_state_sft.cjs`
 
 ## A natural q-block key use was frozen before grading and fails
 
@@ -310,9 +360,9 @@ Post-freeze grader: `sims/lp2_p15_crossseg_qblock_grade_sft.cjs`
 
 ## What this changes
 
-The DH-state serialization is no longer confined to the p6/p7 reversed-boundary/product observations. A second original mathematical page, p15, contains a **self-consistent five-word descriptor packet** that reconstructs most of the same state through length/sum/product relations, and its uniquely paired red11 layout composes with p6 in both directions.
+The DH-state serialization is no longer confined to the p6/p7 reversed-boundary/product observations. Physical p15 now supplies a **causally ordered source-only route**: lower red11 -> `(p,g,a,K,q,F,A)` -> unique H4 grid column -> `b,B` and shared-secret closure -> unique H4 row -> red 3299 origin -> held-out upper red9 confirmation. Its uniquely paired red11 layout also composes with p6 in both directions.
 
-That materially strengthens the interpretation that these red mathematical objects share a state vocabulary. It does **not** yet say how that state acts on encrypted body text.
+That materially strengthens the interpretation that these red mathematical objects share a state vocabulary and that the p15 number square participates in the same state system. It still does **not** say how that state acts on encrypted body text.
 
 The correct next gate is therefore narrow:
 
