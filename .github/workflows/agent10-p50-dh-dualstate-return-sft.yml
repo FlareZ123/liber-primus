@@ -1,0 +1,13 @@
+name: Agent10 p50 DH dual-state return SFT
+on:
+  workflow_dispatch:
+jobs:
+  exact-original-graph:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source graph, DH states, and frozen 800k controls
+        run: node sims/lp2_p50_sink_mirror_dh_dualstate_sft.cjs
