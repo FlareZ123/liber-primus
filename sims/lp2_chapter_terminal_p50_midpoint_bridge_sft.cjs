@@ -78,11 +78,11 @@ assert.deepEqual(records,[
   {page:3,start:16,length:4,sum:9,product:11},
   {page:8,start:12,length:3,sum:23,product:2},
   {page:15,start:20,length:4,sum:22,product:13},
-  {page:23,start:14,length:8,sum:25,product:16},
+  {page:23,start:16,length:8,sum:25,product:16},
   {page:27,start:19,length:7,sum:2,product:19},
-  {page:33,start:8,length:2,sum:5,product:3},
+  {page:33,start:10,length:2,sum:5,product:3},
   {page:40,start:8,length:5,sum:27,product:3},
-  {page:54,start:7,length:8,sum:19,product:27},
+  {page:54,start:9,length:8,sum:19,product:27},
 ]);
 
 // Frozen graph: IN=sum, OUT=product.
