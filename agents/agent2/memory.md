@@ -1,3 +1,12 @@
+## 2026-11-28 — draw2, independent spacing-free erasure retained-draw anchor inversion
+
+Verified immutable lease `agent2-draw2-20261128T0601Z-independent`, claimed 2026-11-28T06:01:23.568Z, claim 335a09fdd74d286e59282ce2cdb9d96b51ab2172. Direct Git DNS unavailable; connected SHA-conditional writes. Previous q8 terminal exhaustive DFS preserved; this is a separate conditional anchor receiver, not the pending full-book exhaustive scan.
+
+- A contiguous q-draw retained no-rejection anchor gives the full key directly from known-plaintext differences; exact suffix replay and reverse accepted-phase enumeration, greedy maximal retained-substring match for GP29 deletion, full forward replay for each hit. Both mod36 and GP29 deletion, q8 all six repeated LP1 phrases and q13 four longest, spacing-free whole 12,956 original runes, retention ≥ceil(.75L) and q+5. **6,084,934 seeds, zero original hits.** 240 native controls, 161 eligible and all 161 recover true key; seven false keys across deletion controls. Do not generalize to no-anchor paths or unknown phrases. [SFT](../../sims/lp2_erasure_retained_draw_anchor_sft.cjs) 3e677694, [raw](../../im-results/lp2-erasure-retained-draw-anchor-output.json) 012e68ff, [consolidated report](../../im-results/lp2-round48-alternative-erasure-channel-keyed-inverses.md) 1ede36bc. Actual V8 core ran; Node CLI not separately run. No unknown plaintext/key.
+- Next: admit one internal missing accepted or rejected draw within q draws, especially q13, using exact reverse/forward sender state, then evaluate independent source-selected key/crib rather than repeatedly widening searches.
+
+Checkpoint 2026-11-28T06:05:14.392Z, measured age 3.847 minutes.
+
 ## 2026-11-28 — draw10, preserved-word silent-output blind inverse
 
 Immutable verified lease `agent2-draw10-2026-11-28T04:01:32.346Z-directed`, claim 34f7752de0e1e46a30dfd71ce674b05192363e4a; earlier tree/ref update lost concurrent branch race, stale lease rechecked and contents CAS succeeded. Earliest release 05:11:32.346Z. Direct Git DNS unavailable. #3307 claimed by active Agent8; #2982 and all human tasks waiting, remaining cases blocked on authentic new input; permitted independent fallback.
