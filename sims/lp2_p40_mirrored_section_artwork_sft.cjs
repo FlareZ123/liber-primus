@@ -116,6 +116,81 @@ assert.equal(frameRuns.filter(r=>r.length===16).length,1);
 // LP2 p0 begins at archive 17.jpg, so archive57..72 == p40..p55.
 assert.deepEqual(expected.map(x=>x-17),Array.from({length:16},(_,i)=>40+i));
 
+// Exact LP2 frame-run state tape. Take every non-singleton exact outer-frame
+// run in printed LP2 order; this criterion is fixed by the pixel census alone.
+const lp2Runs=frameRuns
+  .map(r=>({
+    lp2Start:r.archiveStart-17,
+    lp2End:r.archiveEnd-17,
+    length:r.length,
+  }))
+  .filter(r=>r.lp2End>=0);
+const nonSingleton=lp2Runs.filter(r=>r.length>1);
+assert.deepEqual(nonSingleton,[
+  {lp2Start:1,lp2End:2,length:2},
+  {lp2Start:4,lp2End:7,length:4},
+  {lp2Start:15,lp2End:21,length:7},
+  {lp2Start:27,lp2End:39,length:13},
+  {lp2Start:40,lp2End:55,length:16},
+  {lp2Start:56,lp2End:57,length:2},
+]);
+const runLengths=nonSingleton.map(r=>r.length);
+assert.deepEqual(runLengths,[2,4,7,13,16,2]);
+
+const mod29=x=>((x%29)+29)%29;
+const cyclicDiffs=runLengths.map((x,i)=>mod29(runLengths[(i+1)%runLengths.length]-x));
+assert.deepEqual(cyclicDiffs,[2,3,6,3,15,0]);
+
+// Fixed primitive state vocabulary already established independently by the
+// DH/state work. F=0 is admitted only for the cyclic closure.
+const primitiveState={
+  p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4,F:0,
+};
+const primitiveValues=new Set(Object.values(primitiveState));
+assert.ok(cyclicDiffs.every(x=>primitiveValues.has(x)));
+assert.deepEqual(
+  cyclicDiffs.map(x=>Object.entries(primitiveState).find(([,v])=>v===x)?.[0]),
+  ['K','e','a','e','b','F']
+);
+
+// Reverse printed page order does not close in the same fixed vocabulary.
+const reversed=runLengths.slice().reverse();
+const reverseDiffs=reversed.map((x,i)=>mod29(reversed[(i+1)%reversed.length]-x));
+assert.ok(!reverseDiffs.every(x=>primitiveValues.has(x)));
+
+// Bounded permutation charge: among all distinct permutations of the observed
+// multiset, only the six rotations of this one cyclic order have every cyclic
+// edge difference inside the fixed primitive+F state vocabulary. Equivalently
+// there is exactly one qualifying cyclic arrangement among 60 distinct cycles.
+const permSet=new Set();
+function permute(a,l=0){
+  if(l===a.length){
+    permSet.add(a.join(','));
+    return;
+  }
+  for(let i=l;i<a.length;i+=1){
+    [a[l],a[i]]=[a[i],a[l]];
+    permute(a,l+1);
+    [a[l],a[i]]=[a[i],a[l]];
+  }
+}
+permute(runLengths.slice());
+assert.equal(permSet.size,360);
+const qualifying=[];
+for(const encoded of permSet){
+  const seq=encoded.split(',').map(Number);
+  const diffs=seq.map((x,i)=>mod29(seq[(i+1)%seq.length]-x));
+  if(diffs.every(x=>primitiveValues.has(x))) qualifying.push({seq,diffs});
+}
+assert.equal(qualifying.length,6);
+const canonicalCycle=seq=>{
+  const rotations=seq.map((_,i)=>seq.slice(i).concat(seq.slice(0,i)).join(','));
+  return rotations.sort()[0];
+};
+const qualifyingCycles=new Set(qualifying.map(x=>canonicalCycle(x.seq)));
+assert.equal(qualifyingCycles.size,1);
+assert.ok(qualifyingCycles.has(canonicalCycle(runLengths)));
+
 console.log(JSON.stringify({
   status:'PASS',
   classification:'source-visible operation-switch evidence; not plaintext recovery',
@@ -124,10 +199,20 @@ console.log(JSON.stringify({
   leftCrop:{x:0,y:600,w:380,h:2400,hash:target.left},
   rightCrop:{x:2020,y:600,w:380,h:2400,hash:target.right},
   centerHashesDistinct:centers.size,
+  frameStateTape:{
+    nonSingleton,
+    runLengths,
+    cyclicDiffs,
+    labels:['K','e','a','e','b','F'],
+    reverseDiffs,
+    distinctPermutations:permSet.size,
+    qualifyingLinearRepresentations:qualifying.length,
+    qualifyingCyclicOrders:qualifyingCycles.size,
+  },
   frameRuns:frameRuns.map(r=>({
     ...r,
     lp2Start:r.archiveStart>=17?r.archiveStart-17:null,
     lp2End:r.archiveEnd>=17?r.archiveEnd-17:null,
   })),
-  decision:'p27 begins a 13-page exact frame run and p40 begins the unique longest 16-page run p40..p55; p40 is a section transition, not a p40-only STOP marker.',
+  decision:'The six non-singleton LP2 frame runs are 2,4,7,13,16,2; their printed cyclic differences are [K,e,a,e,b,F], the unique qualifying cyclic order of this run-length multiset under the fixed primitive state vocabulary. P40 begins the final 16-page section, not a p40-only STOP marker.',
 },null,2));
