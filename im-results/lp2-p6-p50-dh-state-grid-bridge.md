@@ -403,6 +403,42 @@ The `[x,b,x,B]` pattern was recognized after opening, so its finite census is su
 
 This is an executable source-typed static query, not a ciphertext receiver, key schedule, KDF, or unknown plaintext. Reproducer: `sims/lp2_p6_title_ending_p50_bob_query_sft.cjs`.
 
+### Masked two-stage reconstruction of two p6 title runes
+
+The same query admits a stronger dependency-controlled form. Do **not** use the p6 title's second word or the third word's penultimate rune as inputs.
+
+Start from only three title-ending runes:
+
+```text
+W1.last = 17
+W3.last = 17
+W4.last = 12
+```
+
+Canonical H's outer mirror pair uses only `W1.last,W4.last`:
+
+```text
+17-12 = 5 = g
+17+12 = 0 = F
+p50 rows [g,F], column K, base59 -> [-1,19].
+```
+
+The second value **19** exactly reconstructs the withheld one-rune title word `W2=[19]=B`. Now feed that recovered19, rather than the original W2, into the inner pair with `W3.last=17`:
+
+```text
+19-17 = 2 = K
+19+17 = 7 = g+K
+p50 rows [K,g+K], column K, base59 -> [15,-1].
+```
+
+The first value **15** exactly reconstructs the withheld penultimate rune of W3, whose printed values are `[6,27,15,17]`. Thus three visible ending runes plus the independently selected H/base59/K-column machinery deterministically recover two additional original p6 title runes.
+
+This is not merely a p6-local equality. Apply the exact two-stage algorithm unchanged to every complete four-word LP2 window whose third word has at least two runes: **2,623 eligible windows** out of2,699. Under the selected base59/columnK configuration exactly one window succeeds: p6 offset71. Expanding the control to all8 columns and both live radices gives **41,968** eligible configuration-window trials; the only nonzero configuration is still **base59, column2**, with exactly the p6 hit. Every base60 column has zero hits.
+
+This is a deterministic reconstruction of original **ciphertext structure**, not plaintext. Its value is that it converts the p57/H + p50 state bridge into an actual masked recovery procedure on source material while retaining a finite corpus-wide control.
+
+Reproducer: `sims/lp2_p6_title_ending_p50_masked_reconstruction_sft.cjs`.
+
 ## Interpretation
 
 This is a compact typed bridge between two independently important artifacts:
