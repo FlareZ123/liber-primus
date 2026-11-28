@@ -162,6 +162,32 @@ function main() {
   }
   assert.deepEqual(assignmentHits,[{indices:[0,1,2,3,4],values:[6,2,4,8,3],b:15,B:19}]);
 
+  // General five-coordinate H algebra: H^4 scales every noncentral
+  // coordinate by -4 and fixes the center. Here q=4 and g=q+1, so H^g is
+  // not an arbitrary orbit step: H^q supplies the -q scale, then one H.
+  const hBasis4=[];
+  for(let basis=0;basis<5;basis++){
+    let v=Array(5).fill(0);v[basis]=1;
+    for(let k=0;k<4;k++)v=H(v);
+    hBasis4.push(v);
+  }
+  assert.deepEqual(hBasis4,[
+    [25,0,0,0,0],[0,25,0,0,0],[0,0,1,0,0],[0,0,0,25,0],[0,0,0,0,25]
+  ]);
+  assert.equal(gDH,qDH+1);
+  let hToQScale=grayscaleRunLengths.slice();
+  for(let k=0;k<qDH;k++)hToQScale=H(hToQScale);
+  assert.deepEqual(hToQScale,[
+    modN(-qDH*aDH,29),modN(-qDH*KDH,29),qDH,
+    modN(-qDH*ADH,29),modN(-qDH*eDH,29)
+  ]);
+  const directQ=[
+    modN(-qDH*(aDH-eDH),29),
+    modN(-qDH*(KDH-ADH),29)
+  ];
+  assert.deepEqual(directQ,[17,24]);
+  assert.deepEqual(directQ,[modN(bDH+KDH,29),modN(-gDH,29)]);
+
   // Self-selected H^g prediction of the independently frozen p3 E(Q).
   const independentQ=[17,24],orbit=[];
   let hv=grayscaleRunLengths.slice();
@@ -179,17 +205,17 @@ function main() {
   assert.deepEqual(qMatrix,[[17,18],[24,2]]);
   assert.deepEqual(qMatrix,[[modN(bDH+KDH,29),pDH-gDH],[modN(-gDH,29),KDH]]);
 
-  let fixedDhCompositions=0,hgQCompositions=0,jointCompositions=0;
+  let fixedDhCompositions=0,dhWithQEqualsGMinus1=0,hgQCompositions=0,jointCompositions=0;
   for(let aa=1;aa<pDH;aa++)for(let KK=1;KK<pDH;KK++)for(let qq=1;qq<pDH;qq++)for(let AA=1;AA<pDH;AA++){
     const ee=pDH-aa-KK-qq-AA;if(ee<=0)continue;
     let bb,dh=false;try{bb=inverseMod(ee,pDH-1);dh=powMod(gDH,aa,pDH)===AA&&powMod(AA,bb,pDH)===KK;}catch{}
-    if(dh)fixedDhCompositions++;
+    if(dh){fixedDhCompositions++;if(qq===gDH-1)dhWithQEqualsGMinus1++;}
     let v=[aa,KK,qq,AA,ee];for(let k=0;k<gDH;k++)v=H(v);
     const qhit=v[0]===17&&v[1]===24;
     if(qhit)hgQCompositions++;
     if(dh&&qhit)jointCompositions++;
   }
-  assert.deepEqual([fixedDhCompositions,hgQCompositions,jointCompositions],[11,15,1]);
+  assert.deepEqual([fixedDhCompositions,dhWithQEqualsGMinus1,hgQCompositions,jointCompositions],[11,1,15,1]);
   const fixed=Array.from(owner.entries()).sort((a,b)=>a[0].localeCompare(b[0]));
   assert.equal(fixed.filter(x=>x[0].startsWith('e0:')).length,1);
   assert.equal(fixed.filter(x=>x[0].startsWith('e2:')).length,1);
@@ -203,7 +229,7 @@ function main() {
   console.log(JSON.stringify({
     source:'58 source JPEGs 17.jpg–74.jpg',frames:{rgb,grayscale:mono},
     grayscalePages,componentSegmentRuns:segmentRuns,grayscaleRunLengths,rgbRunLengths,
-    grayscaleRunState:{values:grayscaleRunLengths,hFirstPair:h29([grayscaleRunLengths[0],grayscaleRunLengths[1]]),fifth:grayscaleRunLengths[4],uniquePrintedPresentationAmongCyclicAndReverse:presentations.length===1,positiveFiveCompositionsOf23:positiveCompositions,hCompatibleFiveCompositionsOf23:hCompositions,dhState:{p:pDH,g:gDH,a:aDH,K:KDH,q:qDH,A:ADH,e:eDH,b:bDH,B:BDH},roleAssignmentHits:assignmentHits,hOrbitLength:orbit.length,hPowerG:hg,qOrbitHits,independentQ,qMatrix,fixedDhCompositions,hPowerGQCompositions:hgQCompositions,jointDhAndQCompositions:jointCompositions},
+    grayscaleRunState:{values:grayscaleRunLengths,hFirstPair:h29([grayscaleRunLengths[0],grayscaleRunLengths[1]]),fifth:grayscaleRunLengths[4],uniquePrintedPresentationAmongCyclicAndReverse:presentations.length===1,positiveFiveCompositionsOf23:positiveCompositions,hCompatibleFiveCompositionsOf23:hCompositions,dhState:{p:pDH,g:gDH,a:aDH,K:KDH,q:qDH,A:ADH,e:eDH,b:bDH,B:BDH},roleAssignmentHits:assignmentHits,hOrbitLength:orbit.length,hPowerG:hg,qOrbitHits,independentQ,qMatrix,fixedDhCompositions,dhWithQEqualsGMinus1,hPowerGQCompositions:hgQCompositions,jointDhAndQCompositions:jointCompositions},
     sharedNonEntropyHeaders:fixed.map(([sha,count])=>({sha,count})),
     markerCounts:Object.fromEntries(Array.from(markerCounts.entries()).sort((a,b)=>a[0]-b[0]).map(([k,v])=>[k.toString(16),v])),
     missingPageSpecificAPPandCOM:true,trailingBytes:0,singleScans:58,

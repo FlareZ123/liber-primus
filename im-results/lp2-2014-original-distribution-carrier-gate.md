@@ -75,6 +75,23 @@ g = number of grayscale runs  = 5
 
 Then ordinary DH closes exactly: `A=5^6 mod23=8`; `b=3^-1 mod22=15`; `B=5^15 mod23=19`; and `A^b=B^a=K=2 mod23`. Across **all 120 assignments** of the five observed run lengths to `[a,K,q,A,e]`, only the physical source order satisfies the full equations. It also self-checks under the manuscript's H operation: `H([a,K])=H([6,2])=[4,8]=[q,A]`, exactly the independently selective p8 red-word-length receiver.
 
+A general H identity makes the later `H^g` step source-motivated rather than an exponent scan. On any five-vector over GP29,
+
+```text
+H^4 = diag(-4,-4,1,-4,-4).
+```
+
+This state has **`q=4`** and **`g=5=q+1`**. Therefore `H^q` automatically scales the four noncentral coordinates by `-q`, and the next H gives its leading pair directly:
+
+```text
+first2(H^g(G))
+= [-q(a-e), -q(K-A)]
+= [17,24]
+= [b+K,-g].
+```
+
+So the appearance of Q at step5 is not merely a searched orbit coincidence. Among the 11 positive five-run compositions of23 that satisfy the fixed DH equations, the additional independently visible relation `q=g-1` leaves **one**, the observed vector, before using Q as a target.
+
 The stronger cross-route result is a self-indexed prediction of the independently frozen p3 quotient. H has an exact **28-step orbit** on `G`. The source partition itself gives `g=5`; iterating H exactly that many times yields
 
 ```text

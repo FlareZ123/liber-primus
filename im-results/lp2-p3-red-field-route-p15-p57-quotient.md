@@ -390,6 +390,17 @@ A separate original-source layer now reconstructs the same p3/Q state without us
 
 Treat the corpus count and run count literally as `p=23` and `g=5`, and the source-order run lengths as `[a,K,q,A,e]`. Ordinary DH recovers `(p,g,a,K,q,A,e,b,B)=(23,5,6,2,4,8,3,15,19)`. All 120 assignments of the observed five run lengths were charged; the physical order is the sole full DH survivor.
 
+The exponent is algebraically licensed by H itself. For any five-coordinate input, `H^4=diag(-4,-4,1,-4,-4)`. The reconstructed state has `q=4` and `g=q+1=5`, so `H^q` is exactly the `-q` scaling on the noncentral coordinates and one more H gives
+
+```text
+first2(H^g(G))
+= [-q(a-e),-q(K-A)]
+= [b+K,-g]
+= [17,24].
+```
+
+Among the 11 positive five-run compositions totaling23 that satisfy the fixed DH equations, only the observed one also has `q=g-1`. This discriminator does not use the target Q coordinate.
+
 This state predicts the present quotient rather than merely naming it. Canonical H has period28 on `G`, and the source-derived run count selects the exponent:
 
 ```text
