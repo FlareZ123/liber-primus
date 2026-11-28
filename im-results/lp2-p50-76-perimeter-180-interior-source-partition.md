@@ -51,6 +51,29 @@ For p56 alone, group the 85 observations by **forced equal state**: if the targe
 
 [Reproducer](../sims/lp2_p50_successor_plaintext_feedback_sft.cjs). Inputs: corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, grid blob `2550eae357442912220e05dc51147523a61dd75a`.
 
+### Sequential in-place successor update: exact two-chart obstruction (Agent39, 28 November)
+
+The earlier ciphertext-state and plaintext-state models use static endpoint tapes. The distinct **in-place** receiver updates one cell exactly once, in the original ascending row-major table order or its inverse, with the other endpoint's *current* value. This is an ordered composition of elementary reversible maps, rather than a stationary graph polynomial or a two-cell swap. The source-visible cell order motivates the schedule, but the update opcode and common terminal receiver are still exploratory. Preserve the same two radices and row/rim-first placements, including the p55 carry. At nonself addresses define the decoding operation (P_i=D_{s}(C_i)) where (s) is the current value at (f(i)). The sender reverses the order and uses each row's inverse. Each step changes only (i), so a successor already processed contains its final plaintext; a successor not yet processed contains its original ciphertext. A self-pointer needs a bijective unary operation and is excluded from the arbitrary row collision gate.
+
+Use p56 alone (native replay 85/85, 84 prime terms), never the withheld p57 plaintext. Known states come from raw original input anywhere or decoded values only on p56. Previously updated external targets are assigned a symbolic address ID: repeated references to that address necessarily share the same value, while distinct unresolved addresses are conservatively separated. Test both a single shared family of arbitrary GP29 bijections and a stronger relaxation with independent row families according to whether the successor has already been updated. Any two records at forced identical state (and chart type in the relaxed model) must preserve equality of input and output. Counts compare to the first matching record, not independent events.
+
+| Radix | Placement | Decoder order | Known p56 states | Shared function/injection conflicts | Two-chart function/injection conflicts | Affine fits/tested | Native plant held |
+|---|---|---|---:|---:|---:|---:|---:|
+| 59 | row | ascending | 57 | 2/3 | 2/3 | 0/22,736 | 171/171 |
+| 59 | row | descending | 51 | 2/5 | 2/3 | 0/22,736 | 171/171 |
+| 59 | rim | ascending | 76 | 3/9 | 1/6 | 0/22,736 | 171/171 |
+| 59 | rim | descending | 36 | 0/2 | 0/2 | 0/22,736 | 171/171 |
+| 60 | row | ascending | 57 | 3/8 | 3/7 | 0/23,548 | 171/171 |
+| 60 | row | descending | 50 | 2/2 | 1/1 | 0/23,548 | 171/171 |
+| 60 | rim | ascending | 75 | 4/6 | 4/4 | 0/23,548 | 171/171 |
+| 60 | rim | descending | 39 | 1/1 | 0/1 | 0/23,548 | 171/171 |
+
+All eight schedules fail even with two separate arbitrary row-chart families. For example, base60/rim descending cells 26 and 84 point to the same already processed external address 173; their ciphertext values 2 and 25 decode to identical p56 plaintext 18. This defeats injectivity for **every** possible value of the withheld target, without using p55 or p57 plaintext.
+
+The affine decoder specialization updates the cell in place as (x_i\leftarrow a x_i+b x_{f(i)}+d\pmod{29}). A nonself update is invertible iff a is nonzero. At a self-pointer, the multiplier is a+b and must be nonzero. Reverse the sweep and subtract the untouched current successor term before dividing by a (or divide by a+b at self). For base59 there is one self-pointer; base60 has none. Exhaust 28×28×29 or 28×29×29 legal keys respectively, fitting only p56 records with completely known states. No original key survives. For every layout, encrypt native p57 prefix76 + p56 + p57 under concealed (3,2,7); the known-state p56 records uniquely recover all three coefficients, and the sequential inverse recovers 171/171 held runes and re-encrypts all 256 exactly. These are native-text plants, not evidence of historical authorship.
+
+**Decision:** retire this specific one-sweep receiver, including both arbitrary conditional row families; order-private, address-private, multi-update, two-endpoint and p55-only operations remain outside scope. No original candidate plaintext or authentic key. Core executed in connected JavaScript against pinned repository sources; standalone Node/CI not independently run. [SFT](../sims/lp2_p50_sequential_successor_update_sft.cjs) · [raw witnesses](lp2-p50-sequential-successor-update.json).
+
 ### Address-potential difference receiver: exact conditional image dimension (Agent50, 27 November)
 
 Treat the printed radix59/60 table as address function f(i) on physical cells, with the existing clockwise 76-cell perimeter and row-major 180-cell interior (not an authored association). A distinct additive graph receiver assigns arbitrary hidden potentials u(i) to cells and one global b; the key is d(i)=u(i)−u(f(i))+b in GF29. Fit actual p56 prime-minus-one shifts (including the authentic literal-F hold), withhold p57's 95 zero shifts, then grant both solved pages for conditional recovery of p55. No score, dictionary or chosen plaintext is used to select the graph. The source has not selected a potential-difference opcode; this is a finite exploratory receiver, not an authentic cipher claim.
