@@ -30,6 +30,24 @@ If the map resets privately per chapter or page, compute R_k inside each reset s
 
 The original-wide shared-map result remains strong through width7. At width8–9, some long native controls become collision-free in at least one registration, so the finite-reference discriminator naturally stops; those longer static blocks are **not** claimed excluded.
 
+## Quantified homophony escape
+
+Allow each plaintext block type to emit at most **q** distinct ciphertext block states. For a plaintext block occurring n times, the smallest possible number of equal-ciphertext pairs is attained by an even split among q homophones. Writing n=aq+r with 0≤r<q, the exact lower bound is `r·C(a+1,2) + (q-r)·C(a,2)`. Summing inside each private reset scope is a deliberately generous necessary condition: different plaintext types get disjoint output-state sets and homophone choice may vary arbitrarily per token.
+
+Across **512 windows × 3 donors × 3 GP renderings**, every offset gives the following robust minimum capacities before even one collision-count survivor exists:
+
+| Map/reset scope | Width | Minimum q | Excludes |
+| --- | ---: | ---: | --- |
+| shared, continuous | 2 | **4** | q≤3 |
+| shared, continuous | 3 | **6** | q≤5 |
+| shared, page-reset framing | 2 | **4** | q≤3 |
+| shared, page-reset framing | 3 | **6** | q≤5 |
+| chapter-private | 2 | **4** | q≤3 |
+| chapter-private | 3 | **3** | q≤2 |
+| page-private | 2 | **3** | q≤2 |
+
+At the listed q, at least one finite donor/window/alignment only satisfies this necessary collision inequality; it is not a recovered codebook or plaintext. Finite ciphertext-state capacity is deliberately not charged, making the bound more permissive. [Exact q-capacity SFT](../sims/lp2_static_block_homophony_capacity_sft.cjs).
+
 ## Source-derived p7/p8 GF(29²) consequence
 
 The existing p7→p8 polynomial has the irreducible factor `X²-8`, defining GF(29²)=GF(29)[α]/(α²-8). The p8 fixed roots are printed as products `[4,3]`; taking their already observed reverse order gives `β=3+4α`.
