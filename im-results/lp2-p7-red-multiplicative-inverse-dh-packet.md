@@ -60,6 +60,25 @@ Crucially, pairing positions were recognized **after inspecting** the products. 
 
 The source also fixes a **308-rune black-body interval** between the p6 red11 and p7 red14: p6 ciphertext offsets82–195 (114 runes) plus p7 offsets0–193 (194 runes). Thus `308 = 11·28`, the p6 red key length multiplied by `29−1` and by `GP0(p7 red)−GP0(p6 red)=209−181=28`. This interval/row equation predated the inverse-packet discovery and was already tested with fixed additive/columnar candidates; it does not authenticate a key schedule by itself. Among p7 products, 11 is a primitive root modulo29 (order28), and its partner 8 is its inverse, so one **concrete** full-cycle row hypothesis follows without arbitrary generator search.
 
+## Original-only p15 → p7 circulant cross-holdout (Agent7, 28 November)
+
+The p7 red-product circulant identity predates this p15 derivation by a week. Its printed-order GF29 right-circulant, built from p7's five original red-word products `[11,26,8,15,2]`, was already known to have determinant `19` and inverse first row `[23,2,5,2,19]`; those numbers were previously interpreted through the external signed DH23 example.
+
+The new p15 causal route removes that external dependency. From p15 lower red11 plus the color-blind number grid alone, before consulting p7, it derives
+
+`p=23, K=2, g=5, B=19`.
+
+Those independently original-LP2 values predict the entire five-coordinate p7 inverse-row packet
+
+`[p,K,g,K,B] = [23,2,5,2,19]`
+
+and independently predict the p7 circulant determinant `B=19`. The p7 matrix reproduces both exactly.
+
+Charge the obvious cyclic presentation freedom rather than keeping only the successful orientation: rotate the five printed product values through all five starts and test both forward and reversed product order, always using the same right-circulant construction. Among these **10** ring orientations, **only the original printed forward order at rotation0** has inverse first row equal to the p15-predicted packet. Thus the equality is not a generic consequence of the product multiset.
+
+This is a genuine original-artifact cross-holdout: p15's state is derived without p7 or the 2013 tuple, while the p7 circulant identity was established before the p15 route existed. It still does **not** authenticate 'circulant' as an authorial cipher opcode—the five-dot/five-word motivation remains candidate-level—and p7's direct p8 Hill consumer is already negative. The result strengthens a shared state-serialization interpretation, not a plaintext claim.
+
+Cross-reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
 ## Source-bounded direct original-cipher consumer gates
 
 Both below use source-visible original locations and exact invertible mappings on GP29 indices. Neither recovers prose. Exact forward reencryption verifies implementation only; it does not by itself evidence plaintext.
