@@ -154,7 +154,7 @@ four printed title widths
 
 That is a materially better human-puzzle path: a solver can read every operand from one original page after the p6 packet is identified. It also explains why the 13-dot mark's **geometry** is relevant without inventing per-dot bits or subpixel states.
 
-What it still does **not** provide is the coordinatewise additive-key serializer. The p30–p42 plaintext candidates remain provisional, and exact fitted keys remain unauthenticated. The next high-value test is to freeze this visual receiver grammar before a genuinely fresh receiver transfer, or to find a similarly source-visible p6 rule that refines the already fixed per-page key sums into complete ordered key vectors.
+What it still does **not** provide is the coordinatewise additive-key serializer. The p30–p42 plaintext candidates remain provisional, and exact fitted keys remain unauthenticated. A successor whole-corridor matched null now charges this address grid across all 31 authenticated 13-word source windows, all 44 physical 13-page intervals, and a coupled p6-only key-sum correction grid. It leaves one numeric source30/page30 checksum alignment; see [the joint matched-null report](lp2-p6-red13-joint-address-keysum-matched-null.md). The remaining high-value gate is the complete ordered per-rune key serializer or a genuinely prospective fresh-receiver prediction.
 
 ## Reproduction
 
