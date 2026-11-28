@@ -79,6 +79,10 @@ assert.equal(p27.following_black_word_gp0,2); // matches DH shared K
 const chapterStarts=[0,3,8,15,23,27,33,40,54];
 const chapterMatches=chapterStarts.filter(p=>unknown[p].indices[0]===19);
 assert.deepEqual(chapterMatches,[27]); // a unique red-chapter opening M
+const rubricStartAtbash=table.filter(t=>t.following_black_word_codes &&
+  (unknown[t.page].indices[t.red_start]+t.following_black_word_codes[0])===28)
+  .map(t=>t.page);
+assert.deepEqual(rubricStartAtbash,[27]); // p27 red-first M -> black-first N
 const successorMatches=table.filter(r=>r.following_black_word_length===7
   &&r.following_black_word_gp0===2).map(r=>r.page);
 assert.deepEqual(successorMatches,[6,27]);
@@ -97,7 +101,7 @@ console.log(JSON.stringify({
   classification:'retrospective source-visible navigation, no cipher key or plaintext',
   physically_printed_ink_spans:table.length,chapterStarts,
   unique_chapter_matching_p6_red_singleton_M:chapterMatches,
-  p6,p27,p27_red_sum:p27RedSum,
+  p6,p27,rubricStartAtbash,p27_red_sum:p27RedSum,
   p27_red_sum_mod29:p27RedSum%29,
   p27_first_red_word_sum:58,
   black_successor_integer_sum_difference:58,
