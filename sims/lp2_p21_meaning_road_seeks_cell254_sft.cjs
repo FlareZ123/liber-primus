@@ -193,6 +193,17 @@ assert.deepEqual(sequenceHits, [{
 // canonical byte-pointer route: GP0(SEEKS)=71, 23 raw p50 byte edges -> p32,
 // then cell32 contains byte115 and cell115 prints literal47.
 const seeksGp = [15, 18, 18, 5, 15];
+
+// Competing conventional source origin: numeric coordinate6 is EPIPHANY
+// under one-based word numbering. Freeze exactly the same H/pointer consumers.
+const epiphanyGp = [18, 13, 10, 13, 8, 24, 9, 26];
+const epiphanyGp0 = epiphanyGp.reduce((a, b) => a + b, 0);
+assert.equal(epiphanyGp0, 121);
+const epiphanyH = H(epiphanyGp);
+assert.deepEqual(epiphanyH, [21, 4, 15, 5, 21, 5, 22, 15]);
+const navigationTriad = [13, 18, 23]; // WAY / MAP / ROAD in zero-origin source register
+assert.equal(navigationTriad.every((value) => epiphanyH.includes(value)), false);
+
 const seeksGp0 = seeksGp.reduce((a, b) => a + b, 0);
 assert.equal(seeksGp0, 71);
 const seeksH = H(seeksGp);
@@ -222,6 +233,17 @@ for (let step = 0; step < 23; step += 1) {
 assert.equal(pointer, 32);
 assert.equal(bytes[32], 115);
 assert.equal(tokens[115], '47');
+
+let epiphanyPointer = epiphanyGp0;
+const epiphanyPointerPath = [epiphanyPointer];
+for (let step = 0; step < 23; step += 1) {
+  epiphanyPointer = bytes[epiphanyPointer];
+  epiphanyPointerPath.push(epiphanyPointer);
+}
+assert.equal(epiphanyPointer, 114);
+assert.equal(bytes[114], 197);
+assert.equal(tokens[197], '1t');
+assert.notEqual(epiphanyPointer, pointer);
 
 // Neighbor-geometry control.
 const orderedNeighborHits = h4.filter((row) =>
@@ -313,8 +335,32 @@ console.log(JSON.stringify({
     totalConfigurations: h4.length * 32,
     sequenceHits,
   },
+  sourceOriginRival: {
+    numericSequence: reconstructedIndices,
+    zeroOrigin: {
+      phrase: reconstructedIndices.map((index) => signedWords[index]).join(' '),
+      omittedCoordinate: p21.h[3],
+      omittedWord: signedWords[p21.h[3]],
+    },
+    oneBased: {
+      phrase: ['THEIR', 'MEANING', 'IS', 'THE'].join(' '),
+      omittedCoordinate: p21.h[3],
+      omittedWord: 'EPIPHANY',
+      gp0: epiphanyGp0,
+      H: epiphanyH,
+      containsNavigationTriad: navigationTriad.every((value) => epiphanyH.includes(value)),
+      pointerSteps: 23,
+      pointerPath: epiphanyPointerPath,
+      receiver: epiphanyPointer,
+      nextByte: bytes[epiphanyPointer],
+      nextToken: tokens[bytes[epiphanyPointer]],
+    },
+  },
   seeksClosure: {
     gp0: seeksGp0,
+    H: seeksH,
+    roadIndex,
+    semanticRoadDestination,
     pointerSteps: 23,
     pointerPath: seeksPointerPath,
     receiverPage: 32,
