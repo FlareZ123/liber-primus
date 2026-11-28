@@ -130,15 +130,19 @@ upstream transcription lineage is not established here. It also does not
 preserve punctuation with enough fidelity to adjudicate the two separately
 documented single-dot/four-dot corrections in the current transcription.
 
-A direct original-scan audit explains several of the insertion/deletion
-differences without cryptographic interpretation. In particular, the
-historical extra symbols at p36, p37 and p38 coincide with the visible red
-printed numerals **1, 2 and 5** at those line starts; they are transcription
-category errors, not ciphertext runes. The solved p57 historical stream
-also omits visible runes from the printed PARABLE text. The remaining
-localized glyph substitutions are retained as historical witness
-differences until individually image-adjudicated; they are not promoted as
-canonical corrections.
+A complete native-resolution original-scan adjudication now resolves **all
+30 minimal edits with zero ambiguous sites** (Director issue #3380; detailed
+site table in `im-results/lp2-onecool-2017-scan-adjudication.md`). The
+current image-corrected corpus is source-correct at every disputed rune
+site, so **no canonical ciphertext rune changes are required**.
+
+The six historical-only insertions form one coherent category error:
+onecool absorbed the visibly printed section numerals **1, 2, 3, 4, 5 and
+7** as GP runes (U, TH, O, R, C and W respectively). The other 24 edits are
+18 historical glyph substitutions plus six omitted visible source runes,
+all directly resolved in favor of the current scan reading. This makes the
+2017 copy useful dated provenance/error-fingerprint evidence, but not an
+alternate ciphertext witness at any of the 30 sites.
 
 ## Independent 2016 source trail
 
