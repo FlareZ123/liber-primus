@@ -58,6 +58,18 @@ function h4(x) {
   ];
 }
 
+/** @param {number[]} shell @returns {number[]} */
+function h4Inverse(shell) {
+  assert.equal(shell.length, 4);
+  const inv2 = 15;
+  return [
+    mod29((shell[0] + shell[3]) * inv2),
+    mod29((shell[1] + shell[2]) * inv2),
+    mod29((shell[2] - shell[1]) * inv2),
+    mod29((shell[3] - shell[0]) * inv2),
+  ];
+}
+
 /**
  * Outside-pair H serialization used by the p42 [K,1,F] selector.
  * @param {number[]} x
@@ -288,7 +300,182 @@ for (let repeated = 0; repeated < 4; repeated += 1) {
     }
   }
 }
+
 assert.equal(gp0RoleFamily.size, 384);
+
+// Full post-discovery joint-address families from the two published q-block
+// receiver reports. These are charged as whole families, not just by
+// permuting the successful residue vectors.
+//
+// Block1: 1,488 typed-artifact residue shells x 4 mirrored adjacent-title
+// quotient vectors = 5,952 complete base29 address grammars.
+const W4 = [14, 12];
+const sharedLineWidths = [20, 24];
+const titleGp0 = [13, 19, 7, 26];
+const q1ResidueFamily = new Map();
+for (const a of titleH) {
+  for (const b of W4) {
+    for (const c of sharedLineWidths) {
+      for (const d of titleGp0) {
+        for (const shell of permutations([a, b, c, d])) {
+          const residues = h4Inverse(shell);
+          q1ResidueFamily.set(residues.join(','), residues);
+        }
+      }
+    }
+  }
+}
+assert.equal(q1ResidueFamily.size, 1488);
+
+const q1QuotientFamily = [
+  [4, 1, 0, 0],
+  [1, 4, 0, 0],
+  [4, 2, 0, 0],
+  [2, 4, 0, 0],
+];
+const q1AddressFamily = [];
+for (const residues of q1ResidueFamily.values()) {
+  for (const quotients of q1QuotientFamily) {
+    q1AddressFamily.push(
+      residues.map((residue, lane) => 29 * quotients[lane] + residue)
+    );
+  }
+}
+assert.equal(q1AddressFamily.length, 5952);
+
+// Block3: 48 W1/W3-segment/W4 residue constructions x 16 one-coordinate
+// title/H(title) quotient splices = 768 complete base29 address grammars.
+const W3 = [6, 27, 15, 17];
+const orientations = (values) => [values.slice(), values.slice().reverse()];
+const q3ResidueFamily = [];
+for (const qWord of [W1, W3]) {
+  for (let segmentStart = 0; segmentStart <= qWord.length - state.K; segmentStart += 1) {
+    const segment = qWord.slice(segmentStart, segmentStart + state.K);
+    for (const A of orientations(segment)) {
+      for (const B of orientations(W4)) {
+        for (const first of ['A', 'B']) {
+          const shell = first === 'A'
+            ? [A[0], B[0], A[1], B[1]]
+            : [B[0], A[0], B[1], A[1]];
+          q3ResidueFamily.push(h4Inverse(shell));
+        }
+      }
+    }
+  }
+}
+assert.equal(q3ResidueFamily.length, 48);
+
+const q3QuotientFamily = [];
+for (let replaceIndex = 0; replaceIndex < titleLengths.length; replaceIndex += 1) {
+  for (let hIndex = 0; hIndex < titleH.length; hIndex += 1) {
+    const quotients = titleLengths.slice();
+    quotients[replaceIndex] = titleH[hIndex];
+    q3QuotientFamily.push(quotients);
+  }
+}
+assert.equal(new Set(q3QuotientFamily.map((q) => q.join(','))).size, 16);
+
+const q3AddressFamily = [];
+for (const residues of q3ResidueFamily) {
+  for (const quotients of q3QuotientFamily) {
+    q3AddressFamily.push(
+      residues.map((residue, lane) => 29 * quotients[lane] + residue)
+    );
+  }
+}
+assert.equal(q3AddressFamily.length, 768);
+
+/**
+ * Build one lane index start -> grammar ids.
+ * @param {number[][]} addressFamily
+ * @returns {Map<number, number[]>[]}
+ */
+function addressLaneIndex(addressFamily) {
+  return Array.from({ length: 4 }, (_, lane) => {
+    const index = new Map();
+    for (let grammar = 0; grammar < addressFamily.length; grammar += 1) {
+      const start = addressFamily[grammar][lane];
+      if (!index.has(start)) index.set(start, []);
+      index.get(start).push(grammar);
+    }
+    return index;
+  });
+}
+
+const q1AddressIndex = addressLaneIndex(q1AddressFamily);
+const q3AddressIndex = addressLaneIndex(q3AddressFamily);
+
+/**
+ * @param {Map<number, number[]>} index
+ * @param {number[]} starts
+ * @returns {Set<number>}
+ */
+function grammarIdsForStarts(index, starts) {
+  const ids = new Set();
+  for (const start of starts) {
+    const matched = index.get(start);
+    if (matched) for (const id of matched) ids.add(id);
+  }
+  return ids;
+}
+
+/** @param {Set<number>[]} sets @returns {number} */
+function intersectionCount(sets) {
+  const ordered = sets.slice().sort((left, right) => left.size - right.size);
+  if (!ordered.length || ordered[0].size === 0) return 0;
+  let count = 0;
+  for (const id of ordered[0]) {
+    if (ordered.slice(1).every((set) => set.has(id))) count += 1;
+  }
+  return count;
+}
+
+/**
+ * Count full four-lane address grammars in the entire charged q-block family.
+ * @param {object[]} source
+ * @param {number} pageStart
+ * @param {1|3} block
+ * @returns {number}
+ */
+function fullAddressFamilyCount(source, pageStart, block) {
+  const isQ1 = block === 1;
+  const lengths = isQ1
+    ? source.slice(2, 6).map((row) => row.length)
+    : source.slice(7, 11).map((row) => row.length);
+  const laneIndex = isQ1 ? q1AddressIndex : q3AddressIndex;
+  const pageOffset = isQ1 ? 2 : 7;
+  const sets = [];
+
+  for (let lane = 0; lane < 4; lane += 1) {
+    const page = pageStart + pageOffset + lane;
+    let starts;
+    if (isQ1 && lane === 3) {
+      starts = lengths[lane] === 5
+        ? adjacent23Hits(page, 0).map(() => null)
+        : [];
+      // adjacent23Hits is residue-oriented, so recover the raw starts directly.
+      if (lengths[lane] === 5) {
+        const words = localWords(page);
+        starts = [];
+        for (let index = 0; index + 1 < words.length; index += 1) {
+          if (
+            words[index].values.length === 2 &&
+            words[index + 1].values.length === 3
+          ) {
+            starts.push(words[index].start);
+          }
+        }
+      }
+    } else {
+      starts = localWords(page)
+        .filter((word) => word.values.length === lengths[lane])
+        .map((word) => word.start);
+    }
+    sets.push(grammarIdsForStarts(laneIndex[lane], starts));
+  }
+
+  return intersectionCount(sets);
+}
 
 /**
  * Count source-selector hits for one fixed 11-word core under all 12 p6
@@ -527,6 +714,13 @@ function score(sourceStart, pageStart) {
   const chargedNoPrelude = chargedQ + exception;
   const chargedReceiver = chargedNoPrelude + nonQ.p30 + nonQ.p31;
 
+  const q1AddressFullCount = fullAddressFamilyCount(source, pageStart, 1);
+  const q3AddressFullCount = fullAddressFamilyCount(source, pageStart, 3);
+  const addressBlockHits =
+    Number(q1AddressFullCount > 0) + Number(q3AddressFullCount > 0);
+  const addressFamilyScore =
+    addressBlockHits + exception + nonQ.p30 + nonQ.p31;
+
   return {
     sourceStart,
     pageStart,
@@ -548,6 +742,10 @@ function score(sourceStart, pageStart) {
     chargedQ,
     chargedNoPrelude,
     chargedReceiver,
+    q1AddressFullCount,
+    q3AddressFullCount,
+    addressBlockHits,
+    addressFamilyScore,
   };
 }
 
@@ -609,6 +807,25 @@ assert.deepEqual({
   chargedReceiver: { value: 20, rank: 1, ties: 1, nextBest: 14, total: 1364 },
   chargedNoPrelude: { value: 18, rank: 1, ties: 1, nextBest: 14, total: 1364 },
   chargedQ: { value: 15, rank: 1, ties: 1, nextBest: 14, total: 1364 },
+});
+
+// Strongest familywise control: charge every complete base29 address grammar
+// from the published block1 (5,952) and block3 (768) post-discovery families.
+// Only source30/page30 supports both q blocks; block1 has no other complete
+// match anywhere in the 1,364-grid.
+assert.equal(rows.filter((row) => row.q1AddressFullCount > 0).length, 1);
+assert.equal(rows.filter((row) => row.q3AddressFullCount > 0).length, 2);
+assert.equal(rows.filter((row) =>
+  row.q1AddressFullCount > 0 && row.q3AddressFullCount > 0
+).length, 1);
+assert.equal(original.q1AddressFullCount, 1);
+assert.equal(original.q3AddressFullCount, 1);
+assert.deepEqual({
+  addressBlockHits: rank('addressBlockHits'),
+  addressFamilyScore: rank('addressFamilyScore'),
+}, {
+  addressBlockHits: { value: 2, rank: 1, ties: 1, nextBest: 1, total: 1364 },
+  addressFamilyScore: { value: 7, rank: 1, ties: 1, nextBest: 2, total: 1364 },
 });
 
 const topFixed = [...rows]
@@ -689,6 +906,10 @@ console.log(JSON.stringify({
     chargedQ: original.chargedQ,
     chargedQ1Residues: original.chargedQ1.residues,
     chargedQ3Residues: original.chargedQ3.residues,
+    q1AddressFullCount: original.q1AddressFullCount,
+    q3AddressFullCount: original.q3AddressFullCount,
+    addressBlockHits: original.addressBlockHits,
+    addressFamilyScore: original.addressFamilyScore,
   },
   ranks: {
     fixedReceiver: rank('fixedReceiver'),
@@ -699,9 +920,22 @@ console.log(JSON.stringify({
     chargedReceiver: rank('chargedReceiver'),
     chargedNoPrelude: rank('chargedNoPrelude'),
     chargedQ: rank('chargedQ'),
+    addressBlockHits: rank('addressBlockHits'),
+    addressFamilyScore: rank('addressFamilyScore'),
+  },
+  fullAddressFamilyCharge: {
+    q1ResidueVectors: q1ResidueFamily.size,
+    q1AddressGrammars: q1AddressFamily.length,
+    q3ResidueConstructions: q3ResidueFamily.length,
+    q3AddressGrammars: q3AddressFamily.length,
+    configurationsWithFullQ1: rows.filter((row) => row.q1AddressFullCount > 0).length,
+    configurationsWithFullQ3: rows.filter((row) => row.q3AddressFullCount > 0).length,
+    configurationsWithBoth: rows.filter((row) =>
+      row.q1AddressFullCount > 0 && row.q3AddressFullCount > 0
+    ).length,
   },
   topFixed,
   topCharged,
   interpretation:
-    'Conditional on the published target-blind p6 structural grammar, the p30..p42/source30..42 object is the unique top structural alignment. The result remains unique after deleting p30/p31, removing uniqueness bonuses, or allowing all 24 residue-coordinate permutations independently in each q block. This is a charged structural rank, not a discovery-wide probability and not plaintext authentication.',
+    'Conditional on the published target-blind p6 structural grammar, the p30..p42/source30..42 object is the unique top structural alignment. It remains unique after deleting p30/p31, removing uniqueness bonuses, allowing all 24 residue-coordinate permutations independently, and charging the complete 5,952-member block1 plus 768-member block3 base29 address families. This is a charged structural rank, not a discovery-wide probability and not plaintext authentication.',
 }, null, 2));
