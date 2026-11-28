@@ -80,3 +80,30 @@ Five of eight transfer sections uniquely maximize the score over both relabeling
 **Decision:** retain Phase 65's authorial enrichment as a conditional corroboration diagnostic, including the existing p27–33 exploratory hotspot and Agent43 controls. No independent source selector assigns prime-target conditions to unknown LP2 clauses, and the actual known inverses do not uniformly maximize the score. Do not use it as a hard reject, generic rank tie-breaker for order-only actions, or new search objective. The exact p57 metadata checksum is a positive precedent, not an LP2 oracle. No unknown candidate set was filtered because the stated source gate is unmet; no new LP2 plaintext or key. Reopen only on an independently fixed target/conditional clause grammar and genuinely untouched continuation.
 
 Reproducer: [SFT](../sims/lp2_phase65_clause_identification_sft.cjs), [complete exact ranks and input blob IDs](lp2-phase65-clause-identification.json). Executed the same computational function against both inputs in connected V8; standalone Node/CI not separately run.
+
+
+## Exact-target feedback receiver — Director #3277 (Agent25, 28 November)
+
+This is a parameter-identification experiment using a **known exact target**, not the generic prime-valued-clause score rejected above. The p57 761 metadata product is 1595277641 = 1259 × 1031 × 1229. The source's actual three body intervals are [7,37), [37,67), [67,95) in canonical zero-based GP29 rune coordinates; the seven-rune title has sum 449 but is not in the product.
+
+Freeze a deliberately simple triangular ciphertext-feedback model (synthetic control family, not an established historical LP2 cipher):
+
+- alphabet indices 0…28, ordinary consuming clock, public initial C[-1]=0;
+- forward C[i] = (P[i] + a*C[i−1] + b) mod29;
+- inverse P[i] = (C[i] − a*C[i−1] − b) mod29;
+- a,b independently in 0…28; 841 possible keys; no F hold, dictionary, phase fitting, or unknown text selection.
+
+For each candidate key compute the assigned GP-prime sum of the first two body intervals. The stronger source-only variant permits any two distinct members of the product factor set (no supplied factor ordering); the remaining factor is then the prediction on the third interval. The ordered variant uses the known p57 assignments 1259,1031 as training. The title sum is an additional known-native control, never a selection input. This is different from #2754 and #3056: no decoded prime sum updates the cipher state, and no prime-valued count is maximized; the exact externally known numbers filter keys.
+
+All 841 hidden (a,b) controls are honest re-encipherments of the unchanged 95-rune native p57 plaintext. The key-selection code receives only ciphertext and exact training checks, not the actual coefficients, plaintext sequence or withheld third-interval symbols. For negative controls use 128 deterministic nonzero-a wrong-family plaintext-feedback encipherments and 128 ciphertext shuffles. Separately permute plaintext within each of the four intervals before enciphering, preserving all exact targets while destroying its native order. The latter tests the structural limitation, rather than expecting an order-independent checksum to reject its own invariance class.
+
+| Control | Number | Unique training key | Any key passing training | Unique held key |
+|---|---:|---:|---:|---:|
+| Correct native plants | 841 | 841 | 841 | 841 |
+| Wrong-family plaintext feedback | 128 | 0 | 0 | 0 |
+| Globally shuffled ciphertext | 128 | 0 | 0 | 0 |
+| Within-interval shuffled native plaintext, then correctly encrypted | 128 | 128 | 128 | 128 |
+
+Both ordered and unordered factor rules give exactly these counts, and all authentic-order plants recover all 95 runes. All 128 shuffled-plaintext plants recover the shuffled text exactly, not the original order; checksum validation cannot distinguish them. The third interval is held out from key selection, but it is still part of the same 95-rune known source page and its target is a dependent factor of the product. This is not cross-author or independently novel-text generalization. The controls are deterministic on one native page; 0/128 is not a universal false-positive bound. The test was executed in connected V8 against canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, with seed 0x3277a025 and final RNG state 2038539647. Reproducer: [exact checksum feedback receiver](../sims/lp2_exact_checksum_feedback_receiver_sft.cjs). Standalone Node/CI not separately run.
+
+**Original gate:** #3268 and the original corpus review identify no first-party checksum target/interval binding for an unknown LP2 unit. The p33 cuneiform 1033/3301 corresponds to Stage10 square sums, not an authenticated sum for any unknown rune clause; the literal word-sum transfer is already rejected in the existing square report. The p57 factors apply to p57 only. Accordingly no original interval was ranked or decrypted under a fabricated target. Exact numeric targets would make this small receiver identifiable on the demonstrated native geometry, but a source-specified recipient and compatible ordinary feedback clock are still required. H-shuffle/H-decoy remain unresolved. Close #3277 as native parameter-selection success with missing original typed witness; no new historical key/plaintext, no feedback-family endorsement.
