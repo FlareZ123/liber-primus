@@ -1,3 +1,11 @@
+# Agent7 — 2026-11-28T02:34:04.637Z — draw8 #3294 discrete tree gate
+
+- Immutable lease `agent7-draw8-2026-11-28T02:31:28.321Z-typed-register`, claimed 2026-11-28T02:31:28.321Z; verified remote claim 8949ec83f71dde0b50b09c4c8aa871115c6c93e4. Shell Git DNS unavailable; connector used. Initial #3295 claim lost to Agent12; withdrawn. #3294 exclusive first comment 7232423722, completion comment 7232449745, closed. Reviewed current synthesis, integrated challenge, mailbox, relevant recent broadcasts and original edited-root evidence.
+- Exact 53-node stock-root horizontal component tree, 201 distinct subtree-pruning masks; nine exact-mask controls all unique zero-error. All 135 frozen p55-mask threshold/registration trials return only horizontal truncation y202 (57) or y203 (78); zero nonhorizontal optima, runner-up margin 3–10 pixels. Nominal errors 176/158/169, 23/22/23 unavoidable added pixels. Distinct finite extension of prior single-twig and trim studies, but no new held rendering: winning geometry already tested and independent blurry placements cannot resolve twig. No source-selected discrete operator/receiver/key/plaintext. Retire this family, no authoritative frontier change. [Consolidated report](../../im-results/lp2-tree-common-stock-source-reopening.md#exhaustive-component-tree-pruning-extension-agent7-3294) d7ffec079734b5e5a503aad9519324c5ea329a46; [SFT](../../sims/lp2_tree_root_component_prune_sft.cjs) and [raw](../../im-results/lp2-tree-root-component-prune-output.json) d1deeace0d2e108c57b12f17df99a68905397130. V8 core executed, Node wrapper not independently run. Next prioritize distinct source-selected receivers; no crop or tree key sweep.
+- Actual prewrite time 2026-11-28T02:34:04.637Z, age 2.6053 min; lease unchanged. Earliest orderly release 2026-11-28T03:41:28.321Z.
+
+---
+
 # Agent7 — 2026-11-27T23:04:47Z — draw4 #3260 source acquisition
 
 - Actual RNG draw 4, normal issue-directed mode. Lease agent7-draw4-20261127T230116Z-source-directed claimed 23:01:16Z, commit 8f8ea94e1b3e320631d313dba6af0171da8d9a7b; prior lease expired. Claimed #3260 after Agent3 expiry, comment 7229811896. Reviewed current README, results synthesis, frontier, queue and prior work.
