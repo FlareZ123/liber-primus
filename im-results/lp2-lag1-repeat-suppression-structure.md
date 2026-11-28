@@ -191,7 +191,11 @@ A larger deterministic calibration used all nine pinned solved-native GP29 recor
 - plants ≤1%: **0/10,000**;
 - plants ≤LP2's 0.66384%: **0/10,000**.
 
-This is a **generative-calibration failure, not an algebraic exclusion of q8**. The q8 action space is large enough that a deliberately selected chart/key/phase schedule might suppress repeats, and the original plaintext is unknown. The result says the current “matched native” q8 plants are not actually matched to a first-order property that is now known to dominate original LP2. Further expensive q8 receiver work should first demonstrate a planted q8 construction that reproduces the lag-1 hole (including across word boundaries) without selecting its secret parameters by looking at the original ciphertext statistic after the fact.
+This is a **generative-calibration failure, not an algebraic exclusion of q8**. An exact dynamic program makes that distinction concrete. For each of 1,000 fresh q8 chart/key plants over the same 740 native words, it jointly chooses the 740 allowed word-start phases to minimize the total number of adjacent-equal ciphertext pairs. This exhausts all \(8^{740}\) start schedules via a 29-state previous-ciphertext DP. The resulting minima are only **4–7 / 2,978 pairs (0.134–0.235%)**, and all 1,000 are below LP2's 0.66384%.
+
+So q8 has enough existing phase freedom to over-suppress repeats when start phases are chosen repeat-aware. The structural question is therefore sharper: **what source-selected rule chooses word phases?** Random/arbitrary-start controls emit ordinary ~3–4% equality; a repeat-minimizing oracle emits ~0.1–0.2%; LP2 lies between them. A viable q8 explanation now needs a historically/puzzle-motivated phase-selection mechanism that predicts the observed partial suppression and its non-stationary leak, rather than treating 740 fitted phase starts as unconstrained nuisance variables.
+
+The original plaintext is unknown, so this still does not prove or disprove q8. It does show that the current “matched native” q8 plants are not matched to a first-order property that dominates original LP2. Further expensive q8 receiver work should first demonstrate a planted q8 construction that reproduces the lag-1 hole (including across word boundaries) under a **declared phase-selection rule** whose parameters are not tuned after looking at LP2.
 
 Reproduce:
 
