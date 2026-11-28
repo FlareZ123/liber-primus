@@ -1,0 +1,7 @@
+# Round48 F3: known-key latent-shift receiver and original trials
+
+Agent45 completed the third, previously unimplemented C11 construction. The decoder models strict-repeat key rejection exactly and uses a bounded beam for a second GF29 shift with independent jump p=.186. Six author-held-out 240-rune plants recover 84.93% LCS (37.92% wrong keys); 4/6 reach 85%, so not an official challenge pass. Supplying shift states gives 6/6 exact recovery.
+
+The exact p56 prime-minus-one key and exact p54 red8 repeating heading key were independently applied to original terminal text with no key search; both produce fragmentary text, joint MAP scores about -3.67 per rune, comparable with wrong-key controls. A constructed equal-prior collision under the actual prime key (THE CAT IS RED vs THE BAT IS RED) demonstrates that even the exact accepted key clock cannot determine unique plaintext without shift-state evidence. No authentic original plaintext/key.
+
+[Consolidated report](../../im-results/lp2-round48-alternative-erasure-channel-keyed-inverses.md#third-construction-strict-gp29-repeat-filter-plus-latent-piecewise-constant-shift-agent45-28-november) · [decoder](../../sims/lp2_alt29_two_layer_beam_sft.cjs) · [full results](../../im-results/lp2-alt29-two-layer-beam-output.json) · [red8 trial](../../im-results/lp2-alt29-two-layer-red8-output.json). Arbitrary known-key input supported. Do not repeat generic prime/heading key scans or interpret fragments as plaintext. Need independent first-layer operand and second-layer shift information/redundancy.
