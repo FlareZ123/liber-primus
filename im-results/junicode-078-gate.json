@@ -1,0 +1,151 @@
+{
+  "test": "period Unicode direct-rune font gate",
+  "observed_classes": 18,
+  "segmentation_line_counts": [
+    17,
+    18,
+    23
+  ],
+  "lp2_repeat_noise": {
+    "pairs": 106,
+    "mean": 0.028279,
+    "median": 0.013429,
+    "p95": 0.086957,
+    "max": 0.101262
+  },
+  "ranking": [
+    {
+      "font": "Junicode-Bold.ttf",
+      "path": "/tmp/junicode/usr/share/fonts/truetype/junicode/Junicode-Bold.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.306284,
+      "median_iou_distance": 0.310863,
+      "max_iou_distance": 0.57499,
+      "per_rune": {
+        "ᚠ": 0.457316,
+        "ᚢ": 0.57499,
+        "ᚣ": 0.550394,
+        "ᚦ": 0.328341,
+        "ᚩ": 0.287213,
+        "ᚪ": 0.313288,
+        "ᚱ": 0.312942,
+        "ᚳ": 0.460959,
+        "ᚷ": 0.199956,
+        "ᚹ": 0.331834,
+        "ᚻ": 0.308784,
+        "ᚾ": 0.184273,
+        "ᛁ": 0.0,
+        "ᛋ": 0.162828,
+        "ᛏ": 0.24632,
+        "ᛖ": 0.206751,
+        "ᛗ": 0.222879,
+        "ᛞ": 0.364036
+      },
+      "render_jpeg_control": {
+        "mean": 0.021152,
+        "p95": 0.061552,
+        "max": 0.069271
+      }
+    },
+    {
+      "font": "Junicode.ttf",
+      "path": "/tmp/junicode/usr/share/fonts/truetype/junicode/Junicode.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.475169,
+      "median_iou_distance": 0.5298,
+      "max_iou_distance": 0.670994,
+      "per_rune": {
+        "ᚠ": 0.556659,
+        "ᚢ": 0.598815,
+        "ᚣ": 0.670994,
+        "ᚦ": 0.451591,
+        "ᚩ": 0.577642,
+        "ᚪ": 0.581041,
+        "ᚱ": 0.576982,
+        "ᚳ": 0.233557,
+        "ᚷ": 0.34991,
+        "ᚹ": 0.539715,
+        "ᚻ": 0.544428,
+        "ᚾ": 0.461092,
+        "ᛁ": 0.0,
+        "ᛋ": 0.409193,
+        "ᛏ": 0.519885,
+        "ᛖ": 0.462556,
+        "ᛗ": 0.542438,
+        "ᛞ": 0.476541
+      },
+      "render_jpeg_control": {
+        "mean": 0.026154,
+        "p95": 0.050818,
+        "max": 0.053952
+      }
+    },
+    {
+      "font": "Junicode-BoldItalic.ttf",
+      "path": "/tmp/junicode/usr/share/fonts/truetype/junicode/Junicode-BoldItalic.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.58788,
+      "median_iou_distance": 0.58249,
+      "max_iou_distance": 0.801348,
+      "per_rune": {
+        "ᚠ": 0.671933,
+        "ᚢ": 0.739054,
+        "ᚣ": 0.729692,
+        "ᚦ": 0.594937,
+        "ᚩ": 0.541153,
+        "ᚪ": 0.565279,
+        "ᚱ": 0.561294,
+        "ᚳ": 0.801348,
+        "ᚷ": 0.458771,
+        "ᚹ": 0.583529,
+        "ᚻ": 0.595218,
+        "ᚾ": 0.46323,
+        "ᛁ": 0.527778,
+        "ᛋ": 0.417901,
+        "ᛏ": 0.49153,
+        "ᛖ": 0.625854,
+        "ᛗ": 0.581451,
+        "ᛞ": 0.631883
+      },
+      "render_jpeg_control": {
+        "mean": 0.022685,
+        "p95": 0.028047,
+        "max": 0.031503
+      }
+    },
+    {
+      "font": "Junicode-Italic.ttf",
+      "path": "/tmp/junicode/usr/share/fonts/truetype/junicode/Junicode-Italic.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.732181,
+      "median_iou_distance": 0.743427,
+      "max_iou_distance": 0.792766,
+      "per_rune": {
+        "ᚠ": 0.764963,
+        "ᚢ": 0.764814,
+        "ᚣ": 0.792766,
+        "ᚦ": 0.689583,
+        "ᚩ": 0.762764,
+        "ᚪ": 0.775595,
+        "ᚱ": 0.770996,
+        "ᚳ": 0.76011,
+        "ᚷ": 0.662307,
+        "ᚹ": 0.780862,
+        "ᚻ": 0.73239,
+        "ᚾ": 0.695641,
+        "ᛁ": 0.728733,
+        "ᛋ": 0.551151,
+        "ᛏ": 0.732386,
+        "ᛖ": 0.731286,
+        "ᛗ": 0.754465,
+        "ᛞ": 0.72844
+      },
+      "render_jpeg_control": {
+        "mean": 0.045308,
+        "p95": 0.053682,
+        "max": 0.055599
+      }
+    }
+  ],
+  "unscored": []
+}
