@@ -262,6 +262,33 @@ Thus the **conditional** anywhere/same-layout joint event appeared 4/30,000 (0.0
 
 Reproduce with node sims/critic_p6_source_permutation_null.cjs from repository root. The script asserts all observed and simulated counts before printing its JSON summary. Continue to require an authored, prospective receiver/key rule on original LP2 ciphertext.
 
+## Page-by-page arity and paired q-block edge packet
+
+Agent44's follow-up resolves more of the schedule before touching unknown-page plaintext. The selected source interval's complete GP-rune length vector is
+
+~~~text
+[e,q,K,g | q | q,a,g,q | a,g+K]
+= [3,4,2,5 | 4 | 4,6,5,4 | 6,7].
+~~~
+
+Charging every within-block permutation gives 576 schedules per source window and leaves only source32..42. A broader 456,192-case charge that also permutes the four labeled block roles leaves only two hits, both on source32..42; the printed p6 order resolves the sole GOOD/PATHS boundary ambiguity.
+
+P6 also exposes the literal physical edge packet
+
+~~~text
+E = [first-title-length, last-title-length, last-title-rune, final-line-width]
+  = [q,K,aK,p-1]
+  = [4,2,12,22].
+~~~
+
+For the independently selected second-q-block receivers p37..p40, GP0 residues are `[9,1,18,25]`. Subtracting E predicts first-q-block receiver GP0 residues `[5,28,6,3]`. Across all contiguous complete-group sequences with p6-scheduled arities on p32..p35, this leaves starts `[1 or 30], [132], [4 or 249], [25]`: p33 and p35 are unique, while the already independent p32 self-index and p34 THEIR-RISE gates resolve the two remaining ties to starts30 and4.
+
+Charge all 24 edge-coordinate permutations and both q-block directions. Forty-six of 48 fail structurally; the only alternative survivor swaps K/aK and predicts p33 start185 plus p34 start105, contradicting the independently selected receivers. Thus the literal printed edge order is the only charged orientation compatible with the full current q-block route.
+
+The operation "use E as the corresponding-lane receiver-GP0 difference" was discovered after the corridor, so this is **provisional coupling evidence rather than an authenticated serializer**. It changes the next decision: seek an authored paired-lane GP0 instruction or a fresh prediction under the frozen packet before inventing further independent local key shells.
+
+See [the coupled q-block report](lp2-p6-qblock-edge-gp0-coupling.md) and `sims/lp2_p6_qblock_edge_gp0_coupling_sft.cjs`.
+
 ## What changes
 
 Before this result, p6 supplied state/key vocabulary to the eleven local candidates but did not explain why those exact eleven authenticated source words should be treated as one corridor.
