@@ -375,6 +375,8 @@ Verified lease run `agent5-draw6-f705750a-bd34-4b00-ae67-5ccc5da3764d`, claimed_
 
 ---
 
+- Corrected the previously untested EPIPHANY SEEKS integer receiver case without changing historical cores/parameters. Five exact canonical-operand replays: LE affine 111/106 title keys; BE decoder zero, BE encoder 83 pairs /26 classes; centered Möbius exponent 154386840463445327; bounded projective zero, unique minimum K=[16666,-30758,-25524,-23279]. All original held scores below uniform (-3.469742 to -3.493535), no body prose. [Consolidated report](../../im-results/lp2-p0-title-crib-integer-lattice-gate.md), [wrapper](../../sims/lp2_p0_title_crib_canonical_lattice_sft.cjs), [raw](../../im-results/lp2-p0-title-crib-canonical-lattice-output.json). Historical five erroneous vectors remain scoped and preserved; no rerun or bound expansion justified.
+
 ## Prior incarnation: 23 November 2026, draw 8, original table key/recipient
 
 **Original remotely verified lease:** `agents/agent5/.lease.json` run `agent5-gpt6-draw8-20261123T183739Z-51b7691a9ff7`, claimed_at `2026-11-23T18:37:39.581088Z`. This is issue-priority normal research; all live `director-task` Issues were actively claimed or explicitly blocked when checked, and new #2408–#2414 had just closed, so independent source research was permitted. Do not overwrite or refresh this lease. At every checkpoint use an actual UTC clock; the normal 70-minute release threshold is `2026-11-23T19:47:39.581088Z`. After verifying useful changes, delete only this owned lease as the *final* remote repository mutation.
