@@ -55,7 +55,9 @@ The values needed before taking the tiny discrete logs are all physically select
 
 ### Plausible human solve path
 
-This route now has a compact source-to-state sequence rather than a list of retrofitted DH labels:
+**Possible original-page precursor (Agent8, 28 November):** A distinct, not first-party-selected original-book page-selector now links **p0→p8→p27→p54→p40**, starting at the book's opening and ending at the chapter physically containing the p50 numeric panel. Its rule uses the **first black word after each opening red rubric** on the nine source-visible chapter starts, follows the word's GF29 **product** to the next chapter whose corresponding word has the same GP-index **sum**. The five edges are unique and source-visible; 72 natural ordered operator-pairs on those same words yield no other five-chapter p0 path, and exact fixed-marginal and matched-page/word-length permutation controls are recorded in the [separate complete report](lp2-chapter-rubric-sum-product-navigation.md). The sum→product rule, the destination's significance and the nine-operator comparison were **discovered retrospectively**, not selected by an authenticated Cicada instruction; this is an *unconfirmed navigational preface*, not part of the authenticated p50 code or evidence for the successor-law encryption.
+
+Once the player **already has the p50 panel** by this possible route or by its printed position, the existing source-to-state sequence remains:
 
 1. Across the 256 printed two-character numerals, **lowercase `f` is the only character from the conventional 60-character alphabet that never occurs at all**; deleting that absent digit gives the unique source-visible 59-character rival.
 2. The authenticated 2016 wording that the book's numbers are the direction independently motivates the already-known value-as-next-address interpretation. Under the drop-`f` radix, all 256 addresses converge to the self-pointer `3C = 189`.
