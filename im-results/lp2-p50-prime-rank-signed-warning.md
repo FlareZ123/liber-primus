@@ -165,7 +165,9 @@ The literal continuation is therefore a compact candidate handoff: **AND24 → a
 
 The raw token at that selected address adds a separate, human-readable movement consequence. `p50[24]` is literally **`1n`**. Starting from the already fixed AND cell195 with the north heading supplied by THE→MAP, read that as **one north**: it lands at cell187, whose original token is **`1L`**. Keeping the current north heading, **one left** then lands at **cell186**, token `0J`, which equals19 under both base59 and base60.
 
-This endpoint was not created for the present route. Cell186 is independently selected by the p27 red13/DH circuit (the p27 red heading's GP-prime sum1109 is prime #186; its local 13th-rune × residual-length construction also gives186), by solved-p57 MUST's GP-prime sum186, and by the separately derived p29 carry route that had already prospectively selected cell187=`1L` and stepped left to186. The new p50 chain therefore supplies a distinct source-side entrance to the same manuscript object:
+This endpoint was not created for the present route. Cell186 is independently selected by the p27 red13/DH circuit (the p27 red heading's GP-prime sum1109 is prime #186; its local 13th-rune × residual-length construction also gives186), by solved-p57 MUST's GP-prime sum186, and by the separately derived p29 carry route that had already prospectively selected cell187=`1L` and stepped left to186. The new p50 chain therefore supplies a distinct source-side entrance to the same manuscript object.
+
+**Endpoint semantics are numeric, not another signed-word dereference.** The token `0J` has raw value **19** under both base59 and base60. Since 19 is the eighth ordinary prime, its prime-rank label would be rank8 (conditionally `source[8]=DEVOTED` under the same zero-origin convention), **not** source index19/THEIR. The independently established relevance of the raw value is instead the authenticated p28/p27 DH public value **B=19**. Thus the conditional movement chain converges on an already recovered DH state value rather than manufacturing another word from the number19:
 
 ```text
 MAP support: cell195 = base60 prime#24 = AND
@@ -231,7 +233,7 @@ Established computational facts under the frozen representation:
 - the already selected cell74-to-surface column2 begins with prime ranks39 and40, hence **FALSE PATHS**;
 - the same census under base59 has no two-edge consecutive warning chain;
 - the strict MAP/ROAD support geometry reconstructs every source index17..24: **THE MAP THEIR MEANING IS THE ROAD AND**. THEIR is the base59 prime#19 cell immediately north of MAP, MEANING is the exact20-edge northward distance from that cell to the ROAD support line, and the next support cell is the unique base60 prime#24 = AND;
-- AND's recovered number24 selects raw token `1n`; from the fixed AND location and MAP's north heading, `1n -> 1L` deterministically lands on independently source-selected cell186=`0J`=19. Across all signed prime hits on the fixed segment, AND24 is the only rank whose same-number address even begins the declared movement grammar;
+- AND's recovered number24 selects raw token `1n`; from the fixed AND location and MAP's north heading, `1n -> 1L` deterministically lands on independently source-selected cell186=`0J`, whose raw value19 equals the authenticated DH public **B=19**. Its prime rank is8, so this endpoint must not be mislabeled as source index19. Across all signed prime hits on the fixed segment, AND24 is the only rank whose same-number address even begins the declared movement grammar;
 - no prime#20 cell occurs anywhere on that vertical support segment under either live radix, so MEANING is specifically a distance readout rather than an omitted cell hit;
 - prime rank42 / OPENPGP cannot continue because value181 is absent.
 

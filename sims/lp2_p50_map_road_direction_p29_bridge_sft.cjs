@@ -231,7 +231,9 @@ assert.deepEqual(segmentMovementPrograms, [{
 assert.equal(tokens[186], "0J");
 assert.equal(decode(tokens[186], a59), 19);
 assert.equal(decode(tokens[186], a60), 19);
-assert.equal(words[19], "THEIR");
+assert.equal(primeRank.get(19), 8);
+assert.equal(words[8], "DEVOTED");
+// Raw 19 is the already recovered DH public value B=19. It is not source[19].
 
 const luckPrime = primes[36];
 assert.equal(luckPrime, 157);
@@ -270,7 +272,9 @@ console.log(JSON.stringify({
       token:tokens[186],
       base59:decode(tokens[186], a59),
       base60:decode(tokens[186], a60),
-      sourceWord:words[19],
+      primeRank:primeRank.get(19),
+      conditionalZeroOriginRankWord:words[primeRank.get(19)],
+      dhPublicValueB:19,
     },
   },
   stoppedBeforeMeaning: false,
