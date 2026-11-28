@@ -280,10 +280,11 @@ assert.deepEqual(
 
 const H = (values) => {
   const out = [];
-  const half = values.length / 2;
+  const half = Math.floor(values.length / 2);
   for (let index = 0; index < half; index += 1) {
     out.push(mod29(values[index] - values[values.length - 1 - index]));
   }
+  if (values.length % 2 === 1) out.push(values[half]);
   for (let index = half - 1; index >= 0; index -= 1) {
     out.push(mod29(values[index] + values[values.length - 1 - index]));
   }
