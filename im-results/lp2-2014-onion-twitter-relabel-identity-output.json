@@ -1,0 +1,220 @@
+{
+  "targetProfile": {
+    "1": 92,
+    "2": 49,
+    "3": 14,
+    "4": 6
+  },
+  "hist": [
+    {
+      "mask": 1,
+      "profile": {
+        "1": 86,
+        "2": 49,
+        "3": 16,
+        "4": 6
+      },
+      "minimumEdits": 4
+    },
+    {
+      "mask": 2,
+      "profile": {
+        "1": 92,
+        "2": 42,
+        "3": 17,
+        "4": 6,
+        "5": 1
+      },
+      "minimumEdits": 6
+    },
+    {
+      "mask": 3,
+      "profile": {
+        "1": 97,
+        "2": 43,
+        "3": 16,
+        "4": 5,
+        "5": 1
+      },
+      "minimumEdits": 4
+    },
+    {
+      "mask": 4,
+      "profile": {
+        "1": 108,
+        "2": 47,
+        "3": 14,
+        "4": 3
+      },
+      "minimumEdits": 11
+    },
+    {
+      "mask": 5,
+      "profile": {
+        "1": 95,
+        "2": 56,
+        "3": 15,
+        "4": 1
+      },
+      "minimumEdits": 9
+    },
+    {
+      "mask": 6,
+      "profile": {
+        "1": 78,
+        "2": 50,
+        "3": 20,
+        "4": 2,
+        "5": 2
+      },
+      "minimumEdits": 11
+    },
+    {
+      "mask": 7,
+      "profile": {
+        "1": 98,
+        "2": 42,
+        "3": 15,
+        "4": 6,
+        "5": 1
+      },
+      "minimumEdits": 5
+    }
+  ],
+  "windows": [
+    {
+      "name": "xor1",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor1",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor2",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor2",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor3",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor3",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor4",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor4",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor5",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor5",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor6",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor6",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor7",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "xor7",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "p50",
+      "order": "forward",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "p50",
+      "order": "reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "p50",
+      "order": "reflection",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    },
+    {
+      "name": "p50",
+      "order": "reflected-reverse",
+      "windows": 63912,
+      "repeatPass": 0,
+      "hits": []
+    }
+  ],
+  "totalWindows": 1150416,
+  "plant": {
+    "windows": 63912,
+    "repeatPass": 1,
+    "hits": [
+      1000
+    ]
+  }
+}

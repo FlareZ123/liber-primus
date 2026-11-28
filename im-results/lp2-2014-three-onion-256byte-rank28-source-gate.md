@@ -43,8 +43,32 @@ The complete source-order byte-window longest common substrings are exactly **th
 
 Thus these **four exact 256-byte vectors are not copied contiguous subwindows** of that known 2013 Twitter stream in original or shifted starting position. It does not exclude reuse of the much larger, incompletely sampled 2013 ISO data pads, a transformed tape, or a shared cryptographic generator. Crucially, this rejects one explicit cross-round key-source explanation at its original-byte level instead of inferring merely from random-looking ciphertext.
 
+## Cross-round reuse under unknown alphabet and order (Agent17, 28 November 2026)
+
+The previous exact-byte comparisons assume the same byte codec. The original p49–51 token sequence leaves radix59/60 ambiguous; an injective symbol renaming preserves every equality. The signed 2013 and 2014 byte streams are independently available to a historical solver, and the archived 2014 participant procedure explicitly XORs three labelled 256-byte registers (1033, 761, 3301). This motivates an exact **source identity** test, not another key sweep. No author instruction specifies this reuse.
+
+For two equal-length multisets A and B, let a_i and b_i be descending nonzero multiplicities, zero-padded to equal lengths. Under arbitrary bijective symbol relabeling (extend to all 256 byte labels) and arbitrary positional permutation, the sharp minimum number of mismatching positions is N − Σ_i min(a_i,b_i). For a fixed relabeling, each label can match at most the smaller count, attained by position reordering. Pairing descending counts maximizes the sum: for a≥a′ and b≥b′, min(a,b)+min(a′,b′)≥min(a,b′)+min(a′,b), by the monotonicity of min(a,b)−min(a′,b) in b. Repeated swaps produce the sorted matching. Thus even complete uncertainty about grid read order and the injective byte alphabet cannot evade a positive bound.
+
+The **printed tokens** have multiplicity spectrum 92 singletons, 49 doubletons, 14 tripletons, 6 quadrupletons (161 distinct, 256 positions). Source-order XOR combinations have the following sharp minimum edits after *any* positional permutation and bijective recoding:
+
+| Historical register or XOR | Min mismatches |
+|---|---:|
+| 1033 | 4 |
+| 761 | 6 |
+| 1033 XOR 761 | 4 |
+| 3301 | 11 |
+| 1033 XOR 3301 | 9 |
+| 761 XOR 3301 | 11 |
+| 1033 XOR 761 XOR 3301 | 5 |
+
+All seven reject exact identity even allowing a globally permuted output and arbitrary alphabet. This strengthens the earlier literal comparison and cannot select the grid radix. It does not reject independently reordered XOR operands, noninjective encodings, position-dependent recoding, or an unrelated source.
+
+A separate cross-round test extends the earlier longest exact three-byte overlap with the **complete 64,167-byte 2013 Twitter tape**: examine all 63,912 complete contiguous 256-byte windows for the canonical first-occurrence signature of each of the seven historical XOR registers in forward/reverse order and p50 in physical row-major, complete reverse, rowwise horizontal reflection, and reflected reverse. This admits any fixed bijection of source bytes to target symbols without fitting or choosing a key. Necessary equal-pair checks prune the search; surviving windows must also match all inequalities. Across 18 target/order cases (1,150,416 windows), **zero** windows satisfy even the equal-pair conditions and zero match the full signature. A planted arbitrary byte permutation of the 256 original tokens at offset1000 is recovered exactly at offset1000; every XOR histogram is invariant under reverse plus byte-bijection, and a deliberately noninjective toy is rejected. No offset search remains inside this specific stationary recoding model. An arbitrary positional permutation of a 2013 window is *not* included in this second test.
+
+[Standalone SFT](../sims/lp2_2014_onion_twitter_relabel_identity_sft.cjs) · [complete output](./lp2-2014-onion-twitter-relabel-identity-output.json). The exact pure analysis core executed in V8 on the three pinned Git blobs; standalone Node wrapper was not separately executed. Source text is a participant-preserved archive, not a new first-party opcode. No unknown LP2 plaintext, key, or receiver follows; retire these source-identity models without expanding to unrelated generators.
+
 ## Decision
 
-This source-led 256-byte **direct XOR / GP29 additive / mod28 successor-rank consumer** is now tested in full and yields no recoverable original text. Do not expand the same branch through unfitted offsets, rotations, extra XOR products, hashes or key generators without an original instruction choosing them. Other historical sources, steganographic payloads, stateful inverses or lost keys remain open.
+The source-led 256-byte **direct XOR / GP29 additive / mod28 successor-rank consumer** yields no recoverable original text. The seven historical XOR registers also cannot be the exact printed panel under any fixed bijective byte recoding and arbitrary common output permutation; no contiguous complete 2013 tape window matches their or the panel's tested equality signatures. Do not expand the same branch through unfitted offsets, rotations, extra XOR products, hashes or key generators without an original instruction choosing them. Other historical sources, steganographic payloads, stateful inverses or lost keys remain open.
 
 **Reproducer:** [single runnable CJS test](../sims/lp2_2014_three_onion256_rank28_sft.cjs) (Node.js 22, read-only). Required source files: the archived three-string text, the printed base60-grid.json, and canonical lp2-corpus.json. The script asserts source labels and byte lengths, original rune/repeat counts, all 90 unknown-page decodes, 60 authentic solved-p56 predictions, 30 provisional p55-crib checks, four full 2013-to-2014 256-byte identity searches, output bounds and planted positive inverses before printing its decision data.
