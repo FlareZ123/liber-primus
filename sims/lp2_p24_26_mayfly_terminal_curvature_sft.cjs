@@ -274,11 +274,46 @@ function descriptor(word) {
   };
 }
 
-const allCanonicalWords = [];
-for (let page = 0; page <= 55; page += 1) {
-  allCanonicalWords.push(...canonicalWords(page));
+// Source-aware complete words. Physical page boundaries are not word
+// delimiters; p50 separates the two rune tapes.
+function seamWords(pageRange) {
+  const words = [];
+  let current = [];
+  let first = null;
+  const flush = () => {
+    if (current.length === 0) return;
+    words.push({ values: current.slice(), first });
+    current = [];
+    first = null;
+  };
+  for (const page of pageRange) {
+    const source = corpus.pages.find((entry) => entry.page === page).indices;
+    const segment = transcriptionParts[page >= 51 ? page - 1 : page] ?? '';
+    let offset = 0;
+    for (const char of segment) {
+      const value = runeIndex.get(char);
+      if (value !== undefined) {
+        assert.equal(source[offset], value);
+        if (current.length === 0) first = { page, local: offset };
+        current.push(value);
+        offset += 1;
+      } else if (char === '/' || /\s/u.test(char)) {
+        continue;
+      } else {
+        flush();
+      }
+    }
+    assert.equal(offset, source.length);
+  }
+  flush();
+  return words;
 }
-assert.equal(allCanonicalWords.length, 2928);
+
+const allCompleteWords = [
+  ...seamWords(Array.from({ length: 50 }, (_, index) => index)),
+  ...seamWords([51, 52, 53, 54, 55]),
+];
+assert.equal(allCompleteWords.length, 2896);
 
 const p26Word16 = canonicalWords(26).find((word) => word.start === 16);
 assert(p26Word16);
@@ -289,7 +324,7 @@ assert.deepEqual(descriptor(p26Word16), {
   product: 5,
 });
 
-const descriptor5195 = allCanonicalWords.filter((word) => {
+const descriptor5195 = allCompleteWords.filter((word) => {
   const d = descriptor(word);
   return d.length === 5 && d.sum === 19 && d.product === 5;
 });
@@ -354,8 +389,8 @@ function sourceBigramScore(values) {
   return { score, tokens };
 }
 
-const length5Words = allCanonicalWords.filter((word) => word.values.length === 5);
-assert.equal(length5Words.length, 318);
+const length5Words = allCompleteWords.filter((word) => word.values.length === 5);
+assert.equal(length5Words.length, 317);
 const highBigramPresentations = [];
 for (const word of length5Words) {
   for (const reversed of [false, true]) {
