@@ -83,6 +83,34 @@ So even after providing the obvious metadata that resolves the p33/p39 address c
 
 This is a model-family exclusion, not a proof against arbitrary nonlinear serializers. It specifically rules out the most direct interpretation of the new base29 addresses as affine/quadratic key coordinates.
 
+## Receiver-vector transfer gate: the p40 state packet does not generalize
+
+The newly cross-linked p40 receiver is itself unusually compact in the pre-existing state vocabulary:
+
+~~~text
+p40 start71 R = [4,15,14,21] = [q,b,-b,-A]
+H4(R) = [12,1,0,25] = [aK,1,F,-q].
+~~~
+
+Because the missing serializer may act on the receiver as a vector, freeze the simplest exact p40 reconstruction before looking at other four-rune q-block pages. Let `x=R[0]`, and use only the already fixed state constants `g=5`, `K=2` plus the frozen H4 transform:
+
+~~~text
+S(R) = [x*g, x*g, H4(R)[0], x+K].
+~~~
+
+On p40 this is exactly `[20,20,12,6]`, the fitted PATHS subtraction key. The rule is therefore a genuine compact explanation of the local key after the fact. Transfer it unchanged to the other selected four-rune q-block receivers:
+
+~~~text
+p33 WILL: R=[3,15,17,22], H4(R)=[10,27,3,25]
+  S(R)=[15,15,10,5]  != fitted [25,5,26,2]
+
+p37 LUCK: R=[3,2,6,27], H4(R)=[5,25,8,1]
+  S(R)=[15,15,5,5]   != fitted [12,1,1,22].
+~~~
+
+**Decision:** retire this exact receiver-derived serializer as a shared q-block mechanism. The p40 identities `[q,b,-b,-A]` and `H4(R)=[aK,1,F,-q]` remain useful state descriptions of the target-blind selected receiver, but they do not by themselves solve the ordered-key problem. Do not rescue this rule by page-specific constants, coordinate substitutions, or choosing different H coordinates after the held-out failures.
+
+Reproducer: `sims/lp2_p40_receiver_vector_key_transfer_sft.cjs`.
 ## Research consequence
 
 Do not spend additional effort fitting coordinatewise arithmetic directly to `Q,R,n,j`, page block, or slot. The missing selector must be structurally richer: a p6 field/word/geometry choice, an operation on the receiver or authenticated source word as a vector, or a different reversible mechanism.
