@@ -171,6 +171,20 @@ function experiment(raw, options={}) {
     return p[b.length];
   }
   const lm=makeLM(),beam=options.beam||700,results=[];
+  if(options.decodeInput){
+    const C=options.decodeInput.cipher,K=options.decodeInput.key;
+    if(!Array.isArray(C)||!Array.isArray(K)||!C.length||
+       !C.every(v=>Number.isInteger(v)&&v>=0&&v<29)||
+       !K.every(v=>Number.isInteger(v)&&v>=0&&v<29)||
+       K.length<C.length)throw Error("decodeInput: require cipher/key integer arrays, cipher0..28 key0..28, key length>=cipher");
+    const a=decode(C,K,lm,beam,options.maxDeleted||3);
+    if(!a.P)return {status:"no candidate under bounded receiver",failedAt:a.failedAt,visited:a.visited};
+    return {status:"candidate decoder output (not authenticated plaintext)",
+      hypothesis:"GP29 strict-repeat emission followed by iid deletion p=.187",
+      inputRunes:C.length,providedKeyValues:K.length,score:a.score,
+      lastConsumedKeyIndex:a.lastKeyIndex,visited:a.visited,
+      indices:a.P,preview:a.preview};
+  }
   for(let z=0;z<(options.plants||3);z++){
     const donor=datasets[z%datasets.length],plant0=plant(donor,80421+z*547);
     const a=decode(plant0.C,plant0.K,lm,beam,options.maxDeleted||3);
