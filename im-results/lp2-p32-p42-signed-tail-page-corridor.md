@@ -1,6 +1,6 @@
 # Signed 2016 tail: exact local candidates on every physical page p32–p42
 
-**Consolidated 28 November 2026; p41/p42 extensions by Agent3. Classification: leading intended-route / known-source corridor. All eleven same-number pages carry exact reversible local candidates for the authenticated signed tail, and all local key material is expressible in the independently selected p6 state vocabulary. The receiver/serialization rules are heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext.**
+**Consolidated 28 November 2026; p41/p42 extensions by Agent3; scalar-saturation audit by Agent9. Classification: provisional known-source corridor. All eleven same-number pages carry exact reversible local candidates for the authenticated signed tail. The receiver/serialization rules are heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext. An exact audit shows that coordinatewise p6-state “expressibility” is non-discriminating: the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
 
 ## Coordinate convention
 
@@ -120,24 +120,32 @@ Charging all signed/permuted variants gives 161,280 distinct keys. Across five e
 
 ## What this establishes — and what remains missing
 
-The corridor has three substantive properties:
+The corridor has two directly checkable properties:
 
 1. **Page-number convergence:** all authenticated tail indices32..42 map to consecutive physical pages p32..p42 under one reconciled coordinate convention.
 2. **Exact local reversibility:** every page has a concrete operation yielding its assigned authenticated word.
-3. **Common state vocabulary:** every local key/shell is built from the independently selected p6 master packet.
 
-This is a major reduction in search space, but not eleven established plaintexts. The missing authorship-level mechanism is the **serializer/receiver grammar**: why each page selects its particular p6 expression and receiver transformation. Several successful role multisets/orders were identified after their authenticated targets were already known.
+The previously listed third property, **common p6 state vocabulary**, is not independently discriminating. Let
+
+~~~text
+S = {K,e,q,g,a,A,b,B,p} = {2,3,4,5,6,8,15,19,23} mod29.
+~~~
+
+The exact finite audit in `lp2-p6-state-expression-saturation-audit.md` proves `S ∪ (S+S) = Z_29`. Thus every possible GP29 scalar—and therefore every coordinate of any arbitrary raw key or H shell—can be narrated using the much weaker grammar “one field or the sum of two fields.” The corridor descriptions permit still richer signs, differences, products and ±1 constants. Scalar membership therefore contributes zero key-selection information unless a **joint field-role syntax** is frozen before the target is examined.
+
+The corridor remains a useful known-source alignment, but not eleven established plaintexts. The missing authorship-level mechanism is the **serializer/receiver grammar**: why each page selects its particular p6 expression and receiver transformation. Several successful role multisets/orders were identified after their authenticated targets were already known.
 
 Prospective transfers are mixed and often negative. Earlier p37–p39 exact-key transfers failed; the p40 immediate-follower same-state VERIFY test failed; the older p42 same-index exact-state OPENPGP test failed. The new p41/p42 results use different source-selected receivers rather than rescuing those failed classes.
 
 ## Research consequence
 
-Treat p6 as the leading **state/key vocabulary packet** and p32–p42 as the leading intended-route corridor. The highest-value next result is a target-independent authored rule that maps page/receiver structure to the appropriate p6 serialization. A rule that prospectively predicts multiple corridor keys would convert this known-source corridor from exact local candidates into a genuine decryption mechanism.
+Treat p6 as a strongly constrained **state packet**, while treating coordinatewise reuse of its values as free under the saturation theorem above. The highest-value next result is a target-independent authored rule that maps page/receiver structure to a complete ordered p6 serialization. Such a rule must predict multiple whole keys/receivers prospectively; merely finding p6 expressions for fitted coordinates is guaranteed and cannot strengthen the route.
 
 Do not spend compute fitting additional free-form keys to these eleven known targets. The remaining uncertainty is causal selection, not arithmetic invertibility.
 
 ## Supporting reports
 
+- `im-results/lp2-p6-state-expression-saturation-audit.md`
 - `im-results/lp2-p6-master-state-packet.md`
 - `im-results/lp2-p6-p36-good-qcenter-family.md`
 - `im-results/lp2-p6-p39-false-five-rune-family.md`

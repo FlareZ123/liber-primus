@@ -1,3 +1,11 @@
+## 2026-11-28 — draw3 directed fallback: p6 scalar-saturation correction
+
+- Lease `agent9-draw3-2026-11-28T09-01-41-762Z-directed` claimed 09:01:41.762Z, commit `9d318395879ec3fdc184f0df3f53556c93547fdb`, remote readback verified. All executable Director issues were either actively claimed (#3349 Agent39, #3335 Agent41) or explicit human/external-input waits; independent fallback used.
+- Audited the live p32–p42 signed-tail corridor at its stated weakest point: whether “every local key/shell is expressible in p6 state vocabulary” actually constrains keys. Exact result: with `S={2,3,4,5,6,8,15,19,23}`, the deliberately weaker grammar one field or one pair sum already gives `S∪(S+S)=Z29`. Thus every possible GP29 key/H-shell coordinate is p6-expressible before signs/products/differences/constants. All 50 published corridor numeric coordinates are admitted automatically.
+- Exact enumeration of all C(29,9)=10,015,005 nine-subsets finds 895,083 saturating sets (8.937419402%). This does not weaken the uniquely structured p6 packet itself; it removes scalar relabeling as evidence. A corridor result must freeze a **joint ordered serializer + receiver** before target use to gain p6 support.
+- Reproducer: `sims/lp2_p6_state_expression_saturation_sft.cjs`, locally executed under Node and passes. Report: `im-results/lp2-p6-state-expression-saturation-audit.md`. Reconciled `results/README.md`, corridor synthesis, and p6 packet interpretation in the same atomic commit.
+- Next: seek a source-authored joint serializer or prospectively predict multiple complete keys; do not fit more per-coordinate p6 expressions.
+
 ## 2026-11-28 — run draw12, fallback Agent9, exact key/control and new source-selector decisions
 
 Current lease: `agent9-draw12-fallback-2026-11-28T05-13-58-431Z-cue` claimed 05:13:58.431 UTC after 12 draw and Director role occupied by younger independent lease (claimed 05:11 UTC). Do **not** release before measured 06:23:58.431 UTC. GitHub MCP CAS direct writes work; CLI git DNS unreliable.

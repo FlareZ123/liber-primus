@@ -14,6 +14,19 @@ The packet uses state values already established elsewhere in the repository:
 p=23  g=5  a=6  b=15  A=8  B=19  K=2  e=3  q=4
 ```
 
+## Interpretive constraint: scalar state vocabulary is saturated
+
+A 28 November Agent9 audit places a strict limit on how the packet may be used as evidence. With
+
+~~~text
+S = {K,e,q,g,a,A,b,B,p}
+  = {2,3,4,5,6,8,15,19,23} mod29,
+~~~
+
+the deliberately weak grammar “one field, or the sum of two fields with repetition” already covers **all 29 residues**: `S ∪ (S+S) = Z_29`. No signs, subtraction, products, constants, target words or page data are needed. Therefore an arbitrary fitted key/H-shell coordinate can always be renamed as a p6-state expression. The exact census over every 9-subset of `Z_29` finds 895,083 / 10,015,005 = **8.937419402%** with this same weak saturation property.
+
+This does **not** weaken the source-visible uniqueness of the p6 four-word packet itself, nor a multi-coordinate rule whose field roles were frozen before testing. It invalidates “each coordinate can be expressed with p6 values” as independent support. Future consumers must charge a joint ordered grammar and receiver selection prospectively. [Exact audit and reproducer](lp2-p6-state-expression-saturation-audit.md).
+
 The canonical reversible pair transform is also pre-existing:
 
 ```text
