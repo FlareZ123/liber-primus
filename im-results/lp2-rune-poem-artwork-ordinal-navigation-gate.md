@@ -28,6 +28,8 @@ No ciphertext receiver follows from this fact. Do **not** feed the DH tuple back
 
 The p22 image alone admits a weaker rival: the Rune-Poem **Mann** stanza also mentions human flesh returning to earth. The original ciphertext supplies an independent discriminator on the same page: p22 has exactly one adjacent identical-rune pair, at offsets 100–101, and it is the GP **EA** rune twice. The existing p22 source report established that this is one of only three EA-EA pairs in the unsolved corpus. EAR is the stanza whose heading rune is EA and whose verse specifically says the corpse (`hraw`) cools and chooses earth as its bed.
 
+The fixed 29-stanza Old English source adds a lexical discriminator: splitting it at stanza boundaries, the literal word `hraw` ("corpse/body") occurs in **exactly one stanza, EAR (29)**. `flæsc` ("flesh") is weaker: it also occurs in Mann and Ac. Thus the source-specific corpse noun, the EAR heading rune, and p22's literal EA-EA doublet converge on the same stanza.
+
 This does not turn the doubled EA into plaintext. It makes EAR a substantially more constrained interpretation of the independently visible corpse than a free synonym search.
 
 ## Same ordinal grammar already has a p14 precedent
@@ -61,7 +63,7 @@ The p22 route is useful because it makes a **pre-existing independent prediction
 
 ## Reproducible source chain
 
-- Anglo-Saxon Rune-Poem order and exact 29/29 GP29 match: `im-results/lp2-anglo-saxon-rune-poem-source-gate.md`; source text `resources/external/dickins1915-rune-poem-old-english.txt`.
+- Anglo-Saxon Rune-Poem order and exact 29/29 GP29 match: `im-results/lp2-anglo-saxon-rune-poem-source-gate.md`; source text `resources/external/dickins1915-rune-poem-old-english.txt`. The fixed source has 29 stanza blocks; `hraw` occurs only in block29/Ear.
 - P22 corpse registration, EAR semantics and literal EA-EA site: `im-results/lp2-p22-corpse-source-plate-decision.md` and `im-results/lp2-p22-ear-name-unique32-p50-row-gate.md`.
 - Existing p14 semantic precedent: `im-results/lp2-old-english-rune-poem-codebook-selector.md`.
 - Independent p28 selector and DH23 construction: `im-results/lp2-p57-terminal23-p28-dh-modulus-selector.md`.
