@@ -62,4 +62,17 @@ const out={key:key.toString('hex'),nonce:nonce.toString('hex'),nativeRuneControl
 assert.equal(out.p0.count,262);assert.equal(out.p55.count,76);
 for(const [value,expected] of [[out.rawIoC,0.03447839786450569],[out.pageResetIoC,0.0344842961642344],[out.continuousIoC,0.034477897402710525],[out.p55.ioc,0.03263157894736842]])
  assert.ok(Math.abs(value-expected)<1e-12);
+// Genuine solved-LP1/p56-style F interrupt: literal ciphertext F never consumes
+// a key byte, and non-F ciphertext cannot decrypt into literal plaintext F.
+// This gives a strict first original-source contradiction without scoring prose.
+const p0native=getPage(0).indices;
+let clock=0, firstInvalid=null;
+for(let i=0;i<p0native.length;i++){
+ if(p0native[i]===0) continue;
+ const pt=(p0native[i]-kReset[clock]%29+29)%29;
+ if(pt===0){firstInvalid={offset:i,keyOffset:clock,cipher:p0native[i],keystream:kReset[clock]};break}
+ clock++;
+}
+assert.deepEqual(firstInvalid,{offset:19,keyOffset:17,cipher:22,keystream:51});
+out.genuineFTransparentFirstViolation=firstInvalid;
 console.log(JSON.stringify(out,null,2));
