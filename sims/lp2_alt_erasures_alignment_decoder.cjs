@@ -47,12 +47,14 @@ function tokenizeNative(s,withSpaces=true) {
 function trainLanguage(streams, variant, opts={}) {
   const spaced=variant==="V-SILENT";
   const rounds=opts.rounds??20, drop=opts.drop??0.19, rng=lcg(opts.seed??125516);
-  const count=Array.from({length:5},()=>new Map());
+  const maxOrder=opts.order??4;
+  if(maxOrder<1||maxOrder>7)throw new Error("order 1..7");
+  const count=Array.from({length:maxOrder+1},()=>new Map());
   for(const original of streams){
     let src=spaced?original:original.filter(x=>x!==29);
     for(let rep=0;rep<rounds;rep++){
       const sample=src.filter(()=>rng()>drop);
-      for(let i=0;i<sample.length;i++)for(let n=1;n<=4&&n<=i+1;n++){
+      for(let i=0;i<sample.length;i++)for(let n=1;n<=maxOrder&&n<=i+1;n++){
         let code=sample.slice(i-n+1,i+1).join(",");
         const tab=count[n];tab.set(code,(tab.get(code)||0)+1);
       }
@@ -66,14 +68,14 @@ function trainLanguage(streams, variant, opts={}) {
     score(prefix,x) {
       let history=prefix.concat(x);
       let p=(unigram[x]+15)/(mass+15*30);
-      for(let n=2;n<=4&&n<=history.length;n++){
+      for(let n=2;n<=maxOrder&&n<=history.length;n++){
         const k=history.slice(-n).join(","), pref=history.slice(-n,-1).join(",");
         const a=count[n].get(k)||0, b=count[n-1].get(pref)||0;
         p=(a+tau*p)/(b+tau);
       }
       return Math.log(p);
     },
-    sourceTokens:streams.reduce((n,s)=>n+s.length,0),
+    sourceTokens:streams.reduce((n,s)=>n+s.length,0), maxOrder,
   };
 }
 function beamDecode(C,K,variant,model,opts={}) {
@@ -94,7 +96,7 @@ function beamDecode(C,K,variant,model,opts={}) {
         // an identical consecutive printed ciphertext value.
         if(g===0&&i>0&&C[i]===C[i-1])continue;
         const history=st.h.concat(plain);
-        const h=history.slice(-3);
+        const h=history.slice(-Math.max(1,model.maxOrder-1));
         const score=st.score+model.score(history.slice(0,-1),plain)+
           g*Math.log(gapP)+Math.log(1-gapP);
         const node=plain===29?st.tail:{plain,prior:st.tail};
