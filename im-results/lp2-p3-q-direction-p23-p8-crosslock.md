@@ -115,6 +115,60 @@ The published deterministic H symmetry/ordinary-DH closure reconstructs the full
 
 The p8 report's manuscript-wide control leaves p8 start0 as the sole `[4,8]` complete-word pair closing the full DH grammar and the first black word as the sole three-rune word with `(sum,product)=(23,2)`.
 
+## P23 completes the state; p8 independently reproduces it
+
+The directed receivers support an executable state reconstruction, not only coordinate labels.
+
+Start only from the frozen Q output:
+
+```text
+[p,A] = [23,8].
+```
+
+Apply the already-used H pair grammar:
+
+```text
+[b,K] = [p-A,p+A] mod29 = [15,2].
+```
+
+The independent p29 DIRECTION packet requires the private exponent to be invertible modulo `p-1`, giving:
+
+```text
+e = b^-1 mod(p-1) = 15^-1 mod22 = 3.
+```
+
+Now follow the first directed page. P23's independently established four-word red register is:
+
+```text
+[A^-1,A,g,K] = [11,8,5,2].
+```
+
+The Q-derived `A=8,K=2` type two slots and leave `g=5` directly. With no remaining fitted state coordinate:
+
+```text
+5^a mod23 = 8   -> unique a=6 in 1..21
+B = 5^15 mod23  -> 19
+19^6 mod23      -> 2 = K.
+```
+
+So **Q + directed p23 reconstructs the complete ordinary state**:
+
+```text
+(p,g,a,b,A,B,K,e)
+= (23,5,6,15,8,19,2,3).
+```
+
+The second directed receiver p8 then acts as a manuscript-side cross-check rather than a necessary source for missing fields. Its already-published red rows are exactly:
+
+```text
+H4 = [-g,-q,-g,q]
+H8 = [b-K,A^-1,a,e,g+K,e,K+b,p-g]
+```
+
+with `q=4`, and its adjacent black word descriptor is `[e,p,K]`. Thus DEVOTED8→p8 independently reproduces every state field recovered through ROAD23→p23.
+
+The chronology remains important: this complete circuit was assembled after the component p23 and p8 registers had been published. Treat it as an exact cross-route state reconstruction and consistency lock, not a prospectively calibrated discovery probability. It materially removes label freedom from the directed pages and supplies a complete state packet, but still does not specify a black-body cipher.
+
 ## Generic red-page targeting is not the evidence
 
 A weaker observation would be “both coordinates happen to name pages containing red ink.” That is not selective enough to carry the claim. In a fixed-field charge over all 840 nonzero scalar multipliers, using all 18 complete red-span outputs and counting coordinates that land on the eight red-bearing pages below29, the actual Q map has 13 such coordinate hits; **276 / 840** multipliers do at least as well.
