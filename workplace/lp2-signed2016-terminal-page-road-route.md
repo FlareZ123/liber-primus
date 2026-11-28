@@ -1,6 +1,14 @@
 # A source-selected terminal-page address candidate from the signed 2016 THE followers
 
-**Status (23 November 2026, Agent45): source-exact signed PATH→five-SW→p57 first clause, then possible straight-up SURFACE return to PATH through original p50[2]=2l=167 (39th prime); independent signed WAY/MAP crosses the path at cell60. Decoding grammar remains provisional, with no unknown plaintext or p54 key.**
+**Status (28 November 2026, Agent10 consolidation): the PATH→five-SW→p57 clause remains source-exact and the straight-up SURFACE projection remains conditional, but opening that already selected tunnel now yields prime ranks 39→40 = `FALSE PATHS`. A complete p50 row/column prime-rank census also yields the unique two-edge rank chain 38→39→40 = `BEWARE FALSE PATHS` and the separate edge 17→18 = `THE MAP` under base60; base59 has no two-edge chain. Treat the loop as map-validation/warning evidence, not an authenticated decoder. No unknown plaintext or p54/p55 key is recovered.**
+
+## 28 November 2026: opening the selected SURFACE tunnel exposes a signed warning
+
+The earlier route stopped at the top cell and read `2l=167` only as prime rank39 returning to numeric PATH39. Agent10 opened the entire already selected straight column2 tunnel before choosing any new receiver. From the surface downward, its first two prime-valued base60 cells are `cell2=167=prime#39` and `cell26=173=prime#40`. Under the existing zero-based authenticated signed-word register, these read **FALSE PATHS**.
+
+A full matched physical-line census removes the tunnel-cell postselection: across all 32 rows and eight columns, both directions, the only forward consecutive ordinary-prime-rank edges through source index42 are **17→18 = THE MAP**, **38→39 = BEWARE FALSE**, and **39→40 = FALSE PATHS**. The two warning edges share the duplicated original `2l=167` rank39 token at cells182 and2, forming the only two-edge rank chain **BEWARE FALSE PATHS**. The identical base59 family has no two-edge chain. Prime#41=179 exists once, but prime#42=181 is absent, so the rule cannot be extended to **VERIFY OPENPGP**.
+
+This is structural source evidence, not recovered ciphertext plaintext. It makes the p50/signed-map connection more specific while changing the decision on the PATH loop: do not use its numeric closure as permission to fit another p54/p55 receiver. The zero-based source lookup and SURFACE→top-row semantics remain interpretive dependencies. Full evidence and exact census: [p50 prime-rank warning report](../im-results/lp2-p50-prime-rank-signed-warning.md) and [SFT](../sims/lp2_p50_prime_rank_signed_warning_sft.cjs).
 
 ## Observable clue and source constraints
 
@@ -132,6 +140,6 @@ A 2016 player seeing this might go to p57, learn its clear prime-related clause 
 
 The new source-complete word-address screen also **rejects a literal use-every-word physical-page traversal**: 15/43 GP0 sums have no valid receiver page, with no authenticated escape or skip rule. Even if the terminal clustering was deliberately planted, its decoding grammar remains incomplete.
 
-**Next causal decision**: a first-party independent operation or key handoff from the clear p57 / prime-totient p56 or from the signed message must specify a complete invertible transform of p54≥150 unknown runes and successfully predict an untrained p55 original passage. Merely adding more meaningful labels to the page sequence will not decipher them. Retain this page-routing candidate provisionally as a possible hint for that historically plausible terminal solve path, avoiding promotion to a recovered key or plaintext.
+**Next causal decision**: the new p50 prime-rank census makes the signed-map interpretation more concrete but also returns the source warning **BEWARE FALSE PATHS**. Treat that as a stop sign against extending this branch by fitted table hops or p55 key sweeps. Reopen the terminal route only when a first-party independent operation or key handoff from clear p57 / prime-totient p56 / the signed message specifies a complete invertible transform of unknown p54–55 runes and predicts an untouched passage. The current route remains map-validation evidence, not a recovered key or plaintext.
 
 **Inputs and full original-data reproducer:** [original signed 2016 message](../resources/historical/cicada2016-4gq25-outguess.asc), [official corpus](../resources/liber-primus/lp2-corpus.json), [original 256-cell table](../resources/liber-primus/lp2-grid-256.json), [single-file Windows CJS SFT](../sims/lp2_signed2016_terminal_page_addresses_original_sft.cjs), [Windows Node22 PASS, source-typed five-SW, WAY-MAP, SURFACE loop, p55 recipient and 553-rune shift run 45096905892](https://github.com/FlareZ123/liber-primus/actions/runs/45096454020).
