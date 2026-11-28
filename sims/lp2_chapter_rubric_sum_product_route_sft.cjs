@@ -143,6 +143,85 @@ assert.equal(comparison.filter(x=>x.p0ToP40).length,1);
 assert.deepEqual(comparison.filter(x=>x.p05).map(x=>[x.input,x.output]),
  [['rune_sum','rune_product']]);
 
+// A stronger adverse source-field grammar: not only which of nine arithmetic
+// operations but which immediately accessible printed word/block at each
+// original chapter opening. All eight fields are fixed *once* and applied
+// across all nine chapters without switching selection rule between pages.
+// The candidates are "first/last red word", "whole contiguous red rubric",
+// first/second/third black word, first TWO black words joined, last physical
+// black fragment on the same page. They are typographic controls and include
+// source-derived fields, not individually optimized target receivers.
+const sourceSelectors=[
+ 'first_red','last_red','whole_red',
+ 'first_black','second_black','third_black','first_two_black','last_black'
+];
+const sourceFields=chapters.map(p=>{
+ const source=gp.pages[p].indices,annotation=ink.pages.find(a=>a.page===p);
+ let end=annotation.red_spans[0].length;
+ for(let z=1;z<annotation.red_spans.length
+   &&annotation.red_spans[z].start===end;z++)
+   end+=annotation.red_spans[z].length;
+ const words=[],text=trans[p>=51?p-1:p];let cur=[],offset=0;
+ for(const glyph of text){
+   if(rid.has(glyph)){assert.equal(source[offset],rid.get(glyph));cur.push(offset++);}
+   else if('-.&$§'.includes(glyph)&&cur.length){words.push(cur);cur=[];}
+ }
+ if(cur.length)words.push(cur);
+ assert.equal(offset,source.length);
+ const reds=words.filter(w=>w[0]>=0&&w.at(-1)<end);
+ const blacks=words.filter(w=>w[0]>=end);
+ assert.ok(reds.length&&blacks.length>=3);
+ const values=w=>w.map(i=>source[i]);
+ return {
+   first_red:values(reds[0]),
+   last_red:values(reds.at(-1)),
+   whole_red:source.slice(0,end),
+   first_black:values(blacks[0]),
+   second_black:values(blacks[1]),
+   third_black:values(blacks[2]),
+   first_two_black:values([...blacks[0],...blacks[1]]),
+   last_black:values(blacks.at(-1))
+ };
+});
+for(let i=0;i<chapters.length;i++)
+ assert.deepEqual(sourceFields[i].first_black,records[i].runes);
+const selectorCensus=[];
+for(const selector of sourceSelectors){
+ const samples=sourceFields.map(s=>s[selector]);
+ let any5=0,p05=0,reach40=0;
+ for(const input of operators)for(const output of operators){
+   if(input===output)continue;
+   const inputValues=samples.map(operationVocabulary[input]);
+   const outputValues=samples.map(operationVocabulary[output]);
+   const e=edges(inputValues,outputValues);
+   let anyMatch=false,p0Match=false,reachesTable=false;
+   const walk=(at,seen,len,start)=>{
+     if(len>=5){
+       anyMatch=true;
+       if(start===0){
+         p0Match=true;
+         if(at===7)reachesTable=true;
+       }
+     }
+     if(len>=9)return;
+     for(const next of e[at])if(!(seen&(1<<next)))
+       walk(next,seen|(1<<next),len+1,start);
+   };
+   for(let begin=0;begin<chapters.length;begin++)
+     walk(begin,1<<begin,1,begin);
+   any5+=Number(anyMatch);
+   p05+=Number(p0Match);
+   reach40+=Number(reachesTable);
+ }
+ selectorCensus.push({selector,ordered_pairs:operators.length*(operators.length-1),
+   any_five_chapter: any5,p0_five_chapter:p05,
+   p0_to_p40_at_five_or_more:reach40});
+}
+assert.deepEqual(selectorCensus.map(x=>
+ [x.any_five_chapter,x.p0_five_chapter,x.p0_to_p40_at_five_or_more]),
+ [[0,0,0],[0,0,0],[0,0,0],[2,1,1],
+  [0,0,0],[0,0,0],[0,0,0],[2,0,0]]);
+
 // Cross-corpus scope control: the original book also has TWO independently
 // solved red-heading pages p56/p57. Do not omit them merely to force a
 // favorable uniqueness result. Apply the ALREADY FROZEN first-black-word
@@ -264,6 +343,12 @@ console.log(JSON.stringify({
    source_first_black_words:solvedHeadingResults,
    retained_original_chapter_edges:true,
    eleven_heading_operator_pairs_with_p0_at_least_five:augmentedP0FiveCount
+ },
+ original_eight_source_selector_by_nine_operator_census:{
+   selectors:sourceSelectors,operation_pairs_per_selector:72,
+   total_source_typed_trials:selectorCensus.length*72,
+   results:selectorCensus,
+   warning:'bounded retrospectively selected typographic/operation vocabulary, not a global authorship p-value'
  },
  nine_operation_grammar_census:{
    candidate_operations:operators,ordered_distinct_pairs:comparison.length,
