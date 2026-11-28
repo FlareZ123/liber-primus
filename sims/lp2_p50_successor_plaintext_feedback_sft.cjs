@@ -28,12 +28,14 @@ function experiment(corpus,grid){
    const C=scatter([...c55,...c56,...p57]),P=scatter([...Array(76).fill(null),...p56,...p57]);
    const records=(C,P,lo,hi,targetLo,targetHi)=>order.slice(lo,hi).filter(i=>pos[f[i]]>=targetLo&&pos[f[i]]<targetHi).map(i=>({i,j:pos[i],target:f[i],targetJ:pos[f[i]],p:P[i],s:P[f[i]],c:C[i]}));
    const train=records(C,P,76,161,76,161),joint=records(C,P,76,256,76,256);
+   const stateRecords=order.slice(76,161).map(i=>{const j=pos[i],target=f[i],targetJ=pos[target],state=targetJ>=76&&targetJ<161?"known:"+P[target]:"address:"+target;return {i,j,target,targetJ,p:P[i],c:C[i],s:state}});
+   const p56AllState=check(stateRecords);assert(p56AllState.first,"forced conflict for every external state assignment");
    const fit56=fit(train),fitJoint=fit(joint);
    const truth=scatter([...p57.slice(0,76),...p56,...p57]);let key=[3,2,7];if(!invertible(key[0],key[1]))key=[3,1,7];assert(invertible(key[0],key[1]),"plant invertible");
    const cp=truth.map((p,i)=>mod(key[0]*p+key[1]*truth[f[i]]+key[2]));const plantTrain=records(cp,truth,76,161,76,161),pf=fit(plantTrain);assert(pf.fits.length===1&&pf.fits[0].every((x,i)=>x===key[i]),"blind plant key");
    const recovered=inverse(cp,...pf.fits[0]);const plantHeld=order.filter((i,j)=>j<76||j>=161).filter(i=>recovered[i]===truth[i]).length;assert(plantHeld===171&&!check(plantTrain).first,"plant held");
    const predictions=fit56.fits.map(key=>{const out=inverse(C,...key);return {key,p57Correct:order.slice(161).filter(i=>out[i]===P[i]).length,p56Correct:order.slice(76,161).filter(i=>out[i]===P[i]).length,p55:order.slice(0,76).map(i=>out[i])}});
-   res.push({radix,layout,cycleLengths:lengths,train:check(train),joint:check(joint),fit56,fitJoint,predictions,plant:{key,train:plantTrain.length,heldCorrect:plantHeld}});
+   res.push({radix,layout,cycleLengths:lengths,train:check(train),p56AllState,joint:check(joint),fit56,fitJoint,predictions,plant:{key,train:plantTrain.length,heldCorrect:plantHeld}});
   }
  }
  return {source:{corpus:"054f2a0f780b7d46901acbe3d9bf4f0ac1801165",grid:"2550eae357442912220e05dc51147523a61dd75a"},p56Replay:85,results:res};

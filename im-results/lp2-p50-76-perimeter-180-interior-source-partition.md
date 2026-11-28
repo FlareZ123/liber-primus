@@ -32,6 +32,25 @@ A two-record certificate for base60/rim: at physical cells 11 and 37 (terminal l
 [Reproducer](../sims/lp2_p50_successor_glyph_bijection_sft.cjs) · [machine output and exact contradiction certificates](lp2-p50-successor-glyph-bijection.json).
 
 
+### Pointed-plaintext feedback: exact p56-only all-secret obstruction (Agent39, 28 November)
+
+The previous receiver selects a ciphertext glyph, available directly to the decoder. A distinct reversible alternative uses the **sender's plaintext at the successor address**, with (C_i=T_{P_{f(i)}}(P_i)) and an arbitrary common GP29 bijection for each successor-plaintext state. Its affine specialization is (C_i=aP_i+bP_{f(i)}+d) modulo 29. This is motivated only by the same source-visible 76/180 partition and table-address hypothesis; neither a plaintext feedback opcode nor a single shared terminal cipher is authenticated. Test the same base59/base60 and straight/rim-first layouts, retaining the known p56 native prime-minus-one/F replay (85/85, 84 consumed primes). Never assume the plaintext at a successor on p55 or p57 is available.
+
+For p56 alone, group the 85 observations by **forced equal state**: if the target is also on p56, its authenticated plaintext value is known; if outside p56, repeated target addresses necessarily share the same unknown value. Distinct unknown target addresses may share values, but splitting them into separate provisional classes only relaxes constraints. For each class the bijection demands both function consistency and injectivity. Counts compare later records with the first at the corresponding state/input or state/output; they are not independent events.
+
+| Radix | Placement | p56 internal edges | All p56 forced function / injectivity conflicts | Globally invertible affine keys fitting internal edges | Plant held runes |
+|---|---|---:|---:|---:|---:|
+| 59 | row | 23 | 1 / 1 | 0 / 22,736 | 171/171 |
+| 59 | rim | 27 | 2 / 0 | 0 / 22,736 | 171/171 |
+| 60 | row | 22 | 1 / 2 | 0 / 21,924 | 171/171 |
+| 60 | rim | 29 | 1 / 2 | 0 / 21,924 | 171/171 |
+
+**Explicit original counterexamples, zero-based physical table addresses / terminal linear indices:** base59/row cells 117 and 135 both point to address168, have P=18, and have C=24 and 4. Base59/rim cells26 and84 (linear89 and133) both point to170, have P=18, and C=2 and25. Base60/row cells100 and122 point to83 and86 respectively, whose known p56 plaintexts are both 2; P=14 and16 but C=23 in both records. Base60/rim cells26 and84 both point to173, have P=18, and C=2 and25. The first, second and fourth witnesses do not depend on any outside-page plaintext value. Thus all four arbitrary local bijection families fail on p56 alone, including the previously uncontradicted base59/row internal-edge subset.
+
+**Constructive affine control and exact domain:** for a nonzero a define q=−b/a in GF29. The inverse recurrence is P_i=(C_i−d)/a+qP_f(i). Solve each directed cycle of length L with denominator 1−q^L, then propagate up its in-trees. Global invertibility holds exactly when no cycle denominator vanishes; a=0 cannot give a bijection because the graph's address map repeats targets. Actual cycle lengths are [1] (base59) and [11,2] (base60). Exhaust all globally invertible (a,b,d) using only the internal p56 edges. On a native-text plant comprising p57 prefix76, p56 plaintext and p57, each layout uniquely recovers hidden (3,2,7) and the inverse predicts all 76+95 withheld runes with exact forward replay. The controls exercise the global inverse and finite parameter selector, not historical authorship. No original affine fit and no original candidate p55 text. The shared receiver is rejected, not arbitrary address-private or p55-only systems. Core executed in connected JavaScript; no native Node or CI execution claimed.
+
+[Reproducer](../sims/lp2_p50_successor_plaintext_feedback_sft.cjs). Inputs: corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, grid blob `2550eae357442912220e05dc51147523a61dd75a`.
+
 ### Address-potential difference receiver: exact conditional image dimension (Agent50, 27 November)
 
 Treat the printed radix59/60 table as address function f(i) on physical cells, with the existing clockwise 76-cell perimeter and row-major 180-cell interior (not an authored association). A distinct additive graph receiver assigns arbitrary hidden potentials u(i) to cells and one global b; the key is d(i)=u(i)−u(f(i))+b in GF29. Fit actual p56 prime-minus-one shifts (including the authentic literal-F hold), withhold p57's 95 zero shifts, then grant both solved pages for conditional recovery of p55. No score, dictionary or chosen plaintext is used to select the graph. The source has not selected a potential-difference opcode; this is a finite exploratory receiver, not an authentic cipher claim.

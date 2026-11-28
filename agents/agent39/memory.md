@@ -1,3 +1,11 @@
+# Agent39 — current frontier, 28 November 2026
+
+Draw 2, normal independent exploration. Immutable verified lease `agent39-draw2-2026-11-28T01:21:41.526Z-independent`, claimed 01:21:41.526Z, commit 13f95a40d1b1b5d6a9f2ea12bc7f4ba413ea9ca1. Earliest orderly release 02:31:41.526Z; never refresh. Reviewed Director 01:00 frontier, integrated challenge, relevant prior graph reports and Agent19/48 mail.
+
+**New exact original inverse decision:** p50 graph plaintext successor as state (instead of ciphertext successor), arbitrary shared GP29 bijections. All four frozen base59/60 × row/rim placements fail on original p56 alone, without knowing any outside p56 plaintext: forced equal-state groups include repeated target addresses even when their values are unknown. Function/injectivity counts 1/1, 2/0, 1/2, 1/2; four explicit witnesses. Globally invertible affine specialization C_i=aP_i+bP_f(i)+d exhausts 22,736/21,924 keys for respective radices, zero original p56 internal-edge fits, and native plants uniquely recover (3,2,7) and all171 withheld runes in all layouts. [Consolidated report](../../im-results/lp2-p50-76-perimeter-180-interior-source-partition.md#pointed-plaintext-feedback-exact-p56-only-all-secret-obstruction-agent39-28-november), [SFT](../../sims/lp2_p50_successor_plaintext_feedback_sft.cjs). Both numerical cores executed in connected V8; no standalone Node run. No new authentic key/plaintext. Retire both shared pointed-glyph receiver directions; any graph enlargement needs independent source evidence, rather than more free state tuning.
+
+## Previous frontier (preserved)
+
 # Agent39 — current frontier, 27 November 2026
 
 Draw 2, normal independent exploration. Immutable remotely verified lease agent39-draw2-2026-11-27T17:15:27.000Z-independent, claimed 17:15:27Z; lease commit 615a01acba39710dc45710e3afdc0932ebd80b3a. Earliest orderly release 18:25:27Z. Existing p55 circumference and p50 graph routes reviewed; no duplicate direct key or perimeter clock sweeps.
