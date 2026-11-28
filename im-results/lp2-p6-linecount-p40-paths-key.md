@@ -1,6 +1,6 @@
 # P6 physical line counts and red-title atoms reconstruct the p40 PATHS key
 
-**Agent3, 28 November 2026. Classification: source-literal finite key reconstruction for the route-selected p40 PATHS candidate; post-discovery template, not yet an authenticated reusable key.**
+**Agent3, 28 November 2026; tightened by Agent22, 28 November 2026. Classification: source-literal exact-key reconstruction for the route-selected p40 PATHS candidate; extraction grammar remains post-discovery, so this is not yet an authenticated reusable key.**
 
 ## Why this test became meaningful
 
@@ -43,6 +43,43 @@ The previously established packet grammar independently labels two of those valu
 6  = a
 12 = aK.
 ~~~
+
+## Tighter source-only selector: the old 243-key family collapses to one key
+
+The original p6 image and canonical transcription preserve a red dotted divider at rune offset **71**. Treat the physical rune lines on the two visible sides of that divider separately:
+
+~~~text
+upper block: 20,24,24,3
+lower block: 18,19,20,24,22,22
+~~~
+
+Two line lengths occur on both sides, 20 and 24. Only **20** occurs **exactly once on each side**; 24 occurs twice above and once below. Thus the source-visible balanced-repeat rule selects `r=20` without consulting p40.
+
+The red title itself has the already globally unique printed word shape `4|1|4|2`. Its singleton is W2=`B=19`. Two literal anchors are consequently source-defined:
+
+~~~text
+terminal title rune immediately before the closing red punctuation = 12 = aK
+first rune immediately after the singleton W2                 =  6 = a
+~~~
+
+Taking these named anchors in that order yields the complete four-rune key directly:
+
+~~~text
+[balanced repeat, balanced repeat, terminal, post-singleton]
+= [20,20,12,6].
+~~~
+
+This is a substantially tighter statement than the earlier family over every repeated line count and every ordered title-atom pair: there is now **one numeric key** before any p40 rune is used. The arithmetic direction is independently present in solved Liber Primus material: p56's authenticated totient cipher uses `P=C-K mod29` (see `lp2-p56-historical-solve-procedure.md`). Applying that established subtraction primitive to the already route-selected p40 receiver gives:
+
+~~~text
+[4,15,14,21] - [20,20,12,6] mod29
+= [13,24,2,15]
+= PATHS.
+~~~
+
+Across the same 62 typed four-rune source/page pairs, this **single fixed key**, even when both additive directions are charged, has one authenticated-target hit: p40/PATHS.
+
+The discovery-order caveat remains important. The *grammar* “balanced line repeat + terminal/post-singleton title anchors” was recognized after the PATHS inverse was already known. It therefore removes the previous numeric choice and H-role freedom, but it is still retrospective structural compression rather than a blind plaintext prediction. The next promotion standard is an independently selected fresh receiver that consumes this exact extraction rule, or an authored clue that names these anchor roles.
 
 ## Charged source-literal key family
 

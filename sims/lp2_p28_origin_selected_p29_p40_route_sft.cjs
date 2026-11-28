@@ -296,6 +296,53 @@ const repeatedLineCounts = [...lineFrequency.entries()]
   .sort((left, right) => left - right);
 assert.deepEqual(repeatedLineCounts, [20,22,24]);
 
+// Tight source-only selector from the original p6 layout.
+// The red title starts at rune offset71, exactly after the upper text block.
+// Among line lengths repeated across both visible text blocks, 20 is the
+// only value occurring exactly once above and exactly once below the divider.
+const titleStart = title[0].start;
+let physicalOffset = 0;
+const upperLineCounts = [];
+const lowerLineCounts = [];
+for (const count of p6LineCounts) {
+  (physicalOffset < titleStart ? upperLineCounts : lowerLineCounts).push(count);
+  physicalOffset += count;
+}
+assert.deepEqual(upperLineCounts, [20,24,24,3]);
+assert.deepEqual(lowerLineCounts, [18,19,20,24,22,22]);
+
+/** @param {number[]} values @param {number} target @returns {number} */
+function occurrences(values, target) {
+  return values.filter((value) => value === target).length;
+}
+const balancedCrossDividerCounts = [...new Set(upperLineCounts)]
+  .filter((value) =>
+    occurrences(upperLineCounts, value) === 1 &&
+    occurrences(lowerLineCounts, value) === 1
+  );
+assert.deepEqual(balancedCrossDividerCounts, [20]);
+
+// The title's unique singleton is W2=B. Two source-visible title anchors fix
+// the tail: terminal rune before the closing red punctuation (12=aK), followed
+// by the first rune after the singleton (6=a).
+const singletonPositions = title
+  .map((word, index) => ({ index, len: word.len }))
+  .filter((entry) => entry.len === 1)
+  .map((entry) => entry.index);
+assert.deepEqual(singletonPositions, [1]);
+const singletonPosition = singletonPositions[0];
+const terminalTitleRune = title[title.length - 1].values[title[title.length - 1].values.length - 1];
+const firstRuneAfterSingleton = title[singletonPosition + 1].values[0];
+assert.equal(terminalTitleRune, 12);
+assert.equal(firstRuneAfterSingleton, 6);
+const sourceFixedKey = [
+  balancedCrossDividerCounts[0],
+  balancedCrossDividerCounts[0],
+  terminalTitleRune,
+  firstRuneAfterSingleton,
+];
+assert.deepEqual(sourceFixedKey, [20,20,12,6]);
+
 const titleAtoms = [...new Set(title.flatMap((word) => word.values))]
   .sort((left, right) => left - right);
 assert.deepEqual(titleAtoms, [6,12,14,15,16,17,19,24,27]);
@@ -389,6 +436,8 @@ const expectedLiteralHit = [{
 }];
 assert.deepEqual(literalKeyHits(fixedLiteralKeys), expectedLiteralHit);
 assert.deepEqual(literalKeyHits(permutedLiteralKeys), expectedLiteralHit);
+const sourceFixedFamily = new Map([[sourceFixedKey.join(","), true]]);
+assert.deepEqual(literalKeyHits(sourceFixedFamily), expectedLiteralHit);
 
 const p41Verify = pageWords(41).filter((word) =>
   word.len === signed[41].gp.length && word.gp0 === sum(signed[41].gp)
@@ -416,6 +465,14 @@ console.log(JSON.stringify({
     fixedKeyCount: fixedLiteralKeys.size,
     permutedKeyCount: permutedLiteralKeys.size,
     zeroSumPermutedKeyCount: 52,
+    balancedCrossDividerCounts,
+    upperLineCounts,
+    lowerLineCounts,
+    singletonPosition,
+    terminalTitleRune,
+    firstRuneAfterSingleton,
+    sourceFixedKey,
+    sourceFixedHits: literalKeyHits(sourceFixedFamily),
     hits: literalKeyHits(permutedLiteralKeys),
   },
   sealedTransfers: {

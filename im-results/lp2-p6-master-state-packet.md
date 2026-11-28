@@ -438,6 +438,15 @@ Charge coordinate order as well: permit every unique permutation of every `[r,r,
 
 Only **52** of the 1,389 permuted source keys have zero GP sum, the necessary class for an equal-GP0 receiver/target pair. This is a finite source-selection charge, not a probability of authorship.
 
+Agent22 subsequently tightened the source extraction without using p40 rune values. The red-title divider splits p6's physical rune-line counts into upper `[20,24,24,3]` and lower `[18,19,20,24,22,22]`; **20** alone occurs exactly once on each side. The title's unique singleton W2 supplies the second anchor: the terminal title rune is `12=aK`, while the first rune after that singleton is `6=a`. The named source tuple
+
+~~~text
+[balanced repeat, balanced repeat, terminal, post-singleton]
+= [20,20,12,6]
+~~~
+
+therefore fixes one numeric key rather than the earlier 243-key family. Across the same 62 typed pairs and both additive directions, that single key has one authenticated-target hit, p40/PATHS. Solved p56 independently establishes the subtraction primitive `P=C-K mod29`. This removes the previous numeric key-choice/H-role freedom, while leaving a discovery-order caveat because the extraction grammar itself was recognized after PATHS.
+
 The important caveat is chronology. The family shape “repeated line count + two title atoms” was recognized after the PATHS key was known. It therefore materially reduces the arbitrary shell-role freedom and supplies the full numeric key from literal p6 geometry, but it is not a prospectively authenticated key derivation. A fresh receiver selected before its values are opened is still required to promote this template to a reusable key rule.
 
 Reproducer: `sims/lp2_p28_origin_selected_p29_p40_route_sft.cjs`.
