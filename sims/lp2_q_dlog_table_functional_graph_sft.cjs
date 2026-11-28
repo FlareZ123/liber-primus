@@ -187,6 +187,38 @@ assert.deepEqual(samePageReach,[
  {page:33,from:[91,635],to:[0,810],base60:null,base59:null},
 ]);
 
+function variantReach(radix,alphabet,addressOrigin,sign,start,target){
+ const vals=Array.from({length:MOD+addressOrigin},(_,i)=>value(tokens[i],alphabet,radix));
+ let x=start,n=0;const seen=new Set();
+ while(!seen.has(x)){
+   if(x===target)return n;
+   seen.add(x);
+   const address=x%MOD+addressOrigin,step=vals[address];
+   if(!Number.isInteger(step))return null;
+   x=((x+sign*step)%840+840)%840;n++;
+ }
+ return null;
+}
+const samePageVariantFamily=[];
+for(const [radix,alphabet] of [[60,a60],[59,a59]])for(const addressOrigin of [0,1])for(const sign of [1,-1]){
+ const hits=[];
+ for(const [page,spans] of multiRedPages)for(let i=0;i<spans.length;i++)for(let j=0;j<spans.length;j++)if(i!==j){
+   const steps=variantReach(radix,alphabet,addressOrigin,sign,spans[i].k,spans[j].k);
+   if(steps!==null)hits.push({page,from:[spans[i].start,spans[i].k],to:[spans[j].start,spans[j].k],steps});
+ }
+ samePageVariantFamily.push({radix,addressOrigin,direction:sign===1?'forward':'backward',hits});
+}
+assert.deepEqual(samePageVariantFamily.map(v=>[v.radix,v.addressOrigin,v.direction,v.hits]),[
+ [60,0,'forward',[{page:15,from:[0,236],to:[9,748],steps:21}]],
+ [60,0,'backward',[]],
+ [60,1,'forward',[]],
+ [60,1,'backward',[]],
+ [59,0,'forward',[]],
+ [59,0,'backward',[]],
+ [59,1,'forward',[]],
+ [59,1,'backward',[]],
+]);
+
 const result={
  schema:'lp2-q-dlog-table-functional-graph-v1',
  classification:'complete 840-state functional-graph census for the uniform dlog-coordinate word-number direction rule; post-discovery structural evidence, no plaintext',
@@ -202,12 +234,13 @@ const result={
    p15FirstTransient:{startK:236,intermediateK:333,cycleEntryK:516,cycleEntryRed:'p39'},
    p15FirstToSecond:{steps:21,waypoints:p15RedWaypoints},
    samePageRedPairControl:samePageReach,
+   samePageVariantFamily,
  },
  base59:{
    cycleLengths:b59.cycles.map(c=>c.length).sort((a,b)=>a-b),
    distinctRedStatesOnCycles:b59.redOnCycle.length,
  },
- boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516; continuing the same uniform map reaches p15's second red / solved-p57 residue k748 after exactly 21 total steps, with printed-red waypoints p15-first -> p39 -> p7 -> p6 -> p15-second/p57. The matched base59 walk from p15-first never reaches k748 before entering its cycle. Across every ordered pair on the only two multi-red pages (p15 and p33), canonical p15 first->second is the sole same-page red-to-red reachability under either radix; p15 reverse and both p33 directions are null. This remains post-discovery and is not a plaintext recovery.',
+ boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516; continuing the same uniform map reaches p15's second red / solved-p57 residue k748 after exactly 21 total steps, with printed-red waypoints p15-first -> p39 -> p7 -> p6 -> p15-second/p57. The matched base59 walk from p15-first never reaches k748 before entering its cycle. Across every ordered pair on the only two multi-red pages (p15 and p33), canonical p15 first->second is the sole same-page red-to-red reachability. Extending the charge to all eight radix/origin/sign variants leaves exactly that one hit: base60, zero-based table addressing, forward direction, 21 steps. This remains post-discovery and is not a plaintext recovery.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
