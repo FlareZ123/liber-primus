@@ -2,6 +2,8 @@
 
 ## Decision
 
+Additional endpoint move-to-front/back cases are now excluded by an exact all-starting-deck synchronized native register test (see endpoint section below); no original plaintext or author-selected schedule was recovered.
+
 Retire the continuous GP29 fixed-rank remove/reinsert cipher for ordinary native prose on LP2 p0–2. This is an exact all-initial-alphabet, all-pivot-ranks, all-static-plaintext-rank-relabelings frequency result, not a heuristic optimizer failure. Every output has a top-three cumulative count ≤157 in 729 runes. All 569,402 matched literary windows exceed 157; the original 273 clear-LP1 windows already exceed the exact modal cap 71. No authentic original plaintext or key. The original images do not independently select this opcode; it was explored as a distinct minimal reversible repeat-suppression construction after #3320, not as an authenticated historical cipher.
 
 ## Sender, inverse and reduction
@@ -124,3 +126,25 @@ Freeze one reversible receiver, without scoring or fitting unknown ciphertext: s
 The full-book rank suffix contains only 447 copies of its most frequent symbol over 12,039 observations; **every** GP29-native literary window of the same length from the three pinned donors has at least 1,300 copies of its most frequent rune. For full book, all 535,472 matching windows fail the original modal/top-three thresholds. Independently resetting at p40 gives 0/566,789 matched-donor passing windows; p8–14 gives 0/568,388, p15–22 gives 0/567,308. These are exact finite native-register exclusions, not universal language theorems; an arbitrary **fixed** plaintext alphabet permutation cannot change these histograms. Independently synthesized 729-rune native plants with secret decks check the exact inverse and truth containment. Direct clear text in the original exact suffix is unreadable. The terminal p54–55-only model fails to synchronize and is **not** excluded by this test.
 
 **Decision:** retire only the frozen A194954 move/reinsert schedule for long continuous/chapter-reset native GP29, including every possible initial deck. The source already points to ordinary primes for the solved p56 **shift**; it does not authorize a moving alphabet for p0–55, so do not spawn arbitrary variations or promote this as a discovered cipher. In #3335, a genuinely authored evolving-list operation remains the missing prerequisite; neither this negative nor the older three exploratory insertion clocks resolves that issue. Reproducer: [A194954 exact synchronized inverse](../sims/lp2_a194954_moving_insertion_sft.cjs). The core was executed on pinned inputs in connected V8; the committed Node wrapper and independently checked CI status must be assessed separately.
+
+
+## Endpoint move-to-front and move-to-back: exact all-deck native gate (Agent4, 28 Nov 2026)
+
+The constant endpoint insertion operations are important special cases of the same **reversible** deck algorithm: emit the plaintext rank as a GP29 ciphertext label, then remove the emitted label and reinsert it at index 0 (move-to-front, MTF) or 28 (move-to-back, MTB). The inverse emits the pre-update index of each ciphertext label. Both are historically standard and simple enough to merit a single finite original-input test, but **no authenticated Cicada clue selects either algorithm**. Do not treat this as a newly discovered cipher or revive arbitrary list schedules from it.
+
+**Exact identifiability:** after each of the 29 emitted labels has appeared at least once, every deck order is determined only by its labels' last appearance times, independent of all 29! possible starting alphabets. Under MTF the newest-seen label is at the front; under MTB it is at the back. For the original uninterrupted p0–55 input, the first complete cover occurs after **163 runes**. Therefore all **12,793 subsequent plaintext ranks** are exactly known under either fixed model. MTF and MTB produce mirror rank histograms, because their decks remain reversed after synchronization. Their original suffix has modal count **498**, top-three count **1,461**, and mean symbol frequency almost flat across the 29 ranks except the extreme repeat-linked rank. At 12,793-rune scale, three pinned native GP29 controls have minimum modal count **1,400 / 1,388 / 1,475** and minimum top-three **3,477 / 3,335 / 3,447** respectively. Exact rolling-window census: **0 of 533,210** eligible native windows meet both original thresholds, for either endpoint insertion model. Permuting the plaintext rank alphabet does not change this exclusion.
+
+The independent chapter starts test the same fixed model with fresh starting decks; they do not assume book-wide continuity:
+
+| Original interval | First cover / exact suffix runes | MTF and MTB mode / top three | Matched donor windows passing |
+| --- | ---: | ---: | ---: |
+| p0–55 | 163 / 12,793 | 498 / 1,461 | 0 / 533,210 |
+| p0–2 | 163 / 566 | 30 / 88 | 0 / 569,891 |
+| p8–14 | 72 / 1,657 | 70 / 209 | 0 / 566,618 |
+| p15–22 | 88 / 1,815 | 83 / 235 | 0 / 566,144 |
+| p40–53 | 92 / 2,916 | 125 / 363 | 0 / 562,841 |
+| p54–55 | 103 / 205 | 12 / 35 | 0 / 570,974 |
+
+Eight independently encrypted native LP1 plants (four secret starting decks per endpoint) recover **every rank after the certified cover** exactly. In the authentic original, adjacent ciphertext equality occurs iff the decoded rank equals the update endpoint at the *next* position, so the 86 rare doublets could superficially look like a rare plaintext endpoint symbol; **that diagnostic is not evidence for MTF/MTB**, because the other 28 rank frequencies remain almost uniform instead of linguistic. The exhaustive finite native comparison rejects ordinary unchanged GP29 prose under uninterrupted or these chapter-restored endpoint updates; it does not reject arbitrary decoy plaintext, external changes in the update rule, or pages that fail to cover the full alphabet.
+
+**Decision:** retire literal endpoint MTF/MTB with the original length/order and a static bijective rank→GP29 alphabet. This complements the existing fixed interior-pivot and public moving-rank negatives, but leaves source-authored schedules unresolved. Reproducer: [endpoint exact inverse and native rolling-window SFT](../sims/lp2_extreme_rank_reinsert_sft.cjs). The in-memory V8 core was actually run with pinned canonical corpus and literary donors; the committed standalone Node wrapper still requires independent CI execution before being described as CI-verified.
