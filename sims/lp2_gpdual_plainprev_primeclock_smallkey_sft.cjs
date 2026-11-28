@@ -155,4 +155,20 @@ const out={
 };
 for(const p of plants)out.results.push(test(enc(p.P,...p.key),p,p.mode));
 out.results.push(test(O,null,"original-p0-p2"));
+/* A rigorous, full-tape likelihood upper bound over *every* (a,b,IV), not
+   merely the top ten. All train keys have LL <= maximal enumerated training
+   LL; every one of the 201 heldout conditional events is <= global maximum
+   log probability. This even allows unattainable perfect heldout symbols,
+   hence is a conservative ceiling on all unknown key choices. */
+const bestOriginalTrain=out.results.at(-1).top[0].train;
+const largestTransitionLL=logp.reduce((a,b)=>Math.max(a,b),-Infinity);
+out.exactAllKeyFullScoreUpperBound={
+ originalTrainingBestNatsPerRune:bestOriginalTrain,
+ largestPossibleHeldSymbolLL:largestTransitionLL,
+ nTrainingTrigrams:cut-2,
+ nHeldTrigrams:O.length-cut,
+ allKeyMaximumFullScoreNatsPerRune:
+  ((cut-2)*bestOriginalTrain+(O.length-cut)*largestTransitionLL)/(O.length-2),
+ proof:"Every one of 29^3 keys has its training mean <= maximum enumerated above; every held trigram has logp <= global max; resulting weighted bound applies to all keys regardless of actual continuation."
+};
 console.log(JSON.stringify(out,null,2));
