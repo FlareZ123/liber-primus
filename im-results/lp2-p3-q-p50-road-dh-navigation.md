@@ -199,6 +199,26 @@ The matched historical-base59 map has only three cycles (lengths14,14,53) and **
 Full graph reproducer:
 [`sims/lp2_q_dlog_table_functional_graph_sft.cjs`](../sims/lp2_q_dlog_table_functional_graph_sft.cjs).
 
+
+### The 21-step p15 path is not a repeating additive body pad
+
+The strongest immediate payload hypothesis was frozen prospectively: use the exact21 canonical table direction numbers from p15 first-red→second-red, reduce them mod29, and repeat them from phase0 as a subtraction pad on the adjacent p15 black body beginning at offset20.
+
+A held native plant recovers phase0 at **rank1/21**. Original p15 instead gives:
+
+```text
+raw score               -4.4556478865
+frozen subtraction      -4.6148140505
+frozen phase rank       18/21
+inverse-sign score      -4.5293594370
+best searched phase     -4.2947200646
+```
+
+The frozen output is nonprose. Therefore the exact p15 red-path closure is retained as navigation/state structure, while this literal adjacent-body additive consumer is rejected without retuning.
+
+Preregistration: [`workplace/agent5-p15-redpath-body-preregister.md`](../workplace/agent5-p15-redpath-body-preregister.md).  
+Negative report: [`lp2-p15-redpath-adjacent-body-pad.md`](lp2-p15-redpath-adjacent-body-pad.md).
+
 ## Independent one-step entry: plain Q uniquely exposes HELLO / MEANING
 
 The solved-p56-selected **plain Q** map supplies a separate one-step source/table transition. It must be kept distinct from the Q-discrete-log ROAD walk above.
