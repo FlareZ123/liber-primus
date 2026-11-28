@@ -102,6 +102,41 @@ r_i = (i mod29 + d_i) mod29.
 
 No ciphertext value enters that address calculation.
 
+## The DIRECTION fold is uniquely compatible with the scheduler atom alphabet
+
+The delta list above uses only seven source/p6 values:
+
+~~~text
+{-O, V, O, K, F, L, G}
+=
+{26,1,3,2,0,20,6}.
+~~~
+
+This permits a direct charge of the fold convention rather than assuming the zero-based `DIRECTION=29` residue map.
+
+Enumerate all 58 affine index folds over GP29:
+
+~~~text
+fold(i) = +i + c
+or
+fold(i) = -i + c
+for c=0..28.
+~~~
+
+For each convention, derive the thirteen receiver deltas from the already selected local ordinals and count how many lie inside the fixed seven-value atom alphabet above.
+
+Exactly **one of 58** conventions places all 13 deltas in the alphabet:
+
+~~~text
+sign = +1
+offset = 0
+fold(i) = i mod29,
+~~~
+
+which is the established DIRECTION fold. The next-best convention explains only **8/13** deltas.
+
+This is still conditioned on the selected receiver set and the retrospectively recognized atom alphabet, so it is not independent plaintext authentication. It does show that the clean symbolic delta program is not preserved by an arbitrary choice of affine source-index origin or direction.
+
 ## The scheduler itself has a symmetric H13 state shell
 
 Apply the frozen outside-in H13 fold to the 13 deltas:
