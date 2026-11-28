@@ -48,6 +48,33 @@ function cell(row,col){
   return {row,col,index,token,v60,v59};
 }
 
+function isPrime(n){if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;}
+const primes=[];for(let n=2;primes.length<60;n++)if(isPrime(n))primes.push(n);
+const primeRank=value=>{const i=primes.indexOf(value);return i<0?null:i+1;};
+
+// Reconstruct the four strict p50 support lines numerically from the original
+// tokens/codecs. These physical coordinates were selected independently by the
+// prime-rank geometry before the p6 overlay.
+const support={
+  map:{cells:[219,211],axis:'col',coord:3,codec:'base60',ranks:[17,18]},
+  road:{cells:[40,41],axis:'row',coord:5,codec:'base59',ranks:[22,23]},
+  bewareFalse:{cells:[126,182],axis:'col',coord:6,codec:'base60',ranks:[38,39]},
+  falsePaths:{cells:[2,26],axis:'col',coord:2,codec:'base60',ranks:[39,40]},
+};
+for(const line of Object.values(support)){
+  const got=line.cells.map(index=>{
+    const token=tokens[index];
+    return primeRank(line.codec==='base60'?grid.bytes[index]:b59(token));
+  });
+  assert.deepEqual(got,line.ranks);
+  if(line.axis==='col') assert.ok(line.cells.every(index=>index%cols===line.coord));
+  else assert.ok(line.cells.every(index=>Math.floor(index/cols)===line.coord));
+}
+assert.deepEqual(
+  [support.map.coord,support.road.coord,support.bewareFalse.coord,support.falsePaths.coord],
+  [e,g,a,K]
+);
+
 const bridge={
   a:cell(M(-e),K),
   b:cell(K,K),
@@ -109,6 +136,7 @@ console.log(JSON.stringify({
   p6State:state,
   title:{W1,W2,W3,W4,lengths,H:titleH},
   p50Shape:{rows,cols,cells,relations:['cols=2^e=A','rows=2^g','cells=2^A']},
+  independentSupportLines:{support,coordinateTuple:[support.map.coord,support.road.coord,support.bewareFalse.coord,support.falsePaths.coord],p6Tuple:[e,g,a,K]},
   exactKColumnBridge:bridge,
   primitiveStateAddressCharge:{legal:legal.length,hits:hits.length,hitRows:hits},
   titleHAddressCharge:{legal:hFrame.length,hits:hFrameHits.length,hitRows:hFrameHits},
