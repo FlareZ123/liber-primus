@@ -93,6 +93,25 @@ B^a mod p = 19^6 mod23 = 2 = middle inner H sum
 
 The same original numeric square set and operation were used in all six cases; no item-level tuning, alphabet shift, ciphertext crib or new external source was introduced. This **materially simplifies the hypothesized intended route to a candidate DH state** and ties it to the original p6 source-pair H transform. It does **not** prove H is what the authors wanted: the important choices **historical square linkage, H sum/difference, top corners, modulus29, and interpretation of source residues as GP29 DH values were proposed after other puzzle research**. The three source-value equalities are cross-relations within one retrospectively studied historical object, not three statistically independent validations. A next-page decipherment or an independent explicit instruction to read shell/inner corner H is required for promotion.
 
+### Minimal five-by-five equalization: a six-field complete DH state packet
+
+A more economical alternative to choosing which ring of *each* square to read is to follow p57's shedding instruction **once on the only larger original square**. The historical square sizes are **5×5, 7×7, 5×5**. Removing precisely the perimeter of the **middle 7×7**, and leaving both already-five-by-five sources unchanged, produces **three aligned 5×5 source matrices**. Now read the **identical top-left/top-right H pair** from all three, in the original published order:
+
+```text
+first original 5×5:       H(434,966)  = [19, 8]
+middle 7×7 -> inner 5×5: H(223,98)   = [ 9, 2]
+last original 5×5:        H(272,151)  = [ 5,17]
+
+Original source-order packet = [19,8, 9,2, 5,17]
+Established-state interpretation (retrospective):
+                            [ B,A, e²,K, g,−aK ]
+                            [19,8, 9,2, 5, 17]
+```
+
+Importantly **the four prominent GP29 DH coordinates** `B19,A8,K2,g5` occur as fixed first/second/fourth/fifth positions in a **single geometric equalization and single H operation**, without matrix eigensolving or switching source-specific readings. The remaining 9 and17 *also happen* to equal `e²=3²` and `−aK=−6×2 mod29`; those auxiliary role labels are explicitly **post-hoc** and cannot count as independent evidence. Under independently grounded LP2 p15 modulus23 and a6, the packet closes the exact two equations `g^a=5^6≡8=A` and `B^a=19^6≡2=K`. This is a concrete potential human solve path from one **size-normalizing boundary operation** to candidate DH parameters, but p57 does not instruct normalizing the square **sizes** specifically and the H corner operation remains unprompted. The original 2014 requirement was to submit the complete square numbers; this is therefore a conditional path, **not** proven historical intent or a fresh plaintext decoder.
+
+**One original-cipher sanity gate, not a key rescue:** Full outer+inner H extraction supplies **exactly 12 source residues**, matching the original p8 **12 red title runes**. Fix the printed GP29 header and grant only four natural all-source readout orders (all outer then all inner, reverse, or square-by-square outer-first/inner-first), and the two native GP29 additive signs. The exact eight original output sequences (all available from the reproduction program) yield **no coherent native GP two-word header**, while their complete 12/12 round trips pass. A 12-rune failure does not exclude p8 being an encrypted key/header or another unselected transform. It specifically rejects the simplest source-key addition without tuned phase or extra processing.
+
 ## How much exact alignment survives matched source-order controls?
 
 We exhaust every independent permutation of the **whole printed columns** within each historical square, retaining every original number, each original row's sum, and matrix size; this disrupts original diagonals and 180° symmetry and therefore is a **conditional orientation diagnostic, not a null distribution for authored magic squares**. With the independently fixed register labels `A=8, −g=24`:

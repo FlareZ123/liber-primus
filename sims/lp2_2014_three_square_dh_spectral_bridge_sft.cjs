@@ -115,6 +115,41 @@ const sixPairs=squares.map((A,i)=>({sourceIndex:i,
 assert.deepEqual(sixPairs.map(p=>p.outerH),[[19,8],[0,14],[5,17]]);
 assert.deepEqual(sixPairs.map(p=>p.innerH),[[10,19],[9,2],[24,26]]);
 const innerHSequence=sixPairs.flatMap(p=>p.innerH);
+// Minimal original-source geometric equalization: the historical printed
+// square dimensions are 5x5,7x7,5x5. Shed just ONE circumference of the
+// middle 7x7 square to obtain three 5x5 matrices, without needing to choose
+// a different receiving depth for each 5x5 original.
+const equalizedFiveH=[sixPairs[0].outerH,sixPairs[1].innerH,sixPairs[2].outerH];
+assert.deepEqual(equalizedFiveH,[[19,8],[9,2],[5,17]]);
+const alignedState={
+  B:equalizedFiveH[0][0],A:equalizedFiveH[0][1],
+  eSquared:equalizedFiveH[1][0],K:equalizedFiveH[1][1],
+  g:equalizedFiveH[2][0],minusATimesK:equalizedFiveH[2][1],
+};
+assert.deepEqual(alignedState,{B:19,A:8,eSquared:9,K:2,g:5,minusATimesK:17});
+assert.equal(alignedState.eSquared,mod(determinants[2]*determinants[2]));
+assert.equal(alignedState.minusATimesK,mod(-aFromSums*alignedState.K));
+assert.equal(alignedState.A,powMod(alignedState.g,aFromSums,borrowedDhPrime));
+assert.equal(alignedState.K,powMod(alignedState.B,aFromSums,borrowedDhPrime));
+// A no-tuning actual encrypted-register gate: all 12 outer+inner H values
+// as a full 12-symbol additive key on the original p8 12-rune red header.
+// Four author-natural orderings and both signs; no word resegmentation,
+// index skip, phase shift, invented source data or candidate selection.
+const page8title=corpus.pages.find(p=>p.page===8).indices.slice(0,12);
+assert.deepEqual(page8title,[14,10,14,19,1,14,19,5,2,13,3,17]);
+const keyForms={
+  shellFirst:sixPairs.flatMap(p=>p.outerH).concat(sixPairs.flatMap(p=>p.innerH)),
+  innerFirst:sixPairs.flatMap(p=>p.innerH).concat(sixPairs.flatMap(p=>p.outerH)),
+  squareShellFirst:sixPairs.flatMap(p=>p.outerH.concat(p.innerH)),
+  squareInnerFirst:sixPairs.flatMap(p=>p.innerH.concat(p.outerH)),
+};
+const title12AdditiveGate={};
+for(const [schema,key] of Object.entries(keyForms))for(const sign of [-1,1]){
+  const plain=page8title.map((v,i)=>mod(v+sign*key[i]));
+  assert.deepEqual(plain.map((v,i)=>mod(v-sign*key[i])),page8title);
+  title12AdditiveGate[schema+(sign<0?'Minus':'Plus')]=plain;
+}
+
 const outerHSequence=sixPairs.flatMap(p=>p.outerH);
 // The source-extracted DH packet is internally redundant rather than
 // relying on a few isolated residues from arbitrary page coordinates.
@@ -201,4 +236,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,innerHSequence,outerHSequence,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
