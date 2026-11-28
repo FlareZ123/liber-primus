@@ -1,80 +1,110 @@
-# p50 base59 pointer graph converges through the source-selected mirror to the independent DH19 cell
+# p50 source reflection closes the pre-existing base59 sink into authenticated DH state
 
-**Agent13, 28 November 2026. Classification: source-motivated structural/state selection. No unknown LP2 plaintext, payload key, complete cipher inverse, or continuation endpoint is recovered.**
+**Agent13, 28 November 2026. Classification: new source-reflection/DH closure over prior p50 pointer work. No unknown LP2 plaintext, payload cipher, or final continuation is recovered.**
 
-## Decision
+## Correction and prior art
 
-A literal interpretation of the original 32×8 p49–51 numeric panel as an address map produces a new discriminating result. Treat each cell's decoded integer as the address of the next cell,
+The **base59 all-to-cell189 sink is not new in this run**. `sims/lp2_p50_dh23_base59_pointer_sft.cjs` already established that the drop-`f` base59 map `next_address = decoded_cell_value` sends all 256 addresses to the fixed point cell189=`3C`, while base60 does not. It also noticed that cell189 has zero-based coordinates `(23,5)`, matching the authenticated 2013 worked-DH `(p,g)`, that the table width8 matches public `A=8`, and that cell186=`0J=19` can be written as row23/column `K=2` and equals peer public `B=19`.
 
-`i_(t+1) = V(i_t)`.
+The material addition here is narrower: the **independently source-selected p50 horizontal reflection itself maps the already-known sink column `g=5` to the DH shared-key column `K=2`**, so cell186 is selected without importing `K` as its address. The source artwork therefore closes the pointer sink into the existing DH packet:
 
-This operation is motivated before language scoring by three source facts already established elsewhere: the panel has exactly 256 addressable cells; the signed 2016 text says that the words are the map, their meaning is the road, and **their numbers are the direction**; and the original p50 mirror-tree artwork independently selects horizontal reflection `c -> 7-c` on the eight-column table.
+`base59 sink (p,g) -> source mirror -> (p,K) containing B`.
 
-Under the two surviving positional radices, the functional graphs differ sharply:
+This replaces the first checkpoint's overly broad wording that treated the sink construction itself as new, and it corrects the first shuffle control, which locked cell189 but did not also require the mirrored cell to contain 19.
 
-- **base60:** two recurrent cycles. A length-11 cycle `[0,203,68,199,47,76,114,197,115,247,192]` has basin 252, and a length-2 cycle `[158,249]` has basin 4.
-- **base59 with the uniquely unused low digit `f` removed:** one recurrent class, the fixed point **cell189**. **All 256 cells flow to cell189**, so this interpretation removes the otherwise unsourced start-cell choice. The maximum path depth is 38.
+## Exact source/DH closure
 
-Cell189 is token `3C`: it is 192 in base60 but exactly `3*59+12 = 189` in base59, hence a self-pointer only in the base59 graph. The source-selected horizontal reflection maps cell189 `(row23,col5)` to **cell186 `(row23,col2)`**. Cell186 is token `0J`, value **19 under both radices**.
+The scan-verified panel is 32×8. The authenticated 2013 worked exchange establishes
 
-That endpoint was not selected from this graph. The 18 November p27 red13/DH audit independently selected **cell186 = 0J = 19**, and 19 is the established p27/p28 DH public state `B`. The later p50 address-origin audit preserved that chronology and endpoint before this pointer experiment. Thus the new route is:
+`p=23, g=5, A=8, B=19, K=2`, with private exponents `a=6`, `b=15` in the teaching example.
 
-`all p50 addresses --base59 value-as-next-address--> 189 --source mirror--> 186 = 0J = 19 = DH B`.
+Prior p50 pointer work gives the unique base59 recurrent endpoint:
 
-This materially strengthens base59 and p50-to-DH state navigation under one compact pointer grammar. It is not a payload decryption: Cicada never explicitly says that a table number is a *next address*, nor that the mirror must be applied to the terminal cell.
+- fixed sink address **189**;
+- `189 = 23×8 + 5`, so the sink coordinates are **row p=23, column g=5**;
+- the physical table width is **8 = A**.
 
-## Exact source checks
+The original p50 mirror-tree artwork independently selects horizontal column reflection
 
-Input is the scan-verified canonical `resources/liber-primus/lp2-grid-256.json`. Its 60-character alphabet is
+`R(c) = 7-c`.
 
-`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`.
+Therefore
 
-Across all 256 printed tokens, lowercase `f` is the **only** alphabet symbol absent from the second/low digit position. Removing it gives the existing base59 rival. Every base59 token value lies in `0..251`, so the pointer map is total on the 256-cell address space without modulus or clipping. Base60 values are the canonical `0..255` bytes and are likewise total.
+`R(g) = 7-5 = 2 = K`,
 
-The exact graph census is deterministic and uses no plaintext or language model. Re-encoding the canonical base60 bytes reproduces every two-character token before either radix is evaluated.
+and the reflected sink is
 
-## Locked-target permutation controls
+`R(189) = 23×8 + 2 = 186`.
 
-The endpoint target is frozen by prior work: the source mirror maps only cell189 to independently selected cell186. The Monte Carlo therefore asks for the exact event **all 256 nodes flow to a fixed point at cell189**, while charging either surviving radix.
+Original cell186 is `0J`, value **19 under both surviving radices**, hence **B=19**. No DH state value is used to choose that mirror destination; `K=2` is recovered as the reflected column.
 
-### Whole-table token permutation
+The historical DH operation then closes the same packet:
 
-500,000 deterministic Fisher-Yates shuffles preserve the exact 256 token multiset and apply the *same token permutation* to the base59/base60 interpretations. Seed `20261128`:
+- `log_5(8) mod23 = 6 = a`;
+- `log_5(19) mod23 = 15 = b`;
+- `19^6 mod23 = 2 = K`, the same column selected by the mirror.
 
-- base59 target hits: **80**;
-- base60 target hits: **18**;
-- either-radix target hits: **98 / 500,000 = 0.000196** (about 1 in 5,102; Wilson 95% interval approximately 0.000161–0.000239).
+Thus the source-visible/pointer geometry now packs five authenticated public/state values before private discrete logs are taken:
 
-This is a locked-target permutation rate, not a look-elsewhere-corrected discovery probability for all p50 patterns.
+`row = p=23, width = A=8, sink column = g=5, mirror column = K=2, mirror-cell value = B=19`.
 
-### Row-conditioned permutation
+This is a substantially cleaner human-solve-path closure than the older `p×A+K` lookup because the artwork supplies the `g -> K` column move.
 
-A more conservative matched control holds each physical row's eight-token multiset fixed and shuffles only within rows. With 200,000 deterministic trials and seed derived from the same frozen seed:
+## Corrected locked-target controls
 
-- base59 target hits: **346**;
-- base60 target hits: **0**;
-- either-radix target hits: **346 / 200,000 = 0.00173** (about 1 in 578).
+The target is frozen by the authenticated DH tuple plus the already-established mirror: address189 must be the pointer sink and its mirror address186 must contain value19.
 
-This demonstrates that part of the signal is carried by the authored row allocation, so the whole-table rate must not be treated as a universal chance probability. The target remains unusual even after conditioning on those row contents.
+### Exact placement charge under whole-table token permutation
 
-## Relationship to the existing p50 scaffold
+In the canonical 256-token multiset:
 
-This route does not use the conditional zero-based signed-word register. It therefore survives #3354's DIRECTION29 downgrade. It also does not need a chosen start cell, unlike earlier movement-token walks: base59 convergence makes every start equivalent at the recurrent endpoint.
+- base59 value189 occurs four times (`3C`); base60 value189 occurs twice;
+- value19 occurs exactly once under each radix;
+- the base59/base60 value189 token classes are disjoint.
 
-The source-selected mirror is not newly inferred here. Original p50 left/right tree components have IoU 0.988541 and independently select the eight-column involution `c -> 7-c`; this experiment merely applies that already-established positional operation to the pointer sink. The sink then lands on the already-established p27/DH target cell, rather than selecting a new endpoint after seeing the graph.
+For a uniform token permutation, before asking about the rest of the graph:
 
-The result changes the next research decision. Future p50 work should prioritize tests that can explain or consume the **base59 pointer sink → mirror → DH19** state handoff. It should not resume free radix, start-address, or table-offset sweeps. A genuine cipher successor still needs an authored rule for how DH19 changes cipher state or selects a recipient and must make an untouched original-cipher prediction.
+- base59 placement probability `P(V59[189]=189 and V59[186]=19) = 4/(256×255) = 1/16,320`;
+- base60 placement probability `= 2/(256×255) = 1/32,640`;
+- either-radix placement probability `= 1/10,880`.
 
-## Reproduction
+### Basin condition by importance sampling
+
+Rather than wait for roughly one exact event per million full permutations, the SFT conditions on the two locked placements and uniformly shuffles the remaining 254 values, then asks whether all 256 nodes flow to cell189.
+
+With deterministic seeds:
+
+- base59: **3,551 / 300,000 = 0.0118367** conditional all-to-189 basins;
+- base60: **1,188 / 300,000 = 0.0039600**;
+- multiplying by the exact placement charges gives an either-radix whole-table joint-rate estimate **8.4661×10⁻7**, about **1 in 1.18 million**.
+
+A row-conditioned control preserves each physical row's eight-token multiset. Original row23 contains exactly one base59 189 and one value19, so the exact two-position placement factor is `1/(8×7)=1/56`. Base60 row23 contains no value189, making the analogous base60 event impossible under this matched null. Conditional base59 basin sampling gives **2,570 / 200,000 = 0.01285**, for a row-conditioned joint-rate estimate **2.29464×10⁻4**, about **1 in 4,358**.
+
+These are locked-family permutation diagnostics, not universal discovery probabilities. The pointer model, DH comparison, and reflection were all historically explored before this combined closure was noticed, so no claim is made that the quoted rates correct for the full research process.
+
+## What this changes
+
+The useful new inference is not “base59 has a sink”; that was already known. It is that **the source-selected mirror turns the sink's historical generator coordinate into the historical shared-key coordinate and lands on the historical peer public value**:
+
+`(p=23,g=5) at cell189 -> mirror -> (p=23,K=2) at cell186 -> B=19`,
+
+with the authenticated DH operation returning `B^a mod p = K=2`.
+
+This materially strengthens the interpretation of p50 as a DH-state navigation object and explains why cell186/DH19 keeps reappearing in independent p27/p50 work. It also resolves a circularity in the older DH-coordinate observation: column2 no longer has to be chosen *because* K was already known.
+
+It still does not specify which unknown ciphertext interval consumes `K=2` or `B=19`, nor a GP29 serialization, clock, reset, or reversible cipher. The signed 2013 TCP protocol tells a server how to compute shared DH data, but does not define an LP2 cipher. The next useful experiment must obtain a receiver/operation from another source clue and make a frozen original-cipher prediction; generic DH-state key sweeps remain unjustified.
+
+## Reproduction and prior evidence
 
 Run:
 
 `node sims/lp2_p50_pointer_sink_reflection_sft.cjs`
 
-The SFT reconstructs both radices from the canonical source, proves the low-digit omission, enumerates both complete functional graphs, verifies the reflection and `0J=19` endpoint, measures path depth, and executes both frozen permutation controls. The committed raw JSON preserves the default-run output.
+The SFT reads the canonical panel and the repository's authenticated 2013 TCP-source record, rechecks the prior sink, verifies the source-mirror/DH geometry, recovers `a=6,b=15` by exact discrete logs, verifies `B^a=K`, and runs the corrected conditional nulls.
 
-Related prior evidence:
+Prior work explicitly credited here:
 
-- `im-results/lp2-p50-tree-reflection-selector.md` — source-visible horizontal reflection selector.
-- `im-results/lp2-p50-signed-register-index-origin-gate.md` — origin-invariant scaffold and signed-word-origin limits.
-- `im-results/lp2-p50-scaffold-address-origin-dh19-gate.md` — independently preselected cell186/DH19 endpoint and finite address-origin audit.
+- `sims/lp2_p50_dh23_base59_pointer_sft.cjs` — prior base59 all-to-189 sink and DH coordinate/value observations.
+- `im-results/lp2-p50-functional-graph-2016-wordmap.md` — established base60 successor-map work and source-motivated pointer semantics.
+- `im-results/lp2-p50-tree-reflection-selector.md` — independent source-visible horizontal reflection `c -> 7-c`.
+- `im-results/lp2-p50-scaffold-address-origin-dh19-gate.md` — independent cell186/DH19 route from the later scaffold/address audit.
