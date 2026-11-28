@@ -41,6 +41,19 @@ const prime=n=>{
 const H4=([x0,x1,x2,x3])=>[
   mod(x0-x3),mod(x1-x2),mod(x1+x2),mod(x0+x3)
 ];
+const inv2=15; // 2^-1 mod29
+const H4inv=([y0,y1,y2,y3])=>[
+  mod((y0+y3)*inv2),mod((y1+y2)*inv2),
+  mod((y2-y1)*inv2),mod((y3-y0)*inv2)
+];
+const H2adj=([x0,x1,x2,x3])=>[
+  mod(x0-x1),mod(x0+x1),mod(x2-x3),mod(x2+x3)
+];
+const H2adjInv=([y0,y1,y2,y3])=>[
+  mod((y0+y1)*inv2),mod((y1-y0)*inv2),
+  mod((y2+y3)*inv2),mod((y3-y2)*inv2)
+];
+const identity=x=>x.map(mod);
 const descriptors=(vals,lengths)=>{
   let at=0;
   const out=lengths.map(L=>{
@@ -99,6 +112,38 @@ const matchingCols=[];
 for(let c=0;c<4;c++)
   if(colH[c].slice(1).every((x,i)=>x===expectedTail[i])) matchingCols.push(c);
 assert.deepEqual(matchingCols,[1]);
+
+// Charge the small canonical transform family already used in the repository's
+// p6 source-only serializer gates.  Keep the same state predicate fixed.
+// H4 is the sole transform whose column tail can even enter the DH closure.
+const canonicalTransforms=[
+  ['identity',identity],['H4',H4],['H4inv',H4inv],
+  ['H2adjacent',H2adj],['H2adjacentInv',H2adjInv]
+];
+const transformCharge=canonicalTransforms.map(([name,T])=>{
+  const rows=residues.map(T);
+  const cols=Array.from({length:4},(_,c)=>
+    T(Array.from({length:4},(_,r)=>residues[r][c])));
+  const colHits=[];
+  for(let c=0;c<4;c++)
+    if(cols[c].slice(1).every((x,i)=>x===expectedTail[i])) colHits.push(c);
+  const closures=[];
+  for(const c of colHits){
+    const bc=cols[c][0];
+    const Bc=powMod(g,bc,p);
+    if(powMod(Bc,a,p)!==K) continue;
+    const Bic=inv29(Bc);
+    const rowHits=[];
+    for(let r=0;r<4;r++)
+      if(rows[r][0]===g&&rows[r][3]===Bic) rowHits.push(r);
+    if(rowHits.length) closures.push({column:c,b:bc,B:Bc,rowHits});
+  }
+  return {name,colHits,closures};
+});
+assert.deepEqual(
+  transformCharge.filter(x=>x.closures.length).map(x=>x.name),
+  ['H4']
+);
 
 // The remaining head is not assigned from page number or historical DH.
 // Read it from the uniquely selected grid column.
@@ -204,6 +249,7 @@ console.log(JSON.stringify({
   },
   H4Rows:rowH,
   H4Columns:colH,
+  canonicalTransformCharge:transformCharge,
   dihedralOrientationResults:orientationResults,
   predictedRedCell:{
     row1Based:predicted.row+1,
