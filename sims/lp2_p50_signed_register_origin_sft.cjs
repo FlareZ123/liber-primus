@@ -161,6 +161,37 @@ assert.equal(primeRank.get(decode(tokens[203], a59)), 19);
 assert.equal(primeRank.get(decode(tokens[195], a60)), 24);
 assert.equal(203 - 195, 8);
 
+// Global control: the signed-register address band is not enriched for the
+// movement-looking tokens used by the local ROAD duality.
+const movementToken = /^([1-9])([NSEWLRUD])$/iu;
+const movementCells = tokens.flatMap((token, cell) =>
+  movementToken.test(token) ? [{cell, token}] : []);
+const movementFirst43 = movementCells.filter(({cell}) => cell < words.length);
+assert.equal(movementCells.length, 60);
+assert.equal(movementFirst43.length, 12);
+
+/** @param {number} n @param {number} k */
+function logChoose(n, k) {
+  let sum = 0;
+  for (let i = 1; i <= k; i += 1) {
+    sum += Math.log(n - k + i) - Math.log(i);
+  }
+  return sum;
+}
+/** @param {number} k */
+function hypergeometricPmf(k) {
+  return Math.exp(
+    logChoose(60, k) +
+    logChoose(196, 43 - k) -
+    logChoose(256, 43)
+  );
+}
+let movementTail = 0;
+for (let k = 12; k <= 43; k += 1) movementTail += hypergeometricPmf(k);
+assert.ok(Math.abs(movementTail - 0.2821018581118496) < 1e-12);
+const movementExpected = 43 * 60 / 256;
+assert.equal(movementExpected, 10.078125);
+
 const lineCounts = clear.split("\n")
   .map((line) => (line.match(/[A-Za-z]+/g) || []).length);
 assert.equal(Math.max(...lineCounts), 11);
@@ -187,5 +218,11 @@ console.log(JSON.stringify({
   roadDirectionRival: {
     zeroOrigin: {roadNumber:23, token:tokens[23], physical:"right"},
     oneBased: {roadNumber:24, token:tokens[24], physical:"north"},
+  },
+  movementRegisterControl: {
+    fullTable:movementCells.length,
+    first43:movementFirst43.length,
+    expected:movementExpected,
+    hypergeometricRightTail:movementTail,
   }
 }, null, 2));
