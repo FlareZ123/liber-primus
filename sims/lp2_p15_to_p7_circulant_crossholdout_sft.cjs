@@ -75,7 +75,7 @@ const transcription=fs.readFileSync(path.join(root,'resources/liber-primus/lp2-t
 const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
 const parts=transcription.split(/^\s*%\s*$/m).slice(0,55);
 const chapterStarts=[0,3,8,15,23,27,33,40,54];
-const chapterIns=[],chapterWordLengths=[];
+const chapterIns=[],chapterWordLengths=[],chapterProducts=[];
 for(const page of chapterStarts){
   const ann=ink.pages.find(x=>x.page===page);
   assert.ok(ann&&ann.red_spans&&ann.red_spans.length);
@@ -101,9 +101,11 @@ for(const page of chapterStarts){
   assert.ok(firstBlack,'missing first-black word p'+page);
   chapterIns.push(sum(firstBlack.values));
   chapterWordLengths.push(firstBlack.values.length);
+  chapterProducts.push(product(firstBlack.values));
 }
 assert.deepEqual(chapterIns,[15,9,23,22,25,2,5,27,19]);
 assert.deepEqual(chapterWordLengths,[4,4,3,4,8,7,2,5,8]);
+assert.deepEqual(chapterProducts,[23,11,2,13,16,19,3,3,27]);
 
 // The next chapter start fixes each physical chapter span; p54 ends before
 // solved p56, so terminal boundary56 is source-visible and not fitted.
@@ -126,24 +128,36 @@ const p15WordLengthTarget=[mod(-g),F,K,mod(-b),inv(8)];
 assert.deepEqual(p15WordLengthTarget,[24,0,2,14,11]);
 assert.deepEqual(H5(itineraryWordLengths),p15WordLengthTarget);
 
-// On the actual chapter map, only printed p7 ring orientation reproduces both
+// Third typed row from exactly the same first-black words: GP29 products.
+const productByIn=new Map(chapterIns.map((x,i)=>[x,chapterProducts[i]]));
+const itineraryProducts=actual.inverse[0].map(x=>productByIn.get(x));
+assert.deepEqual(itineraryProducts,[2,19,3,19,27]);
+const p15ProductTarget=[q,F,e,mod(e+a),F];
+assert.deepEqual(p15ProductTarget,[4,0,3,9,0]);
+assert.deepEqual(H5(itineraryProducts),p15ProductTarget);
+
+// On the actual chapter map, only printed p7 ring orientation reproduces all
+// source-defined channels. Span+length already make the orientation unique;
+// product is a held-out corroborating row rather than an added orientation win.
 // p15 lower-red-derived H5 targets.
 const ringLengthMatches=[];
 for(const variant of variants){
   if(!variant.firstRow.every(x=>lengthByIn.has(x)))continue;
   const seq=variant.firstRow.map(x=>lengthByIn.get(x));
   const words=variant.firstRow.map(x=>wordLengthByIn.get(x));
+  const products=variant.firstRow.map(x=>productByIn.get(x));
   if(H5(seq).every((x,i)=>x===p15LengthTarget[i])&&
-     H5(words).every((x,i)=>x===p15WordLengthTarget[i]))
-    ringLengthMatches.push([variant.reversed,variant.rotation,seq,words]);
+     H5(words).every((x,i)=>x===p15WordLengthTarget[i])&&
+     H5(products).every((x,i)=>x===p15ProductTarget[i]))
+    ringLengthMatches.push([variant.reversed,variant.rotation,seq,words,products]);
 }
-assert.deepEqual(ringLengthMatches,[[false,0,[7,6,7,6,2],[3,7,2,7,8]]]);
+assert.deepEqual(ringLengthMatches,[[false,0,[7,6,7,6,2],[3,7,2,7,8],[2,19,3,19,27]]]);
 
 // Fixed-marginal charge: preserve the nine observed IN labels and nine
 // observed chapter-span records, permute their assignments, and hold the p7
 // inverse row plus p15 H5 target fixed. This is a conditional diagnostic.
-let assignmentHits=0,jointAssignmentHits=0,totalAssignments=0;
-const records=chapterLengths.map((span,i)=>[span,chapterWordLengths[i]]);
+let assignmentHits=0,jointAssignmentHits=0,tripleAssignmentHits=0,totalAssignments=0;
+const records=chapterLengths.map((span,i)=>[span,chapterWordLengths[i],chapterProducts[i]]);
 const perm=records.slice();
 function enumerate(at){
   if(at===perm.length){
@@ -151,10 +165,13 @@ function enumerate(at){
     const m=new Map(chapterIns.map((x,i)=>[x,perm[i]]));
     const seq=actual.inverse[0].map(x=>m.get(x)[0]);
     const words=actual.inverse[0].map(x=>m.get(x)[1]);
+    const products=actual.inverse[0].map(x=>m.get(x)[2]);
     const spanOk=H5(seq).every((x,i)=>x===p15LengthTarget[i]);
     const wordOk=H5(words).every((x,i)=>x===p15WordLengthTarget[i]);
+    const productOk=H5(products).every((x,i)=>x===p15ProductTarget[i]);
     if(spanOk)assignmentHits++;
     if(spanOk&&wordOk)jointAssignmentHits++;
+    if(spanOk&&wordOk&&productOk)tripleAssignmentHits++;
     return;
   }
   for(let i=at;i<perm.length;i++){
@@ -167,11 +184,12 @@ enumerate(0);
 assert.equal(totalAssignments,362880);
 assert.equal(assignmentHits,240);
 assert.equal(jointAssignmentHits,120);
+assert.equal(tripleAssignmentHits,120);
 console.log(JSON.stringify({
  classification:'original-only cross-holdout: independent p15 state predicts older p7 circulant inverse identity',
  p15Derived:{p,K,g,B,b,predictedInverseRow:p15Predicted},
  p7:{products,determinant:actual.determinant,inverseFirstRow:actual.inverse[0]},
  orientationCharge:{variants:variants.length,matches},
- chapterBridge:{chapterStarts,chapterIns,chapterLengths,chapterWordLengths,itineraryLengths,h5:H5(itineraryLengths),p15LengthTarget,itineraryWordLengths,wordH5:H5(itineraryWordLengths),p15WordLengthTarget,ringLengthMatches,fixedMarginal:{spanHits:assignmentHits,jointHits:jointAssignmentHits,total:totalAssignments,spanOneIn:totalAssignments/assignmentHits,jointOneIn:totalAssignments/jointAssignmentHits}},
+ chapterBridge:{chapterStarts,chapterIns,chapterLengths,chapterWordLengths,chapterProducts,itineraryLengths,h5:H5(itineraryLengths),p15LengthTarget,itineraryWordLengths,wordH5:H5(itineraryWordLengths),p15WordLengthTarget,itineraryProducts,productH5:H5(itineraryProducts),p15ProductTarget,ringLengthMatches,fixedMarginal:{spanHits:assignmentHits,jointHits:jointAssignmentHits,tripleHits:tripleAssignmentHits,total:totalAssignments,spanOneIn:totalAssignments/assignmentHits,jointOneIn:totalAssignments/jointAssignmentHits,tripleOneIn:totalAssignments/tripleAssignmentHits}},
  boundary:'strengthens shared state serialization and a typed p7-to-chapter handoff; does not authenticate circulant as the intended cipher opcode or recover plaintext'
 },null,2));
