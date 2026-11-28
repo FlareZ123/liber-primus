@@ -1,6 +1,16 @@
-# Signed 2016 tail: exact local candidates on every physical page p32–p42
+# Signed 2016 tail: p30–p31 candidate boundary plus exact local candidates p32–p42
 
-**Consolidated 28 November 2026; p41/p42 extensions by Agent3; identifiability audit by Agent9; source-interval and q/F schedule upgrade by Agent14. Classification: provisional known-source corridor with a new source-only p6 interval selector and target-blind receiver grammar for the exceptional p36 and p41/p42 blocks. All eleven same-number pages carry target-conditioned exact additive fits for the authenticated signed tail. The complete key/serialization rules remain heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext. An exact audit shows that coordinatewise p6-state “expressibility” is non-discriminating: the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
+**Consolidated 28 November 2026; p41/p42 extensions by Agent3; identifiability audit by Agent9; source-interval and q/F schedule upgrade by Agent14; p30/p31 boundary extension by Agent1. Classification: provisional known-source corridor with a source-only p6 interval selector, target-blind receiver grammar for p36 and p41/p42, and a newly structured K=2 prelude at p30/p31. All eleven p32–p42 same-number pages carry target-conditioned exact additive fits; p30/p31 now have manuscript-unique state-shaped receivers and one charged joint p6 serializer, but its skeleton was recognized after the known targets. None of these words is promoted to established unknown plaintext. Coordinatewise p6-state “expressibility” remains non-discriminating because the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
+
+## K=2 prelude: source-selected SEEK AND and unique p30/p31 receivers
+
+The p6 selector starts its eleven-word core at authenticated source index32 and omits exactly the leading `K=2` source words `SEEK AND` (indices30–31). Those omitted words are now independently distinguished by source-only state structure: they are the sole consecutive pair among all 43 signed-source words with GP lengths `[q,e]=[4,3]`, both GP0 residues `-K=27`, and H2(initials) `[qg,Kg]=[20,10]`.
+
+That pair constructs a target-blind p30 receiver shell `[Kg,qg,b,e]=[10,20,15,3]`; exactly one complete four-rune manuscript word has it, p30 word27/start112. Its ordinal27 independently equals `GP0(SEEK) mod29=-K`. A second direct-state shell `[b-q,p,b-K]=[11,23,13]` occurs on exactly one complete three-rune manuscript word, p31 word32/start126; ordinal32 is exactly the core source-start index.
+
+Exact subtraction gives the authenticated source words with raw keys `[a,-b,-a,a]=[6,14,23,6]` and `[K+b,-b,K+g]=[17,14,7]`. A coupled p6-only family chooses signed `x` from H4(title lengths), distinct literal `u,v` from W1, and `w` from H4(W1), then uses `key30=[x,v,-x,x]` and `key31=[u,v,w]`. Across 384 serializers, both page directions and the only two authenticated consecutive [4,3] source pairs, exactly one of 3,072 configurations survives: SEEK AND with subtraction/subtraction. Windows/Node22 run **46130817850** passes the full source test.
+
+This is mechanistic compression, not a discovery-wide probability or plaintext proof. The receiver selectors are source-conditioned and target-blind, but the joint serializer skeleton was formulated after the local inverses. Treat p30/p31 as a **candidate prelude** to the p32–p42 core and require a prospectively frozen serializer output or first-party field-ordering clue before promotion. See `im-results/lp2-p6-skipped-k2-seek-and-boundary.md` and `sims/lp2_p6_skipped_k2_seek_and_sft.cjs`.
 
 ## Coordinate convention
 
