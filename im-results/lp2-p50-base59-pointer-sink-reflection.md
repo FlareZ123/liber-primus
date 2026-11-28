@@ -106,6 +106,30 @@ Four of 400,000 row-preserving nulls satisfy the complete matched triple (`1e-5`
 
 **Causal next gate:** an independently sourced *consumer* is still missing. The eight-edge trajectory freezes a reproducible eight-node operand sequence, but without a source-defined GP29 serialization, page recipient and reversible operation, direct key/phase sweeps would be overfitting. Do not promote fitted plaintext from this state coincidence.
 
+## Frozen direct original-cipher consumer: ghost-tree pages fail (Agent10, 28 November 2026)
+
+The eight-edge circuit makes one unusually constrained key trial possible **without guessing a new page, phrase, phase, radix or polynomial**. The central blurred tree on original physical p32 and crisp tree/moth on original physical p55 are already known to share a stock-art lineage; the p55 page also carries the same mirrored floral border as the original p50 panel. This does **not** prove a key transfer but singles out these two original ciphertext recipients for one direct test.
+
+Read the literal successor *values* at the eight visited original p50 addresses `[186,19,33,112,72,161,214,247]` under the previously selected base59 pointer law:
+
+```
+values [19,33,112,72,161,214,247,189]
+GP29 key [19,4,25,14,16,11,15,15]  (each value mod29)
+```
+
+Freeze one ordinary receiver from the independently solved p56 convention, **subtracting** the key from original GP29 ciphertext, repeating every eight runes, starting at local rune zero, with no F bypass and no page-specific fitted parameter. No unknown text is used to choose the key or model.
+
+| Original target | Runes | Source-cipher IoC | Direct inverse IoC | Result |
+| --- | ---: | ---: | ---: | --- |
+| p32, blurred-tree page | 121 | 0.0341597796143 | **0.0323691460055** | Nonlinguistic |
+| p55, tree/moth page | 76 | 0.0378947368421 | **0.0392982456140** | Nonlinguistic |
+
+Original p55 candidate begins `THNGDAELRTHEAFJTNGWLIXHLNGLXAEETHNAEEAEOMMIAEBAIAORHEODAENGDAEDYONXXNGIAAFOAEHGB` in canonical multigraph transliteration (60 runes, not 60 characters). For comparison, original already clear p57 has IoC **0.0627099664**. The fixed direct outputs are unpersuasive under the native GP29 prose benchmark. Each candidate **exactly re-encrypts to original ciphertext**, and a complete-length original-p57 plaintext plant passes through the same forward/inverse on both target lengths. These validate the arithmetic, not the intended key.
+
+**Decision:** this exact original-page repeated additive receiver fails to recover plaintext. It narrows the otherwise tempting inference from the DH eight-circuit to p55, but does not retire other reversible cryptographic consumers selected by future authentic instructions. In particular, do not rescue it by looking for a better phase, sign, secret substitution or exceptional-letter mask after this negative. The best unmet gate remains a first-party **recipient and decipherment operation**, not another matching number.
+
+Reproducer: `node sims/lp2_p50_sink_mirror_dh_dualstate_sft.cjs`, in the original eight-pointer route's standalone SFT, with full-length source-native planted forward/reverse controls.
+
 ## Corrected locked-target controls
 
 The target is frozen by the authenticated DH tuple plus the already-established mirror: address189 must be the pointer sink and its mirror address186 must contain value19.
