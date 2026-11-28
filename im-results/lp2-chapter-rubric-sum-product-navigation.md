@@ -146,6 +146,20 @@ The control matters: the other repeated RISE pages do not obey a generic “firs
 
 Reproducer: `sims/lp2_p23_one_rise_firstblack_sum25_crossholdout_sft.cjs`.
 
+## P3-field q-translation reaches the independently marked p33:91 rubric
+
+A new field-level continuation materially narrows the earlier PRODUCT caveat. The five actual route operands have complete `(length,sum,product)` descriptors `[4,15,23],[3,23,2],[7,2,19],[8,19,27],[5,27,3]`; each triple occurs exactly once among all 2,941 canonical printed groups in the full transcription including solved p56/p57.
+
+The terminal route value is p40 OUT=`3=e`. Physical p3 independently carries the marked red triad `[13,23,2]`, already established as the primitive GF(29^2) relation `u^2=3u+8`. Treat route `(SUM,PRODUCT)=(S,P)` as Vieta coefficients of `x^2-Sx+P` in that field. P54 `(19,27)` and p40 `(27,3)` have the same discriminant21, and the p40 roots are exactly the p54 roots translated by `q=4`: `x -> x+q`.
+
+Repeating that already-forced translation once gives the locked next pair `(6,11)`. It occurs in two unsolved page-local words, but among all **50 complete red words** on p0-p55 it occurs exactly once: the first word of the second p33 red rubric at **p33:91**, with full descriptor `[3,6,11]=[e,a,A^-1]` and raw runes `[21,2,12]=[B+K,K,aK]`. Canonical H3 maps that word to `[9,2,4]=[q+g,K,q]`.
+
+This receiver is independently source-marked: prior work had already shown that solved-2014 suffix `9133` uniquely addresses p33 offset91, and that p33:91 and p40:0 are the only two complete red spans with word lengths `[3,5]=[e,g]`. One further predeclared `+q` translation predicts `(14,22)` and has **zero red-word hits**, so the marked continuation stops at p33 rather than extending indefinitely.
+
+This is the route's first source-marked continuation that uses PRODUCT inside a reversible algebraic object. It still does not authenticate the original SUM/PRODUCT grammar, recover body plaintext, or authorize free GF(841) affine searches. The two explicit weak assumptions are reading terminal value3 as a pointer to physical p3 and repeating the observed `+q` translation once. The `(6,11)` value was derived before its location was inspected during this invocation, but it was not repository-precommitted.
+
+Full derivation, field roots, exhaustive base-field affine maps and marked-word controls: [p3-field q-translation handoff](lp2-chapter-route-gf29-qtranslate-p33.md), reproduced by `sims/lp2_chapter_route_gf29_qtranslate_p33_sft.cjs`.
+
 ## Decision for the solve frontier
 
 This **provisional candidate is materially more operational than a visual theme**: it specifies a finite original-cipher input class, two exact field operations, a deterministic graph, one unique start at book opener p0, five reproducible hops and a plausible final *artifact class*—the numeric table on p50. Unlike a fitted key shell, it requires **no comparison to preselected 2016 signed prose or any guessed LP2 plaintext**. The same route can be checked by a human from original pages.

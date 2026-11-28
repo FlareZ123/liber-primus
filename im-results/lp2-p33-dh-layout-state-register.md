@@ -221,6 +221,14 @@ Applying the same winning schedule to the 81-rune upper body is also nonlinguist
 
 **Decision:** retire this exact word-indexed H-power cycle. The negative does not weaken the source-layout state register because the register was derived independently of the language score.
 
+## Chapter-route cross-handoff: p40 +q predicts this lower rubric
+
+Agent8's 28 November chapter-route field audit supplies a new independent entry into this already-established p33 checkpoint. The provisional p0 chapter route ends at p40 with first-black `(SUM,PRODUCT)=(27,3)`. Physical p3's marked `[13,23,2]` triad defines `GF(29^2)` by `u^2=3u+8`. In that field the preceding p54 pair `(19,27)` and p40 pair have equal discriminant21, and p40's unordered root set is exactly p54's translated by `q=4`.
+
+Repeating the same root translation once predicts `(SUM,PRODUCT)=(6,11)`. Across all 50 complete red words on unsolved p0-p55, the sole hit is this page's second-heading first word at local91: `[21,2,12]`, descriptor `[3,6,11]`. The adjacent red word remains `[10,0,5,22,12]`, so the rubric word lengths are the already-published `[3,5]=[e,g]`; p33:91 and p40:0 remain the only red spans with that length pair. A third repeated `+q` predicts `(14,22)` and has no red receiver.
+
+This does not alter the source correction above or decrypt either p33 body. It strengthens p33:91 as a convergence checkpoint because the destination was independently addressed by solved-2014 `9133` before this route-field relation was noticed. See `im-results/lp2-chapter-route-gf29-qtranslate-p33.md`.
+
 ## Research consequence
 
 The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. The cuneiform sexagesimal word-map loop fails the corrected D/NG marker target; its prior M/NG correspondence is withdrawn. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. The 15 arithmetic checks remain numerically unchanged because they did not independently test a decorative M observation; they no longer establish the claimed visible [M,D] target.
