@@ -150,6 +150,25 @@ The numerical grid identity below remains exact, but #3436 shows that **p6 geome
 
 That H-free cross-artifact serializer supplies the same `r0..r3` roles consumed by the 4/5/4 program below. Thus the grid program no longer needs canonical H as an **authored** prerequisite, although the original p6-only algebraic discovery used H. See [the p6/p50 state bridge](lp2-p6-p50-dh-state-grid-bridge.md#p50-supplies-an-h-free-ordered-serializer-for-the-p6-mirror-magnitudes) and [reproducer](../sims/lp2_p6_p50_hfree_state_serializer_sft.cjs).
 
+## Full numeric operand packet now has an independent p50/source reconstruction
+
+The later p40→p50 route removes another causal dependency from this grid program. Two independently established p50/source structures now supply **every numeric operand** used by L/C/T/R:
+
+1. The four strict p50 support edges, source-ordered and rotated from the independently selected physical column2 tunnel, give `[K,-e,g,a]=[2,26,5,6]` without canonical H.
+2. The independently selected p40 ROAD×MAP cell43 has token `1D`; its base59/base60 forward displacements are the unique table pair `[29,30]=[DIRECTION,SEEK]`. Reducing that authenticated boundary modulo29 gives `[F,1]=[0,1]`.
+
+Therefore p50 + the authenticated source reconstruct
+
+```text
+L=[-e,1,e,K]   = [26,1,3,2]
+C=[-e,1,F,1,e] = [26,1,0,1,3]
+T=[-a,g,-K,1]  = [23,5,27,1]
+R=L+T           = [20,6,1,3]
+```
+
+with no p6-local H, printed singleton, or Fehu value used as a **numeric** input. P6 still supplies the distinctive red13 4/5/4 geometry and the established receiver context, so this is not a new external plaintext prediction and does not invalidate the source-local control gate below. It does, however, materially strengthen the causal status of the numeric tape: the constants are independently recoverable from the later p40/p50/source route.
+
+Reproducer: [`sims/lp2_p50_source_full_p6_grid_operand_sft.cjs`](../sims/lp2_p50_source_full_p6_grid_operand_sft.cjs).
 ## External-control gate: no held-out red object supplies the frozen operands
 
 Director #3407 applies the program's **input extraction**, not just its arithmetic, to the complete original red-span control class before any destination is read. The frozen program consumes four red fields, a printed width-one singleton for its repeated literal `+1`, the adjacent Fehu `F=0`, and a red13 4/5/4 stencil.
