@@ -7,7 +7,9 @@
   including rune-free p50) and lp2-grid-256.json (all printed p49..51 tokens).
   Event E_j is the LEFT rune offset of each adjacent equality in the continuous
   12,956-rune tape; delta_j = E_(j+1)-2*E_j+E_(j-1).
-  At phase q, H=0 if raw base60 byte <60. L<30 if raw byte %60 <30.
+  Split AFTER event42. Gap-update j42 and j43 straddle this split and
+  are omitted: no endpoint from one half leaks into the other half's
+  direction target. At phase q, H=0 if raw base60 byte <60. L<30 if raw byte %60 <30.
   Higher high-zero event count and more correct gap-innovation directions are
   predicted at the manuscript's unshifted row-major phase 0.
 
@@ -35,8 +37,8 @@ for(let j=1;j<ev.length-1;j++){
 }
 if(changes.length!==83)throw Error('source nonzero gap-update count changed');
 const halves=[
-  {name:'first43',ev:ev.slice(0,43),changes:changes.filter(x=>x.j<=42)},
-  {name:'last43',ev:ev.slice(43),changes:changes.filter(x=>x.j>=43)}
+  {name:'first43',ev:ev.slice(0,43),changes:changes.filter(x=>x.j<=41)},
+  {name:'last43',ev:ev.slice(43),changes:changes.filter(x=>x.j>=44)}
 ];
 function phaseRows(half,bytes){
   const rows=[];
@@ -63,12 +65,17 @@ const summaries=halves.map(half=>{
     phase0Rank:obj.rows.indexOf(original)+1,source:original,
     second:obj.rows[1],mean:[obj.meanH,obj.meanD],sd:[obj.sdH,obj.sdD]};
 });
+const firstResidues=new Set(halves[0].ev.map(x=>x&255));
+const secondResidues=new Set(halves[1].ev.map(x=>x&255));
+const repeatedOriginalCells=[...firstResidues].filter(x=>secondResidues.has(x));
+console.log('Distinct source table residues first/last/shared:',
+  firstResidues.size,secondResidues.size,repeatedOriginalCells.length);
 console.log('Source letters:',gp.length,'equal adjacent events:',ev.length,
   'nonzero interior gap updates:',changes.length);
 console.log('Unshifted original-table 2-field phase-half results:\n'+JSON.stringify(summaries,null,2));
 if(summaries[0].phase0Rank!==1||summaries[1].phase0Rank!==1)
   throw Error('phase0 not first in both halves');
-if(summaries[0].source.high!==18||summaries[0].source.correct!==30||
+if(summaries[0].source.high!==18||summaries[0].source.correct!==29||
    summaries[1].source.high!==15||summaries[1].source.correct!==28)
   throw Error('half counts changed');
 
