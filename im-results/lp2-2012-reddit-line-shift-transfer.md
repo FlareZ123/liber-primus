@@ -58,6 +58,20 @@ Matched native-GP29 rolling windows:
 
 Mode and top-three mass are unchanged by any static relabeling of the recovered GP symbols, so a post-hoc fixed plaintext alphabet permutation cannot rescue this direct transfer. The finite control is deliberately narrower than a theorem about every possible language or representation.
 
+## Page-local held-out gate
+
+The whole-book result could in principle hide a mechanism used on only one LP2 page, so a second frozen gate tests every runic unsolved page separately. The language model is fixed **only on Gibran**: add-one-smoothed canonical-GP29 unigram probabilities. Shakespeare and Emerson are then left untouched as empirical same-length window controls.
+
+For each of the 55 runic pages p0–55 (p50 is runeless), the exact historical line-reset inverse is scored by mean GP29 log likelihood and compared with every same-length held-out window. The result is stronger than the whole-book concentration gate:
+
+- **55/55 pages lie below every same-length Shakespeare+Emerson window.**
+- Depending on page length, each page is compared against about 523k held-out windows.
+- The closest candidate page is still separated from the worst held-out native window; no page-local native-GP29 signal survives.
+
+Because the model is trained on Gibran while the empirical register uses two different writers, this page-local result does not reuse the held-out samples to set symbol probabilities. It rejects the natural escape hatch that the 2012 transfer might apply only to one unknown page.
+
+Companion reproducer: [`sims/lp2_2012_reddit_line_shift_page_local_sft.cjs`](../sims/lp2_2012_reddit_line_shift_page_local_sft.cjs).
+
 ## Scope and next decision
 
 **Retire only the exact historical transfer:** same 23 integers, historical decryption sign, modulo-29 alphabet rotation, key restart on every original physical line, rune-only advancement, unchanged length/order, canonical GP ring (or any final static relabeling).
