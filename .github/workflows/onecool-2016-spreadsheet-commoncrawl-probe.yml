@@ -1,0 +1,26 @@
+name: onecool 2016 spreadsheet Common Crawl probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Query post-publication Common Crawl indexes
+        run: node sims/lp2_onecool_2016_commoncrawl_probe.cjs
+      - name: Upload Common Crawl evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2016-commoncrawl-probe
+          path: workplace/onecool-2016-commoncrawl-probe/
+          if-no-files-found: warn
