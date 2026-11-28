@@ -76,6 +76,40 @@ The signed-word labels retain the register-origin caveats documented in the p50 
 where `[e,g,a,K]=[3,5,6,2]` is independently fixed by the p6 title/state packet. Equivalently, the set of all four strict support-line coordinates is exactly `{K,e,g,a}={2,3,5,6}`.
 
 This removes a major flexibility concern from the later cell-level bridge: the p50 geometry itself independently chooses the same four small state coordinates before p6 is overlaid. In particular, its FALSE/PATHS tunnel chooses physical column2, which p6 names `K`.
+## Directed support-line schedule equals a cyclic p6 H(title) schedule
+
+The line-coordinate equality becomes substantially sharper when the physical edge directions are retained.
+
+Order the four strict p50 support edges only by their starting prime rank—`17,22,38,39`—so no p6 value determines their order. For each directed edge, take the fixed support-line coordinate and sign it by forward screen movement: north/west negative, south/east positive. The four original edges are:
+
+~~~text
+rank17→18: cell219→211, north on column3  -> -3 = 26
+rank22→23: cell40 →41,  east  on row5    -> +5
+rank38→39: cell126→182, south on column6  -> +6
+rank39→40: cell2  →26,  south on column2  -> +2
+~~~
+
+So the source-ordered oriented support vector is:
+
+~~~text
+[26,5,6,2] = [-e,g,a,K].
+~~~
+
+The original p6 title lengths give:
+
+~~~text
+H4([4,1,4,2]) = [2,26,5,6] = [K,-e,g,a].
+~~~
+
+Therefore the p50 vector is **exactly one left cyclic rotation** of the p6 H(title) vector:
+
+~~~text
+rotL(H4(title lengths),1) = [26,5,6,2].
+~~~
+
+A finite convention charge over all four cyclic rotations, reversal/no-reversal, and one global sign (`4×2×2=16` candidates) yields **exactly one** match: no reversal, rotation1, positive global sign.
+
+This is the strongest form of the bridge found in this invocation. It uses only original p6 title lengths, original p50 token positions/codecs, prime-rank edge order, and physical directions. It does not use unknown LP2 plaintext or fitted q-block keys. The remaining caveat is discovery history: the p50 edge family and p6 H packet were each recognized before this cross-link, but the cross-link itself is retrospective.
 ## MAP/ROAD state intersection isolates a hex-29 cell among the support crossings
 
 Once the four physical support lines are relabeled by p6 state, the ROAD row is `g=5` and the MAP column is `e=3`. Their intersection is therefore the source-selected state address `(g,e)`:
