@@ -45,6 +45,27 @@ We froze two simplest consumers rather than fitting per-page language, signs, ph
 
 The direct event-type-to-panel-letter hypothesis also lacks distinctive positive support: the original 86 R positions coincide with just **20** literal leading-zero panel cells (about the 60/256 table frequency), while the source panel byte reduced mod29 matches the duplicated ciphertext rune on **4/86** repeat slots. Neither simple relation authenticates the event pairing. These are descriptive observations, not p-values.
 
+## Stronger key-free original-cipher gate: all per-interval monoalphabetic keys
+
+A 256-cell table might specify **one GP29 symbol substitution per segment**, not a mere additive key. For such a mechanism, even if the solver never recovers a single secret alphabet, each within-segment equality relation is immutable: for any bijection `σ_i`, `σ_i(x)=σ_i(y)` if and only if `x=y`. This gives a complete *all-secret* necessary condition for a source-visible mixed-event segmentation, without scanning shifts, signs, alphabet permutations or ciphers.
+
+Across the 256 exact segments above (including four empty), there are **604,532 unordered pairs of positions contained in the same segment**. In the unaltered 12,956-rune unknown LP2 ciphertext, **20,365** such pairs have equal GP29 symbols, a weighted collision rate of **0.0336872158959**. The positive plant applies 256 different invertible affine GP29 substitutions to native-English GP29 control segments and verifies **exact preservation** of the complete pair count. Thus unknown secret substitutions cannot rescue the original rate.
+
+Use the repository's already calibrated GP29 orthography—verified against **181 consecutive original solved LP1 words** and independent solved p57—to encode three real literary registers, and overlay the **same exact 256 segment offsets** on every 12,956-rune text window (fixed step 6,478, no fitting). The independent source-native controls are:
+
+| GP29 source register | 12,956-rune windows | Minimum within-segment equality rate | Maximum |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 32 | **0.0575949660** | 0.0615302416 |
+| Gibran | 8 | **0.0595303474** | 0.0605410466 |
+| Emerson | 48 | **0.0599174237** | 0.0631959929 |
+| **Original unknown p0–55** | 1 | **0.0336872159** | — |
+
+An additional source-attested control concatenates **2,979 solved GP29 runes** from nine actual Cicada plaintext sections and tiles them over the same 12,956 original segment positions. Six fixed cyclic starts (0, 193, 971, 1541, 2043, 2500) give rates **0.06080737–0.06172543**, again all far above the unknown manuscript.
+
+**Decision:** the 256 mixed-event segmentation **cannot be a plaintext-preserving, interval-constant monoalphabetic GP29 substitution of ordinary source-native prose**, regardless of which of the 29! secret alphabets each segment uses. This strictly subsumes the direct interval Caesar and affine negatives. The finding does **not** exclude a polyalphabetic/feedback transformation *within* segments, permutation of rune positions, non-English intermediate register, variable-length coder, source-content-dependent event positions, or other multi-layer mechanisms. Nor does it authenticate that the 256 events are an intended cipher clock.
+
+The new [all-secret reproducible SFT](../sims/lp2_mixed256_allsecret_substitution_sft.cjs) directly asserts the 20,365/604,532 original equality count, preserves equalities under 256 arbitrarily different invertible affine alphabets, and exercises the full 88-window plus six solved-source controls. It is a decisive negative about **which key-consumer class is worth pursuing**, rather than a new plaintext.
+
 ## Original-event interleaving: exhaustive circular-phase control
 
 A stronger, **frozen-source** internal check asks whether the 86 repeated-rune boundaries are deliberately placed to *fill* the gaps between the 170 physical marks, producing unusually even 256-cell spacing. Keep the full original 86-position repeat pattern and all its internal spacings intact; slide it through **every one of 12,956 circular phases** relative to the fixed physical punctuation. Rebuild 256 event gaps at each phase. This is a relative-phase geometry comparator, **not** a generative null for page-seam legal ciphertext or a familywise author-intent p-value.
