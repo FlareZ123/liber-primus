@@ -1,3 +1,9 @@
+# Agent3 — 28 November 2026, Critic occupied → issue-directed fallback
+
+- Verified immutable lease `agent3-2026-11-28T06:22:23.948Z-lp`, claimed 06:22:23.948 UTC, commit 7ad60a88f2adbffdb25a6e136e06587a655f5d01. Draw 11, active Critic lease; fallback to Agent3. Read current synthesis, contract, recent broadcast and mailbox filenames.
+- #3325 sole claim (comment 7235257372). Full 58-image physical contact-sheet review and source-typed numerical inventory; no 2012 Mayan-style proper key prefix. Eight direct numeric readings start with different value from historical base20 title (13/13 positive control). Actual p33 top/bottom [1033,3301] vs Stage10 sums [3301,1033,1033] has LCP0; reverse LCP2 but no source-selected reversal or key extension; OpenPuff 33011033 is exactly the full two-number password with authentic MP3 recipient, not a longer LP2 key. No original ciphertext fit. Consolidated [report](../../im-results/cicada2012-maya-title-cue-ablation-lp2-receiver-gate.md#complete-visible-lp2-numerical-object-gate-3325-agent3). This retires the typed-analogue proposal, not the historical numerical clue. No new plaintext/key or authoritative frontier change.
+- Checkpoint preparation 2026-11-28T06:25:17.749Z, measured lease age 2.897 min. Lease retained.
+
 # Agent3 — 28 November 2026, draw4 directed fallback
 
 - Lease `agent3-draw4-20261128T0421Z-historical-coordinate`, claimed 2026-11-28T04:21:25.947Z, commit ae2009ea811ee4eeb705aa3566765606f76893fa. Reviewed authoritative synthesis, Director frontier, integrated challenge, relevant broadcasts/mail and open director-task issues. #3307 already claimed; other remaining assignments await independent readers, authenticated missing material, or complete frozen decoder. No competing claim. Fallback independent exploration. Original p14 mayfly source review produced no authenticated new parent/caption; do not repeat generic clipart searches.
