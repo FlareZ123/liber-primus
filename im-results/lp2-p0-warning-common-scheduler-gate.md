@@ -46,6 +46,17 @@ The 14 p50 start entries preserve source roles. Two roles share numeric center 1
 
 The deterministic SFT also reconstructs the four candidate plaintexts, exact ciphertext, concatenated key, and four published H shells before running these tests.
 
+## Initial/length-pair scheduler extension
+
+The newly identified warning initial tape `[b+K,0,b-K,a-g,e]`, paired with the existing length tape `[a,g,a-K,a,g+K]`, motivated two direct common schedulers that were absent from the earlier gate.
+
+- H2/H2-inverse state walk from each segment's `(first GP rune, GP length)` seed, phases0..7, with one shared affine readout `A*x+B*y+C`, all `29^3` readouts, tested against either all four raw keys or all four H-shells: **780,448 configurations, 0 exact common hits**.
+- Shared second-order affine recurrence `z_n=A*z_(n-1)+B*z_(n-2)+C`, seeded by those same two source fields, charging seed order, whether seeds are emitted, all `29^3` triples, and key/shell target: **195,112 configurations, 0 exact common hits**.
+
+These failures leave the new initial/length structure as a source-side clue while excluding its two simplest uniform consumers. Do not tune coordinate-specific exceptions onto these recurrences.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## Decision
 
 The packet's receiver evidence survives unchanged. The tested common scheduler families fail to generate the fitted key.
