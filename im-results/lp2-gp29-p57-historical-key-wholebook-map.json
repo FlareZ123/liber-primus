@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-28T08:26:06.198Z",
+  "workflow_run": 46125588940,
+  "source_rationale": "Conditional p57 key-transfer/deletion test: solved p57 says SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN; recovered LP1 cycles are FIRFUMFERENFE q13 and DIUINITY q8.",
+  "method": "All cyclic rotations of each recovered LP1 key on continuous p0-p55 (12956 runes), existing exact GP29 strict-repeat + independent-deletion MAP, D=.187, no resets.",
+  "results": {
+    "DIUINITY": {
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "original": {
+        "best_rotation": 1,
+        "best_score": -4.152588909309143,
+        "phase0_score": -4.152858853457366,
+        "best_clock": 16325
+      },
+      "matched_control": {
+        "best_rotation": 0,
+        "best_score": -3.3105394153311996,
+        "truth_clock": 16383,
+        "truth_length": 15808
+      }
+    },
+    "FIRFUMFERENFE": {
+      "key": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "original": {
+        "best_rotation": 1,
+        "best_score": -4.066263941998049,
+        "phase0_score": -4.06636654877021,
+        "best_clock": 16566
+      },
+      "matched_control": {
+        "best_rotation": 0,
+        "best_score": -3.350814641179433,
+        "truth_clock": 16456,
+        "truth_length": 15906
+      }
+    }
+  },
+  "code": "sims/lp2_gp29_historical_key_wholebook_map_sft.cjs",
+  "interpretation": "No cyclic phase makes either recovered historical key behave like the true key on the continuous unknown book under this frozen deletion-channel MAP. The original remains far below same-length true-key controls. This rejects only this GP29 deletion receiver/rate/language-law transfer, not the historical F-hold cipher or unrelated source-selected mechanisms."
+}
