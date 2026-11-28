@@ -62,19 +62,35 @@ const out={key:key.toString('hex'),nonce:nonce.toString('hex'),nativeRuneControl
 assert.equal(out.p0.count,262);assert.equal(out.p55.count,76);
 for(const [value,expected] of [[out.rawIoC,0.03447839786450569],[out.pageResetIoC,0.0344842961642344],[out.continuousIoC,0.034477897402710525],[out.p55.ioc,0.03263157894736842]])
  assert.ok(Math.abs(value-expected)<1e-12);
-// Genuine solved-LP1/p56-style F interrupt: literal ciphertext F never consumes
-// a key byte, and non-F ciphertext cannot decrypt into literal plaintext F.
-// This gives a strict first original-source contradiction without scoring prose.
-const p0native=getPage(0).indices;
-let clock=0, firstInvalid=null;
-for(let i=0;i<p0native.length;i++){
- if(p0native[i]===0) continue;
- const pt=(p0native[i]-kReset[clock]%29+29)%29;
- if(pt===0){firstInvalid={offset:i,keyOffset:clock,cipher:p0native[i],keystream:kReset[clock]};break}
- clock++;
+// Literal-plaintext-F holds are optional at ciphertext F: a non-F
+// plaintext can also shift INTO ciphertext F. Enumerate both legal
+// interpretations rather than forcing every ciphertext F to be a hold.
+// Only a non-F ciphertext has no hold branch.
+function fTransparentReachability(cipher,k) {
+ let clocks=new Set([0]), after19=null, after20=null;
+ for(let i=0;i<cipher.length;i++){
+  const next=new Set();
+  for(const j of clocks){
+   if(cipher[i]===0)next.add(j);
+   if((cipher[i]-k[j]%29+29)%29!==0)next.add(j+1);
+  }
+  if(i===19)after19=[...next].sort((a,b)=>a-b);
+  if(i===20)after20=[...next].sort((a,b)=>a-b);
+  if(!next.size)return {accepted:false,firstImpossibleOffset:i,clocksAfter19:after19,clocksAfter20:after20};
+  clocks=next;
+ }
+ return {accepted:true,terminalClockStates:clocks.size,clocksAfter19:after19,clocksAfter20:after20};
 }
-assert.deepEqual(firstInvalid,{offset:19,keyOffset:17,cipher:22,keystream:51});
-out.genuineFTransparentFirstViolation=firstInvalid;
+const p0native=getPage(0).indices;
+const fReach=fTransparentReachability(p0native,kReset);
+assert.deepEqual(fReach,{accepted:false,firstImpossibleOffset:77,clocksAfter19:[19,20],clocksAfter20:[20]});
+// Forward plant from genuine native p57 rune text, with F held; a correct
+// inverse must preserve at least its true path despite ciphertext-F ambiguity.
+const genuineNative=corpus.pages.find(p=>p.page===57).indices;
+let sourceClock=0;
+const plantCipher=genuineNative.map(x=>x===0?0:(x+kReset[sourceClock++]%29)%29);
+assert.equal(fTransparentReachability(plantCipher,kReset).accepted,true);
+out.genuineFTransparentReachability=fReach;
 // The one same-era sister primitive with the identical 32-byte/8-byte
 // original key/nonce ABI is 2008-original (not IETF) ChaCha20/20.
 const cha=require('node:crypto').createCipheriv('chacha20',key,Buffer.concat([Buffer.alloc(8),nonce]));
