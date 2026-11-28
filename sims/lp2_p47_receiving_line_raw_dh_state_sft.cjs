@@ -534,6 +534,37 @@ for (let index = 0; index < p21H.length; index += 2) {
   const numeral = p21H[index] * 29 + p21H[index + 1];
   p21PairTokens.push(p50Tokens[numeral % 256]);
 }
+const p21Line6 = lineFragments(21, 6);
+const p21Line6Lengths = [state.q, state.K, state.q, state.q, state.g, state.e];
+const p21Line6Sums = [0, mod29(-state.e), mod29(state.a * state.K), Ainv, mod29(-state.q), state.A];
+const p21Line6Products = [
+  state.b - state.K,
+  state.b + state.K,
+  mod29(-state.q),
+  state.p - 1,
+  state.a,
+  state.g,
+];
+assert.deepEqual(p21Line6.map((f) => f.length), p21Line6Lengths);
+assert.deepEqual(p21Line6.map((f) => f.sum), p21Line6Sums);
+assert.deepEqual(p21Line6.map((f) => f.product), p21Line6Products);
+assert.ok(p21Line6.every((f) => f.complete && !f.continuation && !f.continues));
+
+const p21LineClass = printedLines.filter(({ fragments }) =>
+  fragments.length === 6
+  && fragments.every((f) => f.complete && !f.continuation && !f.continues)
+);
+assert.equal(p21LineClass.length, 16);
+const p21LineLengthHits = p21LineClass.filter(({ fragments }) =>
+  same(fragments.map((f) => f.length), p21Line6Lengths)
+);
+const p21LineFullHits = p21LineLengthHits.filter(({ fragments }) =>
+  same(fragments.map((f) => f.sum), p21Line6Sums)
+  && same(fragments.map((f) => f.product), p21Line6Products)
+);
+assert.deepEqual(p21LineLengthHits.map(({ page, line }) => [page, line]), [[21, 6]]);
+assert.deepEqual(p21LineFullHits.map(({ page, line }) => [page, line]), [[21, 6]]);
+
 assert.deepEqual(p21PairTokens, ['3I', '3b']);
 assert.equal(p50Tokens[p21Group21.start], '2p');
 assert.equal(
@@ -693,6 +724,13 @@ console.log(JSON.stringify({
         H: p21H,
         pairTokens: p21PairTokens,
         startToken: p50Tokens[p21Group21.start],
+        line6: {
+          comparableLines: p21LineClass.length,
+          lengths: p21Line6Lengths,
+          sums: p21Line6Sums,
+          products: p21Line6Products,
+          fullHits: p21LineFullHits.map(({ page, line }) => [page, line]),
+        },
       },
     },
   },
