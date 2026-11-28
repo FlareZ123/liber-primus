@@ -1,0 +1,112 @@
+{
+  "width": 1500,
+  "rows": [
+    {
+      "d": 0,
+      "n": 0,
+      "seed": 2654886889,
+      "offset": 215904,
+      "length": 240,
+      "recovery": 0.775,
+      "wrong": 0.375,
+      "oracle": 1,
+      "exact": 0.7166666666666667,
+      "shift": 0.7166666666666667,
+      "clock": 1,
+      "score": -793.4326250210435,
+      "wrongScore": -884.9162952109634,
+      "jumps": 46
+    },
+    {
+      "d": 0,
+      "n": 1,
+      "seed": 1014355354,
+      "offset": 162099,
+      "length": 240,
+      "recovery": 0.85,
+      "wrong": 0.38333333333333336,
+      "oracle": 1,
+      "exact": 0.8208333333333333,
+      "shift": 0.8208333333333333,
+      "clock": 1,
+      "score": -725.2082852279125,
+      "wrongScore": -870.1444578370003,
+      "jumps": 41
+    },
+    {
+      "d": 1,
+      "n": 0,
+      "seed": 535654570,
+      "offset": 51319,
+      "length": 240,
+      "recovery": 0.9,
+      "wrong": 0.3875,
+      "oracle": 1,
+      "exact": 0.8666666666666667,
+      "shift": 0.8666666666666667,
+      "clock": 0.9291666666666667,
+      "score": -675.4018082269748,
+      "wrongScore": -880.1295469035279,
+      "jumps": 47
+    },
+    {
+      "d": 1,
+      "n": 1,
+      "seed": 3190090331,
+      "offset": 45097,
+      "length": 240,
+      "recovery": 0.85,
+      "wrong": 0.375,
+      "oracle": 1,
+      "exact": 0.8083333333333333,
+      "shift": 0.8041666666666667,
+      "clock": 0.9083333333333333,
+      "score": -703.9696929710497,
+      "wrongScore": -882.5681360330536,
+      "jumps": 38
+    },
+    {
+      "d": 2,
+      "n": 0,
+      "seed": 2711389547,
+      "offset": 204349,
+      "length": 240,
+      "recovery": 0.8916666666666667,
+      "wrong": 0.38333333333333336,
+      "oracle": 1,
+      "exact": 0.8666666666666667,
+      "shift": 0.8666666666666667,
+      "clock": 0.9666666666666667,
+      "score": -717.7045190647682,
+      "wrongScore": -873.8055541414602,
+      "jumps": 38
+    },
+    {
+      "d": 2,
+      "n": 1,
+      "seed": 1070858012,
+      "offset": 227992,
+      "length": 240,
+      "recovery": 0.8291666666666667,
+      "wrong": 0.37083333333333335,
+      "oracle": 1,
+      "exact": 0.7875,
+      "shift": 0.7833333333333333,
+      "clock": 0.9791666666666666,
+      "score": -724.4768061712313,
+      "wrongScore": -871.2808196170934,
+      "jumps": 43
+    }
+  ],
+  "original": {
+    "pages": [
+      54,
+      55
+    ],
+    "length": 308,
+    "score": -1130.8238729679083,
+    "plain": "RETOCCSWITERISNAYITWIXTHEAPPRINSPHEOPUNTYANDSYOURMEANWOULMANDCINROCNOWNALLOSTAFFORHONOURBYGODSGIUERFORWHICHTHERCREATNGTHEMTHATPUPONYOUHIMHECURIAUSTRUCTIANPARTICATEBELORANCEHUEUSEWHENCEISAGRACESATIREXCLARUEITSENSTMANIANSOFTITSTWHICHWEPARTHIMSTHATTHEUNCFULSOCUEEXTERBREACHOFMISSUPTOTWELLGERATORTHIRDSBUTSITIANSIFITDOGMESUREPU",
+    "jumps": 89,
+    "keyClock": 323
+  }
+}
