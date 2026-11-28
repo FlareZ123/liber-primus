@@ -242,6 +242,41 @@ assert.deepEqual(
   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 );
 
+// Charge the source-index fold itself. The atom alphabet is fixed by the
+// signed-source terminal K block (V,O), p6 K/F, and the LUCK/GOOD anchors.
+const deltaAtomSet = new Set([
+  mod29(-O), V, O, state.K, state.F, L, G,
+]);
+assert.equal(deltaAtomSet.size, 7);
+
+const foldCharge = [];
+for (const sign of [1, -1]) {
+  for (let offset = 0; offset < 29; offset += 1) {
+    const candidateDelta = [];
+    let atomMatches = 0;
+    for (let index = 0; index < 13; index += 1) {
+      const page = 30 + index;
+      const ordinalResidue = mod29(establishedOrdinals.get(page));
+      const folded = mod29(sign * page + offset);
+      const value = mod29(ordinalResidue - folded);
+      candidateDelta.push(value);
+      if (deltaAtomSet.has(value)) atomMatches += 1;
+    }
+    foldCharge.push({ sign, offset, atomMatches, delta: candidateDelta });
+  }
+}
+foldCharge.sort((left, right) =>
+  right.atomMatches - left.atomMatches ||
+  right.sign - left.sign ||
+  left.offset - right.offset
+);
+assert.equal(foldCharge.length, 58);
+assert.deepEqual(
+  foldCharge.filter((row) => row.atomMatches === 13),
+  [{ sign: 1, offset: 0, atomMatches: 13, delta }]
+);
+assert.equal(foldCharge[1].atomMatches, 8);
+
 // The delta stream itself has an unusually compact symmetric state shell.
 const deltaShell = hShell(delta);
 assert.deepEqual(deltaShell, [
@@ -452,6 +487,13 @@ const result = {
     G: { word: "GOOD", first: G, role: "a" },
     K: state.K,
     F: state.F,
+  },
+  foldConventionCharge: {
+    atomAlphabet: [...deltaAtomSet],
+    folds: 58,
+    perfectAtomFits: foldCharge.filter((row) => row.atomMatches === 13),
+    nextBestAtomMatches: foldCharge[1].atomMatches,
+    decision: "the +index, offset0 DIRECTION fold is the sole affine ±index+c convention with all 13 deltas inside the source/p6 atom alphabet",
   },
   schedule: {
     blockWidths: [state.K, state.q, 1, state.q, state.K],
