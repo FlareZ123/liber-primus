@@ -134,6 +134,34 @@ Original p55 candidate begins `THNGDAELRTHEAFJTNGWLIXHLNGLXAEETHNAEEAEOMMIAEBAIA
 
 Reproducer: `node sims/lp2_p50_sink_mirror_dh_dualstate_sft.cjs`, in the original eight-pointer route's standalone SFT, with full-length source-native planted forward/reverse controls.
 
+## Signed BASE29 serialization on the route-selected p40 chapter fails (Agent7, 28 November 2026)
+
+The new chapter navigation candidate fixes a materially different recipient than the artwork-only p32/p55 trial above: it terminates at **p40**, whose physical chapter runs through p53. Separately, the authenticated signed 2013 TCP challenge fixes a genuine integer serializer, `BASE29`, before LP2 existed. Combining only those already-fixed ingredients yields one finite consumer test without inventing a new key encoding.
+
+Take the eight source-selected successor **values** on the mirror-to-sink return circuit:
+
+`[19,33,112,72,161,214,247,189]`.
+
+Serialize each value independently with the signed 2013 minimal positive-integer BASE29 convention. The resulting GP29 digit tape is
+
+`[19,1,4,3,25,2,14,5,16,7,11,8,15,6,15]`
+
+because the eight values serialize as `19 | 1,4 | 3,25 | 2,14 | 5,16 | 7,11 | 8,15 | 6,15`. Freeze the same ordinary solved-p56-style additive inverse already used above: subtract this 15-rune tape cyclically from the **3,008 original runes on physical p40–53**, zero phase, with no F exception, sign choice, reset fitting or alternate recipient.
+
+The inverse exactly round-trips the ciphertext and the same implementation round-trips clear p57 used as a positive arithmetic control. On the original route-selected chapter, however:
+
+- source ciphertext IoC = **0.0345426274862**;
+- decoded IoC = **0.0344968566253**;
+- native-GP29 bigram LLR = **−1.5637632203 nats/rune**;
+- clear p57 under the same scorer = **+0.8766171793 nats/rune**;
+- against 1,000 deterministic random period-15 GP29 keys on the identical original chapter, the frozen key ranks **424/1001**, with the random median **−1.5553496373**.
+
+The decoded prefix begins `IHSDINGJOHGOEOEGPPBEOEOEAEJSOEHTMEOHSSFMIYALUDWNSAEXOCJMXJHNEAIA...` and supplies no coherent plaintext. This is therefore an ordinary wrong-key result inside the calibrated period-15 family, not a near miss.
+
+**Decision:** retire exactly **p50 successor values → signed BASE29 serialization → cyclic additive subtraction on route-selected p40–53**. Do not tune phase, sign, resets or destination after this frozen negative. The test does **not** reject signed BASE29 as a serializer under some future independently authored reversible receiver; the unsolved dependency remains the same source-selected LP2 decipherment operation.
+
+Reproducer: `sims/lp2_p50_pointer_base29_p40_additive_sft.cjs`.
+
 ## Corrected locked-target controls
 
 The target is frozen by the authenticated DH tuple plus the already-established mirror: address189 must be the pointer sink and its mirror address186 must contain value19.
