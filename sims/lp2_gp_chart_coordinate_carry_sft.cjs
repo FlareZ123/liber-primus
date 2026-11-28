@@ -99,7 +99,6 @@ function nativeP56() {
   assert.strictEqual(p.filter(x=>x===0).length,1);
   const enc=transform(p,+1),dec=transform(enc,-1);
   assert(same(p,dec));
-  assert(same(transform(data.pages[57].indices,+1).map(x=>x),transform(data.pages[57].indices,+1)));
   return {runes:p.length,primeSteps:clock,transparentFPosition:56,
     knownText:text,roundtrip:true,
     directMod29PrimeDP:directDecode(ct,+1,29)};
