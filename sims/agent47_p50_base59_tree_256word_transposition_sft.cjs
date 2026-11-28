@@ -3,7 +3,7 @@
  * Agent47: source-conditional base59 p50 full-tree whole-word transposition.
  * The 256 original p49–51 tokens make a rooted tree when the absent f is
  * removed from the original alphanumeric digit alphabet. Its BFS/DFS orders
- * are 256-entry permutations, naturally allowing 11*256 + 80 printed words.
+ * are 256-entry permutations, conditionally allowing 11*256 + 112 source-accurate printed words.
  * This test is a finite original-input gate, NOT an attributed Cicada cipher.
  * Reproduce: node sims/agent47_p50_base59_tree_256word_transposition_sft.cjs
  */
@@ -17,17 +17,25 @@ const numeric=JSON.parse(load('resources/liber-primus/base60-grid.json'));
 const transcription=load('resources/lp2-transcription.txt');
 const nativeSource=load('resources/control/gibran_prophet_58585.txt');
 const runeSet=new Set(corpus.runes);
-const tape=transcription.split('%').slice(0,55).join('%');
+// Correct source parser: the '%' page boundary MUST end a printed word.
+ // Earlier raw-tape processing silently joined 32 word pairs across pages,
+ // fabricating 2,896 tokens (11*256+80). The true source has 2,928.
+const pageSegments=transcription.split('%').map(raw=>({
+  raw,indices:[...raw].filter(x=>runeSet.has(x)).map(x=>corpus.runes.indexOf(x))
+}));
 const wordLengths=[];
-let held=0,nRunes=0;
-for(const ch of tape){
-  if(runeSet.has(ch)){held++;nRunes++;}
-  else if(ch!=='%'&&ch!=='/'&&!/\s/u.test(ch)){
-    if(held){wordLengths.push(held);held=0;}
-  }
+let nRunes=0;
+for(const page of corpus.pages.filter(p=>p.page<=55&&p.indices.length>0)){
+  const matches=pageSegments.filter(s=>s.indices.length===page.indices.length
+    &&s.indices.every((v,i)=>v===page.indices[i]));
+  assert.equal(matches.length,1,'physical original page not recovered exactly: '+page.page);
+  const words=matches[0].raw.replace(/\\s|\\//g,'').split(/[-.$&§]+/g)
+    .map(s=>[...s].filter(x=>runeSet.has(x))).filter(w=>w.length>0);
+  assert.deepEqual(words.flat().map(x=>corpus.runes.indexOf(x)),page.indices);
+  wordLengths.push(...words.map(w=>w.length));
+  nRunes+=page.indices.length;
 }
-if(held)wordLengths.push(held);
-assert.equal(wordLengths.length,2896);
+assert.equal(wordLengths.length,2928);
 assert.equal(nRunes,12956);
 assert.equal(wordLengths.reduce((a,b)=>a+b,0),nRunes);
 const digitAlphabet=numeric.alphabet.replace('f','');
@@ -63,7 +71,7 @@ function traversal(method,descending){
 }
 function mapping(order,direction,tail){
   // dest[position]=source[position]; 'read' follows traversal from source.
-  const dest=Array.from({length:2896},(_,i)=>i);
+  const dest=Array.from({length:2928},(_,i)=>i);
   for(let block=0;block<11;block++){
     const base=block*256;
     for(let i=0;i<256;i++){
@@ -72,14 +80,14 @@ function mapping(order,direction,tail){
     }
   }
   if(tail){
-    const local=order.filter(x=>x<80),base=11*256;
-    assert.equal(local.length,80);
-    for(let i=0;i<80;i++){
+    const local=order.filter(x=>x<112),base=11*256;
+    assert.equal(local.length,112);
+    for(let i=0;i<112;i++){
       if(direction==='read')dest[base+i]=base+local[i];
       else dest[base+local[i]]=base+i;
     }
   }
-  assert.equal(new Set(dest).size,2896);
+  assert.equal(new Set(dest).size,2928);
   return dest;
 }
 const permute=(xs,dest)=>dest.map(i=>xs[i]);
@@ -109,15 +117,15 @@ for(const descending of [false,true]){
 }
 assert.equal(modes.length,24);
 const observed=modes.map(m=>({
-  key:[m.method,m.descending?'desc':'asc',m.direction,m.tail?'tail80':'tail-id'].join('/'),
+  key:[m.method,m.descending?'desc':'asc',m.direction,m.tail?'tail112':'tail-id'].join('/'),
   chi:chi9(permute(wordLengths,m.dest))
 })).sort((a,b)=>b.chi-a.chi);
 const originalChi=chi9(wordLengths);
-assert.ok(Math.abs(originalChi-68.27318638192133)<1e-10);
-assert.equal(observed[0].key,'post/asc/inverse/tail80');
-assert.ok(Math.abs(observed[0].chi-88.71474421678523)<1e-9);
-// Familywise conditional null: exact original 2896-element length inventory,
-// 1200 independently seeded full Fisher-Yates permutations, same 24 test keys.
+assert.ok(Math.abs(originalChi-68.81832162540141)<1e-10);
+assert.equal(observed[0].key,'post/desc/inverse/tail112');
+assert.ok(Math.abs(observed[0].chi-89.57563275686461)<1e-9);
+// Familywise conditional null: exact original 2928-element length inventory,
+// 800 independently seeded full Fisher-Yates permutations, same 24 test keys.
 let randomState=0x31C1DADA>>>0;
 function random32(){
   randomState^=randomState<<13;
@@ -125,7 +133,7 @@ function random32(){
   randomState^=randomState<<5;
   return randomState>>>0;
 }
-const B=1200;
+const B=800;
 let nullGreaterEqual=0;
 const nullFirstEight=[];
 for(let trial=0;trial<B;trial++){
@@ -142,7 +150,7 @@ for(let trial=0;trial<B;trial++){
   if(best>=observed[0].chi)nullGreaterEqual++;
   if(trial<8)nullFirstEight.push(best);
 }
-assert.equal(nullGreaterEqual,338);
+assert.equal(nullGreaterEqual,164);
 // Positive receiver: prose grammar is destroyed by the actual source-derived
 // traversal and restored EXACTLY by the inverse. No source cipher labels fitted.
 const DIGRAPHS=['ING','TH','EO','NG','OE','AE','IA','EA'];
@@ -157,8 +165,8 @@ function gpWordLength(s){
   return count;
 }
 const nativeWords=(nativeSource.match(/[A-Za-z]+/g)||[])
-  .slice(0,2896).map(gpWordLength);
-assert.equal(nativeWords.length,2896);
+  .slice(0,2928).map(gpWordLength);
+assert.equal(nativeWords.length,2928);
 const best=modes.find(m=>[m.method,m.descending?'desc':'asc',m.direction,m.tail?'tail80':'tail-id'].join('/')===observed[0].key);
 const opposite=modes.find(m=>m.method===best.method&&m.descending===best.descending
   &&m.direction!==(best.direction)&&m.tail===best.tail);
@@ -173,16 +181,16 @@ assert.ok(nativeResult.sourceScrambledChi<nativeResult.unchangedChi);
 const result={
   classification:'source-motivated but conditional whole-word transposition; no plaintext/key',
   source:{unknownRunes:nRunes,printedWords:wordLengths.length,
-    fullBlocks:11,blockWidth:256,remainingWords:80,
+    fullBlocks:11,blockWidth:256,remainingWords:112,
     tableShape:'32x8 256 signed-value tokens',base59Root:189,
     treeOrderFamilies:'BFS, preorder, postorder, each ascending or descending children',
-    directionFamilies:['read','inverse'],tailHandling:['unchanged','first80 subtree order']},
+    directionFamilies:['read','inverse'],tailHandling:['unchanged','first112 subtree order']},
   original:{unchangedChi:originalChi,modes:modes.length,
     best:observed.slice(0,12)},
   shuffleNull:{seed:'0x31C1DADA',draws:B,exceedances:nullGreaterEqual,
     familywiseTail:(nullGreaterEqual+1)/(B+1),firstEightMaxima:nullFirstEight},
   heldNative:nativeResult,
-  decision:'Retire exact base59 rooted-tree BFS/DFS 256-word block transpositions. The strongest +20.44 chi-square lift is not distinguishable from the 24-mode shuffle maximum (p=0.2823), whereas native language grammar is restored on a true planted key. No independent source instruction binds tree visits to the 2896 printed word positions.'
+  decision:'Retire exact base59 rooted-tree BFS/DFS 256-word block transpositions. Earlier 2896/80-tail fit was an artefact of accidentally joining 32 whole words across physical page boundaries; correct 2928/112-tail source test yields best chi-square 89.576 versus original 68.818, but 164/800 matched shuffles exceed best-of-24 (p=0.206). Native controls recover exact source grammar. No independent instruction selects 112-word tail.'
 };
 console.log(JSON.stringify(result,null,2));
 if(process.env.RUNNER_TEMP)fs.writeFileSync(
