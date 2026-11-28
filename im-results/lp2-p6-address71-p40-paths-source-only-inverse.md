@@ -249,6 +249,12 @@ terminal red rune           = aK.
 
 The competing internal spans fail at least one condition. This makes the p6 key packet a uniquely state-shaped source object rather than a number pool chosen only because its values fit p40.
 
+## Joint p36/p40 serializer boundary
+
+Director Issue #3385 froze 720 source-only paired p36/p40 key laws before target grading: same relative title-anchor window, same reversible H-family transform, same coordinate permutation and same sign. None reproduces p36 GOOD, none reproduces p40 PATHS, and the best paired rule matches only 3/8 target runes.
+
+This blocks a tempting mutual-support argument: the two local candidates do **not** share the most literal common title-anchor serializer. PATHS retains its independent receiver and fixed-key evidence above, but a cross-block key law needs a new first-party cue. See `im-results/lp2-p6-p36-p40-anchor-window-serializer-negative.md`.
+
 ## Evidence boundary
 
 This is now an exact local inverse in which PATHS rune values are not used to choose the receiver, page, or numeric key. The p6 packet reaches p40 word17/start71 through two materially different retrospective routes: `(address71, length4, physical-line width20)` and the source-ordered W3 rune17 local-word ordinal. The independent p25 route separately selects p40. The strongest remaining unsupported step is authorship-level operation choice: no first-party text explicitly says to interpret the aligned p6 rune as a local word ordinal, and the rule is not universal across the eleven-page corridor. A prospective ordinal consumer would materially change that status.

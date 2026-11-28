@@ -236,3 +236,10 @@ Published `im-results/lp2-p6-title-rune-p40-word17-selector.md` and `sims/lp2_p6
 ### Manuscript-wide p40 fixed-key control (same invocation)
 
 Extended the rune17/p40 result across the entire unknown manuscript. With exact source/layout-derived key `[20,20,12,6]`: p6-red-rune addresses over all 55 rune-bearing pages expose 174 labeled / 149 distinct four-rune receivers and only p40 start71 -> PATHS across 2,682 comparisons; all 509 complete four-rune words still yield only PATHS across 9,162 comparisons; all 12,791 contiguous four-rune windows still yield only PATHS across 230,238 comparisons. Exhaustive `29^4=707,281` key calibration gives hit-count histogram `0:510501, 1:166764, 2:26842, 3:2920, 4:244, 5:6, 6:4`; the exact key has one hit. Therefore manuscript-wide uniqueness removes receiver/segmentation ambiguity conditional on the exact key, but singleton keys are common and do not independently authenticate the retrospective p6 key grammar. Historical review also found LP1 explicitly protects “the words or their numbers,” supporting word-number significance generally, but no first-party example yet of GP rune value = local word ordinal.
+
+
+### Director #3385 — p36/p40 joint title-anchor serializer negative
+
+Claimed fresh Director task #3385 after it appeared unclaimed. Frozen pretarget commit `8391922572373de02154f8259de0990c2ae80eff`: p36 singleton-block anchor index4 and p40 fourth-lane q-block anchor index8; same common four-rune title window position (3 choices), same transform in identity/H4/H4inv/H2x2/H2x2inv (5), same coordinate permutation (24), same sign (2) = 720 source-only paired complete-key laws. The generator uses p36 target-blind q-center receiver and p40 target-blind start71 receiver and embeds no target rune arrays.
+
+Post-freeze grading: 0/720 produces p36 GOOD; 0/720 produces p40 PATHS; 0 joint. Total 8-rune match histogram is 0:514, 1:186, 2:18, 3:2; max 3/8. This cleanly rejects the natural literal shared title-anchor serializer without falsifying either local plaintext candidate. Do not rescue #3385 with arbitrary p6 state expressions; a successor needs an independent first-party opcode/operand.

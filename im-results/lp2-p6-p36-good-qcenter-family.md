@@ -43,3 +43,10 @@ GOOD.
 The same packet already supports the p37 LUCK, p38 BEWARE, p39 FALSE, and p40 PATHS local keys. This adds p36 as a fifth consecutive warning-corridor consumer. The shared evidence is a source-selected **state/key vocabulary**; the five pages still use different receiver shapes and serialization rules, so no universal page cipher is claimed.
 
 Reproducer: `sims/lp2_p6_p36_good_qcenter_family_sft.cjs`.
+
+
+## Joint p36/p40 serializer boundary
+
+Director Issue #3385 tested whether p36 and p40 can mutually authenticate a single literal p6-title key law. A source-only precommit froze 720 paired serializers: the same relative four-rune title window around each schedule-selected block/lane anchor, the same transform from `identity/H4/H4^-1/H2x2/H2x2^-1`, the same coordinate permutation, and the same sign. Post-freeze grading finds **0/720 p36 GOOD**, **0/720 p40 PATHS**, and **0/720 joint hits**; the best rule matches only 3/8 target runes.
+
+Therefore the p36 GOOD family remains a strong local candidate, but it cannot borrow support from p40 through this natural shared title-window serializer. Any joint key law now needs an additional first-party operand or opcode rather than more target-conditioned p6 state expressions. See `im-results/lp2-p6-p36-p40-anchor-window-serializer-negative.md`.
