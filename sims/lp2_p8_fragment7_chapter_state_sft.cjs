@@ -564,6 +564,57 @@ assert.deepEqual(
   [inv(B), 1, g + K, b + K, a * K, b, g + K]
 );
 
+// The same residues also have the direct GP0 interpretation, without signed
+// lifting. It selects a second held-out 28-rune operand.
+const p7RawFragmentSchedule = p7WeightedRows.slice();
+const rawSelectedChapterFragments = p7RawFragmentSchedule.map((index, i) => {
+  const page = 8 + i;
+  const fragments = pageFragments(page);
+  assert.ok(index >= 0 && index < fragments.length);
+  return { page, index, fragment: fragments[index] };
+});
+const rawSelectedFragmentLengths = rawSelectedChapterFragments.map(
+  (x) => x.fragment.values.length
+);
+const rawSelectedFragmentSums = rawSelectedChapterFragments.map(
+  (x) => sum(x.fragment.values)
+);
+const rawSelectedFragmentProducts = rawSelectedChapterFragments.map(
+  (x) => product(x.fragment.values)
+);
+assert.deepEqual(rawSelectedFragmentLengths, [e, e, K, q + g, K, e, a]);
+assert.deepEqual(
+  rawSelectedFragmentSums,
+  [p, F, K, p - g, mod(-K), b, b + K]
+);
+assert.deepEqual(
+  rawSelectedFragmentProducts,
+  [K, mod(-K), mod(-g), F, b + K, q + g, mod(-A)]
+);
+const rawSelectedChapterOperand = rawSelectedChapterFragments.flatMap(
+  (x) => x.fragment.values
+);
+assert.equal(rawSelectedChapterOperand.length, mod(-1));
+assert.equal(sum(rawSelectedChapterOperand), b);
+assert.equal(product(rawSelectedChapterOperand), F);
+
+// Both branches are exactly 28 runes, so their coordinate-wise +/- combination
+// is source-defined and yields two more aggregate state closures.
+const operandDifference = rawSelectedChapterOperand.map((x, i) =>
+  mod(x - selectedChapterOperand[i])
+);
+const operandSum = rawSelectedChapterOperand.map((x, i) =>
+  mod(x + selectedChapterOperand[i])
+);
+assert.deepEqual(
+  [operandDifference.length, sum(operandDifference), product(operandDifference)],
+  [mod(-1), inv(A), F]
+);
+assert.deepEqual(
+  [operandSum.length, sum(operandSum), product(operandSum)],
+  [mod(-1), B, a]
+);
+
 // The p7 polynomial can itself act directly on the p8 matrix.
 const p7OfP8Matrix = polynomialMatrix(p7Polynomial, matrix);
 const p7OfP8Characteristic = [
@@ -838,15 +889,25 @@ const p15BoundaryReceiver = p15Page.slice(19);
 assert.equal(p15BoundaryReceiver.length, g * selectedChapterOperand.length);
 assert.equal(p15BoundaryReceiver.length, 140);
 const p15OperandResults = [];
-for (const sign of [-1, 1]) {
-  const decoded = p15BoundaryReceiver.map((x, i) =>
-    mod(x + sign * selectedChapterOperand[i % selectedChapterOperand.length])
-  );
-  const replay = decoded.map((x, i) =>
-    mod(x - sign * selectedChapterOperand[i % selectedChapterOperand.length])
-  );
-  assert.deepEqual(replay, p15BoundaryReceiver);
-  p15OperandResults.push({ sign, score: score(decoded), ioc: ioc(decoded) });
+for (const [branch, key] of [
+  ['signed', selectedChapterOperand],
+  ['raw-gp0', rawSelectedChapterOperand],
+]) {
+  for (const sign of [-1, 1]) {
+    const decoded = p15BoundaryReceiver.map((x, i) =>
+      mod(x + sign * key[i % key.length])
+    );
+    const replay = decoded.map((x, i) =>
+      mod(x - sign * key[i % key.length])
+    );
+    assert.deepEqual(replay, p15BoundaryReceiver);
+    p15OperandResults.push({
+      branch,
+      sign,
+      score: score(decoded),
+      ioc: ioc(decoded),
+    });
+  }
 }
 assert.ok(p15OperandResults.every((x) => x.score < nativeMin));
 
@@ -923,6 +984,30 @@ console.log(JSON.stringify({
           sum:sum(selectedChapterOperand),
           product:product(selectedChapterOperand),
           values:selectedChapterOperand,
+        },
+        rawGp0:{
+          schedule:p7RawFragmentSchedule,
+          lengths:rawSelectedFragmentLengths,
+          sums:rawSelectedFragmentSums,
+          products:rawSelectedFragmentProducts,
+          operand:{
+            length:rawSelectedChapterOperand.length,
+            sum:sum(rawSelectedChapterOperand),
+            product:product(rawSelectedChapterOperand),
+            values:rawSelectedChapterOperand,
+          },
+        },
+        branchAlgebra:{
+          difference:{
+            length:operandDifference.length,
+            sum:sum(operandDifference),
+            product:product(operandDifference),
+          },
+          sum:{
+            length:operandSum.length,
+            sum:sum(operandSum),
+            product:product(operandSum),
+          },
         },
       },
       polynomialOfMatrixCharacteristic:p7OfP8Characteristic,
