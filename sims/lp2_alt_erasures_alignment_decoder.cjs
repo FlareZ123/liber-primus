@@ -156,4 +156,72 @@ function lcs(a,b) {
   }
   return old[b.length];
 }
-module.exports={GP_RUNES,GP_NATIVE,tokenizeLatin,tokenizeNative,trainLanguage,beamDecode,encodePlant,lcs,lcg};
+
+/**
+ * Full generative inverse: hidden plaintext events are recovered in the
+ * hidden language state (but are omitted from the returned printed subsequence).
+ * This retains the true 36-symbol silent alphabet and the strict skip condition
+ * rather than approximating all losses as arbitrary key gaps.
+ */
+function beamDecodeFull(C,K,variant,model,opts={}) {
+  if(!["V-DELETE","V-SILENT"].includes(variant))throw new Error("variant");
+  const M=variant==="V-SILENT"?36:29, B=opts.beam??900, H=opts.maxHidden??2;
+  const maxReject=opts.maxReject??3, t0=Date.now();
+  let beam=[{j:0,c:-1,score:0,h:[],tail:null,outlength:0,hid:0}];
+  function prune(rows,width=B) {
+    rows.sort((a,b)=>b.score-a.score);
+    let seen=new Set(),res=[];
+    for(const x of rows) {
+      let key=x.j+"|"+x.c+"|"+x.h.join(",");
+      if(seen.has(key))continue;
+      seen.add(key);res.push(x);
+      if(res.length>=width)break;
+    }
+    return res;
+  }
+  function append(st,p,c,j,hidden) {
+    const h=st.h.concat(p);
+    const emitted=hidden||p===29?st.tail:{plain:p,prior:st.tail};
+    const ll=model.score(st.h,p)+(variant==="V-DELETE"?
+      Math.log(hidden?0.187:0.813):0);
+    return {j,c,score:st.score+ll,h:h.slice(-Math.max(1,model.maxOrder-1)),
+      tail:emitted,outlength:st.outlength+(!hidden&&p!==29?1:0),
+      hid:st.hid+(hidden?1:0)};
+  }
+  for(let i=0;i<C.length;i++){
+    let hiddenFrontier=beam,printed=[];
+    for(let h=0;h<=H;h++){
+      for(const st of hiddenFrontier) {
+        if(st.c===C[i])continue; // strict: no immediate repeated actual A
+        for(let r=0;r<=maxReject;r++) {
+          const j=st.j+r;
+          if(j>=K.length)break;
+          const p=mod(C[i]-K[j],M);
+          if(variant==="V-SILENT"&&p>29)continue;
+          let valid=true;
+          for(let u=st.j;u<j;u++)
+            if(st.c<0||mod(p+K[u],M)!==st.c){valid=false;break;}
+          if(valid)printed.push(append(st,p,C[i],j+1,false));
+        }
+      }
+      if(h===H)break;
+      const next=[];
+      for(const st of hiddenFrontier)for(let p=0;p<(variant==="V-SILENT"?30:29);p++){
+        let j=st.j,c;
+        while(j<K.length && (c=mod(p+K[j],M))===st.c)j++;
+        if(j>=K.length)continue;
+        if(variant==="V-SILENT"&&c<29)continue;
+        next.push(append(st,p,c,j+1,true));
+      }
+      hiddenFrontier=prune(next,opts.hiddenBeam??Math.round(B*1.5));
+    }
+    beam=prune(printed);
+    if(!beam.length)return {plain_idx:[],score:-Infinity,error:"No path at "+i};
+  }
+  const win=beam[0],out=new Array(win.outlength);let node=win.tail;
+  for(let i=out.length-1;i>=0;i--){out[i]=node.plain;node=node.prior;}
+  return {plain_idx:out,score:win.score,alignmentKeyConsumed:win.j,
+    hiddenEvents:win.hid,elapsedMs:Date.now()-t0};
+}
+
+module.exports={beamDecodeFull,GP_RUNES,GP_NATIVE,tokenizeLatin,tokenizeNative,trainLanguage,beamDecode,encodePlant,lcs,lcg};
