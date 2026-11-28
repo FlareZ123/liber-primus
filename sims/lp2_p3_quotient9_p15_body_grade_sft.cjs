@@ -14,7 +14,21 @@ const mod=x=>((x%29)+29)%29;
 const target=corpus.pages[15].indices.slice(20);
 assert.equal(target.length,139);assert.deepEqual(freeze.originalReceiver.indices,target);
 assert.deepEqual(freeze.key,[5,5,14,9,10,4,27,17,25]);
-const solved=corpus.pages[56].indices.concat(corpus.pages[57].indices);
+// GP indices on p56 in the original corpus are still CIPHERTEXT despite
+// status='solved'. Load the published, independent solved-native plaintext
+// rather than silently training a language gate on p56 ciphertext.
+const solvedSource=read('resources/external/relikd-solved-gp29-native-v1.json');
+const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
+const solvedPage=name=>{
+ const section=solvedSource.sections.find(s=>s.name===name);
+ assert(section,'missing published solved control '+name);
+ return Array.from(section.source_text).filter(ch=>runeIndex.has(ch)).map(ch=>runeIndex.get(ch));
+};
+const gp56=solvedPage('p56_an_end'),gp57=solvedPage('p57_parable');
+assert.equal(gp56.length,85);assert.equal(gp57.length,95);
+assert.deepEqual(gp57,corpus.pages[57].indices,'published p57 solved GP must equal original clear runes');
+assert.notDeepEqual(gp56,corpus.pages[56].indices,'p56 original is not decrypted');
+const solved=gp56.concat(gp57);
 function ioc(xs){
  const n=xs.length,counts=Array(29).fill(0);for(const x of xs)counts[x]++;
  return counts.reduce((s,n)=>s+n*(n-1),0)/(n*(n-1));
@@ -36,9 +50,9 @@ function crossEntropy(xs,training,order){
  return entropy/(xs.length-order);
 }
 function native(x){return x.map(i=>corpus.translit[i]).join('');}
-const solvedRefs=[56,57].map(page=>({page,count:corpus.pages[page].indices.length,ioc:ioc(corpus.pages[page].indices),
- unigramCrossEntropy:crossEntropy(corpus.pages[page].indices,solved,0),
- bigramCrossEntropy:crossEntropy(corpus.pages[page].indices,solved,1)}));
+const solvedRefs=[[56,gp56],[57,gp57]].map(([page,indices])=>({page,count:indices.length,ioc:ioc(indices),
+ unigramCrossEntropy:crossEntropy(indices,solved,0),
+ bigramCrossEntropy:crossEntropy(indices,solved,1)}));
 const controls={
  untouched:{ioc:ioc(target),unigramCrossEntropy:crossEntropy(target,solved,0),bigramCrossEntropy:crossEntropy(target,solved,1)},
  solvedRefs,
