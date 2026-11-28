@@ -66,7 +66,7 @@ The broader, previously established 60-cell leading-zero parent state is also no
 
 | diagnostic | seed 3311 | seed 123456789 |
 | --- | ---: | ---: |
-| mean leading-zero hits | 26.81 | 26.7 approx. |
+| mean leading-zero hits | 26.81 | 26.711 |
 | `P(leading-zero hits >= 33)` | **0.1422** | **0.1430** |
 
 The ungated two-tap model had placed the original leading-zero enrichment at about
