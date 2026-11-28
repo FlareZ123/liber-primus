@@ -26,7 +26,7 @@ K = 8^15 mod 23 = 2
 
 Two values are held out locally: `A=8` equals the third physical page in the self-index run, and `K=2` equals the observed right-outer excess `7-5`. Enumerating all **4,032** ordered count choices compatible with only the quotient bins6,7,8,9, then requiring prime `p`, valid `g`, `g^6 mod p = 8`, and the DH shared secret to equal the observed outer excess, leaves **exactly one** candidate: `[22,5,23,7]`, reconstructing `(a,g,p,A,b,B,K)=(6,5,23,8,15,19,2)`.
 
-The same outside-H applied separately to the page-number column `[6,7,8,9]` and remainder column `[22,5,23,7]` gives `[26,28,15,15]` and `[15,11,28,0]`. Across all53 four-page windows, p6–p9 is the **only** window satisfying the three state-free cross-relations `lowH0=highH2`, `lowH2=highH1`, and `lowH3=0`. Their common value `15` is therefore a natural physical-page pointer. On p15, independent source-visible work finds the same DH state; the unique red grid cell is3299 and the newly reconstructed `K=2` gives3301, exactly the authenticated 2013 BASE29 worked input.
+The same outside-H applied separately to the page-number column `[6,7,8,9]` and remainder column `[22,5,23,7]` gives `[26,28,15,15]` and `[15,11,28,0]`. Across all53 four-page windows, p6–p9 is the **only** window satisfying the three state-free cross-relations `lowH0=highH2`, `lowH2=highH1`, and `lowH3=0`. Their common value `15` is therefore a natural physical-page pointer. On p15, the independently solved Fibonacci/prime grid already reconstructs anchor3301 from the red origin (`3299 + first-prime 2 = 3301`), exactly the authenticated 2013 BASE29 worked input. This 3301 step predates and therefore does not validate the route's reconstructed `K=2`; naming the generator offset2 as K is conditional state compatibility.
 
 The same remainder packet has two additional locked checks. The four digits are `[22,5,23,7]=[p-1,g,p,g+K]` under the already reconstructed state, and canonical outside-H gives `[15,11,28,0]=[b,A^-1,-1,0]`. Conditional on only the four required base29 quotient bins, there are **4,032** ordered count choices and exactly **one** gives that H packet: the actual p6–p9 counts.
 
@@ -336,7 +336,7 @@ A=8, B=19, K=2
         |
 common H value 15 -> p15
         v
-red3299 + K2 = signed-source 3301
+red3299 + generator first-prime2 = signed-source 3301 (not an independent K validation)
         |
 BASE29 output 3QO; digit sum 53
         v
