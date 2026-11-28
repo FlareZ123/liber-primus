@@ -101,7 +101,7 @@ Not established:
 - any plaintext on p12, p2, or p27;
 - a body cipher.
 
-The strongest conservative reading is that the fixed Q branch receives a remarkably source-readable label and returns to the same independently reconstructed DH-state route.
+The strongest conservative reading is that the fixed Q branch receives a remarkably source-readable label and returns to the same independently reconstructed DH-state route. A subsequent visual audit of the selected p12/p2 pair finds a 29-terminal tree with 13 root tips on p12 paired with p2's 13-dot mark; see [p12/p2 tree visual cross-lock](lp2-q-path-p12-p2-tree-29tip-visual.md). That observation constrains the next path hypothesis but does not alter the cycle arithmetic.
 
 Reproducer: ../sims/lp2_q_tail_path_branch_cycle_sft.cjs
 
