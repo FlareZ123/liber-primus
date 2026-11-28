@@ -150,6 +150,43 @@ while(!b59Seen.has(b59k)){
 }
 assert.equal(b59Hits748,false);
 
+const redByPage=new Map();
+for(const r of red){
+ if(!redByPage.has(r.page))redByPage.set(r.page,[]);
+ redByPage.get(r.page).push(r);
+}
+const multiRedPages=[...redByPage.entries()].filter(([,spans])=>spans.length>1);
+assert.deepEqual(multiRedPages.map(([page,spans])=>[page,spans.map(r=>[r.start,r.k])]),[
+ [15,[[0,236],[9,748]]],
+ [33,[[0,810],[91,635]]],
+]);
+function reachSteps(analysis,start,target){
+ let x=start,n=0;const seen=new Set();
+ while(!seen.has(x)){
+   if(x===target)return n;
+   seen.add(x);x=analysis.next(x);n++;
+ }
+ return null;
+}
+const samePageReach=[];
+for(const [page,spans] of multiRedPages){
+ for(let i=0;i<spans.length;i++)for(let j=0;j<spans.length;j++)if(i!==j){
+  samePageReach.push({
+   page,
+   from:[spans[i].start,spans[i].k],
+   to:[spans[j].start,spans[j].k],
+   base60:reachSteps(b60,spans[i].k,spans[j].k),
+   base59:reachSteps(b59,spans[i].k,spans[j].k),
+  });
+ }
+}
+assert.deepEqual(samePageReach,[
+ {page:15,from:[0,236],to:[9,748],base60:21,base59:null},
+ {page:15,from:[9,748],to:[0,236],base60:null,base59:null},
+ {page:33,from:[0,810],to:[91,635],base60:null,base59:null},
+ {page:33,from:[91,635],to:[0,810],base60:null,base59:null},
+]);
+
 const result={
  schema:'lp2-q-dlog-table-functional-graph-v1',
  classification:'complete 840-state functional-graph census for the uniform dlog-coordinate word-number direction rule; post-discovery structural evidence, no plaintext',
@@ -164,12 +201,13 @@ const result={
    redArcLengths,
    p15FirstTransient:{startK:236,intermediateK:333,cycleEntryK:516,cycleEntryRed:'p39'},
    p15FirstToSecond:{steps:21,waypoints:p15RedWaypoints},
+   samePageRedPairControl:samePageReach,
  },
  base59:{
    cycleLengths:b59.cycles.map(c=>c.length).sort((a,b)=>a-b),
    distinctRedStatesOnCycles:b59.redOnCycle.length,
  },
- boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516; continuing the same uniform map reaches p15's second red / solved-p57 residue k748 after exactly 21 total steps, with printed-red waypoints p15-first -> p39 -> p7 -> p6 -> p15-second/p57. The matched base59 walk from p15-first never reaches k748 before entering its cycle. This remains post-discovery and is not a plaintext recovery.',
+ boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516; continuing the same uniform map reaches p15's second red / solved-p57 residue k748 after exactly 21 total steps, with printed-red waypoints p15-first -> p39 -> p7 -> p6 -> p15-second/p57. The matched base59 walk from p15-first never reaches k748 before entering its cycle. Across every ordered pair on the only two multi-red pages (p15 and p33), canonical p15 first->second is the sole same-page red-to-red reachability under either radix; p15 reverse and both p33 directions are null. This remains post-discovery and is not a plaintext recovery.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
