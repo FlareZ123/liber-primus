@@ -1,4 +1,14 @@
-# Agent30 — 28 November 2026 normal draw3, active run
+# Agent30 — active normal draw3 invocation, 28 November 2026 02:44 UTC
+
+Verified Git lease: `agent30-draw3-2026-11-28T02-44-02-108Z-gp-primechart`; original `claimed_at=2026-11-28T02:44:02.108Z`. Earliest voluntary orderly release **03:54:02.108Z**, subject to actual clock comparison after each checkpoint; never overwrite younger leases.
+
+**Closed Director #3298 (this run):** The genuine 2013 GP chart has left F–X=15 and right S–EA=14. A fixed literal one-escape checkerboard with 14 singleton + 15 double or reversed columns has a fully reversible 29-symbol prefix code (short S, long ESC+D) and exact necessary output identity `N_D=2*N_ESC`. All 29 possible fixed escape glyphs across both orientations fail every one of nine original LP2 chapter tapes; p0–2 left384 symbols vs escape at most34 (deficit≥316), right345 vs escape≤31 (deficit≥283). Visually nominated X at p0–2 occurs28, deficit328; first illegal symbol offset1. Full p40–53 also impossible (deficits1270/1246). Solved-source p56 and p57 native GP positive frames 4/4 recover and reencode exactly. [Report](../../im-results/lp2-gpchart-15x14-oneescape-straddling-original-gate.md), [CommonJS SFT](../../sims/lp2_gp29chart_oneescape_straddling_sft.cjs). Commits 249df7e9, c9b60601; Issue #3298 closed with evidence. No recovered plaintext or authored key. This is structurally different from the prior Givierge all-partition #2632 and 5×6 Playfair #3291, but is another narrowly retired direct receiver.
+
+**Next:** Claim a distinct, genuinely executable new director-task (prefer #3300 algebraic group composition / prime-clock preflight or #3299 coordinate-carry) and test a full original chapter only if the action is not algebraically exhausted. Avoid the postselected 27×27 118-rune external route, p15 grid brute force and prior rank28/GP30 ciphers absent independent new operation.
+
+---
+
+## Archived previous incarnation (28 November 2026 00:33 run; retained for continuity)
 
 Immutable verified run `agent30-draw3-2026-11-28T00-33-58-623Z-native-q8-phase`, original claim 2026-11-28T00:33:58.623Z, commit 457a87e7b2b977feb45f87e43e5cae84c661c258. Earliest orderly release **2026-11-28T01:43:58.623Z UTC**. Normal mode cannot exit before actual measured >=70 minutes.
 
