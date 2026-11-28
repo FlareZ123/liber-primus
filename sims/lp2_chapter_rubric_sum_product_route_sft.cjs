@@ -291,13 +291,20 @@ assert.equal(augmentedP0FiveCount,1);
 // all nine original products, permute products among the nine page labels.
 // This preserves *every* observed marginal value, including duplicate 3.
 const n=chapters.length,used=Array(n).fill(false),perm=Array(n);
-let total=0,any5=0,p05=0,p0ToP40=0,any6=0;
+let total=0,any5=0,p05=0,p0ToP40=0,any6=0,exactDhEdgePacket=0;
 function exhaust(k){
  if(k===n){
    total++;
    const es=edges(originalSums,perm),p0=pathInfo(es,0,7);
    if(p0.max>=5)p05++;
    if(p0.reaches)p0ToP40++;
+   // Stronger conditional charge noticed after integration with the
+   // independently reconstructed historical DH23 packet. Require the exact
+   // five route outputs [p,K,B,-K,e]=[23,2,19,27,3] at p0,p8,p27,p54,p40.
+   // This is NOT a discovery-adjusted p-value: the DH labels were known when
+   // the route was interpreted.
+   if(perm[0]===23&&perm[2]===2&&perm[5]===19&&perm[8]===27&&perm[7]===3)
+     exactDhEdgePacket++;
    let m=0;
    for(let i=0;i<n;i++)m=Math.max(m,pathInfo(es,i,7).max);
    if(m>=5)any5++;
@@ -309,8 +316,19 @@ function exhaust(k){
  }
 }
 exhaust(0);
-assert.deepEqual([total,any5,p05,p0ToP40,any6],
- [362880,14400,2880,720,0]);
+assert.deepEqual([total,any5,p05,p0ToP40,any6,exactDhEdgePacket],
+ [362880,14400,2880,720,0,48]);
+// Location-selector charge on the five route pages. Inside each page's pool
+// of genuine all-black words with the same rune length as the selected first
+// post-rubric word, the exact integrated (IN,OUT) pair occurs ONCE: on that
+// selected word itself. Therefore uniform independent replacement of those
+// five operands reproduces all five exact pairs with charge 1/22,000.
+const routeRecordIndices=[0,2,5,8,7]; // p0,p8,p27,p54,p40
+const exactPairMultiplicities=routeRecordIndices.map(i=>
+ controls[i].filter(w=>w.sum===originalSums[i]&&w.product===originalProducts[i]).length);
+assert.deepEqual(exactPairMultiplicities,[1,1,1,1,1]);
+const exactPairPoolProduct=routeRecordIndices.reduce((n,i)=>n*controls[i].length,1);
+assert.equal(exactPairPoolProduct,22000);
 // Conditional source-native word null: for EACH original chapter opener,
 // choose a whole BLACK word of the SAME rune length ON THAT PAGE,
 // holding all nine chapter slots fixed. Multi-target edges are permitted
@@ -360,7 +378,18 @@ console.log(JSON.stringify({
  conditional_fixed_marginal_product_permutation:{
    permutations:total,any_chain_at_least_5:any5,p0_chain_at_least_5:p05,
    p0_to_numeric_chapter_p40_at_depth_at_least_5:p0ToP40,
-   chains_at_least_6:any6
+   chains_at_least_6:any6,
+   exact_integrated_DH_edge_packet_assignments:exactDhEdgePacket,
+   exact_integrated_DH_edge_packet_rate:exactDhEdgePacket/total
+ },
+ exact_integrated_DH_location_charge:{
+   route_pages:[0,8,27,54,40],
+   exact_in_out_pairs:[[15,23],[23,2],[2,19],[19,27],[27,3]],
+   matching_words_per_same_page_same_length_pool:exactPairMultiplicities,
+   route_pool_sizes:routeRecordIndices.map(i=>controls[i].length),
+   exact_uniform_replacement_charge:1/exactPairPoolProduct,
+   one_in:exactPairPoolProduct,
+   warning:'retrospective conditional charge after DH integration; not an authorship probability'
  },
  page_and_length_matched_source_word_null:{
    seed:'xorshift32 0xAE74172B',trials,
