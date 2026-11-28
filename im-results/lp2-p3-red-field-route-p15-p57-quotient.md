@@ -161,12 +161,66 @@ This does **not** show that Q is itself a p56 key, nor does it decrypt an unknow
 
 Reproducer: [`sims/lp2_p3_quotient_p56_prime_prefix_sft.cjs`](../sims/lp2_p3_quotient_p56_prime_prefix_sft.cjs).
 
+## Signed-2016 multiplication-matrix lock and a typed p54 holdout (Agent6, 28 November 2026)
+
+The quotient now has an instruction-shaped cross-source consequence that does not require naming arbitrary field residues after the fact. The authenticated 2016 message has an independently reconstructed **zero-based word-number system**: in particular word2=PATH, word8=DEVOTED, word17=THE, word18=MAP, word20=MEANING, word23=ROAD and word24=AND. The same signed sentence explicitly says that its words are the map and their numbers are the direction. This numbering convention was established independently of the present polynomial route.
+
+Write the frozen p3 field as `u²=r u+t` with `(r,t)=(3,8)`, and the frozen quotient evaluation as
+
+```text
+E(Q) = x + y u = 17 + 24u.
+```
+
+Multiplication by Q is therefore the fixed linear map on field coordinates
+
+```text
+[a']   [ x      t*y   ] [a]   [17 18] [a]
+[b'] = [ y   x+r*y   ] [b] = [24  2] [b]   mod29.
+```
+
+Read in the ordinary row-major matrix order, the four entries are zero-based word positions in the authenticated 2016 source:
+
+```text
+17 18   -> THE MAP
+24  2   -> AND PATH
+```
+
+so the multiplication matrix literally reads **THE MAP / AND PATH**. No row/column permutation, sign, phase, scalar or word-number origin is fitted. The independently established zero-based convention is essential: the one-based reading is `ARE THE / ROAD THE`, not the same instruction. Among all **841** possible field multipliers in this fixed p3 field, exactly one matrix has the exact row-major word readout `THE MAP AND PATH`: `E(Q)=[17,24]`.
+
+The p15-second/p57 polynomial difference has only the two previously charged monic quadratic factor relations. Their quotient-multiplication matrices give:
+
+| Quadratic relation | quotient E | multiplication matrix | authenticated 2016 word readout |
+| --- | --- | --- | --- |
+| **source p3** `u²=3u+8` | **`[17,24]`** | **`[[17,18],[24,2]]`** | **THE MAP / AND PATH** |
+| alternate `u²=18u+12` | `[5,19]` | `[[5,25],[19,28]]` | EPIPHANY THEIR / THEIR THE |
+
+This gives the source-printed p3 relation a discriminator independent of the p15 `[p,A]` product and solved-p56 prime-prefix check. The English readout was discovered after Q, so the 1/841 census is a finite exact identity, **not** a calibrated discovery p-value.
+
+There is also a genuinely unknown-page typed holdout. The canonical manuscript has exactly **two complete red spans of length9**: p15 first-red, already used as Q's complementary p15 receiver, and the opening red rubric of physical p54. Without changing the operation,
+
+```text
+E(p15 first red) = [24,6]
+E(Q)E(p15 first) = [23,8] -> signed words ROAD / DEVOTED
+
+E(p54 red9)      = [13,28]
+E(Q)E(p54 red9)  = [0,20]  -> signed words HELLO / MEANING
+
+E(p56 red5)      = [3,23]
+E(Q)E(p56 red5)  = [1,2]   -> signed words THE / PATH
+```
+
+The p54 result was not used to choose its receiver: p54 is the only held-out member of the complete-red-nine class. Its second coordinate20 also predates this calculation as the independently committed p25 MEANING/qg operand (commit `233c6ceb...`, 11:17 UTC), while Q itself was first committed at 12:04 UTC. Across both orientations and every cyclic start of all 18 complete red spans (**450 presentations**), only **printed p54 at rotation0** maps to `[0,20]`.
+
+The signed-word labels on arbitrary mod29 pairs should not be overcounted: every field coordinate is automatically between0 and28. The strong evidence is narrower and joint: Q was source-derived first; its **entire multiplication matrix** spells an instruction-shaped source phrase under an independently fixed word-number convention; the same unmodified map hits the authentic p56 key prefix and the uniquely typed unknown p54 red9 receiver.
+
+Reproducer: [`sims/lp2_p3_q_signed2016_map_path_sft.cjs`](../sims/lp2_p3_q_signed2016_map_path_sft.cjs).
+
 ## Scientific boundary and next causal step
 
-The reproducible result is now an **exact original GP29 polynomial-factor bridge plus an authenticated solved-cipher cross-holdout**. The p15-second/p57 factorization derives a complete nine-rune Q; the complementary p15 red span maps through the same p3 field to authenticated DH `[p,A]`; and the independently solved p56 red ciphertext maps to `[1,2]`, the unique opening adjacent pair of its real prime-minus-one key stream. This materially upgrades Q from an unauthenticated potential operand to a source-constrained **serializer candidate** with a genuine cipher-linked consequence.
+The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; the complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.
 
-The boundary remains important. No untouched p0–p55 ciphertext was decoded, Q is not thereby established as a key, and no first-party instruction yet says to perform the polynomial reduction or identifies an unknown recipient. The p15 second-span receiver selection is independently supported by its p6-like 11-rune/double-red13 source type, while the p56 receiver is a solved control inspected after Q was discovered. The DH and p15/p57 navigation premises were also partly recognized retrospectively.
+This materially changes the route's status: Q is no longer merely a numerically interesting operand. It is a **candidate authored linear map/navigation opcode** whose own matrix names MAP/PATH in the later authenticated clue and whose frozen action has independent solved and unknown source-typed consequences. The result still does **not** decrypt p54 body text or any other p0-p55 body, and the original LP pages never explicitly say “form this polynomial quotient.” Discovery chronology also matters: the signed-source matrix phrase was recognized after Q, and individual mod29 coordinates always admit word-position labels in the first29 signed words.
 
-The next causal step is therefore narrower than before: **freeze an unknown recipient and the expected role of its two-coordinate Q product from independent source evidence before opening or grading that recipient**. A successful prediction of a key prefix, opcode, or reversible state transition on untouched ciphertext would elevate the mechanism toward a real LP2 decoder; another post-hoc state label would not.
+The next decisive step is to use this now-frozen map **prospectively**. Select an untouched unknown receiver from source geometry or an authenticated word-number instruction before reading its rune values, predict the expected output type (signed-word pointer, key prefix, or reversible state transition), and require exact replay. A successful body-cipher consequence would promote the map toward an LP2 decoder; a new post-hoc state name would not.
 
 Read-only reproducer: [`sims/lp2_p3_field_redmap_p15_p57_quotient_sft.cjs`](../sims/lp2_p3_field_redmap_p15_p57_quotient_sft.cjs). It reads only original canonical corpus and ink annotations, derives every numeral, checks original field constraints, exhausts both full modulus/orientation families, and proves exact quotient/recomposition. No external packages or language scoring.
