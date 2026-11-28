@@ -215,7 +215,7 @@ function experiment(raw, options={}) {
         recovery:truth&&b.P?lcs(b.P,truth)/Math.max(b.P.length,truth.length):null,
         gpPrefix:b.P?.slice(0,140).map(x=>gp.translit[x]).join("")}};
   }
-  for(let z=0;z<(options.plants||3);z++){
+  for(let z=(options.start||0);z<(options.start||0)+(options.plants||3);z++){
     const donor=datasets[z%datasets.length],plant0=plant(donor,80421+z*547);
     const a=decode(plant0.C,plant0.K,lm,beam,options.maxDeleted||3);
     const b=decode(plant0.C,plant0.wrong,lm,beam,options.maxDeleted||3);
