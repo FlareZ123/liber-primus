@@ -73,6 +73,23 @@ The adjacent second red word is `[10,0,5,22,12]` with descriptor `[5,20,0]`. The
 
 One more predeclared `+q` translation predicts `(14,22)`. It occurs in four ordinary black words and in **zero red words**. The marked continuation therefore stops cleanly at p33 instead of generating an open-ended chain.
 
+## Receiver-side arithmetic closure inside the marked rubric
+
+The p33 hit carries a second, independent layout checksum that was not used to derive the `(6,11)` prediction. Its first red word has descriptor `[3,6,11]=[e,a,A^-1]`; the two visible red-word lengths are already `[3,5]=[e,g]`; and the whole second rubric is 8 runes, `A=8`. Therefore
+
+```text
+first word length        = 3  = e
+second word length       = 5  = g
+first word SUM           = 6  = a
+first word PRODUCT       = 11 = A^-1  (mod29)
+whole red-span length    = 8  = A
+11 * 8 mod29             = 1
+```
+
+The SUM also equals the independently counted six physical lines in p33's lower titled unit, already present in the p33 layout-state report. More importantly for a finite control, among **all 50 complete red words on unsolved p0-p55**, p33:91 is the **only** word whose nonzero PRODUCT has a GP29 multiplicative inverse equal to the length of its containing red span. This makes PRODUCT participate in a source-visible relation at the prospectively reached receiver rather than merely in the route that selected it.
+
+Combined with the pre-existing p33 relation `H([21,2])=[19,23]=[B,p]`, this single marked lower heading now exposes `[B,p]` from its first two runes and `[e,g,a,A]` from word lengths/SUM/PRODUCT inverse. The derived `b=e^-1 mod(p-1)=15` and the raw second rune `K=2` close the familiar DH23 state. This is still structural evidence: it does not turn the eight red runes into an authenticated cipher instruction or decrypt either body.
+
 ## Exact route-field calculation
 
 For the five route pairs, brute-force roots in the p3 field are:

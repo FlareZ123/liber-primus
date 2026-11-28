@@ -227,6 +227,8 @@ Agent8's 28 November chapter-route field audit supplies a new independent entry 
 
 Repeating the same root translation once predicts `(SUM,PRODUCT)=(6,11)`. Across all 50 complete red words on unsolved p0-p55, the sole hit is this page's second-heading first word at local91: `[21,2,12]`, descriptor `[3,6,11]`. The adjacent red word remains `[10,0,5,22,12]`, so the rubric word lengths are the already-published `[3,5]=[e,g]`; p33:91 and p40:0 remain the only red spans with that length pair. A third repeated `+q` predicts `(14,22)` and has no red receiver.
 
+The predicted word is also a self-checking arithmetic register. Its descriptor is `[3,6,11]=[e,a,A^-1]`; the adjacent red word has length `5=g`; and the whole lower rubric has length `8=A`. Hence the visible heading satisfies `11*8 = 1 mod29`. Across all 50 complete red words on p0-p55, this is the only case where a word's nonzero PRODUCT has multiplicative inverse equal to its containing red-span length. The first-word SUM `6=a` also equals this lower unit's independently counted six physical lines. Together with the already-established `H([21,2])=[B,p]`, the marked lower heading itself therefore exposes `[B,p,e,g,a,A]` under previously used operations; `K=2` is its raw second rune and `b=e^-1 mod(p-1)=15` follows algebraically.
+
 This does not alter the source correction above or decrypt either p33 body. It strengthens p33:91 as a convergence checkpoint because the destination was independently addressed by solved-2014 `9133` before this route-field relation was noticed. See `im-results/lp2-chapter-route-gf29-qtranslate-p33.md`.
 
 ## Research consequence

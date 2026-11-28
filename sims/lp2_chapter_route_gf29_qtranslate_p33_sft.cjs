@@ -186,13 +186,24 @@ for (const ann of ink.pages.filter((p) => p.page <= 55 && p.page !== 50)) {
   const words = pageWords(ann.page);
   for (const span of ann.red_spans || []) {
     for (const w of words) if (w.start >= span.start && w.end <= span.start + span.length) {
-      redWords.push({page: ann.page, spanStart: span.start, ...w});
+      redWords.push({page: ann.page, spanStart: span.start, spanLength: span.length, ...w});
     }
   }
 }
 assert.equal(redWords.length, 50);
 const predictedRed = redWords.filter((w) => w.descriptor[1] === 6 && w.descriptor[2] === 11);
 assert.deepEqual(predictedRed.map((w) => [w.page, w.spanStart, w.start, ...w.descriptor]), [[33, 91, 91, 3, 6, 11]]);
+
+// Receiver-side arithmetic closure: p33:91 alone has PRODUCT^-1 equal to its containing red-span length.
+const inverseProductSpanHits = redWords.filter((w) =>
+  w.descriptor[2] !== 0 && mod(w.descriptor[2] * w.spanLength) === 1
+);
+assert.deepEqual(
+  inverseProductSpanHits.map((w) => [w.page, w.spanStart, w.start, w.spanLength, ...w.descriptor]),
+  [[33, 91, 91, 8, 3, 6, 11]]
+);
+assert.equal(mod(11 * 8), 1);
+
 
 // P33:91 and p40:0 are independently the only complete two-word red spans with lengths [3,5].
 const red35 = [];
@@ -226,7 +237,7 @@ console.log(JSON.stringify({
   consecutiveBaseFieldAffineMaps: routeRoots.slice(0, -1).map((r, i) => affineMaps(r, routeRoots[i + 1])),
   qTranslation: {q, p54ToP40: [[19, 27], [27, 3]], predictedNext: predicted, predictedRoots: roots(...predicted)},
   predictedPairHits: predictedHits,
-  markedReferenceClass: {completeRedWords: redWords.length, predictedRedHits: predictedRed.map((w) => [w.page, w.start, w.descriptor])},
+  markedReferenceClass: {completeRedWords: redWords.length, predictedRedHits: predictedRed.map((w) => [w.page, w.start, w.descriptor]), inverseProductSpanHits: inverseProductSpanHits.map((w) => [w.page, w.spanStart, w.spanLength, w.descriptor])},
   p33SecondRubric: {wordDescriptors: p33SecondWords.map((w) => w.descriptor), wordRunes: p33SecondWords.map((w) => w.values), h3FirstWord: h3(p33SecondWords[0].values)},
   uniqueRed35Spans: red35,
   thirdTranslation: {pair: third, redHits: thirdRed.length},
