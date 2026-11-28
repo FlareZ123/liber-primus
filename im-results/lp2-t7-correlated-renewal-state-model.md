@@ -118,6 +118,34 @@ Three source-native direct scheduling probes also fail descriptively and are not
 
 Reproduce the full conditional gate with `sims/lp2_p50_residue_hazard_t7_holdout_sft.cjs`; the zero-dose predecessor is `sims/lp2_p50_zero_dose_t7_holdout_sft.cjs`.
 
+### The p50 state is diagonal-only; T7 memory is concentrated in long table-pass gaps (Agent 6, 28 November 2026)
+
+The source-phase p50 zero state has a useful held-out prediction. If it selected a broad substitution state, the **ordinary nonrepeat transitions** should also change when the state bit changes. They do not. After removing all 86 diagonal events, compare the next-rune distribution between first-digit-zero and nonzero positions separately within each of the 29 current-rune rows. The aggregated likelihood-ratio statistic is **G² = 820.9612 on 783 df** (asymptotic chi-square upper tail **0.1683**). The source mask is only rank **193/256** among circular phases by this off-diagonal statistic, and **749/1000** random 60-of-256 residue masks produce at least as much off-diagonal separation. The same fixed state simultaneously changes the diagonal repeat rate from **53/9,876 = 0.5367%** to **33/3,025 = 1.0909%**. Thus the frozen p50 association is specifically compatible with an **exception/repeat gate**; there is no evidence here that it selects a different ordinary 29×29 substitution table.
+
+The T7 ordering can be decomposed using the table's independently visible width 256. For successive equality sites with residues `r_n`, write each gap as `G_n = 256 W_n + D_n`, where `D_n = (r_(n+1)-r_n) mod 256` is the forward within-table displacement and `W_n` is the number of complete table passes skipped. On the 85 observed gaps, `W` has counts **71×0, 10×1, 4×2**. The two components behave very differently:
+
+- within-table displacement lag-1 correlation: **+0.04923**, full-residue conditional upper tail **0.2573**;
+- complete-pass count lag-1 correlation: **+0.36774**, full-residue conditional upper tail **0.00138**;
+- cross-correlations between a wrap count and the neighboring displacement are ordinary (upper tails about **0.41** and **0.16**).
+
+A direct ablation supports the same localization. Keep the observed wrap-count order and shuffle the within-table displacements: across 100,000 shuffles the reconstructed T7 has median **+0.2881**, and the original +0.3800 has upper tail **0.05549**. Keep the observed displacements but shuffle the wrap order: the reconstructed T7 has median **-0.0052** and original upper tail **0.000560**. Most of the one-step covariance is therefore carried by the ordering of the rare long skips, not by a walk through p50 cell geometry.
+
+The binary source-width version is also explicit: **14/85** gaps cross at least one complete 256-cell pass. There are **6 LL, 8 LS, 8 SL, 62 SS** successive long/short transitions, so `P(next long | long)=6/14=0.4286` versus `P(next long | short)=8/70=0.1143`. Fixed-count permutation gives upper tail **0.00343** for the binary lag correlation. Both temporal halves retain three LL transitions, although the continuous T7 is stronger in the first half (+0.5084 versus +0.1650).
+
+This does **not** establish that 256 is an encoded numeric threshold. Scanning integer thresholds 29..512 puts 256 only rank **177/484** by quotient lag correlation; nearby thresholds share plateaus and 363..382 are numerically higher. The role of 256 is source-selected only because the original p50 object has exactly 256 cells. The robust conclusion is that the T7 anomaly is dominated by clustered **large-gap / whole-pass-scale** events.
+
+The ordered p50 equality-cell path itself has no comparable geometry. Against the full-residue conditional null, same-row, same-column, rook adjacency, Manhattan distance, exact residue displacement and exact row/column vector statistics are ordinary. The state memory is temporal rather than a visible row/column walk.
+
+### Natural cumulative p50 state schedules fail the joint held-outs (Agent 6, 28 November 2026)
+
+Because the full-residue gate requires history, the simplest source-native escape is a continuous accumulator over the printed p50 values. Nine fixed schedules were tested without a key search: running base60 and base59 sums modulo 29, separate high- and low-digit sums modulo 29, base60 sum modulo 60, base59 sum modulo 59, base60-byte sum modulo 256, base60-byte XOR, and the joint pair `(sum high mod29, sum low mod29)` with 841 possible states.
+
+For each schedule, event counts were conditioned **exactly by the derived state**, then event sites were randomized only among opportunities carrying that same state. On 20,000 fixed-seed draws per schedule, the held-out T7 upper tails range only **0.00025–0.00075**. The held-out source-phase first-zero count ≥33 has upper tails **0.00105–0.01855**. **No draw in any schedule satisfies both held-outs simultaneously** (per-schedule add-one joint upper bound 1/20,001). Even the 841-state two-digit accumulator leaves T7 at **0.00035** while granting 78 occupied event states.
+
+These are bounded negatives for the obvious cumulative schedules, not a theorem against arbitrary state machines. Together with the diagonal-only off-transition result, they redirect the p50 branch away from stationary local hazards, simple running sums/XOR, and literal grid walks. A surviving mechanism needs a more specific source-selected history/update rule that acts on the rare exception timing and ultimately yields a reversible ciphertext receiver.
+
+Reproduce these diagnostics with `sims/lp2_p50_dynamic_state_wrap_localization_sft.cjs`.
+
 The authentic solved p56 prime-totient cipher is also a negative control. Applying its transparent-F hold and prime-minus-one clock to the 2,979 solved native GP runes gives 95 repeats with gap lag-one **-0.02187** under a continuous clock, or 99 repeats with **+0.05526** when the prime clock resets at each solved section. T7 is not a generic artifact of the known Cicada prime cipher.
 
 Exploratory source screens do not identify the shared operand: raw p50 numeric values at the two equality-event endpoints explain only about **1.10%** of gap variance at the authentic phase (rank 174/256 among circular shifts), endpoint printed-line lengths explain **1.35%**, and endpoint printed-word lengths **2.25%**. These screens are diagnostic rather than preregistered exclusions.
