@@ -40,6 +40,9 @@ H^-1         = [20,20,12,6]
 
 The result does not discover PATHS blindly: p40 PATHS and its exact local inverse were already published. The separate source chain regenerates its target and complete numeric key under retrospective choices of cut, index origins and shell roles. Re-evaluating a fixed formula without reading the target ciphertext does not make its original selection independent.
 
+A prospective check now targets the other cut5 output rather than re-fitting p40. Before inspecting p20 offset71, Agent9 committed the same p6 packet used by the strengthened p40 route—address71, arity4, line-width20, key `[20,20,12,6]`, subtraction—against the untouched right output20. P20 fails at the receiver-structure gate: offset71 is not a canonical word start and lies on a width23 line. This does not retract the p40 left branch, but literal packet reuse has failed its first natural second-destination holdout. See `im-results/lp2-p25-second20-p6-packet-holdout.md`.
+
+
 ## Why the p25 output is not an arbitrary split
 
 The frozen p25 transformed output is:

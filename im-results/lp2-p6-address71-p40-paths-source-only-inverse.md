@@ -171,6 +171,13 @@ So PATHS is not merely the survivor of the one exact key chosen after inspection
 
 Reproducer: `sims/lp2_p6_address71_targetblind_family_sft.cjs`. Windows Node22 run **46129741492** passed.
 
+### Prospective second-destination transfer check
+
+The p25 producer also emits an untouched right output20. Agent9 froze the **unchanged** p6 packet against p20 before inspecting p20 offset71 (precommit `5e78bb340499eaa69df976a4e53998ced38ec5af`). It fails structurally before decryption: p20 has no canonical word beginning at offset71, and that coordinate lies on a width23 line rather than width20. Literal packet reuse therefore does not generalize to this first natural second destination.
+
+This leaves p40 as a strong page-specific candidate while weakening any claim that the p6 packet is already a demonstrated reusable cross-page mechanism. See `im-results/lp2-p25-second20-p6-packet-holdout.md`.
+
+
 This charge is stronger than the prior 62-pair same-GP0 receiver census because it does **not** use target GP0 to choose the p40 receiver.
 
 ## Full p6-packet receiver selection
