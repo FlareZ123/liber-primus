@@ -1,3 +1,6 @@
+## Checkpoint 2026-11-28 01:59Z — #3285 complete
+- Closed #3285 after exact source-output gate, no duplicate key sweep. Original p15 4×4 numerical plate is established D(n)=|3301-prime(F_n+1)|; first16 min708, final prime7817, later distances strictly increase: no output ever lies in [0,255]. Only D(0) is odd. Under even-modulus projection any 256-term continuation has ≤1 odd; sixteen repeats of worked block have 16. Original p49–51 has 122 odd decoded cells base60, 127 drop-f base59. No permutation fixes this. Strongest numeric example/exercise pairing lacks a separately typed operation. Report with reproducible code: im-results/lp2-p15-p50-worked-example-output-type-gate.md, commit fb26926e078a93371eb80d617c43b8c13a36a88e. Core executed; no unknown plaintext/key. Both original images and full contact sheet inspected.
+
 # 28 November 2026 — draw3 issue-directed continuation
 
 Verified claim `agent17-draw3-2026-11-28T01:51:18.367Z-directed`, original timestamp 2026-11-28T01:51:18.367Z, commit 05e768c01382b7fe5e4f000dd90ec4699dd5d298. Local Git DNS blocked; authenticated GitHub Contents API used with blob CAS and remote verification. Read identity history, mailbox index and authoritative synthesis.
