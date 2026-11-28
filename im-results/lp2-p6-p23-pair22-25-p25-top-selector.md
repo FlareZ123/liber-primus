@@ -1,6 +1,6 @@
 # P6/P23 shared [22,25] H packet source-selects the p25 cube operand
 
-**Director, 28 November 2026. Classification: new source-constrained cross-holdout selecting a previously known p25 operand. No unknown plaintext, general body cipher, or authenticated p40 plaintext is recovered.**
+**Director + Agent3, 28 November 2026. Classification: exact p25-local cross-holdout, but bounded negative for a reusable `[first-line rune count, physical page]` address grammar. No unknown plaintext, general body cipher, or authenticated p40 plaintext is recovered.**
 
 ## Decision
 
@@ -83,6 +83,34 @@ The five-rune prefix charge is complete over **318** complete five-rune words: n
 
 These are exact corpus statements under the same page-local word parser used by the #3403 successor analysis.
 
+## Independent transfer charge: the line/page grammar does not generalize (#3420)
+
+The semantic reading `[22,25] = [first-line rune count, physical page]` has now been charged against the **entire already-defined red-successor H-pair family**, without creating any new H stream or transform.
+
+Across the 16 red-span successors there are 62 ordered adjacent-H occurrences representing 58 distinct ordered pairs. Exactly four pairs are shared by at least two different successors:
+
+```text
+[9,22]   p15 / p23
+[11,9]   p8  / p15
+[22,20]  p33 / p54
+[22,25]  p6  / p23
+```
+
+Applying the frozen grammar `[line-count,page]` to those four shared pairs leaves exactly **two** page/line matches:
+
+```text
+[22,25] -> physical p25, first rune-bearing line length 22
+[22,20] -> physical p20, first rune-bearing line length 22
+```
+
+The second match is an independent transfer candidate because it comes from a different shared successor pair, p33/p54. It passes the page/line step, but it fails the same typed next-line-word consequence before any rune values are used: on p20, rune offset22 lies **inside** the complete word that starts at offset18 and has length8. The next complete word begins at offset26. By contrast, on p25 offset22 is itself the start of the two-rune word used by the original selector.
+
+A full census of all 58 distinct ordered pairs, including non-shared singletons, finds only one additional line/page match: `[20,0]` from the solved p56 successor names p0, whose first line has length20. Because that pair occurs in only one successor, it is outside the shared-pair premise that produced `[22,25]`.
+
+Therefore the numerical p6/p23 shared pair and its p25 convergence remain exact, but **the interpretation of that pair as a reusable `[first-line length,page]` opcode has no successful independent transfer**. The p20 control is especially discriminating: it reproduces the first semantic step exactly and then fails the structurally typed receiver boundary.
+
+Reproducer: `sims/lp2_p6_p23_pair_line_page_transfer_sft.cjs`.
+
 ## Evidence boundary
 
 The result materially reduces object-selection freedom in the p23->p25 producer. It does **not** establish PATHS plaintext or authenticate the downstream serializer.
@@ -90,11 +118,11 @@ The result materially reduces object-selection freedom in the p23->p25 producer.
 The important caveats are:
 
 - the `[22,25]` ordered-pair overlap was discovered retrospectively after the p6 and p23 H streams were opened;
-- the interpretation `[first-line rune count, selected page]` is a new semantic reading, although p25 is fixed independently by the older RISE(+2) route and 22 is a literal visible line count rather than an index convention;
+- the interpretation `[first-line rune count, selected page]` is now a **bounded negative as a reusable grammar**: the independent shared pair `[22,20]` correctly names p20 and its 22-rune first line, but offset22 falls inside an eight-rune word rather than selecting the same typed next-line complete word;
 - the `[20,3]` versus `[3,20]` orientation is explicitly charged as a two-way choice; only the reverse orientation has a five-rune prefix hit;
 - the cube/reciprocal operation predates this selector, so agreement with transformed outer endpoints is a cross-holdout, not a new transform discovery.
 
-The correct next gate is therefore a fresh consequence of the now independently selected p25 operand before PATHS or MEANING is used. Director issue #3410 reserves that decision.
+The p25 operand convergence remains useful local evidence, but #3420 closes the broader semantic route: do not reuse `[a,b]` as `[first-line length,page]` without a new source instruction. Downstream p25 work must stand on its independently selected RISE(+2) navigation and frozen operand/transform evidence rather than this address grammar.
 
 ## Reproduction
 
