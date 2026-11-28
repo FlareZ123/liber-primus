@@ -195,6 +195,52 @@ const productGapSet=new Set(deadCoverage.rune_product.overlap);
 const unmatchedGaps=frameStartGaps.filter(x=>!productGapSet.has(x));
 assert.deepEqual(unmatchedGaps,[12]);
 
+// Ordered serialization control. LP2 has 58 pages p0..p57. Starting from
+// p4—the first non-singleton frame start immediately after the first
+// PRODUCT-dead-end chapter p3—the cyclic gaps between non-singleton frame
+// starts are [11,12,13,16,3,3]. PRODUCT values on the five PRODUCT-dead-end
+// chapters in printed chapter order are [11,13,16,3,3]: exact after deleting
+// the single u=aK=12 marker. Charge this exact "one deletion from a cyclic
+// frame-gap sequence" relation against every other frozen OUT statistic.
+const lp2PageCount=58;
+const startsFromP4=[4,15,27,40,56,1];
+const cyclicFrameGaps=startsFromP4.map((x,i)=>{
+  const y=startsFromP4[(i+1)%startsFromP4.length];
+  return mod29((y-x+lp2PageCount)%lp2PageCount);
+});
+assert.deepEqual(cyclicFrameGaps,[11,12,13,16,3,3]);
+
+function oneDeletionMatches(sequence){
+  const hits=[];
+  for(let rotation=0;rotation<cyclicFrameGaps.length;rotation+=1){
+    const cycle=cyclicFrameGaps.slice(rotation).concat(cyclicFrameGaps.slice(0,rotation));
+    for(let deletedIndex=0;deletedIndex<cycle.length;deletedIndex+=1){
+      const candidate=cycle.slice(0,deletedIndex).concat(cycle.slice(deletedIndex+1));
+      if(candidate.length===sequence.length&&candidate.every((x,i)=>x===sequence[i])){
+        hits.push({rotation,deletedIndex,deleted:cycle[deletedIndex],cycle});
+      }
+    }
+  }
+  return hits;
+}
+const deadSequences=Object.fromEntries(outNames.map(name=>[
+  name,dead.map(r=>statistics[name](r.black))
+]));
+const orderedMatches=Object.fromEntries(outNames.map(name=>[
+  name,oneDeletionMatches(deadSequences[name])
+]));
+assert.deepEqual(deadSequences.rune_product,[11,13,16,3,3]);
+assert.deepEqual(orderedMatches.rune_product,[{
+  rotation:0,
+  deletedIndex:1,
+  deleted:12,
+  cycle:[11,12,13,16,3,3],
+}]);
+assert.deepEqual(
+  outNames.filter(name=>orderedMatches[name].length>0),
+  ['rune_product']
+);
+
 console.log(JSON.stringify({
   status:'PASS',
   classification:'independent common visual cue for PRODUCT; post-discovery structural authentication, not plaintext',
@@ -212,6 +258,9 @@ console.log(JSON.stringify({
     distinctProducts:deadCoverage.rune_product.values,
     unmatchedVisualGap:unmatchedGaps[0],
     unmatchedStateLabel:'u=aK',
+    cyclicFrameGapsFromP4:cyclicFrameGaps,
+    deadSequences,
+    orderedOneDeletionMatches:orderedMatches,
   },
-  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely typed by the union of chapter-IN sums and exact frame-start spacings: all 8 distinct PRODUCT outputs lie in that combined source register, while no other OUT statistic is fully covered. The four PRODUCT values lacking IN recipients are exactly {3,11,13,16}, all present in the five frame gaps [3,11,12,13,16]. This supplies a common source-side PRODUCT cue; it does not by itself prove the route or define a frame-gap navigation fallback.',
+  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely typed by the union of chapter-IN sums and exact frame-start spacings: all 8 distinct PRODUCT outputs lie in that combined source register, while no other OUT statistic is fully covered. Stronger, the five PRODUCT-dead-end outputs in chapter order [11,13,16,3,3] are exactly the cyclic frame-start gaps from p4 [11,12,13,16,3,3] after deleting the sole u=aK=12 marker; no other OUT statistic has any one-deletion cyclic match. This supplies a common ordered source-side PRODUCT cue; it does not by itself define a frame-gap navigation fallback.',
 },null,2));
