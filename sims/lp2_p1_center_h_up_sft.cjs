@@ -187,7 +187,9 @@ assert.deepEqual(bothOrientationRoadHits, [
   { page: 47, orientation: "left-right", destination: [23, 1] },
 ]);
 
-// Downstream receiver fixed by the existing p8 chapter state circuit.
+// Downstream p8 chapter object. Its PRODUCT=2 is the chapter OUT label; under
+// the established graph this addresses the unique chapter IN=2 (p27), not
+// physical p2. Physical p2 is retained only as a rejected direct-address rival.
 const p8 = corpus.pages.find(p => p.page === 8);
 assert(p8);
 assert.deepEqual(p8.indices.slice(12, 15), [27, 9, 16]);
@@ -195,8 +197,9 @@ const p8FirstBlack = p8.indices.slice(12, 15);
 assert.equal(p8FirstBlack.reduce((sum, value) => mod(sum + value), 0), 23);
 assert.equal(p8FirstBlack.reduce((product, value) => mod(product * value), 1), 2);
 
-// The resulting OUT=2 prospectively selects p2. Its odd-length rune stream has
-// a single exact center rune, GP29 9 = N.
+// Rejected direct-address rival: if OUT2 were incorrectly read as physical p2,
+ // that page has a single center N. This is recorded to prevent revival; it is
+ // not the chapter graph consumer.
 const p2 = corpus.pages.find(p => p.page === 2);
 assert(p2);
 assert.equal(p2.indices.length, 201);
