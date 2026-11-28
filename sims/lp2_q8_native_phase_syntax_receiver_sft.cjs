@@ -52,7 +52,7 @@ function inverse(c,pi,key){
   const inv=Array(N);pi.forEach((v,i)=>inv[v]=i);
   const ans=new Map();
   function rec(i,phase,got,start){
-    if(i===c.length){const w=roman(got);let obj=ans.get(w);if(!obj){obj={w,gp:gpword(got),starts:[]};ans.set(w,obj);}if(!obj.starts.includes(start))obj.starts.push(start);return;}
+    if(i===c.length){const g=gpword(got),w=roman(got);let obj=ans.get(g);if(!obj){obj={w,gp:g,starts:[]};ans.set(g,obj);}if(!obj.starts.includes(start))obj.starts.push(start);return;}
     if(c[i]===0){got.push(0);rec(i+1,phase,got,start);got.pop();}
     const decoded=inv[((pi[c[i]]-key[phase])%N+N)%N];
     if(decoded!==0){got.push(decoded);rec(i+1,(phase+1)&7,got,start);got.pop();}
@@ -95,10 +95,10 @@ function metrics(arr,inferred,truth,starts,model){
   const examples=[];
   for(let i=0;i<arr.length;i++){
     const row=arr[i],pr=inferred.post[i],trueW=roman(truth[i]);
-    const idx=row.findIndex(v=>v.w===trueW);
+    const idx=row.findIndex(v=>v.gp===gpword(truth[i]));
     assert(idx>=0,'true plaintext missing at '+i+' '+trueW);
     assert(row[idx].starts.includes(starts[i]),'true start missing');
-    let best=pr.indexOf(Math.max(...pr)),confidence=pr[best],hit=row[best].w===trueW;
+    let best=pr.indexOf(Math.max(...pr)),confidence=pr[best],hit=row[best].gp===gpword(truth[i]);
     const bin=Math.min(9,Math.floor(confidence*10));
     bins[bin].n++;bins[bin].hit+=Number(hit);bins[bin].confidenceSum+=confidence;
     top+=Number(hit);confWrong+=Number(!hit&&confidence>=.95);
