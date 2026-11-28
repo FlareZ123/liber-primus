@@ -66,6 +66,34 @@ The formula itself was recognized after the page length and artwork were known. 
 
 Reproducer: `sims/lp2_rune_poem_art_ordinal_navigation_sft.cjs`.
 
+
+## Mirrored-label branch: p32 Ac -> OE -> p22 Ear -> p28
+
+The p32 tree supplies a second use of the Rune-Poem register. Original-image registration independently shows the p32 common-stock tree is **horizontally reflected**, while the p32 oak identification plus the fixed checksum above selects **Ac/A**. Apply that observed operation to the selected rune label with the independently frozen p2 glyph-reflection map:
+
+```
+p32 oak -> Ac / A (GP0 24)
+horizontal reflection -> fixed glyph mirror A -> OE
+OE = Rune-Poem stanza 23
+23rd LP2 page -> physical p22
+```
+
+P22 is independently structured: it contains the established **horizontal mirror of solved-LP1 artwork**, a pixel-certified corpse image, and exactly one adjacent equal-rune pair, **EA EA** at offsets 100–101. The Old English source word `hraw` ("corpse/body") occurs only in **Ear**, stanza29, and the same frozen mirror map sends **EA -> EA** (self-mirror):
+
+```
+p22 corpse + EA EA -> Ear / EA
+fixed glyph mirror EA -> EA
+Ear = stanza 29
+29th LP2 page -> physical p28
+```
+
+P28 is independently selected by the solved-p57/FIND/terminal-23 route and carries the source-reconstructed DH23 state. Thus **p32 -> p22 -> p28** reaches an independently productive recipient without scoring unknown plaintext. It complements the unmirrored **p32 -> p24** Ac-ordinal branch: the separately reported p24–p26 mayfly count triangle reproduces `[3,5,8] = [e,g,A]` from the same p28 DH state. P32 therefore has two source-derived branches converging on one DH register.
+
+This is a **candidate intended navigation composition**, not a recovered ciphertext inverse. Its weakest premise is that the stock-image horizontal reflection was intended to operate on the semantic rune label; a historical solver would need to recognize or recover the source image orientation. The locked part is the convergence: `A -> OE` and `EA -> EA` were frozen from independent original-image glyph work, while p22/p28 properties predate this composition.
+
+Reproducer: [`sims/lp2_p32_p22_mirrored_rune_navigation_sft.cjs`](../sims/lp2_p32_p22_mirrored_rune_navigation_sft.cjs), Windows/Node22 CI PASS [run 46124399413](https://github.com/FlareZ123/liber-primus/actions/runs/46124399413). Supporting p24–p26 convergence: [mayfly DH23 count triangle](lp2-p24-p26-mayfly-dh23-count-triangle.md).
+
+
 ## Authenticated-2016 carrier route: oak -> p24 -> day-fly -> p23
 
 The 2016 signed carrier is unusually relevant because the **authenticated text and the oak image occur in the same object**. The preserved contemporary community walkthrough identifies the faint image as an oak via the exact ClipartBest stock URL; later original-pixel work verifies that the horizontally reflected stock drawing is the same source family used in the signed carrier and LP2 p32/p55. The signed text says:
@@ -111,7 +139,7 @@ The strongest rival is thematic over-reading: GP29 already derives from the Angl
 
 The p22 route is useful because it makes a **pre-existing independent prediction**: EAR's ordinal selects p28, already selected from p57 and already carrying the DH23 construction. It does not recover unknown plaintext, and it does not authenticate the 2016 "meaning/number/direction" wording as a literal instruction to use artwork.
 
-**Research consequence:** promote **p22 corpse + EA-EA -> EAR(29) -> 29th LP2 page p28** as a candidate human-solve navigation edge worthy of blind validation, and retain **p32 oak -> Ac with 97+24=121** as a separate numeric cross-check that selects p32 over the repeated p55 tree. Keep the DH state serialization and all failed p6/p7/p8 consumers unchanged. Do not run new cipher families from this edge unless an additional first-party clue specifies the receiver and operation.
+**Research consequence:** promote **p22 corpse + EA-EA -> EAR(29) -> 29th LP2 page p28** as a candidate human-solve navigation edge worthy of blind validation, retain **p32 oak -> Ac with 97+24=121** as the numeric cross-check selecting p32 over the repeated p55 tree, and preserve the source-composed **p32 Ac/A --horizontal mirror--> OE(23) -> p22 -> Ear(29) -> p28** branch for blind human validation. The ordinary unmirrored Ac ordinal independently enters p24–p26, whose count triangle reproduces p28 DH values [e,g,A]. Keep all failed p6/p7/p8 consumers unchanged. Do not turn these navigation edges into new cipher families without an additional first-party receiver/opcode.
 
 ## Reproducible source chain
 
