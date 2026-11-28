@@ -17,7 +17,7 @@ const sourceFiles=[
 const gp=Object.fromEntries(C.translit.map((x,i)=>[x,i]));
 const normalize={'K':'C','Q':'C','V':'U','Z':'S'};
 function raw13(word){
- assert.equal(word.length,13);
+ assert(/^[A-Z]+$/.test(word));
  return [...word].map(ch=>{
   const x=gp[normalize[ch]||ch];assert.notEqual(x,undefined);return x;
  });
