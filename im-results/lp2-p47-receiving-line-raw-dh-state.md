@@ -331,7 +331,7 @@ products [13,17,25,22,6,5]
        = [b-K,b+K,-q,p-1,a,g].
 ```
 
-Across p0–p55, only **16** printed lines have the same six-complete-fragment/no-carry framing. The predicted length vector occurs only on **p21 line6**; adding sums/products preserves that singleton. Thus p21 extends the repeated source-selected state-line mechanism even though its selected group itself does not wrap.
+Across p0–p55, only **16** printed lines have the same six-complete-fragment/no-carry framing. The predicted length vector occurs only on **p21 line6**; adding sums/products preserves that singleton. The whole line has **6=a groups**, **22=p-1 runes**, total GP0 **24=-g**, and total rune-product **11=A^-1**. Thus p21 extends the repeated source-selected state-line mechanism even though its selected group itself does not wrap.
 
 P21/group21 does not cross a printed line. Its two H-pair p50 reads are `3I,3b`, and its start-address117 read is `2p`; none is a legal literal page token. The frozen navigation therefore terminates at **p21**, not at the p46→p47 seam. No p45 continuation is inferred.
 
