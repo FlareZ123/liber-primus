@@ -67,6 +67,128 @@ function determinant29(matrix) {
   return determinant;
 }
 
+/** @param {number[][]} A @param {number[][]} B */
+function matrixMultiply(A, B) {
+  const n = A.length;
+  const out = Array.from({ length: n }, () => Array(n).fill(0));
+  for (let i = 0; i < n; i += 1) {
+    for (let k = 0; k < n; k += 1) {
+      if (!A[i][k]) continue;
+      for (let j = 0; j < n; j += 1) {
+        out[i][j] = mod(out[i][j] + A[i][k] * B[k][j]);
+      }
+    }
+  }
+  return out;
+}
+
+/** @param {number[][]} A @param {number} exponent */
+function matrixPower(A, exponent) {
+  const n = A.length;
+  let out = Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (_, j) => Number(i === j))
+  );
+  let base = A.map((row) => row.map(mod));
+  let e = exponent;
+  while (e > 0) {
+    if (e & 1) out = matrixMultiply(out, base);
+    base = matrixMultiply(base, base);
+    e = Math.floor(e / 2);
+  }
+  return out;
+}
+
+/** @param {number[][]} A */
+function inverseMatrix29(A) {
+  const n = A.length;
+  const eye = Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (_, j) => Number(i === j))
+  );
+  const rows = A.map((row, i) => row.map(mod).concat(eye[i]));
+  for (let col = 0; col < n; col += 1) {
+    let pivot = col;
+    while (pivot < n && rows[pivot][col] === 0) pivot += 1;
+    if (pivot === n) throw new Error('singular matrix');
+    [rows[pivot], rows[col]] = [rows[col], rows[pivot]];
+    const scale = inv(rows[col][col]);
+    rows[col] = rows[col].map((x) => mod(x * scale));
+    for (let row = 0; row < n; row += 1) {
+      if (row === col || rows[row][col] === 0) continue;
+      const factor = rows[row][col];
+      rows[row] = rows[row].map((x, j) => mod(x - factor * rows[col][j]));
+    }
+  }
+  return rows.map((row) => row.slice(n));
+}
+
+/** @param {number[][]} A */
+function transpose(A) {
+  return A[0].map((_, col) => A.map((row) => row[col]));
+}
+
+/** Characteristic polynomial coefficients [1,c1,...,cn] over GF(29). */
+function characteristicCoefficients29(A) {
+  const n = A.length;
+  const traces = Array(n + 1).fill(0);
+  let power = A.map((row) => row.map(mod));
+  for (let k = 1; k <= n; k += 1) {
+    traces[k] = mod(power.reduce((z, row, i) => z + row[i], 0));
+    power = matrixMultiply(power, A);
+  }
+  const elementary = Array(n + 1).fill(0);
+  elementary[0] = 1;
+  for (let k = 1; k <= n; k += 1) {
+    let acc = 0;
+    for (let i = 1; i <= k; i += 1) {
+      const term = mod(elementary[k - i] * traces[i]);
+      acc = mod(acc + (i % 2 ? term : -term));
+    }
+    elementary[k] = mod(acc * inv(k));
+  }
+  return [1, ...Array.from({ length: n }, (_, i) =>
+    mod((i + 1) % 2 ? -elementary[i + 1] : elementary[i + 1])
+  )];
+}
+
+/** @param {number[]} left @param {number[]} right */
+function polynomialMultiply(left, right) {
+  const out = Array(left.length + right.length - 1).fill(0);
+  for (let i = 0; i < left.length; i += 1) {
+    for (let j = 0; j < right.length; j += 1) {
+      out[i + j] = mod(out[i + j] + left[i] * right[j]);
+    }
+  }
+  return out;
+}
+
+/** @param {number[][]} A @param {number[]} v */
+function matrixVector(A, v) {
+  return A.map((row) => mod(row.reduce((z, x, i) => z + x * v[i], 0)));
+}
+
+/** Apply successive powers base^(block+origin) to 7-rune column blocks. */
+function powerClock(base, body, origin) {
+  assert.equal(body.length % 7, 0);
+  const n = base.length;
+  let power = Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (_, j) => Number(i === j))
+  );
+  if (origin === 1) power = base.map((row) => row.slice());
+  const out = [];
+  for (let offset = 0; offset < body.length; offset += 7) {
+    out.push(...matrixVector(power, body.slice(offset, offset + 7)));
+    power = matrixMultiply(power, base);
+  }
+  return out;
+}
+
+function ioc(values) {
+  const counts = Array(Q).fill(0);
+  for (const value of values) counts[value] += 1;
+  return counts.reduce((z, n) => z + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+}
+
 const corpus = JSON.parse(
   fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8')
 );
@@ -191,11 +313,47 @@ assert.deepEqual(H(rowMod), rowHTarget);
 assert.deepEqual(H(colMod), colHTarget);
 assert.equal(determinant29(matrix), p - g);
 
+// Stronger algebraic self-description: the full characteristic polynomial is
+// predicted by the independently reconstructed p15/p8 DH state.
+const characteristicTarget = [
+  1,
+  a,
+  inv(A),
+  K * g,
+  mod(-b),
+  K * g,
+  mod(-A),
+  inv(A),
+].map(mod);
+assert.deepEqual(characteristicCoefficients29(matrix), characteristicTarget);
+
+const factorLinear = [1, g];
+const factorCubicA = [1, g, mod(-q), a];
+const factorCubicB = [1, mod(-q), 1, inv(A)];
+const factored = polynomialMultiply(
+  polynomialMultiply(factorLinear, factorCubicA),
+  factorCubicB
+);
+assert.deepEqual(factored, characteristicTarget);
+
+// Direct order certificate. Since M^24388=I and division by every prime
+// factor of 24388 breaks identity, ord(M)=24388=29^3-1 exactly.
+const identity7 = Array.from({ length: 7 }, (_, i) =>
+  Array.from({ length: 7 }, (_, j) => Number(i === j))
+);
+const matrixOrder = 29 ** 3 - 1;
+assert.equal(matrixOrder, 24388);
+assert.deepEqual(matrixPower(matrix, matrixOrder), identity7);
+for (const primeFactor of [2, 7, 13, 67]) {
+  assert.notDeepEqual(matrixPower(matrix, matrixOrder / primeFactor), identity7);
+}
+
 // Charge every same-page 49-fragment window.
 let windows49 = 0;
 const rowHits = [];
 const colHits = [];
 const jointHits = [];
+const characteristicHits = [];
 for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50)) {
   const fragments = pageFragments(pageObj.page);
   const lens = fragments.map((x) => x.values.length);
@@ -219,12 +377,20 @@ for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50))
         determinant29(candidate),
       ]);
     }
+    if (
+      characteristicCoefficients29(candidate).every(
+        (x, i) => x === characteristicTarget[i]
+      )
+    ) {
+      characteristicHits.push([pageObj.page, start, fragments[start].start]);
+    }
   }
 }
 assert.equal(windows49, 479);
 assert.deepEqual(rowHits, [[8,2,12]]);
 assert.deepEqual(colHits, [[8,2,12]]);
 assert.deepEqual(jointHits, [[8,2,12,p-g]]);
+assert.deepEqual(characteristicHits, [[8,2,12]]);
 
 // Seven-page physical chapter counts, base29 quotient/remainder state packet.
 const pageCounts = Array.from({ length: 7 }, (_, i) =>
@@ -272,6 +438,91 @@ assert.deepEqual(exactIntervals, [[8,14]]);
 assert.deepEqual(hIntervals, [[8,14]]);
 assert.deepEqual(totalIntervals, [[8,14]]);
 
+// Two direct consumers are finite negatives rather than open cipher families.
+// (1) Successive powers of the source 7x7 matrix across all 247 chapter blocks.
+const chapterBody = [];
+for (let page = 8; page <= 14; page += 1) {
+  chapterBody.push(...corpus.pages.find((x) => x.page === page).indices);
+}
+assert.equal(chapterBody.length, 1729);
+assert.equal(chapterBody.length / 7, 247);
+
+const matrixInverse = inverseMatrix29(matrix);
+const matrixTranspose = transpose(matrix);
+const matrixTransposeInverse = inverseMatrix29(matrixTranspose);
+const powerVariants = {};
+for (const [orientation, plus, minus] of [
+  ['column', matrix, matrixInverse],
+  ['row', matrixTranspose, matrixTransposeInverse],
+]) {
+  for (const [direction, base] of [['plus', plus], ['minus', minus]]) {
+    for (const origin of [0, 1]) {
+      const name = orientation + '_' + direction + '_origin' + origin;
+      const decoded = powerClock(base, chapterBody, origin);
+      const replayBase = direction === 'plus' ? minus : plus;
+      assert.deepEqual(powerClock(replayBase, decoded, origin), chapterBody);
+      powerVariants[name] = decoded;
+    }
+  }
+}
+
+// (2) Literal page-length BASE29 affine inverse P=a^-1(C-b), where
+// page length = 29*a+b. This varies by physical page and is distinct from a
+// single fixed Hill7 key.
+const pageAffine = [];
+for (let page = 8; page <= 14; page += 1) {
+  const source = corpus.pages.find((x) => x.page === page).indices;
+  const quotient = Math.floor(source.length / Q);
+  const remainder = source.length % Q;
+  const scale = inv(quotient);
+  const decoded = source.map((x) => mod(scale * (x - remainder)));
+  assert.deepEqual(
+    decoded.map((x) => mod(quotient * x + remainder)),
+    source
+  );
+  pageAffine.push(...decoded);
+}
+
+// Established native-GP scorer used by neighboring receiver gates.
+const nativeSource = JSON.parse(
+  fs.readFileSync(
+    path.join(root, 'resources/external/relikd-solved-gp29-native-v1.json'),
+    'utf8'
+  )
+);
+const nativeSections = nativeSource.sections.map((section) =>
+  [...section.source_text].filter((ch) => runeIndex.has(ch)).map((ch) => runeIndex.get(ch))
+);
+const unigram = Array(Q).fill(0.5);
+const bigram = Array.from({ length: Q }, () => Array(Q).fill(0));
+for (const section of nativeSections) {
+  for (let i = 0; i < section.length; i += 1) {
+    unigram[section[i]] += 1;
+    if (i) bigram[section[i - 1]][section[i]] += 1;
+  }
+}
+const total = (array) => array.reduce((x, y) => x + y, 0);
+const probabilities = unigram.map((x) => x / total(unigram));
+const logUni = probabilities.map((x) => Math.log(Q * x));
+const logBi = bigram.map((row) =>
+  row.map((x, j) => Math.log(Q * (x + 12 * probabilities[j]) / (total(row) + 12)))
+);
+const score = (values) => values.reduce(
+  (z, x, i) => z + (i ? logBi[values[i - 1]][x] : logUni[x]),
+  0
+) / values.length;
+const nativeScores = nativeSections.map(score);
+const nativeMin = Math.min(...nativeScores);
+const powerScores = Object.fromEntries(
+  Object.entries(powerVariants).map(([name, values]) => [
+    name,
+    { score: score(values), ioc: ioc(values) },
+  ])
+);
+assert.ok(Object.values(powerScores).every((x) => x.score < nativeMin));
+const pageAffineResult = { score: score(pageAffine), ioc: ioc(pageAffine) };
+assert.ok(pageAffineResult.score < nativeMin);
+
 console.log(JSON.stringify({
   status: 'PASS',
   classification: 'source-only p8/chapter state-layout serialization; no plaintext or cipher',
@@ -279,7 +530,13 @@ console.log(JSON.stringify({
   p8FragmentLengthSquare: {
     matrix,rowRaw,rowMod,rowH:H(rowMod),colRaw,colMod,colH:H(colMod),
     determinant:determinant29(matrix),
-    census:{windows49,rowHits,colHits,jointHits},
+    characteristic:{
+      coefficients:characteristicCoefficients29(matrix),
+      target:characteristicTarget,
+      factors:[factorLinear,factorCubicA,factorCubicB],
+      order:matrixOrder,
+    },
+    census:{windows49,rowHits,colHits,jointHits,characteristicHits},
   },
   chapterPageLengths: {
     pageCounts,quotients,remainders,
@@ -288,6 +545,12 @@ console.log(JSON.stringify({
     stateFactorization:[g+K,b-K,B],
     intervalCensus:{intervalCount,exactIntervals,hIntervals,totalIntervals},
   },
+  directConsumers:{
+    nativeScoreRange:[Math.min(...nativeScores),Math.max(...nativeScores)],
+    rawChapter:{score:score(chapterBody),ioc:ioc(chapterBody)},
+    matrixPowerClock:powerScores,
+    pageLengthAffineInverse:pageAffineResult,
+  },
   boundary:
-    'The 49-fragment and 1729-rune geometries were already known. New evidence is their coupled serialization of the independently reconstructed DH state. Fixed Hill7 on the 1729-rune chapter is already excluded by the repository all-secret Gate E and is not retested here.',
+    'The 49-fragment and 1729-rune geometries were already known. New evidence is their coupled serialization of the independently reconstructed DH state, especially the exact characteristic polynomial. Fixed Hill7 is already excluded by the repository all-secret Gate E; the distinct changing matrix-power clock and literal page-length affine inverse are tested here and remain ciphertext-like.',
 },null,2));
