@@ -226,6 +226,39 @@ assert.deepEqual(jointChecksumSurvivors,[{
   blockSums:[13,16,24,12]
 }]);
 
+
+// Stronger shift control: abolish the inherited first-block H4 residue
+// predicate. Only source-visible 4+1+4 arities, the frozen integer packet,
+// and original complete printed-group starts remain.
+const arityOnlyShiftHits=[];
+for(let origin=0;origin<=47;origin++){
+  const A=L1.map((len,i)=>candidates(origin+i,len));
+  const B=L3.map((len,i)=>new Map(
+    candidates(origin+5+i,len).map(c=>[c.start,c])
+  ));
+  const lanes=A.map((pool,i)=>pool.flatMap(x=>{
+    const y=B[i].get(x.start+Delta[i]);
+    return y ? [[x,y]] : [];
+  }));
+  if(lanes.some(v=>v.length===0))continue;
+  for(const a of lanes[0])for(const b of lanes[1])
+  for(const c of lanes[2])for(const d of lanes[3]){
+    const paired=[a,b,c,d];
+    const X=paired.map(z=>z[0].start),Y=paired.map(z=>z[1].start);
+    const blockSums=[mod(paired.reduce((acc,z)=>acc+z[0].gp0,0)),
+                     mod(paired.reduce((acc,z)=>acc+z[1].gp0,0))];
+    arityOnlyShiftHits.push({origin,X,Y,blockSums,
+      checksumPass:blockSums[0]===blockPacket[0]&&
+                   blockSums[1]===blockPacket[2]});
+  }
+}
+assert.deepEqual(arityOnlyShiftHits,[
+  {origin:32,X:[30,132,4,25],Y:[146,57,132,71],
+   blockSums:[13,24],checksumPass:true},
+  {origin:40,X:[115,118,44,183],Y:[231,43,172,229],
+   blockSums:[22,5],checksumPass:false},
+]);
+
 // Shift the whole typed 4+gap+4 arrangement through all 48 admissible
 // physical starts. Require every first-block residue/arity and every
 // exact predicted second-block printed packet. Original p50 is empty.
@@ -260,6 +293,7 @@ console.log(JSON.stringify({
       distinctPairs:broadPairs.size,
       firstChecksum:firstBlockChecksumCount,thirdChecksum:thirdBlockChecksumCount,
       jointChecksumSurvivors}},
-  physicalShiftControl:{admissibleStarts:48,hits:shifted},
+  physicalShiftControl:{admissibleStarts:48,hits:shifted,
+    withoutInitialResidue:arityOnlyShiftHits},
   inference:"Post-discovery structural compression, not authenticated key or plaintext"
 },null,2));
