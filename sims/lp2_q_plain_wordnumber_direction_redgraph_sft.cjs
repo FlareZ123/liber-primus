@@ -51,7 +51,11 @@ for(const pr of ink.pages)for(const sp of(pr.red_spans||[])){
 }
 assert.equal(red.length,17);
 
+const helloOutputs=red.filter(r=>r.qout.includes(0));
 const meaningOutputs=red.filter(r=>r.qout.includes(20));
+assert.deepEqual(helloOutputs.map(r=>[r.page,r.start,r.qout,r.qwords]),[
+ [54,0,[0,20],['HELLO','MEANING']],
+]);
 assert.deepEqual(meaningOutputs.map(r=>[r.page,r.start,r.qout,r.qwords]),[
  [54,0,[0,20],['HELLO','MEANING']],
 ]);
@@ -137,11 +141,31 @@ const p54=red.find(r=>r.page===54&&r.start===0);assert(p54);
 assert.equal(p54.k+meaningCell.base60,748);
 assert.deepEqual([Math.floor(748/29),748%29],[25,23]);
 
+const roadCell={index:23,token:tokens[23],base60:bytes60[23],base59:value(tokens[23],a59,59)};
+assert.deepEqual(roadCell,{index:23,token:'1R',base60:87,base59:86});
+assert.deepEqual(bytes60.map((v,i)=>[v,i]).filter(([v])=>v===87),[[87,23]]);
+const afterRoad=mod840(748+roadCell.base60);
+const afterRoadCoord=[Math.floor(afterRoad/29),afterRoad%29];
+assert.equal(afterRoad,835);
+assert.deepEqual(afterRoadCoord,[28,23]);
+assert.deepEqual(afterRoadCoord.map(i=>words[i]),['THE','ROAD']);
+const base59MeaningTarget=mod840(p54.k+meaningCell.base59);
+assert.equal(base59MeaningTarget,746);
+assert.deepEqual([Math.floor(base59MeaningTarget/29),base59MeaningTarget%29].map(i=>words[i]),['THEIR','IS']);
+const base59RoadTarget=mod840(748+roadCell.base59);
+assert.equal(base59RoadTarget,834);
+assert.deepEqual([Math.floor(base59RoadTarget/29),base59RoadTarget%29].map(i=>words[i]),['THE','THE']);
+
 const result={
  schema:'lp2-q-plain-wordnumber-direction-redgraph-v1',
  classification:'complete red-state source/table direction census; post-discovery navigation cross-lock, no plaintext',
  sourceRule:'plain Q maps red state to authenticated word-number pair; selected word number addresses original-verified p49-51 table; full table number is Q-orbit direction',
  sourceBoundary:{meaningIndex:20,roadIndex:23,directionIndex:29},
+ startSelector:{
+   helloOccurrencesAmongPlainQRedOutputs:helloOutputs.length,
+   meaningOccurrencesAmongPlainQRedOutputs:meaningOutputs.length,
+   uniquePair:meaningOutputs[0],
+ },
  meaningUniqueness:{
    occurrencesAmongPlainQRedOutputs:meaningOutputs.length,
    occurrence:meaningOutputs[0],
@@ -155,7 +179,8 @@ const result={
    p57:[p57.page,p57.start,p57.residue,p57.k],
    sameFieldResidue:true,
  },
- interpretation:'Solved-p56-selected plain Q produces MEANING20 exactly once in the complete nonzero red class, on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction. In the 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly this one edge. This strengthens source/table navigation but is post-discovery and does not decrypt black text.',
+ continuation:{roadCell,afterRoad:{k:afterRoad,coord:afterRoadCoord,words:afterRoadCoord.map(i=>words[i])},base59Meaning:{k:base59MeaningTarget,words:[Math.floor(base59MeaningTarget/29),base59MeaningTarget%29].map(i=>words[i])},base59Road:{k:base59RoadTarget,words:[Math.floor(base59RoadTarget/29),base59RoadTarget%29].map(i=>words[i])}},
+ interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction. ROAD23 then uniquely addresses87 and advances to k835=[28,23]=THE/ROAD. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
