@@ -301,6 +301,48 @@ Thus **applying the Q MAP first and then the DIRECTION29/Frobenius operation** i
 
 This is still a post-discovery finite charge, not a p-value for authorial intent. Its value is operational: the signed phrase **THEIR NUMBERS ARE THE DIRECTION** now names both the numbered offsets and the canonical field direction operation, while p7 uniquely supplies the start whose numbered path lands on the previously typed red receivers.
 
+### The complete 24–32 DIRECTION block is symmetric
+
+Enumerate the complete-red transition spectrum for every authenticated signed-source offset1..42: for each offset `d`, ask whether any nonzero complete-red state lands on another complete-red state under `T^d`. The only hit offsets are
+
+```text
+1, 2, 4, 8, 15, 17,
+24, 25, 26, 27, 29, 30, 31, 32,
+39, 41.
+```
+
+The central block is exact. Every offset24..32 except28 is a red→red edge, and the edges pair by reversal because T has order56:
+
+```text
+24 AND       p33 second -> p23
+25 THEIR     p7         -> p15 first
+26 NUMBERS   p7         -> p40
+27 ARE       p7         -> p27
+28 THE       p7         -> -p7 = [28,23] = THE / ROAD
+29 DIRECTION p27        -> p7
+30 SEEK      p40        -> p7
+31 AND       p15 first  -> p7
+32 YOU       p23        -> p33 second
+```
+
+Thus `24<->32`, `25<->31`, `26<->30`, and `27<->29` are exact reverse-direction pairs, all centered on the half-cycle28. This is a purely structural field/red-span statement; no black body or language score is used to decide whether an edge exists.
+
+The authenticated source words23..33 are exactly
+
+```text
+ROAD AND THEIR NUMBERS ARE THE DIRECTION SEEK AND YOU WILL
+```
+
+and this block now has a concrete navigation interpretation. The midpoint supplies ROAD23 directly as the second coordinate of `[28,23]`; ROAD23 already has an independent physical-p23 handoff in the established p29 DIRECTION route. From p23's sole red span, the same path gives
+
+```text
+T^32(p23 red) = p33 second red.
+```
+
+Offset32 is signed **YOU**, and the destination physical page33 is signed word33 **WILL** under the same zero-based numbering. The target is specific: p33 has two red spans, and T lands on the second one at start91/length8.
+
+This gives a prospective bridge into the already numbered p33+ corridor. It does **not** by itself assert that physical adjacency p33->p34->p35 is a cipher operation or that those bodies decrypt to WILL/BE/FOUND. The lowest-description direct repeating-key consumer of Q(p33-second)=`[14,2]` (ITS/PATH) on the immediately following section was tested under both additive signs and is nonprose, so do not rescue it with phase sweeps.
+
 Applying T once more leaves the red-span set and gives
 
 ```text
