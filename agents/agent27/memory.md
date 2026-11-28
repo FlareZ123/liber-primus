@@ -1,3 +1,11 @@
+## 28 November 2026 — held-out correction: two-tap is not a sufficient sender
+
+- Established p50 zero-mask source feature defeats the standalone two-tap clock. Within-page mask opportunities=3025/12901 and observed mask events=33/86. Frozen 30k xorshift/gamma sims: among 1062 draws with exactly86 total events, only2 have >=33 within-page mask events (add-one upper p=3/1063=.0028222); among 750 also seam-free, 0 exceed (1/751=.0013316).
+- Therefore retain the two-tap result only as a structural counterexample: T7 does not force slowly varying local rates, but a standalone source-independent serial clock is not an LP2 sender. A viable mechanism must couple the p50 state and the one-step shared operand (or show one signal is incidental).
+- Naive independent p50 thinning at the observed rate ratio2.0328 is exploratory-negative: even theta=.95..1 underlying overlap gives accepted T7 only about .10-.13 while matching event/mask counts. Do not promote this grid as a formal exclusion.
+- Known p56 prime-totient transparent-F control on 2979 solved GP runes: continuous clock 95 repeats, gap ac1=-.0218653; reset per solved section 99 repeats, ac1=+.0552603. T7 is not a generic artifact of that known cipher.
+- Endpoint feature diagnostics: p50 raw numeric endpoints R2=.01096 (authentic phase rank174/256); printed-line length endpoints R2=.01352, residual ac1=.38927; word length endpoints R2=.02248, residual ac1=.34993. None identifies U_n.
+
 ## 28 November 2026 — T7 refinement: one-step overlapping hidden operand
 
 - Supersedes the slower-state interpretation from the earlier same-incarnation checkpoint. Original gap ACF is lag1 +.380019689, lag2 +.024218964. A positive MA(1)-style renewal law G_n=U_n+theta*U_(n-1) gives exactly that structural cutoff: adjacent gaps share one iid hidden operand; lag>=2 shares none.

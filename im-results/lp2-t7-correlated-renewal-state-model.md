@@ -85,12 +85,19 @@ Two obvious same-round source candidates were checked before promoting a source 
 
 Known solved GP29 plaintext is also incompatible with the idea that T7 is ordinary Liber Primus language morphology: across the nine pinned solved native-rune records, 2,979 runes have 77 adjacent equalities (`2.586%`, versus `0.667%` in unknown LP2) and equality-gap lag-one correlation about `-0.0672`.
 
+A held-out source feature prevents promoting the two-tap clock to a sufficient sender. The p50 table's literal first-digit-zero mask occupies 3,025 of the 12,901 within-page opportunities and contains **33 of the 86** original equality events. In 30,000 frozen two-tap simulations, conditioning on exactly 86 total events leaves 1,062 draws; only **2** contain at least 33 within-page zero-mask events (add-one upper tail **3/1063 = 0.0028222**). Conditioning additionally on no generated page-seam event leaves 750 draws and **0** exceedances (add-one **1/751 = 0.0013316**). The two-tap law therefore explains T7's ordering but misses an independently established source association.
+
+The authentic solved p56 prime-totient cipher is also a negative control. Applying its transparent-F hold and prime-minus-one clock to the 2,979 solved native GP runes gives 95 repeats with gap lag-one **-0.02187** under a continuous clock, or 99 repeats with **+0.05526** when the prime clock resets at each solved section. T7 is not a generic artifact of the known Cicada prime cipher.
+
+Exploratory source screens do not identify the shared operand: raw p50 numeric values at the two equality-event endpoints explain only about **1.10%** of gap variance at the authentic phase (rank 174/256 among circular shifts), endpoint printed-line lengths explain **1.35%**, and endpoint printed-word lengths **2.25%**. These screens are diagnostic rather than preregistered exclusions.
+
 ## What this changes
 
 1. **Retire “T7 requires slowly drifting local repeat probability.”** A stationary one-step overlapping hidden operand is sufficient and better matches the observed ACF cutoff.
-2. **Future sender hypotheses should explain a two-input overlap.** A candidate mechanism that forms each exception interval or control state from consecutive source operands naturally predicts lag-1 dependence with little lag-2 dependence.
-3. **Do not turn the fitted gamma parameters into a key.** They summarize the gap law and have no first-party selector.
-4. **Demand an actual source operand.** The productive next test is a historically visible sequence whose fixed, predeclared two-input transform predicts exception intervals or a held subset of them, followed by an explicit reversible sender/receiver on ciphertext.
+2. **The clock is not a sufficient sender.** It significantly underproduces the established p50 zero-mask enrichment, so a viable mechanism must jointly explain the source mask and the one-step gap ordering. A naive independent mask gate cannot simply be bolted on; exploratory thinning collapses the lag-one gap correlation to roughly 0.10–0.13 even when the underlying two-tap overlap is maximized.
+3. **Future sender hypotheses should explain a two-input overlap.** A candidate mechanism that forms each exception interval or control state from consecutive source operands naturally predicts lag-1 dependence with little lag-2 dependence, but the source-selected p50 state must be handled jointly rather than as an independent filter.
+4. **Do not turn the fitted gamma parameters into a key.** They summarize the gap law and have no first-party selector.
+5. **Demand an actual source operand and reversible receiver.** The productive next test is a historically visible sequence whose fixed, predeclared two-input transform predicts exception intervals or a held subset of them and also accounts for the p50 enrichment, followed by an explicit reversible sender/receiver on ciphertext.
 
 This is a material narrowing of the generation-process frontier, not a solution of LP2.
 
@@ -100,6 +107,7 @@ From repository root:
 
 ```text
 python sims/lp2_t7_correlated_renewal_sft.py
+node sims/lp2_t7_source_holdout_sft.cjs
 ```
 
-The SFT reads only the canonical source corpus, re-derives the seven observed statistics, generates the frozen two-tap renewal model and flat control on both fixed seeds, and asserts the crossing conditions.
+The Python SFT reads only the canonical source corpus, re-derives the seven observed statistics, generates the frozen two-tap renewal model and flat control on both fixed seeds, and asserts the crossing conditions. The CJS holdout SFT reproduces the p50-mask failure and the solved-p56 prime-cipher control.
