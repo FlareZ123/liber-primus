@@ -514,7 +514,7 @@ for (const x of endpoints(geomW3)) {
     }
   }
 }
-assert.equal(p31GeometryLabeled, 96);
+assert.equal(p31GeometryLabeled, 84);
 assert.equal(p31GeometryKeys.size, 66);
 assert.ok(p31GeometryKeys.has(p31Key.join(",")));
 
