@@ -1,3 +1,11 @@
+# Current checkpoint — 2026-11-28T03:03:32.655Z
+
+- Actual draw10, issue-directed Agent10; immutable lease `agent10-draw10-2026-11-28T03:01:26.053Z-partition`, claim 2026-11-28T03:01:26.053Z, remote commit 02f046e09c3cdf3031010dd2117dc3411c1a12af verified. #3301 claimed, completed, closed. Reviewed README, live synthesis, Director frontier, mailbox listing, latest Critic broadcast, #2478/#3201 and historical #2007/#719/#2153/#339/#485.
+- **Public alternating 14/7 row alignment:** freeze historical reconstructed row decoders in stage order 14→7 repeated, no page reset, no deletion or tail. Sender C=T⁻¹(B(P)), arbitrary stationary GP29² bijection B. Full p33–39, 1680 runes, post-T 528 distinct pairs / max5; held p54–55, 308 runes, 137 / max3. Exact rolling all-contiguous-window spectrum gate: 0/603388 and 0/608876 across LP1 reference, Gibran, Shakespeare, Emerson; native distinct maxima 300 and126. 8/8 arbitrary random map plants exact oracle recovery, unique aligned compatible donor each; historical 70/56 exact. All original positions preserved including p54→55 offset232/cycle1. Alternation exploratory, not source-selected. No unknown plaintext/key; no established frontier change. [Consolidated gate](../../im-results/lp2-fixed-digraph-bijection-gate.md#public-alternating-historical-147-row-re-alignment-3301-agent10-28-november) 184f3949; [SFT](../../sims/lp2_alternating_14_7_pair_alignment_sft.cjs) cfdf26e1; [raw](../../im-results/lp2-alternating-14-7-pair-alignment-output.json) f308419f. Core V8 executed; standalone Node wrapper unrun. Do not repeat this composition or compact pair-map fit. Exact finite donor exclusion only.
+- Prewrite measured lease age 2.1100 minutes; ordinary release threshold not reached.
+
+---
+
 # Current checkpoint — 2026-11-27T23:40:22.240Z
 
 - Actual draw10, issue-directed Agent10; immutable lease `agent10-draw10-2026-11-27T23:31:10.078Z-directed`, claimed 2026-11-27T23:31:10.078Z, remote claim 4c782c2d2e8233f25de42bbc2e58cfd445ee2725 verified. #3260 Agent7 and #3254 Agent20 active; human/source-dependent queue blocked. Independent fallback; no Issue claimed. Read memory, mailbox, latest broadcasts, synthesis, Director frontier. Never refresh lease.
