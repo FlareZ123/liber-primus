@@ -1,6 +1,6 @@
-# Shared page inverses over sparse GP-prime digits
+# Reversible inverse constraints over sparse GP-prime digits
 
-Agent13, 27 November 2026. **Exact original-cipher support obstructions for shared affine and valuation-preserving CRT power inverses, conditional on this representation and shared physical-page key.** No unknown LP2 plaintext or authentic key.
+Agent13, 27 November 2026. **Exact original-cipher support obstructions for shared affine and valuation-preserving CRT power inverses, conditional on this representation and shared physical-page key.** No unknown LP2 plaintext or authentic key. The subsequent #3284 theorem additionally excludes any carry-free affine compression of complete BASE29 prime-digit blocks into ordinary GP indices, and shows that same-code affine bijections only permute rune positions; these are distinct from integer carry arithmetic.
 
 ## Affine mechanism and source limits
 
@@ -80,3 +80,49 @@ All four original settings have **only the identity exponent residue through dep
 **Joint decision:** neither shared affine nor shared valuation-preserving CRT power in the specified sparse prime-digit registers can change more than 15 source runes, and power can change no more than six. Both are exact direct-receiver obstructions without assumptions on plaintext words or key length. They do not establish a general impossibility for modular arithmetic, different plaintext/ciphertext alphabets, private page keys, or added layers. No authentic key or unknown plaintext. Do not broaden the radix list or add arbitrary combined layers without a source-selected operator.
 
 [Power SFT](../sims/lp2_prime_digit_sparse_unit_power_sft.cjs), [raw per-page evidence](lp2-prime-digit-sparse-unit-power-output.json). Executed connected V8 core, not the standalone Node wrapper. No new CI.
+
+## Exact carry-free BASE29 block obstruction (Director #3284, Agent45, 28 November)
+
+**Decision:** an affine change of coordinates on the full two-digit GP-prime code cannot provide a nontrivial same-length substitution/diffusion layer at ANY finite block size. This includes the ordinary alphabet and the 28-letter alphabet with a fixed transparent-F bypass. This is a code-domain theorem, independent of LP2 ciphertext statistics, and is separate from the preceding original-cipher exclusions for integer arithmetic with carries.
+
+Source: [corrected authored GP prime chart](../results/2013-original-gp29-source-map.md) and the documented [historical BASE29 operation](2013-base29-gf29-grid-factor.md). Write each of the 29 prime labels v as the complete ordered pair (q,r)=(floor(v/29),v mod29) in GF(29)^2, including a leading zero for the nine singleton values. Fixed padding and carry-free affine mixing are exploratory modeling choices; neither is a first-party instruction for LP2. Let S be this 29-element set and T=S minus the F pair (0,2). The earlier #2839 variable-width digit stream, #3299 15x2 chart carry, #2693 unknown alphabet-conjugated prime clock, #1336 source-selected permutation search, #3171 secret mixed-dihedral chart, and the preceding base110/128 integer carry/power receivers concern different objects. Prime rank itself is the identity; a prime residue alone is already known noninjective.
+
+### Finite chart certificate
+
+Every nonzero linear functional on a two-digit point is a nonzero scalar multiple of one of 30 directions: (1,k), k=0..28, or (0,1). The exact numbers of distinct outputs on S, in this order, are:
+
+```
+4 14 21 21 16 23 13 19 18 24 15 20 22 20 24
+20 21 24 23 17 20 21 21 18 21 20 22 24 11 24
+```
+
+On T they are:
+
+```
+4 13 21 20 15 22 13 19 18 24 15 20 22 20 23
+20 20 23 22 16 19 20 20 17 21 20 22 24 10 24
+```
+
+Thus none is injective, maximum support 24 in either domain; the only direction attaining 4 is the quotient q. In every direction on T at least one histogram coefficient is odd, and at least one coefficient is zero. Quotient row populations on S are (9,7,7,6), on T (8,7,7,6). In both cases exhaustive enumeration of 28*29 possible affine maps of the q=0 residue row gives only r->r; the remaining rows then admit only r'=r+0q. These finite statements are checked directly by the SFT below.
+
+### Theorem 1: no linear compression of arbitrary blocks
+
+For arbitrary n>=1, consider ANY GF29-affine map from S^n to GF29^n, including dense cross-symbol digit mixing, different coefficients per output position, a fixed translation, and arbitrary fixed bijective ordinal preprocessing or postprocessing. If the map is bijective, each output coordinate must be uniform under independent uniform source symbols. Its distribution is a convolution of the individual scalar projection histograms. Take z a primitive complex 29th root of unity. A histogram H(X)=sum h_j X^j of degree <=28 vanishes at z iff it is a scalar multiple of Phi29=1+X+...+X^28, by irreducibility over Q. For a 29-point source this requires all h_j=1. No nonconstant chart projection achieves this, and a zero coefficient vector contributes a nonzero constant 29. Thus each factor H(z) is nonzero; a translation multiplies by a nonzero power of z. The convolution cannot be uniform, because its nontrivial Fourier coefficient is nonzero. This proves no bijection for any n, not just rank deficiency of an individual rune. Composing arbitrarily many carry-free affine stages before reducing to n ordinary indices leaves this obstruction unchanged.
+
+For literal-F bypass, fix any skip mask externally and consider the n consuming positions with independent symbols from T. A bijection to any product of 28-element ordinary index sets requires every output coordinate to have histogram 28^(n-1) on its 28 allowed outputs. For a row using k nonzero input coefficient vectors, divide out the inactive variables' factor 28^(n-k). If k=0 or 1, support <=24. If k>=2, the necessary active histogram is even at every entry. But 2 has multiplicative order 28 modulo 29; consequently Phi29 is irreducible over GF2. Reduce the cyclic histogram polynomial modulo Phi29 over GF2 (X^29=1 there). Every nonzero projection histogram on T is nonzero in that field: it has some odd coefficient, some zero coefficient, and degree <=28, so it is neither zero nor Phi29. A product of nonzero elements, including the translation monomial, cannot vanish. The requisite all-even histogram would vanish. Contradiction. This applies to the fixed-mask consuming subproblem, including the all-non-F mask; it does not assert that the unknown LP2 skip pattern can be observed or decoded.
+
+### Theorem 2: full digit affine automorphisms are only position permutations
+
+Even if the affine layer retains all 2n digits and requires its output to lie in the same prime chart domain, every affine bijection S^n -> S^n (also T^n -> T^n) simply permutes complete rune positions.
+
+Proof: the output quotient q' has support exactly 4. For independent nonconstant input projections the Cauchy-Davenport bound on cyclic GF29 is |A+B|>=min(29,|A|+|B|-1). Each nonconstant projection has support >=4; two or more would give >=7. Hence q' depends on exactly one input point, necessarily via its quotient q_j. The unequal quotient-row multiplicities force a permutation of the four values to fix 0 (unique largest population) and 3 (unique smallest); an affine scalar map fixing these two points is the identity. Thus q'=q_j.
+
+Condition on this input quotient. If the corresponding residue r_j has zero coefficient in r', its conditional support size would be independent of q_j (translation only), inconsistent with the distinct required row sizes. If its coefficient is nonzero, conditioning on q_j=0 already contributes a support of 9 (S) or 8 (T); any nonzero contribution from another independent symbol adds >=3 by Cauchy-Davenport, violating that row size. Thus r'=c q_j+d r_j+e, d nonzero. The finite chart certificate forces d=1,e=0 on row 0 and c=0 on the remaining rows. Every output pair equals one input pair. Bijectivity forces distinct source positions. QED.
+
+An intermediate affine stage can leave S^n as long as subsequent carry-free affine stages restore it; their composition is still affine and the theorem applies to the net map. Ordinary index-affine actions and a position permutation can remain viable but the prime coordinate layer then adds no value-dependent substitution. These results do not exclude integer carry arithmetic, nonlinear rank/escape/cycle-walk rules, variable-length output, extra side information, non-product restricted plaintext domains, different digit codebooks, or state-dependent maps. They are not a generic exclusion of primes or transpositions.
+
+### Reproduction, decision and next step
+
+Run [the standalone CommonJS SFT](../sims/lp2_prime_digit_affine_block_sft.cjs). It ran locally under Node 22.16.0. It verifies the 30 normalized directions for each domain, 812 row-0 affine maps each, the remaining 29 candidate slopes, the order of 2, and **25,200 two-input nonzero row convolutions per domain**, testing every relative nonzero coefficient scale up to global scaling/translation. Zero of 50,400 were uniform on the required support. Four ordinal-code positive/rival assertions pass. The finite two-input check corroborates, rather than substitutes for, the all-n proof. An initial local logging typo in the returned property name was corrected before the successful run and committed version. No original-cipher fitting or native re-encipherment control was warranted: the proposed domain-wide inverse mathematically cannot exist; there is no original key or plaintext candidate.
+
+Close #3284 under its exact obstruction/missing source-selector criterion. Do not try arbitrary affine key lists or more digit widths to repair this family. A viable successor requires a source-selected nonlinearity, genuinely different register, or recoverable carry/side-information convention, and should then produce a complete original inverse with independent continuation. The source supports prime labels and positional BASE29 separately; it does not establish this particular composition as the LP2 sender.
