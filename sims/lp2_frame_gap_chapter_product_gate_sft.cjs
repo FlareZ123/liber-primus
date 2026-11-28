@@ -144,6 +144,33 @@ const productEdges=records.map(r=>{
 const dead=records.filter((r,i)=>productEdges[i].length===0);
 assert.deepEqual(dead.map(r=>r.page),[3,15,23,33,40]);
 
+// Union of the two independently visible source registers: chapter IN sums
+// plus exact frame-start spacings. PRODUCT is the only frozen OUT statistic
+// whose complete distinct value vocabulary is covered by this union.
+const inSet=new Set(inValues);
+const typedRegister=new Set([...inSet,...gapSet]);
+const typedCoverage=Object.fromEntries(outNames.map(name=>{
+  const values=[...new Set(records.map(r=>statistics[name](r.black)))].sort((a,b)=>a-b);
+  const covered=values.filter(x=>typedRegister.has(x));
+  return [name,{values,covered,complete:covered.length===values.length}];
+}));
+assert.deepEqual(
+  Object.fromEntries(outNames.map(name=>[
+    name,[typedCoverage[name].covered.length,typedCoverage[name].values.length]
+  ])),
+  {
+    length:[3,6],
+    rune_product:[8,8],
+    prime_sum:[3,7],
+    prime_product:[3,8],
+    first:[5,8],
+    last:[4,8],
+    first_plus_last:[4,8],
+    first_times_last:[2,8],
+  }
+);
+assert.deepEqual(outNames.filter(name=>typedCoverage[name].complete),['rune_product']);
+
 const deadCoverage=Object.fromEntries(outNames.map(name=>[name,overlap(name,dead)]));
 assert.deepEqual(deadCoverage.rune_product.values,[3,11,13,16]);
 assert.deepEqual(deadCoverage.rune_product.overlap,[3,11,13,16]);
@@ -173,6 +200,12 @@ console.log(JSON.stringify({
   classification:'independent common visual cue for PRODUCT; post-discovery structural authentication, not plaintext',
   frame:{runs:frameRuns,starts:frameStarts,startGaps:frameStartGaps},
   frozenOutFamily:allCoverage,
+  combinedSourceRegister:{
+    chapterInValues:[...inSet].sort((a,b)=>a-b),
+    frameStartGaps,
+    typedCoverage,
+    uniquelyCompleteOutStatistic:'rune_product',
+  },
   productGraphDeadEnds:{
     pages:dead.map(r=>r.page),
     coverage:deadCoverage,
@@ -180,5 +213,5 @@ console.log(JSON.stringify({
     unmatchedVisualGap:unmatchedGaps[0],
     unmatchedStateLabel:'u=aK',
   },
-  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely coupled to exact original-frame spacing: all four distinct SUM->PRODUCT dead-end outputs {3,11,13,16} occur in the five frame-start gaps [3,11,12,13,16]. This supplies a common source-side PRODUCT cue; it does not by itself prove the route or define a dead-end navigation fallback.',
+  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely typed by the union of chapter-IN sums and exact frame-start spacings: all 8 distinct PRODUCT outputs lie in that combined source register, while no other OUT statistic is fully covered. The four PRODUCT values lacking IN recipients are exactly {3,11,13,16}, all present in the five frame gaps [3,11,12,13,16]. This supplies a common source-side PRODUCT cue; it does not by itself prove the route or define a frame-gap navigation fallback.',
 },null,2));
