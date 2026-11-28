@@ -226,6 +226,20 @@ cells 2,10,18,26,34,42,50,58,66,74
 That pre-existing tunnel therefore already passes through cell18=`0F=15`, which the p6 state identifies as `b`. Separately, the origin-robust numeric movement subroute reaches cell186=`0J=19=B`, also in physical column2. Only afterward does the p6 state packet label the shared physical column as `K=2`.
 
 This removes the main post-hoc degree of freedom from the column choice. The state-role interpretation and the additional row `-e` observation remain post-discovery.
+## Direct periodic use of the H-free packet fails before plaintext
+
+The H-free ordered packet `[K,-e,g,a]=[2,26,5,6]` is real structural input, but the most literal cipher consumer is now closed **without reading target runes**. Treat the four fields as a cyclic additive key tape over the eight q-block receivers and charge every obvious source convention:
+
+- 4 cyclic phases;
+- forward or reverse traversal;
+- either global sign;
+- reset at each page or run continuously within each four-page q block.
+
+All **32** conventions are checked only against the independently frozen q-page additive-key sums
+`[4,0,0,25 | 7,0,28,0]`. The best convention satisfies **1/8** page checksums; no candidate reaches two. Therefore the H-free packet is not a direct four-state periodic q-block key tape under this complete natural family, and plaintext grading is unnecessary.
+
+Together with the separately frozen page-specific progression miss (0/8 words, 2/33 coordinates), this sharply separates the packet's established state/grid role from an unsupported cipher-key role. Reproducer: [`sims/lp2_p6_p50_hfree_periodic_keytape_checksum_sft.cjs`](../sims/lp2_p6_p50_hfree_periodic_keytape_checksum_sft.cjs).
+
 ## K-column static-register prediction gate
 
 Director #3444 asks whether the three exact K-column state hits form a predictive static register rather than a retrospective coincidence. All other K-column values were withheld while the frozen pairs
