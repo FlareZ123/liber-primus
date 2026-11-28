@@ -117,69 +117,94 @@ p40 residue13 + length4
 
 The first three are exactly the existing LUCK / BEWARE / FALSE receivers and are unique under the target-blind residue+length rule.
 
-P40 has three residue/length candidates. It is independently resolved by the already-published p6 address71 route:
+P40 has three residue/length candidates. A second p6-only coordinate now resolves them without importing the separate address71 route.
+
+Write every selected start in base29:
 
 ~~~text
-GP0(SEEKS)=71
-p6 title starts after 71 black runes
-p6 title starts at local offset71
-W1 GP0=71
--> address71
-
-p40 candidate starts {13,71,216}
--> start71.
+start = 29 * quotient + residue.
 ~~~
 
-Therefore the p6 block3 construction plus an independent pre-existing p6 address selector recovers the complete existing receiver-start vector:
+For the existing receiver vector:
 
 ~~~text
-[146,57,132,71].
+[146,57,132,71]
+= 29 * [5,1,4,2] + [1,28,16,13].
 ~~~
 
-## Finite post-discovery charge
+The quotient vector is itself a minimal p6 title construction:
 
-The shell formula was recognized after these receiver starts were known, so charge a broader family rather than scoring the successful expression alone.
+~~~text
+printed title lengths L = [4,1,4,2] = [q,1,q,K]
+H4(L)                  = [2,26,5,6] = [K,-e,g,a]
 
-Allow:
+replace L[0]=q by H4(L)[2]=g
+-> [5,1,4,2] = [g,1,q,K].
+~~~
+
+Thus p6 supplies both halves of the receiver addresses: the W3/W4 construction fixes the four residues, and a one-coordinate title/H(title) splice fixes the four base29 quotients. Among p40's residue-compatible starts {13,71,216}, the quotients are {0,2,7}; only start71 has the required quotient K=2.
+
+The separate p6 address71 route remains independent corroboration rather than a required tie-break.
+
+## Finite post-discovery joint address charge
+
+The residue-shell formula and quotient splice were both recognized after these receiver starts were known, so charge both source-visible families.
+
+Residue family:
 
 1. either p6 q-length title word, W1 or W3: 2 choices;
 2. any contiguous K=2 segment within that q-word: 3 choices;
 3. either orientation of the chosen segment: 2 choices;
 4. either orientation of W4: 2 choices;
-5. either alternating interleave order, A-first or B-first: 2 choices.
+5. either alternating interleave order: 2 choices.
 
-The H4 orientation is not charged because it was already fixed independently throughout the p6 corridor work.
+This is 48 residue-shell constructions. Two of 48 have at least one source-arity-matched local receiver on every page.
 
-Total:
+Quotient family:
 
-~~~text
-2 * 3 * 2 * 2 * 2
-= 48 p6 shell constructions.
-~~~
+1. start from the printed title-length vector `L=[q,1,q,K]=[4,1,4,2]`;
+2. choose one of its four coordinates;
+3. replace that coordinate by any one of the four already frozen fields of `H4(L)=[K,-e,g,a]=[2,26,5,6]`;
+4. preserve printed coordinate order.
 
-For each shell:
+This is 4*4 = **16 labeled and 16 distinct quotient vectors**.
 
-- invert H4 to four start residues;
-- on p37..p40 require at least one complete local word at that residue with the independently known source GP length.
-
-Only **2/48** constructions have support on all four pages.
-
-Then apply the independent p40 address71 selector. Only **1/48** survives.
-
-The sole survivor is exactly:
+Charge the Cartesian product:
 
 ~~~text
-q-word = W3
-segment = final K runes
-reverse segment
-reverse W4
-A-first alternating interleave
-
-shell = [17,12,15,14]
-residues = [1,28,16,13].
+48 * 16 = 768 p6-only address grammars.
 ~~~
 
-This is a finite family result, not a discovery-wide probability.
+For each pair:
+
+- invert the residue shell to four start residues;
+- require source-GP-length-matched complete local receivers on p37..p40;
+- enumerate all compatible receiver choices;
+- require their integer base29 quotients `floor(start/29)` to equal the charged quotient vector.
+
+Exactly **1/768** joint constructions supports a complete receiver vector:
+
+~~~text
+residue construction:
+  q-word W3
+  final K-rune segment
+  reverse segment
+  reverse W4
+  A-first interleave
+  shell [17,12,15,14]
+  residues [1,28,16,13]
+
+quotient construction:
+  replace L[0]=q by H4(L)[2]=g
+  quotients [5,1,4,2]
+
+joint starts:
+  [146,57,132,71].
+~~~
+
+The other residue-supporting shell produces starts p37=0, p38=0, p39=17 and p40 in {101,188}; none of its quotient vectors belongs to the 16-member p6 splice family.
+
+This is a bounded post-discovery family result, not a discovery-wide probability.
 
 ## Why this materially changes the corridor
 
@@ -198,26 +223,23 @@ p6 W3/W4
  -> H4^-1
  -> four start residues
  -> source GP lengths
- -> p37/p38/p39 unique receivers
- -> independent p40 address71 resolves the one remaining ambiguity.
+ -> p6 title/H(title) quotient splice
+ -> one complete base29 start vector [146,57,132,71].
 ~~~
 
 The exact LUCK / BEWARE / FALSE / PATHS subtraction keys were not used to choose these receivers.
 
-This is the first complete p6-authored receiver rule for one of the two q-sized ordinary blocks.
+This is now a complete p6-only receiver-address rule for one of the two q-sized ordinary blocks; the separate p40 address71 route is corroborating evidence rather than a dependency.
 
 ## Evidence boundary
 
-The construction was discovered after the receiver vector was known. Preserve the 48-construction charge and do not describe this as prospective validation.
+Both constructions were discovered after the receiver vector was known. Preserve the 768-combination joint charge and do not describe this as prospective validation.
 
 Authenticated source word lengths are part of the selector. That is appropriate for this known-source corridor, but it is not an unknown-plaintext decryption rule by itself.
 
 The result does not authenticate the four fitted local keys. It sharply reduces receiver freedom.
 
-The remaining central problem is now narrower:
-
-1. derive an equally authored receiver rule for the first q-block p32..p35;
-2. derive complete ordered key serializers for the selected receivers, ideally one rule that transfers across both q-blocks.
+The first q-block now independently has its own p6-authored receiver-residue grammar, so basic q-block receiver selection is no longer the central gap. The remaining central problem is to derive complete ordered **key serializers** for the selected receivers, ideally one rule that transfers across both q-blocks and predicts a fresh key before target scoring.
 
 ## Reproduction
 
@@ -227,4 +249,4 @@ Run:
 node sims/lp2_p6_block3_receiver_residue_sft.cjs
 ~~~
 
-The SFT reconstructs p6 from the canonical transcription, rebuilds source GP lengths from the authenticated 2016 object, enumerates all 48 charged p6 constructions, inverts H4, scans all source-length-matched local receivers on p37..p40, and asserts that the independent p40 address71 gate leaves the single published receiver vector.
+The SFT reconstructs p6 and source GP lengths, enumerates all 48 residue constructions and all 16 one-coordinate title/H(title) quotient splices, scans the full 768-product family, and asserts that exactly one p6-only joint address grammar yields the published receiver vector [146,57,132,71].

@@ -72,6 +72,17 @@ function h4Inverse(shell) {
   ];
 }
 
+/** Frozen outside-in H4 forward. @param {number[]} values @returns {number[]} */
+function h4(values) {
+  assert.equal(values.length, 4);
+  return [
+    mod29(values[0] - values[3]),
+    mod29(values[1] - values[2]),
+    mod29(values[1] + values[2]),
+    mod29(values[0] + values[3]),
+  ];
+}
+
 /** @param {number[]} values @returns {number[][]} */
 function orientations(values) {
   return [values.slice(), values.slice().reverse()];
@@ -220,69 +231,67 @@ const allPages = charged.filter((candidate) =>
 );
 assert.equal(allPages.length, 2);
 
-// P40 address71 is independently established by the p6 address71 route.
-// It resolves the remaining residue/length ambiguity.
-const withAddress71 = allPages.filter((candidate) =>
-  candidate.matches[3].some((receiver) => receiver.start === 71)
-);
-assert.equal(withAddress71.length, 1);
+// Second p6-only address coordinate: one-coordinate splices of the
+// printed title lengths with one field from H4(title lengths).
+const lengthShell = h4(titleLengths);
+assert.deepEqual(lengthShell, [2, 26, 5, 6]);
+const quotientPatterns = [];
+for (let replaceIndex = 0; replaceIndex < titleLengths.length; replaceIndex += 1) {
+  for (let hIndex = 0; hIndex < lengthShell.length; hIndex += 1) {
+    const quotient = titleLengths.slice();
+    quotient[replaceIndex] = lengthShell[hIndex];
+    quotientPatterns.push({ replaceIndex, hIndex, quotient });
+  }
+}
+assert.equal(quotientPatterns.length, 16);
+assert.equal(new Set(quotientPatterns.map((entry) => entry.quotient.join(","))).size, 16);
 
-const winner = withAddress71[0];
-assert.deepEqual(winner, {
-  qWordIndex: 1,
-  segmentStart: 2,
-  A: [17, 15],
-  B: [12, 14],
-  first: "A",
-  shell: [17, 12, 15, 14],
-  residues: [1, 28, 16, 13],
-  matches: [
-    [{
-      ordinal: 38,
-      start: 146,
-      residue: 1,
-      length: 4,
-      values: [3, 2, 6, 27],
-    }],
-    [{
-      ordinal: 12,
-      start: 57,
-      residue: 28,
-      length: 6,
-      values: [8, 25, 14, 2, 17, 22],
-    }],
-    [{
-      ordinal: 30,
-      start: 132,
-      residue: 16,
-      length: 5,
-      values: [19, 7, 10, 17, 23],
-    }],
-    [
-      {
-        ordinal: 4,
-        start: 13,
-        residue: 13,
-        length: 4,
-        values: [12, 28, 3, 18],
-      },
-      {
-        ordinal: 17,
-        start: 71,
-        residue: 13,
-        length: 4,
-        values: [4, 15, 14, 21],
-      },
-      {
-        ordinal: 52,
-        start: 216,
-        residue: 13,
-        length: 4,
-        values: [5, 15, 14, 22],
-      },
-    ],
-  ],
+/** @param {Array<Array<object>>} arrays @returns {Array<Array<object>>} */
+function cartesian(arrays) {
+  let out = [[]];
+  for (const array of arrays) {
+    const next = [];
+    for (const prefix of out) {
+      for (const value of array) next.push(prefix.concat([value]));
+    }
+    out = next;
+  }
+  return out;
+}
+
+const joint = [];
+for (const residueCandidate of charged) {
+  if (!residueCandidate.matches.every((matches) => matches.length > 0)) continue;
+  for (const receivers of cartesian(residueCandidate.matches)) {
+    const quotients = receivers.map((receiver) => Math.floor(receiver.start / 29));
+    for (const quotientCandidate of quotientPatterns) {
+      if (quotients.every((value, index) => value === quotientCandidate.quotient[index])) {
+        joint.push({ residueCandidate, quotientCandidate, receivers, quotients });
+      }
+    }
+  }
+}
+assert.equal(charged.length * quotientPatterns.length, 768);
+assert.equal(joint.length, 1);
+
+const winner = joint[0];
+assert.deepEqual(winner.residueCandidate.shell, [17, 12, 15, 14]);
+assert.deepEqual(winner.residueCandidate.residues, [1, 28, 16, 13]);
+assert.deepEqual(winner.quotientCandidate, {
+  replaceIndex: 0,
+  hIndex: 2,
+  quotient: [5, 1, 4, 2],
 });
+const selectedStarts = winner.receivers.map((receiver) => receiver.start);
+assert.deepEqual(selectedStarts, [146, 57, 132, 71]);
+assert.deepEqual(
+  selectedStarts.map((start) => start % 29),
+  winner.residueCandidate.residues
+);
+assert.deepEqual(
+  selectedStarts.map((start) => Math.floor(start / 29)),
+  winner.quotientCandidate.quotient
+);
 
 // Express the winning construction directly:
 // reverse(last K runes of W3), reverse(W4), alternating interleave.
@@ -291,14 +300,14 @@ assert.deepEqual(
   [17, 15]
 );
 assert.deepEqual(orientations(W4)[1], [12, 14]);
-assert.deepEqual(winner.shell, [W3[3], W4[1], W3[2], W4[0]]);
+assert.deepEqual(winner.residueCandidate.shell, [W3[3], W4[1], W3[2], W4[0]]);
 
 // The selected p37-p39 receivers are unique under residue+source-length.
 // P40 is resolved by the independent address71 selector.
 const selectedStarts = [
-  winner.matches[0][0].start,
-  winner.matches[1][0].start,
-  winner.matches[2][0].start,
+  winner.residueCandidate.matches[0][0].start,
+  winner.residueCandidate.matches[1][0].start,
+  winner.residueCandidate.matches[2][0].start,
   71,
 ];
 assert.deepEqual(selectedStarts, [146, 57, 132, 71]);
@@ -314,15 +323,22 @@ console.log(JSON.stringify({
   chargedFamily: {
     configurations: charged.length,
     allFourPagesSupported: allPages.length,
-    allFourPlusIndependentP40Address71: withAddress71.length,
+    quotientPatterns: quotientPatterns.length,
+    jointAddressGrammars: charged.length * quotientPatterns.length,
+    jointSurvivors: joint.length,
   },
   winningConstruction: {
-    description: "reverse(last K runes of W3), reverse(W4), interleave A-first, H4^-1",
-    shell: winner.shell,
-    predictedStartResidues: winner.residues,
+    description: "residue shell plus one-coordinate title/H(title) base29 quotient splice",
+    shell: winner.residueCandidate.shell,
+    predictedStartResidues: winner.residueCandidate.residues,
+    predictedStartQuotients: winner.quotientCandidate.quotient,
+    quotientSplice: {
+      replaceIndex: winner.quotientCandidate.replaceIndex,
+      hIndex: winner.quotientCandidate.hIndex,
+    },
     sourceLengths: pages.map((page) => source[page].gp.length),
     sourceWords: pages.map((page) => source[page].label),
-    candidateStarts: winner.matches.map((matches) =>
+    candidateStarts: winner.residueCandidate.matches.map((matches) =>
       matches.map((receiver) => receiver.start)
     ),
     selectedStarts,
