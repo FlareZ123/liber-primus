@@ -91,6 +91,16 @@ Thus the one source-selected table cell and one dereference close the entire wor
 p=23, g=5, a=6, b=15, A=8, B=19, K=2.
 ```
 
+The reproducer now derives this tuple **without seeding the extraction with those DH values**. Starting only from upstream-selected address254, the canonical table, historical BASE29 division and the two live numeric readings:
+
+1. `divmod(254,29)=[8,22]` derives `A=8` and candidate `p=22+1=23`;
+2. token `39` gives `n59=186` and `n60=189`;
+3. dividing both by the derived width `A=8` independently reproduces the same row `p=23`, with remainders `K=2` and `g=5`;
+4. `divmod(186,29)=[6,12]` and `divmod(189,29)=[6,15]` independently reproduce the same leading digit `a=6`, with `12=aK mod29` and `b=15`;
+5. one base59 dereference at address186 returns `B=19`.
+
+Only after that extraction does the test compare against the known historical tuple and verify the three DH identities. This reduces the role of retrospective state-label assignment: the values are forced by repeated quotient/remainder consistency before the modular-exponentiation check.
+
 Every field is represented before any unknown LP2 plaintext is inspected. The standard DH identities verify the register exactly:
 
 ```text
@@ -545,4 +555,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`; one-cell complete-DH register: `a91bce7feb42e4176ef4da73be43a34a386a7554`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`; one-cell complete-DH register: `a91bce7feb42e4176ef4da73be43a34a386a7554`; tuple-blind register extraction: `4f3d547fc01e9da0f71438ed58b774931f66c7d7`.
