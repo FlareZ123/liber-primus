@@ -14,6 +14,19 @@ for(const p of ink.pages)for(const [j,s] of (p.red_spans||[]).entries()){
  red.push({page:p.page,span:j,start:s.start,length:s.length,raw});
 }
 assert.equal(red.length,18);
+// Independent original-ink receiver type, established in the earlier #3389
+// manuscript-wide control: p6 and p15 SECOND are the only length-11 red spans
+// flanked by large red 13-dot punctuation at both ends. Select p15b by this
+// physical type, not by its eventual field residue or solved-page match.
+const hasRed13=(page,offset)=>{
+ const marks=ink.pages.find(x=>x.page===page)?.large_punctuation||[];
+ return marks.some(([at,dots,color])=>at===offset&&dots===13&&color==='red');
+};
+const double13=red.filter(s=>hasRed13(s.page,s.start)&&hasRed13(s.page,s.start+s.length));
+assert.equal(double13.length,7);
+assert.deepEqual(double13.filter(s=>s.length===11).map(s=>[s.page,s.span,s.start,s.length]),[
+ [6,0,71,11],[15,1,9,11]
+]);
 function span(page,j=0){const a=red.find(s=>s.page===page&&s.span===j);assert(a,'missing red span');return a;}
 const p3=span(3,1);assert.deepEqual([p3.start,...p3.raw],[119,13,23,2]);
 const DH={p:23,g:5,a:6,b:15,A:8,B:19,K:2,q:4};
@@ -122,7 +135,7 @@ assert.equal(fixedPointPhases,1);
 const result={classification:'source-selected red-span GF29 quadratic quotient; structural original-input operand, no plaintext',
  field:{p3Triad:p3.raw,rule:'u^2=3u+8',degree2MonicModuliCharged:841},
  sourceSelectors:{p15PageMap:'6<->8;7 fixed',DHtitleLengthPair:[27,40],p15RemainderSumToPage:57,
-  p15RedCandidates:2,p57RedCandidates:1},
+  p15RedCandidates:2,p15UniqueBracket11:1,p57RedCandidates:1},
  DH,redEvaluations:E,onlyCompleteRedSpanCollision:collisions,
  census,phase,fixedPointPhases,
  quotient:{dividendPage:15,dividendRedSpan:1,subtractPage:57,subtractRedSpan:0,
