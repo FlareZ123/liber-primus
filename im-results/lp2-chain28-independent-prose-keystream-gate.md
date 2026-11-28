@@ -33,6 +33,24 @@ These magnitudes are far outside ordinary 27-category multinomial fluctuation fo
 
 The exact model has **native-positive sender and decoder controls**: original-length source windows drawn from independent English corpora are encoded with the explicit (13,3,−1) chain and fully recovered with the known key. A seeded 200-trial source-native window calibration and separate uniform-random-key controls additionally check whether fixed donor marginals can discriminate genuine corpus-sized plants from the original. The executable SFT prints their quantiles. No random-control result is an original plaintext.
 
+
+## Source-visible initial key: the actual 729 original opening runes, not a guessed book
+
+A second, more direct original-cipher attack uses **the original 729 runes of LP2 physical pp0–2** as the complete key source for the untouched p3–55 continuation, rather than fitting a hypothetical independent prose profile. The 729=27² grouping is visible in the manuscript; the key-transfer premise remains **not authored**. Only four fixed source/key-clock interpretations are considered: raw GP29 glyph modulo28 versus their chained consecutive difference (zero→0, otherwise difference−1); 729-periodic repetition versus a **causal 729-symbol lag** of the original ciphertext, with both key signs in each case. The first key symbol always comes from original position0. No crib, phase, pad, text source, target page, or alphabet permutation is selected after ciphertext inspection. The output is decoded across **all 12,227 original runes after page2**. The prefix pages only supply the proposed key and are not counted as recovered plaintext.
+
+The eight fixed GP28 inverses produce:
+
+| Opening-source register | Key clock | Sign − IoC | Sign + IoC | p3 IoC for − / + |
+| --- | --- | ---: | ---: | ---: |
+| Raw ciphertext glyph index modulo28 | Repeat 729 | 0.03530249 | 0.03526745 | 0.03285544 / 0.03422086 |
+| Raw ciphertext glyph index modulo28 | 729-lag causal | 0.03526726 | 0.03524824 | 0.03285544 / 0.03422086 |
+| Ciphertext predecessor difference, zero→0 | Repeat 729 | 0.03525937 | 0.03525150 | 0.03665301 / 0.03315412 |
+| Ciphertext predecessor difference, zero→0 | 729-lag causal | 0.03528242 | 0.03524453 | 0.03665301 / 0.03315412 |
+
+All eight original whole-remainder readouts stay near flat symbol frequency and their complete page3 opening is nonprose. The deterministic forward encoder actually generates **the same key register causally from already generated ciphertext** in the sliding cases. Independently planted full-length Shakespeare GP29 text round-trips exactly with **all eight** schemes, beginning from the authentic 729 source glyphs. These are positive functional tests, not key authentication. This rejects the exact **opening-729 raw-or-difference causal/public-key transfer to the immediate following text** under the frozen GP28 rank-chain model and source-native English-output criterion. A secret transform of the 729-rune array, a different clock, red heading partition, or unrelated cipher is not tested; such repairs need a new independent clue, not fitted exceptions.
+
+**Execution:** both the first independent-prose gate and the opening-729 extension are in the same [source and control script](../sims/lp2_chain28_prose_convolution_sft.cjs), which was run through the existing manual Node22 source runner. The **base version** passed [run 46111472981](https://github.com/FlareZ123/liber-primus/actions/runs/46111472981) on Windows at 05:19 UTC. The subsequent extension is separately tracked by [run 46111754665](https://github.com/FlareZ123/liber-primus/actions/runs/46111754665); consult its completion status before treating that extended CI as verified.
+
 ## Cryptanalytic consequence
 
 A long natural-prose running key is **not automatically white noise**: convolution of two sharply nonuniform 28-class plaintext/key profiles retains nonuniform Fourier components. This full-tape result quantifies why hunting for further philosophical books as **independent ordinary-GP28 running keys** has low value in this sender model, even with natural affine relabelings, **before** choosing exact titles or offsets.
