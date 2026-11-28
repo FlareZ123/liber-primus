@@ -33,9 +33,9 @@ for(const ch of raw){
 }
 if(current)words.push(current);
 assert.equal(words.length,2896);assert.equal(nr,12956);
-const source=latin.books.flatMap(b=>b.lengths);
+const source=latin.books.flatMap(b=>b.calibrated_lengths);
 assert.equal(source.length,34199);
-assert.equal(source.reduce((s,x)=>s+x,0),190231);
+assert.equal(source.reduce((s,x)=>s+x,0),188931);
 assert.equal(Math.max(...words),14);
 const maxK=Math.max(...words,...source),n=source.length;
 const next=Array.from({length:maxK+1},()=>new Int32Array(n+1));
@@ -92,8 +92,8 @@ const result={
  titleClue:"LIBER PRIMUS matches original Latin heading DE OFFICIIS LIBER PRIMVS; source not selected uniquely by Cicada",
  source:{collection:"cltk/lat_text_latin_library public Latin source",
   files:latin.books.map(b=>({book:b.book,blobSHA:b.source_sha,words:b.word_count})),
-  totalLatinWords:source.length,sourceNativeGPMean:190231/source.length},
- original:{printedGroups:words.length,printedRunes:nr,
+  totalLatinWords:source.length,sourceNativeGPMean:188931/source.length},
+ original:{printedGroups:words.length,printedRunes:nr,sourceOrthography:'source-calibrated solved GP ING/IO aliases',
   outputNativeMean:nr/words.length,
   optimalUnrestrictedContiguousSourceSkip:original,
   minimumWholeWordDeletionFraction:densityRatio},
