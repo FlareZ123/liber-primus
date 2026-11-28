@@ -203,6 +203,34 @@ function powerClock(base, body, origin) {
   return out;
 }
 
+/** Ascending-degree polynomial evaluation in GF29. */
+function polynomialScalar(coefficients, value) {
+  let out = 0;
+  let power = 1;
+  for (const coefficient of coefficients) {
+    out = mod(out + coefficient * power);
+    power = mod(power * value);
+  }
+  return out;
+}
+
+/** Ascending-degree polynomial evaluation on a square GF29 matrix. */
+function polynomialMatrix(coefficients, matrix) {
+  const n = matrix.length;
+  const identity = Array.from({ length: n }, (_, i) =>
+    Array.from({ length: n }, (_, j) => Number(i === j))
+  );
+  let out = Array.from({ length: n }, () => Array(n).fill(0));
+  let power = identity;
+  for (const coefficient of coefficients) {
+    out = out.map((row, i) =>
+      row.map((value, j) => mod(value + coefficient * power[i][j]))
+    );
+    power = matrixMultiply(power, matrix);
+  }
+  return out;
+}
+
 function ioc(values) {
   const counts = Array(Q).fill(0);
   for (const value of values) counts[value] += 1;
@@ -459,12 +487,68 @@ for (const primeFactor of [2, 7, 13, 67]) {
   assert.notDeepEqual(matrixPower(matrix, matrixOrder / primeFactor), identity7);
 }
 
+// Adjacent-page bridge: the already-established five p7 red products are the
+// ascending coefficients of P(x). Starting at GP0 and iterating once per
+// marked p7 red word reaches g after exactly five steps; the next seven states
+// are the unique source-frozen cycle used here as p8 column weights.
+const p7Polynomial = [inv(A), inv(B), A, inv(K), K];
+assert.deepEqual(p7Polynomial, [11, 26, 8, 15, 2]);
+const zeroPath = [F];
+for (let i = 0; i < 5; i += 1) {
+  zeroPath.push(polynomialScalar(p7Polynomial, zeroPath.at(-1)));
+}
+assert.deepEqual(zeroPath, [F, inv(A), p, b + K, p - g, g]);
+
+const p7Orbit = [g];
+for (let i = 1; i < 7; i += 1) {
+  p7Orbit.push(polynomialScalar(p7Polynomial, p7Orbit.at(-1)));
+}
+assert.deepEqual(p7Orbit, [g, b, mod(-1), q + g, K * g, mod(-g), g + K]);
+assert.equal(polynomialScalar(p7Polynomial, p7Orbit.at(-1)), p7Orbit[0]);
+
+const p7WeightedRows = matrixVector(matrix, p7Orbit);
+const p7WeightedColumns = matrixVector(transpose(matrix), p7Orbit);
+assert.deepEqual(p7WeightedRows, [K, mod(-1), g, mod(-1), p, mod(-1), mod(-K)]);
+assert.deepEqual(
+  p7WeightedColumns,
+  [K * g, a, 1, e, mod(-1), mod(K - b), p - g]
+);
+
+// The p7 polynomial can itself act directly on the p8 matrix.
+const p7OfP8Matrix = polynomialMatrix(p7Polynomial, matrix);
+const p7OfP8Characteristic = [
+  1,
+  g,
+  b - K,
+  B,
+  mod(-K),
+  1,
+  mod(-(q + g)),
+  mod(K - b),
+];
+assert.deepEqual(
+  characteristicCoefficients29(p7OfP8Matrix),
+  p7OfP8Characteristic
+);
+const p7OfP8Factored = polynomialMultiply(
+  [1, mod(-(g + K))],
+  polynomialMultiply(
+    [1, K, mod(-1), inv(A)],
+    [1, K * g, mod(-(q + g)), B]
+  )
+);
+assert.deepEqual(p7OfP8Factored, p7OfP8Characteristic);
+assert.equal(determinant29(p7OfP8Matrix), b - K);
+
 // Charge every same-page 49-fragment window.
 let windows49 = 0;
 const rowHits = [];
 const colHits = [];
 const jointHits = [];
 const characteristicHits = [];
+const p7OrbitRowHits = [];
+const p7OrbitColumnHits = [];
+const p7OrbitShapeHits = [];
 for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50)) {
   const fragments = pageFragments(pageObj.page);
   const lens = fragments.map((x) => x.values.length);
@@ -495,6 +579,26 @@ for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50))
     ) {
       characteristicHits.push([pageObj.page, start, fragments[start].start]);
     }
+    const weightedRows = matrixVector(candidate, p7Orbit);
+    const weightedColumns = matrixVector(transpose(candidate), p7Orbit);
+    if (weightedRows.every((x, i) => x === p7WeightedRows[i])) {
+      p7OrbitRowHits.push([pageObj.page, start, fragments[start].start]);
+    }
+    if (weightedColumns.every((x, i) => x === p7WeightedColumns[i])) {
+      p7OrbitColumnHits.push([pageObj.page, start, fragments[start].start]);
+    }
+    if (
+      weightedRows[1] === weightedRows[3] &&
+      weightedRows[3] === weightedRows[5] &&
+      mod(weightedRows[0] + weightedRows[6]) === 0
+    ) {
+      p7OrbitShapeHits.push([
+        pageObj.page,
+        start,
+        fragments[start].start,
+        weightedRows,
+      ]);
+    }
   }
 }
 assert.equal(windows49, 479);
@@ -502,6 +606,12 @@ assert.deepEqual(rowHits, [[8,2,12]]);
 assert.deepEqual(colHits, [[8,2,12]]);
 assert.deepEqual(jointHits, [[8,2,12,p-g]]);
 assert.deepEqual(characteristicHits, [[8,2,12]]);
+assert.deepEqual(p7OrbitRowHits, [[8,2,12]]);
+assert.deepEqual(p7OrbitColumnHits, [[8,2,12]]);
+assert.deepEqual(
+  p7OrbitShapeHits.map((x) => x.slice(0, 3)),
+  [[8,2,12]]
+);
 
 // Seven-page physical chapter counts, base29 quotient/remainder state packet.
 const pageCounts = Array.from({ length: 7 }, (_, i) =>
@@ -684,7 +794,18 @@ console.log(JSON.stringify({
       cubicOrders:[469,24388],
       order:matrixOrder,
     },
-    census:{windows49,rowHits,colHits,jointHits,characteristicHits},
+    p7Bridge:{
+      polynomial:p7Polynomial,
+      zeroPath,
+      orbit:p7Orbit,
+      weightedRows:p7WeightedRows,
+      weightedColumns:p7WeightedColumns,
+      polynomialOfMatrixCharacteristic:p7OfP8Characteristic,
+    },
+    census:{
+      windows49,rowHits,colHits,jointHits,characteristicHits,
+      p7OrbitRowHits,p7OrbitColumnHits,p7OrbitShapeHits,
+    },
   },
   chapterPageLengths: {
     pageCounts,quotients,remainders,

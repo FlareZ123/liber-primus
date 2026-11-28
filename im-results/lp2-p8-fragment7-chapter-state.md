@@ -123,6 +123,77 @@ H7(columns)
 
 These checks are supporting evidence. The characteristic polynomial is the more discriminating algebraic closure.
 
+## Adjacent p7→p8 operation: orbit-weighted fragment square
+
+The preceding p7 page already supplied an independently frozen quartic from its five complete red-word products:
+
+```text
+P(x)=11+26x+8x^2+15x^3+2x^4.
+```
+
+The older p7 report established the source-motivated zero path
+
+```text
+0 -> 11 -> 23 -> 17 -> 18 -> 5
+```
+
+where exactly **five** iterations match the five marked red words. Thus the next seven states are not an arbitrary rotation of the cycle:
+
+```text
+v = [5,15,28,9,10,24,7]
+  = [g,b,-1,q+g,Kg,-g,g+K].
+```
+
+Use that already-frozen seven-state vector as the column weights of the newly identified p8 7×7 fragment-length matrix. The result is
+
+```text
+M v
+= [2,28,5,28,23,28,27]
+= [K,-1,g,-1,p,-1,-K].
+```
+
+The repeated odd-position value and antisymmetric endpoints are visible **before** state naming: the output has the form
+
+```text
+[u,s,v,s,w,s,-u].
+```
+
+Across all **479** same-page 49-fragment windows, p8 is the **only** window whose p7-orbit-weighted rows have even this unlabeled shape. It is also the only window matching the exact state packet above.
+
+The transpose gives a second exact cross-check:
+
+```text
+M^T v
+= [10,6,1,3,28,16,18]
+= [Kg,a,1,e,-1,K-b,p-g],
+```
+
+again unique across the same 479 windows.
+
+This is the strongest new page-to-page operation in this report: p7 supplies an executable polynomial and a source-fixed seven-state orbit; p8 supplies a state-motivated square of literal source lengths; ordinary GF29 dot products produce a compact DH-state checksum.
+
+### The p7 polynomial acting on the p8 matrix
+
+The same adjacent-page objects also compose without selecting a vector. Evaluate the p7 polynomial directly on the p8 matrix:
+
+```text
+N = P(M).
+```
+
+Its characteristic polynomial is
+
+```text
+χ_N(x)
+= (x-(g+K))
+  (x^3 + Kx^2 - x + A^-1)
+  (x^3 + Kg x^2 - (q+g)x + B)
+
+= x^7 + 5x^6 + 13x^5 + 19x^4 + 27x^3
+    + x^2 + 20x + 16.
+```
+
+Thus `det(N)=b-K=13`; both cubic factors are primitive over GF(29). No other 49-fragment source window has this transformed characteristic polynomial. That last absence means `P(M)` does not by itself identify a second fragment-window recipient; it is an algebraic page-to-page closure, not yet a decoder.
+
 ## Manuscript-wide finite charge
 
 Freeze the source rule: on every same-page window of 49 consecutive page-local fragments, reshape literal fragment lengths row-major to 7×7 and compute its characteristic polynomial over GF29.
@@ -237,7 +308,7 @@ P8 now contains five mutually adjacent/contained representations of the same sta
 4. the 49 black page-local fragment lengths form a 7×7 matrix whose **entire characteristic polynomial factors in DH-state coefficients**;
 5. the seven physical page lengths p8–p14 serialize the state in base29.
 
-This materially changes the route ranking. The evidence points to deliberate **state/layout metadata** rather than a direct mono-layer Hill cipher.
+This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, not only a catalog of matching residues. The evidence points to deliberate **state/layout metadata and a p7→p8 state-transfer step** rather than a direct mono-layer Hill cipher.
 
 The next decisive question is not which extra matrix phase improves language. It is what source-visible operation uses this state packet to select an **untouched receiver or external object**. A successor should predict that recipient or a key coordinate before inspecting its ciphertext outcome.
 
