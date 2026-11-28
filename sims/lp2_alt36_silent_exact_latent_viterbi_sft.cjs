@@ -190,6 +190,34 @@ function experiment(raw, options={}) {
   }
   const LM=language(),beam=options.beam||600,rows=[];
   const separateLM=options.crossAuthor?new Map(sources.map(s=>[s.name,language(s.name)])):null;
+  if(options.red8Mode){
+    // Authenticated p54 artwork depicts these eight GP runes in red, after
+    // one enlarged A rune: M NG D IA TH X I M. Hypothetical repeated key.
+    const key=[19,21,23,27,2,14,10,19];
+    if(gp.pages[54].indices.slice(1,9).some((x,i)=>x!==key[i]))throw Error("source red8 drift");
+    const K=Array.from({length:3500},(_,i)=>key[i%8]),
+      Kshift=K.slice(1);
+    let C,truth=null,target;
+    if(options.red8Mode==="plant"){
+      const source=sources[1],test=tape(source.W.slice(Math.floor(source.W.length*.57)));
+      const P=test.slice(5000,5340),A=strict(P,K);
+      C=A.filter(x=>x.c<29).map(x=>x.c);
+      truth=A.filter(x=>x.c<29&&x.p<29).map(x=>x.p);
+      target="held-out Gibran under exact red8 cyclic mod36 silent sender";
+    }else if(options.red8Mode==="original"){
+      C=gp.pages[54].indices.slice(9).concat(gp.pages[55].indices);
+      if(C.length!==299)throw Error("original red-heading-excluded terminal length drift");
+      target="physical LP2 p54 body plus complete p55, 299 runes, red9 heading excluded";
+    }else throw Error("invalid red8Mode");
+    const a=solve(C,K,LM,beam,options.maxHidden||3),
+      b=solve(C,Kshift,LM,beam,options.maxHidden||3);
+    const result=z=>({score:z.score,lastClock:z.keyLast,
+      recovery:truth&&z.P?lcs(z.P,truth)/Math.max(z.P.length,truth.length):null,
+      text:z.P?.map(p=>gp.translit[p]).join(""),
+      originalRuneOutput:z.P?.map(p=>gp.runes[p]).join("")});
+    return {target,originalKey:key,scope:"one source-selected cyclic key but newly hypothesized mod36 silent-output cipher; no LP2 decrypt established",
+      count:C.length,truthLength:truth?.length,phase0:result(a),phase1:result(b)};
+  }
   if(options.primeMode){
     // One bounded transfer from the authenticated LP2 p56 successive
     // prime-minus-one schedule into a conjectural mod36 silent-output channel.
@@ -250,5 +278,7 @@ if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===mod
   console.log(JSON.stringify(experiment(raw,
     {beam:process.argv.includes("--wide")?1500:600,plants:3,
       primeMode:process.argv.includes("--prime-plant")?"plant":
-        process.argv.includes("--prime-original")?"original":undefined}),null,2));
+        process.argv.includes("--prime-original")?"original":undefined,
+      red8Mode:process.argv.includes("--red8-plant")?"plant":
+        process.argv.includes("--red8-original")?"original":undefined}),null,2));
 }
