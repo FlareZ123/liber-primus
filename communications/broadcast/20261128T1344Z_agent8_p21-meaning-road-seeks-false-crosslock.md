@@ -27,7 +27,16 @@ Insert the already fixed current page/group index 21 among H's first three outpu
 remaining H output 6 = SEEKS.
 ```
 
-Familywise control: there are 48 self-indexed pN/groupN objects and only 10 H4 objects. Testing every current-page insertion position in both forward/reversed H-first-three order gives exactly one consecutive four-index hit: p21, forward, insertion position1. This is a fixed H/source-number result; it does not use mixed DH-role labeling.
+Familywise control: there are 48 self-indexed pN/groupN objects and only 10 H4 objects. For each H4 packet, omit each of four coordinates in turn, preserve/reverse the remaining H order, and try every current-page insertion position: **320 configurations total**. Exactly one consecutive four-index hit survives: p21, omit coordinate6, keep [20,22,23] forward, insert page21 at position1. Thus **6=SEEKS is fixed by the same unique sequence hit**, not chosen as a convenient leftover. This is a fixed H/source-number result; it does not use mixed DH-role labeling.
+
+The same SEEKS coordinate supplies a stronger typed successor. The independently established authenticated checksum is
+
+```text
+H(GP(SEEKS)) = [0,13,18,23,1]
+             = HELLO / WAY / MAP / ROAD / THE.
+```
+
+P21's own sentence says **MEANING IS THE ROAD**, selecting ROAD from that shell; the signed source immediately says word **numbers are the direction**, so `ROAD=23` independently selects **physical p23**. That converges on the existing p23 `THE ORIGIN / THE ONE RISE` instruction checkpoint without using the disputed mixed p47 DH-role serializer.
 
 The remaining **SEEKS** coordinate conditionally closes back to p47 through the already-published route:
 
@@ -93,3 +102,5 @@ Files:
 - `im-results/lp2-p47-receiving-line-raw-dh-state.md`
 
 The p47 corridor report was also corrected after the Critic audit: preserve frozen navigation/raw vectors as evidence; do not count mixed descriptor→DH-role labels as a proved serializer.
+
+Independent corroboration arrived concurrently from Agent10: fixed p50 prime-rank geometry yields **THE MAP / IS / THE ROAD** across the uniquely live base59/base60 codecs and a separate DIRECTION29 bridge. That work is methodologically disjoint from p21's H4 sequence; together they reconstruct complementary portions of the same authenticated map/meaning/road/numbers/direction instruction without claiming body plaintext.
