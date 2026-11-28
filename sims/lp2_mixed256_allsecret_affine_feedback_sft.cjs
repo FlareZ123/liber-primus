@@ -84,6 +84,42 @@ assert.equal(sourceMinusOne,20432);
 assert.equal(sourceMax,24229);
 const sourceRate=sourceMax/suffixPairs;
 assert.ok(Math.abs(sourceRate-0.04093925937941429)<1e-14);
+// Second-order extension: allow two independent unknown feedback taps and
+// arbitrary secret alphabets in every segment. Exhaust all 29^2 choices.
+const secondPairs=segments.reduce((sum,s)=>{
+  const n=Math.max(0,s.end-s.start-2);return sum+n*(n-1)/2;
+},0);
+assert.equal(secondPairs,579373);
+function secondPlainCollisions(arr){
+  let hits=0;
+  for(const seg of segments){
+    const hist=new Uint16Array(29);
+    for(let j=seg.start+2;j<seg.end;j++)hist[arr[j]]++;
+    for(const n of hist)hits+=n*(n-1)/2;
+  }
+  return hits;
+}
+function secondResidualHits(C,seg,a,b){
+  const hist=new Uint16Array(29);
+  for(let j=seg.start+2;j<seg.end;j++)
+    hist[modulo(C[j]-a*C[j-1]-b*C[j-2])]++;
+  let hits=0;for(const n of hist)hits+=n*(n-1)/2;
+  return hits;
+}
+let sourceSecondMax=0,sourceSecond00=0;
+for(const seg of segments){
+  let best=0;
+  for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+    const hits=secondResidualHits(original,seg,a,b);
+    best=Math.max(best,hits);
+    if(a===0&&b===0)sourceSecond00+=hits;
+  }
+  sourceSecondMax+=best;
+}
+assert.equal(sourceSecond00,19540);
+assert.equal(sourceSecondMax,26957);
+const secondUpperRate=sourceSecondMax/secondPairs;
+assert.ok(Math.abs(secondUpperRate-0.04652788445440157)<1e-14);
 
 // Source-native GP controls are independently calibrated against solved LP1
 // and independent solved p57 by their imported orthography SFT.
@@ -92,15 +128,19 @@ const controls=[
   ['Gibran','resources/control/gibran_prophet_58585.txt',8],
   ['Emerson','resources/control/emerson_essays_2944.txt',48]
 ];
-let globalMinimum=Infinity,plant=null,total=0;
+let globalMinimum=Infinity,secondGlobalMin=Infinity,plant=null,total=0;
 const register=[];
 for(const [name,p,expected] of controls){
   const text=encodeSourceNativeGP(read(p));
-  let localMin=Infinity,localMax=-Infinity,count=0;
+  let localMin=Infinity,localMax=-Infinity,secondMin=Infinity,secondMax=-Infinity,count=0;
   for(let start=0;start+original.length<=text.length;start+=6478){
     const window=text.slice(start,start+original.length);
     if(plant===null)plant=window;
     const z=collisions(window)/suffixPairs;
+    const z2=secondPlainCollisions(window)/secondPairs;
+    assert.ok(z2>secondUpperRate,name+' all-secret second-order bound');
+    secondMin=Math.min(secondMin,z2);secondMax=Math.max(secondMax,z2);
+    secondGlobalMin=Math.min(secondGlobalMin,z2);
     assert.ok(z>sourceRate,name+' all-secret original bound');
     localMin=Math.min(localMin,z);
     localMax=Math.max(localMax,z);
@@ -108,10 +148,11 @@ for(const [name,p,expected] of controls){
     count++;total++;
   }
   assert.equal(count,expected);
-  register.push({name,windows:count,min:localMin,max:localMax});
+  register.push({name,windows:count,min:localMin,max:localMax,secondMin,secondMax});
 }
 assert.equal(total,88);
 assert.ok(globalMinimum>0.0574);
+assert.ok(secondGlobalMin>0.05743);
 const solved=load('resources/external/relikd-solved-gp29-native-v1.json')
   .sections.flatMap(s=>Array.from(s.source_text)
     .map(ch=>corpus.runes.indexOf(ch)).filter(x=>x>=0));
@@ -121,6 +162,11 @@ const solvedRates=[0,193,971,1541,2043,2500].map(shift=>{
   return collisions(sample)/suffixPairs;
 });
 assert.ok(solvedRates.every(x=>x>0.0607));
+const solvedSecondRates=[0,193,971,1541,2043,2500].map(shift=>{
+  const sample=Array.from({length:original.length},(_,i)=>solved[(i+shift)%solved.length]);
+  return secondPlainCollisions(sample)/secondPairs;
+});
+assert.ok(solvedSecondRates.every(x=>x>0.0607));
 
 // Full lossless positive plant for the declared autoregression; first
 // character of each segment is a source-provided seed not tested by the
@@ -147,6 +193,28 @@ for(const seg of segments)
   plantedAllSecret+=Math.max(...Array.from({length:29},
     (_,a)=>residualHits(enc,seg,a)));
 assert.ok(plantedAllSecret>=trueHits);
+// Independently planted two-tap autoregression; even allowing every hidden
+// coefficient pair, source residual collisions cannot exceed the control
+// under the correct private coefficients and arbitrary secret bijections.
+const enc2=Array(original.length).fill(-1);
+let trueHits2=0;
+for(let i=0;i<segments.length;i++){
+  const seg=segments[i], n=seg.end-seg.start;
+  if(n<=0)continue;
+  const a=(3*i+5)%29,b=(7*i+11)%29;
+  const alpha=1+(13*i+3)%28,beta=(19*i+7)%29;
+  const inverseAlpha=Array.from({length:29},(_,q)=>q).find(q=>alpha*q%29===1);
+  enc2[seg.start]=(11*i+17)%29;
+  if(n>=2)enc2[seg.start+1]=(23*i+9)%29;
+  for(let j=seg.start+2;j<seg.end;j++){
+    enc2[j]=modulo(a*enc2[j-1]+b*enc2[j-2]+alpha*plant[j]+beta);
+    const recovered=modulo(inverseAlpha*
+      modulo(enc2[j]-a*enc2[j-1]-b*enc2[j-2]-beta));
+    assert.equal(recovered,plant[j]);
+  }
+  trueHits2+=secondResidualHits(enc2,seg,a,b);
+}
+assert.equal(trueHits2,secondPlainCollisions(plant));
 console.log(JSON.stringify({
   classification:'key-free all-29-coefficient-per-segment feedback exclusion; no unknown plaintext',
   segments:256,suffixPairs,
@@ -154,6 +222,10 @@ console.log(JSON.stringify({
     upperHits:sourceMax,upperRate:sourceRate,
     selectedBestCoefficientCounts:chosen},
   naturalEnglish:{windows:total,minRate:globalMinimum,register},
+  secondOrder:{pairs:secondPairs,source00:sourceSecond00,
+    adversarialMax:sourceSecondMax,upperRate:secondUpperRate,
+    nativeMin:secondGlobalMin,solvedControls:solvedSecondRates,
+    positivePlantRecovered:true,truePlainHits:trueHits2},
   actualSolvedCicada:{runes:solved.length,controls:solvedRates},
   plantedRecovery:{fullSuffix:true,actualPlainHits:trueHits,
     adversarialMaxHits:plantedAllSecret}
