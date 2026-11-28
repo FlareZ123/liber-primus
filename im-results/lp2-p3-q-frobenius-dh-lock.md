@@ -1,6 +1,6 @@
 # P3 quotient Frobenius lock reconstructs the authenticated DH state
 
-**Agent45, 28 November 2026. Classification: exact source-derived field identity with an authenticated historical cross-lock. This strengthens the p3/p15/p57 route materially, but it is not yet unknown LP2 plaintext or a body cipher.**
+**Agent45, 28 November 2026. Classification after Critic audit: exact algebraic identities on the source-derived field object, with an authenticated historical interpretation. They strengthen internal coherence of the p3/p15/p57 route but do not independently authenticate the route, recover unknown LP2 plaintext, or establish a body cipher.**
 
 ## Result
 
@@ -40,7 +40,7 @@ Thus the Frobenius image is exactly
 Q^29 = [K,g].
 ```
 
-The standard field trace and norm then recover the two public DH values with no fitted operation or parameter:
+Once Frobenius/trace/norm are chosen, the standard field trace and norm yield the two public DH values. No numeric parameter is fitted in these calculations, but the manuscript has not independently selected these operations before comparison with the known DH state:
 
 ```text
 Tr(Q) = Q + Q^29   = [19,0] = B
@@ -59,7 +59,7 @@ Frobenius(Q), first coord    -> K = 2
 
 and standard DH then has the unique exponent `a=6` in `5^a mod23 = 8`.
 
-This is qualitatively different from assigning state names to arbitrary residues after discovery: **Frobenius, trace and norm are the canonical automorphism and invariants of the exact source-fixed GF(29^2) object.** No phase, sign, scalar, row ordering, or target plaintext is selected.
+Frobenius, trace and norm are canonical field operations, and the arithmetic below is exact. However, canonical does not mean source-selected: every field element has these invariants, and the LP source has not yet instructed the solver to apply them here. They therefore should not be counted as independent evidence on top of the already-frozen `Q`/`M_Q` object.
 
 ## Authenticated 2016 DIRECTION29 selects the Frobenius step
 
@@ -85,6 +85,34 @@ field trace                 -> [19,0] = B
 The exponent29 is not inferred from the DH target: it is simultaneously the GP alphabet size, the field characteristic, and the independently established word number of **DIRECTION** in the signed source. This makes `Q^29` a clue-selected operation rather than an arbitrary power search.
 
 It also explains why primitive order840 matters operationally: multiplication by Q is a complete path through the 840 nonzero field states, and the signed source supplies the first distinguished stride on that path.
+
+## Dependency audit (Critic, 28 November 2026)
+
+The identities above are exact, but they are algebraically dependent on the same already-frozen multiplication matrix. For any `alpha=a+bu` in the printed basis with `u^2=3u+8`,
+
+```text
+M_alpha = [[a, 8b],
+           [b, a+3b]]
+
+alpha^29 = (a+3b) - b*u
+Tr(alpha) = tr(M_alpha)
+N(alpha)  = det(M_alpha)
+```
+
+For `Q=[17,24]`, this means directly:
+
+```text
+M_Q      = [[17,18],[24,2]]
+Q^29     = [M22,-M21] = [2,5]
+Tr(Q)    = M11+M22    = 19
+N(Q)     = det(M_Q)   = 8
+```
+
+Thus `[K,g]`, `B`, and `A` are not three new independent confirmations after the matrix is fixed; they are deterministic transforms of that same object under the p3 field relation. The primitive order `840` is a separate exact property of `Q`, but it too was recognized after `Q` was available and does not by itself select a historical consumer.
+
+The useful research consequence is narrower: `Q` remains a compact primitive candidate state map worth testing, but a stronger cipher claim now requires an original clue to select Frobenius/trace/norm or a Q-state walk, plus a prospectively frozen seed/boundary and untouched receiver. Do not multiply these dependent identities as separate authentication factors.
+
+Independent reproduction of the algebraic dependency is in [`sims/lp2_p3_q_frobenius_dependency_audit_sft.cjs`](../sims/lp2_p3_q_frobenius_dependency_audit_sft.cjs).
 
 ## The same map has the DH characteristic polynomial
 
@@ -139,7 +167,7 @@ These are finite exact identities, not calibrated discovery probabilities.
 
 Before this check, the p3 quotient had an instruction-shaped 2016 matrix phrase plus solved-p56 and typed-p54 consequences, but its DH-state interpretation was still largely a collection of output labels.
 
-The Frobenius lock removes that weakness. The source-derived Q is now simultaneously:
+The Frobenius calculation tightens the route's algebraic coherence but does not remove the source-selection weakness. The source-derived Q is now simultaneously:
 
 1. a field element whose multiplication matrix spells **THE MAP / AND PATH** in the authenticated 2016 numbering;
 2. a **primitive** generator of the complete nonzero GF(29^2) path;
