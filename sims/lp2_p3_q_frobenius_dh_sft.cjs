@@ -150,6 +150,8 @@ const words = signedBody.match(/\b[A-Za-z]+\b/g)
   .map((word) => word.toUpperCase());
 assert.strictEqual(words.length, 43);
 assert.strictEqual(words[29], "DIRECTION");
+assert.deepStrictEqual(pow(Q, 29), [dh.K, dh.g]);
+assert.deepStrictEqual(pow(Q, 30), [dh.A, 0]);
 assert.deepStrictEqual(matrix.flat().map((index) => words[index]), ["THE", "MAP", "AND", "PATH"]);
 
 // Maximum possible multiplicative order in GF(29^2)^* is 29^2-1=840.
@@ -372,7 +374,13 @@ console.log(JSON.stringify({
   field_norm: norm,
   multiplication_matrix: matrix,
   matrix_words: matrix.flat().map((index) => words[index]),
-  direction_word: { index: 29, word: words[29], Q_to_direction: pow(Q, 29) },
+  direction_word: {
+    zero_based_index: 29,
+    one_based_ordinal: 30,
+    word: words[29],
+    Q29: pow(Q, 29),
+    Q30: pow(Q, 30),
+  },
   matrix_invariants: matrixInvariants(matrix),
   multiplicative_order: multiplicativeOrder(Q),
   Q30: pow(Q, 30),
