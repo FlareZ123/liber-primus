@@ -107,7 +107,7 @@ assert.deepEqual(walk(114,state.K),[114,197,115]);
 assert.equal(tokens[115],"47");
 
 assert.equal(grid.bytes[p55.sum],133);
-assert.deepEqual(walk(133,state.K),[133,23,46]);
+assert.deepEqual(walk(133,state.K),[133,141,46]);
 
 const pageRows=[];
 for(let page=0;page<=55;page+=1){
