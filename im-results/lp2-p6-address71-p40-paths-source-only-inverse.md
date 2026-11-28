@@ -1,6 +1,6 @@
 # P6 address71 plus its visual key gives a target-blind exact p40 PATHS inverse
 
-**Agent3, 28 November 2026. Classification: materially strengthened local plaintext candidate. Page, receiver address, numeric key and arithmetic direction can be reconstructed without using PATHS rune state; the remaining same-offset transfer grammar is retrospective.**
+**Agent3, 28 November 2026; strengthened by Agent22. Classification: materially strengthened local plaintext candidate. P6 now target-blind selects the receiver page/address/line class, numeric key and arithmetic direction without using PATHS rune state; the cross-page packet grammar remains retrospective.**
 
 ## Inputs fixed outside p40 plaintext
 
@@ -137,6 +137,32 @@ The other offset71 four-rune words are on p6, p7, p27 and p37 and produce no aut
 
 This charge is stronger than the prior 62-pair same-GP0 receiver census because it does **not** use target GP0 to choose the p40 receiver.
 
+## Full p6-packet receiver selection
+
+The p6 packet supplies three source-visible receiver constraints before any target plaintext is read:
+
+~~~text
+address                   = 71
+key arity / word length   = 4
+balanced black-line width = 20
+~~~
+
+Charge those fields literally against every unknown physical page. Five complete four-rune words begin at offset71, but their containing physical line widths are:
+
+~~~text
+p6  -> 18
+p7  -> 22
+p27 -> 22
+p37 -> 24
+p40 -> 20
+~~~
+
+Thus **p40 offsets71..74 is the sole manuscript receiver satisfying the complete p6 packet grammar**. This selection uses no PATHS letters, GP sum, or signed source index40. The independent p28→p29→p23→p25 route also lands on p40, so the two routes now corroborate the same destination.
+
+Applying the source-derived key `[20,20,12,6]` with the historically established subtraction direction gives PATHS exactly.
+
+The remaining caveat is discovery order: the cross-page interpretation “export p6 address + key arity + balanced line width as receiver constraints” was formulated after PATHS was already known. The finite charge removes destination freedom; it does not itself prove that Cicada intended this transfer grammar.
+
 ## Internal-red-heading layout charge
 
 There are seven internal red spans in the annotated unknown pages: p3, p6, p7, p15, p33, p39 and p53. Using the fixed state `q=4,g=5,a=6,K=2`, test their color-separated black line geometry.
@@ -154,9 +180,9 @@ The competing internal spans fail at least one condition. This makes the p6 key 
 
 ## Evidence boundary
 
-This is now an exact local inverse in which the unknown target is not used to choose the receiver or numeric key. The strongest remaining unsupported step is **same-offset transfer**: no first-party text yet explicitly says “take the p6 title start and use it as a local offset on the p25-selected page40.” The repeated SEEKS/71 equalities, the **unique same-index signed-GP0/red-heading match**, the **unique self-addressing red span**, and p6's key-packet role make that transfer plausible, but it was recognized after PATHS was known.
+This is now an exact local inverse in which the unknown target is not used to choose the receiver, page, or numeric key. The p6 packet itself selects a unique manuscript receiver through `(address71, length4, physical-line width20)`, while the independent p25 route separately selects p40. The strongest remaining unsupported step is the **cross-page packet grammar**: no first-party text explicitly says to export p6's self-address, key arity and balanced line width as receiver constraints. The unique SEEKS/red-start match, the unique self-addressing red span, and the independent p25→40 route make that grammar plausible, but it remains retrospective.
 
-Accordingly preserve PATHS as a materially stronger plaintext candidate, not yet an established decryption. A fresh page destination selected before its ciphertext is opened, or an authored instruction tying the key packet's local coordinate to another page, would prospectively test the transfer.
+Accordingly preserve PATHS as a materially stronger plaintext candidate, not yet an established decryption. Page destination is no longer a free parameter under the frozen packet grammar; promotion now needs an authored instruction selecting that grammar or a fresh receiver predicted from the same packet before its ciphertext is opened.
 
 ## Reproduction
 

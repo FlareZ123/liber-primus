@@ -173,6 +173,29 @@ assert.equal(canonical.length, 2864);
 function pageWords(page) {
   return canonical.filter((word) => word.page === page);
 }
+// Physical rune-line metadata, preserving original line breaks.
+const physicalLinesByPage = new Map();
+for (let block = 0; block < parts.length; block += 1) {
+  const page = block >= 50 ? block + 1 : block;
+  let pageOffset = 0;
+  const lineRows = [];
+  for (const [lineIndex, line] of parts[block].split("\n").entries()) {
+    const count = [...line].filter((ch) => runeIndex.has(ch)).length;
+    if (count === 0) continue;
+    lineRows.push({ line: lineIndex + 1, start: pageOffset, end: pageOffset + count, count });
+    pageOffset += count;
+  }
+  assert.equal(pageOffset, corpus.pages[page].indices.length);
+  physicalLinesByPage.set(page, lineRows);
+}
+
+/** @param {{page:number,start:number}} word */
+function physicalLineForWord(word) {
+  const rows = physicalLinesByPage.get(word.page) || [];
+  const row = rows.find((candidate) => candidate.start <= word.start && word.start < candidate.end);
+  assert.ok(row, "missing physical line for page " + word.page + " offset " + word.start);
+  return row;
+}
 
 /** @param {number[]} values */
 function d4(values) {
@@ -558,6 +581,28 @@ const offset71Words = canonical.filter((word) => word.start === 71);
 assert.equal(offset71Words.length, 12);
 const offset71FourRuneWords = offset71Words.filter((word) => word.len === 4);
 assert.equal(offset71FourRuneWords.length, 5);
+const packetReceiverCandidates = offset71FourRuneWords
+  .map((word) => ({ word, line: physicalLineForWord(word) }))
+  .filter(({ line }) => line.count === balancedCrossDividerCounts[0]);
+assert.deepEqual(packetReceiverCandidates.map(({ word, line }) => ({
+  page: word.page,
+  start: word.start,
+  len: word.len,
+  lineCount: line.count,
+  values: word.values,
+})), [{
+  page: 40,
+  start: 71,
+  len: 4,
+  lineCount: 20,
+  values: [4,15,14,21],
+}]);
+const packetReceiverPlain = packetReceiverCandidates[0].word.values.map((value, index) =>
+  mod29(value - sourceFixedKey[index])
+);
+assert.deepEqual(packetReceiverPlain, signed[40].gp);
+assert.equal(signed[40].label, "PATHS");
+
 const offset71AuthenticatedHits = [];
 for (const receiver of offset71FourRuneWords) {
   for (const direction of ["sub","add"]) {
@@ -628,6 +673,10 @@ console.log(JSON.stringify({
     p40FourRuneScalarStarts,
     offset71WordCount: offset71Words.length,
     offset71FourRuneWordCount: offset71FourRuneWords.length,
+    packetReceiverCandidates: packetReceiverCandidates.map(({ word, line }) => ({
+      page: word.page, start: word.start, len: word.len, lineCount: line.count, values: word.values,
+    })),
+    packetReceiverPlain,
     offset71AuthenticatedHits,
     hits: literalKeyHits(permutedLiteralKeys),
   },
