@@ -132,9 +132,34 @@ Y=[146,57,132,71]
 
 **Critical stress test without the inherited residue prior:** Retain all 366 × 216 = 79,056 distinct `Q,D` packet combinations, but allow *every* complete-group source candidate of the four first-block arities, not only their `H4` start residues. **137 packet combinations** have at least one complete eight-page paired receiver; they give **207 labeled complete receiver-pair combinations**, **198 distinct physical eight-page pairings**, and **82 packet combinations with exactly one pairing**. Hence the literal packet remains uniquely identifying *when fixed*, but the broader p6 source-field family no longer picks it uniquely without the first-block residue structure. This is a concrete nonidentifiability limit, not a new likelihood ratio or evidence of plaintext.
 
+
+### Independent all-block p6 GP0 checksum resolves the 137 alternatives
+
+A previously established, separately motivated source-visible p6 Fehu/title checksum has original title packet
+
+```text
+H(F,W1[1]) || [W1[0],W4[1]]
+= H(0,16) || [24,12]
+= [13,16,24,12]  mod29.
+```
+
+Partition the already independently prepared eleven receivers by the p6 physical widths `[4,1,4,2]` and sum their **ciphertext rune indices** modulo29, lane by lane. The singleton p36 q-center removal gives `GP0=16`; the p41/p42 center-F removals give `GP0=6,6`, hence terminal total `12`. These packets were reported independently by Agent17, before the present integer-address transport was proposed; [original checksum report](lp2-p6-receiver-block-gp0-packet.md).
+
+Now *remove the previously inferred first-block starting-residue shell*, permit all **137** eligible integer-packet visual constructions and **207** complete eight-page receiver-pair combinations described above, and impose only the first and third block checksum targets `13` and `24`. Exactly **5 / 207** complete candidate pairings match the first-block checksum, **9 / 207** match the third, and **1 / 207** matches **both**. That sole pair is
+
+```text
+Q=[4,-3,4,2], D=[0,12,12,-12]
+X=[30,132,4,25], Y=[146,57,132,71]
+all four block GP0 sums=[13,16,24,12].
+```
+
+Thus two *different* arithmetic uses of the p6 physical source—**integer address displacement** and **block-grouped rune sum**—jointly select the entire eight-page receiver configuration under a much wider 79,056-packet family **without target plaintext, fitted keys, first-block residue shells, or punctuation**. The direct literal displacement alone gives one receiver pair in each lane; the independent checksum resolves the otherwise non-identifying visual-packet family.
+
+**Critical limitation:** Both formula families were discovered *after* the candidate corridor, so this is a finite conditional intersection rather than a valid out-of-sample likelihood or evidence of an original author instruction. The two tests are algebraically different (addresses vs rune values), but their research history is shared. The correct remaining question is how a human would be told to choose this address opcode and this checksum from p6 before any candidate receiver is seen.
+
 A second, different control locks this exact relation and shifts the `4+1+4` page shape to *every* possible physical start, 0..47. Each shift must supply all four source-residue/arity candidates and all four exact predicted destination complete-group packets. **Only start32 succeeds** among 48 shifts. This includes the rune-free p50 panel and does not score language.
 
-For the *older independent uniform period gate*, hold the published `S1` and source-visible **modular** edge transition fixed, then shift the eight-page shape over the same 48 physical starts. The number of deterministically resolved pages has histogram (0 through 8) `[6,11,13,10,6,0,1,0,1]`; only start32 gives 8/8. Charging broader edge permutations still leaves **5 / 192** distinct numeric edge packets with four deterministically selected block3 receivers. The integer-transport family resolves that specific direction/order ambiguity **within its charged arithmetic family**, but only conditionally, because the absolute-address opcode was post-selected.
+For the *older independent uniform period gate*, hold the published `S1` and source-visible **modular** edge transition fixed, then shift the eight-page shape over the same 48 physical starts. The number of deterministically resolved pages has histogram (0 through 8) `[6,11,13,10,6,0,1,0,1]`; only start32 gives 8/8. Charging broader edge permutations still leaves **5 / 192** distinct numeric edge packets with four deterministically selected block3 receivers. The integer-transport family alone does not pick its intended vector among all 137 unrestricted alternatives; the separately published p6 whole-block GP0 checksum reduces those 207 eight-page pairings to one. This remains conditional on post-selected visual operand families.
 
 **Neither 1/158,112 nor 1/48 is a discovery-wide probability:** researchers first studied the p32–p40 receiver corridor, then recognized these visual combinations. The family tests assess *how identifying the specific compact formula is among closely related human-readable alternatives*, not the chance of finding some equally ornate coincidence after arbitrary analysis.
 
@@ -147,8 +172,8 @@ node sims/lp2_p6_qblock_integer_address_transport_sft.cjs
 node sims/lp2_p6_eightpage_period_tiebreak_sft.cjs
 ```
 
-The integer SFT derives both packets directly from p6's printed title, first checks the unique arity-only cross-block lane pairs without the old residue shell, then admits both p32 residue candidates, checks the full arity/absolute-address prediction against original group boundaries, enumerates the complete 158,112-member shell-conditioned visual charge and 137/207/198 unrestricted visual-family control, and applies the frozen formula across all 48 physical shifts. The period SFT reconstructs trailing punctuation and the modular shells, eight candidate pools, and the 192-edge-family counterexample. Neither consumes the signed-source target word values or the key vectors fitted from them.
+The integer SFT derives both packets directly from p6's printed title, first checks the unique arity-only cross-block lane pairs without the old residue shell, then admits both p32 residue candidates, checks the full arity/absolute-address prediction against original group boundaries, enumerates the complete 158,112-member shell-conditioned visual charge, the 137/207/198 unrestricted visual-family control, and the 5/9/1 independent whole-block checksum intersection, and applies the frozen formula across all 48 physical shifts. The period SFT reconstructs trailing punctuation and the modular shells, eight candidate pools, and the 192-edge-family counterexample. Neither consumes the signed-source target word values or the key vectors fitted from them.
 
-**What materially changes:** an eight-page *full-integer* receiver address law now jointly selects p32 and p40 and reproduces p37–p40 without their earlier page-specific diagnostics. It is a stronger joint structural mechanism than any one scalar key-sum correspondence and avoids reusing fitted plaintext. The literal Fehu and final title rune participate in a complete, fixed-width, four-lane operation.
+**What materially changes:** an eight-page *full-integer* receiver address law, combined with a separate previously published original-cipher GP0 checksum, jointly selects all eight receivers without inherited starting-residue predicates and reproduces p37–p40 without their earlier page-specific diagnostics. It is a stronger joint structural mechanism than any one scalar key-sum correspondence and avoids reusing fitted plaintext. The literal Fehu and final title rune participate in a complete, fixed-width, four-lane operation.
 
 **What remains unknown:** why the puzzle author would instruct a player to replace a title-width singleton with an H4 value, replicate/sign the terminal rune as `[F,u,u,-u]`, or apply a 29-step absolute-address update. These are compact guesses, not a first-party decoding instruction. The equally essential **ordered key serializer** remains absent: there is still no authenticated unknown LP2 plaintext. The decisive next test is an independent visual/historical opcode or a prospectively selected fresh receiver and ordered key, not more arithmetic names for target-fitted values.

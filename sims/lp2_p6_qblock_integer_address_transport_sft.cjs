@@ -175,7 +175,18 @@ assert.deepEqual(charged,[{
 // Remove the first-block H4 start-residue prior entirely. This audits how
 // strongly the *same broadly charged family* identifies the 8-page corridor
 // if only printed group arities are known (and no target source rune values).
+const blockPacket=[mod(F-title[0].values[1]),mod(F+title[0].values[1]),
+                   title[0].values[0],title[3].values[1]];
+assert.deepEqual(blockPacket,[13,16,24,12]);
+const preparedP36=[2,22,1,20],preparedP41=[27,12,5,17,13,19],
+      preparedP42=[10,14,1,3,26,8,2];
+const gp0=z=>mod(z.reduce((a,b)=>a+b,0));
+assert.deepEqual([gp0(preparedP36),gp0(preparedP41),gp0(preparedP42)],[16,6,6]);
+assert.deepEqual([gp0(preparedP36),mod(gp0(preparedP41)+gp0(preparedP42))],
+                  [blockPacket[1],blockPacket[3]]);
 let broadConfigCount=0,broadSolutionCount=0,broadSingleCount=0;
+let firstBlockChecksumCount=0,thirdBlockChecksumCount=0;
+const jointChecksumSurvivors=[];
 const broadPairs=new Set();
 for(const V of qVariants.values())
 for(const Z of rVariants.values()){
@@ -189,11 +200,31 @@ for(const Z of rVariants.values()){
   broadSolutionCount+=n;
   if(n===1)broadSingleCount++;
   for(const a of lanes[0])for(const b of lanes[1])
-  for(const c of lanes[2])for(const d of lanes[3])
+  for(const c of lanes[2])for(const d of lanes[3]){
     broadPairs.add(JSON.stringify([a,b,c,d]));
+    const paired=[a,b,c,d];
+    const firstSum=mod(paired.reduce((acc,z)=>acc+z[0].gp0,0));
+    const thirdSum=mod(paired.reduce((acc,z)=>acc+z[1].gp0,0));
+    if(firstSum===blockPacket[0])firstBlockChecksumCount++;
+    if(thirdSum===blockPacket[2])thirdBlockChecksumCount++;
+    if(firstSum===blockPacket[0]&&thirdSum===blockPacket[2])
+      jointChecksumSurvivors.push({
+        Q:V,R:Z,
+        X:paired.map(z=>z[0].start),
+        Y:paired.map(z=>z[1].start),
+        blockSums:[firstSum,blockPacket[1],thirdSum,blockPacket[3]],
+      });
+  }
 }
 assert.deepEqual([broadConfigCount,broadSolutionCount,broadSingleCount,broadPairs.size],
                  [137,207,82,198]);
+assert.deepEqual([firstBlockChecksumCount,thirdBlockChecksumCount,
+                  jointChecksumSurvivors.length],[5,9,1]);
+assert.deepEqual(jointChecksumSurvivors,[{
+  Q:[4,-3,4,2],R:[0,12,12,-12],
+  X:[30,132,4,25],Y:[146,57,132,71],
+  blockSums:[13,16,24,12]
+}]);
 
 // Shift the whole typed 4+gap+4 arrangement through all 48 admissible
 // physical starts. Require every first-block residue/arity and every
@@ -226,7 +257,9 @@ console.log(JSON.stringify({
     charged:158112,solutions:charged,
     unrestrictedNoStartShell:{viablePackets:broadConfigCount,
       fullPairs:broadSolutionCount,singlePairPackets:broadSingleCount,
-      distinctPairs:broadPairs.size}},
+      distinctPairs:broadPairs.size,
+      firstChecksum:firstBlockChecksumCount,thirdChecksum:thirdBlockChecksumCount,
+      jointChecksumSurvivors}},
   physicalShiftControl:{admissibleStarts:48,hits:shifted},
   inference:"Post-discovery structural compression, not authenticated key or plaintext"
 },null,2));
