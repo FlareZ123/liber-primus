@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-28T08:22:51.866Z",
+  "workflow_run": 46125382634,
+  "source_rationale": "Solved p57 says WE MUST SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN; these nouns correspond to recovered LP1 q13 FIRFUMFERENFE and q8 DIUINITY key spellings. This is a conditional key-transfer/deletion interpretation, not established author intent.",
+  "method": "All cyclic rotations of each source-named LP1 key under existing exact GP29 strict-repeat + independent-deletion first-order MAP (D=0.187).",
+  "scopes": {
+    "opening": "p0-p2, 729 runes",
+    "terminal": "p54-p55, 308 runes"
+  },
+  "results": {
+    "DIUINITY": {
+      "key": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "original": {
+        "opening": {
+          "best_rotation": 1,
+          "best_score": -4.1761505244145125,
+          "phase0_score": -4.1809480503190075
+        },
+        "terminal": {
+          "best_rotation": 4,
+          "best_score": -4.067588615059352,
+          "phase0_score": -4.079244558918136
+        }
+      },
+      "matched_controls": {
+        "opening": {
+          "best_rotation": 0,
+          "best_score": -3.273573941510089
+        },
+        "terminal": {
+          "best_rotation": 0,
+          "best_score": -3.511253199378612
+        }
+      }
+    },
+    "FIRFUMFERENFE": {
+      "key": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "original": {
+        "opening": {
+          "best_rotation": 1,
+          "best_score": -4.106698989757229,
+          "phase0_score": -4.108522547151091
+        },
+        "terminal": {
+          "best_rotation": 6,
+          "best_score": -3.9975333116521146,
+          "phase0_score": -4.024238707067048
+        }
+      },
+      "matched_controls": {
+        "opening": {
+          "best_rotation": 0,
+          "best_score": -3.389640592966725
+        },
+        "terminal": {
+          "best_rotation": 0,
+          "best_score": -3.452114912919383
+        }
+      }
+    }
+  },
+  "best_original_minus_matched_control_nats_per_rune": {
+    "DIUINITY_opening": -0.9025765829044237,
+    "DIUINITY_terminal": -0.5563354156807399,
+    "FIRFUMFERENFE_opening": -0.7170583967905038,
+    "FIRFUMFERENFE_terminal": -0.5454183987327315
+  },
+  "code": "sims/lp2_gp29_historical_key_allphase_map_sft.cjs",
+  "interpretation": "Cyclic starting phase does not rescue either p57-named historical key in this deletion-channel MAP. All exact inverse replays exist, but their best original MAP scores remain substantially below matched true-key plants. This rejects only this frozen GP29 deletion receiver/model/scopes; it does not rule out the historical F-hold cipher, other deletion laws/rates/plaintext registers, or different source-selected operands."
+}
