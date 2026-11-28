@@ -44,6 +44,15 @@ const bytes = grid.pages.flatMap((page) => page.bytes);
 assert.equal(tokens.length, 256);
 assert.equal(bytes.length, 256);
 
+const digits60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
+const digits59 = digits60.replace('f', '');
+const decodeToken = (token, radix) => {
+  const alphabet = radix === 59 ? digits59 : digits60;
+  return radix * alphabet.indexOf(token[0]) + alphabet.indexOf(token[1]);
+};
+const base59 = tokens.map((token) => decodeToken(token, 59));
+const base60 = tokens.map((token) => decodeToken(token, 60));
+
 function physicalPart(page) {
   assert.notEqual(page, 50);
   return parts[page <= 49 ? page : page - 1] || '';
@@ -232,6 +241,36 @@ const cell254Hits = self.filter((row) =>
 );
 assert.deepEqual(cell254Hits.map((row) => row.page), [22]);
 
+// Literal39 has a commuting numeric/semantic continuation.
+assert.equal(decodeToken('39', 59), 186);
+assert.equal(decodeToken('39', 60), 189);
+
+const p39 = selfIndexed(39);
+assert.deepEqual(p39.values, [21, 2, 9, 5, 14, 16, 21]);
+assert.deepEqual(p39.h, [0, 15, 24, 5, 23, 18, 13]);
+const p39Reads = pairReads(p39.h);
+assert.deepEqual(p39Reads, [
+  { pair: [0, 15], numeral: 15, address: 15, token: '3W' },
+  { pair: [24, 5], numeral: 701, address: 189, token: '3C' },
+  { pair: [23, 18], numeral: 685, address: 173, token: '1v' },
+]);
+
+assert.equal(tokens[189], '3C');
+assert.equal(base59[189], 189);
+for (let seed = 0; seed < 256; seed += 1) {
+  let at = seed;
+  for (let step = 0; step <= 256 && at !== 189; step += 1) at = base59[at];
+  assert.equal(at, 189, `base59 seed ${seed} failed to reach fixed sink189`);
+}
+const p39SinkReads = p39Reads.filter(({ address }) => address === 189);
+assert.deepEqual(p39SinkReads.map(({ address }) => address), [189]);
+
+const mirror189 = Math.floor(189 / 8) * 8 + (7 - (189 % 8));
+assert.equal(mirror189, 186);
+assert.equal(mirror189, decodeToken('39', 59));
+assert.equal(189, decodeToken('39', 60));
+
+
 console.log(JSON.stringify({
   classification: 'source-selected navigation/authenticated-source semantic cross-lock; no LP2 plaintext',
   p21: {
@@ -267,6 +306,15 @@ console.log(JSON.stringify({
       physicalPage: literal39Direction,
     },
     allSelfIndexedCell254Hits: cell254Hits.map((row) => row.page),
+    token39CommutingCircuit: {
+      base60Value: decodeToken('39', 60),
+      semanticPage: 39,
+      p39H: p39.h,
+      p39PairAddresses: p39Reads.map(({ address }) => address),
+      base59Sink: 189,
+      mirrorDestination: mirror189,
+      base59Value: decodeToken('39', 59),
+    },
   },
 }, null, 2));
 console.log('PASS lp2_p21_meaning_road_seeks_cell254_sft');
