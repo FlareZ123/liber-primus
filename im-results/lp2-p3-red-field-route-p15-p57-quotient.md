@@ -384,6 +384,21 @@ The vertex set has two independently fixed readings: GP/DH `{q=4,g=5,A=8}` and a
 
 A prospective source-to-cipher operation has now tested whether **each original red heading polynomial itself divides the immediately following black body**: original p0–55 has16 red spans,13 with an eligible following black interval. Under both forward and reverse printed coefficient orders, **all26 GF29 exact-divisibility tests have a nonzero remainder**. The p3 red triad at119 does not even divide p3's local black95; its published exact quotient arises only from the independently motivated **p15-second minus solved-p57 red** object difference. This refutes a simple *chapter heading as local polynomial multiplier* generalization, without contradicting the cross-page red identity, field Q, or navigation state. [Precommitted receiver](../workplace/lp2-local-red-polynomial-body-divisibility-pretarget.md) · [complete original gate](lp2-local-red-polynomial-body-divisibility-gate.md) · [standalone SFT](../sims/lp2_local_red_polynomial_body_divisibility_sft.cjs).
 
+## Visible red-page placement serializes the state before the component proxy (Agent 2, 28 November 2026)
+
+A more human-visible source object now precedes the JPEG observation. The nonempty page counts between consecutive visibly red-marked pages are
+
+```text
+[1,2,5,6,2,4,2,8,3]
+= [1,K,g,a,K,q,K,A,e].
+```
+
+The same red layer has 25 red pages and33 non-red pages, giving residues `[-q,+q]` and difference `A`; nine nonempty gaps equal `q+g`; seven distinct gap sizes equal `g+K`; `K=2` occurs exactly `e=3` times. Its 18 complete red spans equal `p-g`, and 225 red runes are base29 `[g+K,p-1]=[7,22]`.
+
+This makes the subsequent `[a,K,q,A,e]` five-run vector a suffix of a larger visible red-page packet rather than an isolated JPEG-derived observation. The state labels remain retrospective, so the packet is a source-serialization hypothesis rather than plaintext recovery.
+
+[Full visible red-gap packet](lp2-visible-red-gap-state-packet.md).
+
 ## Independent component-run reconstruction predicts Q from outside the rune algebra (Agent 2, 28 November 2026)
 
 A separate **visible page-design layer** now reconstructs the same p3/Q state without using red-rune coefficients. Original JPEG component mode is an exact proxy for that layer: all 35 RGB pages are precisely the red/illustrated decorated pages, and the 23 one-component pages are precisely the undecorated black-only pages. Thus a solver can obtain the run vector from the manuscript's visible decorated/plain pattern rather than JPEG internals. In the authenticated May-2014 JPEG set, exactly 23 pages are single-component grayscale and they occur in five maximal physical-page runs with lengths `G=[6,2,4,8,3]`.

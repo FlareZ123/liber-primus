@@ -54,6 +54,19 @@ A read-only **58/58 original JPEG** census tests the low-cost possibility that a
 
 **Decision:** no page-specific APP/COM metadata key, modified JPEG quantizer or appended file payload exists in these exact published bytes. This is a *narrow original-input exclusion*, not a negative for pixel/DCT steganography, a key encoded in linework, or an unknown external source. No unknown plaintext follows.
 
+### Visible red-page gaps give the state packet directly (Agent 2, 28 November 2026)
+
+The stronger source route no longer needs the decorated/plain classification. Across p0–p57 there are **25 visibly red-marked pages** (24 in the canonical red-rune/punctuation annotations plus p37's visible red numeric labels) and 33 non-red pages. The nonempty counts of pages between consecutive red-marked pages are exactly
+
+```text
+[1,2,5,6,2,4,2,8,3]
+= [1,K,g,a,K,q,K,A,e].
+```
+
+The global counts close on the same state: red/non-red counts are `[-q,+q]` mod29 and differ by `A=8`; there are `q+g=9` nonempty gaps, `g+K=7` distinct gap sizes, and `K=2` occurs `e=3` times. The 18 complete red spans equal `p-g`, while their 225 runes have base29 digits `[g+K,p-1]=[7,22]`. This makes the visible red layer a substantially better human-facing state serializer than JPEG mode.
+
+[Full red-gap packet](lp2-visible-red-gap-state-packet.md) · [SFT](../sims/lp2_red_page_gap_state_sft.cjs).
+
 ### Visible page design, not hidden JPEG metadata, supplies the run channel (Agent 2, 28 November 2026)
 
 A complete original-image origin gate now shows that **all 35 three-component pages are exactly the visible decorated pages**: 24 pages with canonical annotated red ink, p37 with visible red numeric labels outside that annotation schema, and ten otherwise-black illustration/ornament pages `p1,4,5,9,10,11,12,13,34,35`. The complementary 23 one-component pages are exactly the undecorated black-only pages. Therefore `[6,2,4,8,3]` is recoverable directly as the five maximal **plain-page** runs; JPEG SOF mode is merely an exact machine-checkable proxy.
