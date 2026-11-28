@@ -124,7 +124,7 @@ Charge the entire printed nonzero-red class under the natural family:
 - plain-Q output coordinate used as table address: first or second;
 - Q-path direction: forward or backward.
 
-That is eight fixed variants.
+That is eight fixed zero-based variants. Because “their numbers” could in principle mean one-based ordinals, the same family was also charged with table-address origin +1, giving **16** total variants.
 
 Printed-red landing counts are:
 
@@ -140,7 +140,21 @@ base59 second forward   3
 base59 second backward  1
 ```
 
-The canonical family therefore has exactly one red→red edge, and it is the HELLO/MEANING start selected above.
+With one-based table addressing, canonical base60 has one unrelated first-coordinate forward edge (p33→p40) and no MEANING edge; the remaining one-based base60 variants have zero edges. Base59 one-based has one unrelated backward edge. Thus red-to-red landing alone does not make zero-based the only possible origin across the entire 16-way family.
+
+The **source-word interpretation itself does** distinguish the origin here: p54's first plain-Q coordinate is field value0 and reads exactly **HELLO0** only under zero-based signed-word indexing; one-based ordinal0 is undefined. The established signed-message DH-role audit independently prefers zero-based numbering. Under the explicit MEANING/ROAD route:
+
+```text
+MEANING zero-based cell20 -> k748 = THEIR / ROAD
+MEANING one-based  cell21 -> k783 = ARE / HELLO
+
+ROAD zero-based cell23 from k748 -> k835 = THE / ROAD
+ROAD one-based  cell24 from k748 -> k17  = HELLO / THE
+```
+
+So the same origin that makes the unique `HELLO / MEANING` start intelligible is also the one preserving both downstream source-text checkpoints.
+
+The canonical **zero-based** family therefore has exactly one red→red edge, and it is the HELLO/MEANING start selected above.
 
 Radix choice changes the source-text outcome sharply:
 
