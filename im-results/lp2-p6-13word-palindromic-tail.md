@@ -124,6 +124,54 @@ H5([25,13,6,18,18])
 
 The length and GP0 channels therefore give two distinct, completely source-side p6/DH state packets on the same five-block tail.
 
+## The 13 word initials form a symmetric H13 state packet
+
+The full 13-word object contains an even sharper source-side structure. Take only the **first canonical GP rune** of each word:
+
+```text
+SEEK      b      = 15
+AND       -g     = 24
+YOU       -e     = 26
+WILL      K+g    =  7
+BE        K+b    = 17
+FOUND     F      =  0
+GOOD      a      =  6
+LUCK      qg     = 20
+BEWARE    K+b    = 17
+FALSE     F      =  0
+PATHS     b-K    = 13
+VERIFY    a-g    =  1
+OPENPGP   e      =  3.
+```
+
+Thus the source wording itself exposes a 13-coordinate p6/DH sequence before any LP2 ciphertext is considered.
+
+Now apply the same frozen outside-in H serialization used throughout the repository: difference and sum for the outermost pair, then work inward, retaining the odd center. The symmetric word pairs collapse as follows:
+
+```text
+SEEK / OPENPGP   H(b,e)       = [aK, B-1] = [12,18]
+AND / VERIFY     H(-g,a-g)    = [p, p+K]  = [23,25]
+YOU / PATHS      H(-e,b-K)    = [b-K, Kg] = [13,10]
+WILL / FALSE     H(K+g,F)     = [K+g,K+g] = [7,7]
+BE / BEWARE      H(K+b,K+b)   = [F,g]     = [0,5]
+FOUND / LUCK     H(F,qg)      = [-qg,qg]  = [9,20]
+GOOD             center       = a         = 6.
+```
+
+So the complete H13 shell is:
+
+```text
+[aK,B-1,p,p+K,b-K,Kg,K+g,K+g,F,g,-qg,qg,a]
+=
+[12,18,23,25,13,10,7,7,0,5,9,20,6].
+```
+
+This is not merely “state expressibility” coordinate by coordinate. The **fixed symmetric pairing imposed by the 13-word palindrome** produces the ordered packet.
+
+Scan every possible contiguous 13-word window of the authenticated 43-word source. Exactly **one of 31** has this exact H13 first-rune shell: source30–42. Relax the coordinate order completely and require only the same 13-value H-shell multiset; it is still **one of 31**, the same tail.
+
+The sequence was recognized after the tail was already under investigation, so this is again a source-side finite charge rather than calibrated discovery odds. Its causal importance is much greater than a fitted LP2 key label: the signed prose itself was authored so that the first GP runes of six symmetric word pairs plus the center collapse under the pre-existing H operation to compact p6/DH state.
+
 ## Finite source-only charge
 
 Charge every possible contiguous 13-word interval in the authenticated 43-word signed source:
