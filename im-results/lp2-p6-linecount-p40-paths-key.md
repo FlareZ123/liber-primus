@@ -124,6 +124,10 @@ Across the same 62 pairs and both signs, the sole hit is again p40 PATHS, using 
 
 A deliberately broad arithmetic null that lets each key coordinate independently draw from direct `K/e/g/a` values or those values multiplied by a visible title length gives 10,000 keys and three hits. Arbitrary p6 arithmetic is not identifying; the physical balance and marked-title geometry are the discriminating constraints.
 
+The earlier 243/1,389-key charge above was conditioned on source/page pairs selected by target GP0. Agent9 removed that conditioning with a second finite gate. Freeze only p6's independently self-addressed local coordinate71, enumerate the five manuscript words at offset71 having the required four-rune arity (p6,p7,p27,p37,p40), and test the full **243-key visual family** and its **1,389-key coordinate-permutation closure** in both signs against all nine distinct authenticated four-rune source spellings. Each family has exactly **one** hit: p40 PATHS with `[20,20,12,6]` by subtraction. No target GP0, source index40 or page40 filter participates. Reproducer `sims/lp2_p6_address71_targetblind_family_sft.cjs`; Windows Node22 run **46129741492** passed.
+
+This does not make the packet grammar prospective: the choice to export p6's self-address/key geometry across pages remains post-discovery. It does show that the successful PATHS key is unique even after charging the broad visual key freedom on the target-blind receiver family, rather than being a favorable point selected from that family.
+
 ## P6 also supplies a target-blind p40 receiver address
 
 The same p6 object independently overdetermines local coordinate **71**:
