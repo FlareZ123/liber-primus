@@ -51,9 +51,48 @@ BEWARE FALSE PATHS
 
 The other edge is independently notable because it reads **THE MAP**, exactly the noun phrase used by the signed source: “Its words are the map.” This full-field enumeration was fixed before interpreting any additional token and contains no language-scored row/column choice.
 
+## Stricter adjacent-cell dual-radix recognition
+
+The warning-chain census above deliberately treats composites as transparent within a physical line. A stricter family asks for **immediately adjacent printed cells** whose decoded values are ordinary primes of consecutive rank.
+
+The radix choices are not symmetric free parameters. The printed p50 alphabet has 60 glyphs, but across all 512 token characters exactly one alphabet glyph is unused: lowercase `f`. Deleting that one absent glyph gives the live 59-symbol codec uniquely; there is no choice of which visible digit to drop.
+
+Under the full base60 alphabet, there is exactly **one** physically adjacent consecutive-prime-rank pair anywhere in all 472 undirected grid adjacencies:
+
+```text
+cell219 (row27,col3) = 0x = 59 = prime#17
+   north one cell
+cell211 (row26,col3) = 11 = 61 = prime#18
+source[17..18] = THE MAP
+```
+
+Under the uniquely source-visible base59 codec there are two such adjacent pairs globally, but only one lies inside the authenticated 43-word register:
+
+```text
+cell40 (row5,col0) = 1K = 79 = prime#22
+   east one cell
+cell41 (row5,col1) = 1O = 83 = prime#23
+source[22..23] = THE ROAD
+```
+
+The other base59 adjacency is prime ranks49→50, outside the signed register. Thus the strict source-range family selects **THE MAP** in base60 and **THE ROAD** in base59, exactly the two named objects in the signed instruction.
+
+Those two physical support lines are orthogonal. The MAP pair fixes column3; the ROAD pair fixes row5. Their unique intersection is **cell43**, whose original token is `1D`; under base60 it is 73, the **21st prime**, and `source[21] = IS`. The geometry therefore supplies the exact signed-register backbone:
+
+```text
+THE MAP  ...  IS  THE ROAD
+17  18        21  22  23
+```
+
+The omitted source words are exactly indices19–20, **THEIR MEANING**. There is one additional constrained near-continuation: the cell immediately north after MAP, cell203, is 67=prime#19 under base59 and therefore reads **THEIR**. The next cell north, cell195, is not prime#20 under either codec, so the literal straight phrase stops before **MEANING**. No turn, wrap or third numeric codec is authorized.
+
+A finite follow-up also combines the observed physical directions (MAP points north; ROAD points east) into a northeast ray from the `IS` intersection. That ray does not produce a consecutive signed-register instruction under either codec. Treat N/E as descriptive geometry, not a newly recovered opcode.
+
+This result changes the local radix interpretation: inside this exact adjacency/prime-rank family, base60 and the uniquely absent-`f` base59 reading look **complementary** rather than one simply defeating the other. Do not generalize that dual-radix conclusion to unrelated p50 branches without an equally source-constrained discriminator.
+
 ## Radix rival and stopping rule
 
-Repeat the identical physical-line family after deleting lowercase `f` from the printed alphabet (the live base59 rival). Only two edges survive, both rank22->23, at column5 downward and row5 right. There is **no two-edge consecutive rank chain**. Thus the warning structure discriminates base60 from base59 inside this specific prime-rank geometry family.
+Repeat the identical physical-line family after deleting lowercase `f` from the printed alphabet (the live base59 rival). Only two edges survive, both rank22->23, at column5 downward and row5 right. There is **no two-edge consecutive rank chain**. Thus the **warning-chain** structure remains specific to base60 even though the stricter immediate-adjacency family above gives the complementary base59 phrase THE ROAD.
 
 The source immediately continues:
 
@@ -78,7 +117,7 @@ Established computational facts under the frozen representation:
 - the same census under base59 has no two-edge consecutive chain;
 - prime rank42 / OPENPGP cannot continue because value181 is absent.
 
-Interpretive dependencies remain substantial. Ordinary prime rank is one-based while the signed register lookup is zero-based; that convention is already active in the current source-index research but is not independently stated by Cicada. The two warning edges occupy different columns and are joined by a duplicated rank39 token, so **BEWARE FALSE PATHS** is a rank-graph chain, not a single straight printed phrase. The SURFACE-to-top-row reading itself remains provisional. These facts materially strengthen the hypothesis that p50 participates in the signed “map” clue, while simultaneously warning against treating the PATH/SURFACE loop as an authenticated decoder.
+Interpretive dependencies remain substantial. Ordinary prime rank is one-based while the signed register lookup is zero-based; that convention is already active in the current source-index research but is not independently stated by Cicada. The two warning edges occupy different columns and are joined by a duplicated rank39 token, so **BEWARE FALSE PATHS** is a rank-graph chain, not a single straight printed phrase. The SURFACE-to-top-row reading itself remains provisional. These facts materially strengthen the hypothesis that p50 participates in the signed map/road clue: strict adjacency independently yields THE MAP under base60 and THE ROAD under the uniquely absent-f base59 codec, with IS at their line intersection. They simultaneously warn against treating the PATH/SURFACE loop as an authenticated decoder.
 
 ## Research decision
 

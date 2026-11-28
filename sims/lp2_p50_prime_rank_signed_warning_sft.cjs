@@ -17,6 +17,8 @@ const base59Alphabet = base60Alphabet.replace("f", "");
 assert.equal(tokens.length, 256);
 assert.equal(base60Alphabet.length, 60);
 assert.equal(base59Alphabet.length, 59);
+const usedDigits = new Set(tokens.flatMap((token) => [token[0], token[1]]));
+assert.deepEqual([...base60Alphabet].filter((digit) => !usedDigits.has(digit)), ["f"]);
 
 /**
  * @param {string} token
@@ -110,6 +112,79 @@ function consecutiveRankEdges(alphabet) {
   }
   return edges;
 }
+
+/**
+ * @param {string} alphabet
+ * @returns {Array<object>}
+ */
+function physicallyAdjacentConsecutivePrimeRanks(alphabet) {
+  const values = tokens.map((token) => decodeToken(token, alphabet));
+  const hits = [];
+  for (let row = 0; row < 32; row += 1) {
+    for (let column = 0; column < 8; column += 1) {
+      const cell = row * 8 + column;
+      for (const [dr, dc, direction] of [[0, 1, "E"], [1, 0, "S"]]) {
+        const nextRow = row + dr;
+        const nextColumn = column + dc;
+        if (nextRow >= 32 || nextColumn >= 8) continue;
+        const nextCell = nextRow * 8 + nextColumn;
+        const leftRank = primeRank.get(values[cell]) || null;
+        const rightRank = primeRank.get(values[nextCell]) || null;
+        if (leftRank === null || rightRank === null) continue;
+        if (Math.abs(leftRank - rightRank) !== 1) continue;
+        hits.push({
+          cell,
+          nextCell,
+          direction,
+          values: [values[cell], values[nextCell]],
+          ranks: [leftRank, rightRank],
+        });
+      }
+    }
+  }
+  return hits;
+}
+
+const base60Physical = physicallyAdjacentConsecutivePrimeRanks(base60Alphabet);
+assert.deepEqual(base60Physical, [
+  { cell: 211, nextCell: 219, direction: "S", values: [61, 59], ranks: [18, 17] },
+]);
+assert.deepEqual(
+  [sourceWords[base60Physical[0].ranks[1]], sourceWords[base60Physical[0].ranks[0]]],
+  ["THE", "MAP"]
+);
+
+const base59Physical = physicallyAdjacentConsecutivePrimeRanks(base59Alphabet);
+assert.deepEqual(base59Physical, [
+  { cell: 40, nextCell: 41, direction: "E", values: [79, 83], ranks: [22, 23] },
+  { cell: 152, nextCell: 160, direction: "S", values: [227, 229], ranks: [49, 50] },
+]);
+const base59SignedPhysical = base59Physical.filter(
+  (edge) => edge.ranks[0] <= 42 && edge.ranks[1] <= 42
+);
+assert.equal(base59SignedPhysical.length, 1);
+assert.deepEqual(
+  base59SignedPhysical[0].ranks.map((rank) => sourceWords[rank]),
+  ["THE", "ROAD"]
+);
+
+assert.deepEqual(sourceWords.slice(17, 24), [
+  "THE", "MAP", "THEIR", "MEANING", "IS", "THE", "ROAD"
+]);
+const mapColumn = 3;
+const roadRow = 5;
+const mapRoadIntersection = roadRow * 8 + mapColumn;
+assert.equal(mapRoadIntersection, 43);
+assert.equal(tokens[mapRoadIntersection], "1D");
+assert.equal(decodeToken(tokens[mapRoadIntersection], base60Alphabet), 73);
+assert.equal(primeRank.get(73), 21);
+assert.equal(sourceWords[21], "IS");
+
+assert.equal(decodeToken(tokens[203], base59Alphabet), 67);
+assert.equal(primeRank.get(67), 19);
+assert.equal(sourceWords[19], "THEIR");
+assert.notEqual(primeRank.get(decodeToken(tokens[195], base60Alphabet)), 20);
+assert.notEqual(primeRank.get(decodeToken(tokens[195], base59Alphabet)), 20);
 
 const base60Edges = consecutiveRankEdges(base60Alphabet);
 assert.deepEqual(
@@ -225,6 +300,19 @@ for (let rank = 1; rank <= 40; rank += 1) {
 
 console.log("PASS p50 prime-rank signed-warning geometry");
 console.log(JSON.stringify({
+  sourceVisibleRadices: {
+    base60Length: base60Alphabet.length,
+    base59Length: base59Alphabet.length,
+    uniqueUnusedBase60Digit: "f",
+  },
+  strictAdjacency: {
+    base60: base60Physical,
+    base59: base59Physical,
+    mapWords: ["THE", "MAP"],
+    roadWords: ["THE", "ROAD"],
+    intersection: { cell: 43, token: "1D", value60: 73, rank: 21, word: "IS" },
+    northAfterMapUnderBase59: { cell: 203, value: 67, rank: 19, word: "THEIR" },
+  },
   base60Edges: base60Edges.map((edge) => ({
     axis: edge.axis,
     index: edge.index,
