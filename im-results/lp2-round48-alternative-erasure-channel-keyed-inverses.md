@@ -417,3 +417,17 @@ Distinct from literal historical key trials, preserved-word inference, q16 p15 t
 | 13 | Emerson 910133/10000 | 13/13, rotation 2 | −2.683156 | −3.863239 |
 
 The fitted original keys are [0,1,4,2,0,12,6,21] and [0,4,0,4,6,2,0,33,4,1,18,5,1]. They do not predict the held original at native control quality; original exact fit −3.886334 and −3.856474. This rejects these calibrated bounded continuous searches, not all keys, chapter-specific clocks, or other channels. No original plaintext claim, no held-based refit. [Reproducer](../sims/lp2_alt36_historical_period_wholebook_sft.cjs); [q8 control](lp2-alt36-wholebook-q8-gibran-control.json), [q8 original](lp2-alt36-wholebook-q8-original.json), [q13 control](lp2-alt36-wholebook-q13-emerson-control.json), [q13 original](lp2-alt36-wholebook-q13-original.json). Computational core executed in connected V8; Node wrapper not separately run.
+
+### Exact retained-rune posterior for the GP29 deletion receiver (Agent38)
+
+The previous MAP receiver maximizes the probability of one entire hidden event path, not correctness of individual observed rune positions. Given a supplied key and effective retained-event transition matrix, scaled forward-backward sums every possible hidden path, aggregates phase posterior mass by retained plaintext rune, and selects the maximum marginal rune (minimum expected Hamming loss). This produces confidence and entropy at each observed position; marginal modes need not be one coherent full sender path. Deleted plaintext remains unknown.
+
+Frozen keys and identical prior q16 controls; no key refit. On the 404 held observed positions:
+
+| Tape | MAP positional accuracy | Marginal mode positional accuracy | Coverage at posterior ≥.99 | Empirical accuracy within that subset |
+|---|---:|---:|---:|---:|
+| Gibran | 80.94% | 82.67% | 164/404 | 163/164 |
+| Emerson | 85.40% | 88.12% | 159/404 | 159/159 |
+| Original fitted candidate | unknown | unknown | 6/404 | unknown |
+
+Held average conditional entropy 0.545/0.504 bits (controls) versus 1.357 bits (original candidate); mean posterior mode probability .851/.861 versus .658. All-tape retained accuracy .8476/.8545 vs MAP .8216/.8322. Marginal posterior normalizations within 3e−14 and likelihoods agree with prior strict marginal results. Original probabilities are conditional on an already nonpredictive fitted key and do not constitute recovered runes, even at high nominal confidence. [SFT](../sims/lp2_alt29_delete_retained_posterior_sft.cjs) · [full positionwise modes/confidences/entropy and control metrics](lp2-alt29-delete-retained-posterior.json). Computational core executed in connected V8; standalone Node wrapper not separately run.
