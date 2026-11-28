@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-28T08:48:00.052Z",
+  "method": "GP29 q8 source-crib arbitrary accepted-output deletion with <=2 strict adjacent-repeat retries; first five cribs excluded by a necessary relaxed phase-skip superset, shortest crib's sole relaxed leaf exhaustively filtered through the exact sender",
+  "tape": "LP2 p0-p55, 12956 runes, spacing-free",
+  "visibility_gate": "m=max(ceil(0.75*L),q+5)",
+  "cribs": [
+    {
+      "ci": 0,
+      "L": 42,
+      "m": 32,
+      "workflow_run": 46125748604,
+      "nodes": 27769356736,
+      "relaxed_leaves": 0
+    },
+    {
+      "ci": 1,
+      "L": 41,
+      "m": 31,
+      "workflow_run": 46125752714,
+      "nodes": 27713996466,
+      "relaxed_leaves": 0
+    },
+    {
+      "ci": 2,
+      "L": 37,
+      "m": 28,
+      "workflow_run": 46125756114,
+      "nodes": 15514751572,
+      "relaxed_leaves": 0
+    },
+    {
+      "ci": 3,
+      "L": 29,
+      "m": 22,
+      "workflow_run": 46125759325,
+      "nodes": 4131229962,
+      "relaxed_leaves": 0
+    },
+    {
+      "ci": 4,
+      "L": 22,
+      "m": 17,
+      "workflow_run": 46125762567,
+      "nodes": 831697367,
+      "relaxed_leaves": 0
+    },
+    {
+      "ci": 5,
+      "L": 20,
+      "m": 15,
+      "workflow_run": 46127106902,
+      "nodes": 831762890,
+      "relaxed_leaves": 1,
+      "key_completions_tested": 1,
+      "strict_hit": false
+    }
+  ],
+  "relaxed_zero_leaf_first_five_total_nodes": 75961032103,
+  "full_exhaust_total_nodes": 76792794993,
+  "ci5_relaxed_candidate": {
+    "discovery_run": 46126305161,
+    "t": 6285,
+    "page": 26,
+    "local": 23,
+    "key": [
+      24,
+      24,
+      19,
+      10,
+      9,
+      6,
+      19,
+      9
+    ],
+    "target": [
+      2,
+      13,
+      14,
+      1,
+      28,
+      26,
+      13,
+      22,
+      2,
+      15,
+      26,
+      13,
+      0,
+      16,
+      17
+    ],
+    "independent_strict_witness_run": 46126406144,
+    "independent_strict_witnesses": 0,
+    "exhaustive_strict_run": 46127106902,
+    "exhaustive_relaxed_leaves": 1,
+    "exhaustive_key_completions_tested": 1,
+    "exhaustive_strict_hit": false
+  },
+  "controls": {
+    "first_five_relaxed_true_key_controls_passed": 40,
+    "ci5_exact_strict_two_retry_controls_passed": 8
+  },
+  "code": [
+    "sims/lp2_gp29_q8_arbitrary_delete_phase_skip_sft.cpp",
+    "sims/lp2_gp29_q8_ci5_strict_witness_sft.cpp",
+    "sims/lp2_gp29_q8_ci5_strict_exhaust_sft.cpp"
+  ],
+  "interpretation": "At the frozen >=75% visibility floor, none of the six solved-LP1 source formulas occurs anywhere on p0-p55 under a q8 GP29 additive key with arbitrary accepted-output deletions and at most two strict adjacent-repeat retries. The shortest crib produced one hit only in the deliberately over-broad arbitrary-phase-skip relaxation; exact sender validation rejects it. This is conditional on these source cribs/q8 and does not constrain unrelated plaintext or >=3 retries."
+}
