@@ -127,8 +127,7 @@ The GP29 census is a stronger global control: value24 occurs on 57 pages, so a s
 Preserve:
 
 ```text
-χ(λ)=λ²+10λ+4
-root24=-g
+unique native characteristic root λ=-g=24
 ```
 
 as exact p8 algebra/state evidence.
