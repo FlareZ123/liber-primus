@@ -41,13 +41,13 @@ Take ordinary forward page-order differences modulo29 and close the last run bac
    = [2,3,6,3,15,0].
 ```
 
-The primitive state vocabulary already established independently by the DH/state work is
+The required state subset was already established independently by the DH/state work:
 
 ```text
-p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3, q=4, F=0.
+K=2, e=3, a=6, b=15, F=0.
 ```
 
-Thus the visual frame cycle reads exactly
+No other state values are needed. Thus the visual frame cycle reads exactly
 
 ```text
 [K,e,a,e,b,F].
@@ -57,7 +57,7 @@ This is not obtained by fitting a cipher output: the image segmentation fixes al
 
 ## Finite matched-order charge
 
-The multiset `{2,2,4,7,13,16}` has **360** distinct linear permutations. Charge every permutation using the same rule: take all six cyclic differences modulo29 and require every difference to lie in the fixed primitive-state-plus-F set above.
+The multiset `{2,2,4,7,13,16}` has **360** distinct linear permutations. Charge every permutation using the same rule: take all six cyclic differences modulo29 and require every difference to lie in the fixed five-value set `{K,e,a,b,F}` above.
 
 Exactly **6/360** linear representations pass, and they are exactly the six rotations of **one cyclic order**. Equivalently, among **60 distinct cyclic arrangements**, exactly **one** qualifies. The manuscript's printed order is that qualifying cycle; its reverse is not.
 
