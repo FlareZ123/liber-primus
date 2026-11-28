@@ -172,7 +172,25 @@ Under the identical four sign/clock choices that rival reaches a **higher** maxi
 
 Implementation controls pass: every tested candidate forward-reconstructs the original flank runes exactly, and a synthetic encryption of all 95 authentic solved-p57 runes with `K8` is recovered **95/95** by the matching inverse.
 
-**Decision:** retire exactly the direct period-eight additive use of the raw remainder tape on the p49/p51 flanks. The state serialization remains a structural result. A further ciphertext attempt now needs an independently visible instruction selecting a different consumer, transformation, or receiver; do not rescue this negative by shifting phase, changing page starts, or searching derived state expressions.
+The one equally compact derived key already fixed above is the adjacent-H packet itself,
+
+```text
+H8 = [22,2,8,0,27,1,25,26]
+   = [p-1,K,A,F,-K,1,-q,-e].
+```
+
+Under the **same** four sign/clock choices, with no new phase or receiver search, its IoCs are:
+
+| H-packet consumer | 158-rune IoC |
+| --- | ---: |
+| subtract, p51 reset0 | 0.0348302830 |
+| subtract, p51 continuous66 | 0.0366040474 |
+| add, p51 reset0 | **0.0381359349** |
+| add, p51 continuous66 | 0.0344271547 |
+
+The highest-IoC H output is still nonprose and far below solved p57. The matched H packet of the base60 rival is `[22,2,6,2,24,22,26,4]`; its best identical consumer reaches **0.0366846731**. The H packet therefore gives a small source-versus-rival separation on this receiver, but not a language recovery or a reason to add another layer.
+
+**Decision:** retire the direct period-eight additive use of **both** the raw remainder tape and its already-derived adjacent-H packet on the p49/p51 flanks. The state serialization remains a structural result. A further ciphertext attempt now needs an independently visible instruction selecting a different consumer, transformation, or receiver; do not rescue these negatives by shifting phase, changing page starts, or searching more derived state expressions.
 
 ## Relationship to prior work
 
@@ -203,4 +221,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also executes the bounded p49/p51 flank consumer, matched base60-rival control, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; flank-gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`.
+The SFT now also executes the bounded p49/p51 flank consumer, matched base60-rival control, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`.
