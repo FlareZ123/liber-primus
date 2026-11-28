@@ -124,3 +124,24 @@ Run:
 `node sims/lp2_terminal_pagecount_base29_shell_p27_sft.cjs`
 
 The SFT reads the canonical page corpus, ink annotations and transcription; asserts all source counts and BASE29 shell values; performs the complete 50-window/200-shell controls; reconstructs the original red-span descriptors; and verifies that the terminal triple lands uniquely on p27.
+
+## Subsequent p27 consumer closure
+
+The terminal shell route now has a held-out downstream consequence beyond selecting p27/B/K. On the selected p27 word, shed K=2 and apply the already documented H8 state transform:
+
+```
+NSOOCAEY
+ -> H8 [12,26,8,27,8,27,4,6].
+```
+
+Pairing those coordinates adjacently as BASE29 integers, applying the repository's pre-existing zero-based `n mod256` p50 address convention, and following the pre-existing canonical base60 byte-pointer graph gives starts
+
+```
+[374,259,259,122] mod256 = [118,3,3,122].
+```
+
+Their earliest joint pointer node is **115**, reached after **[6,6,6,3]=[a,a,a,e]** edges. Solved p57 **WITHIN** has GP-prime sum115. Together with the same core's already established prime-sum376 = **DIUINITY**, the p27 receiver now has two independent numerical readouts yielding the consecutive phrase **DIUINITY WITHIN**.
+
+The main p50 byte graph has a huge basin, so node115 alone is not selective. Across all 12,571 contiguous unknown eight-rune windows, 9,329 first converge at115; the exact node115 plus **[6,6,6,3]** arrival signature occurs once, at this p27 core. The adjacent H8-pair-to-BASE29 address step remains conditional and is the weakest new assumption.
+
+See `im-results/lp2-p27-dh-state-word19-divinity-receiver.md` and `sims/lp2_p27_h8_p50_within_pointer_sft.cjs`.

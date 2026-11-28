@@ -101,6 +101,80 @@ Charge that four-coordinate feature against every complete 12-rune word on unkno
 
 The chronology remains restrictive: this exact symbolic H8 packet was recognized **after** inspecting the selected core. The 18-word census is therefore conditional specificity, not a blind discovery probability or proof that H8 is the authored payload inverse. What it buys is a stronger next decision: a future operation proposal should explain why the B/K-selected DIVINITY receiver itself re-emits the DH register under canonical H, rather than treating the core as an arbitrary eight-rune crib.
 
+
+## Held-out p50 byte-pointer closure: the same core emits WITHIN
+
+The selected core has a further consequence that uses two table conventions established before this observation.
+
+1. Pair the already fixed H8 output adjacently as four two-digit BASE29 numbers.
+2. Use the previously frozen zero-based `n mod 256` table-address rule.
+3. Follow the previously studied canonical base60 byte pointer `next(i)=byte[i]`.
+
+The H8 packet
+
+```
+[12,26, 8,27, 8,27, 4,6]
+```
+
+therefore gives
+
+```
+BASE29 pairs       = [CQ, 8R, 8R, 46]
+ordinary integers  = [374,259,259,122]
+addresses mod 256  = [118,3,3,122].
+```
+
+The four byte-pointer trajectories have an unambiguous earliest joint reachable node:
+
+```
+118 -> 35 -> 39 -> 5 -> 237 -> 32 -> 115       (6 edges)
+  3 -> 186 -> 19 -> 33 -> 114 -> 197 -> 115    (6 edges)
+  3 -> 186 -> 19 -> 33 -> 114 -> 197 -> 115    (6 edges)
+122 -> 86 -> 111 -> 115                         (3 edges)
+```
+
+Thus the joint node is **115** and the first-arrival distance vector is
+
+```
+[6,6,6,3] = [a,a,a,e].
+```
+
+Solved p57 **WITHIN** has GP-prime sum **115**. The same p27 core already has GP-prime sum **376**, exactly solved p57 **DIUINITY**. Under these two independent numerical readouts the receiver therefore yields the consecutive clear phrase:
+
+```
+DIUINITY / WITHIN
+376       / 115
+```
+
+This still does not make `NSOOCAEY` plaintext. It is a source-constrained semantic/navigation closure on the selected ciphertext object.
+
+### Why the pointer result is not just the huge p50 basin
+
+The canonical base60 byte graph has a 252/256 main basin, so convergence to its 11-cycle is common. A full corpus charge makes that explicit.
+
+Apply the exact H8 -> adjacent BASE29-pair -> mod256-address -> earliest-joint-convergence construction to **every 12,571 contiguous eight-rune window** on unknown p0-p55.
+
+- **9,329** windows first converge at node115. The node itself is therefore weak evidence.
+- Exactly **one** window converges at node115 with first-arrival distances **[6,6,6,3]**: physical p27 offset81, the independently selected twice-shed core.
+- Grant every DH-state value `{2,3,4,5,6,8,15,19,23}` independently as each of the four walk depths and every p57 word whose prime sum fits one byte. For the selected four starts there is exactly **one** common p57-word/depth solution among the 9^4 depth vectors: **WITHIN=115** at **[6,6,6,3]**.
+- As a countercontrol, applying the same H/pair/address/state-depth family to the clear DIUINITY rune sequence produces **no** p57-word convergence.
+- Restricting to the independently motivated receiver family gives the same answer. There are 18 complete twelve-rune words on unknown p0-p55; shed K=2 from each and charge the natural H/raw, whole-reversal, pair-reversal and within-pair digit-reversal controls. After deduplicating algebraically identical address vectors, only p27 word19 produces the exact node115 / [6,6,6,3] signature, and it does so under the canonical H8 adjacent-pair orientation.
+
+The exact vector was recognized after the selected core was already known, so the uniqueness count is conditional specificity rather than a discovery-adjusted probability.
+
+### Remaining assumption
+
+The byte-pointer operation and zero-based modulo-256 address rule both predate this observation in the repository. The new semantic step is to treat adjacent H8 coordinates as two-digit BASE29 integers before applying that address rule. BASE29 is independently authenticated by the signed 2013 service and already selected elsewhere in the current solve path, but no first-party sentence explicitly says to pair this H8 packet into table addresses.
+
+Preserve this result as a strong **conditional continuation**, not as unknown plaintext or a completed decoder. A stronger successor would derive that pairing from an untouched source feature or use the four addresses to make a new ciphertext prediction not graded against p57.
+
+Related prior table conventions:
+- `im-results/lp2-grid-byte-pointer-11cycle.md`
+- `im-results/lp2-source1033-red3299-3301-table-pointer-lead.md`
+
+Reproducer:
+- `sims/lp2_p27_h8_p50_within_pointer_sft.cjs`
+
 ## What this resolves
 
 Earlier p27 DIVINITY reports correctly treated the receiver coordinate as unresolved. The signed 2016 message says that the manuscript words' numbers are the direction, but by itself does not declare a page/word coordinate pair or a universal indexing origin. The new route does not need that orientation: p27 is already selected by its red/DH state, and **B itself supplies the word number**.
@@ -109,11 +183,11 @@ The result also makes the old p27 carrier observation more causally useful. The 
 
 ## What remains unsolved
 
-The missing step is now sharply isolated: a **rune-level reversible operation** mapping the selected ciphertext core `NSOOCAEY` to genuine plaintext.
+The missing step is still a **rune-level reversible operation** mapping the selected ciphertext core `NSOOCAEY` to genuine plaintext. The new p50 pointer closure now explains a second semantic role for the same object: its prime sum identifies **DIUINITY**, while its H8-derived pointer convergence identifies **WITHIN** with a held-out DH-distance checksum. Neither operation changes the eight rune identities.
 
-The obvious direct DH-derived GP29 cube and inverse-cube were already tested and fail. A previously discovered additive pad maps this core to DIUINITY exactly, but its eight-value serialization order is retrospective and all cyclic-order periodic generalizations failed. The new receiver selection strengthens the input/target pair; it does not authenticate that pad.
+The obvious direct DH-derived GP29 cube and inverse-cube were already tested and fail. A previously discovered additive pad maps this core to DIUINITY exactly, but its eight-value serialization order is retrospective and all cyclic-order periodic generalizations failed. The pointer result strengthens the intended-route case without authenticating that pad.
 
-Do not widen into new key permutations merely because the receiver is stronger. The next positive result must supply an independently motivated serialization/KDF or predict an untouched rune-level consequence before reading its plaintext.
+Do not widen into new key permutations merely because the receiver is stronger. The next positive result must either derive the H8-to-table pairing from a first-party source, supply an independently motivated serialization/KDF, or predict an untouched rune-level consequence before reading its plaintext.
 
 ## Reproduction
 
