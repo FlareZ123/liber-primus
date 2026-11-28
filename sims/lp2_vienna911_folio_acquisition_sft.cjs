@@ -28,10 +28,11 @@ function label(x){return typeof x==='string'?x:Object.values(x||{}).flat().join(
       canvases.push({manifest:url,index:i,label:label(c.label),id:c.id||c['@id'],image:image.id||image['@id'],service:id,width:image.width,height:image.height});
    }
    // Acquire only the two relevant leaves, never whole manuscript.
-   const targets=canvases.filter(c=>c.manifest===url&&/(^|\D)(20\s*v|21\s*r)(\D|$)/i.test(c.label));
-   if(targets.length===2){
+   const targets=canvases.filter(c=>c.manifest===url&&c.index>=43&&c.index<=52);
+   // Numeric-only canvas labels: inspect a small neighboring range to establish foliation.
+   if(targets.length){
      for(const c of targets){
-       const imageUrl=c.service?c.service+'/full/1800,/0/default.jpg':c.image;
+       const imageUrl=c.service?c.service+'/full/1200,/0/default.jpg':c.image;
        if(!imageUrl)continue;
        const {b,...meta}=await get(imageUrl);
        folios.push({...c,...meta,base64:b&&meta.type?.startsWith('image/')?b.toString('base64'):undefined});
