@@ -54,6 +54,30 @@ Combining those **signed-source-selected residuals** with p6's independent H4 wi
 
 **Charge alternatives:** allow either W4 rune (2), either sign, any one of four signed H4 printed-width coordinates and either coordinate order: **64 distinct p6 numeric two-field residual vectors**. Across the same 31 authenticated thirteen-word windows, **four** field/window coincidences survive, at source starts **13,22,27,30**. The literal `[u,-a]` uniquely selects 30 under its frozen role order, but the source field pairing was noticed after the tail had been studied: it is **conditional source-only evidence, not a discovery-wide p-value**. See `sims/lp2_p6_13source_initials_outer_h_gate_sft.cjs` for the exact first-party source, p6 title grammar, 31-window census and 64-vector charge.
 
+## Original 13-dot stencil fixes the mirror topology
+
+The original p6 large red marker supplies more than the column populations `4/5/4`. Map physical p30–p42 onto its thirteen dots in the same **printed column-major, top-down** order already established by the p6 grid schedule:
+
+```text
+left   = [p30,p31,p32,p33]
+centre = [p34,p35,p36,p37,p38]
+right  = [p39,p40,p41,p42].
+```
+
+The outer four dots occupy the four vertical gaps of the five-dot centre column. The complete axis-preserving symmetry family of this normalized 4/5/4 stencil is identity, left↔right reflection, top↔bottom reflection, and 180° rotation. Exactly one of those four symmetries realizes the full corridor pairing:
+
+```text
+180°:
+p30↔p42  p31↔p41
+p32↔p40  p33↔p39
+p34↔p38  p35↔p37
+p36↔p36.
+```
+
+That is precisely the independently derived full 13-page mirror architecture below. The earlier forward q-block pairing `p32→p37, p33→p38, p34→p39, p35→p40` is realized by **zero** of the four stencil symmetries. This is a p6-local visual discriminator between the two live address topologies: the page geometry selects the mirror pairing, not the forward pairing.
+
+The visual result does **not** solve the remaining numeric-order problem. Even after the mirror topology is fixed, the inner p6-only quotient/residual field family still has `24×24=576` orderings before receiver structure or checksums are opened. Thus the marker authenticates a topology, not yet the signed `Q/D` field order or a plaintext decoder. Reproducer: [`sims/lp2_p6_red13_stencil_symmetry_address_sft.cjs`](../sims/lp2_p6_red13_stencil_symmetry_address_sft.cjs).
+
 ## Two simple mirrored integer-address operators
 
 For the two outermost `K=2` source pages p30,p31, reverse destination order to p42,p41. Use the H4 title-width fields and final red title rune:
@@ -118,7 +142,7 @@ The charged Cartesian set has **576 × 64 × 36 = 1,327,104** labelled full-13-p
 
 ## Relationship to earlier forward block transport
 
-The earlier [forward p32–p40 q-block address construction](lp2-p6-qblock-uniform-period-receiver-gate.md) also maps all eight inner pages and passes a separately charged checksum; it pairs p32→p37, p33→p38, p34→p39 and p35→p40 with `T=[116,-75,128,46]`. That identity is arithmetically true but demands a **post-selected replacement** of a title-width singleton by an H4 output and a repeated `[F,u,u,-u]` residual. The present **reversed** q-block operator instead matches the full 13-page **palindromic physical frame** and uses a literal permutation of `[1,F,K,q]` plus `[u,F,-g,g]`, so it is the more economical **human-solve-path hypothesis**. The source has not independently commanded which pairing direction or which vector order is intended. Preserve both formulas as conditional structural possibilities rather than treating either as established decryption.
+The earlier [forward p32–p40 q-block address construction](lp2-p6-qblock-uniform-period-receiver-gate.md) also maps all eight inner pages and passes a separately charged checksum; it pairs p32→p37, p33→p38, p34→p39 and p35→p40 with `T=[116,-75,128,46]`. That identity is arithmetically true but demands a **post-selected replacement** of a title-width singleton by an H4 output and a repeated `[F,u,u,-u]` residual. The present **reversed** q-block operator instead matches the full 13-page **palindromic physical frame** and uses a literal permutation of `[1,F,K,q]` plus `[u,F,-g,g]`, so it is the more economical **human-solve-path hypothesis**. The original 4/5/4 stencil now independently selects the **mirrored pairing topology** via its unique 180° symmetry, while it still does not label the numeric vector order. Preserve the forward formula as a conditional arithmetic control rather than treating it as a coequal visual topology or established decryption.
 
 ## Reproduction and decisive frontier
 
