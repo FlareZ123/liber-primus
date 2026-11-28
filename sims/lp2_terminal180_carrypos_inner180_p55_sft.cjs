@@ -335,3 +335,59 @@ console.log(JSON.stringify({
   intervalLengths: events.map(({ pos }, i) => pos - (i ? events[i - 1].pos : -1)),
   intervalBridge,
 }, null, 2));
+
+
+/**
+ * Third typed bridge: every terminal carry block has length 1..5 and GP-index
+ * sum 6..52. A p50 base60 rim token is exactly two digits whose first digit is
+ * 0..4 and second digit 0..59. Test the literal pair
+ *   (block length - 1, block GP-index sum)
+ * against the 76 rim tokens. This needs no radix ambiguity.
+ */
+const terminalBlocks = [];
+let blockStart = 0;
+for (const { pos } of events) {
+  const values = terminal.slice(blockStart, pos + 1);
+  terminalBlocks.push({
+    lengthDigit: values.length - 1,
+    sumDigit: values.reduce((sum, x) => sum + x, 0),
+  });
+  blockStart = pos + 1;
+}
+assert.equal(blockStart, 180);
+assert.equal(terminalBlocks.length, 76);
+assert.ok(terminalBlocks.every(({ lengthDigit, sumDigit }) =>
+  lengthDigit >= 0 && lengthDigit <= 4 && sumDigit >= 0 && sumDigit < 60
+));
+
+function tokenDigits(token) {
+  return [grid.alphabet.indexOf(token[0]), grid.alphabet.indexOf(token[1])];
+}
+
+const digitPairGate = {};
+for (const [order, rimTokens] of Object.entries({
+  rowMajor: rimRowMajor(grid.rows),
+  clockwise: rimClockwise(grid.rows),
+})) {
+  let high = 0;
+  let low = 0;
+  let pair = 0;
+  for (let i = 0; i < 76; i++) {
+    const [hi, lo] = tokenDigits(rimTokens[i]);
+    const block = terminalBlocks[i];
+    if (hi === block.lengthDigit) high++;
+    if (lo === block.sumDigit) low++;
+    if (hi === block.lengthDigit && lo === block.sumDigit) pair++;
+  }
+  digitPairGate[order] = { high, low, pair };
+}
+
+assert.deepEqual(digitPairGate, {
+  rowMajor: { high: 15, low: 0, pair: 0 },
+  clockwise: { high: 23, low: 3, pair: 1 },
+});
+
+console.log(JSON.stringify({
+  status: 'PASS: literal (carry-block length-1, block GP-sum) does not encode the p50 rim tokens',
+  digitPairGate,
+}, null, 2));
