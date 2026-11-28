@@ -1,0 +1,307 @@
+{
+  "controls": [
+    {
+      "bits": 32,
+      "endian": "little",
+      "first_mismatch_word": null,
+      "held_equal": 218,
+      "held_words": 218,
+      "kind": "packed",
+      "training_words": 624
+    },
+    {
+      "bits": 32,
+      "endian": "big",
+      "first_mismatch_word": null,
+      "held_equal": 218,
+      "held_words": 218,
+      "kind": "packed",
+      "training_words": 624
+    },
+    {
+      "bits": 64,
+      "endian": "little",
+      "first_mismatch_word": null,
+      "held_equal": 109,
+      "held_words": 109,
+      "kind": "packed",
+      "training_words": 312
+    },
+    {
+      "bits": 64,
+      "endian": "big",
+      "first_mismatch_word": null,
+      "held_equal": 109,
+      "held_words": 109,
+      "kind": "packed",
+      "training_words": 312
+    },
+    {
+      "all_words_candidates": 1,
+      "first_mismatch_word": null,
+      "first_two_candidates": 1,
+      "kind": "java",
+      "words": 842
+    },
+    {
+      "comparisons": 3337,
+      "first_mismatch_byte": null,
+      "kind": "glibc",
+      "violations": 0
+    },
+    {
+      "arbitrary_state_held_equal": 368,
+      "elapsed_s": 2.329,
+      "equations": 24000,
+      "forced_held_bits": 2944,
+      "forced_held_bytes": 368,
+      "forced_wrong_bits": 0,
+      "full_contradiction": null,
+      "full_rank": 19945,
+      "held_bytes": 368,
+      "kind": "top",
+      "offset": 24,
+      "rank": 19945,
+      "status": "consistent_fit",
+      "stride": 1,
+      "training_bytes": 3000
+    },
+    {
+      "arbitrary_state_held_equal": 118,
+      "elapsed_s": 0.383,
+      "equations": 24000,
+      "forced_held_bits": 1880,
+      "forced_held_bytes": 0,
+      "forced_wrong_bits": 0,
+      "full_contradiction": null,
+      "full_rank": 19573,
+      "held_bytes": 368,
+      "kind": "low",
+      "offset": 0,
+      "rank": 19089,
+      "status": "consistent_fit",
+      "stride": 1,
+      "training_bytes": 3000
+    },
+    {
+      "arbitrary_state_held_equal": 61,
+      "elapsed_s": 5.428,
+      "equations": 24000,
+      "forced_held_bits": 261,
+      "forced_held_bytes": 0,
+      "forced_wrong_bits": 0,
+      "full_contradiction": null,
+      "full_rank": 19945,
+      "held_bytes": 368,
+      "kind": "float",
+      "offset": 24,
+      "rank": 19825,
+      "status": "consistent_fit",
+      "stride": 2,
+      "training_bytes": 3000
+    },
+    {
+      "arbitrary_state_held_equal": 368,
+      "elapsed_s": 4.959,
+      "equations": 24000,
+      "forced_held_bits": 2944,
+      "forced_held_bytes": 368,
+      "forced_wrong_bits": 0,
+      "full_contradiction": null,
+      "full_rank": 19945,
+      "held_bytes": 368,
+      "kind": "lowstride2",
+      "offset": 0,
+      "rank": 19945,
+      "status": "consistent_fit",
+      "stride": 2,
+      "training_bytes": 3000
+    }
+  ],
+  "framed": {
+    "glibc": {
+      "comparisons": 3333,
+      "first_mismatch_byte": 31,
+      "violations": 3306
+    },
+    "java": {
+      "all_words_candidates": 0,
+      "first_mismatch_word": 1,
+      "first_two_candidates": 0,
+      "words": 841
+    },
+    "packed": [
+      {
+        "bits": 32,
+        "endian": "little",
+        "first_mismatch_word": 624,
+        "held_equal": 0,
+        "held_words": 217,
+        "training_words": 624
+      },
+      {
+        "bits": 32,
+        "endian": "big",
+        "first_mismatch_word": 624,
+        "held_equal": 0,
+        "held_words": 217,
+        "training_words": 624
+      },
+      {
+        "bits": 64,
+        "endian": "little",
+        "first_mismatch_word": 312,
+        "held_equal": 0,
+        "held_words": 108,
+        "training_words": 312
+      },
+      {
+        "bits": 64,
+        "endian": "big",
+        "first_mismatch_word": 312,
+        "held_equal": 0,
+        "held_words": 108,
+        "training_words": 312
+      }
+    ],
+    "truncated": [
+      {
+        "contradiction_bit": 0,
+        "contradiction_byte": 2493,
+        "elapsed_s": 0.18,
+        "equations": 19945,
+        "kind": "top",
+        "offset": 24,
+        "rank": 19944,
+        "status": "inconsistent",
+        "stride": 1
+      },
+      {
+        "contradiction_bit": 1,
+        "contradiction_byte": 1249,
+        "elapsed_s": 0.061,
+        "equations": 9994,
+        "kind": "low",
+        "offset": 0,
+        "rank": 9992,
+        "status": "inconsistent",
+        "stride": 1
+      },
+      {
+        "contradiction_bit": 6,
+        "contradiction_byte": 2181,
+        "elapsed_s": 0.582,
+        "equations": 17455,
+        "kind": "float",
+        "offset": 24,
+        "rank": 17454,
+        "status": "inconsistent",
+        "stride": 2
+      },
+      {
+        "contradiction_bit": 3,
+        "contradiction_byte": 2492,
+        "elapsed_s": 0.437,
+        "equations": 19940,
+        "kind": "lowstride2",
+        "offset": 0,
+        "rank": 19939,
+        "status": "inconsistent",
+        "stride": 2
+      }
+    ]
+  },
+  "glibc": {
+    "comparisons": 3337,
+    "first_mismatch_byte": 31,
+    "violations": 3310
+  },
+  "java": {
+    "all_words_candidates": 0,
+    "first_mismatch_word": 1,
+    "first_two_candidates": 0,
+    "words": 842
+  },
+  "length": 3368,
+  "packed": [
+    {
+      "bits": 32,
+      "endian": "little",
+      "first_mismatch_word": 624,
+      "held_equal": 0,
+      "held_words": 218,
+      "training_words": 624
+    },
+    {
+      "bits": 32,
+      "endian": "big",
+      "first_mismatch_word": 624,
+      "held_equal": 0,
+      "held_words": 218,
+      "training_words": 624
+    },
+    {
+      "bits": 64,
+      "endian": "little",
+      "first_mismatch_word": 312,
+      "held_equal": 0,
+      "held_words": 109,
+      "training_words": 312
+    },
+    {
+      "bits": 64,
+      "endian": "big",
+      "first_mismatch_word": 312,
+      "held_equal": 0,
+      "held_words": 109,
+      "training_words": 312
+    }
+  ],
+  "source_sha256": "7e5ec097728197f5c0dba0729980565658fba486965809ffa25e3910a31c385a",
+  "truncated": [
+    {
+      "contradiction_bit": 1,
+      "contradiction_byte": 2493,
+      "elapsed_s": 0.289,
+      "equations": 19946,
+      "kind": "top",
+      "offset": 24,
+      "rank": 19944,
+      "status": "inconsistent",
+      "stride": 1
+    },
+    {
+      "contradiction_bit": 1,
+      "contradiction_byte": 1250,
+      "elapsed_s": 0.077,
+      "equations": 10002,
+      "kind": "low",
+      "offset": 0,
+      "rank": 9999,
+      "status": "inconsistent",
+      "stride": 1
+    },
+    {
+      "contradiction_bit": 6,
+      "contradiction_byte": 2181,
+      "elapsed_s": 0.584,
+      "equations": 17455,
+      "kind": "float",
+      "offset": 24,
+      "rank": 17454,
+      "status": "inconsistent",
+      "stride": 2
+    },
+    {
+      "contradiction_bit": 2,
+      "contradiction_byte": 2493,
+      "elapsed_s": 0.434,
+      "equations": 19947,
+      "kind": "lowstride2",
+      "offset": 0,
+      "rank": 19944,
+      "status": "inconsistent",
+      "stride": 2
+    }
+  ]
+}
