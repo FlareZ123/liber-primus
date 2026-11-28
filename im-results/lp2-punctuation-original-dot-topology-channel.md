@@ -1,4 +1,4 @@
-# Original LP2 punctuation has a fixed complete-dot topology, not a visible 394-bit exception sidecar
+# All original LP2 punctuation uses fixed 2/4/10/13-dot topology, not a visible 960-bit exception sidecar
 
 **Agent 24, 28 November 2026. Classification: new original-JPEG physical-channel exclusion, not plaintext recovery.** This result addresses a specific missing-input possibility from the constrained-coding research, rather than repeating stream-cipher or canonical rank28 sweeps.
 
@@ -43,6 +43,25 @@ The separately derived \`lp2-punctuation-identity.json\` lists **145** four-dot 
 
 This closes a significant apparent loophole in the large-ornament analysis: the numerous small four-dot stops could independently contain **556 visible on/off dot positions**, enough in abstract to cover the 328-bit globally framed missing-register bound. The original pages, however, show no independent per-dot deletion or altered four-dot geometry across those 139 actual full stops. This is **not** a capacity theorem against relocating all 139 stops among word endings, recoloring tiny components, or encoding analogue/JPEG data; only against *the visible individual-dot presence channel*.
 
+## Two-dot comma forms complete the original punctuation census
+
+The printed small double-dot \`⁚\` comma/colon form is a different **two-dot** vertical stencil at \`(0,0),(0,34)\` pixels. Its top/bottom pair is also a subpattern of a four-dot diamond and of some large ornaments, so a blind search for two-point pairs must **subtract components belonging to all independently recovered complete 4-, 10-, 13- and 23-dot shapes**. This explicit nested-glyph subtraction is source-location-independent: no punctuation source position is supplied to the shape detector.
+
+After subtracting those nested pairs, exactly **six** physical two-dot glyphs remain, all black, one each on p5, p11, p20, **p38**, p46, and the already-solved p56. The five unknown-page occurrences therefore include precisely the four transcribed comma-form events and the formerly misclassified p38 stop. The two-dot geometry is complete in every recovered instance.
+
+**Complete original unknown-pages punctuation census:**
+
+| Class | Visible marks p0–55 | Individual dots |
+| --- | ---: | ---: |
+| Large 13/10-dot ornaments | 31 | 394 |
+| Four-dot sentence stops | 139 | 556 |
+| Two-dot commas, including p38 | 5 | 10 |
+| **All physically printed punctuation** | **175** | **960** |
+
+The original 180 derivative events contain four nonprinting p15 table-row terminators and one nonprinting p37 item-2 stop; **180−4−1 = 175 real physical marks**. The p38 mark is present as a **two-dot comma**, not an absent physical stop. With the two solved-page small stops and one solved-page comma, the entire 58-scan image corpus contains **36 large ornaments + 141 four-dot periods + six two-dot commas**, for 183 independently detected punctuation glyphs / **1,042 complete physical dot components**. This detection makes the exact source/transcription deviations explicit without introducing a guessed plaintext symbol.
+
+The combined script now asserts the original unknown-page **175 glyphs and 960 fully present dot components** exactly. If someone proposes that individual punctuation points switch off to carry source-code exceptions, this particular on/off carrier is contradicted by the original JPEGs: every genuine occurrence uses its complete consistent class topology. This **does not** exclude ciphertext in punctuation *placement*, an extra punctuation class not captured by these stencils, colorimetric subchannels, original compositor glyph offsets, or other nonprinted data. In particular, no claim is made that all punctuation bit capacity is unavailable; the exact 328-bit combinatorial theorem below applies only to the **31 large ornaments alone** when their placement can vary.
+
 ## A stronger capacity obstruction for this physical carrier
 
 An independent integer-count calculation now closes the same *large ornament only* option even if the ornament instances could be relocated and change type.
@@ -59,12 +78,12 @@ Even allowing **zero through 31** ornaments, rather than exactly31, gives essent
 
 This is a full-alphabet universal-capacity exclusion **specific to the printed large-ornament position+visible-type carrier**. It holds without choosing an intensity threshold, cipher key, trial plaintext or hidden message. The proof does *not* forbid a sidecar encoded in any of the other 180 punctuation events, dynamically changing word breaks, more than31 authored glyphs, pixel brightness, JPEG coefficients, or a genuinely narrower original plaintext alphabet.
 
-The exact integer calculation is implemented in \`sims/lp2_large_ornament_only_capacity_sft.cjs\`. The original image census independently establishes that the 394 physical dot positions do not add per-dot presence bits, so the extra hypothesized component-mask alphabet is absent from the actual original scans.
+The exact integer calculation is implemented in \`sims/lp2_large_ornament_only_capacity_sft.cjs\`. The original image census independently establishes that the complete 960 original punctuation dots do not add per-dot presence bits, so the extra hypothesized component-mask alphabet is absent from the actual original scans.
 
 ## Reproducer and interpretation
 
-\`python sims/lp2_punctuation_dot_topology_original_sft.py\`, after installing \`numpy pillow scipy opencv-python-headless\`, examines **all 58 original image files**, independently detects four vector shapes (4, 10, 13 and 23 dots) in both ink colors, then checks the resulting full inventory against the derived ink annotation register. It prints all 36 large-ornament locations, all 141 four-dot sentence-stop locations, color summaries, source-derived per-page exceptions and maximum errors. The matching tolerance is 3.15 pixels before subpixel template fitting, with max residual 2px; the observed maximum is only 0.661px. No digit, plaintext, cipher mode, rune transposition, or arbitrary bit threshold is fitted to the answer.
+\`python sims/lp2_punctuation_dot_topology_original_sft.py\`, after installing \`numpy pillow scipy opencv-python-headless\`, examines **all 58 original image files**, independently detects five vector shapes (2, 4, 10, 13 and 23 dots) in both ink colors, then checks the resulting full inventory against the derived ink annotation register. It prints all 36 large-ornament locations, all 141 four-dot sentence-stop locations, all six genuine two-dot commas, source-derived event corrections, color summaries and geometric residuals. The matching tolerance is 3.15 pixels before subpixel template fitting, with max residual 2px; the observed maximum across large ornaments is 0.661px and across four-dot periods is 0.673px. No digit, plaintext, cipher mode, rune transposition, or arbitrary bit threshold is fitted to the answer.
 
-GitHub Actions original-source run: https://github.com/FlareZ123/liber-primus/actions/runs/46129687875 (initial positive execution, 58 original JPEGs). Blind all-image/all-ink census CI passed at https://github.com/FlareZ123/liber-primus/actions/runs/46130036030 ; its script supersedes the initial source-location-guided version. A combined capacity+census CI is also available as the most recent run of the same manual workflow.
+GitHub Actions original-source run: https://github.com/FlareZ123/liber-primus/actions/runs/46129687875 (initial positive execution, 58 original JPEGs). Blind all-image/all-ink census CI passed at https://github.com/FlareZ123/liber-primus/actions/runs/46130036030 ; its script supersedes the initial source-location-guided version. A combined original-cipher capacity plus full four-dot census CI passed at https://github.com/FlareZ123/liber-primus/actions/runs/46131389204. A later run checks the complete two-dot extension.
 
-**Research decision:** do not treat the 394 printed dots as 394 *author-selectable presence bits*. Conditional arithmetic-coder explanations still need a *distinct, independently sourced sidecar or a source-restricted input alphabet*. Avoid filling any missing sidecar with arbitrary dot-color thresholds chosen to make ciphertext look English. A genuinely new, predeclared brightness/depth channel or original editable compositor object would justify reopening the physical-glyph branch.
+**Research decision:** do not treat the 960 printed punctuation dots as 960 *author-selectable presence bits*. Conditional arithmetic-coder explanations still need a *distinct, independently sourced sidecar or a source-restricted input alphabet*. Avoid filling any missing sidecar with arbitrary dot-color thresholds chosen to make ciphertext look English. A genuinely new, predeclared brightness/depth channel or original editable compositor object would justify reopening the physical-glyph branch.
