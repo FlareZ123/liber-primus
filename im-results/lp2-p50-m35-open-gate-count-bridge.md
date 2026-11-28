@@ -129,6 +129,8 @@ With standard-library seed 3308 and 30,000 draws:
 So this bridge explains the **count split** but not the **event ordering**. The missing mechanism
 must add cross-event state/persistence while preserving the p50 open-gate count law.
 
+That missing cross-event component now has a concrete statistical bridge: retaining the existing two-tap renewal exception clock and adding an independent `1/29` collision branch only at `0D` preserves the full seven-stat T7 battery while making both the five-cell gate and its 60-cell leading-zero parent ordinary. This does not validate m35 as the hidden implementation; it shows that a source-gated ordinary-collision path and a correlated exception path can coexist without contradiction. [Joint union model](lp2-p50-t7-joint-union-model.md).
+
 This is more constrained than the previous frontier: a successor no longer needs to invent an
 arbitrary p50 rate table. It can attempt to add a historically motivated persistent register or
 two-input interval law to a concrete source-gated m≈35 count mechanism and must recover T7 as a
