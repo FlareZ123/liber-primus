@@ -171,6 +171,35 @@ best triple: (24,23,0), again with 0 complete words
 Exactly one triple recovers two complete words: `(a,b,d)=(14,17,5)`, which yields p32 YOU and p34 BE but fails all six remaining q-block words and reaches only 5/33 rune coordinates overall. The tuple can be named retrospectively as `[-b,K+b,g]` from p6, but it was selected only after searching all 24,389 triples and does not generalize across even the first four-word block. Preserve it as a charged coincidence only.
 
 These exhaustive finite families rule out a broad simple interpretation: the missing ordered serializer is not a global GF(29) affine function of the current rune, its mirrored partner, and linear within-word position, even when each page is granted the independently frozen correct additive sum.
+## Gate 5: q-word 2x2 state-matrix recurrence fails the checksum before plaintext
+
+The low-dimensional coordinate formulas above do not cover a genuinely stateful vector recurrence. A separate source-only freeze therefore gives each four-rune p6 q-word its most literal 2×2 GF(29) interpretation and uses the already frozen page metadata as a two-coordinate state.
+
+For q1 use W1 `[24,16,14,17]`; for q3 use W3 `[6,27,15,17]`. Charge exactly the shared conventions:
+
+- matrix entries from the literal word or H4(word);
+- row-major matrix or transpose;
+- forward matrix or inverse;
+- initial state `(receiver delta, key sum)` or `(key sum, receiver delta)`;
+- emit state coordinate0 or coordinate1;
+- emit before or after each matrix step.
+
+This is **2×2×2×2×2×2 = 64** complete paired recurrence conventions. The source-only generator and all predicted keys were committed before any target grading:
+
+- generator: `sims/lp2_p6_qblocks_matrix_recurrence_pretarget_sft.cjs`, commit `b06601e2d08222ae3beb8f0c96a690d61cacd885`;
+- pretarget outputs: `im-results/lp2-p6-qblocks-matrix-recurrence-pretarget.json`, commit `2cc48c5752c97e1d034412d83866ded4ecb5229b`.
+
+The independently frozen p6 companion key sums are then a target-free necessary gate. The result is decisive:
+
+~~~text
+64 conventions total
+56 match 0 / 8 q-page key sums
+ 8 match 1 / 8
+ 0 match 2+ / 8
+ 0 match all 8 / 8
+~~~
+
+Therefore this entire 2×2 state-vector interpretation is rejected **before any authenticated target rune is consulted**. The failure is stronger than another English-score negative: a candidate ordered key law cannot violate seven of eight already frozen page checksums.
 ## Evidence boundary
 
 This is a bounded negative, not a proof that p6 has no ordered serializer. The tested family is deliberately small and motivated: three already published p6 four-scalar representations, two signs, three simple clocks, then two canonical ways to enforce a separately frozen scalar sum.
@@ -190,4 +219,6 @@ The remaining viable route requires a new source-visible vector operation, coord
 - Pretarget mirror-affine family: `sims/lp2_p6_qblocks_mirror_affine_sum_family_sft.cjs`.
 - Pretarget mirror+position family: `sims/lp2_p6_qblocks_mirror_affine_position_sum_family_sft.cjs`.
 - Post-freeze affine grader: `sims/lp2_p6_qblocks_receiver_affine_grader_sft.cjs`.
+- Pretarget matrix recurrence: `sims/lp2_p6_qblocks_matrix_recurrence_pretarget_sft.cjs` and `im-results/lp2-p6-qblocks-matrix-recurrence-pretarget.json`.
+- Matrix checksum gate: `sims/lp2_p6_qblocks_matrix_recurrence_checksum_gate_sft.cjs`.
 - CI: `.github/workflows/agent11-p6-qblocks-sum-projection.yml`.
