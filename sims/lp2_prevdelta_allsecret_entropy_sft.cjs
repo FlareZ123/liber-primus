@@ -174,6 +174,34 @@ function positivePlant(mode,plain) {
 const plantText=refs[0][1].slice(0,all.length);
 assert.equal(plantText.length,all.length);
 const controls=cases.map(mode=>positivePlant(mode,plantText));
+
+function higherOrderDiagnostic(order) {
+  const grouped=new Map();
+  let n=0;
+  for(const page of pages) {
+    const ds=[];
+    for(let i=1;i<page.indices.length;i++)
+      ds.push(mod(page.indices[i]-page.indices[i-1]));
+    for(let i=order;i<ds.length;i++) {
+      const key=ds.slice(i-order,i).join(",");
+      if(!grouped.has(key))grouped.set(key,[]);
+      grouped.get(key).push(ds[i]);
+      n++;
+    }
+  }
+  let h=0;
+  for(const group of grouped.values())h+=group.length/n*entropy(group);
+  return {order,eligible:n,states:grouped.size,H:h};
+}
+const saturation=[1,2,3].map(higherOrderDiagnostic);
+assert.equal(saturation[0].eligible,12846);
+assert.equal(saturation[1].eligible,12791);
+assert.equal(saturation[2].eligible,12736);
+assert.equal(saturation[1].states,837);
+assert.equal(saturation[2].states,9780);
+assert(Math.abs(saturation[1].H-3.52524269314437)<1e-9);
+assert(Math.abs(saturation[2].H-0.4814459229428602)<1e-9);
+
 const output={
   model:"D_i=secretPermutation[previous D, optional public clock/chapter](P_i)",
   original:{runes:all.length,eligible:eligible.length,
@@ -185,6 +213,7 @@ const output={
   originalVsModels:actual.map(a=>({mode:a.mode,empiricalPlaintextEntropyLower:a.entropy,
     extraBitsAboveHighestNative:a.entropy-maxNative})),
   genuineEncryptedGpControls:controls,
+  higherOrderSaturationNonEvidence:saturation,
   conclusion:"Every stationary per-state secret 29-symbol permutation model using prior ciphertext difference plus these fixed public state qualifiers entails GP29 plaintext marginal entropy exceeding every matched original-length English GP control. This is a finite English-register exclusion, not an unknown plaintext or source-selected cipher."
 };
 process.stdout.write(JSON.stringify(output,null,2)+"\n");
