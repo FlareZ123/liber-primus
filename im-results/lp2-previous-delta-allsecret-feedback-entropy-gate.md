@@ -45,6 +45,16 @@ Every one of the **438** native-English GP control windows lies below all four o
 
 **Functional positive controls:** a second source-native plaintext book is genuinely encoded for all four state-scope families using 29 independent full GP29 permutation rows (implemented via deterministic invertible GF29 affine maps, different for each public state). Its original 55 physical page sizes and original initial two ciphertext glyphs are retained. The decoder independently restores **12,846/12,846 eligible plaintext runes** in each model, and the calculated plaintext/state and ciphertext-step/state entropies are **identical** to floating error. This demonstrates that the gate detects an actual member of the assumed encrypted-English family without knowledge of an original key.
 
+## A quantitative lower bound on any additional unseen state
+
+The preceding test rejects a *stationary visible-state-only* table, not a causal cipher with a hidden per-rune control. Any deterministic augmented mechanism `D_i=F(P_i,S_i,T_i)` using the same visible previous-step state `S_i` and an additional unobserved finite state `T_i` satisfies
+
+`H_emp(D|S) ≤ H_emp(P,T|S) ≤ H_emp(P)+H_emp(T|S)`.
+
+For plaintext drawn from the tested GP-English original-length source windows (`H_emp(P)≤4.300523864`), the original requires at least **0.488651777 bits of empirical hidden-state variability per eligible output symbol** if no other visible qualifier is used. If the visible chapter is also included, the required surplus is still at least **0.081117260** bits/symbol. This states a **single-symbol distribution and correlated-state information requirement**, *not* the algorithmic entropy of a seed or a demand for fresh random secret bits on every rune: a deterministic pseudorandom schedule can distribute one finite seed over many outputs.
+
+A useful identifiability ceiling: if one freely expands the secret row from *previous one difference* to the preceding **two** difference symbols (up to 29² possible visible states), the original on 12,791 within-page positions has empirical conditional entropy only **3.525242693** bits/rune over 837 occupied states. For three preceding differences, the 12,736 positions have empirical conditional entropy **0.481445923** over 9,780 occupied states. Such small-data high-order saturation no longer separates native-English output, and adding state variables after the fact is not affirmative evidence for any second-order cipher. A future state extension is useful only if the manuscript selects it independently, and it makes a new whole-page plaintext prediction.
+
 ## Consequence and reproducibility
 
 Changing from predecessor absolute-ciphertext row state to **predecessor-difference row state** does not rescue the original as GP-encoded ordinary English under a stationary table, even if its 29 substitutions are all secret. Either a genuinely source-selected *changing* state/key, correlated composite operation, non-GP/unknown-register plaintext, or nonstationary phase is needed to pursue this architecture. No alleged plaintext is offered; a secret decoder key remains unknown.
