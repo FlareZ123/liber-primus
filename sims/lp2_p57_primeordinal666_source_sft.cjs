@@ -84,6 +84,13 @@ const sourceOpeningPrime=instarOpeningWord.reduce((sum,glyph)=>sum+c.prime[glyph
 assert.equal(sourceOpeningPrime,184);
 assert.equal(p32WordPrime,sourceOpeningPrime);
 assert(p32Printed.includes("ᛡᚱᛏᚦᚠ-ᚠᚩᚦ."));
+const originalP32PrintedGroups=p32Printed.split(/[-.&$§]/u)
+  .map(text=>[...text].filter(glyph=>runeIndex.has(glyph))).filter(x=>x.length);
+assert.equal(originalP32PrintedGroups.length,22);
+assert.equal(originalP32PrintedGroups.flat().length,121);
+assert.equal(originalP32PrintedGroups[5].length,5);
+assert.deepEqual(originalP32PrintedGroups[5].map(glyph=>runeIndex.get(glyph)),
+  containingP32Word);
 const allTHOTH=[];
 const zeroFDoublets=[];
 for(const page of c.pages.filter(p=>p.page<=55&&p.runic_count>0)){
@@ -190,6 +197,7 @@ console.log(JSON.stringify({
     immediatelyAfterPrintedPeriodOriginalPrefix:nextPrintedGroupPrefix,
     joinedReadableLocalFragment:divinityAndNextGroup,
     containingCompleteOriginalWord:{start:25,end:29,primeSum:p32WordPrime},
+    inPagePrintedWordGroups:originalP32PrintedGroups.length,
     solvedP57FirstWordPrimeSum:sourceOpeningPrime,
     unsolvedBookAllFErasureMatches:allTHOTH,
     originalFFDoublets:zeroFDoublets,
