@@ -404,6 +404,10 @@ Conditional on 23 grayscale pages split into five positive runs, 11 of 7,315 com
 
 [Original carrier census and finite charge](lp2-2014-original-distribution-carrier-gate.md).
 
+## Direct source Q multiplication fails on original p55 GP29 pairs
+
+Another operation selected by the **algebra that actually produced Q**, rather than by a guessed numeric cipher, is multiplication or division by the quotient field element `E(Q)=17+24u` itself. Its source-fixed matrix is `[[17,18],[24,2]]` mod29; the exact inverse is `[[22,5],[26,13]]`. Agent15 committed the original physical p55 **76-rune, 38 adjacent-pair** receiver and both unchanged opposite field operations before output. Actual native GP29 IoCs are **0.03473684** (times Q) and **0.03438596** (divide Q), below *every one of 2,304* source-authentic solved-GP76 windows (minimum **0.04561404**). Both 76/76 reencryption and native-GP planted inverses pass; actual outputs are nonprose. Thus the literal one-step **source-Q pairwise Hill matrix** does not decode p55 at its physical page origin. The page begins with a word continuation from p54, so phase0 on p55 is a clearly acknowledged **unlicensed assumption**, not a global mathematical exclusion. [Frozen source receiver](../workplace/lp2-p3-q-gf29sq-original-p55-pair-inverse-pretarget.md) · [complete result](lp2-p3-q-gf29sq-p55-pair-inverse-gate.md) · [source-exact SFT](../sims/lp2_p3_q_gf29sq_p55_pair_inverse_sft.cjs).
+
 ## Scientific boundary and next causal step
 
 The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; the complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.
