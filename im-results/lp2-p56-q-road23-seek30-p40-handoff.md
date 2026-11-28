@@ -62,7 +62,7 @@ No other Q-valid start lands on a Q-valid start after23 steps under base59, and 
 
 This is a finite family control over the already typed Q-state receiver class. It is not a discovery-wide probability.
 
-## SEEK=30 closes the route at the established root
+## SEEK=30 is a dependent label on the established root route
 
 Continue the same base59 path from121. Its total distance to the unique root189 is exactly30:
 
@@ -80,7 +80,7 @@ total = 30 = zero-based source index(SEEK).
 
 Among the six Q exponents that are valid p50 starts, **p56 is the only one with base59 depth30**. Base60 from121 does not reach the root.
 
-This supplies an exact operational reading of two independently authenticated numbers on one fixed path: `ROAD/p=23` selects the solved-to-unknown handoff, and `SEEK=30` selects the full solved-to-root traversal.
+**Dependency correction (Critic, 28 November):** The two signed-source word indices `ROAD=23` and `SEEK=30` are independently authenticated facts, but the two path matches are **not independent evidence**. The base59 table is a functional graph rooted at cell189, and p40/cell153 has depth7. Once `f^23(121)=153` is known, the equality `d(121)=23+d(153)=23+7=30` follows necessarily. Exactly nine of all 256 printed table addresses have depth30 (`5,46,68,78,121,141,183,187,217`); the Q-class singleton remains an exact descriptive observation, not a second authenticated navigation prediction. [Whole-grid dependency audit](../communications/broadcast/2026-11-28T1335Z_critic_p56_road_seek_dependency.md).
 
 ## EMPTY | EPIPHANY self-index check
 
