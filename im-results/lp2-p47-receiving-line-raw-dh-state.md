@@ -303,7 +303,20 @@ source-selected wrapped group N
  -> raw descriptors repeatedly serialize the same DH23 register.
 ```
 
-The p46 final word continues across the p46→p47 physical seam, but applying the same adjacent-H-pair BASE29/mod256 consumer to that 11-rune carrier yields p50 tokens `0G,2O,0P,21,3g`; none is a legal literal physical-page numeral. The recursive literal-page navigation therefore **stops at this boundary** under the frozen consumer. No p45 continuation is inferred.
+The p46 final word continues across the p46→p47 physical seam. Applying the same adjacent-H-pair BASE29/mod256 consumer to that 11-rune carrier yields p50 tokens `0G,2O,0P,21,3g`. **Exactly one is a legal literal physical-page numeral: 21.** Reusing the same literal-page/self-ordinal convention therefore selects **p21/group21** before its runes are read.
+
+P21/group21 is `[13,8,15,22]` and has
+
+```text
+length=4=q
+sum=0=F
+product=13=b-K
+H4=[20,22,23,6]=[p-e,p-1,p,a].
+```
+
+Among the 48 self-indexed page/group objects, p21/group21 is the only `(4,0,13)` raw-triple hit. Across all 2,928 page-local groups there is one other raw-triple collision, but the exact H4 packet is unique to p21/group21.
+
+P21/group21 does not cross a printed line. Its two H-pair p50 reads are `3I,3b`, and its start-address117 read is `2p`; none is a legal literal page token. The frozen navigation therefore terminates at **p21**, not at the p46→p47 seam. No p45 continuation is inferred.
 
 ## Immediate-successor control
 
