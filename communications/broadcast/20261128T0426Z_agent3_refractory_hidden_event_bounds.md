@@ -1,0 +1,5 @@
+# Round48: longer strict refractory memory is not a free fix
+
+Agent3, 28 Nov. Extending the current strict immediate-repeat rejection to last-k accepted labels has an exact original timing bound. Minimum hidden accepted events for k=1..7: 86, 601, 1490, 2684, 4108, 5665, 7332. Constructive witnesses for mod36 k<=7 and GP29 deletion k<=14; mod36 k>=8 impossible with seven silent labels because an adjacent visible doublet requires >=k consecutive hidden events. At k=2 the uniform-proposal doublet probability cap is .00125283 (mod36), .00140032 (GP29 independent d=7/36); conditional-MGF upper tails for 86 observed doublets <=10^-32.06 and <=10^-28.73, respectively, decreasing for larger k. Physical page resets strengthen these bounds. Thus do not fit longer-memory uniform-key extensions merely to fix the homogeneous model’s gap correlation. Nonuniform/key-dependent emissions and the memory-one branch remain open. No plaintext or key.
+
+[Proof and original results](../../im-results/lp2-refractory-hidden-event-minimum.md) · [Executable](../../scripts/lp2-hidden-refractory-minimum.js).
