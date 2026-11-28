@@ -166,6 +166,46 @@ Again the H3 inverse reconstructs the exact key and forward addition replays the
 
 A necessary caution is stronger here: the **key alone is not manuscript-unique**. The same three-rune key also maps p33 start116 to authenticated `YOU`; the two `AND` source occurrences at indices24 and31 are text-identical and both match the p31 receiver. The evidence is therefore the manuscript-unique receiver shell plus its source-boundary ordinal, not uniqueness of the key.
 
+## Original-layout geometry produces both exact keys
+
+The exact raw keys admit a more restrictive description tied to the original p6 title layout rather than a bag of state scalars. The four red title words are:
+
+```text
+W1 [24,16,14,17]  length q
+W2 [19]           length 1
+W3 [6,27,15,17]   length q
+W4 [14,12]        length K
+```
+
+W3/W4 is the **unique adjacent [q,K] pair** in the title; W1 is the other q-length word. The original image also shows the large red Fehu `F=0` adjacent to the title (the normalized ink annotation does not encode that large glyph, so the SFT keeps `F=0` explicit).
+
+The two keys can then be written directly from endpoints and the already frozen H operation:
+
+```text
+p30 key
+= [W3.first, W4.first] || H(F, W3.first)
+= [6,14] || H(0,6)
+= [6,14,23,6]
+= [a,-b,-a,a]
+
+p31 key
+= [W3.last, W4.first, H(W1.first,W1.last).difference]
+= [17,14, H(24,17)[0]]
+= [17,14,7]
+= [K+b,-b,K+g].
+```
+
+To charge the freedom in this geometry instead of keeping the successful endpoint choices fixed, the reproducer allows:
+
+- either endpoint of W3 and either endpoint of W4;
+- both H operand orientations;
+- both endpoint read directions and both concatenation block orders for the four-rune p30 key;
+- H difference or sum from either W1 circumference orientation and every three-coordinate permutation for p31.
+
+That gives **31 unique p30 geometry keys** and **66 unique p31 geometry keys** after deduplication. Cross them, test both additive directions independently, and test the only two authenticated consecutive [4,3] source pairs (`ROAD AND`, `SEEK AND`): **16,368 configurations, one hit**. The sole survivor is the exact p30/p31 geometry above, subtraction/subtraction, `SEEK AND`.
+
+This is again a post-discovery finite charge, not a calibrated discovery probability. Its significance is causal compression: the successful serializer sits at a unique point in a family generated from literal endpoints, the unique [q,K] adjacency, the visible zero glyph and the existing H primitive. It no longer requires selecting arbitrary GP29 state expressions coordinate by coordinate.
+
 ## Joint p6-only serializer charge
 
 The two exact raw keys have a simpler shared source description than their H-shells first suggest:

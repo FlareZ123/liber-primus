@@ -415,6 +415,150 @@ assert.deepEqual(p31ExactKeyHits, [
   { page: 33, start: 116, sign: -1, targetIndex: 32, target: "YOU" },
 ]);
 
+// Original-layout geometric serializer charge. Identify the four red p6
+// title words directly from their canonical starts. W3/W4 is the unique
+// adjacent [q,K] pair and W1 is the other q word.
+const p6LocalWords = localWords(6);
+const titleStarts = [71, 75, 76, 80];
+const titleWords = titleStarts.map((start) => {
+  const word = p6LocalWords.find((candidate) => candidate.start === start);
+  assert.ok(word, "missing p6 title word at " + start);
+  return word;
+});
+assert.deepEqual(titleWords.map((word) => word.values.length), [state.q, 1, state.q, state.K]);
+const [geomW1, , geomW3, geomW4] = titleWords.map((word) => word.values);
+assert.deepEqual(geomW1, [24, 16, 14, 17]);
+assert.deepEqual(geomW3, [6, 27, 15, 17]);
+assert.deepEqual(geomW4, [14, 12]);
+const qkAdjacent = [];
+for (let index = 0; index + 1 < titleWords.length; index += 1) {
+  if (
+    titleWords[index].values.length === state.q &&
+    titleWords[index + 1].values.length === state.K
+  ) {
+    qkAdjacent.push(index);
+  }
+}
+assert.deepEqual(qkAdjacent, [2]);
+
+/** @param {number[]} values @returns {number[]} */
+function endpoints(values) {
+  return [values[0], values[values.length - 1]];
+}
+
+/** @param {number[]} values @returns {number[][]} */
+function uniquePermutations(values) {
+  const out = new Map();
+  function visit(prefix, rest) {
+    if (!rest.length) {
+      out.set(prefix.join(","), prefix.slice());
+      return;
+    }
+    for (let index = 0; index < rest.length; index += 1) {
+      visit(prefix.concat(rest[index]), rest.slice(0, index).concat(rest.slice(index + 1)));
+    }
+  }
+  visit([], values);
+  return [...out.values()];
+}
+
+const p30GeometryKeys = new Map();
+let p30GeometryLabeled = 0;
+for (const x of endpoints(geomW3)) {
+  for (const y of endpoints(geomW4)) {
+    for (const hOrder of [0, 1]) {
+      const h = hOrder === 0 ? h2([state.F, x]) : h2([x, state.F]);
+      for (const endpointOrder of [0, 1]) {
+        const pair = endpointOrder === 0 ? [x, y] : [y, x];
+        for (const blockOrder of [0, 1]) {
+          p30GeometryLabeled += 1;
+          const key = blockOrder === 0 ? pair.concat(h) : h.concat(pair);
+          p30GeometryKeys.set(key.join(","), key);
+        }
+      }
+    }
+  }
+}
+assert.equal(p30GeometryLabeled, 32);
+assert.equal(p30GeometryKeys.size, 31);
+assert.ok(p30GeometryKeys.has(p30Key.join(",")));
+
+const p31GeometryKeys = new Map();
+let p31GeometryLabeled = 0;
+const w1Ends = endpoints(geomW1);
+for (const x of endpoints(geomW3)) {
+  for (const y of endpoints(geomW4)) {
+    for (const hOrder of [0, 1]) {
+      const shell = hOrder === 0 ? h2(w1Ends) : h2([...w1Ends].reverse());
+      for (const hCoordinate of shell) {
+        for (const key of uniquePermutations([x, y, hCoordinate])) {
+          p31GeometryLabeled += 1;
+          p31GeometryKeys.set(key.join(","), key);
+        }
+      }
+    }
+  }
+}
+assert.equal(p31GeometryLabeled, 96);
+assert.equal(p31GeometryKeys.size, 66);
+assert.ok(p31GeometryKeys.has(p31Key.join(",")));
+
+const geometryJointHits = [];
+let geometryJointCases = 0;
+for (const key30 of p30GeometryKeys.values()) {
+  for (const key31 of p31GeometryKeys.values()) {
+    for (const direction30 of [-1, 1]) {
+      for (const direction31 of [-1, 1]) {
+        for (const pair of source43Pairs) {
+          geometryJointCases += 1;
+          const out30 = p30Receiver.map((value, index) =>
+            mod29(value + direction30 * key30[index])
+          );
+          const out31 = p31Receiver.map((value, index) =>
+            mod29(value + direction31 * key31[index])
+          );
+          if (
+            out30.every((value, index) => value === pair.left.values[index]) &&
+            out31.every((value, index) => value === pair.right.values[index])
+          ) {
+            geometryJointHits.push({
+              key30,
+              key31,
+              direction30,
+              direction31,
+              sourcePairIndex: pair.index,
+              targets: [pair.left.word, pair.right.word],
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(geometryJointCases, 16368);
+assert.deepEqual(geometryJointHits, [{
+  key30: [6, 14, 23, 6],
+  key31: [17, 14, 7],
+  direction30: -1,
+  direction31: -1,
+  sourcePairIndex: 30,
+  targets: ["SEEK", "AND"],
+}]);
+
+// The exact geometry can be written without state-name fitting:
+// p30 = [W3.first,W4.first] || H(F,W3.first)
+// p31 = [W3.last,W4.first,H(W1.first,W1.last).difference].
+assert.deepEqual(p30Key, [
+  geomW3[0],
+  geomW4[0],
+  ...h2([state.F, geomW3[0]]),
+]);
+assert.deepEqual(p31Key, [
+  geomW3[geomW3.length - 1],
+  geomW4[0],
+  h2([geomW1[0], geomW1[geomW1.length - 1]])[0],
+]);
+
 // Coupled source-only serializer charge. The family shares one W1 field
 // between the two page keys, chooses p30 x from the signed title-length H4,
 // p31 u/v as distinct literal W1 fields, and p31 w from H4(W1). Charge both
@@ -560,6 +704,26 @@ const result = {
     observed: { start: p29GStepReceiver.start, length: p29GStepReceiver.values.length },
     pass: false,
     decision: "reject the 27->32 ordinal +g recurrence; do not retune the address",
+  },
+  geometrySerializerCharge: {
+    titleStarts,
+    W1: geomW1,
+    W3: geomW3,
+    W4: geomW4,
+    uniqueQKAdjacentPairIndex: qkAdjacent[0],
+    p30: {
+      labeledVariants: p30GeometryLabeled,
+      uniqueKeys: p30GeometryKeys.size,
+      exactRule: "[W3.first,W4.first] || H(F,W3.first)",
+    },
+    p31: {
+      labeledVariants: p31GeometryLabeled,
+      uniqueKeys: p31GeometryKeys.size,
+      exactRule: "[W3.last,W4.first,H(W1.first,W1.last).difference]",
+    },
+    configurations: geometryJointCases,
+    hits: geometryJointHits,
+    note: "layout-constrained post-discovery charge; not a discovery-wide probability",
   },
   jointSerializerCharge: {
     titleH,
