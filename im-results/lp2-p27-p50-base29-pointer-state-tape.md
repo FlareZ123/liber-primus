@@ -123,7 +123,50 @@ An exact all-start census makes the coincidence specific. With eight hops and fo
 
 This is a **state-label-free internal checksum**, but the evidentiary limit matters: rendering an 8-bit carry register as uppercase hexadecimal is a newly chosen representation. No first-party LP2 instruction presently says to pack these carries into a byte or print that byte in hex. The result therefore strengthens the view that the selected base59 pointer path is self-structured under BASE29 conversion; it is not an authenticated opcode or a discovery-adjusted probability claim.
 
-## Strongest algebraic compression: adjacent H of the low BASE29 digits
+## First differences give two complete state packets
+
+The ordered BASE29 quotient/remainder coordinates expose an even simpler transform than adjacent H. Include the terminal fixed point and take ordinary consecutive first differences modulo29.
+
+The quotient channel is
+
+```text
+[6,0,1,3,2,5,7,8,6].
+```
+
+Its eight first differences are exactly
+
+```text
+[23,1,2,28,3,2,1,27]
+=
+[p,1,K,-1,e,K,1,-K].
+```
+
+The remainder channel is
+
+```text
+[12,19,4,25,14,16,11,15,15].
+```
+
+Its eight first differences are exactly
+
+```text
+[7,14,21,18,2,24,4,0]
+=
+[g+K,-b,-A,B-1,K,-g,q,F].
+```
+
+This uses no pair grouping, sign search, permutation, language score or ciphertext. The order is the independently fixed pointer order and the operation is the ordinary first difference of a state trajectory.
+
+A complete all-start exact census under the fixed eight-hop count gives:
+
+| Codec | exact quotient-difference packet | exact remainder-difference packet | both |
+| --- | ---: | ---: | ---: |
+| missing-`f` base59 | **start186 only** | **start186 only** | **start186 only** |
+| conventional base60 | none | none | none |
+
+The packet labels were recognized after the trajectory was known, so this remains post-discovery structural evidence rather than an authorship probability. Its value is that the historical-BASE29 state tape is not only a collection of individually labelable digits: a source-simple transition operator reproduces two ordered DH-state packets simultaneously.
+
+## Additional algebraic compression: adjacent H of the low BASE29 digits
 
 The eight pre-terminal BASE29 remainders are
 
@@ -407,4 +450,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`.
