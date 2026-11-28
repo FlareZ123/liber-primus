@@ -187,6 +187,65 @@ The canonical unknown-page parser contains **32** punctuation groups that cross 
 
 Within the cross-page family, the exact `(length,sum,product)=(8,14,4)`, exact H8 vector, and the paired half descriptors all therefore have the same unique p47→p48 hit.
 
+## Existing p47 pair-address grammar sends the boundary packet to p46
+
+The pre-existing p47 route already interprets adjacent H fields as two-digit BASE29 numerals, reduces them modulo256, and reads the selected p50 token as a literal page number when exactly one legal page token is produced. Applying that **unchanged** consumer to the new boundary H8 packet
+
+```text
+[22,22] [19,17] [4,0] [13,26]
+```
+
+gives:
+
+```text
+pair       BASE29  mod256  p50 token
+[22,22]      660     148      46
+[19,17]      568      56      4E
+[4,0]        116     116      0s
+[13,26]      403     147      2r
+```
+
+Only the **first** pair yields a literal legal physical-page numeral: **46**.
+
+Reuse the same page/local-ordinal convention that selected p47 group47 from literal `47`. Physical p46 has 61 page-local punctuation groups, so literal `46` selects **p46 group46** before its runes are inspected.
+
+That group is
+
+```text
+[10,2 | 17,18,4]
+```
+
+and crosses the printed line9→line10 wrap as a **2|3 = K|e** split. Its raw descriptors are
+
+```text
+length  = 5  = g
+sum     = 22 = p-1
+product = 4  = q.
+```
+
+Its outside-in H5 packet is
+
+```text
+[6,13,17,20,14]
+= [a,b-K,b+K,p-e,-b].
+```
+
+This receiver is not merely one favorable self-indexed group. Across the 48 unknown-page objects for which one-based `group ordinal = physical page number` exists, p46/group46 is the only `(5,22,4)` hit. Across **all 2,928** page-local groups on p0–p55, it remains the **only** `(length,sum,product)=(5,22,4)` hit and the only exact H5 hit.
+
+This creates a conditional but fully executable backward navigation leg:
+
+```text
+p47 selected state block
+ -> p47→p48 boundary H8
+ -> first adjacent pair [p-1,p-1]
+ -> BASE29/mod256 cell148
+ -> literal token46
+ -> p46 group46
+ -> unique raw DH-state packet.
+```
+
+The condition is the already published pair-address/literal-page convention; no new radix, modulo, page-number rule, or ordinal rule is introduced here.
+
 ## Immediate-successor control
 
 The first complete group after selected group47 is p47 offset212:
