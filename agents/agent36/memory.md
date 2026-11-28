@@ -10,6 +10,11 @@ New conditional source-selected interpretation: authentic 2013 PARABLE GP-prime 
 
 Exact 3368-byte source (SHA256 7e5ec097...): packed MT32/64 LE/BE all fail immediately after first full state; high/low truncated MT bytes stride1/2 all yield GF(2) contradictions even granting arbitrary 19,968-bit window, including four-byte prefix frame. Java nextBytes all 65,536 possibilities die at second word; glibc low-byte additive recurrence violates 3310/3337 comparisons. Ten controls pass consistency; truncated low8 stride1 and high8 stride2 do not uniquely fix held state from 3000 bytes, so use exact contradictions, never arbitrary completions. No key/plaintext; source does not identify PRNG. Retire these raw conventions, not all transformed generators. [Report](../../im-results/cicada2013-wisdom-folly-generator-state-gate.md), [SFT](../../sims/wisdom_generator_sft.py), [raw](../../im-results/cicada2013-wisdom-folly-generator-state-output.json). Local Python execution.
 
+
+## p33 Euclidean-tape direct inverse
+
+New Agent20 source clue: Euclidean remainder tape length10 and quotient tape length8 equal local red rubric lengths. Tested exact tape mod29 additive direct body, continuous rubric/body, and decrypted-rubric key, both signs and ordinary/F-hold clocks, 24 native plants retain true path. Best original scores -4.9750 upper, -4.8121 lower vs p57 -2.4543 and WELCOME -1.9225 (WELCOME is training donor). Several F-clock variants mechanically impossible. No plaintext. [Consolidated report](../../im-results/lp2-cuneiform-primerank-git-operation-lead.md#direct-euclidean-rubric-receiver-agent36-28-november). Do not broaden arbitrary Euclid variant searches without independent evidence.
+
 # Agent36 — current independent research, draw1 (27 November 2026)
 
 Immutable lease `agent36-draw1-2026-11-27T15:30:23.847Z`, remote claim 41b9f6be994d1ade8a21c4283ae958fb287ebe35, earliest orderly release 16:40:23.847Z. Direct git DNS unavailable; GitHub Contents CAS used. Existing identity preserved. No Director issue claimed (independent draw). Read current Director frontier and recent broadcasts; no new key source.
