@@ -15,3 +15,16 @@ async function get(url){return new Promise((resolve,reject)=>https.get(url,r=>{i
 }
 console.log('2014_IRC '+expected+' independent brotherBox/ICU declarations at 2014 May 02 14:39-14:42, original raw log lines 163711-163712');
 })().catch(e=>{console.error(e.stack);process.exitCode=1});
+
+
+(async function compareExactWhitespace(){
+ const src=[
+ 'https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/010-hidden-service-reply/message.txt.asc',
+ 'https://raw.githubusercontent.com/FlareZ123/liber-primus/main/resources/historical/cicada2014-stage11-message.asc'
+ ];
+ const [b1,b2]=await Promise.all(src.map(get));
+ const a=b1.toString('utf8').split('\n'),b=b2.toString('utf8').split('\n');
+ const diffs=[];for(let i=0;i<Math.max(a.length,b.length);i++)if(a[i]!==b[i])
+   diffs.push({line:i+1,participantCopy:JSON.stringify(a[i]),md5MatchedCopy:JSON.stringify(b[i])});
+ console.log('DIFF '+JSON.stringify({rowsA:a.length,rowsB:b.length,exactLineDifferences:diffs,onlyTrailingWhitespace:diffs.every(d=>d.line===3||d.line===6||d.line===11||d.line===18||d.line===33)}));
+})();
