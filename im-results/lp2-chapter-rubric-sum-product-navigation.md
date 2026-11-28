@@ -129,7 +129,7 @@ An independent p7/p15 cross-holdout now gives the chapter graph a typed upstream
 
 `[5,0,7,12,9] = [g,F,K+g,aK,q+g]`,
 
-exactly the packet independently fixed by p15 lower red11. Only original p7 printed order among the 10 cyclic/reversal orientations passes on the actual chapter map. Preserving the nine observed IN labels and nine observed chapter-span records but permuting their assignments gives **240/362,880 = 1/1,512** passes for this fixed p7-row/p15-target test.
+exactly the packet independently fixed by p15 lower red11. The same itinerary's first post-rubric word lengths are `[3,7,2,7,8]`; H5 gives `[24,0,2,14,11]=[-g,F,K,-b,A^-1]`, a second independently fixed state row. Only original p7 printed order among the 10 cyclic/reversal orientations passes **both** rows on the actual chapter map. Preserving the nine observed IN labels and permuting whole observed `(chapter span, first-black length)` records among them gives **240/362,880 = 1/1,512** span-row passes and **120/362,880 = 1/3,024** joint passes.
 
 This materially strengthens the chapter-IN register as a typed address layer and supplies a concrete `p7 inverse row -> chapter addresses -> chapter spans -> H5 packet` path. It remains post-discovery evidence and does not by itself authenticate the p7 circulant opcode or recover body plaintext. Full integrated reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
 ## Decision for the solve frontier
