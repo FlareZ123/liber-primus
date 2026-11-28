@@ -163,6 +163,11 @@ function adjacentH(values) {
   return out;
 }
 
+/** @param {number[]} values */
+function firstDifferences(values) {
+  return values.slice(1).map((value, i) => mod(value - values[i], 29));
+}
+
 const state = {
   F: 0,
   one: 1,
@@ -273,6 +278,33 @@ assert.deepEqual(
 );
 assert.ok(sourceNodeLows.includes(state.q));
 
+const allHighDigits = addressPairs.map((pair) => pair.high);
+const allLowDigits = addressPairs.map((pair) => pair.low);
+const highDifferencePacket = firstDifferences(allHighDigits);
+const lowDifferencePacket = firstDifferences(allLowDigits);
+assert.deepEqual(highDifferencePacket, [
+  state.p,
+  state.one,
+  state.K,
+  mod(-state.one, 29),
+  state.e,
+  state.K,
+  state.one,
+  mod(-state.K, 29),
+]);
+assert.deepEqual(highDifferencePacket, [23, 1, 2, 28, 3, 2, 1, 27]);
+assert.deepEqual(lowDifferencePacket, [
+  state.g + state.K,
+  mod(-state.b, 29),
+  mod(-state.A, 29),
+  state.B - state.one,
+  state.K,
+  mod(-state.g, 29),
+  state.q,
+  state.F,
+]);
+assert.deepEqual(lowDifferencePacket, [7, 14, 21, 18, 2, 24, 4, 0]);
+
 const hPacket = adjacentH(sourceNodeLows);
 const expectedHPacket = [
   state.p - 1,
@@ -293,8 +325,6 @@ assert.deepEqual(
   [...path60.nodes, path60.end],
   [186, 19, 33, 114, 197, 115, 247, 192, 0]
 );
-assert.notDeepEqual(adjacentH(path60.nodes.map((address) => address % 29)), hPacket);
-
 assert.notDeepEqual(adjacentH(path60.nodes.map((address) => address % 29)), hPacket);
 
 // Dual-radix closure over the literal table tokens: interpret each token in
@@ -394,6 +424,43 @@ function structuralCensus(values) {
   }
   return { distinctLow, distinctHigh, both, bothThenFixed };
 }
+
+/**
+ * Exact post-discovery census for the two first-difference packets.
+ * @param {number[]} values
+ */
+function differencePacketCensus(values) {
+  const highHits = [];
+  const lowHits = [];
+  const jointHits = [];
+  for (let start = 0; start < 256; start += 1) {
+    const run = walk(values, start, state.A);
+    const addresses = [...run.nodes, run.end];
+    const highs = addresses.map((address) => Math.floor(address / 29));
+    const lows = addresses.map((address) => address % 29);
+    const high = firstDifferences(highs);
+    const low = firstDifferences(lows);
+    const highMatch = high.every((value, i) => value === highDifferencePacket[i]);
+    const lowMatch = low.every((value, i) => value === lowDifferencePacket[i]);
+    if (highMatch) highHits.push(start);
+    if (lowMatch) lowHits.push(start);
+    if (highMatch && lowMatch) jointHits.push(start);
+  }
+  return { highHits, lowHits, jointHits };
+}
+
+const differenceCensus59 = differencePacketCensus(values59);
+const differenceCensus60 = differencePacketCensus(values60);
+assert.deepEqual(differenceCensus59, {
+  highHits: [186],
+  lowHits: [186],
+  jointHits: [186],
+});
+assert.deepEqual(differenceCensus60, {
+  highHits: [],
+  lowHits: [],
+  jointHits: [],
+});
 
 const census59 = census(values59);
 const census60 = census(values60);
@@ -539,6 +606,9 @@ const summary = {
   sourceNodeLows,
   selectedHighDigits,
   omittedHighDigit: state.q,
+  highDifferencePacket,
+  lowDifferencePacket,
+  differencePacketCensus: { base59: differenceCensus59, base60: differenceCensus60 },
   adjacentHPacket: hPacket,
   fixedPoints: { base59: base59FixedPoints, base60: base60FixedPoints },
   dualPacking: {
