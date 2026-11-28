@@ -169,6 +169,65 @@ for (const hits of [lengthHits, lengthSumHits, tripleHits, endpointHits]) {
   assert.deepEqual(hits.map(({ page, line }) => [page, line]), [[47, 10]]);
 }
 
+// Source-fixed continuation: line10's outgoing carry selects line11, then line12/page end.
+const inverse29 = (value) => {
+  for (let candidate = 1; candidate < 29; candidate += 1) {
+    if ((value * candidate) % 29 === 1) return candidate;
+  }
+  throw new Error('no inverse');
+};
+const Ainv = inverse29(state.A);
+assert.equal(Ainv, 11);
+
+const line11 = lineFragments(47, 11);
+const line11Lengths = [state.q, state.e, state.g * state.K, state.q];
+const line11Sums = [mod29(state.A * state.K), mod29(state.b - state.K), 0, state.B];
+const line11Products = [1, mod29(state.b - state.K), 28, state.A];
+assert.deepEqual(line11.map((f) => f.length), line11Lengths);
+assert.deepEqual(line11.map((f) => f.sum), line11Sums);
+assert.deepEqual(line11.map((f) => f.product), line11Products);
+
+const line12 = lineFragments(47, 12);
+const line12Lengths = [state.e, state.e, Ainv, state.e, state.q];
+const line12Sums = [state.b, Ainv, state.e, mod29(state.b - state.K), mod29(-Ainv)];
+const line12Products = [mod29(-state.A), mod29(-state.b), mod29(-state.g), 0, state.B];
+assert.deepEqual(line12.map((f) => f.length), line12Lengths);
+assert.deepEqual(line12.map((f) => f.sum), line12Sums);
+assert.deepEqual(line12.map((f) => f.product), line12Products);
+
+const line11Class = printedLines.filter(({ fragments }) =>
+  fragments.length === 4
+  && fragments[0].continuation
+  && fragments.at(-1).continues
+  && fragments.slice(1, -1).every((f) => f.complete)
+);
+assert.equal(line11Class.length, 22);
+const line11LengthHits = line11Class.filter(({ fragments }) => same(fragments.map((f) => f.length), line11Lengths));
+const line11LengthSumHits = line11LengthHits.filter(({ fragments }) => same(fragments.map((f) => f.sum), line11Sums));
+const line11FullHits = line11LengthSumHits.filter(({ fragments }) => same(fragments.map((f) => f.product), line11Products));
+for (const hits of [line11LengthHits, line11LengthSumHits, line11FullHits]) {
+  assert.deepEqual(hits.map(({ page, line }) => [page, line]), [[47, 11]]);
+}
+
+const lastLineByPage = new Map();
+for (const row of printedLines) {
+  lastLineByPage.set(row.page, Math.max(lastLineByPage.get(row.page) || 0, row.line));
+}
+const line12Class = printedLines.filter(({ page, line, fragments }) =>
+  line === lastLineByPage.get(page)
+  && fragments.length === 5
+  && fragments[0].continuation
+  && !fragments.some((f) => f.continues)
+  && fragments.slice(1).every((f) => f.complete)
+);
+assert.equal(line12Class.length, 20);
+const line12LengthHits = line12Class.filter(({ fragments }) => same(fragments.map((f) => f.length), line12Lengths));
+const line12LengthSumHits = line12LengthHits.filter(({ fragments }) => same(fragments.map((f) => f.sum), line12Sums));
+const line12FullHits = line12LengthSumHits.filter(({ fragments }) => same(fragments.map((f) => f.product), line12Products));
+for (const hits of [line12LengthHits, line12LengthSumHits, line12FullHits]) {
+  assert.deepEqual(hits.map(({ page, line }) => [page, line]), [[47, 12]]);
+}
+
 // Canonical complete-word control for the immediate successor.
 const stream = raw.split('%').slice(0, 55).join('%');
 const allWords = [];
@@ -226,6 +285,22 @@ console.log(JSON.stringify({
     lengthSumHits: lengthSumHits.map(({ page, line }) => [page, line]),
     fullDescriptorHits: tripleHits.map(({ page, line }) => [page, line]),
     endpointHits: endpointHits.map(({ page, line }) => [page, line]),
+  },
+  continuationCensus: {
+    line11: {
+      comparableLines: line11Class.length,
+      lengths: line11Lengths,
+      sums: line11Sums,
+      products: line11Products,
+      fullHits: line11FullHits.map(({ page, line }) => [page, line]),
+    },
+    line12: {
+      comparableLines: line12Class.length,
+      lengths: line12Lengths,
+      sums: line12Sums,
+      products: line12Products,
+      fullHits: line12FullHits.map(({ page, line }) => [page, line]),
+    },
   },
   successorControl: {
     completeWords: complete.length,
