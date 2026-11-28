@@ -284,6 +284,17 @@ const bestRivalFlankIoC = Math.max(...rivalFlankModels.map((model) => model.ioc)
 assert.ok(Math.abs(bestStateFlankIoC - 0.03732967830363622) < 1e-15);
 assert.ok(Math.abs(bestRivalFlankIoC - 0.03861968878497138) < 1e-15);
 assert.ok(bestStateFlankIoC < bestRivalFlankIoC);
+
+const stateHKey = [...hPacket];
+const base60RivalHKey = adjacentH(path60.nodes.map((address) => address % 29));
+assert.deepEqual(stateHKey, [22, 2, 8, 0, 27, 1, 25, 26]);
+assert.deepEqual(base60RivalHKey, [22, 2, 6, 2, 24, 22, 26, 4]);
+const stateHFlankModels = flankModels(stateHKey);
+const rivalHFlankModels = flankModels(base60RivalHKey);
+const bestStateHFlankIoC = Math.max(...stateHFlankModels.map((model) => model.ioc));
+const bestRivalHFlankIoC = Math.max(...rivalHFlankModels.map((model) => model.ioc));
+assert.ok(Math.abs(bestStateHFlankIoC - 0.03813593485447069) < 1e-15);
+assert.ok(Math.abs(bestRivalHFlankIoC - 0.03668467306296864) < 1e-15);
 assert.ok(indexOfCoincidence(p57) > 0.06);
 
 // Native GP implementation plant: encrypt solved p57 with the state key and
@@ -322,6 +333,12 @@ const summary = {
     base60RivalModels: rivalFlankModels,
     bestStateIoC: bestStateFlankIoC,
     bestBase60RivalIoC: bestRivalFlankIoC,
+    hStateKey: stateHKey,
+    hBase60RivalKey: base60RivalHKey,
+    hStateModels: stateHFlankModels,
+    hBase60RivalModels: rivalHFlankModels,
+    bestHStateIoC: bestStateHFlankIoC,
+    bestHBase60RivalIoC: bestRivalHFlankIoC,
     nativePlantRecovered95of95: p57PlantRecovered.length,
   },
 };
