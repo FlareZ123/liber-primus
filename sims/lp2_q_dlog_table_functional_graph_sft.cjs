@@ -121,6 +121,35 @@ while(!b60.onCycle[p15k]){
 assert.deepEqual(p15Transient,[236,333]);
 assert.equal(p15k,516);
 
+let p15WalkK=p15First.k;
+const p15ToSecond=[];
+for(let step=0;step<=840;step++){
+ p15ToSecond.push(p15WalkK);
+ if(p15WalkK===748)break;
+ p15WalkK=b60.next(p15WalkK);
+}
+assert.equal(p15WalkK,748);
+assert.equal(p15ToSecond.length-1,21);
+const p15RedWaypoints=[];
+for(let step=0;step<p15ToSecond.length;step++){
+ const k0=p15ToSecond[step],hits=redByK.get(k0);
+ if(hits)p15RedWaypoints.push({step,k:k0,red:hits.map(r=>[r.page,r.start,r.length])});
+}
+assert.deepEqual(p15RedWaypoints,[
+ {step:0,k:236,red:[[15,0,9]]},
+ {step:2,k:516,red:[[39,119,8]]},
+ {step:3,k:603,red:[[7,194,14]]},
+ {step:9,k:456,red:[[6,71,11]]},
+ {step:21,k:748,red:[[15,9,11],[57,0,7]]},
+]);
+
+let b59k=236;const b59Seen=new Set();let b59Hits748=false;
+while(!b59Seen.has(b59k)){
+ if(b59k===748){b59Hits748=true;break;}
+ b59Seen.add(b59k);b59k=b59.next(b59k);
+}
+assert.equal(b59Hits748,false);
+
 const result={
  schema:'lp2-q-dlog-table-functional-graph-v1',
  classification:'complete 840-state functional-graph census for the uniform dlog-coordinate word-number direction rule; post-discovery structural evidence, no plaintext',
@@ -134,12 +163,13 @@ const result={
    redCyclePositions,
    redArcLengths,
    p15FirstTransient:{startK:236,intermediateK:333,cycleEntryK:516,cycleEntryRed:'p39'},
+   p15FirstToSecond:{steps:21,waypoints:p15RedWaypoints},
  },
  base59:{
    cycleLengths:b59.cycles.map(c=>c.length).sort((a,b)=>a-b),
    distinctRedStatesOnCycles:b59.redOnCycle.length,
  },
- boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516. This remains post-discovery and is not a plaintext recovery.',
+ boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516; continuing the same uniform map reaches p15's second red / solved-p57 residue k748 after exactly 21 total steps, with printed-red waypoints p15-first -> p39 -> p7 -> p6 -> p15-second/p57. The matched base59 walk from p15-first never reaches k748 before entering its cycle. This remains post-discovery and is not a plaintext recovery.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
