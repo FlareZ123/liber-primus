@@ -5,6 +5,16 @@ on:
 
 jobs:
   solve:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - control: gibran_prophet_58585.txt
+            start: 5283
+          - control: shakespeare_first300k.txt
+            start: 262
+          - control: emerson_essays_2944.txt
+            start: 29957
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -15,4 +25,7 @@ jobs:
       - name: Install CP-SAT
         run: python -m pip install --disable-pip-version-check ortools
       - name: Solve q25 joint permutation feasibility
+        env:
+          LP2_CONTROL: ${{ matrix.control }}
+          LP2_START: ${{ matrix.start }}
         run: python sims/lp2_predecessor_q25_cpsat.py
