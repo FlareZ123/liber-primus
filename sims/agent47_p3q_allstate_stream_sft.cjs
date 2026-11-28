@@ -221,6 +221,44 @@ function matchingNativeWords(groups){
   }
   return out;
 }
+
+// Second word-order-invariant receiver: each printed word is a cipher unit.
+// Every word starts from the source-derived typed p54-red9 state [0,20].
+// An odd final rune is copied (reversibly) instead of crossing word boundaries.
+// Unlike the continuous-state census, this checks a genuine reset mechanism.
+function transduceWordLocal(words,seed,forward,law,stepFamily){
+  return words.map(word=>{
+    const n=word.length-(word.length%2);
+    const result=transduce(word.slice(0,n),seed,forward,law,stepFamily);
+    if(n<word.length)result.push(word[n]);
+    assert.equal(result.length,word.length);
+    return result;
+  });
+}
+function partitionByLengths(values,groups){
+  let position=0;
+  const out=groups.map(g=>{
+    const slice=values.slice(position,position+g.length);
+    position+=g.length;
+    return slice;
+  });
+  assert.equal(position,values.length);
+  return out;
+}
+function localWordCensus(groups,scorer){
+  const contenders=[];
+  for(const stepFamily of ['Q','T'])
+  for(const forward of [true,false])
+  for(let law=0;law<4;law++){
+    const transformed=transduceWordLocal(groups,[0,20],forward,law,stepFamily).flat();
+    contenders.push({stepFamily,forward,law,score:scorer(transformed),
+      prefix:transformed.slice(0,22).map(v=>corpus.translit[v]).join('')});
+  }
+  contenders.sort((a,b)=>b.score-a.score);
+  assert.equal(contenders.length,16);
+  return contenders;
+}
+
 const withinPrintedWords=[];
 for(const frame of wordFrames){
   const original=frame.words.flat(),mask=wordMask(frame.words);
@@ -249,13 +287,36 @@ for(const frame of wordFrames){
     }
     familyResults.push({stepFamily,scanned,best,controls});
   }
+  // The root state [0,20] is fixed before inspecting body outputs;
+  // no new seed, word order, word length or cipher slot is optimized.
+  const wordLocalOriginal=localWordCensus(frame.words,scorer);
+  const nativeGroups=partitionByLengths(heldNative,frame.words);
+  const wordLocalPlants=[];
+  for(const stepFamily of ['Q','T'])
+  for(const forward of [true,false])
+  for(const law of [0,2]){
+    const encoded=transduceWordLocal(nativeGroups,[0,20],forward,inverseLaw[law],stepFamily);
+    const decoded=transduceWordLocal(encoded,[0,20],forward,law,stepFamily);
+    assert.deepEqual(decoded,nativeGroups,'exact native-word-local round trip');
+    const searched=localWordCensus(encoded,scorer);
+    assert.ok(Math.abs(searched[0].score-scorer(heldNative))<1e-10,
+      'word-local native planted truth must rank 1 over all 16 source-typed modes');
+    const top=transduceWordLocal(encoded,[0,20],searched[0].forward,
+      searched[0].law,searched[0].stepFamily);
+    assert.deepEqual(top,nativeGroups,'word-local top-1 must recover original native words');
+    wordLocalPlants.push({stepFamily,forward,law,rank1Exact:true,winningMode:searched[0]});
+  }
+  assert.equal(wordLocalPlants.length,8);
   withinPrintedWords.push({
     frame:frame.name,wordCount:frame.words.length,runes:original.length,
     insideWordTransitions:mask.length,
     originalInsideWordScore:scorer(original),
     lengthMatchedDisjointNativeInsideWordScore:scorer(heldNative),
     nativeWordSource:'held Gibran GP29 words after original training prefix; same exact printed-length slots',
-    familyResults
+    familyResults,
+    wordLocalReset:{seed:[0,20],oddTail:'unchanged',
+      source:'p54 red9 Q multiplication output, fixed at every complete word boundary',
+      testedModes:16,best:wordLocalOriginal.slice(0,8),nativePlants:wordLocalPlants}
   });
 }
 assert.deepEqual(withinPrintedWords.map(f=>f.insideWordTransitions),[241,233]);
@@ -274,7 +335,7 @@ const result={
     signed2016:{runes:signedGp.length,score:score(signedGp)},
     heldGibranWindows:holdScores
   },nativePlants:control,
-  decision:'For both p54-p55 pair framings, no key in the exhaustive direct Q or Frobenius(Q*) semilinear stream families yields native-like original plaintext even with scoring restricted to exact within-printed-word rune transitions. All 16 full-stream plants and eight length-matched printed-word native plants recover exactly at rank 1. This excludes fixed additive or multiplicative emissions with either source-derived state update, not more complex receiver laws, ciphertext-feedback, side channels, or different plaintext languages.'
+  decision:'Both continuous-state and source-typed p54-red9 word-boundary-reset Q/T direct emission models fail native GP word-internal language on the original 308/298-rune receivers, even when printed words can be arbitrarily reordered. All 16 full-stream plants, eight length-matched whole-stream native plants, and 16 word-local-native plants recover exactly at rank1. A different independent first-party emission law or key is needed.'
 };
 const output=JSON.stringify(result,null,2);
 console.log(output);
