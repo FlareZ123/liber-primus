@@ -43,6 +43,8 @@ order56, signed gap and gap modulo56 agree. **Zero exact transitions.**
 This rejects the direct red-state page-number transport without
 choosing a destination after viewing outcomes.
 
+**Solved-page-key anchor.** A separate authentic positive on solved p56 gives `Q×E(p56 red)=[1,2]`, the first two independently known prime-minus-one shifts used for AN END. **Freeze that key packet as the clock's source** at p56. Transport it backward to each of the nine unsolved physical page-initial red headings of length≥8 by `Q^(15×(page−56))`; compare against the same Q operation on the whole observed red heading. **Zero of nine packets matches.** For example, p0 would have to read `[1,2]` (p56 and p0 are one 56-period apart) but actually reads `[3,14]`; p15 predicts `[0,5]` versus observed `[23,8]`. This is a stronger negative than testing only equality of arbitrary red states: its origin state is **known in plaintext** and fixed independently of the unsolved-page readings. It does not imply the creator intended to use the solved title as a universal page key.
+
 **Original body cipher.** Test page-fixed `Q^(15p)` and a page-reset
 running `Q^(15p+j)` stream, in both directions. For each of the four
 schedules, all **840** possible global nonzero field-state phases are
