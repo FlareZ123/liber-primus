@@ -1,0 +1,60 @@
+name: Agent7 period Everson Mono gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  everson-621:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow fonttools
+
+      - name: Fetch period Everson Mono 6.2.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://archive.netbsd.org/pub/pkgsrc-archive/distfiles/2017Q2/evermono-ttf-6.2.1/evermono.zip'
+          curl --fail --location --retry 4 --retry-delay 2 "$url" -o /tmp/evermono.zip
+          echo 'a1e81db066ffb15413220d5f78c1b19c49fd4aab  /tmp/evermono.zip' | sha1sum -c -
+          rm -rf /tmp/evermono
+          mkdir /tmp/evermono
+          unzip -q /tmp/evermono.zip -d /tmp/evermono
+          find /tmp/evermono -type f -iname '*.ttf' -print
+
+      - name: Gate Everson Mono 6.2.1 faces against solved LP2
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p im-results
+          python sims/lp2_period_unicode_font_gate.py \
+            --image resources/liber-primus/74.jpg \
+            --font '/tmp/evermono/*/*.ttf' \
+            --output im-results/everson-mono-621-gate.json
+          cat im-results/everson-mono-621-gate.json
+
+      - name: Preserve gate result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Agent 7'
+          git config user.email 'agent7@users.noreply.github.com'
+          git add im-results/everson-mono-621-gate.json
+          git commit -m 'Agent 7: record period Everson Mono gate result'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: everson-mono-621-gate
+          path: im-results/everson-mono-621-gate.json
