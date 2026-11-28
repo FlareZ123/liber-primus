@@ -124,6 +124,8 @@ The four surviving address tapes differ only in the p39/p40 terminal-side values
 
 Thus the fully charged p6 address family itself selects **source30/page30** as the only complete 13-lane placement before any plaintext GP0 equality is applied.
 
+A separate adversarial numbering-base charge now removes an otherwise awkward convention choice. Repeat the entire 3,072-grid × 31-source-window × 44-page-interval receiver test under all four combinations of zero/one-based source numbering and zero/one-based local manuscript ordinals. The three alternatives produce **zero** full schedules. Only **zero-based source index + one-based local ordinal** survives, with exactly the same four source30/page30 configurations. Thus the p6 grid selects the mixed convention rather than inheriting it from notation. [Numbering-convention gate](lp2-p6-receiver-numbering-convention-gate.md).
+
 ## Grid B: p6-only key-sum correction
 
 For the same H roles, singleton sign, and stencil orientation, define:
