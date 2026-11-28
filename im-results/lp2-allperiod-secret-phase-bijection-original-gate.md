@@ -126,3 +126,40 @@ The longest original page has 277 runes. For shared phase-zero page resets, all 
 Consequently the book-wide ordinary shared clock must have q≥475 (continuous) or ≥467 (chapter resets) to admit even one of these five controls in the majorization relaxation. Chapter-private clocks require q≥60; page-private clocks can evade the bound at q=10. This gives a practical architectural lower bound independent of the transposition complexity, with no new plaintext or key. Do not turn the large surviving arbitrary-map space into an unselected key search.
 
 [Reproducer](../sims/lp2_phase_histogram_allperiod_transport_sft.cjs) and [complete nonmonotonic passing-period ranges](lp2-phase-histogram-allperiod-transport-output.json). Executed directly in V8 against the pinned repository sources with total-count assertions and exact previous q8/q13 checkpoint reproduction. No separate Windows CI run.
+
+
+## Shared physical-page origin: full-window capacity and affine inverse (Agent1, 28 November)
+
+The earlier Agent8 all-period transport proof already excludes the fixed phase-zero shared physical-page architecture for five Crowley/Blake histograms. This extension **does not claim a new majorization theorem**: it makes the q≥277 endpoint sharp on the original corpus, exhausts every contiguous matching-length window in three other pinned literature controls, and attempts actual affine key recovery with whole physical pages withheld.
+
+**Original input and clock.** All 55 nonempty physical LP2 p0–55 pages, 12,956 runes, p50 empty; every page restarts at its first printed rune, and the longest page has 277 runes. No F bypass, per-page IV, origin tuning, or assumption that printed groups represent plaintext words. Original source blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`. Native language model: 2,916-rune editorial-derived GP LP1 reference `resources/derived/dukotah-r37-lp1-map-runes.json` blob `0fb8fcaaf793628e0e76c6b17e9643170bbb9508`, not independently source-transcribed here. Literary conversion uses uppercase words, ING→NG, QU→CW, Q/K→C, V→U, Z→S, greedy longest GP chart token within each word; strips Gutenberg wrapper where marked. This is one explicit GP spelling convention.
+
+**Sharp capacity.** For page-local column j let h_j be its 29 ciphertext counts. Sort h_j descending and sum componentwise across columns to obtain
+```
+M = [1277,1064,954,862,797,736,701,650,583,534,509,493,467,447,408,
+     364,324,284,266,255,244,223,190,145,100,54,18,6,1]
+```
+For any possible shared arbitrary GP29 bijection at each column, its plaintext histogram sorted prefix is at most the corresponding prefix of M (the prior theorem). This envelope is simultaneously **attainable**: at every column send the most common ciphertext rune to GP0, second most common to GP1, etc., breaking ties by ciphertext index; the reproducer constructs that full mapping and verifies exact global histogram M. Hence the maximum global modal count is exactly 1,277 (9.8564%), and Schur-convexity gives exact maximum global IoC 0.05266137837425939. The LP1-derived reference has IoC 0.06286531751241745. The observed aligned column collision count is 10,751/311,132 = 0.034554465628736354. The arbitrary-bijection capacity is independent of plaintext order, printed spaces and page order; it does require the fixed local origin, one rune per position and a common bijection at each position.
+
+| Pinned donor, GP stream length | All contiguous 12,956-rune windows | Windows passing prefix bound | Minimum maximum-prefix deficit | Minimum modal count | Minimum IoC |
+|---|---:|---:|---:|---:|---:|
+| Gibran, 47,703 | 34,748 | 0 | 816 | 1,414 | 0.05949359 |
+| Emerson, 308,478 | 295,523 | 0 | 871 | 1,486 | 0.06099260 |
+| Shakespeare, 217,644 | 204,689 | 0 | 631 | 1,404 | 0.05748714 |
+| Total | 534,960 | 0 | 631 | 1,404 | 0.05748714 |
+
+Every donor window fails the modal count and IoC bounds separately. The maximum-prefix deficit also lower-bounds the number of symbol replacements required to bring a donor histogram within the feasible envelope: one replacement can reduce any fixed top-k count by at most one. It is a necessary bound, not a claim of exact edit distance or feasibility. The exact negative survives any pre-encryption permutation of these donor windows. It does not exclude novel prose with a much flatter histogram, variable origins, page-private maps, selective F, polygraphic maps, homophones or a non-GP intermediate.
+
+**Actual affine inverse.** Decode as `P[p,j] = a[j]*C[p,j]+b[j] mod29`, with all 812 nonzero-slope affine maps available independently at each of the 277 columns. No periodic key assumption. Train on physical p0–39 (9,640 runes); freeze the entire fitted action and decode p40–55 excluding empty p50 (3,316 runes). Start with exact per-column unigram maximization, then eight alternating-direction coordinate-ascent passes, exhaustively checking all 812 maps at each position using the frozen LP1-derived bigram model (8 unigram-backoff pseudocounts). This optimizer is not a certificate of the global joint optimum. A seeded xorshift32 constructs original-length plants cut from Gibran and Emerson; the same plaintext is independently keyed per cell for the wrong-family control. Test all four controls and original under identical fitting rules.
+
+| Input | Hidden columns recovered | Held plaintext recovered | Held bigram nats/rune |
+|---|---:|---:|---:|
+| Gibran shared affine plant | 270/277 | 3,300/3,316 | −2.74545 |
+| Emerson shared affine plant | 264/277 | 3,251/3,316 | −2.84880 |
+| Gibran independent-cell plant | N/A | 106/3,316 | −5.20691 |
+| Emerson independent-cell plant | N/A | 99/3,316 | −5.20120 |
+| Original LP2 | unknown | nonprose | −5.21445 |
+
+Original training score improves from −4.17281 to −3.96635, but the held score lies with independent-cell controls. All 12,956 runes re-encrypt in every test (automatic for bijections, not authentication). Control true held scores are −2.73066 and −2.80404. No recovered original phrase is promoted. This supports retiring the shared phase-zero page-position affine receiver for the tested native prose family, rather than trying more seeds of the same coordinate optimizer.
+
+**Reproduction and output.** [Affine SFT](../sims/lp2_shared_page_affine_sft.cjs) · [full original candidate, keys and controls](lp2-shared-page-affine-output.json) · [sharp capacity SFT](../sims/lp2_shared_page_bijection_majorization_sft.cjs) · [complete-window results and pinned source blobs](lp2-shared-page-bijection-majorization-output.json). Both pure computational cores ran on the exact fetched repository inputs in connector V8; the filesystem/Node wrapper has not been separately executed. The all-window scan uses a rolling histogram, not a sampled approximation. Prior #1519 additive and #2485 insect-only arbitrary-bijection work remain separate evidence. The earlier phase-zero majorization derivation was rediscovered during this invocation; new value is the sharpness witness, full 534,960-window extension and positive-calibrated affine decoder, not its general formula. The underlying route was already disfavoured and remains so. No CI dispatched.
