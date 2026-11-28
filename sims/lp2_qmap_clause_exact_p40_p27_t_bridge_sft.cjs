@@ -154,19 +154,47 @@ const FQInv = (x) => frobenius(mul(QInv, x));
 /** @param {[number,number]} x @returns {[number,number]} */
 const QInvF = (x) => mul(QInv, frobenius(x));
 
-const compositionCharge = [
+const operationFamily = [
+  ['Q*x', (x) => mul(Q, x)],
+  ['Q^-1*x', (x) => mul(QInv, x)],
+  ['F(x)', frobenius],
   ['F(Q*x)', FQ],
   ['Q*F(x)', QF],
   ['F(Q^-1*x)', FQInv],
   ['Q^-1*F(x)', QInvF],
-].map(([name, fn]) => ({name, output: fn(p40.residue), hitsP27: fn(p40.residue).join(',') === p27.residue.join(',')}));
+  ['Q^29*x', (x) => mul(pow(Q, 29), x)],
+  ['Q^-29*x', (x) => mul(pow(Q, 840 - 29), x)],
+];
 
-assert.deepEqual(compositionCharge, [
-  {name: 'F(Q*x)', output: [18, 19], hitsP27: true},
-  {name: 'Q*F(x)', output: [13, 17], hitsP27: false},
-  {name: 'F(Q^-1*x)', output: [27, 13], hitsP27: false},
-  {name: 'Q^-1*F(x)', output: [24, 6], hitsP27: false},
+const operationCharge = operationFamily.map(([name, fn]) => ({
+  name,
+  p40Output: fn(p40.residue),
+  hitsP27: fn(p40.residue).join(',') === p27.residue.join(','),
+}));
+
+assert.deepEqual(operationCharge, [
+  {name: 'Q*x', p40Output: [17, 10], hitsP27: false},
+  {name: 'Q^-1*x', p40Output: [8, 16], hitsP27: false},
+  {name: 'F(x)', p40Output: [23, 8], hitsP27: false},
+  {name: 'F(Q*x)', p40Output: [18, 19], hitsP27: true},
+  {name: 'Q*F(x)', p40Output: [13, 17], hitsP27: false},
+  {name: 'F(Q^-1*x)', p40Output: [27, 13], hitsP27: false},
+  {name: 'Q^-1*F(x)', p40Output: [24, 6], hitsP27: false},
+  {name: 'Q^29*x', p40Output: [6, 12], hitsP27: false},
+  {name: 'Q^-29*x', p40Output: [13, 23], hitsP27: false},
 ]);
+
+// Independent solved-page adjudication from Director #3462: within the same
+// low-description operation family, p56's typed [1,2] consequence selects Q*x,
+// not the semilinear operation that links p40 to p27.
+const p56 = red.find((span) => span.page === 56 && span.start === 0);
+assert.ok(p56);
+const p56Family = operationFamily.map(([name, fn]) => ({name, output: fn(p56.residue)}));
+assert.deepEqual(p56Family.find((item) => item.name === 'Q*x').output, [1, 2]);
+assert.equal(
+  p56Family.filter((item) => item.output[0] === 1 && item.output[1] === 2).length,
+  1,
+);
 
 // Reproduce the landing page's source-native endpoint values without naming
 // them from the signed clause first.
@@ -207,11 +235,12 @@ assert.deepEqual(next, [28, 23]);
 
 const result = {
   status: 'PASS',
-  classification: 'exact signed-clause endpoint lock on Q red coordinates plus unique canonical semilinear bridge; no unknown plaintext',
+  classification: 'exact signed-clause endpoint lock plus conditional semilinear bridge; broader solved-page control selects plain Q*x; no unknown plaintext',
   nonzeroPrintedRedSpans: red.length,
   coordinatePresentations: red.length * 2,
   exactClauseHits: clauseHits,
-  semilinearCompositionCharge: compositionCharge,
+  operationFamilyCharge: operationCharge,
+  solvedP56OperationCharge: p56Family,
   p27SourceNative: {
     firstRuneGP0: p27Values[0],
     redLength: p27Red.length,
@@ -221,7 +250,7 @@ const result = {
     derivedModulus: p,
   },
   canonicalTSuccessorOfP27: next,
-  boundary: 'The inverse-Q clause readout is a natural algebraic presentation but is not itself a globally authenticated instruction. The strong result is that the source-selected F(Q*x) orientation uniquely maps the only forward clause-exact red state p40 to the only inverse clause-exact red state p27.',
+  boundary: 'The clause census is exact. F(Q*x) uniquely links the two clause-exact red states inside the charged family, but independent solved-p56 evidence selects plain Q*x instead. Treat the semilinear bridge as conditional/post-discovery structure until an original clue independently selects it.'
 };
 
 const json = JSON.stringify(result, null, 2);

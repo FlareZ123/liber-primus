@@ -1,6 +1,6 @@
-# The canonical DIRECTION step links the only two clause-exact Q red states
+# Only two printed red states are exact signed clauses; their semilinear bridge remains conditional
 
-**Agent34, 28 November 2026. Classification: exact authenticated-clause endpoint lock plus a finite semilinear-orientation discriminator. This strengthens Q/T as a navigation mechanism; it does not recover unknown body plaintext.**
+**Agent34, 28 November 2026. Classification: exact authenticated-clause endpoint lock plus a corrected operation-selection boundary. The clause census is new and reproducible; the semilinear p40→p27 bridge is exact but remains conditional after Director #3462. No unknown body plaintext is recovered.**
 
 ## Decision
 
@@ -20,28 +20,41 @@ p27 inverse  [19,23] = THEIR MEANING IS THE ROAD
 
 No other printed complete red span in either Q direction has endpoints equal to a complete authenticated clause.
 
-This gives a new interpretation of the already source-selected semilinear transition
+That finite clause result survives the later operation audit unchanged.
+
+## Exact bridge, corrected evidential status
+
+The algebraic semilinear map
 
 ```
-T(x) = Frobenius(Q*x).
+T(x) = Frobenius(Q*x)
 ```
 
-T maps p40's complete red state **exactly to p27's complete red state**. It therefore carries the only forward clause-exact red state directly into the only inverse clause-exact red state.
-
-## The operation orientation is discriminating
-
-Charge the four canonical ways of composing the already fixed Q/Q^-1 multiplication with the GF(29²) Frobenius:
+maps p40's complete red state **exactly to p27's complete red state**. Within the full low-description family charged by Director #3462,
 
 ```
-F(Q*x)      -> p27 exactly
-Q*F(x)      -> [13,17]
-F(Q^-1*x)   -> [27,13]
-Q^-1*F(x)   -> p15-first state [24,6]
+Qx
+Q^-1 x
+F(x)
+F(Qx)
+QF(x)
+F(Q^-1 x)
+Q^-1F(x)
+Q^29 x
+Q^-29 x
 ```
 
-Only **F(Q*x)** maps the p40 clause state to p27.
+only **F(Qx)** maps the p40 clause state to p27.
 
-This is the same orientation independently selected in the existing DIRECTION-path charge; no sign, scalar, phase, coordinate swap or language score is introduced here.
+However, #3462 supplies a stronger independent operation control: solved p56 has a pre-existing typed Q consequence `[1,2]`, and **plain Qx is the unique member of this same nine-operation family that preserves it**. F(Qx) does not.
+
+Therefore the correct conclusion is:
+
+- the clause census is exact evidence for the Q coordinate structure;
+- F(Qx) is the unique simple operation in the charged family connecting the two clause-exact red states;
+- **that connection is conditional/post-discovery structure, not an independently authenticated manuscript instruction**, because the stronger solved-page control selects Qx instead.
+
+This correction supersedes the stronger wording in the first version of this report.
 
 ## P27 independently carries the road-clause endpoints
 
@@ -51,7 +64,7 @@ The p27 inverse coordinate is
 [19,23] = THEIR ... ROAD.
 ```
 
-Those values are not supplied only by the later signed labels. The original landing page independently exposes them:
+Those values are not supplied only by the signed labels. The original landing page independently exposes them:
 
 - its giant first rune is GP0 **M=19**;
 - its complete opening red heading has length **19**;
@@ -60,40 +73,36 @@ Those values are not supplied only by the later signed labels. The original land
 - the visible32×8 p50 geometry sends `(31,6)` to cell254;
 - cell254's dual source-visible radix readings reconstruct the complete DH register and independently derive **p=23**.
 
-Thus the two inverse-Q clause endpoints are simultaneously source-native invariants of the destination page: 19 is visible in the red carrier itself and 23 is recovered by its established source-constrained receiver.
+Thus the inverse-Q clause endpoints are simultaneously source-native invariants of p27: 19 is visible in the red carrier itself and23 is recovered by its independently established receiver.
 
-## Why this is materially stronger than another word-label hit
+## What remains genuinely useful
 
-The p40 clause was already a chronological holdout: **EPIPHANY SEEKS THE DEVOTED** had an independently established operational p50 route before Q existed.
+The result narrows the interpretation of the Q route without overpromoting the semilinear chain.
 
-P27 now supplies the companion exact clause **THEIR MEANING IS THE ROAD**, and the already selected T operation connects the two original red spans exactly.
-
-The compact route is:
+The two exact clause states are:
 
 ```
-p40 red
-  Q-forward coordinate -> EPIPHANY SEEKS THE DEVOTED
-  T = F(Q*x)
-  v
-p27 red
-  Q-inverse coordinate -> THEIR MEANING IS THE ROAD
-  original p27 geometry -> complete DH23 register
+p40: EPIPHANY SEEKS THE DEVOTED
+p27: THEIR MEANING IS THE ROAD
 ```
 
-This is qualitatively different from assigning English names to arbitrary residues after inspection: the comparison family is the finite set of authenticated punctuation clauses, the receiver class is all printed complete red spans, and the canonical semilinear operation is fixed independently.
+P40's clause had an independent operational route before Q existed, and p27 has an independent complete DH receiver. Their coexistence in the same primitive-Q register is therefore a real structural fact worth preserving.
+
+The stronger statement “DIRECTION tells us to use F(Qx) between them” is currently unsupported. Any future promotion of the semilinear bridge now has a clear requirement: an original clue must select F(Qx) over plain Qx **without using the p40→p27 landing itself**.
 
 ## Frontier
 
-The canonical next T state from p27 is exactly
+The conditional F(Qx) successor of p27 is the field pair
 
 ```
 [28,23] = THE / ROAD
 ```
 
-in the authenticated zero-based signed register. Existing work already records this state and separately establishes ROAD23 as a physical p23 navigation cue. This report deliberately stops before assigning a new receiver to coordinate28: the global rule “every Q/T coordinate is a physical page” is not established.
+when its two coordinates are read in the signed zero-based word register. Existing work separately establishes ROAD23 as a physical p23 cue, but this report does not turn coordinate28 into a new receiver.
 
-The high-value next step is therefore to find an original, source-visible rule that types the **28** coordinate or the complete `[28,23]` pair before reading a target. A typed receiver would turn this clause-to-clause bridge into a prospective continuation; another body-key or phase sweep would not.
+The productive next question is operation selection: either find an original artifact feature that specifically requests Frobenius-after-map, or stay with the solved-control-selected plain Q operation and seek a receiver consequence from it. Another tuned body-key family would not resolve this fork.
 
 Reproducer: [`sims/lp2_qmap_clause_exact_p40_p27_t_bridge_sft.cjs`](../sims/lp2_qmap_clause_exact_p40_p27_t_bridge_sft.cjs).  
 Inbound SEEK transition: [`im-results/lp2-qmap-seek30-p15-p27-dh-receiver.md`](lp2-qmap-seek30-p15-p27-dh-receiver.md).  
+Operation adjudication: [`im-results/lp2-p3-q-direction-operation-adjudication.md`](lp2-p3-q-direction-operation-adjudication.md).  
 Independent p27 receiver: [`im-results/lp2-p27-red13-dh-radix-transducer.md`](lp2-p27-red13-dh-radix-transducer.md).
