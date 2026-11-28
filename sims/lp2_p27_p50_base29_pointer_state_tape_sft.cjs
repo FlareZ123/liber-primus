@@ -68,6 +68,22 @@ function decodeToken(token, base) {
 
 const values59 = tokens.map((token) => decodeToken(token, 59));
 const values60 = tokens.map((token) => decodeToken(token, 60));
+const historicalBase29Alphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+assert.equal(historicalBase29Alphabet.length, 29);
+
+/** @param {number} n */
+function encodeHistoricalBase29(n) {
+  assert.ok(Number.isSafeInteger(n) && n >= 0);
+  if (n === 0) return '0';
+  let x = n;
+  let out = '';
+  while (x > 0) {
+    out = historicalBase29Alphabet[x % 29] + out;
+    x = Math.floor(x / 29);
+  }
+  return out;
+}
+
 
 /**
  * @param {number[]} values
@@ -118,6 +134,11 @@ assert.equal(inverse(state.A, 29), 11);
 const expectedPath59 = [186, 19, 33, 112, 72, 161, 214, 247, 189];
 const path59 = walk(values59, 186, state.A);
 assert.deepEqual([...path59.nodes, path59.end], expectedPath59);
+const historicalBase29Path = expectedPath59.map(encodeHistoricalBase29);
+assert.deepEqual(
+  historicalBase29Path,
+  ['6C', 'J', '14', '3P', '2E', '5G', '7B', '8F', '6F']
+);
 
 // Upstream row-major DH geometry, now cross-read in BASE29.
 assert.equal(state.p * state.A + state.K, 186);
@@ -339,6 +360,7 @@ assert.deepEqual(p57PlantRecovered, p57);
 const summary = {
   dhState: state,
   path59: expectedPath59,
+  historicalBase29Path,
   base29Pairs: addressPairs,
   sourceNodeLows,
   adjacentHPacket: hPacket,
