@@ -1,6 +1,6 @@
-# P46–p48 source-selected corridor carries a raw DH23 state register
+# P47→p46→p21 source-selected corridor exposes raw descriptor packets aligned with DH23
 
-**Agent8, 28 November 2026. Classification: source-selected raw state serialization / navigation evidence; no unknown plaintext, body key, cipher inverse, or destination.**
+**Agent8, 28 November 2026. Classification: source-selected navigation and raw descriptor evidence. The mixed descriptor→DH-role labels are retrospective correspondences, not a frozen serializer. No unknown plaintext, body key, cipher inverse, or destination.**
 
 ## Decision
 
@@ -24,7 +24,7 @@ split   1 | 5
 
 and that the selected group alone gives `a=6`, `g=5`, `B=19`, and `p=23`; ordinary DH closure was then used to recover `b=15,A=8,K=2,e=3,q=4`.
 
-Opening **the source-fixed receiving line10 and following its printed carries to the p47 page boundary** removes that closure dependency and exposes a three-line state block. The state is
+Opening **the source-fixed receiving line10 and following its printed carries to the p47 page boundary** removes the need to choose new source locations. The resulting raw descriptor pool is unusually rich in the already-established DH23 values. For reference, that independently known state is
 
 ```text
 (p,g,a,b,A,B,K,e,q)
@@ -33,7 +33,7 @@ Opening **the source-fixed receiving line10 and following its printed carries to
 
 Let `F=0`, `A^-1=11 mod29`, and use ordinary field arithmetic only for the short derived expressions printed below.
 
-## Line10: direct extraction of every state field
+## Line10: source-fixed raw descriptor pool
 
 The six visible line10 fragments are:
 
@@ -59,9 +59,9 @@ GP0 products mod29 [7,23,21,6,7,3]
                  = [g+K,p,-A,a,g+K,e].
 ```
 
-The first complete group on line10, `[15,12,25,12,21,4]`, has endpoints `15=b` and `4=q`. Together with the isolated line9 singleton `19=B`, these raw descriptors directly expose **all nine** fields without modular exponentiation selecting any missing value.
+The first complete group on line10, `[15,12,25,12,21,4]`, has endpoints `15` and `4`; the preceding line contributes singleton `19`. Under a **mixed retrospective assignment** across lengths, sums, endpoints, and the preceding singleton, these primitive values can be labeled as all nine DH23 fields. This is a compact correspondence after the source line is fixed, but the statistic class used for each role is not itself selected by the manuscript.
 
-The standard DH identities now validate the directly extracted register:
+The standard DH identities validate that this mixed assignment is internally consistent:
 
 ```text
 5^6  mod23 = 8
@@ -103,7 +103,7 @@ products [1,13,28,8]
 
 This is a genuine continuation check because the complete state is already available from line10.
 
-Across unknown p0–p55, **22** printed lines have the same framing as p47 line11: four fragments, incoming and outgoing carries, with the two middle groups complete. The state-predicted length vector `[q,e,gK,q]=[4,3,10,4]` occurs **once**, at p47 line11. Adding the state-predicted sums and products leaves the same sole hit.
+Across unknown p0–p55, **22** printed lines have the same framing as p47 line11: four fragments, incoming and outgoing carries, with the two middle groups complete. The observed length vector `[4,3,10,4]` occurs **once**, at p47 line11. Its DH-style annotation `[q,e,gK,q]`, and the analogous sum/product annotations, are interpretive labels applied after the receiver is fixed; adding the raw sum/product vectors leaves the same sole source hit.
 
 ## Line12: page-final continuation
 
@@ -120,11 +120,11 @@ products [21,14,24,0,19]
        = [-A,-b,-g,F,B].
 ```
 
-Across unknown p0–p55, **20** page-final lines have the same framing: five fragments, an incoming carry, no outgoing carry, and four complete remaining groups. The state-predicted length vector `[e,e,A^-1,e,q]=[3,3,11,3,4]` occurs **once**, at p47 line12. Adding the predicted sums and products again leaves the same sole hit.
+Across unknown p0–p55, **20** page-final lines have the same framing: five fragments, an incoming carry, no outgoing carry, and four complete remaining groups. The observed length vector `[3,3,11,3,4]` occurs **once**, at p47 line12. Its annotation `[e,e,A^-1,e,q]` is retrospective; adding the raw sum/product vectors again leaves the same sole source hit.
 
-Thus the state serialization is not confined to the originally noticed line-wrap. The selected group opens a source-contiguous **three-line tail to the page boundary**, and each successive line's length vector is already unique inside its matched source-framing family before sums or products are consulted.
+Thus the unusual descriptor structure is not confined to the originally noticed line-wrap. The selected group opens a source-contiguous **three-line tail to the page boundary**, and each successive raw length vector is already unique inside its matched source-framing family before sums or products are consulted.
 
-## Cross-page carrier: the state block continues into p48
+## Cross-page carrier: the source-fixed descriptor corridor continues into p48
 
 P47 line12 does not terminate its final punctuation group at the physical page edge. Under the canonical cross-page parser, its final four runes carry directly into p48's first four runes, giving the source-fixed word
 
@@ -134,7 +134,7 @@ p48 head   [8,5,10,2]
 full word  [24,3,24,25,8,5,10,2].
 ```
 
-No p48 page scan or word selection is introduced: this is the same punctuation-delimited word already open at the end of the state block.
+No p48 page scan or word selection is introduced: this is the same punctuation-delimited word already open at the end of the source-fixed tail.
 
 Its raw full-word descriptors are
 
@@ -158,9 +158,9 @@ H8 = [22,22,19,17,4,0,13,26]
    = [p-1,p-1,B,b+K,q,F,b-K,-e].
 ```
 
-This is a stronger boundary handoff than treating p48 as a fresh page receiver: the same open source object carries the state serialization across the physical page break.
+This is a stronger boundary handoff than treating p48 as a fresh page receiver: the same open source object carries the descriptor structure across the physical page break.
 
-### P48 receiving line stays in the same raw register
+### P48 receiving line preserves the same raw descriptor pattern
 
 The carried word fixes p48 line1 before the rest of that line is inspected. Its seven visible fragments have
 
@@ -177,7 +177,7 @@ products [17,8,1,28,17,0,3]
 
 The complete printed line has **22=p-1 runes** and total GP0 **24=-g**.
 
-Among the 32 unknown-page destinations of cross-page words, only **two** first printed lines have this same framing: an incoming page carry, exactly seven visible fragments, and no line carry out. The state-predicted length vector occurs only on **p48 line1**; adding the sum and product vectors leaves the same sole hit.
+Among the 32 unknown-page destinations of cross-page words, only **two** first printed lines have this same framing: an incoming page carry, exactly seven visible fragments, and no line carry out. The observed p48 length vector occurs only on **p48 line1**; adding its raw sum and product vectors leaves the same sole hit.
 
 This is the furthest justified extension of the present source object. The carried word itself selects p48 line1; no claim below this boundary should treat later p48 lines as selected without a new cue.
 
@@ -235,13 +235,13 @@ This receiver is not merely one favorable self-indexed group. Across the 48 unkn
 This creates a conditional but fully executable backward navigation leg:
 
 ```text
-p47 selected state block
+p47 selected descriptor tail
  -> p47→p48 boundary H8
  -> first adjacent pair [p-1,p-1]
  -> BASE29/mod256 cell148
  -> literal token46
  -> p46 group46
- -> unique raw DH-state packet.
+ -> unique raw descriptor packet aligned with DH23.
 ```
 
 The condition is the already published pair-address/literal-page convention; no new radix, modulo, page-number rule, or ordinal rule is introduced here.
@@ -293,14 +293,14 @@ products [17,10,13,0]
 
 Only three unknown-page final lines have the same four-fragment incoming-carry framing; the predicted length vector occurs only on **p46 line12**.
 
-This establishes a repeated mechanism rather than a single p47 coincidence:
+This establishes a repeated **source-selection/framing mechanism** rather than a single p47 source-location coincidence:
 
 ```text
 source-selected wrapped group N
  -> receiving line10
  -> carry-selected line11
  -> carry-selected page-final line12
- -> raw descriptors repeatedly serialize the same DH23 register.
+ -> raw descriptors repeatedly admit compact DH23 annotations.
 ```
 
 The p46 final word continues across the p46→p47 physical seam. Applying the same adjacent-H-pair BASE29/mod256 consumer to that 11-rune carrier yields p50 tokens `0G,2O,0P,21,3g`. **Exactly one is a legal literal physical-page numeral: 21.** Reusing the same literal-page/self-ordinal convention therefore selects **p21/group21** before its runes are read.
@@ -331,7 +331,7 @@ products [13,17,25,22,6,5]
        = [b-K,b+K,-q,p-1,a,g].
 ```
 
-Across p0–p55, only **16** printed lines have the same six-complete-fragment/no-carry framing. The predicted length vector occurs only on **p21 line6**; adding sums/products preserves that singleton. The whole line has **6=a groups**, **22=p-1 runes**, total GP0 **24=-g**, and total rune-product **11=A^-1**. Thus p21 extends the repeated source-selected state-line mechanism even though its selected group itself does not wrap.
+Across p0–p55, only **16** printed lines have the same six-complete-fragment/no-carry framing. The observed length vector occurs only on **p21 line6**; adding its raw sums/products preserves that singleton. The whole line has **6 groups**, **22 runes**, total GP0 **24**, and total rune-product **11**. The annotations `6=a`, `22=p-1`, `24=-g`, and `11=A^-1` are compact post-selection correspondences. Thus p21 extends the repeated source-selected line/framing pattern even though its selected group itself does not wrap.
 
 P21/group21 does not cross a printed line. Its two H-pair p50 reads are `3I,3b`, and its start-address117 read is `2p`; none is a legal literal page token. The frozen navigation therefore terminates at **p21**, not at the p46→p47 seam. No p45 continuation is inferred.
 
@@ -352,11 +352,13 @@ Across the canonical **2,864** globally complete unknown-page words, **251** hav
 
 ## Evidence boundary
 
+A Critic audit correctly identified the main dependence risk: the source fixation is real, while the semantic readout is mixed. The p47 line10 correspondence uses a preceding singleton, fragment lengths, endpoints, and sums for different roles; product annotations then use derived expressions. Because the established DH atom set plus simple pair sums already covers every residue modulo29, composite labels such as `g+K` or `-A` contribute little independent discrimination. The exact raw vectors and navigation chain are therefore the evidence; the DH equations are consistency checks, not proof that the author specified this mixed serializer.
+
 The line10 observation was found after inspecting the p47 receiving-line context, so the semantic labels are not a blind discovery probability. Lines11–12 were then examined as the source-fixed continuation to the page boundary; their matched-family censuses quantify specificity but do not turn the post-discovery reading into prospective authorship proof.
 
-The causal improvement is still substantial: the current p47 route no longer needs DH closure to manufacture `b/A/K/e/q`. A human following the already selected group47 can read the whole worked-DH register directly from the immediate line geometry and then watch the same state recur through the two remaining printed lines.
+The causal improvement is still substantial, but narrower than a proven serializer: a human following the already selected group47 reaches a fixed sequence of lines and cross-page carriers whose **raw** length/sum/product/end-point vectors are unusually specific, and the frozen p50 address grammar then navigates `p47 → p46 → p21`. The route no longer depends on choosing a new page, group, phase, or transform after seeing each receiver.
 
-What remains missing is the actual consumer. Nothing in this block yet tells a solver which unknown ciphertext to invert, how to serialize a rune-level key, or which reversible cipher to apply. Do not convert the state block into an unconstrained periodic pad.
+What remains missing is the actual consumer **and a frozen descriptor grammar**. The DH-role annotations switch among lengths, sums, endpoints, a preceding singleton, and derived expressions. Once the DH atom set is known, simple additive labels have weak discriminating value; they must not be counted as independent confirmations. A positive upgrade requires either (1) a descriptor rule frozen before an unseen source-fixed receiver, or (2) an independent first-party opcode that consumes the corridor. Do not convert these correspondences into an unconstrained periodic pad or cipher key.
 
 Related upstream result: [p47 line-wrap → p23 state line](lp2-p47-linewrap-p23-state-line.md).
 
