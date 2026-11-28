@@ -125,10 +125,22 @@ pages with at least one historical rune difference are
 p1, p6, p8, p10, p12, p15, p17, p24, p27, p29, p30, p31, p33, p35,
 p36, p37, p38, p39 and p57.
 
-This is a useful dated witness but not an independent-source proof: its
-upstream transcription lineage is not established here. It also does not
-preserve punctuation with enough fidelity to adjudicate the two separately
-documented single-dot/four-dot corrections in the current transcription.
+This is a useful dated witness, but its upstream rune lineage is now
+**demonstrably non-independent**. Director issue #3381 finds four exact rare
+errors already present in the January 2015 Titanpad-derived
+`resvolver/c1cada/transcriptions.rne` branch: p33 offsets 100 and 117
+B→W, p36 offset 0 Y→E, and p39 offset 36 missing N. A dated August 2016
+`henkman/liberprimus` descendant independently preserves three of those
+same coordinates (p33 twice and p39). The corrected January 2015 canonical
+branch does not contain them. Direction of copying is unresolved because
+onecool's exact May 2014 transcription files remain unrecovered, so the
+proper conclusion is **shared ancestry, not a proven parent→child edge**.
+See `im-results/lp2-onecool-2017-transcription-lineage.md`. The 2017 JSON
+must not be counted as an independent scan witness.
+
+It also does not preserve punctuation with enough fidelity to adjudicate the
+two separately documented single-dot/four-dot corrections in the current
+transcription.
 
 A complete native-resolution original-scan adjudication now resolves **all
 30 minimal edits with zero ambiguous sites** (Director issue #3380; detailed
@@ -186,10 +198,14 @@ identified.
 2. **Shared LP JPEGs: copied public material.**
    Exact identity proves continuity between the repositories, not private
    2014 origin.
-3. **Unique 2017 rune/transcription/mapping artifacts: participant-derived.**
-   They preserve a dated, highly concordant LP2 numeric witness and
-   historical analysis metadata; they are not hidden author plaintext/key
-   material.
+3. **Unique 2017 rune/transcription/mapping artifacts: participant-derived
+   and not an independent scan witness.** The 2017 rune stream preserves at
+   least four exact rare errors from the older January-2015 lossy
+   transcription branch. Its direction of descent is unresolved because the
+   exact May-2014 onecool files are missing, but shared ancestry is enough to
+   exclude it from independent-witness counts. The artifacts remain useful
+   as dated provenance/error-fingerprint evidence; they are not hidden
+   author plaintext/key material.
 4. **2018 hidden-history hypothesis: rejected for the live Git repository
    and its preserved SWH snapshots.**
    The live refs/object closure contains no older Git history, and SWH adds
