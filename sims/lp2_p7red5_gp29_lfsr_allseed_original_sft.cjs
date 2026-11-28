@@ -86,6 +86,48 @@ const exhaustive=scan(C);
 const elapsedMs=Date.now()-started;
 const total=29**5;
 assert.equal(total,20511149);
+// Second, strictly exhaustive whole-passage *rank*: NO language-prefix
+// pruning, every one of 20,511,149 source-seeded states receives the
+// complete 243-rune GP bigram likelihood. Simultaneously score a disjoint
+// ciphertext-native plant under the SAME running keystream (one recurrence).
+function fullScoreBoth(cipher1,cipher2,trueSeed){
+ let bestO={seed:-1,score:-Infinity},bestP={seed:-1,score:-Infinity};
+ let topO=[],trueScore=avg(positive),nativeBetter=0,originalAboveNativeFloor=0;
+ for(let s=0;s<total;s++){
+  let k0=s%29,k1=Math.floor(s/29)%29,k2=Math.floor(s/841)%29,
+      k3=Math.floor(s/24389)%29,k4=Math.floor(s/707281)%29;
+  let prev1=mod(cipher1[0]-k0),prev2=mod(cipher2[0]-k0),sc1=0,sc2=0;
+  for(let i=1;i<243;i++){
+   let key;
+   if(i===1)key=k1;else if(i===2)key=k2;else if(i===3)key=k3;else if(i===4)key=k4;
+   else{
+    key=mod(tap[0]*k0+tap[1]*k1+tap[2]*k2+tap[3]*k3+tap[4]*k4);
+    k0=k1;k1=k2;k2=k3;k3=k4;k4=key;
+   }
+   const p1=mod(cipher1[i]-key),p2=mod(cipher2[i]-key);
+   sc1+=ll[prev1][p1];sc2+=ll[prev2][p2];
+   prev1=p1;prev2=p2;
+  }
+  const so=sc1/242,sp=sc2/242;
+  if(so>limits[3])originalAboveNativeFloor++;
+  if(so>bestO.score)bestO={seed:s,score:so};
+  if(sp>bestP.score)bestP={seed:s,score:sp};
+  if(sp>=trueScore-1e-12)nativeBetter++;
+  if(topO.length<10||so>topO.at(-1).score){
+    topO.push({seed:s,score:so});
+    topO.sort((a,b)=>b.score-a.score);
+    if(topO.length>10)topO.pop();
+  }
+ }
+ return {bestOriginal:bestO,bestNativePlant:bestP,originalAboveNativeOnePercent:originalAboveNativeFloor,
+   nativeTrueScore:trueScore,nativeSeedsAtLeastTrueScore:nativeBetter,topOriginal:topO};
+}
+const fullStarted=Date.now();
+const full=fullScoreBoth(C,planted,pkey);
+const fullElapsedMs=Date.now()-fullStarted;
+assert.equal(full.nativeSeedsAtLeastTrueScore,1,"native plant exponent not recovered uniquely over full 29^5");
+assert.equal(full.bestNativePlant.seed,pkey.reduce((sum,v,j)=>sum+v*29**j,0),"true native key not full-space best");
+
 const chosen=exhaustive.bestStage[3]||exhaustive.bestStage[2]||exhaustive.bestStage[1]||exhaustive.bestStage[0];
 const keyFromSeed=z=>[z%29,Math.floor(z/29)%29,Math.floor(z/841)%29,Math.floor(z/24389)%29,Math.floor(z/707281)%29];
 const outChosen=chosen?decoded(C,keyFromSeed(chosen.seed)):null;
@@ -96,8 +138,11 @@ const result={
  trainPositions:"first 50000 GP symbols Gibran donor",calibration:"each fifth position 50000 .. native.length-243, lowest one percentile GP bigram score",
  universe:total,originalP8BlackRunes:C.length,originalP9HoldRunes:hold.length,
  control:{nativeExactRoundtrip:true,seed:pkey,thresholdsPass:true,nativeScores,limits:positives},
- original:{survivors:exhaustive.tally,bestStage:exhaustive.bestStage,
+ original:{fullExhaustive:full, fullSearchSeconds:fullElapsedMs/1000,survivors:exhaustive.tally,bestStage:exhaustive.bestStage,
   bestRemainingSeed:chosen?.seed,bestRemainingInitialState:chosen?keyFromSeed(chosen.seed):null,
+  bestWholeP8Seed:full.bestOriginal.seed,bestWholeP8InitialState:keyFromSeed(full.bestOriginal.seed),
+  bestWholeP8Translit:decoded(C,keyFromSeed(full.bestOriginal.seed)).map(i=>gp.translit[i]).join(" "),
+  bestWholeP9MeanScore:avg(decoded(C.concat(hold),keyFromSeed(full.bestOriginal.seed)).slice(243)),
   bestRemainingP8MeanScore:outChosen?avg(outChosen):null,
   bestRemainingP9MeanScore:outHold?avg(outHold):null,
   bestRemainingP8CompleteTranslit:outChosen?outChosen.map(i=>gp.translit[i]).join(" "):null,
@@ -108,5 +153,7 @@ console.log(JSON.stringify(result,null,2));
 assert(result.original.survivors[0]>=result.original.survivors[1]);
 assert(result.original.survivors[1]>=result.original.survivors[2]);
 assert(result.original.survivors[2]>=result.original.survivors[3]);
+// The fullScoreBoth loop tests every seed against the entire 243-rune body.
+// Prefix gates are also separately reported for native-calibrated interpretability.
 // Rejecting by early gates is explicit; this is NOT a global unrestricted English
 // exclusion if a genuine passage falls outside calibrated native thresholds.
