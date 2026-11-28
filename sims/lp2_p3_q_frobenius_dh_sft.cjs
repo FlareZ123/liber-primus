@@ -247,6 +247,90 @@ assert.deepStrictEqual(offset2527Starts, [{
   states: [[24, 6], [18, 21], [18, 19]],
 }]);
 
+const qInverse = pow(Q, 839);
+const compositionVariants = [
+  { name: "F(Q*x)", step: (x) => frobeniusMap(mul(Q, x)) },
+  { name: "Q*F(x)", step: (x) => mul(Q, frobeniusMap(x)) },
+  { name: "F(Q^-1*x)", step: (x) => frobeniusMap(mul(qInverse, x)) },
+  { name: "Q^-1*F(x)", step: (x) => mul(qInverse, frobeniusMap(x)) },
+];
+const compositionCharge = compositionVariants.map(({ name, step }) => {
+  const starts = [];
+  for (let a = 0; a < MOD; a += 1) {
+    for (let b = 0; b < MOD; b += 1) {
+      if (a === 0 && b === 0) continue;
+      const start = [a, b];
+      let state = start;
+      const at = {};
+      for (let offset = 1; offset <= 27; offset += 1) {
+        state = step(state);
+        if (offset >= 25) at[offset] = state;
+      }
+      if ([25, 26, 27].every((offset) => redStateIndex.has(at[offset].join(",")))) {
+        starts.push({
+          start,
+          startIsRed: redStateIndex.has(start.join(",")),
+          targets: [25, 26, 27].map((offset) => at[offset]),
+        });
+      }
+    }
+  }
+  return { name, starts };
+});
+assert.deepStrictEqual(compositionCharge, [
+  {
+    name: "F(Q*x)",
+    starts: [{
+      start: [1, 6],
+      startIsRed: true,
+      targets: [[24, 6], [18, 21], [18, 19]],
+    }],
+  },
+  { name: "Q*F(x)", starts: [] },
+  { name: "F(Q^-1*x)", starts: [] },
+  {
+    name: "Q^-1*F(x)",
+    starts: [{
+      start: [5, 1],
+      startIsRed: false,
+      targets: [[18, 19], [18, 21], [24, 6]],
+    }],
+  },
+]);
+
+assert.deepStrictEqual(directionPower([24, 6], 31), p7State);
+assert.deepStrictEqual(directionPower([18, 21], 30), p7State);
+assert.deepStrictEqual(directionPower([18, 19], 29), p7State);
+assert.deepStrictEqual(directionPower(p7State, 28), [mod(-p7State[0]), mod(-p7State[1])]);
+
+const signedRangeTripleHits = [];
+for (const source of redStates) {
+  if (source.state[0] === 0 && source.state[1] === 0) continue;
+  for (let offset = 0; offset <= 40; offset += 1) {
+    const targets = [0, 1, 2].map((delta) => directionPower(source.state, offset + delta));
+    if (targets.every((state) => redStateIndex.has(state.join(",")))) {
+      signedRangeTripleHits.push({
+        source: [source.page, source.start, source.length],
+        offset,
+        targets,
+      });
+    }
+  }
+}
+assert.deepStrictEqual(signedRangeTripleHits, [
+  {
+    source: [7, 194, 14],
+    offset: 25,
+    targets: [[24, 6], [18, 21], [18, 19]],
+  },
+  {
+    source: [15, 0, 9],
+    offset: 0,
+    targets: [[24, 6], [18, 21], [18, 19]],
+  },
+]);
+
+
 assert.deepStrictEqual(directionEdges, [
   { source: [3, 119, 3], target: [3, 119, 3], sourceState: [0, 0], targetState: [0, 0] },
   { source: [15, 0, 9], target: [40, 0, 8], sourceState: [24, 6], targetState: [18, 21] },
@@ -301,6 +385,8 @@ console.log(JSON.stringify({
     words: directionPower(p7State, offset).map((index) => words[index] || null),
   })),
   offset25_27_all_field_starts: offset2527Starts,
+  composition_charge: compositionCharge,
+  signed_range_triple_hits: signedRangeTripleHits,
   next_after_p27: directionStep([18, 19]),
   finite_charge: {
     nonzero_field_elements: 840,
