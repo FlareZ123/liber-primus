@@ -76,6 +76,42 @@ Thus the p32 oak checksum selects p24 before the p24–26 DH-state triangle is e
 
 See `im-results/lp2-rune-poem-artwork-ordinal-navigation-gate.md`.
 
+## Fibonacci frame gives a direct human-readable p28 pointer
+
+The same source facts admit a simpler navigation reading that does not name any DH variable.
+
+The three mayfly-page count differences are **3,5,8**. The illustrated chapter itself supplies the next value **13** twice, through the red 13-dot mark after the p23 heading and the red 13-dot mark at the p26 end. Therefore the visible numeric sequence is:
+
+```
+3, 5, 8, 13
+```
+
+four consecutive Fibonacci numbers. Their sum is:
+
+```
+3 + 5 + 8 + 13 = 29.
+```
+
+That has two immediate manuscript meanings: GP has 29 runes, and the **29th LP2 page is physical p28**, the page independently carrying the DH construction.
+
+A broader contiguous-page control prevents treating any small Fibonacci-looking differences as equivalent. Across all 54 contiguous three-page windows in p0–p55, only two have pairwise-difference sets equal to any three consecutive Fibonacci numbers:
+
+- p8–10 -> {5,8,13}, whose next Fibonacci value would be **21**;
+- p24–26 -> {3,5,8}, whose next value is **13**.
+
+The source punctuation inventory contains large-dot counts **10,13,23** and no 21-dot mark. The p24–26 window is therefore the one Fibonacci triple whose next term is actually supplied by its own local visible frame.
+
+This remains post-discovery structural evidence, not a calibrated chance probability. But it supplies a much more human-puzzle-like route than an arbitrary algebraic state fit:
+
+```
+mayfly page lengths -> 3,5,8
+chapter frame -> 13
+sum -> 29th page -> p28
+p28 -> literal DH packet
+```
+
+The H/DH reconstruction below then explains why the same 3,5,8 values are cryptographically meaningful after arriving at p28.
+
 ## Pre-existing local H gives a shorter reconstruction
 
 The same state can be reconstructed with substantially less algebraic freedom by reusing the pre-existing fixed outer-pair operation
