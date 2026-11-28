@@ -38,6 +38,22 @@ seven words.
 
 Therefore the origin ambiguity does **not** erase the MAP/ROAD clause core. It erases the assignment of individual ranks to individual words at the two ends, and it erases the later 29→DIRECTION step, but both conventional origins localize the unique numerical scaffold to the same seven-word signed-source phrase.
 
+
+## The signed hard wrap weakly prefers the zero-origin alignment
+
+The two origins are not perfectly evidence-symmetric once the **byte-preserved line formatting** of the signed source is retained. The original message hard-wraps:
+
+```text
+... the map, their 
+meaning is the road, ...
+```
+
+so the physical source boundary is exactly after zero-based index19 **THEIR** and before index20 **MEANING**. Independently, the p50 reconstruction changes representation at the same numerical boundary: ranks17..19 are direct prime-rank cells, integer20 is supplied by the20-edge THEIR→ROAD distance because rank20 is absent on that segment, and direct rank cells resume at21..24.
+
+Thus zero origin reads `THE MAP THEIR | MEANING IS THE ROAD AND` with the operation switch on the signed hard wrap. One-based numbering reads `ARE THE MAP | THEIR MEANING IS THE ROAD`, placing the switch inside the first signed line. This is a real local preference for zero origin.
+
+It is not decisive authentication. The first signed line has55 characters including its trailing space and would reach62 if `meaning` were appended, so an ordinary roughly-60-column formatter explains the same wrap. The finding is therefore corroborating source evidence only; DIRECTION29 and dependent page/cipher handoffs remain conditional. [Exact-source reproducer](../sims/lp2_p50_signed_hardwrap_origin_sft.cjs).
+
 ## What is established
 
 Under the already documented unique p50 numerical scaffold:
@@ -67,7 +83,7 @@ It also does not prove that the creator intended word-number lookup merely becau
 
 ## Why the correction matters
 
-The correct frontier is now asymmetric:
+The correct frontier is now asymmetric. The signed hard wrap adds a weak local preference for zero origin at the scaffold's representation switch, while leaving the general textual origin unauthenticated:
 
 > **Origin-robust:** p50's unique numeric 17..24 structure localizes to the signed clause core “THE MAP THEIR MEANING IS THE ROAD” under either conventional register origin.
 

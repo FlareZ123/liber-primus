@@ -55,6 +55,42 @@ row5: (5,0) rank22 -> (5,1) rank23
 
 Thus the table really does contain an origin-independent self-indexed **17..24 numerical scaffold**, with20 represented by the physical distance. This is a post-discovery exact-shape census, not a familywise discovery p-value, but it means the geometry itself is not created solely by choosing English words.
 
+
+## Signed-source hard wrap gives a local zero-origin preference
+
+The byte-preserved signed message contains one additional source feature that was not charged in the original #3354 origin audit: its physical hard wrap falls exactly between zero-based source indices19 and20.
+
+The relevant signed bytes are:
+
+```text
+Liber Primus is the way.  Its words are the map, their 
+meaning is the road, and their numbers are the direction.
+```
+
+With the same 43-word alphabetic tokenization used above, the first line is source indices9..19 and ends on **THEIR**; the second begins at index20 **MEANING**. The lines are 55 and57 characters respectively.
+
+This aligns with the unusual representation change inside the unique p50 17..24 scaffold. The table supplies ranks17,18,19 as direct prime-rank cells; there is no rank20 cell on the fixed THEIR→ROAD support segment, so integer20 is instead supplied by the **20-edge geometric distance**; direct rank cells resume at21,22,23,24. Therefore:
+
+```text
+zero origin:
+  direct 17..19       | distance20 + direct21..24
+  THE MAP THEIR       | MEANING IS THE ROAD AND
+                       ^
+                       signed hard wrap
+
+one-based words:
+  direct ranks17..19  | distance20 + direct21..24
+  ARE THE MAP         | THEIR MEANING IS THE ROAD
+              ^
+              operation switch is inside the signed line
+```
+
+Among the two conventional origins already admitted by #3354, only zero origin puts the independently existing source line boundary on the p50 operation-type boundary. This is a **local source preference for zero origin inside this scaffold**.
+
+It is not a general first-party indexing convention. The wrap is plausibly typographic: the first line is already 55 characters including its trailing space, and appending `meaning` would make it62 characters, consistent with an ordinary roughly-60-column hard wrap. The observation was also made after the scaffold was known. It therefore does not restore DIRECTION29→p29, ROAD23, or any ciphertext receiver by itself; it narrows the origin evidence from a perfect tie to a source-local preference that needs another independent discriminator.
+
+[Reproducer](../sims/lp2_p50_signed_hardwrap_origin_sft.cjs) parses the exact committed signed bytes, proves the 19→20 hard-wrap boundary, reconstructs the direct/direct/direct/distance/direct scaffold type sequence from the original p50 grid, and asserts that the one-based rival places the same operation switch after MAP instead.
+
 That unique interval has one further origin-invariant consequence. Zero-origin indices17..24 read **THE MAP THEIR MEANING IS THE ROAD AND**; one-based words17..24 read **ARE THE MAP THEIR MEANING IS THE ROAD**. Their longest common contiguous overlap is seven words: **THE MAP THEIR MEANING IS THE ROAD**. Therefore #3354 rejects the exact endpoint/rank labels and DIRECTION29 handoff, but it does **not** erase this seven-word signed-clause core. [Reproducer](../sims/lp2_p50_origin_invariant_maproad_overlap_sft.cjs).
 
 The same scaffold has an origin-free checksum into the independently observed warning-rank chain:
@@ -93,7 +129,7 @@ The 2016 signed prose has no array syntax, index-zero marker or coordinate tuple
 
 ## Consequence
 
-Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, its seven-word origin-invariant source overlap **THE MAP THEIR MEANING IS THE ROAD**, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every exact origin-specific signed-message rank↔word label, plus DIRECTION29→p29 and ROAD23/ROAD24 **word-number** labeling, to a **conditional origin hypothesis**. The `ROAD23→1R` / `ROAD24→1n` duality still does not resolve the signed-message origin.
+Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, its seven-word origin-invariant source overlap **THE MAP THEIR MEANING IS THE ROAD**, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every exact origin-specific signed-message rank↔word label, plus DIRECTION29→p29 and ROAD23/ROAD24 **word-number** labeling, to a **conditional origin hypothesis**. The signed hard wrap after zero-based index19 gives zero origin a local source preference exactly at the scaffold's direct-cell→distance switch, but its plausible ordinary line-wrapping explanation prevents treating that preference as a general indexing rule. The `ROAD23→1R` / `ROAD24→1n` duality still does not resolve the signed-message origin.
 
 A later finite address-origin audit separates the narrower cell186 movement consequence from that text-origin failure. The unique numeric scaffold itself contains rank24 at cell195; no English label is needed to obtain that rank. Charging the two conventional table-address origins, zero-based address24 gives `1n → 1L → cell186 = 0J = 19`, while one-based address23 gives `1R → 2u → cell180` and no DH-state endpoint. Across all seven cell anchors of the scaffold and both origins, only the zero-address rank24 branch reaches the independently preselected p27/DH cell186 and public value B=19; the result is unchanged whether L/R are treated as relative turns or absolute left/right. This selects **zero-based p50 table addressing inside the already declared movement grammar**, not zero-based 2016 word indexing, DIRECTION29, or a ciphertext decoder. See [the address-origin gate](lp2-p50-scaffold-address-origin-dh19-gate.md).
 
@@ -101,6 +137,6 @@ Issue #3347 must not treat DIRECTION29 as source-supported navigation unless a f
 
 ## Reproduction
 
-Run `node sims/lp2_p50_signed_register_origin_sft.cjs`. It parses the committed signed 2016 message, asserts the 43-word rival table, proves line-local29 impossible, checks the local signed 2012 coordinate markers, reconstructs the original 256-cell table, exhaustively proves the unique k=17 numerical scaffold even when every required cell may choose either live radix, and verifies the ROAD23→1R / ROAD24→1n dual-origin direction readouts.
+Run `node sims/lp2_p50_signed_register_origin_sft.cjs`. It parses the committed signed 2016 message, asserts the 43-word rival table, proves line-local29 impossible, checks the local signed 2012 coordinate markers, reconstructs the original 256-cell table, exhaustively proves the unique k=17 numerical scaffold even when every required cell may choose either live radix, and verifies the ROAD23→1R / ROAD24→1n dual-origin direction readouts. The separate `lp2_p50_signed_hardwrap_origin_sft.cjs` reproduces the exact signed-byte line boundary and its alignment with the rank19→distance20 representation switch.
 
 Pinned reconstruction: `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`; 2012 README blob `96c7d5ddc613fa9b26c3007fecd9072937802c2e`; 2014 README blob `7f2f414d13fa964d54cd1fdd5823f623e32c0059`.
