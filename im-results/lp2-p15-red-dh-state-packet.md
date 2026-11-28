@@ -95,6 +95,10 @@ The derived `b=15` then matches the **physical p15 page index**. The page number
 This is still a post-discovery interpretation of which elementary word statistic names which field. Its force comes from the simultaneous internal equalities, reciprocal pair, DH exponentiation checks and page-index consequence—not from the density of arbitrary state expressions in GP29.
 
 
+## Authenticated 2013 source supplies a second independent worked-example match
+
+The reconstructed p15 state exactly matches Cicada's signed 2013 TCP specification's worked `DH 23 -> 5 8 -> 19 -> 2` exchange. The same document separately specifies `BASE29 3301 -> 3QO`. This second example also lands exactly on the original p15 object: the uniquely red grid cell `3299` is base29 `3QM=[e,B^-1,p-1]=[3,26,22]`, and the independently recovered `K=2` gives `3299+K=3301`; the source output `3QO` has numeric digits `[e,B^-1,-g]=[3,26,24]`. Thus p15 has two distinct exact worked-example links to one authenticated historical source, providing a concrete human solve-path pointer and source-selecting BASE29 for bounded follow-up. This recovers no unknown body plaintext. [Full source/provenance and gate](lp2-p15-signed2013-tcp-dual-example.md).
+
 ## Source-only internal packet
 
 Forget the DH labels. Call the five descriptor triples `a,b,c,d,e`. Natural order satisfies all of:
@@ -260,38 +264,6 @@ The transform choice and traversal are finitely charged rather than assumed. Tak
 This is the best current human solve-path interpretation of the p15 state circuit: the visible red origin supplies the spiral traversal, the lower rubric supplies q and state operands, and a small already-used outer-pair transform converts four consecutive spiral blocks into the DH register. It still does not authenticate H4 as a manuscript-wide cipher opcode or identify a body-text receiver.
 
 Reproducer: sims/lp2_p15_spiral_qblock_h4_state_sft.cjs.
-
-## Candidate determinant bridge removes the H4 harvest
-
-There is a distinct algebraic route worth preserving because it links p15 to an older, independently documented p7 invariant.
-
-Take the same authored p15 spiral residues and reshape the q=4 consecutive groups as a 4x4 matrix:
-
-~~~text
-22 21 19 17
-11  1 10  3
-20 22 25  7
-22 12 17 21
-~~~
-
-Its determinant modulo29 is **19**. Independently, the pre-existing p7 five-red-product right-circulant has determinant **19**. The p15 lower red11 already supplies p=23,g=5,a=6,K=2, so interpreting this shared determinant as B immediately passes the discriminating DH equation
-
-~~~text
-B^a mod p = 19^6 mod23 = 2 = K.
-~~~
-
-This fixes b=15, B^-1=26 and e=3 **before any H4 output is used**. Under that state, the entire sixteen-coordinate spiral H4 tape becomes held out and is predicted exactly as
-
-~~~text
-[g,K,A^-1,Kg | A,qg,A^-1,-b |
- b-K,B^-1,p-g,-K | 1,g+B,F,-b].
-~~~
-
-Charging the same 160 transform/direction/start variants against the complete predicted tape leaves exactly the authored H4/forward/red-origin presentation.
-
-This determinant bridge is useful because it separates the two candidate operations: determinant can supply B, while H4 becomes a fully held-out structural check. It is **not** yet an authenticated instruction to take a determinant. A generous 32-way cyclic-start/direction charge of determinant alone has four DH-closing presentations because determinant is invariant under relevant row/reversal symmetries; the source spiral independently fixes the actual start and direction. Treat the shared p15/p7 determinant as cross-object evidence for a common state serialization, not as a body decoder.
-
-Reproducer: sims/lp2_p15_spiral_determinant_p7_crossholdout_sft.cjs.
 
 ## Strongest causal gate: lower red11 + one grid scalar predicts the remaining p15 state
 
@@ -463,46 +435,6 @@ Only those two p39 survivors are then graded against the authenticated source wo
 **Decision:** the strongest independently cross-held-out five-lane LP2 operator does not transfer as the corridor's p35/p39 value decoder. Preserve the p7/p15 state identity as evidence of shared serialization, but do not use the p7 circulant as a corridor key mechanism without a new authored consumer instruction.
 
 Reproduction: `node sims/lp2_p7_circulant_corridor5_transfer_gate_sft.cjs`.
-## Spiral-H4 tape → source-arrow p15 body: exact p56-F consumer is impossible
-
-The authored-spiral state tape creates a receiver gate that did not exist when
-#69 was closed. The original p15 arrow had already been source-audited as
-pointing from the nine-rune heading to the **150-rune body**. The red-origin
-clockwise spiral now supplies the fixed 16-value H4 tape
-
-```text
-[5,2,11,10, 8,20,11,14, 13,26,18,27, 1,24,0,14].
-```
-
-This fixes key, orientation, receiver, start and period without scoring
-unknown text. Transfer the native solved-p56 additive rule:
-`C=P+K mod29`, with plaintext F transparent and the key clock held whenever
-F is emitted. Exhaustively preserve that strict-F ambiguity instead of
-choosing a hold pattern by language.
-
-The inverse has **zero complete legal paths**. It first branches at body
-offset9 (ciphertext F). At body offset26 / page-local offset35, the sole
-remaining state has ciphertext **Y=index26** against tape index9
-**26**, forcing decoded F on a consuming step. That is illegal under the
-transferred p56 rule, so the last state dies. This is an algebraic exclusion
-before language scoring.
-
-A simplified all-consuming subtraction was checked first: it round-trips but
-is nonlinguistic (IoC 0.03481 versus source-body 0.03588 and clear p57
-0.06271). The strict-F impossibility is the actual decision.
-
-This does **not** weaken the spiral's state-serialization role. It retires
-exactly:
-
-```text
-p15 red-origin spiral -> q=4 H4 tape
--> arrow-selected p15 body
--> solved-p56 additive/transparent-F receiver.
-```
-
-Reproducer:
-`sims/lp2_p15_spiral_h4_body_p56_fhold_gate_sft.cjs`.
-
 ## A natural q-block key use was frozen before grading and fails
 
 The new four-scalar packet
