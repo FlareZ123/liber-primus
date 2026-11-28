@@ -2,12 +2,6 @@ name: Agent8 chapter route GF29 q-translation p33 SFT
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/lp2_chapter_route_gf29_qtranslate_p33_sft.cjs'
-      - 'resources/liber-primus/lp2-corpus.json'
-      - 'resources/liber-primus/lp2-ink-annotations.json'
-      - 'resources/liber-primus/lp2-transcription.txt'
 
 jobs:
   test:
