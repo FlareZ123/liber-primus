@@ -1,0 +1,28 @@
+name: Onecool 2016 spreadsheet archive probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run exact archive probe
+        run: node sims/lp2_onecool_2016_spreadsheet_archive_sft.cjs
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2016-spreadsheet-archive-output
+          path: ${{ runner.temp }}/source-test-output.json
+          if-no-files-found: error
+          retention-days: 7
