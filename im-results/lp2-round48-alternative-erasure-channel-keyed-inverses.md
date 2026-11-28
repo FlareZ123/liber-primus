@@ -463,3 +463,14 @@ Frozen keys and identical prior q16 controls; no key refit. On the 404 held obse
 | Original fitted candidate | unknown | unknown | 6/404 | unknown |
 
 Held average conditional entropy 0.545/0.504 bits (controls) versus 1.357 bits (original candidate); mean posterior mode probability .851/.861 versus .658. All-tape retained accuracy .8476/.8545 vs MAP .8216/.8322. Marginal posterior normalizations within 3e−14 and likelihoods agree with prior strict marginal results. Original probabilities are conditional on an already nonpredictive fitted key and do not constitute recovered runes, even at high nominal confidence. [SFT](../sims/lp2_alt29_delete_retained_posterior_sft.cjs) · [full positionwise modes/confidences/entropy and control metrics](lp2-alt29-delete-retained-posterior.json). Computational core executed in connected V8; standalone Node wrapper not separately run.
+
+### Shared key reset at source-visible chapter boundaries (Agent38)
+
+Alternative to the continuous whole-book clock: same unknown cyclic key, strict repeat state and key phase zero reset at each of the nine visual chapters (lengths 729,1145,1729,1903,1021,1433,1680,3008,308). Fit jointly across seven complete chapters, predict the final two separately. Proposals sum independent chapter surrogate log likelihoods; reranking sums exact strict-channel log likelihoods. Matched plants use nonoverlapping consecutive held literary spans and independent sender resets. Same four starts and eight sweeps, no held-based tuning.
+
+| Period | Control source/seed/offset | Recovered key | Control held (p40-length, p54-length) | Original held (p40–53, p54–55) |
+|---|---|---|---:|---:|
+| 8 | Gibran/71189/6500 | exact key + phase | −2.82045, −2.66027 | −3.90953, −3.74052 |
+| 13 | Emerson/81791/17000 | exact key + phase | −2.63714, −2.61457 | −3.86740, −3.83400 |
+
+Weighted original held −3.893835 and −3.864302 versus matched control −2.805570 and −2.635042. Fitted candidates [21,0,1,4,2,0,12,6] and [13,5,1,19,1,5,34,0,2,4,18,0,6]. Original first-seven weighted fit −3.886085 and −3.824131. This is a calibrated conditional negative for a shared reset key, not private chapter keys or exhaustive all-key exclusion. Combined with continuous results above, there is no support for shared historically short periodic mod36 keys in this strict silent channel. Do not extend the period grid without new evidence. [SFT](../sims/lp2_alt36_visual_chapter_reset_blind_sft.cjs) · [q8 control](lp2-alt36-chapter-reset-q8-gibran.json) · [q8 original](lp2-alt36-chapter-reset-q8-original.json) · [q13 control](lp2-alt36-chapter-reset-q13-emerson.json) · [q13 original](lp2-alt36-chapter-reset-q13-original.json). Computational core executed in connected V8; Node wrapper not separately run.
