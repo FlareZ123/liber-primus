@@ -4,7 +4,7 @@
   "issue": 3262,
   "script": "sims/lp2_q8_native_phase_syntax_receiver_sft.cjs",
   "input_shas": {
-    "sims/lp2_q8_native_phase_syntax_receiver_sft.cjs": "6ba5e9f9e64bdc26b02889e066535dbbf681fd2d",
+    "sims/lp2_q8_native_phase_syntax_receiver_sft.cjs": "dbbef57f4f11eb1d4347d3a75206bcd82d8d29c6",
     "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
     "im-results/lp2-q8-seven-crib-conditional-chart-recovery.json": "2546147d60d24d19c88dfaac7eba7c1273a3d89e",
     "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
@@ -1306,5 +1306,6 @@
         "shuffle_p": 0.03125
       }
     ]
-  }
+  },
+  "verified": "2026-11-28: both exact inverse encodings forward-reencrypted at every generated phase witness in connected V8 test"
 }
