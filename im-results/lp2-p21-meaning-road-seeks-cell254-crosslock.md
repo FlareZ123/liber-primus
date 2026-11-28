@@ -355,7 +355,7 @@ Run:
 node sims/lp2_p21_meaning_road_seeks_cell254_sft.cjs
 ```
 
-The SFT reads the canonical transcription/corpus/grid, exhausts the self-indexed H4 insertion/orientation family, reproduces the SEEKS→p32→cell115→p47 closure, and checks the p20→p22→cell254 branch plus the all-self-indexed cell254 uniqueness control.
+The SFT reads the canonical transcription/corpus/grid, exhausts the 320-configuration self-indexed H4 omission/orientation/insertion family, reproduces the ROAD23 and SEEKS→p32→cell115→p47 closures, checks the p20→p22→cell254→39/FALSE branch and token39 semantic/radix circuit, and charges all-self-indexed cell254 uniqueness. The canonical signed-word fixture excludes numeric `3301`, matching the established alphabetic tokenizer; an intermediate CI failure exposed and corrected that implementation detail. The corrected full SFT passed Windows/Node22 GitHub Actions run **46151595502**.
 
 Related:
 - [Authenticated 2016 source record](../resources/cicada2016-4gq25.md)
