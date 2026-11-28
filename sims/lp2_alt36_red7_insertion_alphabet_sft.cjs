@@ -235,7 +235,8 @@ function experiment(raw, options={}) {
       const x=transform.startsWith("atbash")?28-r:r;
       return transform.endsWith("A")?(nativeToInternal[x]+nativeToInternal[24])%36:nativeToInternal[x];
     });
-    const K=Array.from({length:3500},(_,i)=>key[i%8]),
+    const cycle=options.closedRedCycle?7:8;
+    const K=Array.from({length:3500},(_,i)=>key[i%cycle]),
       Kshift=K.slice(1);
     let C,truth=null,target;
     if(options.red8Mode==="plant"){
@@ -255,7 +256,7 @@ function experiment(raw, options={}) {
       recovery:truth&&z.P?lcs(z.P,truth)/Math.max(z.P.length,truth.length):null,
       text:z.P?.map(p=>gp.translit[p]).join(""),
       originalRuneOutput:z.P?.map(p=>gp.runes[p]).join("")});
-    return {target,originalKey:key,transform,ivA:!!options.ivA,
+    return {target,originalKey:key,cycle,transform,ivA:!!options.ivA,
       alphabet:{marked,sourceRed8:physicalRed8,alphabet:nativeToInternal.toString(),invisible,spaceSlot,spaceInternal},
       scope:"one source-selected cyclic key but newly hypothesized mod36 silent-output cipher; no LP2 decrypt established",
       count:C.length,truthLength:truth?.length,phase0:result(a),phase1:result(b)};
@@ -325,5 +326,6 @@ if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===mod
       red8Mode:process.argv.includes("--red8-plant")||process.argv.includes("--red8-ivA-plant")?"plant":
         process.argv.includes("--red8-original")||process.argv.includes("--red8-ivA-original")?"original":undefined,
       ivA:process.argv.includes("--red8-ivA-plant")||process.argv.includes("--red8-ivA-original"),
-      spaceSlot:Number((process.argv.find(a=>a.startsWith("--space-slot="))||"--space-slot=3").split("=")[1])}),null,2));
+      spaceSlot:Number((process.argv.find(a=>a.startsWith("--space-slot="))||"--space-slot=3").split("=")[1]),
+      closedRedCycle:process.argv.includes("--closed-seven")}),null,2));
 }
