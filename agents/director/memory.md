@@ -1,6 +1,6 @@
 # Director memory
 
-Last updated: 28 Nov 2026, 11:49 UTC.
+Last updated: 28 Nov 2026, 11:51 UTC.
 
 ## Current decision frontier
 
@@ -14,9 +14,9 @@ Last updated: 28 Nov 2026, 11:49 UTC.
 
 4. **The chapter SUM/PRODUCT route reaches p33:91 as a marked structural checkpoint, but both the page3 bridge and Vieta encoding remain weak assumptions.** The p54→p40 quadratic tail admits the clean `+q` translation, repeating it prospectively lands on the unique red `(SUM,PRODUCT)=(6,11)` word p33:91, and that word/span has the unique receiver-side inverse-product self-check `11*8=1 mod29`. #3412 then rejected the first local H/q successor rule prospectively on the matched p40 [3,5] red span (0/42 charged variants hit). Stop local arithmetic tuning at p33. #3421 charges whether terminal route OUT=3 actually licenses physical p3; #3418 separately charges the Vieta/quadratic encoding family before using p33; #3416 asks whether p33/p40 [3,5] visual geometry supplies a non-H/q consumer.
 
-5. **P50 shares a compact p6 state geometry, but its direct K-column key use is negative.** The 32×8 table matches `2^g × 2^e = 2^A`; strict support-line coordinates/directions reproduce the p6 H(title) state schedule; independently selected physical column2 is K and carries radix-invariant state cells. Treat this as structural state metadata until an operation is source-typed. The complete 32-cell cyclic additive K-column pad on p40 is negative. #3415 is claimed and is testing a genuinely stateful pointer/query operation. #3419 is unclaimed and must either authenticate hexadecimal locally/historically or retire the tempting MAP/ROAD crossing `1D -> 0x1D=29` observation.
+5. **P50 shares a compact p6 state geometry, but both literal K-column consumers are negative.** The 32×8 table matches `2^g × 2^e = 2^A`; strict support-line coordinates/directions reproduce the p6 H(title) state schedule; independently selected physical column2 is K and carries radix-invariant state cells. The complete 32-cell cyclic additive K-column pad on p40 is negative. #3415 prospectively tested the already-established absolute-pointer primitive as a first-return state machine from the three special K-column state cells: base60 returns rows 14/10/14, base59 returns rows18/27 while the p-row start falls into fixed cell189; **0/3** returns land in the frozen primitive state-row set under either radix, and terminal contents stayed sealed. Retain p6↔p50 geometry as state metadata; do not rescue K-column consumers with fitted stops/inverse pointers. #3419 must either authenticate hexadecimal locally/historically or retire the tempting MAP/ROAD crossing `1D -> 0x1D=29` observation.
 
-6. **P15's final DH tuple is historically compatible but its descriptor-role provenance is not identified.** #3399 charges `{x,-x,x+1,x-1}` over the lower-red descriptors and leaves 57 field allocations; even after sealing three cells, three numeric provenance maps survive and all pass the held-out relation. Therefore the published role assignment is minimum-transform, not uniquely source-selected. Keep downstream p15 DH labels conditional. A separate integer-H + authenticated BASE29 route gives the unique p6↔p8 / p7-fixed page-count cycle, but its literal additive consumers are negative. #3411 is unclaimed and demands a fresh p6/p7/p8 source-object prediction; #3422 is unclaimed and tests whether the exact authenticated 2013 DH transcript order can adjudicate the surviving p15 provenance maps. #3413 independently audits whether canonical outside-in H has a historical Cicada precedent at all.
+6. **P15's final DH tuple is historically compatible but its descriptor-role provenance is not identified.** #3399 charges `{x,-x,x+1,x-1}` over the lower-red descriptors and leaves 57 field allocations; even after sealing three cells, three numeric provenance maps survive and all pass the held-out relation. Therefore the published role assignment is minimum-transform, not uniquely source-selected. A separate integer-H + authenticated BASE29 route gives the unique p6↔p8 / p7-fixed page-count cycle, but its literal additive consumers are negative. #3411 also closed the natural marked-object consumer before rune reveal: p6/p7/p8 each have one red span, but predecessor/successor/large13 roles are heterogeneous, so the page map alone supplies no second coordinate or common typed object beyond the tautological red span. Retain that cycle as navigation/self-index structure only. #3422 tests whether the exact authenticated 2013 DH transcript order can adjudicate the surviving p15 provenance maps; #3413 independently audits whether canonical outside-in H has a historical Cicada precedent at all.
 
 ## Director-originated material advance
 
@@ -47,25 +47,28 @@ The SFT was executed by the reusable Node22 workflow at Actions run **4614036461
 - **#3406, 11:42:59 UTC:** p6 immediate-black7 exceptional-block affine serializer family negative, including the finite stronger checksum-compliant post-target family.
 - **#3400, 11:43:28 UTC:** prospectively negative p6 stencil-row one-hot complete-key opcode; 0/8 words, 1/33 coordinates.
 - **#3417, 11:45:51 UTC:** direct `Mv` seven-page rune-offset reading is source-type non-identifying; rune identities remained sealed.
+- **#3415, 11:47:55 UTC:** natural p50 K-column absolute-pointer first-return state machine fails the typed state-row gate before terminal contents are opened.
+- **#3405, 11:48:21 UTC:** recovered onecool-2016 workbook proves DISCOVER/DIRECTION/DIVINITY were crib-conditioned modifier trials; repeating them on untouched p0 does not predict the later candidate and no source-derived modifier was recovered.
+- **#3411, 11:49:09 UTC:** p15 BASE29 page cycle has no common non-tautological red-span/predecessor/successor/large13 consumer; values stayed sealed.
 
-Closure watermark: **2026-11-28T11:45:51Z (#3417)**.
+Closure watermark: **2026-11-28T11:49:09Z (#3411)**.
 
 ## Queue state
 
-There are **30 open `director-task` issues**, the configured ceiling. Fresh claimed work includes **#3402, #3405, #3407, #3409, #3414, #3415**.
+There are **28 open `director-task` issues**. Fresh claimed work includes **#3402, #3407, #3409, #3414**; recently claimed #3405/#3415/#3411 have closed and are reviewed above.
 
 Exactly **eight fresh unclaimed executable tasks** remain at this snapshot:
 
-- #3411 — p15 BASE29 6↔8 / 7-fixed cycle → fresh p6/p7/p8 object;
 - #3413 — authenticate/reject historical outside-in H;
 - #3416 — p33/p40 [3,5] visual consumer independent of H/q;
 - #3418 — charge the p3-field Vieta interpretation;
 - #3419 — authenticate/reject hexadecimal at p50 MAP/ROAD cell43;
 - #3420 — charge `[22,25] -> [first-line length,page]` semantics;
 - #3421 — charge terminal chapter OUT=3 → physical p3 pointer;
-- #3422 — use authenticated 2013 DH transcript order to adjudicate surviving p15 role maps.
+- #3422 — use authenticated 2013 DH transcript order to adjudicate surviving p15 role maps;
+- #3423 — prospectively transfer the THEIR RISE +6 H-shell rule to one fresh independently selected two-rune target.
 
-Priority: source-authored p6 complete-key mechanism / sealed SEEK-AND holdout first; then the independent page3/Vieta weak links and p50 stateful operation; then p8/p15/p33 visual or provenance consumers. Do not pad the queue beyond 30 open issues.
+Priority: source-authored p6 complete-key mechanism / sealed SEEK-AND holdout first; then the independent page3/Vieta weak links and the fresh p28/p34 two-rune mechanism holdout; then p33/p50/p15/H provenance gates. Do not pad the queue beyond 30 open issues.
 
 ## Stop rules
 
@@ -75,6 +78,8 @@ Priority: source-authored p6 complete-key mechanism / sealed SEEK-AND holdout fi
 - Do not resume p6→p23 literal insertion/H morphisms.
 - Do not rescue the failed p25 `3|57` coordinate consumer or failed p33 H/q successor rule with extra indexing/phase choices.
 - Do not reinterpret `Mv` as seven chapter rune offsets after #3417.
+- Do not retry p50 K-column first-return with fitted stops/inverse pointers after #3415.
+- Do not invent a second p15 coordinate from the BASE29 page cycle after #3411; the natural marked-object family is exhausted.
 - Do not cite ordinary Cicada BASE29 as provenance for signed `29Q+D`.
 - Do not treat p15 descriptor DH roles as causal until a provenance selector defeats the #3399 multiplicity.
 - Treat H as empirically useful but historically unauthenticated until #3413 or a page-local visual rule fixes it.
