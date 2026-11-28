@@ -138,8 +138,36 @@ assert.deepEqual(h4(p29.slice(108, 112)), [22, 15, 8, 0]);
 
 assert.equal(primeRank.get(decode(tokens[203], a59)), 19);
 assert.equal(words[19], "THEIR");
+assert.equal(tokens[195], "1T");
+assert.equal(decode(tokens[195], a60), 89);
+assert.equal(primeRank.get(decode(tokens[195], a60)), 24);
+assert.equal(words[24], "AND");
 assert.notEqual(primeRank.get(decode(tokens[195], a59)), 20);
 assert.notEqual(primeRank.get(decode(tokens[195], a60)), 20);
+
+// The completed MAP support independently recovers AND's number24.
+// Dereference that exact recovered rank as a p50 address: it is the sole
+// signed-range rank on the selected THEIR->ROAD segment whose same-number
+// address is one of the global dual-radix consecutive signed tokens.
+const selectedRank = primeRank.get(decode(tokens[195], a60));
+assert.equal(selectedRank, 24);
+assert.equal(tokens[selectedRank], "1n");
+assert.deepEqual(dual.find((entry) => entry.i === selectedRank), {
+  i:24, token:"1n", v59:107, r59:28, w59:"THE",
+  v60:109, r60:29, w60:"DIRECTION",
+});
+const segmentSignedRanks = new Set();
+for (let row = 25; row >= 5; row -= 1) {
+  const cell = row * 8 + 3;
+  for (const alphabet of [a60, a59]) {
+    const r = primeRank.get(decode(tokens[cell], alphabet)) || null;
+    if (r !== null && r < words.length) segmentSignedRanks.add(r);
+  }
+}
+const segmentDualDereferences = [...segmentSignedRanks].filter((r) =>
+  dual.some((entry) => entry.i === r)
+);
+assert.deepEqual(segmentDualDereferences, [24]);
 
 const luckPrime = primes[36];
 assert.equal(luckPrime, 157);
@@ -164,6 +192,15 @@ console.log(JSON.stringify({
     preceding: { offsets: [106, 108], h2: [22, 23], words: ["THE", "ROAD"] },
     selected: { offsets: [108, 112], h4: [22, 15, 8, 0] },
   },
-  stoppedBeforeMeaning: true,
+  mapSupportAndDirection: {
+    andCell: 195,
+    andValue: 89,
+    andPrimeRank: 24,
+    dereferenceAddress: 24,
+    dereferenceToken: tokens[24],
+    dualWords: ["THE", "DIRECTION"],
+    segmentDualDereferences,
+  },
+  stoppedBeforeMeaning: false,
   foundGoodDoesNotContinueToLuck: true,
 }, null, 2));

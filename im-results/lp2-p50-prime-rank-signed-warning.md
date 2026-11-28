@@ -105,6 +105,8 @@ row05 col1: base59  prime#23 -> ROAD
 
 Thus the exact signed-source interval **17..23** is recovered as **THE MAP THEIR MEANING IS THE ROAD**. The three vertical source anchors also expose the same fixed distance grammar without selecting the target word after the fact: rank17 at row27 is 22 edges from the ROAD line and `source[22]=THE`; rank18 at row26 is21 edges away and `source[21]=IS`; rank19 at row25 is20 edges away and `source[20]=MEANING`. These are structural source-register relations, not unknown LP2 plaintext.
 
+There is one further source-exact cell on the same frozen support. The cell immediately north of THEIR is cell195 at row24/column3, token `1T`; under base60 it is **89 = prime#24**, hence `source[24] = AND`. It is the unique base60 rank24 occurrence in the table. The MAP support therefore contains direct labels **THE / MAP / THEIR / AND** in four consecutive rows, while its 20-edge relation to the ROAD support supplies the intervening **MEANING / IS / THE / ROAD** structure. Physical encounter order is not claimed to be sentence order: AND lies at the first edge of the 20-edge segment, and its source rank24 places it after ROAD in the authenticated register. The stronger fact is that the fixed geometry now contains every source index **17 through24** without inventing another radix, turn or cell.
+
 A finite follow-up also combines the observed physical directions (MAP points north; ROAD points east) into a northeast ray from the `IS` intersection. That ray does not produce a consecutive signed-register instruction under either codec. Treat N/E as geometry selected by the signed-word reconstruction, not a general eight-direction byte opcode.
 
 This result changes the local radix interpretation: inside this exact adjacency/prime-rank family, base60 and the uniquely absent-`f` base59 reading look **complementary** rather than one simply defeating the other. Do not generalize that dual-radix conclusion to unrelated p50 branches without an equally source-constrained discriminator.
@@ -122,17 +124,20 @@ Second, enumerate every p50 token whose values under the two source-visible radi
 | **24** | `1n` | 107 = prime#28 | **THE** | 109 = prime#29 | **DIRECTION** |
 | 223 | `2V` | 149 = prime#35 | FOUND | 151 = prime#36 | GOOD |
 
-The second token does not continue to LUCK by an adjacent cell under either radix, so no phrase is extended there. Cell24 is different: its **cell index itself is source index24 = AND**. Independently, the p28 fixed structural readout already emits **THEIR NUMBERS ARE THE**. Thus the source/register objects meet without fitting a new ciphertext string:
+The second token does not continue to LUCK by an adjacent cell under either radix, so no phrase is extended there. Cell24 is different, and the completed MAP support now supplies an independent reason to select it: cell195 on that already fixed support is `89 = prime#24 = AND`. The authenticated instruction immediately continues “AND THEIR NUMBERS ARE THE DIRECTION.” Taking the recovered prime rank/word number **24** literally as the next p50 address — the same GP/word-number-to-table-address primitive used by established navigation routes — lands on `p50[24]=1n`, the unique signed-range address whose two live radices form the consecutive pair **THE / DIRECTION**:
 
 ```text
-cell index24                    -> AND
-p28 fixed D4 structural readout -> THEIR NUMBERS ARE THE
+fixed MAP support cell195 = 1T
+  base60 89 = prime#24           -> AND
+  recovered number 24            -> p50 address24
 p50[24] = 1n:
-  base59 107 = prime#28         -> THE
-  base60 109 = prime#29         -> DIRECTION
+  base59 107 = prime#28           -> THE
+  base60 109 = prime#29           -> DIRECTION
 ```
 
-The repeated THE at the p28/p50 boundary is a consistency check, not a license to count it twice. The resulting authenticated clause is **AND THEIR NUMBERS ARE THE DIRECTION**.
+This is stronger than selecting cell24 merely because its cell index can itself be read as source index24. Across **every signed-range prime hit on the complete THEIR→ROAD support segment**, rank24 is the only recovered rank whose same-number table dereference lands on a dual-radix consecutive signed pair. Globally there are only two such dual-radix consecutive tokens, at addresses24 and223; only 24 is itself an authenticated source index. The p28 fixed structural readout **THEIR NUMBERS ARE THE** remains an independent corroborating scaffold, but it is no longer needed to choose address24.
+
+The literal continuation is therefore a compact candidate handoff: **AND24 → address24 → THE/DIRECTION29**. It operationalizes “their numbers are the direction” more directly than the earlier cell-index observation. It still does not prove that every prime rank should be recursively dereferenced; the uniqueness statement is restricted to the already selected MAP/ROAD segment and the authenticated signed register.
 
 The same zero-based 29 now gives a cleaner selector for the already documented p29 packet: **DIRECTION = source[29] -> project p29 -> canonical zero-based word index29** (one-based word30). That object is p29 offsets108..111 `[11,26,11,18]`, whose fixed H4 is `[22,15,8,0]`. The immediately preceding zero-based word28, offsets106..107 `[8,15]`, has H2 `[22,23]` = **THE ROAD**. This exact phrase independently equals the strict base59 p50 adjacency above.
 
@@ -169,8 +174,12 @@ The pinned table has two base60 rank17 tokens in MAP's column3 (rows6 and27), ex
 | North-directed THE→MAP and east-directed THE→ROAD meeting at IS | (2/32)×(1/8) = **1/128 ≈ 0.7813%** |
 | Same, plus THEIR immediately north of MAP in the other radix | (2/(32×31))×(1/8) = **1/3968 ≈ 0.0252%** |
 | Same, plus the THEIR→ROAD-line northward distance equals source index20 = MEANING | **1/345216 ≈ 0.0002897%** |
+| Same, plus base60 rank24 = AND immediately north of THEIR | **1/119040 ≈ 0.0008401%** |
+| Same, plus both AND adjacency and the 20-edge MEANING distance | **1/9666048 ≈ 0.00001035%** |
 
-The last row is still exact under this same null. Conditional on the fixed ordered three-row block THEIR/MAP/THE, its northmost row is uniformly one of30 possible positions. Exactly10 positions permit the independently permuted ROAD row to lie20 rows north, and that ROAD row then occupies one specified position among the29 remaining rows. The extra conditional factor is therefore `(10/30)×(1/29)=1/87`, so `(1/3968)×(1/87)=1/345216`.
+All rows are exact under this same null. For the MEANING-only row, conditional on the fixed ordered three-row block THEIR/MAP/THE, its northmost row is uniformly one of30 possible positions. Exactly10 positions permit the independently permuted ROAD row to lie20 rows north, and that ROAD row then occupies one specified position among the29 remaining rows. The extra conditional factor is therefore `(10/30)×(1/29)=1/87`, so `(1/3968)×(1/87)=1/345216`.
+
+For AND, the fixed row24 object must extend the ordered block to **AND/THEIR/MAP/THE**. A specified ordered four-row block has probability `2/(32×31×30)` because either of the two rank17 THE rows may close it; multiplying the independent east-directed ROAD column factor `1/8` gives `1/119040`. Conditional on that four-row block, there are29 possible block starts; exactly10 leave the ROAD row exactly20 positions north of THEIR, and that specific ROAD row occupies one of28 remaining row positions. The additional distance factor is `(10/29)×(1/28)=5/406`, giving **1/9666048** for the complete observed AND+distance structure.
 
 [Executable original-source reconstruction and distance-null derivation](../sims/lp2_p50_maproad_meaning_distance_sft.cjs); [earlier crossing null](../sims/lp2_p50_maproad_row_column_null.cjs). These are **reference frequencies under one constrained null**, not corrected p-values: the relevant signed words, direction choice, radix mixture, distance interpretation, and extension were recognized after observing p50 and related fitted routes; the broad earlier family search has not been charged. The strengthened geometry now reconstructs the complete signed MAP/ROAD clause, but it still does not supply an unknown-cipher inverse, key, typed recipient or destination. A proposed cipher branch still needs an **independent source-selected receiver with a prediction on untouched original material**, not merely the smaller structural null rate.
 
@@ -183,15 +192,15 @@ Established computational facts under the frozen representation:
 - the warning edges share the same prime value/token 167/`2l`, yielding the rank chain **BEWARE FALSE PATHS**;
 - the already selected cell74-to-surface column2 begins with prime ranks39 and40, hence **FALSE PATHS**;
 - the same census under base59 has no two-edge consecutive warning chain;
-- the strict MAP/ROAD support geometry reconstructs **THE MAP THEIR MEANING IS THE ROAD** across source indices17..23: THEIR is the base59 prime#19 cell immediately north of MAP, and MEANING is the exact20-edge northward distance from that cell to the ROAD support line;
+- the strict MAP/ROAD support geometry reconstructs every source index17..24: **THE MAP THEIR MEANING IS THE ROAD AND**. THEIR is the base59 prime#19 cell immediately north of MAP, MEANING is the exact20-edge northward distance from that cell to the ROAD support line, and the next support cell is the unique base60 prime#24 = AND;
 - no prime#20 cell occurs anywhere on that vertical support segment under either live radix, so MEANING is specifically a distance readout rather than an omitted cell hit;
 - prime rank42 / OPENPGP cannot continue because value181 is absent.
 
-Interpretive dependencies remain substantial. Ordinary prime rank is one-based while the signed register lookup is zero-based; that convention is already active in the current source-index research but is not independently stated by Cicada. The two warning edges occupy different columns and are joined by a duplicated rank39 token, so **BEWARE FALSE PATHS** is a rank-graph chain, not a single straight printed phrase. The SURFACE-to-top-row reading itself remains provisional. These facts materially strengthen the hypothesis that p50 participates in the signed map/road clue: strict adjacency independently yields THE MAP under base60 and THE ROAD under the uniquely absent-f base59 codec, THEIR is the immediately continued base59 rank, IS is their line intersection, and the intervening physical distance supplies MEANING. They simultaneously warn against treating the PATH/SURFACE loop as an authenticated decoder. The row/column-preserving null above prevents treating the geometric IS crossing as an independent validation, and the new 1/345216 reference rate remains conditional on a post-discovery distance interpretation rather than a blinded global significance claim.
+Interpretive dependencies remain substantial. Ordinary prime rank is one-based while the signed register lookup is zero-based; that convention is already active in the current source-index research but is not independently stated by Cicada. The two warning edges occupy different columns and are joined by a duplicated rank39 token, so **BEWARE FALSE PATHS** is a rank-graph chain, not a single straight printed phrase. The SURFACE-to-top-row reading itself remains provisional. These facts materially strengthen the hypothesis that p50 participates in the signed map/road clue: strict adjacency independently yields THE MAP under base60 and THE ROAD under the uniquely absent-f base59 codec, THEIR is the immediately continued base59 rank, IS is their line intersection, the intervening physical distance supplies MEANING, and the next MAP-support cell supplies AND24 whose number uniquely dereferences to THE/DIRECTION29 within the signed-range dual-radix family. They simultaneously warn against treating the PATH/SURFACE loop as an authenticated decoder. The row/column-preserving null above prevents treating the geometric IS crossing as an independent validation, and the new 1/345216 reference rate remains conditional on a post-discovery distance interpretation rather than a blinded global significance claim.
 
 ## Research decision
 
-Preserve the complete **THE MAP THEIR MEANING IS THE ROAD** reconstruction as a source-constrained map-validation result and redirect effort away from extending the terminal PATH loop by additional fitted receivers. The newly resolved MEANING step closes the local signed-clause gap but does not itself type a ciphertext operand. A productive successor must obtain an independently authored operation that converts this map structure into a reversible transform of unknown LP2 ciphertext. In particular, do not turn distance20 into an arbitrary page/key index or resume p55 key sweeps merely because the clause now closes.
+Preserve the complete **THE MAP THEIR MEANING IS THE ROAD AND** support reconstruction and the bounded **AND24 → p50[24] → THE/DIRECTION29** handoff as source-constrained map/navigation evidence. Redirect effort away from extending the terminal PATH loop by additional fitted receivers. The newly resolved MEANING step closes the local signed-clause gap but does not itself type a ciphertext operand. A productive successor must obtain an independently authored operation that converts this map structure into a reversible transform of unknown LP2 ciphertext. In particular, do not turn distance20 into an arbitrary page/key index or resume p55 key sweeps merely because the clause now closes.
 
 Reproduce with:
 

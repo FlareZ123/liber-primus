@@ -36,8 +36,8 @@ const words = clear
   .map(word => word.toUpperCase());
 
 assert.equal(words.length, 43);
-assert.deepEqual(words.slice(17, 24),
-  ["THE", "MAP", "THEIR", "MEANING", "IS", "THE", "ROAD"]);
+assert.deepEqual(words.slice(17, 25),
+  ["THE", "MAP", "THEIR", "MEANING", "IS", "THE", "ROAD", "AND"]);
 
 function isPrime(n) {
   if (n < 2) return false;
@@ -71,30 +71,34 @@ const anchors = {
   theMap: at(27, mapColumn),
   map: at(26, mapColumn),
   their: at(25, mapColumn),
+  and: at(24, mapColumn),
   intersection: at(roadRow, mapColumn),
   theRoad: at(roadRow, 0),
   road: at(roadRow, 1),
 };
 
 assert.deepEqual(anchors, {
-  theMap: 219, map: 211, their: 203, intersection: 43, theRoad: 40, road: 41,
+  theMap: 219, map: 211, their: 203, and: 195, intersection: 43, theRoad: 40, road: 41,
 });
 assert.deepEqual(
-  [tokens[anchors.theMap], tokens[anchors.map], tokens[anchors.their],
+  [tokens[anchors.theMap], tokens[anchors.map], tokens[anchors.their], tokens[anchors.and],
    tokens[anchors.intersection], tokens[anchors.theRoad], tokens[anchors.road]],
-  ["0x", "11", "18", "1D", "1K", "1O"],
+  ["0x", "11", "18", "1T", "1D", "1K", "1O"],
 );
 assert.deepEqual(
   [rank(anchors.theMap, alpha60), rank(anchors.map, alpha60),
-   rank(anchors.their, alpha59), rank(anchors.intersection, alpha60),
+   rank(anchors.their, alpha59), rank(anchors.and, alpha60),
+   rank(anchors.intersection, alpha60),
    rank(anchors.theRoad, alpha59), rank(anchors.road, alpha59)],
-  [17, 18, 19, 21, 22, 23],
+  [17, 18, 19, 24, 21, 22, 23],
 );
 
 // MAP's strict pair fixes north as decreasing row number. THEIR is the next
 // cell north. Continue on that exact column until the ROAD support row.
 assert.equal(Math.floor(anchors.theMap / 8) - Math.floor(anchors.map / 8), 1);
 assert.equal(Math.floor(anchors.map / 8) - Math.floor(anchors.their / 8), 1);
+assert.equal(Math.floor(anchors.their / 8) - Math.floor(anchors.and / 8), 1);
+assert.equal(words[rank(anchors.and, alpha60)], "AND");
 const theirRow = Math.floor(anchors.their / 8);
 const distance = theirRow - roadRow;
 assert.equal(distance, 20);
@@ -162,10 +166,30 @@ assert.equal(distanceConditionalDenominator, 87);
 const fullDenominator = withTheirDenominator * distanceConditionalDenominator;
 assert.equal(fullDenominator, 345216);
 
+// Add the uniquely observed rank24=AND row immediately north of THEIR.
+// Ordered four-row block AND/THEIR/MAP/THE: 2/(32*31*30), then ROAD east: 1/8.
+const withAndDenominator =
+  (R * (R - 1) * (R - 2) * C) / rank17Candidates;
+assert.equal(withAndDenominator, 119040);
+const fourBlockPlacements = R - 4 + 1;
+const validAndDistancePlacements = 10;
+assert.equal(fourBlockPlacements, 29);
+const combinedProbabilityNumerator = validAndDistancePlacements;
+const combinedProbabilityDenominator =
+  withAndDenominator * fourBlockPlacements * (R - 4);
+assert.equal(combinedProbabilityDenominator / combinedProbabilityNumerator, 9666048);
+
 console.log(JSON.stringify({
-  status: "PASS: MAP/ROAD geometry reconstructs THE MAP THEIR MEANING IS THE ROAD",
+  status: "PASS: MAP/ROAD geometry reconstructs THE MAP THEIR MEANING IS THE ROAD AND",
   anchors,
-  reconstructed: reconstructed.join(" "),
+  reconstructed: [...reconstructed, words[24]].join(" "),
+  and: {
+    cell: anchors.and,
+    token: tokens[anchors.and],
+    base60Value: decode(tokens[anchors.and], alpha60),
+    primeRank: rank(anchors.and, alpha60),
+    sourceWord: words[24],
+  },
   meaning: {
     sourceIndex: distance,
     word: words[distance],
@@ -177,7 +201,9 @@ console.log(JSON.stringify({
   exactStructuralNull: {
     priorWithTheir: "1/3968",
     distanceConditional: "1/87",
-    full: "1/345216",
+    fullMeaningOnly: "1/345216",
+    withAndAdjacency: "1/119040",
+    withAndAndDistance: "1/9666048",
     caveat:
       "post-discovery constrained structural reference rate; not a look-elsewhere-corrected p-value",
   },
