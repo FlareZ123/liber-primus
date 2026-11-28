@@ -20,6 +20,21 @@ function run(corpus, sources) {
   const sorted=R(A).map(i=>({symbol:i,n:hist[i]})).sort((a,b)=>b.n-a.n);
   const q2Capacity=sorted[0].n+sorted[1].n;
   assert(q2Capacity===245,"original two-output unigram capacity");
+  // Literal-F-hold alternative: every physically printed F is plaintext F, emits
+  // zero, and does not change the predecessor register. This is a conditional
+  // authoring hypothesis, not an observed universal LP2 convention.
+  const skipHist=new Int32Array(A);let literalFCount=0, skipTransitions=0;
+  for(const p of pages){
+    let previous=null;
+    for(const x of p.indices){
+      if(x===0){literalFCount++;continue;}
+      if(previous!==null){skipHist[(x-previous+A)%A]++;skipTransitions++;}
+      previous=x;
+    }
+  }
+  const skipSorted=R(A).map(i=>({symbol:i,n:skipHist[i]})).sort((a,b)=>b.n-a.n);
+  const skipQ2Capacity=skipSorted[0].n+skipSorted[1].n;
+  assert(literalFCount===125&&skipTransitions===2870&&skipQ2Capacity===234,"literal-F source");
   const top=(v,q)=>{
     const b=new Int32Array(q);
     for(const n of v){if(n<=b[0])continue;b[0]=n;for(let j=0;j<q-1&&b[j]>b[j+1];j++){const w=b[j];b[j]=b[j+1];b[j+1]=w;}}
@@ -97,12 +112,17 @@ function run(corpus, sources) {
   function minMaxLetter(seq){
     assert(seq.length>=N,"control too short");
     const cnt=new Int32Array(A);for(let i=0;i<N;i++)cnt[seq[i]]++;
-    let min=Infinity,max=0;
+    let min=Infinity,max=0,minNonF=Infinity,minF=Infinity,maxF=0;
     for(let i=0;i+N<=seq.length;i++){
       if(i){cnt[seq[i-1]]--;cnt[seq[i+N-1]]++;}
-      const v=Math.max(...cnt);if(v<min)min=v;if(v>max)max=v;
+      const v=Math.max(...cnt),nonF=Math.max(...cnt.subarray(1));
+      if(v<min)min=v;if(v>max)max=v;
+      if(nonF<minNonF)minNonF=nonF;
+      if(cnt[0]<minF)minF=cnt[0];if(cnt[0]>maxF)maxF=cnt[0];
     }
-    return {gpRunes:seq.length,windows:seq.length-N+1,min,max,slack:min-(q2Capacity+pages.length)};
+    return {gpRunes:seq.length,windows:seq.length-N+1,min,max,
+      slack:min-(q2Capacity+pages.length),minNonF,minF,maxF,
+      skipFNonFSlack:minNonF-(skipQ2Capacity+pages.length)};
   }
   function maskedTriple(seq){
     const cnt=new Int32Array(A*A*A),freq=new Int32Array(N+1),idx=i=>(seq[i]*A+seq[i+1])*A+seq[i+2];
@@ -146,8 +166,11 @@ function run(corpus, sources) {
     }
   }
   assert(cursor===N&&decoded===N-pages.length&&seen.every(s=>s.size<=2),"two-chart plant");
-  assert(controls.length===3&&controls.every(c=>Object.values(c.variants).every(v=>v.slack>0)),"all native controls reject 2 outputs");
-  return {source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1},
+  assert(controls.length===3&&controls.every(c=>Object.values(c.variants).every(v=>v.slack>0&&v.skipFNonFSlack>0&&v.maxF<literalFCount)),"all native controls reject both two-output conventions");
+  return {source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1,
+      literalFCount,skipTransitions,skipTopDiff:skipSorted.slice(0,6),
+      skipQ2Capacity,skipUncontrolledPageInitials:pages.length,
+      skipNecessaryNonFMinimum:skipQ2Capacity+pages.length+1},
     trigramBoxes,controls,plant:{decoded,distinctResidualOutputsPerLetterMax:Math.max(...seen.map(s=>s.size))}};
 }
 module.exports={run};
