@@ -140,6 +140,40 @@ and does not reproduce either state condition.
 
 These counts are an **exact finite census, not a discovery-adjusted p-value**. The state labels and the decision to inspect BASE29 address digits were recognized after the pointer route was known. The census shows that the observed state tape is not a generic property of eight-step p50 walks under the same table; it does not quantify the probability that the author intended this representation.
 
+## First original-cipher consumer: direct eight-remainder flank key is negative
+
+The integrated original-inversion challenge preselects the **158 original GP29 runes physically flanking the p49-p51 numerical panel** as the first recipient for any source-fixed table-derived key: p49 contributes 66 runes, p50 contributes no runes, and p51 resumes with 92.
+
+The cheapest use of the new state tape adds no H layer or KDF. Freeze the eight pre-terminal remainders in pointer order as the period-eight GP29 key
+
+```text
+K8 = [12,19,4,25,14,16,11,15]
+   = [aK,B,q,-q,-b,AK,A^-1,b].
+```
+
+Charge only the two unavoidable additive directions `P=C-K` / `P=C+K` and the two already documented p51 clocks: reset at phase0 or continue after the 66 p49 runes. P49 always begins at phase0. All four candidates exactly re-encrypt the original 158 runes.
+
+| State-key consumer | 158-rune IoC |
+| --- | ---: |
+| subtract, p51 reset0 | **0.0373296783** |
+| subtract, p51 continuous66 | 0.0340240264 |
+| add, p51 reset0 | 0.0320890107 |
+| add, p51 continuous66 | 0.0352334113 |
+
+The unchanged original flank ciphertext has IoC **0.0340240264**. Authentic solved p57 has IoC **0.0627099664**. None of the four state-key outputs is coherent native-GP prose; for example the highest-IoC candidate begins p49 `SEAWRGGEAMIATHTHGCEAXLEON...` and p51 `ABNRPROTHYSSPMOYTPRWNGPN...`.
+
+A matched wrong-source control uses the eight remainders of the conventional-base60 walk from the same start/hop count,
+
+```text
+[12,19,4,27,23,28,15,18].
+```
+
+Under the identical four sign/clock choices that rival reaches a **higher** maximum IoC, **0.0386196888**. Thus the small IoC lift of the state-key reset model does not discriminate the source-selected state tape from the failed radix rival.
+
+Implementation controls pass: every tested candidate forward-reconstructs the original flank runes exactly, and a synthetic encryption of all 95 authentic solved-p57 runes with `K8` is recovered **95/95** by the matching inverse.
+
+**Decision:** retire exactly the direct period-eight additive use of the raw remainder tape on the p49/p51 flanks. The state serialization remains a structural result. A further ciphertext attempt now needs an independently visible instruction selecting a different consumer, transformation, or receiver; do not rescue this negative by shifting phase, changing page starts, or searching derived state expressions.
+
 ## Relationship to prior work
 
 This result extends rather than replaces the existing p27/p50 DH route.
@@ -169,4 +203,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-Source-only SFT commit preceding this report: `a56cc42ee5752dc038ed0fda833d87daff4df0df`.
+The SFT now also executes the bounded p49/p51 flank consumer, matched base60-rival control, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; flank-gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`.
