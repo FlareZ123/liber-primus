@@ -55,7 +55,7 @@ for($n=0; $n -le 74; $n++) {
   $bmp = [System.Drawing.Bitmap]::new($p)
   try {
     if($bmp.Width -ne 2400 -or $bmp.Height -ne 3600) {
-      throw "unexpected dimensions for ${name}: $($bmp.Width)x$($bmp.Height)"
+      throw "unexpected dimensions for $($name): $($bmp.Width)x$($bmp.Height)"
     }
     $left  = Get-CropHash $bmp 0 600 380 2400
     $right = Get-CropHash $bmp 2020 600 380 2400
