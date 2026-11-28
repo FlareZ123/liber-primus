@@ -54,6 +54,9 @@ const words = body.match(/\b[A-Za-z]+\b/g)
   .filter((word) => !['BEGIN', 'PGP', 'SIGNED', 'MESSAGE', 'Hash', 'SHA'].includes(word))
   .map((word) => word.toUpperCase());
 assert.strictEqual(words.length, 43);
+assert.strictEqual(words[29], 'DIRECTION');
+const signedMapRegister = words.slice(0, 29);
+assert.strictEqual(signedMapRegister.length, MOD);
 
 const Q = [5, 5, 14, 9, 10, 4, 27, 17, 25];
 const EQ = evaluate(Q);
@@ -167,6 +170,8 @@ assert.deepStrictEqual([p39.row, p39.col], independentP50MapRoadInterval);
 console.log(JSON.stringify({
   E_Q: EQ,
   q_order: discreteLog.size,
+  signed_map_register_size: signedMapRegister.length,
+  first_word_outside_map_register: { index: 29, word: words[29] },
   path_model: 'Q^k <-> base29 coordinates [floor(k/29), k%29]; multiply by Q increments k mod840',
   selected: selectedOutputs,
   exact_punctuation_clause_hits: exactClauseHits,
