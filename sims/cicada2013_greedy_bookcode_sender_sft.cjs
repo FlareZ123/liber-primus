@@ -72,6 +72,32 @@ function analyze(raw) {
  const plaintext=records.map(l=>{if(!l.includes(":"))return l;const [c,v,k]=l.split(":");const verse=verses.find(x=>x.id===c+":"+v).s;const ch=verse[+k-1];if(ch===undefined)throw Error("bad record "+l);const n=[...verse].filter(x=>x===ch).length;if(!seen.has(l)){choices*=BigInt(n);seen.add(l)}detail.push({record:l,first:verse.indexOf(ch)+1===+k,occurrences:n});return ch;}).join("");
  function encode(text){let cur=0;const wrap=[],literal=[];const out=[...text].map((ch,j)=>{let i=verses.findIndex((x,i)=>i>=cur&&x.s.includes(ch));if(i<0){wrap.push(j);i=verses.findIndex(x=>x.s.includes(ch));}if(i<0){cur=0;literal.push(j);return ch;}cur=i+1;return verses[i].id+":"+(verses[i].s.indexOf(ch)+1)});return {out,wrap,literal}}
  const enc=encode(plaintext);const mismatch=enc.out.flatMap((x,i)=>x!==records[i]?[{i,got:x,want:records[i]}]:[]);
+ const sourcePunctuationOutput=records.flatMap((record,i)=>/[.:-]/.test(plaintext[i])?[{record,character:plaintext[i]}]:[]);
+ const sourcePunctuationStrippedVerses=verses.map(x=>({
+  id:x.id,s:x.s.replace(/[^\\p{L}\\p{N}]/gu,"")
+ }));
+ const strippedDecoded=records.map(record=>{
+  if(!record.includes(":"))return record;
+  const [chapter,verse,idx]=record.split(":");
+  const source=sourcePunctuationStrippedVerses.find(x=>x.id===chapter+":"+verse)?.s;
+  return source?.[Number(idx)-1]??"?";
+ }).join("");
+ const markedPunctuationCounterfactual={
+  sourcePunctuationRetained:plaintext,
+  sourcePunctuationStripped: strippedDecoded,
+  firstSourceCoordinate:"I:1:6",
+  firstRetained:plaintext[0],
+  firstStripped:strippedDecoded[0],
+  literalDigitRecords:records.filter(x=>/^[05]$/.test(x)),
+  punctuationCoordinates:sourcePunctuationOutput,
+  differingResultPositions:[...plaintext].filter((x,i)=>x!==strippedDecoded[i]).length
+ };
+ if(markedPunctuationCounterfactual.firstRetained!=="h" ||
+    markedPunctuationCounterfactual.firstStripped!=="e" ||
+    markedPunctuationCounterfactual.punctuationCoordinates.length!==8 ||
+    markedPunctuationCounterfactual.differingResultPositions<10)
+   throw Error("historical punctuation typed counterfactual failed");
+
  if(plaintext!=="https:--www.dropbox.com-s-r7sgeb5dtmzj14s-3301"||records.length!==46||mismatch.length||detail.length!==44)throw Error("2013 forward replay failed");
  const q=signed14.split(/\r?\n/).filter(s=>/^(?:\d+:){3}\d+$|^[.on3i]$/.test(s));const pars=emerson.split('\n\n').map(p=>p.split(/(?<=[.!?])\s+/).map(s=>s.replace(/\n/g,' ').trim().split(/\s+/)));
  const p14detail=[];const dec=q.map(s=>{if(s.length===1)return s;let [i,j,k,l]=s.split(":").map(x=>+x-1);if(i>=44)i++;const word=pars[i]?.[j]?.[k],ch=word?.[l];if(ch===undefined)throw Error("2014 invalid record "+s);p14detail.push({record:s,first:word.indexOf(ch)===l});return ch}).join("");
@@ -83,7 +109,7 @@ function analyze(raw) {
  const sourceSize=verses.reduce((a,x)=>a+x.s.length,0),emersonSize=emerson.length;
  function stats(a,b){const ww=words.filter(x=>x.start>=a&&x.start<b);const out={};for(const color of ["red","black","mixed"]){const rows=ww.filter(x=>{const n=colors.slice(x.start,x.start+x.w.length).filter(Boolean).length;return (n===0?"black":n===x.w.length?"red":"mixed")===color});out[color]={words:rows.length,runes:rows.reduce((a,x)=>a+x.w.length,0),lt3:rows.filter(x=>x.w.length<3).length,lt4:rows.filter(x=>x.w.length<4).length,above2013:rows.filter(x=>minValue(x.w)>BigInt(sourceSize)).length,above2014:rows.filter(x=>minValue(x.w)>BigInt(emersonSize)).length,maxMin:rows.reduce((a,x)=>minValue(x.w)>a?minValue(x.w):a,0n).toString()};}return out}
  const g=geb.split(/\r?\n/).map(s=>s.trim()).filter(s=>/^[A-Z0-9.[\]]+:\d+:\d+:\d+$|^[37]$|^ONION$/.test(s));
- return {history2013:{records:records.length,coordinates:detail.length,distinctCoordinates:seen.size,first:detail.filter(x=>x.first).length,choicesWithoutCanonicalRule:choices.toString(),verseCounts:chapters.map(x=>x.length),sourceSize,wrap:enc.wrap,literal:enc.literal,mismatch,detail},history2014:{records:q.length,coordinates:p14detail.length,firstWithinWord:p14detail.filter(x=>x.first).length,nonmonotoneParagraphs:p14detail.slice(1).filter((x,i)=>+x.record.split(":")[0]<+p14detail[i].record.split(":")[0]).length,carrierLength:emersonSize},geb:{records:g.length,coordinates:g.filter(s=>s.includes(":")).length},unknown:stats(0,pageStart[56]),p56:stats(pageStart[56],pageStart[57]),p57:stats(pageStart[57],total),wordCount:words.length,runecount:k};
+ return {history2013:{records:records.length,coordinates:detail.length,distinctCoordinates:seen.size,first:detail.filter(x=>x.first).length,choicesWithoutCanonicalRule:choices.toString(),verseCounts:chapters.map(x=>x.length),sourceSize,wrap:enc.wrap,literal:enc.literal,mismatch,detail,typedPunctuation:markedPunctuationCounterfactual},history2014:{records:q.length,coordinates:p14detail.length,firstWithinWord:p14detail.filter(x=>x.first).length,nonmonotoneParagraphs:p14detail.slice(1).filter((x,i)=>+x.record.split(":")[0]<+p14detail[i].record.split(":")[0]).length,carrierLength:emersonSize},geb:{records:g.length,coordinates:g.filter(s=>s.includes(":")).length},unknown:stats(0,pageStart[56]),p56:stats(pageStart[56],pageStart[57]),p57:stats(pageStart[57],total),wordCount:words.length,runecount:k};
 }
 async function main(){const raw=await Promise.all(specs.map(async ([repo,path,ref,sha])=>{const b=ref?Buffer.from(await (await fetch('https://raw.githubusercontent.com/'+repo+'/'+ref+'/'+path)).arrayBuffer()):fs.readFileSync(path);const got=crypto.createHash('sha1').update('blob '+b.length+'\0').update(b).digest('hex');if(got!==sha)throw Error('source hash mismatch '+path);return b.toString('utf8')}));console.log(JSON.stringify(analyze(raw),null,2));}
 main().catch(e=>{console.error(e);process.exitCode=1});
