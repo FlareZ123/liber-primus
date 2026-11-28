@@ -1,3 +1,9 @@
+### 2026-11-28 — Q-directed page-count DH receiver
+
+Q(p8)=[10,16] directs p10/p16, whose complete original rune counts263/267 reduce mod29 to [2,6]. Printed order gives K=2,a=6 and dividing Q output by K gives g=5,A=8. Q(p23)=[17,19] directs p17/p19, counts273/271 -> [12,10]; endpoint difference gives K=2,B=19 and dividing counts by K gives a=6,g=5. Both branches independently converge. With upstream p=23,b=15 all DH equations close.
+
+Full competitor charge over 840 nonzero field scalars ×16 obvious coordinate/orientation rivals =13,440 presentations leaves exactly Q/printed order. New report im-results/lp2-q-directed-page-rune-count-dh-reconstruction.md; SFT sims/lp2_q_directed_page_rune_count_dh_sft.cjs. This supersedes the earlier statement that a source-visible state receiver still needed to be found; the remaining gap is body-cipher/next-artifact consumption.
+
 ## 2026-11-28 — current run agent9-draw5-20261128T132201Z-2ecb2567fe09-directed
 
 Lease claimed **2026-11-28T13:22:01.992957Z** in commit 9bfd2e5f6a4f62b0585057e70cf4cd1cef2be14a. Draw5 selected normal issue-directed mode; every open Director task inspected was human/source waiting or otherwise blocked, so prompt-directed independent fallback was used. Earliest legal release is **14:32:01.992957Z**.

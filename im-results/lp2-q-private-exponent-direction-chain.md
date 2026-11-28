@@ -121,7 +121,7 @@ Not established:
 - that the semantic word readings are plaintext;
 - any unknown LP2 plaintext.
 
-The immediate black-successor use of Q on p23/p8 is already a preregistered negative. The next useful test must therefore obtain a **new source-visible receiver/opcode along the now-typed p27 -> p6 -> p15 -> p23/p8 state path**, rather than tune another direct-Q body stream.
+The immediate black-successor use of Q on p23/p8 remains a preregistered negative. A distinct source-visible receiver has now succeeded: Q's p23/p8 numbers direct to four physical pages whose complete rune counts mod29 reconstruct the same DH state in two branches. See [Q-directed page rune-count DH reconstruction](lp2-q-directed-page-rune-count-dh-reconstruction.md). The remaining gap is how that recovered state acts on black ciphertext or selects the next non-state artifact.
 
 Reproducer: ../sims/lp2_q_private_exponent_direction_chain_sft.cjs
 
