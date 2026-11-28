@@ -196,8 +196,41 @@ function census(values) {
   return { setHits, hHits };
 }
 
+/**
+ * State-label-free structural census of eight-hop quotient/remainder tapes.
+ * @param {number[]} values
+ */
+function structuralCensus(values) {
+  const distinctLow = [];
+  const distinctHigh = [];
+  const both = [];
+  const bothThenFixed = [];
+  for (let start = 0; start < 256; start += 1) {
+    const run = walk(values, start, state.A);
+    const lows = run.nodes.map((address) => address % 29);
+    const highs = run.nodes.map((address) => Math.floor(address / 29));
+    const lowUnique = new Set(lows).size === state.A;
+    const highUnique = new Set(highs).size === state.A;
+    if (lowUnique) distinctLow.push(start);
+    if (highUnique) distinctHigh.push(start);
+    if (lowUnique && highUnique) both.push(start);
+    if (lowUnique && highUnique && values[run.end] === run.end) {
+      bothThenFixed.push(start);
+    }
+  }
+  return { distinctLow, distinctHigh, both, bothThenFixed };
+}
+
 const census59 = census(values59);
 const census60 = census(values60);
+const structural59 = structuralCensus(values59);
+const structural60 = structuralCensus(values60);
+assert.deepEqual(structural59.distinctHigh, [19, 66, 104, 108, 186, 254]);
+assert.deepEqual(structural59.both, [66, 186, 254]);
+assert.deepEqual(structural59.bothThenFixed, [186]);
+assert.deepEqual(structural60.distinctHigh, []);
+assert.deepEqual(structural60.both, []);
+assert.deepEqual(structural60.bothThenFixed, []);
 assert.deepEqual(census59.setHits, [186]);
 assert.deepEqual(census59.hHits, [186]);
 assert.deepEqual(census60.setHits, []);
@@ -323,6 +356,7 @@ const summary = {
   },
   base59Census: census59,
   base60Census: census60,
+  structuralCensus: { base59: structural59, base60: structural60 },
   base60Path: [...path60.nodes, path60.end],
   flankGate: {
     ciphertextIoC: indexOfCoincidence([...p49, ...p51]),
