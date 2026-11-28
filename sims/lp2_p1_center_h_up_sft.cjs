@@ -9,6 +9,9 @@ const root = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(
   path.join(root, "resources/liber-primus/lp2-corpus.json"), "utf8"
 ));
+const solved = JSON.parse(fs.readFileSync(
+  path.join(root, "resources/external/relikd-solved-gp29-native-v1.json"), "utf8"
+));
 const referenceText = fs.readFileSync(
   path.join(root, "resources/liber-primus/lp1-plaintext-reference.txt"), "utf8"
 );
@@ -90,6 +93,80 @@ function centerOutH(values) {
   }
   return out;
 }
+
+
+/** @param {string} text @returns {number[][]} */
+function parseRuneWords(text) {
+  const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
+  const out = [];
+  let current = [];
+  for (const ch of [...text]) {
+    const value = runeIndex.get(ch);
+    if (value !== undefined) {
+      current.push(value);
+    } else if (current.length && "•⁘⁜⁚ \n\r\t".includes(ch)) {
+      out.push(current);
+      current = [];
+    }
+  }
+  if (current.length) out.push(current);
+  return out;
+}
+
+/** @param {number[]} values @returns {number[]} */
+function shedToCenter(values) {
+  let current = [...values];
+  while (current.length > 2) current = current.slice(1, -1);
+  return current;
+}
+
+/** @param {number[]} values @returns {string} */
+function translit(values) {
+  return values.map(value => corpus.translit[value]).join("");
+}
+
+// P57 source-language orientation control. Prior work shed DIUINITY once to
+// IUINIT; this continues the literal circumference operation recursively.
+const p57Solved = solved.sections.find(section => section.name === "p57_parable");
+assert(p57Solved);
+const p57Words = parseRuneWords(p57Solved.source_text);
+assert.equal(p57Words.length, 20);
+const p57Centers = p57Words.map(word => ({
+  word: translit(word),
+  center: translit(shedToCenter(word)),
+}));
+const p57CenterIn = p57Centers.filter(row => row.center === "IN");
+assert.deepEqual(p57CenterIn, [
+  { word: "FIND", center: "IN" },
+  { word: "DIUINITY", center: "IN" },
+]);
+const divinityWord = p57Words.find(word => translit(word) === "DIUINITY");
+assert(divinityWord);
+const divinityLayers = [];
+for (let layer = [...divinityWord]; ; layer = layer.slice(1, -1)) {
+  divinityLayers.push(translit(layer));
+  if (layer.length <= 2) break;
+}
+assert.deepEqual(divinityLayers, ["DIUINITY", "IUINIT", "UINI", "IN"]);
+
+// Broader solved-GP control: center-IN is not globally rare, so the claim is
+// local instruction redundancy rather than a discovery-wide rarity statistic.
+let solvedWordCount = 0;
+const solvedCenterIn = [];
+for (const section of solved.sections) {
+  parseRuneWords(section.source_text || "").forEach((word, wordIndex) => {
+    solvedWordCount++;
+    if (translit(shedToCenter(word)) === "IN") {
+      solvedCenterIn.push({
+        section: section.name,
+        wordIndex,
+        word: translit(word),
+      });
+    }
+  });
+}
+assert.equal(solvedWordCount, 735);
+assert.equal(solvedCenterIn.length, 12);
 
 const p1 = corpus.pages.find(p => p.page === 1);
 assert(p1);
@@ -240,6 +317,12 @@ for (const [name, value] of Object.entries(expected)) {
 }
 
 console.log(JSON.stringify({
+  p57Instruction: {
+    divinityLayers,
+    centerInWords: p57CenterIn,
+    solvedCorpusWords: solvedWordCount,
+    solvedCorpusCenterInHits: solvedCenterIn.length
+  },
   p1: {
     runes: p1.indices.length,
     factorization: "14x19",
