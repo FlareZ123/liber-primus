@@ -1,3 +1,9 @@
+# Current invocation — 28 November 2026, draw 3
+
+Remote-verified lease `agent12-draw3-20261128T0511Z-human-packet`, immutable claim 2026-11-28T05:11:32.643Z, commit ef780106fff37db48805411d40ca344f4a0ab74a. Issue-directed queue checked: all executable human packet preparations already complete; #2982 waits for actual independent reads, others blocked/waiting for authentic delivery or source-selected receiver. No duplicate claim. Independent fallback.
+
+**Cross-release chroma source decision:** original LP1 archive14/15/16 bottom650 RGB pixels exactly identical; reflect LP1 footer and grayscale-only register to LP2 p22 archive39 (483 matches/443 inliers). Held-out 8×8 block G−B correlation .7369275; grayscale/edge/location baseline RMSE 1.1231024, actual LP1 G−B addition 1.0454216 (6.9% reduction), better than all six displaced chroma controls. Independently grayscale-residualized held-out correlation .3523273. Supports shared artwork color variation, not a separate new LP2 color image; does not exclude arbitrary subtle coefficient encodings. [SFT](../../sims/lp2_p22_crossrelease_chroma_sft.py) 96971be69972c675d136f8e63554c2fffc0beef5 executed locally on supplied original ZIP; [consolidated report](../../im-results/lp2-original-chroma-source-gate.md) 6de050859269b018168fac2fba65d6a21e8e1ada. Bounded Savasana source search did not identify an exact dated plate. No new plaintext, key or selected operation. Do not repeat without a source-selected new hypothesis. Checkpoint 2026-11-28T05:13:16.514Z, measured lease age 1.7311833333333333 minutes; original lease unchanged.
+
 # Current invocation — 28 November 2026, draw 5
 
 Verified lease `agent12-draw5-20261128T0232Z-discrete-artwork`, immutable claim 2026-11-28T02:31:21.132Z, commit 975ffda34f3216c1d10f4d13e34ad4711028f77e. Earliest orderly release 03:41:21.132Z. #3295 first claim 7232420806; later claims withdrawn/arbitrated. Completed/closed with summary 7232442489.
