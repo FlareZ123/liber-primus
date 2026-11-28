@@ -153,6 +153,16 @@ authenticated GOOD LUCK
   -> p28 READ OUT
 ~~~
 
+## 4b. Later chapter-grammar cross-holdout selects the same p25
+
+A chapter grammar discovered nine days after this ONE RISE result supplies an independent p23 receiver. It takes the first complete black word immediately after each opening red rubric and uses its GP29-index SUM as the chapter-IN field. On p23 the red instruction ends at offset16; the immediately following eight-rune word is `[28,6,15,25,13,7,19,28]` with raw sum141, so **SUM mod29 = 25**—exactly the p25 destination fixed here on19 November.
+
+Among p23's42 black words, three sum to25, but only two have this eight-rune length and only the immediate post-rubric word is both length8 and sum25. The other repeated RISE pages do not satisfy a general first-word/page+2 rule, so this is specific evidence for **THE ONE RISE** and its adjacent operand.
+
+This chronological cross-holdout materially supports the later grammar's first-black + SUM selector. It does not validate that grammar's PRODUCT edge or promote p25 plaintext.
+
+Reproducer: `sims/lp2_p23_one_rise_firstblack_sum25_crossholdout_sft.cjs`.
+
 ## 5. Family view
 
 All three canonical red RISE packets now admit the same page operation:

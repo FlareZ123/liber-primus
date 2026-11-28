@@ -132,6 +132,20 @@ An independent p7/p15 cross-holdout now gives the chapter graph a typed upstream
 exactly the packet independently fixed by p15 lower red11. The same itinerary's first post-rubric word lengths are `[3,7,2,7,8]`; H5 gives `[24,0,2,14,11]=[-g,F,K,-b,A^-1]`, a second independently fixed state row. Only original p7 printed order among the 10 cyclic/reversal orientations passes **both** rows on the actual chapter map. Preserving the nine observed IN labels and permuting whole observed `(chapter span, first-black length)` records among them gives **240/362,880 = 1/1,512** span-row passes and **120/362,880 = 1/3,024** joint passes.
 
 This materially strengthens the chapter-IN register as a typed address layer and supplies a concrete `p7 inverse row -> chapter addresses -> chapter spans -> H5 packet` path. It remains post-discovery evidence and does not by itself authenticate the p7 circulant opcode or recover body plaintext. Full integrated reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
+## Chronological causal holdout: p23 ONE RISE independently predicts this grammar's SUM
+
+P23 supplies a human-readable test of the chapter operand grammar that predates the grammar itself. Commit `2586e187a1b24197e1123576fb7b364ea71ad8c5` fixed **THE ONE RISE → one existing +2 RISE → physical p25** on 19 November 2026. The chapter SUM→PRODUCT route did not first appear until `4d25c98a774f5da4561fc11b9895efea80ce1303` on 28 November.
+
+On original p23 the contiguous red instruction ends at rune offset16. The **immediately following complete black word**, selected by the later chapter grammar with no reference to the older destination, is the eight-rune vector `[28,6,15,25,13,7,19,28]`. Its raw GP0-index sum is141, hence `141 mod29 = 25`, exactly the independently fixed ONE RISE destination **p25**. The same word has product16, so its chapter fields remain `(IN,OUT)=(25,16)`.
+
+This is specifically an adjacency/first-word result. P23 has42 black words; three have sum25 somewhere on the page. Only two black words have length8, and **only the immediate first one** has sum25. The independently developed four-word-red-span bridge also describes this same word as `(length,sum,product)=(8,25,16)=[A,-q,AK]`.
+
+The control matters: the other repeated RISE pages do not obey a generic “first black SUM = page+2” rule (p33 gives5 rather than35 mod29=6; p40 gives27 rather than42 mod29=13). The evidence is tied to p23's explicit **THE ONE RISE** instruction.
+
+**Consequence:** this directly supports two previously retrospective choices in the chapter hypothesis—take the **first complete black word after the red rubric**, and read its **GP0 SUM** as an address/state field. It does **not** independently select PRODUCT, prove every chapter uses the same semantics, or recover unknown plaintext.
+
+Reproducer: `sims/lp2_p23_one_rise_firstblack_sum25_crossholdout_sft.cjs`.
+
 ## Decision for the solve frontier
 
 This **provisional candidate is materially more operational than a visual theme**: it specifies a finite original-cipher input class, two exact field operations, a deterministic graph, one unique start at book opener p0, five reproducible hops and a plausible final *artifact class*—the numeric table on p50. Unlike a fitted key shell, it requires **no comparison to preselected 2016 signed prose or any guessed LP2 plaintext**. The same route can be checked by a human from original pages.
