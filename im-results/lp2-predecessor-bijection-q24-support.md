@@ -51,7 +51,7 @@ The repository normalizer gives:
 
 The scan is exact. For each predecessor label u, collect all original within-page transition positions with `C_{i-1}=u`. For every native control, enumerate donor E positions whose preceding donor rune is non-F. Each original position i and donor position j contributes start `s=j-i` when it lies in the legal full-length window range, and sets bit `C_i` in a 29-bit successor mask for that u and s. Popcount is therefore exactly `|V_u(E)|`. A start is certified once any predecessor label reaches25.
 
-The lower bound 25 is not an artifact of the threshold code: a direct all-position calculation at Gibran start8500 gives `max_u |V_u(E)| = 25` (predecessor label5 is a maximizer), so this cardinality invariant itself is sharp at q=25 on the tested envelope. Stronger exclusion would need joint constraints across predecessor labels, another plaintext rune, or additional structure tying the `T_u` maps together.
+The lower bound 25 is not an artifact of the threshold code. A direct all-position calculation at Gibran start8500 gives `max_u |V_u(E)| = 25` (predecessor label5 is a maximizer). More strongly, among the 119 Gibran windows where E alone does not reach26, an exact all-rune replay finds 59 windows whose **global** single-pair bound `max_{x!=F,u}|V_u(x)|` is still exactly25; Gibran start5283 is one witness (plaintext O, predecessor23). Thus no choice of another single plaintext rune can raise the envelope-wide cardinality bound above25. Any q25 exclusion must use joint compatibility across several `(x,u)` pairs or additional structure tying the `T_u` maps together.
 
 ## Positive control
 
