@@ -129,7 +129,15 @@ p1 [1,13] = Q^18 -> MAP/THE WAY
 
 Both land on the same independently structured receiver **p8**. The channels share the p1 state and the general numbers-as-direction grammar, so this is not statistical independence. Their consumers are nonetheless different: one uses only canonical GP spelling plus p1 artwork, while the other uses finite-field exponentiation, authenticated signed-source labels and the already-published p23/p5 art walk.
 
-P8 then supplies a prospective return into the opening pages: its unique first-black descriptor has `SUM=23=IN` and `PRODUCT=2=OUT`, selecting p2; p2's odd 201-rune stream has exact center rune `N`, which can again select the north/upper infinity and hence return to p8. That secondary `p8 -> p2 -> N -> ∞ -> 8 -> p8` loop is documented separately and remains explicitly provisional.
+P8's unique first-black descriptor has `SUM=23=IN` and `PRODUCT=2=OUT`. Under the already-established chapter graph, that OUT value does **not** mean physical p2: it addresses the unique chapter whose IN is2, physical **p27**. A direct OUT2→physical-p2 rival was checked and rejected as a type error against the existing graph grammar.
+
+A stronger solved-text clue now supports the graph's **IN→OUT orientation** itself. Apply p57's literal instruction “SHED OUR OWN CIRCUMFERENCES” to the word `DIUINITY` by repeatedly removing its outermost letter pair:
+
+```text
+DIUINITY -> IUINIT -> UINI -> IN.
+```
+
+Thus “FIND THE DIUINITY WITHIN” lands exactly on **IN** at the center; the next words “AND EMERGE” naturally supply **OUT**. This is a source-visible IN→OUT arrow that was not used to discover the chapter graph. It does not choose SUM versus PRODUCT by itself, but it independently favors the graph's forward SUM(IN)→PRODUCT(OUT) orientation over the exact reverse PRODUCT→SUM path.
 
 The orientation dependency is bounded. If the p1-style center H operand order is allowed to float across all 23 even pages, four of 46 page/orientation presentations reach a ROAD23 coordinate after the same Q/DIRECTION29 stride: p0 left→right, p1 right→left, p18 left→right and p47 left→right. Therefore the ROAD uniqueness claim is correctly scoped to the pre-existing upright/right artwork orientation; it is not orientation-free.
 
@@ -186,6 +194,7 @@ The fixed historical row permutation gives score **-3.416230853368736** and read
 - consuming `[0,23]` as ROAD23→physical p23;
 - reading `UP` as the upper opening-page infinity and `∞` as 8→p8;
 - iterating the established p23→p5→p8 visual count route;
+- interpreting p57's center-stripped `IN` followed by “EMERGE” as the chapter graph's IN→OUT direction;
 - the secondary upright-cross bar-count→p3 bridge.
 
 The exact algebra and familywide controls materially strengthen a navigation interpretation. They do not recover p1 black plaintext, a body key, a KDF, or a complete LP2 cipher.
