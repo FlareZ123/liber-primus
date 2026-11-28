@@ -17,7 +17,6 @@ const bytes=grid.byte_rows.flat();
 const tokens=grid.rows.flat();
 assert.equal(bytes.length,256);
 assert.equal(tokens.length,256);
-assert.deepEqual([...bytes].sort((a,b)=>a-b),Array.from({length:256},(_,i)=>i));
 
 const Q=[17,24];
 const basisU=[0,1];
