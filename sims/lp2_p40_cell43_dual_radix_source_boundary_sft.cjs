@@ -33,9 +33,12 @@ for(let cell=0;cell<tokens.length;cell+=1){
   });
 }
 const boundaryHits=rows.filter(r=>r.d59===29&&r.d60===30);
+const residueHits=rows.filter(r=>((r.d59%29)+29)%29===0&&((r.d60%29)+29)%29===1);
 assert.deepEqual(boundaryHits,[{
   cell:43,token:"1D",v59:72,v60:73,d59:29,d60:30,
 }]);
+
+assert.deepEqual(residueHits.map(r=>r.cell),[43,225]);
 
 const cell43=rows.find(r=>r.cell===43);
 assert.ok(cell43);
@@ -51,5 +54,6 @@ console.log(JSON.stringify({
     establishedTail:"SEEK ... OPENPGP = indices30..42",
   },
   exactOrderedDisplacementPairHits:boundaryHits,
-  conclusion:"Across every p50 cell readable under both base59 and base60, cell43 alone has forward pointer displacements [29,30]. Those are exactly the established zero-based authenticated-source boundary indices DIRECTION/SEEK. This is a unique post-discovery cross-artifact convergence; it does not itself choose a radix or decode LP2 plaintext.",
+  mod29Pair:{selected:[0,1],labels:["F","1"],allTableHits:residueHits.map(r=>({cell:r.cell,token:r.token,d59:r.d59,d60:r.d60}))},
+  conclusion:"Across every p50 cell readable under both base59 and base60, cell43 alone has forward pointer displacements [29,30]. Those are exactly the established zero-based authenticated-source boundary indices DIRECTION/SEEK; modulo the DIRECTION modulus29 they become [F,1]=[0,1]. The residue pair alone has one rival (cell225), while the literal [29,30] pair is unique. This is a post-discovery cross-artifact convergence, not a radix proof or plaintext decoder.",
 },null,2));
