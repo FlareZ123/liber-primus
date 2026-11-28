@@ -1,6 +1,6 @@
 # 2014 Stage11 HTML numbers: page selector and base60-table coordinate hypothesis
 
-**Status:** source-grounded hypotheses, not a decipherment. The page/rune selector arithmetic is exact; a newly derived base60-table coordinate extraction yields a plausible IPv4 address, but its Cicada role is unverified.
+**Status:** source-grounded hypotheses, not a decipherment. The base60-table extraction yields `31.184.172.36`; 2014 BGP history confirms its containing prefix was publicly routed while the alternate orientation was not. No Cicada association, archived page, or p56-hash match has yet been established.
 
 ## Source facts
 
@@ -89,11 +89,17 @@ The values are directly visible in the original scans. On p50, zero-based row 13
 31, 184, 172, 36  ->  31.184.172.36
 ```
 
-That is a syntactically valid, publicly routable IPv4 address. The natural row-major order follows the table's printed row order; column-major would instead give 31.172.184.36 and is retained as an orientation control. Current public registry searches place 31.184.172.0/24 in Iran (AS35766 / Mizbani Dadehaye Mabna PJSC), but no Cicada association has been found. Current allocation/ownership does not establish who used the address in 2014.
+That is a syntactically valid IPv4 address. A reproducible RIPEstat routing-history query confirms that `31.184.172.36` was covered by the publicly announced `31.184.128.0/18` throughout 2014, originated by AS51074. The more-specific `31.184.172.0/24` was also observed from 2014-01-02 through 2014-02-02 and again on 2014-08-24. The alternate orientation `31.172.184.36` had no covering route in the same 2014 query, while the positive control `8.8.8.8` returned historical routes. Raw output: `im-results/cicada2014-ip-routing-history-gate.json`.
+
+The observed AS paths were `AS44889 → AS51074` and `AS12880 → AS51074`. Current RIPE registry data identifies AS51074 as GOSTARESH-E-ERTEBATAT-E MABNA COMPANY (MABNA), registered in Iran in 2010; AS44889 is Farhang Azma Communications Company and AS12880 is Iran Information Technology Company ([AS51074](https://asnbase.com/AS51074), [AS44889](https://asnbase.com/AS44889), [AS12880](https://www.ipxo.com/asn/AS12880/)). This places the candidate inside an Iranian ISP network, but BGP routing proves only that the prefix was advertised: it does not show that host `.36` was listening, assigned to Cicada, or serving the p56 page. The current registry's downstream AS35766 (Mabna-Cloud) is not the 2014 origin; do not conflate it with AS51074.
 
 This is an exact source-selected extraction candidate, not a verified endpoint or recovered plaintext. Any four bytes can be written as an IPv4 address, so the external/historical association is the decisive test. The simple Hill-cipher follow-on was also tested: `[[31,36],[10,21]] mod 29 = [[2,7],[10,21]]` has determinant 1, but applying the matrix, inverse, and transposes to paired p17/p41 streams left both output ICs near random (about 0.034); no plaintext emerged. Do not treat the block as a validated Hill key.
 
-A passive Common Crawl gate is running from `sims/cicada2014_ip_archive_gate.cjs`; it compares the row-major candidate against the column-major address and historical controls. The first uncalibrated run returned no records for any target, so that absence is not informative. A second run adds `example.com` as a positive control; record its result before drawing any archive conclusion. No direct host scan has been performed.
+The passive Common Crawl gate is implemented in `sims/cicada2014_ip_archive_gate.cjs`. It compares the row-major candidate, the column-major orientation, 2012 historical controls, and `example.com` as a positive control across 2014–2015 indexes. The first uncalibrated run returned no records for any target and is not informative. The calibrated artifact-backed run is in progress; it will preserve `results.json` and `report.md` under `im-results/cicada2014-ip-commoncrawl-gate/`. If the candidate has records, retrieve the exact WARC payload and compare its SHA-512 against the p56 digest. No direct host scan has been performed.
+
+A separate passive Tor Project ExoneraTor gate is queued. It checks `31.184.172.36` on 2014-01-15, 2014-02-01, and 2014-08-24; the orientation control on corresponding dates; and a known-positive Tor relay control. Its output will be `im-results/cicada2014-ip-exonerator-gate.json`. A positive result would establish relay status only, not a Cicada connection; negative results apply only to the sampled dates.
+
+A bounded SHA-512 check of the bare candidate IP and simple HTTP/HTTPS URL forms (`/`, `/index.html`, and default ports) did not match the p56 digest. This excludes only those literal URL strings, not a page body or an unknown path.
 
 ## Strongest objections
 
@@ -106,6 +112,6 @@ A passive Common Crawl gate is running from `sims/cicada2014_ip_archive_gate.cjs
 
 ## One bounded next decision
 
-The simplest T9-digit Vigenere consumer remains negative; do not expand it into a generic keypad-key search. The new base60 extraction has one bounded next decision: finish the passive archive and historical-network check for 31.184.172.36, using 31.172.184.36 as the orientation control and a working positive control. If an independently dated Cicada-related page, DNS record, Tor record, or archived service is found, trace that exact endpoint. If not, retain the four-byte extraction as an unverified candidate and park it; do not brute-force other 2×2 blocks or actively scan unrelated addresses.
+The simplest T9-digit Vigenere consumer remains negative; do not expand it into a generic keypad-key search. For the IP candidate, finish the two passive checks already commissioned. If Common Crawl finds a 2014–2015 record for `31.184.172.36`, retrieve its exact WARC bytes, compute SHA-512 over the HTTP body and source variants, and compare with the p56 digest. If ExoneraTor finds the candidate as a relay on a sampled 2014 date, inspect its fingerprint and nickname against Cicada records; do not treat relay status alone as proof. If neither archive supplies a Cicada-specific page, relay, or independently dated association, retain the extraction as an unverified address candidate and park it. Do not brute-force other 2×2 blocks or actively scan the host.
 
 The p55 phone-phrase branch remains separate and unresolved. Under [#2447](https://github.com/FlareZ123/liber-primus/issues/2447), a complete candidate must conserve all 86 original p54→p55 receiver runes, including the ten p54 runes and one p55 rune belonging to the same carried word. Only a frozen full 76-rune p55 inverse satisfying [#41](https://github.com/FlareZ123/liber-primus/issues/41) warrants an independent original-cipher test. Original p55 is still a nominated receiver, not an authenticated target of the historical phrase; the phrase remains a speculative crib, not a key or recovered plaintext.
