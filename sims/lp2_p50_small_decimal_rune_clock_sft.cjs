@@ -47,11 +47,21 @@ assert.equal(cipher.length, 12956);
 assert.equal(red.reduce((a,b) => a+b,0), 213);
 const blackPrefix = [0];
 for (const isRed of red) blackPrefix.push(blackPrefix.at(-1) + 1 - isRed);
+const nonFPrefix = [0], nonFNonRedPrefix = [0];
+for (let i=0; i<cipher.length; i++) {
+  nonFPrefix.push(nonFPrefix.at(-1) + Number(cipher[i] !== 0));
+  nonFNonRedPrefix.push(nonFNonRedPrefix.at(-1) + Number(cipher[i] !== 0 && !red[i]));
+}
+assert.equal(nonFPrefix.at(-1),12498);
 const clocks = {
   all_runes_continuous: i => i,
+  skip_F_continuous: i => nonFPrefix[i+1] - 1,
   skip_red_continuous: i => blackPrefix[i+1] - 1,
+  skip_F_and_red_continuous: i => nonFNonRedPrefix[i+1] - 1,
   all_runes_page_reset: i => i - pageStart[pageId[i]],
-  skip_red_page_reset: i => blackPrefix[i+1] - blackPrefix[pageStart[pageId[i]]] - 1
+  skip_F_page_reset: i => nonFPrefix[i+1] - nonFPrefix[pageStart[pageId[i]]] - 1,
+  skip_red_page_reset: i => blackPrefix[i+1] - blackPrefix[pageStart[pageId[i]]] - 1,
+  skip_F_and_red_page_reset: i => nonFNonRedPrefix[i+1] - nonFNonRedPrefix[pageStart[pageId[i]]] - 1
 };
 const opportunities = [];
 for (let i = 0; i+1 < cipher.length; i++) {
@@ -103,5 +113,15 @@ assert.deepEqual([
   g.skip_red_page_reset.phase_zero.hits,
   g.skip_red_page_reset.max_hits_over_256_phases
 ], [248,1,6,254,1,6,247,2,6]);
+assert.deepEqual([
+  g.skip_F_continuous.phase_zero.gates, g.skip_F_continuous.phase_zero.hits,
+  g.skip_F_continuous.max_hits_over_256_phases,
+  g.skip_F_page_reset.phase_zero.gates, g.skip_F_page_reset.phase_zero.hits,
+  g.skip_F_page_reset.max_hits_over_256_phases,
+  g.skip_F_and_red_continuous.phase_zero.gates, g.skip_F_and_red_continuous.phase_zero.hits,
+  g.skip_F_and_red_continuous.max_hits_over_256_phases,
+  g.skip_F_and_red_page_reset.phase_zero.gates, g.skip_F_and_red_page_reset.phase_zero.hits,
+  g.skip_F_and_red_page_reset.max_hits_over_256_phases
+], [252,3,6,243,2,7,256,2,7,250,1,7]);
 assert.deepEqual(g.all_runes_continuous.phases_attaining_maximum,[0]);
 process.stdout.write(JSON.stringify(result,null,2)+'\n');
