@@ -574,6 +574,55 @@ assert.deepEqual(p31Key, [
   h2([geomW1[0], geomW1[geomW1.length - 1]])[0],
 ]);
 
+// Deterministic endpoint/circumference form of the successful mechanism.
+// The 11-inside-13 boundary selects SEEK AND before this construction.
+// Use only SEEK's endpoints and AND's last rune from the signed source; the
+// four interior source coordinates remain held out.
+assert.deepEqual([seek.values[0], seek.values[seek.values.length - 1]], [state.b, state.g]);
+assert.equal(and.values[and.values.length - 1], state.p);
+const seekCircumferenceH = h2([seek.values[0], seek.values[seek.values.length - 1]]);
+assert.deepEqual(seekCircumferenceH, [Kg, qg]);
+
+const endpointReceiver4Shell = [
+  ...seekCircumferenceH,
+  seek.values[0],
+  state.e,
+];
+const endpointReceiver3Shell = [
+  mod29(seek.values[0] - state.q),
+  and.values[and.values.length - 1],
+  mod29(seek.values[0] - state.K),
+];
+assert.deepEqual(endpointReceiver4Shell, p30ReceiverShell);
+assert.deepEqual(endpointReceiver3Shell, p31ReceiverShell);
+
+const endpointKey4 = [
+  geomW3[0],
+  geomW4[0],
+  ...h2([state.F, geomW3[0]]),
+];
+const endpointKey3 = [
+  mod29(state.K + seek.values[0]),
+  geomW4[0],
+  mod29(state.K + seek.values[seek.values.length - 1]),
+];
+assert.deepEqual(endpointKey4, p30Key);
+assert.deepEqual(endpointKey3, p31Key);
+
+const endpointOutputs = [-1, 1].map((direction) => ({
+  direction,
+  left: p30Receiver.map((value, index) => mod29(value + direction * endpointKey4[index])),
+  right: p31Receiver.map((value, index) => mod29(value + direction * endpointKey3[index])),
+}));
+assert.deepEqual(endpointOutputs, [
+  { direction: -1, left: seek.values, right: and.values },
+  { direction: 1, left: [27, 17, 6, 17], right: [0, 8, 8] },
+]);
+assert.deepEqual(endpointOutputs[0].left.slice(1, -1), seek.values.slice(1, -1));
+assert.deepEqual(endpointOutputs[0].right.slice(0, -1), and.values.slice(0, -1));
+assert.notDeepEqual(endpointOutputs[1].left.slice(1, -1), seek.values.slice(1, -1));
+assert.notDeepEqual(endpointOutputs[1].right.slice(0, -1), and.values.slice(0, -1));
+
 // Page-blind full family charge. Build receiver shells only from the p6
 // unique [q,K] adjacency, signed H4(title-length) fields, and literal W3
 // runes. Search every complete manuscript word, then cross surviving receivers
@@ -890,6 +939,23 @@ const result = {
     observed: { start: p29GStepReceiver.start, length: p29GStepReceiver.values.length },
     pass: false,
     decision: "reject the 27->32 ordinal +g recurrence; do not retune the address",
+  },
+  deterministicEndpointMechanism: {
+    sourceInputsUsed: {
+      seekEndpoints: [seek.values[0], seek.values[seek.values.length - 1]],
+      andLast: and.values[and.values.length - 1],
+      heldOutInteriors: {
+        seek: seek.values.slice(1, -1),
+        and: and.values.slice(0, -1),
+      },
+    },
+    receiver4Shell: endpointReceiver4Shell,
+    receiver3Shell: endpointReceiver3Shell,
+    key4: endpointKey4,
+    key3: endpointKey3,
+    bothDirections: endpointOutputs,
+    exactDirection: -1,
+    note: "deterministic post-discovery endpoint/circumference rule; source interiors are not used",
   },
   pageBlindFullFamilyCharge: {
     receiverShell4FamilySize: receiverShell4Family.size,
