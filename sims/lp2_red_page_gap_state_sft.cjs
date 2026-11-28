@@ -62,6 +62,33 @@ assert.equal(redRuneCount,225);
 assert.deepEqual([Math.floor(redRuneCount/MOD),redRuneCount%MOD],
   [state.g+state.K,state.p-1]);
 
+
+// Natural 2x2 red-feature table: complete red rune span vs red large punctuation.
+const spanPageSet=new Set(ink.pages.filter((page)=>(page.red_spans||[]).length).map((page)=>page.page));
+const punctuationPageSet=new Set(ink.pages.filter((page)=>
+  (page.large_punctuation||[]).some((item)=>item[2]==='red')).map((page)=>page.page));
+const bothPages=[],spanOnlyPages=[],punctuationOnlyPages=[],neitherPages=[];
+for(let page=0;page<58;page+=1){
+  const hasSpan=spanPageSet.has(page),hasPunctuation=punctuationPageSet.has(page);
+  (hasSpan&&hasPunctuation?bothPages:hasSpan?spanOnlyPages:hasPunctuation?punctuationOnlyPages:neitherPages).push(page);
+}
+assert.equal(spanPageSet.size,state.b);                    // 15
+assert.equal(punctuationPageSet.size,state.p-1);          // 22
+assert.equal(bothPages.length,state.b-state.K);           // 13
+assert.equal(spanOnlyPages.length,state.K);               // 2
+assert.equal(punctuationOnlyPages.length,state.q+state.g);// 9
+assert.equal(neitherPages.length,MOD+state.g);            // 34
+assert.deepEqual(spanOnlyPages,[8,40]);
+const spanOnlyResidues=spanOnlyPages.map((page)=>page%MOD);
+assert.deepEqual(spanOnlyResidues,[state.A,11]);          // [A,A^-1]
+assert.equal(mod(state.A*spanOnlyResidues[1]),1);
+assert.equal(mod(spanOnlyResidues[0]+spanOnlyResidues[1]),state.B);
+assert.equal(mod(spanOnlyResidues[1]-spanOnlyResidues[0]),state.e);
+assert.deepEqual([
+  mod(spanOnlyResidues[1]-spanOnlyResidues[0]),
+  mod(spanOnlyResidues[1]+spanOnlyResidues[0]),
+],[state.e,state.B]);
+
 console.log(JSON.stringify({
   visibleRedPages,
   redPageCount:visibleRedPages.length,
@@ -77,5 +104,6 @@ console.log(JSON.stringify({
   completeRedSpanCount:redSpans.length,
   completeRedRuneCount:redRuneCount,
   completeRedRuneCountBase29:[Math.floor(redRuneCount/MOD),redRuneCount%MOD],
+  redFeatureContingency:{bothPages,spanOnlyPages,punctuationOnlyPages,neitherPages,spanOnlyResidues},
   state,
 },null,2));
