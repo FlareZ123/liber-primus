@@ -196,7 +196,35 @@ The first-party 2013 specification gives an explicit `BASE29 3301 -> 3QO` exampl
 
 **One predeclared discriminator:** a previously unseen, creator-authenticated numeric value for the printed **first cell `3N`**. If that value is **203**, it selects the conventional base60 byte grammar; if it is **200**, it selects the drop-f base59 byte grammar. An authenticated encoding declaration or typed output of the adjacent original 138-rune pretable sentence could also decide. No inspected original artifact supplies this input. Mere source-copied participant decimal203 is not independent.
 
-**Decision:** The source table does not currently select byte type, radix, consumer or key. Preserve the two readings as conditional, discontinue discrimination by table-only uniform-byte histograms, and seek a first-party typed example or an independently decoded table-adjacent instruction. Neither the overall LP2 cipher nor any of its 56 unknown pages is solved by this result.
+### Independent numeric-equality decision (#3271, Agent25, 28 November 2026)
+
+The bounded first-party/period-source review yields **no additional equality binding a specifically identified LP2 cell to an independently fixed numerical value**. The closest literal overlap is independently informative about *type*, not radix:
+
+| Historical numeric example | Printed output | LP2 relation |
+| --- | --- | --- |
+| Signed 2013 TCP BASE29 3301 | `3QO` | Three digits; no exact two-character cell, and 3301 exceeds both byte domains. |
+| 26 January 2013 participant-server log, BASE29 30 | `11` | Exactly one original cell has this spelling: global zero-based index 211 (physical p51, row 4, column 4, one-based). Its frozen base59/base60 values are **60/61**, neither 30. |
+| 3 March 2013 participant-server log, BASE29 1033 | `16I` | Three digits; no exact cell, and 1033 exceeds both byte domains. |
+
+The signed protocol's literal worked example is reproduced in the [pinned decoded source](https://github.com/iBotPeaches/cicada_3301/blob/27309e66746e21542f2b908d7f60b906915fe7c6/other/2013_TCP_Server.md); the January/March examples are participant-preserved, not separately signed, as recorded in the [protocol source study](../resources/external/2013-tcp-server-signed-source.md). The effective BASE29 alphabet does not constrain the relative numbering of lowercase letters, including f, under a different radix. The exact `11` spelling match supplies no authored connection between the log and physical p51; even granting that connection, the historical numerical value rejects both proposed codecs for that cell. Do not convert 30 into a newly selected p50 address.
+
+The authenticated 2014 [book-coordinate instructions](https://github.com/iBotPeaches/cicada_3301/blob/27309e66746e21542f2b908d7f60b906915fe7c6/messages/2014/the-work-of-a-private-man.asc) specify colon-separated coordinates, the [signed RSA challenge](https://github.com/iBotPeaches/cicada_3301/blob/27309e66746e21542f2b908d7f60b906915fe7c6/messages/2014/welcome.asc) labels decimal e/n, and the [signed hex carrier](https://github.com/iBotPeaches/cicada_3301/blob/27309e66746e21542f2b908d7f60b906915fe7c6/messages/2014/let-the-text-guide-you.asc) contains the standard literal JPEG byte serialization. The [Stage10 form](../resources/external/cicada2014-onion6-magic-form-and-response.json) labels decimal square orders and sums; the [Stage11 index](../resources/external/cicada2014-stage11-onion7-original-index.html) merely lists the images. None assigns a value to a named printed table cell. The period MIRACL alphabet is a technical precedent, not a Cicada instruction.
+
+The already known local p57 `13th prime = 41 → table[41] = 1O → 83 = 23rd prime = GP0(EMERGE)` equality favors base59 **conditional on that particular rule**. It is not a new independent anchor. [#2069](https://github.com/FlareZ123/liber-primus/issues/2069) explicitly tested whether that bridge selects a global radix and closed at the missing second prediction; the reverse directed edge also fails. Preserve its local status.
+
+**Exact future acceptance criterion.** Write a printed cell as decimal leading digit a and second digit b in the conventional alphabet. On the shared support, V60−V59 = a + 1[b lies after lowercase f]. Consequently any authenticated value of a cell with positive difference suffices to choose between these two fixed interpretations; a value outside both rejects both for that identified cell. Any independently specified nonnegative integer weighted checksum similarly distinguishes whenever its weights include at least one such cell. This is a general prediction rule, not a proposal to match arbitrary known constants to invented weights. The original 256 cells have 220 distinguishing positions and 36 with equal values; the total unweighted difference is 507. No source labels the table total as a checksum. The first cell remains the frozen best acquisition target (203 versus 200). These exact counts were computed directly from the original-image-adjudicated grid in V8; no new cipher, radix/offset sweep, or table scoring was performed. Reproduction:
+
+```js
+const g = require('../resources/liber-primus/lp2-grid-256.json');
+const a = g.alphabet, b = a.replace('f','');
+const v = (t,z) => z.indexOf(t[0])*z.length+z.indexOf(t[1]);
+const t = g.pages.flatMap(p=>p.tokens);
+const d = t.map(x=>v(x,a)-v(x,b));
+console.log(t.flatMap((x,i)=>x==='11'?[i]:[]),v('11',b),v('11',a));
+console.log(d.filter(x=>x>0).length,d.filter(x=>x===0).length,d.reduce((x,y)=>x+y,0));
+```
+
+**Decision:** The source table does not currently select byte type, global radix, consumer or key. Preserve the two readings as conditional, discontinue discrimination by table-only uniform-byte histograms, and seek a first-party typed example or an independently decoded table-adjacent instruction. Close #3271 under the missing-binding criterion; reopening requires a new source rather than a new numerical fit. Neither the overall LP2 cipher nor any of its 56 unknown pages is solved by this result.
 
 ## Relative column-order decision (Director #2899, Agent1, 26 November)
 
