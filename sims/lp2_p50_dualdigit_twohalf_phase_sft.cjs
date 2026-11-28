@@ -193,7 +193,7 @@ function rand32(){
 const TRIALS=10000;
 let bothSourceTop=0,anySharedTop=0,jointOriginalScoreExceed=0;
 let sourceHalf1ScoreExceed=0,sourceHalf2ScoreExceed=0;
-let bothRawSourceTalliesExceed=0;
+let bothRawSourceTalliesExceed=0, anyCircularPhaseJointZExceed=0;
 const src1=summaries[0].source.score,src2=summaries[1].source.score;
 for(let iteration=0;iteration<TRIALS;iteration++){
   const shuffled=tokens.slice();
@@ -206,6 +206,13 @@ for(let iteration=0;iteration<TRIALS;iteration++){
   if(z1>=src1)sourceHalf1ScoreExceed++;
   if(z2>=src2)sourceHalf2ScoreExceed++;
   if(z1>=src1&&z2>=src2)jointOriginalScoreExceed++;
+  // Scan-corrected source null: allow every one of the 256 shifts to beat
+  // the weakest of the two original source phase scores. This adjustment
+  // does not correct the historical post hoc selection of both predicates.
+  const z2ByPhase=Array(256);
+  for(const r of h2.rows)z2ByPhase[r.phase]=r.score;
+  if(h1.rows.some(r=>Math.min(r.score,z2ByPhase[r.phase])>=Math.min(src1,src2)))
+    anyCircularPhaseJointZExceed++;
   const p1=h1.rows.find(x=>x.phase===0),p2=h2.rows.find(x=>x.phase===0);
   if(p1.high+p1.correct>=rawSummaries[0].phase0.tally &&
      p2.high+p2.correct>=rawSummaries[1].phase0.tally)bothRawSourceTalliesExceed++;
@@ -217,6 +224,8 @@ console.log('Whole-two-character-token shuffle null',JSON.stringify({
   sourcePhaseScoreAtLeastOriginalHalf1:sourceHalf1ScoreExceed,
   sourcePhaseScoreAtLeastOriginalHalf2:sourceHalf2ScoreExceed,
   jointSourcePhaseScoresAtLeastOriginal:jointOriginalScoreExceed,
+  anyCircularPhaseJointScoresAboveOriginalWeakerHalf:anyCircularPhaseJointZExceed,
+  addOneScanAdjustedTail:(anyCircularPhaseJointZExceed+1)/(TRIALS+1),
   jointIntegerTallyAtLeastOriginal:bothRawSourceTalliesExceed,
   addOneJointExceed:(jointOriginalScoreExceed+1)/(TRIALS+1)
 },null,2).replace(/,\s*"allP":\s*\{\}/,''));
