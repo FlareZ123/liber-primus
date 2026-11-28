@@ -137,7 +137,7 @@ function main(){
     historical_paths:[...allPaths].sort(),
     high_value_hits:highValue,
     prime_or_gematria_hits:hits.filter(h=>h.matched.some(m=>["prime","gematria"].includes(m.needle))),
-    path_events
+    path_events:pathEvents
   };
 
   fs.writeFileSync(
