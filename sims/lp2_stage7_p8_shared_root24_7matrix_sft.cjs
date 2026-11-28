@@ -60,6 +60,35 @@ assert.equal(rowReduce(S).det,2);
 assert.equal(rowReduce(M).det,18);
 assert.deepEqual(roots(S),[8,18,24]);
 assert.deepEqual(roots(M),[24]);
+// Matched source-order null: independently reorder only the seven ORIGINAL
+// columns. It preserves all individual historical rows, every row total,
+// 7x7 dimensions and the exact printed entries, but challenges whether the
+// published cross-register eigenvalue alignment is forced by row sums.
+// Canonical Stage7 S has roots8=A(p15) and24=-g(p8), both independently
+// derived source values before this comparison. This null is conditional,
+// NOT an unconditional probability of a discovered two-root coincidence.
+function* permutations(values,pos=0){
+  if(pos===values.length){yield values.slice();return;}
+  for(let i=pos;i<values.length;i++){
+    [values[pos],values[i]]=[values[i],values[pos]];
+    yield* permutations(values,pos+1);
+    [values[pos],values[i]]=[values[i],values[pos]];
+  }
+}
+const columnNull={n:0,root8:0,root18:0,root24:0,both8and24:0};
+for(const columns of permutations([0,1,2,3,4,5,6])){
+  const permuted=S.map(row=>columns.map(j=>row[j]));
+  const r8=rowReduce(shift(permuted,8)).rank<7;
+  const r24=rowReduce(shift(permuted,24)).rank<7;
+  const r18=rowReduce(shift(permuted,18)).rank<7;
+  columnNull.n+=1;
+  if(r8)columnNull.root8+=1;
+  if(r24)columnNull.root24+=1;
+  if(r18)columnNull.root18+=1;
+  if(r8&&r24)columnNull.both8and24+=1;
+}
+assert.deepEqual(columnNull,{n:5040,root8:197,root18:5040,root24:229,both8and24:9});
+
 const sVector=[1,10,20,25,20,10,1],mVector=[18,9,9,8,28,0,1];
 const multiplyVector=(A,x)=>A.map(row=>mod(row.reduce((n,a,i)=>n+a*x[i],0)));
 assert.deepEqual(multiplyVector(S,sVector),sVector.map(x=>mod(24*x)));
@@ -93,4 +122,4 @@ assert.equal(nativeP57.runic_count,95);
 const plain=Array.from({length:7},(_,i)=>nativeP57.indices.slice(i*7,i*7+7));
 assert.deepEqual(mul(Sinv,mul(S,plain)),plain.map(row=>row.map(mod)));
 assert.deepEqual(mul(mul(plain,S),Sinv),plain.map(row=>row.map(mod)));
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-transcription.txt','resources/liber-primus/lp2-corpus.json'],historical7RowSum:1033,stage7Roots:roots(S),p8FragmentRoots:roots(M),sharedRoot:24,stage7RightVector:sVector,p8RightVector:mVector,sharedRightEigenvector:false,sharedEigenspaceStackRank:commonRank,stage7Mod29Det:rowReduce(S).det,p8Mod29Det:rowReduce(M).det,attempts,positiveNative49:true,classification:'shared root, no authenticated decoder'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-transcription.txt','resources/liber-primus/lp2-corpus.json'],historical7RowSum:1033,stage7Roots:roots(S),p8FragmentRoots:roots(M),stage7ColumnPermutationNull:columnNull,sharedRoot:24,stage7RightVector:sVector,p8RightVector:mVector,sharedRightEigenvector:false,sharedEigenspaceStackRank:commonRank,stage7Mod29Det:rowReduce(S).det,p8Mod29Det:rowReduce(M).det,attempts,positiveNative49:true,classification:'shared root, no authenticated decoder'},null,2));
