@@ -43,14 +43,14 @@ static vector<int> decode(const string& x){
 struct Search {
   const vector<int>& P; const vector<int>& O; int m,maxShifts;
   array<int,Q> key{}; const array<int,Q>* truth=nullptr;
-  uint64_t nodes=0,leaves=0; bool found=false; int foundT=-1,foundShift=-1;
+  uint64_t nodes=0,leaves=0; bool found=false; int foundT=-1,foundShift=-1; array<int,Q> foundKey{};
   Search(const vector<int>&p,const vector<int>&o,int mm,int rr):P(p),O(o),m(mm),maxShifts(rr){key.fill(-1);}
   void dfs(int t,int i,int j,int shifts){
     if(found)return; nodes++;
     if(j==m){
       leaves++;
       if(truth){for(int s=0;s<Q;s++)if(key[s]>=0&&key[s]!=(*truth)[s])return;}
-      found=true;foundT=t;foundShift=shifts;return;
+      found=true;foundT=t;foundShift=shifts;foundKey=key;return;
     }
     if(i==(int)P.size()||j+((int)P.size()-i)<m)return;
     const int maxExtra=maxShifts-shifts;
@@ -123,7 +123,7 @@ int main(int argc,char**argv){
 
   int total=(int)C.size()-mins[ci]+1;
   unsigned nt=std::thread::hardware_concurrency(); if(nt<2)nt=2; if(nt>8)nt=8;
-  vector<uint64_t> nodes(nt),leaves(nt); std::atomic<bool> any(false);
+  vector<uint64_t> nodes(nt),leaves(nt); vector<int> hitT(nt,-1),hitShift(nt,-1); vector<array<int,Q>> hitKey(nt); std::atomic<bool> any(false);
   vector<std::thread> th;
   for(unsigned k=0;k<nt;k++)th.emplace_back([&,k]{
     Search s(P,C,mins[ci],maxShifts);
@@ -131,7 +131,7 @@ int main(int argc,char**argv){
       s.key.fill(-1);s.dfs(t,0,0,0);
       if(s.found){any.store(true);break;}
     }
-    nodes[k]=s.nodes;leaves[k]=s.leaves;
+    nodes[k]=s.nodes;leaves[k]=s.leaves;if(s.found){hitT[k]=s.foundT;hitShift[k]=s.foundShift;hitKey[k]=s.foundKey;}
   });
   for(auto&x:th)x.join();
   uint64_t nodeSum=0,leafSum=0;for(auto x:nodes)nodeSum+=x;for(auto x:leaves)leafSum+=x;
@@ -142,7 +142,15 @@ int main(int argc,char**argv){
      <<",\"ci\":"<<ci<<",\"L\":"<<P.size()<<",\"m\":"<<mins[ci]
      <<",\"threads\":"<<nt<<",\"controls_true_key_passed\":"<<controls
      <<",\"nodes\":"<<nodeSum<<",\"relaxed_leaves\":"<<leafSum
-     <<",\"hit\":"<<(any.load()?"true":"false")<<"}\n";
+     <<",\"hit\":"<<(any.load()?"true":"false");
+  if(any.load()){
+    for(unsigned k=0;k<nt;k++)if(hitT[k]>=0){
+      out<<",\"t\":"<<hitT[k]<<",\"shifts\":"<<hitShift[k]<<",\"key\":[";
+      for(int s=0;s<Q;s++){if(s)out<<",";out<<hitKey[k][s];}
+      out<<"]";break;
+    }
+  }
+  out<<"}\n";
   std::cout<<out.str();
   if(const char* p=std::getenv("SFT_OUTPUT")){std::ofstream f(p);f<<out.str();}
   return 0;
