@@ -400,7 +400,14 @@ function deriveSelectedCellDhRegister() {
   return { p, g, a, b, A, B, K, aK };
 }
 
-function blindDhRegisterCensus() {
+/**
+ * @param {number[]} primaryValues candidate K/pointer branch
+ * @param {number[]} secondaryValues candidate g/endpoint branch
+ */
+function blindDhRegisterCensus(
+  primaryValues = values59,
+  secondaryValues = values60
+) {
   const stages = {
     addressHighEqualsWidth: 0,
     dualRadixSameRow: 0,
@@ -418,8 +425,8 @@ function blindDhRegisterCensus() {
     if (addressHigh !== tableWidth) continue;
     stages.addressHighEqualsWidth += 1;
 
-    const n59 = values59[address];
-    const n60 = values60[address];
+    const n59 = primaryValues[address];
+    const n60 = secondaryValues[address];
     const p59 = Math.floor(n59 / tableWidth);
     const p60 = Math.floor(n60 / tableWidth);
     if (p59 !== p60) continue;
@@ -440,7 +447,7 @@ function blindDhRegisterCensus() {
     if (mod(a * K, 29) !== aK) continue;
     stages.aKConsistency += 1;
 
-    const B = values59[n59];
+    const B = primaryValues[n59];
     let prime = p >= 2;
     for (let divisor = 2; divisor * divisor <= p && prime; divisor += 1) {
       if (p % divisor === 0) prime = false;
@@ -460,7 +467,8 @@ function blindDhRegisterCensus() {
   return { stages, hits };
 }
 
-const blindDhCensus = blindDhRegisterCensus();
+const blindDhCensus = blindDhRegisterCensus(values59, values60);
+const blindDhCensusSwapped = blindDhRegisterCensus(values60, values59);
 assert.deepEqual(blindDhCensus, {
   stages: {
     addressHighEqualsWidth: 24,
@@ -482,6 +490,18 @@ assert.deepEqual(blindDhCensus, {
     K: 2,
     aK: 12,
   }],
+});
+assert.deepEqual(blindDhCensusSwapped, {
+  stages: {
+    addressHighEqualsWidth: 24,
+    dualRadixSameRow: 16,
+    addressLowEqualsRowMinus1: 1,
+    dualRadixSameBase29High: 1,
+    aKConsistency: 0,
+    primeAndBoundedB: 0,
+    dhClosure: 0,
+  },
+  hits: [],
 });
 
 const derivedSelectedCellDh = deriveSelectedCellDhRegister();
@@ -865,6 +885,7 @@ const summary = {
   dualRadixHopClosure,
   token39Positions,
   blindDhCensus,
+  blindDhCensusSwapped,
   derivedSelectedCellDh,
   selectedCellStateRegister,
   token39Base29State: {
