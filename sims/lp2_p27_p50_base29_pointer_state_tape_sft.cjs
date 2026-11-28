@@ -349,6 +349,48 @@ assert.deepEqual(
 
 // One-cell register: the p27-selected cell254, its literal token39 and the two
 // live radix readings jointly close every field of the worked DH tuple.
+function deriveSelectedCellDhRegister() {
+  const address = 254; // upstream p27-selected original table cell
+  const A = Math.floor(address / 29);
+  const p = (address % 29) + 1;
+  const n59 = values59[address];
+  const n60 = values60[address];
+
+  // The same p recovered from BASE29(address)+1 must be the common row when
+  // the two live numeric readings are divided by the derived width A.
+  assert.equal(Math.floor(n59 / A), p);
+  assert.equal(Math.floor(n60 / A), p);
+  const K = n59 % A;
+  const g = n60 % A;
+
+  // BASE29 representations of those two readings share a leading digit a.
+  const a = Math.floor(n59 / 29);
+  assert.equal(Math.floor(n60 / 29), a);
+  const aK = n59 % 29;
+  const b = n60 % 29;
+  assert.equal(mod(a * K, 29), aK);
+
+  // One base59 dereference supplies the remaining public share.
+  const B = values59[n59];
+
+  return { p, g, a, b, A, B, K, aK };
+}
+
+const derivedSelectedCellDh = deriveSelectedCellDhRegister();
+assert.deepEqual(derivedSelectedCellDh, {
+  p: 23,
+  g: 5,
+  a: 6,
+  b: 15,
+  A: 8,
+  B: 19,
+  K: 2,
+  aK: 12,
+});
+assert.equal(modPow(derivedSelectedCellDh.g, derivedSelectedCellDh.a, derivedSelectedCellDh.p), derivedSelectedCellDh.A);
+assert.equal(modPow(derivedSelectedCellDh.g, derivedSelectedCellDh.b, derivedSelectedCellDh.p), derivedSelectedCellDh.B);
+assert.equal(modPow(derivedSelectedCellDh.B, derivedSelectedCellDh.a, derivedSelectedCellDh.p), derivedSelectedCellDh.K);
+
 const selectedCellStateRegister = {
   address: 254,
   addressBase29: encodeHistoricalBase29(254),
@@ -713,6 +755,7 @@ const summary = {
   historicalBase29Path,
   dualRadixHopClosure,
   token39Positions,
+  derivedSelectedCellDh,
   selectedCellStateRegister,
   token39Base29State: {
     cell151: encodeHistoricalBase29(151),
