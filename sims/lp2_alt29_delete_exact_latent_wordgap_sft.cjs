@@ -36,12 +36,13 @@ function experiment(raw, options={}) {
     {name:"Gibran",arr:words(raw.gibran)},
     {name:"Emerson",arr:words(raw.emerson)}];
   function rng(seed){let s=seed>>>0;return n=>{s^=s<<13;s^=s>>>17;s^=s<<5;return(s>>>0)%n;};}
-  function makeLM(){
+  function makeLM(excludeSource=null){
     const U=new Uint32Array(30),B=new Uint32Array(Q*Q),
       T=new Uint32Array(Q*Q*Q),F=new Uint32Array(Q*Q*Q*Q),
       Utotal=new Uint32Array(Q),Btotal=new Uint32Array(Q*Q),
       Ttotal=new Uint32Array(Q*Q*Q);
     for(const donor of datasets){
+      if(excludeSource===donor.name)continue;
       const W=donor.arr.slice(0,Math.floor(donor.arr.length*.57));
       let a=SENT,b=SENT,c=SENT;
       for(const w of W)for(const p of [...w,29]){
@@ -185,6 +186,7 @@ function experiment(raw, options={}) {
     return p[b.length];
   }
   const lm=makeLM(),beam=options.beam||700,results=[];
+  const separateLM=options.crossAuthor?new Map(datasets.map(d=>[d.name,makeLM(d.name)])):null;
   if(options.primeMode){
     // One frozen source-literal transfer: the p56 prime-minus-one stream
     // starts from prime(1)=2, no transferred plaintext-F holds asserted.
@@ -216,9 +218,10 @@ function experiment(raw, options={}) {
         gpPrefix:b.P?.slice(0,140).map(x=>gp.translit[x]).join("")}};
   }
   for(let z=(options.start||0);z<(options.start||0)+(options.plants||3);z++){
-    const donor=datasets[z%datasets.length],plant0=plant(donor,80421+z*547);
-    const a=decode(plant0.C,plant0.K,lm,beam,options.maxDeleted||3);
-    const b=decode(plant0.C,plant0.wrong,lm,beam,options.maxDeleted||3);
+    const donor=datasets[z%datasets.length],plant0=plant(donor,80421+z*547),
+      model=separateLM?.get(donor.name)||lm;
+    const a=decode(plant0.C,plant0.K,model,beam,options.maxDeleted||3);
+    const b=decode(plant0.C,plant0.wrong,model,beam,options.maxDeleted||3);
     results.push({name:donor.name,seed:plant0.seed,printed:plant0.C.length,
       truthLength:plant0.truth.length,actualLastKeyIndex:plant0.actualLastKeyIndex,
       right:{recovery:a.P?lcs(a.P,plant0.truth)/Math.max(a.P.length,plant0.truth.length):0,
@@ -228,7 +231,7 @@ function experiment(raw, options={}) {
   }
   return {description:"Approximate exact generative V-DELETE keyed inverse; no original key",
     training:"First57% native GP donor words vs planted last43%, no planted oracle data",
-    beam,maxDeleted:options.maxDeleted||3,results};
+    beam,maxDeleted:options.maxDeleted||3,crossAuthor:!!options.crossAuthor,results};
 }
 if(typeof module!=="undefined")module.exports={experiment};
 if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===module){
