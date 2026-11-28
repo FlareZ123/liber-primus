@@ -43,7 +43,7 @@ const rowReduce=input=>{
     let pivot=rank;while(pivot<A.length&&!A[pivot][k])pivot++;
     if(pivot===A.length)continue;
     if(pivot!==rank){[A[pivot],A[rank]]=[A[rank],A[pivot]];det=mod(-det);}
-    const v=A[rank][k];det=mod(det*v),scale=inv(v);
+    const v=A[rank][k],scale=inv(v);det=mod(det*v);
     A[rank]=A[rank].map(x=>mod(x*scale));
     for(let i=0;i<A.length;i++)if(i!==rank&&A[i][k]){
       const factor=A[i][k];A[i]=A[i].map((x,j)=>mod(x-factor*A[rank][j]));
