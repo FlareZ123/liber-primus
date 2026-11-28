@@ -12,7 +12,7 @@ python sims/lp2_raster_anchor_ocr_sft.py
 python sims/lp2_raster_anchor_ocr_sft.py --zip /path/to/liber-primus-jpegs.zip
 """
 from __future__ import annotations
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 import argparse
 import hashlib
@@ -120,6 +120,52 @@ def compare_page(visual,expected):
                          left_exact=flankL,right_exact=flankR))
     return ctr,hits,dp[n][m]
 
+
+def spacing_gate(visual):
+    """Test a visible multi-pixel inter-glyph spacing channel.
+
+    Consecutive x-components are treated as within printed word only when
+    their source-pixel empty horizontal gap is in 0..12. No canonical word
+    boundaries or original plaintext are used here.
+    """
+    by_line=defaultdict(list)
+    for x in visual:
+        by_line[(x['page'],x['y'])].append(x)
+    pairs=defaultdict(list)
+    obs=[]
+    for line in by_line.values():
+        line.sort(key=lambda z:z['x'])
+        for a,b in zip(line,line[1:]):
+            gap=b['x']-a['x']-a['width']
+            if not (0<=gap<=12):continue
+            label=(a['rune'],b['rune'])
+            pairs[label].append(gap)
+            obs.append((a['rune'],b['rune'],b['x']-a['x']))
+    frequent={key:gaps for key,gaps in pairs.items() if len(gaps)>=7}
+    ranges=Counter(max(gaps)-min(gaps) for gaps in frequent.values())
+    if not obs:
+        raise AssertionError('No source glyph pairs survived')
+    X=np.zeros((len(obs),58),dtype=np.float64)
+    y=np.zeros((len(obs),),dtype=np.float64)
+    for i,(left,right,advance) in enumerate(obs):
+        X[i,left]=1.0
+        X[i,29+right]=1.0
+        y[i]=advance
+    coef=np.linalg.lstsq(X,y,rcond=None)[0]
+    residual=y-X@coef
+    mse=float(np.mean(residual**2))
+    r2=1-mse/float(np.var(y))
+    out=dict(observed_pairs=len(obs),distinct_digraphs=len(pairs),
+             at_least_seven_observations=len(frequent),
+             gap_range_frequencies=dict(sorted(ranges.items())),
+             pairs_with_span_ge_3=sum(v>=3 for gaps in frequent.values()
+                                      for v in [max(gaps)-min(gaps)]),
+             additive_glyph_advance_R2=round(r2,8),
+             additive_glyph_advance_RMSE_px=round(mse**0.5,8),
+             additive_glyph_advance_MAE_px=round(float(np.mean(np.abs(residual))),8),
+             max_abs_residual_px=round(float(np.max(np.abs(residual))),8))
+    return out
+
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--zip',type=Path,default=None)
@@ -160,7 +206,7 @@ def main():
     for x in data:
         d,r,margin=calls[x['hash']]
         if d<=0.06 and margin>=0.01:
-            visual.append(dict(page=x['page'],x=x['x'],y=x['y'],
+            visual.append(dict(page=x['page'],x=x['x'],y=x['y'],width=x['width'],
                                rune=r,distance=d,margin=margin))
         else:
             bad.append(dict(page=x['page'],x=x['x'],y=x['y'],
@@ -180,6 +226,8 @@ def main():
                 source_check=source_check,nonmatches=bad)
     print('PIXEL_CENSUS',len(data),'MATCHED',len(visual),'OUTLIERS',len(bad))
     print('P41_ORIGINAL_GPOS9877',json.dumps(source_check))
+    report['source_pixel_spacing']=spacing_gate(visual)
+    print('SOURCE_PIXEL_SPACING',json.dumps(report['source_pixel_spacing']))
     canonical=folder/'lp2-corpus.json'
     if canonical.exists():
         book=json.loads(canonical.read_text(encoding='utf-8'))
