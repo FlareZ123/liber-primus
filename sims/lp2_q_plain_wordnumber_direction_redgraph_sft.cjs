@@ -74,10 +74,10 @@ for(const r of red){
  statesByK.get(r.k).push(r);
 }
 
-function census(radix,alphabet,coordIndex,sign){
+function census(radix,alphabet,addressOrigin,coordIndex,sign){
  const hits=[];
  for(const from of red){
-   const address=from.qout[coordIndex];
+   const address=from.qout[coordIndex]+addressOrigin;
    const step=value(tokens[address],alphabet,radix);
    if(step===null)continue;
    const targetK=mod840(from.k+sign*step);
@@ -99,21 +99,17 @@ function census(radix,alphabet,coordIndex,sign){
 }
 
 const variants=[];
-for(const [radix,alphabet] of [[60,a60],[59,a59]])for(const coordIndex of [0,1])for(const sign of [1,-1]){
- variants.push({radix,coordinate:coordIndex===0?'first':'second',direction:sign===1?'forward':'backward',hits:census(radix,alphabet,coordIndex,sign)});
+for(const [radix,alphabet] of [[60,a60],[59,a59]])for(const addressOrigin of [0,1])for(const coordIndex of [0,1])for(const sign of [1,-1]){
+ variants.push({radix,addressOrigin,coordinate:coordIndex===0?'first':'second',direction:sign===1?'forward':'backward',hits:census(radix,alphabet,addressOrigin,coordIndex,sign)});
 }
-assert.deepEqual(variants.map(v=>[v.radix,v.coordinate,v.direction,v.hits.length]),[
- [60,'first','forward',0],
- [60,'first','backward',0],
- [60,'second','forward',1],
- [60,'second','backward',0],
- [59,'first','forward',0],
- [59,'first','backward',0],
- [59,'second','forward',3],
- [59,'second','backward',1],
+assert.deepEqual(variants.map(v=>[v.radix,v.addressOrigin,v.coordinate,v.direction,v.hits.length]),[
+ [60,0,'first','forward',0],[60,0,'first','backward',0],[60,0,'second','forward',1],[60,0,'second','backward',0],
+ [60,1,'first','forward',1],[60,1,'first','backward',0],[60,1,'second','forward',0],[60,1,'second','backward',0],
+ [59,0,'first','forward',0],[59,0,'first','backward',0],[59,0,'second','forward',3],[59,0,'second','backward',1],
+ [59,1,'first','forward',0],[59,1,'first','backward',1],[59,1,'second','forward',0],[59,1,'second','backward',0],
 ]);
 
-const canonical=variants.find(v=>v.radix===60&&v.coordinate==='second'&&v.direction==='forward');
+const canonical=variants.find(v=>v.radix===60&&v.addressOrigin===0&&v.coordinate==='second'&&v.direction==='forward');
 assert(canonical);
 assert.equal(canonical.hits.length,1);
 const edge=canonical.hits[0];
@@ -165,6 +161,7 @@ const result={
    helloOccurrencesAmongPlainQRedOutputs:helloOutputs.length,
    meaningOccurrencesAmongPlainQRedOutputs:meaningOutputs.length,
    uniquePair:meaningOutputs[0],
+   numberingOrigin:'zero-based source index is required to interpret field coordinate0 as HELLO0; one-based ordinal0 is undefined',
  },
  meaningUniqueness:{
    occurrencesAmongPlainQRedOutputs:meaningOutputs.length,
@@ -173,6 +170,7 @@ const result={
    value102OccurrencesAcross256:bytes60.filter(v=>v===102).length,
  },
  finiteFamily:variants,
+ originControl:{meaningZeroBased:{cell:20,k:748,words:['THEIR','ROAD']},meaningOneBased:{cell:21,k:783,words:['ARE','HELLO']},roadZeroBased:{cell:23,k:835,words:['THE','ROAD']},roadOneBasedFromK748:{cell:24,k:17,words:['HELLO','THE']}},
  canonicalEdge:edge,
  qDefiningTarget:{
    p15Second:[p15Second.page,p15Second.start,p15Second.residue,p15Second.k],
@@ -180,7 +178,7 @@ const result={
    sameFieldResidue:true,
  },
  continuation:{roadCell,afterRoad:{k:afterRoad,coord:afterRoadCoord,words:afterRoadCoord.map(i=>words[i])},base59Meaning:{k:base59MeaningTarget,words:[Math.floor(base59MeaningTarget/29),base59MeaningTarget%29].map(i=>words[i])},base59Road:{k:base59RoadTarget,words:[Math.floor(base59RoadTarget/29),base59RoadTarget%29].map(i=>words[i])}},
- interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction. ROAD23 then uniquely addresses87 and advances to k835=[28,23]=THE/ROAD. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
+ interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction. ROAD23 then uniquely addresses87 and advances to k835=[28,23]=THE/ROAD. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the zero-based 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. Charging one-based table-address origin adds one unrelated base60 p33->p40 hit, but destroys the MEANING and ROAD checkpoints; the source-word reading itself also requires zero-based origin because p54's first field coordinate is literal HELLO0. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
