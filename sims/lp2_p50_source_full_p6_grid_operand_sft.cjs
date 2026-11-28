@@ -53,11 +53,14 @@ assert.deepEqual(L,[26,1,3,2]);
 assert.deepEqual(C,[26,1,0,1,3]);
 assert.deepEqual(T,[23,5,27,1]);
 assert.deepEqual(R,[20,6,1,3]);
+const externalDeltaTape=L.concat(C,R);
+const observedCorridorDeltaTape=[26,1,3,2,26,1,0,1,3,20,6,1,3];
+assert.deepEqual(externalDeltaTape,observedCorridorDeltaTape);
 
 console.log(JSON.stringify({
   status:"PASS",
   p50SupportPacket:{oriented,cyclicFromColumn2:packet},
   cell43:{token,v59,v60,forwardDisplacements:boundary,mod29Constants:[F,one]},
-  regeneratedGrid:{L,C,T,R},
+  regeneratedGrid:{L,C,T,R,externalDeltaTape,observedCorridorDeltaTape,exactTapeMatch:true},
   conclusion:"P50 support geometry plus the p40-selected cell43 DIRECTION/SEEK boundary independently provide every numeric operand [K,-e,g,a,F,1] of the p6 L/C/T/R tape. P6 is still needed to select the 4/5/4 red13 geometry/receiver context; this is causal reconstruction, not a new plaintext decoder.",
 },null,2));
