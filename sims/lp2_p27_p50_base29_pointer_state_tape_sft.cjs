@@ -392,6 +392,90 @@ function deriveSelectedCellDhRegister() {
   return { p, g, a, b, A, B, K, aK };
 }
 
+function blindDhRegisterCensus() {
+  const stages = {
+    addressHighEqualsWidth: 0,
+    dualRadixSameRow: 0,
+    addressLowEqualsRowMinus1: 0,
+    dualRadixSameBase29High: 0,
+    aKConsistency: 0,
+    primeAndBoundedB: 0,
+    dhClosure: 0,
+  };
+  const hits = [];
+
+  for (let address = 0; address < tokens.length; address += 1) {
+    const addressHigh = Math.floor(address / 29);
+    const addressLow = address % 29;
+    if (addressHigh !== tableWidth) continue;
+    stages.addressHighEqualsWidth += 1;
+
+    const n59 = values59[address];
+    const n60 = values60[address];
+    const p59 = Math.floor(n59 / tableWidth);
+    const p60 = Math.floor(n60 / tableWidth);
+    if (p59 !== p60) continue;
+    stages.dualRadixSameRow += 1;
+    const p = p59;
+    if (addressLow !== p - 1) continue;
+    stages.addressLowEqualsRowMinus1 += 1;
+
+    const a59 = Math.floor(n59 / 29);
+    const a60 = Math.floor(n60 / 29);
+    if (a59 !== a60) continue;
+    stages.dualRadixSameBase29High += 1;
+    const a = a59;
+    const K = n59 % tableWidth;
+    const g = n60 % tableWidth;
+    const aK = n59 % 29;
+    const b = n60 % 29;
+    if (mod(a * K, 29) !== aK) continue;
+    stages.aKConsistency += 1;
+
+    const B = values59[n59];
+    let prime = p >= 2;
+    for (let divisor = 2; divisor * divisor <= p && prime; divisor += 1) {
+      if (p % divisor === 0) prime = false;
+    }
+    if (!prime || B < 0 || B >= p) continue;
+    stages.primeAndBoundedB += 1;
+
+    if (
+      modPow(g, a, p) !== tableWidth
+      || modPow(g, b, p) !== B
+      || modPow(B, a, p) !== K
+    ) continue;
+    stages.dhClosure += 1;
+    hits.push({ address, p, g, a, b, A: tableWidth, B, K, aK });
+  }
+
+  return { stages, hits };
+}
+
+const blindDhCensus = blindDhRegisterCensus();
+assert.deepEqual(blindDhCensus, {
+  stages: {
+    addressHighEqualsWidth: 24,
+    dualRadixSameRow: 16,
+    addressLowEqualsRowMinus1: 1,
+    dualRadixSameBase29High: 1,
+    aKConsistency: 1,
+    primeAndBoundedB: 1,
+    dhClosure: 1,
+  },
+  hits: [{
+    address: 254,
+    p: 23,
+    g: 5,
+    a: 6,
+    b: 15,
+    A: 8,
+    B: 19,
+    K: 2,
+    aK: 12,
+  }],
+});
+
 const derivedSelectedCellDh = deriveSelectedCellDhRegister();
 assert.deepEqual(derivedSelectedCellDh, {
   p: 23,
@@ -771,6 +855,7 @@ const summary = {
   historicalBase29Path,
   dualRadixHopClosure,
   token39Positions,
+  blindDhCensus,
   derivedSelectedCellDh,
   selectedCellStateRegister,
   token39Base29State: {
