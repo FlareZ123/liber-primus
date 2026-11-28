@@ -221,3 +221,68 @@ Tested new scalar state s=g(Cprev)+t*g(Cprevprev) or g(Cprevprev), with g=GP pri
 ### P22 artwork source alternative
 
 Inspected original scan39 full-width footer. Corpse-pose instructional art is a distinct plausible source family (supported thematically by solved LP1 EXPERIENCE YOUR DEATH). Identified dated Abbott 1979 p26 posture13 and figure13-0 plus Bihar Yoga 1978; no exact external illustration match, Abbott PDF raster unavailable. Updated existing `im-results/lp2-p22-corpse-source-plate-decision.md` (cc674584). Do not use posture 13 or a Sanskrit word as a key without a contour match and edition-specific operation. Existing mirror result unchanged.
+
+
+## 2026-11-28 — p7→p8 state transfer and dual fragment receiver
+
+Run: `agent20-draw7-20261128T104149Z-c5e634e63f0f-directed`, claimed 2026-11-28T10:41:49.217420Z (claim commit `c8b6be4ff34e2f7edc1ba70fa6fb769969e1bdda`). Draw=7. Director queue was unavailable/blocked when checked; #3388 was freshly claimed by Agent10, so I used the prompt's independent-research fallback.
+
+### Strongest new route
+
+- P8 red words [4,8] under canonical outside-in H reconstruct the full DH23 state `(p,g,a,b,A,B,K,e,q,F)=(23,5,6,15,8,19,2,3,4,0)` and predict the older p7 red-product row. Immediate p8 first-black fragment has `(L,S,P)=[e,p,K]`, H3=`[A^-1,q+g,-b]`.
+- Source-aware whole-manuscript census (page seams are not word breaks): 2,895 adjacent complete-word pairs, 27 [4,8] pairs, exactly one H→DH closure (p8 start0); 720 complete 3-rune words, exactly one `(S,P)=(p,K)` + H3 continuation (p8 offset12).
+- P8 page composition itself is state-typed: red=(fragments,runes)=`(K,aK)=(2,12)`; whole=`(e(b+K),ge(b+K))=(51,255)`; black=`((g+K)^2,e^g)=(49,243)`. This supplies a human/source reason to reshape the 49 page-local black fragments as a 7×7 fragment-length square. Original 25.jpg does not visibly draw a 7×7 grid; this is a count/state reshape, not typography.
+- The 7×7 length matrix has characteristic polynomial
+  `(x+g)(x^3+gx^2-qx+a)(x^3-qx^2+x+A^-1)`, trace p, determinant p-g, exact order `29^3-1=24388`. Exact polynomial unique among all 479 same-page 49-fragment windows.
+- P8–p14 page lengths `[255,268,263,273,261,272,137]` serialize the state in base29; the exact quotient/remainder/H packets and total 1729 are unique among 50 seven-page intervals.
+- Strongest adjacent-page operation: older p7 polynomial `P(x)=11+26x+8x^2+15x^3+2x^4` has source-fixed five-step zero warmup to g, then seven-cycle `v=[g,b,-1,q+g,Kg,-g,g+K]`. P8 matrix M gives
+  `Mv=[K,-1,g,-1,p,-1,-K]` and `M^T v=[Kg,a,1,e,-1,K-b,p-g]`.
+  Across all 479 windows × 14 cyclic/reversal presentations of v = 6,706 tests, the unlabeled row shape `[u,s,v,s,w,s,-u]` occurs only at p8, unreversed zero rotation.
+- Direct polynomial composition: `P(M)` has
+  `χ=(x-(g+K))(x^3+Kx^2-x+A^-1)(x^3+Kgx^2-(q+g)x+B)`, determinant b-K. This is an algebraic p7→p8 closure, not plaintext.
+
+### Dual held-out fragment receiver
+
+The p7→p8 row packet gives two natural p8–p14 fragment-index branches whose selected fragment contents were not used to construct the schedules:
+
+1. Signed state indices `[K,-1,g,-1,p,-1,-K]` select a 28-rune operand with aggregate `(L,S,P)=(-1,q,K-b)`. Selected descriptor rows:
+   - lengths `[e,Kg,K,e,K,a,K]`
+   - sums `[p,F,K,Kg,-K,K-b,b-K]`
+   - products `[K,A,-g,b+K,b+K,g+K,g]`
+2. Raw GP0 residues `[2,28,5,28,23,28,27]` independently select a different 28-rune operand with aggregate `(-1,b,F)`. Descriptor rows:
+   - lengths `[e,e,K,q+g,K,e,a]`
+   - sums `[p,F,K,p-g,-K,b,b+K]`
+   - products `[K,-K,-g,F,b+K,q+g,-A]`
+
+Because both branches are 28 runes, coordinate-wise raw−signed has aggregate `(-1,A^-1,F)`; raw+signed has `(-1,B,a)`.
+
+Physical p15 continues the geometry: final red rune at offset19 is `-A`; `p15[19:]` is exactly 140 = g×28 runes. Phase-zero repeating add/subtract of either operand on this exact slice is negative; multiplicative/divisive use of the nonzero signed branch is also negative. Preserve the tiling, reject simple SUM/PRODUCT stream consumption.
+
+### Direct consumer negatives already closed
+
+Do not retread:
+- fixed affine Hill7 on p8–p14: repository all-secret Gate E already exhausts it;
+- changing powers of the p8 7×7 matrix across 247 seven-rune blocks;
+- literal per-page base29 affine inverse;
+- cross-seeded cubic LFSR;
+- primitive cubic companion-power clock on p8 black triples;
+- primitive GF(29^3) discrete-log transform;
+- checksum/H checksum as direct period-7 additive key;
+- simple p15 repeating additive/multiplicative use of the 28-rune operands.
+
+All remain ciphertext-like under the pinned solved-native GP scorer.
+
+### Files / handoff
+
+Primary:
+- `im-results/lp2-p8-red-h-state-circuit.md`
+- `im-results/lp2-p8-fragment7-chapter-state.md`
+- `sims/lp2_p8_red_h_state_circuit_sft.cjs`
+- `sims/lp2_p8_fragment7_chapter_state_sft.cjs`
+- broadcast `communications/broadcast/2026-11-28T1143Z_agent20_p7-p8-dual-fragment-receiver.md`
+
+Authoritative synthesis was reconciled in `results/README.md`.
+
+Next causal question: identify a **source-visible operation or recipient** that consumes one/both 28-rune operands or the p7→p8 checksum and predicts an untouched key coordinate/receiver before language scoring. Do not add phase/sign freedom to the rejected consumers.
+
+CI workflow: `.github/workflows/agent20-p8-red-state-circuit.yml`. Red-state SFT is known passing after fixing the page-seam whitespace parser. Fragment-state SFT had one later undefined-local bug (`p8`) in a negative LFSR test; fixed by reading p8 from corpus. Re-run was dispatched before cleanup; verify latest run status if available.
