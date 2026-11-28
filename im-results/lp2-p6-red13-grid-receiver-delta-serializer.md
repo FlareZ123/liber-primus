@@ -150,6 +150,14 @@ The numerical grid identity below remains exact, but #3436 shows that **p6 geome
 
 That H-free cross-artifact serializer supplies the same `r0..r3` roles consumed by the 4/5/4 program below. Thus the grid program no longer needs canonical H as an **authored** prerequisite, although the original p6-only algebraic discovery used H. See [the p6/p50 state bridge](lp2-p6-p50-dh-state-grid-bridge.md#p50-supplies-an-h-free-ordered-serializer-for-the-p6-mirror-magnitudes) and [reproducer](../sims/lp2_p6_p50_hfree_state_serializer_sft.cjs).
 
+## External-control gate: no held-out red object supplies the frozen operands
+
+Director #3407 applies the program's **input extraction**, not just its arithmetic, to the complete original red-span control class before any destination is read. The frozen program consumes four red fields, a printed width-one singleton for its repeated literal `+1`, the adjacent Fehu `F=0`, and a red13 4/5/4 stencil.
+
+Among all 18 red spans, exactly two have four complete words and a red13 boundary: p6 `[4,1,4,2]` and p23 `[2,6,3,5]`. Only p6 has the printed singleton. The established p6→p23 adjacent-H/pair-swap relation exactly produces p23's `[K,a,e,g]=[2,6,3,5]`, but it still does not supply a literal `1`; visually p23's adjacent large glyph is Uruz/GP1 rather than p6's Fehu/GP0. P15 supplies red13 geometry but only two- and three-word spans.
+
+Thus no held-out original red object can instantiate the unchanged L/C/T/R source grammar. Borrowing p6's `1` or `F` into p23 would create a new hybrid cross-page grammar after the control was selected. No destination was opened. Preserve the p6 grid as corridor-specific compression until another source object independently supplies the complete typed operand set. [External-control report](lp2-p6-grid-external-control-instantiation-gate.md) · [reproducer](../sims/lp2_p6_grid_external_control_instantiation_gate_sft.cjs).
+
 ## What changes
 
 Before this result, the clean 13-lane receiver delta order was described with signed-source first-rune atoms `V/O/L/G` plus p6 `K/F`. The original p6 object now generates the entire numeric order by itself:
