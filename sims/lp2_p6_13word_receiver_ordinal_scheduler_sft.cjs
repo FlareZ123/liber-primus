@@ -30,20 +30,21 @@ function h5(values) {
 
 /** @param {number[]} values @returns {number[]} */
 function hShell(values) {
-  const differences = [];
-  const sums = [];
+  const output = [];
   for (
     let left = 0, right = values.length - 1;
     left < right;
     left += 1, right -= 1
   ) {
-    differences.push(mod29(values[left] - values[right]));
-    sums.unshift(mod29(values[left] + values[right]));
+    output.push(
+      mod29(values[left] - values[right]),
+      mod29(values[left] + values[right])
+    );
   }
-  const center = values.length % 2
-    ? [values[Math.floor(values.length / 2)]]
-    : [];
-  return differences.concat(center, sums);
+  if (values.length % 2) {
+    output.push(values[Math.floor(values.length / 2)]);
+  }
+  return output;
 }
 
 /** @param {number[]} values @returns {number[][]} */
