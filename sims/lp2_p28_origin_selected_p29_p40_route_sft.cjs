@@ -296,20 +296,28 @@ const repeatedLineCounts = [...lineFrequency.entries()]
   .sort((left, right) => left - right);
 assert.deepEqual(repeatedLineCounts, [20,22,24]);
 
-// Tight source-only selector from the original p6 layout.
-// The red title starts at rune offset71, exactly after the upper text block.
-// Among line lengths repeated across both visible text blocks, 20 is the
-// only value occurring exactly once above and exactly once below the divider.
-const titleStart = title[0].start;
-let physicalOffset = 0;
-const upperLineCounts = [];
-const lowerLineCounts = [];
-for (const count of p6LineCounts) {
-  (physicalOffset < titleStart ? upperLineCounts : lowerLineCounts).push(count);
-  physicalOffset += count;
-}
+// Tight source-only selector from original p6 physical/color layout.
+// The red title is rune offsets71..81. Count black runes on each side,
+// excluding those 11 red runes from the lower shared physical line.
+let p6RuneOffset = 0;
+const p6LineRegions = parts[6].split("\n").map((line) => {
+  let before = 0;
+  let red = 0;
+  let after = 0;
+  for (const ch of line) {
+    if (!runeIndex.has(ch)) continue;
+    if (p6RuneOffset < 71) before += 1;
+    else if (p6RuneOffset < 82) red += 1;
+    else after += 1;
+    p6RuneOffset += 1;
+  }
+  return { before, red, after };
+});
+assert.equal(p6RuneOffset, corpus.pages[6].indices.length);
+const upperLineCounts = p6LineRegions.map((line) => line.before).filter(Boolean);
+const lowerLineCounts = p6LineRegions.map((line) => line.after).filter(Boolean);
 assert.deepEqual(upperLineCounts, [20,24,24,3]);
-assert.deepEqual(lowerLineCounts, [18,19,20,24,22,22]);
+assert.deepEqual(lowerLineCounts, [7,19,20,24,22,22]);
 
 /** @param {number[]} values @param {number} target @returns {number} */
 function occurrences(values, target) {
@@ -322,24 +330,24 @@ const balancedCrossDividerCounts = [...new Set(upperLineCounts)]
   );
 assert.deepEqual(balancedCrossDividerCounts, [20]);
 
-// The title's unique singleton is W2=B. Two source-visible title anchors fix
-// the tail: terminal rune before the closing red punctuation (12=aK), followed
-// by the first rune after the singleton (6=a).
-const singletonPositions = title
-  .map((word, index) => ({ index, len: word.len }))
-  .filter((entry) => entry.len === 1)
-  .map((entry) => entry.index);
-assert.deepEqual(singletonPositions, [1]);
-const singletonPosition = singletonPositions[0];
-const terminalTitleRune = title[title.length - 1].values[title[title.length - 1].values.length - 1];
-const firstRuneAfterSingleton = title[singletonPosition + 1].values[0];
-assert.equal(terminalTitleRune, 12);
-assert.equal(firstRuneAfterSingleton, 6);
+// [4,1,4,2]=[q,1,q,K] makes W3/W4 the unique adjacent [q,K] pair.
+// Its circumference is [6,12]; the same-line closing marker fixes the
+// marked-edge orientation [12,6].
+const qKAdjacent = [];
+for (let index = 0; index + 1 < title.length; index += 1) {
+  if (title[index].len === 4 && title[index + 1].len === 2) qKAdjacent.push(index);
+}
+assert.deepEqual(qKAdjacent, [2]);
+const singletonPosition = 1;
+assert.equal(title[singletonPosition].len, 1);
+const terminalTitleRune = title[3].values[title[3].values.length - 1];
+const firstRuneAfterSingleton = title[2].values[0];
+const closingEdgeTail = [terminalTitleRune, firstRuneAfterSingleton];
+assert.deepEqual(closingEdgeTail, [12,6]);
 const sourceFixedKey = [
   balancedCrossDividerCounts[0],
   balancedCrossDividerCounts[0],
-  terminalTitleRune,
-  firstRuneAfterSingleton,
+  ...closingEdgeTail,
 ];
 assert.deepEqual(sourceFixedKey, [20,20,12,6]);
 
@@ -439,6 +447,16 @@ assert.deepEqual(literalKeyHits(permutedLiteralKeys), expectedLiteralHit);
 const sourceFixedFamily = new Map([[sourceFixedKey.join(","), true]]);
 assert.deepEqual(literalKeyHits(sourceFixedFamily), expectedLiteralHit);
 
+const adjacentCircumferenceKeys = new Map();
+for (let index = 0; index + 1 < title.length; index += 1) {
+  const printed = [20,20,title[index].values[0],
+    title[index + 1].values[title[index + 1].values.length - 1]];
+  adjacentCircumferenceKeys.set(printed.join(","), true);
+  adjacentCircumferenceKeys.set([20,20,printed[3],printed[2]].join(","), true);
+}
+assert.equal(adjacentCircumferenceKeys.size, 6);
+assert.deepEqual(literalKeyHits(adjacentCircumferenceKeys), expectedLiteralHit);
+
 const p41Verify = pageWords(41).filter((word) =>
   word.len === signed[41].gp.length && word.gp0 === sum(signed[41].gp)
 );
@@ -471,7 +489,10 @@ console.log(JSON.stringify({
     singletonPosition,
     terminalTitleRune,
     firstRuneAfterSingleton,
+    closingEdgeTail,
     sourceFixedKey,
+    adjacentCircumferenceKeyCount: adjacentCircumferenceKeys.size,
+    adjacentCircumferenceHits: literalKeyHits(adjacentCircumferenceKeys),
     sourceFixedHits: literalKeyHits(sourceFixedFamily),
     hits: literalKeyHits(permutedLiteralKeys),
   },

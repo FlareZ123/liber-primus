@@ -96,9 +96,9 @@ and the exact inverse is:
 = PATHS
 ~~~
 
-A later source-literal charge narrows the key question further. P6's ten non-empty rune lines have counts `20,24,24,3,18,19,20,24,22,22`, so its repeated counts are `{20,22,24}`; its globally charged red-title packet contains literal atoms `{6,12,14,15,16,17,19,24,27}`. Across every `[r,r,x,y]` built from those sets, both signs, and even every coordinate permutation (**1,389 distinct keys**), the only hit among the 62 typed four-rune source/page receiver pairs is p40 PATHS with `[20,20,12,6]`. The selected tail is independently labeled `aK=12,a=6`.
+The original p6 layout narrows the key source further. Its red title splits **black** line counts into `[20,24,24,3]` before and `[7,19,20,24,22,22]` after; 20 is the unique count occurring exactly once on each side, giving `[20,20]`. Title lengths `[q,1,q,K]` uniquely select adjacent W3/W4. Their circumference endpoints are `[6,12]=[a,aK]`; read from the same-line closing red13 marker inward, the pair is `[12,6]`. Thus p6 assembles the exact numeric key `[20,20,12,6]` without p40 ciphertext.
 
-This removes most of the numeric-shell arbitrariness: the complete key can be extracted from p6 source literals without using p40 ciphertext. The important boundary shifts rather than disappears. The extraction template “repeated p6 line count + two title atoms” was recognized after the PATHS inverse, so it remains post-discovery model selection; the same ciphertext can also spell ROAD under a different compact DH shell outside this family. The new result removes the index-origin fit and sharply narrows key-source freedom, but still needs a prospective transfer to authenticate the template.
+A six-key charge over balanced20 with every adjacent-title circumference/orientation has one hit across the 62 typed receiver pairs and both signs: p40 PATHS. The broader 1,389-key repeated-line/title family has the same sole hit. This removes most numeric-shell arbitrariness. The remaining caveat is chronology: the balance/circumference grammar was recognized after PATHS, so it remains post-discovery model selection and still needs a prospective transfer or earlier explicit instruction to authenticate it.
 
 ## Fresh transfer 1: PATHS -> VERIFY fails
 

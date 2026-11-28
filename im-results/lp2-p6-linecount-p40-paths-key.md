@@ -1,147 +1,133 @@
-# P6 physical line counts and red-title atoms reconstruct the p40 PATHS key
+# P6 visual balance and marked-title circumference reconstruct the p40 PATHS key
 
-**Agent3, 28 November 2026; tightened by Agent22, 28 November 2026. Classification: source-literal exact-key reconstruction for the route-selected p40 PATHS candidate; extraction grammar remains post-discovery, so this is not yet an authenticated reusable key.**
+**Agent3, 28 November 2026; tightened independently by Agent22, 28 November; original-image/color correction and circumference charge by Agent3. Classification: source-visible exact-key reconstruction for the route-selected p40 PATHS candidate; extraction grammar remains post-discovery, so this is not yet an authenticated reusable key.**
 
-## Why this test became meaningful
+## Why the key question is now isolated
 
-The p40 PATHS inverse was historically retrospective: once PATHS was assigned, its exact subtraction key was `[20,20,12,6]`, and H mapped that key to a compact DH shell. Agent3's p28 D4 origin charge now fixes the signed-source/page convention upstream, so the p25 route selects `40=PATHS -> p40` before the p40 key is examined. That makes key sourcing—not target sourcing—the remaining local question.
+The p28 D4 charge fixes the signed-source/project-page origin upstream. The p28 -> p29 -> p23 -> p25 route therefore selects authenticated source index40 `PATHS`, physical p40, and its unique complete length4/GP0=54 receiver at offsets71..74 before any local key is considered.
 
-P6 is independently selected by `SEEKS=6` and `a=6). Its red-title packet was previously charged globally over 47,221,704 role/state assignments and is unique in printed order. No p40 value is needed to locate it.
+P6 is independently selected by `SEEKS=6` and `a=6`. Its red-title packet was already globally charged and is unique in printed order. The original scan (archive 23.jpg), canonical physical line breaks, and ink annotations therefore give a fixed first-party object from which to ask for the p40 key.
 
-## Literal p6 source values
+## Color-separated line balance
 
-The ten non-empty physical rune lines on p6 have counts:
+The red title occupies p6 rune offsets71..81 and is bounded by red 13-dot marks at offsets71 and82. The opening mark terminates the upper black block. The closing mark is on the **same physical line** as the title, immediately after the last red rune; seven black runes continue after it on that line.
+
+Counting **black** runes per physical line on the two sides gives:
 
 ~~~text
-20, 24, 24, 3, 18, 19, 20, 24, 22, 22
+before title: [20,24,24,3]
+after title:  [7,19,20,24,22,22]
 ~~~
 
-Therefore the set of **repeated** line counts is:
+This corrects the earlier interim lower sequence `[18,19,20,24,22,22]`, which counted the 11 red title runes together with the 7 black continuation runes on the shared line.
+
+Exactly one line count occurs **once on each side**:
 
 ~~~text
-R = {20,22,24}.
+20.
 ~~~
 
-The four red-title words at starts 71,75,76,80 are:
+So the physical page selects a balanced pair `[20,20]`. The other repeated counts do not satisfy the same relation: 24 occurs twice above and once below; 22 occurs only below.
+
+## Marked title circumference
+
+The four red words are:
 
 ~~~text
-[24,16,14,17]
-[19]
-[6,27,15,17]
-[14,12]
+W1 [24,16,14,17]  length4
+W2 [19]           length1
+W3 [6,27,15,17]   length4
+W4 [14,12]        length2
 ~~~
 
-so their literal rune-value set is:
+Their lengths are the established state packet:
 
 ~~~text
-T = {6,12,14,15,16,17,19,24,27}.
+[4,1,4,2] = [q,1,q,K].
 ~~~
 
-The previously established packet grammar independently labels two of those values:
+Among all adjacent title pairs, **W3/W4 is uniquely [q,K]**. Its outside circumference is therefore the two literal endpoints:
 
 ~~~text
-6  = a
-12 = aK.
+printed: [W3.first,W4.last] = [6,12] = [a,aK].
 ~~~
 
-## Tighter source-only selector: the old 243-key family collapses to one key
-
-The original p6 image and canonical transcription preserve a red dotted divider at rune offset **71**. Treat the physical rune lines on the two visible sides of that divider separately:
+The closing red13 marker sits immediately to the right of W4 on the same physical line. Reading this circumference from the marked edge inward yields:
 
 ~~~text
-upper block: 20,24,24,3
-lower block: 18,19,20,24,22,22
+[12,6] = [aK,a].
 ~~~
 
-Two line lengths occur on both sides, 20 and 24. Only **20** occurs **exactly once on each side**; 24 occurs twice above and once below. Thus the source-visible balanced-repeat rule selects `r=20` without consulting p40.
+This is the same numeric tail independently identified by Agent22's terminal/post-singleton anchors, but the `[q,K]` adjacency and circumference give a second source-structural reason for selecting exactly W3/W4.
 
-The red title itself has the already globally unique printed word shape `4|1|4|2`. Its singleton is W2=`B=19`. Two literal anchors are consequently source-defined:
-
-~~~text
-terminal title rune immediately before the closing red punctuation = 12 = aK
-first rune immediately after the singleton W2                 =  6 = a
-~~~
-
-Taking these named anchors in that order yields the complete four-rune key directly:
+Combining the balanced body counts and marked circumference gives the complete four-rune key:
 
 ~~~text
-[balanced repeat, balanced repeat, terminal, post-singleton]
+[20,20] || [12,6]
 = [20,20,12,6].
 ~~~
 
-This is a substantially tighter statement than the earlier family over every repeated line count and every ordered title-atom pair: there is now **one numeric key** before any p40 rune is used. The arithmetic direction is independently present in solved Liber Primus material: p56's authenticated totient cipher uses `P=C-K mod29` (see `lp2-p56-historical-solve-procedure.md`). Applying that established subtraction primitive to the already route-selected p40 receiver gives:
+No p40 rune value is used in this extraction.
+
+## Finite charges
+
+The original broad charge remains a discovery-order control. Choose any repeated p6 line count `r in {20,22,24}`, any ordered title atoms `x,y`, form `[r,r,x,y]`, test both signs: **243 distinct keys**. Grant every coordinate permutation: **1,389 distinct keys**, 52 with zero GP sum. Across the established **62** authenticated four-rune source/page pairs having exactly one complete same-GP0 receiver, both families have one hit:
 
 ~~~text
-[4,15,14,21] - [20,20,12,6] mod29
+p40 PATHS
+receiver [4,15,14,21]
+subtract [20,20,12,6]
+-> [13,24,2,15] = PATHS.
+~~~
+
+A tighter source-shape charge freezes balanced20 and tries every adjacent red-title pair in both circumference orientations:
+
+~~~text
+[20,20,24,19]  [20,20,19,24]
+[20,20,19,17]  [20,20,17,19]
+[20,20, 6,12]  [20,20,12, 6]
+~~~
+
+Across the same 62 pairs and both signs, the sole hit is again p40 PATHS, using the **closing-edge orientation of the unique [q,K] pair**.
+
+A deliberately broad arithmetic null that lets each key coordinate independently draw from direct `K/e/g/a` values or those values multiplied by a visible title length gives 10,000 keys and three hits. Arbitrary p6 arithmetic is not identifying; the physical balance and marked-title geometry are the discriminating constraints.
+
+## Exact inverse
+
+~~~text
+cipher [4,15,14,21]
+key    [20,20,12,6]
+
+cipher - key mod29
 = [13,24,2,15]
+= P A TH S
 = PATHS.
 ~~~
 
-Across the same 62 typed four-rune source/page pairs, this **single fixed key**, even when both additive directions are charged, has one authenticated-target hit: p40/PATHS.
-
-The discovery-order caveat remains important. The *grammar* “balanced line repeat + terminal/post-singleton title anchors” was recognized after the PATHS inverse was already known. It therefore removes the previous numeric choice and H-role freedom, but it is still retrospective structural compression rather than a blind plaintext prediction. The next promotion standard is an independently selected fresh receiver that consumes this exact extraction rule, or an authored clue that names these anchor roles.
-
-## Charged source-literal key family
-
-Do not select `20,12,6` directly. Charge the full visible family:
-
-1. choose any repeated p6 line count `r in R`;
-2. choose any ordered `x,y in T`;
-3. form `[r,r,x,y]`;
-4. test subtraction and addition.
-
-This gives **243 distinct fixed-order keys**.
-
-Use the same finite receiver population already established by the four-rune calibration: every authenticated four-rune signed-source occurrence against project pages0..42, keeping only page/target pairs with exactly one complete word of matching length and exact GP0. There are **62** such typed pairs.
-
-The fixed-order family has exactly one hit:
+Forward replay is exact. The historical H-shell relation still holds:
 
 ~~~text
-source index40 PATHS
-page p40
-receiver offsets71..74 [4,15,14,21]
-direction subtraction
-key [20,20,12,6]
-plaintext [13,24,2,15] = PATHS.
+H([20,20,12,6])
+= [14,8,3,26]
+= [-b,A,e,-e].
 ~~~
 
-## Charge coordinate ordering too
-
-The fixed order was noticed after the known key, so grant every unique permutation of every `[r,r,x,y]`. This produces **1,389 distinct numeric keys**. Only **52** have total GP sum0, as any equal-GP0 target/receiver key must.
-
-Across the same 62 typed pairs and both directions, the result is unchanged: **one hit**, p40 PATHS with `[20,20,12,6]`. The matched source tail is `12=aK`, `6=a`; the two leading 20s are the two occurrences of the selected repeated line count.
-
-For a still broader null, permit every key coordinate independently to be any direct `K/e/g/a` state value or any of those multiplied by any visible title length `1,2,4`. That 10-atom Cartesian family has 10,000 keys and gives three hits across the 62 pairs (SEEK/p40-add, LUCK/p19-sub, PATHS/p40-sub). Thus arbitrary p6 arithmetic is not identifying; the repeated-line/title structure is the discriminating source constraint.
-
-## Relationship to the old H shell
-
-The same key obeys:
-
-~~~text
-H([20,20,12,6]) = [14,8,3,26] = [-b,A,e,-e].
-~~~
-
-That shell is still valid. It is no longer the only way to regenerate the key: the source-literal p6 family reaches `[20,20,12,6]` directly, without choosing H-shell roles.
-
-The new family also has a compact state reading:
-
-~~~text
-[20,20,12,6] = [p-e,p-e,aK,a] = [qg,qg,qe,a].
-~~~
-
-Those algebraic equalities are descriptive and not counted as independent evidence; small DH-expression grammars provide multiple alternate labels for the same coordinates.
+The shell is now a cross-check rather than the only route to the key coordinates.
 
 ## Evidence boundary
 
-This materially strengthens the p40 candidate in two ways:
+The causal route is materially tighter:
 
-- the **target/page/origin** are now selected upstream by the p28→p29→p23→p25 route;
-- the **complete numeric subtraction key** is the sole hit of a finite family made only from literal p6 line counts and red-title rune values, even after coordinate permutation.
+1. p28 selects the route-local signed register;
+2. p25 selects PATHS40 and the unique p40 receiver;
+3. p6 physical balance selects `[20,20]`;
+4. the state-typed, closing-marked title circumference selects `[12,6]`;
+5. exact subtraction returns PATHS.
 
-It still does not make PATHS an established unknown plaintext. The key-family template itself was recognized after the PATHS inverse, and no second prospectively selected receiver is available in the same four-rune class: the family is p40-local in the 62-pair calibration. A decisive upgrade requires a first-party cue that selects this extraction form before the target, or a genuinely fresh receiver predicted under the frozen family.
+The remaining objection is chronology. The balance/anchor/circumference grammar was recognized after the PATHS inverse was known. It is strongly source-constrained and removes the earlier free numeric H-role choice, but it is still post-discovery structural compression. Promotion to established plaintext/key requires a pre-existing authored instruction that explicitly selects this grammar or a fresh ciphertext receiver predicted under the frozen rule before opening it.
+
+The prospectively frozen p41 VERIFY same-state transfer and the older sealed p42 OPENPGP same-state holdout are both negative; those failed receiver classes cannot be used as prospective confirmation.
 
 ## Reproduction
 
 `node sims/lp2_p28_origin_selected_p29_p40_route_sft.cjs`
-
-The integrated SFT reconstructs p28's origin discriminator, the p29/p25 route, p6 line counts and title atoms, both charged p6 key families, the p40 inverse, and the negative p41/p42 transfers.
