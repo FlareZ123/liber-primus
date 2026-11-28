@@ -1,50 +1,49 @@
 {
-  "source": {
-    "missingLowDigit": "f",
-    "base60": {
-      "cycles": [
-        [0,203,68,199,47,76,114,197,115,247,192],
-        [158,249]
-      ],
-      "basins": [252,4]
+  "classification": "prior sink + new source-reflection/DH closure; no unknown plaintext",
+  "priorRechecked": {
+    "base59AllTo189": true,
+    "base60AllTo189": false
+  },
+  "dhGeometry": {
+    "width": 8,
+    "widthEqualsA": 8,
+    "sinkCell": 189,
+    "sinkCoordinates": [23, 5],
+    "mirrorColumn": 2,
+    "mirrorColumnEqualsK": 2,
+    "reflectedCell": 186,
+    "reflectedToken": "0J",
+    "reflectedValue": 19,
+    "derivedPrivateExponents": {
+      "a": 6,
+      "b": 15
     },
-    "base59": {
-      "cycles": [[189]],
-      "basins": [256]
+    "sharedFromB": 2
+  },
+  "exactPlacementCharge": {
+    "placement59": 0.00006127450980392157,
+    "placement60": 0.000030637254901960785,
+    "placementEither": 0.00009191176470588236
+  },
+  "conditionalBasinMonteCarlo": {
+    "full59": {
+      "trials": 300000,
+      "hits": 3551,
+      "conditionalRate": 0.011836666666666666
     },
-    "sink": {
-      "cell": 189,
-      "row": 23,
-      "column": 5,
-      "token": "3C",
-      "base59Value": 189,
-      "base60Value": 192,
-      "maxBase59Depth": 38
+    "full60": {
+      "trials": 300000,
+      "hits": 1188,
+      "conditionalRate": 0.00396
     },
-    "reflectedSink": {
-      "cell": 186,
-      "token": "0J",
-      "value59": 19,
-      "value60": 19
+    "row59": {
+      "trials": 200000,
+      "hits": 2570,
+      "conditionalRate": 0.01285
     }
   },
-  "monteCarlo": {
-    "trials": 500000,
-    "seed": 20261128,
-    "targetCell": 189,
-    "candidate59": 7933,
-    "candidate60": 3891,
-    "hit59": 80,
-    "hit60": 18,
-    "hitEither": 98,
-    "rateEither": 0.000196
-  },
-  "rowMatchedMonteCarlo": {
-    "trials": 200000,
-    "seed": 2667729073,
-    "hit59": 346,
-    "hit60": 0,
-    "hitEither": 346,
-    "rateEither": 0.00173
+  "estimatedJointRates": {
+    "fullTokenShuffleEitherRadix": 8.466094771241831e-7,
+    "rowConditionedBase59": 0.0002294642857142857
   }
 }
