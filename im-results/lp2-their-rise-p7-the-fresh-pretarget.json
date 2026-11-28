@@ -1,0 +1,31 @@
+{
+  "classification": "pretarget fresh transfer; p7 ciphertext not inspected",
+  "pageSelector": "p15 BASE29 page-count map unique fixed point p7",
+  "sourceIndex": 7,
+  "sourceWord": "THE",
+  "plaintext": [
+    2,
+    18
+  ],
+  "partnerIndex": 13,
+  "partnerWord": "WAY",
+  "partnerGP": [
+    7,
+    24,
+    26
+  ],
+  "rise": 8,
+  "HKey": [
+    8,
+    0
+  ],
+  "key": [
+    4,
+    25
+  ],
+  "predictedCiphertext": [
+    6,
+    14
+  ],
+  "receiverType": "complete two-rune word on physical p7"
+}
