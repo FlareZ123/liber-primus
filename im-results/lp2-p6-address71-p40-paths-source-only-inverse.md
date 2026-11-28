@@ -94,6 +94,18 @@ This reaches the same receiver without copying p6's offset71. With the already f
 
 The ordinal interpretation was recognized after PATHS and most of the eleven natural title-rune/page pairings are not target-length compatible. Do not generalize it to a universal corridor serializer. See `im-results/lp2-p6-title-rune-p40-word17-selector.md` and `sims/lp2_p6_title_rune_p40_word17_selector_sft.cjs`.
 
+## Manuscript-wide fixed-key control
+
+Once the exact source/layout-derived key `[20,20,12,6]` is held fixed, p40 start71 is not merely unique inside the p6 address family. Across all 55 unknown rune-bearing pages:
+
+- all p6-red-rune-addressed four-rune receivers: 149 distinct receivers / 2,682 signed target comparisons -> only p40 PATHS;
+- all 509 complete four-rune words: 9,162 comparisons -> only p40 PATHS;
+- all 12,791 contiguous four-rune windows, dropping word boundaries entirely: 230,238 comparisons -> only p40 PATHS.
+
+This removes receiver and segmentation ambiguity conditional on the exact key. It does **not** independently authenticate that key: exhaustive calibration over all 707,281 four-rune keys shows 166,764 keys produce exactly one authenticated event in the same every-window screen. The p6 key therefore still needs its separate source/layout derivation and chronology caveat.
+
+See `im-results/lp2-p6-title-rune-p40-word17-selector.md`.
+
 ## Target-blind receiver selection
 
 The source-ordered title-rune route now selects p40 word17/start71 directly; the older self-address route independently reaches the same coordinate:

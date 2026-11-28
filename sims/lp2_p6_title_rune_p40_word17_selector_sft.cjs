@@ -354,6 +354,119 @@ assert.deepEqual([...visualHits.values()], [
   { page: 42, start: 87, sign: "subtract", target: "MEANING" },
 ]);
 
+// Manuscript-wide exact-key receiver charge. First retain the p6 red-rune
+// address vocabulary but allow every unknown physical page, then remove both
+// the address and word-boundary constraints. These are receiver-ambiguity
+// controls for the already fixed exact key, not new key-selection evidence.
+const pageIds = [...new Set(canonical.map((word) => word.page))].sort((a, b) => a - b);
+assert.equal(pageIds.length, 55);
+const globalAddressedReceivers = new Map();
+for (const page of pageIds) {
+  const words = localWords(page);
+  for (const ordinalValue of titleValues) {
+    for (const origin of ["oneBased", "zeroBased"]) {
+      const index = origin === "oneBased" ? ordinalValue - 1 : ordinalValue;
+      const receiver = index >= 0 ? words[index] : null;
+      if (!receiver || receiver.values.length !== 4) continue;
+      const id = `${page}:${receiver.start}`;
+      if (!globalAddressedReceivers.has(id)) {
+        globalAddressedReceivers.set(id, { page, start: receiver.start, values: receiver.values, labels: [] });
+      }
+      globalAddressedReceivers.get(id).labels.push({ ordinalValue, origin, ordinal: index + 1 });
+    }
+  }
+}
+assert.equal([...globalAddressedReceivers.values()].reduce((sum, row) => sum + row.labels.length, 0), 174);
+assert.equal(globalAddressedReceivers.size, 149);
+const globalAddressHits = [];
+let globalAddressTests = 0;
+for (const receiver of globalAddressedReceivers.values()) {
+  for (const sign of ["subtract", "add"]) {
+    const output = apply(receiver.values, key, sign);
+    for (const target of authenticatedFour) {
+      globalAddressTests += 1;
+      if (!same(output, target.values)) continue;
+      globalAddressHits.push({ page: receiver.page, start: receiver.start, sign, target: target.word });
+    }
+  }
+}
+assert.equal(globalAddressTests, 149 * 2 * 9);
+assert.deepEqual(globalAddressHits, [{ page: 40, start: 71, sign: "subtract", target: "PATHS" }]);
+
+const allCompleteFour = canonical.filter((word) => word.values.length === 4);
+assert.equal(allCompleteFour.length, 509);
+const allWordHits = [];
+let allWordTests = 0;
+for (const receiver of allCompleteFour) {
+  for (const sign of ["subtract", "add"]) {
+    const output = apply(receiver.values, key, sign);
+    for (const target of authenticatedFour) {
+      allWordTests += 1;
+      if (!same(output, target.values)) continue;
+      allWordHits.push({ page: receiver.page, start: receiver.start, sign, target: target.word });
+    }
+  }
+}
+assert.equal(allWordTests, 509 * 2 * 9);
+assert.deepEqual(allWordHits, [{ page: 40, start: 71, sign: "subtract", target: "PATHS" }]);
+
+const rawPageParts = transcription.split(/^\s*%\s*$/m).slice(0, 55);
+const pageTapes = rawPageParts.map((block, blockIndex) => ({
+  page: blockIndex >= 50 ? blockIndex + 1 : blockIndex,
+  values: [...block].map((char) => runeIndex.get(char)).filter((value) => value !== undefined),
+}));
+let windowCount = 0;
+let windowTests = 0;
+const windowHits = [];
+for (const { page, values } of pageTapes) {
+  for (let start = 0; start + 4 <= values.length; start += 1) {
+    windowCount += 1;
+    const cipher = values.slice(start, start + 4);
+    for (const sign of ["subtract", "add"]) {
+      const output = apply(cipher, key, sign);
+      for (const target of authenticatedFour) {
+        windowTests += 1;
+        if (!same(output, target.values)) continue;
+        windowHits.push({ page, start, sign, target: target.word });
+      }
+    }
+  }
+}
+assert.equal(windowCount, 12791);
+assert.equal(windowTests, 12791 * 2 * 9);
+assert.deepEqual(windowHits, [{ page: 40, start: 71, sign: "subtract", target: "PATHS" }]);
+
+const keySpace = 29 ** 4;
+const keyHitCounts = new Uint32Array(keySpace);
+/** @param {number[]} values @returns {number} */
+function encodeKey(values) {
+  return (((values[0] * 29 + values[1]) * 29 + values[2]) * 29 + values[3]);
+}
+for (const { values } of pageTapes) {
+  for (let start = 0; start + 4 <= values.length; start += 1) {
+    const cipher = values.slice(start, start + 4);
+    for (const target of authenticatedFour) {
+      const subtractKey = cipher.map((value, index) => mod29(value - target.values[index]));
+      const addKey = subtractKey.map((value) => mod29(-value));
+      keyHitCounts[encodeKey(subtractKey)] += 1;
+      keyHitCounts[encodeKey(addKey)] += 1;
+    }
+  }
+}
+assert.equal(keyHitCounts[encodeKey(key)], 1);
+const hitHistogram = new Map();
+for (const count of keyHitCounts) hitHistogram.set(count, (hitHistogram.get(count) || 0) + 1);
+assert.deepEqual([...hitHistogram.entries()].sort((left, right) => left[0] - right[0]), [
+  [0, 510501],
+  [1, 166764],
+  [2, 26842],
+  [3, 2920],
+  [4, 244],
+  [5, 6],
+  [6, 4],
+]);
+assert.equal([...hitHistogram.entries()].reduce((sum, [count, keys]) => sum + count * keys, 0), 12791 * 2 * 9);
+
 console.log("PASS lp2_p6_title_rune_p40_word17_selector_sft");
 console.log("p6 red title:", titleRunes.join(","));
 console.log("W3 -> LUCK BEWARE FALSE PATHS:", w3.join(","));

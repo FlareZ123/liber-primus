@@ -157,6 +157,33 @@ subtract [20,20,12,6]
 
 The aliases come from repeated title value17 and the 16/17 origin equivalence. No second page/receiver/plaintext event appears.
 
+## Manuscript-wide exact-key receiver charge
+
+The local corridor result survives progressively broader receiver freedom while keeping the already source-derived exact key `[20,20,12,6]` fixed.
+
+1. Allow any distinct p6 red-rune value to address either zero- or one-based local words on **all 55 rune-bearing unknown physical pages**, retaining only four-rune receivers. This produces **174 labeled selectors / 149 distinct receivers**. Across both additive signs and all nine authenticated four-rune source spellings, **2,682 comparisons** give one event: `p40 start71`, subtraction, `PATHS`.
+2. Remove the p6 address vocabulary entirely and test all **509 complete four-rune manuscript words**. Across both signs and the same nine targets, **9,162 comparisons** again give only `p40 start71 -> PATHS`.
+3. Remove word boundaries as well. Across all **12,791 contiguous four-rune windows** contained within unknown physical pages, both signs and all nine targets, **230,238 comparisons** still give exactly one event: `p40 start71 -> PATHS`.
+
+Thus, once the exact `[20,20,12,6]` key is accepted from its separate source/layout derivation, the manuscript itself leaves no receiver or segmentation ambiguity for an authenticated four-rune source output. This is stronger than the original offset71 receiver family and independent of the new rune17 ordinal interpretation.
+
+### Key-space null boundary
+
+This uniqueness must not be misread as independent key authentication. Exhaust all `29^4 = 707,281` possible four-rune additive keys against the same 12,791 windows, both arithmetic signs and nine authenticated targets. The number of keys by authenticated-hit count is:
+
+~~~text
+hits  keys
+0     510501
+1     166764
+2      26842
+3       2920
+4        244
+5          6
+6          4
+~~~
+
+The exact `[20,20,12,6]` key is one of the **166,764** singleton keys. Therefore its sole PATHS output is a strong **receiver-disambiguation consequence conditional on that key**, but singleton-ness is common in the complete key space and supplies no discovery-wide probability or independent evidence that the retrospectively recognized p6 key grammar is authored.
+
 ## Key-family boundary
 
 The result does **not** make the previously charged broad visual key family uniquely predictive. Widen the exact key back to all 1,389 coordinate permutations of the existing p6 visual family `[r,r,x,y]`, with `r in {20,22,24}` and `x,y` drawn from the nine distinct p6 title-rune values. Across the 26 distinct red-rune-addressed four-rune receivers, both signs and the nine authenticated four-rune targets, four distinct output events survive:
