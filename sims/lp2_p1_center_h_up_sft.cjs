@@ -168,6 +168,34 @@ for (const section of solved.sections) {
 assert.equal(solvedWordCount, 735);
 assert.equal(solvedCenterIn.length, 12);
 
+// Stronger local phrase control: center-strip every adjacent solved three-word
+// window. FIND THE DIUINITY is the sole IN / THE / IN hit.
+let solvedThreeWordWindows = 0;
+const inTheInHits = [];
+for (const section of solved.sections) {
+  const sectionWords = parseRuneWords(section.source_text || "");
+  for (let i = 0; i + 2 < sectionWords.length; i++) {
+    solvedThreeWordWindows++;
+    const centers = sectionWords.slice(i, i + 3)
+      .map(word => translit(shedToCenter(word)));
+    if (centers.join("|") === "IN|THE|IN") {
+      inTheInHits.push({
+        section: section.name,
+        start: i,
+        words: sectionWords.slice(i, i + 3).map(translit),
+        centers,
+      });
+    }
+  }
+}
+assert.equal(solvedThreeWordWindows, 717);
+assert.deepEqual(inTheInHits, [{
+  section: "p57_parable",
+  start: 14,
+  words: ["FIND", "THE", "DIUINITY"],
+  centers: ["IN", "THE", "IN"],
+}]);
+
 const p1 = corpus.pages.find(p => p.page === 1);
 assert(p1);
 assert.equal(p1.indices.length, 266);
@@ -321,7 +349,9 @@ console.log(JSON.stringify({
     divinityLayers,
     centerInWords: p57CenterIn,
     solvedCorpusWords: solvedWordCount,
-    solvedCorpusCenterInHits: solvedCenterIn.length
+    solvedCorpusCenterInHits: solvedCenterIn.length,
+    solvedThreeWordWindows,
+    inTheInHits
   },
   p1: {
     runes: p1.indices.length,
