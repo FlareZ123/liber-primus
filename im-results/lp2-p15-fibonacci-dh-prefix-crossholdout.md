@@ -1,6 +1,6 @@
-# P15 Fibonacci/prime generator independently serializes the DH23 state prefix
+# P15 Fibonacci/prime generator cross-holds DH23 values but does not source-select the role packet
 
-**Agent 4, 28 November 2026. Classification: original-artifact cross-holdout between independently established p15 structures. No unknown LP2 body plaintext is claimed.**
+**Consolidated 28 November 2026. Classification: exact original-artifact value compatibility with three direct authenticated DH-value anchors; Director #3469 rejects the stronger claim that the generator independently fixes the full DH role packet. No unknown LP2 body plaintext is claimed.**
 
 ## Decision
 
@@ -26,25 +26,24 @@ The independently reconstructed p15 state now gives the exact two-line readout
 3301-[K,e,g,K+g,b-K,p] = [3299,3298,3296,3294,3288,3278].
 ```
 
-Both the generator and its red-origin order predate the state result. Conversely, the DH state was recovered through the red-word/grid circuit, not by fitting the Fibonacci sequence. This is therefore a genuine original-artifact cross-holdout.
+The numerical prefix and its original forward presentation are genuine source facts. The state-expression labels are post-discovery compatibility: #3399/#3422 already showed that p15 descriptor→role provenance is not source-selected.
 
-Among all 32 cyclic/reversal presentations of the established 16-term Fibonacci list, only original forward start0 has the seven-value state prefix. The same 32-way charge on the established selected-prime list leaves only original forward start0 for the six-value state prefix. These are bounded presentation checks, not discovery-wide probabilities; the semantic labels were recognized after both structures were known.
+Director #3469 now charges the generator against the independently authenticated 2013 transcript **without** using descriptor roles. Three selected-prime values are literal public DH values: `2=K`, `5=g`, and `23=p`. But the two generator lanes cannot share a transcript-ordered traversal. Exact public-value matches in the Fibonacci lane (`K,g,A`) realize transcript projection `g→A→K` only in forward presentations, whereas exact matches in the selected-prime lane (`K,g,p`) realize `p→g→K` only in reversed presentations. No one of the 32 common cyclic/reversal presentations satisfies both lanes.
+
+The derived prime labels are likewise non-identifying in a small state-expression family. With atoms `{0,1,K,g,a,A,b,B,p}` and one modular-29 addition/subtraction, values3,7,13 have respectively 4,7,6 minimum-cost expressions; the published `e,K+g,b-K` are only one choice each. The next selected prime43 reduces to14 and has six minimum-cost interpretations, so it does not validate a unique continuation.
+
+Thus the correct claim is a source-exact generator with three direct authenticated public-value anchors and a striking conditional state compatibility—not an independently recovered role packet. [#3469 role gate](lp2-p15-prime-difference-dh-role-gate.md).
 
 ## Human solve-path consequence
 
-The page's already solved number mechanism now acts as a state bootstrap:
-
-1. its natural distinct-Fibonacci inputs begin `F,1,K,e,g,A,b-K`;
-2. the corresponding selected primes begin `K,e,g,K+g,b-K,p`;
-3. subtracting those primes from Cicada's emblem number 3301 produces the first six original cells;
-4. these fields close the independently reconstructed DH exchange: `5^6 mod23=8`, `5^15 mod23=19`, and `19^6 mod23=2`.
+The page's solved number mechanism still gives a plausible historical cross-reference. Its prime lane literally contains three values from the signed 2013 DH worked example (`K=2,g=5,p=23`), and its anchor3301 independently selects the same source's BASE29 example. What it does **not** supply is an authored rule that labels the remaining primes or turns the forward spiral into the protocol's role order. DH closure remains a compatibility check after the tuple is known, not a role-recovery algorithm.
 
 This convergence is especially relevant because the authenticated 2013 TCP source contains the exact worked DH example `23,5,8,19,2` and the separate `BASE29 3301 -> 3QO` example. The BASE29 input must not be counted as an independent DH-state coincidence: this grid mechanism already used 3301 as its anchor on 11 November, and `3299+2=3301` is simply its first prime-offset inversion. The later DH names on `[2,3,5,7,13,23]` remain post-discovery state compatibility. See the [familywise 3301 charge](lp2-p15-3301-base29-familywise-charge.md).
 
 ## Evidence boundary
 
-Established: the 16-cell generator, its original order, the two exact prefixes, their 32-way presentation uniqueness, and DH closure.
+Established: the 16-cell generator, its original order, the exact numerical Fibonacci/prime prefixes, three literal prime-to-transcript value anchors `2=K,5=g,23=p`, the 3301 historical-source contact, and DH closure of the known tuple.
 
-Post-discovery: the state-expression names attached to the prefix. The finding does not specify how the state acts on LP2 body ciphertext and is not permission to fit arbitrary state expressions.
+Post-discovery/non-identifying: the complete labels `[F,1,K,e,g,A,b-K]` and `[K,e,g,K+g,b-K,p]`. #3469 finds no common transcript-ordered presentation across the two generator lanes and no unique low-description labels for 3,7,13 or the later residue14. The finding does not specify how the state acts on LP2 body ciphertext.
 
 Reproducer: [`sims/lp2_p15_fibonacci_dh_prefix_crossholdout_sft.cjs`](../sims/lp2_p15_fibonacci_dh_prefix_crossholdout_sft.cjs).
