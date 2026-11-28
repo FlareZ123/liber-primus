@@ -462,6 +462,18 @@ assert.deepEqual(factored, characteristicTarget);
 // P57's newly recovered "IN THE INNER" instruction now source-selects a
 // previously untested operation on this 7x7 matrix: recursively remove one
 // outer row/column circumference, giving centered 7->5->3->1 squares.
+/** @param {number[][]} A @returns {number[]} */
+function circumferenceValues(A) {
+  const n = A.length;
+  if (n === 1) return [A[0][0]];
+  return [
+    ...A[0],
+    ...Array.from({ length: n - 2 }, (_, i) => A[i + 1][n - 1]),
+    ...A[n - 1].slice().reverse(),
+    ...Array.from({ length: n - 2 }, (_, i) => A[n - 2 - i][0]),
+  ];
+}
+
 /** @param {number[][]} A @returns {number[][]} */
 function centeredInner(A) {
   if (A.length <= 1) return [];
@@ -526,6 +538,19 @@ assert.deepEqual(nestedTrace, [p, B, inv(A), q]);
 assert.deepEqual(nestedDeterminant, [p - g, b - K, 1, q]);
 assert.deepEqual(H(nestedTrace), [B, A, 1, mod(-K)]);
 assert.deepEqual(H(nestedDeterminant), [mod(-b), a * K, mod(-b), p - 1]);
+
+// Literal shed circumferences: summarize each removed ring before entering the
+// next inner square. Geometry and data both close on the frozen DH state.
+const nestedCircumferences = nestedSquares.map(circumferenceValues);
+const circumferenceLengths = nestedCircumferences.map((ring) => ring.length);
+const circumferenceSums = nestedCircumferences.map(sum);
+const circumferenceProducts = nestedCircumferences.map(product);
+assert.deepEqual(circumferenceLengths, [24, 16, 8, 1]);
+assert.deepEqual(circumferenceSums, [e, mod(-1), g, q]);
+assert.deepEqual(circumferenceProducts, [mod(-b), K * g, mod(-(q + g)), q]);
+assert.deepEqual(H(circumferenceLengths.map(mod)), [p, A, mod(-g), mod(-q)]);
+assert.deepEqual(H(circumferenceSums), [mod(-1), p, q, g + K]);
+assert.deepEqual(H(circumferenceProducts), [K * g, B, 1, p - g]);
 
 // Location controls inside the fixed 7x7: the central 5x5 is the only
 // contiguous 5x5 whose characteristic polynomial has root p=23.
@@ -746,6 +771,7 @@ const p7OrbitRowHits = [];
 const p7OrbitColumnHits = [];
 const p7OrbitShapeHits = [];
 const p7OrbitNaturalOrientationShapeHits = [];
+const circumferenceDescriptorHits = [];
 const p7NaturalOrientations = [];
 for (const reversed of [false, true]) {
   const source = reversed ? p7Orbit.slice().reverse() : p7Orbit.slice();
@@ -787,6 +813,19 @@ for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50))
       )
     ) {
       characteristicHits.push([pageObj.page, start, fragments[start].start]);
+    }
+    const candidateNested = [candidate];
+    while (candidateNested.at(-1).length > 1) {
+      candidateNested.push(centeredInner(candidateNested.at(-1)));
+    }
+    const candidateRings = candidateNested.map(circumferenceValues);
+    const candidateRingSums = candidateRings.map(sum);
+    const candidateRingProducts = candidateRings.map(product);
+    if (
+      H(candidateRingSums).every((x, i) => x === H(circumferenceSums)[i]) &&
+      H(candidateRingProducts).every((x, i) => x === H(circumferenceProducts)[i])
+    ) {
+      circumferenceDescriptorHits.push([pageObj.page, start, fragments[start].start]);
     }
     const weightedRows = matrixVector(candidate, p7Orbit);
     const weightedColumns = matrixVector(transpose(candidate), p7Orbit);
@@ -832,6 +871,7 @@ assert.deepEqual(rowHits, [[8,2,12]]);
 assert.deepEqual(colHits, [[8,2,12]]);
 assert.deepEqual(jointHits, [[8,2,12,p-g]]);
 assert.deepEqual(characteristicHits, [[8,2,12]]);
+assert.deepEqual(circumferenceDescriptorHits, [[8,2,12]]);
 assert.deepEqual(p7OrbitRowHits, [[8,2,12]]);
 assert.deepEqual(p7OrbitColumnHits, [[8,2,12]]);
 assert.deepEqual(
@@ -1074,6 +1114,12 @@ console.log(JSON.stringify({
     determinants: nestedDeterminant,
     hTraces: H(nestedTrace),
     hDeterminants: H(nestedDeterminant),
+    circumferenceLengths,
+    circumferenceSums,
+    circumferenceProducts,
+    hCircumferenceLengths: H(circumferenceLengths.map(mod)),
+    hCircumferenceSums: H(circumferenceSums),
+    hCircumferenceProducts: H(circumferenceProducts),
     fiveWindowPRootHits,
     threeWindowStateHits,
     directInner3Hill: inner3HillResults
@@ -1147,7 +1193,7 @@ console.log(JSON.stringify({
       polynomialOfMatrixCharacteristic:p7OfP8Characteristic,
     },
     census:{
-      windows49,rowHits,colHits,jointHits,characteristicHits,
+      windows49,rowHits,colHits,jointHits,characteristicHits,circumferenceDescriptorHits,
       p7OrbitRowHits,p7OrbitColumnHits,p7OrbitShapeHits,
       p7OrbitNaturalOrientationShapeHits,
     },
