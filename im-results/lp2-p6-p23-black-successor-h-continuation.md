@@ -63,6 +63,12 @@ Using the same one-H transform on all 16 successors:
 
 Thus p6 and p23 are mutual unique nearest neighbors in this source-selected successor family under the same H coordinate representation that the red-span route already motivates.
 
+### H resolves a raw-rune tie
+
+The same nearest-neighbor comparison on **raw rune identities before H** is weaker. P6 already has p23 as its unique best raw-set overlap (3 shared values versus a next-best 2), but from p23 the maximum raw overlap is a three-way tie among p3, p6 and p54, each sharing three values.
+
+After one canonical H application, p23's overlap with p6 rises to four exact coordinates while the next-best competitors have three. Thus the operator fixed by the red-layer research does measurable work: it turns a one-way/raw similarity into a **mutual unique** relation. This is stronger than simply noticing that the two successor words happen to reuse some rune identities.
+
 The ordered-pair statement is stronger than the value labels. Even if `22,25` are later recognized as familiar state residues, the finite test does not choose them from the state vocabulary: it first takes all six adjacent pairs in the frozen p6 H stream, then asks which red-successor H streams repeat any of them.
 
 ## Supporting boundary relation

@@ -151,10 +151,41 @@ function rankAgainst(base) {
     );
 }
 
+function rawRankAgainst(base) {
+  const baseSet = new Set(base.values);
+  return redSuccessors
+    .filter((row) => row !== base)
+    .map((row) => ({
+      page: row.page,
+      redStart: row.redStart,
+      intersection: intersection(baseSet, new Set(row.values)),
+    }))
+    .sort(
+      (a, b) =>
+        b.intersection.length - a.intersection.length ||
+        a.page - b.page ||
+        a.redStart - b.redStart
+    );
+}
+
 // Bidirectional finite control: each member of the red-morphism pair is the
 // other's unique nearest neighbor by exact H-coordinate set intersection.
+const p6RawRank = rawRankAgainst(p6);
+const p23RawRank = rawRankAgainst(p23);
 const p6Rank = rankAgainst(p6);
 const p23Rank = rankAgainst(p23);
+
+// Raw rune identities already make p23 p6's unique nearest neighbor (3 vs 2),
+// but the reverse direction is tied: p23 shares three raw values each with
+// p3, p6 and p54. One H application resolves that tie without adding a
+// page-specific parameter, making p6/p23 mutual unique nearest neighbors.
+assert.equal(p6RawRank[0].page, 23);
+assert.equal(p6RawRank[0].intersection.length, 3);
+assert.equal(p6RawRank[1].intersection.length, 2);
+assert.equal(p23RawRank[0].intersection.length, 3);
+assert.equal(p23RawRank[1].intersection.length, 3);
+assert.equal(p23RawRank[2].intersection.length, 3);
+assert.ok([p23RawRank[0], p23RawRank[1], p23RawRank[2]].some((row) => row.page === 6));
 assert.deepEqual(
   { page: p6Rank[0].page, redStart: p6Rank[0].redStart, intersection: p6Rank[0].intersection },
   { page: 23, redStart: 0, intersection: [12, 22, 25, 0] }
@@ -233,6 +264,11 @@ console.log(JSON.stringify({
     orderedPairs: p23.pairs,
   },
   bidirectionalNearestNeighbor: {
+    rawControl: {
+      p6Top: p6RawRank.slice(0, 3),
+      p23Top: p23RawRank.slice(0, 4),
+      interpretation: "raw p23->p6 is tied; canonical H resolves it to a mutual unique maximum",
+    },
     p6ToP23Intersection: p6Rank[0].intersection,
     p6NextBestSize: p6Rank[1].intersection.length,
     p23ToP6Intersection: p23Rank[0].intersection,
