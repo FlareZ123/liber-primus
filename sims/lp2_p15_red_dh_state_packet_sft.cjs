@@ -189,6 +189,15 @@ for (const swapSpans of [false, true]) {
 assert.equal(physicalOrientations.filter(x => x.matches).length, 1);
 assert(physicalOrientations[0].matches);
 
+// Charge every ordering of the five observed p15 red-word descriptors, not
+// only the eight page-geometric orientations.  Natural printed order is the
+// sole one of 5! = 120 satisfying the frozen internal identities.
+const allFiveOrders = permutations(p15);
+const matchingFiveOrders = allFiveOrders.filter(internalPacket);
+assert.equal(allFiveOrders.length, 120);
+assert.equal(matchingFiveOrders.length, 1);
+assert.deepEqual(matchingFiveOrders[0], p15);
+
 // Interpret only after the source-only assertions above.  These state values
 // are already established elsewhere from the DH23/p6/p7 chain.
 const state = {p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4, F: 0};
@@ -242,6 +251,23 @@ const H3 = ([x, y, z]) => [mod(x - z), y, mod(x + z)];
 const p6ResegmentedProductH3 = H3(resegmented.map(x => x.P));
 assert.deepEqual(p6ResegmentedProductH3, [27, 27, 28]);
 
+// Symmetric transfer: use p6's native four word lengths as the segmentation
+// of p15's lower red11 span, then apply the same GP29 product operation.
+const p6NativeLengths = p6.descriptors.map(x => x.L);
+assert.deepEqual(p6NativeLengths, [4, 1, 4, 2]);
+const p15LowerRunes = p15Bottom.words.flatMap(w => w.vals);
+cursor = 0;
+const p15ResegmentedByP6 = p6NativeLengths.map(L => {
+  const vals = p15LowerRunes.slice(cursor, cursor + L);
+  cursor += L;
+  return {L, S: sum29(vals), P: product29(vals)};
+});
+assert.equal(cursor, p15LowerRunes.length);
+assert.deepEqual(p15ResegmentedByP6.map(x => x.P), [10, 5, 12, 0]);
+assert.deepEqual(p15ResegmentedByP6.map(x => x.P), [
+  mod(state.K * state.g), state.g, mod(state.a * state.K), state.F,
+]);
+
 // Existing p7 product register, source-only control.
 const p7 = redSpan(7, 194);
 assert.deepEqual(p7.descriptors.map(x => x.P), [11, 26, 8, 15, 2]);
@@ -261,12 +287,16 @@ console.log(JSON.stringify({
     internalFiveWordHits: fiveWordHits,
     lowerPermutationHitCounts: lowerPermutationHits.map(x => x.hits.length),
     physicalOrientations,
+    allFiveOrderCount: allFiveOrders.length,
+    matchingFiveOrderCount: matchingFiveOrders.length,
   },
   p6: {
     nativeDescriptors: p6.descriptors,
     p15LowerLengthResegmentation: resegmented,
     resegmentedProducts: resegmented.map(x => x.P),
     resegmentedProductH3: p6ResegmentedProductH3,
+    p15ResegmentedByP6,
+    p15ResegmentedByP6Products: p15ResegmentedByP6.map(x => x.P),
   },
   p7Products: p7.descriptors.map(x => x.P),
   classification:
