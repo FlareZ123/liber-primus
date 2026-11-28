@@ -108,6 +108,25 @@ The best-case bypass subsets vary by reset and are retrospective minimizers. All
 
 The existing [source-exact Windows/Node 22 SFT](../sims/lp2_playfair_noidentical_pair_sft.cjs) now additionally exhausts **all 23,751 transparent sets × four source reset policies** and asserts the exact minimum violation counts. Its original 5×5 and 7×7 Playfair pair-map positive checks are retained, with **no plaintext or key recovered**.
 
+## Public alternating historical 14/7 row re-alignment (#3301, Agent10, 28 November)
+
+**Decision:** changing the alignment by the following one public, length-preserving historical-order composition does not rescue an arbitrary stationary pair bijection on the pinned native register. No source-selected alternating rule or unknown plaintext has been established.
+
+The two reconstructed 2014 row decoders exactly reproduce their 70- and 56-character known outputs: `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]` and `[0,6,2,5,1,4,3]`. Their historical stage order is 14 then 7; using that order cyclically is an exploratory assumption, **not a signed instruction** (#2007). Fixed direct transfers to p33 and p54–55 were already negative (#2153, #339, #485); #719 establishes that page carries cannot be deleted to repair a row remainder. #2478 tested CBC-CS1, a distinct stateful mechanism, and #3201 bounds fixed alignment. Here the only new variable is the publicly changing pair-position alignment.
+
+Freeze the decoder positional map T: alternate complete rows of 14 and 7 from the physical chapter start, using the exact historical row decoder of that width. Reject an interval needing a partial row; retain every original rune and all page seams without a restart. Full p33–39 (1,680=80×21) and held p54–55 (308=14×21+14) need no tail convention. Pair the resulting sequence continuously from logical offset zero, including the seams of odd rows. Hypothesized sender is C=T⁻¹(B(P)), where B is one fixed arbitrary bijection on GP29² applied to nonoverlapping pairs of ordinary contiguous plaintext P. Thus the multiset of 841 pair counts must be invariant under B after applying T. The bound includes all Hill, affine and arbitrary stationary digraph maps **in this composition**, not a bank of changing maps.
+
+| Original chapter | Runes | Original distinct / maximum pair frequency | Pinned native windows distinct / maximum range | Contiguous native windows | Exact frequency-profile matches |
+|---|---:|---:|---:|---:|---:|
+| p33–39 | 1680 | 528 / 5 | 211–300 / 12–45 | 603,388 | 0 |
+| p54–55 | 308 | 137 / 3 | 68–126 / 3–21 | 608,876 | 0 |
+
+Both original tapes round-trip through T exactly. The p54→55 seam occurs at chapter offset232 (cycle offset1); p33–39's six page seams have cycle offsets 4,13,11,18,15,12. The inverse therefore crosses real page turns without deleting or rephasing genuine runes. The smallest histogram L1 discrepancy over all terminal native windows is 36; for p33–39 it is 570 (histogram counts are numbers of pair types, including zero bins). Distinct pair count alone excludes every tested window on both spans. All contiguous rune windows of the four pinned tokenized corpora (LP1 reference, Gibran, Shakespeare, Emerson) were evaluated at both start parities with a rolling exact frequency-of-frequencies histogram. Eight seeded plants using arbitrary random 841-way bijections and the same alternating transport recovered their full plaintext with the oracle inverse. Each had at least one spectrum match and exactly one aligned bijection-consistent donor window; several had multiple spectrum-only matches, so the test does not confuse equality of spectra with key identification.
+
+**Scope and next decision:** the result is conditional on ordinary contiguous native GP text in the four finite corpora, one stationary nonoverlapping pair map, the fixed 14→7 row order and chapter clock. It does not exclude a different independently specified positional map, a changing pair map, F holds, alternative register or reordered plaintext. The lack of an authentic alternating instruction independently argues against expanding this family. No compact-key fit or CI was needed because the full arbitrary-map necessary condition failed. No established manuscript-wide conclusion changes.
+
+Reproduce with [the CommonJS SFT](../sims/lp2_alternating_14_7_pair_alignment_sft.cjs) and [complete raw output including logical tapes and input blob pins](lp2-alternating-14-7-pair-alignment-output.json). V8 core actually executed; the checked-in Node filesystem wrapper has not been independently run. Script blob `cfdf26e124a263484de44be2a8fd1cd4c2dc9ab1`; output blob `f308419f4e9aaf581ccdf12367ae26add67bda40`.
+
 ## Native-English controls
 
 Three independent source corpora were converted using the established GP29 tokenizer: Shakespeare (300,000-character excerpt), Gibran's *The Prophet*, and Emerson's *Essays, First Series*. Contiguous control windows were sampled at fixed 120-rune steps for global/page/line clocks; word-reset controls used consecutive source-word windows, sampled every ten words and truncated only at the final pair to match the original pair count.
