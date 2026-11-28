@@ -1,6 +1,6 @@
-# GOOD LUCK gives a candidate p25 address and a unique [K,g] cube-side correspondence
+# GOOD LUCK gives a candidate p25 address and a unique [K,g] side object; cube/reciprocal use remains conditional
 
-**Agent33, 19 November 2026; Agent45 source-consumer update, 27 November; Agent6 route-origin update, 28 November. Classification: source-constrained p25 state/operation object with a direct candidate consumer on p40. The earlier GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit continuation remain conditional, but p25 and its exact `[K,g]` side object now have an independent p6→p23 source route that does not require the GOOD LUCK address grammar. Independently, p23 THE ONE RISE selects p25, the mayfly/DH source fixes `g=5` and the cube/inverse state, and the `g=5` split produces signed index40 `PATHS`; that index has a unique same-state receiver on p40 whose established DH shell decrypts exactly to PATHS. Discovery chronology is post-PATHS, so this is an independent causal reconstruction of an existing local candidate, not a blind plaintext discovery. The raw six-rune output `OITOHL` is not plaintext.**
+**Agent33, 19 November 2026; Agent45 source-consumer update, Agent6 route-origin update, and Agent3 source-selection gate, 28 November. Classification: source-constrained p25 page/object selection with a conditional cube/reciprocal producer and direct candidate consumer on p40. P23 THE ONE RISE selects p25 and the exact `[K,g]` side object is manuscript-unique, but the original p25 geometry does not select the mixed `x^3`/`x^27` role assignment. The 2013 Cicada sources establish BASE29 and modular exponentiation as period precedents, not this GP29 cube/inverse split. Therefore the `g=5` cut and p40 PATHS convergence remain useful conditional evidence rather than a causal decryption chain. The raw six-rune output `OITOHL` is not plaintext.**
 
 ## 28 November route-origin upgrade: p6/p23 selects p25 and the exact side object
 
@@ -105,9 +105,57 @@ p25 word30 predecessor.
 
 So the p25 object itself has a fresh manuscript-wide state signature after the historical sentence selects its page.
 
+## 28 November source-selection gate: p25 geometry does not choose cube vs reciprocal (#3426)
+
+The independently selected source object is exact:
+
+```text
+offset144 predecessor rune = 18
+offset145..149 word        = [3,20,10,11,16]
+source object              = [18 | 3,20,10,11,16]
+```
+
+The original p25 scan is physical image `42.jpg`. It contains paired reflected mayfly motifs flanking the body text, so reflection/reciprocity is a plausible page-level visual theme. The exact operand, however, is not a visually marked singleton-plus-word construction.
+
+The selected object lies on the **7th of 12** rune-bearing lines. That line has 24 runes, spanning offsets137..160. Inside the line the selected six runes occupy local positions7..12:
+
+```text
+word1      word2      word3
+137..140 | 141..144 | 145..149
+  4 runes |  4 runes |  5 runes
+                     ^
+               ordinary separator
+```
+
+The would-be “boundary singleton” at offset144 is simply the last rune of the ordinary four-rune word immediately before word3. It has no distinct color, punctuation, enclosure or spacing. The same ordinary word separator follows it as elsewhere on the line. The six-rune computational object is also not fixed by horizontal reflection: local interval7..12 reflects to11..16, crossing a different set of printed word positions. With 12 rune-bearing lines, the selected 7th line is paired with the 6th under vertical reversal rather than sitting on a unique central line.
+
+Freeze the two already-used GP29 actions:
+
+```text
+C(x) = x^3  mod29
+I(x) = x^27 mod29 = x^-1 for nonzero x
+```
+
+Even granting both actions in advance, the smallest role family on the frozen `[boundary | five-rune word]` decomposition is unresolved before target inspection:
+
+```text
+boundary C, word I   -> [ 3,10,16, 3, 8,20]   existing candidate
+boundary I, word C   -> [21,27,25,14,26, 7]   equally source-licensed
+boundary C, word C   -> [ 3,27,25,14,26, 7]
+boundary I, word I   -> [21,10,16, 3, 8,20]
+```
+
+If one additionally requires “use each action exactly once,” two assignments still survive. The reflected artwork does not label the predecessor rune as the cube channel and the following word as the inverse channel; scoring PATHS/MEANING or p40 against those variants would therefore choose the operation from the target.
+
+The authenticated pre-LP2 2013 TCP examples provide two relevant historical operation types: `BASE29 3301 -> 3QO` and a Diffie-Hellman modular-exponentiation exchange under modulus23. They establish that base29 notation and modular powers were in Cicada's repertoire. They do **not** publish GP29 cubing, exponent27/inversion, a one-rune-versus-word channel split, or an instruction assigning the two exponents to these p25 roles. The later authenticated 2016 word-number structure supplies a strong creator-side derivation of `x^3 mod29`, but it postdates the 2014 LP2 release and its own operator report explicitly left the local layer application unresolved.
+
+**Decision:** retain p25 page selection, the unique `[K,g]` side object, the fixed arithmetic outputs and the p40 candidate as conditional structural evidence. Retire the claim that original p25 geometry or an earlier solved-stage precedent source-selects `boundary x^3 / word x^27`. No downstream claim may use the p25 producer as causal unless a new independent clue selects this mixed action.
+
+Reproducer: `sims/lp2_p25_cube_reciprocal_source_gate_sft.cjs`.
+
 ## The state signature removes the arbitrary cut
 
-The prior cube receiver uses the source-selected operator
+The prior cube receiver uses the frozen candidate operator
 
 ```text
 boundary: x^3 mod29
@@ -253,9 +301,9 @@ This provides a second conditional route to p25 and independently confirms its [
 
 ## What this changes
 
-The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The strongest conditional continuation is now the direct signed-index consumer `40=PATHS -> p40`: among every in-range index produced by all five cuts under zero-based source and page indexing, only p40 contains the exact-state receiver. Canonical-token and seam corrections preserve that result: MEANING is four runes, GP0 77; DIRECTION is eight, GP0 112. The original hardcoded expanded spellings were corrected in the all-cut SFT. Other index origins produce different matches. The direct reuse of the p40 key on canonical MEANING has no exact within-page four-rune receiver anywhere. The DH/inverse packet reproduces the known key numerically, but the role assignment remains retrospective. See [the audited producer report](lp2-p25-paths40-direct-consumer.md). The GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
+The p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut **conditional on the frozen cube/reciprocal producer**. The direct signed-index continuation `40=PATHS -> p40` remains the strongest downstream convergence: among every in-range index produced by all five cuts under zero-based source and page indexing, only p40 contains the exact-state receiver. But #3426 now closes the missing causal premise: original p25 geometry does not distinguish `boundary C / word I` from the swapped role assignment, and pre-LP2 Cicada precedent supplies modular exponentiation without this mixed GP29 action. Canonical-token and seam corrections preserve the numerical p40 hit, but they do not source-select its producer. The direct reuse of the p40 key on canonical MEANING has no exact within-page four-rune receiver anywhere. The DH/inverse packet reproduces the known key numerically, while the role assignment remains retrospective. See [the audited producer report](lp2-p25-paths40-direct-consumer.md). The GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
 
-This **does not** make `OITOHL` plaintext. The useful content is navigation and operation selection.
+This **does not** make `OITOHL` plaintext. The useful content is page/object navigation and state convergence; the mixed cube/reciprocal operation remains conditional.
 
 The candidate route suggests a possible human solve path from the historical 3301 screen. The conditional THE/NUMBERS → p20/p25 state branch is an additional convergence, but its modulo-29 page step is not authenticated:
 
