@@ -250,6 +250,37 @@ for(let cell=0;cell<256;cell+=1){
 }
 assert.deepEqual(globalDistanceEqualsRow,[34,43,158,230,233]);
 
+// Post-discovery state closure on the already source-selected five-edge path.
+// Address residues themselves are [-b,-b,AK,A^-1,b,b]; the middle pair
+// multiplies to K. Charge only this exact three-feature conjunction across all
+// 256 starts. It is unique, while each component alone is non-rare.
+const selectedResidues=pathToSink59(selectedCell).slice(0,6).map(x=>x%29);
+assert.deepEqual(selectedResidues,[14,14,16,11,15,15]);
+assert.equal((selectedResidues[2]*selectedResidues[3])%29,2);
+const fiveEdgeFeatures=[];
+for(let cell=0;cell<256;cell+=1){
+  const path=[cell];
+  let x=cell;
+  for(let step=0;step<5;step+=1){
+    x=values59[x];
+    path.push(x);
+  }
+  const residues=path.map(y=>y%29);
+  fiveEdgeFeatures.push({
+    cell,
+    eqStart:residues[0]===residues[1],
+    eqEnd:residues[4]===residues[5],
+    middleK:(residues[2]*residues[3])%29===2,
+  });
+}
+assert.equal(fiveEdgeFeatures.filter(x=>x.eqStart).length,9);
+assert.equal(fiveEdgeFeatures.filter(x=>x.eqEnd).length,29);
+assert.equal(fiveEdgeFeatures.filter(x=>x.middleK).length,14);
+assert.deepEqual(
+  fiveEdgeFeatures.filter(x=>x.eqStart&&x.eqEnd&&x.middleK).map(x=>x.cell),
+  [43]
+);
+
 // Global multiplicity: 72 has four predecessors; geometry selects one of them.
 const midpointPredecessors=values59
   .map((x,i)=>x===72?i:null)
@@ -331,6 +362,17 @@ console.log(JSON.stringify({
       successorDistance:distanceToSink[selectedValue59],
       row5Distance5,
       globalDistanceEqualsRow,
+    },
+    fiveEdgeStateClosure:{
+      selectedResidues,
+      labels:['-b','-b','AK','A^-1','b','b'],
+      componentCounts:{
+        equalStart:fiveEdgeFeatures.filter(x=>x.eqStart).length,
+        equalEnd:fiveEdgeFeatures.filter(x=>x.eqEnd).length,
+        middleProductK:fiveEdgeFeatures.filter(x=>x.middleK).length,
+      },
+      exactConjunctionStarts:fiveEdgeFeatures
+        .filter(x=>x.eqStart&&x.eqEnd&&x.middleK).map(x=>x.cell),
     },
     midpointPredecessors,
     mirroredMidpointTransfer,
