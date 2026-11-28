@@ -102,6 +102,26 @@ As a distribution sanity check, the carry high digits have counts `[14,33,17,11,
 
 This rejects the cleanest possible interpretation in which each terminal carry block literally describes one p50 circumference token. No radix choice is involved: the printed first character 0–4 and second source character already define the test.
 
+## Carry-partition compression of all 180 interior cells into 76 table tokens
+
+One final literal bridge uses both halves of the p50 table rather than terminal GP sums. Keep the 76 source carry-block lengths unchanged. Partition the p50 **180-cell interior** by those exact lengths. For each block:
+
+- high digit = `length−1`, giving 0–4;
+- low digit = the sum of that interior block modulo the active table radix.
+
+This maps every interior cell exactly once into **76 two-digit tokens**, which can be compared directly with the **76 printed rim tokens**. It is the simplest source-typed 180→76 compressor that uses the table's own digit grammar.
+
+| Numeric reading | Rim order | High digit matches | Low digit matches | Complete token matches |
+|---|---|---:|---:|---:|
+| base60 | row-major rim | 15/76 | **1/76** | **1/76** |
+| base60 | clockwise rim | 23/76 | **1/76** | **0/76** |
+| drop-`f` base59 | row-major rim | 15/76 | **1/76** | **1/76** |
+| drop-`f` base59 | clockwise rim | 23/76 | **1/76** | **0/76** |
+
+The high-digit subtotal repeats the already non-exceptional block-length coincidence, while the independently determined low digit collapses to chance-level agreement. Neither live radix produces a token tape remotely resembling the rim.
+
+This closes the literal architecture in which the solved terminal carry partition itself tells a reader how to fold the 180-cell p50 interior into its 76-cell circumference. Any replacement combiner now requires an independent manuscript instruction rather than another arithmetic choice.
+
 ## Decision
 
 The new composition is attractive because every cardinality and address is source-derived: terminal solved text supplies a 180-position event register, its 76 ordinal carries choose 76 positions, and the literally stripped p50 interior supplies 180 addressable cells. It nevertheless fails the two historically motivated direct consumer families and the actual p54→p55 chapter clock.
