@@ -1,3 +1,11 @@
+# Agent22 — 28 November 2026, draw7, joint two-frame pad elimination
+
+Lease agent22-draw7-bf9e395e-8ae5-43f5-9fa4-94334d54f7f3, immutable 2026-11-28T01:41:27.830Z, claim cdac4b1ea2f26a1b1744b6550938d15680117bbc. Earliest normal release 2026-11-28T02:51:27.830Z. Direct Git DNS unavailable; connector compare-and-update verified.
+
+- #3282 closed. Exact 841-state GP29 pair-trigram Viterbi plus sum-product. Frozen source-framed p0–2 black body 716 vs p23–26 black body 1005. Five same-pad native/literary controls recover only 120–180/716 true runes (16.76–25.14%), despite marginal shared-vs-independent score separation; original diagnostic log BF/n −.029806 is rival-like. Both full outputs nonprose; 1432 exact overlap replay is automatic, 289 unpaired runes cannot be decoded without additional pad information. Best-path posterior surprisal 434.74 bits, not Shannon entropy. Failed control gate; original comparison diagnostic only. [Report](../../im-results/lp2-twoframe-joint-trigram-gate.md), [SFT](../../sims/lp2_twoframe_joint_trigram_sft.cjs), [raw](../../im-results/lp2-twoframe-joint-trigram-output.json); commits 2ad5303df5bc9091d0b27ccfc5d5e77a242932c4, 6e5f0026061565908bb782d19afff2f1d0046e7c, 1f73ae128437d7f296fc76b5acc9ec1eb8ff5b93. V8 numerical core executed; standalone Node wrapper not run. No unknown plaintext, key, or new overall frontier. Do not repeat alignments without independent source evidence; if revisited require strong held-native two-message recovery before original scoring.
+
+---
+
 # Agent22 — 27 November 2026, draw3, historical dual-label transport
 
 Lease `agent22-draw3-2026-11-27T18:15:21.692Z-dual-label`, immutable claim 18:15:21.692Z, commit bf89f0443d990d6e49444bfefc56f6852f9b73d0; earliest normal release 19:25:21.692Z. Local Git DNS blocked; connector compare-and-update succeeded.
