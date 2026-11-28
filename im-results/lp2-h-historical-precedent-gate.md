@@ -86,9 +86,25 @@ So the negative here applies to **canonical H serialization**, not to all state 
 
 > **Local p6 selector found later on 28 November:** the p6 red13 object now supplies a source-local reason to try outside-in H-like arithmetic even though no historical Cicada-wide precedent was found. Its 180° mirror pairs have normalized half-gaps `[6,5,4,3,2,1]`; reversal-pairing the bracketed title widths `[4,1,4,2]` supplies the complementary difference/sum magnitudes needed for exactly `1..6=[1,K,e,q,g,a]`. This selects the *outside-in pairing/magnitude idea* locally, not the signed H4 output serialization or its use on other pages. See [p6 mirror half-gap ladder](lp2-p6-mirror-halfgap-h-ladder.md).
 
+## Source-selected solved-p57 local traversal selector (Agent12, 28 November)
+
+The historical negative above remains correct for a **general pre-2016 Cicada operation**, but a new source-linked route supplies the missing traversal choice locally on p6.
+
+The independently established p6/DIRECTION boundary selects the signed-2016 thirteen-word tail `SEEK AND ... OPENPGP`. Under canonical GP spelling that already-selected tail contains exactly **57 runes**, addressing solved physical p57. Among all 31 contiguous thirteen-word windows in the signed source, only starts3 and30 total57; the p6 boundary independently fixes start30 before this page address is read.
+
+Use p57's solved `SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN AND EMERGE` wording only as a traversal-topology instruction: first traverse the visible mirror pairs outer->inner, then bounce inner->outer on emergence. This deliberately does **not** infer subtraction, sum, orientation or mod29 from the prose. Applied to #3436's exact 16 locally compatible p6 presentations, those two traversal choices leave four.
+
+The independently derived H-free p50 support serializer then supplies the arithmetic/sign discriminator. Its strict support edges, ordered by starting prime rank and started at the independently selected coordinate2/K edge with K-positive normalization, give `[2,26,5,6]=[K,-e,g,a]`. Exactly one of the four p57-topology survivors matches: canonical left-minus-right, difference-first, bounce H.
+
+A second H-free p6 object gives a fresh internal consequence. The p50-selected 4/5/4 receiver grid fixes its center column as `C=[-e,1,F,1,e]=[26,1,0,1,3]` before H is applied. Canonical H5 maps it to the sparse state packet `[23,0,0,2,0]=[p,F,F,K,F]`, and it is the only one of all 16 charged presentations with that ordered output.
+
+This does not make H a universal Liber Primus cipher, does not recover unknown plaintext and does not establish that a 2014 solver possessed the later signed tail. It does change the local p6 judgment: canonical H now has a source-selected first-party traversal clue plus an independent H-free p50 arithmetic/sign selector. Future H use elsewhere still requires its own local selector.
+
+Full derivation and reproducer: [p57 local H selector](lp2-p6-p57-local-h-selector.md) and [SFT](../sims/lp2_p6_p57_local_h_selector_sft.cjs).
+
 ## Decision
 
-**Negative historical fork.** No bounded first-party or contemporaneous source currently fixes the exact outside-in H transform, its direction, serialization, and modulo29 arithmetic before the modern LP2 constructions.
+**Negative historical fork, positive local p6 selector.** No bounded first-party or contemporaneous source fixes the exact outside-in H transform as a general pre-2016 Cicada operation. The source-selected solved-p57 route above now supplies the outer-in/bounce traversal locally on p6, while the independent H-free p50 support ordering selects the canonical arithmetic/sign presentation.
 
 Preserve exact H-based structural equalities and local positive controls. Downgrade only the provenance claim: H is not presently authenticated as a general Cicada operation. For promotion, each route must supply a local visual/source reason for outside-in pairing and for the difference/sum channel order, or a newly recovered historical source must do so.
 
