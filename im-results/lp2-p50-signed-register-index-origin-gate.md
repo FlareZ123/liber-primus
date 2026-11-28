@@ -34,6 +34,41 @@ The p50 report uses the same origin throughout: conventional one-based prime ran
 
 Therefore THE MAP, THE ROAD, IS, AND, DIRECTION, BEWARE FALSE PATHS and the p29 THE ROAD echo are all conditional on the same zero-origin choice. Phrase quality cannot independently select that origin without circularity.
 
+## Origin-invariant numerical scaffold does not break the tie
+
+A later adversarial census by Agent9 strips the English labels back off and freezes only the observed numerical shape. For every start rank `k=1..35`, both vertical orientations and both horizontal orientations, it asks for:
+
+1. four consecutive cells in one column carrying ranks `k, k+1, k+2, k+7`;
+2. continuing from the `k+2` cell in the same vertical direction by exactly `k+3` rows reaches rank `k+4`;
+3. that row contains adjacent ordered ranks `k+5, k+6`;
+4. **each required cell may independently use either base59 or base60**, so the census does not privilege the observed codec assignment.
+
+There is exactly **one** hit in the complete 32×8 table:
+
+```text
+k = 17
+vertical: (27,3) -> (26,3) -> (25,3) -> (24,3)
+ranks:       17        18        19        24
+distance: rank19 cell -> 20 rows north -> (5,3) rank21
+row5: (5,0) rank22 -> (5,1) rank23
+```
+
+Thus the table really does contain an origin-independent self-indexed **17..24 numerical scaffold**, with 20 represented by the physical distance. This is a post-discovery exact-shape census, not a familywise discovery p-value, but it means the geometry itself is not created solely by choosing English words.
+
+Crucially, the stronger numeric structure still does **not** select the textual origin. The same rank interval overlaps a coherent clause under both conventions:
+
+```text
+zero-origin 17..24: THE MAP THEIR MEANING IS THE ROAD AND
+one-based   17..24: ARE THE MAP THEIR MEANING IS THE ROAD
+```
+
+The signed phrase “their numbers are the direction” also fails to break the tie in a surprisingly symmetric way:
+
+- under zero origin, ROAD is index **23**; `p50[23]=1R`, naturally “one right”, matching the observed rank22→23 ROAD edge from cell40 to cell41;
+- under one-based numbering, ROAD is word **24**; `p50[24]=1n`, naturally “one north”, matching the one-based MAP(rank19 at cell203) → ROAD(rank24 at cell195) adjacent north step.
+
+So the two plausible origins each obtain a locally self-consistent ROAD direction from the corresponding ROAD number. This is evidence for a deliberately structured numerical region, but **not** evidence that zero origin wins. Do not use `1R` versus `1n` to choose an origin without another first-party discriminator.
+
 ## Historical controls
 
 The Cicada-signed 2012 payload at `im-results/2012-845145127/162667212858-image-payload.asc` contains human book coordinates including `1:29` and `1:1`. A pinned later reconstruction at `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3` shows source-dependent origins: Britannica helper blob `13e829bae40bcd5fb51e89702668739968d05699` leaves its first coordinate un-decremented relative to the CICADA anchor but decrements the second; Agrippa helper blob `611aeafdaf002e087949f3ac1eab70d20a03ee45` decrements both. These helpers are community reconstructions, not Cicada-authored code; their bounded evidentiary value is that the same puzzle used context-specific origin conventions.
@@ -44,12 +79,12 @@ The 2016 signed prose has no array syntax, index-zero marker or coordinate tuple
 
 ## Consequence
 
-Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every signed-message word label derived from `source[r]`, plus DIRECTION29→p29, ROAD23, cell186 and downstream navigation, to a **conditional zero-origin hypothesis**.
+Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every origin-specific signed-message word label derived from `source[r]`, plus DIRECTION29→p29, ROAD23, cell186 and downstream navigation, to a **conditional origin hypothesis**. The new `ROAD23→1R` / `ROAD24→1n` duality explicitly shows that the directional-token readout does not resolve the origin.
 
 Issue #3347 must not treat DIRECTION29 as source-supported navigation unless a first-party clue fixes the register origin.
 
 ## Reproduction
 
-Run `node sims/lp2_p50_signed_register_origin_sft.cjs`. It parses the committed signed 2016 message, asserts the 43-word rival table, proves line-local29 impossible, and checks the local signed 2012 coordinate markers.
+Run `node sims/lp2_p50_signed_register_origin_sft.cjs`. It parses the committed signed 2016 message, asserts the 43-word rival table, proves line-local29 impossible, checks the local signed 2012 coordinate markers, reconstructs the original 256-cell table, exhaustively proves the unique k=17 numerical scaffold even when every required cell may choose either live radix, and verifies the ROAD23→1R / ROAD24→1n dual-origin direction readouts.
 
 Pinned reconstruction: `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`; 2012 README blob `96c7d5ddc613fa9b26c3007fecd9072937802c2e`; 2014 README blob `7f2f414d13fa964d54cd1fdd5823f623e32c0059`.

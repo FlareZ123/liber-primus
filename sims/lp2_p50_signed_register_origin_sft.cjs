@@ -14,6 +14,13 @@ const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8")
   .replace(/\r\n/g, "\n");
 
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const tokens = grid.pages.flatMap((page) => page.tokens);
+const a60 = grid.alphabet;
+const a59 = a60.replace("f", "");
+assert.equal(tokens.length, 256);
+assert.equal(a60.length, 60);
+assert.equal(a59.length, 59);
 const clear = signed.split("-----BEGIN PGP SIGNATURE-----")[0]
   .replace(/^-----BEGIN PGP SIGNED MESSAGE-----\nHash: [^\n]+\n\n/u, "");
 
@@ -52,6 +59,108 @@ assert.equal(oneBased(22) + " " + oneBased(23), "IS THE");
 assert.equal(zeroOrigin(17) + " " + zeroOrigin(18), "THE MAP");
 assert.equal(oneBased(17) + " " + oneBased(18), "ARE THE");
 
+assert.equal(words.slice(17, 25).join(" "),
+  "THE MAP THEIR MEANING IS THE ROAD AND");
+assert.equal(words.slice(16, 24).join(" "),
+  "ARE THE MAP THEIR MEANING IS THE ROAD");
+
+/** @param {string} token @param {string} alphabet */
+function decode(token, alphabet) {
+  const hi = alphabet.indexOf(token[0]);
+  const lo = alphabet.indexOf(token[1]);
+  assert.ok(hi >= 0 && lo >= 0);
+  return hi * alphabet.length + lo;
+}
+/** @param {number} n */
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d += 1) if (n % d === 0) return false;
+  return true;
+}
+const primes = [];
+for (let n = 2; primes.length < 300; n += 1) if (isPrime(n)) primes.push(n);
+const primeRank = new Map(primes.map((p, i) => [p, i + 1]));
+const ranks = new Map([
+  [59, tokens.map((token) => primeRank.get(decode(token, a59)) || null)],
+  [60, tokens.map((token) => primeRank.get(decode(token, a60)) || null)],
+]);
+const at = (row, column) => row * 8 + column;
+
+/**
+ * Search the exact discovered rank scaffold while allowing each cell either
+ * source-visible radix and both physical orientations.
+ */
+function scanNumericScaffold() {
+  const hits = [];
+  for (let k = 1; k <= 35; k += 1) {
+    const distance = k + 3;
+    for (const vertical of [-1, 1]) {
+      for (const horizontal of [-1, 1]) {
+        for (let row0 = 0; row0 < 32; row0 += 1) {
+          for (let column = 0; column < 8; column += 1) {
+            const rows = [
+              row0,
+              row0 + vertical,
+              row0 + 2 * vertical,
+              row0 + 3 * vertical,
+            ];
+            const crossRow = row0 + 2 * vertical + distance * vertical;
+            if (rows.some((row) => row < 0 || row >= 32) ||
+                crossRow < 0 || crossRow >= 32) continue;
+            const requirements = [
+              [at(rows[0], column), k],
+              [at(rows[1], column), k + 1],
+              [at(rows[2], column), k + 2],
+              [at(rows[3], column), k + 7],
+              [at(crossRow, column), k + 4],
+            ];
+            const verticalOk = requirements.every(([cell, wanted]) =>
+              [59, 60].some((radix) => ranks.get(radix)[cell] === wanted));
+            if (!verticalOk) continue;
+            for (let roadColumn = 0; roadColumn < 8; roadColumn += 1) {
+              const nextColumn = roadColumn + horizontal;
+              if (nextColumn < 0 || nextColumn >= 8) continue;
+              const first = at(crossRow, roadColumn);
+              const second = at(crossRow, nextColumn);
+              const firstOk = [59, 60].some((radix) =>
+                ranks.get(radix)[first] === k + 5);
+              const secondOk = [59, 60].some((radix) =>
+                ranks.get(radix)[second] === k + 6);
+              if (firstOk && secondOk) {
+                hits.push({
+                  k, vertical, horizontal, start:[row0, column],
+                  intersection:[crossRow, column],
+                  roadPair:[[crossRow, roadColumn], [crossRow, nextColumn]],
+                  distance,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return hits;
+}
+
+const scaffoldHits = scanNumericScaffold();
+assert.deepEqual(scaffoldHits, [{
+  k:17, vertical:-1, horizontal:1, start:[27,3],
+  intersection:[5,3], roadPair:[[5,0],[5,1]], distance:20,
+}]);
+
+// The two reasonable text origins each turn ROAD's corresponding number into
+// a locally consistent direction token, so this cannot select an origin.
+assert.equal(zeroOrigin(23), "ROAD");
+assert.equal(tokens[23], "1R");
+assert.equal(oneBased(24), "ROAD");
+assert.equal(tokens[24], "1n");
+assert.equal(oneBased(19), "MAP");
+// rank19 is cell203 and rank24 is cell195: one physical cell north.
+assert.equal(primeRank.get(decode(tokens[203], a59)), 19);
+assert.equal(primeRank.get(decode(tokens[195], a60)), 24);
+assert.equal(203 - 195, 8);
+
 const lineCounts = clear.split("\n")
   .map((line) => (line.match(/[A-Za-z]+/g) || []).length);
 assert.equal(Math.max(...lineCounts), 11);
@@ -73,5 +182,10 @@ console.log(JSON.stringify({
     zero: [zeroOrigin(22), zeroOrigin(23)],
     one: [oneBased(22), oneBased(23)]
   },
-  maxLineWords: Math.max(...lineCounts)
+  maxLineWords: Math.max(...lineCounts),
+  originInvariantNumericScaffold: scaffoldHits[0],
+  roadDirectionRival: {
+    zeroOrigin: {roadNumber:23, token:tokens[23], physical:"right"},
+    oneBased: {roadNumber:24, token:tokens[24], physical:"north"},
+  }
 }, null, 2));

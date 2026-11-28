@@ -24,7 +24,7 @@ rank r   zero-origin source[r]   one-based word r
 
 No prose line contains 29 words. Only the zero-origin whole-message rival produces THE MAP / THE ROAD / IS / AND / DIRECTION at the ranks used below, so phrase recognition cannot also independently select that origin.
 
-**Current decision:** preserve the base59/base60 values, prime ranks, adjacency geometry, support lines and cell arithmetic. Downgrade every signed-word label derived from `source[r]`—including DIRECTION29→p29 and the cell186 movement branch—to a conditional zero-origin interpretation until a first-party clue fixes the register origin. See [the index-origin gate](lp2-p50-signed-register-index-origin-gate.md).
+**Current decision:** preserve the base59/base60 values, prime ranks, adjacency geometry, support lines and cell arithmetic. A later exhaustive numeric census strengthens that origin-free core: the exact self-indexed 17..24 scaffold described below is the **only** hit for any k=1..35 even when every required cell may independently use base59 or base60 and both physical orientations are allowed. However, it does not choose a text origin: zero-origin ROAD23 dereferences to `1R` along the rightward ROAD edge, while one-based ROAD24 dereferences to `1n` along the rival MAP→ROAD north step. Downgrade every origin-specific signed-word label derived from `source[r]`—including DIRECTION29→p29 and the cell186 movement branch—to a conditional interpretation until a first-party clue fixes the register origin. See [the index-origin gate](lp2-p50-signed-register-index-origin-gate.md).
 
 ## Frozen consequence of the existing SURFACE projection
 
