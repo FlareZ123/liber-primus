@@ -231,3 +231,107 @@ console.log(JSON.stringify({
   eventCorrespondence,
   chapterResults,
 }, null, 2));
+
+
+/**
+ * Second source-frozen bridge: the same 76 carry positions partition the
+ * 180-cell interior into 76 consecutive intervals. Collapse each interval by
+ * GP29 residue-sum and compare it directly with the 76-cell circumference.
+ * Also sample the cumulative interior sum at each carry endpoint.
+ *
+ * This is an authentication test for the 180<->76 table architecture itself,
+ * independent of p55 plaintext.
+ */
+function rimRowMajor(matrix) {
+  const out = matrix[0].slice();
+  for (let row = 1; row < 31; row++) out.push(matrix[row][0], matrix[row][7]);
+  out.push(...matrix[31]);
+  return out;
+}
+
+function rimClockwise(matrix) {
+  const out = matrix[0].slice();
+  for (let row = 1; row < 32; row++) out.push(matrix[row][7]);
+  for (let col = 6; col >= 0; col--) out.push(matrix[31][col]);
+  for (let row = 30; row >= 1; row--) out.push(matrix[row][0]);
+  return out;
+}
+
+function compressIntervals(inner) {
+  const out = [];
+  let start = 0;
+  for (const { pos } of events) {
+    out.push(inner.slice(start, pos + 1).reduce((sum, x) => sum + x, 0) % 29);
+    start = pos + 1;
+  }
+  assert.equal(start, 180);
+  return out;
+}
+
+function prefixSamples(inner) {
+  let running = 0;
+  const all = inner.map((value) => {
+    running = mod(running + value);
+    return running;
+  });
+  return events.map(({ pos }) => all[pos]);
+}
+
+function directMatch(a, b) {
+  return a.filter((value, i) => value === b[i]).length;
+}
+
+const matrix59 = grid.rows.map((row) => row.map((token) => {
+  const hi = alphabet59.indexOf(token[0]);
+  const lo = alphabet59.indexOf(token[1]);
+  assert.ok(hi >= 0 && lo >= 0);
+  return 59 * hi + lo;
+}));
+
+const intervalBridge = {};
+for (const [radix, matrix, inner] of [
+  ['base60', grid.byte_rows, inner60],
+  ['base59', matrix59, inner59],
+]) {
+  const interval = compressIntervals(inner);
+  const prefix = prefixSamples(inner);
+  const rims = {
+    rowMajor: rimRowMajor(matrix).map((x) => x % 29),
+    clockwise: rimClockwise(matrix).map((x) => x % 29),
+  };
+  intervalBridge[radix] = {
+    interval,
+    prefix,
+    exact: {
+      intervalRowMajor: directMatch(interval, rims.rowMajor),
+      intervalClockwise: directMatch(interval, rims.clockwise),
+      prefixRowMajor: directMatch(prefix, rims.rowMajor),
+      prefixClockwise: directMatch(prefix, rims.clockwise),
+    },
+    bestShift: {
+      intervalRowMajor: bestShift(rims.rowMajor, interval),
+      intervalClockwise: bestShift(rims.clockwise, interval),
+      prefixRowMajor: bestShift(rims.rowMajor, prefix),
+      prefixClockwise: bestShift(rims.clockwise, prefix),
+    },
+  };
+}
+
+assert.deepEqual(intervalBridge.base60.exact, {
+  intervalRowMajor: 0,
+  intervalClockwise: 2,
+  prefixRowMajor: 1,
+  prefixClockwise: 2,
+});
+assert.deepEqual(intervalBridge.base59.exact, {
+  intervalRowMajor: 4,
+  intervalClockwise: 2,
+  prefixRowMajor: 3,
+  prefixClockwise: 2,
+});
+
+console.log(JSON.stringify({
+  status: 'PASS: carry-interval compression does not reproduce the p50 circumference under either documented radix',
+  intervalLengths: events.map(({ pos }, i) => pos - (i ? events[i - 1].pos : -1)),
+  intervalBridge,
+}, null, 2));
