@@ -202,6 +202,32 @@ p27 B/K receiver
 
 The loop materially strengthens navigation and the repeated-H state architecture. It does **not** revive previously failed p32/p47 decoder families or establish that these selected ciphertext groups are plaintext.
 
+#### Immediate same-length neighbor: bounded negative plus unique H-difference
+
+The selected one-based word47 is immediately followed by another six-rune word, so one direct receiver is fixed without a phase or span choice. Using the selected word47 H6 packet as a six-rune GP29 additive key on word48 fails both natural directions:
+
+```
+word48 GP0 indices = [15,12,25,12,21,4]
+
+word48 - H6(word47) = [28,22,13,4,9,11]  -> EAOEPRNJ
+word48 + H6(word47) = [ 2, 2, 8,20,4,26]  -> THTHHLRY
+```
+
+Neither readout is source-native prose. Retire this exact direct additive transfer; do not tune phase, sign schedules, or permutations.
+
+The same fixed neighbor does, however, supply a structural holdout under the already canonical H transform:
+
+```
+H(word47) = [16,19,12,8,12,22]
+H(word48) = [11,20,13,8, 4,19]
+
+H(word47) - H(word48) mod29
+          = [5,28,28,0,8,3]
+          = [g,-1,-1,F,A,e].
+```
+
+There are only **19** adjacent complete-word pairs in unknown p0-p55 where both words have length6. Charging this exact ordered H-difference over all 19 leaves **one** hit: p47 word47 -> word48. This remains a state-architecture checksum, not plaintext recovery.
+
 ### Rival controls
 
 The canonical 11-cycle contains only three literal decimal tokens that are legal LP2 page numbers:

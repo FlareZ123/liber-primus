@@ -233,6 +233,37 @@ assert.deepEqual(h47PairNumbers,[483,356,370]);
 assert.deepEqual(h47Addresses,[227,100,114]);
 assert.equal(tokens[h47Addresses[0]],"49");
 
+// Immediate selected neighbor: bounded direct-additive negative and fixed H-difference.
+const p47Word48=p47Words[47];
+assert.equal(p47Word48.indices.length,6);
+const add47=p47Word48.indices.map((x,i)=>mod29(x+h47[i]));
+const sub47=p47Word48.indices.map((x,i)=>mod29(x-h47[i]));
+assert.deepEqual(add47,[2,2,8,20,4,26]);
+assert.deepEqual(sub47,[28,22,13,4,9,11]);
+
+const h48=H(p47Word48.indices);
+const adjacentHDifference=h47.map((x,i)=>mod29(x-h48[i]));
+assert.deepEqual(h48,[11,20,13,8,4,19]);
+assert.deepEqual(adjacentHDifference,[5,28,28,0,8,3]);
+
+let adjacentSixPairs=0;
+const adjacentHDifferenceHits=[];
+for(let p=0;p<=55;p+=1){
+  const ws=pageWords(p);
+  for(let i=0;i+1<ws.length;i+=1){
+    if(ws[i].indices.length!==6||ws[i+1].indices.length!==6)continue;
+    adjacentSixPairs+=1;
+    const a=H(ws[i].indices);
+    const b=H(ws[i+1].indices);
+    const d=a.map((x,j)=>mod29(x-b[j]));
+    if(d.join(",")===adjacentHDifference.join(",")){
+      adjacentHDifferenceHits.push({page:p,index0:i,index1:i+1,start0:ws[i].start,start1:ws[i+1].start});
+    }
+  }
+}
+assert.equal(adjacentSixPairs,19);
+assert.deepEqual(adjacentHDifferenceHits,[{page:47,index0:46,index1:47,start0:206,start1:212}]);
+
 const output={
   classification:"conditional p32-p47 navigation loop reopened; no plaintext",
   signedP32:{routeTail:seeksRoute.slice(-4),nextCell:grid.bytes[32]},
@@ -243,6 +274,7 @@ const output={
   wholeTableReturningDecimalTokens:returning,
   selectedP47Word47:{start:p47OneBased47.start,metrics:metrics(p47OneBased47),h6:h47,startToken:tokens[p47OneBased47.start],h6PairNumbers:h47PairNumbers,h6Addresses:h47Addresses,firstH6Token:tokens[h47Addresses[0]]},
   selectedP47Controls:{allCompleteWords,sixRuneWords,metricTripleHits,h47Hits,prime256Words,start206WordCount:start206Words.length},
+  p47ImmediateNeighbor:{word48:p47Word48.indices,h48,add47,sub47,adjacentHDifference,adjacentSixPairs,adjacentHDifferenceHits},
   decision:"Cell115 literal47 selects p47 word47, whose unique (a,SEEKS,256) metrics and unique canonical H6 DH-state packet close the p27/p32/p47 navigation circuit. No plaintext is recovered; previously failed decoder families remain retired.",
 };
 const json=JSON.stringify(output,null,2);
