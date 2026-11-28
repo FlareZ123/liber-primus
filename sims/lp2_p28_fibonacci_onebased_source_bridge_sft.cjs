@@ -58,7 +58,7 @@ const key29=HInv(rise29,0),pred29=gp(source29.word).map((v,i)=>mod(v+key29[i]));
 assert.deepEqual(key29,[22,7]); assert.deepEqual(pred29,[24,25]);
 assert.deepEqual(p28.slice(140,142),pred29);
 
-// Complete one-based source-ordinal -> same-number physical-page family.
+// Equivalent ordinal rendering of the zero-based source-index -> same project-page family.
 const hitRows=[];
 const tested=[];
 for(const src of words){
@@ -73,7 +73,7 @@ for(const src of words){
 }
 assert.deepEqual(hitRows.map(r=>[r.ordinal,r.word,r.physicalPage,r.matches]),[[29,"THE",29,[140]],[35,"BE",35,[4]]]);
 
-// One-based follower DIRECTION30 -> physical page30 -> canonical word30 packet.
+// Zero-based source index29 = ordinal word30 DIRECTION -> project p29 / physical page30.
 const direction=words[29]; assert.deepEqual([direction.ordinal,direction.word],[30,"DIRECTION"]);
 const physical30Project=direction.ordinal-1; assert.equal(physical30Project,29);
 const w30=byPage.get(physical30Project).find(w=>w.ordinal===30);
@@ -90,14 +90,19 @@ assert.deepEqual(p33OneLabels,["HELLO","SEEKS","WILL"]);
 
 const out={
   schema:1,
-  classification:"source-origin cross-route gate; no new unknown plaintext claimed",
+  classification:"source/page-origin reconciliation gate; no new unknown plaintext claimed",
   mayflyPointer:{counts,diffs,localFrame,pageOrdinal,projectPage},
-  signedOneBased:{word29:words[28].word,word30:words[29].word,word35:words[34].word,zeroBased29Rival:words[29].word},
+  signedZeroBased:{index28:words[28].word,index29:words[29].word,index34:words[34].word},
+  signedOneBasedEquivalent:{word29:words[28].word,word30:words[29].word,word35:words[34].word},
   readout:{projectPage:28,physicalPage:29,decoded:"READOUT",heldoutNext:"THE",heldoutCipher:pred29},
-  sameOrdinalTwoRuneFamily:{tested:tested.map(r=>({ordinal:r.ordinal,word:r.word,matches:r.matches})),hits:hitRows},
+  sourcePageFamily:{tested:tested.map(r=>({zeroIndex:r.ordinal-1,ordinal:r.ordinal,word:r.word,matches:r.matches})),hits:hitRows},
   follower:{sourceOrdinal:30,word:"DIRECTION",physicalPage:30,projectPage:29,canonicalWordOrdinal:30,cipher:w30.values,h4},
-  originConflict:{mayflyPointer29:{ordinalTargetProjectPage:28,zeroIndexTargetProjectPage:29},p33Rise34:{oneBasedTargetProjectPage:33,zeroIndexTargetProjectPage:34,zeroBasedLabels:p33ZeroLabels,oneBasedLabels:p33OneLabels}},
-  consequence:"The p28/p34 held-out source-to-page hits are exactly one-based word29->physical page29 and word35->physical page35. The independently recovered mayfly pointer29 lands on the first hit. Thus this route can be stated without zero-based signed-word dereferencing; READ OUT THE on physical page29 aligns with one-based word29 THE, whose immediate follower is one-based word30 DIRECTION and therefore physical page30/project p29. This does not authenticate the signed message as the intended register by itself. It also exposes a cross-route origin conflict: the mayfly/Fibonacci route interprets 29 ordinally (29th page = p28), whereas the promoted p33 body-rise route needs zero-based labels/pages for [1,7,34] = THE,THE,BE and p34. A single global number-to-page/source-origin convention cannot justify both routes unchanged."
+  originReconciliation:{
+    physicalOrdinal29:{projectPage:28,sourceZeroIndex:28,sourceWord:words[28].word},
+    nextSource:{sourceZeroIndex:29,sourceWord:words[29].word,projectPage:29,physicalOrdinal:30},
+    p33Rise34:{sourceZeroIndex:34,sourceWord:words[34].word,projectPage:34,physicalOrdinal:35,zeroBasedLabels:p33ZeroLabels,oneBasedMisread:p33OneLabels}
+  },
+  consequence:"The mayfly value 29 is a physical-page ordinal: 29th LP2 page = project p28. The authenticated signed source remains zero-based: source[28]=THE -> p28, source[29]=DIRECTION -> p29, source[34]=BE -> p34. These are compatible namespaces related by physicalOrdinal = projectIndex + 1, not competing origin conventions. The independently recovered mayfly pointer therefore converges on the existing zero-based THE/p28 route, and the immediate source follower DIRECTION selects p29. The p33 rises [1,7,34] likewise remain zero-based source/project indices; reading them as one-based words would incorrectly give HELLO, SEEKS, WILL. This reconciles the indexing grammar but does not by itself authenticate the signed register or the individual local inverse mechanisms."
 };
 const s=JSON.stringify(out,null,2);console.log(s);
 if(process.env.RUNNER_TEMP)fs.writeFileSync(path.join(process.env.RUNNER_TEMP,"source-test-output.json"),s);
