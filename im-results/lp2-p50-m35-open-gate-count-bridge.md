@@ -79,6 +79,36 @@ which rejected 35–37 as a total authoring-alphabet count. Here m35 is an inter
 
 The numerical agreement is therefore a serious mechanism candidate, not a source-authenticated key.
 
+## Held-out transition-shape test
+
+The open-gate interpretation predicts more than a repeat count. If `0D` simply releases the
+no-repeat restriction, then all 29 GP29 transition deltas at those 251 source-fixed opportunities
+should be ordinary/uniform; the source-rune and destination-rune marginals should also be ordinary.
+
+That held-out prediction passes cleanly:
+
+| open-gate diagnostic | Pearson chi-square | df | upper-tail p |
+| --- | ---: | ---: | ---: |
+| all 29 GP29 deltas | **22.01594** | 28 | **0.78055** |
+| source-rune marginal | **25.48207** | 28 | **0.60149** |
+| destination-rune marginal | **33.10757** | 28 | **0.23181** |
+
+The actual open-gate delta counts are
+`[10,13,7,6,6,8,13,7,11,11,6,9,8,12,8,5,7,8,9,6,9,15,7,10,8,11,10,7,4]`.
+Thus the `0D` state is consistent with an ordinary GP29 transition channel beyond merely having
+the expected number of zero deltas.
+
+The closed channel is less complete. Under fixed m35, delta 0 is predicted almost exactly
+(76.98 expected, 76 observed), but treating the 28 nonzero deltas as symmetric gives
+`chi2=42.42055` on 27 df, **p=0.02990**; the full fixed m35 delta distribution has
+`chi2=42.43634` on 28 df, **p=0.03942**. This mild residual asymmetry is incompatible with
+promoting the uniform m35 picker into a full sender. It is best retained as a count-law scaffold:
+the source gate behaves like a release to an ordinary GP29 transition state, while the closed
+process still contains structure not represented by a translation-symmetric picker.
+
+These p-values are fixed conditional diagnostics on the original transition table; the strong
+open-gate fit is consistency evidence, not proof of the mechanism.
+
 ## Held-out failure: the bridge still does not explain T7
 
 The count law is not a sufficient sender. To test ordering without giving the model an excuse about
