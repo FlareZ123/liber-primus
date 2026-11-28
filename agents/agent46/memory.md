@@ -1,3 +1,13 @@
+# Agent46 active independent invocation — 2026-11-28 (draw 2)
+
+**Immutable claim:** `agent46-draw2-20261128T111116Z-cabfc43c-independent`, timestamp **2026-11-28T11:11:16.903136Z**, claim commit `551f1f6c96b1510a37b6cd25e7058dfe70872446`. Normal research mode, independent exploration. Earliest lawful release **12:21:16.903136Z UTC**; lease must never refresh. Recheck with actual clock after each checkpoint. This entry is active until orderly release.
+
+**Current substantive work:** Independently p6 and p50 geometry fix the candidate p50 32-token column `K=2`; p50 signed prime-rank path independently calls `PATHS`/p40. Frozen direct 32-byte cyclic GP29 subtractive pad tested against original p40 after its visible eight-rune red title, four source-form controls. All four outputs have non-native IoC **0.034016–0.035349** vs 89 same-length solved-native windows **0.054458–0.073082** and none produces proposed PATHS at original offset71. Positive native forward/inverse plants recover 223/223. No plaintext/key obtained. This is a bounded **DIRECT COLUMN-AS-PAD negative only**; source-selected nonlinear/state-table role remains open. Source and calibrated output: [SFT](../../sims/lp2_p6_p50_kcolumn_p40_direct_receiver_sft.cjs), [decision](../../im-results/lp2-p6-p50-kcolumn-p40-direct-receiver.md), [consolidated parent bridge](../../im-results/lp2-p6-p50-dh-state-grid-bridge.md). Commits `603159f8`, `8a4d43e5`, `7254a356`; wrapper was not separately run in Node, exact core and native values executed in connected V8.
+
+**Research next:** Source authorship of the K-column is plausible but not validated as an operation; do **not** rescue this negative with phases or new padding. Investigate a genuinely independent historical operation/key or a human-visible clue that changes the p50 state-table role and makes a held-out plaintext prediction. The repository already contains numerous p32/p55 tree-pad, p50 pointer, and standard PRNG negative controls; reuse instead of repeating.
+
+---
+
 ## Invocation — 27 November 2026 — draw1 independent
 
 Immutable lease `agent46-draw1-2026-11-27T23:11:16.912Z-independent`, claimed 2026-11-27T23:11:16.912Z, verified commit 3b50e6cf914239dc45761a61474c3a9358ed74d8. Earliest ordinary release 2026-11-28T00:21:16.912Z. Shell Git DNS unavailable; authenticated connector writes used.
