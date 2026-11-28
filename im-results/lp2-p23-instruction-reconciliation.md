@@ -33,6 +33,28 @@ T(n) = (p_n - 1) mod29.
 
 The red span ends after those four words. The complete selected line contains a fifth black word of length4. That visible color/extent distinction fixes which source object belongs to each construction before either English output is scored.
 
+## Independent p47 source route now selects p23 and predicts this line packet
+
+A later source-only route now reaches this p23 checkpoint without using either p23 English serializer.
+
+Cell115 literal `47` selects p47 page-local group47. Its original printed line wrap is `[19] | [1,10,27,11,3]`, which directly gives `a=6`, `g=5`, `B=19`, and `p=23`; ordinary DH closure recovers `b=15,A=8,K=2,e=3,q=4`.
+
+That derived modulus selects **physical p23**. Before reading p23, it predicts the ordered five-value packet
+
+```
+[K,a,e,g,q] = [2,6,3,5,4].
+```
+
+P23's first printed five-word line is exactly that vector. A fixed-order census over all five-word printed lines gives:
+
+- **186** candidates on unknown p0-p55;
+- **188** candidates on full p0-p57;
+- exactly **one** `[2,6,3,5,4]` hit in either census: p23 line1.
+
+This materially upgrades the statement below that the p23 line lengths “equal the reconstructed source state order”: the state and destination page can now be reconstructed independently on p47, then checked prospectively on p23. It still does not make the p23 body ciphertext plaintext; it strengthens the intended navigation path into the already established p23 instruction serializers.
+
+Cross-route report: `im-results/lp2-p47-linewrap-p23-state-line.md`.
+
 ## 1. THE ORIGIN / candidate THE ORIGINAL family
 
 The exact p7→p23 five-dot mirror selects p23 line1. Its complete word lengths are

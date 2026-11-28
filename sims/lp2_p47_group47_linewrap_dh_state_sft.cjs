@@ -186,6 +186,47 @@ assert.deepEqual(descriptorHits,[{
   page:47,start:206,left:[19],right:[1,10,27,11,3]
 }]);
 
+// Held-out destination selected by the derived modulus p=23.
+// Reuse the printed-line grammar from the established p23 reconciliation.
+const parts=raw.split(/^\s*%\s*$/m);
+function physicalPart(page){
+  assert.notEqual(page,50);
+  return parts[page<=49?page:page-1]||"";
+}
+function printedLineLengths(page){
+  return physicalPart(page)
+    .split(/\n/u)
+    .filter((line)=>/[\u16A0-\u16FF]/u.test(line))
+    .map((line)=>(line.match(/[\u16A0-\u16FF]+/gu)||[]).map((word)=>[...word].length));
+}
+const predictedP23Line=[K,direct.a,e,direct.g,q];
+assert.deepEqual(predictedP23Line,[2,6,3,5,4]);
+assert.deepEqual(printedLineLengths(direct.p)[0],predictedP23Line);
+
+const unknownFiveWordLines=[];
+const fullFiveWordLines=[];
+for(let page=0;page<=57;page+=1){
+  if(page===50)continue;
+  for(let line=0;line<printedLineLengths(page).length;line+=1){
+    const lens=printedLineLengths(page)[line];
+    if(lens.length===5){
+      const row={page,line,lens};
+      fullFiveWordLines.push(row);
+      if(page<=55)unknownFiveWordLines.push(row);
+    }
+  }
+}
+assert.equal(unknownFiveWordLines.length,186);
+assert.equal(fullFiveWordLines.length,188);
+assert.deepEqual(
+  unknownFiveWordLines.filter((row)=>row.lens.join(",")===predictedP23Line.join(",")),
+  [{page:23,line:0,lens:[2,6,3,5,4]}]
+);
+assert.deepEqual(
+  fullFiveWordLines.filter((row)=>row.lens.join(",")===predictedP23Line.join(",")),
+  [{page:23,line:0,lens:[2,6,3,5,4]}]
+);
+
 const output={
   classification:"source-selected visible line-wrap DH-state reconstruction; no plaintext",
   selection:{
@@ -201,6 +242,7 @@ const output={
   direct,
   reconstructed:{p:23,g:5,a:6,b,A,B:19,K,e,q},
   confirmations:{gp0,prime,h6},
+  p23Holdout:{predictedLine:predictedP23Line,unknownFiveWordLineCount:unknownFiveWordLines.length,fullFiveWordLineCount:fullFiveWordLines.length,uniqueHit:{page:23,line:0}},
   controls:{
     completeWords:complete.length,
     completeSix,
@@ -210,7 +252,7 @@ const output={
     lineCrossingSix:crossingSix.length,
     descriptorHits,
   },
-  decision:"The visible 1|5 line wrap of p47 local group47 directly supplies (B,g,p) while total length supplies a; ordinary DH closure reconstructs the full state. This is a stronger intended-route candidate than H-role recognition alone.",
+  decision:"The visible 1|5 line wrap of p47 local group47 reconstructs the full DH state and prospectively selects p23, whose first printed five-word line uniquely equals [K,a,e,g,q]. No unknown plaintext is promoted.",
 };
 const json=JSON.stringify(output,null,2);
 console.log(json);

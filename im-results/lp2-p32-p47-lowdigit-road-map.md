@@ -315,11 +315,24 @@ The older p32 dual-square census remains stronger and unchanged: p32 is the only
 
 ### Current decision
 
-**Reopen the p32↔p47 structure as a conditional navigation loop.** The specific source-first objection that no independent cue selected p47 is now resolved by the independently reached cell115 literal `47`.
+**The p32↔p47 navigation branch is now materially active rather than merely reopened.** Cell115 literal `47` selects p47 page-local group47. That source-visible group reconstructs the full DH tuple from its printed `1|5` line wrap, independently yields the unique `(length,GP0,prime)=(6,71,256)` packet, and supplies the unique H6 state checksum documented above.
 
-This does **not** revive the already failed p32/p47 additive, XOR, prime-totient, or p55 key-transfer consumers. It also does not authenticate the low-digit word selector as a cipher. The actionable consequence is narrower: p47 is again a justified receiver for a **new, source-selected operation**. Future work should seek a player-visible p47 operand or an untouched prediction that uses this page selection; do not repeat the retired generic decoder families.
+The reconstructed `p=23` now makes a held-out prediction on physical p23: its first printed five-word line is exactly
 
-Cross-route reproducer: `sims/lp2_p27_within_cell115_p47_reopen_sft.cjs`.
+```
+[K,a,e,g,q] = [2,6,3,5,4].
+```
+
+Across all 186 five-word printed lines on unknown p0-p55, this ordered vector occurs once, at p23 line1. Across the full p0-p57 manuscript (188 five-word lines) it remains unique. This gives a direct cross-route entrance from p47 into the already established p23 `THE ORIGIN` / `THE ONE RISE` instruction checkpoint.
+
+The same branch also returns through p49 under canonical base60: p47 H6's first adjacent BASE29 pair selects literal49, p49 recursive SHED gives address76 -> byte114, and exactly K=2 canonical pointer steps return cell115/literal47.
+
+The remaining objective is to turn this increasingly source-constrained navigation/state circuit into a reversible rune-level payload operation. Keep the failed direct p47-neighbor additive and p49 repeated-H6 additive families retired.
+
+Cross-route reports:
+- `im-results/lp2-p47-linewrap-p23-state-line.md`
+- `im-results/lp2-p27-dh-state-word19-divinity-receiver.md`
+- `im-results/lp2-p49-recursive-shed-direction-transfer.md`
 
 ## Reproduction
 
