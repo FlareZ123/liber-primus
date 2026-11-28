@@ -38,6 +38,27 @@ The 23-mark is source image74/p57, exactly as the annotation census says.
 
 This establishes a genuine hidden structural grammar in the original artwork: the large punctuation values are not merely totals. Their internal layouts were drawn as fixed peelable lattices.
 
+## Numbers-as-direction gives a human route to p3 and p2
+
+The authenticated 2016 clue says that the numbers are the direction. The fixed circumference morphology therefore has an immediate page-address reading that does not require a cipher search:
+
+    13-dot class: remove outer circumference10 -> 3 points remain -> physical p3
+    10-dot class: remove outer circumference8  -> 2 points remain -> physical p2
+
+This was recognized after the importance of p3 and p2 was already known, so it is not a blind discovery claim. It is nevertheless causal evidence for the intended solve path.
+
+The p3 receiver is especially important: physical p3 contains the marked red triad [13,23,2] that defines the quadratic relation used by the exact p15-minus-p57 quotient construction. The dominant red punctuation class therefore supplies a simple original-art route into the otherwise surprising p3 field source:
+
+    solved p57 teaches "shed circumferences"
+      -> repeated 13-dot family exposes interior3
+      -> signed "numbers are the direction"
+      -> p3
+      -> marked p3 triad supplies the field relation.
+
+The 10-dot class analogously directs to p2. P2 already has independent historical/source relevance, but its old H4 body-key decoder was falsified; this new pointer does not revive that decoder.
+
+The unique 23-dot p57 mark has two nested circumferences: outer14 leaves9, then inner8 leaves the central1. Its inner circumference8 already points naturally to p8 under the same direction rule, where the independently published full H→DH state register lives. Interpreting the final central1 as p1 is a possible continuation, but it has not yet passed a typed receiver test and is not promoted here.
+
 ## DH-state convergence
 
 Under the independently selected signed-2013 DH procedure and the already established p29/p15/p23/p8 state dictionaries, the morphology exposes:
