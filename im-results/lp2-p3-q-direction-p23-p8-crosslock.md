@@ -33,6 +33,39 @@ Thus the frozen p15 Q output now does more than equal `[p,A]` or spell `DH`: und
 
 This is a navigation/state cross-lock. It still does not tell us how either black body is encrypted.
 
+## Independent p29 DIRECTION route fixes the same ROAD23 / DEVOTED8 pair
+
+This receiver interpretation is not merely semantic naming after the Q output. A separate, already-published p28→p29 DIRECTION route fixes a zero-origin signed register locally and gives:
+
+```text
+p29 word29 H2 -> [22,23] -> THE ROAD
+ROAD23 -> physical p23
+
+p29 word30 H4 -> [22,15,8,0]
+                 [p-1,b,A,F]
+```
+
+That packet independently reconstructs `p=23`, `e=3`, `K=2`, and explicitly records the signed-source identities:
+
+```text
+ROAD    = index23 = p
+DEVOTED = index8  = A
+```
+
+Therefore the p15 Q output is exactly the same ordered pair in all three fixed namespaces:
+
+```text
+numeric state:       [23,8] = [p,A]
+signed-2016 words:   [23,8] = [ROAD,DEVOTED]
+canonical GP:        [23,8] = DH
+```
+
+The first half, **ROAD23 -> p23**, already existed as an independent p29 navigation handoff. The signed “numbers are the direction” rule applied to the complete Q pair supplies the parallel second handoff **DEVOTED8 -> p8**. P8 then independently reconstructs `p=23,g=5,a=6,b=15,A=8,B=19,K=2,e=3,q=4`, so the newly directed recipient closes back onto the same state that names DEVOTED8 as `A`.
+
+This is the strongest causal reading of the Q output currently available: a manuscript-derived pair reproduces the already-established p29 `ROAD23 / DEVOTED8 = p/A` register, repeats its ROAD23 physical handoff, and extends the same source rule to a second physical receiver whose state packet is independently complete. It does **not** establish that all signed-word indices globally map to same-numbered pages; the p29 route itself only fixes zero origin locally.
+
+[Independent p29 DIRECTION packet](lp2-p29-direction-selfindex-packet.md) · [origin-selected p28→p29 route](lp2-p28-origin-selected-p29-p40-route.md).
+
 ## Exact source reconstruction
 
 The reproducer reads only canonical repository sources and recomputes the following.
