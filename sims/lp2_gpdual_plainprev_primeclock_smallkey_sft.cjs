@@ -127,15 +127,23 @@ function test(C,ref,mode){
 const donorPaths=["resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt"];
 const donors=donorPaths.map(p=>gpRunes(read(p)).slice(12000,12729));
 assert(donors.every(p=>p.length===729));
+const solved=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+const gpGlyph=new Map(gp.runes.map((r,i)=>[r,i]));
+const solvedText=["0_welcome","0_koan_1"].map(name=>{
+ const section=solved.sections.find(s=>s.name===name);assert(section);return section.source_text;
+}).join("\n");
+const solvedNative=Array.from(solvedText).filter(c=>gpGlyph.has(c)).map(c=>gpGlyph.get(c)).slice(0,729);
+assert.equal(solvedNative.length,729,"Authentic native LP1 text cannot fill chapter-length plant");
 const plants=[
- {mode:"Gibran-independent-native-plant",P:donors[0],key:[7,11,5]},
- {mode:"Emerson-independent-native-plant",P:donors[1],key:[3,19,17]}
+ {mode:"Gibran-body-independent-native-plant",P:donors[0],key:[7,11,5]},
+ {mode:"Emerson-body-independent-native-plant",P:donors[1],key:[3,19,17]},
+ {mode:"LP1-authentic-solved-native-plant",P:solvedNative,key:[11,7,3]}
 ];
 const out={
  hypothesis:"C_i=P_i+a*GPprime(P_i-1)+b*P_i-1+(prime(i+1)-1) mod29",
  section:"original physical p0-p2 729 runes, fit 528, untouched physical p2 201",
  infer:"29^3 exhaustive a,b,unknown predecessor, locked prime2 origin, no F holds",
- nativeModel:"Shakespeare first300k, GP orthography; separate Gibran/Emerson plants",
+ nativeModel:"Shakespeare first300k, GP orthography; separate Gibran/Emerson body and source-solved LP1 plants",
  primeResidueSupport:(()=>{let max=0,valid=[],res={};for(let e=1;e<=28;e++){
   let best=0;for(let t=0;t<29;t++){
    const v=pS.map((p,i)=>mod(t*i+Number((BigInt(p)**BigInt(e))%29n)));
