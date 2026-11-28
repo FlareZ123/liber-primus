@@ -102,6 +102,25 @@ assert.deepEqual(redCyclePositions,[
  {stepFromP39:19,k:748,coord:[25,23],words:['THEIR','ROAD'],red:[[57,0,7]]},
 ]);
 
+const redArcLengths=[
+ redCyclePositions[1].stepFromP39-redCyclePositions[0].stepFromP39,
+ redCyclePositions[2].stepFromP39-redCyclePositions[1].stepFromP39,
+ redCyclePositions[3].stepFromP39-redCyclePositions[2].stepFromP39,
+ p39Cycle.length-redCyclePositions[3].stepFromP39+redCyclePositions[0].stepFromP39,
+];
+assert.deepEqual(redArcLengths,[1,6,12,35]);
+assert.equal(redArcLengths.reduce((a,b)=>a+b,0),54);
+
+const p15First=uniqueRed.find(r=>r.page===15&&r.start===0);assert(p15First);
+assert.equal(p15First.k,236);
+const p15Transient=[];let p15k=p15First.k;
+while(!b60.onCycle[p15k]){
+ p15Transient.push(p15k);
+ p15k=b60.next(p15k);
+}
+assert.deepEqual(p15Transient,[236,333]);
+assert.equal(p15k,516);
+
 const result={
  schema:'lp2-q-dlog-table-functional-graph-v1',
  classification:'complete 840-state functional-graph census for the uniform dlog-coordinate word-number direction rule; post-discovery structural evidence, no plaintext',
@@ -113,12 +132,14 @@ const result={
    p39CycleBasin:753,
    distinctRedStatesOnCycles:b60.redOnCycle.length,
    redCyclePositions,
+   redArcLengths,
+   p15FirstTransient:{startK:236,intermediateK:333,cycleEntryK:516,cycleEntryRed:'p39'},
  },
  base59:{
    cycleLengths:b59.cycles.map(c=>c.length).sort((a,b)=>a-b),
    distinctRedStatesOnCycles:b59.redOnCycle.length,
  },
- boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. This remains post-discovery and is not a plaintext recovery.',
+ boundary:'The canonical map has a dominant 753-state basin, so eventual basin membership is weak evidence. The discriminating finite observation is cycle membership: four distinct printed red residues lie on the same canonical 54-cycle, including the exact p39->p7 edge and the solved p57/p15-second Q-defining residue, whereas base59 places no printed red residue on any cycle. The four red-marked arc lengths around the canonical cycle are [1,6,12,35]; they are recorded without semantic interpretation. P15's first red state is a two-step transient [236,333] that enters the cycle exactly at p39 k516. This remains post-discovery and is not a plaintext recovery.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
