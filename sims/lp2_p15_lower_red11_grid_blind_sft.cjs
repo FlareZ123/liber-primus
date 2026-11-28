@@ -252,6 +252,59 @@ assert.deepEqual(
   [[0,false,[2],[0]]]
 );
 
+// Exhaustive presentation charge: all 4! row permutations × 4! column
+// permutations, with and without transposition.  Predicates and DH closure
+// remain fixed; no state expression is re-labelled per presentation.
+const permute=a=>{
+  if(a.length<=1)return [a.slice()];
+  const out=[];
+  for(let i=0;i<a.length;i++)
+    for(const rest of permute(a.slice(0,i).concat(a.slice(i+1))))
+      out.push([a[i],...rest]);
+  return out;
+};
+const p4=permute([0,1,2,3]);
+const transpose=m=>m[0].map((_,c)=>m.map(row=>row[c]));
+const presentationCharge=[];
+for(const transposed of [false,true]){
+  const base=transposed?transpose(residues):residues;
+  for(const rowOrder of p4) for(const colOrder of p4){
+    const candidate=rowOrder.map(r=>colOrder.map(c=>base[r][c]));
+    const rh=candidate.map(H4);
+    const ch=Array.from({length:4},(_,c)=>
+      H4(Array.from({length:4},(_,r)=>candidate[r][c])));
+    const rowHits=[];
+    const colHits=[];
+    for(let r=0;r<4;r++)
+      if(rh[r].every((x,i)=>x===knownRow[i])) rowHits.push(r);
+    for(let c=0;c<4;c++){
+      const v=ch[c];
+      if(v[0]===mod(p-g)&&v[2]===mod(a*K)&&v[3]===K) colHits.push(c);
+    }
+    if(rowHits.length===1&&colHits.length===1){
+      const candidateB=ch[colHits[0]][1];
+      presentationCharge.push({
+        transposed,rowOrder,colOrder,rowHits,colHits,candidateB,
+        closesDH:powMod(candidateB,a,p)===K
+      });
+    }
+  }
+}
+assert.equal(2*24*24,1152);
+assert.equal(presentationCharge.length,2);
+assert.deepEqual(
+  presentationCharge.map(x=>[x.transposed,x.rowOrder,x.colOrder,x.candidateB,x.closesDH]),
+  [
+    [false,[0,1,2,3],[0,1,2,3],19,true],
+    [false,[0,2,1,3],[0,1,2,3],10,false]
+  ]
+);
+assert.deepEqual(
+  presentationCharge.filter(x=>x.closesDH)
+    .map(x=>[x.transposed,x.rowOrder,x.colOrder,x.candidateB]),
+  [[false,[0,1,2,3],[0,1,2,3],19]]
+);
+
 // Only now compare with source annotations withheld from selection.
 assert.deepEqual(
   {row:redRow,col:redCol,value:grid[redRow][redCol]},
@@ -293,6 +346,11 @@ console.log(JSON.stringify({
   expectedH4Columns:expectedCols,
   canonicalTransformCharge:transformCharge,
   dihedralOrientationResults:orientationResults,
+  exhaustivePresentationCharge:{
+    tested:1152,
+    preClosureHits:presentationCharge,
+    dhClosureHits:presentationCharge.filter(x=>x.closesDH)
+  },
   predictedRedCell:{
     row1Based:redRow+1,column1Based:redCol+1,value:grid[redRow][redCol]
   },
