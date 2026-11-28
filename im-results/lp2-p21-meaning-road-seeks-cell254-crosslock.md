@@ -119,6 +119,59 @@ p47 -> p46 -> p21
 
 The p32/SEEKS route remains conditional navigation rather than a body decryptor; this result does not upgrade its existing evidence classification. The new fact is that **the source-selected p21 H packet supplies SEEKS itself** with no word search.
 
+## Preferred semantic successor: ROAD=23 selects the p23 instruction checkpoint
+
+The already-established authenticated-source checksum for the newly selected word SEEKS is:
+
+```text
+GP(SEEKS) = [15,18,18,5,15]
+
+H(GP(SEEKS))
+= [0,13,18,23,1]
+= [HELLO, WAY, MAP, ROAD, THE].
+```
+
+Across all 43 authenticated source words, SEEKS is uniquely the word whose H shell contains the complete navigation triad `{WAY=13, MAP=18, ROAD=23}`; this relation predates the present route.
+
+P21's reconstructed sentence now types which one to take:
+
+```text
+MEANING IS THE ROAD
+                 ^^^^
+H(SEEKS) supplies ROAD at source index23.
+```
+
+The authenticated sentence immediately says that the words' **numbers are the direction**. Therefore the source-defined semantic continuation is:
+
+```text
+p21/group21
+ -> remaining coordinate6 = SEEKS
+ -> H(SEEKS) contains WAY / MAP / ROAD
+ -> p21 instruction says choose ROAD
+ -> ROAD source number = 23
+ -> physical p23.
+```
+
+This reaches the existing p23 instruction checkpoint **without importing the conditional mixed p47 DH-role grammar**. P23 is already independently source-constrained by the p7↔p23 five-dot relation and carries the established source-object serializers:
+
+```text
+complete five-dot-selected line -> THE ORIGIN
+exact red span                  -> THE ONE RISE.
+```
+
+The p47 conditional state route also lands on p23, so the two paths now converge:
+
+```text
+p47 conditional descriptor route -> p23
+p21 authenticated semantic route  -> p23.
+```
+
+The second route is the stronger clue-level explanation for **why a human solver should go to page23**: it uses only fixed H, an authenticated source word, the authenticated sentence's own semantic instruction, and the already established zero-based source-number convention.
+
+This does not decrypt p23 body ciphertext. It upgrades p23 from a mostly numerically convergent receiver to a destination with an independently reconstructed semantic instruction path.
+
+
+
 ## Neighbor branch converges on p22 and cell254
 
 P21's H packet also exposes its two immediate neighboring signed/page indices directly:
