@@ -76,6 +76,26 @@ The signed-word labels retain the register-origin caveats documented in the p50 
 where `[e,g,a,K]=[3,5,6,2]` is independently fixed by the p6 title/state packet. Equivalently, the set of all four strict support-line coordinates is exactly `{K,e,g,a}={2,3,5,6}`.
 
 This removes a major flexibility concern from the later cell-level bridge: the p50 geometry itself independently chooses the same four small state coordinates before p6 is overlaid. In particular, its FALSE/PATHS tunnel chooses physical column2, which p6 names `K`.
+## MAP/ROAD state intersection isolates a hex-29 cell among the support crossings
+
+Once the four physical support lines are relabeled by p6 state, the ROAD row is `g=5` and the MAP column is `e=3`. Their intersection is therefore the source-selected state address `(g,e)`:
+
+~~~text
+cell = A*g + e = 8*5 + 3 = 43
+p50[43] = 1D
+~~~
+
+Under the ordinary hexadecimal reading of those two glyphs, `0x1D=29`, the Gematria Primus modulus. This hexadecimal interpretation is **not yet source-licensed**, so it is not promoted to an instruction.
+
+A local charge makes the observation sharper without making it unique globally. ROAD row `g=5` crosses the three strict vertical support lines at:
+
+~~~text
+(g,K) = cell42 -> 0S   (not hex)
+(g,e) = cell43 -> 1D   (hex 29)
+(g,a) = cell46 -> 3J   (not hex)
+~~~
+
+So the MAP/ROAD crossing is the only strict ROAD/support intersection that even admits a two-digit hex reading. Token `1D` itself occurs four times in the full 256-cell panel, so its global occurrence is not rare. A future clue would need to license the hexadecimal codec or a mod29 use before this can become an operation.
 ## Independent physical selection of column K
 
 The strongest part of this bridge is that column2 was not chosen by the p6 overlay. Agent10's already frozen p50 route had independently projected from cell74 `(row9,col2)` straight to the surface at cell2, explicitly opening the literal physical column2 tunnel:
