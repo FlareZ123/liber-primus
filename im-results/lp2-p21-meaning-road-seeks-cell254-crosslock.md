@@ -288,6 +288,12 @@ Across **all 48** self-indexed page/group H packets, p22/group22 is the **only**
 
 Cell254 is not being selected here because token39 looks interesting. It is already an independently selected source cell in the p27 red13 route, where original p27 geometry fixes row31/column6 -> cell254 before the table token is read. The p21 neighbor branch therefore cross-locks an existing p27 source junction from a different source-selected manuscript object.
 
+### Independent p8 state route reaches the same p22 / cell254 junction
+
+A separate route cross-locks this neighbor branch without using p21's semantic readout. P7→p8 fragment schedules form a held-out p16–p21 q-eigenmatrix; its normalized left q-eigenvector contracts the schedules to `[-K,p-g,p,B,-K,a]` on p22–p27. Both natural sign readings converge on p27 fragment6 at `(start,index)=(31,6)=(p+A,a)`. With source-visible width `A=8`, this independently gives cell254.
+
+Cell254 is therefore reached by materially different source routes: p27 red19/13-dot geometry, this p21→p22 H-pair neighbor branch, and the p8→p16–p21→p22–p27 state-transfer chain. None reads the cell token to choose the coordinate. [Full handoff](lp2-p8-p27-cell254-p55-handoff.md).
+
 ### Literal `39` is also an authenticated FALSE direction
 
 The selected cell's literal token supplies an independent semantic continuation under the same zero-based source-number convention already used by p21:

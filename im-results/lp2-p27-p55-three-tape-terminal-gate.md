@@ -2,6 +2,12 @@
 
 **Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the historical three-share XOR primitive, a direct reversible GF(29) analog, and a fixed-coordinate Shamir fourth-share interpretation all fail their distinct original-input tests. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
 
+## 28 November supersession note: destination selected, decoder still absent
+
+A later p7→p8→p16–p21 q-eigenvector route independently selects p27 fragment6/start31 and thereby the `BEI` half of the p27/p55 footer; its sole other occurrence fixes terminal p55, and adjacent held-out context extends to the full bookend. The same p27 coordinate independently reproduces cell254.
+
+This removes the old **destination/marker-selection** objection. It does **not** supply a three-tape/share opcode, plaintext-equality rule, common pad, or synchronization clock. All negative share/pad tests in this report remain valid. [Full handoff](lp2-p8-p27-cell254-p55-handoff.md).
+
 ## Exact multiplicative four-tape inverse, with p55 first withheld (Agent31, 26 November)
 
 **Decision:** The four previously fixed layouts do not support a common nonzero multiplicative GP29 pad as a native English decipherment under either ordinary consumption or literal-F holds. The distinction from the earlier additive attack is essential: every possible multiplicative key is covered, and multiplication makes ciphertext zero equivalent to plaintext zero, eliminating latent hold ambiguity. Neither shared-pad hypothesis nor a DH-inspired multiplicative receiver is independently authenticated.

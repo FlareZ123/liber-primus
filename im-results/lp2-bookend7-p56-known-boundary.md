@@ -2,6 +2,16 @@
 
 **Status, updated 14 November 2026:** Exact source-physical ciphertext alignment, with a separately calibrated descriptive rarity experiment. This constrains a possible human-visible alignment mechanism; a source-positioned but conjectural THE END crib also fails the fixed complete lag-five/six plaintext-autokey inverses below. No unknown LP2 plaintext, authentic key or cipher reset is recovered.
 
+## 28 November update: upstream manuscript selector recovered
+
+The repeated `DJU-BEI-AE` source string was known before this update, and the negative cipher gates below remain valid. What changed is its **upstream selection**.
+
+The p7→p8 fragment receiver now continues through a held-out p16–p21 q-eigenmatrix. Its normalized left q-eigenvector generates `[-K,p-g,p,B,-K,a]` on p22–p27, and both natural sign readings converge on p27 fragment6/start31—the `BEI` half of this bookend. That coordinate is `(p+A,a)=(31,6)` and independently selects p50 cell254.
+
+Only after p27 `BEI` is fixed, its sole other occurrence identifies terminal p55 fragment16. The preceding fragment and following continuous source rune then match as held-out context, extending the selected seed to the full seven-rune bookend. The six unknown-page runes are `[p,A^-1,1,b+K,p-g,Kg]`; H6 is `[b-K,p-1,b-K,p-g,F,q]`.
+
+The old “no upstream selector” classification is therefore superseded at the **navigation/state-marker** level. No plaintext-equality rule, shared key clock, or body inverse follows, so every negative decoder below stays retired. [Full handoff](lp2-p8-p27-cell254-p55-handoff.md).
+
 ## Source observation and why the solved boundary matters
 
 The previously catalogued unique repeated unsolved adjacent word pair `ᛞᛄᚢ ᛒᛖᛁ` (`DJU BEI`) appears at global rune offsets 6,555 and 12,950. Its strongest *complete LP2* extension spans one rune into the separately solved p56 source image:

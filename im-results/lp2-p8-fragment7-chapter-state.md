@@ -502,20 +502,34 @@ The factorization was recognized after this transfer matrix was inspected, so th
 
 Reproducer: `sims/lp2_p8_p15_descriptor_transfer_sft.cjs`.
 
+## Q-eigenvector continuation selects p27 / cell254 / p55 footer
+
+The held-out p16–p21 matrix supplies a normalized left q-eigenvector `[-1,-K,1]`. Contracting it with positions1–6 of the already-fixed L/S/P descriptor schedules gives
+
+```text
+[-K,p-g,p,B,-K,a] = [27,18,23,19,27,6].
+```
+
+On the next physical block p22–p27, raw-residue and explicit-negative readings both remain state-typed and converge on **p27 fragment6**, at `(start,index)=(31,6)=(p+A,a)`. With the source-visible eight-column p50 grid this gives cell254. That is the same coordinate independently selected by p27's red19/13-dot route and by the p21→p22 neighbor branch.
+
+The selected fragment is `[b+K,p-g,Kg]`; its sole other occurrence is terminal p55 fragment16. After that destination is fixed, the preceding complete fragment and following continuous source rune also match, extending the seed to the known seven-rune p27↔p55/p56 bookend. The six unknown-page runes are `[p,A^-1,1,b+K,p-g,Kg]`, and H6 is `[b-K,p-1,b-K,p-g,F,q]`.
+
+This upgrades the bookend from an orphan rare repeat to a **source-selected state/navigation marker candidate** while leaving prior plaintext/shared-key interpretations negative. [Full handoff](lp2-p8-p27-cell254-p55-handoff.md) · reproducer `sims/lp2_p8_p27_cell254_p55_handoff_sft.cjs`.
+
 ## Research implication
 
-P8 now participates in six coupled representations/transfers of the same state:
+P8 now participates in seven coupled representations/transfers of the same state:
 
 1. the red H packet reconstructs the DH23 state;
 2. the page composition itself closes as `K/aK`, `e(b+K)/ge(b+K)`, and `(g+K)^2/e^g`;
 3. the immediately following first black word has `(length,sum,product)=[e,p,K]` and `H3=[A^-1,q+g,-b]`;
 4. the 49 black page-local fragment lengths form a 7×7 matrix whose **entire characteristic polynomial factors in DH-state coefficients**;
 5. the seven physical page lengths p8–p14 serialize the state in base29;
-6. the p7→p8 receiver's three descriptor rows, used as frozen fragment-index schedules, produce a disjoint p16–p21 matrix with `chi=(x-q)(x^2+(b-K)x-g)`, unique across all 42 legal placements.
+6. the p7→p8 receiver's three descriptor rows, used as frozen fragment-index schedules, produce a disjoint p16–p21 matrix with `chi=(x-q)(x^2+(b-K)x-g)`, unique across all 42 legal placements;\n7. its normalized left q-eigenvector contracts those schedules into `[-K,p-g,p,B,-K,a]`, selecting p22–p27 and reproducing p27 `(31,6)=(p+A,a) -> cell254`, with the p55/p56 bookend as held-out context.
 
-This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, its signed output selects a seven-page fragment receiver, and the receiver's descriptors in turn act as an executable indexing grammar on the next physical section. The evidence now supports a **p7→p8→p16–p21 state-transfer chain** and source-derived operand material rather than a direct mono-layer Hill cipher.
+This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, its signed output selects a seven-page fragment receiver, and the receiver's descriptors in turn act as an executable indexing grammar on the next physical section. The evidence now supports a **p7→p8→p16–p21→p22–p27→cell254 state/navigation chain** and source-derived operand material rather than a direct mono-layer Hill cipher.
 
-The next decisive question is what source-visible operation consumes the new `q` eigenspace or the selected p16–p21 fragments to predict a **new receiver, key coordinate, or reversible body operation before target inspection**. Do not rescue rejected periodic consumers with phase/key tuning.
+The q eigenspace now predicts a new receiver and key coordinate: p27 fragment6 / `(31,6)` / cell254. The next decisive question is what source-visible value-changing operation consumes that junction or its p55 terminal state marker to produce **unknown plaintext before target inspection**. Do not rescue rejected periodic consumers with phase/key tuning.
 
 ## Reproduction
 

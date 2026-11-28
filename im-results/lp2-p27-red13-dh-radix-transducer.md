@@ -137,6 +137,20 @@ and original table cell186 returns:
 `0J = 19 = red length`.
 
 This gives a closed source loop **19 → 6 and I/31 → 186 → 19**. It is a stronger human-solve-path motivation than the backward quotient `186/31=6`: the visible 19-rune span and 13-dot mark supply 6 directly, then multiplication agrees with the independently obtained prime ordinal.
+## Independent p8 state-transfer route reproduces the same (31,6) coordinate
+
+A source-disjoint route now reaches the exact same p27 coordinate without using the red heading, its prime sum, or the 13-dot positional rule. P7→p8 fragment schedules form a held-out p16–p21 descriptor matrix with sole native eigenvalue q=4. Its normalized left q-eigenvector contracts the non-anchor schedules to `[-K,p-g,p,B,-K,a]`.
+
+Applied to the next pages p22–p27, both natural readings of the explicit negative entries converge on p27 fragment **index6**, starting at rune **31**:
+
+```text
+(start,index)=(31,6)=(p+A,a).
+```
+
+With the source-visible eight-column row-major table, this independently selects `31*8+6=254` before cell254's token is read. The selected fragment is `[b+K,p-g,Kg]`, and its unique other occurrence is terminal p55; held-out adjacent context extends to the known seven-rune bookend.
+
+Thus cell254 now has an independent state/layout selector in addition to the red13 construction below. [Full handoff](lp2-p8-p27-cell254-p55-handoff.md).
+
 ## Marker factor becomes a p50 coordinate
 
 The p50 numeral rectangle has 32 rows and 8 columns. The marker-derived pair
