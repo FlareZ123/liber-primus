@@ -49,7 +49,7 @@ const actualBigrams = new Set(
 for (let i = 0; i + 2 < pages.length; i += 1) {
   const [a, b, c] = pages.slice(i, i + 3);
   const counts = [a.runic_count, b.runic_count, c.runic_count];
-  const curvature = counts[0] + counts[1] - (2 * counts[2]);
+  const endpointImbalance = counts[0] + counts[1] - (2 * counts[2]);
   const marks = annotationByPage.get(c.page)?.large_punctuation ?? [];
 
   for (const [offset, count, ink] of marks) {
@@ -57,7 +57,7 @@ for (let i = 0; i + 2 < pages.length; i += 1) {
       start: a.page,
       end: c.page,
       counts,
-      curvature,
+      endpointImbalance,
       offset,
       mark: count,
       ink,
@@ -105,8 +105,8 @@ assert.deepEqual(
   [270, 273, 265],
 );
 
-const mayflyCurvature = p24.runic_count + p25.runic_count - (2 * p26.runic_count);
-assert.equal(mayflyCurvature, 13);
+const mayflyEndpointImbalance = p24.runic_count + p25.runic_count - (2 * p26.runic_count);
+assert.equal(mayflyEndpointImbalance, 13);
 
 const p26Terminal = (annotationByPage.get(26)?.large_punctuation ?? [])
   .filter(([offset]) => offset === p26.runic_count);
@@ -120,12 +120,12 @@ assert.deepEqual(signedIncoming, [21, 24]);
 assert.deepEqual(H(...signedIncoming), [26, 16]);
 
 const endpointMatches = endpointComparisons
-  .filter((row) => Math.abs(row.curvature) === row.mark);
+  .filter((row) => Math.abs(row.endpointImbalance) === row.mark);
 assert.deepEqual(endpointMatches, [{
   start: 24,
   end: 26,
   counts: [270, 273, 265],
-  curvature: 13,
+  endpointImbalance: 13,
   offset: 265,
   mark: 13,
   ink: 'red',
@@ -133,9 +133,9 @@ assert.deepEqual(endpointMatches, [{
 }]);
 
 const broadMatches = broadComparisons
-  .filter((row) => Math.abs(row.curvature) === row.mark);
+  .filter((row) => Math.abs(row.endpointImbalance) === row.mark);
 assert.deepEqual(
-  broadMatches.map((row) => [row.start, row.end, row.curvature, row.mark, row.terminal]),
+  broadMatches.map((row) => [row.start, row.end, row.endpointImbalance, row.mark, row.terminal]),
   [[24, 26, 13, 13, true], [36, 38, 10, 10, false]],
 );
 
@@ -169,15 +169,15 @@ const result = {
   controls: {
     contiguousTriples: pages.length - 2,
     triplesEndingAtTerminalLargeMark: endpointComparisons.length,
-    exactTerminalCurvatureMatches: endpointMatches,
+    exactTerminalEndpointImbalanceMatches: endpointMatches,
     allThirdPageLargeMarkComparisons: broadComparisons.length,
-    allAbsoluteCurvatureMatches: broadMatches,
+    allAbsoluteEndpointImbalanceMatches: broadMatches,
     chargedVertexOrderPresentations: (pages.length - 2) * 6,
     exactH2616Hits: chargedTargetHits,
     canonicalSignedSourceBigramHits: canonicalBigramHits,
   },
   decision:
-    'Natural page order plus the terminal p26 13-dot mark fixes the signed orientation of the mayfly count triangle: its endpoint curvature is exactly 13, uniquely among terminal-large-mark triples. This supplies a source-level orientation/order lock, not a plaintext decoder. The H->[26,16]/NUMBERS ARE contact is secondary semantic evidence because zero-based signed-word indexing and duplicate word tokens remain conditional.',
+    'Natural page order plus the terminal p26 13-dot mark fixes the signed orientation of the mayfly count triangle: its endpoint endpointImbalance is exactly 13, uniquely among terminal-large-mark triples. This supplies a source-level orientation/order lock, not a plaintext decoder. The H->[26,16]/NUMBERS ARE contact is secondary semantic evidence because zero-based signed-word indexing and duplicate word tokens remain conditional.',
 };
 
 console.log(JSON.stringify(result, null, 2));
