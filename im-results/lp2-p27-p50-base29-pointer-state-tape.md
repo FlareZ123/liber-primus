@@ -213,6 +213,14 @@ Under the **same** four sign/clock choices, with no new phase or receiver search
 
 The highest-IoC H output is still nonprose and far below solved p57. The matched H packet of the base60 rival is `[22,2,6,2,24,22,26,4]`; its best identical consumer reaches **0.0366846731**. The H packet therefore gives a small source-versus-rival separation on this receiver, but not a language recovery or a reason to add another layer.
 
+The most literal terminal output is even smaller: the fixed point is historical BASE29 **`6F`**, whose digit values are exactly the private exponents
+
+```text
+[a,b] = [6,15].
+```
+
+Using only those two digits as a period-two GP29 additive key on the same 158-rune flank receiver gives **0.0338627751** under subtraction and **0.0325727647** under addition. Because p49 has 66 runes, reset0 and continuous66 are identical for this even-period key. Both outputs are nonprose and below the original flank IoC. Thus the terminal value is not a direct repeating additive flank key either.
+
 **Decision:** retire the direct period-eight additive use of **both** the raw remainder tape and its already-derived adjacent-H packet on the p49/p51 flanks. The state serialization remains a structural result. A further ciphertext attempt now needs an independently visible instruction selecting a different consumer, transformation, or receiver; do not rescue these negatives by shifting phase, changing page starts, or searching more derived state expressions.
 
 ## Relationship to prior work
@@ -244,4 +252,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`.
