@@ -80,6 +80,35 @@ assert.deepStrictEqual(hits, [
   { start: 24, pages: [24, 25, 26], counts: [270, 273, 265], diffs: [3, 5, 8] },
 ]);
 
+// Broader control: enumerate every contiguous triple whose three pairwise
+// differences are any three consecutive Fibonacci values. There are only two.
+// P24-26 is the one whose next Fibonacci value (13) is visibly present as its
+// local chapter punctuation frame.
+const fibonacci = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144];
+const fibonacciTriples = new Set();
+for (let i = 0; i <= fibonacci.length - 3; i += 1) {
+  fibonacciTriples.add(
+    fibonacci.slice(i, i + 3).sort((x, y) => x - y).join(",")
+  );
+}
+const fibonacciWindows = [];
+for (let start = 0; start <= 53; start += 1) {
+  const values = [count(start), count(start + 1), count(start + 2)];
+  const diffs = [
+    Math.abs(values[0] - values[1]),
+    Math.abs(values[0] - values[2]),
+    Math.abs(values[1] - values[2]),
+  ].sort((x, y) => x - y);
+  if (fibonacciTriples.has(diffs.join(","))) {
+    fibonacciWindows.push({ start, counts: values, diffs });
+  }
+}
+assert.deepStrictEqual(fibonacciWindows, [
+  { start: 8, counts: [255, 268, 263], diffs: [5, 8, 13] },
+  { start: 24, counts: [270, 273, 265], diffs: [3, 5, 8] },
+]);
+
+
 // Source punctuation: the mayfly chapter is locally framed by red 13-dot
 // marks after p23's heading and at p26's end, with p22's terminal13 as an
 // additional outer bracket. P57 terminates with the corpus-unique 23-dot mark.
@@ -97,6 +126,14 @@ assert.deepStrictEqual(p57Ink.large_punctuation, [
   [95, 23, "red"],
 ]);
 assert.strictEqual(ink.counts.red23, 1);
+const observedLargeDotCounts = new Set();
+for (const row of ink.pages) {
+  for (const mark of row.large_punctuation || []) observedLargeDotCounts.add(mark[1]);
+}
+assert.deepStrictEqual([...observedLargeDotCounts].sort((x, y) => x - y), [10, 13, 23]);
+assert.ok(!observedLargeDotCounts.has(21));
+assert.strictEqual(3 + 5 + 8 + 13, 29);
+assert.strictEqual(29 - 1, 28); // one-based page29 = physical p28
 
 const sourceP = 23;
 const sourceBoundary = 13;
@@ -290,6 +327,8 @@ console.log("PASS lp2_p24_26_mayfly_dh23_count_triangle_sft");
 console.log("mayfly counts:", [c24, c25, c26]);
 console.log("edge labels:", edge, "=", { e, g, A });
 console.log("contiguous triple hits:", JSON.stringify(hits));
+console.log("consecutive-Fibonacci triple windows:", JSON.stringify(fibonacciWindows));
+console.log("3+5+8+13 -> one-based page", 3 + 5 + 8 + 13, "= physical p28");
 console.log("H closures:", JSON.stringify(hClosures));
 console.log("H-state survivors:", JSON.stringify(hStateSurvivors));
 console.log("state-packet line matches:", JSON.stringify(packetMatches));
