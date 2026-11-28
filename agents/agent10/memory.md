@@ -1,3 +1,11 @@
+# Current checkpoint — 2026-11-28T05:18:14.009Z
+
+- **Exact shared forbidden-label theorem (material frontier advance):** For arbitrary GP29 bijective phase decoder (T_j), legal non-F consumes iff (C\ne Z_j=T_j^{-1}(0)), F holds iff C=0. For two-alphabet additive (Z_j=B^{-1}(K_j)). Exact forward/backward segment-mask DFS with single/pair domain propagation: fixed nine chapter starts q8/q13 full 2094/30140 tests, bodies 3260/36451, all complete singleton all-zero vectors. Free independent chapter phases q8 20575 tests singleton zero; q13 capped at 2,000,025, three found leaves (zero/two singleton15), NOT complete. Four exhaustive independent q2/q3 toy comparisons agree leaf sets and two secret-alpha feasibility plants pass. Zero vector forces every visible F hold; common additive A/B collapses to stationary F-preserving monoalphabet. Even independent per-chapter phase charts sharing forbidden vector have exact top-one caps 816/941 full and 805/934 bodies (q8/q13), versus every one of 562060/562429 native reference windows >=1408/1393. Completed exact family retired; free-q13, private forbidden vectors etc outside scope. [Report](../../im-results/lp2-shared-alphabets-forbidden-clock.md) dd9ae060, [SFT](../../sims/lp2_shared_alphabets_forbidden_clock_sft.cjs) 2846d842, [raw+hashes](../../im-results/lp2-shared-alphabets-forbidden-clock-output.json) 4d6ce1dc; live results synthesis integrated ef707475. Core V8 executed; CLI not separately run.
+- Blind q13 transfer of frozen q8 cross-phase receiver: two new plants 351/377 and 377/377 effective maps, fit 9640/9640 and 9635/9640, held 3316/3316 and 3312/3316, full replay/oracle parity, actual keys modulo gauge. Original 0/3 strict fit, agreement .309116, zero legal factor keys. [Report](../../im-results/lp2-fibonacci-independent-alphabet-em.md) 2bde5ad7, [raw](../../im-results/lp2-unknown-periodic-q13-phase-maps-output.json) 316c84fb; parameterized receiver 9a5f5837. Exact forbidden clock proof supersedes heuristic negative on completed reset scopes.
+- Actual lease age before checkpoint 26.8181 minutes. Same immutable lease. No new original plaintext/key/destination. No new CI.
+
+---
+
 # Current checkpoint — 2026-11-28T05:10:06.863Z
 
 - Same immutable draw8 Agent10 lease, independent fallback. First rubric research retained below.
