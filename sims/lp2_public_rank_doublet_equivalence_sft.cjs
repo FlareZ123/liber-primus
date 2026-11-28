@@ -195,10 +195,11 @@ function periodicGate(source,p,start,diagnostic=false){
  }
  return true;
 }
-function periodicScans(texts){
+function periodicScans(texts,dropF=false){
  const scans=[];
  for(const [loPage,hiPage] of [[16,22],[40,53],[0,55]]){
-  const pages=gp.pages.filter(p=>p.page>=loPage&&p.page<=hiPage);
+  const basePages=gp.pages.filter(p=>p.page>=loPage&&p.page<=hiPage);
+  const pages=dropF?basePages.map(p=>({page:p.page,indices:p.indices.filter(x=>x!==0)})):basePages;
   for(const mode of ['continuous','page-local']){
    const g=periodicGroups(pages,mode,16);
    const counts=[];
@@ -209,7 +210,7 @@ function periodicScans(texts){
     }
     counts.push({file:d.file,windows:eligible,passingAllPeriod16Schedules:pass,first});
    }
-   scans.push({pages:[loPage,hiPage],mode,N:g.N,
+   scans.push({pages:[loPage,hiPage],mode,dropF,omittedF:basePages.reduce((a,p)=>a+p.indices.length,0)-g.N,N:g.N,
     eligiblePairs:g.checked,doublets:g.E.reduce((a,z)=>a+z.pos.length,0),
     repeatedPhaseCounts:g.E.map(z=>z.pos.length),counts});
   }
@@ -225,6 +226,7 @@ function main(){
  assert.equal(e0.filter(x=>x.equal).length,10);
  const texts=donors(),scans=[];
  const allPeriod16=periodicScans(texts);
+ const allPeriod16FNull=periodicScans(texts,true);
  for(const mode of ['continuous','page-local']){
   for(let phase=0;phase<clock.length;phase++){
    const e=edges(original,mode,phase),counts=[];
@@ -255,7 +257,7 @@ function main(){
    claim:'entire 29^16 period16 public-rank family excluded on finite GP-native windows, allowing all secret decks and static relabelings; no LP2 plaintext',
    originalPages:[16,22],N:original.length,pageStarts,clock,
    scope:'29! unknown initial decks; all 29! fixed GP-rank relabelings; three finite native corpora',
-   scans,allPeriod16,plants},null,2));
+   scans,allPeriod16,allPeriod16FNull,plants},null,2));
 }
 if(require.main===module)main();
-module.exports={gate,edges,matching,periodicGroups,periodicGate,clock};
+module.exports={gate,edges,matching,periodicGroups,periodicGate,periodicScans,clock};
