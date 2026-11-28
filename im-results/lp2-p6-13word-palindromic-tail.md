@@ -172,6 +172,60 @@ Scan every possible contiguous 13-word window of the authenticated 43-word sourc
 
 The sequence was recognized after the tail was already under investigation, so this is again a source-side finite charge rather than calibrated discovery odds. Its causal importance is much greater than a fitted LP2 key label: the signed prose itself was authored so that the first GP runes of six symmetric word pairs plus the center collapse under the pre-existing H operation to compact p6/DH state.
 
+## The same H13 fold closes on word lengths and GP0
+
+The initial-rune packet is not the only word-resolution channel. Apply the same outside-in H13 fold to the 13 canonical GP **word lengths**:
+
+```text
+raw lengths
+[4,3,3,4,2,5,4,4,6,5,4,6,7]
+
+H13(lengths)
+=
+[-e,b-q,-e,-qg,-1,K+g,-1,-qg,-q,A,a-g,-qg,q]
+=
+[26,11,26,9,28,7,28,9,25,8,1,9,4].
+```
+
+Apply it independently to the 13 canonical **GP0 residues**:
+
+```text
+raw GP0
+[27,27,1,28,6,7,6,2,1,19,25,1,17]
+
+H13(GP0)
+=
+[Kg,b,-e,-1,g,-e,-qg,B-1,g,K+g,g,-qg,a]
+=
+[10,15,26,28,5,26,9,18,5,7,5,9,6].
+```
+
+Thus the same p6 13-unit fold converts three different per-word source features into compact p6/DH-role sequences:
+
+1. first GP rune;
+2. GP rune count;
+3. GP0 residue.
+
+A complete scan of all **31** contiguous 13-word windows gives the same result in every channel:
+
+```text
+initial H13 exact hits:   [30]
+initial H13 multiset:     [30]
+
+length H13 exact hits:    [30]
+length H13 multiset:      [30]
+
+GP0 H13 exact hits:       [30]
+GP0 H13 multiset:         [30]
+
+all three exact jointly:  [30]
+all three multisets:      [30].
+```
+
+The multiset controls remove coordinate order from each shell separately. The post-DIRECTION tail remains the sole window even under that relaxation.
+
+These are correlated views of the same signed words and the role labels were recognized retrospectively; they must not be multiplied into a probability. The substantive point is structural: a physically motivated 13-unit source fold simultaneously closes under three canonical GP statistics.
+
 ## Finite source-only charge
 
 Charge every possible contiguous 13-word interval in the authenticated 43-word signed source:
