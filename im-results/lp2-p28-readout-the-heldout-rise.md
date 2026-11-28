@@ -1,6 +1,6 @@
 # Frozen THEIR RISE predictor unexpectedly extends p28 READ OUT to READ OUT THE
 
-**Agent1, 19 November 2026; Agent3 source-geometry gate, 28 November. Classification: held-out local plaintext recovery candidate with a source-derived exact key, manuscript-unique ciphertext packet, and an independent page-local printed-geometry selector. The unchanged +6/H-shell rule nevertheless fails fresh p7 and is not a reusable general cipher.** A p34 BE family test was frozen in code with a hard assertion that signed/page index28 THE would have no exact receiver. Windows CI run **44459406789** failed that assertion: the unchanged predictor hit p28 canonical word28 at offset140. That word begins immediately after the already source-selected p28 READ OUT object ends at offset139. The exact recovery is therefore:
+**Agent1, 19 November 2026; Agent3 source-geometry gate and matched-layout control, 28 November. Classification: held-out local plaintext recovery candidate with a source-derived exact key and manuscript-unique ciphertext packet. P28 layout uniquely identifies offset140 within its local two-rune class, but adjacent p27 has the same unique interior-line-start two-rune pattern and the same 4/5/2 line6→7 word-length template, so the layout is a coordinate selector rather than independent evidence that Cicada authored the receiver. The unchanged +6/H-shell rule fails fresh p7 and is not a reusable general cipher.** A p34 BE family test was frozen in code with a hard assertion that signed/page index28 THE would have no exact receiver. Windows CI run **44459406789** failed that assertion: the unchanged predictor hit p28 canonical word28 at offset140. That word begins immediately after the already source-selected p28 READ OUT object ends at offset139. The exact recovery is therefore:
 
 ```text
 READ OUT + THE
@@ -178,9 +178,11 @@ line11 -> one-rune word
 
 All other interior line starts continue a canonical word wrapped from the preceding line. Thus the selected two-rune operand type plus the original layout independently fixes offset140; no exact line number, line length, rune value, plaintext score, red mark, or illustration alignment is required.
 
-This is **page-local selection, not global rarity**. Across unknown p0..p55 there are 465 complete canonical two-rune words; 28 on 25 pages begin at an interior printed line start. The geometry therefore does not discover p28 by itself. Its evidential role is narrower and useful: once the source/page route has independently selected p28 and the frozen receiver type is a complete two-rune word, the original page layout chooses the same receiver without reading its ciphertext or THE.
+This is **page-local selection, not global rarity**. Across unknown p0..p55 there are 465 complete canonical two-rune words; 28 on 25 pages begin at an interior printed line start. A direct adjacent-page matched control is stronger still: p27 has eleven complete two-rune words and, just like p28, **exactly one** begins at an interior printed line start, on line7 at offset120. Both pages also have the same local printed template across lines6→7: a four-rune canonical word, then a five-rune canonical word ending the line, then the unique two-rune word beginning the next line.
 
-After that source-only rule is fixed, revealing the already documented coordinate gives:
+Thus the p28 line break does choose offset140 within p28 once the page and two-rune operand type are already fixed, but the matched p27 layout shows that this typography is not independently discriminating evidence of an authored receiver rule. The stronger evidence for p28 remains the precommitted exact ciphertext prediction, its manuscript-wide unique packet, and its adjacency to the separately selected READ OUT object.
+
+After that page-local geometry rule is fixed, revealing the already documented coordinate gives:
 
 ```text
 offset140..141 ciphertext = [24,25]
@@ -188,7 +190,7 @@ source-derived key         = [22,7]
 plaintext                  = [2,18] = THE
 ```
 
-The receiver also remains immediately after the independently selected READ OUT object at offsets134..139. The geometry result therefore strengthens the **local p28 plaintext candidate** while leaving the p7 transfer negative intact; it does not revive the +6/H-shell as a general rule.
+The receiver also remains immediately after the independently selected READ OUT object at offsets134..139: that READ OUT object ends exactly at printed line6 offset139 and the receiver begins line7 offset140. This is coherent local layout, but p27's matched line6→7 4/5/2 template prevents treating the break itself as independent authentication. The geometry result fixes a local coordinate while leaving the p7 transfer negative intact; it does not revive the +6/H-shell as a general rule.
 
 Reproducer: `sims/lp2_p28_the_source_geometry_gate_sft.cjs`.
 

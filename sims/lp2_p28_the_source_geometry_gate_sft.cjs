@@ -123,6 +123,29 @@ assert.deepEqual(interiorCanonicalStarts, [
   { line: 11, start: 229, length: 1 },
 ]);
 
+
+// Matched adjacent-page control: p27 has the same local selector shape.
+const p27 = geometry(27);
+const p27Two = p27.words.filter((word) => word.length === 2);
+assert.equal(p27Two.length, 11);
+const p27InteriorLineStartTwo = p27Two.filter((word) => p27.interiorLineStarts.has(word.start));
+assert.deepEqual(p27InteriorLineStartTwo.map((word) => word.start), [120]);
+
+function lineBoundaryTemplate(g, nextStart) {
+  const nextIndex = g.words.findIndex((word) => word.start === nextStart);
+  assert.ok(nextIndex >= 2);
+  const previous = g.words[nextIndex - 1];
+  const before = g.words[nextIndex - 2];
+  const next = g.words[nextIndex];
+  const nextLine = g.offsetToLine.get(next.start);
+  const previousLine = g.offsetToLine.get(previous.end);
+  assert.equal(g.lineStarts.get(nextLine), next.start);
+  assert.equal(g.lineEnds.get(previousLine), previous.end);
+  return [before.length, previous.length, next.length];
+}
+assert.deepEqual(lineBoundaryTemplate(p27, 120), [4,5,2]);
+assert.deepEqual(lineBoundaryTemplate(p28, 140), [4,5,2]);
+
 // Only after the geometry selector is fixed do we inspect the selected runes.
 assert.deepEqual(p28InteriorLineStartTwo[0].values, [24,25]);
 
@@ -144,7 +167,7 @@ assert.equal(pagesWithInteriorTwo, 25);
 
 console.log(JSON.stringify({
   classification:
-    "positive page-local source-geometry selector for the existing p28 two-rune receiver; not a repair of the failed general +6/H-shell rule",
+    "page-local p28 coordinate selector with a matched p27 typography control; not independent authentication and not a repair of the failed general +6/H-shell rule",
   p28: {
     canonicalWords: p28.words.length,
     canonicalTwoRuneStarts: p28Two.map((word) => word.start),
@@ -153,11 +176,18 @@ console.log(JSON.stringify({
     interiorCanonicalLineStarts: interiorCanonicalStarts,
     selectedOffset: 140,
   },
+  matchedAdjacentControl: {
+    page: 27,
+    completeTwoRuneWords: p27Two.length,
+    interiorLineStartTwoRuneStarts: p27InteriorLineStartTwo.map((word) => word.start),
+    p27Template: lineBoundaryTemplate(p27, 120),
+    p28Template: lineBoundaryTemplate(p28, 140),
+  },
   matchedWholeBookContext: {
     completeTwoRuneWords: totalTwo,
     interiorLineStartTwoRuneWords: interiorTwo,
     pagesWithInteriorLineStartTwoRuneWord: pagesWithInteriorTwo,
   },
   decision:
-    "once p28 and the complete-two-rune operand type are fixed independently, original printed geometry selects offset140 without ciphertext values or plaintext scoring",
+    "once p28 and the complete-two-rune operand type are fixed independently, printed geometry selects offset140, but matched p27 typography prevents treating that layout as independent authorship evidence",
 }, null, 2));
