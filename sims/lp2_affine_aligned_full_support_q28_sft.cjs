@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, "..");
 const A = 29;
 const F = 0;
 const E = 18;
-const COEFFICIENTS = [1, 16, 19];
+const COEFFICIENTS = Array.from({ length: A }, (_, i) => i);
 const CONTROL_FILES = [
   "gibran_prophet_58585.txt",
   "shakespeare_first300k.txt",
@@ -129,8 +129,8 @@ function supportAt(plain, start, residualAt) {
 }
 
 /**
- * Fast exact scan: E settles almost every window; full supportAt is only
- * needed when E misses at least one residual label.
+ * Fast exact scan: E settles almost every coefficient-window case; the
+ * all-rune support pass is only needed when E misses a residual label.
  * @param {number[]} plain
  * @param {number} coefficient
  * @returns {object}
@@ -246,21 +246,33 @@ for (const coefficient of COEFFICIENTS) {
 }
 
 for (const result of results) {
-  assert.equal(result.unresolved.length, 0, `${result.file} a=${result.coefficient} has a q<=28 survivor`);
+  assert.equal(
+    result.unresolved.length,
+    0,
+    `${result.file} a=${result.coefficient} has a q<=28 survivor`,
+  );
 }
+
 assert.deepEqual(
-  results.filter((x) => x.coefficient === 1).map((x) => [x.eExceptions, x.exceptionsClosedByOtherRune]),
+  results.filter((x) => x.coefficient === 1).map((x) => [
+    x.eExceptions,
+    x.exceptionsClosedByOtherRune,
+  ]),
   [[4, 4], [2, 2], [2, 2]],
 );
-for (const coefficient of [16, 19]) {
-  for (const result of results.filter((x) => x.coefficient === coefficient)) {
-    assert.equal(result.eExceptions, 0);
-    assert.equal(result.eFull29, result.windows);
-  }
+
+for (const result of results.filter((x) => x.coefficient !== 1)) {
+  assert.equal(result.eExceptions, 0);
+  assert.equal(result.eFull29, result.windows);
 }
-assert.equal(results.filter((x) => x.coefficient === 1).reduce((sum, x) => sum + x.windows, 0), 562060);
-assert.equal(results.filter((x) => x.coefficient === 16).reduce((sum, x) => sum + x.windows, 0), 562060);
-assert.equal(results.filter((x) => x.coefficient === 19).reduce((sum, x) => sum + x.windows, 0), 562060);
+
+for (const coefficient of COEFFICIENTS) {
+  assert.equal(
+    results.filter((x) => x.coefficient === coefficient).reduce((sum, x) => sum + x.windows, 0),
+    562060,
+  );
+}
+assert.equal(results.reduce((sum, x) => sum + x.windows, 0), 16299740);
 
 const planted = plant(controls[1].plain.slice(0, cipher.length), 5);
 console.log(JSON.stringify({
@@ -268,8 +280,13 @@ console.log(JSON.stringify({
   cipherRunes: cipher.length,
   nonemptyPages: pages.length,
   testedCoefficients: COEFFICIENTS,
-  theorem: "direct aligned q-chart sender requires support(P=x) <= q; every tested native window requires q>=29",
-  relaxations: ["independent physical-page starts", "plaintext F free", "transition immediately after plaintext F free"],
+  coefficientWindowCases: 16299740,
+  theorem: "direct aligned q-chart sender requires support(P=x) <= q; every tested native coefficient-window case requires q>=29",
+  relaxations: [
+    "independent physical-page starts",
+    "plaintext F free",
+    "transition immediately after plaintext F free",
+  ],
   results,
   plantedQ5: planted.maxSupport,
 }, null, 2));
