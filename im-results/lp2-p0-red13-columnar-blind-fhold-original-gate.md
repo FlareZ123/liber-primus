@@ -109,3 +109,24 @@ g++ -O3 -std=c++17 -DPERIOD=13 sims/p0-column13-fhold/solver_generic.cpp -o solv
 ```
 
 For complete blind selection run each case for splits0..12, choose best training score, never holdout. Both actual source files transferred with exact local Git blob matches; [code](../sims/p0-column13-fhold/), [raw q13 scores](lp2-p0-column13-blind-native-fhold-q13.json).
+
+### Period 8 and reverse layer order: completed blind controls
+
+**Same layer order, q8:** apply the same q13 joint receiver and budget, compiled with PERIOD=8; the historical DIVINITY cycle and a random q8 cycle are independently planted. Both true keys (rotation-equivalent), both unknown column orders and all 1432 native runes recovered; 416/416 withheld. The original training winner split4 score -258321/61568 = -4.19570 nats/rune; all 13 split winners have no legal held or full path. This is a bounded heuristic negative.
+
+**Reverse order:** first transpose plaintext into physical columns, then apply the authentic F-hold clock continuously along physical ciphertext. This is distinct from transposing after encryption. Retain the identical physical train/bridge/held coordinates. Relax the starting phase of each training column independently (a superset of any globally continuous physical clock). For a fixed key, enumerate every legal mask/phase path in every column; the row-local GP bigram objective is a generalized traveling-salesperson path through column groups and path variants. Subset/last-variant DP optimizes all 12! column orders per fixed long-column split and all variant assignments exactly. After freezing key/order, predict each column's held section from its training end. Separately enumerate all full legal physical clock paths with exact suffix-count pruning; rank using only training row scores, not withheld language. This may repair a relaxed training path that cannot be globally connected. Full enumeration cap 10 million, never reached in these runs.
+
+For unknown key, 300 random unigram starts per split alternate independent-column HMM (free phases, six-nat illegal penalty) with exact shift histogram optimization, keep best 64 distinct cycles. Run 80 joint starts, alternating exact subset order DP with fixed paths, exact chain variant DP with fixed key/order, and single- and pair-coordinate optimization of the general key phase graph (not globally exact). At most 15 joint iterations. Seed 33017713+3301*split. Retain best 16 states, refine their cycles with exact legal generalized order DP, choose best training score across all 13 splits.
+
+| Reverse input | q | Recovered key/order | Exact train / independent held / global full |
+|---|---:|---|---|
+| KOAN1 historical plant | 13 | both | 481/481; 208/208; 716/716 |
+| LOSS random plant | 13 | both | 481/481; 208/208; 716/716 |
+| KOAN1 historical plant | 8 | both | 480/481; infeasible relaxed continuation; 713/716 |
+| LOSS random plant | 8 | both | 478/481; 208/208; 702/716 |
+| Original opening | 13 | none | score -233123/61568, no held path, zero global legal paths |
+| Original opening | 8 | none | score -241489/61568, no held path, zero global legal paths |
+
+Both q8 control ambiguities persist even when the true cycle is supplied: the bigram model prefers a few incorrect F-path symbols. The exact global decoder counts 13752/252 legal full paths for the q8 controls, 8/7776 for q13; hence key/order recovery does not imply a unique plaintext under the Fhold rule. This is explicitly imperfect q8 full-text calibration, not a failure to recover key/order. The original has zero legal global paths for each of the 26 split winners (13 per period); all also fail independent per-column held prediction. Fixed historical/red/conditional-title cycles for reverse order q13/q8 also have zero global legal paths (two q8 cases already impossible on every training split). Since encryption is last, this legality constraint for a given key is independent of the transposition. No exhaustive claim over unknown keys.
+
+Build with `g++ -O3 -std=c++17 -DPERIOD=13 sims/p0-column13-fhold/reverse_joint.cpp -o reversejoint13`; use PERIOD=8 for q8. Run `./reversejoint13 tapes.txt control1 4 300 80` or control2/original, all splits0..12. Fixed-cycle exact solver: compile reverse.cpp instead and run `./reverse13 tapes.txt control1` (or control2, original-historical, original-red, original-title). Local executions completed; [q8/post and reverse raw split scores](lp2-p0-column13-blind-native-fhold-q8-reverse.json). No new unknown plaintext/key.
