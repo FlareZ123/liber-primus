@@ -132,6 +132,76 @@ p32 arithmetic --------------------------+
 p47 ROAD/FOUND selection -> 32 ----------+
 ```
 
+### The selected p47 word47 is a held-out DH-state navigation packet
+
+The literal page token has a second natural ordinal reading because p47 has 59 printed groups. Charge the two ordinary origins before inspecting any rune transformation:
+
+| interpretation of literal `47` | selected group | length | raw GP0 | GP-prime sum |
+|---|---|---:|---:|---:|
+| **one-based word47** | p47 index46, offset206 | **6** | **71** | **256** |
+| zero-based word47 | p47 index47, offset212 | 6 | 89 | 326 |
+
+The one-based group is source ciphertext `MUIIAJO` under GP transliteration. Its three untouched numeric metrics are independently meaningful:
+
+```
+length       6   = DH a
+raw GP0      71  = GP0(SEEKS)
+GP-prime sum 256 = number of p50 table cells
+```
+
+Across all **2,928 complete words** on unknown p0-p55, this exact `(length,GP0,prime)=(6,71,256)` triple occurs **once**, at this selected p47 word. There are only six words with prime sum256 at all; their raw GP0 values are 69,70,68,66,**71**,69.
+
+The GP0 value closes directly onto the already authenticated signed navigation route:
+
+```
+p47 word47 GP0 = 71 = SEEKS
+71 -- canonical p50 byte walk, DH p=23 --> p32
+p32 -> cell115 -> literal 47 -> p47 word47
+```
+
+The word's source position supplies a second conditional return. Its zero-based rune start is **206**. Original p50 **cell206 is the unique literal token `27`** in the entire 256-cell table. Thus the same selected word conditionally points back to the upstream p27 receiver if original rune offsets are reused as table addresses. Twelve manuscript words happen to begin at offset206, so the offset alone is not selective; the selected p47 word is uniquely fixed by the `(6,71,256)` triple and by the preceding cell115 page/ordinal cue.
+
+Most importantly, apply the same canonical outside-in H transform that was already fixed by the p27 receiver:
+
+```
+p47 word47 GP0 indices
+[19,1,10,27,11,3]
+
+H6
+[16,19,12,8,12,22]
+= [K-b, B, aK, A, aK, p-1].
+```
+
+This exact six-coordinate H output occurs **once among all 252 complete six-rune words** on unknown p0-p55: the selected p47 word47. The zero-based p47 word47 rival instead gives `[11,20,13,8,4,19]`.
+
+This is a genuine held-out rune-level prediction in the navigation branch: page and word were fixed by independent table routing before H inspected their symbols. It still does not decrypt the word into prose; it shows that the selected ciphertext group itself re-emits the same DH register.
+
+A final supporting table closure uses no new arithmetic family. Pair the H6 output adjacently as BASE29, reuse the already frozen zero-based mod256 table address rule, and inspect the first canonical pair:
+
+```
+[K-b,B] = [16,19] -> BASE29 integer 483 -> cell227 -> literal token 49.
+```
+
+Physical p49 is the opening page of the 256-cell numerical panel. Cell227/token49 was independently present in earlier source-number work, so this is supporting convergence rather than a new operation selector.
+
+The strongest current circuit is therefore:
+
+```
+p27 B/K receiver
+  -> H8/table convergence cell115 = WITHIN
+  -> literal 47
+  -> p47 one-based word47
+       length6 = a
+       GP0 71 = SEEKS
+       prime sum256 = table size
+       H6 = [K-b,B,aK,A,aK,p-1]
+       start206 -> cell206 literal27
+  -> SEEKS route returns p32
+  -> p32 -> cell115
+```
+
+The loop materially strengthens navigation and the repeated-H state architecture. It does **not** revive previously failed p32/p47 decoder families or establish that these selected ciphertext groups are plaintext.
+
 ### Rival controls
 
 The canonical 11-cycle contains only three literal decimal tokens that are legal LP2 page numbers:

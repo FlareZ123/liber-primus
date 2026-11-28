@@ -192,6 +192,29 @@ Controls: `47` occurs at cells12 and115, so the numeral itself is not unique; th
 
 This reopens **navigation to p47**, not any previously failed p32/p47 decoder. See `im-results/lp2-p32-p47-lowdigit-road-map.md` and `sims/lp2_p27_within_cell115_p47_reopen_sft.cjs`.
 
+### Held-out p47 word47 state prediction
+
+Following the selected cell115 literal `47` to p47 and taking `47` as the ordinary one-based word ordinal fixes p47 word index46 **before reading its runes**. That word starts at rune offset206 and has untouched metrics
+
+```
+length 6 = a
+raw GP0 71 = GP0(SEEKS)
+GP-prime sum 256 = p50 table size.
+```
+
+The exact `(6,71,256)` triple is unique among all 2,928 complete unknown words. Its canonical H6 is
+
+```
+[16,19,12,8,12,22]
+= [K-b,B,aK,A,aK,p-1],
+```
+
+unique among all 252 complete six-rune words. The zero-based word47 rival fails both the numeric triple and the H packet.
+
+The same word begins at offset206, and p50 cell206 is the table's unique literal token `27`, conditionally closing back to this p27 receiver. Its GP0=71 closes through the already authenticated `SEEKS` 23-step byte-pointer route to p32, which then steps to cell115 again.
+
+This is a held-out **state/navigation** prediction, not plaintext. It materially strengthens the interpretation that canonical H is exposing designed DH-state packets on source-selected ciphertext objects.
+
 ## What this resolves
 
 Earlier p27 DIVINITY reports correctly treated the receiver coordinate as unresolved. The signed 2016 message says that the manuscript words' numbers are the direction, but by itself does not declare a page/word coordinate pair or a universal indexing origin. The new route does not need that orientation: p27 is already selected by its red/DH state, and **B itself supplies the word number**.
