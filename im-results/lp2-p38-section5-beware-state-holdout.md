@@ -204,6 +204,43 @@ This is a useful localization result. The exact p38 key is retired as a reusable
 
 Reproducer: `sims/lp2_p38_section5_beware_dh_shell_inverse_sft.cjs`. Windows Node22 PASS: initial inverse run **44447593645**; holdout-integrated rerun **44448030240**.
 
+## Direct signed-warning-field reconstruction of the exact key
+
+The authenticated warning tape gives a simpler source route to the already frozen p38 key. The receiver and BEWARE label remain independently selected by the pre-existing section-5 / predecessor-LUCK gate before this serialization is considered.
+
+```text
+LUCK     first GP rune = 20 = qg
+OPENPGP  first GP rune =  3 = e
+OPENPGP  GP length     =  7 = g+K
+PATHS    first GP rune = 13 = b-K
+PATHS    GP length     =  4 = a-K
+```
+
+`OPENPGP` is the **only** authenticated word whose first GP rune is 3. Its own `(first,length)=(3,7)` self-describes a three-symbol block `[7,7,7]`. Concatenate the predecessor field, that self-repeat block, and the PATHS pair:
+
+```text
+[first(LUCK), len(OPENPGP) repeated first(OPENPGP) times, first(PATHS), len(PATHS)]
+= [20,7,7,7,13,4].
+```
+
+This is exactly the previously recovered additive key:
+
+```text
+[8,25,14,2,17,22] - [20,7,7,7,13,4]
+= [17,18,7,24,4,18]
+= BEWARE mod29.
+```
+
+Charge the serialization rather than holding LUCK/PATHS fixed. Keep OPENPGP only because it is the unique first-rune-3 word, then let `X` and `Z` range over all 43 authenticated words in `[first(X),7,7,7,first(Z),len(Z)]`. Deduplication yields **589 distinct keys** and **1,178** key/sign configurations. On the independently selected p38 receiver, scored against the three distinct authenticated six-rune targets (`PRIMUS`, `BEWARE`, `VERIFY`), there is exactly one hit:
+
+```text
+X=LUCK, Z=PATHS, subtraction -> BEWARE.
+```
+
+The source-role grammar was recognized after the BEWARE key was known, so this is retrospective mechanism identification rather than a blind key discovery. It materially removes the earlier p6/DH shell-role arithmetic from the final numeric key: the exact six symbols are read from authenticated signed-word fields, and the finite family uniquely returns the independently selected target.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## P6 source-packet upgrade
 
 A later independent p6 investigation supplies a source-visible origin for the exact BEWARE key shell.
@@ -242,7 +279,7 @@ See [p6 master-state packet](lp2-p6-master-state-packet.md) and `sims/lp2_p6_mas
 
 ## Decision
 
-Preserve p38 offsets57..62 as a **strong local BEWARE plaintext candidate with a source-visible p6 state-packet key route**.
+Preserve p38 offsets57..62 as a **strong local BEWARE plaintext candidate with two source-visible key routes: the p6 state packet and the direct signed-warning-field serialization**.
 
 The receiver remains independently selected by the section5/LUCK gate. The exact key and plaintext replay remain unchanged. The p6 packet upgrades the former retrospective DH-shell compression into a finite source-derived schedule, while the failed p0 VERIFY transfer keeps the mechanism local. The next useful test is a fresh receiver whose packet-role semantics can be fixed before ciphertext inspection.
 
