@@ -128,6 +128,15 @@ The newer block1/block3 residue grammars are stronger target-blind local receive
 
 This GP0-difference opcode was discovered after the receivers and remains retrospective. It does not authenticate the source words as plaintext. The remaining decision is an authored/fresh paired-lane prediction and an ordered coordinatewise key serializer. See [the detailed report](lp2-p6-qblock-edge-gp0-coupling.md).
 
+## Whole-corridor adversarial structural null
+
+Agent11 now freezes the published target-blind p6 receiver grammar and asks whether comparable whole objects are common elsewhere, rather than scoring another fitted key. The matched null crosses all **31** contiguous authenticated 13-word source windows with all **44** physical 13-page manuscript intervals, for **1,364** source/page configurations. Fitted local keys, ciphertext-to-known-target equality and language scores are excluded.
+
+Under the exact frozen receiver predicates, source30/page30 is the unique top object: receiver score **20**, versus **13** next-best. Removing the p30/p31 prelude entirely leaves **18 versus 13**; scoring only the two q blocks leaves **15 versus 12**; removing receiver-uniqueness bonuses leaves **14 versus 8**. Allowing every coordinate permutation of both q-block residue vectors raises the next-best q score to 14, but the original remains uniquely first at 15 and chooses the published printed orders itself.
+
+The stronger familywise control charges the complete post-discovery address families rather than only their winners. Block1 contributes all **5,952** p6-only base29 address grammars (1,488 residue vectors × 4 quotient vectors); block3 contributes all **768** (48 residue constructions × 16 quotient splices). Across the whole 1,364-grid, block1 has a complete family member in **exactly one** configuration, source30/page30. Block3 has two configurations: the original and one unrelated sourceStart10/pageStart24 control. **Only source30/page30 supports complete members of both charged q-block families.** Adding the p30/p31 and exceptional p36/p41/p42 predicates gives family score **7** for the original versus **2** next-best.
+
+This is a conditional matched structural rank, not a discovery-wide p-value or plaintext authentication: the receiver families are retrospective and their internal family counts must not be multiplied as independent evidence. It does reject the specific rival that similarly rich p6-looking corridor objects are common once these rules are frozen. The causal frontier therefore remains the authored ordered-key serializer/opcode, now on a receiver schedule that survives a corridor-wide adversarial null. See `im-results/lp2-p6-whole-corridor-structural-null.md` and `sims/lp2_p6_corridor_structural_null_sft.cjs`.
 ## Complete local-inverse corridor
 
 | Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
