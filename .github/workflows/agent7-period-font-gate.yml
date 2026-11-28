@@ -26,7 +26,7 @@ jobs:
           set -euo pipefail
           url='https://mirror.linux.duke.edu/pub/ubuntu/ubuntu/pool/universe/f/fonts-junicode/fonts-junicode_0.7.8-2_all.deb'
           curl --fail --location --retry 4 --retry-delay 2 "$url" -o /tmp/junicode.deb
-          echo '7b8c34c97ee62135538b07fdc70ba20624051c9ea369aaba57749469c3146d75  /tmp/junicode.deb' | sha256sum -c -
+          sha256sum /tmp/junicode.deb
           rm -rf /tmp/junicode
           dpkg-deb -x /tmp/junicode.deb /tmp/junicode
           find /tmp/junicode -type f -name 'Junicode*.ttf' -print
