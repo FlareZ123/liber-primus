@@ -1,0 +1,16 @@
+name: Agent11 p6 whole-corridor structural null
+
+on:
+  workflow_dispatch:
+
+jobs:
+  structural-null:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run target-blind whole-corridor null
+        run: node sims/lp2_p6_corridor_structural_null_sft.cjs
