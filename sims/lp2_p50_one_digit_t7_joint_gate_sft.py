@@ -233,14 +233,84 @@ def simulate_zero_dose(reps: int = 30000, seed: int = 3302) -> dict[str, float |
     }
 
 
+def simulate_adjacent_high_digit_pair(reps: int = 30000, seed: int = 3303) -> dict[str, object]:
+    # Stronger shared-operand test: each ordered pair (z_i,z_(i+1)) gets its
+    # own fitted independent repeat rate. Neighboring pair states literally
+    # share one p50 high-digit operand, matching the source-visible overlap
+    # shape suggested by T7. If even this fails T7, a simple overlapping
+    # p50-bit hazard is insufficient.
+    pair_categories: list[list[int]] = [[] for _ in range(4)]
+    for i in valid:
+        left = int(TOKENS[i & 255][0] == "0")
+        right = int(TOKENS[(i + 1) & 255][0] == "0")
+        pair_categories[2 * left + right].append(i)
+
+    pair_hits = [0, 0, 0, 0]
+    for i in events:
+        left = int(TOKENS[i & 255][0] == "0")
+        right = int(TOKENS[(i + 1) & 255][0] == "0")
+        pair_hits[2 * left + right] += 1
+
+    ns = [len(x) for x in pair_categories]
+    assert ns == [7556, 2320, 2318, 707]
+    assert pair_hits == [42, 11, 29, 4]
+    qs = [k / n for k, n in zip(pair_hits, ns)]
+
+    states: list[tuple[int, int, int, int]] = []
+    logs: list[float] = []
+    for k0 in range(87):
+        for k1 in range(87 - k0):
+            for k2 in range(87 - k0 - k1):
+                k3 = 86 - k0 - k1 - k2
+                ks = (k0, k1, k2, k3)
+                if all(k <= n for k, n in zip(ks, ns)):
+                    states.append(ks)
+                    logs.append(sum(
+                        log_binom(n, k, q)
+                        for n, k, q in zip(ns, ks, qs)
+                    ))
+    cdf = normalized_cdf(logs)
+
+    rng = random.Random(seed)
+    samples: list[float] = []
+    exceed = 0
+    for _ in range(reps):
+        ks = states[draw_index(rng, cdf)]
+        event_sample: list[int] = []
+        for positions, k in zip(pair_categories, ks):
+            event_sample.extend(rng.sample(positions, k))
+        event_sample.sort()
+        value = t7(event_sample)
+        samples.append(value)
+        exceed += value >= observed_t7
+
+    samples.sort()
+    return {
+        "reps": reps,
+        "seed": seed,
+        "category_order": ["00", "01", "10", "11"],
+        "opportunities": ns,
+        "repeat_hits": pair_hits,
+        "rates": qs,
+        "median": samples[reps // 2],
+        "q025": samples[int(0.025 * reps)],
+        "q975": samples[int(0.975 * reps)],
+        "exceed": exceed,
+        "add_one_upper": (exceed + 1) / (reps + 1),
+    }
+
+
 two_rate = simulate_two_rate()
 zero_dose = simulate_zero_dose()
+adjacent_pair = simulate_adjacent_high_digit_pair()
 
 # The result is intentionally coarse enough to remain stable across Python versions.
 assert two_rate["add_one_upper"] < 0.005
 assert zero_dose["add_one_upper"] < 0.005
+assert adjacent_pair["add_one_upper"] < 0.005
 assert two_rate["q975"] < 0.25
 assert zero_dose["q975"] < 0.25
+assert adjacent_pair["q975"] < 0.25
 
 print(json.dumps({
     "one_digit_predicate": {
@@ -260,8 +330,10 @@ print(json.dumps({
     "observed_t7": observed_t7,
     "two_rate_conditioned_exact86": two_rate,
     "three_zero_count_rate_conditioned_exact86": zero_dose,
+    "adjacent_high_digit_pair_conditioned_exact86": adjacent_pair,
     "decision": (
         "p50 leading-zero is a codec-invariant one-digit/high-digit-zero state, "
-        "but independent p50-conditioned repeat rates do not reproduce T7"
+        "but neither independent state rates nor a fitted overlapping adjacent-high-digit "
+        "pair hazard reproduces T7"
     ),
 }, indent=2))
