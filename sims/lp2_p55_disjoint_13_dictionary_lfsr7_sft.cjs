@@ -46,7 +46,7 @@ function score(Cipher,tail){
   let best=0,bestWords=[];
   for(const e of entries){
    const r=recover(Cipher,e.P,tail,law);
-   assert.equal(r.dim,1);
+   if(r.dim!==1)continue; // lower-rank cribs leave multiple free taps; do not guess a key
    if(r.best>best){best=r.best;bestWords=[e.word]}
    else if(r.best===best&&bestWords.length<10)bestWords.push(e.word);
    scores.push(r.best);
