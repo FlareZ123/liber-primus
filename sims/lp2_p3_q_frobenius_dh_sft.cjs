@@ -339,6 +339,51 @@ assert.deepStrictEqual(directionEdges, [
   { source: [40, 0, 8], target: [27, 0, 19], sourceState: [18, 21], targetState: [18, 19] },
 ]);
 
+const uniqueNonzeroRedStates = [...redStateIndex.keys()]
+  .map((key) => key.split(",").map(Number))
+  .filter((state) => state[0] !== 0 || state[1] !== 0);
+
+const directionTransitionSpectrum = [];
+for (let offset = 1; offset <= 42; offset += 1) {
+  const edges = [];
+  for (const source of uniqueNonzeroRedStates) {
+    const target = directionPower(source, offset);
+    if (redStateIndex.has(target.join(","))) {
+      edges.push({ source, target });
+    }
+  }
+  if (edges.length) directionTransitionSpectrum.push({ offset, word: words[offset], edges });
+}
+assert.deepStrictEqual(directionTransitionSpectrum.map((row) => row.offset), [
+  1, 2, 4, 8, 15, 17, 24, 25, 26, 27, 29, 30, 31, 32, 39, 41,
+]);
+
+const directionCore = new Map(directionTransitionSpectrum
+  .filter((row) => row.offset >= 24 && row.offset <= 32)
+  .map((row) => [row.offset, row.edges]));
+assert.deepStrictEqual([...directionCore.keys()], [24, 25, 26, 27, 29, 30, 31, 32]);
+assert.deepStrictEqual(directionCore.get(24), [{ source: [28, 13], target: [5, 22] }]);
+assert.deepStrictEqual(directionCore.get(25), [{ source: [1, 6], target: [24, 6] }]);
+assert.deepStrictEqual(directionCore.get(26), [{ source: [1, 6], target: [18, 21] }]);
+assert.deepStrictEqual(directionCore.get(27), [{ source: [1, 6], target: [18, 19] }]);
+assert.deepStrictEqual(directionCore.get(29), [{ source: [18, 19], target: [1, 6] }]);
+assert.deepStrictEqual(directionCore.get(30), [{ source: [18, 21], target: [1, 6] }]);
+assert.deepStrictEqual(directionCore.get(31), [{ source: [24, 6], target: [1, 6] }]);
+assert.deepStrictEqual(directionCore.get(32), [{ source: [5, 22], target: [28, 13] }]);
+for (const offset of [24, 25, 26, 27]) {
+  const reverse = 56 - offset;
+  assert.strictEqual(directionCore.get(offset)[0].source.join(","), directionCore.get(reverse)[0].target.join(","));
+  assert.strictEqual(directionCore.get(offset)[0].target.join(","), directionCore.get(reverse)[0].source.join(","));
+}
+assert.deepStrictEqual(words.slice(23, 34), [
+  "ROAD", "AND", "THEIR", "NUMBERS", "ARE", "THE",
+  "DIRECTION", "SEEK", "AND", "YOU", "WILL",
+]);
+assert.deepStrictEqual(directionPower([5, 22], 32), [28, 13]);
+const p33Second = redStates.find((row) => row.page === 33 && row.start === 91);
+assert.deepStrictEqual(p33Second.state, [28, 13]);
+assert.deepStrictEqual(directionPower(p33Second.state, 24), [5, 22]);
+
 let traceNormMatches = 0;
 let traceNormPrimitiveMatches = 0;
 let exactFrobeniusMatches = 0;
@@ -394,7 +439,13 @@ console.log(JSON.stringify({
   })),
   offset25_27_all_field_starts: offset2527Starts,
   composition_charge: compositionCharge,
-  signed_range_triple_hits: signedRangeTripleHits,
+    signed_range_triple_hits: signedRangeTripleHits,
+  direction_transition_spectrum: directionTransitionSpectrum.map((row) => ({
+    offset: row.offset,
+    word: row.word,
+    edge_count: row.edges.length,
+  })),
+  core_24_32_words: words.slice(24, 33),
   next_after_p27: directionStep([18, 19]),
   finite_charge: {
     nonzero_field_elements: 840,
