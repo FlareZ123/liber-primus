@@ -174,6 +174,60 @@ again unique across the same 479 windows.
 
 This is the strongest new page-to-page operation in this report: p7 supplies an executable polynomial and a source-fixed seven-state orbit; p8 supplies a state-motivated square of literal source lengths; ordinary GF29 dot products produce a compact DH-state checksum.
 
+### Source-selected seven-page signed-fragment receiver
+
+The weighted-row packet is more than a checksum. In ordinary signed state notation it is
+
+```text
+[K,-1,g,-1,p,-1,-K]
+=
+[2,-1,5,-1,23,-1,-2].
+```
+
+Because the packet was produced from **page-local fragment lengths**, apply those seven values as one signed GP0 **fragment index** on the seven physical pages p8–p14: nonnegative values count from the beginning, `-1` is the final fragment, and `-K=-2` is the penultimate fragment. No selected fragment contents or descriptors participate in constructing this schedule.
+
+The frozen receiver selects:
+
+| page | signed fragment index | selected length | selected SUM | selected PRODUCT |
+|---|---:|---:|---:|---:|
+| p8 | `K=2` | **3=e** | **23=p** | **2=K** |
+| p9 | `-1` | **10=Kg** | **0=F** | **8=A** |
+| p10 | `g=5` | **2=K** | **2=K** | **24=-g** |
+| p11 | `-1` | **3=e** | **10=Kg** | **17=b+K** |
+| p12 | `p=23` | **2=K** | **27=-K** | **17=b+K** |
+| p13 | `-1` | **6=a** | **16=K-b** | **7=g+K** |
+| p14 | `-K=-2` | **2=K** | **13=b-K** | **5=g** |
+
+Thus the **held-out** descriptor rows are
+
+```text
+lengths  = [e,Kg,K,e,K,a,K]
+sums     = [p,F,K,Kg,-K,K-b,b-K]
+products = [K,A,-g,b+K,b+K,g+K,g].
+```
+
+The seven fragments concatenate to an exact **28-rune** source operand with
+
+```text
+(length, SUM, PRODUCT)
+=
+(28,4,16)
+=
+(-1,q,K-b) mod29.
+```
+
+Canonical H7 continues to close on the state:
+
+```text
+H7(lengths)  = [1,q,F,e,q,K-b,g]
+H7(sums)     = [Kg,b-K,q,Kg,F,K-b,g+K]
+H7(products) = [B^-1,1,g+K,b+K,aK,b,g+K].
+```
+
+This is the first downstream object in this route whose **contents were not inspected to choose it**. The schedule came entirely from the preceding p7 polynomial, the p8 fragment-length square, and their ordinary GF29 product. It therefore deserves more weight than retrospective state naming inside p8.
+
+The selected 28 runes are not readable native-GP plaintext on inspection. Their current status is **source-derived key/operand material**, not a decryption.
+
 ### The p7 polynomial acting on the p8 matrix
 
 The same adjacent-page objects also compose without selecting a vector. Evaluate the p7 polynomial directly on the p8 matrix:
@@ -310,7 +364,7 @@ P8 now contains five mutually adjacent/contained representations of the same sta
 4. the 49 black page-local fragment lengths form a 7×7 matrix whose **entire characteristic polynomial factors in DH-state coefficients**;
 5. the seven physical page lengths p8–p14 serialize the state in base29.
 
-This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, not only a catalog of matching residues. The evidence points to deliberate **state/layout metadata and a p7→p8 state-transfer step** rather than a direct mono-layer Hill cipher.
+This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, and its signed output selects a seven-page fragment receiver whose held-out lengths/SUMs/PRODUCTs close on the same state. The evidence points to deliberate **state/layout metadata, a p7→p8 state-transfer step, and a source-derived 28-rune operand** rather than a direct mono-layer Hill cipher.
 
 The next decisive question is not which extra matrix phase improves language. It is what source-visible operation uses this state packet to select an **untouched receiver or external object**. A successor should predict that recipient or a key coordinate before inspecting its ciphertext outcome.
 

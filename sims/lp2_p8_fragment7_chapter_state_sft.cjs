@@ -514,6 +514,56 @@ assert.deepEqual(
   [K * g, a, 1, e, mod(-1), mod(K - b), p - g]
 );
 
+// First genuinely source-selected receiver from the p7->p8 transfer.
+// Read the weighted-row output in its exact signed state form and use it as
+// one page-local fragment index for each physical page p8..p14. Positive
+// values are GP0 fragment indices; -1 is the final fragment and -K=-2 is the
+// penultimate fragment. The selected fragment contents are held out from the
+// construction of the schedule.
+const p7SignedFragmentSchedule = [K, -1, g, -1, p, -1, -K];
+assert.deepEqual(p7SignedFragmentSchedule.map(mod), p7WeightedRows);
+const selectedChapterFragments = p7SignedFragmentSchedule.map((signedIndex, i) => {
+  const page = 8 + i;
+  const fragments = pageFragments(page);
+  const index = signedIndex >= 0 ? signedIndex : fragments.length + signedIndex;
+  assert.ok(index >= 0 && index < fragments.length);
+  return { page, signedIndex, index, fragment: fragments[index] };
+});
+const selectedFragmentLengths = selectedChapterFragments.map(
+  (x) => x.fragment.values.length
+);
+const selectedFragmentSums = selectedChapterFragments.map(
+  (x) => sum(x.fragment.values)
+);
+const selectedFragmentProducts = selectedChapterFragments.map(
+  (x) => product(x.fragment.values)
+);
+assert.deepEqual(selectedFragmentLengths, [e, K * g, K, e, K, a, K]);
+assert.deepEqual(
+  selectedFragmentSums,
+  [p, F, K, K * g, mod(-K), mod(K - b), b - K]
+);
+assert.deepEqual(
+  selectedFragmentProducts,
+  [K, A, mod(-g), b + K, b + K, g + K, g]
+);
+
+const selectedChapterOperand = selectedChapterFragments.flatMap(
+  (x) => x.fragment.values
+);
+assert.equal(selectedChapterOperand.length, mod(-1));
+assert.equal(sum(selectedChapterOperand), q);
+assert.equal(product(selectedChapterOperand), mod(K - b));
+assert.deepEqual(H(selectedFragmentLengths), [1, q, F, e, q, mod(K - b), g]);
+assert.deepEqual(
+  H(selectedFragmentSums),
+  [K * g, b - K, q, K * g, F, mod(K - b), g + K]
+);
+assert.deepEqual(
+  H(selectedFragmentProducts),
+  [inv(B), 1, g + K, b + K, a * K, b, g + K]
+);
+
 // The p7 polynomial can itself act directly on the p8 matrix.
 const p7OfP8Matrix = polynomialMatrix(p7Polynomial, matrix);
 const p7OfP8Characteristic = [
@@ -834,6 +884,25 @@ console.log(JSON.stringify({
       orbit:p7Orbit,
       weightedRows:p7WeightedRows,
       weightedColumns:p7WeightedColumns,
+      signedFragmentReceiver:{
+        schedule:p7SignedFragmentSchedule,
+        selections:selectedChapterFragments.map((x) => ({
+          page:x.page,
+          signedIndex:x.signedIndex,
+          index:x.index,
+          start:x.fragment.start,
+          values:x.fragment.values,
+        })),
+        lengths:selectedFragmentLengths,
+        sums:selectedFragmentSums,
+        products:selectedFragmentProducts,
+        operand:{
+          length:selectedChapterOperand.length,
+          sum:sum(selectedChapterOperand),
+          product:product(selectedChapterOperand),
+          values:selectedChapterOperand,
+        },
+      },
       polynomialOfMatrixCharacteristic:p7OfP8Characteristic,
     },
     census:{
