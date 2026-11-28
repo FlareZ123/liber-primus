@@ -52,6 +52,55 @@ For later structural controls it is also useful to take the ordinary Euclidean q
 
 This historical-BASE29 address view was **not** used to choose the start, radix, hop count, or endpoint. Applying BASE29 to table addresses remains an inferred composition: the signed protocol authenticates both operations separately but does not explicitly instruct an LP2 solver to compose p50 pointer addresses with BASE29.
 
+## One p27-selected table cell closes the complete worked-DH register
+
+The state tape can be compressed further without introducing another search. Start from the **single p27-selected original cell254**.
+
+Its address is historical BASE29
+
+```text
+254 -> 8M = [8,22] = [A,p-1].
+```
+
+Its literal printed token is `39`. The two already live numeral readings are
+
+```text
+base59("39") = 186
+base60("39") = 189.
+```
+
+Those two values each have two independent coordinate readings:
+
+```text
+186 = row23,col2 in the visible 32x8 table = [p,K]
+186 = historical BASE29 6C                = [a,aK]
+
+189 = row23,col5 in the visible 32x8 table = [p,g]
+189 = historical BASE29 6F                = [a,b].
+```
+
+Finally, the base59 content of cell186 is
+
+```text
+cell186 -> 0J -> 19 = B.
+```
+
+Thus the one source-selected table cell and one dereference close the entire worked exchange:
+
+```text
+p=23, g=5, a=6, b=15, A=8, B=19, K=2.
+```
+
+Every field is represented before any unknown LP2 plaintext is inspected. The standard DH identities verify the register exactly:
+
+```text
+5^6  mod23 = 8
+5^15 mod23 = 19
+19^6 mod23 = 2.
+```
+
+This is the strongest compact interpretation of the current route. It does not make BASE29-on-addresses an authenticated LP2 opcode, but it changes the question from “why do many downstream numbers resemble DH state?” to a much narrower one: **why does the p27-selected original table cell, under the two historically available numeral systems, close every field of the same worked DH exchange?**
+
 ## Both literal `39` cells are themselves BASE29 state words
 
 The two source-significant occurrences of literal `39` are not only equivalent transducers; their **table addresses** have compact historical-BASE29 readings:
@@ -496,4 +545,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`; one-cell complete-DH register: `a91bce7feb42e4176ef4da73be43a34a386a7554`.
