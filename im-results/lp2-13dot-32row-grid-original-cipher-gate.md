@@ -107,6 +107,27 @@ As a local check against the provisional 30-rune p55 crib at segment offset 269,
 All four transforms are checked by exact synthetic p57 round trips. The source-aligned period-eight hypothesis is therefore rejected in these fixed forms; this does not rule out a different totient construction or another role for the table.
 
 
+## Source-frozen 32-row mod36 silent-output receiver (Agent 1, 28 November 2026)
+
+**Decision: the original 31-mark / 32-row association is an exact segmentation cue, but the direct eight-byte row modulo36 as a period-eight, per-segment hidden-output cipher key does not recover readable GP-native text.** This is a genuinely different encoder from the direct GP29 pad and RC4 gates above. The 36-symbol hidden-output cipher is motivated by the separately implemented Round48/C11 alternative-channel decoder, **not authenticated by Cicada**. The source does not prescribe mod36, seven silent symbols, or the period-eight repetition; these remain the weakest premises. The test is a bounded consumer of an original-visible *key and segmentation*, not a new source claim.
+
+Use every original one of the 31 individually printed 13-dot marks, preserving distinct marks at the same rune offset and both empty intervals. For segment `s`, key `K_s=(G[s,0],...,G[s,7]) mod36` exactly as printed, repeated with period8 starting at its first rune. The hypothesized sender admits 29 visible outputs, seven silent outputs, a plaintext space symbol, and strict rejection of a repeated most recent *emitted* symbol. The receiver is the fully implemented [periodic-state unbounded silent-event inverse](../sims/lp2_periodic_silent_unbounded_inverse_sft.cjs), with **exact min-plus hidden-event reachability** and a beam of128 paths across observed runes; there is no artificially capped number of silent events. Every attempted decoded candidate is forward encrypted to exactly the original ciphertext before being reported.
+
+A genuine **held-out GP-native Gibran plant** with each frozen printed key proves the inverse recognizes correctly keyed text: for segment1, 320 source symbols produce261 visible, with **100.00%** visible-plaintext LCS and score **−1.88348** per printed rune; for segment27, 320 source symbols produce257 visible, with **99.53%** visible-plaintext LCS and score **−1.88737**. The two held-out samples were not used to select keys, offsets or segments. The model is visibly effective on the calibrated positive data, not merely reversible on arbitrary ciphertext.
+
+All 30 nonempty original segments have finite-state paths under this proposed cipher, including the 28 segments containing all 12,956 unsolved runes. This is weak evidence because the channel can admit many nonsense strings. Four independently fixed **long original** intervals were then decoded with the same correct-key calibration:
+
+| Original thirteen-dot segment | Printed runes | Full candidate incl. silent symbols | Inferred silent emissions | GP-native LM score per printed rune |
+| --- | ---: | ---: | ---: | ---: |
+| 1: p0 opening body | 716 | 1,317 | 601 | **−5.03234** |
+| 5 | 690 | 1,264 | 574 | **−5.19235** |
+| 16: p23–26 postheading block | 1,005 | 1,716 | 711 | **−5.34462** |
+| 27: p54–55 terminal | 299 | 538 | 239 | **−5.16465** |
+
+Every one of the four full-latent candidates forward reencrypts without discrepancy, but none has a credible sustained GP-native plaintext. The original scores are **3.14–3.46 nats per printed rune below** the positive plant scores on the same frozen model; the outputs are irregular pseudo-English. The original candidates require roughly 41–46% silent emissions among all modeled full symbols, rather than approximately 19% on the two keyed controls. This is much greater than expected from an independently uniform 36-symbol sender and further weakens the literal key association. Caution: the decoder's language-model beam is heuristic, so this is a **failed recovery test**, not a global mathematical impossibility for any plaintext under the printed eight-byte keys.
+
+Reproduce with [single-file original source and exact-replay test](../sims/lp2_13dot32_row8_mod36_silent_exact_original_sft.cjs). It was executed successfully in [Windows Node22 GitHub Actions run 46106107650](https://github.com/FlareZ123/liber-primus/actions/runs/46106107650) (job140859103593, completed 28 November2026 04:08 UTC). The run checks all 32 segment lengths, both blank sections, two native positive controls, exact unbounded reachability of every source segment and four complete original native-input decodings; no new key, original plaintext or destination. Because source-key acquisition is the limiting factor, do not respond by searching arbitrary row phases, nonce derivations, permutations or alternative alphabet modulus with a language model; seek a separate authored instruction first.
+
 ### Decision
 
 **Reject the direct mod-29 repeating-eight-byte-pad transfer, the four source-fixed row-ranked per-interval eight-column transpositions, and the four fixed period-eight row-wise totient streams** as explanations of direct native GP-English on unsolved LP2. The exact 31→32 segmentation is source-real but contains two empty intervals; neither its count nor these negative row-consumer tests establishes that each row is a cipher key. The key-independent fixed-substitution obstruction remains conditional on direct native GP-English and does not exclude within-interval state changes, transposition interleaved with a symbol-changing cipher, or another original side channel.
