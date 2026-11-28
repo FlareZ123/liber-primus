@@ -35,6 +35,36 @@ The original [16 January section naming change](https://github.com/resvolver/c1c
 
 The repository's [original issues 1–3](https://github.com/resvolver/c1cada/issues?q=is%3Aissue) preserve exploratory January 2015 planning, with no recovered full ciphertext inverse or follow-up that selected a key-phrase output. Later August pull requests are repository merges without historical LP2 selected plaintext. This is a **scope-limited negative about the extant public commit and issue history**, rather than proof that no private discussion occurred.
 
+## Canonical-corpus false-positive calibration (28 November 2026)
+
+A source-faithful replay against the corrected current corpus provides a
+useful concrete reason not to extend these trial keys by visual inspection.
+Under the historical GP29 subtraction rule, `PARABLE` applied at p18
+page-local rune offset **67** maps the complete four-rune printed word
+`ᛠᚩᛟᛖ` exactly to **SHED**. The match is superficially attractive because
+the solved PARABLE later contains “SHED OUR OWN CIRCUMFERENCES”. It is not a
+selected decipherment:
+
+- no 2015 source selects p18, this word, this offset, or this sign;
+- the repeating-`PARABLE` continuation aligned to that word is immediately
+  nonprose (`SHED | THAIEYJGI | MLO | MHJEONL ...`);
+- p0 has another raw `SHED` prefix under a different saved trial key but it
+  crosses two printed word boundaries;
+- the corrected p55 stream gives a concatenated `SHEDAS` under subtractive
+  `ENIGMA`, but the actual source boundaries split it as
+  `S | H | EDAS`; the 2015 program preserves those separators and its
+  committed `ENIGMA_8.txt` contains no `SHED`.
+
+There are **556 complete four-rune words** on unknown p0–55. Even restricting
+attention after the fact to one fixed four-rune target, the two signs of one
+fixed GP29 key prefix give 1,112 opportunities; an iid-uniform GP29 scale
+would assign at least one exact four-rune hit probability about
+**0.00157**. That narrow calculation is not a significance claim: the real
+historical search tried several phrases, sections, offsets and output
+lengths, so the effective post-selection family is broader. The p18 hit is
+therefore a compact positive control for how an exact English-looking local
+preview can arise without a source-selected inverse or coherent extension.
+
 ## Director gate and next decision
 
 There is **no defensible source-selected output** from this script that can be frozen and tested as an unknown-page decoder. The existing samples are arithmetic local previews and conjectured phrase inputs. A plausible candidate shown at an arbitrary offset would be postselection unless independent contemporaneous evidence fixed the exact recipient, start, sign, rune spelling, clock and extension rule.
