@@ -160,6 +160,8 @@ The repeated odd-position value and antisymmetric endpoints are visible **before
 
 Across all **479** same-page 49-fragment windows, p8 is the **only** window whose p7-orbit-weighted rows have even this unlabeled shape. It is also the only window matching the exact state packet above.
 
+A stricter orientation charge tests **all 14 cyclic/reversal presentations** of the same seven-cycle against all 479 windows: **6,706** source-window/orientation pairs. Exactly one pair has the unlabeled shape `[u,s,v,s,w,s,-u]`: **p8 black start, unreversed, zero rotation**, i.e. the source-fixed orbit orientation produced by the five-step p7 warmup. Thus neither a retrospective cycle rotation nor reversal is needed to manufacture the checksum.
+
 The transpose gives a second exact cross-check:
 
 ```text

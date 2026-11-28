@@ -549,6 +549,19 @@ const characteristicHits = [];
 const p7OrbitRowHits = [];
 const p7OrbitColumnHits = [];
 const p7OrbitShapeHits = [];
+const p7OrbitNaturalOrientationShapeHits = [];
+const p7NaturalOrientations = [];
+for (const reversed of [false, true]) {
+  const source = reversed ? p7Orbit.slice().reverse() : p7Orbit.slice();
+  for (let rotation = 0; rotation < 7; rotation += 1) {
+    p7NaturalOrientations.push({
+      reversed,
+      rotation,
+      values: source.slice(rotation).concat(source.slice(0, rotation)),
+    });
+  }
+}
+assert.equal(p7NaturalOrientations.length, 14);
 for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50)) {
   const fragments = pageFragments(pageObj.page);
   const lens = fragments.map((x) => x.values.length);
@@ -599,6 +612,23 @@ for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50))
         weightedRows,
       ]);
     }
+    for (const orientation of p7NaturalOrientations) {
+      const candidateRows = matrixVector(candidate, orientation.values);
+      if (
+        candidateRows[1] === candidateRows[3] &&
+        candidateRows[3] === candidateRows[5] &&
+        mod(candidateRows[0] + candidateRows[6]) === 0
+      ) {
+        p7OrbitNaturalOrientationShapeHits.push([
+          pageObj.page,
+          start,
+          fragments[start].start,
+          orientation.reversed,
+          orientation.rotation,
+          candidateRows,
+        ]);
+      }
+    }
   }
 }
 assert.equal(windows49, 479);
@@ -611,6 +641,10 @@ assert.deepEqual(p7OrbitColumnHits, [[8,2,12]]);
 assert.deepEqual(
   p7OrbitShapeHits.map((x) => x.slice(0, 3)),
   [[8,2,12]]
+);
+assert.deepEqual(
+  p7OrbitNaturalOrientationShapeHits.map((x) => x.slice(0, 5)),
+  [[8,2,12,false,0]]
 );
 
 // Seven-page physical chapter counts, base29 quotient/remainder state packet.
@@ -805,6 +839,7 @@ console.log(JSON.stringify({
     census:{
       windows49,rowHits,colHits,jointHits,characteristicHits,
       p7OrbitRowHits,p7OrbitColumnHits,p7OrbitShapeHits,
+      p7OrbitNaturalOrientationShapeHits,
     },
   },
   chapterPageLengths: {
