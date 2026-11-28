@@ -69,6 +69,8 @@ def main():
     print('SAME-LINE LP2 EVENT COUNT',len(same_line_events),
           'cross-line excluded',overline,'unmapped',missing)
     print('SOLVED NATIVE/EQUIVALENT CONTROL doublets',json.dumps(solved_events))
+    print('CONTROL CARDINALITY',len(control),'all',sum(len(v) for (letter,kind),v in control.items() if kind=='all'),'near',sum(len(v) for (letter,kind),v in control.items() if kind=='near'))
+    print('EXAMPLE EVENT+CONTROL LETTER',[(e['letter'],len(control[(e['letter'],'all')]),len(control[(e['letter'],'near')])) for e in same_line_events[:12]])
     for mode in ['all','near']:
         matched=[]
         for e in same_line_events:
