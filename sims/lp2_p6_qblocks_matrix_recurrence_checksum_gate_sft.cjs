@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const data=JSON.parse(fs.readFileSync(path.join(__dirname,'..','im-results','lp2-p6-qblocks-matrix-recurrence-pretarget.json'),'utf8'));
+assert.equal(data.grading,'PRETARGET NO-PLAINTEXT');
+assert.equal(data.count,64);
+const hist={};for(const c of data.candidates)hist[c.checksumMatches]=(hist[c.checksumMatches]||0)+1;
+assert.deepEqual(hist,{0:56,1:8});
+assert.equal(Math.max(...data.candidates.map(c=>c.checksumMatches)),1);
+assert.equal(data.candidates.filter(c=>c.checksumMatches===8).length,0);
+console.log(JSON.stringify({status:'PASS',candidates:64,checksumHistogram:hist,maxMatchedPages:1,decision:'reject full paired q-block matrix recurrence before plaintext grading'},null,2));
