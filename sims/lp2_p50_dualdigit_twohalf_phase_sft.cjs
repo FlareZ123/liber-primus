@@ -58,6 +58,66 @@ function phaseRows(half,bytes){
   rows.sort((a,b)=>b.score-a.score||a.phase-b.phase);
   return {rows,meanH,meanD,sdH,sdD};
 }
+// Threshold-free ordinal control: the printed low digit is an ordered
+// 0..59 character. Mann–Whitney AUC measures how often its value at an
+// increasing next-gap is below its value at a decreasing next-gap. No half-
+// radix threshold is selected. Combine it with the distinct H=0 event count.
+function ordinalAuc(half,bytes,phase){
+  const pos=Array(60).fill(0),neg=Array(60).fill(0);
+  let npos=0,nneg=0;
+  for(const x of half.changes){
+    const v=bytes[(x.pos+phase)&255]%60;
+    if(x.positive){pos[v]++;npos++}else{neg[v]++;nneg++}
+  }
+  if(!npos||!nneg)throw Error('no both-direction test');
+  let total=0,more=0;
+  for(let value=59;value>=0;value--){
+    total+=pos[value]*(more+.5*neg[value]);more+=neg[value];
+  }
+  return total/(npos*nneg);
+}
+const ordinalSummaries=halves.map(half=>{
+  const rows=Array.from({length:256},(_,phase)=>({
+    phase, high:half.ev.filter(x=>tokens[(x+phase)&255]<60).length,
+    auc:ordinalAuc(half,tokens,phase)
+  }));
+  const avg=k=>rows.reduce((v,r)=>v+r[k],0)/256;
+  const mh=avg('high'),ma=avg('auc');
+  const sh=Math.sqrt(rows.reduce((v,r)=>v+(r.high-mh)**2,0)/256);
+  const sa=Math.sqrt(rows.reduce((v,r)=>v+(r.auc-ma)**2,0)/256);
+  for(const r of rows)r.score=(r.high-mh)/sh+(r.auc-ma)/sa;
+  rows.sort((a,b)=>b.score-a.score||a.phase-b.phase);
+  const source=rows.find(x=>x.phase===0);
+  return {name:half.name,rankJoint:rows.indexOf(source)+1,
+    rankAuc:rows.filter(x=>x.auc>source.auc).length+1,
+    nEvents:half.ev.length,nUpdates:half.changes.length,
+    source,second:rows[1]};
+});
+console.log('Threshold-free printed-low-digit rank AUC',JSON.stringify(ordinalSummaries,null,2));
+if(ordinalSummaries.some(x=>x.rankJoint!==1))
+  throw Error('source phase0 fails ordinal joint phase-half control');
+
+// Multiverse sensitivity: a split low digit at exactly 30 is NOT implied
+// by the cipher. Many nearby cutpoints produce the same original phase lead.
+// Count the entire explicit family and disclose the actual multiplicity.
+let bothFirst=0,bothUniqueFirst=0,neighboring=[];
+for(let cut=1;cut<60;cut++){
+  const raw=halves.map(half=>{
+    const scores=Array.from({length:256},(_,phase)=>
+      half.ev.filter(x=>tokens[(x+phase)&255]<60).length+
+      half.changes.filter(x=>((tokens[(x.pos+phase)&255]%60)<cut)===x.positive).length);
+    const best=Math.max(...scores);
+    return {rank:scores.filter(x=>x>scores[0]).length+1,
+      ties:scores.filter(x=>x===best).length};
+  });
+  if(raw.every(x=>x.rank===1))bothFirst++;
+  if(raw.every(x=>x.rank===1&&x.ties===1))bothUniqueFirst++;
+  if(cut>=28&&cut<=34)neighboring.push({cut,first:raw[0],last:raw[1]});
+}
+console.log('Cutpoint family (1..59): source phase top in both:',bothFirst,
+            'unique top both:',bothUniqueFirst);
+console.log('Cutpoint sensitivity around printed half-radix:',JSON.stringify(neighboring));
+
 // A smaller, more human-readable primary check uses no variance fitting:
 // count one point per high-zero repeat hit and one point per correctly
 // predicted increase/decrease. No phase-dependent weight is learned.
