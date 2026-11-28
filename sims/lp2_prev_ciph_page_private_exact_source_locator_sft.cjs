@@ -103,7 +103,7 @@ function scanner(cipherSites,windows,withEvents){
   return {windows:n,full_compatible:compatible,first_compatible_start:firstCompatibleStart,
     furthest_original_rune_index_before_contradiction:furthest,
     best_donor_start:furthestStart,average_first_conflicting_rune_index:firstGapSum/n,
-    contradicted_by_first_physical_page:n-nearMisses};
+    contradicted_by_first_physical_page:n-nearMisses-compatible};
 }
 const original=refs.map(r=>({name:r.name,ordinary:scanner(sites,r.gp,false),
     all_86_original_repeats_unconstrained:scanner(sites,r.gp,true)}));
