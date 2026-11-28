@@ -365,6 +365,9 @@ function convexDonorHull(donors, targetCounts, iterations=150) {
 
 const convexHullBase=convexDonorHull(standard, observed.h,100);
 const convexHullAlias=convexDonorHull(aliased, observed.h,100);
+const convexHullWithin=convexDonorHull(standard,observedWithinPages.h,100);
+const convexHullWithinAlias=convexDonorHull(aliased,observedWithinPages.h,100);
+assert(Math.min(convexHullBase.certifiedMinimumLower,convexHullAlias.certifiedMinimumLower,convexHullWithin.certifiedMinimumLower,convexHullWithinAlias.certifiedMinimumLower)>100);
 const output={
   observed:{runes:ORIGINAL.length,zeroSteps:observed.doubles,
     nonzeroSteps:N,nonzeroVsUniformPearson:originalVsUniform},
@@ -378,6 +381,8 @@ const output={
   controls:cal,
   convexHullBase,
   convexHullAlias,
+  convexHullWithin,
+  convexHullWithinAlias,
   opening729:originalOpening729,
   conclusion:"No authenticated unknown LP2 plaintext/key; exclusion conditional on independent donor-like plaintext/key unigram statistics and this exact GP28 chain emission."
 };
