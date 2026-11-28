@@ -211,7 +211,7 @@ Thus the two uniquely paired red11 objects are not merely equal-length ornaments
 
 This mutual segmentation is an independent cross-page consequence; the stronger p15-local held-out grid gate below is the main positive result of this invocation.
 
-## Stronger causal gate: lower red11 + grid predicts both the red cell and the upper red span
+## Strongest causal gate: lower red11 + one grid scalar predicts the remaining p15 state
 
 The five-word interpretation above can be made substantially less circular. Hold the **entire upper red9 span out**. Read only the lower red11 descriptors
 
@@ -221,12 +221,15 @@ The five-word interpretation above can be made substantially less circular. Hold
 (g,g,F)    = (5, 5, 0).
 ```
 
-Before consulting any upper red rune, these fix
+Before consulting any upper red rune, page number, red cell color, or external DH tuple, these fix
 
 ```text
 K=2, a=6, g=5, q=4, F=0,
-p=23, A=g^a mod p=8.
+p=23,
+A=g^a mod p=8.
 ```
+
+The same frozen identities fail under the obvious one-based 1..29 rune numbering and under Gematria prime values reduced mod29; GP0 is the sole one of these three repository-native representations satisfying both the repeated-`g` and `Kg` relations.
 
 Now use the independently established p15 number square, still **without consulting the red cell color**:
 
@@ -237,55 +240,79 @@ Now use the independently established p15 number square, still **without consult
 4516 1206  708 1820
 ```
 
-Reduce each cell modulo29 and apply the repository's pre-existing canonical outside-in `H4` to all four rows and columns. The lower-red-derived tail
+Reduce each cell modulo29 and apply the repository's pre-existing canonical outside-in `H4` to all four physical rows and columns.
+
+### Two lower-only predictions select H4 and the printed orientation before any unknown state is harvested
+
+The lower red11 alone predicts a complete transformed row
 
 ```text
-[g,Kg,qg] = [5,10,20]
+[q,-K,g+K,p-g] = [4,27,7,18].
 ```
 
-occurs on exactly one transformed column:
+Exactly one physical row has that `H4` image: row3.
+
+It independently predicts three coordinates of one transformed column:
 
 ```text
-H4(column2) = [15,5,10,20].
+[p-g, ?, aK, K] = [18, ?, 12, 2].
 ```
 
-The otherwise-unassigned head is therefore read directly from that source-selected column as `b=15`. This is not assigned from the page number or from the historical DH example. It immediately closes
+Exactly one physical column has those three coordinates: column1.
+
+These two predicates are already enough for the relevant finite controls:
+
+- among identity, `H4`, `H4^-1`, adjacent-pair `H2`, and `H2^-1`, only **H4** produces one exact predicted row and one matching partial column;
+- among all eight rotations/reflections of the square with row/column roles fixed, only the **original printed orientation** satisfies both.
+
+Thus the transform/orientation charge is completed before the missing column scalar is inspected.
+
+### One harvested scalar closes the DH exchange; every other transformed line becomes predicted
+
+The single unknown coordinate in the selected column is 19:
 
 ```text
-B = g^b mod p = 5^15 mod23 = 19
-B^a mod p     = 19^6 mod23 = 2 = K.
+H4(column1) = [18,19,12,2]
+            = [p-g,B,aK,K].
 ```
 
-With `B^-1=26 mod29` now derived, exactly one transformed row begins with `g=5` and ends with `B^-1=26`:
+Take only that one source value as `B=19` and immediately demand the cryptographic closure:
 
 ```text
-H4(row2) = [5,1,14,26].
+B^a mod p = 19^6 mod23 = 2 = K.
 ```
 
-The unique row/column intersection is therefore physical row2/column2 = **3299**. Only after this prediction is fixed do we compare with the source image: 3299 is exactly the uniquely red printed numeral and the independently established Fibonacci-prime spiral origin.
-
-The selected row/column also give a compact state cross:
+Then ordinary algebra fixes
 
 ```text
-H4(row through 3299) = [g,1,B-g,B^-1]
-                     = [5,1,14,26]
-
-H4(col through 3299) = [b,g,Kg,qg]
-                     = [15,5,10,20].
+b = log_g(B) mod p = log_5(19) mod23 = 15
+e = b^-1 mod(p-1) = 15^-1 mod22 = 3
+B^-1 mod29 = 26.
 ```
 
-The physical top numeric row independently transforms to
+No other grid scalar is needed to define state. After this single harvest, all four transformed columns are exact:
 
 ```text
-[17,12,23,3] = [K+b,aK,p,e],
+H4(col1) = [p-g, B,     aK,   K] = [18,19,12, 2]
+H4(col2) = [b,   g,     Kg,   qg] = [15, 5,10,20]
+H4(col3) = [A,   K,     A^-1, e] = [ 8, 2,11, 3]
+H4(col4) = [F,   p-g,   e,     b] = [ 0,18, 3,15]
 ```
 
-which supplies `e=3` after `p,a,K,b` are already fixed.
+and all four transformed rows are exact:
 
-Two finite controls keep this from being a free orientation/transform fit:
+```text
+H4(row1) = [K+b, aK, p,   e]     = [17,12,23, 3]
+H4(row2) = [g,   1, -b,  B^-1]   = [ 5, 1,14,26]
+H4(row3) = [q,  -K, g+K, p-g]    = [ 4,27, 7,18]
+H4(row4) = [-1,  g, F,   -b]     = [28, 5, 0,14].
+```
 
-- charge all eight ordinary rotations/reflections of the 4×4 square while holding the row/column predicates fixed: only the original printed orientation closes both selectors;
-- charge the small canonical transform family already used in source-only p6 work—identity, `H4`, `H4^-1`, adjacent-pair `H2`, and `H2^-1`: **only `H4`** even produces the required column tail and DH closure.
+These labels were recognized retrospectively and the DH state algebra has many expressions, so the table should not be treated as a calibrated coincidence probability. The causal gain is narrower: after lower red11 fixes the initial operands, a full row plus 3/4-column select transform/orientation, **only one grid scalar is harvested**, and the remaining line identities are held-out consequences.
+
+The state row `[g,1,-b,B^-1]` and state column `[b,g,Kg,qg]` intersect at physical row2/column2 = **3299**. Only after that intersection is fixed do we compare with the source image: 3299 is exactly the uniquely red printed numeral and independently established Fibonacci-prime spiral origin.
+
+The derived `b=15` also equals the **physical page index**, which was not used to select `B`, `b`, the transform or the orientation.
 
 Finally open the previously held-out upper red9 span. Its two word descriptors are exactly
 
@@ -294,9 +321,9 @@ Finally open the previously held-out upper red9 span. Its two word descriptors a
 (g,A,B^-1) = (5, 8,26),
 ```
 
-matching the state already derived from lower red11 + grid. Thus the separated upper red span is a held-out confirmation rather than an input to the strongest p15 route. The independently derived `b=15` also equals the physical page index, another consequence not used to select the grid column.
+matching the state already derived from lower red11 + the single grid harvest.
 
-This is the strongest positive result here. It is a genuine source-only prediction of the original red 3299 cell and of the upper red-span values from the lower red11 plus the printed number square. The remaining interpretive dependency is the use of repository-canonical `H4` on the p15 grid; the transform-family charge makes that dependency sharply bounded but does not turn `H4` into an authenticated first-party cipher instruction.
+This is the strongest positive result here. It is a source-only p15 state circuit with multiple held-out consequences, not a body-text decryption. The remaining interpretive dependency is that canonical `H4` was imported from the repository's existing operation vocabulary; the transform charge makes that dependency bounded but does not turn it into a signed first-party instruction.
 
 Primary reproducer: `sims/lp2_p15_lower_red11_grid_blind_sft.cjs`  
 Five-word/corpus census: `sims/lp2_p15_red_dh_state_packet_sft.cjs`  
