@@ -166,7 +166,7 @@ T=[-a,g,-K,1]  = [23,5,27,1]
 R=L+T           = [20,6,1,3]
 ```
 
-with no p6-local H, printed singleton, or Fehu value used as a **numeric** input. P6 still supplies the distinctive red13 4/5/4 geometry and the established receiver context, so this is not a new external plaintext prediction and does not invalidate the source-local control gate below. It does, however, materially strengthen the causal status of the numeric tape: the constants are independently recoverable from the later p40/p50/source route.
+with no p6-local H, printed singleton, or Fehu value used as a **numeric** input. Column-major `L||C||R` is exactly the established 13-lane p30–p42 receiver-delta tape `[26,1,3,2,26,1,0,1,3,20,6,1,3]`. P6 still supplies the distinctive red13 4/5/4 geometry and the established receiver context, so this is not a new external plaintext prediction and does not invalidate the source-local control gate below. It does, however, materially strengthen the causal status of the numeric tape: the constants are independently recoverable from the later p40/p50/source route.
 
 Reproducer: [`sims/lp2_p50_source_full_p6_grid_operand_sft.cjs`](../sims/lp2_p50_source_full_p6_grid_operand_sft.cjs).
 ## External-control gate: no held-out red object supplies the frozen operands
