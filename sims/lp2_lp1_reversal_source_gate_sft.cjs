@@ -21,6 +21,7 @@ const read = p => fs.readFileSync(path.join(root, p));
 const readText = p => read(p).toString('utf8');
 const TARGET = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
 const sha512 = b => crypto.createHash('sha512').update(b).digest('hex');
+const blake2b512 = b => crypto.createHash('blake2b512').update(b).digest('hex');
 const nibbleSwap = b => Buffer.from(b, x => ((x & 0x0f) << 4) | (x >>> 4));
 const reverseDigits = n => Number(String(n).split('').reverse().join(''));
 
@@ -138,10 +139,13 @@ for (const [family,b] of [['base60',b60],['base59',b59],['literal',literal]]) {
     ['whole_reverse',Buffer.from(b).reverse()],
     ['nibble_swap',nibbleSwap(b)],
     ['whole_reverse+nibble_swap',nibbleSwap(Buffer.from(b).reverse())],
-  ]) variants.push({family,op,sha512:sha512(x)});
+  ]) variants.push({family,op,sha512:sha512(x),blake2b512:blake2b512(x)});
 }
-variants.push({family:'literal',op:'per_token_character_reverse',sha512:sha512(perTokenReverse)});
-for(const v of variants) assert.notEqual(v.sha512,TARGET, `${v.family}/${v.op} unexpectedly matches p56`);
+variants.push({family:'literal',op:'per_token_character_reverse',sha512:sha512(perTokenReverse),blake2b512:blake2b512(perTokenReverse)});
+for(const v of variants) {
+  assert.notEqual(v.sha512,TARGET, `${v.family}/${v.op} SHA-512 unexpectedly matches p56`);
+  assert.notEqual(v.blake2b512,TARGET, `${v.family}/${v.op} BLAKE2b-512 unexpectedly matches p56`);
+}
 
 console.log(JSON.stringify({
   lp1_05:{jpegBytes:jpeg.length,trailerBytes:trailer.length,hiddenBytes:Buffer.from(hexText,'hex').length,magicSums:sums},
