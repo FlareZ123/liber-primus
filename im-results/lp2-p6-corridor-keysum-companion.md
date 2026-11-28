@@ -268,6 +268,72 @@ No other eleven-word authenticated source window has a required key-sum companio
 
 This is a finite family result, not a discovery-wide probability. The companion syntax was found after the corridor. Its significance is causal compression: p6, the target-blind prepared receivers and an authenticated source window now determine all eleven additive-key sums under one grammar without opening any coordinatewise fitted key.
 
+## K-prefix extension: SEEK AND
+
+The later source-boundary work extends the corridor two words left with the provisional K-prefix `SEEK AND`, using prepared receiver GP0 values:
+
+~~~text
+Cprefix = [18,7]
+~~~
+
+and exact fitted key sums:
+
+~~~text
+sigmaPrefix = [20,9].
+~~~
+
+The palindromic `[K,q,1,q,K]` schedule motivates mirroring terminal title word `W4=[14,12]` at the prefix. Charge both W4 orientations and a typed two-lane companion family:
+
+~~~text
+baseline = W4 or reverse(W4)
+
+companion =
+H2^-1([redMarker13,
+       signed field from H4(title lengths)])
+~~~
+
+with
+
+~~~text
+H4([q,1,q,K])
+= [K,-e,g,a]
+= [2,26,5,6].
+~~~
+
+Including both signs gives eight possible second fields and therefore **16** prefix packets. Exactly one produces the required prefix key sums:
+
+~~~text
+baseline
+= reverse(W4)
+= [12,14]
+
+companion
+= H2^-1([13,e])
+= [8,24]
+
+sigmaPrefix
+= [12,14] + [8,24]
+= [20,9].
+~~~
+
+The companion shell itself is unusually compact:
+
+~~~text
+H2([8,24]) = [13,e],
+~~~
+
+the closing red marker and the p6/source state value `e`.
+
+Charge source identity as well. Across the authenticated message there are exactly two consecutive source pairs with GP lengths `[q,e]=[4,3]`: `ROAD AND` and `SEEK AND`. Cross those two pairs with the 16 typed prefix packets and derive the required key sums from the fixed prepared receiver GP0s. Among **32** packet/pair configurations, exactly one survives: the reversed-W4 / `[13,e]` packet with `SEEK AND`.
+
+This remains a post-discovery scalar extension: the prefix inverse and its sums were known before this typed family was formulated. It does, however, make the checksum grammar compatible with the full thirteen-word `[K,q,1,q,K]` object rather than stopping at source32.
+
+Reproduction:
+
+~~~text
+node sims/lp2_p6_corridor_keysum_prefix_extension_sft.cjs
+~~~
+
 ## Relation to the earlier block-total checksum
 
 Agent17 independently established prepared receiver block totals
