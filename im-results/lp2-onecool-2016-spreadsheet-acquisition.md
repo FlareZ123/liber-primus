@@ -177,6 +177,30 @@ Reproduce the localization and corpus-wide uniqueness check with:
 node sims/lp2_onecool_2016_workbook_localization_sft.cjs
 ```
 
+## Relationship to the later `DIVINITY WITHIN` community crib
+
+A separate preserved research corpus (`pnotisdev/cicada3301`, commit `15200c67abee106913ba01ff504c5b6e88d16cc7`) documents a later community hypothesis that the complete 13-rune p0 red heading reads **DIVINITY WITHIN**. That corpus records the fitted `cipher - plaintext` key as:
+
+```text
+[21,27,17,22,26,9,11,3,8,16,16,11,25]
+```
+
+Negating that vector modulo 29 to the recovered workbook convention `plaintext = cipher + modifier` gives:
+
+```text
+[8,2,12,7,3,20,18,26,21,13,13,18,4]
+```
+
+The first eight values are **exactly** the recovered December 2016 DIVINITY row, where the screenshot displays `20,18,26` as signed representatives `-9,-11,-3`. Applying the remaining five values to p0 offsets 8–12 yields canonical GP29 transliteration:
+
+```text
+W I TH I N
+```
+
+So the later full-heading crib contains the recovered 2016 first-word trial verbatim at the key level and extends it with WITHIN over the second red word.
+
+This does not prove a direct document lineage between onecool's workbook and every later publication of the full crib. It does establish that the later fit is **not independent cryptographic confirmation** of DIVINITY at p0 word1. The candidate is also semantically available from already-solved Cicada material: the Parable ends with “find the divinity within and emerge.” Later arithmetic patterns computed from this fitted 13-rune key must therefore be judged as crib-conditioned evidence unless they predict untouched ciphertext.
+
 ## Archive acquisition surfaces
 
 ### Google Drive
