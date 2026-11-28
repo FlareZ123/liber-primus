@@ -1,0 +1,1310 @@
+{
+  "schema": "q8-native-phase-syntax-oracle-action-v1",
+  "run_date_utc": "2026-11-28T00:40:02.968Z",
+  "issue": 3262,
+  "script": "sims/lp2_q8_native_phase_syntax_receiver_sft.cjs",
+  "input_shas": {
+    "sims/lp2_q8_native_phase_syntax_receiver_sft.cjs": "6ba5e9f9e64bdc26b02889e066535dbbf681fd2d",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "im-results/lp2-q8-seven-crib-conditional-chart-recovery.json": "2546147d60d24d19c88dfaac7eba7c1273a3d89e",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  },
+  "design": "28 paired native section excerpts for two already-pinned true common-chart q8 actions; true chart/key given; hidden per-word independent phases; all exact F paths; leave-one-section-out historical native + two independent public texts; 31 matched word-order permutations per paragraph; every fifth boundary shifted 1 rune in decoy controls; no unknown LP2 ciphertext",
+  "default_ing_ia": {
+    "status": "true action only, no phase oracle, no original unknown LP2; synthetic phase-masked solved-native controls",
+    "rune_latin_mapping": {
+      "gp21": "ING",
+      "gp27": "IA"
+    },
+    "sources": {
+      "native": "resources/external/relikd-solved-gp29-native-v1.json",
+      "charts": "im-results/lp2-q8-seven-crib-conditional-chart-recovery.json",
+      "general_language": "Gibran Gutenberg 58585 + Emerson Gutenberg 2944 + leave-one-source-out solved native; fixed unknown-word mass 0.04, bigram backoff 12"
+    },
+    "controls": 28,
+    "word_groups": 668,
+    "runes": 2790,
+    "bag": {
+      "words": 668,
+      "top1": 658,
+      "top1_rate": 0.9850299401197605,
+      "phase_top1": 655,
+      "phase_rate": 0.9805389221556886,
+      "mean_true_word_p": 0.9717034234902755,
+      "mean_true_phase_p": 0.9636234927004359,
+      "coverage90": 0.9895209580838323,
+      "confident_wrong95": 2,
+      "ambiguous": 668,
+      "true_with_multiple_starts": 11,
+      "true_OOV": 64,
+      "reliability": [
+        {
+          "bin": 3,
+          "n": 2,
+          "mean_conf": 0.34324446450028373,
+          "accuracy": 0
+        },
+        {
+          "bin": 4,
+          "n": 1,
+          "mean_conf": 0.47551957563390146,
+          "accuracy": 0
+        },
+        {
+          "bin": 5,
+          "n": 5,
+          "mean_conf": 0.5523465832413429,
+          "accuracy": 0.8
+        },
+        {
+          "bin": 6,
+          "n": 6,
+          "mean_conf": 0.6466060008412672,
+          "accuracy": 0.8333333333333334
+        },
+        {
+          "bin": 7,
+          "n": 14,
+          "mean_conf": 0.7565277155204871,
+          "accuracy": 1
+        },
+        {
+          "bin": 8,
+          "n": 11,
+          "mean_conf": 0.860636854799436,
+          "accuracy": 1
+        },
+        {
+          "bin": 9,
+          "n": 629,
+          "mean_conf": 0.9966987442121635,
+          "accuracy": 0.9920508744038156
+        }
+      ]
+    },
+    "ordered": {
+      "words": 668,
+      "top1": 651,
+      "top1_rate": 0.9745508982035929,
+      "phase_top1": 650,
+      "phase_rate": 0.9730538922155688,
+      "mean_true_word_p": 0.966477875796961,
+      "mean_true_phase_p": 0.9584682939204898,
+      "coverage90": 0.9835329341317365,
+      "confident_wrong95": 6,
+      "ambiguous": 668,
+      "true_with_multiple_starts": 11,
+      "true_OOV": 64,
+      "reliability": [
+        {
+          "bin": 3,
+          "n": 4,
+          "mean_conf": 0.36172739467691906,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 4,
+          "n": 2,
+          "mean_conf": 0.46907895500384794,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 5,
+          "n": 7,
+          "mean_conf": 0.5241641600005861,
+          "accuracy": 0.5714285714285714
+        },
+        {
+          "bin": 6,
+          "n": 4,
+          "mean_conf": 0.6344337794780484,
+          "accuracy": 0.75
+        },
+        {
+          "bin": 7,
+          "n": 5,
+          "mean_conf": 0.7664882772950992,
+          "accuracy": 1
+        },
+        {
+          "bin": 8,
+          "n": 6,
+          "mean_conf": 0.8816646802203137,
+          "accuracy": 0.8333333333333334
+        },
+        {
+          "bin": 9,
+          "n": 640,
+          "mean_conf": 0.9974648860018644,
+          "accuracy": 0.9859375
+        }
+      ]
+    },
+    "false_order": {
+      "words": 668,
+      "top1": 643,
+      "top1_rate": 0.9625748502994012,
+      "phase_top1": 642,
+      "phase_rate": 0.9610778443113772,
+      "mean_true_word_p": 0.9373021111888123,
+      "mean_true_phase_p": 0.930428261771114,
+      "coverage90": 0.9805389221556886,
+      "confident_wrong95": 7,
+      "ambiguous": 668,
+      "true_with_multiple_starts": 11,
+      "true_OOV": 64,
+      "reliability": [
+        {
+          "bin": 2,
+          "n": 1,
+          "mean_conf": 0.21789308301068033,
+          "accuracy": 1
+        },
+        {
+          "bin": 3,
+          "n": 7,
+          "mean_conf": 0.3335084205624542,
+          "accuracy": 0.5714285714285714
+        },
+        {
+          "bin": 4,
+          "n": 6,
+          "mean_conf": 0.4742270616385334,
+          "accuracy": 0.6666666666666666
+        },
+        {
+          "bin": 5,
+          "n": 17,
+          "mean_conf": 0.5351994760152048,
+          "accuracy": 0.8235294117647058
+        },
+        {
+          "bin": 6,
+          "n": 12,
+          "mean_conf": 0.6300810271589311,
+          "accuracy": 0.9166666666666666
+        },
+        {
+          "bin": 7,
+          "n": 8,
+          "mean_conf": 0.7567100073421084,
+          "accuracy": 0.75
+        },
+        {
+          "bin": 8,
+          "n": 8,
+          "mean_conf": 0.8661523698273493,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 9,
+          "n": 609,
+          "mean_conf": 0.995986746318838,
+          "accuracy": 0.9835796387520526
+        }
+      ]
+    },
+    "order_permutation": {
+      "n": 28,
+      "significant_p_le_005": 26,
+      "median_p": 0.03125
+    },
+    "wins": {
+      "ordered_vs_shuffled": {
+        "wins": 28,
+        "ties": 0,
+        "total": 28
+      },
+      "ordered_vs_decoy": {
+        "wins": 28,
+        "ties": 0,
+        "total": 28
+      }
+    },
+    "mean_per_word_margin": {
+      "shuffle": 1.4574316455430323,
+      "decoy": 4.723963998673272
+    },
+    "examples": [
+      {
+        "sample": "0_warning:last",
+        "wrong": [
+          {
+            "i": 6,
+            "truth": "CHAINGE",
+            "choice": "NERAY",
+            "confidence": 0.9667,
+            "truePosterior": 0.0171,
+            "alternatives": 8
+          }
+        ]
+      },
+      {
+        "sample": "0_wisdom:all",
+        "wrong": [
+          {
+            "i": 2,
+            "truth": "THE",
+            "choice": "IF",
+            "confidence": 0.643,
+            "truePosterior": 0.3336,
+            "alternatives": 14
+          },
+          {
+            "i": 19,
+            "truth": "AETHEREAL",
+            "choice": "THICISL",
+            "confidence": 0.9084,
+            "truePosterior": 0.0309,
+            "alternatives": 16
+          }
+        ]
+      },
+      {
+        "sample": "jpg107-167:first",
+        "wrong": [
+          {
+            "i": 11,
+            "truth": "I",
+            "choice": "E",
+            "confidence": 0.4422,
+            "truePosterior": 0.2735,
+            "alternatives": 7
+          }
+        ]
+      },
+      {
+        "sample": "jpg107-167:last",
+        "wrong": [
+          {
+            "i": 18,
+            "truth": "I",
+            "choice": "U",
+            "confidence": 0.967,
+            "truePosterior": 0.018,
+            "alternatives": 7
+          }
+        ]
+      }
+    ],
+    "cases": [
+      {
+        "plant": 0,
+        "name": "0_warning:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 27.312,
+        "ordered_vs_decoy": 103.834,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_warning:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 23,
+        "top_bag": 23,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 18.712,
+        "ordered_vs_decoy": 55.566,
+        "shuffle_p": 0.0625
+      },
+      {
+        "plant": 0,
+        "name": "0_welcome:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 53.674,
+        "ordered_vs_decoy": 156.294,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_welcome:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 64.98,
+        "ordered_vs_decoy": 126.404,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_wisdom:all",
+        "n": 31,
+        "ambiguous": 31,
+        "phaseMulti": 0,
+        "top_ordered": 29,
+        "top_bag": 30,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 25.069,
+        "ordered_vs_decoy": 146.943,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_koan_1:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 3,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 53.167,
+        "ordered_vs_decoy": 108.141,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_koan_1:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 14.013,
+        "ordered_vs_decoy": 97.549,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_loss_of_divinity:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 31.883,
+        "ordered_vs_decoy": 137.891,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_loss_of_divinity:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 37.287,
+        "ordered_vs_decoy": 115.896,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "jpg107-167:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 3,
+        "top_ordered": 23,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 41.372,
+        "ordered_vs_decoy": 102.511,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "jpg107-167:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 23,
+        "top_bag": 24,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 41.658,
+        "ordered_vs_decoy": 129.616,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "jpg229:all",
+        "n": 18,
+        "ambiguous": 18,
+        "phaseMulti": 0,
+        "top_ordered": 18,
+        "top_bag": 18,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 22.845,
+        "ordered_vs_decoy": 118.468,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "p56_an_end:all",
+        "n": 25,
+        "ambiguous": 25,
+        "phaseMulti": 0,
+        "top_ordered": 25,
+        "top_bag": 25,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 24.439,
+        "ordered_vs_decoy": 67.749,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "p57_parable:all",
+        "n": 20,
+        "ambiguous": 20,
+        "phaseMulti": 0,
+        "top_ordered": 20,
+        "top_bag": 20,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 30.26,
+        "ordered_vs_decoy": 99.201,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_warning:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 17.526,
+        "ordered_vs_decoy": 117.766,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_warning:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 22,
+        "top_bag": 23,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 10.802,
+        "ordered_vs_decoy": 79.39,
+        "shuffle_p": 0.09375
+      },
+      {
+        "plant": 1,
+        "name": "0_welcome:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 23,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 53.248,
+        "ordered_vs_decoy": 147.451,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_welcome:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 63.859,
+        "ordered_vs_decoy": 146.931,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_wisdom:all",
+        "n": 31,
+        "ambiguous": 31,
+        "phaseMulti": 0,
+        "top_ordered": 29,
+        "top_bag": 29,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 28.387,
+        "ordered_vs_decoy": 153.065,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_koan_1:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 46.162,
+        "ordered_vs_decoy": 75.215,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_koan_1:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 23,
+        "top_bag": 23,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 31.738,
+        "ordered_vs_decoy": 99.349,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_loss_of_divinity:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 46.225,
+        "ordered_vs_decoy": 139.862,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_loss_of_divinity:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 24.761,
+        "ordered_vs_decoy": 100.358,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "jpg107-167:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 22,
+        "top_bag": 24,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 49.53,
+        "ordered_vs_decoy": 83.428,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "jpg107-167:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 22,
+        "top_bag": 24,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 33.261,
+        "ordered_vs_decoy": 116.341,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "jpg229:all",
+        "n": 18,
+        "ambiguous": 18,
+        "phaseMulti": 0,
+        "top_ordered": 17,
+        "top_bag": 16,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 27.134,
+        "ordered_vs_decoy": 131.97,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "p56_an_end:all",
+        "n": 25,
+        "ambiguous": 25,
+        "phaseMulti": 0,
+        "top_ordered": 23,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 10.748,
+        "ordered_vs_decoy": 55.443,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "p57_parable:all",
+        "n": 20,
+        "ambiguous": 20,
+        "phaseMulti": 0,
+        "top_ordered": 20,
+        "top_bag": 20,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 33.425,
+        "ordered_vs_decoy": 109.353,
+        "shuffle_p": 0.03125
+      }
+    ]
+  },
+  "alternative_ng_io": {
+    "status": "true action only, no phase oracle, no original unknown LP2; synthetic phase-masked solved-native controls",
+    "rune_latin_mapping": {
+      "gp21": "NG",
+      "gp27": "IO"
+    },
+    "sources": {
+      "native": "resources/external/relikd-solved-gp29-native-v1.json",
+      "charts": "im-results/lp2-q8-seven-crib-conditional-chart-recovery.json",
+      "general_language": "Gibran Gutenberg 58585 + Emerson Gutenberg 2944 + leave-one-source-out solved native; fixed unknown-word mass 0.04, bigram backoff 12"
+    },
+    "controls": 28,
+    "word_groups": 668,
+    "runes": 2790,
+    "bag": {
+      "words": 668,
+      "top1": 657,
+      "top1_rate": 0.9835329341317365,
+      "phase_top1": 655,
+      "phase_rate": 0.9805389221556886,
+      "mean_true_word_p": 0.9721092903014755,
+      "mean_true_phase_p": 0.9640260770539241,
+      "coverage90": 0.9910179640718563,
+      "confident_wrong95": 0,
+      "ambiguous": 668,
+      "true_with_multiple_starts": 11,
+      "true_OOV": 58,
+      "reliability": [
+        {
+          "bin": 3,
+          "n": 2,
+          "mean_conf": 0.34147992851370507,
+          "accuracy": 0
+        },
+        {
+          "bin": 4,
+          "n": 1,
+          "mean_conf": 0.4755387494881003,
+          "accuracy": 0
+        },
+        {
+          "bin": 5,
+          "n": 6,
+          "mean_conf": 0.559493667405183,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 6,
+          "n": 5,
+          "mean_conf": 0.6546781878866452,
+          "accuracy": 0.8
+        },
+        {
+          "bin": 7,
+          "n": 14,
+          "mean_conf": 0.7569143238259696,
+          "accuracy": 1
+        },
+        {
+          "bin": 8,
+          "n": 13,
+          "mean_conf": 0.8653475982621377,
+          "accuracy": 0.9230769230769231
+        },
+        {
+          "bin": 9,
+          "n": 627,
+          "mean_conf": 0.9966047208625113,
+          "accuracy": 0.9952153110047847
+        }
+      ]
+    },
+    "ordered": {
+      "words": 668,
+      "top1": 650,
+      "top1_rate": 0.9730538922155688,
+      "phase_top1": 650,
+      "phase_rate": 0.9730538922155688,
+      "mean_true_word_p": 0.9677412901032044,
+      "mean_true_phase_p": 0.9597102341880673,
+      "coverage90": 0.9835329341317365,
+      "confident_wrong95": 4,
+      "ambiguous": 668,
+      "true_with_multiple_starts": 11,
+      "true_OOV": 58,
+      "reliability": [
+        {
+          "bin": 3,
+          "n": 4,
+          "mean_conf": 0.35087268623545154,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 4,
+          "n": 2,
+          "mean_conf": 0.4691005840270497,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 5,
+          "n": 8,
+          "mean_conf": 0.532798272665698,
+          "accuracy": 0.375
+        },
+        {
+          "bin": 6,
+          "n": 2,
+          "mean_conf": 0.6395594001826208,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 7,
+          "n": 4,
+          "mean_conf": 0.7603229806879982,
+          "accuracy": 1
+        },
+        {
+          "bin": 8,
+          "n": 7,
+          "mean_conf": 0.8828794994943413,
+          "accuracy": 0.8571428571428571
+        },
+        {
+          "bin": 9,
+          "n": 641,
+          "mean_conf": 0.9973660047662117,
+          "accuracy": 0.9875195007800313
+        }
+      ]
+    },
+    "false_order": {
+      "words": 668,
+      "top1": 642,
+      "top1_rate": 0.9610778443113772,
+      "phase_top1": 642,
+      "phase_rate": 0.9610778443113772,
+      "mean_true_word_p": 0.9388271974336623,
+      "mean_true_phase_p": 0.9319499872709605,
+      "coverage90": 0.9820359281437125,
+      "confident_wrong95": 6,
+      "ambiguous": 668,
+      "true_with_multiple_starts": 11,
+      "true_OOV": 58,
+      "reliability": [
+        {
+          "bin": 2,
+          "n": 1,
+          "mean_conf": 0.21789308301068652,
+          "accuracy": 1
+        },
+        {
+          "bin": 3,
+          "n": 7,
+          "mean_conf": 0.3286572467314537,
+          "accuracy": 0.5714285714285714
+        },
+        {
+          "bin": 4,
+          "n": 4,
+          "mean_conf": 0.4729767159106457,
+          "accuracy": 0.5
+        },
+        {
+          "bin": 5,
+          "n": 20,
+          "mean_conf": 0.534680172958151,
+          "accuracy": 0.75
+        },
+        {
+          "bin": 6,
+          "n": 8,
+          "mean_conf": 0.6238749620369591,
+          "accuracy": 0.875
+        },
+        {
+          "bin": 7,
+          "n": 8,
+          "mean_conf": 0.7599519671448104,
+          "accuracy": 0.875
+        },
+        {
+          "bin": 8,
+          "n": 11,
+          "mean_conf": 0.8727798132509647,
+          "accuracy": 0.5454545454545454
+        },
+        {
+          "bin": 9,
+          "n": 609,
+          "mean_conf": 0.9958890798824687,
+          "accuracy": 0.9852216748768473
+        }
+      ]
+    },
+    "order_permutation": {
+      "n": 28,
+      "significant_p_le_005": 26,
+      "median_p": 0.03125
+    },
+    "wins": {
+      "ordered_vs_shuffled": {
+        "wins": 28,
+        "ties": 0,
+        "total": 28
+      },
+      "ordered_vs_decoy": {
+        "wins": 28,
+        "ties": 0,
+        "total": 28
+      }
+    },
+    "mean_per_word_margin": {
+      "shuffle": 1.4559651985373734,
+      "decoy": 4.74664987760657
+    },
+    "examples": [
+      {
+        "sample": "0_warning:first",
+        "wrong": [
+          {
+            "i": 1,
+            "truth": "WARNNG",
+            "choice": "BONEON",
+            "confidence": 0.8902,
+            "truePosterior": 0.0012,
+            "alternatives": 6
+          }
+        ]
+      },
+      {
+        "sample": "0_wisdom:all",
+        "wrong": [
+          {
+            "i": 2,
+            "truth": "THE",
+            "choice": "IF",
+            "confidence": 0.643,
+            "truePosterior": 0.3336,
+            "alternatives": 14
+          },
+          {
+            "i": 19,
+            "truth": "AETHEREAL",
+            "choice": "THICISL",
+            "confidence": 0.9079,
+            "truePosterior": 0.0311,
+            "alternatives": 16
+          }
+        ]
+      },
+      {
+        "sample": "jpg107-167:first",
+        "wrong": [
+          {
+            "i": 2,
+            "truth": "DURNG",
+            "choice": "DURF",
+            "confidence": 0.5749,
+            "truePosterior": 0.3544,
+            "alternatives": 15
+          },
+          {
+            "i": 11,
+            "truth": "I",
+            "choice": "E",
+            "confidence": 0.4422,
+            "truePosterior": 0.2735,
+            "alternatives": 7
+          }
+        ]
+      },
+      {
+        "sample": "jpg107-167:last",
+        "wrong": [
+          {
+            "i": 18,
+            "truth": "I",
+            "choice": "U",
+            "confidence": 0.9689,
+            "truePosterior": 0.0181,
+            "alternatives": 7
+          }
+        ]
+      }
+    ],
+    "cases": [
+      {
+        "plant": 0,
+        "name": "0_warning:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 23,
+        "top_bag": 23,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 27.313,
+        "ordered_vs_decoy": 106.251,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_warning:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 18.712,
+        "ordered_vs_decoy": 65.517,
+        "shuffle_p": 0.0625
+      },
+      {
+        "plant": 0,
+        "name": "0_welcome:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 52.724,
+        "ordered_vs_decoy": 156.589,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_welcome:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 64.132,
+        "ordered_vs_decoy": 125.921,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_wisdom:all",
+        "n": 31,
+        "ambiguous": 31,
+        "phaseMulti": 0,
+        "top_ordered": 29,
+        "top_bag": 30,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 20.956,
+        "ordered_vs_decoy": 146.858,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_koan_1:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 3,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 53.167,
+        "ordered_vs_decoy": 109.504,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_koan_1:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 20.191,
+        "ordered_vs_decoy": 96.011,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_loss_of_divinity:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 31.883,
+        "ordered_vs_decoy": 136.282,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "0_loss_of_divinity:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 36.442,
+        "ordered_vs_decoy": 115.897,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "jpg107-167:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 3,
+        "top_ordered": 22,
+        "top_bag": 23,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 41.766,
+        "ordered_vs_decoy": 102.516,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "jpg107-167:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 23,
+        "top_bag": 24,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 41.665,
+        "ordered_vs_decoy": 129.452,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "jpg229:all",
+        "n": 18,
+        "ambiguous": 18,
+        "phaseMulti": 0,
+        "top_ordered": 18,
+        "top_bag": 18,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 21.92,
+        "ordered_vs_decoy": 113.372,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "p56_an_end:all",
+        "n": 25,
+        "ambiguous": 25,
+        "phaseMulti": 0,
+        "top_ordered": 25,
+        "top_bag": 25,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 24.459,
+        "ordered_vs_decoy": 68.207,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 0,
+        "name": "p57_parable:all",
+        "n": 20,
+        "ambiguous": 20,
+        "phaseMulti": 0,
+        "top_ordered": 20,
+        "top_bag": 20,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 30.26,
+        "ordered_vs_decoy": 99.212,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_warning:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 17.553,
+        "ordered_vs_decoy": 112.224,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_warning:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 22,
+        "top_bag": 23,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 10.803,
+        "ordered_vs_decoy": 92.605,
+        "shuffle_p": 0.09375
+      },
+      {
+        "plant": 1,
+        "name": "0_welcome:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 23,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 54.729,
+        "ordered_vs_decoy": 148.757,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_welcome:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 63.012,
+        "ordered_vs_decoy": 146.926,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_wisdom:all",
+        "n": 31,
+        "ambiguous": 31,
+        "phaseMulti": 0,
+        "top_ordered": 29,
+        "top_bag": 29,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 24.282,
+        "ordered_vs_decoy": 153.022,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_koan_1:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 48.089,
+        "ordered_vs_decoy": 75.23,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_koan_1:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 37.454,
+        "ordered_vs_decoy": 93.963,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_loss_of_divinity:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 46.224,
+        "ordered_vs_decoy": 138.541,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "0_loss_of_divinity:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 24,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 23.53,
+        "ordered_vs_decoy": 109.088,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "jpg107-167:first",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 1,
+        "top_ordered": 21,
+        "top_bag": 23,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 49.651,
+        "ordered_vs_decoy": 89.567,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "jpg107-167:last",
+        "n": 24,
+        "ambiguous": 24,
+        "phaseMulti": 0,
+        "top_ordered": 22,
+        "top_bag": 24,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 33.261,
+        "ordered_vs_decoy": 116.298,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "jpg229:all",
+        "n": 18,
+        "ambiguous": 18,
+        "phaseMulti": 0,
+        "top_ordered": 17,
+        "top_bag": 16,
+        "confident_wrong": 1,
+        "ordered_vs_shuffle": 23.73,
+        "ordered_vs_decoy": 127.707,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "p56_an_end:all",
+        "n": 25,
+        "ambiguous": 25,
+        "phaseMulti": 0,
+        "top_ordered": 23,
+        "top_bag": 24,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 10.748,
+        "ordered_vs_decoy": 55.469,
+        "shuffle_p": 0.03125
+      },
+      {
+        "plant": 1,
+        "name": "p57_parable:all",
+        "n": 20,
+        "ambiguous": 20,
+        "phaseMulti": 0,
+        "top_ordered": 20,
+        "top_bag": 20,
+        "confident_wrong": 0,
+        "ordered_vs_shuffle": 33.425,
+        "ordered_vs_decoy": 109.353,
+        "shuffle_p": 0.03125
+      }
+    ]
+  }
+}
