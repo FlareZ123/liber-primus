@@ -1,0 +1,3218 @@
+{
+  "sourceBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+  ],
+  "original": [
+    {
+      "id": "upper-complete",
+      "n": 81,
+      "zeros": 2,
+      "q": 10,
+      "mode": "additive",
+      "hold": false,
+      "target": 1033,
+      "min": 2130,
+      "max": 6001,
+      "arbitraryBijectionMin": 578,
+      "validMasks": 1,
+      "legal": "420707233300201",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            23
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            22
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            22
+          ]
+        ],
+        "checksum": 2130,
+        "plaintext": "G TH X M F S U F F H F G P EO P E G H F EO U D R F C I E N O R TH C W U O F I L TH L X J U P E N C G J F P F F C I F P F P E F G R I C G F D P F EO I OE I O O B U H R X"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "upper-complete",
+      "n": 81,
+      "zeros": 2,
+      "q": 10,
+      "mode": "additive",
+      "hold": true,
+      "target": 1033,
+      "min": 2398,
+      "max": 6001,
+      "arbitraryBijectionMin": 732,
+      "validMasks": 4,
+      "legal": "108642358635888",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            1,
+            23
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            23
+          ],
+          [
+            1,
+            24
+          ]
+        ],
+        "checksum": 2398,
+        "plaintext": "B H F L U T TH U U N U TH X P X M W N U P TH M C U G J M I R C O U H TH R U J NG O NG S W TH X M I G W EO U X AE U G J U X U X M U TH C J G W U A X U P G D J R R E TH N C S"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "upper-complete",
+      "n": 81,
+      "zeros": 2,
+      "q": 10,
+      "mode": "reflected",
+      "hold": false,
+      "target": 1033,
+      "min": 2332,
+      "max": 6189,
+      "arbitraryBijectionMin": 578,
+      "validMasks": 1,
+      "legal": "420707233300201",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            20
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            17
+          ],
+          [
+            28,
+            16
+          ],
+          [
+            28,
+            4
+          ],
+          [
+            28,
+            11
+          ],
+          [
+            28,
+            11
+          ]
+        ],
+        "checksum": 2332,
+        "plaintext": "H N F D P A B N P AE X C U U F NG EO U P NG P B I P H F F F I F EO G W EO I I H E J P F F P F A U P O TH R U J X H O I C N F S X C I O H R E S F R TH U NG O I W U H C F F"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "upper-complete",
+      "n": 81,
+      "zeros": 2,
+      "q": 10,
+      "mode": "reflected",
+      "hold": true,
+      "target": 1033,
+      "min": 2556,
+      "max": 6189,
+      "arbitraryBijectionMin": 732,
+      "validMasks": 4,
+      "legal": "108642358635888",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            28,
+            3
+          ],
+          [
+            28,
+            23
+          ],
+          [
+            28,
+            11
+          ],
+          [
+            28,
+            24
+          ],
+          [
+            28,
+            18
+          ],
+          [
+            28,
+            17
+          ],
+          [
+            28,
+            5
+          ],
+          [
+            28,
+            12
+          ],
+          [
+            28,
+            12
+          ],
+          [
+            28,
+            21
+          ]
+        ],
+        "checksum": 2556,
+        "plaintext": "L U F A G AE E I X Y S G A TH OE OE P TH X OE X E R X U U U U J U P W U P O J N M EO X U U W U B TH X R O C TH EO H N AE J G I U T S G R R U C M T U C O TH S R O H TH N G U U"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "upper-complete",
+      "n": 81,
+      "zeros": 2,
+      "q": 10,
+      "mode": "affine",
+      "hold": false,
+      "target": 1033,
+      "min": 1311,
+      "max": 7163,
+      "arbitraryBijectionMin": 578,
+      "validMasks": 1,
+      "legal": "124612122228896950360524980224",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            5,
+            28
+          ],
+          [
+            24,
+            14
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            10,
+            17
+          ],
+          [
+            22,
+            28
+          ],
+          [
+            25,
+            16
+          ],
+          [
+            18,
+            12
+          ],
+          [
+            15,
+            11
+          ]
+        ],
+        "checksum": 1311,
+        "plaintext": "U L F F G C G W C R F F N H R G F R C G C TH O U O P O F U TH I C C R I F U X EO I EO R U J U O W EO F F W U I T F F N W W N F F O TH O TH P TH W F TH N S TH I U I O R TH EO"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "upper-complete",
+      "n": 81,
+      "zeros": 2,
+      "q": 10,
+      "mode": "affine",
+      "hold": true,
+      "target": 1033,
+      "min": 1414,
+      "max": 7200,
+      "arbitraryBijectionMin": 732,
+      "validMasks": 4,
+      "legal": "32179515354114700750211776512",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            24,
+            15
+          ],
+          [
+            10,
+            15
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            10,
+            18
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            25,
+            17
+          ],
+          [
+            18,
+            13
+          ],
+          [
+            15,
+            12
+          ],
+          [
+            2,
+            23
+          ]
+        ],
+        "checksum": 1414,
+        "plaintext": "P O F U W G W H G C G U C N C W U C G W H O TH TH R X R U TH O I G O C J U TH S P J C C U EO TH R H P U U O TH L B U U I H H I G U TH O R O X O H U U I H O J TH J R C O C"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-complete",
+      "n": 125,
+      "zeros": 5,
+      "q": 8,
+      "mode": "additive",
+      "hold": false,
+      "target": 3301,
+      "min": 4740,
+      "max": 8085,
+      "arbitraryBijectionMin": 1789,
+      "validMasks": 1,
+      "legal": "500246412961",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            22
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "checksum": 4740,
+        "plaintext": "U I J J J C O J N Y O O A T F G X W TH NG M S R Y T F D O X T T X TH AE F U W L B S AE G AE T NG C C D X EO M T U L G O E T P IA B E H H U I B F C T T M C B O P P C A S OE F H W F TH P R U H G A C I W F T W X B N U AE TH N U E H E F U H F T TH O TH P X X U U R R A"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-complete",
+      "n": 125,
+      "zeros": 5,
+      "q": 8,
+      "mode": "additive",
+      "hold": true,
+      "target": 3301,
+      "min": 4654,
+      "max": 8335,
+      "arbitraryBijectionMin": 1782,
+      "validMasks": 32,
+      "legal": "234868221626",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 22,
+        "key": [
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            21
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            26
+          ]
+        ],
+        "checksum": 4654,
+        "plaintext": "W S E N OE U R G S TH I U G EO U U L EO N M U J C NG OE C U U AE EO B N H U W EA E T E I TH J O X O U G E L B Y X EO T F H H W Y G X I TH P L U U H TH H I A A H T F L EO X P OE R W NG W N O TH U EO C N EO B Y IA T J P TH T H S F TH S U H TH B G TH OE U X O S U M H D S T R H"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-complete",
+      "n": 125,
+      "zeros": 5,
+      "q": 8,
+      "mode": "reflected",
+      "hold": false,
+      "target": 3301,
+      "min": 4732,
+      "max": 8085,
+      "arbitraryBijectionMin": 1789,
+      "validMasks": 1,
+      "legal": "500246412961",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            24
+          ],
+          [
+            28,
+            24
+          ],
+          [
+            28,
+            19
+          ],
+          [
+            28,
+            4
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            16
+          ],
+          [
+            28,
+            11
+          ],
+          [
+            28,
+            13
+          ]
+        ],
+        "checksum": 4732,
+        "plaintext": "U W OE G P S X R OE L U X F R B N B I TH AE C C P E S B I X I R U U F NG R T B F F F G J H U O S EO NG B C X U D F J EO P U L M W TH N W U W T B M R U AE Y F U R J S OE F N B AE I A E R J U N IA OE M I I S S I M F S M NG P OE T S N G L T W TH U TH X OE W O U U T F P F"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-complete",
+      "n": 125,
+      "zeros": 5,
+      "q": 8,
+      "mode": "reflected",
+      "hold": true,
+      "target": 3301,
+      "min": 4585,
+      "max": 8364,
+      "arbitraryBijectionMin": 1782,
+      "validMasks": 32,
+      "legal": "234868221626",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 23,
+        "key": [
+          [
+            28,
+            12
+          ],
+          [
+            28,
+            18
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            20
+          ],
+          [
+            28,
+            3
+          ],
+          [
+            28,
+            13
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            28,
+            25
+          ]
+        ],
+        "checksum": 4585,
+        "plaintext": "E U P OE G EO TH T I X NG U OE U C NG C R OE EO IA TH U U O J U U F L O T U N O OE IA T TH S W EA W W P TH X W E OE P W R T F EO B TH P R W G U W C H N TH M H OE AE U U D F M N TH M IA NG TH E O EO P U M P R U IA R M C R X AE H D P U F U C A U H OE S X I M J G A N TH H N C N C TH"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-complete",
+      "n": 125,
+      "zeros": 5,
+      "q": 8,
+      "mode": "affine",
+      "hold": false,
+      "target": 3301,
+      "min": 3364,
+      "max": 9501,
+      "arbitraryBijectionMin": 1789,
+      "validMasks": 1,
+      "legal": "188994094477081690832896",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            22,
+            20
+          ],
+          [
+            3,
+            20
+          ],
+          [
+            19,
+            7
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            17,
+            8
+          ],
+          [
+            27,
+            3
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            21,
+            20
+          ]
+        ],
+        "checksum": 3364,
+        "plaintext": "R P H W S U F G G O U G R H L B F R J U G I O TH S EO R G H H I J Y F TH P C F P O I U P R J U G Y F M S R M F N EO U TH B N U R S U R P G TH F H I F C C U F L U C O TH EO N NG TH W U R R W F C F L EO W S R W S I N H L G S AE O E J D U J TH J G W X R J R S L B R"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-complete",
+      "n": 125,
+      "zeros": 5,
+      "q": 8,
+      "mode": "affine",
+      "hold": true,
+      "target": 3301,
+      "min": 3422,
+      "max": 9564,
+      "arbitraryBijectionMin": 1782,
+      "validMasks": 32,
+      "legal": "88733683475925331214336",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 14,
+        "key": [
+          [
+            27,
+            20
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            3,
+            17
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            24,
+            7
+          ],
+          [
+            27,
+            5
+          ],
+          [
+            2,
+            14
+          ],
+          [
+            15,
+            12
+          ]
+        ],
+        "checksum": 3422,
+        "plaintext": "O TH H W OE O H TH T H P G S I TH X G M I U J EO I A TH L S G W I C E U R R P P TH W R P S NG R U O EO H G I O R X TH F T O O B U R A U Y N S R W B C X M J U G F X J R H S U O Y R W U U TH C W W M H TH N O M F EO U H G W U U X U H C O G M TH G J TH S U C B U W N O"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-physical",
+      "n": 115,
+      "zeros": 5,
+      "q": 8,
+      "mode": "additive",
+      "hold": false,
+      "target": 3301,
+      "min": 4406,
+      "max": 7429,
+      "arbitraryBijectionMin": 1567,
+      "validMasks": 1,
+      "legal": "500246412961",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            18
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "checksum": 4406,
+        "plaintext": "U X J P G M O J N U O C M U F G X J TH D X F R Y T R D C N U T X TH F F O TH C B S AE I AE E T M C D X T M E AE C G O E L P F EO O H H U X B TH F U T M C NG O S H M A S OE R H N A T P R U EO G Y F A W F T J X M R S AE TH N C E I P X U H F L TH"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-physical",
+      "n": 115,
+      "zeros": 5,
+      "q": 8,
+      "mode": "additive",
+      "hold": true,
+      "target": 3301,
+      "min": 4232,
+      "max": 7728,
+      "arbitraryBijectionMin": 1569,
+      "validMasks": 32,
+      "legal": "324699986876",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 22,
+        "key": [
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            16
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            26
+          ]
+        ],
+        "checksum": 4232,
+        "plaintext": "W S P J OE U R G S TH C O G EO U U L EO R NG U J C NG OE C AE O AE EO B N H U TH U E T E I TH J IA T O U G E L B NG T EO T F H H W Y U T I TH P L U U O R H I A A H T F S X X P OE R W NG TH J O TH U EO C N W M Y IA T J P TH J I S F TH S U H TH EO H TH OE U X"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-physical",
+      "n": 115,
+      "zeros": 5,
+      "q": 8,
+      "mode": "reflected",
+      "hold": false,
+      "target": 3301,
+      "min": 4328,
+      "max": 7423,
+      "arbitraryBijectionMin": 1567,
+      "validMasks": 1,
+      "legal": "500246412961",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            24
+          ],
+          [
+            28,
+            24
+          ],
+          [
+            28,
+            18
+          ],
+          [
+            28,
+            4
+          ],
+          [
+            28,
+            7
+          ],
+          [
+            28,
+            16
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            13
+          ]
+        ],
+        "checksum": 4328,
+        "plaintext": "U W NG G I S C R OE L F X Y R H N B I U AE TH C R E S B N X W R NG U F NG O T X F L F G J W U F S O NG B C P U L F TH EO P U M M R TH F W U W S B T R NG AE Y F F R H S P F N B A I NG E A J U N Y OE T I U S S I E F EO M EO P OE T X N O L W W TH U U"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-physical",
+      "n": 115,
+      "zeros": 5,
+      "q": 8,
+      "mode": "reflected",
+      "hold": true,
+      "target": 3301,
+      "min": 4120,
+      "max": 7686,
+      "arbitraryBijectionMin": 1569,
+      "validMasks": 32,
+      "legal": "324699986876",
+      "hitMasks": 0,
+      "hitCount": "0",
+      "minWitness": {
+        "mask": 19,
+        "key": [
+          [
+            28,
+            4
+          ],
+          [
+            28,
+            18
+          ],
+          [
+            28,
+            4
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            28,
+            20
+          ],
+          [
+            28,
+            14
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            28,
+            25
+          ]
+        ],
+        "checksum": 4120,
+        "plaintext": "I U W U D P TH T TH X S N I TH C NG Y R T L S O U U A J A N F H R T U U O T G R O S W L W U NG M S W E X P U EO R F P B TH C R U X E H C H U TH P T I Y U U S E C IA TH U P E I A E U P EO C I EO W P OE M T M J R X N TH U F EO L NG N X H R X NG C H"
+      },
+      "hitWitness": null
+    },
+    {
+      "id": "lower-physical",
+      "n": 115,
+      "zeros": 5,
+      "q": 8,
+      "mode": "affine",
+      "hold": false,
+      "target": 3301,
+      "min": 2966,
+      "max": 8895,
+      "arbitraryBijectionMin": 1567,
+      "validMasks": 1,
+      "legal": "188994094477081690832896",
+      "hitMasks": 1,
+      "hitCount": "7366368",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            22,
+            20
+          ],
+          [
+            3,
+            20
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            17,
+            8
+          ],
+          [
+            6,
+            24
+          ],
+          [
+            7,
+            22
+          ],
+          [
+            21,
+            20
+          ]
+        ],
+        "checksum": 2966,
+        "plaintext": "R P E W S U U G G O F G R N N B F R C U G O H TH S EO T G H N C J Y F S P C R EO O I U G R J U S Y F M W R M R OE EO U TH H N U NG W U R P B TH F N C F C C F F L U O O TH EO R NG TH EO P R R W X C F TH F W S R O S I G I L G S EO O E F T U J TH C"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            19
+          ],
+          [
+            24,
+            3
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            17,
+            8
+          ],
+          [
+            6,
+            24
+          ],
+          [
+            26,
+            6
+          ],
+          [
+            21,
+            20
+          ]
+        ],
+        "checksum": 3301,
+        "plaintext": "F EO E W S U S G H TH F G R N A B P O C U G O EO TH S J T G H N C J U EA S P C R TH O A F G R J U N Y P E W R M R G EO B U H N U NG F U F EO B TH F N C F R R F F L U I O NG J R NG TH EO X R F G X C F TH O W S O O S I G W L H X EO O E F NG U EA U C"
+      }
+    },
+    {
+      "id": "lower-physical",
+      "n": 115,
+      "zeros": 5,
+      "q": 8,
+      "mode": "affine",
+      "hold": true,
+      "target": 3301,
+      "min": 3027,
+      "max": 8916,
+      "arbitraryBijectionMin": 1569,
+      "validMasks": 32,
+      "legal": "122672303901425773838336",
+      "hitMasks": 9,
+      "hitCount": "1496094",
+      "minWitness": {
+        "mask": 27,
+        "key": [
+          [
+            23,
+            28
+          ],
+          [
+            3,
+            19
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            11,
+            24
+          ],
+          [
+            7,
+            24
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            15,
+            11
+          ],
+          [
+            3,
+            19
+          ]
+        ],
+        "checksum": 3027,
+        "plaintext": "G EO R TH O G A B T TH J U W M H TH S O U AE U TH I R O J H U F NG X B R I G U C L TH O S H D G X TH U W J U C G Y L F G TH U C O G R N R H EO I N TH J W B I R W M A G C W R J G U I TH S D H G E D TH O TH P U O F R R R U F N N P R R W P O R O C"
+      },
+      "hitWitness": {
+        "mask": 10,
+        "key": [
+          [
+            9,
+            26
+          ],
+          [
+            23,
+            0
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            5,
+            22
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            24,
+            7
+          ],
+          [
+            22,
+            17
+          ],
+          [
+            2,
+            14
+          ]
+        ],
+        "checksum": 3301,
+        "plaintext": "U X G EO S TH N O S C P U G C U OE TH O O R C I TH R L T I U R C C N I J EO L L X IA J X N U H B TH A IA TH TH EA H P X F I W U G TH H U Y R TH C J OE G E S X I I H W B I R P S TH W C I NG U O TH T M U G J TH TH O W F C S W TH W O U R U E TH O G H TH C"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "p57-clause1",
+      "trueKey": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "trueChecksum": 1259,
+      "truePlaintext": [
+        20,
+        10,
+        5,
+        18,
+        2,
+        18,
+        10,
+        9,
+        15,
+        16,
+        24,
+        4,
+        16,
+        1,
+        9,
+        9,
+        18,
+        20,
+        21,
+        16,
+        3,
+        2,
+        18,
+        15,
+        1,
+        4,
+        0,
+        24,
+        5,
+        18
+      ],
+      "n": 30,
+      "zeros": 1,
+      "q": 10,
+      "mode": "additive",
+      "hold": false,
+      "target": 1259,
+      "min": 585,
+      "max": 2516,
+      "arbitraryBijectionMin": 97,
+      "validMasks": 1,
+      "legal": "420707233300201",
+      "hitMasks": 1,
+      "hitCount": "301669397806",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            20
+          ],
+          [
+            1,
+            17
+          ],
+          [
+            1,
+            13
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            21
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            23
+          ]
+        ],
+        "checksum": 585,
+        "plaintext": "F H E O U X F E F F R TH F S H C H F G F EO F TH F F F M R M TH"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            24
+          ]
+        ],
+        "checksum": 1259,
+        "plaintext": "N L C G C C H T I U P X T E EO AE T IA T U NG EO E O R L IA TH F O"
+      }
+    },
+    {
+      "id": "p57-clause1",
+      "trueKey": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          22
+        ],
+        [
+          1,
+          15
+        ],
+        [
+          1,
+          10
+        ]
+      ],
+      "trueChecksum": 1259,
+      "truePlaintext": [
+        20,
+        10,
+        5,
+        18,
+        2,
+        18,
+        10,
+        9,
+        15,
+        16,
+        24,
+        4,
+        16,
+        1,
+        9,
+        9,
+        18,
+        20,
+        21,
+        16,
+        3,
+        2,
+        18,
+        15,
+        1,
+        4,
+        0,
+        24,
+        5,
+        18
+      ],
+      "n": 30,
+      "zeros": 2,
+      "q": 10,
+      "mode": "additive",
+      "hold": true,
+      "target": 1259,
+      "min": 513,
+      "max": 2587,
+      "arbitraryBijectionMin": 138,
+      "validMasks": 4,
+      "legal": "608730893239040",
+      "hitMasks": 2,
+      "hitCount": "461024364652",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            21
+          ],
+          [
+            1,
+            14
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            24
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            17
+          ]
+        ],
+        "checksum": 513,
+        "plaintext": "U C O O S G T J F R U G U T N G B G U R N R O U U U U U W U"
+      },
+      "hitWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            15
+          ]
+        ],
+        "checksum": 1259,
+        "plaintext": "N L C G C G H T F H EA X T E EO AE B IA G H W EO E O R L U OE EO C"
+      }
+    },
+    {
+      "id": "p57-clause1",
+      "trueKey": [
+        [
+          28,
+          11
+        ],
+        [
+          28,
+          19
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          28,
+          12
+        ],
+        [
+          28,
+          26
+        ],
+        [
+          28,
+          13
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          28,
+          22
+        ],
+        [
+          28,
+          15
+        ],
+        [
+          28,
+          10
+        ]
+      ],
+      "trueChecksum": 1259,
+      "truePlaintext": [
+        20,
+        10,
+        5,
+        18,
+        2,
+        18,
+        10,
+        9,
+        15,
+        16,
+        24,
+        4,
+        16,
+        1,
+        9,
+        9,
+        18,
+        20,
+        21,
+        16,
+        3,
+        2,
+        18,
+        15,
+        1,
+        4,
+        0,
+        24,
+        5,
+        18
+      ],
+      "n": 30,
+      "zeros": 1,
+      "q": 10,
+      "mode": "reflected",
+      "hold": false,
+      "target": 1259,
+      "min": 585,
+      "max": 2516,
+      "arbitraryBijectionMin": 97,
+      "validMasks": 1,
+      "legal": "420707233300201",
+      "hitMasks": 1,
+      "hitCount": "301669397806",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            20
+          ],
+          [
+            28,
+            17
+          ],
+          [
+            28,
+            13
+          ],
+          [
+            28,
+            26
+          ],
+          [
+            28,
+            25
+          ],
+          [
+            28,
+            9
+          ],
+          [
+            28,
+            21
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            23
+          ]
+        ],
+        "checksum": 585,
+        "plaintext": "F H E O U X F E F F R TH F S H C H F G F EO F TH F F F M R M TH"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            24
+          ]
+        ],
+        "checksum": 1259,
+        "plaintext": "N L C G C C H T I U P X T E EO AE T IA T U NG EO E O R L IA TH F O"
+      }
+    },
+    {
+      "id": "p57-clause1",
+      "trueKey": [
+        [
+          28,
+          11
+        ],
+        [
+          28,
+          19
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          28,
+          12
+        ],
+        [
+          28,
+          26
+        ],
+        [
+          28,
+          13
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          28,
+          22
+        ],
+        [
+          28,
+          15
+        ],
+        [
+          28,
+          10
+        ]
+      ],
+      "trueChecksum": 1259,
+      "truePlaintext": [
+        20,
+        10,
+        5,
+        18,
+        2,
+        18,
+        10,
+        9,
+        15,
+        16,
+        24,
+        4,
+        16,
+        1,
+        9,
+        9,
+        18,
+        20,
+        21,
+        16,
+        3,
+        2,
+        18,
+        15,
+        1,
+        4,
+        0,
+        24,
+        5,
+        18
+      ],
+      "n": 30,
+      "zeros": 2,
+      "q": 10,
+      "mode": "reflected",
+      "hold": true,
+      "target": 1259,
+      "min": 513,
+      "max": 2587,
+      "arbitraryBijectionMin": 138,
+      "validMasks": 4,
+      "legal": "608730893239040",
+      "hitMasks": 2,
+      "hitCount": "461024364652",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            28,
+            21
+          ],
+          [
+            28,
+            14
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            26
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            28,
+            8
+          ],
+          [
+            28,
+            24
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            17
+          ]
+        ],
+        "checksum": 513,
+        "plaintext": "U C O O S G T J F R U G U T N G B G U R N R O U U U U U W U"
+      },
+      "hitWitness": {
+        "mask": 1,
+        "key": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            15
+          ]
+        ],
+        "checksum": 1259,
+        "plaintext": "N L C G C G H T F H EA X T E EO AE B IA G H W EO E O R L U OE EO C"
+      }
+    },
+    {
+      "id": "p57-clause1",
+      "trueKey": [
+        [
+          5,
+          11
+        ],
+        [
+          12,
+          19
+        ],
+        [
+          19,
+          0
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          5,
+          26
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          19,
+          2
+        ],
+        [
+          26,
+          22
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          12,
+          10
+        ]
+      ],
+      "trueChecksum": 1259,
+      "truePlaintext": [
+        20,
+        10,
+        5,
+        18,
+        2,
+        18,
+        10,
+        9,
+        15,
+        16,
+        24,
+        4,
+        16,
+        1,
+        9,
+        9,
+        18,
+        20,
+        21,
+        16,
+        3,
+        2,
+        18,
+        15,
+        1,
+        4,
+        0,
+        24,
+        5,
+        18
+      ],
+      "n": 30,
+      "zeros": 1,
+      "q": 10,
+      "mode": "affine",
+      "hold": false,
+      "target": 1259,
+      "min": 155,
+      "max": 3118,
+      "arbitraryBijectionMin": 97,
+      "validMasks": 1,
+      "legal": "124612122228896950360524980224",
+      "hitMasks": 1,
+      "hitCount": "91828766195709682112901067",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            23,
+            5
+          ],
+          [
+            6,
+            23
+          ],
+          [
+            14,
+            7
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            15,
+            5
+          ],
+          [
+            1,
+            24
+          ],
+          [
+            5,
+            17
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            6,
+            26
+          ]
+        ],
+        "checksum": 155,
+        "plaintext": "F R F U F R F F R F U U TH C U F C U F F O F C F R U U R U U"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            20
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            23,
+            4
+          ]
+        ],
+        "checksum": 1259,
+        "plaintext": "AE NG X IA U IA C C TH U L G I D X M I J N U I U R EA A NG G F F F"
+      }
+    },
+    {
+      "id": "p57-clause1",
+      "trueKey": [
+        [
+          5,
+          11
+        ],
+        [
+          12,
+          19
+        ],
+        [
+          19,
+          0
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          5,
+          26
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          19,
+          2
+        ],
+        [
+          26,
+          22
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          12,
+          10
+        ]
+      ],
+      "trueChecksum": 1259,
+      "truePlaintext": [
+        20,
+        10,
+        5,
+        18,
+        2,
+        18,
+        10,
+        9,
+        15,
+        16,
+        24,
+        4,
+        16,
+        1,
+        9,
+        9,
+        18,
+        20,
+        21,
+        16,
+        3,
+        2,
+        18,
+        15,
+        1,
+        4,
+        0,
+        24,
+        5,
+        18
+      ],
+      "n": 30,
+      "zeros": 2,
+      "q": 10,
+      "mode": "affine",
+      "hold": true,
+      "target": 1259,
+      "min": 170,
+      "max": 3128,
+      "arbitraryBijectionMin": 138,
+      "validMasks": 4,
+      "legal": "180304122365020985644506152960",
+      "hitMasks": 2,
+      "hitCount": "129704628475035093528016104",
+      "minWitness": {
+        "mask": 3,
+        "key": [
+          [
+            6,
+            25
+          ],
+          [
+            24,
+            22
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            23,
+            6
+          ],
+          [
+            21,
+            0
+          ],
+          [
+            1,
+            15
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "checksum": 170,
+        "plaintext": "U R C TH TH TH C R F U TH O U U U R R TH TH U U TH TH TH R U F U U U"
+      },
+      "hitWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            5,
+            24
+          ],
+          [
+            10,
+            25
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "checksum": 1259,
+        "plaintext": "AE NG X IA U EA C W F U TH G I D X M J L U U U U R EA A NG U NG R TH"
+      }
+    },
+    {
+      "id": "p57-clause2",
+      "trueKey": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          22
+        ]
+      ],
+      "trueChecksum": 1031,
+      "truePlaintext": [
+        7,
+        18,
+        19,
+        1,
+        15,
+        16,
+        15,
+        8,
+        18,
+        23,
+        3,
+        1,
+        4,
+        3,
+        7,
+        9,
+        5,
+        10,
+        4,
+        5,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        5,
+        18,
+        15
+      ],
+      "n": 30,
+      "zeros": 0,
+      "q": 8,
+      "mode": "additive",
+      "hold": false,
+      "target": 1031,
+      "min": 561,
+      "max": 2520,
+      "arbitraryBijectionMin": 110,
+      "validMasks": 1,
+      "legal": "500246412961",
+      "hitMasks": 1,
+      "hitCount": "42507386",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            14
+          ]
+        ],
+        "checksum": 561,
+        "plaintext": "O H T F X U S F X P F F O B W U U F U R F R F I F H G R B F"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            15
+          ]
+        ],
+        "checksum": 1031,
+        "plaintext": "AE EA T F S U S U W R F F R B W TH D L U R U R F J OE EA G R E F"
+      }
+    },
+    {
+      "id": "p57-clause2",
+      "trueKey": [
+        [
+          1,
+          11
+        ],
+        [
+          1,
+          19
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          12
+        ],
+        [
+          1,
+          26
+        ],
+        [
+          1,
+          13
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          22
+        ]
+      ],
+      "trueChecksum": 1031,
+      "truePlaintext": [
+        7,
+        18,
+        19,
+        1,
+        15,
+        16,
+        15,
+        8,
+        18,
+        23,
+        3,
+        1,
+        4,
+        3,
+        7,
+        9,
+        5,
+        10,
+        4,
+        5,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        5,
+        18,
+        15
+      ],
+      "n": 30,
+      "zeros": 1,
+      "q": 8,
+      "mode": "additive",
+      "hold": true,
+      "target": 1031,
+      "min": 661,
+      "max": 2491,
+      "arbitraryBijectionMin": 153,
+      "validMasks": 2,
+      "legal": "378444235000",
+      "hitMasks": 1,
+      "hitCount": "14486593",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            1,
+            26
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            25
+          ],
+          [
+            1,
+            19
+          ]
+        ],
+        "checksum": 661,
+        "plaintext": "O I B U S U N C X S U U R B U G U TH TH C U R F EO U X U O E S"
+      },
+      "hitWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            1,
+            12
+          ],
+          [
+            1,
+            27
+          ],
+          [
+            1,
+            17
+          ],
+          [
+            1,
+            20
+          ]
+        ],
+        "checksum": 1031,
+        "plaintext": "AE EA M U U U U G W R O U M B OE W D L R C T R F R TH W M C E U"
+      }
+    },
+    {
+      "id": "p57-clause2",
+      "trueKey": [
+        [
+          28,
+          11
+        ],
+        [
+          28,
+          19
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          28,
+          12
+        ],
+        [
+          28,
+          26
+        ],
+        [
+          28,
+          13
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          28,
+          22
+        ]
+      ],
+      "trueChecksum": 1031,
+      "truePlaintext": [
+        7,
+        18,
+        19,
+        1,
+        15,
+        16,
+        15,
+        8,
+        18,
+        23,
+        3,
+        1,
+        4,
+        3,
+        7,
+        9,
+        5,
+        10,
+        4,
+        5,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        5,
+        18,
+        15
+      ],
+      "n": 30,
+      "zeros": 0,
+      "q": 8,
+      "mode": "reflected",
+      "hold": false,
+      "target": 1031,
+      "min": 561,
+      "max": 2520,
+      "arbitraryBijectionMin": 110,
+      "validMasks": 1,
+      "legal": "500246412961",
+      "hitMasks": 1,
+      "hitCount": "42507386",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            7
+          ],
+          [
+            28,
+            9
+          ],
+          [
+            28,
+            26
+          ],
+          [
+            28,
+            11
+          ],
+          [
+            28,
+            25
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            14
+          ]
+        ],
+        "checksum": 561,
+        "plaintext": "O H T F X U S F X P F F O B W U U F U R F R F I F H G R B F"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            26
+          ],
+          [
+            28,
+            11
+          ],
+          [
+            28,
+            26
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            2
+          ],
+          [
+            28,
+            15
+          ]
+        ],
+        "checksum": 1031,
+        "plaintext": "AE EA T F S U S U W R F F R B W TH D L U R U R F J OE EA G R E F"
+      }
+    },
+    {
+      "id": "p57-clause2",
+      "trueKey": [
+        [
+          28,
+          11
+        ],
+        [
+          28,
+          19
+        ],
+        [
+          28,
+          0
+        ],
+        [
+          28,
+          12
+        ],
+        [
+          28,
+          26
+        ],
+        [
+          28,
+          13
+        ],
+        [
+          28,
+          2
+        ],
+        [
+          28,
+          22
+        ]
+      ],
+      "trueChecksum": 1031,
+      "truePlaintext": [
+        7,
+        18,
+        19,
+        1,
+        15,
+        16,
+        15,
+        8,
+        18,
+        23,
+        3,
+        1,
+        4,
+        3,
+        7,
+        9,
+        5,
+        10,
+        4,
+        5,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        5,
+        18,
+        15
+      ],
+      "n": 30,
+      "zeros": 1,
+      "q": 8,
+      "mode": "reflected",
+      "hold": true,
+      "target": 1031,
+      "min": 661,
+      "max": 2491,
+      "arbitraryBijectionMin": 153,
+      "validMasks": 2,
+      "legal": "378444235000",
+      "hitMasks": 1,
+      "hitCount": "14486593",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            28,
+            7
+          ],
+          [
+            28,
+            11
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            12
+          ],
+          [
+            28,
+            26
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            25
+          ],
+          [
+            28,
+            19
+          ]
+        ],
+        "checksum": 661,
+        "plaintext": "O I B U S U N C X S U U R B U G U TH TH C U R F EO U X U O E S"
+      },
+      "hitWitness": {
+        "mask": 1,
+        "key": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            12
+          ],
+          [
+            28,
+            12
+          ],
+          [
+            28,
+            27
+          ],
+          [
+            28,
+            17
+          ],
+          [
+            28,
+            20
+          ]
+        ],
+        "checksum": 1031,
+        "plaintext": "AE EA M U U U U G W R O U M B OE W D L R C T R F R TH W M C E U"
+      }
+    },
+    {
+      "id": "p57-clause2",
+      "trueKey": [
+        [
+          5,
+          11
+        ],
+        [
+          12,
+          19
+        ],
+        [
+          19,
+          0
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          5,
+          26
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          19,
+          2
+        ],
+        [
+          26,
+          22
+        ]
+      ],
+      "trueChecksum": 1031,
+      "truePlaintext": [
+        7,
+        18,
+        19,
+        1,
+        15,
+        16,
+        15,
+        8,
+        18,
+        23,
+        3,
+        1,
+        4,
+        3,
+        7,
+        9,
+        5,
+        10,
+        4,
+        5,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        5,
+        18,
+        15
+      ],
+      "n": 30,
+      "zeros": 0,
+      "q": 8,
+      "mode": "affine",
+      "hold": false,
+      "target": 1031,
+      "min": 196,
+      "max": 3050,
+      "arbitraryBijectionMin": 110,
+      "validMasks": 1,
+      "legal": "188994094477081690832896",
+      "hitMasks": 1,
+      "hitCount": "14401123168624881016",
+      "minWitness": {
+        "mask": 0,
+        "key": [
+          [
+            10,
+            15
+          ],
+          [
+            13,
+            18
+          ],
+          [
+            2,
+            27
+          ],
+          [
+            8,
+            20
+          ],
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            27
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            20,
+            13
+          ]
+        ],
+        "checksum": 196,
+        "plaintext": "W F F U G F O F F O N U F U F O O U O F U TH U U U F TH F C N"
+      },
+      "hitWitness": {
+        "mask": 0,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            5,
+            12
+          ],
+          [
+            11,
+            23
+          ],
+          [
+            9,
+            20
+          ]
+        ],
+        "checksum": 1031,
+        "plaintext": "C EO U D F G F R P I L D NG O O U OE NG B EO O F TH O T EO TH EO E H"
+      }
+    },
+    {
+      "id": "p57-clause2",
+      "trueKey": [
+        [
+          5,
+          11
+        ],
+        [
+          12,
+          19
+        ],
+        [
+          19,
+          0
+        ],
+        [
+          26,
+          12
+        ],
+        [
+          5,
+          26
+        ],
+        [
+          12,
+          13
+        ],
+        [
+          19,
+          2
+        ],
+        [
+          26,
+          22
+        ]
+      ],
+      "trueChecksum": 1031,
+      "truePlaintext": [
+        7,
+        18,
+        19,
+        1,
+        15,
+        16,
+        15,
+        8,
+        18,
+        23,
+        3,
+        1,
+        4,
+        3,
+        7,
+        9,
+        5,
+        10,
+        4,
+        5,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        5,
+        18,
+        15
+      ],
+      "n": 30,
+      "zeros": 1,
+      "q": 8,
+      "mode": "affine",
+      "hold": true,
+      "target": 1031,
+      "min": 239,
+      "max": 3008,
+      "arbitraryBijectionMin": 153,
+      "validMasks": 2,
+      "legal": "137789294552087592960000",
+      "hitMasks": 1,
+      "hitCount": "9033647886067272860",
+      "minWitness": {
+        "mask": 1,
+        "key": [
+          [
+            7,
+            26
+          ],
+          [
+            14,
+            7
+          ],
+          [
+            20,
+            11
+          ],
+          [
+            8,
+            21
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            8,
+            28
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            3,
+            17
+          ]
+        ],
+        "checksum": 239,
+        "plaintext": "O U TH TH TH U TH TH U TH C TH U TH U U G J O U G O F G G U C U C TH"
+      },
+      "hitWitness": {
+        "mask": 1,
+        "key": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            6,
+            4
+          ],
+          [
+            18,
+            10
+          ]
+        ],
+        "checksum": 1031,
+        "plaintext": "C EO U D U TH TH W P I L D OE O U U OE NG B EO R R F G TH P R X IA U"
+      }
+    }
+  ]
+}
