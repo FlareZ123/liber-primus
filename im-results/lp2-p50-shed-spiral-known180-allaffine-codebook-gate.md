@@ -39,10 +39,28 @@ The 76 outer cells contain 37 positions with tokens that have been seen inside t
 
 A deterministic synthetic fully secret byte-codebook with source-coordinate drift \`7·row+11·col\` reproduces **180/180 inner** and **76/76 outer** when measured by the same testing code. The genuine p56 85/85 is an independent, authentic successful cipher replay—not synthetic.
 
-## What is and is not excluded
+## Further all-secret original known180 gate: 32 free row offsets
 
-The one-ring 76/180 geometry survives; **the simplest genuine-plaintext use of it does not**. This entire rather broad class of **stationary byte-label plus any affine row/column correction** is excluded for every source-natural rectangular-spiral orientation and either natural order of the two independently solved adjacent pages. A hidden nonlinear position-dependent cipher, an *independently* source-selected key, or a different segmentation could still exploit the table; none follows automatically from the observed counts. This prevents promoting circumference arithmetic into an invented recovered message.
+The initial tests allow either a stationary secret two-character-token→GP29 lookup or that lookup plus any affine cell-coordinate term \(a\cdot r+b\cdot c\). An especially important remaining human-solve route is to use an *unpublished row key*: even if the table has 32 entirely unrelated row offsets, could p56+p57's **180 genuine plaintext runes** teach an exact numeric table decoder for p55's outer76? This has a direct payoff if it works, unlike tuned English scoring.
 
-To turn this back into a solution route, require an authentic instruction specifying a different **reversible** table operator with learnable state and at least one predicted, independently withheld original known-clear rune. The route should first reproduce the complete authentic 180-rune known page suffix before consuming p55.
+Grant every distinct original table token \(t\) a **completely arbitrary secret GP29 value** \(f(t)\) and every printed row \(r=0,\ldots,31\) a **completely independent GP29 secret offset** \(h_r\). The model is
+
+\[
+P_{r,c}=f(T_{r,c})+h_r\pmod{29}.
+\]
+
+Construct a bipartite constraint graph with 161 original token nodes and 32 printed row nodes. Every known inner180 GP29 plaintext symbol fixes a difference between one token-node and one row-node. A graph cycle whose required modulo29 differences do not sum to zero is an **exact contradiction for all secret codebooks and all 32 row shifts simultaneously**. All **16** original rectangular spirals (four corners×two directions×two authentic solved-page orders) contain such a contradictory original-source cycle. The executable gate preserves the first actual cycle with its individual source table coordinates and already-solved plaintext rune indices for each of the 16 variations.
+
+A planted secret global token dictionary plus a deliberately nonlinear **32-value row clock** on the same real original numeric table is accepted, reproducing all **180** inner and **76** outer synthetic positions exactly. The test independently reconstructs true p56 prime-minus-one/F-hold and asserts **85/85 original ciphertext symbols**.
+
+This **strictly strengthens** the affine-coordinate result: the 841 linear \(a,b\) combinations are replaced with the entire \(29^{32}\) family of independently chosen row offsets, without restricting even one secret token mapping. No additional row-key value can repair the contradictory cycles.
+
+[Complete original-source all-secret graph-cycle code and 16 source-path witnesses](../sims/lp2_p50_shed_spiral_known180_allsecret32row_cycle_gate_sft.cjs).
+
+## Decision: what is and is not excluded
+
+The 76 outer / 180 inner source geometry survives as a potentially intended *layout*, but the natural decoder route **fails for every one of the 16 fixed source spirals even under a fully free 32-row secret additive clock and a completely free token dictionary**. A hidden nonlinear position-dependent state machine, secret token permutations within rows, additional private side input, or a different source-selected ring interpretation could escape this model; none is selected by the original clues at present.
+
+There is no consistent calibrated inner180 decoder from which to predict p55, so outputting majority-voted unknown runes would **manufacture false plaintext**. Before expanding this branch, require an original authored operation that specifically changes the token/row dependence, then prospectively reproduce solved original plaintext before attempting the 76 unknown runes.
 
 [Single-file source-only Node22/CommonJS SFT](../sims/lp2_p50_shed_spiral_known180_allaffine_codebook_sft.cjs) prints every 16-case exact maximum, audits the full 256-cell spiral path, verifies the 85/85 p56 known decryption and both positive plants. The original sources are the canonical LP2 corpus and unmodified p50 32×8 numeric table.
