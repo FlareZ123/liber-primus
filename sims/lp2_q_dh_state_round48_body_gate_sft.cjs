@@ -54,3 +54,29 @@ for(const r of results)r.gp29Deletion.controls=controls;
 const out={scope:'post-discovery Q-directed DH state key transfer; no plaintext promoted',state:{labels:['p','g','a','b','A','B','K'],values:state},representations:keys,receivers:receivers.map(r=>({page:r.page,start:r.start,length:r.C.length})),results,decision:'neither raw nor authentic prime-minus-one state representation is the periodic key for either calibrated erasure channel on either Q-selected black body'};
 console.log(JSON.stringify(out,null,2));
 fs.writeFileSync(path.join(process.env.RUNNER_TEMP||process.cwd(),'source-test-output.json'),JSON.stringify(out,null,2)+'\n');
+
+// AUTHENTIC-P56-PRIME-CLOCK-TRANSFER
+const pcShifts=[];for(let n=2;pcShifts.length<7000;n++)if(isPrime(n))pcShifts.push((n-1)%29);
+function pcSummary(seq,origin){
+ let dp=new Map([[origin,1n]]),trace=[];
+ for(let i=0;i<seq.length;i++){
+  const C=seq[i],nx=new Map();
+  for(const [j,n] of dp){
+   if(C===0)nx.set(j,(nx.get(j)||0n)+n);
+   if(((C-pcShifts[j])%29+29)%29!==0)nx.set(j+1,(nx.get(j+1)||0n)+n);
+  }
+  trace.push({offset:i,cipher:C,classes:nx.size});dp=nx;if(!dp.size)break;
+ }
+ return {complete:trace.length===seq.length&&dp.size>0,paths:[...dp.values()].reduce((a,b)=>a+b,0n).toString(),trace};
+}
+const primeClock=[];
+for(const r of receivers)for(const origin of [state[0]-1,state[0]]){
+ const q=pcSummary(r.C,origin);
+ primeClock.push({page:r.page,start:r.start,length:r.C.length,origin,complete:q.complete,paths:q.paths,traceLength:q.trace.length,collapse:q.complete?null:q.trace.at(-1)});
+}
+assert.deepEqual(primeClock.map(x=>[x.page,x.origin,x.complete,x.traceLength,x.collapse?.offset]),[
+ [8,22,false,35,34],[8,23,false,2,1],[23,22,false,37,36],[23,23,false,116,115]
+]);
+const finalOut={...out,authenticP56PrimeClock:{seed:'p=23 under zero/one-based origins 22,23',results:primeClock,decision:'no legal full-body inverse on either Q-selected receiver'}};
+console.log(JSON.stringify(finalOut,null,2));
+fs.writeFileSync(path.join(process.env.RUNNER_TEMP||process.cwd(),'source-test-output.json'),JSON.stringify(finalOut,null,2)+'\n');
