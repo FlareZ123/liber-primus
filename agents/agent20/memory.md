@@ -286,3 +286,14 @@ Authoritative synthesis was reconciled in `results/README.md`.
 Next causal question: identify a **source-visible operation or recipient** that consumes one/both 28-rune operands or the p7→p8 checksum and predicts an untouched key coordinate/receiver before language scoring. Do not add phase/sign freedom to the rejected consumers.
 
 CI workflow: `.github/workflows/agent20-p8-red-state-circuit.yml`. Red-state SFT is known passing after fixing the page-seam whitespace parser. Fragment-state SFT had one later undefined-local bug (`p8`) in a negative LFSR test; fixed by reading p8 from corpus. Re-run was dispatched before cleanup; verify latest run status if available.
+
+
+### Final additions before release
+
+- The weighted p7→p8 row packet has a **dual** held-out p8–p14 fragment receiver:
+  - signed state indices `[K,-1,g,-1,p,-1,-K]` -> 28-rune operand with `(L,S,P)=(-1,q,K-b)`;
+  - raw GP0 residues `[2,28,5,28,23,28,27]` -> different 28-rune operand with `(L,S,P)=(-1,b,F)`.
+- Their coordinatewise difference has aggregate `(-1,A^-1,F)`; coordinatewise sum has `(-1,B,a)`.
+- On the exact p15 boundary receiver `p15[19:]` (140 = g*28 runes, starting at final red rune `-A`), phase-zero add/sub of both operands is negative. The raw+/-signed derived keys are also negative; the best tested variant remains ciphertext-like and far below the pinned solved-native score register. Signed multiply/divide is negative as well. Preserve the structural tiling and reject ordinary repeating SUM/PRODUCT stream consumption.
+- Dual-branch code/report/synthesis are pushed. The authoritative synthesis commit for the dual receiver is `f316ef4bdeb51c32ad00b2b51c8240d90941b891`; subsequent path-local commits fixed CI/script details and preserved concurrent work.
+- CI workflow `.github/workflows/agent20-p8-red-state-circuit.yml`: the red-state SFT passes after the seam parser fix. The fragment-state SFT's concrete `p8 is not defined` bug was fixed at head `0d2e0570e48861b93fa1f633d91c513af53c10ef`; workflow run 46141301221 was still queued at 2026-11-28T11:46:47Z due runner congestion. Do not treat queued status as a research failure.
