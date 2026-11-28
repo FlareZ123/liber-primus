@@ -1,0 +1,488 @@
+{
+  "original": [
+    {
+      "reverseRows": false,
+      "reversePairs": false,
+      "encoding": "nibble",
+      "u0": {
+        "type": "product",
+        "indices": [
+          18,
+          26,
+          58
+        ],
+        "left": "3H",
+        "right": "2p",
+        "outputs": [
+          15,
+          5,
+          14
+        ]
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          13,
+          66
+        ],
+        "right": "2L",
+        "output": 8
+      }
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": false,
+      "encoding": "ascii",
+      "u0": {
+        "type": "equal-output",
+        "indices": [
+          45,
+          122
+        ],
+        "right": "0u",
+        "output": 99
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          13,
+          66
+        ],
+        "right": "2L",
+        "output": 56
+      }
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": true,
+      "encoding": "nibble",
+      "u0": {
+        "type": "equal-output",
+        "indices": [
+          72,
+          125
+        ],
+        "right": "39",
+        "output": 11
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          0,
+          5
+        ],
+        "right": "33",
+        "output": 6
+      }
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": true,
+      "encoding": "ascii",
+      "u0": {
+        "type": "product",
+        "indices": [
+          86,
+          109,
+          28
+        ],
+        "left": "4E",
+        "right": "0p",
+        "outputs": [
+          55,
+          97,
+          98
+        ]
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          0,
+          5
+        ],
+        "right": "33",
+        "output": 54
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": false,
+      "encoding": "nibble",
+      "u0": {
+        "type": "equal-output",
+        "indices": [
+          44,
+          57
+        ],
+        "right": "0Z",
+        "output": 13
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          15,
+          106
+        ],
+        "right": "2U",
+        "output": 4
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": false,
+      "encoding": "ascii",
+      "u0": {
+        "type": "equal-output",
+        "indices": [
+          76,
+          80
+        ],
+        "right": "48",
+        "output": 49
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          44,
+          57
+        ],
+        "right": "0Z",
+        "output": 100
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": true,
+      "encoding": "nibble",
+      "u0": {
+        "type": "product",
+        "indices": [
+          42,
+          58,
+          64
+        ],
+        "left": "3L",
+        "right": "2p",
+        "outputs": [
+          7,
+          13,
+          4
+        ]
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          37,
+          70
+        ],
+        "right": "0k",
+        "output": 14
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": true,
+      "encoding": "ascii",
+      "u0": {
+        "type": "equal-output",
+        "indices": [
+          37,
+          70
+        ],
+        "right": "0k",
+        "output": 101
+      },
+      "u1": {
+        "type": "equal-output",
+        "indices": [
+          18,
+          124
+        ],
+        "right": "1K",
+        "output": 54
+      }
+    }
+  ],
+  "controls": [
+    {
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 1,
+      "b": 0,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 1,
+      "b": 0,
+      "c": 1,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 1,
+      "b": 0,
+      "c": 1,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "e": 0,
+      "u": 1
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "c": 1,
+      "e": 1,
+      "u": 0
+    },
+    {
+      "a": 3,
+      "b": 0,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 3,
+      "b": 0,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 3,
+      "b": 0,
+      "c": 1,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 3,
+      "b": 0,
+      "c": 1,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 3,
+      "b": 1,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 3,
+      "b": 1,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 3,
+      "b": 1,
+      "c": 1,
+      "e": 0,
+      "u": 1
+    },
+    {
+      "a": 3,
+      "b": 1,
+      "c": 1,
+      "e": 1,
+      "u": 0
+    },
+    {
+      "a": 129,
+      "b": 0,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 129,
+      "b": 0,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 129,
+      "b": 0,
+      "c": 1,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 129,
+      "b": 0,
+      "c": 1,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 129,
+      "b": 1,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 129,
+      "b": 1,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 129,
+      "b": 1,
+      "c": 1,
+      "e": 0,
+      "u": 1
+    },
+    {
+      "a": 129,
+      "b": 1,
+      "c": 1,
+      "e": 1,
+      "u": 0
+    },
+    {
+      "a": 255,
+      "b": 0,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 255,
+      "b": 0,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 255,
+      "b": 0,
+      "c": 1,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 255,
+      "b": 0,
+      "c": 1,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 255,
+      "b": 1,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "a": 255,
+      "b": 1,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "a": 255,
+      "b": 1,
+      "c": 1,
+      "e": 0,
+      "u": 1
+    },
+    {
+      "a": 255,
+      "b": 1,
+      "c": 1,
+      "e": 1,
+      "u": 0
+    },
+    {
+      "polynomial": true,
+      "b": 0,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "polynomial": true,
+      "b": 0,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "polynomial": true,
+      "b": 0,
+      "c": 1,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "polynomial": true,
+      "b": 0,
+      "c": 1,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "polynomial": true,
+      "b": 1,
+      "c": 0,
+      "e": 0,
+      "u": 0
+    },
+    {
+      "polynomial": true,
+      "b": 1,
+      "c": 0,
+      "e": 1,
+      "u": 1
+    },
+    {
+      "polynomial": true,
+      "b": 1,
+      "c": 1,
+      "e": 0,
+      "u": 1
+    },
+    {
+      "polynomial": true,
+      "b": 1,
+      "c": 1,
+      "e": 1,
+      "u": 0
+    }
+  ]
+}

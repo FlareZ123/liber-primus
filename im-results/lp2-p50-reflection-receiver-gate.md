@@ -135,13 +135,36 @@ This also excludes every ordered Latin-square/quasigroup combiner whose fixed-ri
 
 [Standalone SFT](../sims/lp2_p50_ordered_affine_digest_sft.cjs) · [exact witnesses and twenty source-geometry planted controls](lp2-p50-ordered-affine-digest-output.json). The core was executed against the repository grid and p56 digest in connected V8; standalone Node wrapper was not separately run. All 20 plants with independent injective left/right charts pass the appropriate parity-class necessary condition. The witnesses are algebraic contradictions, not a language-score negative. The full 256³ coefficient space is eliminated by the two parity cases, without coefficient enumeration or knowledge of any label values.
 
+### Stronger boundary: arbitrary integer-polynomial right-conditioned affine coefficients
+
+The Test F argument extends beyond constant coefficients. Consider `D = f(R) L + g(R) mod256`, with L injective, R arbitrary, and f,g arbitrary integer polynomials (no degree bound). More generally, require only that each coefficient's parity depend solely on R's parity. If f has constant parity, the original Test F odd/even contradictions apply unchanged. Otherwise f's parity is a bijective Boolean function of the right-label bit. Writing z=f(R) mod2, there are bits s,u such that g(R) mod2=s z+u. Hence
+
+`D mod2 = (L mod2 + s) z + u mod2`.
+
+For each fixed right token with equal output for different left tokens, z must be zero (an odd f would be invertible modulo256), so that output has parity u. Any edge with output parity opposite u forces both shifted endpoint bits to one. An edge of parity u whose two endpoint bits are already forced to one is then impossible. This is an exact necessary-condition test for each of the only two values of u. It eliminates both in all eight fixed source/target configurations, with no coefficient or chart search.
+
+| Target rows | Target pairs | Encoding | u=0 contradiction | u=1 contradiction |
+| --- | --- | --- | --- | --- |
+| forward | outer→inner | nibble | product 18/26/58 | equal-output 13/66 |
+| forward | outer→inner | ascii | equal-output 45/122 | equal-output 13/66 |
+| forward | inner→outer | nibble | equal-output 72/125 | equal-output 0/5 |
+| forward | inner→outer | ascii | product 86/109/28 | equal-output 0/5 |
+| reverse | outer→inner | nibble | equal-output 44/57 | equal-output 15/106 |
+| reverse | outer→inner | ascii | equal-output 76/80 | equal-output 44/57 |
+| reverse | inner→outer | nibble | product 42/58/64 | equal-output 37/70 |
+| reverse | inner→outer | ascii | equal-output 37/70 | equal-output 18/124 |
+
+The product witness indices are (edge forcing left bit, edge forcing right bit, contradictory edge). For natural-order nibble output, edges 18 and 26 force the bits of left token 3H and right token 2p respectively, yet edge 58 joins them with even output. For u=1, the same-right equal-output witness independently forces u=0. The other seven cases have similarly short recorded witnesses. This proves the exclusion for every ordered bi-affine byte combiner `A L R + B L + C R + E mod256` (all 256⁴ coefficients), and the larger stated polynomial class. It does not exclude non-parity-preserving right-conditioned coefficients, nonlinear left dependence, truncation, dynamic state or another target. The digest assignment remains a hypothesis; no original unknown plaintext follows.
+
+[Polynomial SFT](../sims/lp2_p50_ordered_polynomial_digest_sft.cjs) · [all sixteen contradiction certificates and 72 valid plants](lp2-p50-ordered-polynomial-digest-output.json). Executed the exact function core in connected V8 against canonical inputs. The 64 bi-affine and eight cubic/quadratic coefficient plants all retain their true u. Standalone Node wrapper not separately run.
+
 ## Decision
 
 Retire these exact receivers:
 
 - horizontal p50 reflection + shed interior + stationary token-to-GP29 codebook;
 - horizontal p50 reflection + clockwise reflected outer76 + base60 compass split + p32 H/cell33 + p56 transparent-F additive inverse to p55;
-- the stationary symmetric mirror-pair digest receiver in the four fixed orders, every injective nibble-XOR receiver on the same graph, and the ordered role-private affine byte receiver of Test F (all coefficients and both direct digest encodings);
+- the stationary symmetric mirror-pair digest receiver in the four fixed orders, every injective nibble-XOR receiver on the same graph, and the ordered role-private affine and integer-polynomial right-conditioned affine byte receivers of Test F (all coefficients and both direct digest encodings);
 - the two exact unicyclic-component rank keys with the tested terminal additive clocks.
 
 The sole repeated mirror edge happens to reduce to the known first p56 ciphertext/plaintext pair under base60, but its full-known-page extension and source-conditioned null do not establish a receiver; this does not change the negative decipherment decision.
