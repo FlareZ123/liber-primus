@@ -120,6 +120,38 @@ for (const [name, stream] of controls) {
 
 assert.equal(ranges.reduce((s, x) => s + x.windows, 0), 562060);
 
+
+function perRowCounts(a) {
+  const out = Array.from({length: 15}, () => ({same: 0, exact: 0}));
+  for (let i = 1; i < a.length; i++) {
+    const r = row(a[i]);
+    if (r === row(a[i - 1])) {
+      out[r].same++;
+      if (a[i] === a[i - 1]) out[r].exact++;
+    }
+  }
+  return out;
+}
+
+const sourceByRow = perRowCounts(source);
+const controlByRow = Array.from({length: 15}, () => ({same: 0, exact: 0}));
+for (const [, stream] of controls) {
+  const rows = perRowCounts(stream);
+  for (let r = 0; r < 15; r++) {
+    controlByRow[r].same += rows[r].same;
+    controlByRow[r].exact += rows[r].exact;
+  }
+}
+const pairedRowComparison = [];
+for (let r = 0; r < 14; r++) {
+  const sourceExactRate = sourceByRow[r].exact / sourceByRow[r].same;
+  const controlExactRate = controlByRow[r].exact / controlByRow[r].same;
+  assert.ok(sourceExactRate < controlExactRate);
+  pairedRowComparison.push({row: r, sourceExactRate, controlExactRate,
+    sourceSame: sourceByRow[r].same, sourceExact: sourceByRow[r].exact});
+}
+assert.deepEqual(sourceByRow[14], {same: 6, exact: 6});
+
 console.log(JSON.stringify({
   source: {
     runes: source.length,
@@ -135,5 +167,7 @@ console.log(JSON.stringify({
     minimumCounts: x.minCounts,
     minimumAt: x.minAt
   })),
-  exhaustiveControlWindows: 562060
+  exhaustiveControlWindows: 562060,
+  allPairedRowsBelowAggregateNativeExactRate: true,
+  pairedRowComparison
 }, null, 2));
