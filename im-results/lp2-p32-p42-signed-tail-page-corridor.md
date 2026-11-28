@@ -226,6 +226,12 @@ The exact key `[7,1,12,23,13,2,18]` has H7 shell `[B-1,p+K,-1,e,-1,p+K,p]`; subt
 
 Charging all signed/permuted variants gives 161,280 distinct keys. Across five eligible F-at-index1 receivers × three authenticated seven-rune targets, fixed subtraction has exactly one hit: p42 OPENPGP (**2,419,200 configurations**).
 
+### Terminal p41/p42 literal title-tape serializer is now excluded (Agent12, 28 November)
+
+The terminal receiver arities expose an unusually direct source-only hypothesis: p41 has prepared length `6=q+K`, while p42 has prepared length `7=q+1+K`. A charged serializer therefore treated the p6 title as a typed tape built from one q-length component, optional singleton W2, and K-length W4. It overcharged both q words and their coordinatewise sum/differences/product, every coordinate permutation, both signs, interleaved and canonical H/H-inverse conventions, every component order, reversal, and whole-vector H transforms.
+
+The resulting source-only family contains **1,612,800 labeled / 175,464 distinct** six-rune vectors and **48,384,000 labeled / 983,134 distinct** seven-rune vectors. Neither previously published fitted endpoint key appears: p41 `[26,23,1,7,13,22]` is absent and p42 `[7,1,12,23,13,2,18]` is absent. This retires the most literal **p6-title-as-key-tape** explanation despite broad ordering/H freedom. It does not weaken the target-blind terminal receiver selectors, and it does not exclude a materially different serializer selected by an authored arithmetic instruction. Because the invocation had already seen the published fitted keys, this is intentionally treated only as a negative finite-family exclusion. [Detailed gate](lp2-p6-terminal-title-tape-serializer-gate.md) · [SFT](../sims/lp2_p6_terminal_title_tape_serializer_sft.cjs).
+
 ## What this establishes — and what remains missing
 
 The corridor has one directly source-level property plus a set of receiver hypotheses:
