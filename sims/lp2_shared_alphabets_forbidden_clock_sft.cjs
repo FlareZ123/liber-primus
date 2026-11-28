@@ -68,5 +68,18 @@ function frequency(raw,donors){
  function donor(s,n){const a=gp(s),H=new Int32Array(29),min=new Array(5).fill(Infinity);for(let i=0;i<a.length;i++){H[a[i]]++;if(i>=n)H[a[i-n]]--;if(i<n-1)continue;const h=Array.from(H).slice(1).sort((a,b)=>b-a);let k=0;for(let j=0;j<5;j++){k+=h[j];min[j]=Math.min(min[j],k)}}return {windows:a.length-n+1,min}}
  const out=[];for(const body of [false,true]){const rows=cuts.slice(0,-1).map((v,i)=>t.slice(v+(body?head[i]:0),cuts[i+1])),n=rows.flat().length,ds=donors.map(s=>donor(s,n));for(const q of [8,13]){const h=hist(rows,q),privateS=rows.map(row=>hist([row],q).sums).reduce((s,v)=>s.map((x,i)=>x+v[i]),[0,0,0,0,0]);out.push({body,q,n,F:h.F,shared:h.sums,privateS,donors:ds})}}return out
 }
-if(typeof module!=="undefined")module.exports={solve,solveRows,legal,selfTest,frequency};
+
+function sparseFrequency(raw){
+ const c=JSON.parse(raw),t=c.pages.slice(0,56).flatMap(p=>p.indices),cuts=[0,729,1874,3603,5506,6527,7960,9640,12648,12956],head=[13,16,12,20,16,19,10,8,9],q=13,Z=[15,...Array(12).fill(0)],NEG=-1e9;
+ function stats(row){const n=row.length,ALL=(1<<q)-1,B=Array(29).fill(0);Z.forEach((v,j)=>B[v]|=1<<j);const F=new Int32Array(n+1),R=new Int32Array(n+1);F[0]=ALL;R[n]=ALL;
+ for(let i=0;i<n;i++){const c=row[i],a=F[i]&~B[c];F[i+1]=(((a<<1)|(a>>>(q-1)))&ALL)|(c===0?F[i]:0)}
+ for(let i=n-1;i>=0;i--){const c=row[i],x=R[i+1],a=((x>>>1)|(x<<(q-1)))&ALL;R[i]=(a&~B[c])|(c===0?x:0)}
+ const starts=F[0]&R[0],feasible=Array.from({length:q},()=>Array(29).fill(0));for(let i=0;i<n;i++){const c=row[i];let a=F[i]&~B[c]&(((R[i+1]>>>1)|(R[i+1]<<(q-1)))&ALL);for(let j=0;j<q;j++)if(a&(1<<j))feasible[j][c]++}
+ const caps=Array(q).fill(0),arg=Array(q).fill(0),loose=feasible.reduce((s,h)=>s+Math.max(...h),0);
+ function score(j,k){let D=new Int32Array(q).fill(0),E=new Int32Array(q);for(let i=0;i<n;i++){const c=row[i];E.fill(NEG);const a=F[i]&R[i];for(let h=0;h<q;h++){if(!(a&(1<<h)))continue;const v=D[h];if(v<0)continue;if(c===0)E[h]=Math.max(E[h],v);if(c!==Z[h]){const z=(h+1)%q;E[z]=Math.max(E[z],v+(h===j&&c===k?1:0))}}[D,E]=[E,D]}return Math.max(...D)}
+ for(let j=0;j<q;j++)for(let k=0;k<29;k++)if(k!==Z[j]&&feasible[j][k]>caps[j]){const v=score(j,k);if(v>caps[j]){caps[j]=v;arg[j]=k}}
+ return {n,starts,loose,caps,arg,cap:caps.reduce((s,v)=>s+v,0),specialCount:Math.ceil(n/q)}}
+ const out=[];for(const body of [false,true]){const rows=cuts.slice(0,-1).map((v,i)=>t.slice(v+(body?head[i]:0),cuts[i+1])),statsRows=rows.map(stats),n=rows.flat().length,H=Array(29).fill(0);rows.flat().forEach(c=>H[c]++);const top2=H.sort((a,b)=>b-a).slice(0,2).reduce((s,v)=>s+v);out.push({body,n,statsRows,privateCap:statsRows.reduce((s,v)=>s+v.cap,0),specialCap:statsRows.reduce((s,v)=>s+v.specialCount,0),baselineTop2:top2,twoAlphabetTop2:top2+statsRows.reduce((s,v)=>s+v.specialCount,0)})}return out
+}
+if(typeof module!=="undefined")module.exports={solve,solveRows,legal,selfTest,frequency,sparseFrequency};
 if(typeof require!=="undefined"&&require.main===module){const fs=require("node:fs"),path=require("node:path");console.log(JSON.stringify(solve(fs.readFileSync(path.join(__dirname,"..","resources/liber-primus/lp2-corpus.json"),"utf8"),Number(process.argv[2]||13),Number(process.argv[3]||100000000),process.argv[4]==="free",process.argv[5]==="body"),null,2))}
