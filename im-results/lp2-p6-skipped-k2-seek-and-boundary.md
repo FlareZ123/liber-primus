@@ -252,6 +252,27 @@ target pair = SEEK AND at source indices30-31.
 
 This finite charge is **not** a discovery-wide probability: the serializer skeleton was formulated after the local inverses were noticed. Its value is mechanistic compression. The two pages no longer require unrelated fitted key vectors; one small p6-only family contains a unique coupled serializer for the already source-selected omitted pair.
 
+## Prospective homologous ROAD AND transfer fails before decryption
+
+The only other consecutive authenticated source pair with GP lengths `[q,e]=[4,3]` is `ROAD AND` at indices23–24. Before inspecting the corresponding receiver shells, `workplace/agent1-p6-qe-road-and-holdout-precommit.md` froze a literal transfer of the SEEK AND source-to-receiver grammar:
+
+```text
+ROAD/AND initials = [4,24]
+H2(initials) = [9,28]
+
+left H4 receiver shell
+= [H2.sum,H2.diff,ROAD.first,e]
+= [28,9,4,3]
+
+right H3 receiver shell
+= [ROAD.first-q,p,ROAD.first-K]
+= [0,23,2].
+```
+
+Both frozen shells have **zero complete-word hits anywhere in the manuscript**. The transfer therefore fails before page23/page24, rune values, keys, or language are considered. Under the precommit there is no nearby-shell or alternate-address repair.
+
+This clean negative narrows the interpretation of the positive result: the p30/p31 receiver grammar is tied to the independently source-selected `SEEK AND` boundary object. It is not a general decoder for every signed-source [q,e] pair.
+
 ## Prospective receiver-address extrapolation fails
 
 After the p30/p31 receiver addresses were frozen as ordinals27 and32, their difference `32-27=5=g` suggested one cheap prospective test. Before inspecting the predicted receiver, `workplace/agent1-p30p31-ordinal-g-step-p29-precommit.md` froze the one-step backward continuation:

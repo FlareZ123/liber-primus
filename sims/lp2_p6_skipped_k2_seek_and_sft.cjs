@@ -648,6 +648,38 @@ assert.deepEqual(jointSerializerHits, [{
   targets: ["SEEK", "AND"],
 }]);
 
+// Prospectively frozen homologous [q,e] transfer to the only other source
+// pair with lengths [4,3], ROAD AND at indices23-24. Generalize the exact
+// source-to-receiver shell construction before inspecting p23/p24.
+const road = sourceWords[23];
+const andEarlier = sourceWords[24];
+assert.equal(road.word, "ROAD");
+assert.equal(andEarlier.word, "AND");
+assert.deepEqual([road.length, andEarlier.length], [state.q, state.e]);
+const roadInitialH = h2([road.values[0], andEarlier.values[0]]);
+assert.deepEqual(roadInitialH, [9, 28]);
+const roadReceiverShell = [
+  roadInitialH[1],
+  roadInitialH[0],
+  road.values[0],
+  state.e,
+];
+const roadAndReceiverShell = [
+  mod29(road.values[0] - state.q),
+  state.p,
+  mod29(road.values[0] - state.K),
+];
+assert.deepEqual(roadReceiverShell, [28, 9, 4, 3]);
+assert.deepEqual(roadAndReceiverShell, [0, 23, 2]);
+const roadReceiverHits = canonical.filter((word) =>
+  word.values.length === 4 && h4(word.values).join(",") === roadReceiverShell.join(",")
+);
+const roadAndReceiverHits = canonical.filter((word) =>
+  word.values.length === 3 && h3(word.values).join(",") === roadAndReceiverShell.join(",")
+);
+assert.deepEqual(roadReceiverHits, []);
+assert.deepEqual(roadAndReceiverHits, []);
+
 // Prospectively frozen receiver-address extrapolation from the newly observed
 // p30 ordinal27 -> p31 ordinal32 = +g. The precommit fixes one backward step:
 // p29 ordinal22 must have DIRECTION's eight-rune arity. It fails structurally.
@@ -697,6 +729,16 @@ const result = {
     key: p31Key,
     keyShell: p31KeyShell,
     exactKeyManuscriptHits: p31ExactKeyHits,
+  },
+  prospectiveRoadAndTransfer: {
+    precommit: "workplace/agent1-p6-qe-road-and-holdout-precommit.md",
+    sourcePair: [road.word, andEarlier.word],
+    leftShell: roadReceiverShell,
+    rightShell: roadAndReceiverShell,
+    leftManuscriptHits: roadReceiverHits.length,
+    rightManuscriptHits: roadAndReceiverHits.length,
+    pass: false,
+    decision: "receiver grammar is boundary-specific; reject reusable [q,e] decoder interpretation",
   },
   prospectiveGStepReceiver: {
     precommit: "workplace/agent1-p30p31-ordinal-g-step-p29-precommit.md",
