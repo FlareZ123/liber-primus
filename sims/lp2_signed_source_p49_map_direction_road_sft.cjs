@@ -7,18 +7,18 @@ const ROOT=path.resolve(__dirname,'..');
 const MOD=29;
 const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-corpus.json'),'utf8'));
 const ink=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-ink-annotations.json'),'utf8'));
-const grid=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/base60-grid.json'),'utf8'));
+const grid=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-grid-256.json'),'utf8'));
 const signed=fs.readFileSync(path.join(ROOT,'resources/historical/cicada2016-4gq25-outguess.asc'),'utf8');
 const glyph=new Map(corpus.runes.map((r,i)=>[r,i]));
 const mod=x=>((x%MOD)+MOD)%MOD;
 const inv=x=>{for(let i=1;i<MOD;i++)if(mod(x*i)===1)return i;throw new Error('no inverse');};
 
-assert.deepEqual(grid.lp2_pages,[49,50,51]);
-assert.deepEqual(grid.page_row_counts,[10,13,9]);
-assert.equal(grid.rows.length,32);
-assert(grid.rows.every(r=>r.length===8));
-const tokens=grid.rows.flat(),bytes=grid.byte_rows.flat();
+assert.deepEqual(grid.pages.map(p=>p.page),[49,50,51]);
+assert.deepEqual(grid.pages.map(p=>p.rows),[10,13,9]);
+assert(grid.pages.every(p=>p.cols===8));
+const tokens=grid.pages.flatMap(p=>p.tokens),bytes=grid.pages.flatMap(p=>p.bytes);
 assert.equal(tokens.length,256);
+assert.equal(bytes.length,256);
 
 const body=signed.split('-----BEGIN PGP SIGNATURE-----')[0];
 const words=body.match(/\b[A-Za-z]+\b/g)
@@ -34,8 +34,8 @@ assert.deepEqual(signedRows[2].words,['ARE','THE','MAP','THEIR','MEANING','IS','
 assert.deepEqual(signedRows[3].words,['AND','THEIR','NUMBERS','ARE','THE','DIRECTION','SEEK','AND']);
 assert.equal(words[23],'ROAD');
 assert.equal(words[29],'DIRECTION');
-assert.equal(grid.lp2_pages[0],49);
-assert.ok(23<grid.page_row_counts[0]*8,'cell23 is physically on p49');
+assert.equal(grid.pages[0].page,49);
+assert.ok(23<grid.pages[0].rows*grid.pages[0].cols,'cell23 is physically on p49');
 
 const p3=[13,23,2],leadInv=inv(p3[2]);
 const fieldR=mod(-p3[1]*leadInv),fieldT=mod(-p3[0]*leadInv);
@@ -100,7 +100,7 @@ assert.deepEqual(printedHits,[
 const result={
  schema:'lp2-signed-source-p49-map-direction-road-v1',
  classification:'exact source-instruction/table/Q-coordinate cross-lock; navigation only, no plaintext',
- table:{pages:grid.lp2_pages,pageRowCounts:grid.page_row_counts,columns:8,signedWords:words.length,signedRows},
+ table:{pages:grid.pages.map(p=>p.page),pageRowCounts:grid.pages.map(p=>p.rows),columns:8,signedWords:words.length,signedRows,source:grid.source,sourceNotes:grid.source_notes},
  instructionRows:{
    map:signedRows[2],
    direction:signedRows[3],
