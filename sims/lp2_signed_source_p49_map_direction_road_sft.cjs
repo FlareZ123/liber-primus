@@ -51,6 +51,10 @@ assert.deepEqual(divisible,[
  {index:23,word:'ROAD',token:'1R',value:87,rows:3},
 ]);
 assert.equal(divisible[1].rows,fieldR);
+const all87=bytes.map((value,index)=>({index,value,token:tokens[index]})).filter(x=>x.value===87);
+assert.deepEqual(all87,[{index:23,value:87,token:'1R'}]);
+const allMultiples29=bytes.map((value,index)=>({index,value,token:tokens[index],rows:value/MOD})).filter(x=>Number.isInteger(x.rows));
+assert.deepEqual(allMultiples29.map(x=>[x.index,x.value]),[[0,203],[23,87],[81,58],[149,174],[192,0],[220,58],[229,0]]);
 
 const mul=(x,y)=>[mod(x[0]*y[0]+fieldT*x[1]*y[1]),mod(x[0]*y[1]+x[1]*y[0]+fieldR*x[1]*y[1])];
 const ev=a=>{let z=[0,0],p=[1,0];for(const c of a){z=[mod(z[0]+c*p[0]),mod(z[1]+c*p[1])];p=mul(p,[0,1]);}return z;};
@@ -116,7 +120,7 @@ const result={
    targetPhrase:words.slice(p7.coord[0],p7.coord[1]+1).join(' '),
    repeat:{k:terminalK,coord:terminal,words:['ROAD','ROAD']},
  },
- finiteControl:{nonzeroPrintedRedStates:red.length,canonicalWordNumberToBase60DirectionHits:printedHits},
+ finiteControl:{nonzeroPrintedRedStates:red.length,canonicalWordNumberToBase60DirectionHits:printedHits,uniqueValue87Across256:all87,all256MultiplesOf29:allMultiples29},
  interpretation:'The authenticated instruction literally aligns its zero-based words with the first p49 table rows. Under the frozen Q base29 coordinate map, ROAD word23 addresses physical p49 cell23; its canonical base60 number87 is fieldR3 times DIRECTION29, so it is a pure three-row move preserving the ROAD column. This sends the printed p39 red interval to printed p7 and a second identical step contracts to singleton ROAD. Base59 breaks the column-preserving move and misses p7.',
 };
 const json=JSON.stringify(result,null,2);
