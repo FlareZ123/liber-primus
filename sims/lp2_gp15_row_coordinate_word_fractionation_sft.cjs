@@ -282,6 +282,99 @@ for (const [name, words] of corpora) {
   rowWindowBounds.push({ name, windows, stride, minSame, minRate, minIoc });
 }
 
+
+// Exhaustive chapter-private row-permutation gate.
+// Row IoC is invariant under any fixed bijection of the 15 row labels, so a
+// separate secret permutation per authentic dollar-delimited chapter cannot
+// change these values.
+function chapterRuneBounds() {
+  const stream = transcription.split("%").slice(0, 55).join("%");
+  const bounds = [];
+  let pos = 0;
+  let start = 0;
+  for (const ch of stream) {
+    if (runeIndex.has(ch)) pos++;
+    else if (ch === "$" && pos > start) {
+      bounds.push([start, pos]);
+      start = pos;
+    }
+  }
+  if (pos > start) bounds.push([start, pos]);
+  return bounds;
+}
+
+function exhaustiveRowMin(runes, n) {
+  const rows = runes.map(chartRow);
+  const counts = new Array(15).fill(0);
+  let same = 0;
+  let numerator = 0;
+  for (let i = 0; i < n; i++) {
+    const x = rows[i];
+    numerator += 2 * counts[x];
+    counts[x]++;
+    if (i && rows[i] === rows[i - 1]) same++;
+  }
+  let minNumerator = numerator;
+  let minSame = same;
+  for (let start = 1; start + n <= rows.length; start++) {
+    const old = rows[start - 1];
+    const oldCount = counts[old];
+    counts[old]--;
+    numerator -= 2 * (oldCount - 1);
+    if (rows[start - 1] === rows[start]) same--;
+
+    const neo = rows[start + n - 1];
+    const newCount = counts[neo];
+    numerator += 2 * newCount;
+    counts[neo]++;
+    if (rows[start + n - 2] === rows[start + n - 1]) same++;
+
+    minNumerator = Math.min(minNumerator, numerator);
+    minSame = Math.min(minSame, same);
+  }
+  return {
+    windows: rows.length - n + 1,
+    minIoc: minNumerator / (n * (n - 1)),
+    minSame,
+    minRate: minSame / (n - 1)
+  };
+}
+
+const chapterBounds = chapterRuneBounds();
+assert.deepEqual(chapterBounds.map(([a, b]) => b - a),
+  [729, 1145, 1738, 1894, 1021, 1433, 1680, 3316]);
+const expectedChapter = [
+  [0.06742263223744706, 598741, 0.0917710547340177],
+  [0.0681146364552478, 597493, 0.09490334992518398],
+  [0.06711305353661227, 595714, 0.09698811423740918],
+  [0.06752047642874794, 595246, 0.0981641360852047],
+  [0.06803787136793993, 597865, 0.09428472662326438],
+  [0.06761608844982787, 596629, 0.09638528383241003],
+  [0.06791528404095408, 595888, 0.09682066989988372],
+  [0.06796609336877556, 590980, 0.09933573132324286]
+];
+const chapterRowGate = [];
+for (let i = 0; i < chapterBounds.length; i++) {
+  const [a, b] = chapterBounds[i];
+  const n = b - a;
+  const originalStats = rowTapeStats(originalTape.slice(a, b));
+  let windows = 0;
+  let minIoc = Infinity;
+  for (const [, words] of corpora) {
+    const controlRunes = words.flat();
+    const result = exhaustiveRowMin(controlRunes, n);
+    windows += result.windows;
+    minIoc = Math.min(minIoc, result.minIoc);
+  }
+  const expected = expectedChapter[i];
+  assert.ok(Math.abs(originalStats.ioc - expected[0]) < 1e-15);
+  assert.equal(windows, expected[1]);
+  assert.ok(Math.abs(minIoc - expected[2]) < 1e-15);
+  assert.ok(originalStats.ioc < minIoc);
+  chapterRowGate.push({chapter: i, n, originalIoc: originalStats.ioc,
+    nativeWindows: windows, nativeMinIoc: minIoc});
+}
+
 // Genuine creator-authentic p57 source spelling + reversible positives.
 const reference = read("resources/liber-primus/lp1-plaintext-reference.txt");
 const p57Text = reference.split("### 57\n")[1].trim();
@@ -324,5 +417,6 @@ console.log(JSON.stringify({
     original: originalRowTape,
     controls: rowWindowBounds
   },
+  chapterPrivateRowPermutationGate: chapterRowGate,
   positive: "p57 exact GP source + reversible vertical-row plants PASS"
 }, null, 2));

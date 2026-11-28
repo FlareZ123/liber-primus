@@ -86,7 +86,9 @@ Unknown p0–55 gives **538** equal-row adjacencies and IoC **0.06767737**. Sour
 
 This closes the specific segmentation loophole for any architecture that moves only separators/table-side information. It does **not** assume the printed groups are true plaintext words.
 
-The result does **not** cover a cipher that permutes or changes the vertical-row coordinates themselves across positions, changes the 15-row alphabet under a separately selected key, or uses an external/non-GP plaintext register.
+A fixed secret permutation of the 15 row labels cannot help: adjacent-row equality and row-IoC are invariant under relabeling. More strongly, splitting the original at its eight authentic dollar-delimited chapter boundaries and granting a **different secret 15-row permutation to every chapter** still leaves each chapter's row-IoC unchanged. Exhaustive comparison with every same-length contiguous native-GP control window rejects all eight chapters independently.
+
+The result does **not** cover a cipher whose row mapping changes with position/state *inside* a chapter, permutes row coordinates across positions, or uses an external/non-GP plaintext register.
 
 ## Native-English calibration
 
@@ -139,6 +141,23 @@ For the boundary-free row tape, same-length control windows were sampled densely
 
 This is a finite native-control exclusion, not a universal theorem about every possible English text; its value is that it removes a large source-native architecture class without relying on any candidate spacing.
 
+### Exhaustive authentic-chapter row-IoC gate
+
+The original transcription contains eight nonempty dollar-delimited chapters of lengths **729, 1,145, 1,738, 1,894, 1,021, 1,433, 1,680, 3,316** runes. For each exact length, the SFT scans **every contiguous window** in all three encoded controls with an O(1) rolling 15-symbol IoC.
+
+| chapter | runes | original row-IoC | native windows | minimum native row-IoC |
+|---:|---:|---:|---:|---:|
+| 0 | 729 | 0.06742263 | 598,741 | 0.09177105 |
+| 1 | 1,145 | 0.06811464 | 597,493 | 0.09490335 |
+| 2 | 1,738 | 0.06711305 | 595,714 | 0.09698811 |
+| 3 | 1,894 | 0.06752048 | 595,246 | 0.09816414 |
+| 4 | 1,021 | 0.06803787 | 597,865 | 0.09428473 |
+| 5 | 1,433 | 0.06761609 | 596,629 | 0.09638528 |
+| 6 | 1,680 | 0.06791528 | 595,888 | 0.09682067 |
+| 7 | 3,316 | 0.06796609 | 590,980 | 0.09933573 |
+
+All eight originals are strictly below the complete finite native-control envelope. Since IoC is unchanged by a bijective relabeling of the 15 rows, the same rejection holds even when each chapter gets its own arbitrary secret row permutation, plus arbitrary separator movement and arbitrary left/right-table changes.
+
 ## Exact length breakdown against the 149,072-word controls
 
 For the broader row-multiset family:
@@ -188,9 +207,9 @@ Established computational result:
 
 > Under the published 15-row GP chart, word-preserving decoders that retain each word's vertical-row multiset fail essentially every long original word; more strongly, **even with arbitrary separator movement**, any decoder that preserves the global literal vertical-row tape is incompatible with every sampled same-length native-GP control window on both adjacent-row equality and 15-symbol IoC.
 
-This materially narrows chart-coordinate cryptanalysis. It removes arbitrary per-position left/right substitutions, word-local side-bit fractionation, arbitrary within-word permutations of the fixed row tape, and segmentation-changing transforms that alter only spaces/side bits while leaving row positions fixed.
+This materially narrows chart-coordinate cryptanalysis. It removes arbitrary per-position left/right substitutions, word-local side-bit fractionation, arbitrary within-word permutations of the fixed row tape, segmentation-changing transforms that alter only spaces/side bits while leaving row positions fixed, and even fixed secret row-label permutations globally or independently per authentic chapter.
 
-Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still move/change vertical-row coordinates across positions, introduce a separately selected row permutation/state, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
+Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still use position/state-dependent row changes inside a chapter, move row coordinates across positions, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
 
 ## Reproduction
 
@@ -200,4 +219,4 @@ Run:
 node sims/lp2_gp15_row_coordinate_word_fractionation_sft.cjs
 ```
 
-The SFT reads only committed source/control files, asserts the exact 2,896-word / 12,956-rune original corpus, reconstructs the source-calibrated English controls, reproduces the full-book sequence/multiset counts, leave-one-out calibration and boundary-free row-tape repeat/IoC window bounds, checks the independent TextBlob lexicon sensitivity, and round-trips two nontrivial solved-p57 positive transforms.
+The SFT reads only committed source/control files, asserts the exact 2,896-word / 12,956-rune original corpus, reconstructs the source-calibrated English controls, reproduces the full-book sequence/multiset counts, leave-one-out calibration and boundary-free row-tape repeat/IoC window bounds plus exhaustive eight-chapter row-IoC bounds, checks the independent TextBlob lexicon sensitivity, and round-trips two nontrivial solved-p57 positive transforms.
