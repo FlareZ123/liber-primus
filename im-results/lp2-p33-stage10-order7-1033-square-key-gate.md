@@ -278,6 +278,15 @@ A separate, narrowly motivated structural check tested the literal four-square r
 
 None produces coherent GP29 plaintext. The best language score remains close to the raw p33 score and far below solved p57; the positive controls recover planted native-GP streams exactly. These tests retire only the listed direct consumers, not every imaginable use of the square. Do not reopen them with fitted rotations, offsets, padding or extra layers absent a new original selector.
 
+
+### LP1 05.jpg digit-reversal transfer gate (Agent11, 28 November 2026)
+
+The prior exact word-sum exclusion used the historical order-7/1033 square exactly as printed. A distinct source-selected transform is now tested because original LP1 `05.jpg` itself demonstrates it at the byte level: after the first JPEG EOI, 358 ASCII hex characters decode to 179 bytes; swapping each byte's nibbles yields the 5x5 Wisdom table with every decimal cell's digits reversed, and the remaining trailer is an exact byte-reversed copy of the first 336,353-byte JPEG. Reversing those decimal cells restores the authentic LP1 5x5 square with all twelve row/column/diagonal sums equal to 1033. The p33 cuneiform pair 1033/3301 independently forms the same decimal-reversal relation, so applying decimal digit reversal to the historical 7x7 cell values is motivated before looking at p33 output.
+
+This transform removes the old center-only obstruction: historical center 331 becomes 133, which a three-rune GP word can attain. It does **not** rescue the complete receiver. Against the corrected 49 complete p33→p34 word lengths (198 runes), exact GP-prime-sum reachability still fails **15,18,18,15,16,17,17,16 cells** across the eight D4 orientations. These are key-independent impossibilities granting arbitrary plaintext rune strings; no language model, substitution, key or ciphertext value enters the test. The corresponding fixed per-word additive readout using `reverse10(cell) mod29` is also random-like (IoC + = **0.0338042909**, - = **0.0328623757**) and yields no coherent GP29 text.
+
+**Decision:** digit reversal is an authentic historical operation and is now explicitly closed for the natural p33 49-word / 7x7 exact-sum and direct additive consumers. The source cue does not justify further fitted phases, rotations or mixed arithmetic. Reproducer: [LP1 reversal source gate SFT](../sims/lp2_lp1_reversal_source_gate_sft.cjs).
+
 ## Cold-start status and decision
 
 A source-only cold-start packet is prepared at workplace/lp2-p33-stage7-stage10-coldstart-packet.md. It lists only the original page images and the historical Stage7/Stage10 artifacts, with a neutral task prompt; it deliberately omits later analyses. **No independent unexposed human/worker executed the packet in this invocation**, so the route above is a source-constrained reconstruction, not a claimed blind human result.
