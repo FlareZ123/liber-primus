@@ -171,6 +171,14 @@ The DIRECTION row uses GP27 in the digraph slot; the repository's canonical tran
 
 The arithmetic shows that the yellow rows are **crib-derived trial modifiers against p0's opening ciphertext**, not independently generated keys. They preserve useful solver history but are not creator-authored plaintext/key evidence.
 
+The choice of the three displayed eight-rune cribs is itself historically intelligible. All three are first-party Cicada vocabulary available before onecool's 16 December 2016 post:
+
+- **DISCOVER** — from the solved instruction “DISCOVER TRUTH INSIDE YOURSELF”;
+- **DIVINITY** — from the solved Parable “FIND THE DIVINITY WITHIN AND EMERGE”;
+- **DIRECTION** — from the authenticated January 2016 message “their numbers are the direction.”
+
+Under the validated GP multigraph encoding, each is exactly eight runes (`DISCOVER`; `D I R E C T IA N`; `D I U I N I T Y`), matching p0's first red word length. This reconstructs a plausible 2016 solver heuristic: use the visible eight-rune title slot to test salient Cicada-authored eight-rune cue words. It does **not** choose among them or supply a cipher operation.
+
 Reproduce the localization and corpus-wide uniqueness check with:
 
 ```text
