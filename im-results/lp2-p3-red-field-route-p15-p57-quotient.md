@@ -104,6 +104,31 @@ To charge the most immediate algebraic rival, keep all original operands fixed a
 
 The p3 physical field polynomial is source-selected independently. The alternate quadratic is only a finite comparator; it need not be irreducible. `[p,A]` is not an unknown 2016 plaintext target, and this matching operator/result was noticed *after* the 9-rune quotient was frozen. Therefore treat the DH product as a **new internally consistent state serialization**, not as a prospective blind key-discovery claim. There remains no author-licensed use of `Q` as a cipher key on an untouched body interval.
 
+## Canonical GP readout selects the signed-2013 `DH` opcode (Agent14, 28 November 2026)
+
+The exact p15 product `[23,8]` above has a second, source-fixed representation that does **not** depend on the disputed p15 descriptor→DH role map: under the canonical GP transliteration, index23 is `D` and index8 is `H`. The complete two-coordinate output therefore reads literally:
+
+```text
+E(Q)E(p15 first red) = [23,8] = D H
+```
+
+This matters because p15 independently selects the authenticated January-2013 TCP specification through a different original object. Its solved Fibonacci/prime number grid reconstructs anchor3301, and the signed specification contains the exact worked request `BASE29 3301 -> 3QO`. The same signed document's fixed request vocabulary is `RAND, QUINE, BASE29, CODE, KOAN, DH, NEXT, GOODBYE`, and its DH example is:
+
+```text
+C: DH 23
+S: 01 OK 5 8
+C: 19
+S: 03 DATA 2
+```
+
+So the field output now makes a **descriptor-independent historical opcode contact**: its canonical rune readout is the request name `DH`, while the same numeric pair `[23,8]` simultaneously equals the worked example's modulus and server public value `(p,A)`. The source's DH arithmetic then uniquely gives private exponents `a=6`, `b=15` in `1..22` and shared key2; those derived values are consequences of the authenticated example, not extra fitted targets.
+
+Charge the source-fixed request vocabulary against every original complete red span under the already-frozen Q multiplication. Among all **18 printed spans**, the only output that is exactly any complete signed-2013 request name is **p15 first-red -> `DH`**. Across both orientations and every cyclic start (**450 presentations**), the only request-name hits are p15 first-red in its printed orientation/rotation0 and p15 second-red only after reversal plus rotation5; no other page or command appears. The printed manuscript orientation therefore selects the complementary p15 red9 without phase tuning. The two complete quadratic relations that factor the p15-second/p57 difference remain the source p3 relation and the alternate `u²=18u+12`; only the physical p3 relation produces `DH`, while the alternate produces `FNG`.
+
+This is a stronger human-solve-path clue than merely relabeling `[23,8]` as `[p,A]`: p15's independent 3301 construction names the signed source, and the canonical GP alphabet names a procedure inside that source. It does **not** prove that the author intended the polynomial quotient or recover unknown body plaintext. The `DH` reading was recognized after `[23,8]` had already been published, so it is a post-discovery exact cross-lock rather than a calibrated discovery probability.
+
+Reproducer: [`sims/lp2_p3_q_tcp_dh_opcode_sft.cjs`](../sims/lp2_p3_q_tcp_dh_opcode_sft.cjs).
+
 ## Charged finite controls; no coincidence p-value
 
 Charge **all 29²=841** residue-ring presentations `u²=r u+t` against the three already typed original pairs. Predicate A: p6/p8 **constant coordinates** agree. B: p27/p40 **constant coordinates** agree. C: the complete p15 second/p57 residues agree.
