@@ -72,6 +72,21 @@ const powMod=(a,n,p)=>{let v=1;for(let i=0;i<n;i++)v=v*a%p;return v;};
 const borrowedDhPrime=23,borrowedRomanB=19; // p15 and p8 external input, NOT selected by these squares
 const AFromGAndA=powMod(gFromSum,aFromSums,borrowedDhPrime);
 const KFromB=powMod(borrowedRomanB,aFromSums,borrowedDhPrime);
+// Conditional complete dual-private-exponent reconstruction using ONLY
+// the same three original square determinants and 3301/1033 source sums.
+// The scalar b=(det1/det2)*det3 was NOT explicitly requested by the 2014
+// puzzle; it is a single finite proposed role equation whose B prediction
+// is independently checkable against authenticated 2013 DH transcript.
+const bFromThreeDeterminants=mod(determinants[0]*determinants[2]*inv(determinants[1]));
+const gFromThreeDeterminants=mod(determinants[0]*inv(determinants[1]));
+const outerDhTranscript={p:borrowedDhPrime,g:gFromThreeDeterminants,
+  a:aFromSums,b:bFromThreeDeterminants,
+  A:powMod(gFromThreeDeterminants,aFromSums,borrowedDhPrime),
+  B:powMod(gFromThreeDeterminants,bFromThreeDeterminants,borrowedDhPrime),
+};
+outerDhTranscript.K=powMod(outerDhTranscript.A,outerDhTranscript.b,borrowedDhPrime);
+assert.deepEqual(outerDhTranscript,{p:23,g:5,a:6,b:15,A:8,B:19,K:2});
+
 assert.deepEqual([gFromSum,aFromSums,gFromDet,AFromGAndA,KFromB], [5,6,5,8,2]);
 assert.equal(determinants[1],KFromB);assert.equal(determinants[0],mod(gFromSum*KFromB));
 assert.equal(mod(-gFromSum),24);
@@ -236,4 +251,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));

@@ -30,6 +30,18 @@ all-three characteristic-polynomial gcd: x+5 ⇒ λ=−g=24
 
 These are exact *source-derived numbers* without reading any unknown LP2 ciphertext. Under the independently established **p15 modulus p=23**, they give `A=g₁^a mod23=5^6 mod23=8`, the established public DH value. Separately the authentic p8 red heading begins the literal Roman `XIX`=19; **if** it is interpreted as the p15 public counterpart `B=19`, then `K=B^a mod23=19^6 mod23=2`, matching the **middle historical square determinant d₂=2**. The terminal determinant `d₃=3` also matches a previously assigned exponent `e=3` in the p28 algebraic DH program, but this is a retrospective state-label match, not a newly source-selected role. Note that p=23 and the identification of XIX as B are **independent external/LP2 premises**, not values recovered from these three matrices.
 
+**Full 2013 DH reconstruction from a single conditional source arithmetic route, without using p8 XIX to generate B.** If the original three square determinants `[d₁,d₂,d₃]=[10,2,3]` are assigned the **single** (unprompted) pair of scalar roles `g=d₁/d₂` and `b=g·d₃` modulo29, then `g=5`, `b=15`. If the original row-sum difference selects `a=(3301−1033) mod29=6` and the independently authenticated 2013 DH transcript supplies `p=23`, the complete derived transcript is:
+
+```text
+source-only a = (3301−1033) mod29 = 6
+source-only g = (10/2) mod29      = 5
+source-only b = (10/2)*3 mod29    = 15
+independent 2013 p = 23
+A=5^6 mod23=8; B=5^15 mod23=19; K=8^15=19^6 mod23=2.
+```
+
+This reproduces the **entire independently documented 2013 `(p,g,A,B,K,a,b)=(23,5,8,19,2,6,15)` state** from the 2014 source plus one external prime, and predicts **B=19** without reading the independent p8 Roman `XIX` observation or choosing an unknown ciphertext crib. It is an economical **candidate key-schedule reconstruction**, not authenticated historical intent: multiplication `b=g·d₃` is a retrospective hypothesis and arbitrary alternative integer formulas can be fitted to small DH values. The other original-number/corner-H identities provide consistency checks on the fixed source but cannot independently establish the chosen algebraic roles.
+
 The distinct physical p8 7×7 black-fragment-length matrix has **only eigenroot24** over GF29. Its [prior original matrix gate](lp2-stage7-p8-seven-matrix-root24-crosssource.md) already ruled out direct 7×7 Hill/matrix word-length transport as plaintext. This all-source convergence makes the historical magic squares a potentially independent route to candidate **g=5/K=2**, rather than a generic arbitrary-key guess; it **does not** specify any reversible operation on the original p8 or p40–55 ciphertext.
 
 ## Physical p57 circumference operation: the three smaller original source squares
