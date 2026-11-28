@@ -196,6 +196,48 @@ assert.deepEqual(inTheInHits, [{
   centers: ["IN", "THE", "IN"],
 }]);
 
+// Full six-word/single-omission charge. The source word WITHIN acts naturally
+// as the operator: omit it, center-strip every other word, concatenate.
+let solvedSixWordWindows = 0;
+let solvedSingleOmissionPresentations = 0;
+const inTheInnerHits = [];
+for (const section of solved.sections) {
+  const sectionWords = parseRuneWords(section.source_text || "");
+  for (let i = 0; i + 5 < sectionWords.length; i++) {
+    solvedSixWordWindows++;
+    const window = sectionWords.slice(i, i + 6);
+    for (let omit = 0; omit < 6; omit++) {
+      solvedSingleOmissionPresentations++;
+      const readout = window
+        .filter((_, j) => j !== omit)
+        .map(word => translit(shedToCenter(word)))
+        .join("");
+      if (readout === "INTHEINNER") {
+        inTheInnerHits.push({
+          section: section.name,
+          start: i,
+          omit,
+          omittedWord: translit(window[omit]),
+          words: window.map(translit),
+          centers: window.map(word => translit(shedToCenter(word))),
+          readout,
+        });
+      }
+    }
+  }
+}
+assert.equal(solvedSixWordWindows, 690);
+assert.equal(solvedSingleOmissionPresentations, 4140);
+assert.deepEqual(inTheInnerHits, [{
+  section: "p57_parable",
+  start: 14,
+  omit: 3,
+  omittedWord: "WITHIN",
+  words: ["FIND", "THE", "DIUINITY", "WITHIN", "AND", "EMERGE"],
+  centers: ["IN", "THE", "IN", "TH", "N", "ER"],
+  readout: "INTHEINNER",
+}]);
+
 const p1 = corpus.pages.find(p => p.page === 1);
 assert(p1);
 assert.equal(p1.indices.length, 266);
@@ -351,7 +393,10 @@ console.log(JSON.stringify({
     solvedCorpusWords: solvedWordCount,
     solvedCorpusCenterInHits: solvedCenterIn.length,
     solvedThreeWordWindows,
-    inTheInHits
+    inTheInHits,
+    solvedSixWordWindows,
+    solvedSingleOmissionPresentations,
+    inTheInnerHits
   },
   p1: {
     runes: p1.indices.length,
