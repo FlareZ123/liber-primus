@@ -98,6 +98,18 @@ so the locked prediction fails. Applying the identical nine offsets from the ori
 
 This rejects the most direct `THE ORIGIN` → state-coordinate → `DIRECTION` consumer. One-based indexing and alternate state orders are deliberately not searched after the miss. P47→p23 remains a source-selected navigation/state closure into the pre-existing p23 instruction family, not a recovered H-free ciphertext receiver, key, or plaintext.
 
+## Authentic p56-style consumer of the p23 state line fails immediately
+
+The same p47→p23 bridge now permits a stronger body-cipher gate than arbitrary state shifts. The first p23 line is independently predicted as the ordered positive-cardinal state packet `[K,a,e,g,q]=[2,6,3,5,4]`. P23's already-established solved-p56 serializer is the genuine prime-minus-one map `T(n)=(prime(n)-1) mod29`, so this line fixes the five GP29 shifts `[2,12,4,10,6]`.
+
+Freeze the receiver at the first rune after the complete selected five-word line (20 runes), repeat those five shifts from phase0, and use the authentic solved-p56 direction `C=P+k mod29`: inverse `P=C-k`, with plaintext Fehu/F=0 transparent and not consuming the key. No reversed key, phase search, sign change, H transform or language score participates.
+
+The inverse has exactly one legal state through the first six following runes, producing GP0 `[11,24,15,18,6,9]`. At body offset6 / physical p23 rune offset26 the ciphertext value is `12` while the current key lane is also `12`. Consuming would force plaintext F=0, which is illegal under the authentic p56 F-hold semantics; the ciphertext rune is not F, so a transparent hold is also impossible. The legal-path set therefore collapses to **zero at the seventh rune**.
+
+A generated native p57 control encrypted under the exact same five-shift/F-hold rule remains legally invertible for all95 runes and contains the original plaintext path, so the collapse is an original-cipher contradiction rather than a decoder implementation failure.
+
+This rejects the most literal transfer of the authentic p56 cipher semantics to the newly authenticated p47→p23 state-line receiver. It is stronger than the older four-red-word raw-cardinal test: the key here uses the complete independently predicted five-word line and the genuine prime-minus-one serializer. It does not exclude a different clock, nonrepeating use, word-level operation, or another cipher family.
+
 ## Evidence boundary
 
 This does not decrypt new p23 rune text. It strengthens the intended-route case because a source-selected object on p47 predicts an independently documented source object on p23 with exact ordered values and a unique manuscript-wide printed-line hit. The direct H-free origin-coordinate continuation is now prospectively rejected, so the supported claim stops at navigation/state closure unless a different page-local operation is independently selected.
@@ -117,3 +129,7 @@ Existing p23 serializer/reconciliation:
 H-free origin-coordinate gate:
 
 `sims/lp2_p47_p23_origin_direction_coordinate_gate_sft.cjs`
+
+Authentic p56-style state-line body gate:
+
+`sims/lp2_p47_p23_state_line_p56_body_gate_sft.cjs`
