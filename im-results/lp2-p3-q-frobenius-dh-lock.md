@@ -177,6 +177,52 @@ The Frobenius calculation tightens the route's algebraic coherence but does not 
 
 That makes a changing-state Q-path consumer newly motivated. It does not authorize arbitrary phase searches: the next decoder must use a source-selected seed/boundary and one of the canonical field operations, then succeed prospectively on an untouched receiver.
 
+## DIRECTION29 + Q gives a sparse original-red navigation chain
+
+The clue-selected Frobenius can be composed with the already fixed Q multiplication:
+
+```text
+T(x) = Frobenius(Q*x).
+```
+
+This is a canonical semilinear map once **THE MAP / AND PATH** and **DIRECTION29** are accepted; it has no fitted scalar or phase. Because Frobenius is an involution and `F(Q)*Q=N(Q)=A`,
+
+```text
+T^2(x) = A*x = 8*x.
+```
+
+Charge T against the complete set of 18 original red spans, comparing their full two-coordinate p3-field residues. There are only three red→red edges at all:
+
+```text
+p3 marked triad -> itself       [0,0] -> [0,0]
+p15 first red9  -> p40 red8     [24,6] -> [18,21]
+p40 red8        -> p27 red19    [18,21] -> [18,19]
+```
+
+Thus the **only nonzero red-span path** is
+
+```text
+p15 first red9  --T-->  p40 opening red8  --T-->  p27 opening red19.
+```
+
+The destination types predate this test: p40 is the unique chapter-opening red rubric of length `A=8`, p27 the unique one of length `B=19`, and p27/p40 were already paired by the earlier red-remainder census. The new operation orders that old pair rather than discovering the pages from their target states.
+
+The two-step identity is especially transparent:
+
+```text
+E(p27 red19) = A * E(p15 first red9)
+             = 8 * [24,6]
+             = [18,19].
+```
+
+Applying T once more leaves the red-span set and gives
+
+```text
+T(E(p27)) = [28,23].
+```
+
+Under the same authenticated zero-based 2016 numbering, those coordinates read **THE / ROAD**. That is a candidate continuation value, not yet a typed manuscript receiver: do not choose physical p28, p23, a signed-source interval, or a body coordinate after seeing this value. The next valid test must fix which address space consumes `[28,23]` from independent source evidence.
+
 ## Immediate consumer check
 
 The most literal fixed 2-rune Hill interpretation of `M_Q` was checked on the source-typed p54 continuation after its red9 opener, including Q/Q^-1, the two local coordinate orders, both stream directions, and the visible offset9/10 boundary alternatives. All presentations are nonprose. This closes only the **stationary one-step Hill** reading.
