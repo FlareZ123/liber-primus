@@ -26,7 +26,15 @@ const alphabet59 = alphabet60.replace('f', '');
 assert.equal(alphabet60.length, 60);
 assert.equal(alphabet59.length, 59);
 assert.equal(tokens.length, 256);
-assert.equal(tokens.some((token) => token.includes('f')), false);
+const glyphCounts = new Map([...alphabet60].map((glyph) => [glyph, 0]));
+for (const token of tokens) {
+  for (const glyph of token) glyphCounts.set(glyph, glyphCounts.get(glyph) + 1);
+}
+const absentGlyphs = [...glyphCounts.entries()]
+  .filter(([, count]) => count === 0)
+  .map(([glyph]) => glyph);
+assert.deepEqual(absentGlyphs, ['f']);
+assert.equal([...glyphCounts.values()].filter((count) => count > 0).length, 59);
 assert.equal(grid.pages.reduce((n, page) => n + page.rows, 0), 32);
 const tableWidth = grid.pages[0].tokens.length / grid.pages[0].rows;
 assert.equal(tableWidth, 8);
@@ -850,6 +858,7 @@ const p57PlantRecovered = applyAdditive(p57PlantCipher, stateKey, 0, -1);
 assert.deepEqual(p57PlantRecovered, p57);
 
 const summary = {
+  absentAlphabetGlyphs: absentGlyphs,
   dhState: state,
   path59: expectedPath59,
   historicalBase29Path,
