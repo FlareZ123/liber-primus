@@ -1,0 +1,4187 @@
+{
+  "schema": 1,
+  "issue": 3390,
+  "author": "Agent11",
+  "grading": "PRETARGET NO-PLAINTEXT",
+  "source": {
+    "p6Physical": 6,
+    "qBlocks": [
+      {
+        "name": "q1",
+        "titleRuneStart": 71,
+        "p6Runes": [
+          24,
+          16,
+          14,
+          17
+        ],
+        "receiver": [
+          {
+            "page": 32,
+            "start": 30,
+            "length": 3,
+            "class": "first-full-stop complete word",
+            "ciphertext": [
+              0,
+              3,
+              2
+            ]
+          },
+          {
+            "page": 33,
+            "start": 132,
+            "length": 4,
+            "class": "complete word",
+            "ciphertext": [
+              3,
+              15,
+              17,
+              22
+            ]
+          },
+          {
+            "page": 34,
+            "start": 4,
+            "length": 2,
+            "class": "complete word",
+            "ciphertext": [
+              12,
+              23
+            ]
+          },
+          {
+            "page": 35,
+            "start": 25,
+            "length": 5,
+            "class": "adjacent 2+3 packet",
+            "ciphertext": [
+              19,
+              17,
+              19,
+              24,
+              11
+            ]
+          }
+        ]
+      },
+      {
+        "name": "q3",
+        "titleRuneStart": 76,
+        "p6Runes": [
+          6,
+          27,
+          15,
+          17
+        ],
+        "receiver": [
+          {
+            "page": 37,
+            "start": 146,
+            "length": 4,
+            "class": "complete word",
+            "ciphertext": [
+              3,
+              2,
+              6,
+              27
+            ]
+          },
+          {
+            "page": 38,
+            "start": 57,
+            "length": 6,
+            "class": "complete word",
+            "ciphertext": [
+              8,
+              25,
+              14,
+              2,
+              17,
+              22
+            ]
+          },
+          {
+            "page": 39,
+            "start": 132,
+            "length": 5,
+            "class": "complete word",
+            "ciphertext": [
+              19,
+              7,
+              10,
+              17,
+              23
+            ]
+          },
+          {
+            "page": 40,
+            "start": 71,
+            "length": 4,
+            "class": "complete word",
+            "ciphertext": [
+              4,
+              15,
+              14,
+              21
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "grammar": {
+    "sameRuleAcrossBothQBlocks": true,
+    "transformations": [
+      "direct",
+      "H4",
+      "H2adjacent"
+    ],
+    "signs": [
+      1,
+      -1
+    ],
+    "clocks": [
+      "word-constant",
+      "word-local-cycle",
+      "block-continuous-rune"
+    ],
+    "chargedCompleteDecoders": 18,
+    "selectorStatus": "NONIDENTIFYING: all 18 remain source-compatible before target comparison",
+    "directInverse": "P=(C-K) mod29 with exact forward round trip",
+    "exclusionBoundary": "paired q-block transfer of the three predeclared p6 transforms, two global signs, and three block-local clocks only"
+  },
+  "candidates": [
+    {
+      "encoding": "direct",
+      "sign": 1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                24,
+                24,
+                24
+              ],
+              "decoded": [
+                5,
+                8,
+                7
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "decoded": [
+                16,
+                28,
+                1,
+                6
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                14,
+                14
+              ],
+              "decoded": [
+                27,
+                9
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                17,
+                17,
+                17,
+                17,
+                17
+              ],
+              "decoded": [
+                2,
+                0,
+                2,
+                7,
+                23
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                6,
+                6,
+                6,
+                6
+              ],
+              "decoded": [
+                26,
+                25,
+                0,
+                21
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "decoded": [
+                10,
+                27,
+                16,
+                4,
+                19,
+                24
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                15,
+                15,
+                15,
+                15,
+                15
+              ],
+              "decoded": [
+                4,
+                21,
+                24,
+                2,
+                8
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                17,
+                17,
+                17,
+                17
+              ],
+              "decoded": [
+                16,
+                27,
+                26,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": 1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                24,
+                16,
+                14
+              ],
+              "decoded": [
+                5,
+                16,
+                17
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                16,
+                14,
+                17,
+                24
+              ],
+              "decoded": [
+                16,
+                1,
+                0,
+                27
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                14,
+                17
+              ],
+              "decoded": [
+                27,
+                6
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                17,
+                24,
+                16,
+                14,
+                17
+              ],
+              "decoded": [
+                2,
+                22,
+                3,
+                10,
+                23
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                6,
+                27,
+                15,
+                17
+              ],
+              "decoded": [
+                26,
+                4,
+                20,
+                10
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                15,
+                17,
+                6,
+                27,
+                15
+              ],
+              "decoded": [
+                10,
+                10,
+                26,
+                25,
+                19,
+                7
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                15,
+                17,
+                6,
+                27,
+                15
+              ],
+              "decoded": [
+                4,
+                19,
+                4,
+                19,
+                8
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                17,
+                6,
+                27,
+                15
+              ],
+              "decoded": [
+                16,
+                9,
+                16,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": 1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                24,
+                16,
+                14
+              ],
+              "decoded": [
+                5,
+                16,
+                17
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                17,
+                24,
+                16,
+                14
+              ],
+              "decoded": [
+                15,
+                20,
+                1,
+                8
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                17,
+                24
+              ],
+              "decoded": [
+                24,
+                28
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                16,
+                14,
+                17,
+                24,
+                16
+              ],
+              "decoded": [
+                3,
+                3,
+                2,
+                0,
+                24
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                6,
+                27,
+                15,
+                17
+              ],
+              "decoded": [
+                26,
+                4,
+                20,
+                10
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                6,
+                27,
+                15,
+                17,
+                6,
+                27
+              ],
+              "decoded": [
+                2,
+                27,
+                28,
+                14,
+                11,
+                24
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                15,
+                17,
+                6,
+                27,
+                15
+              ],
+              "decoded": [
+                4,
+                19,
+                4,
+                19,
+                8
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                17,
+                6,
+                27,
+                15
+              ],
+              "decoded": [
+                16,
+                9,
+                16,
+                6
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": -1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                5,
+                5,
+                5
+              ],
+              "decoded": [
+                24,
+                27,
+                26
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                13,
+                13,
+                13,
+                13
+              ],
+              "decoded": [
+                19,
+                2,
+                4,
+                9
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                15,
+                15
+              ],
+              "decoded": [
+                26,
+                8
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                12,
+                12,
+                12,
+                12,
+                12
+              ],
+              "decoded": [
+                7,
+                5,
+                7,
+                12,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                23,
+                23,
+                23,
+                23
+              ],
+              "decoded": [
+                9,
+                8,
+                12,
+                4
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "decoded": [
+                6,
+                23,
+                12,
+                0,
+                15,
+                20
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                14,
+                14,
+                14,
+                14,
+                14
+              ],
+              "decoded": [
+                5,
+                22,
+                25,
+                3,
+                9
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "decoded": [
+                21,
+                3,
+                2,
+                9
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": -1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                5,
+                13,
+                15
+              ],
+              "decoded": [
+                24,
+                19,
+                16
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                13,
+                15,
+                12,
+                5
+              ],
+              "decoded": [
+                19,
+                0,
+                5,
+                17
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                15,
+                12
+              ],
+              "decoded": [
+                26,
+                11
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                12,
+                5,
+                13,
+                15,
+                12
+              ],
+              "decoded": [
+                7,
+                12,
+                6,
+                9,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                23,
+                2,
+                14,
+                12
+              ],
+              "decoded": [
+                9,
+                0,
+                21,
+                15
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                14,
+                12,
+                23,
+                2,
+                14
+              ],
+              "decoded": [
+                6,
+                11,
+                2,
+                8,
+                15,
+                8
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                14,
+                12,
+                23,
+                2,
+                14
+              ],
+              "decoded": [
+                5,
+                24,
+                16,
+                15,
+                9
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                12,
+                23,
+                2,
+                14
+              ],
+              "decoded": [
+                21,
+                21,
+                12,
+                7
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "direct",
+      "sign": -1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            24,
+            16,
+            14,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                5,
+                13,
+                15
+              ],
+              "decoded": [
+                24,
+                19,
+                16
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                12,
+                5,
+                13,
+                15
+              ],
+              "decoded": [
+                20,
+                10,
+                4,
+                7
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                12,
+                5
+              ],
+              "decoded": [
+                0,
+                18
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                13,
+                15,
+                12,
+                5,
+                13
+              ],
+              "decoded": [
+                6,
+                2,
+                7,
+                19,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            6,
+            27,
+            15,
+            17
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                23,
+                2,
+                14,
+                12
+              ],
+              "decoded": [
+                9,
+                0,
+                21,
+                15
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                23,
+                2,
+                14,
+                12,
+                23,
+                2
+              ],
+              "decoded": [
+                14,
+                23,
+                0,
+                19,
+                23,
+                20
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                14,
+                12,
+                23,
+                2,
+                14
+              ],
+              "decoded": [
+                5,
+                24,
+                16,
+                15,
+                9
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                12,
+                23,
+                2,
+                14
+              ],
+              "decoded": [
+                21,
+                21,
+                12,
+                7
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": 1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                7,
+                7,
+                7
+              ],
+              "decoded": [
+                22,
+                25,
+                24
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                2,
+                2,
+                2
+              ],
+              "decoded": [
+                1,
+                13,
+                15,
+                20
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                1,
+                1
+              ],
+              "decoded": [
+                11,
+                22
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                12,
+                12,
+                12,
+                12,
+                12
+              ],
+              "decoded": [
+                7,
+                5,
+                7,
+                12,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                18,
+                18,
+                18,
+                18
+              ],
+              "decoded": [
+                14,
+                13,
+                17,
+                9
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                12,
+                12,
+                12,
+                12,
+                12,
+                12
+              ],
+              "decoded": [
+                25,
+                13,
+                2,
+                19,
+                5,
+                10
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                13,
+                13,
+                13,
+                13,
+                13
+              ],
+              "decoded": [
+                6,
+                23,
+                26,
+                4,
+                10
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                23,
+                23,
+                23,
+                23
+              ],
+              "decoded": [
+                10,
+                21,
+                20,
+                27
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": 1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                7,
+                2,
+                1
+              ],
+              "decoded": [
+                22,
+                1,
+                1
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                1,
+                12,
+                7
+              ],
+              "decoded": [
+                1,
+                14,
+                5,
+                15
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                1,
+                12
+              ],
+              "decoded": [
+                11,
+                11
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                12,
+                7,
+                2,
+                1,
+                12
+              ],
+              "decoded": [
+                7,
+                10,
+                17,
+                23,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                18,
+                12,
+                13,
+                23
+              ],
+              "decoded": [
+                14,
+                19,
+                22,
+                4
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                12,
+                13,
+                23,
+                18,
+                12,
+                13
+              ],
+              "decoded": [
+                25,
+                12,
+                20,
+                13,
+                5,
+                9
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                13,
+                23,
+                18,
+                12,
+                13
+              ],
+              "decoded": [
+                6,
+                13,
+                21,
+                5,
+                10
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                23,
+                18,
+                12,
+                13
+              ],
+              "decoded": [
+                10,
+                26,
+                2,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": 1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                7,
+                2,
+                1
+              ],
+              "decoded": [
+                22,
+                1,
+                1
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                12,
+                7,
+                2,
+                1
+              ],
+              "decoded": [
+                20,
+                8,
+                15,
+                21
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                12,
+                7
+              ],
+              "decoded": [
+                0,
+                16
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                2,
+                1,
+                12,
+                7,
+                2
+              ],
+              "decoded": [
+                17,
+                16,
+                7,
+                17,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                18,
+                12,
+                13,
+                23
+              ],
+              "decoded": [
+                14,
+                19,
+                22,
+                4
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                18,
+                12,
+                13,
+                23,
+                18,
+                12
+              ],
+              "decoded": [
+                19,
+                13,
+                1,
+                8,
+                28,
+                10
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                13,
+                23,
+                18,
+                12,
+                13
+              ],
+              "decoded": [
+                6,
+                13,
+                21,
+                5,
+                10
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                23,
+                18,
+                12,
+                13
+              ],
+              "decoded": [
+                10,
+                26,
+                2,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": -1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                22,
+                22,
+                22
+              ],
+              "decoded": [
+                7,
+                10,
+                9
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                27,
+                27,
+                27
+              ],
+              "decoded": [
+                5,
+                17,
+                19,
+                24
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                28,
+                28
+              ],
+              "decoded": [
+                13,
+                24
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                17,
+                17,
+                17,
+                17,
+                17
+              ],
+              "decoded": [
+                2,
+                0,
+                2,
+                7,
+                23
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                11,
+                11,
+                11,
+                11
+              ],
+              "decoded": [
+                21,
+                20,
+                24,
+                16
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                17,
+                17,
+                17,
+                17,
+                17,
+                17
+              ],
+              "decoded": [
+                20,
+                8,
+                26,
+                14,
+                0,
+                5
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                16,
+                16,
+                16,
+                16,
+                16
+              ],
+              "decoded": [
+                3,
+                20,
+                23,
+                1,
+                7
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                6,
+                6,
+                6,
+                6
+              ],
+              "decoded": [
+                27,
+                9,
+                8,
+                15
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": -1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                22,
+                27,
+                28
+              ],
+              "decoded": [
+                7,
+                5,
+                3
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                28,
+                17,
+                22
+              ],
+              "decoded": [
+                5,
+                16,
+                0,
+                0
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                28,
+                17
+              ],
+              "decoded": [
+                13,
+                6
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                17,
+                22,
+                27,
+                28,
+                17
+              ],
+              "decoded": [
+                2,
+                24,
+                21,
+                25,
+                23
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                11,
+                17,
+                16,
+                6
+              ],
+              "decoded": [
+                21,
+                14,
+                19,
+                21
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                17,
+                16,
+                6,
+                11,
+                17,
+                16
+              ],
+              "decoded": [
+                20,
+                9,
+                8,
+                20,
+                0,
+                6
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                16,
+                6,
+                11,
+                17,
+                16
+              ],
+              "decoded": [
+                3,
+                1,
+                28,
+                0,
+                7
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                6,
+                11,
+                17,
+                16
+              ],
+              "decoded": [
+                27,
+                4,
+                26,
+                5
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H4",
+      "sign": -1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            7,
+            2,
+            1,
+            12
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                22,
+                27,
+                28
+              ],
+              "decoded": [
+                7,
+                5,
+                3
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                17,
+                22,
+                27,
+                28
+              ],
+              "decoded": [
+                15,
+                22,
+                19,
+                23
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                17,
+                22
+              ],
+              "decoded": [
+                24,
+                1
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                27,
+                28,
+                17,
+                22,
+                27
+              ],
+              "decoded": [
+                21,
+                18,
+                2,
+                2,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            18,
+            12,
+            13,
+            23
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                11,
+                17,
+                16,
+                6
+              ],
+              "decoded": [
+                21,
+                14,
+                19,
+                21
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                11,
+                17,
+                16,
+                6,
+                11,
+                17
+              ],
+              "decoded": [
+                26,
+                8,
+                27,
+                25,
+                6,
+                5
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                16,
+                6,
+                11,
+                17,
+                16
+              ],
+              "decoded": [
+                3,
+                1,
+                28,
+                0,
+                7
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                6,
+                11,
+                17,
+                16
+              ],
+              "decoded": [
+                27,
+                4,
+                26,
+                5
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": 1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                8,
+                8,
+                8
+              ],
+              "decoded": [
+                21,
+                24,
+                23
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                11,
+                11,
+                11,
+                11
+              ],
+              "decoded": [
+                21,
+                4,
+                6,
+                11
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                26,
+                26
+              ],
+              "decoded": [
+                15,
+                26
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "decoded": [
+                17,
+                15,
+                17,
+                22,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "decoded": [
+                24,
+                23,
+                27,
+                19
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                4,
+                4,
+                4,
+                4,
+                4,
+                4
+              ],
+              "decoded": [
+                4,
+                21,
+                10,
+                27,
+                13,
+                18
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "decoded": [
+                21,
+                9,
+                12,
+                19,
+                25
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                3,
+                3,
+                3,
+                3
+              ],
+              "decoded": [
+                1,
+                12,
+                11,
+                18
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": 1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                8,
+                11,
+                26
+              ],
+              "decoded": [
+                21,
+                21,
+                5
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                11,
+                26,
+                2,
+                8
+              ],
+              "decoded": [
+                21,
+                18,
+                15,
+                14
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                26,
+                2
+              ],
+              "decoded": [
+                15,
+                21
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                2,
+                8,
+                11,
+                26,
+                2
+              ],
+              "decoded": [
+                17,
+                9,
+                8,
+                27,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                8,
+                4,
+                27,
+                3
+              ],
+              "decoded": [
+                24,
+                27,
+                8,
+                24
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                4,
+                27,
+                3,
+                8,
+                4,
+                27
+              ],
+              "decoded": [
+                4,
+                27,
+                11,
+                23,
+                13,
+                24
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                27,
+                3,
+                8,
+                4,
+                27
+              ],
+              "decoded": [
+                21,
+                4,
+                2,
+                13,
+                25
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                3,
+                8,
+                4,
+                27
+              ],
+              "decoded": [
+                1,
+                7,
+                10,
+                23
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": 1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                8,
+                11,
+                26
+              ],
+              "decoded": [
+                21,
+                21,
+                5
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                2,
+                8,
+                11,
+                26
+              ],
+              "decoded": [
+                1,
+                7,
+                6,
+                25
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                2,
+                8
+              ],
+              "decoded": [
+                10,
+                15
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                11,
+                26,
+                2,
+                8,
+                11
+              ],
+              "decoded": [
+                8,
+                20,
+                17,
+                16,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                8,
+                4,
+                27,
+                3
+              ],
+              "decoded": [
+                24,
+                27,
+                8,
+                24
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                8,
+                4,
+                27,
+                3,
+                8,
+                4
+              ],
+              "decoded": [
+                0,
+                21,
+                16,
+                28,
+                9,
+                18
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                27,
+                3,
+                8,
+                4,
+                27
+              ],
+              "decoded": [
+                21,
+                4,
+                2,
+                13,
+                25
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                3,
+                8,
+                4,
+                27
+              ],
+              "decoded": [
+                1,
+                7,
+                10,
+                23
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": -1,
+      "clock": "word-constant",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                21,
+                21,
+                21
+              ],
+              "decoded": [
+                8,
+                11,
+                10
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                18,
+                18,
+                18,
+                18
+              ],
+              "decoded": [
+                14,
+                26,
+                28,
+                4
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                3,
+                3
+              ],
+              "decoded": [
+                9,
+                20
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                27,
+                27,
+                27,
+                27,
+                27
+              ],
+              "decoded": [
+                21,
+                19,
+                21,
+                26,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                21,
+                21,
+                21,
+                21
+              ],
+              "decoded": [
+                11,
+                10,
+                14,
+                6
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                25,
+                25,
+                25,
+                25,
+                25,
+                25
+              ],
+              "decoded": [
+                12,
+                0,
+                18,
+                6,
+                21,
+                26
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "decoded": [
+                17,
+                5,
+                8,
+                15,
+                21
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                26,
+                26,
+                26,
+                26
+              ],
+              "decoded": [
+                7,
+                18,
+                17,
+                24
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": -1,
+      "clock": "word-local-cycle",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                21,
+                18,
+                3
+              ],
+              "decoded": [
+                8,
+                14,
+                28
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                18,
+                3,
+                27,
+                21
+              ],
+              "decoded": [
+                14,
+                12,
+                19,
+                1
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                3,
+                27
+              ],
+              "decoded": [
+                9,
+                25
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                27,
+                21,
+                18,
+                3,
+                27
+              ],
+              "decoded": [
+                21,
+                25,
+                1,
+                21,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                21,
+                25,
+                2,
+                26
+              ],
+              "decoded": [
+                11,
+                6,
+                4,
+                1
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                25,
+                2,
+                26,
+                21,
+                25,
+                2
+              ],
+              "decoded": [
+                12,
+                23,
+                17,
+                10,
+                21,
+                20
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                2,
+                26,
+                21,
+                25,
+                2
+              ],
+              "decoded": [
+                17,
+                10,
+                18,
+                21,
+                21
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                26,
+                21,
+                25,
+                2
+              ],
+              "decoded": [
+                7,
+                23,
+                18,
+                19
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "encoding": "H2adjacent",
+      "sign": -1,
+      "clock": "block-continuous-rune",
+      "blocks": [
+        {
+          "name": "q1",
+          "seeds": [
+            8,
+            11,
+            26,
+            2
+          ],
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "length": 3,
+              "class": "first-full-stop complete word",
+              "ciphertext": [
+                0,
+                3,
+                2
+              ],
+              "key": [
+                21,
+                18,
+                3
+              ],
+              "decoded": [
+                8,
+                14,
+                28
+              ]
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "key": [
+                27,
+                21,
+                18,
+                3
+              ],
+              "decoded": [
+                5,
+                23,
+                28,
+                19
+              ]
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "length": 2,
+              "class": "complete word",
+              "ciphertext": [
+                12,
+                23
+              ],
+              "key": [
+                27,
+                21
+              ],
+              "decoded": [
+                14,
+                2
+              ]
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "length": 5,
+              "class": "adjacent 2+3 packet",
+              "ciphertext": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "key": [
+                18,
+                3,
+                27,
+                21,
+                18
+              ],
+              "decoded": [
+                1,
+                14,
+                21,
+                3,
+                22
+              ]
+            }
+          ]
+        },
+        {
+          "name": "q3",
+          "seeds": [
+            8,
+            4,
+            27,
+            3
+          ],
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "key": [
+                21,
+                25,
+                2,
+                26
+              ],
+              "decoded": [
+                11,
+                6,
+                4,
+                1
+              ]
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "length": 6,
+              "class": "complete word",
+              "ciphertext": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "key": [
+                21,
+                25,
+                2,
+                26,
+                21,
+                25
+              ],
+              "decoded": [
+                16,
+                0,
+                12,
+                5,
+                25,
+                26
+              ]
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "length": 5,
+              "class": "complete word",
+              "ciphertext": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "key": [
+                2,
+                26,
+                21,
+                25,
+                2
+              ],
+              "decoded": [
+                17,
+                10,
+                18,
+                21,
+                21
+              ]
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "length": 4,
+              "class": "complete word",
+              "ciphertext": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "key": [
+                26,
+                21,
+                25,
+                2
+              ],
+              "decoded": [
+                7,
+                23,
+                18,
+                19
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
