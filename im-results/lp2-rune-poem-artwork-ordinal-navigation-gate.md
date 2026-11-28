@@ -45,6 +45,27 @@ The prior p14 Rune-Poem report already proposed the visible plant/day-fly pair a
 
 The present p22 result uses the **same ordinal grammar** and lands on the independently productive p28 DH page. This is a stronger held relationship than inventing a new page-number convention after seeing the p28 result.
 
+## P32 oak checksum: AC's two GP numbers exactly equal the page length
+
+The oak identification has a stronger numerical control than the semantic page pointer alone. In canonical GP29, **Ac is GP0 index24 and has prime weight97**. Original p32 contains exactly **121 runes**:
+
+```
+GPprime(Ac) + GP0(Ac)
+= 97 + 24
+= 121
+= original p32 rune count.
+```
+
+Equivalently, the visible oak candidate plus the page length gives `121 - 97 = 24`, recovering Ac's own GP0 value. This is useful because **the same stock tree also appears on p55**, but p55 has 76 runes and does not satisfy the relation.
+
+A complete p0–p55 census was run before using the relation as a selector. For every physical unknown page and every GP rune, test the fixed equality `page_rune_count = GPprime(rune) + GP0(rune)`. There are only **two** hits in all 56 pages: p14=137 matches Ear (28+109), and **p32=121 matches Ac (24+97)**.
+
+P14 is an important negative control: its illustration is a rooted stalk plus mayfly-like insect, not a certified corpse/grave image, so the arithmetic family is not a universal artwork-label law. P32 is the sole arithmetic hit whose matched Rune-Poem name agrees directly with the independently sourced image subject, **oak -> Ac**.
+
+The formula itself was recognized after the page length and artwork were known. It is therefore **post-discovery structural evidence**, not a calibrated probability or authenticated cipher instruction. Its value is that it resolves one repeated-art ambiguity without fitting plaintext: under this exact two-number checksum, p32 is selected and p55 is rejected.
+
+Reproducer: `sims/lp2_rune_poem_art_ordinal_navigation_sft.cjs`.
+
 ## Authenticated-2016 carrier route: oak -> p24 -> day-fly -> p23
 
 The 2016 signed carrier is unusually relevant because the **authenticated text and the oak image occur in the same object**. The preserved contemporary community walkthrough identifies the faint image as an oak via the exact ClipartBest stock URL; later original-pixel work verifies that the horizontally reflected stock drawing is the same source family used in the signed carrier and LP2 p32/p55. The signed text says:
@@ -90,7 +111,7 @@ The strongest rival is thematic over-reading: GP29 already derives from the Angl
 
 The p22 route is useful because it makes a **pre-existing independent prediction**: EAR's ordinal selects p28, already selected from p57 and already carrying the DH23 construction. It does not recover unknown plaintext, and it does not authenticate the 2016 "meaning/number/direction" wording as a literal instruction to use artwork.
 
-**Research consequence:** promote **p22 corpse + EA-EA -> EAR(29) -> 29th LP2 page p28** as a candidate human-solve navigation edge worthy of blind validation. Keep the DH state serialization and all failed p6/p7/p8 consumers unchanged. Do not run new cipher families from this edge unless an additional first-party clue specifies the receiver and operation.
+**Research consequence:** promote **p22 corpse + EA-EA -> EAR(29) -> 29th LP2 page p28** as a candidate human-solve navigation edge worthy of blind validation, and retain **p32 oak -> Ac with 97+24=121** as a separate numeric cross-check that selects p32 over the repeated p55 tree. Keep the DH state serialization and all failed p6/p7/p8 consumers unchanged. Do not run new cipher families from this edge unless an additional first-party clue specifies the receiver and operation.
 
 ## Reproducible source chain
 
