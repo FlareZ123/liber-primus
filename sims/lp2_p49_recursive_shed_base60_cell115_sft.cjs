@@ -80,6 +80,17 @@ const p49Cell=firstPairNumber%256;
 assert.equal(firstPairNumber,483);
 assert.equal(p49Cell,227);
 assert.equal(tokens[p49Cell],"49");
+const h47PairNumbers=Array.from({length:3},(_,i)=>h47[2*i]*29+h47[2*i+1]);
+const h47PairCells=h47PairNumbers.map((n)=>n%256);
+const h47PairTokens=h47PairCells.map((cell)=>tokens[cell]);
+assert.deepEqual(h47PairNumbers,[483,356,370]);
+assert.deepEqual(h47PairCells,[227,100,114]);
+assert.deepEqual(h47PairTokens,["49","1N","3H"]);
+const legalPageToken=(token)=>/^(?:[0-4][0-9]|5[0-7])$/.test(token);
+assert.deepEqual(
+  h47PairTokens.map((token,i)=>legalPageToken(token)?{pair:i,token}:null).filter(Boolean),
+  [{pair:0,token:"49"}]
+);
 
 const p49=signature(byPage.get(49));
 const p55=signature(byPage.get(55));
@@ -125,13 +136,44 @@ assert.deepEqual(
 );
 assert.deepEqual(pageRows.filter((r)=>r.terminal===115).map((r)=>r.page),[49]);
 
+const stateDepths={K:2,e:3,q:4,g:5,a:6,A:8,b:15,B:19,p:23};
+const p57Words=byPage.get(57).map((w,index)=>({
+  index,
+  prime:w.reduce((sum,value)=>sum+corpus.prime[value],0),
+  text:w.map((value)=>corpus.translit[value]).join(""),
+})).filter((w)=>w.prime<=255);
+function depthCharge(start){
+  return Object.entries(stateDepths).map(([field,depth])=>{
+    const terminal=walk(start,depth).at(-1);
+    return {
+      field,depth,terminal,
+      p57:p57Words.filter((w)=>w.prime===terminal).map((w)=>w.text),
+    };
+  });
+}
+const p49DepthCharge=depthCharge(grid.bytes[p49.sum]);
+const p55DepthCharge=depthCharge(grid.bytes[p55.sum]);
+assert.deepEqual(
+  p49DepthCharge.filter((r)=>r.p57.length),
+  [{field:"K",depth:2,terminal:115,p57:["WITHIN"]}]
+);
+assert.deepEqual(
+  p55DepthCharge.filter((r)=>r.p57.length),
+  [
+    {field:"A",depth:8,terminal:115,p57:["WITHIN"]},
+    {field:"B",depth:19,terminal:115,p57:["WITHIN"]},
+  ]
+);
+
 const output={
   classification:"source-constrained p47/p49/cell115 navigation closure; no plaintext",
-  p47:{wordOneBased:47,h6:h47,firstPairNumber,p49Cell,p49Token:tokens[p49Cell]},
+  p47:{wordOneBased:47,h6:h47,pairNumbers:h47PairNumbers,pairCells:h47PairCells,pairTokens:h47PairTokens,firstPairNumber,p49Cell,p49Token:tokens[p49Cell]},
   p49:{...p49,base60Byte:grid.bytes[p49.sum],routeK2:walk(grid.bytes[p49.sum],state.K),terminalToken:tokens[115]},
   p55Control:{...p55,base60Byte:grid.bytes[p55.sum],routeK2:walk(grid.bytes[p55.sum],state.K)},
   controls:{
     fiveCorePages:pageRows.filter((r)=>r.coreCount===state.g).map((r)=>r.page),
+    p49DepthCharge,
+    p55DepthCharge,
     allPagesLanding115:pageRows.filter((r)=>r.terminal===115).map((r)=>r.page),
   },
   decision:"Under canonical base60 and the established K=2 byte-pointer walk, p49 uniquely returns to cell115/literal47. The older base59 DIRECTION reading remains conditional and is no longer required.",

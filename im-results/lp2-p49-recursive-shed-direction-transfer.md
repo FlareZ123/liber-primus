@@ -50,6 +50,34 @@ p49 recursive SHED -> 76 -> base60 byte114
 
 This is stronger than choosing base59 because it uses the independently selected leading radix, the independently reconstructed K, the pre-existing byte-pointer operation, and a receiver cell already selected by two other routes.
 
+### Fixed H6-pair and state-depth controls
+
+The upstream p47 word47 H6 packet has three adjacent pairs. Under the same BASE29 -> `mod256` address rule they land on:
+
+| H6 pair | integer | cell | literal token |
+|---|---:|---:|---|
+| `[16,19]` | 483 | 227 | **`49`** |
+| `[12,8]` | 356 | 100 | `1N` |
+| `[12,22]` | 370 | 114 | `3H` |
+
+Only the first pair yields a literal decimal token that is a legal physical LP2 page number. Thus p49 is selected by the canonical pair order without choosing among several page-valued outputs after inspection.
+
+The p49 post-SHED byte114 also has a finite depth control. Grant every reconstructed state value independently as the byte-pointer depth:
+
+```
+{K,e,q,g,a,A,b,B,p} = {2,3,4,5,6,8,15,19,23}.
+```
+
+Compare the terminal byte with every solved p57 word whose GP-prime sum fits one byte. For p49 there is exactly one hit:
+
+```
+depth K=2 -> 115 = GP-prime(WITHIN).
+```
+
+All other p49 state depths land on `247,192,0,203,199,192,199,197`, none a byte-sized p57 word sum.
+
+The matched five-core p55 control is less selective: from its base60 byte133, depths `A=8` and `B=19` both reach115 because they enter the main cycle at different phases; its K=2 depth lands at46. This is why the supported claim is the **upstream-selected p49 + upstream-selected K** closure, not a generic theorem that every five-core page chooses WITHIN uniquely.
+
 ### Whole-page control
 
 Charge the unchanged recursive-SHED page object on every physical p0-p55 page using canonical complete words. For each page whose center sum is a legal p50 address, read the base60 byte and advance exactly K=2 pointers.
