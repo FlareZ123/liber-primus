@@ -142,6 +142,72 @@ assert.equal(comparison.filter(x=>x.p05).length,1);
 assert.equal(comparison.filter(x=>x.p0ToP40).length,1);
 assert.deepEqual(comparison.filter(x=>x.p05).map(x=>[x.input,x.output]),
  [['rune_sum','rune_product']]);
+
+// Cross-corpus scope control: the original book also has TWO independently
+// solved red-heading pages p56/p57. Do not omit them merely to force a
+// favorable uniqueness result. Apply the ALREADY FROZEN first-black-word
+// sum->product rule to both, without changing the nine unknown headings.
+// Solved-page GP indices are in the same canonical corpus, not guessed.
+const solvedHeadingResults=[];
+for(const page of [56,57]){
+ const source=gp.pages[page].indices;
+ const inkPage=ink.pages.find(x=>x.page===page);
+ assert.equal(inkPage.red_spans[0].start,0);
+ let end=inkPage.red_spans[0].length;
+ for(let j=1;j<inkPage.red_spans.length&&inkPage.red_spans[j].start===end;j++)
+   end+=inkPage.red_spans[j].length;
+ const str=trans[page-1],words=[];let cur=[],offset=0;
+ for(const glyph of str){
+   if(rid.has(glyph)){
+     assert.equal(source[offset],rid.get(glyph),'solved '+page+' transcript');
+     cur.push(offset++);
+   }else if('-.&$§'.includes(glyph)&&cur.length){
+     words.push(cur);cur=[];
+   }
+ }
+ if(cur.length)words.push(cur);
+ assert.equal(offset,source.length);
+ const firstBlack=words.find(w=>w[0]===end);
+ assert.ok(firstBlack);
+ const nums=firstBlack.map(i=>source[i]);
+ solvedHeadingResults.push({
+   page,runes:nums,
+   length:nums.length,
+   sum:operationVocabulary.rune_sum(nums),
+   product:operationVocabulary.rune_product(nums)
+ });
+}
+assert.deepEqual(solvedHeadingResults.map(p=>[p.page,p.length,p.sum,p.product]),
+ [[56,5,18,16],[57,4,24,20]]);
+const augmentedIn=[
+ ...records.map(r=>r.sum),...solvedHeadingResults.map(r=>r.sum)];
+const augmentedOut=[
+ ...records.map(r=>r.product),...solvedHeadingResults.map(r=>r.product)];
+const augmentedGraph=augmentedOut.map(v=>augmentedIn.flatMap((x,j)=>x===v?[j]:[]));
+assert.equal(augmentedGraph.length,11);
+for(let i=0;i<chapters.length;i++)
+ assert.deepEqual(augmentedGraph[i],graph[i]);
+assert.deepEqual(augmentedGraph.slice(9),[[],[]]);
+// Eleven-page operator-vocabulary control: for each ordered pair of the
+// exact same 9 operations, check ALL possible original p0 paths with two
+// newly admitted solved headings. The original p0->p40 path stays unique.
+let augmentedP0FiveCount=0;
+for(const input of operators)for(const output of operators){
+ if(input===output)continue;
+ const allValues=[...records.map(r=>r.runes),...solvedHeadingResults.map(r=>r.runes)];
+ const lhs=allValues.map(operationVocabulary[input]);
+ const rhs=allValues.map(operationVocabulary[output]);
+ const e=rhs.map(v=>lhs.flatMap((x,j)=>x===v?[j]:[]));
+ let hasFive=false;
+ const walk=(node,seen,len)=>{
+   if(len>=5){hasFive=true;return;}
+   for(const next of e[node])if(!(seen&(1<<next)))
+     walk(next,seen|(1<<next),len+1);
+ };
+ walk(0,1,1);
+ if(hasFive)augmentedP0FiveCount++;
+}
+assert.equal(augmentedP0FiveCount,1);
 // Exact conditional null: fix all nine original sums and the multiset of
 // all nine original products, permute products among the nine page labels.
 // This preserves *every* observed marginal value, including duplicate 3.
@@ -193,6 +259,12 @@ console.log(JSON.stringify({
  chapter_pages:chapters,chapter_records:records,
  main_original_path:mainPath,edges:graph.map((ar,i)=>({
    page:chapters[i],to:ar.map(j=>chapters[j])})),
+ solved_page_holdout:{
+   excluded_from_nine_unknown_chapter_nulls:[56,57],
+   source_first_black_words:solvedHeadingResults,
+   retained_original_chapter_edges:true,
+   eleven_heading_operator_pairs_with_p0_at_least_five:augmentedP0FiveCount
+ },
  nine_operation_grammar_census:{
    candidate_operations:operators,ordered_distinct_pairs:comparison.length,
    any_five_chapter_chain:comparison.filter(x=>x.any5),
