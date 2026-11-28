@@ -201,6 +201,8 @@ So the later full-heading crib contains the recovered 2016 first-word trial verb
 
 This does not prove a direct document lineage between onecool's workbook and every later publication of the full crib. It does establish that the later fit is **not independent cryptographic confirmation** of DIVINITY at p0 word1. The candidate is also semantically available from already-solved Cicada material: the Parable ends with “find the divinity within and emerge.” Later arithmetic patterns computed from this fitted 13-rune key must therefore be judged as crib-conditioned evidence unless they predict untouched ciphertext.
 
+A source-motivated length check narrows, but does not uniquely select, that guess. Using the repository-validated greedy GP multigraph encoding (`ING, EA, IA, IO, AE, OE, NG, EO, TH`) across the complete solved Cicada plaintext corpus, exactly **two** adjacent word pairs have the p0 red heading's `8+5` rune lengths: **BEHAVIORS WHICH** and **DIVINITY WITHIN**. The latter is therefore a compact historically plausible candidate from known plaintext plus visible word lengths, but the length cue alone leaves a two-way ambiguity and supplies no cipher operation.
+
 ## Archive acquisition surfaces
 
 ### Google Drive
