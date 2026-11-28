@@ -1,0 +1,1056 @@
+{
+  "definition": "Fixed big-endian GP29 ordinal, clause boundaries at original ⁘/⁜ and chapter endpoints, zero fixed, valuation-preserving unit reciprocal modulo 29^(n-v); printed spaces carried through unchanged only as a display hypothesis",
+  "historicalVectors": 3,
+  "exhaustiveWidths": [
+    1,
+    2,
+    3
+  ],
+  "exhaustiveCases": 25259,
+  "realP57": 95,
+  "realP56": 85,
+  "p56Consuming": 84,
+  "trainingFrames": 95,
+  "controls": [
+    {
+      "name": "0_warning",
+      "plain": {
+        "frames": 10,
+        "runes": 184,
+        "nonunits": 0,
+        "leadingZeros": 2,
+        "score": {
+          "mean": -1.7328279013640087,
+          "trigrams": 164
+        },
+        "lengths": [
+          6,
+          22,
+          25,
+          15,
+          12,
+          17,
+          23,
+          25,
+          25,
+          14
+        ]
+      },
+      "encrypted": {
+        "frames": 10,
+        "runes": 184,
+        "nonunits": 0,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -3.676342213321098,
+          "trigrams": 164
+        },
+        "lengths": [
+          6,
+          22,
+          25,
+          15,
+          12,
+          17,
+          23,
+          25,
+          25,
+          14
+        ]
+      },
+      "recovered": {
+        "frames": 10,
+        "runes": 184,
+        "nonunits": 0,
+        "leadingZeros": 2,
+        "score": {
+          "mean": -1.7328279013640087,
+          "trigrams": 164
+        },
+        "lengths": [
+          6,
+          22,
+          25,
+          15,
+          12,
+          17,
+          23,
+          25,
+          25,
+          14
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "0_welcome",
+      "plain": {
+        "frames": 15,
+        "runes": 515,
+        "nonunits": 4,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -1.700412982195853,
+          "trigrams": 485
+        },
+        "lengths": [
+          7,
+          48,
+          61,
+          99,
+          36,
+          56,
+          39,
+          48,
+          6,
+          22,
+          22,
+          21,
+          20,
+          12,
+          18
+        ]
+      },
+      "encrypted": {
+        "frames": 15,
+        "runes": 515,
+        "nonunits": 4,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -3.576758054392877,
+          "trigrams": 485
+        },
+        "lengths": [
+          7,
+          48,
+          61,
+          99,
+          36,
+          56,
+          39,
+          48,
+          6,
+          22,
+          22,
+          21,
+          20,
+          12,
+          18
+        ]
+      },
+      "recovered": {
+        "frames": 15,
+        "runes": 515,
+        "nonunits": 4,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -1.700412982195853,
+          "trigrams": 485
+        },
+        "lengths": [
+          7,
+          48,
+          61,
+          99,
+          36,
+          56,
+          39,
+          48,
+          6,
+          22,
+          22,
+          21,
+          20,
+          12,
+          18
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "0_wisdom",
+      "plain": {
+        "frames": 10,
+        "runes": 157,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -1.7876590427526693,
+          "trigrams": 137
+        },
+        "lengths": [
+          10,
+          17,
+          24,
+          23,
+          7,
+          7,
+          23,
+          17,
+          24,
+          5
+        ]
+      },
+      "encrypted": {
+        "frames": 10,
+        "runes": 157,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.6831078893903686,
+          "trigrams": 137
+        },
+        "lengths": [
+          10,
+          17,
+          24,
+          23,
+          7,
+          7,
+          23,
+          17,
+          24,
+          5
+        ]
+      },
+      "recovered": {
+        "frames": 10,
+        "runes": 157,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -1.7876590427526693,
+          "trigrams": 137
+        },
+        "lengths": [
+          10,
+          17,
+          24,
+          23,
+          7,
+          7,
+          23,
+          17,
+          24,
+          5
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "0_koan_1",
+      "plain": {
+        "frames": 22,
+        "runes": 780,
+        "nonunits": 1,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -1.4682144876539753,
+          "trigrams": 736
+        },
+        "lengths": [
+          5,
+          33,
+          24,
+          42,
+          28,
+          43,
+          41,
+          44,
+          42,
+          29,
+          27,
+          29,
+          32,
+          47,
+          77,
+          33,
+          29,
+          22,
+          59,
+          56,
+          12,
+          26
+        ]
+      },
+      "encrypted": {
+        "frames": 22,
+        "runes": 780,
+        "nonunits": 1,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.702595016238793,
+          "trigrams": 736
+        },
+        "lengths": [
+          5,
+          33,
+          24,
+          42,
+          28,
+          43,
+          41,
+          44,
+          42,
+          29,
+          27,
+          29,
+          32,
+          47,
+          77,
+          33,
+          29,
+          22,
+          59,
+          56,
+          12,
+          26
+        ]
+      },
+      "recovered": {
+        "frames": 22,
+        "runes": 780,
+        "nonunits": 1,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -1.4682144876539753,
+          "trigrams": 736
+        },
+        "lengths": [
+          5,
+          33,
+          24,
+          42,
+          28,
+          43,
+          41,
+          44,
+          42,
+          29,
+          27,
+          29,
+          32,
+          47,
+          77,
+          33,
+          29,
+          22,
+          59,
+          56,
+          12,
+          26
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "plain": {
+        "frames": 25,
+        "runes": 755,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -1.6329631009834917,
+          "trigrams": 705
+        },
+        "lengths": [
+          16,
+          62,
+          10,
+          65,
+          34,
+          73,
+          24,
+          11,
+          37,
+          47,
+          15,
+          25,
+          9,
+          38,
+          37,
+          24,
+          12,
+          91,
+          10,
+          13,
+          31,
+          31,
+          12,
+          15,
+          13
+        ]
+      },
+      "encrypted": {
+        "frames": 25,
+        "runes": 755,
+        "nonunits": 0,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -3.6694070565878456,
+          "trigrams": 705
+        },
+        "lengths": [
+          16,
+          62,
+          10,
+          65,
+          34,
+          73,
+          24,
+          11,
+          37,
+          47,
+          15,
+          25,
+          9,
+          38,
+          37,
+          24,
+          12,
+          91,
+          10,
+          13,
+          31,
+          31,
+          12,
+          15,
+          13
+        ]
+      },
+      "recovered": {
+        "frames": 25,
+        "runes": 755,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -1.6329631009834917,
+          "trigrams": 705
+        },
+        "lengths": [
+          16,
+          62,
+          10,
+          65,
+          34,
+          73,
+          24,
+          11,
+          37,
+          47,
+          15,
+          25,
+          9,
+          38,
+          37,
+          24,
+          12,
+          91,
+          10,
+          13,
+          31,
+          31,
+          12,
+          15,
+          13
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "jpg107-167",
+      "plain": {
+        "frames": 7,
+        "runes": 319,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -1.5617592935884508,
+          "trigrams": 305
+        },
+        "lengths": [
+          5,
+          31,
+          35,
+          74,
+          69,
+          77,
+          28
+        ]
+      },
+      "encrypted": {
+        "frames": 7,
+        "runes": 319,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.600445227182053,
+          "trigrams": 305
+        },
+        "lengths": [
+          5,
+          31,
+          35,
+          74,
+          69,
+          77,
+          28
+        ]
+      },
+      "recovered": {
+        "frames": 7,
+        "runes": 319,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -1.5617592935884508,
+          "trigrams": 305
+        },
+        "lengths": [
+          5,
+          31,
+          35,
+          74,
+          69,
+          77,
+          28
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "jpg229",
+      "plain": {
+        "frames": 6,
+        "runes": 89,
+        "nonunits": 1,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -1.4766245730984147,
+          "trigrams": 77
+        },
+        "lengths": [
+          12,
+          13,
+          26,
+          14,
+          17,
+          7
+        ]
+      },
+      "encrypted": {
+        "frames": 6,
+        "runes": 89,
+        "nonunits": 1,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.483498320503651,
+          "trigrams": 77
+        },
+        "lengths": [
+          12,
+          13,
+          26,
+          14,
+          17,
+          7
+        ]
+      },
+      "recovered": {
+        "frames": 6,
+        "runes": 89,
+        "nonunits": 1,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -1.4766245730984147,
+          "trigrams": 77
+        },
+        "lengths": [
+          12,
+          13,
+          26,
+          14,
+          17,
+          7
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "p56_an_end",
+      "plain": {
+        "frames": 3,
+        "runes": 85,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -2.6073610705913057,
+          "trigrams": 79
+        },
+        "lengths": [
+          5,
+          40,
+          40
+        ]
+      },
+      "encrypted": {
+        "frames": 3,
+        "runes": 85,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.686097270687841,
+          "trigrams": 79
+        },
+        "lengths": [
+          5,
+          40,
+          40
+        ]
+      },
+      "recovered": {
+        "frames": 3,
+        "runes": 85,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -2.6073610705913057,
+          "trigrams": 79
+        },
+        "lengths": [
+          5,
+          40,
+          40
+        ]
+      },
+      "exact": true
+    },
+    {
+      "name": "p57_parable",
+      "plain": {
+        "frames": 4,
+        "runes": 95,
+        "nonunits": 0,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -2.5244194590689504,
+          "trigrams": 87
+        },
+        "lengths": [
+          7,
+          30,
+          30,
+          28
+        ]
+      },
+      "encrypted": {
+        "frames": 4,
+        "runes": 95,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.534131749768826,
+          "trigrams": 87
+        },
+        "lengths": [
+          7,
+          30,
+          30,
+          28
+        ]
+      },
+      "recovered": {
+        "frames": 4,
+        "runes": 95,
+        "nonunits": 0,
+        "leadingZeros": 1,
+        "score": {
+          "mean": -2.5244194590689504,
+          "trigrams": 87
+        },
+        "lengths": [
+          7,
+          30,
+          30,
+          28
+        ]
+      },
+      "exact": true
+    }
+  ],
+  "results": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "start": 0,
+      "end": 729,
+      "cuts": [
+        0,
+        13,
+        154,
+        275,
+        297,
+        350,
+        394,
+        434,
+        531,
+        729
+      ],
+      "input": {
+        "frames": 9,
+        "runes": 729,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.6545090455155225,
+          "trigrams": 711
+        },
+        "lengths": [
+          13,
+          141,
+          121,
+          22,
+          53,
+          44,
+          40,
+          97,
+          198
+        ]
+      },
+      "output": {
+        "frames": 9,
+        "runes": 729,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.6617882662440593,
+          "trigrams": 711
+        },
+        "lengths": [
+          13,
+          141,
+          121,
+          22,
+          53,
+          44,
+          40,
+          97,
+          198
+        ]
+      },
+      "frames": [
+        {
+          "start": 0,
+          "end": 13,
+          "cipherDigits": "F8I36JR0FQIL5",
+          "plainDigits": "GEI0LSC295ML6",
+          "plainRunes": "ᛏᛉᛖᚠᛝᛠᛇᚦᚾᚳᛟᛝᚷ",
+          "latin": "TXEFNGEAEOTHNCOENGG"
+        },
+        {
+          "start": 13,
+          "end": 154,
+          "cipherDigits": "2B6P0BM3929I7HOFMCAL19P6A28H9RDH9CB2OLQEHNDIR0E60FDG0D1LQLERQ8H163DLP2AP8E2D6Q0L5B2OJALARQ8CG8PREQI1L509C2BA22DQLSQ9IQNEL7H5ENH0JG9ISB9K6HE62",
+          "plainDigits": "GJCB0NC8P27EFCR6NCE8QP3BRBA219QM8MD4630Q1SGFN17RL8BBM7RHM8IOSAF7JBKQGN6KP4ROQSH7P9RL2B3RJICG91A250J1JQK53MQLO0332J6P3JEHK9761B6PMG4FJRPS1P0RF",
+          "plainRunes": "ᛏᛗᛇᛄᚠᛞᛇᚻᚫᚦᚹᛉᛋᛇᛡᚷᛞᛇᛉᚻᚣᚫᚩᛄᛡᛄᛁᚦᚢᚾᚣᛟᚻᛟᛈᚱᚷᚩᚠᚣᚢᛠᛏᛋᛞᚢᚹᛡᛝᚻᛄᛄᛟᚹᛡᛒᛟᚻᛖᚪᛠᛁᛋᚹᛗᛄᛚᚣᛏᛞᚷᛚᚫᚱᛡᚪᚣᛠᛒᚹᚫᚾᛡᛝᚦᛄᚩᛡᛗᛖᛇᛏᚾᚢᛁᚦᚳᚠᛗᚢᛗᚣᛚᚳᚩᛟᚣᛝᚪᚠᚩᚩᚦᛗᚷᚫᚩᛗᛉᛒᛚᚾᚹᚷᚢᛄᚷᚫᛟᛏᚱᛋᛗᛡᚫᛠᚢᚫᚠᛡᛋ",
+          "latin": "TMEOJFDEOHAETHWXSEOIAGDEOXHYAEOJIAJITHUNYOEHOEPRGOFYUEATSDUWIANGHJJOEWIABOEHEAEAISWMJLYTDGLAERIAAYEABWAENIANGTHJOIAMEEOTNUITHCFMUMYLCOOEYNGAFOOTHMGAEOMXBLNWGUJGAEOETRSMIAAEEAUAEFIAS"
+        },
+        {
+          "start": 154,
+          "end": 275,
+          "cipherDigits": "QANOL6JB43KCQGDA2NBM8KS0EPD6E0K7CGP069JCK9LJ04ROFSJLEECNHMNJ3SC8NL6MLK149GPFQ184G85FMGML14F03I7SMK0PJ4LNOJ47OAJF9FM417FKR",
+          "plainDigits": "R97JB9MFAJ5K64DHB9JS396I3G36G387RSS0H8O34AEO3LP82NK9LHKO5C5EDBFD0HII657DIGC5QA18SH2SKNN06M4D1ISMMGO0ME5KO21RHNRIN05DQB2GE",
+          "plainRunes": "ᛡᚾᚹᛗᛄᚾᛟᛋᛁᛗᚳᛚᚷᚱᛈᛒᛄᚾᛗᛠᚩᚾᚷᛖᚩᛏᚩᚷᛏᚩᚻᚹᛡᛠᛠᚠᛒᚻᚪᚩᚱᛁᛉᚪᚩᛝᚫᚻᚦᛞᛚᚾᛝᛒᛚᚪᚳᛇᚳᛉᛈᛄᛋᛈᚠᛒᛖᛖᚷᚳᚹᛈᛖᛏᛇᚳᚣᛁᚢᚻᛠᛒᚦᛠᛚᛞᛞᚠᚷᛟᚱᛈᚢᛖᛠᛟᛟᛏᚪᚠᛟᛉᚳᛚᚪᚦᚢᛡᛒᛞᛡᛖᛞᚠᚳᛈᚣᛄᚦᛏᛉ",
+          "latin": "IANWMJNOESIMCLGRPBJNMEAONGEOTOGTOHWIAEAEAFBHAORIXAONGAEHTHDLNNGBLACEOCXPJSPFBEEGCWPETEOCYIUHEABTHEALDDFGOERPUEEAOEOETAFOEXCLATHUIABDIAEDFCPYJTHTX"
+        },
+        {
+          "start": 275,
+          "end": 297,
+          "cipherDigits": "MOPLFNDG542R4H3N20QEAG",
+          "plainDigits": "ARFNN9PK2IIRLSS67JP0EK",
+          "plainRunes": "ᛁᛡᛋᛞᛞᚾᚫᛚᚦᛖᛖᛡᛝᛠᛠᚷᚹᛗᚫᚠᛉᛚ",
+          "latin": "IIASDDNAELTHEEIANGEAEAGWMAEFXL"
+        },
+        {
+          "start": 297,
+          "end": 350,
+          "cipherDigits": "MA0K30S43MJ8J6D8P8938QMFK96PQM5HKBLKMPBS7S23HMQ505BKP",
+          "plainDigits": "38J2HP484FJG6QQAPB30NSKQN5NA80SSEGGOPLK7O05M4KP2O6CM7",
+          "plainRunes": "ᚩᚻᛗᚦᛒᚫᚱᚻᚱᛋᛗᛏᚷᚣᚣᛁᚫᛄᚩᚠᛞᛠᛚᚣᛞᚳᛞᛁᚻᚠᛠᛠᛉᛏᛏᚪᚫᛝᛚᚹᚪᚠᚳᛟᚱᛚᚫᚦᚪᚷᛇᛟᚹ",
+          "latin": "OHMTHBAERHRSMTGYYIAEJOFDEALYDCDIHFEAEAXTTAAENGLWAFCOERLAETHAGEOOEW"
+        },
+        {
+          "start": 350,
+          "end": 394,
+          "cipherDigits": "92D1EME6D0FCPMLDC3IO6PRL23DOM24LP5FHCQ8GEIK4",
+          "plainDigits": "A29SK7PD7L5NGJP1H6BQRG5E737MC1S28M239F0KFFRM",
+          "plainRunes": "ᛁᚦᚾᛠᛚᚹᚫᛈᚹᛝᚳᛞᛏᛗᚫᚢᛒᚷᛄᚣᛡᛏᚳᛉᚹᚩᚹᛟᛇᚢᛠᚦᚻᛟᚦᚩᚾᛋᚠᛚᛋᛋᛡᛟ",
+          "latin": "ITHNEALWAEPWNGCDTMAEUBGJYIATCXWOWOEEOUEATHHOETHONSFLSSIAOE"
+        },
+        {
+          "start": 394,
+          "end": 434,
+          "cipherDigits": "67QB0A9R5QSAR32I5P5ERS3K504NLI1N5KSFE56R",
+          "plainDigits": "GK25RB4GNB7QJQ1L9G3C4J6E6JD9P9985R96PP5E",
+          "plainRunes": "ᛏᛚᚦᚳᛡᛄᚱᛏᛞᛄᚹᚣᛗᚣᚢᛝᚾᛏᚩᛇᚱᛗᚷᛉᚷᛗᛈᚾᚫᚾᚾᚻᚳᛡᚾᚷᚫᚫᚳᛉ",
+          "latin": "TLTHCIAJRTDJWYMYUNGNTOEORMGXGMPNAENNHCIANGAEAECX"
+        },
+        {
+          "start": 434,
+          "end": 531,
+          "cipherDigits": "7F20NLARJOP67F9N5D2EDSS71S707BQEN7565MNEM4R69DOQD5Q80IBS9MP1O84IS20BOKEFGJ0K0G6A21K6ESGFKBDKEAMJ1",
+          "plainDigits": "4RPB89H3HDRFGH55GL348K7D4ANRPDN61BNG27HBC825RB96LFP82S2CJDD5N481QHMS08RIPIKGCQ47QB2ML9AE6947BAJA1",
+          "plainRunes": "ᚱᛡᚫᛄᚻᚾᛒᚩᛒᛈᛡᛋᛏᛒᚳᚳᛏᛝᚩᚱᚻᛚᚹᛈᚱᛁᛞᛡᚫᛈᛞᚷᚢᛄᛞᛏᚦᚹᛒᛄᛇᚻᚦᚳᛡᛄᚾᚷᛝᛋᚫᚻᚦᛠᚦᛇᛗᛈᛈᚳᛞᚱᚻᚢᚣᛒᛟᛠᚠᚻᛡᛖᚫᛖᛚᛏᛇᚣᚱᚹᚣᛄᚦᛟᛝᚾᛁᛉᚷᚾᚱᚹᛄᛁᛗᛁᚢ",
+          "latin": "RIAAEJHNBOBPIASTBCCTNGORHLWPRIDIAAEPDGUJDTTHWBJEOHTHCIAJNGNGSAEHTHEATHEOMPPCDRHUYBOEEAFHIAEAEELTEOYRWYJTHOENGNIXGNRWJIMIU"
+        },
+        {
+          "start": 531,
+          "end": 729,
+          "cipherDigits": "8GHCKN8HJS4H98HI6CNK7CRD38IS7A4A8128Q9EH6BD1LS09AINRL4NHBRMJA0GBNA24KFIC36HGN2O95QRF2NL0KI685I3AG9EDG084NI0GP78H50DOK1S9KBB5K7SN1NCSEN78S2RP5KG7IA5DMN598O4A62SIG6283R7PBILSN3POKHB51EGOHBD0S8N9R1DF17",
+          "plainDigits": "KE4H7SLPB2P7RRSC9CLGCDDB5N1G9DDJ8GSQ923JBPNSPII8IERNI6J9DCLR0HN07LD6KPA5290FA8IGL92OMG3K3O09RICD8AMNQ1IR3HHBJQBDG3J2IQKGIEI70KF278NK6EFLJHBN0PP0CINNBIRKL33KNDPPKPPHIIJEBB5R39DA4NNKOI1LGII28R30HGC78P",
+          "plainRunes": "ᛚᛉᚱᛒᚹᛠᛝᚫᛄᚦᚫᚹᛡᛡᛠᛇᚾᛇᛝᛏᛇᛈᛈᛄᚳᛞᚢᛏᚾᛈᛈᛗᚻᛏᛠᚣᚾᚦᚩᛗᛄᚫᛞᛠᚫᛖᛖᚻᛖᛉᛡᛞᛖᚷᛗᚾᛈᛇᛝᛡᚠᛒᛞᚠᚹᛝᛈᚷᛚᚫᛁᚳᚦᚾᚠᛋᛁᚻᛖᛏᛝᚾᚦᚪᛟᛏᚩᛚᚩᚪᚠᚾᛡᛖᛇᛈᚻᛁᛟᛞᚣᚢᛖᛡᚩᛒᛒᛄᛗᚣᛄᛈᛏᚩᛗᚦᛖᚣᛚᛏᛖᛉᛖᚹᚠᛚᛋᚦᚹᚻᛞᛚᚷᛉᛋᛝᛗᛒᛄᛞᚠᚫᚫᚠᛇᛖᛞᛞᛄᛖᛡᛚᛝᚩᚩᛚᛞᛈᚫᚫᛚᚫᚫᛒᛖᛖᛗᛉᛄᛄᚳᛡᚩᚾᛈᛁᚱᛞᛞᛚᚪᛖᚢᛝᛏᛖᛖᚦᚻᛡᚩᚠᛒᛏᛇᚹᚻᚫ",
+          "latin": "LXRBWEANGAEJTHAEWIAIAEAEONEONGTEOPPJCDUTNPPMHTEAYNTHOMJAEDEAAEEEHEXIADEGMNPEONGIAFBDFWNGPGLAEICTHNFSIHETNGNTHAOETOLOAFNIAEEOPHIOEDYUEIAOBBJMYJPTOMTHEYLTEXEWFLSTHWHDLGXSNGMBJDFAEAEFEOEDDJEIALNGOOLDPAEAELAEAEBEEMXJJCIAONPIRDDLAEUNGTEETHHIAOFBTEOWHAE"
+        }
+      ],
+      "candidate": "ᛏᛉᛖᚠᛝᛠᛇᚦ-ᚾᚳᛟᛝᚷ.ᛏᛗᛇᛄ-ᚠᛞᛇ-/\nᚻᚫᚦ-ᚹᛉᛋᛇᛡᚷᛞᛇᛉᚻᚣ-ᚫᚩᛄᛡᛄ-ᛁᚦᚢᚾ-/\nᚣᛟᚻ-ᛟᛈᚱ-ᚷᚩᚠᚣ-ᚢᛠᛏ-ᛋᛞᚢᚹᛡᛝ-/\nᚻᛄᛄᛟᚹᛡᛒᛟᚻᛖᚪ-ᛠᛁ-ᛋᚹ-ᛗᛄᛚ-ᚣᛏᛞ-ᚷ/\nᛚᚫᚱᛡᚪᚣ-ᛠᛒᚹᚫᚾ-ᛡᛝᚦᛄᚩᛡᛗᛖ-ᛇᛏ-ᚾᚢᛁ/\nᚦ-ᚳᚠ-ᛗᚢᛗ-ᚣᛚᚳ-ᚩᛟᚣᛝᚪ-ᚠᚩ-ᚩᚦᛗ-ᚷᚫ/\nᚩᛗ-ᛉᛒᛚᚾ-ᚹᚷᚢᛄᚷᚫ-ᛟᛏᚱᛋ-ᛗᛡᚫᛠᚢ/\nᚫ-ᚠᛡᛋ.ᛡᚾᚹᛗ-ᛄᚾᛟᛋᛁᛗᚳᛚ-ᚷᚱᛈᛒᛄᚾᛗ-/\nᛠᚩᚾ-ᚷ-ᛖᚩᛏᚩᚷᛏ-ᚩᚻᚹᛡᛠᛠ-ᚠᛒᚻ-ᚪᚩᚱᛁ-/\nᛉᚪᚩᛝᚫ-ᚻᚦ-ᛞᛚᚾᛝᛒᛚᚪᚳ-ᛇᚳᛉᛈ-ᛄ/\nᛋᛈ-ᚠᛒᛖ-ᛖᚷᚳᚹᛈᛖᛏ-ᛇᚳᚣᛁᚢᚻᛠ-ᛒᚦ-ᛠᛚ/\nᛞᛞᚠᚷᛟ-ᚱ-ᛈᚢᛖᛠᛟᛟᛏᚪᚠ-ᛟᛉᚳ-ᛚᚪᚦᚢ-ᛡ/\n%\nᛒᛞᛡᛖᛞ-ᚠᚳᛈᚣᛄᚦᛏᛉ.ᛁᛡᛋᛞᛞᚾᚫᛚ-ᚦᛖᛖ/\nᛡ-ᛝᛠᛠᚷᚹᛗ-ᚫᚠᛉᛚ.ᚩᚻ-ᛗᚦᛒ-ᚫᚱ-ᚻᚱᛋᛗᛏ/\nᚷᚣᚣᛁ-ᚫᛄᚩᚠᛞᛠ-ᛚᚣᛞ-ᚳᛞ-ᛁᚻ-ᚠᛠᛠᛉᛏ-ᛏ/\nᚪᚫ-ᛝᛚᚹᚪ-ᚠᚳᛟ-ᚱᛚᚫ-ᚦᚪᚷᛇ-ᛟᚹ.ᛁ-ᚦᚾ-/\nᛠᛚ-ᚹᚫᛈ-ᚹᛝᚳᛞᛏᛗ-ᚫᚢᛒᚷᛄᚣ-ᛡᛏᚳᛉᚹᚩ/\n-ᚹᛟᛇᚢᛠᚦᚻ-ᛟᚦᚩᚾᛋᚠ-ᛚᛋᛋᛡᛟ.ᛏᛚᚦ-ᚳᛡ/\nᛄᚱᛏᛞᛄᚹᚣᛗ-ᚣᚢ-ᛝᚾᛏᚩᛇᚱᛗ-ᚷᛉᚷ-ᛗᛈ/\nᚾᚫᚾᚾ-ᚻᚳᛡᚾᚷᚫᚫᚳᛉ.ᚱᛡᚫ-ᛄᚻᚾ-ᛒᚩ/\nᛒᛈᛡᛋ-ᛏᛒ-ᚳᚳ-ᛏᛝᚩᚱᚻᛚᚹ-ᛈᚱ-ᛁᛞ-ᛡᚫ/\nᛈᛞ-ᚷᚢᛄᛞᛏᚦᚹ-ᛒᛄᛇ-ᚻᚦᚳ-ᛡᛄᚾᚷᛝ-ᛋ/\nᚫᚻ-ᚦᛠᚦᛇᛗ-ᛈᛈ-ᚳᛞ-ᚱᚻ-ᚢᚣᛒᛟᛠᚠ-ᚻᛡ/\nᛖᚫ-ᛖᛚᛏᛇᚣ-ᚱᚹᚣ-ᛄᚦᛟ-ᛝᚾᛁᛉᚷᚾᚱ-ᚹᛄᛁ/\n%\nᛗᛁ-ᚢ.ᛚᛉ-ᚱᛒᚹᛠᛝᚫᛄ-ᚦᚫᚹ-ᛡᛡᛠᛇᚾᛇ-/\nᛝᛏᛇᛈᛈᛄᚳ-ᛞᚢᛏ-ᚾᛈᛈᛗᚻ-ᛏᛠᚣᚾ-ᚦᚩᛗᛄᚫ/\nᛞᛠ-ᚫᛖᛖᚻᛖᛉᛡᛞᛖᚷ-ᛗᚾᛈᛇᛝᛡᚠ-ᛒᛞ-ᚠ/\nᚹᛝᛈᚷᛚᚫ-ᛁᚳᚦᚾᚠᛋᛁ-ᚻᛖᛏᛝᚾ-ᚦᚪᛟᛏ-ᚩᛚᚩ/\nᚪᚠᚾᛡ-ᛖᛇᛈᚻᛁᛟ-ᛞᚣᚢᛖᛡᚩᛒᛒᛄ-ᛗᚣᛄ-ᛈ/\nᛏ-ᚩ-ᛗᚦᛖᚣᛚᛏᛖᛉ-ᛖᚹᚠᛚᛋᚦᚹᚻᛞ-ᛚᚷ/\nᛉᛋᛝᛗ-ᛒᛄᛞᚠᚫᚫᚠᛇᛖᛞ-ᛞᛄᛖᛡ-ᛚᛝᚩ-ᚩᛚᛞ/\nᛈᚫᚫᛚᚫ-ᚫᛒᛖᛖᛗᛉᛄᛄ-ᚳᛡᚩ-ᚾᛈ-ᛁᚱ-ᛞᛞ/\nᛚᚪᛖᚢᛝᛏᛖᛖ-ᚦᚻ-ᛡᚩᚠᛒᛏᛇᚹᚻᚫ",
+      "candidateLatin": "TXEFNGEAEOTH-NCOENGG.TMEOJ-FDEO-/\nHAETH-WXSEOIAGDEOXHY-AEOJIAJ-ITHUN-/\nYOEH-OEPR-GOFY-UEAT-SDUWIANG-/\nHJJOEWIABOEHEA-EAI-SW-MJL-YTD-G/\nLAERIAAY-EABWAEN-IANGTHJOIAME-EOT-NUI/\nTH-CF-MUM-YLC-OOEYNGA-FO-OTHM-GAE/\nOM-XBLN-WGUJGAE-OETRS-MIAAEEAU/\nAE-FIAS.IANWM-JNOESIMCL-GRPBJNM-/\nEAON-G-EOTOGT-OHWIAEAEA-FBH-AORI-/\nXAONGAE-HTH-DLNNGBLAC-EOCXP-J/\nSP-FBE-EGCWPET-EOCYIUHEA-BTH-EAL/\nDDFGOE-R-PUEEAOEOETAF-OEXC-LATHU-IA/\n%\nBDIAED-FCPYJTHTX.IIASDDNAEL-THEE/\nIA-NGEAEAGWM-AEFXL.OH-MTHB-AER-HRSMT/\nGYYI-AEJOFDEA-LYD-CD-IH-FEAEAXT-T/\nAAE-NGLWA-FCOE-RLAE-THAGEO-OEW.I-THN-/\nEAL-WAEP-WNGCDTM-AEUBGJY-IATCXWO/\n-WOEEOUEATHH-OETHONSF-LSSIAOE.TLTH-CIA/\nJRTDJWYM-YU-NGNTOEORM-GXG-MP/\nNAENN-HCIANGAEAECX.RIAAE-JHN-BO/\nBPIAS-TB-CC-TNGORHLW-PR-ID-IAAE/\nPD-GUJDTTHW-BJEO-HTHC-IAJNGNG-S/\nAEH-THEATHEOM-PP-CD-RH-UYBOEEAF-HIA/\nEAE-ELTEOY-RWY-JTHOE-NGNIXGNR-WJI/\n%\nMI-U.LX-RBWEANGAEJ-THAEW-IAIAEAEONEO-/\nNGTEOPPJC-DUT-NPPMH-TEAYN-THOMJAE/\nDEA-AEEEHEXIADEG-MNPEONGIAF-BD-F/\nWNGPGLAE-ICTHNFSI-HETNGN-THAOET-OLO/\nAFNIA-EEOPHIOE-DYUEIAOBBJ-MYJ-P/\nT-O-MTHEYLTEX-EWFLSTHWHD-LG/\nXSNGM-BJDFAEAEFEOED-DJEIA-LNGO-OLD/\nPAEAELAE-AEBEEMXJJ-CIAO-NP-IR-DD/\nLAEUNGTEE-THH-IAOFBTEOWHAE",
+      "exactReplay": true
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "start": 729,
+      "end": 1874,
+      "cuts": [
+        729,
+        745,
+        848,
+        851,
+        1025,
+        1046,
+        1067,
+        1111,
+        1294,
+        1428,
+        1541,
+        1552,
+        1659,
+        1685,
+        1828,
+        1860,
+        1866,
+        1874
+      ],
+      "input": {
+        "frames": 17,
+        "runes": 1145,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.6062619036755392,
+          "trigrams": 1111
+        },
+        "lengths": [
+          16,
+          103,
+          3,
+          174,
+          21,
+          21,
+          44,
+          183,
+          134,
+          113,
+          11,
+          107,
+          26,
+          143,
+          32,
+          6,
+          8
+        ]
+      },
+      "output": {
+        "frames": 17,
+        "runes": 1145,
+        "nonunits": 0,
+        "leadingZeros": 0,
+        "score": {
+          "mean": -3.659290764696078,
+          "trigrams": 1111
+        },
+        "lengths": [
+          16,
+          103,
+          3,
+          174,
+          21,
+          21,
+          44,
+          183,
+          134,
+          113,
+          11,
+          107,
+          26,
+          143,
+          32,
+          6,
+          8
+        ]
+      },
+      "frames": [
+        {
+          "start": 729,
+          "end": 745,
+          "cipherDigits": "KBC8L52GPBGE8G1M",
+          "plainDigits": "RP1CJCM77EF0MQ14",
+          "plainRunes": "ᛡᚫᚢᛇᛗᛇᛟᚹᚹᛉᛋᚠᛟᚣᚢᚱ",
+          "latin": "IAAEUEOMEOOEWWXSFOEYUR"
+        },
+        {
+          "start": 745,
+          "end": 848,
+          "cipherDigits": "FD46Q9O6CL970Q9HSRD9QOFJHRSRA3H49KS4KKIH798J0MHL4OR6MCGJENCJQ8SAKF9750DJDKSF20MR2IQ5BK5RJHN5CBAGMNSIR9G",
+          "plainDigits": "AO44JML4K2O6L5MI751J6DNJLFS3HQC3EB1K855RED1BDMP4R95732AN6LODA41RG5L2L7GQCE0ERK1J8O1SN4E4GC6C9OFBD4I2A8K",
+          "plainRunes": "ᛁᚪᚱᚱᛗᛟᛝᚱᛚᚦᚪᚷᛝᚳᛟᛖᚹᚳᚢᛗᚷᛈᛞᛗᛝᛋᛠᚩᛒᚣᛇᚩᛉᛄᚢᛚᚻᚳᚳᛡᛉᛈᚢᛄᛈᛟᚫᚱᛡᚾᚳᚹᚩᚦᛁᛞᚷᛝᚪᛈᛁᚱᚢᛡᛏᚳᛝᚦᛝᚹᛏᚣᛇᛉᚠᛉᛡᛚᚢᛗᚻᚪᚢᛠᛞᚱᛉᚱᛏᛇᚷᛇᚾᚪᛋᛄᛈᚱᛖᚦᛁᚻᛚ",
+          "latin": "IARRMOENGRLTHAGNGCOEEWCUMGPDMNGSEAOBYEOOXJULHCCIAXPUJPOEAERIANCWOTHIDGNGAPIRUIATCNGTHNGWTYEOXFXIALUMHAUEADRXRTEOGEONASJPRETHIHL"
+        },
+        {
+          "start": 848,
+          "end": 851,
+          "cipherDigits": "DN2",
+          "plainDigits": "11F",
+          "plainRunes": "ᚢᚢᛋ",
+          "latin": "UUS"
+        },
+        {
+          "start": 851,
+          "end": 1025,
+          "cipherDigits": "CNCPK5RCS87JQ218G248LKLF9PS6FKFE387NJIJO05Q5P9G26ABA5NRE8PPS6SL0G34N5C01ESH3EAQ6FFHS3ADABA3I8S8KRQDEA7J5AK609R5ED34R8BJMEL1JCS6LL75KL1EB0M16SJEO7K1EPJNL84Q8O6A065PLBCER92H1B4",
+          "plainDigits": "R9HASPLN302K0G2JB00GMFES7L8QL8GS5HGHBG81RCD8FCL0IAEL0JAMC1NA3GCSKH77H92O35HBOCM1PHMHFHNBSKKKCIB7FH83E83IN5I49HEMBBCFOCSRPEFDGHIMGOA43F9RBP73RJ71463FJ4RCJA6D0PEIF8E3N19MSNR34M",
+          "plainRunes": "ᛡᚾᛒᛁᛠᚫᛝᛞᚩᚠᚦᛚᚠᛏᚦᛗᛄᚠᚠᛏᛟᛋᛉᛠᚹᛝᚻᚣᛝᚻᛏᛠᚳᛒᛏᛒᛄᛏᚻᚢᛡᛇᛈᚻᛋᛇᛝᚠᛖᛁᛉᛝᚠᛗᛁᛟᛇᚢᛞᛁᚩᛏᛇᛠᛚᛒᚹᚹᛒᚾᚦᚪᚩᚳᛒᛄᚪᛇᛟᚢᚫᛒᛟᛒᛋᛒᛞᛄᛠᛚᛚᛚᛇᛖᛄᚹᛋᛒᚻᚩᛉᚻᚩᛖᛞᚳᛖᚱᚾᛒᛉᛟᛄᛄᛇᛋᚪᛇᛠᛡᚫᛉᛋᛈᛏᛒᛖᛟᛏᚪᛁᚱᚩᛋᚾᛡᛄᚫᚹᚩᛡᛗᚹᚢᚱᚷᚩᛋᛗᚱᛡᛇᛗᛁᚷᛈᚠᚫᛉᛖᛋᚻᛉᚩᛞᚢᚾᛟᛠᛞᛡᚩᚱᛟ",
+          "latin": "IANBIEAAENGDOFTHLFTTHMJFFTOESXEAWNGHYNGHTEACBTBJTHUIAEOPHSEONGFEIXNGFMIOEEOUDIOTEOEALBWWBNTHAOCBJAEOOEUAEBOEBSBDJEALLLEOEJWSBHOXHOEDCERNBXOEJJEOSAEOEAIAAEXSPTBEOETAIROSNIAJAEWOIAMWURGOSMRIAEOMIGPFAEXESHXODUNOEEADIAOROE"
+        },
+        {
+          "start": 1025,
+          "end": 1046,
+          "cipherDigits": "76KM62C02SAF66QSRDRPK",
+          "plainDigits": "Q17PM9POFKH1BCJRPRI7G",
+          "plainRunes": "ᚣᚢᚹᚫᛟᚾᚫᚪᛋᛚᛒᚢᛄᛇᛗᛡᚫᛡᛖᚹᛏ",
+          "latin": "YUWAEOENAEASLBUJEOMIAAEIAEWT"
+        },
+        {
+          "start": 1046,
+          "end": 1067,
+          "cipherDigits": "2SEPIJIGMGS505S62DA59",
+          "plainDigits": "5RKME97B8IKMMMEM35Q2D",
+          "plainRunes": "ᚳᛡᛚᛟᛉᚾᚹᛄᚻᛖᛚᛟᛟᛟᛉᛟᚩᚳᚣᚦᛈ",
+          "latin": "CIALOEXNWJHELOEOEOEXOEOCYTHP"
+        },
+        {
+          "start": 1067,
+          "end": 1111,
+          "cipherDigits": "CQLBLJ759HQS3M64J4JDR7PM2MDEBK4K4HODGEKGJEA7",
+          "plainDigits": "F5LLCP21R44QSLAOBEPAO8PBSE4M61CEEL1S4GGMF69P",
+          "plainRunes": "ᛋᚳᛝᛝᛇᚫᚦᚢᛡᚱᚱᚣᛠᛝᛁᚪᛄᛉᚫᛁᚪᚻᚫᛄᛠᛉᚱᛟᚷᚢᛇᛉᛉᛝᚢᛠᚱᛏᛏᛟᛋᚷᚾᚫ",
+          "latin": "SCNGNGEOAETHUIARRYEANGIAJXAEIAHAEJEAXROEGUEOXXNGUEARTTOESGNAE"
+        },
+        {
+          "start": 1111,
+          "end": 1294,
+          "cipherDigits": "BFMJ94IHF5GKMFH0E2OS1CE46GCSABHME6BLS24LH91OLHDFSD738IPC69PFC3DJIERH71IANDOC6F56NDQRK24510C2EIK14PE8BPJK05LNAL35FMIQM816N7OIF6L0ENEBS8A2DEQRCNCLCLISN4KCGEGQ4CDLCD3AKI0CPOQL0Q0N9KEG9PF",
+          "plainDigits": "NL0R4JGOBA5SB3DAG2557PAOC6BHSKKHGI2L9Q51JA67GS5PLOP58PBBGDNPJBECQ78CEEORJA6KGRAPMRPBMO3SFSHLGMF5JMCJNAKR4O3A3CS111P3D0H0799NHFC022CHONIN2SFJ4SAO0LQ663HEIS7LJ7817JP2O4IFC13C0OA27HJ60E2",
+          "plainRunes": "ᛞᛝᚠᛡᚱᛗᛏᚪᛄᛁᚳᛠᛄᚩᛈᛁᛏᚦᚳᚳᚹᚫᛁᚪᛇᚷᛄᛒᛠᛚᛚᛒᛏᛖᚦᛝᚾᚣᚳᚢᛗᛁᚷᚹᛏᛠᚳᚫᛝᚪᚫᚳᚻᚫᛄᛄᛏᛈᛞᚫᛗᛄᛉᛇᚣᚹᚻᛇᛉᛉᚪᛡᛗᛁᚷᛚᛏᛡᛁᚫᛟᛡᚫᛄᛟᚪᚩᛠᛋᛠᛒᛝᛏᛟᛋᚳᛗᛟᛇᛗᛞᛁᛚᛡᚱᚪᚩᛁᚩᛇᛠᚢᚢᚢᚫᚩᛈᚠᛒᚠᚹᚾᚾᛞᛒᛋᛇᚠᚦᚦᛇᛒᚪᛞᛖᛞᚦᛠᛋᛗᚱᛠᛁᚪᚠᛝᚣᚷᚷᚩᛒᛉᛖᛠᚹᛝᛗᚹᚻᚢᚹᛗᚫᚦᚪᚱᛖᛋᛇᚢᚩᛇᚠᚪᛁᚦᚹᛒᛗᚷᚠᛉᚦ",
+          "latin": "DNGFIARMTAJICEAJOPITTHCCWAEIAEOGJBEALLBTETHNGNYCUMIGWTEACAENGAAECHAEJJTPDAEMJXEOYWHEOXXAIAMIGLTIAIAEOEIAAEJOEAOEASEABNGTOESCMOEEOMDILIARAOIOEOEAUUUAEOPFBFWNNDBSEOFTHTHEOBADEDTHEASMREAIAFNGYGGOBXEEAWNGMWHUWMAETHARESEOUOEOFAITHWBMGFXTH"
+        },
+        {
+          "start": 1294,
+          "end": 1428,
+          "cipherDigits": "A351QS9G65OERC2BQBKMIKQDRI7MC9O8NCF2QC2B2415SO1BRDQPCF8SGQNQP083MJEMB61R4R5A0MABDHILQ23PQSERIKA4QNSBP5J6AP1OPBO8D0NKASDMQ31H6LM1LF15GN",
+          "plainDigits": "Q173MIFJ7B08AA4PB5PRRQNLGKCAR2A61R20KAGJL584S4DLG3EDGAH183K28F3IBDA2LNEG1A6LC39HESRFQ7M5B3PDIOOJ2AIKK8DMJ823I5B9IINDC2FSJ9G1L09APPFIEO",
+          "plainRunes": "ᚣᚢᚹᚩᛟᛖᛋᛗᚹᛄᚠᚻᛁᛁᚱᚫᛄᚳᚫᛡᛡᚣᛞᛝᛏᛚᛇᛁᛡᚦᛁᚷᚢᛡᚦᚠᛚᛁᛏᛗᛝᚳᚻᚱᛠᚱᛈᛝᛏᚩᛉᛈᛏᛁᛒᚢᚻᚩᛚᚦᚻᛋᚩᛖᛄᛈᛁᚦᛝᛞᛉᛏᚢᛁᚷᛝᛇᚩᚾᛒᛉᛠᛡᛋᚣᚹᛟᚳᛄᚩᚫᛈᛖᚪᚪᛗᚦᛁᛖᛚᛚᚻᛈᛟᛗᚻᚦᚩᛖᚳᛄᚾᛖᛖᛞᛈᛇᚦᛋᛠᛗᚾᛏᚢᛝᚠᚾᛁᚫᚫᛋᛖᛉᚪ",
+          "latin": "YUWOOEESMWJFHIIRAEJCAEIAIAYDNGTLEOIIATHIGUIATHFLITMNGCHREARPNGTOXPTIBUHOLTHHSOEJPITHNGDXTUIGNGEOONBXEAIASYWOECJOAEPEAAMTHIELLHPOEMHTHOECJNEEDPEOTHSEAMNTUNGFNIAEAESEXA"
+        },
+        {
+          "start": 1428,
+          "end": 1541,
+          "cipherDigits": "PD3BH84A68BQ7JC9PNLCMBL5ISEO4QO1G5D53CMPDGE5G8NCEHSP9BSOHIS7RK7ARFDK2OFBRNQ4NM24EM7QNG6KR87J4L054PAH6DQNO4OEM13AS",
+          "plainDigits": "HHL712D6F1LNIHCNCR1IIL6EQQH2JBPK1DE7G7SJK6MECRJLCFQBLLN7C3E4A81AFJQIN0SMMJCBOAPSLO3EAL7OOIML64R1Q94EENMS054N2IKHS",
+          "plainRunes": "ᛒᛒᛝᚹᚢᚦᛈᚷᛋᚢᛝᛞᛖᛒᛇᛞᛇᛡᚢᛖᛖᛝᚷᛉᚣᚣᛒᚦᛗᛄᚫᛚᚢᛈᛉᚹᛏᚹᛠᛗᛚᚷᛟᛉᛇᛡᛗᛝᛇᛋᚣᛄᛝᛝᛞᚹᛇᚩᛉᚱᛁᚻᚢᛁᛋᛗᚣᛖᛞᚠᛠᛟᛟᛗᛇᛄᚪᛁᚫᛠᛝᚪᚩᛉᛁᛝᚹᚪᚪᛖᛟᛝᚷᚱᛡᚢᚣᚾᚱᛉᛉᛞᛟᛠᚠᚳᚱᛞᚦᛖᛚᛒᛠ",
+          "latin": "BBNGWUTHPGSUNGDEBEODEOIAUEENGGXYYBTHMJAELUPXWTWEAMLGOEXEOIAMNGEOSYJNGNGDWEOOXRIHUISMYEDFEAOEOEMEOJAIAEEANGAOXINGWAAEOENGGRIAUYNRXXDOEEAFCRDTHELBEA"
+        },
+        {
+          "start": 1541,
+          "end": 1552,
+          "cipherDigits": "OGEHJ6RFHEC",
+          "plainDigits": "M1KQD9OKKBH",
+          "plainRunes": "ᛟᚢᛚᚣᛈᚾᚪᛚᛚᛄᛒ",
+          "latin": "OEULYPNALLJB"
+        },
+        {
+          "start": 1552,
+          "end": 1659,
+          "cipherDigits": "69SP6LNEIG36RL8G5AQBGM384B5IR3NOGQ194CPPAI0L28EAMFAJO1B5F79Q3DE4KPMGRBDJNF0JM7NKG6431F8OQCRK18D7BK6HJ1BJC9C",
+          "plainDigits": "OHA4C9KB3379BFRMES23B3EGQJSK6DEME8FLEHIJ277QKC8D3DCOB06OMOMKSEIQ21EOS186DQ2A4HQOJHQSM01BE5R73JPOLJOR2MC126H",
+          "plainRunes": "ᚪᛒᛁᚱᛇᚾᛚᛄᚩᚩᚹᚾᛄᛋᛡᛟᛉᛠᚦᚩᛄᚩᛉᛏᚣᛗᛠᛚᚷᛈᛉᛟᛉᚻᛋᛝᛉᛒᛖᛗᚦᚹᚹᚣᛚᛇᚻᛈᚩᛈᛇᚪᛄᚠᚷᚪᛟᚪᛟᛚᛠᛉᛖᚣᚦᚢᛉᚪᛠᚢᚻᚷᛈᚣᚦᛁᚱᛒᚣᚪᛗᛒᚣᛠᛟᚠᚢᛄᛉᚳᛡᚹᚩᛗᚫᚪᛝᛗᚪᛡᚦᛟᛇᚢᚦᚷᛒ",
+          "latin": "ABIREONLJOOWNJSIAOEXEATHOJOXTYMEALGPXOEXHSNGXBEMTHWWYLEOHPOPEOAJFGAOEAOELEAXEYTHUXAEAUHGPYTHIRBYAMBYEAOEFUJXCIAWOMAEANGMAIATHOEEOUTHGB"
+        },
+        {
+          "start": 1659,
+          "end": 1685,
+          "cipherDigits": "PKOK6OF8LK2HF5153RK5BEO9CE",
+          "plainDigits": "AA8DPCIH7PRSAS9KEGME8EEH7R",
+          "plainRunes": "ᛁᛁᚻᛈᚫᛇᛖᛒᚹᚫᛡᛠᛁᛠᚾᛚᛉᛏᛟᛉᚻᛉᛉᛒᚹᛡ",
+          "latin": "IIHPAEEOEBWAEIAEAIEANLXTOEXHXXBWIA"
+        },
+        {
+          "start": 1685,
+          "end": 1828,
+          "cipherDigits": "SJD1J0KSLHEAK24SRA53EINRGFJSBDSMRP278DCO6D8S5KSDRQ9AKRA5PC9P5R4RKNHMLREJL58MS9D52AC2C132DORKM7RDBJ6HDF9CG3619PI9QAINLNLK1KEO9LCOB8N7DP7PCAKL295",
+          "plainDigits": "FHEIJJBL2B0361NDPBIOAG7SJ24G0521689CG3AQBH7LPPCOD4M5SBEDCOD778PM57QHHDG5P6DSD5AG8GJ8727I242LIC5CS1QPND536EAJM6AOQK8N6D9L17FH7RS2CN45KPICE2G2SI6",
+          "plainRunes": "ᛋᛒᛉᛖᛗᛗᛄᛝᚦᛄᚠᚩᚷᚢᛞᛈᚫᛄᛖᚪᛁᛏᚹᛠᛗᚦᚱᛏᚠᚳᚦᚢᚷᚻᚾᛇᛏᚩᛁᚣᛄᛒᚹᛝᚫᚫᛇᚪᛈᚱᛟᚳᛠᛄᛉᛈᛇᚪᛈᚹᚹᚻᚫᛟᚳᚹᚣᛒᛒᛈᛏᚳᚫᚷᛈᛠᛈᚳᛁᛏᚻᛏᛗᚻᚹᚦᚹᛖᚦᚱᚦᛝᛖᛇᚳᛇᛠᚢᚣᚫᛞᛈᚳᚩᚷᛉᛁᛗᛟᚷᛁᚪᚣᛚᚻᛞᚷᛈᚾᛝᚢᚹᛋᛒᚹᛡᛠᚦᛇᛞᚱᚳᛚᚫᛖᛇᛉᚦᛏᚦᛠᛖᚷ",
+          "latin": "SBXEMMJNGTHJFOGUDPAEJEAITWEAMTHRTFCTHUGHNEOTOIYJBWNGAEAEEOAPROECEAJXPEOAPWWHAEOECWYBBPTCAEGPEAPCITHTMHWTHWETHRTHNGEEOCEOEAUYAEDPCOGXIMOEGIAYLHDGPNNGUWSBWIAEATHEODRCLAEEEOXTHTTHEAEG"
+        },
+        {
+          "start": 1828,
+          "end": 1860,
+          "cipherDigits": "HAGS53CIL58M8PBMEA5IGF7I9RQBJI5O",
+          "plainDigits": "5A12ESJH6C6183NPHPGJMLCN7F3L1RLN",
+          "plainRunes": "ᚳᛁᚢᚦᛉᛠᛗᛒᚷᛇᚷᚢᚻᚩᛞᚫᛒᚫᛏᛗᛟᛝᛇᛞᚹᛋᚩᛝᚢᛡᛝᛞ",
+          "latin": "CIUTHXEAMBGEOGUHODAEBAETMOENGEODWSONGUIANGD"
+        },
+        {
+          "start": 1860,
+          "end": 1866,
+          "cipherDigits": "N3MG2P",
+          "plainDigits": "2EGA57",
+          "plainRunes": "ᚦᛉᛏᛁᚳᚹ",
+          "latin": "THXTICW"
+        },
+        {
+          "start": 1866,
+          "end": 1874,
+          "cipherDigits": "57BES6SJ",
+          "plainDigits": "LNFIJL2Q",
+          "plainRunes": "ᛝᛞᛋᛖᛗᛝᚦᚣ",
+          "latin": "NGDSEMNGTHY"
+        }
+      ],
+      "candidate": "ᛡᚫ-ᚢᛇᛗᛇᛟᚹᚹᛉᛋᚠᛟ-ᚣᚢᚱ.ᛁᚪᚱᚱ/\n-ᛗᛟᛝᚱᛚᚦᚪ-ᚷᛝᚳᛟᛖᚹᚳ-ᚢᛗᚷᛈᛞᛗ/\nᛝ-ᛋᛠᚩᛒ-ᚣᛇᚩᛉᛄᚢ-ᛚᚻᚳᚳᛡᛉᛈᚢᛄᛈ/\nᛟᚫ-ᚱ-ᛡᚾᚳᚹᚩᚦᛁᛞᚷ-ᛝᚪ-ᛈᛁᚱᚢ-ᛡᛏᚳ-ᛝ/\nᚦᛝᚹᛏᚣᛇᛉ-ᚠᛉᛡᛚᚢᛗ-ᚻᚪᚢ-ᛠᛞᚱᛉᚱᛏ-/\nᛇᚷᛇᚾ-ᚪᛋᛄᛈ-ᚱᛖᚦᛁᚻᛚ./\n&\nᚢᚢᛋ.ᛡᚾᛒ-ᛁᛠᚫ-ᛝᛞ-ᚩᚠ-ᚦᛚᚠᛏ/\nᚦ-ᛗᛄᚠᚠᛏᛟ-ᛋᛉᛠ-ᚹᛝᚻᚣᛝᚻ-ᛏᛠ/\nᚳᛒᛏᛒᛄᛏᚻᚢᛡ-ᛇᛈᚻᛋᛇ-ᛝᚠᛖ-ᛁᛉᛝ/\n-ᚠᛗᛁᛟ-ᛇᚢᛞᛁᚩ-ᛏᛇ-ᛠᛚᛒᚹᚹᛒᚾ-ᚦᚪ/\nᚩᚳᛒᛄ-ᚪᛇᛟᚢᚫᛒᛟᛒ-ᛋᛒᛞ-ᛄᛠᛚᛚᛚ-ᛇᛖᛄ/\n%\nᚹᛋ-ᛒᚻᚩᛉᚻᚩᛖᛞ-ᚳᛖᚱᚾᛒᛉᛟ-ᛄᛄᛇᛋ-ᚪ-ᛇ/\nᛠ-ᛡᚫᛉ-ᛋᛈᛏᛒᛖᛟ-ᛏᚪᛁ-ᚱᚩᛋ-ᚾᛡᛄᚫ/\nᚹ-ᚩᛡ-ᛗᚹ-ᚢᚱ-ᚷᚩᛋᛗ-ᚱᛡᛇᛗᛁᚷ-ᛈᚠ-ᚫᛉ/\nᛖᛋᚻ-ᛉᚩᛞᚢᚾᛟ-ᛠᛞᛡᚩᚱᛟ.ᚣ-ᚢᚹᚫᛟ-ᚾᚫᚪ-/\nᛋᛚᛒ-ᚢᛄ-ᛇᛗ-ᛡᚫᛡ-ᛖᚹᛏ.ᚳᛡᛚᛟ-ᛉᚾ/\nᚹᛄᚻᛖ-ᛚᛟᛟ-ᛟᛉᛟ-ᚩ-ᚳᚣᚦᛈ.ᛋᚳᛝᛝᛇ/\nᚫᚦᚢᛡ-ᚱᚱᚣ-ᛠᛝᛁᚪ-ᛄᛉᚫᛁᚪᚻ-ᚫᛄᛠᛉ-ᚱ/\nᛟᚷᚢ-ᛇᛉᛉᛝᚢᛠᚱᛏᛏᛟ-ᛋᚷᚾᚫ.ᛞᛝᚠᛡᚱᛗ/\nᛏᚪᛄ-ᛁᚳᛠᛄ-ᚩᛈᛁᛏᚦᚳᚳᚹ-ᚫᛁ-ᚪᛇᚷᛄᛒ/\nᛠᛚᛚᛒ-ᛏᛖᚦᛝ-ᚾᚣ-ᚳᚢᛗ-ᛁᚷᚹᛏᛠᚳᚫᛝ-ᚪ/\nᚫᚳᚻᚫ-ᛄᛄᛏᛈᛞᚫᛗ-ᛄᛉᛇ-ᚣᚹᚻᛇᛉ-ᛉᚪᛡᛗ-/\nᛁᚷᛚᛏᛡᛁᚫᛟᛡᚫ-ᛄᛟᚪᚩ-ᛠᛋᛠᛒᛝ-ᛏᛟᛋ-ᚳ/\n%\nᛗᛟ-ᛇᛗᛞᛁᛚᛡᚱ-ᚪᚩᛁ-ᚩᛇᛠ-ᚢᚢᚢᚫᚩᛈᚠᛒ-/\nᚠᚹᚾᚾ-ᛞᛒᛋᛇᚠᚦ-ᚦᛇᛒ-ᚪᛞᛖ-ᛞᚦᛠᛋ-ᛗ-/\nᚱᛠᛁᚪᚠᛝ-ᚣᚷᚷᚩ-ᛒᛉᛖ-ᛠᚹᛝ-ᛗᚹ-ᚻᚢᚹ/\nᛗᚫᚦᚪᚱᛖ-ᛋᛇᚢ-ᚩᛇᚠᚪ-ᛁᚦᚹᛒ-ᛗᚷᚠᛉᚦ.ᚣᚢ/\nᚹᚩ-ᛟᛖᛋᛗᚹᛄᚠ-ᚻᛁᛁ-ᚱᚫᛄᚳᚫᛡᛡᚣ-ᛞ./\nᛝᛏ-ᛚᛇᛁ-ᛡᚦᛁ-ᚷᚢᛡᚦ-ᚠᛚᛁᛏᛗᛝᚳᚻ-ᚱᛠ/\nᚱ-ᛈᛝᛏᚩ-ᛉᛈᛏᛁ-ᛒᚢᚻᚩᛚᚦᚻᛋᚩᛖ-ᛄᛈ/\nᛁᚦᛝᛞ-ᛉᛏᚢᛁᚷ-ᛝᛇᚩ-ᚾᛒᛉᛠ-ᛡᛋᚣᚹᛟᚳᛄ-/\nᚩᚫᛈᛖᚪ-ᚪᛗᚦᛁᛖᛚ-ᛚᚻ-ᛈᛟᛗᚻᚦᚩᛖ-ᚳᛄ/\nᚾᛖ-ᛖᛞᛈᛇᚦᛋᛠᛗᚾ-ᛏᚢᛝᚠᚾᛁᚫᚫᛋᛖ-ᛉ/\nᚪ.ᛒᛒᛝᚹ-ᚢᚦᛈᚷᛋᚢᛝ-ᛞᛖᛒᛇᛞᛇ-ᛡᚢᛖ-ᛖᛝ/\nᚷᛉᚣᚣ-ᛒᚦᛗᛄ-ᚫᛚᚢ-ᛈᛉᚹ-ᛏᚹᛠ-ᛗᛚ-ᚷ/\n%\nᛟᛉᛇᛡᛗᛝ-ᛇᛋᚣ-ᛄᛝᛝ-ᛞᚹᛇ-ᚩᛉᚱ-ᛁᚻ-/\nᚢᛁᛋᛗᚣᛖᛞᚠᛠᛟ-ᛟᛗᛇᛄᚪᛁ-ᚫᛠᛝᚪᚩ-ᛉᛁᛝ-/\nᚹᚪᚪᛖᛟᛝᚷ-ᚱᛡᚢ-ᚣᚾᚱᛉᛉᛞᛟ-ᛠᚠᚳᚱᛞᚦ-ᛖ/\nᛚᛒᛠ./\n&\nᛟᚢᛚᚣ-ᛈ-ᚾᚪᛚᛚ-ᛄᛒ.ᚪᛒᛁᚱᛇᚾᛚ-/\nᛄᚩᚩᚹᚾᛄ-ᛋᛡᛟ-ᛉᛠᚦ-ᚩᛄ-ᚩᛉᛏᚣᛗ-/\nᛠᛚᚷᛈ-ᛉᛟᛉᚻᛋᛝᛉᛒ-ᛖᛗᚦᚹᚹᚣᛚᛇ-/\nᚻᛈᚩᛈᛇ-ᚪᛄ-ᚠᚷᚪᛟᚪᛟᛚ-ᛠᛉᛖᚣ-ᚦᚢᛉᚪᛠ-ᚢ/\nᚻᚷ-ᛈᚣᚦᛁ-ᚱᛒ-ᚣᚪᛗ-ᛒᚣ-ᛠᛟᚠᚢᛄ-ᛉᚳᛡᚹ/\nᚩᛗ-ᚫᚪᛝᛗᚪᛡ-ᚦᛟᛇᚢ-ᚦᚷᛒ.ᛁᛁᚻᛈᚫᛇ-ᛖ/\n%\nᛒᚹ-ᚫᛡᛠ-ᛁᛠᚾᛚᛉᛏ-ᛟᛉᚻ-ᛉᛉᛒᚹᛡ.ᛋ/\nᛒᛉᛖ-ᛗᛗᛄᛝᚦ-ᛄᚠᚩ-ᚷᚢᛞ-ᛈᚫᛄᛖ-ᚪᛁᛏ/\nᚹᛠ-ᛗᚦᚱᛏᚠᚳ-ᚦᚢ-ᚷᚻᚾᛇᛏᚩᛁᚣᛄᛒᚹ/\nᛝ-ᚫᚫᛇᚪ-ᛈᚱᛟᚳ-ᛠᛄᛉᛈ-ᛇᚪᛈ-ᚹᚹᚻᚫᛟᚳ/\nᚹ-ᚣᛒᛒᛈ-ᛏᚳᚫ-ᚷᛈᛠᛈᚳᛁᛏᚻ-ᛏᛗᚻ-ᚹᚦᚹ/\n-ᛖᚦᚱ-ᚦᛝᛖᛇᚳᛇ-ᛠᚢ-ᚣᚫᛞᛈᚳᚩ-ᚷᛉᛁᛗᛟᚷ/\nᛁ-ᚪᚣᛚᚻ-ᛞᚷ-ᛈᚾ-ᛝᚢᚹᛋ-ᛒᚹᛡ-ᛠᚦᛇ-ᛞ-ᚱ/\nᚳᛚᚫᛖᛇ-ᛉᚦᛏᚦ-ᛠᛖᚷ.ᚳᛁᚢ-ᚦᛉᛠᛗᛒᚷ-ᛇᚷ/\nᚢᚻᚩᛞ-ᚫᛒ-ᚫᛏᛗᛟᛝᛇᛞᚹᛋᚩᛝᚢ-ᛡᛝᛞ./\n&\nᚦᛉ-ᛏᛁᚳᚹ.ᛝᛞᛋ-ᛖᛗ-ᛝᚦᚣ",
+      "candidateLatin": "IAAE-UEOMEOOEWWXSFOE-YUR.IARR/\n-MOENGRLTHA-GNGCOEEWC-UMGPDM/\nNG-SEAOB-YEOOXJU-LHCCIAXPUJP/\nOEAE-R-IANCWOTHIDG-NGA-PIRU-IATC-NG/\nTHNGWTYEOX-FXIALUM-HAU-EADRXRT-/\nEOGEON-ASJP-RETHIHL./\n&\nUUS.IANB-IEAAE-NGD-OF-THLFT/\nTH-MJFFTOE-SXEA-WNGHYNGH-TEA/\nCBTBJTHUIA-EOPHSEO-NGFE-IXNG/\n-FMIOE-EOUDIO-TEO-EALBWWBN-THA/\nOCBJ-AEOOEUAEBOEB-SBD-JEALLL-EOEJ/\n%\nWS-BHOXHOED-CERNBXOE-JJEOS-A-EO/\nEA-IAAEX-SPTBEOE-TAI-ROS-NIAJAE/\nW-OIA-MW-UR-GOSM-RIAEOMIG-PF-AEX/\nESH-XODUNOE-EADIAOROE.Y-UWAEOE-NAEA-/\nSLB-UJ-EOM-IAAEIA-EWT.CIALOE-XN/\nWJHE-LOEOE-OEXOE-O-CYTHP.SCNGNGEO/\nAETHUIA-RRY-EANGIA-JXAEIAH-AEJEAX-R/\nOEGU-EOXXNGUEARTTOE-SGNAE.DNGFIARM/\nTAJ-ICEAJ-OPITTHCCW-AEI-AEOGJB/\nEALLB-TETHNG-NY-CUM-IGWTEACAENG-A/\nAECHAE-JJTPDAEM-JXEO-YWHEOX-XAIAM-/\nIGLTIAIAEOEIAAE-JOEAO-EASEABNG-TOES-C/\n%\nMOE-EOMDILIAR-AOI-OEOEA-UUUAEOPFB-/\nFWNN-DBSEOFTH-THEOB-ADE-DTHEAS-M-/\nREAIAFNG-YGGO-BXE-EAWNG-MW-HUW/\nMAETHARE-SEOU-OEOFA-ITHWB-MGFXTH.YU/\nWO-OEESMWJF-HII-RAEJCAEIAIAY-D./\nNGT-LEOI-IATHI-GUIATH-FLITMNGCH-REA/\nR-PNGTO-XPTI-BUHOLTHHSOE-JP/\nITHNGD-XTUIG-NGEOO-NBXEA-IASYWOECJ-/\nOAEPEA-AMTHIEL-LH-POEMHTHOE-CJ/\nNE-EDPEOTHSEAMN-TUNGFNIAEAESE-X/\nA.BBNGW-UTHPGSUNG-DEBEODEO-IAUE-ENG/\nGXYY-BTHMJ-AELU-PXW-TWEA-ML-G/\n%\nOEXEOIAMNG-EOSY-JNGNG-DWEO-OXR-IH-/\nUISMYEDFEAOE-OEMEOJAI-AEEANGAO-XING-/\nWAAEOENGG-RIAU-YNRXXDOE-EAFCRDTH-E/\nLBEA./\n&\nOEULY-P-NALL-JB.ABIREONL-/\nJOOWNJ-SIAOE-XEATH-OJ-OXTYM-/\nEALGP-XOEXHSNGXB-EMTHWWYLEO-/\nHPOPEO-AJ-FGAOEAOEL-EAXEY-THUXAEA-U/\nHG-PYTHI-RB-YAM-BY-EAOEFUJ-XCIAW/\nOM-AEANGMAIA-THOEEOU-THGB.IIHPAEEO-E/\n%\nBW-AEIAEA-IEANLXT-OEXH-XXBWIA.S/\nBXE-MMJNGTH-JFO-GUD-PAEJE-AIT/\nWEA-MTHRTFC-THU-GHNEOTOIYJBW/\nNG-AEAEEOA-PROEC-EAJXP-EOAP-WWHAEOEC/\nW-YBBP-TCAE-GPEAPCITH-TMH-WTHW/\n-ETHR-THNGEEOCEO-EAU-YAEDPCO-GXIMOEG/\nI-AYLH-DG-PN-NGUWS-BWIA-EATHEO-D-R/\nCLAEEEO-XTHTTH-EAEG.CIU-THXEAMBG-EOG/\nUHOD-AEB-AETMOENGEODWSONGU-IANGD./\n&\nTHX-TICW.NGDS-EM-NGTHY",
+      "exactReplay": true
+    }
+  ],
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-punctuation-identity.json": "96409ec38f8fbbb19f8e47aaf48ff2bf1788a99e",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7"
+  }
+}
