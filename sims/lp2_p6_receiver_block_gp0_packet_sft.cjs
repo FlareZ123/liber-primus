@@ -655,6 +655,108 @@ assert.equal(boundaryPrefixLabels, 2112);
 assert.equal(boundaryPrefixFamily.size, 672);
 assert.equal(boundaryPrefixTargetLabels, 2);
 
+// Complete the 13-page Hsplit shell using the authenticated SEEK AND
+// boundary source. AND[1]=9 was explicitly held out by the older p30/p31
+// geometry-key formulas, which used SEEK endpoints and AND.last.
+const seek = [15, 18, 18, 5];
+const andWord = [24, 9, 23];
+assert.equal(gp0(seek), 27);
+assert.equal(gp0(andWord), 27);
+
+const boundarySumHalf = [
+  andWord.length,
+  F,
+  mod29(-p6Title[1].length),
+  seek.length,
+  W4[0],
+  andWord[1],
+];
+assert.deepEqual(boundarySumHalf, [3, 0, 28, 4, 14, 9]);
+assert.deepEqual(keySum13H.slice(7), boundarySumHalf);
+
+// Charge the six sum-half roles broadly while preserving only semantic type.
+const heldOutBoundaryCoordinates = [
+  seek[1],
+  seek[2],
+  andWord[0],
+  andWord[1],
+];
+const boundarySumHalfFamily = new Set();
+let boundarySumHalfLabels = 0;
+let boundarySumHalfTargetLabels = 0;
+for (const firstLength of [seek.length, andWord.length]) {
+  for (let titleLengthRole = 0; titleLengthRole < p6Title.length; titleLengthRole += 1) {
+    for (const titleLengthSign of [1, -1]) {
+      const signedTitleLength = mod29(
+        titleLengthSign * p6Title[titleLengthRole].length
+      );
+      for (const fourthLength of [seek.length, andWord.length]) {
+        for (let w4Endpoint = 0; w4Endpoint < W4.length; w4Endpoint += 1) {
+          for (const w4Sign of [1, -1]) {
+            const signedW4 = mod29(w4Sign * W4[w4Endpoint]);
+            for (
+              let heldOutIndex = 0;
+              heldOutIndex < heldOutBoundaryCoordinates.length;
+              heldOutIndex += 1
+            ) {
+              for (const heldOutSign of [1, -1]) {
+                const signedHeldOut = mod29(
+                  heldOutSign * heldOutBoundaryCoordinates[heldOutIndex]
+                );
+                const candidate = [
+                  firstLength,
+                  F,
+                  signedTitleLength,
+                  fourthLength,
+                  signedW4,
+                  signedHeldOut,
+                ];
+                boundarySumHalfLabels += 1;
+                boundarySumHalfFamily.add(candidate.join(","));
+                if (candidate.join(",") === boundarySumHalf.join(",")) {
+                  boundarySumHalfTargetLabels += 1;
+                  assert.equal(firstLength, andWord.length);
+                  assert.equal(titleLengthRole, 1);
+                  assert.equal(titleLengthSign, -1);
+                  assert.equal(fourthLength, seek.length);
+                  assert.equal(w4Endpoint, 0);
+                  assert.equal(w4Sign, 1);
+                  assert.equal(heldOutIndex, 3);
+                  assert.equal(heldOutSign, 1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(boundarySumHalfLabels, 1024);
+assert.equal(boundarySumHalfFamily.size, 576);
+assert.equal(boundarySumHalfTargetLabels, 1);
+
+const p30 = wordAt(30, 112);
+const p31 = wordAt(31, 126);
+assert.deepEqual(p30.values, [21, 3, 12, 11]);
+assert.deepEqual(p31.values, [12, 23, 1]);
+assert.equal(p30.gp0, 18);
+assert.equal(p31.gp0, 7);
+const predictedBoundaryReceiverGp0 = [
+  mod29(gp0(seek) + boundaryKeySums[0]),
+  mod29(gp0(andWord) + boundaryKeySums[1]),
+];
+assert.deepEqual(predictedBoundaryReceiverGp0, [18, 7]);
+assert.deepEqual(predictedBoundaryReceiverGp0, [p30.gp0, p31.gp0]);
+
+const fullPredictedReceiverGp0 = [
+  ...predictedBoundaryReceiverGp0,
+  ...predictedReceiverGp0,
+];
+assert.deepEqual(fullPredictedReceiverGp0, [
+  18, 7, 5, 28, 6, 3, 16, 9, 1, 18, 25, 6, 6,
+]);
+
 const keyBlockH4 = [
   mod29(keyBlockSums[0] - keyBlockSums[3]),
   mod29(keyBlockSums[1] - keyBlockSums[2]),
@@ -727,6 +829,14 @@ console.log(JSON.stringify({
         distinct: boundaryPrefixFamily.size,
         targetLabels: boundaryPrefixTargetLabels,
       },
+      sumHalf: boundarySumHalf,
+      sumHalfFamily: {
+        labeled: boundarySumHalfLabels,
+        distinct: boundarySumHalfFamily.size,
+        targetLabels: boundarySumHalfTargetLabels,
+      },
+      predictedBoundaryReceiverGp0,
+      fullPredictedReceiverGp0,
     },
   },
   note: "p32 starts1 and30 have identical GP0=5, so this checksum does not replace the first-full-stop tie-break",

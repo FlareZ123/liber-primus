@@ -452,7 +452,7 @@ has exactly **two labeled representations**, differing only by swapping the two 
 
 Again, this is a post-discovery finite charge. Its value is cross-boundary consistency and a concrete H-difference skeleton for the page-sum tape, not a calibrated authorship probability.
 
-### What remains unresolved in the 13-shell
+### Complete candidate 13-shell from the held-out boundary source
 
 The remaining Hsplit sum half is:
 
@@ -460,7 +460,106 @@ The remaining Hsplit sum half is:
 [3,0,28,4,14,9].
 ```
 
-Several entries have short p6 descriptions, but no single authored rule currently fixes all six without retrospective expression choices. Do **not** complete the shell by freely naming those residues. The established advance is the six difference constraints, the center, and the two held-out boundary-sum predictions.
+There is now one compact source/title construction for all six coordinates. The independently selected boundary source pair is:
+
+```text
+SEEK = [15,18,18,5], length4
+AND  = [24,9,23],    length3.
+```
+
+The earlier p30/p31 boundary serializer used SEEK's endpoints and AND's **last** rune; it explicitly held out `SEEK[1:3]=[18,18]` and `AND[0:2]=[24,9]`. Therefore `AND[1]=9` is an independently held-out source coordinate relative to those complete key formulas.
+
+The full sum half is:
+
+```text
+[len(AND), F, -len(W2), len(SEEK), W4[0], AND[1]]
+= [3,0,28,4,14,9].
+```
+
+Together with the already established difference half and center, the complete candidate shell is:
+
+```text
+Hsplit(Ksum30..42)
+=
+[
+  len(W4), len(W1), len(W3), len(W2), F, Hdiff(W3 endpoints),
+  -W2[0],
+  len(AND), F, -len(W2), len(SEEK), W4[0], AND[1]
+]
+
+= [2,4,4,1,0,18,10,3,0,28,4,14,9].
+```
+
+Inverting the frozen Hsplit transform gives exactly:
+
+```text
+Ksum30..42
+= [20,9,4,0,0,25,10,7,0,28,0,5,18].
+```
+
+This is the first single p6 + authenticated-boundary-source serializer in this investigation that predicts the **complete thirteen-page key-sum tape**.
+
+### Finite charge for the sum half
+
+Because the successful six roles were recognized after the checksum tape, charge them broadly while preserving only their semantic types:
+
+1. first coordinate: either boundary-word length, SEEK or AND;
+2. second coordinate: fixed visible Fehu zero;
+3. third coordinate: either sign of any of the four printed title-word length roles;
+4. fourth coordinate: either boundary-word length;
+5. fifth coordinate: either sign of either W4 endpoint;
+6. sixth coordinate: either sign of any of the four source coordinates explicitly held out by the earlier p30/p31 key formulas: SEEK's two interior runes and AND's first two runes.
+
+This is:
+
+```text
+2 * 8 * 2 * 4 * 8 = 1,024 labeled constructions,
+```
+
+collapsing to **576 distinct numeric sum halves**.
+
+Exactly **one labeled realization** equals the observed sum half:
+
+```text
+first length   = AND length3
+signed title length = -len(W2) = -1 = 28
+fourth length  = SEEK length4
+signed W4 endpoint = +W4[0] = 14
+held-out source coordinate = +AND[1] = 9.
+```
+
+Combined with the previous seven-field prefix charge, the p6/source construction now covers all thirteen Hsplit coordinates. The family counts are post-discovery diagnostics, not calibrated probabilities.
+
+### Receiver-GP0 consequence across the full p30..p42 boundary
+
+SEEK and AND both have GP0 residue27. The newly unified checksum shell predicts their receiver GP0 values before reading the receiver runes:
+
+```text
+p30: 27 + k30(20) = 18 mod29
+p31: 27 + k31(9)  =  7 mod29.
+```
+
+The independently established p30/p31 receivers satisfy exactly:
+
+```text
+p30 start112 [21,3,12,11] -> GP0 18
+p31 start126 [12,23,1]    -> GP0 7.
+```
+
+Together with the core prediction already shown, the complete receiver checksum tape is therefore:
+
+```text
+p30..p42 predicted/observed GP0
+= [18,7,5,28,6,3,16,9,1,18,25,6,6].
+```
+
+The receiver locations themselves still come from the independently documented page-local shell/residue/numbered grammars. This checksum serializer constrains and cross-validates them; it does not replace those receiver selectors.
+
+### Evidence boundary for the complete checksum serializer
+
+This result materially changes the checksum frontier: the p6 title, visible Fehu, and authenticated `SEEK AND` boundary source now specify a complete thirteen-page **key-sum** tape under one Hsplit shell.
+
+It still does **not** specify the within-page key coordinates. Equal-sum rune vectors remain plentiful, and the p32..p42 complete local keys were originally obtained from known-source inverses. The serializer is also retrospective in discovery order. Promotion to a cipher mechanism therefore still requires a source-selected coordinate serializer, a prospective transfer to a fresh receiver, or another independent clue that fixes the per-rune distribution rather than only its page sum.
 
 ## Evidence boundary and decision
 
