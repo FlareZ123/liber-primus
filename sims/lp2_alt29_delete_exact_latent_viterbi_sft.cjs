@@ -116,7 +116,25 @@ function experiment(raw, options={}) {
       const id=((((z.j*29+z.prev)*Q+z.a)*Q+z.b)*Q+z.c);
       const old=m.get(id);if(!old||z.s>old.s)m.set(id,z);
     }
-    return [...m.values()].sort((a,b)=>b.s-a.s).slice(0,beam);
+    const a=[...m.values()];
+    // Exact score top-K in O(n) expected time; sort only retained K.
+    if(a.length>beam){
+      let lo=0,hi=a.length-1,goal=beam-1;
+      while(lo<hi){
+        const pivot=a[(lo+hi)>>>1].s;let i=lo,j=hi;
+        while(i<=j){
+          while(i<=hi&&a[i].s>pivot)i++;
+          while(j>=lo&&a[j].s<pivot)j--;
+          if(i<=j){[a[i],a[j]]=[a[j],a[i]];i++;j--;}
+        }
+        if(goal<=j)hi=j;
+        else if(goal>=i)lo=i;
+        else break;
+      }
+      a.length=beam;
+    }
+    a.sort((x,y)=>y.s-x.s);
+    return a;
   }
   function decode(C,K,LM,beam=700,maxDeleted=3) {
     let states=[{j:-1,prev:-1,a:SENT,b:SENT,c:SENT,s:0,path:null}];
