@@ -10,6 +10,7 @@ const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const transcription = read('resources/liber-primus/lp2-transcription.txt');
 const signed = read('resources/historical/cicada2016-4gq25-outguess.asc');
 const runeSet = new Set(corpus.runes);
+const runeIndex = new Map(corpus.runes.map((rune, value) => [rune, value]));
 const parts = transcription.split('%');
 const mod = (value) => ((value % 29) + 29) % 29;
 
@@ -34,33 +35,56 @@ function lineGeometry(page) {
   return rows;
 }
 
+/** @param {number} page */
+function words(page) {
+  const output = [];
+  let current = [];
+  let start = 0;
+  let offset = 0;
+  function emit() {
+    if (!current.length) return;
+    output.push({ start, length: current.length });
+    current = [];
+  }
+  for (const ch of physicalText(page)) {
+    const value = runeIndex.get(ch);
+    if (value !== undefined) {
+      if (!current.length) start = offset;
+      current.push(value);
+      offset += 1;
+    } else if (/[-.&$§,:!?\s]/u.test(ch)) {
+      emit();
+    }
+  }
+  emit();
+  return output;
+}
+
 const p28Lines = lineGeometry(28);
-assert.deepEqual(p28Lines.find((row) => row.ordinal === 7), {
-  ordinal: 7,
-  start: 140,
-  length: 22,
-  end: 161,
+assert.deepEqual(
+  p28Lines.filter((row) => [1,6,7].includes(row.ordinal)),
+  [
+    { ordinal: 1, start: 0, length: 23, end: 22 },
+    { ordinal: 6, start: 117, length: 23, end: 139 },
+    { ordinal: 7, start: 140, length: 22, end: 161 },
+  ]
+);
+
+const p28Words = words(28);
+const lineStartTwoRune = p28Lines.filter((row) => {
+  const word = p28Words.find((item) => item.start === row.start);
+  return word?.length === 2;
 });
-assert.deepEqual(p28Lines.find((row) => row.ordinal === 1), {
-  ordinal: 1,
-  start: 0,
-  length: 23,
-  end: 22,
-});
+assert.deepEqual(
+  lineStartTwoRune.map((row) => [row.ordinal, row.start, row.length]),
+  [[1,0,23],[6,117,23],[7,140,22]]
+);
 
 // Existing local THE candidate: source-derived key equals line geometry.
 assert.deepEqual([22, 7], [
   p28Lines.find((row) => row.ordinal === 7).length,
   7,
 ]);
-
-// Fresh transfer was frozen before these target values were read.
-const p28 = corpus.pages.find((page) => page.page === 28);
-const target = p28.indices.slice(0, 2);
-assert.deepEqual(target, [13, 5]);
-const key = [23, 1];
-const output = target.map((value, index) => mod(value - key[index]));
-assert.deepEqual(output, [19, 4]);
 
 const tokens = corpus.translit
   .map((symbol, value) => ({ symbol, value }))
@@ -106,10 +130,39 @@ const sourceWords = clear
 const twoRune = sourceWords
   .map((word, index) => ({ index, word, values: gp(word) }))
   .filter((item) => item.values.length === 2);
-const exact = twoRune.filter((item) =>
-  item.values[0] === output[0] && item.values[1] === output[1]
-);
-assert.equal(exact.length, 0);
+
+const p28 = corpus.pages.find((page) => page.page === 28);
+const controls = [
+  {
+    name: 'line1',
+    pretargetCommit: 'f679d5cedd9283f65ae8d664920a0cc4c7b27687',
+    start: 0,
+    key: [23,1],
+    ciphertext: [13,5],
+    output: [19,4],
+  },
+  {
+    name: 'line6',
+    pretargetCommit: '354a9d705095e4d8e57645f4770c0ee3298ab67f',
+    start: 117,
+    key: [23,6],
+    ciphertext: [23,8],
+    output: [0,2],
+  },
+];
+
+for (const control of controls) {
+  const ciphertext = p28.indices.slice(control.start, control.start + 2);
+  assert.deepEqual(ciphertext, control.ciphertext);
+  const output = ciphertext.map((value, index) => mod(value - control.key[index]));
+  assert.deepEqual(output, control.output);
+  const exact = twoRune.filter((item) =>
+    item.values[0] === output[0] && item.values[1] === output[1]
+  );
+  assert.equal(exact.length, 0);
+  control.transliteration = output.map((value) => corpus.translit[value]).join('');
+  control.authenticatedTwoRuneMatches = exact;
+}
 
 console.log(JSON.stringify({
   status: 'PASS',
@@ -118,19 +171,14 @@ console.log(JSON.stringify({
       receiverOffset: 140,
       lineOrdinal: 7,
       lineLength: 22,
-      existingKey: [22, 7],
+      existingKey: [22,7],
     },
   },
-  prospective: {
-    pretargetCommit: 'f679d5cedd9283f65ae8d664920a0cc4c7b27687',
-    receiverOffset: 0,
-    lineOrdinal: 1,
-    lineLength: 23,
-    ciphertext: target,
-    key,
-    output,
-    transliteration: output.map((value) => corpus.translit[value]).join(''),
-    authenticatedTwoRuneMatches: exact,
-  },
-  decision: 'Retain the p28 [22,7] equality as retrospective convergence; reject a reusable [line length,line ordinal] key rule.',
+  lineStartTwoRune: lineStartTwoRune.map((row) => ({
+    ordinal: row.ordinal,
+    start: row.start,
+    length: row.length,
+  })),
+  prospectiveControls: controls,
+  decision: 'Retain [22,7] as retrospective convergence; two frozen same-page controls reject a reusable line-geometry key rule.',
 }, null, 2));
