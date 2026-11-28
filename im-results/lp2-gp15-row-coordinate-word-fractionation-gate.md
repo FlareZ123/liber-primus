@@ -1,4 +1,4 @@
-# The literal GP chart vertical-row coordinate rejects word-preserving row fractionation
+# The literal GP chart vertical-row coordinate rejects row-preserving fractionation even with arbitrary segmentation
 
 **Agent20, 28 November 2026. Classification: source-native architecture exclusion on original p0–55. No unknown plaintext or key recovered.**
 
@@ -25,6 +25,10 @@ Across the exact **2,896 complete printed words / 12,956 runes** of unknown p0�
 
 Therefore a cipher cannot explain ordinary GP-native English while preserving the chart's literal vertical-row coordinate inside each printed word, even if it is allowed to change every left/right table bit and arbitrarily permute the row positions within each word.
 
+A stronger boundary-free test removes printed words entirely. Flatten p0–55 to the exact 12,956-rune tape, project only the 15-valued vertical row, and allow **all separators to move or disappear** plus arbitrary left/right-table changes. Any such decoder must preserve the complete row tape. The original has only **538/12,955 adjacent equal rows = 4.15284%** and row-symbol IoC **0.06767737**. Across about 15,600 same-length native-GP windows from Shakespeare, Gibran and Emerson, the minimum adjacent-row rate is **6.13663%** and the minimum row-IoC is **0.10300288**. The original is outside every sampled native window on both invariants.
+
+Thus arbitrary resegmentation alone cannot rescue any side-only / separator-moving decoder that leaves the literal vertical chart-row sequence fixed.
+
 This is a stronger, distinct result from the earlier #3172 **left/right table-bit projection**. That earlier test preserved only which printed table a rune occupied and explicitly did not exclude unknown row-preserving prose. Here the invariant is the orthogonal **vertical 15-row coordinate** and is charged across the entire unknown book.
 
 ## Why this is key independent
@@ -37,7 +41,7 @@ Write each rune as:
 
 where `row in 0..14` is its printed vertical chart position and `side` is left/right when the right mate exists.
 
-Two nested architecture families are tested.
+Three nested architecture families are tested.
 
 ### Family A — exact row-sequence preserving
 
@@ -67,7 +71,22 @@ is required.
 
 This admits every position permutation of the 15-valued row tape inside each word. The original still fails overwhelmingly on long words.
 
-The result does **not** cover a cipher that moves row coordinates across printed word boundaries, changes the 15-row alphabet itself under a separately selected key, or uses an external/non-GP plaintext register.
+### Family C — arbitrary segmentation with the global row tape fixed
+
+Drop printed word boundaries entirely. A decoder may insert, delete or move spaces and may change every left/right side choice, but it keeps each rune position's literal vertical row.
+
+Then two whole-book quantities are key-independent:
+
+```text
+adjacent equality of vertical rows
+15-symbol vertical-row IoC
+```
+
+Unknown p0–55 gives **538** equal-row adjacencies and IoC **0.06767737**. Source-calibrated native-GP controls of the same 12,956-rune length never approach either value in the sampled windows: Shakespeare minimum equal-row count795 / IoC0.10300288, Gibran862 /0.10692353, Emerson837 /0.10787511.
+
+This closes the specific segmentation loophole for any architecture that moves only separators/table-side information. It does **not** assume the printed groups are true plaintext words.
+
+The result does **not** cover a cipher that permutes or changes the vertical-row coordinates themselves across positions, changes the 15-row alphabet under a separately selected key, or uses an external/non-GP plaintext register.
 
 ## Native-English calibration
 
@@ -108,6 +127,17 @@ length >=8:  0 /   343 = 0%
 ```
 
 So the negative is not caused by a generally sparse row-multiset vocabulary in ordinary GP-native English.
+
+For the boundary-free row tape, same-length control windows were sampled densely and deterministically:
+
+| control | windows | stride | min equal-row count | min equal-row rate | min row-IoC |
+|---|---:|---:|---:|---:|---:|
+| Shakespeare | 5,104 | 40 | 795 | 6.13663% | 0.10300288 |
+| Gibran | 5,505 | 9 | 862 | 6.65380% | 0.10692353 |
+| Emerson | 5,056 | 61 | 837 | 6.46083% | 0.10787511 |
+| **unknown LP2** | 1 | — | **538** | **4.15284%** | **0.06767737** |
+
+This is a finite native-control exclusion, not a universal theorem about every possible English text; its value is that it removes a large source-native architecture class without relying on any candidate spacing.
 
 ## Exact length breakdown against the 149,072-word controls
 
@@ -156,11 +186,11 @@ This report instead uses the literal **vertical pairing between the two printed 
 
 Established computational result:
 
-> Under the published 15-row GP chart, any word-preserving decoder whose plaintext retains each ciphertext word's literal vertical-row multiset is incompatible with the native-English controls at essentially every long original word; all 343 original words of length at least8 miss the 149,072-word control corpus.
+> Under the published 15-row GP chart, word-preserving decoders that retain each word's vertical-row multiset fail essentially every long original word; more strongly, **even with arbitrary separator movement**, any decoder that preserves the global literal vertical-row tape is incompatible with every sampled same-length native-GP control window on both adjacent-row equality and 15-symbol IoC.
 
-This materially narrows chart-coordinate cryptanalysis. It removes a large key-independent class including arbitrary per-position left/right substitutions, word-local side-bit fractionation, and arbitrary within-word permutations of the fixed vertical-row tape.
+This materially narrows chart-coordinate cryptanalysis. It removes arbitrary per-position left/right substitutions, word-local side-bit fractionation, arbitrary within-word permutations of the fixed row tape, and segmentation-changing transforms that alter only spaces/side bits while leaving row positions fixed.
 
-Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still move row coordinates across printed word boundaries, introduce a separately selected row permutation/state, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
+Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still move/change vertical-row coordinates across positions, introduce a separately selected row permutation/state, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
 
 ## Reproduction
 
@@ -170,4 +200,4 @@ Run:
 node sims/lp2_gp15_row_coordinate_word_fractionation_sft.cjs
 ```
 
-The SFT reads only committed source/control files, asserts the exact 2,896-word / 12,956-rune original corpus, reconstructs the source-calibrated English controls, reproduces the full-book sequence/multiset counts and leave-one-out calibration, checks the independent TextBlob lexicon sensitivity, and round-trips two nontrivial solved-p57 positive transforms.
+The SFT reads only committed source/control files, asserts the exact 2,896-word / 12,956-rune original corpus, reconstructs the source-calibrated English controls, reproduces the full-book sequence/multiset counts, leave-one-out calibration and boundary-free row-tape repeat/IoC window bounds, checks the independent TextBlob lexicon sensitivity, and round-trips two nontrivial solved-p57 positive transforms.

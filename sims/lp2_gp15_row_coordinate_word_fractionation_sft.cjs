@@ -12,7 +12,9 @@
  *
  * 1. exact row-sequence preserving: arbitrary left/right changes are allowed;
  * 2. row-multiset preserving: additionally allow arbitrary row-position
- *    permutation inside each printed word.
+ *    permutation inside each printed word;
+ * 3. arbitrary segmentation / side changes while the full vertical-row tape
+ *    stays fixed, tested by row-repeat and 15-symbol IoC invariants.
  *
  * No cipher key is searched. Native English is encoded with the repository's
  * source-calibrated GP spelling rules (ING->NG, IO->IA, QU->CW, V->U).
@@ -228,6 +230,58 @@ for (let i = 0; i < corpora.length; i++) {
     n7: result.n7, m7: result.m7 });
 }
 
+
+// Boundary-free full-row-tape invariant: arbitrary spaces and side changes.
+function rowTapeStats(runes) {
+  const rows = runes.map(chartRow);
+  const counts = new Array(15).fill(0);
+  let same = 0;
+  for (let i = 0; i < rows.length; i++) {
+    counts[rows[i]]++;
+    if (i && rows[i] === rows[i - 1]) same++;
+  }
+  const ioc = counts.reduce((sum, n) => sum + n * (n - 1), 0)
+    / (rows.length * (rows.length - 1));
+  return { same, rate: same / (rows.length - 1), ioc };
+}
+
+const originalTape = original.flat();
+const originalRowTape = rowTapeStats(originalTape);
+assert.equal(originalRowTape.same, 538);
+assert.ok(Math.abs(originalRowTape.rate - 0.041528367425704364) < 1e-15);
+assert.ok(Math.abs(originalRowTape.ioc - 0.06767736514967561) < 1e-15);
+
+const expectedRowWindows = new Map([
+  ["Shakespeare", [5104, 40, 795, 0.06136626785025087, 0.1030028780127949]],
+  ["Gibran", [5505, 9, 862, 0.06653801620995754, 0.1069235314633777]],
+  ["Emerson", [5056, 61, 837, 0.06460825935932073, 0.10787511190385318]]
+]);
+const rowWindowBounds = [];
+for (const [name, words] of corpora) {
+  const runes = words.flat();
+  const stride = Math.max(1, Math.floor((runes.length - originalTape.length) / 5000));
+  let windows = 0;
+  let minSame = Infinity;
+  let minRate = Infinity;
+  let minIoc = Infinity;
+  for (let start = 0; start + originalTape.length <= runes.length; start += stride) {
+    const stats = rowTapeStats(runes.slice(start, start + originalTape.length));
+    windows++;
+    minSame = Math.min(minSame, stats.same);
+    minRate = Math.min(minRate, stats.rate);
+    minIoc = Math.min(minIoc, stats.ioc);
+  }
+  const expected = expectedRowWindows.get(name);
+  assert.equal(windows, expected[0]);
+  assert.equal(stride, expected[1]);
+  assert.equal(minSame, expected[2]);
+  assert.ok(Math.abs(minRate - expected[3]) < 1e-15);
+  assert.ok(Math.abs(minIoc - expected[4]) < 1e-15);
+  assert.ok(originalRowTape.same < minSame);
+  assert.ok(originalRowTape.ioc < minIoc);
+  rowWindowBounds.push({ name, windows, stride, minSame, minRate, minIoc });
+}
+
 // Genuine creator-authentic p57 source spelling + reversible positives.
 const reference = read("resources/liber-primus/lp1-plaintext-reference.txt");
 const p57Text = reference.split("### 57\n")[1].trim();
@@ -266,5 +320,9 @@ console.log(JSON.stringify({
     bagLengthAtLeast8: [dictionaryMultiset.m8, dictionaryMultiset.n8]
   },
   leaveOneOut,
+  globalRowTape: {
+    original: originalRowTape,
+    controls: rowWindowBounds
+  },
   positive: "p57 exact GP source + reversible vertical-row plants PASS"
 }, null, 2));
