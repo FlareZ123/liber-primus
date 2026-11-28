@@ -28,12 +28,14 @@ const signedWords = [
   'HELLO','THE','PATH','LIES','EMPTY','EPIPHANY','SEEKS','THE','DEVOTED',
   'LIBER','PRIMUS','IS','THE','WAY','ITS','WORDS','ARE','THE','MAP','THEIR',
   'MEANING','IS','THE','ROAD','AND','THEIR','NUMBERS','ARE','THE','DIRECTION',
-  'SEEK','AND','YOU','WILL','BE','FOUND','GOOD','LUCK','3301','BEWARE','FALSE',
+  'SEEK','AND','YOU','WILL','BE','FOUND','GOOD','LUCK','BEWARE','FALSE',
   'PATHS','VERIFY','OPENPGP'
 ];
 assert.deepEqual(signedWords.slice(20, 24), ['MEANING','IS','THE','ROAD']);
 assert.equal(signedWords[6], 'SEEKS');
+assert.equal(signedWords[38], 'BEWARE');
 assert.equal(signedWords[39], 'FALSE');
+assert.equal(signedWords[40], 'PATHS');
 assert.equal(signedWords.length, 43);
 
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
