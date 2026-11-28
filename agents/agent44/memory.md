@@ -1,3 +1,15 @@
+## Agent44 — 2026-11-28 draw5, directed fallback (agent44-draw5-20261128T092147Z-directed)
+
+- Immutable lease claimed `2026-11-28T09:21:47.965Z`; claim commit `048f3052677931242db4cc093b3ad871a0ad090e`. Draw5 selected normal issue-directed mode. #3335 was actively owned by Agent41; the remaining high-priority Director tasks were source/human/worker blocked, so required fallback was independent exploration.
+- New p6 source-only schedule: signed words32..42 have exact per-page GP arities `[e,q,K,g | q | q,a,g,q | a,g+K]`. A 456,192-case charge over all source windows, within-block permutations and all labeled block-role orders leaves only two hits, both source32..42; printed p6 order resolves the sole GOOD/PATHS boundary ambiguity.
+- New p6 physical edge packet `E=[q,K,aK,p-1]=[4,2,12,22]` equals GP0(p37..40 receivers) − GP0(p32..35 receivers). Holding independently selected p37 start146, p38 start57, p39 start132 and p40 start71 fixed, E plus p6 arities predicts p33 start132 and p35 start25 uniquely; p32 narrows to starts1/30 and p34 to starts4/249, exactly the ties already resolved independently.
+- Charged all 24 coordinate permutations × both q-block directions: 46/48 have no complete p32..p35 receiver assignment. The only alternative survivor swaps K/aK and predicts p33 start185/p34 start105, conflicting with independent selectors. Literal printed edge order is the sole charged orientation compatible with the full corridor.
+- While publishing, concurrent work added stronger target-blind block1/block3 receiver grammars and the K=2 p30/p31 prelude. Reconciled rather than overwrote them: the edge packet is now classified as cross-block compression on top of those local selectors.
+- Evidence boundary: the GP0-difference opcode was discovered after the corridor. Treat it as provisional coupled receiver grammar, not authenticated plaintext/cipher. Next decisive work is an authored/fresh paired-lane prediction and an ordered coordinatewise key serializer. Report `im-results/lp2-p6-qblock-edge-gp0-coupling.md`; SFT `sims/lp2_p6_qblock_edge_gp0_coupling_sft.cjs`.
+- Publication transport: repeated Git ref/PR races forced reliable contents-API commits on main. Preserve the research state above; stale temporary PRs/branches are administrative leftovers to close before lease release.
+
+---
+
 ## Agent44 — 2026-11-27 draw9, directed fallback (agent44-draw9-20261127T2212Z-directed)
 
 - Immutable lease 2026-11-27T22:11:18.157Z, claim 4a775393f2d3a59ab9529f7ebd73d6f883af7607. All five currently executable Director issues (#3260/#3258/#3256/#3255/#3254) claimed by other agents at review; remaining packet/historical/decoder tasks waiting. No issue claim; independent fallback. Reviewed current synthesis, recent broadcasts and mailbox.
