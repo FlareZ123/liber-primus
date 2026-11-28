@@ -203,6 +203,95 @@ assert.deepEqual(census59.hHits, [186]);
 assert.deepEqual(census60.setHits, []);
 assert.deepEqual(census60.hHits, []);
 
+// Direct first-recipient gate from the integrated inversion challenge:
+// use the eight path remainders as an 8-rune GP29 key on the 66+92 runes
+// physically flanking the p49-p51 numerical panel. Charge both additive
+// signs and the two already documented p51 clocks (reset0 vs continuous66).
+const corpus = JSON.parse(
+  fs.readFileSync(path.join(path.dirname(GRID_PATH), 'lp2-corpus.json'), 'utf8')
+);
+const byPage = new Map(corpus.pages.map((page) => [page.page, page]));
+const p49 = byPage.get(49).indices;
+const p51 = byPage.get(51).indices;
+const p57 = byPage.get(57).indices;
+assert.equal(p49.length, 66);
+assert.equal(p51.length, 92);
+assert.equal(p57.length, 95);
+
+/**
+ * @param {number[]} input
+ * @param {number[]} key
+ * @param {number} phase
+ * @param {-1|1} sign
+ */
+function applyAdditive(input, key, phase, sign) {
+  return input.map((value, i) => mod(
+    value + sign * key[(phase + i) % key.length],
+    29
+  ));
+}
+
+/** @param {number[]} input */
+function indexOfCoincidence(input) {
+  const counts = Array(29).fill(0);
+  for (const value of input) counts[value] += 1;
+  const n = input.length;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0)
+    / (n * (n - 1));
+}
+
+/** @param {number[]} input */
+function transliterate(input) {
+  return input.map((value) => corpus.translit[value]).join('');
+}
+
+/**
+ * @param {number[]} key
+ * @returns {{sign:-1|1,p51Phase:number,ioc:number,p49:string,p51:string}[]}
+ */
+function flankModels(key) {
+  const out = [];
+  for (const sign of [-1, 1]) {
+    for (const p51Phase of [0, 66]) {
+      const plain49 = applyAdditive(p49, key, 0, sign);
+      const plain51 = applyAdditive(p51, key, p51Phase, sign);
+      assert.deepEqual(applyAdditive(plain49, key, 0, /** @type {-1|1} */ (-sign)), p49);
+      assert.deepEqual(
+        applyAdditive(plain51, key, p51Phase, /** @type {-1|1} */ (-sign)),
+        p51
+      );
+      out.push({
+        sign: /** @type {-1|1} */ (sign),
+        p51Phase,
+        ioc: indexOfCoincidence([...plain49, ...plain51]),
+        p49: transliterate(plain49),
+        p51: transliterate(plain51),
+      });
+    }
+  }
+  return out;
+}
+
+const stateKey = [...sourceNodeLows];
+const base60RivalKey = path60.nodes.map((address) => address % 29);
+assert.deepEqual(stateKey, [12, 19, 4, 25, 14, 16, 11, 15]);
+assert.deepEqual(base60RivalKey, [12, 19, 4, 27, 23, 28, 15, 18]);
+
+const stateFlankModels = flankModels(stateKey);
+const rivalFlankModels = flankModels(base60RivalKey);
+const bestStateFlankIoC = Math.max(...stateFlankModels.map((model) => model.ioc));
+const bestRivalFlankIoC = Math.max(...rivalFlankModels.map((model) => model.ioc));
+assert.ok(Math.abs(bestStateFlankIoC - 0.03732967830363622) < 1e-15);
+assert.ok(Math.abs(bestRivalFlankIoC - 0.03861968878497138) < 1e-15);
+assert.ok(bestStateFlankIoC < bestRivalFlankIoC);
+assert.ok(indexOfCoincidence(p57) > 0.06);
+
+// Native GP implementation plant: encrypt solved p57 with the state key and
+// recover it exactly with the conventional subtraction inverse.
+const p57PlantCipher = applyAdditive(p57, stateKey, 0, 1);
+const p57PlantRecovered = applyAdditive(p57PlantCipher, stateKey, 0, -1);
+assert.deepEqual(p57PlantRecovered, p57);
+
 const summary = {
   dhState: state,
   path59: expectedPath59,
@@ -224,6 +313,17 @@ const summary = {
   base59Census: census59,
   base60Census: census60,
   base60Path: [...path60.nodes, path60.end],
+  flankGate: {
+    ciphertextIoC: indexOfCoincidence([...p49, ...p51]),
+    solvedP57IoC: indexOfCoincidence(p57),
+    stateKey,
+    base60RivalKey,
+    stateModels: stateFlankModels,
+    base60RivalModels: rivalFlankModels,
+    bestStateIoC: bestStateFlankIoC,
+    bestBase60RivalIoC: bestRivalFlankIoC,
+    nativePlantRecovered95of95: p57PlantRecovered.length,
+  },
 };
 
 console.log(JSON.stringify(summary, null, 2));
