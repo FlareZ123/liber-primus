@@ -28,7 +28,12 @@ assert.equal(alphabet59.length, 59);
 assert.equal(tokens.length, 256);
 assert.equal(tokens.some((token) => token.includes('f')), false);
 assert.equal(grid.pages.reduce((n, page) => n + page.rows, 0), 32);
-assert.equal(grid.pages.every((page) => page.tokens.length === page.rows * 8), true);
+const tableWidth = grid.pages[0].tokens.length / grid.pages[0].rows;
+assert.equal(tableWidth, 8);
+assert.equal(
+  grid.pages.every((page) => page.tokens.length === page.rows * tableWidth),
+  true
+);
 
 /** @param {number} x @param {number} m */
 function mod(x, m) {
@@ -351,17 +356,28 @@ assert.deepEqual(
 // live radix readings jointly close every field of the worked DH tuple.
 function deriveSelectedCellDhRegister() {
   const address = 254; // upstream p27-selected original table cell
-  const A = Math.floor(address / 29);
-  const p = (address % 29) + 1;
+  const addressBase29High = Math.floor(address / 29);
+  const addressBase29Low = address % 29;
+
+  // The source object visibly fixes width8. Its width independently equals
+  // the leading BASE29 digit of the selected address; call that common value A.
+  assert.equal(addressBase29High, tableWidth);
+  const A = tableWidth;
+
   const n59 = values59[address];
   const n60 = values60[address];
 
-  // The same p recovered from BASE29(address)+1 must be the common row when
-  // the two live numeric readings are divided by the derived width A.
-  assert.equal(Math.floor(n59 / A), p);
-  assert.equal(Math.floor(n60 / A), p);
+  // The two live numeric readings independently land on the same table row.
+  const p59 = Math.floor(n59 / A);
+  const p60 = Math.floor(n60 / A);
+  assert.equal(p59, p60);
+  const p = p59;
   const K = n59 % A;
   const g = n60 % A;
+
+  // Only after p is derived from the common row do we validate the second
+  // BASE29 digit of cell254 as p-1.
+  assert.equal(addressBase29Low, p - 1);
 
   // BASE29 representations of those two readings share a leading digit a.
   const a = Math.floor(n59 / 29);
