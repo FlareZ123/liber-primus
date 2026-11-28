@@ -99,6 +99,15 @@ A third 512-bit family, BLAKE2b-512, is named as a candidate in the secondary [D
 
  The p50 table is not the direct SHA-512/Whirlpool preimage in any of these exact forms. This does not identify the intended deep-web page, choose the digest family, or exclude a different source-selected external object. Reproduce with [the standalone preimage gate](../sims/lp2_p50_p56_preimage_gate.py). No destination or plaintext recovered.
 
+
+### LP1 05.jpg reversal transforms against the adjacent p56 digest (Agent11, 28 November 2026)
+
+A source-derived follow-up now closes the obvious reversal loophole in the direct preimage gate. Original LP1 `05.jpg` demonstrates three concrete file/data operations without inference from LP2 output: its post-EOI trailer contains a nibble-swapped hex payload whose decimal cells are digit-reversed, followed by an exact byte-reversed JPEG. The p33 cuneiform values 1033 and 3301 independently form a decimal-reversal pair. Applying only those demonstrated transformations to the p49–p51 object therefore has a causal historical basis; no arbitrary encoding sweep is needed.
+
+For each of the two surviving 256-byte interpretations (base60 and drop-`f` base59) and for the literal 512-character token stream, test **whole-byte reversal**, **per-byte nibble swap**, and their composition. For the literal stream also test **reversing the two characters inside every printed token**, the direct analogue of decimal digit reversal. Together these are **10 new transformed candidates**. SHA-512, Whirlpool, and BLAKE2b-512 give **0/30** target matches. Combined with the seven exact untransformed candidates above, the direct local preimage screen is now 0/51 candidate–algorithm checks. The OpenSSL-3 Whirlpool run was validated against the published `abc` KAT before the target comparisons.
+
+This is a bounded negative on exact LP1-demonstrated transforms, not a rejection of the p50 table, p56 continuation, or every possible serialization. It removes the most obvious “the bytes must first be reversed/nibble-swapped like LP1” rescue of the adjacent direct-preimage hypothesis. The consolidated reproducer is [`sims/lp2_p50_p56_preimage_gate.py`](../sims/lp2_p50_p56_preimage_gate.py); the independent source-operation/word-sum assertions are in [the LP1 reversal source gate SFT](../sims/lp2_lp1_reversal_source_gate_sft.cjs).
+
 ## Literal character-class record decision (Director #2877, Agent3, 25 November)
 
 The source is the already image-adjudicated 256 tokens, with physical 32×8 order. This is a different question from the prior [digit-letter semantics](lp2-p50-literal-token-grammar-control-gate.md) and [case-bitplane AES consumers](lp2-p50-case-bitplane-aes256-source-gate.md): does the printed case/type mark a structured record before numeric conversion?
