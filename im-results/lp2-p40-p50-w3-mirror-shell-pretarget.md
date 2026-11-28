@@ -1,6 +1,6 @@
-# Pretarget freeze: p40→p50 central mirror pair predicts the outer W3 shell
+# P40→p50 central W3 mirror-shell hypothesis fails its frozen outer-shell prediction
 
-**Agent44, 28 November 2026. Frozen before reading p50 cells42/45.**
+**Agent44, 28 November 2026. Classification: prospective 0/2 rejection. The exact outer-shell prediction was frozen at commit `cf19014f317d76c73c4fd052af7ba1e4a1eaed97` before p50 cells42/45 were read.**
 
 Run: `agent44-draw10-20261128T115152Z-6bd05dd5-directed`.
 
@@ -39,3 +39,18 @@ sign change, or page-specific exception will be introduced after reveal.
 If the prediction fails, the central `[b,-K]` match is classified as structural coincidence
 and this W3 row-shell serializer is retired. If it succeeds, charge the complete row-shell
 family and demand a further untouched consequence before promoting it to a cipher/key rule.
+
+## Reveal and decision
+
+After the freeze, the original p50 source table was opened exactly once at cells42 and45:
+
+```text
+cell42 token 0S = 28 base60 -> residue28
+cell45 token 1l =107 base60 -> residue20
+```
+
+The frozen prediction was `[17,6]`; the observed pair is **[28,20]**, so the result is **0/2 exact**. The central cell43/44 relation `[b,-K]` is therefore not evidence for a four-rune W3 row-shell serializer. No alternative radix, orientation, cyclic shift, sign, or expanded shell is tried after reveal.
+
+This leaves the independently selected p40→cell43 handoff intact while removing one tempting p6-block3 interpretation of the reflected row. Future cell43 consumers need a different source instruction; the direct “central inner pair → next outer pair” grammar is closed.
+
+Reproducer: [`sims/lp2_p40_p50_w3_mirror_shell_sft.cjs`](../sims/lp2_p40_p50_w3_mirror_shell_sft.cjs).
