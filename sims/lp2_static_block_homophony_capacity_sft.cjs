@@ -21,7 +21,7 @@ function chapters(as){const byPage=new Map(pages.map((p,i)=>[p.page,as[i]]));ret
 function counts(as,scope,k,o){if(scope==="shared-continuous")return [one(as.flat(),k,o)];if(scope==="shared-page-reset")return merge(as,k,o);if(scope==="chapter-private")return separate(chapters(as),k,o);if(scope==="page-private")return separate(as,k,o);throw Error("scope")}
 function collisions(vv){let s=0;for(const v of vv)for(const n of v)s+=n*(n-1)/2;return s}
 function splitMinimum(vv,q){let s=0;for(const v of vv)for(const n of v){const a=Math.floor(n/q),r=n%q;s+=r*a*(a+1)/2+(q-r)*a*(a-1)/2}return s}
-function qNeeded(vv,limit){for(let q=1;q<=16;q++)if(splitMinimum(vv,q)<=limit)return q;throw Error("q>16")}
+function qNeeded(vv,limit){for(let q=1;q<=128;q++)if(splitMinimum(vv,q)<=limit)return q;return 129}
 const specs=[["shared-continuous",2],["shared-continuous",3],["shared-page-reset",2],["shared-page-reset",3],["chapter-private",2],["chapter-private",3],["page-private",2]];
 const result={};
 for(const [scope,k] of specs){const key=scope+"/k"+k;result[key]={minimumQ:99,witness:null};
