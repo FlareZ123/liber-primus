@@ -16,6 +16,18 @@ This branch now has a complete human-observable clue chain with no plaintext gra
 
 This is the strongest result of the investigation. It is a **source-exact navigation/state route**, not a body decryption. The route recovers historically authenticated DH parameters from original LP2 page counts through a solved LP2 instruction, without fitting unknown plaintext.
 
+The route can reconstruct more than `(g,p)` without importing p15. Take the source-visible self-index run start as `a=6`; use the p57-shed inner pair as `(g,p)=(5,23)`; and use the canonical outer difference of the shed circumference as `b=22-7=15`. Standard DH then gives:
+
+```
+A = 5^6 mod 23 = 8
+B = 5^15 mod 23 = 19
+K = 8^15 mod 23 = 2
+```
+
+Two values are held out locally: `A=8` equals the third physical page in the self-index run, and `K=2` equals the observed right-outer excess `7-5`. Enumerating all **4,032** ordered count choices compatible with only the quotient bins6,7,8,9, then requiring prime `p`, valid `g`, `g^6 mod p = 8`, and the DH shared secret to equal the observed outer excess, leaves **exactly one** candidate: `[22,5,23,7]`, reconstructing `(a,g,p,A,b,B,K)=(6,5,23,8,15,19,2)`.
+
+The same outside-H applied separately to the page-number column `[6,7,8,9]` and remainder column `[22,5,23,7]` gives `[26,28,15,15]` and `[15,11,28,0]`. Across all53 four-page windows, p6–p9 is the **only** window satisfying the three state-free cross-relations `lowH0=highH2`, `lowH2=highH1`, and `lowH3=0`. Their common value `15` is therefore a natural physical-page pointer. On p15, independent source-visible work finds the same DH state; the unique red grid cell is3299 and the newly reconstructed `K=2` gives3301, exactly the authenticated 2013 BASE29 worked input.
+
 The same remainder packet has two additional locked checks. The four digits are `[22,5,23,7]=[p-1,g,p,g+K]` under the already reconstructed state, and canonical outside-H gives `[15,11,28,0]=[b,A^-1,-1,0]`. Conditional on only the four required base29 quotient bins, there are **4,032** ordered count choices and exactly **one** gives that H packet: the actual p6–p9 counts.
 
 A direct steganographic interpretation is closed. The literal uppercase `M5N7` was frozen as the **only** password variant and tested with pinned historical OutGuess0.4 against all58 original LP2 JPEGs. An authentic 2016 Cicada image recovers its known signed payload exactly, while `M5N7` yields 58/58 source-forced 25,903-byte pseudo-extractions with **zero recognizable payloads**; every output is high-entropy and the shared prefix reflects the already established all-one source header. Do not search case variants or nearby passwords.
@@ -231,41 +243,60 @@ The analogous p15 block keys of lengths 8,9,10,11 were also applied directly to 
 
 ## Interpretation and next decision
 
-The strongest supported interpretation is **base29 page-count structure plus a compatible navigation/serialization candidate**, not decryption:
+The strongest supported route is now:
 
 ```
-signed 2013 BASE29 clue
-        +
-authored p15 red-origin spiral
-        +
-canonical integer H
+authenticated 2013 BASE29 + DH examples
+        |
+original 2014 filenames 0.jpg ... 57.jpg
+        |
+original page rune counts
+        |
+p6=6M, p7=75, p8=8N, p9=97
+        |
+strip the self-matching page digits
+        v
+      M5N7
+        |
+base29 digit/tail sum = 57
+        v
+solved p57 PARABLE instruction:
+shed circumference / find within
         |
         v
-BASE29 page counts: p6=6M, p7=75, p8=8N, p9=97
-        |
-        +--> unique four-page self-index run in bases2..60
+       5N
         |
         v
-p15 H digit-length staircase [8,9,10,11]
+[5,23] = [g,p]
         |
+run start a=6; outer difference b=15
+        |
+standard DH
         v
-same H-length operation on physical page counts
+A=8, B=19, K=2
         |
-        +--> p6 <----> p8
-        |      p7 fixed
-        |
-        +--> unique consecutive red-page triple
+common H value 15 -> p15
+        v
+red3299 + K2 = signed-source 3301
 ```
 
-This is a materially different route from repeated GP29 key fitting because the strongest holdout is a **literal radix-29 representation of original page counts** with no plaintext or key fitting. A useful successor should ask what original object on p6/p7/p8 consumes the navigation result or the signed integer arms without converting them into another arbitrary periodic key.
+The route reconstructs the complete authenticated DH state and closes it back onto p15. This is materially stronger than a generic state-label coincidence because each transition is selected by an earlier source object: historical radix, historical zero-based filenames, original rune counts, the solved p57 instruction, standard DH arithmetic, and the independently preserved 2013 protocol.
 
-In particular, the next experiment should demand a fresh source-selected consequence on p6/p7/p8 geometry, punctuation, or an independently bounded receiver before any language score is inspected.
+What remains missing is the **next reversible operation on unknown ciphertext**. The direct periodic additive interpretations and literal `M5N7` OutGuess password are closed; the p57-derived `5N` OutGuess key is separately gated. The next useful experiment should begin from the source-derived ordered DH state or the exact p6–p9 two-column matrix and make a fixed prediction on an untouched original object before any language grading.
+
+The p15 integer-H / page-count length cycle is retained only as secondary corroborating geometry. Its radix-span caveat prevents it from carrying the primary causal claim.
 
 ## Reproduction
 
+- Source-visible self-index -> M5N7 -> p57 -> full-DH reconstruction SFT:
+  `sims/lp2_base29_selfindex_m5n7_p57_shed_sft.cjs`
 - Main serializer / staircase / page-count-cycle SFT:
   `sims/lp2_p15_base29_integer_h4_serializer_sft.cjs`
+- Literal M5N7 pinned OutGuess census:
+  `sims/lp2_base29_selfindex_m5n7_outguess_sft.cjs`
+- P57-derived 5N pinned OutGuess gate:
+  `sims/lp2_base29_selfindex_p57_5n_outguess_sft.cjs`
 - Exact p6 six-digit consumer rejection:
   `sims/lp2_p15_base29_p6_arm_consumer_sft.cjs`
 
-Both read only the canonical repository corpus, transcription, ink annotations, and solved reference. The scripts assert the exact source values, presentation controls, manuscript-wide page-count map, and negative consumer gates.
+The reproducers use only committed canonical/historical source material and assert the source-visible zero origin, exact BASE29 self-index, p57 instruction bridge, full DH reconstruction, manuscript-wide controls, and bounded negative consumers.
