@@ -84,6 +84,8 @@ The unordered block invariant `{{2,6},{3,5}}` exactly equals the independently d
 
 So the negative here applies to **canonical H serialization**, not to all state information obtained from the visibly paired title. The p6→p50 support-coordinate match survives as a serialization-free mirror-pair relation. It remains post-discovery and is not a cipher inverse. Reproducer: [`sims/lp2_p6_mirror_invariant_p50_support_sft.cjs`](../sims/lp2_p6_mirror_invariant_p50_support_sft.cjs).
 
+> **Local p6 selector found later on 28 November:** the p6 red13 object now supplies a source-local reason to try outside-in H-like arithmetic even though no historical Cicada-wide precedent was found. Its 180° mirror pairs have normalized half-gaps `[6,5,4,3,2,1]`; reversal-pairing the bracketed title widths `[4,1,4,2]` supplies the complementary difference/sum magnitudes needed for exactly `1..6=[1,K,e,q,g,a]`. This selects the *outside-in pairing/magnitude idea* locally, not the signed H4 output serialization or its use on other pages. See [p6 mirror half-gap ladder](lp2-p6-mirror-halfgap-h-ladder.md).
+
 ## Decision
 
 **Negative historical fork.** No bounded first-party or contemporaneous source currently fixes the exact outside-in H transform, its direction, serialization, and modulo29 arithmetic before the modern LP2 constructions.
