@@ -44,3 +44,12 @@ jobs:
           path: ${{ runner.temp }}/swh-history-output.json
           if-no-files-found: error
           retention-days: 7
+      - name: Extract 2017 text artifacts
+        run: node sims/lp2_onecool_2017_text_artifacts_sft.cjs
+      - name: Upload 2017 text artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2017-text-artifacts
+          path: ${{ runner.temp }}/onecool-2017-text-artifacts.json
+          if-no-files-found: error
+          retention-days: 7
