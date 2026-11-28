@@ -42,13 +42,38 @@ ord(M) = 29^3 - 1 = 24,388
 
 in `GL(7,29)`: direct exponentiation gives `M^24388=I`, while division of the exponent by each prime factor `2,7,13,67` breaks identity.
 
+The two cubic factors have exact root orders **469=7×67** and **24,388=29³−1**, respectively; the second is a primitive cubic over GF(29).
+
 This is substantially stronger than assigning familiar names to isolated residues. The complete degree-seven polynomial, its compact factorization, trace, determinant, and order all belong to one exact source matrix.
 
-## Source matrix
+## Source path to the 7×7 matrix
 
-P8's two red heading words reconstruct the DH state under the canonical outside-in H transform in the companion [p8 red-state circuit](lp2-p8-red-h-state-circuit.md). In particular they expose `g+K=7`.
+P8's two red heading words reconstruct the DH state under the canonical outside-in H transform in the companion [p8 red-state circuit](lp2-p8-red-h-state-circuit.md).
 
-The 49 page-local black fragments then give this literal row-major length matrix:
+The **page composition itself** then gives a source-native square instruction:
+
+| p8 object | Exact count | DH-state expression |
+|---|---:|---|
+| red page-local fragments | **2** | **K** |
+| red runes | **12** | **aK** |
+| all page-local fragments | **51** | **e(b+K)** |
+| all runes | **255** | **ge(b+K)** |
+| black page-local fragments | **49** | **(g+K)^2 = 7^2** |
+| black runes | **243** | **e^g = 3^5** |
+
+Thus the red mean fragment length is exactly **a=6**, the whole-page mean fragment length is exactly **g=5**, and the black fragment count literally supplies the square **(g+K)^2**. The black-rune identity `243=e^g` was known before this report; the coupled fragment/rune count table and `49=(g+K)^2` link are new.
+
+Across all rune-bearing p0–p55 pages, p8 is uniquely selected by each complete pair:
+
+- `(red fragments, red runes)=(K,aK)=(2,12)`;
+- `(all fragments, all runes)=(e(b+K),ge(b+K))=(51,255)`;
+- `(black fragments, black runes)=((g+K)^2,e^g)=(49,243)`.
+
+This gives a concrete human reason to take the 49 black fragment lengths as a **7×7 square**.
+
+**Visual limitation:** original physical p8 ([archive 25.jpg](../resources/liber-primus/25.jpg)) does **not** draw those 49 fragments as a 7×7 grid. They are ordinary text beside the rooted-tree illustration. The square is inferred from the exact count `49=(g+K)^2`, the seven-page p8–p14 chapter, and the separately visible/state-derived seven cues; it is not a direct typographic grid.
+
+The 49 page-local black fragments give this literal row-major length matrix:
 
 ```text
 3  2  3  9  4  3  4
@@ -182,6 +207,8 @@ solved-native minimum:  +0.70997
 
 No variant recovers coherent GP-native prose.
 
+The cubic factorization gives a second new stateful consumer: use one cubic's ordered three nonleading coefficients as the initial state of the other cubic's recurrence, then add/subtract that LFSR stream. The primitive factor is tested cross-seeded by the 469-order factor and vice versa, on both the **243-rune p8 black body** and the **1,729-rune chapter**. All eight exact reversible tests remain ciphertext-like; the best score is **−1.47981**, still far below the solved-native minimum **+0.70997**. No phase, decimation, F-hold, or fitted seed is introduced.
+
 A second literal consumer treats each page length itself as a per-page affine key. If
 
 ```text
@@ -202,12 +229,13 @@ The repository's stronger [seven-row all-secret gate](lp2-p8-14-sevenrow-allsecr
 
 ## Research implication
 
-P8 now contains four mutually adjacent/contained representations of the same state:
+P8 now contains five mutually adjacent/contained representations of the same state:
 
 1. the red H packet reconstructs the DH23 state;
-2. the immediately following first black word has `(length,sum,product)=[e,p,K]` and `H3=[A^-1,q+g,-b]`;
-3. the 49 black page-local fragment lengths form a 7×7 matrix whose **entire characteristic polynomial factors in DH-state coefficients**;
-4. the seven physical page lengths p8–p14 serialize the state in base29.
+2. the page composition itself closes as `K/aK`, `e(b+K)/ge(b+K)`, and `(g+K)^2/e^g`;
+3. the immediately following first black word has `(length,sum,product)=[e,p,K]` and `H3=[A^-1,q+g,-b]`;
+4. the 49 black page-local fragment lengths form a 7×7 matrix whose **entire characteristic polynomial factors in DH-state coefficients**;
+5. the seven physical page lengths p8–p14 serialize the state in base29.
 
 This materially changes the route ranking. The evidence points to deliberate **state/layout metadata** rather than a direct mono-layer Hill cipher.
 

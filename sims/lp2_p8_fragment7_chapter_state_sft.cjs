@@ -161,6 +161,27 @@ function polynomialMultiply(left, right) {
   return out;
 }
 
+/** Companion matrix for x^3+c2*x^2+c1*x+c0. */
+function cubicCompanion(coefficients) {
+  const [c2, c1, c0] = coefficients;
+  return [
+    [0, 1, 0],
+    [0, 0, 1],
+    [mod(-c0), mod(-c1), mod(-c2)],
+  ];
+}
+
+/** @param {number[]} coefficients @param {number[]} seed @param {number} length */
+function lfsr(coefficients, seed, length) {
+  const [c2, c1, c0] = coefficients;
+  const out = seed.slice();
+  while (out.length < length) {
+    const i = out.length;
+    out.push(mod(-c2 * out[i - 1] - c1 * out[i - 2] - c0 * out[i - 3]));
+  }
+  return out.slice(0, length);
+}
+
 /** @param {number[][]} A @param {number[]} v */
 function matrixVector(A, v) {
   return A.map((row) => mod(row.reduce((z, x, i) => z + x * v[i], 0)));
@@ -191,6 +212,9 @@ function ioc(values) {
 
 const corpus = JSON.parse(
   fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8')
+);
+const ink = JSON.parse(
+  fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-ink-annotations.json'), 'utf8')
 );
 const transcription = fs
   .readFileSync(path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8')
@@ -276,6 +300,77 @@ assert.deepEqual({ p, g, a, b, A, B, K, e, q, F }, {
   p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4, F: 0,
 });
 
+// P8 page composition is itself a state-selected source packet.
+const pageCountRecords = [];
+for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50)) {
+  const fragments = pageFragments(pageObj.page);
+  const ann = ink.pages.find((x) => x.page === pageObj.page);
+  const spans = ann?.red_spans || [];
+  const redRunes = spans.reduce((z, span) => z + span.length, 0);
+  const redFragments = fragments.filter((fragment) =>
+    spans.some(
+      (span) =>
+        fragment.start >= span.start &&
+        fragment.end <= span.start + span.length
+    )
+  ).length;
+  pageCountRecords.push({
+    page: pageObj.page,
+    totalRunes: pageObj.indices.length,
+    totalFragments: fragments.length,
+    redRunes,
+    redFragments,
+    blackRunes: pageObj.indices.length - redRunes,
+    blackFragments: fragments.length - redFragments,
+  });
+}
+const p8CountTarget = {
+  redFragments: K,
+  redRunes: a * K,
+  totalFragments: e * (b + K),
+  totalRunes: g * e * (b + K),
+  blackFragments: (g + K) ** 2,
+  blackRunes: e ** g,
+};
+assert.deepEqual(p8CountTarget, {
+  redFragments: 2,
+  redRunes: 12,
+  totalFragments: 51,
+  totalRunes: 255,
+  blackFragments: 49,
+  blackRunes: 243,
+});
+const countSignatureHits = pageCountRecords.filter((row) =>
+  Object.entries(p8CountTarget).every(([key, value]) => row[key] === value)
+);
+assert.deepEqual(countSignatureHits.map((x) => x.page), [8]);
+assert.deepEqual(
+  pageCountRecords
+    .filter((x) => x.redFragments === K && x.redRunes === a * K)
+    .map((x) => x.page),
+  [8]
+);
+assert.deepEqual(
+  pageCountRecords
+    .filter(
+      (x) =>
+        x.totalFragments === e * (b + K) &&
+        x.totalRunes === g * e * (b + K)
+    )
+    .map((x) => x.page),
+  [8]
+);
+assert.deepEqual(
+  pageCountRecords
+    .filter(
+      (x) =>
+        x.blackFragments === (g + K) ** 2 &&
+        x.blackRunes === e ** g
+    )
+    .map((x) => x.page),
+  [8]
+);
+
 // P8 has 49 page-local black fragments. The last is only the one-rune p8
 // tail of a six-rune word that continues onto p9; this test intentionally
 // preserves page-local fragment geometry rather than calling all 49 words.
@@ -335,6 +430,22 @@ const factored = polynomialMultiply(
   factorCubicB
 );
 assert.deepEqual(factored, characteristicTarget);
+
+const cubicA = factorCubicA.slice(1);
+const cubicB = factorCubicB.slice(1);
+const companionA = cubicCompanion(cubicA);
+const companionB = cubicCompanion(cubicB);
+const identity3 = Array.from({ length: 3 }, (_, i) =>
+  Array.from({ length: 3 }, (_, j) => Number(i === j))
+);
+assert.deepEqual(matrixPower(companionA, 469), identity3);
+for (const primeFactor of [7, 67]) {
+  assert.notDeepEqual(matrixPower(companionA, 469 / primeFactor), identity3);
+}
+assert.deepEqual(matrixPower(companionB, 24388), identity3);
+for (const primeFactor of [2, 7, 13, 67]) {
+  assert.notDeepEqual(matrixPower(companionB, 24388 / primeFactor), identity3);
+}
 
 // Direct order certificate. Since M^24388=I and division by every prime
 // factor of 24388 breaks identity, ord(M)=24388=29^3-1 exactly.
@@ -523,10 +634,46 @@ assert.ok(Object.values(powerScores).every((x) => x.score < nativeMin));
 const pageAffineResult = { score: score(pageAffine), ioc: ioc(pageAffine) };
 assert.ok(pageAffineResult.score < nativeMin);
 
+// The factorization itself suggests a 3-state recurrence. Freeze the minimal
+// cross-seeded construction: one cubic's ordered nonleading coefficients seed
+// the other. Test only the two additive signs on p8 black and p8-p14.
+const p8Black = p8.indices.slice(a * K);
+assert.equal(p8Black.length, e ** g);
+const lfsrResults = [];
+for (const [polyName, polynomial, seedName, seed] of [
+  ['A', cubicA, 'B', cubicB],
+  ['B', cubicB, 'A', cubicA],
+]) {
+  for (const [receiverName, receiver] of [
+    ['p8black', p8Black],
+    ['chapter', chapterBody],
+  ]) {
+    const key = lfsr(polynomial, seed, receiver.length);
+    for (const sign of [-1, 1]) {
+      const decoded = receiver.map((x, i) => mod(x + sign * key[i]));
+      const replay = decoded.map((x, i) => mod(x - sign * key[i]));
+      assert.deepEqual(replay, receiver);
+      lfsrResults.push({
+        polynomial: polyName,
+        seedFrom: seedName,
+        receiver: receiverName,
+        sign,
+        score: score(decoded),
+        ioc: ioc(decoded),
+      });
+    }
+  }
+}
+assert.ok(lfsrResults.every((x) => x.score < nativeMin));
+
 console.log(JSON.stringify({
   status: 'PASS',
   classification: 'source-only p8/chapter state-layout serialization; no plaintext or cipher',
   state: { p,g,a,b,A,B,K,e,q,F },
+  p8PageComposition: {
+    target:p8CountTarget,
+    countSignatureHits:countSignatureHits.map((x) => x.page),
+  },
   p8FragmentLengthSquare: {
     matrix,rowRaw,rowMod,rowH:H(rowMod),colRaw,colMod,colH:H(colMod),
     determinant:determinant29(matrix),
@@ -534,6 +681,7 @@ console.log(JSON.stringify({
       coefficients:characteristicCoefficients29(matrix),
       target:characteristicTarget,
       factors:[factorLinear,factorCubicA,factorCubicB],
+      cubicOrders:[469,24388],
       order:matrixOrder,
     },
     census:{windows49,rowHits,colHits,jointHits,characteristicHits},
@@ -550,7 +698,8 @@ console.log(JSON.stringify({
     rawChapter:{score:score(chapterBody),ioc:ioc(chapterBody)},
     matrixPowerClock:powerScores,
     pageLengthAffineInverse:pageAffineResult,
+    crossSeededCubicLfsr:lfsrResults,
   },
   boundary:
-    'The 49-fragment and 1729-rune geometries were already known. New evidence is their coupled serialization of the independently reconstructed DH state, especially the exact characteristic polynomial. Fixed Hill7 is already excluded by the repository all-secret Gate E; the distinct changing matrix-power clock and literal page-length affine inverse are tested here and remain ciphertext-like.',
+    'The 49-fragment and 1729-rune geometries were already known. New evidence is their coupled serialization of the independently reconstructed DH state: page composition, characteristic polynomial, and page-length BASE29 packet. The 7x7 grid is an inferred reshape, not a visibly drawn grid on original 25.jpg. Fixed Hill7 is already excluded; changing matrix powers, page-length affine inversion, and the minimal cross-seeded cubic LFSR are tested here and remain ciphertext-like.',
 },null,2));
