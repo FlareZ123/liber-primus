@@ -99,6 +99,27 @@ function translit(pair) {
   return pair.map((index) => corpus.translit[index]).join('');
 }
 
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function powMod(base, exponent, modulus) {
+  let result = 1;
+  let x = ((base % modulus) + modulus) % modulus;
+  let e = exponent;
+  while (e > 0) {
+    if (e & 1) result = (result * x) % modulus;
+    x = (x * x) % modulus;
+    e = Math.floor(e / 2);
+  }
+  return result;
+}
+
+/** @param {number} value @param {number} modulus @returns {number} */
+function inverseMod(value, modulus) {
+  for (let candidate = 1; candidate < modulus; candidate += 1) {
+    if ((value * candidate) % modulus === 1) return candidate;
+  }
+  throw new Error(`no inverse for ${value} mod ${modulus}`);
+}
+
 // Frozen Q from the exact p3 / p15-second / p57 bridge.
 const Q = [5, 5, 14, 9, 10, 4, 27, 17, 25];
 const EQ = evaluate(Q);
@@ -124,24 +145,62 @@ const p23RedWords = p23Words.filter((word) => word.start >= 0 && word.end <= 16)
 assert.deepEqual(p23RedWords.map((word) => word.values.length), [2, 6, 3, 5]);
 const p23Products = p23RedWords.map((word) => product(word.values));
 assert.deepEqual(p23Products, [24, 13, 18, 13]);
-assert.deepEqual([
+const p23Register = [
   mod(p23Products[0] - p23Products[1]),
   mod(p23Products[0] + p23Products[1]),
   mod(p23Products[2] - p23Products[3]),
   mod(p23Products[2] + p23Products[3]),
-], [11, 8, 5, 2]);
+];
+assert.deepEqual(p23Register, [11, 8, 5, 2]);
+
+// The directed p23 register completes the full DH state from Q's [p,A] pair.
+const p = direction[0];
+const A = direction[1];
+const b = mod(p - A);
+const K = mod(p + A);
+const e = inverseMod(b, p - 1);
+assert.deepEqual([p, A, b, K, e], [23, 8, 15, 2, 3]);
+assert.equal(p23Register[1], A);
+assert.equal(p23Register[3], K);
+assert.equal(p23Register[0], inverseMod(A, MOD));
+const g = p23Register[2];
+const aHits = [];
+for (let exponent = 1; exponent < p - 1; exponent += 1) {
+  if (powMod(g, exponent, p) === A) aHits.push(exponent);
+}
+assert.deepEqual(aHits, [6]);
+const a = aHits[0];
+const B = powMod(g, b, p);
+assert.equal(B, 19);
+assert.equal(powMod(B, a, p), K);
+const recoveredState = {p, g, a, b, A, B, K, e};
+assert.deepEqual(recoveredState, {p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3});
 
 // Independently established p8 state register and adjacent black descriptor.
 const p8Ann = ink.pages.find((item) => item.page === 8);
 assert.deepEqual(p8Ann.red_spans.map((span) => [span.start, span.length]), [[0, 12]]);
 const p8Words = wordsAt(8);
 assert.deepEqual(p8Words.slice(0, 3).map((word) => word.values.length), [4, 8, 3]);
-assert.deepEqual(H(p8Words[0].values), [24, 25, 24, 4]);
-assert.deepEqual(H(p8Words[1].values), [13, 11, 6, 3, 7, 3, 17, 18]);
-assert.deepEqual(
-  [p8Words[2].values.length, sum(p8Words[2].values), product(p8Words[2].values)],
-  [3, 23, 2]
-);
+const q = p8Words[0].values.length;
+const p8H4 = H(p8Words[0].values);
+const p8H8 = H(p8Words[1].values);
+assert.deepEqual(p8H4, [mod(-g), mod(-q), mod(-g), q]);
+assert.deepEqual(p8H8, [
+  mod(b - K),
+  inverseMod(A, MOD),
+  a,
+  e,
+  mod(g + K),
+  e,
+  mod(K + b),
+  mod(p - g),
+]);
+const p8FirstBlackDescriptor = [
+  p8Words[2].values.length,
+  sum(p8Words[2].values),
+  product(p8Words[2].values),
+];
+assert.deepEqual(p8FirstBlackDescriptor, [e, p, K]);
 
 // Preregistered direct-Q continuation on the two already-fixed adjacent black words.
 const requestTokens = new Set(['RAND', 'QUINE', 'BASE29', 'CODE', 'KOAN', 'DH', 'NEXT', 'GOODBYE']);
@@ -201,12 +260,15 @@ console.log(JSON.stringify({
   Q,
   E_Q: EQ,
   p15: {direction, canonical: translit(direction)},
+  recoveredStateFromQAndP23: recoveredState,
   receivers: {
-    p23: {redProducts: p23Products, redProductH: [11, 8, 5, 2]},
+    p23: {redProducts: p23Products, redProductH: p23Register},
     p8: {
-      h4: H(p8Words[0].values),
-      h8: H(p8Words[1].values),
-      firstBlackDescriptor: [p8Words[2].values.length, sum(p8Words[2].values), product(p8Words[2].values)],
+      q,
+      h4: p8H4,
+      h8: p8H8,
+      firstBlackDescriptor: p8FirstBlackDescriptor,
+      verifiesRecoveredState: true,
     },
   },
   preregisteredSuccessorGate: successors,
