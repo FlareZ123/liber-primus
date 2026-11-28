@@ -1,0 +1,211 @@
+{
+  "classification": "pretarget raw outputs; no authenticated q-block plaintext loaded",
+  "rule": "13-dot stencil top-down zero-based row selects the sole nonzero key coordinate; K[row]=sigma; P=C-K mod29",
+  "q1": [
+    {
+      "page": 32,
+      "start": 30,
+      "arity": 3,
+      "row": 2,
+      "sigma": 4,
+      "key": [
+        0,
+        0,
+        4
+      ],
+      "ciphertext": [
+        0,
+        3,
+        2
+      ],
+      "raw": [
+        0,
+        3,
+        27
+      ]
+    },
+    {
+      "page": 33,
+      "start": 132,
+      "arity": 4,
+      "row": 3,
+      "sigma": 0,
+      "key": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ciphertext": [
+        3,
+        15,
+        17,
+        22
+      ],
+      "raw": [
+        3,
+        15,
+        17,
+        22
+      ]
+    },
+    {
+      "page": 34,
+      "start": 4,
+      "arity": 2,
+      "row": 0,
+      "sigma": 0,
+      "key": [
+        0,
+        0
+      ],
+      "ciphertext": [
+        12,
+        23
+      ],
+      "raw": [
+        12,
+        23
+      ]
+    },
+    {
+      "page": 35,
+      "start": 25,
+      "arity": 5,
+      "row": 1,
+      "sigma": 25,
+      "key": [
+        0,
+        25,
+        0,
+        0,
+        0
+      ],
+      "ciphertext": [
+        19,
+        17,
+        19,
+        24,
+        11
+      ],
+      "raw": [
+        19,
+        21,
+        19,
+        24,
+        11
+      ]
+    }
+  ],
+  "q3": [
+    {
+      "page": 37,
+      "start": 146,
+      "arity": 4,
+      "row": 3,
+      "sigma": 7,
+      "key": [
+        0,
+        0,
+        0,
+        7
+      ],
+      "ciphertext": [
+        3,
+        2,
+        6,
+        27
+      ],
+      "raw": [
+        3,
+        2,
+        6,
+        20
+      ]
+    },
+    {
+      "page": 38,
+      "start": 57,
+      "arity": 6,
+      "row": 4,
+      "sigma": 0,
+      "key": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ciphertext": [
+        8,
+        25,
+        14,
+        2,
+        17,
+        22
+      ],
+      "raw": [
+        8,
+        25,
+        14,
+        2,
+        17,
+        22
+      ]
+    },
+    {
+      "page": 39,
+      "start": 132,
+      "arity": 5,
+      "row": 0,
+      "sigma": 28,
+      "key": [
+        28,
+        0,
+        0,
+        0,
+        0
+      ],
+      "ciphertext": [
+        19,
+        7,
+        10,
+        17,
+        23
+      ],
+      "raw": [
+        20,
+        7,
+        10,
+        17,
+        23
+      ]
+    },
+    {
+      "page": 40,
+      "start": 71,
+      "arity": 4,
+      "row": 1,
+      "sigma": 0,
+      "key": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "ciphertext": [
+        4,
+        15,
+        14,
+        21
+      ],
+      "raw": [
+        4,
+        15,
+        14,
+        21
+      ]
+    }
+  ]
+}
