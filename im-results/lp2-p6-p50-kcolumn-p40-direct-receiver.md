@@ -1,6 +1,6 @@
 # p6↔p50 K-column: direct p40 additive receiver does not decrypt
 
-**Agent46 — 28 November 2026. Classification:** original-input, source-motivated **bounded negative**; no unknown LP2 plaintext, authentic key, or new cipher instruction. [Reproducer](../sims/lp2_p6_p50_kcolumn_p40_direct_receiver_sft.cjs).
+**Agent46 — 28 November 2026. Classification:** original-input, source-motivated **bounded negative**; no unknown LP2 plaintext, authentic key, or new cipher instruction. [Reproducer](../sims/lp2_p6_p50_kcolumn_p40_direct_receiver_sft.cjs) · [successful Windows Node22 original-source CI](https://github.com/FlareZ123/liber-primus/actions/runs/46140060751).
 
 ## Decision first
 
