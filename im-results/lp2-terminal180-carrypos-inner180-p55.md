@@ -87,6 +87,21 @@ For comparison, sampling the **cumulative** interior residue at the same 76 carr
 
 This is a useful architecture-level negative: the exact 180 terminal register, exact 76 carry partition, literal 180-cell table interior and literal 76-cell rim do **not** close into the simplest GP29 compression identity under either live radix. A more complicated combiner, traversal or nonlinear map now needs a separate source instruction; the 180/76 cardinality match alone does not authorize it.
 
+## Literal base60 digit-pair gate from each carry block
+
+The carry partition gives an even more strongly typed test. Each terminal carry block has two natural, source-only statistics:
+
+- block length is **1–5**, so `length−1` is exactly a base60 high digit **0–4**;
+- the block's raw sum of GP ordinal indices is **6–52**, already a valid base60 low digit **0–59**.
+
+Therefore every one of the 76 carry blocks can be encoded without reduction as one literal two-digit base60 token `(length−1, GP-sum)`. The p50 circumference contains exactly 76 printed two-digit tokens. This is an unusually tight candidate because the digit ranges and cardinality agree before any p55 ciphertext is consulted.
+
+It fails directly. Against the source row-major rim order, the leading digit agrees at **15/76** cells, the low digit at **0/76**, and the complete two-digit token at **0/76**. Against the ordinary clockwise circumference from the printed top-left, the leading digit agrees at **23/76**, the low digit at **3/76**, and the complete token at only **1/76**. The apparent 23 high-digit matches are not a complete code: the two-digit hypothesis that motivated the comparison collapses on the independently specified low digit.
+
+As a distribution sanity check, the carry high digits have counts `[14,33,17,11,1]` while the printed rim high digits have counts `[12,20,19,20,5]`; they are not even the same multiset. A seeded one-million-permutation diagnostic preserving both five-symbol marginals put **23 or more** aligned high-digit matches at about **0.10924**, so the clockwise leading-digit subtotal is not exceptional even before charging an unfixed circumference start/direction.
+
+This rejects the cleanest possible interpretation in which each terminal carry block literally describes one p50 circumference token. No radix choice is involved: the printed first character 0–4 and second source character already define the test.
+
 ## Decision
 
 The new composition is attractive because every cardinality and address is source-derived: terminal solved text supplies a 180-position event register, its 76 ordinal carries choose 76 positions, and the literally stripped p50 interior supplies 180 addressable cells. It nevertheless fails the two historically motivated direct consumer families and the actual p54→p55 chapter clock.
