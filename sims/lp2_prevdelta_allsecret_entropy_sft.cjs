@@ -23,7 +23,8 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const pages = corpus.pages.filter(p=>p.page<=55);
 const all = pages.flatMap(p=>p.indices);
 assert.equal(all.length,12956);
-assert.equal(pages.length,55);
+assert.equal(pages.length,56); // original pp0..55 include runeless p50
+assert.equal(pages.filter(p=>p.indices.length>0).length,55);
 const chapterStarts=[0,3,8,15,23,27,33,40,54];
 const chapterOf = p=>{
   let chapter=-1;
@@ -133,6 +134,7 @@ function positivePlant(mode,plain) {
   let off=0;
   for(const page of pages){
     const len=page.indices.length;
+    if(len===0)continue; // original p50 numeric-only physical page
     const p=plain.slice(off,off+len);
     const c=[page.indices[0],page.indices[1]];
     const got=[p[0],p[1]];
