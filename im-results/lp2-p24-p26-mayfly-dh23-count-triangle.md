@@ -115,16 +115,29 @@ rather than only the unsigned set `{e,g,A}`.
 
 The manuscript-wide source control is finite. Across all 54 contiguous p0–p55 triples, exactly **10** end on a page whose large punctuation lies after its final rune. P24–p26 is the **only** such triple for which the absolute endpoint imbalance equals that terminal mark count. Broadening the comparison to every large mark on the third page gives 30 comparisons and one additional match, p36–p38 with endpoint imbalance10 against an **internal** 10-dot mark at offset186; it is not a terminal closure. Thus the p26 endpoint condition is doing real selection work.
 
-The same geometry also explains a previously uncharged local H presentation. With the already-frozen conditional-local map `H(x,y)=(x-y,x+y) mod29`, applying H to the two source-ordered incoming edges gives
+The same geometry now supplies a **typed local H operation**, not merely a convenient presentation. With the already-frozen conditional-local map `H(x,y)=(x-y,x+y) mod29`, apply H to the two source-ordered count gaps that point into a page carrying a terminal large mark. For p26:
 
 ```
-H(21,24) = [26,16]
-          = [-3,-13] mod29.
+H(N26-N25, N26-N24)
+= H(21,24)
+= [26,16]
+= [p26, -13] mod29.
 ```
 
-Under the zero-based authenticated-2016 word register those two indices spell **NUMBERS ARE**. This exact numeric output occurs only once among all **324** charged contiguous-triple vertex/input-order presentations (54 triples × 3 vertices × 2 input orders). The semantic phrase is secondary evidence rather than an authentication claim: zero-based signed-word indexing remains conditional, `ARE` occurs more than once in the signed text, and 33/324 charged presentations map to some token bigram that occurs somewhere in the signed message. Under the single canonical final-vertex presentation there are three such bigram-token hits across 54 triples: p24 **NUMBERS ARE**, p35 **EMPTY EPIPHANY**, and p38 **THE ROAD**.
+Both outputs are typed by untouched source metadata: the first is the endpoint's own project page number **26**, and the second is the negative of its terminal red **13**-dot mark. No signed-2016 word, DH label, or unknown rune value is needed to define or validate that target.
 
-**Decision:** the mayfly triangle no longer lacks a source-fixed sign/order. Printed page order and the terminal p26 mark select the final vertex and lock the oriented packet `[+e,-g,-A]`. This materially strengthens the state-serialization interpretation, but it still does **not** specify a body-cipher consumer. Any next operation should consume this locked oriented packet on an independently typed receiver; do not regain freedom by switching triangle vertex, sign, or H input order.
+This exact predicate is unique in the complete terminal-mark family. Across all **10** contiguous triples whose third page ends in a large punctuation mark, p24–p26 is the only canonical presentation satisfying
+
+```
+H(short incoming count gap, long incoming count gap)
+= [endpoint page mod29, -terminal mark mod29].
+```
+
+Charging all three possible triangle vertices and both input orders gives **60** terminal presentations; the same p26 final-vertex, unswapped presentation is the **only** hit. Thus the visible terminal mark and page number jointly select the vertex, input order and both H channels. This is a source-typed local packet operation; it does not promote H to a manuscript-wide plaintext transform.
+
+Only after that source-only lock is established, the authenticated-2016 register gives an optional semantic echo: zero-based indices `[26,16]` read **NUMBERS ARE**. The exact numeric output `[26,16]` is unique over all **324** contiguous-triple vertex/input-order presentations. This phrase remains secondary evidence: zero-based word indexing is not fully authenticated, `ARE` is duplicated, and 33/324 charged presentations map to some token bigram occurring somewhere in the signed message. Under the single canonical final-vertex presentation there are three such bigram-token hits across 54 triples: p24 **NUMBERS ARE**, p35 **EMPTY EPIPHANY**, and p38 **THE ROAD**.
+
+**Decision:** the mayfly triangle now has both a source-fixed sign/order and a source-typed local consumer. Printed page order and the terminal p26 mark select the final vertex, lock the oriented packet `[+e,-g,-A]`, and validate the fixed H readout as `[page,-mark]`. This materially strengthens the state-serialization interpretation without recovering body plaintext. The next useful step is to ask what source-visible object receives the resulting page/state packet; do not regain freedom by switching triangle vertex, sign, H input order or a different linear transform.
 
 Reproduction: `sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs`.
 
