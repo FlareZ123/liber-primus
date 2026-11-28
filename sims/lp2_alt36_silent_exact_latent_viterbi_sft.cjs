@@ -193,8 +193,15 @@ function experiment(raw, options={}) {
   if(options.red8Mode){
     // Authenticated p54 artwork depicts these eight GP runes in red, after
     // one enlarged A rune: M NG D IA TH X I M. Hypothetical repeated key.
-    const key=[19,21,23,27,2,14,10,19];
-    if(gp.pages[54].indices.slice(1,9).some((x,i)=>x!==key[i]))throw Error("source red8 drift");
+    const sourceKey=[19,21,23,27,2,14,10,19];
+    if(gp.pages[54].indices.slice(1,9).some((x,i)=>x!==sourceKey[i]))throw Error("source red8 drift");
+    const transform=options.redKeyTransform||"direct";
+    if(!["direct","atbash","plusA","atbashPlusA"].includes(transform))throw Error("unfrozen key map");
+    const key=sourceKey.map(x=>{
+      if(transform.startsWith("atbash"))x=28-x;
+      if(transform.endsWith("A"))x=(x+24)%36;
+      return x;
+    });
     const K=Array.from({length:3500},(_,i)=>key[i%8]),
       Kshift=K.slice(1);
     let C,truth=null,target;
@@ -215,7 +222,7 @@ function experiment(raw, options={}) {
       recovery:truth&&z.P?lcs(z.P,truth)/Math.max(z.P.length,truth.length):null,
       text:z.P?.map(p=>gp.translit[p]).join(""),
       originalRuneOutput:z.P?.map(p=>gp.runes[p]).join("")});
-    return {target,originalKey:key,ivA:!!options.ivA,scope:"one source-selected cyclic key but newly hypothesized mod36 silent-output cipher; no LP2 decrypt established",
+    return {target,originalKey:key,transform,ivA:!!options.ivA,scope:"one source-selected cyclic key but newly hypothesized mod36 silent-output cipher; no LP2 decrypt established",
       count:C.length,truthLength:truth?.length,phase0:result(a),phase1:result(b)};
   }
   if(options.primeMode){
