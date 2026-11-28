@@ -2,18 +2,36 @@ name: Cicada 2014 IP routing-history gate
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   route-history:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
       - name: Query RIPEstat routing history
         run: node sims/cicada2014_ip_routing_history_gate.cjs
+      - name: Commit reproducible result
+        run: |
+          git config user.name "Agent 35"
+          git config user.email "agent35@users.noreply.github.com"
+          git add im-results/cicada2014-ip-routing-history-gate.json
+          git commit -m "Agent 35: record historical BGP gate result"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 2))
+          done
+          exit 1
       - uses: actions/upload-artifact@v4
         with:
           name: cicada2014-ip-routing-history
