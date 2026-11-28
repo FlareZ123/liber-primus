@@ -1,6 +1,6 @@
 # p32–p47 low-digit road-map cross-link
 
-**Status:** exact intermediate arithmetic; actionable navigation interpretation retired by source-first gate #3086. No plaintext, key, or complete decipherment recovered.
+**Status:** exact intermediate arithmetic with a newly source-selected p47 page cue from p50 cell115. The p32↔p47 navigation loop is reopened as a conditional route; no plaintext, key, or complete decipherment is recovered.
 
 ## Source-selected inputs
 
@@ -68,17 +68,93 @@ This is a navigation/readout hypothesis, not a cipher solution. The 54/36 cycle 
 
 Several direct key transfers have already failed: using the p50 11-cycle as an additive GP29 key on p55 (full 76 and inner 23), using the p47 selected 32-rune stream as an additive key on p32, concatenating the p32/p47 selected streams plus the two cycle states as a 76-symbol key for p55, and applying the p56 prime-totient clock to p47 from prime ordinals 47 or 115. None yielded plaintext. Do not repeat generic Vigenere/prime-totient variants without a new source instruction.
 
-## Source-first continuation decision (#3086, Agent12, 26 November 2026)
+## Source-first decision after the independent cell115 selector
 
-Direct inspection of original scans 49 (physical p32), 64 (p47) and the already documented adjacent artwork shows the following player-visible distinctions, independently of any selected-word arithmetic:
+The earlier source-first audit correctly found that the p32/p47 arithmetic by itself did **not** tell a player to visit p47. Original p32 visibly has a blurred tree and a terminal red mark; original p47 sits inside the reused botanical frame. Neither image supplied a unique word selector or a visible p32→p47 arrow. The stronger artwork correspondence remains p32↔p55. Those source observations are unchanged.
 
-* p32 is a six-line terminating page with a single blurred tree below its text and a terminal red punctuation mark. No selected group is individually addressed by that tree, colored, numbered or connected to a line/path.
-* p47 is a twelve-line page within the bilateral botanical frame. [The previous original-raster gate](lp2-p43-p48-source-first-human-solve-path-gate.md) establishes pixel-identical framing across p42–49; it is not a unique visual pointer to p47 or a group selector. The existing p47 source segmentation is accepted; it was not re-adjudicated here.
-* The stronger independently visible art link is **p32 ↔ p55**, the blurred and pale detailed renditions of a specific tree, with a known source-raster correspondence. [Existing held-out crown/whole-atlas tests](lp2-p32-p55-blurred-tree-correspondence.md) already establish this and separately reject the 2013 forest wording as a complete decoding opcode. It does not choose p47 as an intermediate receiver. The paired red13 terminal marks likewise do not choose a per-word aggregate or graph traversal direction.
+A later, materially independent navigation chain now supplies the missing page cue.
 
-The [signed 2016 original](../resources/historical/cicada2016-4gq25-outguess.asc) associates words, meaning and numbers with navigation. Even granting the existing ROAD/FOUND two-cycle, that instruction does not say to retain every word entering its basin, to use GP0 as the initial address rather than prime sum, to add rather than concatenate the selected values, or to carry any one of rune length / GP0 sum / GP-prime sum into another page. On a two-cycle terminal *membership* also does not identify a stopping phase. The displayed p32→47 and p47→32 arithmetic was already observed, so neither can serve as an untouched prediction. The previous [p48 word→grid direction test](lp2-p48-word-prime-coordinate-p50-grid-gate.md) failed its locked adjacent-address prediction; another unconstrained graph aggregation is not a substitute.
+### Independent route to p50 cell115
 
-**Decision:** no independently visible cue fixes a unique continuation, group selection and receiver. Preserve the original exact 611=13×47, 2209=47² and 32-return arithmetic as an unpromoted observation; retire it as an actionable route. Do not construct a new page scan, product/square search, cycle variant, XOR or additive consumer. Only a new independently specified source operation on a fixed unseen receiver would reopen it. No new candidate plaintext or key, and no new computation is warranted on this premise.
+The authenticated 2016 clause **EPIPHANY SEEKS THE DEVOTED** had already selected physical p32 under a finite 560-case source family:
+
+```
+GP0(SEEKS)=71
+follow canonical base60 byte pointers for DH p=23 steps
+...
+20 = GP0(THE)
+102 = GP0(DEVOTED)
+32 = physical p32
+rune_count(p32)=121 = GP0(EPIPHANY)
+```
+
+The very next canonical byte-pointer step is fixed:
+
+```
+32 -> 115.
+```
+
+Independently, the p27 B/K receiver discovered later sheds to the eight-rune core `NSOOCAEY`. Its already-frozen H8 state packet, read as adjacent BASE29 pairs under the pre-existing zero-based mod256 address convention, starts four canonical byte-pointer trajectories at `[118,3,3,122]`. Their earliest joint node is again **115**, with first-arrival distances **[6,6,6,3]=[a,a,a,e]**. That exact node/distance signature occurs once among all 12,571 contiguous unknown eight-rune windows. The p27 core's GP-prime sum is `376=DIUINITY`; node `115` is `GP-prime(WITHIN)`.
+
+Thus cell115 is now selected by two materially different routes: the authenticated signed-source p32 path and the p27 H8 terminal-state path.
+
+### Cell115 supplies the previously missing p47 cue
+
+Original cell115 prints the literal token:
+
+```
+47
+```
+
+The token `47` occurs twice in the whole 256-cell panel, at cells12 and115, so the glyph itself is not unique. The upstream pointer routes select **cell115 specifically** before its token is read.
+
+Reading a two-digit table token as a physical page number remains a conditional semantic convention, but it is not new to this result: earlier p50 source-number work had already tested literal tokens such as `33`, `49`, and `00` as page/file-number pointers. Under that pre-existing convention, selected cell115 names **p47**.
+
+This is exactly the page that the older low-digit aggregation had independently predicted from p32:
+
+```
+p32 selected GP0 sum       611 = 13 * 47
+p32 selected GP-prime sum 2209 = 47^2
+```
+
+and p47 returns:
+
+```
+p47 selected rune length = 32.
+```
+
+The new table token therefore closes the previously underselected loop:
+
+```
+signed source -> p32 -> cell115 -> literal 47 -> p47
+                                         |
+p32 arithmetic --------------------------+
+p47 ROAD/FOUND selection -> 32 ----------+
+```
+
+### Rival controls
+
+The canonical 11-cycle contains only three literal decimal tokens that are legal LP2 page numbers:
+
+| selected cycle cell | literal token | target page | ROAD/FOUND-selected rune total |
+|---:|---:|---:|---:|
+| 203 | 18 | p18 | 29 |
+| **115** | **47** | **p47** | **32** |
+| 192 | 00 | p0 | 33 |
+
+Only the selected `47` closes to p32 under the already frozen low-digit selector.
+
+Across the entire table there are 42 literal decimal-page token occurrences. Across all p0-p55, the pages whose ROAD/FOUND-selected rune total is32 are `p7,p39,p47`. Of those, literal page tokens present in the panel are `39` (cells151,254) and `47` (cells12,115). This is why the claim is **selected-cell closure**, not global uniqueness of the numeral47 or of the return length32.
+
+The older p32 dual-square census remains stronger and unchanged: p32 is the only page whose selected-word aggregates satisfy `GP0=13m` and `GP-prime=m^2` for the same page-number-range integer `m`, and that integer is47.
+
+### Current decision
+
+**Reopen the p32↔p47 structure as a conditional navigation loop.** The specific source-first objection that no independent cue selected p47 is now resolved by the independently reached cell115 literal `47`.
+
+This does **not** revive the already failed p32/p47 additive, XOR, prime-totient, or p55 key-transfer consumers. It also does not authenticate the low-digit word selector as a cipher. The actionable consequence is narrower: p47 is again a justified receiver for a **new, source-selected operation**. Future work should seek a player-visible p47 operand or an untouched prediction that uses this page selection; do not repeat the retired generic decoder families.
+
+Cross-route reproducer: `sims/lp2_p27_within_cell115_p47_reopen_sft.cjs`.
 
 ## Reproduction
 

@@ -175,6 +175,23 @@ Related prior table conventions:
 Reproducer:
 - `sims/lp2_p27_h8_p50_within_pointer_sft.cjs`
 
+### Cell115 literal `47` reopens the p32↔p47 navigation loop
+
+The joint node has a further source-visible property: original p50 cell115 literally prints token **`47`**. The authenticated signed-source route `EPIPHANY SEEKS THE DEVOTED` had already selected p32 and then enters the byte graph through the exact edge `32 -> 115`. Thus the signed route and the p27 H8 route independently select the same cell before its literal token is read.
+
+This matters because the older p32 ROAD/FOUND low-digit aggregation had uniquely produced
+
+```
+611 = 13*47
+2209 = 47^2
+```
+
+and p47's corresponding selected rune total is exactly **32**. That p32↔p47 arithmetic had been retired as actionable navigation specifically because no original cue selected p47. Cell115's literal `47` now supplies that missing external selector under the repository's already tested literal-token-as-page convention.
+
+Controls: `47` occurs at cells12 and115, so the numeral itself is not unique; the upstream routes fix cell115. The 11-cycle's only literal decimal page tokens are `18`, `47`, and `00`, and their ROAD/FOUND-selected rune totals are29,32,33 respectively. Only p47 closes back to p32.
+
+This reopens **navigation to p47**, not any previously failed p32/p47 decoder. See `im-results/lp2-p32-p47-lowdigit-road-map.md` and `sims/lp2_p27_within_cell115_p47_reopen_sft.cjs`.
+
 ## What this resolves
 
 Earlier p27 DIVINITY reports correctly treated the receiver coordinate as unresolved. The signed 2016 message says that the manuscript words' numbers are the direction, but by itself does not declare a page/word coordinate pair or a universal indexing origin. The new route does not need that orientation: p27 is already selected by its red/DH state, and **B itself supplies the word number**.
