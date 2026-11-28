@@ -220,6 +220,51 @@ function periodicScans(texts,dropF=false){
  return scans;
 }
 
+
+// Strict source-analog F-null plant. The worked p56 F skip reserves F as a
+// no-output/no-clock-tick marker; use a 28-card active deck (runes 1..28) so
+// ordinary outputs cannot collide with that reserved marker. A GP-native
+// donor with rune F removed is a 28-symbol control register, not a claim
+// that unknown LP2 plaintext has this representation.
+function plantNull(plain,mode,phase,seed){
+ const pages=originalPages.map(p=>({page:p.page,pattern:p.indices.map(x=>x===0)}));
+ const activeN=pages.reduce((a,p)=>a+p.pattern.filter(z=>!z).length,0);
+ const input=plain.filter(v=>v!==0).slice(0,activeN);
+ assert.equal(input.length,activeN);
+ const rankToGP=shuffle(seed).filter(v=>v!==0);
+ const gpToRank=Array(A).fill(-1);
+ for(let k=0;k<28;k++)gpToRank[rankToGP[k]]=k;
+ const outputPages=[];let index=0,globalClock=0;
+ let deck=shuffle(seed+27).filter(v=>v!==0);
+ for(const page of pages){
+  const c=[];let localClock=0;
+  if(outputPages.length&&mode==='page-local')
+   deck=shuffle(seed+27+100*outputPages.length).filter(v=>v!==0);
+  for(const isNull of page.pattern){
+   if(isNull){c.push(0);continue;}
+   const rank=gpToRank[input[index++]];
+   assert(rank>=0);
+   const label=deck[rank];assert(label!==0);
+   c.push(label);
+   const point=mode==='continuous'?globalClock:localClock;
+   const target=clock[(point+phase)%clock.length]%28;
+   deck.splice(rank,1);deck.splice(target,0,label);
+   globalClock++;localClock++;
+  }
+  outputPages.push({page:page.page,indices:c});
+ }
+ assert.equal(index,activeN);
+ const groups=periodicGroups(outputPages,mode,16);
+ assert.equal(groups.N,activeN);
+ const matched=periodicGate(groups,input,0,true);
+ assert(matched.possible,'null-interrupt native plant rejected');
+ return{mode,phase,originalSlots:pages.reduce((a,p)=>a+p.pattern.length,0),
+  FNulls:pages.reduce((a,p)=>a+p.pattern.filter(Boolean).length,0),
+  plaintextN:activeN,checkedPairs:groups.checked,
+  cipherDoublets:groups.E.reduce((a,e)=>a+e.pos.length,0),
+  controlPass:matched.possible};
+}
+
 function main(){
  const e0=edges(original,'continuous',0);
  assert.equal(e0.length,1737);
@@ -247,6 +292,10 @@ function main(){
  assert(scans.every(x=>x.counts.every(y=>y.exactBinaryPattern===0)));
  assert.deepEqual(scans[0].counts.map(z=>z.positiveOnly),[16,49,96]);
  assert.deepEqual(scans[16].counts.reduce((a,z)=>a+z.positiveOnly,0),8);
+ const nullPlants=[
+  plantNull(texts[0].p,'continuous',0,7711),
+  plantNull(texts[2].p,'page-local',7,8822),
+ ];
  const plants=[
   plant(texts[0].p,'continuous',0,3301),
   plant(texts[1].p,'continuous',7,4409),
@@ -257,7 +306,7 @@ function main(){
    claim:'entire 29^16 period16 public-rank family excluded on finite GP-native windows, allowing all secret decks and static relabelings; no LP2 plaintext',
    originalPages:[16,22],N:original.length,pageStarts,clock,
    scope:'29! unknown initial decks; all 29! fixed GP-rank relabelings; three finite native corpora',
-   scans,allPeriod16,allPeriod16FNull,plants},null,2));
+   scans,allPeriod16,allPeriod16FNull,plants,nullPlants},null,2));
 }
 if(require.main===module)main();
 module.exports={gate,edges,matching,periodicGroups,periodicGate,periodicScans,clock};
