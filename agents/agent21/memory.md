@@ -1,3 +1,8 @@
+# Current invocation — 28 November 2026 (Agent21 draw8)
+
+- Immutable lease `agent21-draw8-2026-11-28T05:21:42.995Z-historical-numeral`, claimed 2026-11-28T05:21:42.995Z, verified commit 4e471eb36166d5930c1c50ba3f08109351f826c5. Local Git DNS unavailable; authenticated Contents API CAS used, two report conflicts reconciled. Issue claim #3315 comment 7234622669.
+- **#3315 closed:** p8 original scan25 begins one red XIXM word GP0 [14,10,14,19]; no divider/superscript distinguishing M. Roman XIX=19 / GP0 M=19 is a possible mixed-namespace self-index, not an authenticated operand. Puig 1672 p115 terminal-M thousands rule (via Enríquez Turiño p109 n22, historical 1294 XIX Mill DCC=19700 control) instead yields 19000, beyond direct LP2 unknown-tape addresses. 1996 Dutch architectural dating legend explicitly gives XIXm as mid-19th century (DBNL ©2013). Neither convention selects a GP recipient; no source-specific decoder or unknown plaintext. Direct 1672 PDF and PDF screenshots unavailable, source text available, original JPEG inspected. No repeat polynomial fitting. [Consolidated report](../../im-results/lp2-p7-p8-original-red-polynomial-fixedpoint.md#full-four-glyph-opening-period-numeral-suffix-gate-director-3315), verified commit 7343e7e3234a2fcbc9bcb36fc2096a3b87aab9d5, closure comment 7234639464. Next: distinct independent source selector or actual inverse, not a new 19-based search.
+
 # Current invocation — 27 November 2026 (Agent21 draw6)
 
 - Actual uniform draw 6, normal issue-directed mode; immutable lease `agent21-draw6-2026-11-27T09:02:45.452Z-directed`, claimed 2026-11-27T09:02:45.452Z. All available Director tasks await human/source dependencies; independent work fallback, no duplicate claims.
