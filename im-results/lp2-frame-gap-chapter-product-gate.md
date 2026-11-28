@@ -53,6 +53,16 @@ first*last                2 / 8
 
 **Rune PRODUCT is the only statistic whose entire distinct output vocabulary is typed by the combined source register.**
 
+The stronger instance-level statement does not need the label “dead end.” For each OUT statistic, first send every chapter output whose value appears in the chapter-IN register to that source-visible recipient class; ask whether the remaining output **multiset** fits inside the six exact cyclic frame-start gaps `[11,12,13,16,3,3]`. PRODUCT alone passes:
+
+```text
+chapter-IN recipients: [23,2,19,27]
+frame-gap recipients:  [11,13,16,3,3]
+unused frame gap:       [12] = u=aK
+```
+
+No rival statistic's non-IN output multiset is a submultiset of the frame gaps. Thus all nine PRODUCT instances are typed by one of two independently visible registers, with one extra visual state marker left over.
+
 The split is exact. PRODUCT values that have chapter-IN recipients are
 
 ```text
@@ -113,7 +123,7 @@ LENGTH, prime SUM, prime PRODUCT, first rune, last rune, first+last and first*la
 
 ## Interpretation
 
-This closes the specific deficiency recorded by #3445: PRODUCT no longer lacks a **common** source-side cue. A single visual structure, exact frame spacing, serializes every PRODUCT value not consumed by the SUM-address graph, and does so in the same chapter order with one independently named state marker inserted. The combined chapter-SUM + frame-gap registers type all distinct PRODUCT outputs and no competing natural OUT statistic.
+This closes the specific deficiency recorded by #3445: PRODUCT no longer lacks a **common** source-side cue. A single visual structure, exact frame spacing, serializes every PRODUCT instance not consumed by the SUM-address graph, and does so in the same chapter order with one independently named state marker inserted. Instance-by-instance, the nine PRODUCT outputs partition exactly into four chapter-IN recipients and five frame-gap recipients, leaving only `12=u`; no competing natural OUT statistic admits that two-register partition.
 
 The evidence remains post-discovery: the SUM→PRODUCT route existed before this visual comparison, and the visual tape does not tell us what action to take when a PRODUCT value matches a frame spacing. Therefore:
 
