@@ -108,5 +108,37 @@ assert.deepEqual(controls[0].counts.map(x=>[x.self,x.sink,x.depth8,x.B19,x.joint
   [[6365,65,1,0,0],[3137,10,1,0,0]]);
 assert.deepEqual(controls[1].counts.map(x=>[x.self,x.sink,x.depth8,x.B19,x.joint]),
   [[50090,683,27,95,4],[0,0,0,0,0]]);
+// A single source-motivated, fully specified *candidate* receiver, not a key search:
+// the p32/p55 ghost-tree shared image suggests using the p50 mirrored-tree
+// circuit's eight printed pointer-successor values as a repeated GP29 additive
+// key with the known p56 subtraction convention, zero phase at page start.
+const corpus = JSON.parse(fs.readFileSync(
+  path.join(__dirname, '../resources/liber-primus/lp2-corpus.json'), 'utf8'));
+const GP = corpus.pages;
+const key = expectedPath.slice(0, -1).map(at => v59[at] % 29);
+assert.deepEqual(key, [19,4,25,14,16,11,15,15]);
+function minusKey(C) { return C.map((x,i)=>(x-key[i%8]+29)%29); }
+function plusKey(P) { return P.map((x,i)=>(x+key[i%8])%29); }
+function ioc(xs) {
+  const n=new Uint32Array(29);
+  for (const v of xs) n[v]++;
+  return n.reduce((s,v)=>s+v*(v-1),0)/(xs.length*(xs.length-1));
+}
+const targetResults=[];
+for (const page of [32,55]) {
+  const C=GP[page].indices, P=minusKey(C);
+  assert.deepEqual(plusKey(P),C);
+  const truePlant=Array.from({length:C.length},(_,i)=>GP[57].indices[i%95]);
+  assert.deepEqual(minusKey(plusKey(truePlant)), truePlant);
+  targetResults.push({
+    page,length:C.length,origIOC:ioc(C),directInverseIOC:ioc(P),
+    prefix60:P.slice(0,60).map(i=>corpus.translit[i]).join(''),
+    constructedPlantFullLengthRecovered:true
+  });
+}
+assert.equal(targetResults[0].length,121);
+assert.equal(targetResults[1].length,76);
+assert(Math.abs(targetResults[0].directInverseIOC-0.03236914600550964)<1e-13);
+assert(Math.abs(targetResults[1].directInverseIOC-0.03929824561403509)<1e-13);
 console.log(JSON.stringify({source:{sink:189,mirror:186,path:expectedPath,A:8,B:19,K:2},
-  controls},null,2));
+  controls, fixedDirectGPCipherConsumer: {key,targetResults}},null,2));
