@@ -1,6 +1,6 @@
 # Previous-ciphertext row-permutation capacity: exact 12-phase exclusion
 
-**Original-source, key-independent decision — Agent17, 28 November 2026.** A reversible sender whose only non-clock state is the **previous printed ciphertext rune**, and whose emission is one of at most **twelve shared phase-dependent arbitrary GP29 alphabet permutations**, cannot produce original LP2 p0–55 from **any** matching 12,956-rune GP-native window of the pinned Gibran, Shakespeare or Emerson references. This grants all 29! possibilities for each of 29q secret chart rows, arbitrary plaintext alphabet relabeling, and free initial plaintext symbols at every original page or large-mark interval. The result is a **conditional finite-reference exclusion**, not an unknown plaintext or key recovery.
+**Original-source, key-independent decision — Agent17, 28 November 2026.** A reversible sender whose only non-clock state is the **previous printed ciphertext rune**, and whose emission is one of at most **twelve shared phase-dependent arbitrary GP29 alphabet permutations**, cannot produce original LP2 p0–55 from **any** matching 12,956-rune GP-native window of the pinned Gibran, Shakespeare or Emerson references. **The exclusion remains exact even after freely exempting all 86 original repeated-rune event positions as special emissions.** This grants all 29! possibilities for each of 29q secret chart rows, arbitrary plaintext alphabet relabeling, and free initial plaintext symbols at every original page or large-mark interval. The result is a **conditional finite-reference exclusion**, not an unknown plaintext or key recovery.
 
 ## Exact typed sender and source framing
 
@@ -68,6 +68,44 @@ At q=23 all these windows satisfy the necessary bound, but q=23 has **667 arbitr
 [Standalone CommonJS SFT](../sims/lp2_prev_ciph_rowphase_majorization_sft.cjs) reads the authentic source-matched [LP2 rune corpus](../resources/liber-primus/lp2-corpus.json), [original-image ink annotation](../resources/liber-primus/lp2-ink-annotations.json) and all three reference texts. It asserts 12,956 unknown runes, 55 rune-bearing pages, 31 marker events and 29 nonempty marker intervals; computes exact per-state integer counts for q1–18, q23 and q29, and slides all reference windows. It was compiled and **executed against the complete current tracked inputs** in the connected V8 runtime with a read-only require/file-loader shim. All assertions and scans passed; real standalone Node SHA-256 printing was not separately executed in that shim.
 
 Four independent **original-length positive cryptograms** are actually generated and decoded, under both source frame geometries and q=1/q=13. Each hidden GP29 chart is a seeded shuffled permutation, with plaintext NG mapping to the previous emitted cipher glyph in that row. Therefore low-frequency native NG, rather than any malformed output step, is exactly responsible for the **100** repeated cipher neighbors in each plant (original has 86). Every plant recovers **12,956/12,956 plaintext rune positions**, and passes **every one of the 29 original-style ranked-frequency necessary conditions** when run on its own newly encrypted ciphertext. Thus the certificate does not merely reject feedback ciphers because they have artificially low repeat counts.
+
+## Full 86-repeat escape-channel challenge and arbitrary exception floor
+
+**Source-visible, not fitted.** There are exactly **86** adjacent same-rune pairs within the 55 original rune-bearing physical pages. In a direct extension to the arbitrary secret previous-C/clock-phase row model, grant **every second symbol of each one of those 86 printed pairs** a fully unconstrained special output and corresponding plaintext symbol. At the other 12,870 positions the ordinary shared 29q permutation charts still operate, keyed by the **previous published** cipher rune. Other than these 86 positions, no escapes, new state, private chart resets or clock holds are permitted. Page-start runes (55) and large-dot-interval starts (29) remain entirely free, even without a repeat.
+
+The key-independent envelope is recalculated after *deleting those specific 86 original event transitions* from the state-count matrices and giving all their plaintext slots away free. A repeat coincident with a frame start would already be free; for the actual original data there is no such overlap. Thus the page frame has **141 free positions** and the marker frame **115**.
+
+| Source-visible frame | Original q12 top-10 capacity after 86 free events | Original q12 top-16 capacity after 86 free events |
+| --- | ---: | ---: |
+| 55 physical pages | **8,878** | **11,408** |
+| 29 nonempty 10/13-dot intervals | **8,778** | **11,332** |
+
+The program tests **all 29 ranks for every source window**, not only the displayed two ranks. **Zero of all 562,060 independently encoded contiguous Gibran/Shakespeare/Emerson windows** survives **any** q=1…12 under **either** source-defined framing, even with the printed 86 events wholly unconstrained. At q13, where the bound becomes insufficient for some sources, exact exception-aware *necessary-only* survivors are:
+
+| Native reference windows | Page q13 | Marker q13 |
+| --- | ---: | ---: |
+| Gibran, 49,537 | 10,515 | 5,833 |
+| Shakespeare, 204,151 | 96,883 | 67,560 |
+| Emerson, 308,372 | 277 | **0** |
+
+**Even without knowing exception positions**, any m arbitrary output exceptions can increase the original nonexception capacity at each rank by **at most m**. Therefore every candidate needs at least:
+
+\[
+m_{\min}(P)=\max_{k=1}^{29}\left[\,S_k(P)-B-
+\sum_{t,r}\sum_{j=1}^{k}M[t,r,(j)]\,\right]_+.
+\]
+
+Minimize that integer lower bound over every tested full-length source window (a *necessary*, not sufficient, count). It yields:
+
+| Source | Page q1 | Marker q1 | Page q11 | Page q12 | Marker q12 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Gibran | **3,040** | **3,052** | **259** | **114** | **216** |
+| Shakespeare | **2,843** | **2,855** | **188** | **80** | **158** |
+| Emerson | **3,113** | **3,125** | **377** | **220** | **335** |
+
+Thus a predecessor-only q1 sender would require **at least 2,843–3,113 arbitrary exceptional positions** to generate even one of these native 12,956-rune windows (about **22–24%** of all symbols), *not merely the 86 observed doublets*. Even q≤11 page-framed, or q≤12 large-mark-framed, needs **more than 86 exceptions at any positions** for *each* native reference. The only narrow remaining q12-page loophole under *arbitrarily located* 86 exceptions is Shakespeare: 1,562 of 204,151 windows pass that looser rank test, but **zero** pass when those 86 exceptions must coincide with the *actual original* doublet positions. This does not exclude unreported repair at many other positions or unpublished-tentative-state cryptosystems.
+
+Four fresh source-matched planted reversible row-permutation books (q1/q13, both frames) are rechecked when each plant's own repeated cipher events are unrestricted; **all 12,956 actual known plaintext runes recover in every plant**, and all 29 relaxed ranks pass. This is a genuine key-independent **original-cipher contradiction** for the complete declared escape family, not a failure of the cipher's implementation or a hypothesis of recovered prose.
 
 ## Decision and missing authentic step
 
