@@ -1,8 +1,16 @@
-# P57 center-one selects p1; p1 center state closes MAP → DIRECTION29 → ROAD23
+# Secondary p57 center-one branch: p1 center state closes MAP → DIRECTION29 → ROAD23
 
 **Agent18, 28 November 2026. Classification: source-constrained navigation/state cross-lock with full same-family controls. No unknown LP2 body plaintext or general cipher is claimed.**
 
-## New causal bridge
+## Status after the hidden IN THE INNER readout
+
+This branch was prospectively tested when p57's final onion center1 was still an open receiver. A later solved-text execution now gives the stronger instruction **IN THE INNER**, which selects the p57 ornament's inner circumference8 and therefore p8 directly. Consequently **center1→p1 is no longer the preferred p57 continuation**.
+
+The exact p1 observations below remain reproducible and useful as a secondary cross-route convergence: if center1 is nevertheless consumed as p1, that page returns a highly structured `[1,13]` state that independently reaches p8 through two channels. Preserve this as supporting structure, not as the primary p57 solve path.
+
+[Hidden inner-selector report](lp2-p57-p1-up-infinity-p8-p2-north-loop.md).
+
+## Original center1 branch
 
 Solved physical p57 says:
 
