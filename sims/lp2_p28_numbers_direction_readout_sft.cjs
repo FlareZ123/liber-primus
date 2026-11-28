@@ -360,6 +360,43 @@ assert.deepEqual(fixedMode.hits, [{
 const familyCounts = modes.map((mode)=>mode.hits.length);
 assert.deepEqual(familyCounts, [1,0,3,3,0,1,1,2]);
 
+// #3354 origin charge: the 2016 prose does not globally fix zero-based
+// word numbering. Charge the fixed D4 receiver under the principal rival:
+// a one-based GF29 register where residue 0 denotes ordinary word29.
+function oneBasedMod29Word(value) {
+  const ordinal = value === 0 ? 29 : value;
+  return source[ordinal - 1].word;
+}
+
+assert.deepEqual(
+  readoutIndices.map(oneBasedMod29Word),
+  ["AND", "THEIR", "NUMBERS", "HELLO"]
+);
+
+const oneBasedOriginModeCounts = Array(modes.length).fill(0);
+for (const page of canonical.pages) {
+  for (let index = 0; index + 3 < page.words.length; index += 1) {
+    const window = page.words.slice(index, index + 4);
+    const gp = window.map((word) => word.gp0);
+    const lengths = window.map((word) => word.length);
+    modes.forEach((mode, modeIndex) => {
+      const gpHalf = chooseHalf(gp, mode.gpHalf);
+      const lengthHalf = chooseHalf(lengths, mode.lengthHalf);
+      const indices = mode.order === "gp-len"
+        ? gpHalf.concat(lengthHalf)
+        : lengthHalf.concat(gpHalf);
+      const lexical = indices.map(oneBasedMod29Word).join(" ");
+      if (sourceFourPhrases.has(lexical)) {
+        oneBasedOriginModeCounts[modeIndex] += 1;
+      }
+    });
+  }
+}
+
+assert.deepEqual(familyCounts, [1,0,3,3,0,1,1,2]);
+assert.deepEqual(oneBasedOriginModeCounts, [0,0,1,1,0,1,1,1]);
+assert.equal(oneBasedOriginModeCounts[0], 0);
+
 console.log("PASS p28 numbers-direction readout; immediate D4 continuation rejected");
 console.log(JSON.stringify({
   state,
@@ -393,6 +430,7 @@ console.log(JSON.stringify({
     fixedModeHits:fixedMode.hits,
     immediateTargetHitCount:targetContinuationHits.length,
     naturalEightModeHitCounts:familyCounts,
+    oneBasedOriginEightModeHitCounts:oneBasedOriginModeCounts,
     exactShellHits:shellHits,
   },
 }, null, 2));

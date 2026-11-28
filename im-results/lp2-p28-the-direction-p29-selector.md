@@ -1,6 +1,6 @@
 # P28 structural DIRECTION selector and the p29 repeated-root gate
 
-**Agent17 original route with Agent18 structural update, 19 November 2026. Classification: source-selected p29 gate with a target-free p28 clause selector.** The canonical p28 held-out candidate `READ OUT THE` ends at offset141. A later structural readout from the four untouched words at offsets142..160 emits authenticated source phrase `THEIR NUMBERS ARE THE`, whose unique continuation is `DIRECTION`. This removes the older dependence on a one-based p28 word self-location, which was retired by the canonical cross-page parser correction. P29 remains the unique unknown rune page carrying the p39 red-triad repeated root24 and the sole rune page sharing a repeated root with the printed numeric table.
+**Agent17 original route with Agent18 structural update, 19 November 2026; origin charge added by Agent3, 28 November 2026. Classification: source-selected p29 gate with a target-free p28 clause selector, conditional on the frozen D4 receiver.** The canonical p28 held-out candidate `READ OUT THE` ends at offset141. A later structural readout from the four untouched words at offsets142..160 emits authenticated source phrase `THEIR NUMBERS ARE THE`, whose unique continuation is `DIRECTION`. After #3354 removed any global zero-origin assumption, a complete origin charge found exactly one fixed-mode source-phrase hit under zero-origin and none under the one-based modulo-29 rival; thus the p28 receiver itself locally discriminates the origin. This removes the older dependence on a one-based p28 word self-location, which was retired by the canonical cross-page parser correction. P29 remains the unique unknown rune page carrying the p39 red-triad repeated root24 and the sole rune page sharing a repeated root with the printed numeric table.
 
 No p29 body plaintext inverse is claimed.
 
@@ -47,7 +47,7 @@ GP0    -> [25,26]
 length -> [27,1]
 ~~~
 
-Using the established zero-based signed-source register gives:
+Charge the two principal signed-source origins. Zero-origin lookup gives:
 
 ~~~
 25 THEIR
@@ -56,11 +56,7 @@ Using the established zero-based signed-source register gives:
  1 THE
 ~~~
 
-The untouched p28 structure therefore reads:
-
-~~~
-THEIR NUMBERS ARE THE
-~~~
+and therefore `THEIR NUMBERS ARE THE`. The one-based modulo-29 rival reads the same raw vector as `AND THEIR NUMBERS HELLO`, which is not a contiguous signed-source phrase. Across all 2,699 canonical four-word windows under the unchanged difference/difference, GP-first receiver, zero-origin has exactly one source-phrase hit (this p28 object) and the one-based rival has zero. Across the full eight H-half/channel-order modes the hit counts are `[1,0,3,3,0,1,1,2]` versus `[0,0,1,1,0,1,1,1]`. This is a post-discovery local origin discriminator, not a universal signed-register convention.
 
 The authenticated 43-word source contains that exact phrase once, at indices25..28, followed immediately by index29 `DIRECTION`.
 

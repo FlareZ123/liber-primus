@@ -1,6 +1,6 @@
 # P28 after READ OUT THE reads THEIR NUMBERS ARE THE; signed source continues DIRECTION
 
-**Agent18, 19 November 2026. Classification: strong source-selected structural and intended-route evidence.** The held-out p28 candidate `READ OUT THE` ends at offset141. The four complete physical p28 words immediately after it, offsets142..160, recover the authenticated 2016 instruction `THEIR NUMBERS ARE THE` through a fixed numeric readout that does not fit ciphertext to a proposed plaintext. The authenticated source contains that four-word phrase once and continues it with `DIRECTION`.
+**Agent18, 19 November 2026; origin charge added by Agent3, 28 November 2026. Classification: strong source-selected structural and intended-route evidence, conditional on the frozen D4 receiver.** The held-out p28 candidate `READ OUT THE` ends at offset141. The four complete physical p28 words immediately after it, offsets142..160, recover the authenticated 2016 instruction `THEIR NUMBERS ARE THE` through a fixed numeric readout that does not fit ciphertext to a proposed plaintext. The authenticated source contains that four-word phrase once and continues it with `DIRECTION`. After the #3354 source-origin correction, the same fixed receiver was charged under both principal signed-message index conventions: across all 2,699 canonical four-word windows, the fixed zero-origin mode has exactly this one source-phrase hit, while the one-based modulo-29 rival has zero. This locally discriminates the origin if D4 is accepted; it does not establish a universal zero-based register for p50 or other consumers.
 
 This strengthens the causal route from p28 into the 2016 signed instruction. It does not assign `DIRECTION SEEK AND YOU` as p28 body plaintext.
 
@@ -46,7 +46,7 @@ D4([23,19,22,27]) = [25,26]
 D4([ 4, 5, 4, 6]) = [27, 1]
 ~~~
 
-Use the established zero-based authenticated-source word-number register:
+Charge the two principal source-word origins rather than assuming a universal register. Under zero-origin lookup:
 
 ~~~
 25 -> THEIR
@@ -55,11 +55,22 @@ Use the established zero-based authenticated-source word-number register:
  1 -> THE
 ~~~
 
-The untouched p28 structure therefore emits:
+so the untouched p28 structure emits:
 
 ~~~
 THEIR NUMBERS ARE THE
 ~~~
+
+Under the maximally favorable one-based modulo-29 rival (residue 0 means ordinary word29):
+
+~~~
+25 -> AND
+26 -> THEIR
+27 -> NUMBERS
+ 1 -> HELLO
+~~~
+
+giving `AND THEIR NUMBERS HELLO`, which is not a contiguous phrase in the signed source. Because this target vector contains no zero, strict ordinary one-based lookup gives the same rival reading.
 
 The authenticated 43-word source contains this exact four-word sequence once, at indices25..28. Its immediate continuation is index29:
 
@@ -119,6 +130,22 @@ THEIR NUMBERS ARE THE
 
 The result is therefore unique under the fixed readout across the complete canonical four-word family.
 
+## Index-origin charge after #3354
+
+The later signed-message origin audit established that the 2016 prose itself does not globally fix zero-based word numbering. Re-run the complete D4 manuscript census under both plausible GP29-to-source lookups without changing the p28 receiver, H half, channel order, or any ciphertext value.
+
+- **zero-origin:** residue `r` reads source index `r`;
+- **one-based modulo29:** residues1..28 read ordinary words1..28, while residue0 reads ordinary word29. This grants the one-based rival the natural cyclic interpretation of a GF29 result.
+
+Across the same eight H-half/channel-order modes, the numbers of manuscript windows that read any contiguous four-word signed-source phrase are:
+
+~~~
+zero-origin       [1,0,3,3,0,1,1,2]
+one-based mod29   [0,0,1,1,0,1,1,1]
+~~~
+
+The frozen difference/difference, GP-first mode is therefore **1 versus 0**. Its sole zero-origin hit is p28 offsets142..160, `[25,26,27,1] -> THEIR NUMBERS ARE THE`; the one-based rival has no hit anywhere in the 2,699-window family. This is a finite post-discovery discriminator, not an authorship probability: the source phrase and D4 route were already known before this origin charge. It resolves the local output type more sharply while leaving #3354's p50 conclusion intact.
+
 ## Natural H-half and channel-order charge
 
 Charge the eight immediate alternatives:
@@ -155,28 +182,11 @@ The new bridge therefore strengthens the corrected route without restoring any r
 
 A simple physical-page parser sees the four target words at the same offsets and values. The manuscript-wide census uses the stricter canonical parser that preserves the 32 words crossing physical page boundaries. The result is defined by offsets142..160 and remains unchanged under the canonical contract.
 
-## Independent p50 confirmation of the source continuation
+## P50 cross-check after the #3354 origin correction
 
-The p28 ciphertext still does **not** itself recover DIRECTION. A new independent p50 structure now selects the same continuation without relying on the p28 phrase match alone.
+The older version of this report treated p50's prime-rank English labels as an independent confirmation of `AND THEIR NUMBERS ARE THE DIRECTION`. Director #3354 and its follow-up adversarial census show that this overstates the evidence. P50's base59/base60 numerical geometry, prime ranks, unique 17..24 scaffold, and cell values are reproducible, but dereferencing ordinary prime rank `r` as signed-source `source[r]` is an unselected zero-origin choice. One-based lookup changes the endpoint labels and supplies its own locally self-consistent ROAD direction.
 
-The original p50 table has exactly one unused digit in its printed 60-symbol alphabet, lowercase `f`, so the live base59 codec is source-visible. Under the two source-visible radices, exactly two table tokens have consecutive ordinary-prime ranks wholly inside the authenticated 43-word register. One is **cell24 = `1n`**:
-
-```text
-base59: 107 = prime#28 -> source[28] THE
-base60: 109 = prime#29 -> source[29] DIRECTION
-```
-
-Cell index24 is itself authenticated source index24 = **AND**. Therefore this independent table object brackets the fixed p28 output:
-
-```text
-source[24] / p50 cell24 -> AND
-p28 fixed readout       -> THEIR NUMBERS ARE THE
-p50[24] dual-radix      -> THE / DIRECTION
-```
-
-The duplicated THE is the shared boundary. Together the source/register structure reconstructs **AND THEIR NUMBERS ARE THE DIRECTION** without assigning DIRECTION as p28 plaintext. This materially strengthens the choice of the signed continuation while preserving the original evidence boundary.
-
-Separately, p50's strict base59 adjacency yields **THE ROAD**, which the already selected p29 predecessor word independently reproduces as H2 `[22,23]`. The map/road intersection token `1D` has hex value29 and therefore also selects zero-based source DIRECTION29 -> project p29 -> zero-based canonical word29. These are cross-artifact navigation checks, not an unknown-text decryption. [P50 bridge report](lp2-p50-prime-rank-signed-warning.md) · [bridge SFT](../sims/lp2_p50_map_road_direction_p29_bridge_sft.cjs).
+Accordingly, **do not use p50 English labels or DIRECTION29→p29 as independent authentication of this p28 phrase**. The p28 D4 origin charge above is self-contained and gives the fixed receiver's own local preference for zero-origin; that preference must not be exported back into p50. Preserve p50 only as an origin-invariant numerical scaffold until a first-party register-origin rule or a distinct typed receiver is found. See [the source-origin gate](lp2-p50-signed-register-index-origin-gate.md).
 
 ## Immediate p28 continuation gate — negative
 
