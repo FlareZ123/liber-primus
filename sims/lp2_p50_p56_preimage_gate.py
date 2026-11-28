@@ -64,20 +64,47 @@ for path, data in zip(image_paths, images):
     if expected != actual:
         raise SystemExit(f"source checksum mismatch for {path.name}: {actual} != {expected}")
 
+base60 = decode(tokens, ALPHABET60)
+base59 = decode(tokens, ALPHABET59)
+literal = "".join(tokens).encode("ascii")
+per_token_reverse = "".join(token[::-1] for token in tokens).encode("ascii")
+
 candidates = [
-    ("p50 table, base60 bytes", decode(tokens, ALPHABET60)),
-    ("p50 table, base59 bytes", decode(tokens, ALPHABET59)),
-    ("literal 512-token string", "".join(tokens).encode("ascii")),
+    ("p50 table, base60 bytes", base60),
+    ("p50 table, base59 bytes", base59),
+    ("literal 512-token string", literal),
     ("original p49 JPEG (66.jpg)", images[0]),
     ("original p50 JPEG (67.jpg)", images[1]),
     ("original p51 JPEG (68.jpg)", images[2]),
     ("p49-p51 concatenated JPEGs", b"".join(images)),
 ]
+for label, data in (
+    ("p50 base60", base60),
+    ("p50 base59", base59),
+    ("p50 literal", literal),
+):
+    candidates.extend([
+        (f"{label}, whole-byte reverse", data[::-1]),
+        (f"{label}, nibble swap", nibble_swap(data)),
+        (f"{label}, whole-byte reverse + nibble swap", nibble_swap(data[::-1])),
+    ])
+candidates.append(("p50 literal, per-token character reverse", per_token_reverse))
+
+wp_control = whirlpool(b"abc")
+if wp_control not in ("UNAVAILABLE", WHIRLPOOL_ABC):
+    raise SystemExit(f"Whirlpool abc KAT mismatch: {wp_control}")
 
 print(f"target_sha512_or_whirlpool={TARGET}")
+print(f"whirlpool_abc_control={wp_control}")
 print("candidate\tbytes\tsha512\twhirlpool\tblake2b_512\tmatch")
+match_count = 0
 for name, data in candidates:
     sha512 = hashlib.sha512(data).hexdigest()
     wp = whirlpool(data)
     b2 = hashlib.blake2b(data, digest_size=64).hexdigest()
-    print(f"{name}\t{len(data)}\t{sha512}\t{wp}\t{b2}\t{sha512 == TARGET or wp == TARGET or b2 == TARGET}")
+    match = sha512 == TARGET or wp == TARGET or b2 == TARGET
+    match_count += int(match)
+    print(f"{name}\t{len(data)}\t{sha512}\t{wp}\t{b2}\t{match}")
+if match_count:
+    raise SystemExit(f"unexpected p56 digest match count: {match_count}")
+print(f"tested_candidates={len(candidates)} match_count={match_count}")
