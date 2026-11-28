@@ -9,6 +9,7 @@ const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/l
 const ink=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-ink-annotations.json'),'utf8'));
 const grid=JSON.parse(fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp2-grid-256.json'),'utf8'));
 const signed=fs.readFileSync(path.join(ROOT,'resources/historical/cicada2016-4gq25-outguess.asc'),'utf8');
+const solved=fs.readFileSync(path.join(ROOT,'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8');
 const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
 const mod=x=>((x%MOD)+MOD)%MOD;
 const mod840=x=>((x%840)+840)%840;
@@ -132,6 +133,9 @@ assert(p15Second&&p57);
 assert.deepEqual(p15Second.residue,p57.residue);
 assert.equal(p15Second.k,748);
 assert.equal(p57.k,748);
+assert.match(solved,/### 57\r?\nPARABLE\r?\n/);
+assert.equal(p57.length,7);
+assert.equal('PARABLE'.length,p57.length);
 
 const p54=red.find(r=>r.page===54&&r.start===0);assert(p54);
 assert.equal(p54.k+meaningCell.base60,748);
@@ -175,10 +179,11 @@ const result={
  qDefiningTarget:{
    p15Second:[p15Second.page,p15Second.start,p15Second.residue,p15Second.k],
    p57:[p57.page,p57.start,p57.residue,p57.k],
+   p57SolvedRedPlaintext:'PARABLE',
    sameFieldResidue:true,
  },
  continuation:{roadCell,afterRoad:{k:afterRoad,coord:afterRoadCoord,words:afterRoadCoord.map(i=>words[i])},base59Meaning:{k:base59MeaningTarget,words:[Math.floor(base59MeaningTarget/29),base59MeaningTarget%29].map(i=>words[i])},base59Road:{k:base59RoadTarget,words:[Math.floor(base59RoadTarget/29),base59RoadTarget%29].map(i=>words[i])}},
- interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction. ROAD23 then uniquely addresses87 and advances to k835=[28,23]=THE/ROAD. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the zero-based 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. Charging one-based table-address origin adds one unrelated base60 p33->p40 hit, but destroys the MEANING and ROAD checkpoints; the source-word reading itself also requires zero-based origin because p54's first field coordinate is literal HELLO0. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
+ interpretation:'Solved-p56-selected plain Q produces HELLO0 and MEANING20 exactly once in the complete nonzero red class, together and ordered HELLO/MEANING on p54. Under canonical base60, MEANING20 uniquely addresses value102; advancing p54 k646 by102 lands at k748=[25,23]=THEIR/ROAD, exactly the shared p15-second/solved-p57 residue that defined the p3 quotient construction; the seven-rune solved p57 red opener is PARABLE. ROAD23 then uniquely addresses87 and advances to k835=[28,23]=THE/ROAD. Base59 instead sends MEANING to THEIR/IS and ROAD from k748 to THE/THE. In the zero-based 8-way radix/coordinate/sign family, canonical base60 second-coordinate forward has exactly the p54 red edge. Charging one-based table-address origin adds one unrelated base60 p33->p40 hit, but destroys the MEANING and ROAD checkpoints; the source-word reading itself also requires zero-based origin because p54's first field coordinate is literal HELLO0. This strengthens an executable source/table navigation grammar but remains post-discovery and does not decrypt black text.',
 };
 const json=JSON.stringify(result,null,2);
 console.log(json);
