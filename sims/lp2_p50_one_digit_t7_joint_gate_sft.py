@@ -147,6 +147,83 @@ assert (len(trailing_only_positions), trailing_only_hits) == (151, 1)
 trailing_only_tail = hypergeom_upper(12901, 151, 86, 1)
 assert abs(trailing_only_tail - 0.6379221773955903) < 1e-12
 
+# Nested, source-fixed field-type refinement. The p50 source already distinguishes
+# the second character as decimal digit / uppercase / lowercase. Intersecting
+# the independently established leading-zero state with decimal second digit
+# gives exact single-decimal-digit values 0..9 under BOTH base59 and base60.
+small_decimal_residues = [
+    i for i, token in enumerate(TOKENS)
+    if token[0] == "0" and token[1].isdigit()
+]
+assert small_decimal_residues == [13, 39, 192, 210, 229]
+assert [TOKENS[i] for i in small_decimal_residues] == ["04", "05", "00", "06", "00"]
+assert [decode(TOKENS[i], BASE60) for i in small_decimal_residues] == [4, 5, 0, 6, 0]
+assert [decode(TOKENS[i], BASE59) for i in small_decimal_residues] == [4, 5, 0, 6, 0]
+
+small_decimal_positions = [i for i in valid if (i & 255) in set(small_decimal_residues)]
+small_decimal_hits = sum((i & 255) in set(small_decimal_residues) for i in events)
+assert (len(small_decimal_positions), small_decimal_hits) == (251, 10)
+small_decimal_tail = hypergeom_upper(12901, 251, 86, 10)
+assert abs(small_decimal_tail - 6.284426230421346e-06) < 1e-15
+
+# Conditional refinement inside the already established 60-cell leading-zero state.
+small_decimal_within_leading_tail = hypergeom_upper(3025, 251, 33, 10)
+assert abs(small_decimal_within_leading_tail - 0.00021551579653782398) < 1e-15
+
+# Source phase is the unique circular shift with 10 covered equality events.
+phase_hits = []
+small_decimal_set = set(small_decimal_residues)
+for phase in range(256):
+    phase_hits.append(sum(((i + phase) & 255) in small_decimal_set for i in events))
+assert phase_hits[0] == 10
+assert max(phase_hits) == 10
+assert phase_hits.count(10) == 1
+
+# Exact comparator: choose any five of the 256 p50 residues, preserving only
+# residue cardinality, and ask how often they cover >=10 observed equality sites.
+residue_hits = [0] * 256
+for i in events:
+    residue_hits[i & 255] += 1
+dp = [[0] * 87 for _ in range(6)]
+dp[0][0] = 1
+used = 0
+for hit_count in residue_hits:
+    used += 1
+    for k in range(min(5, used), 0, -1):
+        for covered in range(86, hit_count - 1, -1):
+            dp[k][covered] += dp[k - 1][covered - hit_count]
+random5_num = sum(dp[5][10:])
+random5_den = sum(dp[5])
+assert random5_den == math.comb(256, 5)
+random5_tail = random5_num / random5_den
+assert (random5_num, random5_den) == (980858, 8809549056)
+assert abs(random5_tail - 0.00011134031875694682) < 1e-18
+
+# Family of source-visible (first digit 0..4) x (second digit D/U/L) classes.
+def second_class(token: str) -> str:
+    if token[1].isdigit():
+        return "D"
+    if token[1].isupper():
+        return "U"
+    return "L"
+
+field_rows = []
+for high in "01234":
+    for cls in "DUL":
+        residues = {
+            i for i, token in enumerate(TOKENS)
+            if token[0] == high and second_class(token) == cls
+        }
+        n = sum((i & 255) in residues for i in valid)
+        k = sum((i & 255) in residues for i in events)
+        tail = 1.0 if n == 0 or k == 0 else hypergeom_upper(12901, n, 86, k)
+        field_rows.append((high + cls, len(residues), n, k, tail))
+nonempty_field_rows = [row for row in field_rows if row[2] > 0]
+assert min(nonempty_field_rows, key=lambda row: row[4])[0] == "0D"
+field_family_bonferroni = min(1.0, len(nonempty_field_rows) * small_decimal_tail)
+assert len(nonempty_field_rows) == 14
+assert field_family_bonferroni < 0.0001
+
 
 def simulate_two_rate(reps: int = 30000, seed: int = 3301) -> dict[str, float | int | list[float]]:
     # Give the one-digit mask its observed MLE rates. Conditioning on exactly 86
@@ -326,6 +403,20 @@ print(json.dumps({
         "opportunities": len(trailing_only_positions),
         "repeat_hits": trailing_only_hits,
         "hypergeom_upper": trailing_only_tail,
+    },
+    "small_decimal_state": {
+        "residues": small_decimal_residues,
+        "tokens": [TOKENS[i] for i in small_decimal_residues],
+        "values_base60": [decode(TOKENS[i], BASE60) for i in small_decimal_residues],
+        "values_base59": [decode(TOKENS[i], BASE59) for i in small_decimal_residues],
+        "opportunities": len(small_decimal_positions),
+        "repeat_hits": small_decimal_hits,
+        "hypergeom_upper": small_decimal_tail,
+        "within_leading_zero_hypergeom_upper": small_decimal_within_leading_tail,
+        "phase0_unique_max": True,
+        "exact_random_5_residue_tail_ge_10": random5_tail,
+        "fixed_0to4_x_DUL_family_bonferroni_upper": field_family_bonferroni,
+        "field_classes": field_rows,
     },
     "observed_t7": observed_t7,
     "two_rate_conditioned_exact86": two_rate,
