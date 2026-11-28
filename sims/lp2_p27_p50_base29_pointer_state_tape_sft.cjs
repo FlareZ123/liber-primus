@@ -347,6 +347,41 @@ assert.deepEqual(
   [state.A, state.p - state.one]
 );
 
+// One-cell register: the p27-selected cell254, its literal token39 and the two
+// live radix readings jointly close every field of the worked DH tuple.
+const selectedCellStateRegister = {
+  address: 254,
+  addressBase29: encodeHistoricalBase29(254),
+  token: tokens[254],
+  base59Value: values59[254],
+  base60Value: values60[254],
+  base59ValueBase29: encodeHistoricalBase29(values59[254]),
+  base60ValueBase29: encodeHistoricalBase29(values60[254]),
+  base59ValueRow8: Math.floor(values59[254] / state.A),
+  base59ValueCol8: values59[254] % state.A,
+  base60ValueRow8: Math.floor(values60[254] / state.A),
+  base60ValueCol8: values60[254] % state.A,
+  base59AtBase59Value: values59[values59[254]],
+};
+assert.deepEqual(selectedCellStateRegister, {
+  address: 254,
+  addressBase29: '8M',
+  token: '39',
+  base59Value: 186,
+  base60Value: 189,
+  base59ValueBase29: '6C',
+  base60ValueBase29: '6F',
+  base59ValueRow8: state.p,
+  base59ValueCol8: state.K,
+  base60ValueRow8: state.p,
+  base60ValueCol8: state.g,
+  base59AtBase59Value: state.B,
+});
+assert.equal(Math.floor(values59[254] / 29), state.a);
+assert.equal(values59[254] % 29, mod(state.a * state.K, 29));
+assert.equal(Math.floor(values60[254] / 29), state.a);
+assert.equal(values60[254] % 29, state.b);
+
 // Cell254 is the actual p27-selected table cell. Dereferencing its literal 39
 // prepends one state transition to the already fixed A=8 pointer trajectory.
 const selectedCellPath59 = [254, ...expectedPath59];
@@ -678,6 +713,7 @@ const summary = {
   historicalBase29Path,
   dualRadixHopClosure,
   token39Positions,
+  selectedCellStateRegister,
   token39Base29State: {
     cell151: encodeHistoricalBase29(151),
     cell254: encodeHistoricalBase29(254),
