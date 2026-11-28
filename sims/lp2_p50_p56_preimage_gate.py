@@ -90,6 +90,16 @@ for label, data in (
     ])
 candidates.append(("p50 literal, per-token character reverse", per_token_reverse))
 
+image_concat = b"".join(images)
+candidates.extend([
+    ("p49-p51 concatenated JPEGs, whole-byte reverse", image_concat[::-1]),
+    ("p49-p51 concatenated JPEGs, nibble swap", nibble_swap(image_concat)),
+    ("p49-p51 concatenated JPEGs, whole-byte reverse + nibble swap", nibble_swap(image_concat[::-1])),
+    ("p49-p51 concatenated JPEGs, per-JPEG reverse", b"".join(data[::-1] for data in images)),
+    ("p49-p51 concatenated JPEGs, per-JPEG reverse + nibble swap",
+     b"".join(nibble_swap(data[::-1]) for data in images)),
+])
+
 wp_control = whirlpool(b"abc")
 if wp_control not in ("UNAVAILABLE", WHIRLPOOL_ABC):
     raise SystemExit(f"Whirlpool abc KAT mismatch: {wp_control}")
