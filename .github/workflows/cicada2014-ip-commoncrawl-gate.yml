@@ -2,21 +2,39 @@ name: Cicada 2014 IP Common Crawl gate
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   commoncrawl:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
       - name: Query historical Common Crawl indexes
         run: node sims/cicada2014_ip_archive_gate.cjs
+      - name: Commit reproducible archive result
+        run: |
+          git config user.name "Agent 35"
+          git config user.email "agent35@users.noreply.github.com"
+          git add im-results/cicada2014-ip-commoncrawl-gate/
+          git commit -m "Agent 35: record Common Crawl IP archive gate"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 2))
+          done
+          exit 1
       - uses: actions/upload-artifact@v4
         with:
           name: cicada2014-ip-commoncrawl
-          path: commoncrawl-ip-gate/
+          path: im-results/cicada2014-ip-commoncrawl-gate/
           if-no-files-found: error
           retention-days: 30

@@ -88,7 +88,7 @@ async function worker(queue, out) {
     errors: results.filter(r => r.error || (r.status && r.status >= 400)),
     results
   };
-  const outDir = path.join(process.cwd(), 'commoncrawl-ip-gate');
+  const outDir = path.join(process.cwd(), 'im-results', 'cicada2014-ip-commoncrawl-gate');
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, 'results.json'), JSON.stringify(summary, null, 2) + '\n');
   const lines = [
