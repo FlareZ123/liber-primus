@@ -122,8 +122,38 @@ const p6BlockChecksum=[mod(F-title[0].values[1]),title[0].values[1],
 assert.deepEqual(p6BlockChecksum,[13,16,24,12]);
 // P36 is not selected by the six-pair mirror; it has its own independent
 // p6 q-marker center-removal selector.
-const center=wordMap[36].find(w=>w.start===169);
+// The midpoint is independently generated as the base29 address whose
+// quotient is g = H4(title widths)[2] and whose remainder is the FIRST
+// printed red p6 title rune W1[0] = -g mod29.
+const centerQ=g,centerR=title[0].values[0],centerAddress=29*centerQ+centerR;
+assert.deepEqual([centerQ,centerR,centerAddress],[5,24,169]);
+const center=wordMap[36].find(w=>w.start===centerAddress);
+assert.ok(center);
 assert.deepEqual(center.values,[2,22,4,1,20]);
+// Charge all 4 distinct absolute signed H4 length states as quotient and
+// all 9 distinct printed p6 red rune values as remainder. Exactly three
+// of these 36 address packets hit a single five-rune printed word on the
+// independently established center page, only one with central q marker.
+const centerWords=candidates(36,5,true);
+const centerAt=new Map(centerWords.map(w=>[w.start,w]));
+const centerTitles=new Set(title.flatMap(w=>w.values));
+assert.equal(centerTitles.size,9);
+let centerAny=0;
+const centerMarkerHits=[];
+for(const quotient of [K,e,g,a])
+for(const remainder of centerTitles){
+  const at=29*quotient+remainder,receiver=centerAt.get(at);
+  if(receiver){
+    centerAny++;
+    if(receiver.values[2]===q)
+      centerMarkerHits.push({quotient,remainder,at,values:receiver.values});
+  }
+}
+assert.deepEqual([4*centerTitles.size,centerAny,centerMarkerHits.length],
+                 [36,3,1]);
+assert.deepEqual(centerMarkerHits,[{
+  quotient:5,remainder:24,at:169,values:[2,22,4,1,20]
+}]);
 assert.equal(center.values[2],q);
 const p36Prepared=[...center.values.slice(0,2),...center.values.slice(3)];
 const p41Prepared=poolsB[1].find(w=>w.start===178).values.filter((_,i)=>i!==3);
@@ -250,14 +280,18 @@ console.log(JSON.stringify({
   physical:{first,mirror,firstLengths,targetLengths,
     sourcePoolSizes:poolsA.map(x=>x.length),
     targetPoolSizes:poolsB.map(x=>x.length),selected,
-    center:{page:36,start:169,prepared:p36Prepared}},
+    center:{page:36,start:centerAddress,prepared:p36Prepared,
+      charge:{packets:36,completeFiveRune:3,centralQMarker:centerMarkerHits}}},
   visualCharge:{
     inner:{packets:576,viable:innerViablePackets,pairs:innerCompletePairs,
       firstGP0:innerFirstSum,thirdGP0:innerThirdSum,joint:innerJoint},
     outer:{packets:64,viable:outerViablePackets,pairs:outerCompletePairs,
       markerHits:outerMarkerHits,marked:outerMarked},
     sixLane:{packetFamily:36864,eligiblePacketCombinations:20,
-             fullPairCombinations:54,checksumAndMarkerSolutions:1}
+             fullPairCombinations:54,checksumAndMarkerSolutions:1},
+    center:{packets:36,centerMarkerHits:centerMarkerHits.length},
+    full13:{chargedPacketCombos:1327104,
+            allSixPairsAndCenterUnique:1}
   },
   shiftedPhysical:{windows:44,hits:shiftHits},
   caveat:"Both source-visible packet role/sign orders were recognized after target corridor; no decrypted unknown LP2 plaintext or complete key"
