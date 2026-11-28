@@ -158,31 +158,40 @@ function periodicGroups(pages,mode,T=16){
  return {N:c.length,checked,E};
 }
 function periodicGate(source,p,start,diagnostic=false){
- const targets=Array(source.E.length).fill(-1);
+ const targets=new Int8Array(source.E.length).fill(-1);
+ // Pass 1: reconcile ALL repeated-ciphertext events, which dominate fast
+ // failures on native donors. Do not scan long nonrepeat groups yet.
  for(let t=0;t<source.E.length;t++){
-  const group=source.E[t];let fixed=-1;
-  for(const i of group.pos){
+  for(const i of source.E[t].pos){
    const v=p[start+i];
-   if(fixed>=0&&fixed!==v)return diagnostic?{possible:false,reason:'conflicting positives',t}:false;
-   fixed=v;
+   if(targets[t]>=0&&targets[t]!==v)return diagnostic?{possible:false,reason:'conflicting positives',t}:false;
+   targets[t]=v;
   }
+ }
+ // Pass 2: only the symbol forced by the repeats matters for a group with
+ // any repeats. Short circuit on its FIRST occurrence in a negative slot.
+ for(let t=0;t<source.E.length;t++){
+  if(targets[t]<0)continue;
+  for(const i of source.E[t].neg){
+   if(p[start+i]===targets[t])return diagnostic?{possible:false,reason:'positive also forbidden',t}:false;
+  }
+ }
+ // Pass 3: for repeat-free residue classes, choose any rune absent in the
+ // negative positions. All 16 choices can be independent because 16<=29.
+ for(let t=0;t<source.E.length;t++){
+  if(targets[t]>=0)continue;
   let prohibited=0;
-  for(const i of group.neg)prohibited|=1<<p[start+i];
-  if(fixed>=0){
-   if(prohibited&(1<<fixed))return diagnostic?{possible:false,reason:'positive also forbidden',t}:false;
-   targets[t]=fixed;
-  }else{
-   const available=FULL&~prohibited;
-   if(!available)return diagnostic?{possible:false,reason:'every rune forbidden',t}:false;
-   targets[t]=lo(available);
-  }
+  for(const i of source.E[t].neg)prohibited|=1<<p[start+i];
+  const available=FULL&~prohibited;
+  if(!available)return diagnostic?{possible:false,reason:'every rune forbidden',t}:false;
+  targets[t]=lo(available);
  }
  if(diagnostic){
   for(let t=0;t<source.E.length;t++){
    for(const i of source.E[t].pos)assert.equal(targets[t],p[start+i]);
    for(const i of source.E[t].neg)assert.notEqual(targets[t],p[start+i]);
   }
-  return{possible:true,targets};
+  return{possible:true,targets:Array.from(targets)};
  }
  return true;
 }
