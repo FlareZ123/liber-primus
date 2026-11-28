@@ -206,6 +206,30 @@ Allow all the actual within-page equal-rune event positions as arbitrary special
 
 The planted source-control key instead turns original-length Gibran donor offset **18,000** into a fresh encrypted book whose first page has the exact **262-rune** original geometry, with a separate secret 29-row alphabet set. When the page-only source locator scans **all 62,231** Gibran starts, it recognizes **one and only one** valid inverse start, at **18,000**, and all 262 runes recover exactly; the full 12,956-rune source locator likewise recognizes a single match and reconstructs a consistent full key assignment. This positive is independent of any original-source decryption claim and confirms that the all-offset first-page rejection is not a failure to detect a true copied plaintext source under the specified mechanism.
 
+## All-page independent source locator: 44,263,381 exact inverse tests
+
+**Source-reuse challenge, with page-wise location and key resets.** Extend the preceding exact page-private row-permutation inverse to **every** original rune-bearing physical page, allowing that page an **arbitrary independent source-book offset, completely independent 29 secret substitution alphabets (selected by the preceding printed ciphertext rune), an arbitrary first rune, and arbitrary outputs at all original adjacent-repeat event sites**. There is no requirement for any two pages to correspond to adjacent source passages, or even the same donor. Each source-book passage is **exactly the original page's rune length**, preserving source rune order.
+
+The [standalone all-page exact source locator](../sims/lp2_prev_ciph_perpage_anysource_locator_sft.cjs) evaluates **44,263,381** source-page candidate pairings over Gibran, Shakespeare, Emerson and the independently GP-indexed Latin Vulgate. It tests the **iff row-injective key-existence condition** at all within-page runes, rather than any simple frequency proxy.
+
+| Original source pages | Entire reference search |
+| --- | --- |
+| **54 of 55 physical rune-bearing pages (lengths 76–277)** | **Zero** verbatim candidate passages under any independently secret 29-row page key |
+| **p49, 66 runes** | **74** source excerpts satisfy necessary-and-sufficient page-key consistency |
+| p49 by reference | Gibran **6** / Shakespeare **28** / Emerson **27** / Latin **13** |
+
+For all 54 excluded pages, *every* potential donor placement contradicts a one-row forward/reverse partial permutation at or before the first **92** page-local runes, long before exhausting the original page. These are **exact, key-independent, source-window negatives**. The permitted 86 observed repeat-event output exemptions are already applied; a version without the exemptions cannot have more full source matches. This removes the full-book continuity assumption, while remaining strictly conditional on exact source-word order, the donor registry and the typed predecessor-C q1 cipher.
+
+**Short-p49 chance control.** The only 74 page49 matches are not recognized plaintext. Page49 has only **66 GP runes, zero adjacent equalities**, and too few repeated predecessor states to constrain all 29 secret row alphabets. For a matched-shape control, do **20 deterministic seeded shuffles of the original p49 66-rune multiset**, rejecting shuffles that introduce any adjacent repeats, and run every control through the *same complete four-donor source locator*. Seed **0x49CA3301**. The resulting number of source-passage matches per shuffle is:
+
+(889, 0, 1283, 14698, 1145, 75, 94, 75, 64, 1213, 66, 71, 71, 85, 6, 17714, 1145, 1156, 71, 71).
+
+The conditional control median is **80**; **12/20** shuffles yield **at least 74** matches (plus-one upper tail **13/21 = 0.619**). The large range (0–17,714) reflects how unconstrained short-page row keys can be. This is a post-selected, small diagnostic rather than a manuscript-wide significance estimate; it gives no reason to prioritize p49's 74 candidates as source-authenticated text.
+
+**Independent real inverse positive:** The program also generates **12,956** authentic GP-native plaintext runes from Gibran starting at offset **18,000**, encrypts through 55 entirely independent full GP29-permutation chart sets with a rare-NG self-repeat law, and checks each one of its 55 original-length page fragments against the true native source and genuine inverse. All **12,956/12,956** plaintext runes recover; the resulting cipher has exactly **100** repeated glyph neighbors. The companion source-locator reproducer uniquely identifies that planted source start among all **62,231** available 262-rune p0 donor placements and among all **49,537** full-book Gibran starts.
+
+**Scientific decision:** These four reference texts cannot be the *verbatim* source of **any** LP2 physical page other than the too-short-to-be-discriminating p49 under a simple one-phase previous-printed-C secret permutation decoder, even when every page jumps independently in its source and all 86 genuine repeat events may be special. The test does **not** rule out altered or interleaved passages, a previously unknown author-supplied source, added hidden key state, two or more phases per page, or any original composition. No unknown original LP2 plaintext is recovered.
+
 ## Decision and missing authentic step
 
 The original conditional row histograms are close to uniform and cannot supply sufficiently many outputs for the most frequent GP-native letters, even if a secret 29-permutation chart is selected by the previous ciphertext glyph at every step. **Retire full-book q≤12 previous-ciphertext-only row-alphabet brute-force searches** under either original physical-page or large-mark reset. A key search cannot repair this key-independent mathematical contradiction under the stated donor envelope.
