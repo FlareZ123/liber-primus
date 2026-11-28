@@ -1,6 +1,6 @@
-# P49 matched-control transfer of recursive SHED yields DIRECTION
+# P49 recursive SHED: canonical base60 closes to cell115 / p47
 
-**Agent49, 19 November 2026. Director #1836. Classification: positive same-operation transfer with a bounded chronology caveat. No unknown plaintext is claimed.**
+**Agent49, 19 November 2026; Agent7 base60 closure, 28 November 2026. Classification: source-constrained navigation/state transfer. The older base59 DIRECTION read remains a conditional historical branch; the leading canonical base60 interpretation now yields a unique p49 -> cell115 -> p47 closure. No unknown plaintext is claimed.**
 
 
 ## Radix reconciliation
@@ -8,46 +8,60 @@
 **Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Decision
 
-The frozen p55 recursive-SHED operation transfers cleanly to its only matched page-level five-core control, p49.
+A later independent route now resolves the most important ambiguity in this report.
 
-Using the unchanged sequence
+The p47 navigation circuit selects **physical p49 before inspecting p49's rune values**: selected p47 one-based word47 has canonical H6 `[16,19,12,8,12,22]`; its first adjacent BASE29 pair `[16,19]` is integer483, and the already-live zero-based `mod256` table address gives cell227, whose literal token is **`49`**.
 
-1. canonical complete page-local printed words,
-2. recursively remove the first and last rune of each word until it vanishes or one center remains,
-3. preserve surviving centers in printed word order,
-4. sum the centers in GP0,
-5. use that sum as the zero-based p50 address,
-6. read the p50 token under the conditional drop-`f` **base59** interpretation,
+On that independently selected page, reuse the recursive-SHED operation fixed upstream by solved p57:
 
-p49 gives:
+1. take canonical complete page-local words;
+2. repeatedly remove each word's first and last rune;
+3. preserve the surviving odd-word centers in print order;
+4. sum their GP0 values.
 
-```text
-p49 recursive cores      [20,19,19,14,4]
-core transliteration     L M M X R
-core count               5 = g
-middle core              19 = B
-core GP0 sum             76
-p50[76]                  1s
-base59(1s)               112
-GP0(DIRECTION)           112
+P49 gives the previously established source object:
+
+```
+cores      [20,19,19,14,4]
+core count 5  = g
+middle     19 = B
+GP0 sum    76
 ```
 
-The authenticated 2016 signed source contains the sentence:
+The earlier report interpreted p50 cell76 under conditional base59 to obtain `112=GP0(DIRECTION)`. That exact identity remains reproducible, but independent source work now favors the conventional **base60 byte** representation. Under base60 the same frozen address gives:
 
-```text
-Its words are the map, their meaning is the road,
-and their numbers are the direction.
+```
+p50[76] = token 1s = byte114.
 ```
 
-Under the repository's canonical GP spelling, `DIRECTION = D I R E C T IA N` has indices
+Now apply the already established canonical byte-pointer operation for exactly the reconstructed shared value **K=2**:
 
-```text
-[23,10,4,18,5,16,27,9]
+```
+114 -> 197 -> 115.
 ```
 
-and GP0 sum **112**. This is inside the finite source-word GP0 register explicitly allowed by Director #1836.
+Cell115 is the same independently selected convergence node from the p27 H8 route, has value `GP-prime(WITHIN)=115`, and literally prints **`47`**. Thus the canonical branch gives a complete navigation return:
 
-The same-operation transfer is positive within the frozen drop-`f` base59 branch, but that branch is not source-authenticated. The independent 2013 ALL AROUND selector favors base60, under which the p49 token gives114 rather than DIRECTION=112.
+```
+p47 H6 -> literal49 -> p49
+p49 recursive SHED -> 76 -> base60 byte114
+  --K=2 pointer edges--> cell115 -> literal47 -> p47.
+```
+
+This is stronger than choosing base59 because it uses the independently selected leading radix, the independently reconstructed K, the pre-existing byte-pointer operation, and a receiver cell already selected by two other routes.
+
+### Whole-page control
+
+Charge the unchanged recursive-SHED page object on every physical p0-p55 page using canonical complete words. For each page whose center sum is a legal p50 address, read the base60 byte and advance exactly K=2 pointers.
+
+- Exactly **two** pages have `g=5` surviving cores: p49 and p55.
+- P49: sum76 -> byte114 -> two edges -> **115**.
+- P55: sum38 -> byte133 -> two edges -> **46**.
+- Across **all** p0-p55 pages, not merely the five-core pair, **p49 is the only page** whose recursive-core sum -> base60 byte -> K=2 pointer chain terminates at115.
+
+The old base59 DIRECTION result is therefore retained as an interesting alternate semantic read, but it is no longer the leading continuation. Do not use it to argue that base59 overrides the source-selected base60 table.
+
+Reproducer for the new closure: `sims/lp2_p49_recursive_shed_base60_cell115_sft.cjs`.
 
 ## Frozen upstream operation
 

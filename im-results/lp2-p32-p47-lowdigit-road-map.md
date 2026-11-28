@@ -228,6 +228,20 @@ H(word47) - H(word48) mod29
 
 There are only **19** adjacent complete-word pairs in unknown p0-p55 where both words have length6. Charging this exact ordered H-difference over all 19 leaves **one** hit: p47 word47 -> word48. This remains a state-architecture checksum, not plaintext recovery.
 
+#### P49 supplies a canonical base60 return to cell115
+
+The selected p47 word47 H6 packet also fixes a return through p49 without reviving the old base59 fork. Its first adjacent BASE29 pair `[K-b,B]=[16,19]` gives integer483, zero-based `mod256` address227, whose original literal token is **`49`**.
+
+On p49, the already frozen recursive-SHED complete-word operation yields centers `[20,19,19,14,4]`, count `g=5`, middle `B=19`, and GP0 sum76. Under canonical base60, p50 cell76 is byte114; advancing the established byte pointer for exactly `K=2` edges gives
+
+```
+114 -> 197 -> 115 -> literal47.
+```
+
+Across all physical p0-p55 pages, p49 is the **only** recursive-SHED page object whose center sum, base60 byte lookup, and K=2 pointer walk lands at115. P55, the only other five-core page, lands at46.
+
+This closes a p47 -> p49 -> cell115 -> p47 loop under the leading radix. The older conditional base59 p49 output `DIRECTION` remains reproducible but is no longer needed for the continuation.
+
 ### Rival controls
 
 The canonical 11-cycle contains only three literal decimal tokens that are legal LP2 page numbers:
