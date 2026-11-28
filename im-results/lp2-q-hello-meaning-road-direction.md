@@ -80,6 +80,8 @@ p57 solved red7.
 
 Their equality modulo the p3 trinomial is the defining equivalence used in the original p15−p57 quotient construction that produced Q. The source/table walk therefore returns to the **Q-defining solved-page equivalence class**.
 
+After deriving this landing, the solved-page plaintext reference supplies an additional semantic checkpoint: p57's complete seven-rune red opener decrypts to **PARABLE**. The route was not selected by that plaintext heading. Thus the uniquely exposed `HELLO / MEANING` state uses MEANING's numeric direction to land on a solved marked object whose plaintext is PARABLE—a human-readable semantic relation consistent with “meaning” without changing any arithmetic. This is suggestive solved-plaintext corroboration, not a preregistered lexical prediction.
+
 ## ROAD's number continues to THE ROAD
 
 The target coordinate ends at signed word **ROAD=23**.
