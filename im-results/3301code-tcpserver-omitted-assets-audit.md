@@ -1,6 +1,6 @@
 # iIIustrious/3301code TCP-server omitted-asset audit
 
-**Status:** bounded source-history negative in progress; upstream Git object graph exhausted.  
+**Status:** bounded source-history negative complete; upstream and sole public-fork Git object graphs exhausted.  
 **Director task:** #3344.  
 **Research question:** do the local files `nextInfo`, `serversource`, or `quine.py` referenced by `tcpServer/server.py` survive in tracked history, mirrors, or contemporaneous source material in a form that supplies organizer-authored state relevant to Liber Primus?
 
@@ -18,7 +18,11 @@ Every later reachable tree retains that exact server blob. The only other file e
 
 The earlier local-working-files import, root commit `b66622a9af72570cd81d82904b225ca088084aae` (2015-03-10), contains the nested project tree `42ed22542a8120ff481481dafe22e11ed7911c4d`: README, crib-drag material, `flip.c`, `ircbot.py`, `rsaprimitives.py`, a separate HTTP upload-server directory, and `xor.c`. It contains neither `tcpServer` nor the three target support files. The later flattening/merge commits likewise contain none.
 
-The repository has only `refs/heads/master` in its public Git refs and no pull requests or issues carrying alternate trees. The repo metadata currently reports one fork; that fork remains a separate acquisition surface and is not part of this upstream-object negative.
+The repository has only `refs/heads/master` in its public Git refs and no pull requests or issues carrying alternate trees.
+
+The repository's sole public fork is `cicada-solvers/solving-3301-code-2013`. GitHub identifies `iIIustrious/3301code` as both its parent and source. The fork has only `refs/heads/master`, its master tip is the exact upstream commit `addb2e64042b05d209b4acb76b2e9f0d03e0b57e`, and its complete 28-commit ancestry is identical. Its current recursive tree contains only `tcpServer/server.py` and `tcpServer/onionImitation.py` under `tcpServer/`; exact-path history queries for all six target locations are empty there as well.
+
+A later independent research archive, `Dukotah/cicada3301`, records that it retrieved the `cicada-solvers/solving-3301-code-2013` fork at clone SHA `addb2e64042b05d209b4acb76b2e9f0d03e0b57e`. That is a secondary snapshot witness for the same fork tip; repository searches there contain no `nextInfo`, `serversource`, or `quine.py` copy tied to this tool.
 
 ## What the missing names mean under the authenticated 2013 protocol
 
@@ -61,10 +65,10 @@ Contemporaneous comparison: `neuroretransmit/cicada` at pinned commit `ade9a0288
 
 Repository synthesis already covering the authenticated protocol and NEXT semantics: `resources/external/2013-tcp-server-signed-source.md`; closed Director decision #1031.
 
-## Current decision
+## Decision
 
-The **upstream 3301code Git-object route is exhausted**. It cannot recover any of the three omitted local files because none was ever tracked in a reachable upstream tree.
+The **tracked 3301code Git-object route is exhausted in both upstream and its sole public fork**. It cannot recover any of the three omitted local files because none was ever tracked in any reachable tree of that network.
 
-The historical semantics also sharply reduce the cryptanalytic value of two names: `serversource` and `quine.py` are participant-selected implementation material, not source-selected LP2 operands. The remaining acquisition question is narrower: whether the one public fork, an external snapshot, or a collaborator mirror preserved a concrete 3301code `nextInfo` capture. Such a file would still need independent dating and byte comparison to the known signed March 2013 NEXT payload before it could change the LP2 continuation frontier.
+The historical semantics also sharply reduce the cryptanalytic value of two names: `serversource` and `quine.py` are participant-selected implementation material, not source-selected LP2 operands. The remaining acquisition condition is now external and explicit: only a separately recovered, dated snapshot or private collaborator copy containing a concrete 3301code `nextInfo` can reopen this branch. Such a file must be byte-compared to the known signed March 2013 NEXT payload before it can affect the LP2 continuation frontier. Global GitHub code searches for the three target names and distinctive 2016 server fragments produced no matching mirror containing these support files.
 
 Do not synthesize missing support-file contents from the 2016 source code. Exact recovered bytes are required.
