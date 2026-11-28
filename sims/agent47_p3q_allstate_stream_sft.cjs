@@ -12,6 +12,13 @@ const signed = fs.readFileSync(path.join(root, 'resources/historical/cicada2016-
 const MOD = 29, Q = [17, 24], QINV = [22, 26];
 const mod = (x) => (x % MOD + MOD) % MOD;
 const mul = ([a, b], [c, d]) => [mod(a*c + 8*b*d), mod(a*d + b*c + 3*b*d)];
+const frobenius = ([a,b]) => [mod(a+3*b),mod(-b)];
+const inverseT = ([a,b]) => mul(QINV,frobenius([a,b]));
+const forwardT = ([a,b]) => frobenius(mul(Q,[a,b]));
+assert.deepEqual(forwardT(forwardT([1,0])),[8,0]);
+let tState=[1,0],tOrder=0;
+do {tState=forwardT(tState);tOrder++;} while((tState[0]!==1||tState[1]!==0)&&tOrder<841);
+assert.equal(tOrder,56,'canonical signed DIRECTION29+Q semilinear T order on unit is 56');
 const inv = ([a,b]) => {
   const n = mod(a*a + 3*a*b - 8*b*b);
   assert.notEqual(n,0,'nonzero GF841 state has nonzero norm');
@@ -60,9 +67,10 @@ function score(x){
 }
 // law 0: C-S; law 1: C+S; law 2: C*S; law 3: C/S.
 // All arithmetic is over the source-fixed GF(29^2), u^2=3u+8.
-function transduce(x,seed,forward,law){
+function transduce(x,seed,forward,law,stepFamily='Q'){
   assert.equal(x.length%2,0);
   let state=seed.slice();
+  assert.ok(stepFamily==='Q'||stepFamily==='T');
   const step=forward?Q:QINV,out=new Array(x.length);
   for(let k=0;k<x.length;k+=2){
     const a=x[k],b=x[k+1];
@@ -72,18 +80,18 @@ function transduce(x,seed,forward,law){
     else if(law===2)v=mul([a,b],state);
     else v=mul([a,b],inv(state));
     out[k]=v[0];out[k+1]=v[1];
-    state=mul(state,step);
+    state=stepFamily==='Q'?mul(state,step):(forward?forwardT(state):inverseT(state));
   }
   return out;
 }
 const inverseLaw=[1,0,3,2];
-function census(x){
+function census(x,stepFamily='Q'){
   let best=[];
   let scanned=0;
   for(const forward of [true,false])
   for(let law=0;law<4;law++)
   for(const seed of states){
-    const decoded=transduce(x,seed,forward,law);
+    const decoded=transduce(x,seed,forward,law,stepFamily);
     const value=score(decoded);
     const item={score:value,seed,forward,law,
       prefix:decoded.slice(0,22).map(v=>corpus.translit[v]).join('')};
@@ -106,11 +114,11 @@ const frames=[
   {name:'after-p54-red9-drop-terminal-rune',cipher:p54.slice(9).concat(p55).slice(0,-1)}
 ];
 assert.deepEqual(frames.map(x=>x.cipher.length),[308,298]);
-const originals=frames.map(f=>{
-  const {scanned,best}=census(f.cipher);
-  return {frame:f.name,n:f.cipher.length,scanned,
+const originals=frames.flatMap(f=>['Q','T'].map(stepFamily=>{
+  const {scanned,best}=census(f.cipher,stepFamily);
+  return {frame:f.name,stepFamily,n:f.cipher.length,scanned,
     ciphertextScore:score(f.cipher),best};
-});
+}));
 const signedText=signed.slice(signed.indexOf('Hello.'),signed.indexOf('-----BEGIN PGP SIGNATURE-----'));
 assert.ok(signedText.startsWith('Hello.'));
 const signedGp=gpText(signedText);
@@ -121,27 +129,28 @@ const holdScores=[300,450,600,750,900,1200,3000].map(offset=>{
 });
 const plant=native.slice(21320,21628),control=[];
 assert.equal(plant.length,308);
+for(const stepFamily of ['Q','T'])
 for(const seed of [[0,20],[19,8]])
 for(const forward of [true,false])
 for(const law of [0,2]){
-  const encoded=transduce(plant,seed,forward,inverseLaw[law]);
-  assert.deepEqual(transduce(encoded,seed,forward,law),plant);
-  const check=census(encoded);
+  const encoded=transduce(plant,seed,forward,inverseLaw[law],stepFamily);
+  assert.deepEqual(transduce(encoded,seed,forward,law,stepFamily),plant);
+  const check=census(encoded,stepFamily);
   assert.ok(Math.abs(check.best[0].score-score(plant))<1e-10,
     'known correct key must rank first in planted native ciphertext');
-  const best=transduce(encoded,check.best[0].seed,check.best[0].forward,check.best[0].law);
+  const best=transduce(encoded,check.best[0].seed,check.best[0].forward,check.best[0].law,stepFamily);
   assert.deepEqual(best,plant);
-  control.push({seed,forward,law,score:score(plant),
+  control.push({stepFamily,seed,forward,law,score:score(plant),
     recoveredTop1:true,top:check.best[0]});
 }
-assert.equal(control.length,8);
+assert.equal(control.length,16);
 const result={
   schema:1,
-  classification:'all-840-state, both-Q-directions, four direct GF841 pair-stream inverses; exact original ciphertext',
-  source:{relation:'u^2=3u+8',Q,QINV,order:840,
+  classification:'all-840-state, both directions, Q or canonical semilinear T steps, four direct GF841 pair-stream inverses; exact original ciphertext',
+  source:{relation:'u^2=3u+8',Q,QINV,order:840,semilinearStep:'T(x)=Frobenius(Q*x)',semilinearOrder:56,
     p54RedQProduct:[0,20],nativeTrainRunes:train.length,
     signedReference:'resources/historical/cicada2016-4gq25-outguess.asc'},
-  model:{states:840,directions:2,laws:4,framingCases:2,
+  model:{states:840,directions:2,stepFamilies:2,laws:4,framingCases:2,
     totalOriginalCandidates:originals.reduce((n,x)=>n+x.scanned,0),
     noPageReset:true,noFreePerRuneKey:true,
     score:'GP29 smoothed bigram log probability per rune from disjoint Gibran prefix'},
@@ -149,7 +158,7 @@ const result={
     signed2016:{runes:signedGp.length,score:score(signedGp)},
     heldGibranWindows:holdScores
   },nativePlants:control,
-  decision:'For both physically specified p54-p55 pair framings, no key in the exhaustive direct Q-stream family yields native-like original plaintext. All eight planted control keys recover the exact held-out native 308-runic message at rank 1. This excludes only the fixed linear/additive or multiplicative Q-state emission maps, not more complex receiver laws, state feedback, side channels, or different plaintext languages.'
+  decision:'For both p54-p55 pair framings, no key in the exhaustive direct Q or Frobenius(Q*) semilinear stream families yields native-like original plaintext. All 16 planted control keys recover the exact held-out native 308-runic message at rank 1. This excludes these fixed additive or multiplicative emissions with either source-derived state update, not more complex receiver laws, ciphertext-feedback, side channels, or different plaintext languages.'
 };
 const output=JSON.stringify(result,null,2);
 console.log(output);
