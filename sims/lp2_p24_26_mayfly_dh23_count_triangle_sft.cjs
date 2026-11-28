@@ -115,8 +115,9 @@ const modPow = (base, exponent, modulus) => {
   return Number(result);
 };
 
-// A cleaner source-motivated construction uses the independently established
-// outer-pair operation H(x,y)=(x-y,x+y) mod29. Charge which of the two
+// A cleaner construction reuses the pre-existing fixed local packet transform
+// H(x,y)=(x-y,x+y) mod29. Its earlier transfer gate rejects manuscript-wide
+// decoder semantics; it is reused here only on this source-selected packet. Charge which of the two
 // remaining observed edge values is e: only one choice makes H(g,e)'s sum
 // output close onto the other observed edge value.
 const H = (x, y) => [
