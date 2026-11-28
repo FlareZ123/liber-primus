@@ -22,7 +22,7 @@ const readText = p => read(p).toString('utf8');
 const TARGET = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
 const sha512 = b => crypto.createHash('sha512').update(b).digest('hex');
 const blake2b512 = b => crypto.createHash('blake2b512').update(b).digest('hex');
-const nibbleSwap = b => Buffer.from(b, x => ((x & 0x0f) << 4) | (x >>> 4));
+const nibbleSwap = b => Buffer.from(Uint8Array.from(b, x => ((x & 0x0f) << 4) | (x >>> 4)));
 const reverseDigits = n => Number(String(n).split('').reverse().join(''));
 
 // LP1 05.jpg source operation.
