@@ -35,7 +35,8 @@ const tokens = grid.bytes.map(tokenFrom60);
 const values60 = tokens.map((token) => decode(token, a60));
 const values59 = tokens.map((token) => decode(token, a59));
 assert.deepEqual(values60, grid.bytes);
-assert.ok(tokens.every((token) => !token.includes("f")));
+const missingSymbols = [...a60].filter((ch) => !tokens.join("").includes(ch));
+assert.deepEqual(missingSymbols, ["f"]);
 assert.ok(values59.every((value) => value >= 0 && value < 256));
 
 const width = 8;
@@ -104,6 +105,18 @@ const b = discreteLog(dh.g, dh.B, dh.p);
 assert.equal(a, 6);
 assert.equal(b, 15);
 assert.equal(powMod(dh.B, a, dh.p), dh.K);
+
+/** @param {number} value @param {number} modulus */
+function inverseMod(value, modulus) {
+  for (let candidate = 1; candidate < modulus; candidate += 1) {
+    if (value * candidate % modulus === 1) return candidate;
+  }
+  return null;
+}
+const e = inverseMod(b, dh.p - 1);
+assert.equal(e, 3);
+const reconstructedState = {p:dh.p,g:dh.g,a,b,A:width,B:values59[reflectedCell],K:width-1-dh.g,e};
+assert.deepEqual(reconstructedState, {p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3});
 
 // Complete finite DH23 charge: preserve p=23,g=5 and enumerate all 22x22
 // nonzero exponent residues. The table width fixes A=8; the source mirror
@@ -250,7 +263,8 @@ console.log(JSON.stringify({
     width, widthEqualsA:dh.A, sinkCell, sinkCoordinates:[dh.p,dh.g],
     mirrorColumn:width-1-dh.g, mirrorColumnEqualsK:dh.K,
     reflectedCell, reflectedToken:tokens[reflectedCell], reflectedValue:dh.B,
-    derivedPrivateExponents:{a,b}, sharedFromB:powMod(dh.B,a,dh.p)
+    derivedPrivateExponents:{a,b}, inverseExponent:e,
+    reconstructedState, sharedFromB:powMod(dh.B,a,dh.p)
   },
   exactPlacementCharge:{placement59,placement60,placementEither},
   conditionalBasinMonteCarlo:{full59,full60,row59},
