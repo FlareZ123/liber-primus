@@ -19,13 +19,22 @@ const EXPECTED_SIGNED_H = [
   ['ND', '6Q', '6SI', '6JR'],
   ['-35S', '-H5', '280', '7FE'],
 ];
+const PAIRINGS = {
+  outside: [[0, 3], [1, 2]],
+  adjacent: [[0, 1], [2, 3]],
+  cross: [[0, 2], [1, 3]],
+};
 
 function mod(x, m = MOD) {
   return ((x % m) + m) % m;
 }
 
-function h4(a) {
-  return [a[0] - a[3], a[1] - a[2], a[1] + a[2], a[0] + a[3]];
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function loadJson(rel) {
+  return JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 }
 
 function base29Digits(n, width = 0) {
@@ -44,12 +53,51 @@ function base29String(n, width = 0) {
   return n < 0 ? '-' + body : body;
 }
 
-function assert(condition, message) {
-  if (!condition) throw new Error(message);
+function pairTransform(a, pairs = PAIRINGS.outside) {
+  const [[a0, a1], [b0, b1]] = pairs;
+  return [
+    a[a0] - a[a1],
+    a[b0] - a[b1],
+    a[b0] + a[b1],
+    a[a0] + a[a1],
+  ];
 }
 
-function loadJson(rel) {
-  return JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
+function h4(a) {
+  return pairTransform(a, PAIRINGS.outside);
+}
+
+function rotate(a, n) {
+  return a.slice(n).concat(a.slice(0, n));
+}
+
+function blockDigitLengths(seq, pairing) {
+  const out = [];
+  for (let i = 0; i < 16; i += 4) {
+    const transformed = pairTransform(seq.slice(i, i + 4), pairing);
+    out.push(transformed.reduce((sum, n) => sum + base29Digits(n).length, 0));
+  }
+  return out;
+}
+
+function isIncreasingRun(a) {
+  return a.length === 4 && a.every((x, i) => i === 0 || x === a[0] + i);
+}
+
+function staircaseCharge() {
+  const hits = [];
+  for (const [pairingName, pairing] of Object.entries(PAIRINGS)) {
+    for (const reversed of [false, true]) {
+      const base = reversed ? [...GRID_SPIRAL].reverse() : [...GRID_SPIRAL];
+      for (let rotation = 0; rotation < 16; rotation++) {
+        const lengths = blockDigitLengths(rotate(base, rotation), pairing);
+        if (isIncreasingRun(lengths)) {
+          hits.push({ pairing: pairingName, reversed, rotation, lengths });
+        }
+      }
+    }
+  }
+  return hits;
 }
 
 function encodeFactory(corpus) {
@@ -134,23 +182,32 @@ function buildKeys() {
   const raw = GRID_SPIRAL.flatMap((n) => base29Digits(n, 3));
   const transformed = [];
   const signedStrings = [];
+  const signedBlockKeys = [];
 
   for (let i = 0; i < GRID_SPIRAL.length; i += 4) {
     const signed = h4(GRID_SPIRAL.slice(i, i + 4));
     signedStrings.push(signed.map((n) => base29String(n)));
 
+    const blockKey = [];
     for (const n of signed) {
+      const digits = base29Digits(n);
+      for (const d of digits) blockKey.push(n < 0 ? mod(-d) : d);
       transformed.push(...base29Digits(mod(n, MOD3), 3));
     }
+    signedBlockKeys.push(blockKey);
   }
 
   assert(
     JSON.stringify(signedStrings) === JSON.stringify(EXPECTED_SIGNED_H),
     'signed integer H/BASE29 serialization changed',
   );
-  assert(raw.length === 48 && transformed.length === 48, 'key length');
+  assert(raw.length === 48 && transformed.length === 48, 'fixed-width key length');
+  assert(
+    JSON.stringify(signedBlockKeys.map((k) => k.length)) === JSON.stringify([8, 9, 10, 11]),
+    'BASE29 block-length staircase changed',
+  );
 
-  return { raw, transformed, signedStrings };
+  return { raw, transformed, signedStrings, signedBlockKeys };
 }
 
 function evaluateReceiver(corpus, words, start, key, sign, dictionary) {
@@ -172,6 +229,9 @@ function evaluateReceiver(corpus, words, start, key, sign, dictionary) {
     dictionary_hits: rows.filter((r) => r.dictionary).length,
     long_words: long.length,
     long_dictionary_hits: long.filter((r) => r.dictionary).length,
+    long_dictionary_fraction: long.length
+      ? long.filter((r) => r.dictionary).length / long.length
+      : 0,
     first_words: rows.slice(0, 12),
     dictionary_examples: rows.filter((r) => r.dictionary).slice(0, 12),
   };
@@ -200,6 +260,31 @@ function solve() {
   assert(base29String(3299) === '3QM', 'p15 red cell BASE29 control');
   assert(3299 + 2 === 3301, 'p15 K bridge');
 
+  const staircases = staircaseCharge();
+  assert(staircases.length === 2, 'unexpected staircase family size');
+  const authored = staircases.filter((x) => !x.reversed && x.rotation === 0);
+  assert(authored.length === 1 && authored[0].pairing === 'outside', 'authored staircase selector');
+  assert(JSON.stringify(authored[0].lengths) === JSON.stringify([8, 9, 10, 11]), 'authored staircase');
+
+  const pageCounts = [8, 9, 10, 11].map((page) => {
+    const record = corpus.pages.find((p) => p.page === page);
+    assert(record, 'missing page ' + page);
+    return record.runic_count;
+  });
+  assert(JSON.stringify(pageCounts) === JSON.stringify([255, 268, 263, 273]), 'p8-p11 counts');
+
+  const pageCountH = h4(pageCounts);
+  const pageCountHBase29 = pageCountH.map((n) => base29String(n));
+  assert(
+    JSON.stringify(pageCountHBase29) === JSON.stringify(['-I', '5', 'I9', 'I6']),
+    'p8-p11 count H/BASE29 packet',
+  );
+  const pageCountPayloadLength = pageCountH.reduce(
+    (sum, n) => sum + base29Digits(n).length,
+    0,
+  );
+  assert(pageCountPayloadLength === 6, 'p8-p11 count payload length');
+
   const nativeWords = (lp1.match(/[A-Z]+/g) || [])
     .map((word) => encode(word))
     .filter(Boolean);
@@ -207,14 +292,14 @@ function solve() {
 
   const p15 = pageWords(corpus, transcription, 15);
   const p16 = pageWords(corpus, transcription, 16);
-  const tests = [];
+  const directTests = [];
 
   for (const [keyName, key] of [
     ['base29_raw_spiral_48', keys.raw],
     ['base29_h4_mod29cubed_48', keys.transformed],
   ]) {
     for (const sign of [-1, 1]) {
-      tests.push({
+      directTests.push({
         key: keyName,
         sign,
         p15_body: evaluateReceiver(corpus, p15, 20, key, sign, dictionary),
@@ -223,13 +308,47 @@ function solve() {
     }
   }
 
+  const staircasePageTests = [];
+  for (let block = 0; block < 4; block++) {
+    const page = 8 + block;
+    const start = page === 8 ? 12 : 0;
+    const words = pageWords(corpus, transcription, page);
+    const key = keys.signedBlockKeys[block];
+
+    for (const sign of [-1, 1]) {
+      staircasePageTests.push({
+        block,
+        page,
+        start,
+        source_strings: keys.signedStrings[block],
+        key,
+        sign,
+        result: evaluateReceiver(corpus, words, start, key, sign, dictionary),
+      });
+    }
+  }
+
   return {
     classification:
-      'source-selected BASE29 plus authored p15 spiral/full-integer H4 serialization; direct additive consumers only',
+      'source-selected BASE29 plus authored p15 spiral/full-integer outside-H serialization; target-blind structural route with direct additive consumers rejected',
     source: {
       spiral: GRID_SPIRAL,
       signed_h_base29: keys.signedStrings,
+      serialized_block_lengths: keys.signedBlockKeys.map((k) => k.length),
       historical_control: { 3299: '3QM', 3301: '3QO', K: 2 },
+    },
+    presentation_charge: {
+      family: '3 perfect matchings x 2 directions x 16 cyclic starts',
+      configurations: 96,
+      increasing_four_page_staircases: staircases,
+      authored_red_origin_hits: authored,
+    },
+    page_route: {
+      addressed_pages: [8, 9, 10, 11],
+      runic_counts: pageCounts,
+      integer_h: pageCountH,
+      base29: pageCountHBase29,
+      base29_payload_digits: pageCountPayloadLength,
     },
     fixed_width_keys: {
       raw: keys.raw,
@@ -241,7 +360,8 @@ function solve() {
       native_lp1_hits: nativeHits,
       native_lp1_fraction: nativeHits / nativeWords.length,
     },
-    tests,
+    direct_tests: directTests,
+    staircase_page_tests: staircasePageTests,
   };
 }
 
