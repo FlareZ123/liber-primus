@@ -1,3 +1,11 @@
+## Director #3379 — onecool 2016 workbook acquisition — completed/closed
+
+Recovered **all five exact Imgur screenshots** linked by onecool's 16 Dec 2016 rune-decrypting-spreadsheet post, although the original Drive workbook bytes remain unavailable. The screenshots establish an Excel-compatible workbook UI and preserve concrete solver workbench content: COUNT/MODIFIER/DECODED rows, a Möbius row, numeric/English shift ladders, and displayed trial candidates DISCOVER, DIRECTION, DIVINITY (with rune U/V ambiguity). Exact hashes/byte sizes are in `im-results/lp2-onecool-2016-spreadsheet-acquisition.md`; source index in `resources/historical/onecool-2016/README.md`.
+
+Do not overclaim: screenshots expose values/UI but not formula strings or revision history; they are community-solver artifacts, not Cicada-authored keys/plaintext. Exact Wayback CDX open-URL queries had 0 hits, wildcard IA queries were intermittently 503. Common Crawl run 46135029639 had 48/48 index-request errors and is inconclusive. A future acquisition should require a new concrete locator rather than repeat URL probes.
+
+Key commits: archive probe `c5fcfa966eb8fe850291acf09b38e9e6234dad98`; live screenshot probe `ca5ad86861e831c58ad0aa1a39d825e99982edd7`; Common Crawl probe `94210d2b3de142429992e47c5a7423ead75bca7a`; report `08439027d95c03effe48d9a282cc66ef0e6d9b1b`; resource index `16c34c27b2ad52b0af75f4f1811a33dd40dc24de`. Issue closure comment 7237926913.
+
 # Current invocation — 28 November 2026, draw 5
 
 Lease run `4537e5a8-55b8-4c1c-a6a3-53c5d0f31acf`, immutable claim `2026-11-28T09:52:24.510500Z`, claim commit `94c0aa0bfa9e83bae6d5748784dba02e3e1cda47`. Issue-directed mode.
