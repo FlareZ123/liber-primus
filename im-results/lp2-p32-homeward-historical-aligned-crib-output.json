@@ -1,0 +1,331 @@
+{
+  "sourceAddress": "III:2:28",
+  "sourceWord": "homeward",
+  "sourceCharIntervalZeroBased": [
+    25,
+    33
+  ],
+  "originalRuneIntervalZeroBased": [
+    25,
+    33
+  ],
+  "actualCrib": [
+    8,
+    3,
+    19,
+    18,
+    7,
+    24,
+    4,
+    23
+  ],
+  "originalCipher": [
+    27,
+    4,
+    16,
+    2,
+    0,
+    0,
+    3,
+    2
+  ],
+  "nextOriginalPrefix": "H O M E",
+  "trainingRunes": 1504,
+  "controls": [
+    {
+      "name": "0_welcome",
+      "offset": 0,
+      "hold": false,
+      "paths": 1,
+      "truthRetained": true,
+      "topMatches": 121,
+      "heldTrueScore": -2.8072303090203006,
+      "heldTopScore": -2.8072303090203006,
+      "relativeKey": [
+        12,
+        8,
+        2,
+        5,
+        17,
+        1,
+        27,
+        3
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "offset": 0,
+      "hold": true,
+      "paths": 4,
+      "truthRetained": true,
+      "topMatches": 121,
+      "heldTrueScore": -2.8072303090203006,
+      "heldTopScore": -2.8072303090203006,
+      "relativeKey": [
+        12,
+        8,
+        2,
+        5,
+        17,
+        1,
+        27,
+        3
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "offset": 0,
+      "hold": false,
+      "paths": 1,
+      "truthRetained": true,
+      "topMatches": 121,
+      "heldTrueScore": -2.263963600948588,
+      "heldTopScore": -2.263963600948588,
+      "relativeKey": [
+        4,
+        22,
+        8,
+        9,
+        7,
+        26,
+        10,
+        18
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "offset": 0,
+      "hold": true,
+      "paths": 2,
+      "truthRetained": true,
+      "topMatches": 121,
+      "heldTrueScore": -2.263963600948588,
+      "heldTopScore": -2.263963600948588,
+      "relativeKey": [
+        4,
+        22,
+        8,
+        9,
+        7,
+        26,
+        10,
+        18
+      ]
+    }
+  ],
+  "original": [
+    {
+      "hold": false,
+      "K": [
+        19,
+        1,
+        26,
+        13,
+        22,
+        5,
+        28,
+        8
+      ],
+      "optionalHolds": [],
+      "masks": 1,
+      "rejected": [],
+      "candidates": [
+        {
+          "start": 7,
+          "holds": [],
+          "heldScore": -4.614812175866942,
+          "P": [
+            12,
+            12,
+            24,
+            10,
+            12,
+            8,
+            8,
+            28,
+            26,
+            17,
+            20,
+            11,
+            23,
+            24,
+            14,
+            16,
+            14,
+            28,
+            9,
+            1,
+            9,
+            14,
+            26,
+            9,
+            9,
+            8,
+            3,
+            19,
+            18,
+            7,
+            24,
+            4,
+            23,
+            18,
+            2,
+            22,
+            5,
+            21,
+            2,
+            24,
+            7,
+            1,
+            28,
+            26,
+            8,
+            24,
+            7,
+            28,
+            12,
+            5,
+            6,
+            26,
+            25,
+            3,
+            9,
+            17,
+            18,
+            0,
+            5,
+            5,
+            23,
+            21,
+            22,
+            3,
+            28,
+            27,
+            14,
+            7,
+            1,
+            5,
+            9,
+            25,
+            22,
+            27,
+            7,
+            2,
+            23,
+            28,
+            25,
+            9,
+            4,
+            2,
+            26,
+            2,
+            27,
+            22,
+            8,
+            3,
+            8,
+            3,
+            20,
+            6,
+            6,
+            24,
+            25,
+            24,
+            7,
+            27,
+            10,
+            2,
+            20,
+            0,
+            13,
+            10,
+            1,
+            17,
+            5,
+            4,
+            7,
+            2,
+            27,
+            27,
+            22,
+            26,
+            28,
+            14,
+            3,
+            2,
+            1,
+            18,
+            4
+          ],
+          "text": "EO EO A I EO H H EA Y B L J D A X T X EA N U N X Y N N H O M E W A R D E TH OE C NG TH A W U EA Y H A W EA EO C G Y AE O N B E F C C D NG OE O EA IA X W U C N AE OE IA W TH D EA AE N R TH Y TH IA OE H O H O L G G A AE A W IA I TH L F P I U B C R W TH IA IA OE Y EA X O TH U E R",
+          "prefix": "EO EO A I EO H H EA Y B L J D A X T X EA N U N X Y N N",
+          "continuation": "E TH OE C NG TH A W U EA Y H A W EA EO C G Y AE O N B E F C C D NG OE O EA IA X W U C N AE OE IA W TH D EA AE N R TH Y TH IA OE H O H O L G G A AE A W IA I TH L F P I U B C R W TH IA IA OE Y EA X O TH U E R"
+        }
+      ]
+    },
+    {
+      "hold": true,
+      "K": [
+        19,
+        1,
+        26,
+        13,
+        22,
+        5,
+        28,
+        8
+      ],
+      "optionalHolds": [
+        42,
+        114
+      ],
+      "masks": 4,
+      "rejected": [
+        {
+          "holds": [],
+          "firstIllegalConsumption": {
+            "offset": 57,
+            "C": 19,
+            "key": 19,
+            "phase": 0
+          }
+        },
+        {
+          "holds": [
+            42
+          ],
+          "firstIllegalConsumption": {
+            "offset": 107,
+            "C": 1,
+            "key": 1,
+            "phase": 1
+          }
+        },
+        {
+          "holds": [
+            114
+          ],
+          "firstIllegalConsumption": {
+            "offset": 57,
+            "C": 19,
+            "key": 19,
+            "phase": 0
+          }
+        },
+        {
+          "holds": [
+            42,
+            114
+          ],
+          "firstIllegalConsumption": {
+            "offset": 107,
+            "C": 1,
+            "key": 1,
+            "phase": 1
+          }
+        }
+      ],
+      "candidates": []
+    }
+  ]
+}
