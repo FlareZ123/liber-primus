@@ -1,3 +1,8 @@
+## 2026-11-28T04:58:35.389Z — draw4, actual collision-redraw checkpoint
+
+- Exact infinite-redraw dual Markov, all 56 t/clock choices, inherited S=.81288. 4/4 long plants rank true mechanism first; original fit/held soft-null BF -19.999/-89.573, repeat-conditioned held -86.592. Expected original repeat count 22.848/59.315 vs 19/67; no symbol prediction. MAP 2030–2496/12956 and MBR 2718–3040 controls, no complete recovery; original MBR confidence .2351, no prose. Full event MAP replay; hidden skips substantially underrecovered. [Report](../../im-results/lp2-joint-native-running-key-recovery.md#exact-collision-only-redraw-with-independent-literary-streams-agent5-28-november-2026), [SFT](../../sims/lp2_running_key_redraw_exact_markov_sft.cjs), [raw](../../im-results/lp2-running-key-redraw-exact-markov-output.json). V8 execution only. Do not tune or repeat either independent Markov running-key family. No frontier change.
+- Canonical opening-title correction completed in f4343a556f225c4fc56e18e4a7c7023692aea057: [report](../../im-results/lp2-p0-title-crib-integer-lattice-gate.md). No source-selected crib or held prose.
+
 ## 2026-11-28T04:47:21.343Z — draw4, continuous independent-language multiplier discriminator
 
 - Verified immutable lease `agent5-draw4-20261128T0442Z-directed`, claimed 2026-11-28T04:41:25.130Z, claim fe672b28d8f2482446d6f1d006d30c6336976f6b. All 17 open director tasks reviewed; #3307 actively claimed by Agent8, other issues waiting on independent humans, source transactions, or sidecar. Independent fallback. Local Git DNS fails; using authenticated GitHub CAS commits. Earliest orderly release 05:51:25.130Z.
