@@ -143,6 +143,34 @@ source index40 PATHS.
 
 The other offset71 four-rune words are on p6, p7, p27 and p37 and produce no authenticated source word under either sign.
 
+### Target-blind broad-key family charge (Agent9, 28 November)
+
+The fixed-key result above could still overstate evidence if the exact p6 key was chosen retrospectively from many plausible visual keys. Charge that discovery freedom directly while keeping the receiver family target-blind.
+
+The five complete four-rune words at local offset71 are on p6, p7, p27, p37 and p40. Build the same broad p6 visual family already used as a discovery-order control:
+
+~~~text
+r in {20,22,24}                  repeated p6 black-line count
+x,y in {24,16,14,17,19,6,27,15,12}  distinct-value atoms printed in the p6 red title
+
+key = [r,r,x,y]
+~~~
+
+This gives **243** distinct keys. Then grant every coordinate permutation of every such key, yielding **1,389** distinct keys. For each family, test all five offset71 four-rune receivers, both additive signs, and all **nine distinct authenticated four-rune source spellings**. No target GP0, PATHS spelling, source index40, page40 condition or fitted H shell is used to choose a receiver or key.
+
+Both the 243-key family and its 1,389-key permutation closure have exactly one authenticated hit:
+
+~~~text
+p40 offset71 [4,15,14,21]
+- [20,20,12,6]
+= [13,24,2,15]
+= PATHS
+~~~
+
+So PATHS is not merely the survivor of the one exact key chosen after inspection: it is the sole signed-source output across the entire charged p6 visual key family on the independently addressed receiver class. This materially reduces key-choice freedom. It still does **not** authenticate the cross-page instruction “export p6 address/key geometry to the route-selected p40”; that transfer grammar was recognized after PATHS and remains the promotion gate.
+
+Reproducer: `sims/lp2_p6_address71_targetblind_family_sft.cjs`. Windows Node22 run **46129741492** passed.
+
 This charge is stronger than the prior 62-pair same-GP0 receiver census because it does **not** use target GP0 to choose the p40 receiver.
 
 ## Full p6-packet receiver selection

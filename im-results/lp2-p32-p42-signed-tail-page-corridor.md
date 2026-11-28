@@ -99,11 +99,13 @@ See `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md` and `sims/lp2_p
 | 37 / p37 | LUCK | canonical word37, start146 | H4 `[B,0,K,g]` | strong local |
 | 38 / p38 | BEWARE | section5 first word, start57 | H6 `[K-b,-g,p,p-e,0,-b]` | strong local |
 | 39 / p39 | FALSE | prospectively selected first `g=5` word after red span, start132 | H5 `[-b,-g,Kg,-b,B]` | strong local |
-| 40 / p40 | PATHS | p6-addressed local offset71 | direct `[qg,qg,aK,a]` | target-blind receiver conditional on same-offset transfer |
+| 40 / p40 | PATHS | p6-addressed local offset71 | direct `[qg,qg,aK,a]` | target-blind receiver; sole hit across 243-key visual family and 1,389-key permutation closure; same-offset transfer remains retrospective |
 | 41 / p41 | VERIFY | p6 terminal block; ordinal42 start178 in unique consecutive K=2 center-F pair; delete `F=0` | H6 `[q,Kg,p,A,g+K,B]` | target-blind receiver; strong local |
 | 42 / p42 | OPENPGP | p6 terminal block; ordinal43 in unique consecutive K=2 center-F pair; word43 gives unique `[K,1,F]`; +K -> word45 start211; delete rune1 `F=0` | H7 `[B-1,p+K,-1,e,-1,p+K,p]` | target-blind receiver selector; strong local |
 
 The important descriptive change is completeness: every same-number page p32–p42 now has a published target-conditioned local fit for its assigned authenticated word. Exact replay itself is not evidence: once an equal-length receiver and known target are fixed, subtraction uniquely supplies `K=C-P mod29`.
+
+P40 is now materially stronger than that generic description. P6's self-address fixes offset71 before plaintext scoring; only five manuscript words at that address have four-rune arity. Charging the entire broad p6 visual family `[r,r,x,y]` (243 keys) and every coordinate permutation (1,389 keys), both signs, against all authenticated four-rune source spellings yields exactly one hit in either family: p40 PATHS with `[20,20,12,6]` by subtraction. This removes target GP0 and exact-key choice from the local discrimination. The remaining weakness is the cross-page packet-transfer grammar itself, which was recognized after PATHS. See `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md` and `sims/lp2_p6_address71_targetblind_family_sft.cjs` (Windows run 46129741492).
 
 ## New terminal constraints
 
