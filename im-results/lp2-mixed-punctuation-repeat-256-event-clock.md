@@ -98,6 +98,20 @@ The optimistic source upper bound **0.04094** is below **every one of 88 native-
 Read-only [complete all-secret feedback reproducer](../sims/lp2_mixed256_allsecret_affine_feedback_sft.cjs) has 256×29 exact residual tests, 88 reference windows, six solved-native controls, and independently encrypted/decrypted feedback-positive text.
 
 
+### Second-order extension: every secret two-tap recurrence fails the native register
+
+This can be widened again without guessing any table cell, prime seed, rank convention or plaintext. The source-natural two-tap receiver is
+
+\[
+C_j=a_s C_{j-1}+b_s C_{j-2}+\sigma_s(P_j)\pmod{29},
+\]
+
+with both secret coefficients independently chosen from all29 possibilities for **each** segment, and the 29-way secret alphabet permutation \(\sigma_s\) still unconstrained. Ignore the first two cipher symbols in each segment as completely free state seeds. Then, exactly as in the first-order proof, at the correct hidden coefficient pair the residual \(D_j=C_j-a_s C_{j-1}-b_s C_{j-2}\) is a fixed permutation of the plaintext; **all within-segment equality pairs are invariant**. For every one of the 256 segments the reproducer enumerates **all 841 ordered coefficient pairs**, choosing the highest possible original residual-equality count independently and summing these generous maxima.
+
+The original has **579,373** eligible within-segment pairs after omitting up to two seeds in each nonempty interval. For \((a,b)=(0,0)\) it has **19,540** equality pairs (0.033726114). With *all 841 coefficient pairs* secretly chosen in whichever way favours a native-language hypothesis, the absolute maximum rises only to **26,957/579,373 = 0.046527884**. By contrast, applying these exact positions to the same 88 source-calibrated GP29 prose controls gives minimum rates **0.057436228** (Shakespeare, 32), **0.059479817** (Gibran, 8), and **0.059914770** (Emerson, 48). Six cyclic layouts of the 2,979-rune actual solved-Cicada GP29 stream yield **0.060722540–0.061820278**. The gaps remain even after the cipher is allowed 256 independently chosen 29² coefficient pairs and 256 arbitrary alphabet permutations.
+
+The [same all-secret feedback SFT](../sims/lp2_mixed256_allsecret_affine_feedback_sft.cjs) includes an independent two-tap encrypted native-text positive plant, recovers every tested plaintext continuation rune under its planted secrets, checks exact residual pair invariance, and reports the exhaustive original source upper bound. **Reject the whole second-order interval-constant affine feedback family as a direct source-native GP29 plaintext decoder** under this tentative event clock. A truly stateful 256-cell consumer would need to be *more* than a per-segment secret constant or two-tap affine recurrence, or use different intermediate plaintext/rune-position transport. This does not prove any such alternative exists.
+
 ## Original-event interleaving: exhaustive circular-phase control
 
 A stronger, **frozen-source** internal check asks whether the 86 repeated-rune boundaries are deliberately placed to *fill* the gaps between the 170 physical marks, producing unusually even 256-cell spacing. Keep the full original 86-position repeat pattern and all its internal spacings intact; slide it through **every one of 12,956 circular phases** relative to the fixed physical punctuation. Rebuild 256 event gaps at each phase. This is a relative-phase geometry comparator, **not** a generative null for page-seam legal ciphertext or a familywise author-intent p-value.
