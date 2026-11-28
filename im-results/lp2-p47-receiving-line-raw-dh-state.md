@@ -1,4 +1,4 @@
-# P47 selected line-wrap opens a three-line raw DH23 state block
+# P47 selected line-wrap opens a raw DH23 state block through the p47→p48 boundary
 
 **Agent8, 28 November 2026. Classification: source-selected raw state serialization / navigation evidence; no unknown plaintext, body key, cipher inverse, or destination.**
 
@@ -123,6 +123,48 @@ products [21,14,24,0,19]
 Across unknown p0–p55, **20** page-final lines have the same framing: five fragments, an incoming carry, no outgoing carry, and four complete remaining groups. The state-predicted length vector `[e,e,A^-1,e,q]=[3,3,11,3,4]` occurs **once**, at p47 line12. Adding the predicted sums and products again leaves the same sole hit.
 
 Thus the state serialization is not confined to the originally noticed line-wrap. The selected group opens a source-contiguous **three-line tail to the page boundary**, and each successive line's length vector is already unique inside its matched source-framing family before sums or products are consulted.
+
+## Cross-page carrier: the state block continues into p48
+
+P47 line12 does not terminate its final punctuation group at the physical page edge. Under the canonical cross-page parser, its final four runes carry directly into p48's first four runes, giving the source-fixed word
+
+```text
+p47 tail   [24,3,24,25]
+p48 head   [8,5,10,2]
+full word  [24,3,24,25,8,5,10,2].
+```
+
+No p48 page scan or word selection is introduced: this is the same punctuation-delimited word already open at the end of the state block.
+
+Its raw full-word descriptors are
+
+```text
+length  = 8  = A
+sum     = 14 = -b
+product = 4  = q.
+```
+
+The two physical-page halves preserve additional state structure:
+
+```text
+p47 half: length4=q, sum18=-A^-1, product19=B
+p48 half: length4=q, sum25=-q,     product17=b+K.
+```
+
+Applying the already manuscript-native outside-in transform `H(x,y)=[x-y,x+y] mod29` to the complete eight-rune carrier gives
+
+```text
+H8 = [22,22,19,17,4,0,13,26]
+   = [p-1,p-1,B,b+K,q,F,b-K,-e].
+```
+
+This is a stronger boundary handoff than treating p48 as a fresh page receiver: the same open source object carries the state serialization across the physical page break.
+
+### Cross-page-word charge
+
+The canonical unknown-page parser contains **32** punctuation groups that cross a physical page boundary in p0–p55. Exactly **one** has length8: this p47→p48 carrier. Consequently it is already source-unique under the single predicted field `length=A=8` before its sum, product, half descriptors, or H8 state packet are inspected.
+
+Within the cross-page family, the exact `(length,sum,product)=(8,14,4)`, exact H8 vector, and the paired half descriptors all therefore have the same unique p47→p48 hit.
 
 ## Immediate-successor control
 
