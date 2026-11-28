@@ -203,6 +203,50 @@ Reproduce:
 python sims/lp2_q8_lag1_structural_calibration_sft.py
 ```
 
+
+## q8 one-retry phase selection is a no-drift counterexample, not yet an LP2 generator
+
+The q8 phase freedom suggests a concrete alternative to a rune-level rejection/skip filter. At each printed word:
+
+1. draw a starting q8 phase;
+2. encode the whole word under the fixed shared q8 action;
+3. if that candidate creates **any** equal-adjacent ciphertext pair, either inside the word or against the previous word's final ciphertext rune, retry **exactly once**;
+4. accept the second candidate even if it still contains a doublet.
+
+Two zero-fit retry variants were tested:
+
+- **advance-one-once:** retry at the next phase on the 8-cycle;
+- **random-redraw-once:** draw one fresh start phase.
+
+Unlike a per-rune rejection sampler, changing a word's starting phase does not change ciphertext length and does not consume extra per-rune key positions. Therefore this construction is an explicit counterexample to the inference “soft lag-1 suppression by itself proves pad-pointer drift.”
+
+On 1,000 2,979-rune solved-native q8 plants, advance-one-once has median adjacent equality ≈**0.705%**, strikingly close to LP2's **0.66384%**. A full-length stress test repeats the nine authentic native records to the fixed 12,956-rune length (3,214 words), keeps one shared q8 chart/key per plant, and evaluates 2,000 deterministic plants per retry rule:
+
+| rule | doublets 5% / median / 95% | plants ≤ LP2's 86 | within median | cross-word median | T7 gap-r ≥ +0.3800 |
+|---|---:|---:|---:|---:|---:|
+| advance one once | 60 / **91** / 157 | 816 / 2000 | 0.719% | 0.591% | **8 / 2000** |
+| redraw once | 56 / **94** / 154 | 768 / 2000 | 0.739% | 0.654% | **29 / 2000** |
+
+So a one-retry q8 phase selector reproduces the **magnitude** of the soft doublet leak and suppresses both within-word and boundary doublets without inserting/deleting output runes. This is a genuine architecture counterexample to treating the observed 0.66% alone as proof of a skip/delete cipher.
+
+It is **not a successful LP2 generator**:
+
+- normalized IoC on these full-length native controls remains too high:
+  - advance-one median **1.0977**, 5–95% **1.0571–1.1632**;
+  - redraw-once median **1.1015**, 5–95% **1.0601–1.1667**;
+  - LP2 is approximately 1.00;
+- no plant simultaneously lands in the deliberately broad `75–100 doublets` and `IoC29 0.98–1.02` box;
+- T7 remains unusual: only 0.4% of advance-one and 1.45% of redraw-once controls reach LP2's +0.3800 gap autocorrelation;
+- the shared q8 action itself is not source-authenticated, and this phase-retry rule is a new hypothesis rather than a recovered historical procedure.
+
+The decision change is narrower but important: **doublet suppression is a generator constraint, not a proof of key-stream skip semantics.** Any negative result whose power argument requires hundreds of hidden extra pad draws must justify that extra-draw mechanism independently rather than derive it solely from the 86 doublets.
+
+Reproduce the counterexample:
+
+```
+python sims/lp2_q8_phase_retry_candidate_sft.py
+```
+
 ## What is established
 
 1. LP2 has an extreme lag-1 identity deficit.
