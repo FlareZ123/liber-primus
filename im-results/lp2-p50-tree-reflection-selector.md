@@ -29,6 +29,14 @@ The same tree/frame is **not p50-specific**. An all-75-scan decoded-pixel census
 
 This **strengthens the reflection operation but weakens receiver locality**: the art selects a horizontal-reflection grammar for the section; it does not, by itself, say “apply this to the p50 table.” The table needs an independent handoff. The chapter-route terminal candidate now supplies one such handoff conditionally: p40's locally typed surviving `[length,OUT]=[5,3]` selects ROAD row5 × MAP column3 = cell43 inside the table, where the existing base59 graph has an exact midpoint/distance closure. That cross-artifact route is documented separately and remains post-discovery rather than authenticated plaintext.
 
+## Page-pair combiner control: direct mirrored GP29 arithmetic is negative
+
+The section-wide scope naturally raises a page-scale alternative to the p50-table interpretation: pair p40↔p55 through p47↔p48 by reflection and combine the paired ciphertext directly. A finite source-selected gate rejects the simplest version.
+
+Charge printed/reversed partner orientation, prefix/suffix endpoint alignment, and only `A-B`, `B-A`, or `A+B` modulo29: 12 variants per valid page pair, with no offset, Caesar shift, key or boundary fitting. P50 has no GP rune stream, so p45↔p50 is a typed mismatch and seven mirror pairs remain. Apply the identical family to all 105 valid rune-page pairs in p40..p55 and retain each pair's maximum independent-control trigram score. Mirror-pair ranks are **18,20,52,60,69,82,97/105**; their mean best score (-13.14077) is slightly worse than the 98 non-mirror controls (-13.09344), and they win only **316/686=46.06%** of pairwise comparisons. The rank18 output is nonprose.
+
+Thus the frame does not license a uniform direct rune/rune page-pair additive cipher. Preserve horizontal reflection as a section-level visual grammar and as the table-column involution when p50 is independently selected. The p45↔p50 type mismatch is consistent with the existing operation-switch view. [Full gate](lp2-p40-p55-section-page-mirror-combiner-gate.md) · [reproducer](../sims/lp2_p40_p55_section_page_mirror_combiner_sft.cjs).
+
 ## Table operation when p50 is independently selected as receiver
 
 The numeric object inside the mirror-framed section has exactly **8 printed columns**. Once an independent clue selects this table as the receiver, horizontal reflection across its vertical center uniquely gives the column involution
