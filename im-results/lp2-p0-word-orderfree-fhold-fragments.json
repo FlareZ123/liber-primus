@@ -1,0 +1,893 @@
+{
+  "lexicon": 33719,
+  "openingGroups": 156,
+  "openingRunes": 716,
+  "controls": [
+    {
+      "q": 8,
+      "anchors": [
+        {
+          "i": 0,
+          "length": 11,
+          "zero": 0,
+          "candidates": 1,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 1,
+          "length": 11,
+          "zero": 0,
+          "candidates": 1,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 2,
+          "length": 10,
+          "zero": 0,
+          "candidates": 17,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 3,
+          "length": 10,
+          "zero": 2,
+          "candidates": 6,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 4,
+          "length": 10,
+          "zero": 1,
+          "candidates": 4,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 5,
+          "length": 10,
+          "zero": 0,
+          "candidates": 16,
+          "fragmentLengths": [
+            8
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "keys": 1,
+          "witness": {
+            "key": "1a9agqna",
+            "a": "continually",
+            "b": "connecticut",
+            "t": 3
+          }
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "keys": 1,
+          "witness": {
+            "key": "1a9agqna",
+            "a": "continually",
+            "b": "contraction",
+            "t": 6
+          }
+        },
+        {
+          "a": 0,
+          "b": 3,
+          "keys": 1,
+          "witness": {
+            "key": "1a9agqna",
+            "a": "continually",
+            "b": "management",
+            "t": 1
+          }
+        },
+        {
+          "a": 0,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "1a9agqna",
+            "a": "continually",
+            "b": "persistent",
+            "t": 4
+          }
+        },
+        {
+          "a": 0,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "1a9agqna",
+            "a": "continually",
+            "b": "inquiringly",
+            "t": 7
+          }
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "keys": 1,
+          "witness": {
+            "key": "agqna1a9",
+            "a": "connecticut",
+            "b": "contraction",
+            "t": 3
+          }
+        },
+        {
+          "a": 1,
+          "b": 3,
+          "keys": 1,
+          "witness": {
+            "key": "agqna1a9",
+            "a": "connecticut",
+            "b": "management",
+            "t": 6
+          }
+        },
+        {
+          "a": 1,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "agqna1a9",
+            "a": "connecticut",
+            "b": "persistent",
+            "t": 1
+          }
+        },
+        {
+          "a": 1,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "agqna1a9",
+            "a": "connecticut",
+            "b": "inquiringly",
+            "t": 4
+          }
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "keys": 1,
+          "witness": {
+            "key": "na1a9agq",
+            "a": "contraction",
+            "b": "management",
+            "t": 3
+          }
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "na1a9agq",
+            "a": "contraction",
+            "b": "persistent",
+            "t": 6
+          }
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "na1a9agq",
+            "a": "contraction",
+            "b": "inquiringly",
+            "t": 1
+          }
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "a9agqna1",
+            "a": "management",
+            "b": "persistent",
+            "t": 3
+          }
+        },
+        {
+          "a": 3,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "a9agqna1",
+            "a": "management",
+            "b": "inquiringly",
+            "t": 6
+          }
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "gqna1a9a",
+            "a": "persistent",
+            "b": "inquiringly",
+            "t": 3
+          }
+        }
+      ],
+      "upper": 6,
+      "oneWitness": {
+        "i": 0,
+        "plaintext": "continually",
+        "key": "1a9agqna"
+      },
+      "trueKey": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "trueWords": [
+        {
+          "word": "continually",
+          "phase": 2,
+          "native": "539ga91okkq"
+        },
+        {
+          "word": "connecticut",
+          "phase": 5,
+          "native": "5399i5ga51g"
+        },
+        {
+          "word": "contraction",
+          "phase": 0,
+          "native": "539g4o5gr9"
+        },
+        {
+          "word": "management",
+          "phase": 3,
+          "native": "jo9o6iji9g"
+        },
+        {
+          "word": "persistent",
+          "phase": 6,
+          "native": "di4fafgi9g"
+        },
+        {
+          "word": "inquiringly",
+          "phase": 1,
+          "native": "a951a4alkq"
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "anchors": [
+        {
+          "i": 0,
+          "length": 11,
+          "zero": 0,
+          "candidates": 1671,
+          "fragmentLengths": [
+            11
+          ]
+        },
+        {
+          "i": 1,
+          "length": 11,
+          "zero": 0,
+          "candidates": 1671,
+          "fragmentLengths": [
+            11
+          ]
+        },
+        {
+          "i": 2,
+          "length": 10,
+          "zero": 0,
+          "candidates": 2617,
+          "fragmentLengths": [
+            10
+          ]
+        },
+        {
+          "i": 3,
+          "length": 10,
+          "zero": 0,
+          "candidates": 2617,
+          "fragmentLengths": [
+            10
+          ]
+        },
+        {
+          "i": 4,
+          "length": 10,
+          "zero": 0,
+          "candidates": 2617,
+          "fragmentLengths": [
+            10
+          ]
+        },
+        {
+          "i": 5,
+          "length": 10,
+          "zero": 0,
+          "candidates": 2617,
+          "fragmentLengths": [
+            10
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "a": 0,
+          "b": 1,
+          "keys": 1,
+          "witness": {
+            "key": "7ir660liqjb90",
+            "a": "continually",
+            "b": "connecticut",
+            "t": 3
+          }
+        },
+        {
+          "a": 0,
+          "b": 2,
+          "keys": 1,
+          "witness": {
+            "key": "7ir660liqjb90",
+            "a": "continually",
+            "b": "contraction",
+            "t": 6
+          }
+        },
+        {
+          "a": 0,
+          "b": 3,
+          "keys": 1,
+          "witness": {
+            "key": "7ir660liqjb90",
+            "a": "continually",
+            "b": "management",
+            "t": 9
+          }
+        },
+        {
+          "a": 0,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "7ir660liqjb?0",
+            "a": "continually",
+            "b": "persistent",
+            "t": 12
+          }
+        },
+        {
+          "a": 0,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "7ir660liqjb9?",
+            "a": "continually",
+            "b": "inquiringly",
+            "t": 2
+          }
+        },
+        {
+          "a": 1,
+          "b": 2,
+          "keys": 4,
+          "witness": {
+            "key": "660liqjb907rd",
+            "a": "connecticut",
+            "b": "contracted",
+            "t": 3
+          }
+        },
+        {
+          "a": 1,
+          "b": 3,
+          "keys": 1,
+          "witness": {
+            "key": "660liqjb907ir",
+            "a": "connecticut",
+            "b": "management",
+            "t": 6
+          }
+        },
+        {
+          "a": 1,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "660liqjb907ir",
+            "a": "connecticut",
+            "b": "persistent",
+            "t": 9
+          }
+        },
+        {
+          "a": 1,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "660liqjb907?r",
+            "a": "connecticut",
+            "b": "inquiringly",
+            "t": 12
+          }
+        },
+        {
+          "a": 2,
+          "b": 3,
+          "keys": 3,
+          "witness": {
+            "key": "24kjb907ir660",
+            "a": "abstraction",
+            "b": "management",
+            "t": 3
+          }
+        },
+        {
+          "a": 2,
+          "b": 4,
+          "keys": 2,
+          "witness": {
+            "key": "liqoeo07ir660",
+            "a": "conjunction",
+            "b": "persistent",
+            "t": 6
+          }
+        },
+        {
+          "a": 2,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "liqjb907ir660",
+            "a": "contraction",
+            "b": "inquiringly",
+            "t": 9
+          }
+        },
+        {
+          "a": 3,
+          "b": 4,
+          "keys": 1,
+          "witness": {
+            "key": "jb907ir660liq",
+            "a": "management",
+            "b": "persistent",
+            "t": 3
+          }
+        },
+        {
+          "a": 3,
+          "b": 5,
+          "keys": 1,
+          "witness": {
+            "key": "jb907ir660liq",
+            "a": "management",
+            "b": "inquiringly",
+            "t": 6
+          }
+        },
+        {
+          "a": 4,
+          "b": 5,
+          "keys": 2,
+          "witness": {
+            "key": "8mdr660liqjb9",
+            "a": "consistent",
+            "b": "inquiringly",
+            "t": 3
+          }
+        }
+      ],
+      "upper": 6,
+      "oneWitness": {
+        "i": 0,
+        "plaintext": "abandonment",
+        "key": "h4cdm6dns1l??"
+      },
+      "trueKey": [
+        9,
+        0,
+        7,
+        18,
+        27,
+        6,
+        6,
+        0,
+        21,
+        18,
+        26,
+        19,
+        11
+      ],
+      "trueWords": [
+        {
+          "word": "continually",
+          "phase": 2,
+          "native": "539ga91okkq"
+        },
+        {
+          "word": "connecticut",
+          "phase": 5,
+          "native": "5399i5ga51g"
+        },
+        {
+          "word": "contraction",
+          "phase": 8,
+          "native": "539g4o5gr9"
+        },
+        {
+          "word": "management",
+          "phase": 11,
+          "native": "jo9o6iji9g"
+        },
+        {
+          "word": "persistent",
+          "phase": 1,
+          "native": "di4fafgi9g"
+        },
+        {
+          "word": "inquiringly",
+          "phase": 4,
+          "native": "a951a4alkq"
+        }
+      ]
+    }
+  ],
+  "original": [
+    {
+      "q": 8,
+      "anchors": [
+        {
+          "i": 3,
+          "length": 11,
+          "zero": 0,
+          "candidates": 0,
+          "fragmentLengths": []
+        },
+        {
+          "i": 11,
+          "length": 11,
+          "zero": 1,
+          "candidates": 0,
+          "fragmentLengths": []
+        },
+        {
+          "i": 88,
+          "length": 10,
+          "zero": 1,
+          "candidates": 3,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 129,
+          "length": 10,
+          "zero": 1,
+          "candidates": 3,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 145,
+          "length": 10,
+          "zero": 0,
+          "candidates": 1,
+          "fragmentLengths": [
+            8
+          ]
+        },
+        {
+          "i": 153,
+          "length": 10,
+          "zero": 0,
+          "candidates": 6,
+          "fragmentLengths": [
+            8
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "a": 3,
+          "b": 11,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 88,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 129,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 88,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 129,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 88,
+          "b": 129,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 88,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 88,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 129,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 129,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 145,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        }
+      ],
+      "upper": 1,
+      "oneWitness": {
+        "i": 88,
+        "plaintext": "blockquote",
+        "key": "n974m0jp"
+      }
+    },
+    {
+      "q": 13,
+      "anchors": [
+        {
+          "i": 3,
+          "length": 11,
+          "zero": 0,
+          "candidates": 1671,
+          "fragmentLengths": [
+            11
+          ]
+        },
+        {
+          "i": 11,
+          "length": 11,
+          "zero": 1,
+          "candidates": 1696,
+          "fragmentLengths": [
+            10,
+            11
+          ]
+        },
+        {
+          "i": 88,
+          "length": 10,
+          "zero": 1,
+          "candidates": 2618,
+          "fragmentLengths": [
+            9,
+            10
+          ]
+        },
+        {
+          "i": 129,
+          "length": 10,
+          "zero": 1,
+          "candidates": 2670,
+          "fragmentLengths": [
+            9,
+            10
+          ]
+        },
+        {
+          "i": 145,
+          "length": 10,
+          "zero": 0,
+          "candidates": 2617,
+          "fragmentLengths": [
+            10
+          ]
+        },
+        {
+          "i": 153,
+          "length": 10,
+          "zero": 0,
+          "candidates": 2617,
+          "fragmentLengths": [
+            10
+          ]
+        }
+      ],
+      "pairs": [
+        {
+          "a": 3,
+          "b": 11,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 88,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 129,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 3,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 88,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 129,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 11,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 88,
+          "b": 129,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 88,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 88,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 129,
+          "b": 145,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 129,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        },
+        {
+          "a": 145,
+          "b": 153,
+          "keys": 0,
+          "witness": null
+        }
+      ],
+      "upper": 1,
+      "oneWitness": {
+        "i": 3,
+        "plaintext": "abandonment",
+        "key": "e1c81cdmlce??"
+      }
+    }
+  ],
+  "sourceBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ]
+}
