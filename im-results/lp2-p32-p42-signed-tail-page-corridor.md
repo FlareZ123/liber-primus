@@ -93,13 +93,25 @@ p42 word43 start206 [16,0,14].
 
 P41 removes the checked center F before the existing VERIFY inverse. P42 is stronger: Hpair of its selected word is exactly `[2,1,0]=[K,1,F]`, a manuscript-unique three-rune packet. It literally advances K words, checks rune index1 for F, and removes that F from word45 before the existing OPENPGP inverse.
 
-This upgrades receiver selection for p36, p41 and p42 while leaving their post-target key-shell chronology explicit. It does **not** yet supply the complete serializer for the two q-length ordinary blocks p32..p35 and p37..p40.
+This upgrades receiver selection for p36, p41 and p42 while leaving their post-target key-shell chronology explicit.
 
 See `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md` and `sims/lp2_p6_schedule_qF_numbered_receiver_sft.cjs`.
 
+## P6 now supplies receiver-residue grammars for both q-sized blocks
+
+The two q blocks are no longer merely four unrelated receiver stories each.
+
+For block1 p32..p35, the independently selected receiver starts are [30,132,4,25]. Modulo29 they are [1,16,4,25], and the frozen H4 image is [5,12,20,26]=[g,aK,qg,-e]. Inverting this p6-visible shell predicts the four start residues before reading target values. Source arity plus the pre-existing receiver types leaves p33 start132, p34 start4 and p35 adjacent-2+3 start25 uniquely; p32 leaves starts1/30 and the independently established first-full-stop endpoint selects start30. Charging 1,728 labeled p6 constructions, collapsing to 1,404 distinct shells, leaves exactly **one** shell that supports all four receiver classes: [g,aK,qg,-e].
+
+For block3 p37..p40, Agent14 independently found the p6 W3/W4 shell [17,12,15,14], whose H4 inverse is [1,28,16,13]. Source arities uniquely select p37 start146, p38 start57 and p39 start132; p40's independent address71 rule resolves its three residue-compatible candidates to start71. The charged 48-construction family leaves one survivor after that independent p40 gate.
+
+Both results are post-discovery finite-family compression. They materially reduce receiver freedom but do not authenticate the fitted keys. The remaining q-block problem is now the **ordered key serializer**, not basic receiver location.
+
+See `im-results/lp2-p6-block1-receiver-residue-grammar.md`, `sims/lp2_p6_block1_receiver_residue_sft.cjs`, and `im-results/lp2-p6-block3-receiver-residue-grammar.md`.
+
 ## Coupled q-block receiver grammar
 
-The source-only schedule now resolves to the full per-page GP arity vector
+The source-only schedule resolves to the full per-page GP arity vector
 
 ~~~text
 [e,q,K,g | q | q,a,g,q | a,g+K]
@@ -108,31 +120,31 @@ The source-only schedule now resolves to the full per-page GP arity vector
 
 This is unique to source32..42 under the charged within-block family; a broader charge over all 24 labeled block-role orders still leaves only two hits, both on the same source interval, with printed p6 order resolving the sole boundary ambiguity.
 
-More importantly, p6's literal edge packet
+P6 also exposes the literal physical edge packet
 
 ~~~text
-[q,K,aK,p-1] = [4,2,12,22]
+[q,K,aK,p-1] = [4,2,12,22].
 ~~~
 
-equals the lane-by-lane GP0 difference between the selected second q-block receivers p37..p40 and first q-block receivers p32..p35. Holding the independently selected p37..p40 anchors fixed and enumerating every p6-arity-compatible complete-group sequence on p32..p35 predicts p33 start132 and p35 start25 uniquely; p32 narrows to starts1/30 and p34 to starts4/249, exactly the two ambiguities already resolved by their independent self-index and THEIR-RISE routes.
+It equals the lane-by-lane GP0 difference between the selected second q-block receivers p37..p40 and first q-block receivers p32..p35. Holding the independently selected p37..p40 anchors fixed and enumerating every p6-arity-compatible complete-group sequence on p32..p35 predicts p33 start132 and p35 start25 uniquely; p32 narrows to starts1/30 and p34 to starts4/249, exactly the two ambiguities resolved independently by the full-stop and THEIR-RISE gates. The newer block1 residue selectors are stronger target-blind receiver evidence; the edge packet is an independent cross-block compression of the same receiver set.
 
 Across all 24 packet-coordinate permutations and both directions, 46/48 fail on at least one page. The only alternative survivor predicts p33 start185 and p34 start105; the literal printed edge order is the only charged orientation compatible with the full existing q-block route.
 
-This coupling was discovered after the receivers and remains retrospective. It therefore does not authenticate the source words as plaintext, but it replaces eight independent receiver searches with one provisional paired-lane rule. The missing q-block object is now a coordinatewise key serializer or a fresh packet prediction, not merely another local GP0 collision. See [the detailed report](lp2-p6-qblock-edge-gp0-coupling.md).
+This coupling was discovered after the receivers and remains retrospective. It does not authenticate the source words as plaintext. It changes the next decision by replacing eight independent receiver searches with one provisional paired-lane rule: seek an authored/fresh packet prediction and a coordinatewise key serializer. See [the detailed report](lp2-p6-qblock-edge-gp0-coupling.md).
 
 ## Complete local-inverse corridor
 
 | Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
 |---:|---|---|---|---|
-| 32 / p32 | YOU | self-indexed first full-stop endpoint, start30 `[0,3,2]` | H3 `[K,0,q]` | strong local; edge packet narrows arity pool to starts1/30 |
-| 33 / p33 | WILL | canonical complete word start132 `[3,15,17,22]` | H4 `[p,A,K,-K]` | strong local; edge packet selects start132 uniquely |
-| 34 / p34 | BE | start4 `[12,23]`, selected from edge-packet starts4/249 by p33 THEIR-RISE handoff | H2 `[B,0]` | strong local |
-| 35 / p35 | FOUND | adjacent packet starts25..29 `[19,17,19,24,11]` | H5 `[K,g-a,A-B,0,g+K]` | strong local; edge packet selects start25 uniquely |
+| 32 / p32 | YOU | first-full-stop terminal word start30; block1 residue1 leaves starts1/30 and full-stop fixes30 | H3 `[K,0,q]` | target-blind block residue + independent tie-break; edge packet independently narrows starts1/30; strong local |
+| 33 / p33 | WILL | canonical word start132; block1 residue16 unique at source arity4 | H4 `[p,A,K,-K]` | target-blind block residue; edge packet independently selects start132; strong local |
+| 34 / p34 | BE | p33 THEIR-RISE receiver start4; block1 residue4 unique at source arity2 | H2 `[B,0]` | target-blind block residue + independent handoff; edge packet narrows starts4/249; strong local |
+| 35 / p35 | FOUND | manuscript-unique state-shaped adjacent 2+3 packet start25; block1 residue25 unique in that class | H5 `[K,g-a,A-B,0,g+K]` | target-blind block residue within independent packet class; edge packet independently selects start25; strong local |
 | 36 / p36 | GOOD | p6 singleton block; unique `p_i/word_i` center-q receiver start169; delete `q=4` | `[p+K,B,-K,-e]` | target-blind receiver; strong local |
-| 37 / p37 | LUCK | canonical word37, start146 | H4 `[B,0,K,g]` | strong local |
-| 38 / p38 | BEWARE | section5 first word, start57 | H6 `[K-b,-g,p,p-e,0,-b]` | strong local |
-| 39 / p39 | FALSE | prospectively selected first `g=5` word after red span, start132 | H5 `[-b,-g,Kg,-b,B]` | strong local |
-| 40 / p40 | PATHS | p6-addressed local offset71 | direct `[qg,qg,aK,a]` | target-blind receiver; sole hit across 243-key visual family and 1,389-key permutation closure; same-offset transfer remains retrospective |
+| 37 / p37 | LUCK | start146; block3 residue1 unique at source arity4 | H4 `[B,0,K,g]` | target-blind block residue; strong local |
+| 38 / p38 | BEWARE | start57; block3 residue28 unique at source arity6 | H6 `[K-b,-g,p,p-e,0,-b]` | target-blind block residue; independent section5 support |
+| 39 / p39 | FALSE | start132; block3 residue16 unique at source arity5; independently first g=5 word after red span | H5 `[-b,-g,Kg,-b,B]` | target-blind block residue + prospective local selector |
+| 40 / p40 | PATHS | block3 residue13 gives starts13/71/216; independent p6 address71 fixes start71 | direct `[qg,qg,aK,a]` | target-blind block residue + address gate; same-offset transfer remains retrospective |
 | 41 / p41 | VERIFY | p6 terminal block; ordinal42 start178 in unique consecutive K=2 center-F pair; delete `F=0` | H6 `[q,Kg,p,A,g+K,B]` | target-blind receiver; strong local |
 | 42 / p42 | OPENPGP | p6 terminal block; ordinal43 in unique consecutive K=2 center-F pair; word43 gives unique `[K,1,F]`; +K -> word45 start211; delete rune1 `F=0` | H7 `[B-1,p+K,-1,e,-1,p+K,p]` | target-blind receiver selector; strong local |
 
@@ -229,7 +241,7 @@ The corridor has one directly source-level property plus a set of receiver hypot
 
 The previously listed property **common p6 state vocabulary** is likewise not independently discriminating. Let `S={K,e,q,g,a,A,b,B,p}={2,3,4,5,6,8,15,19,23}` mod29. The exact finite audit proves `S ∪ (S+S) = Z_29`. Thus every possible GP29 scalar—and therefore every coordinate of an arbitrary raw key or H shell—can be narrated using the much weaker grammar “one field or the sum of two fields.” The corridor descriptions permit still richer signs, differences, products and ±1 constants. Scalar membership contributes zero key-selection information unless a **joint field-role syntax** is frozen before the target is examined.
 
-The corridor remains a useful known-source alignment and receiver-selection program, but the eleven fitted plaintext words are not established decryptions. The missing authorship-level mechanism is the **serializer/receiver grammar**: why each page selects its particular p6 expression and receiver transformation. Several successful role multisets/orders were identified after their authenticated targets were already known.
+The corridor remains a useful known-source alignment and receiver-selection program, but the eleven fitted plaintext words are not established decryptions. With both q-sized blocks now carrying p6-authored start-residue grammars and the exceptional blocks already having marker rules, the dominant missing authorship-level mechanism is the **ordered key serializer**: why each selected receiver gets its particular value-changing p6 expression. Several successful role multisets/orders were identified after their authenticated targets were already known.
 
 Prospective transfers are mixed and often negative. Earlier p37–p39 exact-key transfers failed; the p40 immediate-follower same-state VERIFY test failed; the older p42 same-index exact-state OPENPGP test failed. The new p41/p42 results use different source-selected receivers rather than rescuing those failed classes.
 
@@ -237,7 +249,7 @@ Two Agent14 precommits also reject obvious post-OPENPGP continuations without re
 
 ## Research consequence
 
-Treat p6 as a strongly constrained **state packet**, while treating coordinatewise reuse of its values as free under the saturation theorem above. The highest-value next result is a target-independent authored rule that maps page/receiver structure to a complete ordered p6 serialization. Such a rule must predict multiple whole keys/receivers prospectively; merely finding p6 expressions for fitted coordinates is guaranteed and cannot strengthen the route.
+Treat p6 as a strongly constrained **state and receiver-schedule packet**, while treating coordinatewise reuse of its values as free under the saturation theorem above. Receiver selection is now substantially compressed across both q blocks and the exceptional blocks. The highest-value next result is a target-independent authored rule that predicts complete ordered **keys** for multiple already selected receivers prospectively; merely finding p6 expressions for fitted coordinates is guaranteed and cannot strengthen the route.
 
 Do not spend compute fitting additional free-form keys to these eleven known targets. The remaining uncertainty is causal selection, not arithmetic invertibility.
 
@@ -247,6 +259,8 @@ Do not spend compute fitting additional free-form keys to these eleven known tar
 - `im-results/lp2-p6-master-state-packet.md`
 - `im-results/lp2-p6-source-tail-corridor-selector.md`
 - `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md`
+- `im-results/lp2-p6-block1-receiver-residue-grammar.md`
+- `im-results/lp2-p6-block3-receiver-residue-grammar.md`
 - `im-results/lp2-p6-p36-good-qcenter-family.md`
 - `im-results/lp2-p6-p39-false-five-rune-family.md`
 - `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`
