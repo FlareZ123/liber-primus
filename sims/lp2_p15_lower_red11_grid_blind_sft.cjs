@@ -28,6 +28,10 @@ const inv29=x=>{
   for(let y=1;y<29;y++) if(mod(x*y)===1) return y;
   throw new Error('noninvertible');
 };
+const invMod=(x,m)=>{
+  for(let y=1;y<m;y++) if((x*y)%m===1) return y;
+  throw new Error('noninvertible modulo '+m);
+};
 const powMod=(base,exp,m)=>{
   let b=base%m,e=exp,r=1;
   while(e){if(e&1)r=(r*b)%m;b=(b*b)%m;e=Math.floor(e/2);}
@@ -182,6 +186,8 @@ const B=powMod(g,b,p);
 assert.equal(B,19);
 assert.equal(powMod(B,a,p),K);
 const Binv=inv29(B);
+const e=invMod(b,p-1);
+assert.equal(e,3);
 
 // The state derived above now selects exactly one row, still without color.
 const matchingRows=[];
@@ -246,12 +252,10 @@ assert.equal(p15.page,b);
 assert.deepEqual(selectedCol,[b,g,mod(K*g),mod(q*g)]);
 assert.deepEqual(rowH[predicted.row],[g,1,mod(B-g),Binv]);
 
-// The physical top numeric row adds p/e checks without the upper red runes.
+// The physical top numeric row is now fully predicted from lower-red state,
+// selected-column b, and e=b^-1 mod(p-1); it is not used to define e.
+assert.deepEqual(rowH[0],[mod(K+b),mod(a*K),p,e]);
 assert.deepEqual(rowH[0],[17,12,23,3]);
-const e=rowH[0][3];
-assert.equal(rowH[0][2],p);
-assert.equal(rowH[0][1],mod(a*K));
-assert.equal(rowH[0][0],mod(K+b));
 
 // ---------- Phase C: open held-out upper red9 ----------
 const upperRunes=p15.indices.slice(0,9);
