@@ -17,11 +17,26 @@ assert.equal(frozen.freezeScriptCommit,'2210d346963440fa7002804002999e9737bad6cc
 assert.deepEqual(frozen.tape,[10,5,12,0]);
 assert.equal(frozen.candidates.length,2);
 
-const body=asc.slice(asc.indexOf('\n\n',asc.indexOf('Hash:'))+2,
-  asc.indexOf('-----BEGIN PGP SIGNATURE-----'));
+const normalized=asc.replace(/\r\n/g,'\n');
+const headerEnd=normalized.indexOf('\n\n',normalized.indexOf('Hash:'));
+assert(headerEnd>=0);
+const signatureStart=normalized.indexOf('-----BEGIN PGP SIGNATURE-----');
+assert(signatureStart>headerEnd);
+const body=normalized.slice(headerEnd+2,signatureStart);
 const words=body.match(/[A-Za-z]+/g).map(x=>x.toUpperCase());
-assert.deepEqual(words.slice(32,36),['YOU','WILL','BE','FOUND']);
-assert.deepEqual(words.slice(37,41),['LUCK','BEWARE','FALSE','PATHS']);
+function findSequence(seq){
+  const hits=[];
+  for(let i=0;i+seq.length<=words.length;i++)
+    if(seq.every((x,j)=>words[i+j]===x)) hits.push(i);
+  assert.equal(hits.length,1,'authenticated phrase must occur exactly once: '+seq.join(' '));
+  return hits[0];
+}
+const block1Words=['YOU','WILL','BE','FOUND'];
+const block3Words=['LUCK','BEWARE','FALSE','PATHS'];
+const block1Start=findSequence(block1Words);
+const block3Start=findSequence(block3Words);
+assert.equal(block1Start,32);
+assert.equal(block3Start,37);
 
 const tokens=corpus.translit.map((t,i)=>({t,i}))
   .sort((a,b)=>b.t.length-a.t.length);
@@ -38,8 +53,8 @@ function encode(word){
   return out;
 }
 const targetBlocks=[
-  words.slice(32,36).map(encode),
-  words.slice(37,41).map(encode),
+  block1Words.map(encode),
+  block3Words.map(encode),
 ];
 assert.deepEqual(targetBlocks.map(b=>b.map(x=>x.length)),
   [[3,4,2,5],[4,6,5,4]]);
@@ -72,8 +87,9 @@ console.log(JSON.stringify({
   freezeOutputCommit:'902056616e926958043972fa8054665088e99a22',
   source:'resources/historical/cicada2016-4gq25-outguess.asc',
   sourceWords:{
-    block1:words.slice(32,36),
-    block3:words.slice(37,41),
+    block1:block1Words,
+    block3:block3Words,
+    zeroBasedStarts:[block1Start,block3Start],
   },
   targetBlocks,
   scores,
