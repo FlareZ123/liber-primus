@@ -49,7 +49,23 @@ function jpegSOF(b){
    writeFileSync(file,b);
    const proc=spawnSync('python',['-c','from PIL import Image; import sys; x=Image.open(sys.argv[1]); print(x.size,x.mode,x.getpixel((x.width//2,x.height//2)))',file],{encoding:'utf8',timeout:10000});
    out.PIL_optional={status:proc.status,stdout:proc.stdout?.trim(),stderr:proc.stderr?.slice(0,200)};
-   out.disposition=digest===STOCK?'EXACT REPEAT of pinned source':'NEW FILE: compare original-root and held twig identity before cryptanalysis';
+   
+   try {
+     const commons=await get('https://upload.wikimedia.org/wikipedia/commons/7/7e/DeadTree.jpg');
+     const stock=await get('https://raw.githubusercontent.com/MonokumaBear/cicadaConvolutionKernels/cead7046c37ed19c482302478605f61f55770db5/originalTreeImage.jpg');
+     if(hash(stock)!==STOCK)throw Error('Stock source hash mismatch');
+     const commonsFile=path.join(tmp,'commons.jpg'),stockFile=path.join(tmp,'stock.jpg');
+     writeFileSync(commonsFile,commons);writeFileSync(stockFile,stock);
+     out.reference_files={commons:{sha256:hash(commons),bytes:commons.length,SOF:jpegSOF(commons)},stock:{sha256:hash(stock),bytes:stock.length,SOF:jpegSOF(stock)}};
+     const pip=spawnSync('python',['-m','pip','install','--quiet','numpy','opencv-python-headless'],{encoding:'utf8',timeout:180000,maxBuffer:500000});
+     out.cv2_install={status:pip.status,stderr:pip.stderr?.slice(-450)};
+     if(pip.status===0){
+       const result=spawnSync('python',['sims/lp2_oreilly_tree_identity_preflight.py',file,commonsFile,stockFile],{encoding:'utf8',timeout:90000,maxBuffer:500000});
+       if(result.status===0)out.original_source_identity=JSON.parse(result.stdout);
+       else out.image_comparison_error={status:result.status,stderr:result.stderr?.slice(-900)};
+     }
+   }catch(e){out.image_comparison_error=e.message;}
+   out.disposition=digest===STOCK?'EXACT REPEAT of pinned source':'NEW EXACT FILE; use source-identity comparison and held root/twigs to decide';
   }
  }catch(e){out.error=e.message;out.disposition='ACQUISITION BLOCKED: no exact-file claim';}
  console.log(JSON.stringify(out,null,2));
