@@ -61,6 +61,34 @@ There are **2,802** page-local consecutive four-word windows across physical p0â
 
 These are exact corpus counts rather than discovery probabilities.
 
+## Frozen literal consumer: p23 red state schedule does not decode its own body
+
+The bridge creates one immediate low-flexibility operational test. The p23
+red rubric itself fixes the four-lane state schedule
+`[K,a,e,g]=[2,6,3,5]`, and its following black body supplies a natural
+197-rune receiver at local offset16. Transfer the authentic solved-p56
+additive inverse with strict transparent-plaintext-F / held key clock, with
+no phase, sign or reset search.
+
+The inverse is impossible at the **second black rune**. Body offset0 consumes
+lane `K=2`; at body offset1 / page-local offset17, ciphertext
+`G=index6` meets lane `a=6`, which would force plaintext F on a consuming
+step. Under the p56 rule plaintext F must instead be a literal transparent
+ciphertext F and hold the key clock. There is therefore **0 complete legal
+inverse path**, before language scoring or any later F ambiguity appears.
+
+This retires exactly the literal composition
+
+```text
+p6 adjacent-H lengths -> p23 [K,a,e,g] red schedule
+-> following p23 black body -> solved-p56 additive/F-hold inverse.
+```
+
+The structural p6â†’p23 prediction remains intact; a different authored
+receiver/opcode is still required.
+
+Reproducer: `sims/lp2_p23_red_state_body_p56_fhold_gate_sft.cjs`.
+
 ## Why this advances the solve path
 
 The p6 page now supplies a literal source-only operator schedule:
