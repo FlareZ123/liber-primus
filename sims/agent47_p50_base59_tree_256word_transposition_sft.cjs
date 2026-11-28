@@ -29,7 +29,7 @@ for(const page of corpus.pages.filter(p=>p.page<=55&&p.indices.length>0)){
   const matches=pageSegments.filter(s=>s.indices.length===page.indices.length
     &&s.indices.every((v,i)=>v===page.indices[i]));
   assert.equal(matches.length,1,'physical original page not recovered exactly: '+page.page);
-  const words=matches[0].raw.replace(/\\s|\\//g,'').split(/[-.$&§]+/g)
+  const words=matches[0].raw.replace(/\s|\//g,'').split(/[-.$&§]+/g)
     .map(s=>[...s].filter(x=>runeSet.has(x))).filter(w=>w.length>0);
   assert.deepEqual(words.flat().map(x=>corpus.runes.indexOf(x)),page.indices);
   wordLengths.push(...words.map(w=>w.length));
