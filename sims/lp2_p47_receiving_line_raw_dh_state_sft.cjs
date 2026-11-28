@@ -250,6 +250,61 @@ for (const ch of stream) {
 }
 finish();
 const physical = (page) => page >= 50 ? page + 1 : page;
+const crossPage = allWords
+  .filter((w) => new Set(w.map((site) => physical(site.page))).size > 1);
+assert.equal(crossPage.length, 32);
+const boundaryWord = crossPage.find((w) => {
+  const pages = [...new Set(w.map((site) => physical(site.page)))];
+  return pages.length === 2 && pages[0] === 47 && pages[1] === 48;
+});
+assert.ok(boundaryWord);
+const boundaryValues = boundaryWord.map((site) => site.value);
+assert.deepEqual(boundaryValues, [24, 3, 24, 25, 8, 5, 10, 2]);
+const boundaryDescriptor = descriptor(boundaryWord);
+assert.equal(boundaryDescriptor.length, state.A);
+assert.equal(boundaryDescriptor.sum, mod29(-state.b));
+assert.equal(boundaryDescriptor.product, state.q);
+
+const boundaryLeft = descriptor(boundaryWord.slice(0, 4));
+const boundaryRight = descriptor(boundaryWord.slice(4));
+assert.deepEqual(
+  [boundaryLeft.length, boundaryLeft.sum, boundaryLeft.product],
+  [state.q, mod29(-Ainv), state.B]
+);
+assert.deepEqual(
+  [boundaryRight.length, boundaryRight.sum, boundaryRight.product],
+  [state.q, mod29(-state.q), state.b + state.K]
+);
+
+const H = (values) => {
+  const out = [];
+  const half = values.length / 2;
+  for (let index = 0; index < half; index += 1) {
+    out.push(mod29(values[index] - values[values.length - 1 - index]));
+  }
+  for (let index = half - 1; index >= 0; index -= 1) {
+    out.push(mod29(values[index] + values[values.length - 1 - index]));
+  }
+  return out;
+};
+const boundaryH = H(boundaryValues);
+assert.deepEqual(boundaryH, [
+  state.p - 1,
+  state.p - 1,
+  state.B,
+  state.b + state.K,
+  state.q,
+  0,
+  state.b - state.K,
+  mod29(-state.e),
+]);
+
+const crossPageLengthA = crossPage.filter((w) => w.length === state.A);
+assert.deepEqual(
+  crossPageLengthA.map((w) => [physical(w[0].page), physical(w.at(-1).page)]),
+  [[47, 48]]
+);
+
 const complete = allWords
   .filter((w) => w.every((s) => s.page === w[0].page))
   .map((w) => ({ page: physical(w[0].page), sites: w }));
@@ -301,6 +356,22 @@ console.log(JSON.stringify({
       products: line12Products,
       fullHits: line12FullHits.map(({ page, line }) => [page, line]),
     },
+  },
+  crossPageCarrier: {
+    crossPageWords: crossPage.length,
+    lengthAHits: crossPageLengthA.length,
+    pages: [47, 48],
+    values: boundaryValues,
+    raw: {
+      length: boundaryDescriptor.length,
+      sum: boundaryDescriptor.sum,
+      product: boundaryDescriptor.product,
+    },
+    halves: {
+      p47: [boundaryLeft.length, boundaryLeft.sum, boundaryLeft.product],
+      p48: [boundaryRight.length, boundaryRight.sum, boundaryRight.product],
+    },
+    H: boundaryH,
   },
   successorControl: {
     completeWords: complete.length,
