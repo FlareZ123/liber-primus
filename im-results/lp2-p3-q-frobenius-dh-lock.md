@@ -428,6 +428,47 @@ p33 offset132 -> WILL33.
 
 This materially strengthens the existing WILL candidate because the receiver is now reached by the independent Q/DIRECTION red-span path and the route supplies the exact numeric H-shell. It does **not erase discovery chronology**: `[p,A,K,-K]` was recognized as the p33 key shell in earlier WILL work, so the ordered four-coordinate assembly is not a fresh blind prediction. Classify WILL as a strongly source-selected local plaintext candidate with a newly independent navigation/state explanation, pending a first-party rule that fixes the precise shell serialization without knowledge of WILL or a prospective unchanged transfer to a genuinely new receiver.
 
+## One YOU32 arrival now reaches WILL / BE / FOUND without reopening those targets
+
+The T path does not merely select physical p33. It lands on **p33:91**, the lower red heading that the independently solved-p56 cardinal serializer already turns into **RISE**. A materially distinct chapter-field continuation had separately selected the first word of this same heading before the T route existed. The convergence is therefore on one exact original-manuscript object, not just on page33.
+
+That matters because two downstream consumers of this RISE object were already fixed:
+
+```text
+lower title lengths [3,5]:
+  5-3 = 2
+  p33 + 2 = p35
+  signed word35 = FOUND
+
+upper/lower black-body rune counts [81,115]:
+  115-81 = 34
+  signed/physical p34 = BE
+```
+
+The present route adds the third member from the same selected boundary:
+
+```text
+p33 lower red ends99
+99 + WILL33 = 132
+fixed four-rune receiver132 -> WILL candidate
+```
+
+So the source path
+
+```text
+... DIRECTION SEEK AND YOU
+                     YOU32
+                       |
+                       v
+                 p33 RISE heading
+                  /      |       \
+              WILL33    BE34    FOUND35
+```
+
+now reproduces the contiguous authenticated continuation **YOU WILL BE FOUND** at the page/object level using three different already bounded consumers. The BE and FOUND local inverses are unchanged and retain their published chronology caveats; this result is an upstream convergence, not a claim that one universal body cipher has been found.
+
+This is exactly the kind of causal improvement the route needed: the Q/DIRECTION mechanism selects an original object whose pre-existing semantics already had downstream consequences, rather than assigning a new label after seeing a convenient value.
+
 ## Immediate consumer check
 
 The most literal fixed 2-rune Hill interpretation of `M_Q` was checked on the source-typed p54 continuation after its red9 opener, including Q/Q^-1, the two local coordinate orders, both stream directions, and the visible offset9/10 boundary alternatives. All presentations are nonprose. This closes only the **stationary one-step Hill** reading.
