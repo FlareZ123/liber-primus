@@ -83,6 +83,21 @@ visible red-page placement
 
 The repeated `K=2` entries are part of the printed gap sequence rather than a fitted separator. Removing repeated values while preserving first occurrence yields `[1,K,g,a,q,A,e]`.
 
+## Packet-derived p23 and p8 receivers
+
+The repeated gap value `K=2` occurs `e=3` times and gives a natural visible parsing:
+
+```text
+[1] | K | [g,a] | K | [q] | K | [A,e]
+[1] | 2 | [5,6] | 2 | [4] | 2 | [8,3].
+```
+
+Both paired blocks have the same sum, `g+a=A+e=11=A^-1 mod29`. The global complete-red-span count supplies the missing modulus without JPEG data: `18=p-g`, hence `p=18+5=23`. Meanwhile the 33−25 red/non-red page imbalance gives `A=8`.
+
+Under the already authenticated 2016 rule that the numbers are the direction, the packet therefore supplies the established physical receivers **p23** and **p8** from `[p,A]`. Those pages have independently charged local state registers that the global packet now reconstructs: p23's four-word red product-H row is `[A^-1,A,g,K]=[11,8,5,2]`; p8's two-red-word length receiver is `[q,A]=[4,8]`, with immediately adjacent black descriptor `[e,p,K]=[3,23,2]`.
+
+These local packets were known before the global red-gap serialization was noticed, so this is a post-discovery causal cross-lock rather than a sealed prediction. It nevertheless closes a materially cleaner route: **global visible red layout -> full DH state -> directed p23/p8 local receivers -> existing Q/DH navigation circuit**.
+
 ## Evidence boundary / decisive next step
 
 The state labeling is retrospective. Do not use the rich set of simple identities above to justify arbitrary new arithmetic on red-page positions.
