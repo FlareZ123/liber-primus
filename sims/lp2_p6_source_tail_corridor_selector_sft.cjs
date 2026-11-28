@@ -125,6 +125,20 @@ function permutations(values) {
   return [...found.values()];
 }
 
+/**
+ * Frozen four-coordinate outside-in H map.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function H4(values) {
+  return [
+    mod29(values[0] - values[3]),
+    mod29(values[1] - values[2]),
+    mod29(values[1] + values[2]),
+    mod29(values[0] + values[3]),
+  ];
+}
+
 const clear = signed
   .split("-----BEGIN PGP SIGNATURE-----")[0]
   .slice(signed.indexOf("Hello."));
@@ -139,7 +153,11 @@ assert.deepEqual(sourceWords.slice(30), [
   "BEWARE", "FALSE", "PATHS", "VERIFY", "OPENPGP",
 ]);
 
-const sourceLengths = sourceWords.map((word) => gp(word).length);
+const sourceSpellings = sourceWords.map((word) => gp(word));
+const sourceLengths = sourceSpellings.map((values) => values.length);
+const sourceGp0 = sourceSpellings.map((values) =>
+  values.reduce((sum, value) => sum + value, 0)
+);
 
 const parts = transcription.split(/^\s*%\s*$/m);
 const p6Words = parsePage(parts[6]);
@@ -245,15 +263,102 @@ assert.deepEqual(hits[0].sums, [
 ]);
 
 // The already-frozen H4 orientation yields another direct state shell.
-function H4(values) {
-  return [
-    mod29(values[0] - values[3]),
-    mod29(values[1] - values[2]),
-    mod29(values[1] + values[2]),
-    mod29(values[0] + values[3]),
-  ];
-}
 assert.deepEqual(H4(hits[0].sums), [1, 14, 23, 27]);
+
+// Independent GP0-block charge. Build a conservative p6-visible H-shell
+// family [signed W1 rune, signed distinct W1 rune, repeated first rune,
+// signed member of H(titleLengths)=[K,-e,g,a]].
+const titleH = H4(titleLengths);
+assert.deepEqual(titleH, [2, 26, 5, 6]);
+
+const gp0ShellFamily = new Map();
+for (let repeated = 0; repeated < w1.length; repeated += 1) {
+  for (const repeatedSign of [1, -1]) {
+    const x = mod29(repeatedSign * w1[repeated]);
+    for (let middle = 0; middle < w1.length; middle += 1) {
+      if (middle === repeated) continue;
+      for (const middleSign of [1, -1]) {
+        const y = mod29(middleSign * w1[middle]);
+        for (let tail = 0; tail < titleH.length; tail += 1) {
+          for (const tailSign of [1, -1]) {
+            const z = mod29(tailSign * titleH[tail]);
+            const vector = [x, y, x, z];
+            const key = vector.join(",");
+            if (!gp0ShellFamily.has(key)) gp0ShellFamily.set(key, []);
+            gp0ShellFamily.get(key).push({
+              repeated,
+              repeatedSign,
+              middle,
+              middleSign,
+              tail,
+              tailSign,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(gp0ShellFamily.size, 384);
+
+const gp0Hits = [];
+let gp0Configurations = 0;
+for (const layout of layoutFamily) {
+  const cuts = [0];
+  for (const width of layout) cuts.push(cuts.at(-1) + width);
+
+  for (let start = 0; start <= sourceWords.length - 11; start += 1) {
+    const sums = [];
+    for (let block = 0; block < 4; block += 1) {
+      let total = 0;
+      for (
+        let offset = start + cuts[block];
+        offset < start + cuts[block + 1];
+        offset += 1
+      ) {
+        total += sourceGp0[offset];
+      }
+      sums.push(mod29(total));
+    }
+
+    const shell = H4(sums);
+    gp0Configurations += gp0ShellFamily.size;
+    const roles = gp0ShellFamily.get(shell.join(","));
+    if (roles) {
+      gp0Hits.push({
+        start,
+        end: start + 10,
+        words: sourceWords.slice(start, start + 11),
+        layout,
+        sums,
+        shell,
+        roles,
+      });
+    }
+  }
+}
+
+assert.equal(gp0Configurations, 12 * 33 * 384);
+assert.equal(gp0Hits.length, 1);
+assert.deepEqual(gp0Hits[0], {
+  start: 32,
+  end: 42,
+  words: [
+    "YOU", "WILL", "BE", "FOUND", "GOOD", "LUCK",
+    "BEWARE", "FALSE", "PATHS", "VERIFY", "OPENPGP",
+  ],
+  layout: [4, 1, 4, 2],
+  sums: [13, 6, 18, 18],
+  shell: [24, 17, 24, 2],
+  roles: [{
+    repeated: 0,
+    repeatedSign: 1,
+    middle: 3,
+    middleSign: 1,
+    tail: 0,
+    tailSign: 1,
+  }],
+});
 
 // Independent source-state consistency: the selected interval omits exactly
 // the leading K=2 trailing-block words SEEK AND and begins at fold residue e=3.
@@ -273,13 +378,17 @@ console.log(JSON.stringify({
   },
   charge: {
     windows: 33,
-    configurations,
-    hits: hits.length,
+    lengthConfigurations: configurations,
+    lengthHits: hits.length,
+    gp0Configurations,
+    gp0Hits: gp0Hits.length,
   },
   selector: hits[0],
   selectorState: {
-    blockSums: "[-b,q,B,b-K]",
-    H4: "[a-g,-b,p,-K]",
+    lengthBlockSums: "[-b,q,B,b-K]",
+    lengthH4: "[a-g,-b,p,-K]",
+    gp0BlockSums: "[b-K,a,p-g,p-g]",
+    gp0H4: "[-g,K+b,-g,K]",
     skippedLeadingWords: "K=2 -> SEEK AND",
     startingFoldResidue: "e=3",
   },
