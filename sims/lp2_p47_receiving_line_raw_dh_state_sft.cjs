@@ -649,7 +649,7 @@ assert.deepEqual(successorHits.filter((w) =>
 ).map((w) => [w.page, w.sites[0].offset]), [[47, 212]]);
 
 console.log(JSON.stringify({
-  classification: 'source-selected raw p47 line-state serialization; no plaintext/cipher inverse',
+  classification: 'source-selected navigation/raw descriptors; mixed DH-role mapping retrospective; no plaintext/cipher inverse',
   selectedGroup: { page: 47, ordinal: 47, start: 206 },
   directState: state,
   receivingLine: { page: 47, line: 10, lengths, sums, products },
