@@ -237,12 +237,23 @@ row2/column2 location corresponds to zero-based cell(1,1)=index9, token
 `(K,K)->b` relation is zero-based cell(2,2)=index18, token
 `0F=15=b`.
 
-Therefore the p6↔p50 geometry remains a useful **conditional** bridge, and
-the independently selected cell186 / column2 facts remain real source
-structure, but the exact state-label equalities `[e,g,a,K]` and cyclic
-H(title) schedule are not yet source-authenticated until an independent clue
-chooses the zero-based origin. Do not use this bridge as an authored decoder
-opcode without that selector.
+There is, however, a real **first-party historical prior** for zero-based
+numbering outside p50. The authenticated 2016 signed message independently
+encodes the same DH23 register in its zero-based word positions; after a
+Critic broadened the sentence-structured role family to 69,120 cases,
+zero-based numbering is part of the sole surviving configuration and
+one-based numbering fails. See
+`im-results/lp2-signed2016-word-position-dh.md`. That is evidence about
+Cicada's numbering habit and the same state vocabulary, but it postdates the
+2014 LP2 release and does not tell a contemporary player to assign p50's
+unlabeled top-left cell coordinate zero.
+
+Therefore the p6↔p50 geometry remains a useful **conditional but historically
+supported** zero-origin bridge. The independently selected cell186 / column2
+facts remain real source structure; the exact state-label equalities
+`[e,g,a,K]` and cyclic H(title) schedule are not locally source-instructed
+by p50 itself. Treat the 2016 source as an authored prior on the convention,
+not as a retroactive p50 opcode.
 
 Reproducer: `sims/lp2_p6_p50_index_origin_control_sft.cjs`.
 
