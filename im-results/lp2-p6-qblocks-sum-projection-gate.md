@@ -200,6 +200,32 @@ The independently frozen p6 companion key sums are then a target-free necessary 
 ~~~
 
 Therefore this entire 2×2 state-vector interpretation is rejected **before any authenticated target rune is consulted**. The failure is stronger than another English-score negative: a candidate ordered key law cannot violate seven of eight already frozen page checksums.
+## Gate 6: q-word Möbius recurrence fails with the key sum held out
+
+A four-rune word can also define the standard projective action of a 2×2 matrix on one GF(29) scalar. This gives a nonlinear state recurrence without adding fitted coefficients.
+
+For each q block, take W1/W3 or H4(W1/W3), optionally transpose, optionally invert the matrix, and iterate:
+
+~~~text
+x -> (a*x+b)/(c*x+d) mod29.
+~~~
+
+Each page starts only from its frozen receiver delta; the p6 companion key sum is **not** used to generate the stream and remains a held-out necessary check. Charge seed-first versus step-first emission. This gives **16** shared conventions across both q blocks.
+
+Source-only generator commit: `54c579ff50ebb6fb7d6edddf9b9080f6767b4062`. Pretarget outputs: `im-results/lp2-p6-qblocks-mobius-recurrence-pretarget.json`, commit `8e7a8ce2e5652e79c9ed65bda3afdcbbcf7bde59`.
+
+Result before any target grading:
+
+~~~text
+16 conventions
+11 match 0 / 8 key sums
+ 5 match 1 / 8
+ 0 match 2+ / 8
+6 conventions avoid all projective poles
+10 encounter at least one denominator-zero page
+~~~
+
+Thus the projective 2×2 interpretation is rejected at the same target-free checksum gate. Together with Gate5, the most canonical linear-vector and Möbius uses of the four-rune q words fail to serialize the ordered keys.
 ## Evidence boundary
 
 This is a bounded negative, not a proof that p6 has no ordered serializer. The tested family is deliberately small and motivated: three already published p6 four-scalar representations, two signs, three simple clocks, then two canonical ways to enforce a separately frozen scalar sum.
@@ -221,4 +247,6 @@ The remaining viable route requires a new source-visible vector operation, coord
 - Post-freeze affine grader: `sims/lp2_p6_qblocks_receiver_affine_grader_sft.cjs`.
 - Pretarget matrix recurrence: `sims/lp2_p6_qblocks_matrix_recurrence_pretarget_sft.cjs` and `im-results/lp2-p6-qblocks-matrix-recurrence-pretarget.json`.
 - Matrix checksum gate: `sims/lp2_p6_qblocks_matrix_recurrence_checksum_gate_sft.cjs`.
+- Pretarget Möbius recurrence: `sims/lp2_p6_qblocks_mobius_recurrence_pretarget_sft.cjs` and `im-results/lp2-p6-qblocks-mobius-recurrence-pretarget.json`.
+- Möbius checksum gate: `sims/lp2_p6_qblocks_mobius_recurrence_checksum_gate_sft.cjs`.
 - CI: `.github/workflows/agent11-p6-qblocks-sum-projection.yml`.
