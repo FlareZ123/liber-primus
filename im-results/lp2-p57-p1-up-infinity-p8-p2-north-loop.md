@@ -1,194 +1,149 @@
-# P57 center-one → p1 UP → upper infinity → p8; p8 OUT2 → p2 N → upper infinity → p8
+# P57 circumference instruction exposes IN → OUT and strengthens the p1→p8 entry
 
-**Agent18, 28 November 2026. Classification: provisional original-art navigation circuit with exact numeric receivers and source-raster controls. No unknown LP2 body plaintext or general cipher is claimed.**
+**Agent18, 28 November 2026. Classification: solved-plaintext operation clue plus provisional original-art navigation. No unknown LP2 body plaintext or general cipher is claimed.**
 
-## Entry from solved p57
+## Solved p57 literally contains an IN → OUT instruction
 
-Solved p57 says:
+Solved physical p57 says:
 
 ```text
 SHED OUR OWN CIRCUMFERENCES
 FIND THE DIUINITY WITHIN AND EMERGE
 ```
 
-Its terminal red23 ornament has the established recursive circumference onion
+The established image-level execution of “shed circumferences” on its terminal red23 ornament produces the onion `[14,8,1]`. The same operation can be applied to the **printed solved word itself** with no cipher fitting: repeatedly remove the two outermost letters of the runic-normalized `DIUINITY`:
 
 ```text
-[14,8,1].
+DIUINITY
+ IUINIT
+  UINI
+   IN
 ```
 
-Take the final center **1** under authenticated "numbers are the direction" as a prospective selection of physical **p1**. P1's exact two-rune center is left/right `[6,7]`; the pre-existing upright/right artwork orientation fixes
+The exact two-letter center is therefore **IN**. The sentence then immediately says **AND EMERGE**, whose ordinary directional complement is **OUT**.
+
+This gives a source-visible instruction-shaped arrow:
 
 ```text
-H(right,left)=H(7,6)=[1,13]=UP.
+shed circumferences -> find IN within -> emerge OUT
+IN -> OUT.
 ```
 
-Across all 23 nonempty even p0–p55 pages, p1 alone has this exact directed center-H output.
+This was recognized after the chapter navigation graph existed, so it is not a blind discovery probability. Its value is causal: the existing chapter rubric had an exact operator-order rival—SUM→PRODUCT and PRODUCT→SUM traverse the same five-node path in opposite directions—and the original route report explicitly noted that the source did not print an arrow. P57 now supplies a literal solved-text **IN→OUT** ordering without touching unknown ciphertext.
 
-## UP has an immediate page-local visual receiver
+It does **not** independently prove that SUM is IN or PRODUCT is OUT. Those field assignments already have separate support: p23 chronologically holds out the first-black SUM receiver, and the independent frame-spacing register supports PRODUCT as the OUT statistic. The new p57 clue addresses the remaining **direction/orientation** question.
 
-The original opening pages p0–p2 each carry two small lemniscate/infinity ornaments on the central vertical axis: one **above** the rune body and one at the bottom.
+## Consequence for the established chapter graph
 
-On p1, `UP` therefore selects an actual source-visible object before any body decryption:
+The chapter grammar defines, on the first complete black word following each chapter rubric:
 
 ```text
-UP -> upper ∞.
+IN(page)  = GP29 SUM
+OUT(page) = GP29 PRODUCT
 ```
 
-The bounded visual hypothesis is to read the conventional infinity glyph by its literal sideways-eight form:
+and follows `OUT(current) -> matching IN(next)`.
+
+The established p0 route is:
 
 ```text
-∞ -> 8 -> physical p8.
+p0 --23--> p8 --2--> p27 --19--> p54 --27--> p40.
 ```
 
-This gives a human-executable path
+The exact reverse PRODUCT→SUM construction walks the same edges backward from p40 to p0. P57's center-stripping clue now naturally prefers the forward **IN→OUT** reading.
+
+For p8 specifically, its source-selected first black word is `[27,9,16]` with:
 
 ```text
-p57 center1
- -> p1
- -> center H = UP
- -> upper infinity
- -> 8
- -> p8.
+length  = 3
+SUM     = 23 = IN
+PRODUCT = 2  = OUT.
 ```
 
-The `∞ -> 8` step is an interpretation, not a numeric property encoded by the JPEG. Its interest is that **p8 was already independently selected and highly structured before this route**: its red heading reconstructs the full DH23 state and its first black word is a manuscript-unique `[e,p,K]` descriptor.
-
-## Exact opening-raster control
-
-The ornament placement is not inferred from typography. In the original 2400×3600 source images:
-
-- p0 = `resources/liber-primus/17.jpg`
-- p1 = `resources/liber-primus/18.jpg`
-- p2 = `resources/liber-primus/19.jpg`.
-
-At grayscale threshold125 in the fixed central strip, the upper ornament bounding boxes are:
+Therefore the established chapter consumer is:
 
 ```text
-p0: x1132..1245, y618..657, 989 dark pixels
-p1: x1132..1246, y618..658, 966 dark pixels
-p2: x1132..1246, y618..658, 966 dark pixels
+p8 OUT2 -> the chapter with IN2 -> p27.
 ```
 
-P1 and p2's complete fixed upper crop `x1100..1279, y600..669` is **pixel-identical in original RGB**.
+A previously explored direct `OUT2 -> physical p2` reading is a **rejected rival**: it ignores the already-defined chapter address type. Physical p2 does have 201 runes with center rune `N`, but that observation does not repair the type mismatch and is not retained as a navigation claim.
 
-All three lower ornaments have the same threshold bounding box:
+## Independent p57 → p1 → p8 entry remains viable
+
+P57's terminal ornament onion ends `[14,8,1]`. Under the separately provisional final-center page-direction reading, center1 selects physical p1 before p1 content is examined.
+
+P1's exact center pair is left/right `[6,7]`; under the pre-existing upright/right source orientation:
 
 ```text
-x1132..1246, y2943..2983, 969 dark pixels,
+H(right,left) = H(7,6) = [1,13] = UP.
 ```
 
-and the complete fixed lower crop `x1100..1279, y2925..3004` is **pixel-identical across p0, p1 and p2**.
-
-Thus `UP` really distinguishes one member of a repeated upper/lower ornament pair; it is not selecting an analyst-drawn region.
-
-The source geometry also prevents overstating the clue: the infinity ornament is shared opening-page decoration, not unique to p1. P1's contribution is the independently recovered directional word `UP`.
-
-## Downstream p8 gives a prospective return to p2
-
-The existing p8 red-state circuit defines the immediately following first black word as the chapter transition object. Its exact GP29 values are
+The original p0–p2 opening pages each carry matched upper/lower infinity ornaments. On p1 the local word `UP` therefore has a literal visual receiver:
 
 ```text
-[27,9,16].
+UP -> upper ∞ -> 8 -> p8.
 ```
 
-Its source-native descriptors are
+The `∞ -> 8` reading remains interpretive, but it lands on an independently structured chapter receiver. A second, algebraically distinct interpretation of the same p1 center also converges on p8:
 
 ```text
-length  = 3 = e
-SUM     = 23 = p = IN
-PRODUCT = 2 = K = OUT.
+[1,13] = Q^18 = THE WAY / exponent MAP
+ -> DIRECTION29
+ -> [0,23] = HELLO / ROAD
+ -> ROAD23 -> p23
+ -> five dots -> p5
+ -> eight curls -> p8.
 ```
 
-That complete `(3,23,2)` descriptor is manuscript-unique among complete three-rune words under the existing census. Consuming the already-defined OUT field as a page direction gives a prospective receiver:
+The two p1→p8 channels share the starting state and broad numbers-as-direction convention, so they are not statistically independent. They do use distinct consumers—opening-page art versus Q/signed-source/visual itinerary—and converge on the same already-selective p8 state chapter.
 
-```text
-p8 -> OUT2 -> physical p2.
-```
+## Original opening-raster control
 
-Only after fixing p2 this way, inspect its rune stream. P2 has **201 runes**, hence a single exact center rune:
+In original 2400×3600 sources `17.jpg`–`19.jpg`:
 
-```text
-p2 center position100 = GP29 9 = N.
-```
+- p1 and p2's complete upper ornament crop `x1100..1279, y600..669` is pixel-identical in original RGB;
+- all three p0–p2 lower ornament crops `x1100..1279, y2925..3004` are pixel-identical;
+- at grayscale threshold125, p1/p2 upper ornament bounding box is `x1132..1246, y618..658` with 966 dark pixels;
+- all three lower ornaments have `x1132..1246, y2943..2983` with 969 dark pixels.
 
-The same physical page carries the same upper/lower infinity pair. A second bounded visual reading is therefore:
-
-```text
-N -> north/upper infinity -> ∞ -> 8 -> p8.
-```
-
-This closes a compact source-visible loop:
-
-```text
-p8
- -> first-black OUT2
- -> p2
- -> exact center N
- -> north infinity
- -> 8
- -> p8.
-```
-
-P2's center `N` is **not manuscript-unique**: other odd pages also have center N. The point is receiver ordering, not rarity—p2 is selected first by p8's frozen OUT2 and only then yields a spatial instruction matching its own art.
-
-## Why this is more useful than the three-bar-cross count
-
-P1's `UP` can also select its upright three-bar cross and hence suggest `3 -> p3`. That route is retained as a secondary art interpretation, but it requires choosing which visible object the word `UP` modifies and then counting bars.
-
-The infinity route has a stronger local syntax:
-
-1. p1 visibly has a **paired upper/lower** object;
-2. `UP` directly resolves that pair;
-3. the selected object's conventional glyph is visually a sideways **8**;
-4. p8 independently carries an unusually selective state packet;
-5. p8's established OUT2 prospectively sends the path back into the same opening art system;
-6. p2's single center rune `N` again selects the upper member of the same pair.
-
-This does not prove authorship, but it yields an executable loop rather than a one-off resemblance.
-
-## Controls and rejected readings
-
-- The exact p1 center result is orientation-sensitive. If the H operand order is allowed to float on all 23 even pages, four of 46 page/orientation presentations reach some ROAD23 coordinate after the Q/DIRECTION29 stride: p0 reversed, p1 source-oriented, p18 reversed and p47 reversed. Therefore ROAD uniqueness depends on the pre-existing upright/right source orientation.
-- The full p1 center-out H transform begins `UP` but is nonprose; `UP` is local state/instruction evidence, not a body plaintext prefix.
-- The exact historical 2014 14-column permutation and bottom-to-top column read are also nonprose on p1.
-- P2's center is **N=9**. An initial manual array glance briefly suggested X; the exact indexed census rejects that and no X-based interpretation is retained.
+Thus `UP` truly chooses one member of a repeated upper/lower object pair. The ornament is opening-page decoration rather than a p1-unique glyph; selectivity comes from the prospectively recovered p1 center state.
 
 ## Evidence boundary
 
 **Exact/source-fixed or independently established:**
 
-- p57 circumference onion `[14,8,1]`;
-- p1 center `H(right,left)=[1,13]=UP`, unique in the frozen orientation across 23 even pages;
-- original p0–p2 upper/lower ornament locations and raster identities stated above;
-- p8 first black word `[27,9,16]` with `SUM=23`, `PRODUCT=2`, and the previously established `IN=p -> OUT=K` chapter role;
-- p2 rune count201 and exact center rune `9=N`;
-- p8's independently published DH-state closure.
+- p57 plaintext and terminal onion `[14,8,1]`;
+- recursive outer-letter stripping of `DIUINITY` yields `IUINIT -> UINI -> IN`;
+- existing chapter graph uses first-black SUM as IN and PRODUCT as OUT and has the exact reverse operator-order rival;
+- p8 first black is `[27,9,16]`, SUM23/PRODUCT2, and chapter OUT2 addresses p27 via IN2;
+- p1 center `H(right,left)=[1,13]=UP`, unique under the frozen orientation across the 23 even nonempty pages;
+- original opening-page upper/lower ornament geometry above;
+- independent p8 DH-state structure.
 
 **Interpretive/provisional:**
 
+- reading “EMERGE” specifically as the word OUT;
+- using that solved-text pair as authorial confirmation of the chapter IN→OUT graph;
 - p57 final center1 as page1;
-- H as the intended p1 center opcode;
-- `UP` and `N` as spatial directions acting on the opening ornament pair;
-- `∞` as the numeral8/page8 instruction;
-- p8 OUT2 as physical page2 under the authenticated numbers-as-direction grammar.
+- `UP -> upper infinity -> 8 -> p8`;
+- Q/ROAD and p23→p5→p8 as an intended alternative route rather than structural coincidence.
 
-These assumptions are simple and source-visible, but they remain a solve-path hypothesis until a downstream body operation or untouched prediction makes the path cryptographically decisive.
+The direct p8 OUT2→physical-p2 branch is rejected and should not be used.
 
 ## Reproduction
 
-The numeric assertions and the reversed-orientation ROAD control are in:
+Numeric checks and orientation controls live in:
 
 ```
 node sims/lp2_p1_center_h_up_sft.cjs
 ```
 
-The original opening-page raster coordinates can be checked directly in `resources/liber-primus/17.jpg`–`19.jpg`. The p1 center/Q/ROAD SFT passed Windows/Node22 Actions run **46151531063** before the p8/p2 assertions were added; rerun the current SFT after this extension.
+The chapter graph's full finite controls are in the existing chapter-rubric reproducer referenced by [the chapter navigation report](lp2-chapter-rubric-sum-product-navigation.md).
 
 Related evidence:
 
+- [chapter SUM→PRODUCT navigation](lp2-chapter-rubric-sum-product-navigation.md)
 - [p57 circumference onion](lp2-p57-dot-circumference-onion.md)
-- [p1 center MAP/DIRECTION29/ROAD23 route](lp2-p57-center1-p1-h-up-cross-p3-bridge.md)
-- [opening cross geometry](lp2-opening-cross-geometry-and-reversal-gate.md)
+- [p1 center / Q / ROAD23 route](lp2-p57-center1-p1-h-up-cross-p3-bridge.md)
 - [p8 red H state circuit](lp2-p8-red-h-state-circuit.md)
 - [p23→p5→p8 visual navigation](lp2-p23-p5-p8-visual-dh-navigation.md)
