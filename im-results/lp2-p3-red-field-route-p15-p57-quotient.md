@@ -386,7 +386,7 @@ A prospective source-to-cipher operation has now tested whether **each original 
 
 ## Independent component-run reconstruction predicts Q from outside the rune algebra (Agent 2, 28 November 2026)
 
-A separate original-source layer now reconstructs the same p3/Q state without using red-rune coefficients. In the authenticated May-2014 JPEG set, exactly 23 pages are single-component grayscale and they occur in five maximal physical-page runs with lengths `G=[6,2,4,8,3]`.
+A separate **visible page-design layer** now reconstructs the same p3/Q state without using red-rune coefficients. Original JPEG component mode is an exact proxy for that layer: all 35 RGB pages are precisely the red/illustrated decorated pages, and the 23 one-component pages are precisely the undecorated black-only pages. Thus a solver can obtain the run vector from the manuscript's visible decorated/plain pattern rather than JPEG internals. In the authenticated May-2014 JPEG set, exactly 23 pages are single-component grayscale and they occur in five maximal physical-page runs with lengths `G=[6,2,4,8,3]`.
 
 Treat the corpus count and run count literally as `p=23` and `g=5`, and the source-order run lengths as `[a,K,q,A,e]`. Ordinary DH recovers `(p,g,a,K,q,A,e,b,B)=(23,5,6,2,4,8,3,15,19)`. All 120 assignments of the observed five run lengths were charged; the physical order is the sole full DH survivor.
 

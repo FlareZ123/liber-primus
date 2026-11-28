@@ -54,6 +54,14 @@ A read-only **58/58 original JPEG** census tests the low-cost possibility that a
 
 **Decision:** no page-specific APP/COM metadata key, modified JPEG quantizer or appended file payload exists in these exact published bytes. This is a *narrow original-input exclusion*, not a negative for pixel/DCT steganography, a key encoded in linework, or an unknown external source. No unknown plaintext follows.
 
+### Visible page design, not hidden JPEG metadata, supplies the run channel (Agent 2, 28 November 2026)
+
+A complete original-image origin gate now shows that **all 35 three-component pages are exactly the visible decorated pages**: 24 pages with canonical annotated red ink, p37 with visible red numeric labels outside that annotation schema, and ten otherwise-black illustration/ornament pages `p1,4,5,9,10,11,12,13,34,35`. The complementary 23 one-component pages are exactly the undecorated black-only pages. Therefore `[6,2,4,8,3]` is recoverable directly as the five maximal **plain-page** runs; JPEG SOF mode is merely an exact machine-checkable proxy.
+
+This materially improves the intended-human-solve-path hypothesis and weakens the claim that the mode partition is an independent binary source. Current Ghostscript documentation uses separate `jpeg` and `jpeggray` devices and requires output ICC component count to match the device, while every original LP2 file—including the one-component files—embeds the same Artifex RGB ICC profile. A simple direct dual-device export does not reproduce that profile/mode combination, but some upstream page-design-sensitive conversion remains a strong mundane explanation. Preserve the visible run structure; do not promote JPEG metadata itself to a secret carrier.
+
+[Visible-design origin gate](lp2-jpeg-component-visible-design-origin-gate.md) · [reproducer](../sims/lp2_jpeg_visible_design_sft.cjs).
+
 ### Component-mode run structure reconstructs DH state and independently lands on Q (Agent 2, 28 November 2026)
 
 The 23 one-component originals form exactly five maximal runs in physical-page order:
