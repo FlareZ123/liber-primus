@@ -121,7 +121,32 @@ const alternateHeldOut=heldOut.map(([tag,want])=>{
   return {tag,want,have,words:indices.map(i=>words[i]),indices};
 });
 A.deepEqual(alternateHeldOut.map(x=>x.have),[7,12,10]);
-A.ok(alternateHeldOut.every(x=>x.want!==x.have));
+A.ok(alternateHeldOut.every(x=>x.want!==x.have()));
+// Clock/orientation rival: preserve each held-out original red-span
+// multiset, vary only read direction and circular starting rune. This
+// entire finite control fixes Q, p3 polynomial, 2016 words and targets.
+function readPresentations(tag,target){
+  const [pg,st]=tag.slice(1).split('@').map(Number);
+  const source=span(pg,st).ix,views=[];
+  for(const reversed of [false,true]){
+    const base=reversed?source.slice().reverse():source;
+    for(let start=0;start<base.length;start++){
+      const ix=base.map((_,j)=>base[(j+start)%base.length]);
+      const pair=mul(Q,evalPoly(ix));
+      const L=lengths[pair[0]]+lengths[pair[1]];
+      if(L===target)views.push({reversed,start,pair});
+    }
+  }
+  return {tag,total:2*source.length,accepted:views,
+    count:views.length,nonreversed:views.filter(x=>!x.reversed).length};
+}
+const heldOrientations=heldOut.map(([tag,target])=>readPresentations(tag,target));
+A.deepEqual(heldOrientations.map(x=>x.count),[3,1,2]);
+A.deepEqual(heldOrientations.map(x=>x.nonreversed),[2,1,1]);
+A.equal(heldOrientations.reduce((p,x)=>p*x.count,1),6);
+A.equal(heldOrientations.reduce((p,x)=>p*x.total,1),3240);
+A.ok(heldOrientations.every(x=>x.accepted.some(y=>!y.reversed&&y.start===0)));
+
 
 A.deepEqual(records.filter(x=>readout(Q,x).word_rune_len===x.len).map(x=>x.tag),typed.map(x=>x[0]));
 // Exact counterfactual signed-word rearrangement control, retaining the
@@ -181,6 +206,7 @@ console.log(JSON.stringify({
  selected:typed.map(([tag,n])=>({tag,original_len:n,...readout(Q,by(tag))})),
  chain:chain.map(([a,b,n])=>({from:a,to:b,receiver_len:n,...readout(Q,by(a))})),
  quadratic_factor_rivals:{factorRelations,alternateHeldOut},
+ orientation_control:{heldOrientations,all_triplet_presentations:3240,valid_length_triplets:6},
  exhaustive841:{survivors,heldOutThreeSurvivors:heldSurvivors,
     heldOutThree:heldOut,all18_self_histogram:hist,any_four_or_more:hist.slice(4).reduce((s,x)=>s+x,0)},
  matrix_word_fixed_shuffle:{heldOutThreeRate:'31/11385',fourTypedRate:'7/20700',
