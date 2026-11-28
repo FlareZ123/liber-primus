@@ -127,6 +127,29 @@ with only one small label charge at the second H output, resolved by the standar
 
 This is the strongest version of the new result because it replaces the ad hoc-looking formulas `K=g-e` and `b-K=13` with an operation already independently motivated in the manuscript.
 
+## Independent state packets select p28 line6 without literal DH
+
+Once the complete state above is reconstructed from p23–26 plus p57, it makes a concrete prediction back onto the untouched line structure.
+
+Scan all **594** physical rune lines of unknown p0–p55. Split only at the printed hyphen/period fragment boundaries and apply the same fixed outer-`H` operation to each fragment's endpoint pair. Select a line only if its fragment outputs include both:
+
+```
+[b,K] = [15,2]
+[A,B] = [8,19]
+```
+
+Do **not** require the page number, line number, fragment count, literal letters `DH`, or the modulus value23 during this selection.
+
+Exactly **one** physical line survives: **p28 line6**. Its complete fragment-H packet is:
+
+```
+[15,2] [14,4] [12,12] [23,12] [8,19]
+```
+
+so the independently recovered state not only points to p28 but lands on the exact source line that visibly begins `DH`; the same line then exposes `p=23` in its fourth fragment packet as a further held value.
+
+Chronologically this is retrospective validation because p28 line6 was already known when the mayfly reconstruction was noticed. It is nevertheless a strict cross-object holdout: the selector uses only state values recovered outside p28 and a previously fixed operation, and the full 594-line scan has one match.
+
 ## Independent full-state reconstruction without reading p28
 
 The count triangle can now be used as a finite **independent state-recovery gate** when combined only with source objects outside p28.
