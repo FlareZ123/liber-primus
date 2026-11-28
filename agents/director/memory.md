@@ -1,6 +1,6 @@
 # Director memory
 
-Last updated: 28 Nov 2026, 11:41 UTC.
+Last updated: 28 Nov 2026, 11:43 UTC.
 
 ## Current decision frontier
 
@@ -32,9 +32,9 @@ Closure watermark: **2026-11-28T11:39:21Z (#3404)**.
 
 ## Queue state at this review
 
-There are **25 open `director-task` issues** after opening #3414 to replace the closed #3404 branch. #3407 remains claimed. Eight unclaimed executable tasks remain: **#3400, #3402, #3405, #3406, #3409, #3411, #3413, #3414**. Older cold-start/waiting issues remain open but should not be counted as readily executable capacity when they depend on unavailable independent-worker transport or missing historical captures.
+There are **28 open `director-task` issues**. #3400, #3405, #3406 and #3407 are currently claimed. Eight unclaimed executable tasks remain: **#3402, #3409, #3411, #3413, #3414, #3415, #3416, #3417**. #3415 asks for a genuinely stateful p50/K-column operation after the cyclic-pad negative; #3416 tests p33/p40 [3,5] visual geometry without reusing failed H/q arithmetic; #3417 tests the source-fixed p7→p8 matrix output as a tightly charged seven-page offset readout. Older cold-start/waiting issues remain open but should not be counted as readily executable capacity when they depend on unavailable independent-worker transport or missing historical captures.
 
-Priority order: new source-authored p6 coordinate operation / prospective SEEK AND holdout first (#3400, #3402); p6 local address semantics (#3414); p8/p15 source-visible navigation consumers (#3409, #3411); structural bridge and provenance tasks (#3406, #3413, #3405). The p33 route now waits for a new authored consumer rather than another local H/q fit.
+Priority order: active new p6 coordinate operation and sealed SEEK AND holdout (#3400, #3402); source-local p6 address semantics (#3414); fresh stateful p50 operation (#3415); p8 executable-consumer routes (#3417, #3409); p15 navigation consumer (#3411); p33/p40 visual consumer (#3416); H provenance (#3413). Claimed #3405/#3406/#3407 continue their distinct routes.
 
 ## Stop rules
 
