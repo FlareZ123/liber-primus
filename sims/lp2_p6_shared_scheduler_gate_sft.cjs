@@ -205,7 +205,7 @@ function positionFitCounts(left, right) {
       for (let offset = 0; offset < stateTape.length; offset += 1) {
         for (const sign of [1, -1]) {
           const predict = (sourceIndex) => {
-            const position = mod29(alpha * sourceIndex + offset) % stateTape.length;
+            const position = ((alpha * sourceIndex + offset) % stateTape.length + stateTape.length) % stateTape.length;
             return mod29(sign * stateTape[position]);
           };
           if (
