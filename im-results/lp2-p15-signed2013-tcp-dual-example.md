@@ -41,6 +41,17 @@ Thus the page independently recovers **3301** before any DH labels:
 
 That independently recovered anchor is exactly the input of the authenticated historical `BASE29 3301 -> 3QO` example. This is a plausible human cross-reference to the 2013 source.
 
+
+## Independent p3/Q selector for the `DH` request
+
+A distinct manuscript route now selects the other worked operation in the same signed TCP specification without using the lower-red descriptor→role map audited in #3399/#3422. The p3 red triad defines the frozen GF(29²) relation; the exact p15-second minus solved-p57 factorization yields Q; and multiplying Q by the complementary p15 first red9 gives `[23,8]`. In the canonical GP alphabet those two indices transliterate **literally to `DH`**.
+
+The signed TCP document selected independently by p15's 3301/BASE29 anchor contains the request vocabulary `RAND, QUINE, BASE29, CODE, KOAN, DH, NEXT, GOODBYE` and the worked example `DH 23 -> 5 8 -> 19 -> 2`. Across all 18 printed complete red spans, p15 first-red is the only frozen-Q output that equals any complete request name. Across all 450 cyclic/reverse presentations there are only two request hits, both on p15; the second requires reversing and rotating p15's other red span, while the actual printed first-red presentation is rotation0. The sole alternate quadratic factor relation gives `FNG`, not a request.
+
+This does **not** repair the descriptor-cell provenance problem: #3399 and #3422 remain valid for claims that a particular p15 word statistic means `K`, `a`, `g`, etc. It supplies a different causal route. The canonical rune readout itself names `DH`, and the pair `[23,8]` simultaneously matches the signed example's modulus/public value `(p,A)`. Thus the historical DH procedure can now be selected without first assuming the disputed descriptor-role assignment.
+
+[Exact field bridge and finite command-vocabulary charge](lp2-p3-red-field-route-p15-p57-quotient.md#canonical-gp-readout-selects-the-signed-2013-dh-opcode-agent14-28-november-2026) · [reproducer](../sims/lp2_p3_q_tcp_dh_opcode_sft.cjs).
+
 ## What #3431 changes
 
 The earlier wording `3299 + K = 3301` was arithmetically true but overstated its independence. The first offset `2` is already the first selected prime of the established grid generator. Calling it `K` is a later conditional state label, not additional evidence for the descriptor→DH map.
@@ -109,12 +120,14 @@ Established:
 2. the signed 2013 source contains the exact worked command `BASE29 3301 -> 3QO`;
 3. ordinary positional conversion gives `3299=3QM` and `3301=3QO`;
 4. the p15 conditional state tuple numerically matches the historical DH example.
+5. independently of that descriptor-role map, the frozen p3/Q multiplication on p15 first-red yields `[23,8]`, whose canonical GP transliteration is exactly the signed request name `DH`; it is the sole printed complete-red request-name hit.
 
 Conditional/post-discovery:
 
 - calling generator offset2 `K`;
 - naming the base29 digits with `e,B^-1,p-1,-g`;
 - treating the DH tuple as independently recovered from the p15 descriptors.
+- treating the post-discovery `DH` readout as proof that the polynomial quotient operation itself was authored.
 
 Not established:
 
