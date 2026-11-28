@@ -548,6 +548,13 @@ const p21Line6Products = [
 assert.deepEqual(p21Line6.map((f) => f.length), p21Line6Lengths);
 assert.deepEqual(p21Line6.map((f) => f.sum), p21Line6Sums);
 assert.deepEqual(p21Line6.map((f) => f.product), p21Line6Products);
+const p21LineRuneCount = p21Line6Lengths.reduce((a, b) => a + b, 0);
+const p21LineGp0 = p21Line6Sums.reduce((a, b) => a + b, 0) % 29;
+const p21LineProduct = p21Line6Products.reduce((a, b) => (a * b) % 29, 1);
+assert.equal(p21Line6.length, state.a);
+assert.equal(p21LineRuneCount, state.p - 1);
+assert.equal(p21LineGp0, mod29(-state.g));
+assert.equal(p21LineProduct, Ainv);
 assert.ok(p21Line6.every((f) => f.complete && !f.continuation && !f.continues));
 
 const p21LineClass = printedLines.filter(({ fragments }) =>
@@ -730,6 +737,10 @@ console.log(JSON.stringify({
           sums: p21Line6Sums,
           products: p21Line6Products,
           fullHits: p21LineFullHits.map(({ page, line }) => [page, line]),
+          groupCount: p21Line6.length,
+          runeCount: p21LineRuneCount,
+          gp0: p21LineGp0,
+          product: p21LineProduct,
         },
       },
     },
