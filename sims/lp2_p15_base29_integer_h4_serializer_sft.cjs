@@ -239,6 +239,7 @@ function evaluateReceiver(corpus, words, start, key, sign, dictionary) {
 
 function solve() {
   const corpus = loadJson('resources/liber-primus/lp2-corpus.json');
+  const ink = loadJson('resources/liber-primus/lp2-ink-annotations.json');
   const transcription = fs.readFileSync(
     path.join(ROOT, 'resources/liber-primus/lp2-transcription.txt'),
     'utf8',
@@ -284,6 +285,51 @@ function solve() {
     0,
   );
   assert(pageCountPayloadLength === 6, 'p8-p11 count payload length');
+
+  const countByPage = new Map(
+    corpus.pages
+      .filter((p) => p.page >= 0 && p.page <= 55)
+      .map((p) => [p.page, p.runic_count]),
+  );
+  const windowMap = [];
+  for (let start = 0; start <= 52; start++) {
+    const counts = [0, 1, 2, 3].map((d) => countByPage.get(start + d));
+    assert(counts.every((x) => Number.isInteger(x)), 'missing count window ' + start);
+    const transformed = h4(counts);
+    const payload = transformed.reduce((sum, n) => sum + base29Digits(n).length, 0);
+    windowMap.push({ start, payload, counts, transformed });
+  }
+  const payloadByStart = new Map(windowMap.map((x) => [x.start, x.payload]));
+  const twoCycles = [];
+  for (const row of windowMap) {
+    const back = payloadByStart.get(row.payload);
+    if (back === row.start && row.start < row.payload) {
+      twoCycles.push([row.start, row.payload]);
+    }
+  }
+  const fixedPoints = windowMap.filter((x) => x.payload === x.start).map((x) => x.start);
+  assert(JSON.stringify(twoCycles) === JSON.stringify([[6, 8]]), 'four-page count 2-cycle');
+  assert(JSON.stringify(fixedPoints) === JSON.stringify([7]), 'four-page count fixed point');
+
+  const redPages = new Set(
+    ink.pages
+      .filter((p) => p.page >= 0 && p.page <= 55 && (p.red_spans || []).length > 0)
+      .map((p) => p.page),
+  );
+  const redTriples = [];
+  for (let start = 0; start <= 53; start++) {
+    if ([start, start + 1, start + 2].every((p) => redPages.has(p))) {
+      redTriples.push([start, start + 1, start + 2]);
+    }
+  }
+  assert(JSON.stringify(redTriples) === JSON.stringify([[6, 7, 8]]), 'unique consecutive red triple');
+
+  const p6 = corpus.pages.find((p) => p.page === 6);
+  assert(p6 && p6.runic_count === 196 && base29String(196) === '6M', 'p6 6M count');
+  const remainder22 = corpus.pages
+    .filter((p) => p.page >= 0 && p.page <= 55 && p.runic_count % 29 === 22)
+    .map((p) => p.page);
+  assert(JSON.stringify(remainder22) === JSON.stringify([6]), 'unique p-1 page-count remainder');
 
   const nativeWords = (lp1.match(/[A-Z]+/g) || [])
     .map((word) => encode(word))
@@ -349,6 +395,12 @@ function solve() {
       integer_h: pageCountH,
       base29: pageCountHBase29,
       base29_payload_digits: pageCountPayloadLength,
+      four_page_payload_map: windowMap.map((x) => [x.start, x.payload]),
+      unique_two_cycle: twoCycles,
+      fixed_points: fixedPoints,
+      unique_consecutive_red_triple: redTriples,
+      p6_count_base29: base29String(196),
+      pages_with_remainder_p_minus_1: remainder22,
     },
     fixed_width_keys: {
       raw: keys.raw,
