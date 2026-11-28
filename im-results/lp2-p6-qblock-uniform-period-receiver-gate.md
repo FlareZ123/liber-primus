@@ -79,6 +79,20 @@ R3-R1 (signed)    =[0,12,12,-12]=D
 
 The *signed* remainder difference is crucial: it can be negative even though both residues are 0..28. The resulting `29*Q+D` is a full address displacement, **not** merely the earlier mod29 shell transition or GP0 difference. It is independent of the ciphertext runes *inside* the selected receivers.
 
+
+### Independent arity-only test, without the first-block residue shell
+
+An important stronger formulation does **not** assume the previously published `S1` or its modular starting residues at all. Take **every** consecutive complete-group packet of scheduled length on each first-block page: **[3,10,10,16]** source candidates. On corresponding second-block pages, enumerate all complete-group candidates of arities [4,6,5,4]: **[14,8,11,16]** destinations. The single literal p6 integer vector `T=[116,-75,128,46]` makes **exactly one complete-group pair per lane**:
+
+```text
+p32 start30  -> p37 start146
+p33 start132 -> p38 start57
+p34 start4   -> p39 start132
+p35 start25  -> p40 start71
+```
+
+In other words **the literal packet + p6 arities + original printed group boundaries select all eight starts without H4 start residues, punctuation, or plaintext/key input**. This reduces dependence on prior q-block start-shell work. The p32/p40 printed periods and the earlier modular `H4` shells remain independent structural cross-checks, rather than necessary inputs.
+
 ## Frozen punctuation cross-check: one uniform rule independently chooses both ambiguous starts
 
 A second source-independent, physical-manuscript tie-break exists. For each page, after restricting to the scheduled complete-group arity and block residue, choose a sole candidate; if there are multiple, choose the *only candidate ending at a literal printed full stop*; otherwise leave the page unresolved. This gate uses no target runes and no candidate name. It returns exactly the same eight starts:
@@ -115,6 +129,9 @@ D=[0,12,12,-12]
 Y=[146,57,132,71]
 ```
 
+
+**Critical stress test without the inherited residue prior:** Retain all 366 × 216 = 79,056 distinct `Q,D` packet combinations, but allow *every* complete-group source candidate of the four first-block arities, not only their `H4` start residues. **137 packet combinations** have at least one complete eight-page paired receiver; they give **207 labeled complete receiver-pair combinations**, **198 distinct physical eight-page pairings**, and **82 packet combinations with exactly one pairing**. Hence the literal packet remains uniquely identifying *when fixed*, but the broader p6 source-field family no longer picks it uniquely without the first-block residue structure. This is a concrete nonidentifiability limit, not a new likelihood ratio or evidence of plaintext.
+
 A second, different control locks this exact relation and shifts the `4+1+4` page shape to *every* possible physical start, 0..47. Each shift must supply all four source-residue/arity candidates and all four exact predicted destination complete-group packets. **Only start32 succeeds** among 48 shifts. This includes the rune-free p50 panel and does not score language.
 
 For the *older independent uniform period gate*, hold the published `S1` and source-visible **modular** edge transition fixed, then shift the eight-page shape over the same 48 physical starts. The number of deterministically resolved pages has histogram (0 through 8) `[6,11,13,10,6,0,1,0,1]`; only start32 gives 8/8. Charging broader edge permutations still leaves **5 / 192** distinct numeric edge packets with four deterministically selected block3 receivers. The integer-transport family resolves that specific direction/order ambiguity **within its charged arithmetic family**, but only conditionally, because the absolute-address opcode was post-selected.
@@ -130,7 +147,7 @@ node sims/lp2_p6_qblock_integer_address_transport_sft.cjs
 node sims/lp2_p6_eightpage_period_tiebreak_sft.cjs
 ```
 
-The integer SFT derives both packets directly from p6's printed title, admits both p32 candidate starts, checks the full arity/absolute-address prediction against original group boundaries, enumerates the complete 158,112-member visual charge, and applies the frozen formula across all 48 physical shifts. The period SFT reconstructs trailing punctuation and the modular shells, eight candidate pools, and the 192-edge-family counterexample. Neither consumes the signed-source target word values or the key vectors fitted from them.
+The integer SFT derives both packets directly from p6's printed title, first checks the unique arity-only cross-block lane pairs without the old residue shell, then admits both p32 residue candidates, checks the full arity/absolute-address prediction against original group boundaries, enumerates the complete 158,112-member shell-conditioned visual charge and 137/207/198 unrestricted visual-family control, and applies the frozen formula across all 48 physical shifts. The period SFT reconstructs trailing punctuation and the modular shells, eight candidate pools, and the 192-edge-family counterexample. Neither consumes the signed-source target word values or the key vectors fitted from them.
 
 **What materially changes:** an eight-page *full-integer* receiver address law now jointly selects p32 and p40 and reproduces p37–p40 without their earlier page-specific diagnostics. It is a stronger joint structural mechanism than any one scalar key-sum correspondence and avoids reusing fitted plaintext. The literal Fehu and final title rune participate in a complete, fixed-width, four-lane operation.
 

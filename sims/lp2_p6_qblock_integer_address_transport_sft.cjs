@@ -118,6 +118,19 @@ assert.deepEqual(selected.Y.map(x=>Math.floor(x/29)),[5,1,4,2]);
 assert.deepEqual(selected.X.map(x=>x%29),[1,16,4,25]);
 assert.deepEqual(selected.Y.map(x=>x%29),[1,28,16,13]);
 
+
+const unrestrictedFirst=p1.map((page,i)=>candidates(page,L1[i]));
+const lanePairs=unrestrictedFirst.map((source,i)=>source.flatMap(x=>
+  pools3[i].filter(y=>y.start===x.start+Delta[i]).map(y=>[x.start,y.start])
+));
+assert.deepEqual(unrestrictedFirst.map(v=>v.length),[3,10,10,16]);
+assert.deepEqual(pools3.map(v=>v.length),[14,8,11,16]);
+assert.deepEqual(lanePairs,[
+  [[30,146]],[[132,57]],[[4,132]],[[25,71]]
+]);
+// Therefore the literal source-visible transport and p6's arities alone,
+// without first-block residue shells or punctuation, choose all eight starts.
+
 // Postdiscovery visual family: permute the p6 printed title lengths and
 // replace exactly one position with either sign of any of the balanced
 // H4 length outputs. For the rune residual, choose any of eleven printed
@@ -158,6 +171,30 @@ assert.deepEqual(charged,[{
   X:[30,132,4,25],Q:[4,-3,4,2],R:[0,12,12,-12],Y:[146,57,132,71]
 }]);
 
+
+// Remove the first-block H4 start-residue prior entirely. This audits how
+// strongly the *same broadly charged family* identifies the 8-page corridor
+// if only printed group arities are known (and no target source rune values).
+let broadConfigCount=0,broadSolutionCount=0,broadSingleCount=0;
+const broadPairs=new Set();
+for(const V of qVariants.values())
+for(const Z of rVariants.values()){
+  const lanes=unrestrictedFirst.map((source,i)=>source.flatMap(x=>
+    pools3[i].filter(y=>y.start===x.start+29*V[i]+Z[i])
+             .map(y=>[x.start,y.start])
+  ));
+  if(!lanes.every(x=>x.length))continue;
+  broadConfigCount++;
+  const n=lanes.reduce((acc,items)=>acc*items.length,1);
+  broadSolutionCount+=n;
+  if(n===1)broadSingleCount++;
+  for(const a of lanes[0])for(const b of lanes[1])
+  for(const c of lanes[2])for(const d of lanes[3])
+    broadPairs.add(JSON.stringify([a,b,c,d]));
+}
+assert.deepEqual([broadConfigCount,broadSolutionCount,broadSingleCount,broadPairs.size],
+                 [137,207,82,198]);
+
 // Shift the whole typed 4+gap+4 arrangement through all 48 admissible
 // physical starts. Require every first-block residue/arity and every
 // exact predicted second-block printed packet. Original p50 is empty.
@@ -182,9 +219,14 @@ console.log(JSON.stringify({
   status:"PASS",p6:{lengths,transformed,F,lastTitleRune:u,
     Q,R,Delta,block1Residues:R1,block1Arities:L1,block3Arities:L3},
   sourceOnlyCandidates:{block1:pools1.map(v=>v.map(x=>x.start)),
+    unrestrictedArityOnly:unrestrictedFirst.map(v=>v.length),
+    transportedPairsNoShell:lanePairs,
     block3:pools3.map(v=>v.map(x=>x.start)),selected:matches},
   visualFamily:{quotientPackets:qVariants.size,runePackets:rVariants.size,
-    charged:158112,solutions:charged},
+    charged:158112,solutions:charged,
+    unrestrictedNoStartShell:{viablePackets:broadConfigCount,
+      fullPairs:broadSolutionCount,singlePairPackets:broadSingleCount,
+      distinctPairs:broadPairs.size}},
   physicalShiftControl:{admissibleStarts:48,hits:shifted},
   inference:"Post-discovery structural compression, not authenticated key or plaintext"
 },null,2));
