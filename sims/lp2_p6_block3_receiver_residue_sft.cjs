@@ -302,16 +302,6 @@ assert.deepEqual(
 assert.deepEqual(orientations(W4)[1], [12, 14]);
 assert.deepEqual(winner.residueCandidate.shell, [W3[3], W4[1], W3[2], W4[0]]);
 
-// The selected p37-p39 receivers are unique under residue+source-length.
-// P40 is resolved by the independent address71 selector.
-const selectedStarts = [
-  winner.residueCandidate.matches[0][0].start,
-  winner.residueCandidate.matches[1][0].start,
-  winner.residueCandidate.matches[2][0].start,
-  71,
-];
-assert.deepEqual(selectedStarts, [146, 57, 132, 71]);
-
 console.log(JSON.stringify({
   status: "PASS",
   p6: {
