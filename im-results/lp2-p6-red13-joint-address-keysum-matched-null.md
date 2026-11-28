@@ -4,10 +4,12 @@
 
 ## Decision
 
-The original p6 page can now be read as two coupled 4/5/4 programs:
+The original p6 page can now be read as a 13-cell state transition. The original scan and source-exact ink census place a large red13 mark at each endpoint of the unique p6 four-word red span (offsets71 and82), with the exceptional large Fehu and the four-word red packet between those boundaries. This gives a first-party visual topology of **13-cell state -> p6 Fehu/title transform -> 13-cell state**.
+
+Numerically that topology is realized by two coupled 4/5/4 programs:
 
 1. an **address grid**, already reported, that serializes the 13 local receiver-ordinal deltas;
-2. a second **key-sum correction grid** that converts those deltas into one additive-key checksum per scheduled page.
+2. a **key-sum correction** induced by the intervening p6 fields, taking the first grid to a second 13-cell checksum state.
 
 The important new test does not grade either program only on the favored corridor. It charges the visible role/sign/orientation freedoms, crosses every authenticated 13-word source window with every physical 13-page interval, rebuilds receiver candidates from original LP2 groups, and then asks whether ciphertext GP0 minus the predicted key sum reproduces the candidate source GP0.
 
@@ -242,7 +244,7 @@ The result therefore establishes a **conditional checksum-level source/receiver 
 
 It still does not establish SEEK...OPENPGP as decrypted LP2 plaintext. The reason is chronology and model selection: both grid syntaxes were recognized after the corridor and checksum tapes were already visible in the research record. The charge measures how selective the frozen syntax is, not how many other syntaxes could have been invented.
 
-The remaining decisive gate is now narrower: derive the **ordered per-rune key coordinates** from an original clue or make a genuinely prospective prediction on a receiver not used to recognize these grids. The scalar page sums are no longer the main uncertainty.
+The remaining decision is now narrower but has **two** live models. One is the stronger decryption interpretation: derive the ordered per-rune key coordinates from an original clue. The other is a checksum/navigation interpretation in which the p6 bracket maps and verifies the authenticated source tail without claiming that the target-conditioned vectors C-P are an authored keystream. The most literal 56-law H-pair lift and every total-degree<=2 GF(29) coordinate law in (D,E,arity,position) fail all complete page keys, so the aggregate result does not automatically imply a rune-key serializer. A genuinely prospective receiver/checksum prediction can strengthen the second model; a source-selected ordered vector operation can distinguish the first. [Coordinate-lift gate](lp2-p6-grid-coordinate-lift-gate.md).
 
 ## Reproduction
 

@@ -26,9 +26,11 @@ A **double red13 bracket** requires a large red punctuation mark containing **13
 
 The physical p6 source does retain a rare *combined* packet of four printed word lengths `[4,1,4,2]` and 13-dot endpoints; the [original signed-source 11- and 13-word selector](lp2-p6-13word-palindromic-tail.md) retains its independently checked numeric equalities and word identities. But the 11/13 numeric bridge contributes **no standalone uniqueness evidence** because of the original p15 counterexample. Any claimed cumulative significance for independent p6+source signals must avoid counting this twice.
 
-There is still no source-typed, ordered GP29 serializer. Issue [#3382](lp2-p6-block1-preregistered-serializer-negative.md) independently froze 18 full p6-only additive keys on original p32–p35 before comparing authenticated source text: 0/18 matched one full proposed word. The p6/p15 cross-control makes one missing causal input more precise: **why does the p6 bracket mean a K=2 prepended source-tail schedule while p15's nearly identical 11/13 bracket does not?** An original operator or recipient clue must distinguish them *before* any plaintext fit.
+There is still no source-typed, ordered GP29 rune-key serializer. Issue [#3382](lp2-p6-block1-preregistered-serializer-negative.md) independently froze 18 full p6-only additive keys on original p32–p35 before comparing authenticated source text: 0/18 matched one full proposed word.
 
-The productive next test is to derive a held-out, original-visible **operation/receiver prediction from p6's uniquely four-word packet**, rather than regarding `11+2=13` as sufficient. Reported numbers above can be reproduced with:
+The missing causal distinction identified here is now partially resolved. The uniquely four-word p6 bracket supports a literal 4/5/4 receiver-address grid built from `H4([4,1,4,2])`, Fehu and the fixed 13-dot stencil; the full 3,072-member role/sign/orientation charge selects the source30/page30 placement, and a coupled p6 checksum transition leaves one numeric 13-lane source/receiver schedule. P15's three-word `[4,2,5]` control cannot instantiate that four-role H4 program. This does **not** turn the older 11/13 count into independent evidence; it supplies the operator-level distinction that count alone lacked. See [the grid serializer](lp2-p6-red13-grid-receiver-delta-serializer.md) and [whole-corridor matched null](lp2-p6-red13-joint-address-keysum-matched-null.md).
+
+The current control question has therefore moved on: distinguish a genuine ordered rune-key cipher from the now-concrete rival that p6 is an aggregate navigation/checksum layer. Reported census numbers above can be reproduced with:
 
 ```bash
 node sims/lp2_p6_red_span_internal_controls_sft.cjs
