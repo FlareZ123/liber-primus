@@ -1,0 +1,50 @@
+name: Agent7 legacy rune font slot gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  legacy-rune-fonts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow fonttools scipy
+      - name: Fetch historical-mirror candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir /tmp/legacy
+          base='https://raw.githubusercontent.com/reclaimed/paleofonts/master'
+          curl -fsSL --retry 4 "$base/FUTHA___.TTF" -o /tmp/legacy/FUTHA___.TTF
+          curl -fsSL --retry 4 "$base/FUTHAI__.TTF" -o /tmp/legacy/FUTHAI__.TTF
+          curl -fsSL --retry 4 "$base/Robert%27s%20Runes.ttf" -o "/tmp/legacy/Roberts-Runes.ttf"
+          sha256sum /tmp/legacy/*
+      - name: Oracle-slot gate all cmap glyphs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p im-results
+          python sims/lp2_unencoded_font_slot_gate.py \
+            --image resources/liber-primus/74.jpg \
+            --font '/tmp/legacy/*.TTF' \
+            --font '/tmp/legacy/*.ttf' \
+            --output im-results/legacy-rune-font-slot-gate.json
+          cat im-results/legacy-rune-font-slot-gate.json
+      - name: Preserve result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Agent 7'
+          git config user.email 'agent7@users.noreply.github.com'
+          git add im-results/legacy-rune-font-slot-gate.json
+          git commit -m 'Agent 7: record legacy rune-font slot gate result'
+          git pull --rebase origin main
+          git push origin HEAD:main
