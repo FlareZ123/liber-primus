@@ -36,6 +36,33 @@ Allowing b=0 or nonunit coefficients does **not** reduce either observed minimum
 The exact model has **native-positive sender and decoder controls**: original-length source windows drawn from independent English corpora are encoded with the explicit (13,3,−1) chain and fully recovered with the known key. A seeded 200-trial source-native window calibration and separate uniform-random-key controls additionally check whether fixed donor marginals can discriminate genuine corpus-sized plants from the original. The executable SFT prints their quantiles. No random-control result is an original plaintext.
 
 
+## Exact convex-mixture exclusion: even changing prose source cannot flatten the step register
+
+The preceding scan permits only **one fixed plaintext donor profile paired with one fixed key donor profile**. To rule out the trivial escape 'the author alternated between different books/genres' without guessing any segment boundaries, grant a **much larger, adversary-favorable class**: at every nonzero step, choose an arbitrary mixture of all **36 ordered plaintext/key source-profile pair distributions**. Their weights may be unequal and may change arbitrarily over time. Hold only the **single affine operator** `(a,b,sign)` and EA key convention fixed across the tested stream. The resulting complete-step distribution must lie inside the **convex hull** of the 36 independently frozen 28-bin circular-convolution vectors.
+
+Unlike fitting a few pairings, the complete convex hull can be excluded rigorously with a supporting-hyperplane certificate. For observed normalized histogram `t`, any mixture distribution `q`, and source sample size `N`, use the **Neyman weighted quadratic discrepancy**
+
+`J(q) = N ∑_(i=0..27) (q_i−t_i)^2/t_i`.
+
+This uses the *observed* proportions in its denominator, **not** the model-expected probabilities as in the earlier Pearson tables; do not numerically compare their raw values as if the statistics were identical. Every observed bin is nonzero. `J` is convex and its first-order inequality supplies a **global lower bound** for the entire convex hull: for any feasible trial `q`,
+
+`J(optimum) ≥ J(q) + N min_{j=1..36} [2 ∑_i (q_i−t_i)(vertex_(j,i)−q_i)/t_i]`.
+
+The reproducer uses deterministic exact-oracle Frank–Wolfe steps (100 iterations for each operator family), then records this dual lower bound with an additional 1e−8 subtraction for conservative floating tolerance. **The bound remains valid even without solver convergence**. The search checks all **1,344** fixed-operator families (`12 a ×28 b ×2 signs ×2 key-EA rules`) and both independently coded source profiles. The four original-target tests give:
+
+| Original source target | 29-rune→GP source spelling | N nonzero steps | **Certified minimum** Neyman J for any 36-pair mixture, any fixed affine operator | Best constructed attainable upper bound |
+| --- | --- | ---: | ---: | ---: |
+| Global p0–55 continuation (including cross-page steps) | Default | 12,869 | **135.62844114** | 135.70124180 |
+| Global p0–55 continuation | ING/IO aliases | 12,869 | **135.02925130** | 135.46300443 |
+| Only 12,901 within-physical-page transitions | Default | 12,815 | **136.31466559** | 136.45681107 |
+| Only within-page transitions | ING/IO aliases | 12,815 | **135.67415149** | 136.10051033 |
+
+The source-original **within-page** source sample has exactly **86** doublets and **12,815** nonzero differences; the global flattened version has the *same* 86 doublets plus **54 nonzero cross-page differences**. Its fixed raw nonzero histogram and both derived counts are asserted by the reproducible script. The result is robust to the natural alternative of resetting the predecessor state at physical page boundaries.
+
+**Decision:** every allowed source-mixture/affine-operator family misses the observed original nonzero transition proportions by *at least* Neyman J=**135.02925** even with arbitrary switches between the six language registers. The physical-pages-only version independently has minimum **135.67415**. For perspective, an ordinary fixed correct 28-bin multinomial model has discrepancy of order its **27** free-count degrees of freedom, subject to finite-sample and serial-dependence caveats; the present result is a **deterministic distance certificate**, not a claimed author-selection probability. A donor-independent ordinary-prose key chosen from these six profiles is therefore a low-priority inverse in the precisely defined chained rank28 sender. It does **not** reject changing affine coefficients, correlations between the actual plaintext and key, secret symbol relabelings, a different alphabet, a hidden-state encoder or altogether different cryptography.
+
+An independent JavaScript full-input calculation reproduced these four dual lower/upper intervals against the unmodified GitHub source profiles. The committed script independently recomputes the same certificate in Node22 and prints `convexHullBase`, `convexHullAlias`, `convexHullWithin`, and `convexHullWithinAlias`. The first two prior Windows CI runs predate this extended convex certificate; a new run of the extended committed script is required for that particular Windows CI check.
+
 ## Source-visible initial key: the actual 729 original opening runes, not a guessed book
 
 A second, more direct original-cipher attack uses **the original 729 runes of LP2 physical pp0–2** as the complete key source for the untouched p3–55 continuation, rather than fitting a hypothetical independent prose profile. The 729=27² grouping is visible in the manuscript; the key-transfer premise remains **not authored**. Only four fixed source/key-clock interpretations are considered: raw GP29 glyph modulo28 versus their chained consecutive difference (zero→0, otherwise difference−1); 729-periodic repetition versus a **causal 729-symbol lag** of the original ciphertext, with both key signs in each case. The first key symbol always comes from original position0. No crib, phase, pad, text source, target page, or alphabet permutation is selected after ciphertext inspection. The output is decoded across **all 12,227 original runes after page2**. The prefix pages only supply the proposed key and are not counted as recovered plaintext.
