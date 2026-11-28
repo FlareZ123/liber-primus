@@ -1,0 +1,24 @@
+name: Agent 50 source-fixed THOTH OutGuess original receiver
+on:
+  push:
+    paths:
+      - "sims/lp2_agent50_thoth_outguess_source_sft.py"
+      - ".github/workflows/agent50-thoth-source-outguess.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  thoth-p32-p55:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install source-original JPEG bitmap decoder dependency
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+      - name: Known signed-image positive and exact two THOTH-key originals
+        run: |
+          python3 sims/lp2_agent50_thoth_outguess_source_sft.py
