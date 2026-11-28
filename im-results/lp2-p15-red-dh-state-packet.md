@@ -43,6 +43,58 @@ lower W3    (g, g,    F)
 
 This is **not** a plaintext claim and the labels were recognized after the state was known. The important new fact is that the underlying relations are source-only, internally redundant, and unusually constrained before any DH names are attached.
 
+### The red packet independently closes the DH exchange
+
+The packet can be read in the reverse direction, without importing the historical DH tuple as target values.
+
+From the lower three words alone:
+
+```text
+(q,p-1,Kg) = (4,22,10)
+(K,a,g)    = (2, 6, 5)
+(g,g,F)    = (5, 5, 0)
+```
+
+the repeated/equational structure fixes
+
+```text
+K=2, a=6, g=5, q=4, F=0,
+K*g=10,
+p=22+1=23 (prime).
+```
+
+Now the top pair gives sums `11,8` with `11*8 = 1 mod29`. The DH equation itself selects which member is `A`:
+
+```text
+g^a mod p = 5^6 mod23 = 8 = A,
+11 = A^-1 mod29.
+```
+
+The second top word has product26. Its GP29 inverse is19:
+
+```text
+B = 26^-1 mod29 = 19.
+```
+
+This value is not merely name-compatible with the known tuple; it closes the shared secret:
+
+```text
+B^a mod p = 19^6 mod23 = 2 = K.
+```
+
+Finally solve the ordinary DH discrete log:
+
+```text
+g^b mod p = B
+5^b mod23 = 19
+b = 15.
+```
+
+The derived `b=15` then matches the **physical p15 page index**. The page number was not used to derive the exponent. Thus the five natural red-word descriptor rows recover the complete DH exchange `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`, plus `q=4,F=0`, with exact forward equations and a held-out page-index self-check.
+
+This is still a post-discovery interpretation of which elementary word statistic names which field. Its force comes from the simultaneous internal equalities, reciprocal pair, DH exponentiation checks and page-index consequence—not from the density of arbitrary state expressions in GP29.
+
+
 ## Source-only internal packet
 
 Forget the DH labels. Call the five descriptor triples `a,b,c,d,e`. Natural order satisfies all of:
@@ -158,6 +210,47 @@ products = [10,5,12,0]
 Thus the two uniquely paired red11 objects are not merely equal-length ornaments: **each one's native word-boundary pattern turns the other's raw eleven runes into a low-complexity packet in the same independently reconstructed DH23 state**.
 
 This is the main positive result of this invocation.
+
+## The red-word state predicts the red 3299 grid origin
+
+A second check reverses the direction of evidence and uses the numeric square without consulting its red coloring.
+
+The exact printed p15 grid is
+
+```text
+3258 3222 3152 3038
+3278 3299 3298 2838
+3288 3294 3296 2472
+4516 1206  708 1820
+```
+
+Reduce all cells modulo29 and apply the already established outside-in `H4` separately to each of the four physical rows and four physical columns.
+
+Use only red-word-derived fields `K=2, g=5, q=4, B^-1=26` as the prediction:
+
+- exactly one transformed **column** has tail `[g,Kg,qg]=[5,10,20]`;
+- exactly one transformed **row** starts with `g=5` and ends with `B^-1=26`.
+
+The selected column is physical column2 and the selected row is physical row2. Their unique intersection predicts **3299** as the distinguished grid cell. Only after this row/column selection is fixed do we consult the source image: 3299 is exactly the uniquely red printed numeral and the independently established Fibonacci-prime spiral origin.
+
+The selected cross is
+
+```text
+H4(row through 3299) = [5,1,14,26]
+H4(col through 3299) = [15,5,10,20].
+```
+
+The column is `[b,g,Kg,qg]`; the row gives a redundant `B=19` because both `14+5=19` and `26^-1=19 mod29`. The physical top row independently transforms to
+
+```text
+[17,12,23,3] = [K+b,aK,p,e],
+```
+
+supplying `p=23,e=3` and two further products already fixed by the red packet. The derived discrete-log exponent `b=15` also equals the physical page number.
+
+This is a genuine source-only prediction of an original visual feature from the rune-state packet, although the use of repository-canonical `H4` on the p15 square remains a cross-page hypothesis rather than an authenticated first-party opcode.
+
+Reproducer: `sims/lp2_p15_red_origin_h4_dh_state_sft.cjs`.
 
 ## A natural q-block key use was frozen before grading and fails
 
