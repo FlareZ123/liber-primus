@@ -194,6 +194,44 @@ assert.equal(redWords.length, 50);
 const predictedRed = redWords.filter((w) => w.descriptor[1] === 6 && w.descriptor[2] === 11);
 assert.deepEqual(predictedRed.map((w) => [w.page, w.spanStart, w.start, ...w.descriptor]), [[33, 91, 91, 3, 6, 11]]);
 
+// Charge the whole nine-chapter quadratic translation family.
+// The p54/p40 pair is the only equal-discriminant pair, hence the only nontrivial pure-translation pair.
+// Both orientations are admitted; only +q predicts a marked receiver.
+const chapterTranslationEdges = [];
+for (const from of chapterRecords) {
+  for (const to of chapterRecords) {
+    if (from.page === to.page) continue;
+    for (let shift = 0; shift < Q; shift++) {
+      const moved = translateCoefficients(from.descriptor[1], from.descriptor[2], shift);
+      if (moved[0] === to.descriptor[1] && moved[1] === to.descriptor[2]) {
+        const next = translateCoefficients(to.descriptor[1], to.descriptor[2], shift);
+        chapterTranslationEdges.push({from: from.page, to: to.page, shift, next});
+      }
+    }
+  }
+}
+assert.deepEqual(
+  chapterRecords.map((r) => [r.page, discriminant(r.descriptor[1], r.descriptor[2])]),
+  [[0,17],[3,8],[8,28],[15,26],[23,10],[27,15],[33,13],[40,21],[54,21]]
+);
+assert.deepEqual(chapterTranslationEdges, [
+  {from: 40, to: 54, shift: 25, next: [11,25]},
+  {from: 54, to: 40, shift: 4, next: [6,11]}
+]);
+assert.deepEqual(
+  chapterTranslationEdges.map((edge) => ({
+    ...edge,
+    redHits: redWords
+      .filter((w) => w.descriptor[1] === edge.next[0] && w.descriptor[2] === edge.next[1])
+      .map((w) => [w.page, w.start, ...w.descriptor])
+  })),
+  [
+    {from: 40, to: 54, shift: 25, next: [11,25], redHits: []},
+    {from: 54, to: 40, shift: 4, next: [6,11], redHits: [[33,91,3,6,11]]}
+  ]
+);
+
+
 // Receiver-side arithmetic closure: p33:91 alone has PRODUCT^-1 equal to its containing red-span length.
 const inverseProductSpanHits = redWords.filter((w) =>
   w.descriptor[2] !== 0 && mod(w.descriptor[2] * w.spanLength) === 1
@@ -240,6 +278,7 @@ console.log(JSON.stringify({
   markedReferenceClass: {completeRedWords: redWords.length, predictedRedHits: predictedRed.map((w) => [w.page, w.start, w.descriptor]), inverseProductSpanHits: inverseProductSpanHits.map((w) => [w.page, w.spanStart, w.spanLength, w.descriptor])},
   p33SecondRubric: {wordDescriptors: p33SecondWords.map((w) => w.descriptor), wordRunes: p33SecondWords.map((w) => w.values), h3FirstWord: h3(p33SecondWords[0].values)},
   uniqueRed35Spans: red35,
+  chapterTranslationFamily: chapterTranslationEdges.map((edge) => ({...edge, redHitCount: redWords.filter((w) => w.descriptor[1] === edge.next[0] && w.descriptor[2] === edge.next[1]).length})),
   thirdTranslation: {pair: third, redHits: thirdRed.length},
   decision: 'The p40 terminal quadratic continues by the already-forced +q root translation to the source-marked p33:91 first red word; one further +q has no red receiver. Preserve as a prospective structural handoff, not plaintext.'
 }, null, 2));

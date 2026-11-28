@@ -73,6 +73,23 @@ The adjacent second red word is `[10,0,5,22,12]` with descriptor `[5,20,0]`. The
 
 One more predeclared `+q` translation predicts `(14,22)`. It occurs in four ordinary black words and in **zero red words**. The marked continuation therefore stops cleanly at p33 instead of generating an open-ended chain.
 
+## Full nine-chapter translation-family charge
+
+The equal-discriminant tail is not one favorable pair chosen from many. Across all nine chapter-opening quadratics the discriminants are:
+
+```text
+p0:17  p3:8  p8:28  p15:26  p23:10  p27:15  p33:13  p40:21  p54:21
+```
+
+Thus **p40/p54 is the only equal-discriminant pair**. Exhaust every ordered chapter pair and every base-field pure translation `x -> x+c`, `c in GF(29)`, requiring the complete unordered root set to map exactly. There are only two edges, the two orientations of this same pair:
+
+```text
+p40 (27,3) -> p54 (19,27) by c=25=-q; repeat -> (11,25); red hits: 0
+p54 (19,27) -> p40 (27,3) by c= 4= q; repeat -> ( 6,11); red hits: p33:91 only
+```
+
+So `q=4` is not selected after the fact: it is the **unique orientation-preserving translation constant forced by the route's p54->p40 coefficient pair**. The reverse orientation is charged symmetrically and fails to produce any marked receiver. The next `+q` step reaches the sole marked `(6,11)` word, while one further `+q` has no red receiver.
+
 ## Receiver-side arithmetic closure inside the marked rubric
 
 The p33 hit carries a second, independent layout checksum that was not used to derive the `(6,11)` prediction. Its first red word has descriptor `[3,6,11]=[e,a,A^-1]`; the two visible red-word lengths are already `[3,5]=[e,g]`; and the whole second rubric is 8 runes, `A=8`. Therefore
@@ -118,3 +135,34 @@ The final transition is special because one of the forced maps is the pure trans
 The destination was not invented for this calculation:
 
 - p33:91 is an origin
+## Downstream continuation reaches a pre-existing BE plaintext candidate
+
+The marked receiver is exactly p33's **lower red heading**. Independent work predating this route already serializes the two p33 red headings as `THEIR RISE` from their visible word lengths, with the lower `[3,5]` heading spelling **RISE**. That same work fixed the corresponding black-body counts:
+
+```text
+upper: 5 lines, 21 words,  81 runes
+lower: 6 lines, 28 words, 115 runes
+RISE = lower - upper -> [1,7,34]
+signed indices 1,7 -> THE,THE
+signed index 34     -> BE
+```
+
+The rune-scale rise therefore selects **physical p34 and authenticated target BE before p34 ciphertext is consumed**. A separate, already-published source-derived two-rune rule uses the same authored `THEIR RISE` +6 operation, `34 BE -> 40 PATHS`, to derive `H(key)=[19,0]`, `key=[24,5]`, and exact p34 ciphertext `[12,23]`. P34 offsets4..5 alone match that prediction and subtract exactly to **BE**. The complete two-rune +6 family later produced a genuine held-out p28 **THE** hit, so this p34 rule is not supported only by its discovery target.
+
+```text
+p0 -> p8 -> p27 -> p54 -> p40
+                         |
+                         + terminal e=3 -> physical p3 marked GF(29^2)
+                           unique equal-D tail p54 -> p40 is +q
+                           repeat +q -> (6,11)
+                           sole red receiver -> p33:91 lower heading = RISE
+                           body-rune RISE: 115-81 = 34
+                           -> signed/physical p34 = BE
+                           -> fixed source-derived key
+                           -> p34 offsets4..5 decrypt exactly to BE
+```
+
+This is now a causal path from original LP2 structure to a **strong local unknown-plaintext candidate** rather than only to another state coincidence. It still inherits two explicit upstream hypotheses: terminal value `3=e` is being read as physical p3, and the chapter first-black SUM/PRODUCT graph itself is not yet an authenticated Cicada instruction. The p33->p34 and p34->BE machinery predates the present route and therefore supplies independent downstream evidence rather than a fitted rescue.
+
+Reproduction composes this report's SFT with the pre-existing `sims/lp2_p33_their_rise_body34_be_handoff_sft.cjs` and `sims/lp2_their_rise_h_rectangle_selector_sft.cjs`.
+

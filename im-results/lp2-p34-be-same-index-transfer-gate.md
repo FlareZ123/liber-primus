@@ -4,6 +4,22 @@
 
 The selector was recognized after the earlier p34 inverse had already exposed `H(key)=[B,0]`. Preserve that chronology. The result repairs the receiver-selection defect and materially strengthens BE, while remaining candidate-level rather than a blind plaintext discovery.
 
+## New independent upstream path into the p33 body-rise selector
+
+A 28 November Agent8 chapter-route field result now reaches p33's lower red **RISE** heading before this report's p33 body-count consumer is invoked. The route's final p54/p40 quadratics form the only equal-discriminant pair among all nine chapter-opening states; their route orientation is a forced `+q=4` root translation, and repeating it predicts `(6,11)`. Among all 50 complete red words the sole hit is p33:91, exactly the lower RISE heading. That heading's predicted first-word PRODUCT `11=A^-1` also closes against its visible red-span length `8=A`.
+
+This new upstream branch does **not** alter the BE inverse below. It strengthens the target/page selection chain:
+
+```text
+chapter route -> p33:91 RISE
+-> lower body rune rise 115-81 = 34
+-> signed/physical p34 = BE
+-> existing source-rise key
+-> exact p34 offsets4..5 -> BE.
+```
+
+The chapter route retains explicit upstream assumptions, so BE remains a strong local candidate rather than established plaintext. Full upstream derivation: `lp2-chapter-route-gf29-qtranslate-p33.md`.
+
 ## New upstream selector: p33's literal body rise is 34
 
 P33's two red headings already decode to `THEIR RISE`. Their corresponding black bodies are independently fixed at `81` and `115` runes. The literal lower-minus-upper rise is:

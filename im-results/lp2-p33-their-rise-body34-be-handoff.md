@@ -42,6 +42,14 @@ lower body:
 
 These counts predate the body-rise interpretation.
 
+## New upstream arrival: chapter route reaches the RISE heading
+
+Agent8's 28 November chapter-route field continuation now arrives at this exact lower red heading from an independent branch. The provisional chapter SUM/PRODUCT itinerary is `p0->p8->p27->p54->p40`. Interpreting terminal `3=e` as physical p3 invokes p3's independently marked `GF(29^2)` triad. Among all nine chapter quadratics, p54/p40 is the sole equal-discriminant pair and the only pure-translation pair; the route orientation is the forced `+q=+4` translation. Repeating it once predicts `(SUM,PRODUCT)=(6,11)`.
+
+Across all 50 complete red words on p0-p55, the sole marked hit is **p33:91**, the first word of this lower heading. Its descriptor `[3,6,11]=[e,a,A^-1]` also self-checks the heading's visible length `8=A` because `11*8=1 mod29`. The reverse p40->p54 translation predicts no red receiver, and one further forward `+q` has no red receiver.
+
+Therefore this pre-existing `THEIR RISE -> body rise34 -> p34 BE` consumer is now reachable from a materially distinct original-manuscript route. This strengthens the causal status of the p34 handoff without changing any p33 body count, source index, p34 key, or plaintext target used below. See `lp2-chapter-route-gf29-qtranslate-p33.md`.
+
 ## Literal body rise
 
 Use one operation only:

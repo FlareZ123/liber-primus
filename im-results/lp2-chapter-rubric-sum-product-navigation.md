@@ -150,7 +150,7 @@ Reproducer: `sims/lp2_p23_one_rise_firstblack_sum25_crossholdout_sft.cjs`.
 
 A new field-level continuation materially narrows the earlier PRODUCT caveat. The five actual route operands have complete `(length,sum,product)` descriptors `[4,15,23],[3,23,2],[7,2,19],[8,19,27],[5,27,3]`; each triple occurs exactly once among all 2,941 canonical printed groups in the full transcription including solved p56/p57.
 
-The terminal route value is p40 OUT=`3=e`. Physical p3 independently carries the marked red triad `[13,23,2]`, already established as the primitive GF(29^2) relation `u^2=3u+8`. Treat route `(SUM,PRODUCT)=(S,P)` as Vieta coefficients of `x^2-Sx+P` in that field. P54 `(19,27)` and p40 `(27,3)` have the same discriminant21, and the p40 roots are exactly the p54 roots translated by `q=4`: `x -> x+q`.
+The terminal route value is p40 OUT=`3=e`. Physical p3 independently carries the marked red triad `[13,23,2]`, already established as the primitive GF(29^2) relation `u^2=3u+8`. Treat route `(SUM,PRODUCT)=(S,P)` as Vieta coefficients of `x^2-Sx+P` in that field. P54 `(19,27)` and p40 `(27,3)` have the same discriminant21, and the p40 roots are exactly the p54 roots translated by `q=4`: `x -> x+q`. A complete nine-chapter charge shows this is the **only equal-discriminant chapter pair**: exhausting all ordered chapter pairs and all 29 pure translations yields only p54→p40 by `+q` and its reverse p40→p54 by `-q`. Repeating `+q` gives the marked p33:91 receiver; repeating `-q` gives `(11,25)` and zero red-word hits.
 
 Repeating that already-forced translation once gives the locked next pair `(6,11)`. It occurs in two unsolved page-local words, but among all **50 complete red words** on p0-p55 it occurs exactly once: the first word of the second p33 red rubric at **p33:91**, with full descriptor `[3,6,11]=[e,a,A^-1]` and raw runes `[21,2,12]=[B+K,K,aK]`. Canonical H3 maps that word to `[9,2,4]=[q+g,K,q]`.
 
@@ -161,6 +161,8 @@ This receiver is independently source-marked: prior work had already shown that 
 This is the route's first source-marked continuation that uses PRODUCT inside a reversible algebraic object. It still does not authenticate the original SUM/PRODUCT grammar, recover body plaintext, or authorize free GF(841) affine searches. The two explicit weak assumptions are reading terminal value3 as a pointer to physical p3 and repeating the observed `+q` translation once. The `(6,11)` value was derived before its location was inspected during this invocation, but it was not repository-precommitted.
 
 Full derivation, field roots, exhaustive base-field affine maps and marked-word controls: [p3-field q-translation handoff](lp2-chapter-route-gf29-qtranslate-p33.md), reproduced by `sims/lp2_chapter_route_gf29_qtranslate_p33_sft.cjs`.
+
+The p33 landing is now operationally important because it hits the **lower red heading already decoded as RISE** by a pre-existing p33 layout serializer. That older branch consumes the literal body rise `115-81=34` to select signed/physical p34=`BE`, then predicts p34 offsets4..5 exactly and decrypts them to the strong local plaintext candidate **BE**. This downstream machinery predates the present chapter route, so the new route reaches an independently existing plaintext-bearing branch rather than inventing a consumer after the p33 hit. See `lp2-p33-their-rise-body34-be-handoff.md` and `lp2-p34-be-same-index-transfer-gate.md`.
 
 ## Decision for the solve frontier
 
