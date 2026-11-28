@@ -92,7 +92,7 @@ def run(images,ink):
     small=[]
     candidates2=[]
     # Blindly enumerate every source scan, both visible ink classes and all
-    # three learned glyph geometries. Compare to the separately derived
+    # original 2/4/10/13/23-point glyph geometries. Compare to the separately derived
     # transcription only AFTER detection; a missing/extra ornament fails.
     for page in range(58):
         img=np.asarray(Image.open(images/f'{page+17:02d}.jpg').convert('RGB'))
@@ -108,7 +108,8 @@ def run(images,ink):
                     assert len(hits)==expected[page][(typ,color)], (
                         page,typ,color,len(hits),expected[page][(typ,color)])
                     found.extend(hits)
-    # Two-dot punctuation is a vertical pair 34px apart. Large and
+    # Three-dot comma starts with a vertical pair 34px apart, then
+    # adds one lateral dot at y+17 and x-15.5 or x+15.5. Large and
     # four-dot glyphs contain incidental 34px pairs; reject candidates
     # whose both component centers belong to any already recovered shape.
     # Membership is computed geometrically from detected images, not
@@ -118,7 +119,7 @@ def run(images,ink):
         for xx,yy in REF[hit['typ']]:
             registered[(hit['page'],hit['ink'])].append((
               hit['offset'][0]+xx,hit['offset'][1]+yy))
-    twodot=[]
+    threedot=[]
     for hit in candidates2:
         # Printed punctuation dots are ~81–100 dark pixels each;
         # reject smaller illustration speckles (p57 has a 36/48px pair).
@@ -130,12 +131,26 @@ def run(images,ink):
             return any(np.hypot(px-x,py-y)<2.5 for px,py in known)
         if is_registered(ax,ay) and is_registered(ax,ay+34):
             continue
-        twodot.append(hit)
-    assert Counter(hit['page'] for hit in twodot)=={
-      5:1,11:1,20:1,38:1,46:1,56:1}, twodot
-    assert all(hit['ink']=='black' for hit in twodot)
-    assert sum(hit['page']<56 for hit in found+small+twodot)==175
-    assert sum(hit['typ'] for hit in found+small+twodot if hit['page']<56)==960
+        # The third point must be an isolated ink component, not a rune
+        # stroke. Search only the known original dot-component size class.
+        arr=np.asarray(Image.open(images/f"{hit['page']+17:02d}.jpg").convert('RGB'))
+        ids,stats,centers=components(arr,hit['ink'])
+        allowed=centers[ids[stats[ids,cv2.CC_STAT_AREA]>=70]]
+        directions=[]
+        for direction,dx in [('left',-15.5),('right',15.5)]:
+            if len(allowed) and np.min(np.linalg.norm(
+                 allowed-np.array([ax+dx,ay+17]),axis=1))<2.5:
+                directions.append(direction)
+        assert len(directions)==1, (hit,directions)
+        hit['thirdSide']=directions[0]
+        hit['typ']=3
+        threedot.append(hit)
+    assert Counter(hit['page'] for hit in threedot)=={
+      5:1,11:1,20:1,38:1,46:1,56:1}, threedot
+    assert Counter(hit['thirdSide'] for hit in threedot)=={'left':2,'right':4}
+    assert all(hit['ink']=='black' for hit in threedot)
+    assert sum(hit['page']<56 for hit in found+small+threedot)==175
+    assert sum(hit['typ'] for hit in found+small+threedot if hit['page']<56)==965
     counts=Counter((h['typ'],h['ink']) for h in found)
     assert counts=={(13,'red'):30,(10,'red'):4,(13,'black'):1,(23,'red'):1}
     unsolved=[h for h in found if h['page']<56]
@@ -162,13 +177,14 @@ def run(images,ink):
       'glyphs':{f'{typ}-{color}':v for (typ,color),v in sorted(counts.items())},
       'bookOriginalPhysicalDots':sum(h['typ'] for h in found),
       'allPunctuationUnknownPages':175,
-      'allPunctuationVisibleDotSitesUnknownPages':960,
-      'twoDotPunctuation':{
-        'originalDetectedAll58':len(twodot),
-        'unknownPages0to55':sum(h['page']<56 for h in twodot),
-        'detectedAtOriginalPages':[h['page'] for h in twodot],
-        'allBlack':all(h['ink']=='black' for h in twodot),
-        'allFullTwoDotPairs':True
+      'allPunctuationVisibleDotSitesUnknownPages':965,
+      'threeDotPunctuation':{
+        'originalDetectedAll58':len(threedot),
+        'unknownPages0to55':sum(h['page']<56 for h in threedot),
+        'detectedAtOriginalPages':[h['page'] for h in threedot],
+        'orientationByPage':{str(h['page']):h['thirdSide'] for h in threedot},
+        'allBlack':all(h['ink']=='black' for h in threedot),
+        'allFullThreeDotZigzags':True
       },
       'fourDotPunctuation':{
         'originalDetectedAll58':len(small),
@@ -188,8 +204,8 @@ def run(images,ink):
       'centerRedChannel':{'samples':len(reds),'mean':round(float(np.mean(reds)),3),
         'sd':round(float(np.std(reds)),3),'min':min(reds),'max':max(reds)},
       'negativeScope':'No dot missing/reordered/relocated beyond observed subpixel geometry; no claim about subtle per-pixel intensities, JPEG DCT or keys.',
-      'twoDotPositions':[{'page':h['page'],'ink':h['ink'],
-        'x':h['offset'][0],'y':h['offset'][1]} for h in sorted(twodot,key=lambda h:(h['page'],h['offset'][1],h['offset'][0]))],
+      'threeDotPositions':[{'page':h['page'],'ink':h['ink'],
+        'x':h['offset'][0],'y':h['offset'][1], 'thirdSide':h['thirdSide']} for h in sorted(threedot,key=lambda h:(h['page'],h['offset'][1],h['offset'][0]))],
       'fourDotPositions':[{'page':h['page'],'ink':h['ink'],
         'x':h['offset'][0],'y':h['offset'][1],
         'maxErrorPx':h['maxError']} for h in sorted(small,key=lambda h:(h['page'],h['offset'][1],h['offset'][0]))],
