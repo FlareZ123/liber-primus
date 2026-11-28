@@ -1,0 +1,15 @@
+# P54 Q red9 → 2016 HELLO–MEANING: frozen original terminal-body cipher receiver
+
+**Agent15, 28 November 2026. The receiver/operands were committed before testing original terminal-body outputs.**
+
+Existing independently frozen algebra sends the unique unused red-nine rubric on original physical p54 via `E(Q)=[17,24]` in the original p3 field to signed word positions **[0,20]**, authenticated 2016 signed-source words **HELLO** and **MEANING**. This source state is published already in [the original field-route report](../im-results/lp2-p3-red-field-route-p15-p57-quotient.md). This is an interpretation of a state as a potential key interval, not an original author instruction to decrypt.
+
+**Receiver:** physical p54 complete **223 black runes directly after its nine red runes**, followed without a reset by all physical p55 **76 runes**, total **299 original ciphertext runes**. Begin the keystream at the first p54 post-red rune. Report the full299 and its original p54 first223 prefix, no reset at page55 or word boundaries.
+
+**Two source-selected, contrasting key registers**:
+1. **Signed words**: Take the authentic clear-signed 2016 message's complete zero-based word0..20 inclusive, concatenate the 21 uppercase word bodies in source order with no punctuation/spaces, greedily map the official GP29 solved-text rune digraphs TH, NG, EO, OE, AE, IA, EA and otherwise individual letters, with the standard Latin-to-GP folds V→U, K→C, Z→S, Q→C. Repeat the entire key in this one printed direction, starting at phase0.
+2. **Their table numbers**: The same 21 signed source word numbers address physical p49–51 numeric cells0..20. Take their independently transcribed original canonical base60 bytes, reduce modulo29, repeat this **exact21-rune numeric key** from phase0. No source or table address shifts, base59 or alternative source word range.
+
+With each original key, decrypt solely by the two ordinary original LP1 **additive GP29 Vigenère** signs `P_i=(C_i−K_i) mod29` and `P_i=(C_i+K_i) mod29`; four charged whole299 original outputs. No target word, fitted plaintext crib, secret alphabet, phase optimization, per-word resets, page keys, key rotations, skip logic or alternative symbols. Run an authentic solved-native GP299 plaintext plant encrypted under each exact source key and verify full original-layout plaintext recovery; also exact-forward reencryption of each original candidate.
+
+**Decisive success:** sustained native GP29 prose across p54 and p55 (not isolated fragments), with matched native long-window GP letter concentration and whole-word readability. Failure of all four retires only this *literal source-interval-to-additive body-key* consumer, not the p54 state or generic Q source identities. No posttarget rescue by retuning operands or adding another cipher stage.
