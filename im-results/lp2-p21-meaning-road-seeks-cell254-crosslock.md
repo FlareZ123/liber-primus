@@ -173,6 +173,38 @@ Across **all 48** self-indexed page/group H packets, p22/group22 is the **only**
 
 Cell254 is not being selected here because token39 looks interesting. It is already an independently selected source cell in the p27 red13 route, where original p27 geometry fixes row31/column6 -> cell254 before the table token is read. The p21 neighbor branch therefore cross-locks an existing p27 source junction from a different source-selected manuscript object.
 
+### Literal `39` is also an authenticated FALSE direction
+
+The selected cell's literal token supplies an independent semantic continuation under the same zero-based source-number convention already used by p21:
+
+```text
+cell254 token = 39
+signed source word39 = FALSE
+physical p39 = the independently source-assigned FALSE page.
+```
+
+This reading does not need a radix choice: `39` is the printed token itself. It also does not need to choose between “source-word number” and “page number,” because the established number-as-direction convention identifies both with index/page39.
+
+P39 is not a blank semantic target. Director #1784 had already prospectively fixed p39 offsets132..136 as the first complete `g=5` word after the page's sole red span, using authenticated word39 FALSE and the original red-X route **before those rune values were opened**. A later independently derived p6/warning key replays that fixed receiver exactly to `FALSE`; its key grammar remains retrospective, so this new cell254 route strengthens the **source assignment and receiver navigation**, not the cipher proof.
+
+The resulting clue-shaped path is:
+
+```text
+p21/group21 H4
+ -> MEANING IS THE ROAD
+ -> neighbor p22
+ -> p22/group22 H-pair
+ -> p50 cell254
+ -> literal 39
+ -> source word39 = FALSE
+ -> physical p39
+ -> prospectively fixed FALSE receiver.
+```
+
+This is precisely the kind of behavior suggested by the authenticated sentence: a manuscript-derived **number** acts as the **direction**, while its authenticated **meaning** names the road/receiver semantics.
+
+
+
 The conditional branch is:
 
 ```text
@@ -180,7 +212,11 @@ selected p21/group21
  -> unique H neighbor bracket [20,22]
  -> p20/group20 --frozen H-pair table rule--> literal22
  -> p22/group22 --same frozen rule--> cell254
- -> independently established p27/DH junction.
+ -> literal39 -> signed word / physical p39 = FALSE
+ -> prospectively fixed p39 FALSE receiver
+
+and independently:
+cell254 -> established p27/DH junction.
 ```
 
 ## Evidence boundary
