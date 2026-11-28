@@ -61,6 +61,31 @@ and standard DH then has the unique exponent `a=6` in `5^a mod23 = 8`.
 
 This is qualitatively different from assigning state names to arbitrary residues after discovery: **Frobenius, trace and norm are the canonical automorphism and invariants of the exact source-fixed GF(29^2) object.** No phase, sign, scalar, row ordering, or target plaintext is selected.
 
+## Authenticated 2016 DIRECTION29 selects the Frobenius step
+
+The authenticated 2016 warning's zero-based numbering was fixed independently of this field construction. Its central sentence ends
+
+```text
+... THEIR NUMBERS ARE THE DIRECTION
+                         25 26 27 28 29
+```
+
+so **DIRECTION is word29**. That is exactly the base-field size and therefore exactly the canonical Frobenius exponent of GF(29^2).
+
+This gives a direct human-clue reading of the already frozen path:
+
+```text
+multiplication matrix words -> THE MAP / AND PATH
+DIRECTION word number       -> 29
+take the Q path 29 steps    -> Q^29 = [2,5] = [K,g]
+one further step / norm     -> Q^30 = [8,0] = A
+field trace                 -> [19,0] = B
+```
+
+The exponent29 is not inferred from the DH target: it is simultaneously the GP alphabet size, the field characteristic, and the independently established word number of **DIRECTION** in the signed source. This makes `Q^29` a clue-selected operation rather than an arbitrary power search.
+
+It also explains why primitive order840 matters operationally: multiplication by Q is a complete path through the 840 nonzero field states, and the signed source supplies the first distinguished stride on that path.
+
 ## The same map has the DH characteristic polynomial
 
 For the already frozen multiplication matrix
