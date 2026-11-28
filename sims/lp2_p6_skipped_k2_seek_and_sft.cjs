@@ -69,6 +69,7 @@ function h4Inverse(shell) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signedText = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
   .map((symbol, value) => ({ symbol, value }))
@@ -141,6 +142,34 @@ const qg = mod29(state.q * state.g);
 const Kg = mod29(state.K * state.g);
 const aK = mod29(state.a * state.K);
 assert.deepEqual({ qg, Kg, aK }, { qg: 20, Kg: 10, aK: 12 });
+
+// Independent physical/source boundary: p6's only red span is 11 runes
+// between two red 13-dot marks. The authenticated signed message ends the
+// DIRECTION sentence immediately before a 13-word alphabetic tail. Removing
+// K=2 leading words from that tail leaves the already selected 11-word core.
+const p6Ink = ink.pages.find((page) => page.page === 6);
+assert.ok(p6Ink);
+assert.deepEqual(p6Ink.red_spans, [{
+  start: 71,
+  length: 11,
+  runes: "ᚪᛏᛉᛒᛗᚷᛡᛋᛒᛉᛇ",
+}]);
+assert.deepEqual(p6Ink.large_punctuation, [
+  [71, 13, "red"],
+  [82, 13, "red"],
+]);
+assert.match(
+  clear,
+  /numbers are the direction\.\s+Seek and you will be found\./iu
+);
+assert.equal(sourceWords[29].word, "DIRECTION");
+assert.equal(sourceWords.slice(30).length, 13);
+assert.deepEqual(sourceWords.slice(30).map((row) => row.word), [
+  "SEEK", "AND", "YOU", "WILL", "BE", "FOUND", "GOOD", "LUCK",
+  "BEWARE", "FALSE", "PATHS", "VERIFY", "OPENPGP",
+]);
+assert.equal(p6Ink.red_spans[0].length + state.K, 13);
+assert.equal(sourceWords.slice(32).length, p6Ink.red_spans[0].length);
 
 // The p6 source-tail selector begins at source index32 and omits exactly K=2
 // words. Test the omitted pair without reading any LP2 ciphertext.
@@ -493,6 +522,15 @@ const result = {
   status: "PASS",
   classification:
     "provisional source-selected boundary/receiver bridge; key-shell orderings were recognized after the known source targets and are not authenticated plaintext evidence",
+  physicalTailBoundary: {
+    p6RedSpan: p6Ink.red_spans[0],
+    p6BoundaryMarks: p6Ink.large_punctuation,
+    signedSentenceBoundaryAfter: sourceWords[29].word,
+    signedTailWords: sourceWords.slice(30).map((row) => row.word),
+    fullTailWordCount: sourceWords.slice(30).length,
+    selectedCoreWordCount: sourceWords.slice(32).length,
+    identity: "11 red runes + K=2 = 13-dot marks = 13 signed-tail words",
+  },
   sourceBoundary: {
     omittedByP6Selector: state.K,
     corridorStart: 32,

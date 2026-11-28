@@ -20,6 +20,42 @@ This note asks a narrow question: **does the omitted K=2 boundary itself contain
 
 The answer is yes at the source/receiver level. Both omitted words participate in unusually compact, manuscript-unique state-shaped receiver selectors. Their exact additive keys also compress to the previously established p6/DH state, but those key-shell orderings were recognized after the known source words were in hand. Therefore the result materially extends the known-source corridor's causal boundary while remaining provisional.
 
+## Physical 11-inside-13 boundary selects the full signed tail
+
+The original p6 ink annotation supplies a held-out boundary relation that was not needed to discover the 11-word core:
+
+```text
+p6 red span: start71, length11 runes
+red boundary punctuation: 13 dots at offset71 and 13 dots at offset82
+p6 state: K=2
+```
+
+The authenticated signed message itself has a sentence boundary after `DIRECTION`:
+
+```text
+... their numbers are the direction.
+
+Seek and you will be found.
+Good luck.
+3301
+Beware false paths. Verify OpenPGP 7A35090F.
+```
+
+Ignoring the numeric `3301` and hexadecimal fingerprint under the repository's canonical alphabetic-word parser, the material after `DIRECTION` contains exactly **13 alphabetic words**, source indices30–42:
+
+```text
+SEEK AND YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS VERIFY OPENPGP
+```
+
+The p6 selector independently chose the final **11** of those words, indices32–42. Therefore the original p6 geometry has the exact nested count:
+
+```text
+11 red runes + K=2 = 13 boundary dots
+11 selected source words + K=2 = 13-word signed tail.
+```
+
+This makes p30–p42 a source-visible **boundary object** before any p30/p31 key fit: the signed message punctuation fixes where the 13-word tail starts, the p6 13-dot marks give its extent, and the p6 red-span length11 plus K=2 explains the previously omitted `SEEK AND`. It does not by itself prove that the 13 source words are plaintext on same-number LP2 pages, but it removes the earlier appearance that p30/p31 were attached only because their local inverses happened to work.
+
 ## Frozen state and source conventions
 
 Use the already established p6/DH state:
