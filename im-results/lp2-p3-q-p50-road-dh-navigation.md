@@ -1,59 +1,102 @@
-# Q-path ROAD navigation: p39 → p7 → ROAD23, with independent p40 → p23 DH convergence
+# Signed WORDS→MAP→DIRECTION navigation: p49 ROAD cell drives p39 → p7 → ROAD23
 
-**Agent5, 28 November 2026. Classification: exact source-linked navigation/state result with prospective body-cipher negatives; no unknown plaintext.**
+**Agent5, 28 November 2026. Classification: exact source-instruction/table/Q-coordinate navigation result; no unknown plaintext.**
+
+> Terminology correction: the canonical 256-cell numeric table spans physical **p49, p50 and p51** (10+13+9 rows of 8). Earlier working notes called it the “p50 table” as a shorthand. Cell23 is physically **p49 row2 col7**.
 
 ## Decision
 
-The p3 quotient route now supports a concrete, low-freedom navigation interpretation on the **printed** red states.
+The authenticated signed-2016 instruction and the original p49–p51 numeric table now compose with the frozen p3/Q state map in a low-freedom way.
 
-The already-frozen field is
+The field remains
 
 ```text
-GF(29²),  u² = 3u + 8
+GF(29²), u² = 3u + 8
 Q = [17,24], order(Q)=840
 ```
 
-and the signed 2016 source gives the zero-based word indices used by the existing Q discrete-log map. Two printed red spans have
+and nonzero red residues have unique Q exponents `k=29r+c`.
+
+The signed source has 43 zero-based words. Those **word numbers literally address the first 43 cells of the physical p49 numeric grid**, because p49 is the first 10×8 rows of the 256-cell p49–p51 table. In particular:
 
 ```text
-p39 red: log_Q(E) = 516 = 17·29 + 23  -> [THE ... ROAD]
-p7  red: log_Q(E) = 603 = 20·29 + 23  -> [MEANING ... ROAD]
+indices 16..23 / p49 row2:
+ARE THE MAP THEIR MEANING IS THE ROAD
+
+indices 24..31 / p49 row3:
+AND THEIR NUMBERS ARE THE DIRECTION SEEK AND
 ```
 
-Canonical p50 cell **ROAD=23** is token `1R`, base60 value **87**. Therefore
+This gives a direct reading of the source instruction:
 
 ```text
+ITS WORDS ARE THE MAP
+...
+THEIR NUMBERS ARE THE DIRECTION
+```
+
+as **signed word number → physical table cell → numeric direction**.
+
+Reproducer for this source/table alignment and the navigation below:
+[`sims/lp2_signed_source_p49_map_direction_road_sft.cjs`](../sims/lp2_signed_source_p49_map_direction_road_sft.cjs).
+
+## ROAD is the unique source-word pure-row direction selected by p3
+
+The printed red states include
+
+```text
+p39 red: log_Q(E) = 516 = 17·29 + 23
+         coordinate [17,23]
+         source interval: THE MAP THEIR MEANING IS THE ROAD
+
+p7 red:  log_Q(E) = 603 = 20·29 + 23
+         coordinate [20,23]
+         source interval: MEANING IS THE ROAD
+```
+
+The shared endpoint is signed word **ROAD=23**.
+
+Word23 addresses p49 cell23, the last cell of row2:
+
+```text
+cell23 token = 1R
+canonical base60 value = 87
 87 = 3 · 29
-    = p3 field coefficient · DIRECTION
 ```
 
-because the physical p3 triad `[13,23,2]` source-derives `u²=3u+8`, while authenticated signed word29 is **DIRECTION**.
+The factor3 is not fitted from the red-state hop. Physical p3's marked triad `[13,23,2]` independently gives
 
-Adding that exact p50 ROAD value to the Q exponent moves three base29 rows while preserving column ROAD:
+```text
+u² = 3u + 8
+```
+
+so the table number is exactly
+
+```text
+ROAD23 number87 = p3 field coefficient3 × DIRECTION29.
+```
+
+Adding 87 to a Q exponent therefore advances exactly three base29 rows while preserving the ROAD column:
 
 ```text
 [17,23] --ROAD87--> [20,23] --ROAD87--> [23,23]
 
 THE MAP THEIR MEANING IS THE ROAD
-                  ↓
-         MEANING IS THE ROAD
-                  ↓
-                 ROAD
+                 ↓
+        MEANING IS THE ROAD
+                 ↓
+                ROAD
 ```
 
-The first step lands exactly on the printed p7 red state. The second lands on singleton `[23,23]=[ROAD,ROAD]`. This is a source-coherent **map/path contraction**, not a plaintext decryption.
+The first step lands **exactly on the printed p7 red state**. The second contracts to singleton `[23,23]=[ROAD,ROAD]`.
 
-## Finite controls
+This is a concrete human solve-path hypothesis: the signed instruction tells the solver that the words index the map and their table numbers give the direction; the ROAD word supplies the number that walks the Q-coordinate map until only ROAD remains.
 
-There are 17 nonzero printed red states and 272 ordered distinct printed-red pairs.
+## Bounded controls
 
-For the natural finite family
+There are 17 nonzero printed red spans and 272 ordered distinct printed-red pairs.
 
-- coordinate used as p50 address: row or column;
-- direction on the Q orbit: forward or backward;
-- radix: canonical base60 or historical base59 alternative;
-
-the complete printed-state results are:
+Using the endpoint word number as the table address, the natural printed-state variants give:
 
 ```text
 base60 row forward    0 edges
@@ -66,35 +109,41 @@ base59 col forward    0 edges
 base59 col backward   0 edges
 ```
 
-Thus the only nontrivial undirected printed-state connection in this eight-variant family is the same ROAD edge, with forward/backward giving its two orientations.
+Thus the only nontrivial undirected connection in this eight-variant family is the same ROAD edge.
 
-Base59 reads p50 ROAD token `1R` as 86 rather than87 and misses the printed p7 state. Canonical base60 is therefore discriminated by the red-state landing itself.
+The radix distinction is operational. Token `1R` is 87 in canonical base60 but 86 in base59:
 
-Within the first29 p50 cells—the source register addressed by signed word numbers—only two canonical values are divisible by29:
+```text
+base60: 516 + 87 = 603 = [20,23]  -> printed p7
+base59: 516 + 86 = 602 = [20,22]  -> no printed p7, ROAD endpoint lost
+```
+
+Across **all 43 authenticated signed word cells**, only two canonical table values are divisible by29:
 
 ```text
 HELLO0 -> 203 = 7·29
 ROAD23 ->  87 = 3·29
 ```
 
-ROAD is the one whose quotient equals the independently source-derived p3 field coefficient3. This is an exact bounded statement; it is not a discovery-wide probability.
+ROAD is the only one whose row stride equals the independently derived p3 coefficient3. In the complete printed-red census, the word-number→canonical-number direction rule has exactly the single p39→p7 edge above.
 
-Reproducer: [`sims/lp2_p3_q_p50_road_red_path_sft.cjs`](../sims/lp2_p3_q_p50_road_red_path_sft.cjs).
+Supporting finite-family reproducer:
+[`sims/lp2_p3_q_p50_road_red_path_sft.cjs`](../sims/lp2_p3_q_p50_road_red_path_sft.cjs).
 
 ## Independent ordinary-Q DH convergence on physical p23
 
-A separate exact route reaches the same page number without using the ROAD stride.
+A separate exact relation reaches physical p23 without the ROAD lookup.
 
-The complete printed p40 red state is
+The printed p40 red state has
 
 ```text
 log_Q(E(p40 red)) = 153 = 5·29 + 8
                    -> [g,A]
 ```
 
-under the authenticated historical DH state `p=23,g=5,A=8,K=2`. It is the **only** printed nonzero red span whose two Q-coordinate entries are both in the core DH value set.
+under the authenticated historical DH state `p=23,g=5,A=8,K=2`. It is the only printed nonzero red span whose two Q-coordinate entries are both in the core DH value set.
 
-Advancing the ordinary Q orbit by the independently recovered shared secret `K=2` gives
+Advancing the ordinary Q exponent by the independently recovered shared secret `K=2` gives
 
 ```text
 153 + 2 = 155
@@ -103,21 +152,53 @@ coord(p23 red) = [5,10] = [g,A+K]
 physical destination page = 23 = p
 ```
 
-Across all ordered printed nonzero-red pairs, the only differences equal to a named core DH value are p0→p27 by `A=8` and p40→p23 by `K=2`; only the latter also begins from a fully DH-typed Q coordinate and lands on the physical page numbered by `p`.
+Across all ordered printed nonzero-red pairs, the only differences equal to a named core DH value are p0→p27 by `A=8` and p40→p23 by `K=2`; only p40→p23 starts from a fully DH-typed Q coordinate and lands on physical page `p=23`.
 
-Reproducer: [`sims/lp2_p3_q_dh_red_transition_sft.cjs`](../sims/lp2_p3_q_dh_red_transition_sft.cjs).
+Reproducer:
+[`sims/lp2_p3_q_dh_red_transition_sft.cjs`](../sims/lp2_p3_q_dh_red_transition_sft.cjs).
 
-The ROAD contraction and the DH transition are different computations. Their convergence makes physical p23 a stronger candidate **navigation node**; it does not by itself identify a body cipher.
+The ROAD walk and DH transition are different computations. Their convergence strengthens p23 as a navigation node, while the exact post-ROAD consumer still needs source selection.
+
+## Q interval semantics and semilinear T are not promoted
+
+Two prospective Director gates prevent overclaiming the navigation route.
+
+### General signed-source interval semantics fails its p8 holdout
+
+Director #3461 froze p8's independently source-visible red two-word lengths `[4,8]` before opening its Q coordinate and required exact endpoint typing.
+
+Observed:
+
+```text
+p8 predicted [4,8]
+p8 observed  [7,19] = THE ... THEIR
+```
+
+The entire eight-span complete two-word red class gives **zero** word-length/end-point matches under canonical, reversed and ±1-origin conventions. Therefore attractive opened intervals such as p39/p7 remain route-local evidence rather than proof that every Q coordinate is a signed-source interval.
+
+Report:
+[`lp2-p3-q-interval-p8-holdout.md`](lp2-p3-q-interval-p8-holdout.md).
+
+### DIRECTION29 does not source-select F(Qx)
+
+Director #3462 charged the minimal Q/Frobenius family. Independent solved p56 uniquely selects plain `Qx` because only that operation yields its already established `[1,2]` prime-minus-one opening pair.
+
+Plain Q has **zero** nontrivial printed-red one-step edges. The attractive semilinear `F(Qx)` p15→p40→p27 chain therefore remains conditional/post-discovery rather than an authenticated transition opcode.
+
+Report:
+[`lp2-p3-q-direction-operation-adjudication.md`](lp2-p3-q-direction-operation-adjudication.md).
+
+These negatives sharpen the ROAD result: the supported operation is the explicit source/table **numeric direction lookup**, not unrestricted interval storytelling or a fitted semilinear state walk.
 
 ## Direct body consumers closed prospectively
 
-Two obvious ways to turn Q into a bulk decoder were tested with held-out native controls and fail on original ciphertext.
+Two obvious ways to turn Q into a bulk decoder also fail with positive controls.
 
 ### Constant GF(29²) pair multiplier
 
 All 840 nonzero field multipliers were ranked on the complete 12,956-rune p0–p55 tape.
 
-A native Gibran plant encrypted by Q correctly recovers Q⁻¹ at rank **1/840**. On original LP2:
+A native Gibran plant encrypted by Q recovers Q⁻¹ at rank **1/840**. On original LP2:
 
 ```text
 Q    decoder rank 248/840, score -4.6166403003
@@ -125,15 +206,16 @@ Q^-1 decoder rank 682/840, score -4.6403723752
 best family score           -4.5653384277
 ```
 
-Therefore direct global pair multiplication/inversion by Q is rejected.
+Direct global pair multiplication/inversion by Q is rejected.
 
-Reproducer: [`sims/lp2_p3_q_global_fieldpair_inverse_sft.cjs`](../sims/lp2_p3_q_global_fieldpair_inverse_sft.cjs).
+Reproducer:
+[`sims/lp2_p3_q_global_fieldpair_inverse_sft.cjs`](../sims/lp2_p3_q_global_fieldpair_inverse_sft.cjs).
 
 ### p23 post-red additive Q path
 
-Before output inspection, physical p23 was fixed as the receiver, its red state `[5,22]` as the seed, and the stream rule as “advance by Q, emit both coordinates, repeat”; subtraction was the primary GP29 operation.
+Physical p23, its red seed `[5,22]`, Q-state advance, coordinate emission and subtraction sign were frozen before output grading.
 
-A held-out native plant ranks the exact frozen phase **1/840**. The original 197-rune p23 post-red body gives:
+A held native plant ranks the exact phase **1/840**. Original p23 post-red body:
 
 ```text
 raw score                -4.4852303059
@@ -143,21 +225,23 @@ inverse-sign score       -4.5041615783
 best searched phase      -4.1519952099
 ```
 
-The frozen output is nonprose. This literal Q-path additive body consumer is rejected; do not rescue it with phase, seed, sign, coordinate-order or boundary tuning.
+The frozen output is nonprose. Do not rescue this body consumer with phase/seed/sign/order tuning.
 
-Preregistration: [`workplace/agent5-p40-p23-qpath-body-preregister.md`](../workplace/agent5-p40-p23-qpath-body-preregister.md).  
-Reproducer: [`sims/lp2_p40_p23_qpath_body_sft.cjs`](../sims/lp2_p40_p23_qpath_body_sft.cjs).
+Preregistration:
+[`workplace/agent5-p40-p23-qpath-body-preregister.md`](../workplace/agent5-p40-p23-qpath-body-preregister.md).  
+Reproducer:
+[`sims/lp2_p40_p23_qpath_body_sft.cjs`](../sims/lp2_p40_p23_qpath_body_sft.cjs).
 
-## Scientific boundary and next decision
+## Current causal interpretation
 
-What the new result establishes exactly is a **red-state navigation graph**:
+The strongest supported Q use is now narrower and more human-facing than a generic field cipher:
 
-1. p39's signed-source interval ends at ROAD23;
-2. canonical p50 ROAD23 supplies stride87 = field coefficient3 × DIRECTION29;
-3. that stride lands exactly on p7 and contracts the source interval by three words;
-4. repeating it reaches singleton ROAD23;
-5. independently, p40's fully DH-typed Q state advances by K2 to the actual p23 red state on physical page p=23.
+1. authenticated signed words are numbered;
+2. those word numbers directly address the first cells of the original p49–p51 numeric table;
+3. the source explicitly says the words are the MAP and their numbers are the DIRECTION;
+4. the Q discrete-log representation supplies a 29-wide coordinate map;
+5. the ROAD endpoint word23 addresses original p49 cell23;
+6. its canonical number87 equals p3 coefficient3 × DIRECTION29;
+7. that exact direction walks printed p39 red to printed p7 red and then to singleton ROAD.
 
-The route is substantially more constrained than treating Q as an arbitrary key or p50 as a generic lookup table. It also explains why the direct body-cipher attempts should be deprioritized: Q is currently strongest as a **state/navigation operator**.
-
-The next causal question is not another tuned Q keystream. It is whether the now multiply selected p23 node supplies, through its original red register, punctuation, illustration, or immediate black-state operand, an **authored receiver operation** that predicts unknown plaintext or a reversible body transform before target grading.
+This materially advances a plausible intended navigation grammar while leaving the body cipher unsolved. The next useful experiment must consume the selected ROAD23/p23 node through an independently visible manuscript operation; widening Q keystream or semilinear searches is already contraindicated by prospective negatives.
