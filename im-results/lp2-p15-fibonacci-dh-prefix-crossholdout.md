@@ -39,7 +39,7 @@ The page's already solved number mechanism now acts as a state bootstrap:
 3. subtracting those primes from Cicada's emblem number 3301 produces the first six original cells;
 4. these fields close the independently reconstructed DH exchange: `5^6 mod23=8`, `5^15 mod23=19`, and `19^6 mod23=2`.
 
-This convergence is especially relevant because the authenticated 2013 TCP source independently contains the exact worked DH example `23,5,8,19,2` and the separate `BASE29 3301 -> 3QO` example. Two independently solved p15 structures and one authenticated historical source now converge on the same state vocabulary without scoring unknown plaintext.
+This convergence is especially relevant because the authenticated 2013 TCP source contains the exact worked DH example `23,5,8,19,2` and the separate `BASE29 3301 -> 3QO` example. The BASE29 input must not be counted as an independent DH-state coincidence: this grid mechanism already used 3301 as its anchor on 11 November, and `3299+2=3301` is simply its first prime-offset inversion. The later DH names on `[2,3,5,7,13,23]` remain post-discovery state compatibility. See the [familywise 3301 charge](lp2-p15-3301-base29-familywise-charge.md).
 
 ## Evidence boundary
 
