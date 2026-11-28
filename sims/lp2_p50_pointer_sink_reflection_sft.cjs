@@ -1,133 +1,123 @@
 "use strict";
 
 /**
- * Source-directed p50 pointer-graph / reflection gate.
+ * p50 base59 pointer-sink + source-reflection + authenticated DH closure.
  * SFT: node sims/lp2_p50_pointer_sink_reflection_sft.cjs
  */
-
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 
 const ROOT = path.resolve(__dirname, "..");
 const grid = JSON.parse(fs.readFileSync(
-  path.join(ROOT, "resources/liber-primus/lp2-grid-256.json"),
-  "utf8"
-));
+  path.join(ROOT, "resources/liber-primus/lp2-grid-256.json"), "utf8"));
+const dhSource = fs.readFileSync(
+  path.join(ROOT, "resources/external/2013-tcp-server-signed-source.md"), "utf8");
+assert.match(dhSource,
+  /worked DH 23 exchange: server base 5 and public share 8, client public share 19, shared key 2/u);
 
+const dh = {p:23, g:5, A:8, B:19, K:2};
 const a60 = grid.alphabet;
-assert.equal(a60.length, 60);
 const a59 = a60.replace("f", "");
+assert.equal(a60.length, 60);
 assert.equal(a59.length, 59);
 assert.equal(grid.bytes.length, 256);
 
 /** @param {number} value */
-function tokenFromBase60(value) {
+function tokenFrom60(value) {
   return a60[Math.floor(value / 60)] + a60[value % 60];
 }
-
-const tokens = grid.bytes.map(tokenFromBase60);
-assert.ok(tokens.every((token) => !token.includes("f")));
-const lowCounts = new Map(a60.split("").map((ch) => [ch, 0]));
-for (const token of tokens) lowCounts.set(token[1], lowCounts.get(token[1]) + 1);
-assert.deepEqual(
-  [...lowCounts].filter(([, count]) => count === 0).map(([ch]) => ch),
-  ["f"]
-);
-
 /** @param {string} token @param {string} alphabet */
 function decode(token, alphabet) {
-  const hi = alphabet.indexOf(token[0]);
-  const lo = alphabet.indexOf(token[1]);
-  assert.ok(hi >= 0 && lo >= 0);
-  return hi * alphabet.length + lo;
+  return alphabet.length * alphabet.indexOf(token[0]) + alphabet.indexOf(token[1]);
 }
-
+const tokens = grid.bytes.map(tokenFrom60);
 const values60 = tokens.map((token) => decode(token, a60));
 const values59 = tokens.map((token) => decode(token, a59));
 assert.deepEqual(values60, grid.bytes);
+assert.ok(tokens.every((token) => !token.includes("f")));
 assert.ok(values59.every((value) => value >= 0 && value < 256));
 
+const width = 8;
+assert.equal(width, dh.A);
+const sinkCell = dh.p * width + dh.g;
+assert.equal(sinkCell, 189);
 /** @param {number} cell */
-function reflectCell(cell) {
-  const row = Math.floor(cell / 8);
-  const column = cell % 8;
-  return row * 8 + (7 - column);
+function reflect(cell) {
+  return Math.floor(cell / width) * width + (width - 1 - cell % width);
 }
+const reflectedCell = reflect(sinkCell);
+assert.equal(width - 1 - dh.g, dh.K);
+assert.equal(reflectedCell, dh.p * width + dh.K);
+assert.equal(reflectedCell, 186);
 
-/** @param {number[]} next */
-function graphSummary(next) {
-  const state = new Uint8Array(next.length);
-  const cycles = [];
-  for (let start = 0; start < next.length; start += 1) {
-    if (state[start] === 2) continue;
+// Prior work already established the base59 all-to-189 pointer sink. This SFT
+// rechecks it because the new result composes that sink with the independent
+// source-selected horizontal reflection and the authenticated DH tuple.
+assert.equal(tokens[sinkCell], "3C");
+assert.equal(values59[sinkCell], sinkCell);
+assert.equal(values60[sinkCell], 192);
+assert.equal(tokens[reflectedCell], "0J");
+assert.equal(values59[reflectedCell], dh.B);
+assert.equal(values60[reflectedCell], dh.B);
+
+/** @param {number[]} map @param {number} root */
+function allReachRoot(map, root) {
+  if (map[root] !== root) return false;
+  const done = new Uint8Array(map.length);
+  done[root] = 1;
+  for (let start = 0; start < map.length; start += 1) {
+    if (done[start]) continue;
+    let cell = start;
     const pathNodes = [];
-    const position = new Map();
-    let cell = start;
-    while (state[cell] !== 2 && !position.has(cell)) {
-      position.set(cell, pathNodes.length);
+    const local = new Set();
+    while (!done[cell]) {
+      if (local.has(cell)) return false;
+      local.add(cell);
       pathNodes.push(cell);
-      cell = next[cell];
+      cell = map[cell];
     }
-    if (position.has(cell)) {
-      let cycle = pathNodes.slice(position.get(cell));
-      const minimum = Math.min(...cycle);
-      const rotate = cycle.indexOf(minimum);
-      cycle = cycle.slice(rotate).concat(cycle.slice(0, rotate));
-      cycles.push(cycle);
-    }
-    for (const node of pathNodes) state[node] = 2;
+    for (const node of pathNodes) done[node] = 1;
   }
-
-  const cycleIndex = new Int16Array(next.length).fill(-1);
-  for (let index = 0; index < cycles.length; index += 1) {
-    for (const node of cycles[index]) cycleIndex[node] = index;
-  }
-  const basins = new Array(cycles.length).fill(0);
-  for (let start = 0; start < next.length; start += 1) {
-    let cell = start;
-    while (cycleIndex[cell] < 0) cell = next[cell];
-    basins[cycleIndex[cell]] += 1;
-  }
-  return {cycles, basins};
+  return true;
 }
+assert.equal(allReachRoot(values59, sinkCell), true);
+assert.equal(allReachRoot(values60, sinkCell), false);
 
-const graph60 = graphSummary(values60);
-const graph59 = graphSummary(values59);
-assert.deepEqual(graph60, {
-  cycles: [
-    [0, 203, 68, 199, 47, 76, 114, 197, 115, 247, 192],
-    [158, 249]
-  ],
-  basins: [252, 4]
-});
-assert.deepEqual(graph59, {cycles: [[189]], basins: [256]});
-
-assert.equal(tokens[189], "3C");
-assert.equal(values60[189], 192);
-assert.equal(values59[189], 189);
-assert.equal(reflectCell(189), 186);
-assert.equal(tokens[186], "0J");
-assert.equal(values60[186], 19);
-assert.equal(values59[186], 19);
-
-/** @param {number[]} next @param {number} sink */
-function depthToSink(next, sink) {
-  const depth = new Array(next.length);
-  for (let start = 0; start < next.length; start += 1) {
-    let cell = start;
-    let count = 0;
-    while (cell !== sink) {
-      cell = next[cell];
-      count += 1;
-      assert.ok(count <= next.length);
-    }
-    depth[start] = count;
-  }
-  return depth;
+/** @param {number} base @param {number} exponent @param {number} modulus */
+function powMod(base, exponent, modulus) {
+  let out = 1;
+  for (let i = 0; i < exponent; i += 1) out = out * base % modulus;
+  return out;
 }
-const depths59 = depthToSink(values59, 189);
-assert.equal(Math.max(...depths59), 38);
+/** @param {number} base @param {number} value @param {number} modulus */
+function discreteLog(base, value, modulus) {
+  let x = 1;
+  for (let exponent = 0; exponent < modulus - 1; exponent += 1) {
+    if (x === value) return exponent;
+    x = x * base % modulus;
+  }
+  return null;
+}
+const a = discreteLog(dh.g, dh.A, dh.p);
+const b = discreteLog(dh.g, dh.B, dh.p);
+assert.equal(a, 6);
+assert.equal(b, 15);
+assert.equal(powMod(dh.B, a, dh.p), dh.K);
+
+// Exact coordinate-placement charge under a uniform permutation of all 256
+// source tokens. Value 19 is unique in both radices; value189 occurs four
+// times in base59 and twice in base60. The two sink-value token classes are
+// disjoint, so the either-radix placement probabilities add.
+const count = (array, wanted) => array.filter((value) => value === wanted).length;
+assert.equal(count(values59, 189), 4);
+assert.equal(count(values60, 189), 2);
+assert.equal(count(values59, 19), 1);
+assert.equal(count(values60, 19), 1);
+const placement59 = 4 / (256 * 255);
+const placement60 = 2 / (256 * 255);
+const placementEither = placement59 + placement60;
+assert.equal(placementEither, 1 / 10880);
 
 /** @param {number} seed */
 function mulberry32(seed) {
@@ -140,146 +130,104 @@ function mulberry32(seed) {
     return ((z ^ (z >>> 14)) >>> 0) / 4294967296;
   };
 }
-
+/** @param {number[]} array @param {() => number} random */
+function shuffle(array, random) {
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(random() * (i + 1));
+    const tmp = array[i]; array[i] = array[j]; array[j] = tmp;
+  }
+}
+/** @param {number[]} values @param {number} wanted */
+function removeOne(values, wanted) {
+  const out = values.slice();
+  const index = out.indexOf(wanted);
+  assert.ok(index >= 0);
+  out.splice(index, 1);
+  return out;
+}
 /**
- * Return whether a 256-node functional graph has exactly one recurrent class,
- * that class is the requested fixed point, and therefore every node reaches it.
- * @param {number[]} next
- * @param {number} sink
+ * Importance-sample the basin condition after forcing the two independently
+ * locked coordinate values: sinkCell=189 and mirror(sinkCell)=19.
+ * @param {number[]} sourceValues
+ * @param {number} trials
+ * @param {number} seed
  */
-function allFlowToFixedPoint(next, sink) {
-  if (next[sink] !== sink) return false;
-  const done = new Uint8Array(next.length);
-  done[sink] = 1;
-  for (let start = 0; start < next.length; start += 1) {
-    if (done[start]) continue;
-    let cell = start;
-    const pathNodes = [];
-    const local = new Set();
-    while (!done[cell]) {
-      if (local.has(cell)) return false;
-      local.add(cell);
-      pathNodes.push(cell);
-      cell = next[cell];
-    }
-    for (const node of pathNodes) done[node] = 1;
+function conditionedFullBasin(sourceValues, trials, seed) {
+  const remaining = removeOne(removeOne(sourceValues, 189), 19);
+  const positions = Array.from({length:256}, (_, i) => i)
+    .filter((i) => i !== sinkCell && i !== reflectedCell);
+  const map = new Array(256);
+  map[sinkCell] = 189;
+  map[reflectedCell] = 19;
+  const random = mulberry32(seed);
+  let hits = 0;
+  for (let trial = 0; trial < trials; trial += 1) {
+    shuffle(remaining, random);
+    for (let i = 0; i < positions.length; i += 1) map[positions[i]] = remaining[i];
+    if (allReachRoot(map, sinkCell)) hits += 1;
   }
-  return true;
+  return {trials, hits, conditionalRate:hits/trials};
 }
 
-const monteCarloTrials = Number(process.env.LP_POINTER_TRIALS || 500000);
-assert.ok(Number.isInteger(monteCarloTrials) && monteCarloTrials >= 1);
-const monteCarloSeed = 20261128;
-const random = mulberry32(monteCarloSeed);
-const permutation = Array.from({length: 256}, (_, index) => index);
-const shuffled59 = new Array(256);
-const shuffled60 = new Array(256);
-let hit59 = 0;
-let hit60 = 0;
-let hitEither = 0;
-let candidate59 = 0;
-let candidate60 = 0;
-
-for (let trial = 0; trial < monteCarloTrials; trial += 1) {
-  for (let index = 0; index < 256; index += 1) permutation[index] = index;
-  for (let index = 255; index > 0; index -= 1) {
-    const swap = Math.floor(random() * (index + 1));
-    const temp = permutation[index];
-    permutation[index] = permutation[swap];
-    permutation[swap] = temp;
-  }
-
-  let pass59 = false;
-  let pass60 = false;
-  if (values59[permutation[189]] === 189) {
-    candidate59 += 1;
-    for (let cell = 0; cell < 256; cell += 1) shuffled59[cell] = values59[permutation[cell]];
-    pass59 = allFlowToFixedPoint(shuffled59, 189);
-    if (pass59) hit59 += 1;
-  }
-  if (values60[permutation[189]] === 189) {
-    candidate60 += 1;
-    for (let cell = 0; cell < 256; cell += 1) shuffled60[cell] = values60[permutation[cell]];
-    pass60 = allFlowToFixedPoint(shuffled60, 189);
-    if (pass60) hit60 += 1;
-  }
-  if (pass59 || pass60) hitEither += 1;
-}
-
-const rowTrials = Number(process.env.LP_POINTER_ROW_TRIALS || 200000);
-assert.ok(Number.isInteger(rowTrials) && rowTrials >= 1);
-const rowRandom = mulberry32(monteCarloSeed ^ 0x9E3779B9);
-let rowHit59 = 0;
-let rowHit60 = 0;
-let rowHitEither = 0;
-for (let trial = 0; trial < rowTrials; trial += 1) {
-  for (let index = 0; index < 256; index += 1) permutation[index] = index;
+/** @param {number} trials @param {number} seed */
+function conditionedRowBasin59(trials, seed) {
+  // Under within-row shuffles, base60 cannot self-point at 189 because row23
+  // contains no base60 value189. Base59 row23 contains one 189 and one19.
+  assert.equal(values60.slice(184,192).includes(189), false);
+  assert.equal(count(values59.slice(184,192), 189), 1);
+  assert.equal(count(values59.slice(184,192), 19), 1);
+  const rowValues = [];
+  const rowPositions = [];
   for (let row = 0; row < 32; row += 1) {
-    const base = row * 8;
-    for (let offset = 7; offset > 0; offset -= 1) {
-      const swapOffset = Math.floor(rowRandom() * (offset + 1));
-      const left = base + offset;
-      const right = base + swapOffset;
-      const temp = permutation[left];
-      permutation[left] = permutation[right];
-      permutation[right] = temp;
+    const values = [];
+    const positions = [];
+    for (let col = 0; col < 8; col += 1) {
+      const cell = row * 8 + col;
+      if (cell === sinkCell || cell === reflectedCell) continue;
+      values.push(values59[cell]); positions.push(cell);
     }
+    rowValues.push(values); rowPositions.push(positions);
   }
-  let pass59 = false;
-  let pass60 = false;
-  if (values59[permutation[189]] === 189) {
-    for (let cell = 0; cell < 256; cell += 1) shuffled59[cell] = values59[permutation[cell]];
-    pass59 = allFlowToFixedPoint(shuffled59, 189);
-    if (pass59) rowHit59 += 1;
+  const map = new Array(256);
+  map[sinkCell] = 189;
+  map[reflectedCell] = 19;
+  const random = mulberry32(seed);
+  let hits = 0;
+  for (let trial = 0; trial < trials; trial += 1) {
+    for (let row = 0; row < 32; row += 1) {
+      shuffle(rowValues[row], random);
+      for (let i = 0; i < rowPositions[row].length; i += 1) {
+        map[rowPositions[row][i]] = rowValues[row][i];
+      }
+    }
+    if (allReachRoot(map, sinkCell)) hits += 1;
   }
-  if (values60[permutation[189]] === 189) {
-    for (let cell = 0; cell < 256; cell += 1) shuffled60[cell] = values60[permutation[cell]];
-    pass60 = allFlowToFixedPoint(shuffled60, 189);
-    if (pass60) rowHit60 += 1;
-  }
-  if (pass59 || pass60) rowHitEither += 1;
+  return {trials, hits, conditionalRate:hits/trials};
 }
 
-const result = {
-  source: {
-    missingLowDigit: "f",
-    base60: graph60,
-    base59: graph59,
-    sink: {
-      cell: 189,
-      row: Math.floor(189 / 8),
-      column: 189 % 8,
-      token: tokens[189],
-      base59Value: values59[189],
-      base60Value: values60[189],
-      maxBase59Depth: Math.max(...depths59)
-    },
-    reflectedSink: {
-      cell: reflectCell(189),
-      token: tokens[reflectCell(189)],
-      value59: values59[reflectCell(189)],
-      value60: values60[reflectCell(189)]
-    }
-  },
-  monteCarlo: {
-    trials: monteCarloTrials,
-    seed: monteCarloSeed,
-    targetCell: 189,
-    candidate59,
-    candidate60,
-    hit59,
-    hit60,
-    hitEither,
-    rateEither: hitEither / monteCarloTrials
-  },
-  rowMatchedMonteCarlo: {
-    trials: rowTrials,
-    seed: (monteCarloSeed ^ 0x9E3779B9) >>> 0,
-    hit59: rowHit59,
-    hit60: rowHit60,
-    hitEither: rowHitEither,
-    rateEither: rowHitEither / rowTrials
-  }
-};
+const fullTrials = Number(process.env.LP_POINTER_TRIALS || 300000);
+const rowTrials = Number(process.env.LP_POINTER_ROW_TRIALS || 200000);
+const full59 = conditionedFullBasin(values59, fullTrials, 20261128);
+const full60 = conditionedFullBasin(values60, fullTrials, 20261128 ^ 0x9E3779B9);
+const row59 = conditionedRowBasin59(rowTrials, 20261128 ^ 0x85EBCA6B);
+const estimatedFullJointRate =
+  placement59 * full59.conditionalRate + placement60 * full60.conditionalRate;
+const rowPlacement59 = 1 / (8 * 7);
+const estimatedRowJointRate = rowPlacement59 * row59.conditionalRate;
 
-console.log(JSON.stringify(result, null, 2));
+console.log(JSON.stringify({
+  classification:"prior sink + new source-reflection/DH closure; no unknown plaintext",
+  priorRechecked:{base59AllTo189:true,base60AllTo189:false},
+  dhGeometry:{
+    width, widthEqualsA:dh.A, sinkCell, sinkCoordinates:[dh.p,dh.g],
+    mirrorColumn:width-1-dh.g, mirrorColumnEqualsK:dh.K,
+    reflectedCell, reflectedToken:tokens[reflectedCell], reflectedValue:dh.B,
+    derivedPrivateExponents:{a,b}, sharedFromB:powMod(dh.B,a,dh.p)
+  },
+  exactPlacementCharge:{placement59,placement60,placementEither},
+  conditionalBasinMonteCarlo:{full59,full60,row59},
+  estimatedJointRates:{
+    fullTokenShuffleEitherRadix:estimatedFullJointRate,
+    rowConditionedBase59:estimatedRowJointRate
+  }
+}, null, 2));
