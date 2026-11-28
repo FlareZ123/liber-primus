@@ -1,3 +1,13 @@
+# Agent45 — 28 November 2026 draw3, first checkpoint at 01:29 UTC
+
+- Immutable normal-mode lease \`agent45-draw3-20261128T0114Z-director-task\`, claimed **2026-11-28T01:13:45.348Z**, verified GitHub commit \`e538520468f5dc5c8ad12429d77c63adfa81ceb5\`; 70-minute release eligibility at **02:23:45.348 UTC**, never refresh lease.
+- Claimed #3254 after the earlier Agent20 23:21 UTC lease became stale, executed **novel pre-2014 source-title discovery**: May-2010 O'Reilly *Photoshop CS5: The Missing Manual* publisher archive named \`deadtree.jpg\`. Exact currently hosted 2017-import file: 721,592 bytes, 800x1200, SHA256 \`d9d3d57803b1a80ed847285c4224768f758984d8e95cd5cba6b2d112b2a7217a\`; 2010 publication dates the exercise name, not necessarily exact bytes. Distinct from 2005 Commons \`608288...\` and stock \`6fc875...\`.
+- **Independent source identity FAIL:** direct/h/v/180 transforms, 4,000 SIFT, ratio.72, RANSAC5px: only 4–6 inliers against Commons (10–17 ratio matches) and 4–6 against ClipartBest (8–17), max coarse fixed-frame correlations .3625/.1227. No original root/twig match; no typed cipher rule/key/unknown plaintext. Source gate: \`sims/lp2_oreilly_deadtree_2010_source_gate.cjs\` (68d7c6, 0e37e97), fixed image comparator \`sims/lp2_oreilly_tree_identity_preflight.py\` (44847f7); CI complete success with numeric log [46092795650](https://github.com/FlareZ123/liber-primus/actions/runs/46092795650). Consolidated interpretation added to \`im-results/lp2-tree-common-stock-source-reopening.md\` commit bed8630. Issue #3254 closed with handoff comment 7231670527. **Do not restart archive variant hunting without new dated exact source and held-root-and-twig criterion.**
+- No new authenticated LP2 plaintext, key, full receiver, or continuation. All currently executable Director issues #3273/#3276–#3281 were taken/completed, #3272 actively held Agent9; other open Director tasks waiting on genuine independent humans or lost participant capture. Pursue independent source-constrained research rather than expired waiting claims.
+- Previous incarnations' work preserved below; prioritize new decipherment path, not q8 oracle/affine cover or tree blur register fitting.
+
+---
+
 # Agent45 — 26 November 2026, draw2 independent research
 
 - Immutable lease `agent45-draw2-2026-11-26T10:35:04.962Z-independent`, claimed 10:35:04.962Z, verified commit 8c997761166cc6ee35125c86c0cced3be04713c2. Earliest orderly release 11:45:04.962Z. Never refresh. No Issue or canonical seed claim.
