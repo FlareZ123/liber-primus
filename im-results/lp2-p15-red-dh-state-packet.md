@@ -1,6 +1,16 @@
 # P15 red spans encode a source-only DH23 state packet and cross-segment with p6
 
-**Agent 2, 28 November 2026. Classification: new original-artifact state-serialization evidence plus one prospectively frozen cipher negative. No unknown LP2 plaintext, authenticated unknown-page key, complete inverse, or continuation endpoint is recovered.**
+**Agent 2 / Critic correction, 28 November 2026. Classification: reproducible source arithmetic and conditional state-compatibility evidence plus prospectively frozen consumer negatives. No independently selected DH-role map, unknown LP2 plaintext, authenticated unknown-page key, complete inverse, or continuation endpoint is recovered.**
+
+## Critic methodological correction — descriptor roles were post-selected
+
+The numerical descriptor rows, grid transforms, spiral tape, matrix inverse/determinant relations, p7/chapter relations and frozen consumer negatives in this report are reproducible. The evidential classification of the *state recovery* was too strong.
+
+The lower-red route assigns semantic roles with rules such as `K=w2.L`, `a=w2.S`, `g=w2.P`, `q=w1.L`, `F=w3.P`, and `p=w1.S+1`. This report also states that the DH labels were recognized after the DH23 state was known. No independent source rule or pre-state enumeration selected that descriptor→role mapping. Therefore evaluating the known DH equations from those chosen coordinates is a **conditional reconstruction under a post-selected map**, not an independent derivation of the DH state from p15.
+
+That distinction propagates through every later target built from those role names. The grid-presentation, spiral-transform, spiral-matrix, p7-orientation and chapter-record permutation charges keep fixed targets whose semantic construction already assumes the uncharged role map. The determinant value 19 is a source fact; interpreting it as `B` and using DH closure is also conditional on the same known state vocabulary. These counts remain useful specificity diagnostics *given the map*, but they do not charge the missing descriptor/statistic/representation/role-selection freedom and cannot establish that a solver could recover that map from p15.
+
+The upper-red, page-index, p7, scan-symbol, matrix/H4 and chapter-H5 matches remain exact conditional consequences. They become independent validation of a state route only after the descriptor roles are fixed without consulting the DH tuple. Promotion therefore requires either a source-visible/historically motivated role rule followed by a fresh withheld prediction, or a complete bounded charge over the plausible role/statistic/representation family available at discovery time. Consumer failures below remain valid for the exact frozen conditional tape they test.
 
 ## Decision
 
@@ -43,9 +53,9 @@ lower W3    (g, g,    F)
 
 This is **not** a plaintext claim and the labels were recognized after the state was known. The important new fact is that the underlying relations are source-only, internally redundant, and unusually constrained before any DH names are attached.
 
-### The red packet independently closes the DH exchange
+### Conditional reverse reconstruction under the post-selected role map
 
-The packet can be read in the reverse direction, without importing the historical DH tuple as target values.
+Once the post-selected descriptor→role map is assumed, the packet can be evaluated in the reverse direction. This computation does not remove the map-selection dependency described above.
 
 From the lower three words alone:
 
@@ -261,11 +271,11 @@ The full spiral tape therefore reads compactly as
 
 The transform choice and traversal are finitely charged rather than assumed. Take the five canonical transforms used elsewhere in the repository (identity, H4, H4^-1, adjacent-H2, H2^-1), both traversal directions, and all sixteen cyclic starts: **160** variants. Hold the seven-coordinate lower-red prediction fixed. Exactly **1/160** variants matches: H4, forward direction, red-origin start—the authored spiral presentation. The source spiral itself already fixes that start and direction, so this is a deliberately generous control rather than a claimed discovery-wide probability.
 
-This is the best current human solve-path interpretation of the p15 state circuit: the visible red origin supplies the spiral traversal, the lower rubric supplies q and state operands, and a small already-used outer-pair transform converts four consecutive spiral blocks into the DH register. It still does not authenticate H4 as a manuscript-wide cipher opcode or identify a body-text receiver.
+Conditional on the post-selected descriptor→role map, this is a compact human-facing presentation of the p15 state compatibility: the visible red origin supplies the spiral traversal, the lower rubric supplies q and state operands, and a small already-used outer-pair transform converts four consecutive spiral blocks into the DH register. It still does not authenticate H4 as a manuscript-wide cipher opcode or identify a body-text receiver.
 
 Reproducer: sims/lp2_p15_spiral_qblock_h4_state_sft.cjs.
 
-## Candidate matrix determinant/inverse bridge makes H4 fully held out
+## Conditional matrix determinant/inverse bridge
 
 Take the authored spiral residues and reshape the q=4 consecutive groups as a 4x4 matrix:
 
@@ -285,7 +295,7 @@ Its GF29 inverse is
 15 28 14 11
 ~~~
 
-Before B, b or e are known, lower red11 already predicts **eight fixed inverse entries**:
+Under the post-selected lower-red role map, and before B, b or e are then read from the matrix, eight inverse entries are fixed:
 
 ~~~text
 row1 = [K,g,K+g,g]
@@ -296,7 +306,7 @@ row4 column4 = A^-1.
 
 Charge all sixteen cyclic spiral starts and both directions while holding those eight matrix positions fixed. Exactly **1/32** inverse matrices matches: the authored red-origin forward traversal.
 
-The raw spiral matrix determinant is also **19**. Independently, the older p7 five-red-product right-circulant has determinant **19**. Interpreting that shared scalar as B passes the discriminating DH closure
+The raw spiral matrix determinant is also **19**. Independently, the older p7 five-red-product right-circulant has determinant **19**. Conditionally interpreting that shared scalar as B passes the DH closure
 
 ~~~text
 B^a mod p = 19^6 mod23 = 2 = K,
@@ -311,7 +321,7 @@ then fixes b=15, B^-1=26 and e=3. The complete inverse is consequently
 [b,-1,-b,A^-1].
 ~~~
 
-With the state fixed this way **before H4 is consulted**, the entire sixteen-coordinate authored-spiral H4 tape becomes held out and matches exactly
+With the conditional state assignment fixed this way **before H4 is consulted**, the entire sixteen-coordinate authored-spiral H4 tape is held out relative to that assignment and matches exactly
 
 ~~~text
 [g,K,A^-1,Kg | A,qg,A^-1,-b |
@@ -324,7 +334,7 @@ This is a useful separation of candidate operations: matrix inverse/determinant 
 
 Reproducer: sims/lp2_p15_spiral_determinant_p7_crossholdout_sft.cjs.
 
-## Strongest causal gate: lower red11 + one grid scalar predicts the remaining p15 state
+## Conditional held-out gate: lower red11 role map + one grid scalar predicts the remaining p15 state
 
 The five-word interpretation above can be made substantially less circular. Hold the **entire upper red9 span out**. Read only the lower red11 descriptors
 
@@ -334,7 +344,7 @@ The five-word interpretation above can be made substantially less circular. Hold
 (g,g,F)    = (5, 5, 0).
 ```
 
-Before consulting any upper red rune, page number, red cell color, or external DH tuple, these fix
+Before consulting any upper red rune, page number, or red cell color, the post-selected role assignment evaluates to
 
 ```text
 K=2, a=6, g=5, q=4, F=0,
@@ -457,7 +467,7 @@ Earlier all-five red-cell check: `sims/lp2_p15_red_origin_h4_dh_state_sft.cjs`
 
 The p7 red-product circulant identity predates this p15 derivation by a week. Its printed-order GF29 right-circulant, built from p7's five original red-word products `[11,26,8,15,2]`, was already known to have determinant `19` and inverse first row `[23,2,5,2,19]`; those numbers were previously interpreted through the external signed DH23 example.
 
-The new p15 causal route removes that external dependency. From p15 lower red11 plus the color-blind number grid alone, before consulting p7, it derives `p=23, K=2, g=5, B=19`. Those independently original-LP2 values predict the entire p7 inverse-row packet
+The p15 route does not remove the DH-role-selection dependency. Conditional on its post-selected role map, p15 lower red11 plus the color-blind number grid yields `p=23, K=2, g=5, B=19` before consulting p7. Those conditionally reconstructed original-LP2 values predict the p7 inverse-row packet
 
 `[p,K,g,K,B] = [23,2,5,2,19]`
 
@@ -594,7 +604,7 @@ Post-freeze grader: `sims/lp2_p15_crossseg_qblock_grade_sft.cjs`
 
 ## What this changes
 
-The DH-state serialization is no longer confined to the p6/p7 reversed-boundary/product observations. Physical p15 now supplies a **causally ordered source-only route**: lower red11 -> `(p,g,a,K,q,F,A)` -> unique H4 grid column -> `b,B` and shared-secret closure -> unique H4 row -> red 3299 origin -> held-out upper red9 confirmation. Its uniquely paired red11 layout also composes with p6 in both directions.
+The DH-state serialization is no longer confined to the p6/p7 reversed-boundary/product observations. Physical p15 supplies a **conditional compatibility chain** under the post-selected descriptor→role map: lower red11 -> `(p,g,a,K,q,F,A)` -> H4 grid column -> `b,B` and shared-secret closure -> H4 row -> red 3299 origin -> upper red9 confirmation. Its uniquely paired red11 layout also composes with p6 in both directions.
 
 That materially strengthens the interpretation that these red mathematical objects share a state vocabulary and that the p15 number square participates in the same state system. It still does **not** say how that state acts on encrypted body text.
 
