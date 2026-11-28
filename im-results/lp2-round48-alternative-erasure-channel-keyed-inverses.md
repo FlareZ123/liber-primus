@@ -319,3 +319,21 @@ An independent held Shakespeare plant (seed 1385117, test offset 3000, q16, 1479
 The original refined key is [1,12,0,13,0,33,2,7,4,1,18,5,11,19,1,5]. Exact training likelihood improved by 0.035652 nats/rune, but independent held likelihood deteriorated by 0.015920 nats/rune. This demonstrates modest in-sample fitting rather than a predictive improvement. No reason to privilege this key or claim plaintext recovery. The independent plant demonstrates local correction capability, not a new full blind solver; the existing surrogate already found its true cyclic key from two starts.
 
 Reproduction: `node sims/lp2_alt36_periodic_exact_refinement_sft.cjs`. Computational core executed in connected V8; standalone Node entry point not run. Implementation commit `6a1ef695b1416bb49b823331cccbc9ee4147b3e9`. No authenticated LP2 key or mechanism follows.
+
+## Blind GP29 deletion-key recovery by soft phase mixtures (Agent38, 28 November)
+
+The prior discrete iid proposal failed both q16 matched plants. The separate [discrete Markov EM proposal](../sims/lp2_alt29_delete_markov_phase_em_sft.cjs) also stalled without changing any of four initial Gibran keys. A successful new method relaxes each phase's GP29 shift into a probability mixture of all 29 shifted native unigram distributions, integrates geometric deletion phase transitions using exact cyclic forward/backward recurrences, and updates mixture responsibilities. Across 100 iterations the distributions are gradually sharpened to point masses, then discrete coordinate ascent refines each of four candidates (seeds17,3301,1033,761; at most eight full sweeps). This proposal ignores strict retries and need not produce the global optimum. [Soft proposal code](../sims/lp2_alt29_delete_soft_phase_em_sft.cjs).
+
+[Strict-channel selection and prediction](../sims/lp2_alt29_delete_blind_periodic_sft.cjs): for each distinct proposed period construct the accepted-event native Markov transition matrix T (state previous accepted ciphertext and next phase), including all deterministic strict-repeat retries. The retained-event matrix is M=(1-d) sum_(n>=1) d^(n-1) T^n, d=.187. Compute through n=20; omitted row probability mass <=2.735e-15. The first retained distribution handles arbitrary leading deletions. Fit-only exact-channel numerical likelihood selects a cycle and origin among all rotations without refitting on the held suffix. Uncapped first-order MAP decoder above supplies complete legal event paths.
+
+Same predeclared 1479-visible fit/404-visible held original p15-body–22 and two clean matched native controls. Independent held donor intervals and key seeds 20261128/910133; no initializer collisions. [Control evidence](lp2-alt29-delete-blind-periodic-controls.json) · [original full path, candidate keys and source blobs](lp2-alt29-delete-blind-periodic-original.json).
+
+| Sample | Selected key | Strict marginal fit / held nats per rune | Held full / retained LCS |
+|---|---|---:|---:|
+| Gibran | 16/16 exact, including phase | -3.02969 / -3.04225 | 72.97% / 82.43% |
+| Emerson | 16/16 exact, including phase | -3.07149 / -3.04281 | 76.06% / 86.63% |
+| LP2 p15 body–22 | no truth | -3.50609 / -3.55259 | unavailable |
+
+Original key [24,1,8,19,27,15,17,7,19,14,24,11,24,20,17,7], selected from seed17 (rotation15) by strict fit likelihood, despite another proposal having higher iid surrogate score. MAP -3.95527, clock2328, 2204 inferred plaintext symbols, maximum hidden gap2, complete replay. Noncoherent native output. Conditional negative for these bounded q16 blind GP29 deletion proposals under this model, not an exhaustive key exclusion; two successful controls are useful algorithmic calibration, not a general false-negative guarantee. The earlier failed proposals cannot support original exclusion. No original key, plaintext or mechanism recovered. Key recovery is stronger than full plaintext recovery because deletion is intrinsically many-to-one.
+
+Reproduce `node sims/lp2_alt29_delete_blind_periodic_sft.cjs --options=/path/to/options.json` with `{"source":"gibran","seed":20261128,"offset":5000}`, `{"source":"emerson","seed":910133,"offset":10000}`, or `{"original":true}`. Control proposal and strict selection stages ran separately in V8 without resampling; original complete experiment ran in V8. Node wrapper not separately executed.
