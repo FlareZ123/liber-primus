@@ -34,8 +34,34 @@ The original rune inventory and title are kept fixed in 100,000 deterministic se
 
 The [self-contained original-input Node SFT](../sims/lp2_p57_primeordinal666_source_sft.cjs) reads `resources/liber-primus/lp2-transcription.txt`, verifies that all original 95 rune indices match the independent canonical `lp2-corpus.json`, computes prime ordinals and reproduces the fixed-inventory surrogates. It uses no substituted unknown plaintext.
 
+## Middle-sentence ordinal differences address a zero-F `THOTH` at original p32 (Agent50, 28 November 2026)
+
+**New original-source conditional plaintext-looking fragment; not a decipherment or authenticated key.** The complete printed p57 title/body ordinal vector **[87,205,173,201]** is established above. The source's middle body sentence instructs **“WE MUST SHED OUR OWN CIRCUMFERENCES”**; its immediately prior and following sentences have ordinal **205** and **201**, compared with the middle **173**. If the solver subtracts that middle anchor from each neighbor in original printed order, the completely determined difference packet is:
+
+```
+π(1259) − π(1031) = 205 − 173 = 32
+π(1229) − π(1031) = 201 − 173 = 28
+```
+
+Interpreting `(32,28)` as **physical LP2 page32, zero-based rune offset28**, the *unchanged original JPEG 49.jpg* and the canonical LP2 transcription show exactly five consecutive GP29 glyphs:
+
+```
+p32 offsets: 28  29 | 30  31  32
+runes:       TH   F | F    O   TH
+raw text:    ᚦᚠ-ᚠᚩᚦ.
+```
+
+The vertical line above is the **original printed word separator**, *not* a single contiguous printed word. In the 29-symbol chart **F has index0**. If and only if the candidate operation removes both zero-index F glyphs from that selected five-rune window, its surviving glyphs literally spell **`TH-O-TH` / `THOTH`**, the name of an Egyptian divinity associated with writing and knowledge. The neighboring solved p57 sentence says **“FIND THE DIVINITY WITHIN AND EMERGE”**. This makes the entire path more meaningful than an isolated page-number collision: two full original p57 clause sums → simple center subtraction → fixed page/rune address → a visible zero-symbol cancellation → a divinity name explicitly fitting the final source sentence. The preceding solved p56 cipher also treats **plaintext** F specially as a non-consuming pass-through; that makes F a historically recognizable symbol to examine, though *it does not validate erasing ciphertext F*.
+
+Two exact scope controls using the unmodified complete p0–55 ciphertext are included in the [existing prime-ordinal SFT](../sims/lp2_p57_primeordinal666_source_sft.cjs):
+
+* The book has only **four adjacent F–F doublets** at physical positions **p9@62, p29@87, p32@29, p36@69**. The p32 one straddles this particular printed word boundary.
+* Removing all index0 F glyphs in each page solely as a *diagnostic*, **`TH-O-TH` occurs exactly once** across 12,956 unknown ciphertext runes, at original p32 positions **28,31,32**. The source packet points precisely to that surviving triple's first rune.
+
+**Weakest premises and stopping gate.** The 2016 signed direction hint and the p57 words nominate numerical navigation, but no first-party command authorizes (1) taking ordinal *differences* rather than prime sums/ranks, (2) choosing `page:rune` versus another address type or choosing zero-based rune origin, or (3) deleting raw ciphertext F values on unknown pages. The solved p56 F skip is a property of its *plaintext-F* transparent cipher; ciphertext-F may encode a non-F rune. The output `THOTH` was noticed while examining the address, not prospectively registered as a required divine name, and other source-guided attempts across the repository create strong postselection risk. **It is not recovered plaintext**: the other original runes remain encrypted, and no key schedule or canonical consumer of `THOTH` has been independently established. This is a bounded candidate **human solve-path clue**: test a next operation only if an authentic original instruction fixes how this exact three-GP-rune name is to be used and where. Do not escalate to arbitrary THOTH/Book-of-Thoth hashes, Vigenère phases, steganography passwords or literary keyword scans on the strength of the match.
+
 ## Cryptanalytic decision
 
 This is a **source-defined four-unit numerical relationship** worth preserving and independently assessing: it requires no invented 2016 page/word address grammar, and it uses the same prime numerology explicitly honored in solved LP1 text. Unlike the separate [p57 title-449 modulo/page-line/prime449 hypothesis](lp2-onion7-133-331-p13-line3-primesum.md), this identity comes directly from all printed cleartext units without tuning unknown LP2 ciphertext. The independently solved p56 title-to-hash-size match makes this more promising as a possible human-solve-path clue, although its authorial status is still unproven.
 
-**Open dependency:** find a source-authenticated operation in the 2013–2016 Cicada historical trail that tells a solver to convert sentence GP-prime sums into *prime ordinals* and use `666` as a specified title, coordinate, password, key derivation, or navigation command. Then freeze that operation and test original undeciphered glyphs. Without such a rule, the identity may be an attractive accidental arithmetic property and must not be promoted as a solved plaintext route.
+**Open dependency:** find a source-authenticated operation in the 2013–2016 Cicada historical trail that tells a solver to convert sentence GP-prime sums into *prime ordinals* and use `666`, or the now documented `(32,28)→THOTH` candidate, as a specified title, coordinate, password, key derivation, or navigation command. Then freeze that operation and test original undeciphered glyphs. Without such a rule, the identity may be an attractive accidental arithmetic property and must not be promoted as a solved plaintext route.
