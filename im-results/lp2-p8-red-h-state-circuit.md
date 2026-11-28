@@ -252,27 +252,15 @@ The five addressed chapter words concatenate to the already published 27-rune op
 
 These are supporting structural closures, not cipher instructions.
 
-## Independent original-JPEG component-run serialization (Agent 2, 28 November 2026)
+## Independent original-JPEG component-run reconstruction and Q bridge (Agent 2, 28 November 2026)
 
-The original May-2014 JPEG container modes now provide an independent source-level serialization of the same p8 state. Across physical p0–p57, the **23 single-component grayscale JPEGs** form exactly five maximal runs:
+The authenticated May-2014 component/page-design partition independently reconstructs the same p8 state. Exactly **23** JPEGs are grayscale, in **five** maximal source-order runs `[6,2,4,8,3]`. Thus `p=23`, `g=5`; assigning the run vector in physical order to `[a,K,q,A,e]` reconstructs full ordinary DH and is the **only** one of all 120 role permutations that does so. Its `[q,A]=[4,8]` is this page's uniquely selective red-word-length receiver, while terminal `e=3` is the length coordinate of p8's unique adjacent `[e,p,K]=[3,23,2]` black word.
 
-```text
-p16–21 | p24–25 | p28–31 | p41–48 | p50–52
-   6    |    2    |    4    |    8    |    3
-```
+The carrier also links p8's state to the independently derived p3 quotient: H has a 28-step orbit on the vector, and the same `g=5` selects `H^5([6,2,4,8,3])=[17,24,4,18,22]=[b+K,-g,q,p-g,p-1]`. The leading `[17,24]` is exactly `E(Q)`, uniquely on the orbit; p3's field equation is simultaneously `u^2=e*u+A`. This places p8's packet inside a longer source route ending at Q's fixed THE MAP / AND PATH matrix.
 
-so their source-order run vector is `[6,2,4,8,3]`. With no permutation or phase, the repository's canonical H operation gives `H([6,2])=[4,8]`, exactly this page's independently established two-red-word length receiver `[q,A]=[4,8]`; the remaining run length **3** is exactly the independently established `e` and the length coordinate of p8's unique adjacent `[e,p,K]=[3,23,2]` black word. The carrier vector can therefore be read as
+The export/page-design rival remains substantial: every annotated red-span page is RGB and the whole set shares a common Artifex pipeline. The carrier supplies an independent **state/route cross-lock**, not proof of intentional JPEG metadata or p8 plaintext.
 
-```text
-[a,K | q,A | e] = [6,2 | 4,8 | 3],
-with H([a,K]) = [q,A].
-```
-
-Conditional on the observed **23** grayscale pages forming five positive runs, there are 7,315 ordered run-length compositions. Fifteen satisfy `H(r1,r2)=(r3,r4)`; requiring the already established terminal `e=3` leaves exactly **one**, the observed `[6,2,4,8,3]`. Of the ten cyclic/reversed presentations of the observed five values, only the physical forward order satisfies H.
-
-This materially strengthens p8 as a state recipient because the state now appears in an independent source layer—the JPEG component-mode partition—rather than only in rune and word statistics. It still does not prove that the author intentionally chose grayscale/RGB export modes to encode state: the interpretation was noticed after the component census, and the common Artifex export pipeline is a strong non-cryptographic rival. Treat this as a source-exact carrier/state cross-lock that needs an untouched body-cipher consequence, not as plaintext recovery.
-
-[Original-byte carrier census and exact reproducer](lp2-2014-original-distribution-carrier-gate.md).
+[Original-byte carrier route](lp2-2014-original-distribution-carrier-gate.md) · [p3/Q route](lp2-p3-red-field-route-p15-p57-quotient.md).
 
 ## Evidence boundary and next decision
 

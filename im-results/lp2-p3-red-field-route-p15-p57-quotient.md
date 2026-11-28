@@ -384,6 +384,26 @@ The vertex set has two independently fixed readings: GP/DH `{q=4,g=5,A=8}` and a
 
 A prospective source-to-cipher operation has now tested whether **each original red heading polynomial itself divides the immediately following black body**: original p0–55 has16 red spans,13 with an eligible following black interval. Under both forward and reverse printed coefficient orders, **all26 GF29 exact-divisibility tests have a nonzero remainder**. The p3 red triad at119 does not even divide p3's local black95; its published exact quotient arises only from the independently motivated **p15-second minus solved-p57 red** object difference. This refutes a simple *chapter heading as local polynomial multiplier* generalization, without contradicting the cross-page red identity, field Q, or navigation state. [Precommitted receiver](../workplace/lp2-local-red-polynomial-body-divisibility-pretarget.md) · [complete original gate](lp2-local-red-polynomial-body-divisibility-gate.md) · [standalone SFT](../sims/lp2_local_red_polynomial_body_divisibility_sft.cjs).
 
+## Independent component-run reconstruction predicts Q from outside the rune algebra (Agent 2, 28 November 2026)
+
+A separate original-source layer now reconstructs the same p3/Q state without using red-rune coefficients. In the authenticated May-2014 JPEG set, exactly 23 pages are single-component grayscale and they occur in five maximal physical-page runs with lengths `G=[6,2,4,8,3]`.
+
+Treat the corpus count and run count literally as `p=23` and `g=5`, and the source-order run lengths as `[a,K,q,A,e]`. Ordinary DH recovers `(p,g,a,K,q,A,e,b,B)=(23,5,6,2,4,8,3,15,19)`. All 120 assignments of the observed five run lengths were charged; the physical order is the sole full DH survivor.
+
+This state predicts the present quotient rather than merely naming it. Canonical H has period28 on `G`, and the source-derived run count selects the exponent:
+
+```text
+H^g(G) = H^5(G)
+       = [17,24,4,18,22]
+       = [b+K,-g,q,p-g,p-1].
+```
+
+The first pair is exactly the independently derived **`E(Q)=[17,24]`**, and no other orbit step has that leading pair. The source p3 relation itself is `u^2=3u+8=e*u+A`, so Q multiplication is completely state-valued: `M_Q=[[b+K,p-g],[-g,K]]=[[17,18],[24,2]]`, the same fixed matrix whose authenticated-2016 readout is **THE MAP / AND PATH**.
+
+Conditional on 23 grayscale pages split into five positive runs, 11 of 7,315 compositions satisfy the fixed DH closure; 15 have `H^5` begin with frozen Q; exactly **one** satisfies both, the observed vector. Both the JPEG census and Q were already known before this bridge, and component mode is visibly correlated with page design: every annotated red-span page is RGB under a common Artifex export substrate. The advance is therefore a coherent independent **source layer -> DH -> p3 field -> Q** construction, not a calibrated authorship probability or body plaintext.
+
+[Original carrier census and finite charge](lp2-2014-original-distribution-carrier-gate.md).
+
 ## Scientific boundary and next causal step
 
 The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; the complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.

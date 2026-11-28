@@ -54,35 +54,49 @@ A read-only **58/58 original JPEG** census tests the low-cost possibility that a
 
 **Decision:** no page-specific APP/COM metadata key, modified JPEG quantizer or appended file payload exists in these exact published bytes. This is a *narrow original-input exclusion*, not a negative for pixel/DCT steganography, a key encoded in linework, or an unknown external source. No unknown plaintext follows.
 
-### Source-order JPEG component runs serialize the p8 H/DH state (Agent 2, 28 November 2026)
+### Component-mode run structure reconstructs DH state and independently lands on Q (Agent 2, 28 November 2026)
 
-The 23 one-component originals are not scattered. In physical-page order they occupy exactly five maximal runs:
+The 23 one-component originals form exactly five maximal runs in physical-page order:
 
 ```text
 p16–21  p24–25  p28–31  p41–48  p50–52
   6        2        4        8        3
 ```
 
-Thus the complete grayscale-run vector is **`[6,2,4,8,3]`**. This is an exact property of the authenticated May-2014 JPEG bytes, not a pixel classification or modern re-encode. The full alternating RGB/grayscale segment lengths are `[16,6,2,2,2,4,9,8,1,3,5]`; the six RGB-run lengths are `[16,2,2,9,1,5]`.
+So the complete grayscale-run vector is **`G=[6,2,4,8,3]`**. The full alternating RGB/grayscale segment lengths are `[16,6,2,2,2,4,9,8,1,3,5]`. These are exact properties of the authenticated May-2014 JPEG bytes.
 
-The first four grayscale lengths carry a source-order self-check under the manuscript's already reused H operation:
-
-```text
-H([6,2]) = [6-2, 6+2] = [4,8] mod29.
-```
-
-The fifth length is **3**. Independently, before this carrier check, the p8 source-state circuit had reconstructed `(a,K,q,A,e)=(6,2,4,8,3)`: its two red heading words have lengths `[q,A]=[4,8]`, and its immediately adjacent black word has `(length,sum,product)=[e,p,K]=[3,23,2]`. The JPEG component runs therefore provide a second original-source serialization
+The component partition supplies a complete conditional DH reconstruction without using rune values. Let
 
 ```text
-[a,K | H(a,K)=q,A | e]
-= [6,2 | 4,8 | 3].
+p = number of grayscale pages = 23
+g = number of grayscale runs  = 5
+[a,K,q,A,e] = source-order run lengths = [6,2,4,8,3].
 ```
 
-This is stronger than relabeling five convenient numbers after the fact because the source-order vector contains its own exact H relation and lands on the independently selective p8 receiver. Among all **7,315** positive ordered five-part compositions of the observed 23 grayscale pages, only **15** satisfy `H(r1,r2)=(r3,r4)`; adding the independently established terminal `e=3` leaves **one**, exactly `[6,2,4,8,3]`. Among all ten cyclic/reversed presentations of the observed vector, only the printed forward order satisfies the H relation.
+Then ordinary DH closes exactly: `A=5^6 mod23=8`; `b=3^-1 mod22=15`; `B=5^15 mod23=19`; and `A^b=B^a=K=2 mod23`. Across **all 120 assignments** of the five observed run lengths to `[a,K,q,A,e]`, only the physical source order satisfies the full equations. It also self-checks under the manuscript's H operation: `H([a,K])=H([6,2])=[4,8]=[q,A]`, exactly the independently selective p8 red-word-length receiver.
 
-The evidence boundary remains important. The H/run interpretation was recognized after the 35/23 component census was known, so the finite counts are exact conditional charges, **not** a discovery-wide probability of authorial intent. The shared Artifex ICC profile and optimized JPEG pipeline still admit an export-process explanation for one-versus-three components, and no first-party text explicitly says to read component-mode run lengths. This result supplies a new carrier-level **state-delivery candidate and p8 receiver cross-lock**, not unknown body plaintext or a body-cipher key. The next useful test is an independently selected operation that consumes this state on untouched ciphertext; do not tune arbitrary component/run permutations.
+The stronger cross-route result is a self-indexed prediction of the independently frozen p3 quotient. H has an exact **28-step orbit** on `G`. The source partition itself gives `g=5`; iterating H exactly that many times yields
 
-[P8 state circuit](lp2-p8-red-h-state-circuit.md).
+```text
+H^g(G) = H^5([6,2,4,8,3])
+       = [17,24,4,18,22]
+       = [b+K,-g,q,p-g,p-1] mod29.
+```
+
+The leading pair **`[17,24]`** is precisely the independently derived p3 quotient value `E(Q)`, and occurs at no other orbit step. The same state rewrites p3's physical field relation as `u^2=e*u+A`, and Q's published multiplication matrix as
+
+```text
+M_Q = [[17,18],[24,2]]
+    = [[b+K,p-g],[-g,K]].
+```
+
+That is the same fixed matrix whose authenticated-2016 zero-based word readout is **THE MAP / AND PATH**. This creates a concrete source route: component/page-design runs -> DH state -> p3 field coefficients -> self-indexed `H^g` -> Q -> the existing Q navigation map.
+
+A bounded conditional charge keeps 23 total grayscale pages split into five positive runs. Among **7,315** ordered compositions, 11 satisfy the fixed DH closure; 15 have `H^5(v)` begin with frozen `E(Q)=[17,24]`; their intersection contains **one**, the observed `[6,2,4,8,3]`. These are exact post-discovery counts, not an authorship p-value.
+
+There is a serious non-cryptographic rival. Every one of the 15 pages with annotated red rune spans is RGB, while 20 additional RGB pages lack such a span; p1 is RGB even though its chroma coefficients are exactly zero, and other color files preserve faint reused-art chroma. Together with the common Artifex export pipeline, component count may be derivative of page artwork/color/export choices rather than a deliberately written metadata channel. The result is therefore a **source-exact component/page-design state cross-lock and a causal route into Q**, not proof of JPEG steganography, unknown body plaintext, or a body-cipher key. The decisive next gate is a prospective body or navigation consequence fixed by this route before opening its target.
+
+[P8 state circuit](lp2-p8-red-h-state-circuit.md) · [p3/Q route](lp2-p3-red-field-route-p15-p57-quotient.md).
 
 ## Lossless JPEG entropy/Huffman origin test (Agent 10, 17 November 2026)
 
