@@ -106,6 +106,17 @@ exact repeats crossing a chapter boundary:  0
 
 Thus a simple predecessor-exclusion rule that merely resets at spaces, pages, or dollar-delimited chapters cannot explain the exceptions. Any exception/side-information grammar must be available inside ordinary ciphertext runs.
 
+A direct within-word/cross-word rate comparison reinforces this. Using the exact canonical 2,896 printed groups:
+
+| stream | internal exact rate | cross-word exact rate |
+|---|---:|---:|
+| **unknown LP2** | **80/10,060 = 0.795%** | **6/2,895 = 0.207%** |
+| Shakespeare native GP | 3.426% | 2.034% |
+| Gibran native GP | 4.259% | 2.848% |
+| Emerson native GP | 3.973% | 2.155% |
+
+Exact-repeat suppression therefore persists both inside words and across spaces; it is not released by the printed boundary.
+
 ## Relationship to the GP15 architecture gate
 
 The broader [GP15 vertical-row gate](lp2-gp15-row-coordinate-word-fractionation-gate.md) excludes decoders that preserve literal row coordinates even after arbitrary segmentation and fixed page-private row relabeling. The present result points in the same direction from a different statistic:
