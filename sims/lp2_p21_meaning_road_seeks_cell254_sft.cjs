@@ -29,10 +29,12 @@ const signedWords = [
   'LIBER','PRIMUS','IS','THE','WAY','ITS','WORDS','ARE','THE','MAP','THEIR',
   'MEANING','IS','THE','ROAD','AND','THEIR','NUMBERS','ARE','THE','DIRECTION',
   'SEEK','AND','YOU','WILL','BE','FOUND','GOOD','LUCK','3301','BEWARE','FALSE',
-  'PATHS','VERIFY'
+  'PATHS','VERIFY','OPENPGP'
 ];
 assert.deepEqual(signedWords.slice(20, 24), ['MEANING','IS','THE','ROAD']);
 assert.equal(signedWords[6], 'SEEKS');
+assert.equal(signedWords[39], 'FALSE');
+assert.equal(signedWords.length, 43);
 
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const parts = raw.split(/^\s*%\s*$/m);
@@ -217,6 +219,12 @@ assert.deepEqual(p22Reads, [
   { pair: [11, 7], numeral: 326, address: 70, token: '2n' },
 ]);
 
+const literal39Direction = Number(p22Reads[0].token);
+assert.equal(literal39Direction, 39);
+assert.equal(signedWords[literal39Direction], 'FALSE');
+assert.equal(literal39Direction, 39); // physical p39 under the established zero-based number-as-direction convention
+
+
 // All-self-indexed control: p22 is the only self-indexed group whose adjacent
 // H-pair p50 address hits the independently established p27 source cell254.
 const cell254Hits = self.filter((row) =>
@@ -253,6 +261,11 @@ console.log(JSON.stringify({
     p20Reads,
     p20LegalPages,
     p22Reads,
+    literal39Direction: {
+      sourceIndex: literal39Direction,
+      sourceWord: signedWords[literal39Direction],
+      physicalPage: literal39Direction,
+    },
     allSelfIndexedCell254Hits: cell254Hits.map((row) => row.page),
   },
 }, null, 2));
