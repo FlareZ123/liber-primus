@@ -56,7 +56,7 @@ function selftest(){
  console.log(JSON.stringify({status:'PASS',name:'p30/p31 after-freeze grade integrity selftest',sha256:digest}));
 }
 if(require.main===module){
- if(process.argv[2]==='--selftest')selftest();
+ if(process.argv.length===2||process.argv[2]==='--selftest')selftest();
  else {
   assert.equal(process.argv.length,5,'require frozen filename, exact frozen.sha256, prior pretarget commit');
   const payload=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
