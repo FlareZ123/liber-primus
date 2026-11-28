@@ -1,0 +1,216 @@
+{
+  "sourceGrid": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "firstRanks": [
+    1,
+    2,
+    5,
+    7,
+    10,
+    13,
+    15,
+    18,
+    20,
+    23,
+    26,
+    28,
+    31,
+    34,
+    36,
+    39
+  ],
+  "firstGridKeys": [
+    22,
+    21,
+    13,
+    7,
+    24,
+    12,
+    6,
+    21,
+    11,
+    28,
+    10,
+    4,
+    13,
+    1,
+    18,
+    2
+  ],
+  "originalLength": 1883,
+  "fit": 1752,
+  "held": 131,
+  "p56Replay": 85,
+  "nativeHeldScores": [
+    [
+      "p56_an_end",
+      -2.5114299098177733
+    ],
+    [
+      "p57_parable",
+      -2.5285282305349446
+    ]
+  ],
+  "controls": [
+    {
+      "name": "p57_parable",
+      "schedule": "grid",
+      "n": 95,
+      "exact": 95,
+      "reach": {
+        "prefix": 95,
+        "end": 4,
+        "peak": 5
+      },
+      "score": -2.5262410018825667,
+      "truthScore": -2.5262410018825667
+    },
+    {
+      "name": "p57_parable",
+      "schedule": "totient",
+      "n": 95,
+      "exact": 95,
+      "reach": {
+        "prefix": 95,
+        "end": 4,
+        "peak": 6
+      },
+      "score": -2.5262410018825667,
+      "truthScore": -2.5262410018825667
+    },
+    {
+      "name": "0_welcome",
+      "schedule": "grid",
+      "n": 515,
+      "exact": 515,
+      "reach": {
+        "prefix": 515,
+        "end": 3,
+        "peak": 7
+      },
+      "score": -2.6411237837333275,
+      "truthScore": -2.6411237837333275
+    },
+    {
+      "name": "0_welcome",
+      "schedule": "totient",
+      "n": 515,
+      "exact": 515,
+      "reach": {
+        "prefix": 515,
+        "end": 3,
+        "peak": 5
+      },
+      "score": -2.6411237837333275,
+      "truthScore": -2.6411237837333275
+    },
+    {
+      "name": "0_koan_1",
+      "schedule": "grid",
+      "n": 780,
+      "exact": 780,
+      "reach": {
+        "prefix": 780,
+        "end": 2,
+        "peak": 9
+      },
+      "score": -2.480736594204746,
+      "truthScore": -2.480736594204746
+    },
+    {
+      "name": "0_koan_1",
+      "schedule": "totient",
+      "n": 780,
+      "exact": 780,
+      "reach": {
+        "prefix": 780,
+        "end": 4,
+        "peak": 8
+      },
+      "score": -2.480736594204746,
+      "truthScore": -2.480736594204746
+    }
+  ],
+  "results": [
+    {
+      "schedule": "grid",
+      "sign": 1,
+      "hold": {
+        "prefix": 28,
+        "end": 0,
+        "peak": 2
+      },
+      "ordinaryFit": -5.330286598192243,
+      "ordinaryHeld": -5.165544669704909,
+      "ordinaryOpening": "BNYDIAPCHXTHAEIEAEOAEANSHXCNJIATIAOUFHTHIAXTHJIGTTNIAEACYISYNGOUHEORBTHRIWLYMEABLWLJSWTHSTATHHIFEEAM",
+      "ordinaryHeldOpening": "HCAITHHEAPBTCTHONGHMDDIWMGLARCSDFAEMIAWEAETHUFBPEAHTNNGEOOETC",
+      "holdMean": null,
+      "holdOpening": null
+    },
+    {
+      "schedule": "grid",
+      "sign": -1,
+      "hold": {
+        "prefix": 18,
+        "end": 0,
+        "peak": 2
+      },
+      "ordinaryFit": -5.295432668576338,
+      "ordinaryHeld": -5.501120182139212,
+      "ordinaryOpening": "OOEDHBHBNGWFTEAEXOEAEAEJXIMXGFFSEIDILEOCWDFSRTIRSHXAOLOOJHOEEADURMAEJIAFSJTXESNGFDRUGCNGFSXW",
+      "ordinaryHeldOpening": "CRAETHLRNGJLMBBNGYEOTHOTHPNGNGORAEIARBROEEHNGXUSNBCWXEODGTEAOEOJDR",
+      "holdMean": null,
+      "holdOpening": null
+    },
+    {
+      "schedule": "totient",
+      "sign": 1,
+      "hold": {
+        "prefix": 2,
+        "end": 0,
+        "peak": 1
+      },
+      "ordinaryFit": -5.478761438851372,
+      "ordinaryHeld": -5.7414846488734215,
+      "ordinaryOpening": "NEAFXDXDIAPGOEATHLNCATHBLTAELEOGGNGATFTYEJPFGNGIOETINGXLUNYNNBXEACFWIAETHBRGNGBOELANGIAGFIWEOJIAGNGLP",
+      "ordinaryHeldOpening": "XJUTHXAUMDOEJHNIAXAEFFTPAEEOYUIJNGFGTHAERPATHHWGDMCXOESIAEEAOEJ",
+      "holdMean": null,
+      "holdOpening": null
+    },
+    {
+      "schedule": "totient",
+      "sign": -1,
+      "hold": {
+        "prefix": 96,
+        "end": 0,
+        "peak": 2
+      },
+      "ordinaryFit": -5.4002194694163395,
+      "ordinaryHeld": -5.436777731874651,
+      "ordinaryOpening": "JOLBNGWEATHHAEMROEGMEONTHHEAOCNGINGYADTHAENGHAECRFIIONGOEEALRNLSYATHGIAJAEIARUXLPOEJXUXCNUAENIEAETHRDEOOEP",
+      "ordinaryHeldOpening": "EAIAMAEXIASCXPJJSLGAEYAEWSSYIAMNGIAJIATEOTHSHANOJEAUHGBFIOETYCBIA",
+      "holdMean": null,
+      "holdOpening": null
+    }
+  ],
+  "sourceBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ]
+}
