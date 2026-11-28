@@ -76,13 +76,13 @@ Thus the p32 oak checksum selects p24 before the p24–26 DH-state triangle is e
 
 See `im-results/lp2-rune-poem-artwork-ordinal-navigation-gate.md`.
 
-## Source-calibrated H gives a shorter reconstruction
+## Pre-existing local H gives a shorter reconstruction
 
-The same state can be reconstructed with substantially less algebraic freedom by reusing the already source-calibrated outer-pair operation
+The same state can be reconstructed with substantially less algebraic freedom by reusing the pre-existing fixed outer-pair operation
 
 `H(x,y) = (x-y, x+y) mod29`
 
-that is used elsewhere in the manuscript research and is independently fixed from solved material.
+that was defined and charged in earlier repository work before this mayfly result. Its dedicated transfer gate classifies H as a **local structural transform** useful on p28/p0 packet constructions while rejecting manuscript-wide decoder semantics; this result therefore reuses a frozen local operator rather than claiming a solved-cipher primitive.
 
 Start only with the mayfly triangle `{3,5,8}`, the source-fixed generator candidate `g=5`, the chapter-local `13`, and `p=23` from the unique p57 terminal mark.
 
@@ -125,7 +125,7 @@ So the source-motivated H route reconstructs the complete tuple:
 
 with only one small label charge at the second H output, resolved by the standard DH equations. The broader sign/relation exhaustion below is retained as an adversarial control and reaches the same sole historical state once g=5 is source-fixed.
 
-This is the strongest version of the new result because it replaces the ad hoc-looking formulas `K=g-e` and `b-K=13` with an operation already independently motivated in the manuscript.
+This is the strongest version of the new result because it replaces the ad hoc-looking formulas `K=g-e` and `b-K=13` with a **previously frozen local packet operation**. It does not change the earlier negative conclusion that H is not a general LP2 plaintext decoder. See `im-results/lp2-h-outer-pair-transfer-gate.md`.
 
 ## Independent state packets select p28 line6 without literal DH
 
