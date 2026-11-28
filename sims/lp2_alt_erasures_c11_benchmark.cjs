@@ -16,6 +16,12 @@
  *   node sims/lp2_alt_erasures_c11_benchmark.cjs 0 5 20261128 320
  */
 const fs=require("node:fs"),D=require("./lp2_alt_erasures_alignment_decoder.cjs");
+const _aliasCases=[["QU",[5,7]],["ING",[21]],["IO",[27]],["A B",[24,29,17]]];
+for(const [s,expected] of _aliasCases){
+  const actual=D.tokenizeLatinCanonical(s,true);
+  if(JSON.stringify(actual)!==JSON.stringify(expected))
+    throw Error("Canonical GP29 tokenizer regression: "+s+" "+JSON.stringify(actual));
+}
 const shard=Number(process.argv[2]??0), count=Number(process.argv[3]??5),
       seed=Number(process.argv[4]??20261128), beam=Number(process.argv[5]??320);
 if(!Number.isSafeInteger(shard)||shard<0||shard>1024||!Number.isSafeInteger(count)||count<=0||count>40||!Number.isSafeInteger(seed)||seed<0||seed>4294967295||!Number.isSafeInteger(beam)||beam<1||beam>20000)throw Error("Invalid shard/count/seed/beam");

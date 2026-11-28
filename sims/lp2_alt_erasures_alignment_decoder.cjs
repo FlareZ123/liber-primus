@@ -48,7 +48,7 @@ function tokenizeLatinCanonical(s,withSpaces=true) {
     const alias=aliases.find(([key])=>s.startsWith(key,i));
     if(alias){out.push(alias[1]);i+=alias[0].length;}
     else if(LATIN.has(s[i]))out.push(LATIN.get(s[i++]));
-    else{if(withSpaces&&/[\\s.!?;,:"()\\-\\[\\]]/.test(s[i])&&out.length&&out[out.length-1]!==29)out.push(29);i++;}
+    else{if(withSpaces&&/[\s.!?;,:"()\-\[\]]/.test(s[i])&&out.length&&out[out.length-1]!==29)out.push(29);i++;}
   }
   return out;
 }
