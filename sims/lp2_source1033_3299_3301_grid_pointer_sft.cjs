@@ -52,6 +52,40 @@ function main() {
   assert.deepEqual(seeds.map(seed => seed.cell), [7, 9, 227, 229]);
   assert.deepEqual(seeds.map(seed => seed.oneBasedToken), ['26', '1W', '1D', '2O']);
 
+  // Full historical PARABLE fixture: the three body-clause GP-prime sums
+  // are exactly the factors of 2013 author-visible 1595277641. This yields
+  // one uniform 0-based 256-cell lookup; do not select a different index
+  // clock, table orientation or plaintext receiver by the outputs.
+  const clauses = [
+    { name: 'PARABLE title', lo: 0, hi: 7, sum: 449, cell: 193, literal: '2Z', as60: 155, as59: 153 },
+    { name: 'INSTAR/SURFACE', lo: 7, hi: 37, sum: 1259, cell: 235, literal: '21', as60: 121, as59: 119 },
+    { name: 'SHED CIRCUMFERENCES', lo: 37, hi: 67, sum: 1031, cell: 7, literal: '33', as60: 183, as59: 180 },
+    { name: 'DIVINITY/EMERGE', lo: 67, hi: 95, sum: 1229, cell: 205, literal: '1G', as60: 76, as59: 75 }
+  ];
+  const radix59Digits = symbols.replace('f', '');
+  assert.equal(radix59Digits.length, 59);
+  for (const q of clauses) {
+    assert.equal(p57.indices.slice(q.lo, q.hi)
+      .reduce((acc, glyph) => acc + canonical.prime[glyph], 0), q.sum);
+    assert.equal(q.sum % bytes.length, q.cell);
+    assert.equal(token(bytes[q.cell]), q.literal);
+    assert.equal(bytes[q.cell], q.as60);
+    assert.equal(radix59Digits.indexOf(q.literal[0]) * 59 +
+      radix59Digits.indexOf(q.literal[1]), q.as59);
+  }
+  assert.equal(1259 * 1031 * 1229, 1595277641);
+  const pageLengths = (n) => canonical.pages
+    .filter(page => page.runic_count === n).map(page => page.page);
+  assert.deepEqual(pageLengths(121), [32]);
+  assert.deepEqual(pageLengths(76), [55]);
+  assert.deepEqual(pageLengths(183), []);
+  assert.deepEqual(pageLengths(180), []);
+  // A uniform positional radix cannot make 33 equal interior180
+  // AND 1G equal outer-rim76: the equations force radix 59 and 60.
+  assert.equal((180 - 3) / 3, 59);
+  assert.equal(76 - 16, 60);
+
+
   /** @param {number} value @returns {number[]} */
   function positions(value) {
     return bytes.flatMap((b, index) => b === value ? [index] : []);
@@ -93,6 +127,12 @@ function main() {
 
   console.log(JSON.stringify({
     indexedSourceSeeds: seeds,
+    parableClauseSourceLookup: clauses,
+    conventionalBase60MatchingCompletePageRunes: [
+      { n: 1259, value: 121, physicalPage: 32 },
+      { n: 1229, value: 76, physicalPage: 55 }
+    ],
+    literalPagePointerAndByteLengthMixedSemanticsNotCreatorSelected: true,
     all33Cells: positions(183),
     all49Cells: positions(249),
     all00Cells: positions(0),
