@@ -171,6 +171,46 @@ assert.deepEqual(
 );
 assert.deepEqual(outNames.filter(name=>typedCoverage[name].complete),['rune_product']);
 
+// Stronger instance-level partition: for each frozen OUT statistic, send every
+// chapter output that already appears in the chapter-IN register to that class.
+// Ask whether the remaining output multiset is a submultiset of the six exact
+// cyclic frame gaps. PRODUCT alone passes, using five gaps and leaving only
+// 12=u. This rule does not depend on naming "dead ends" after the fact.
+function multiset(values){
+  const m=new Map();
+  for(const value of values)m.set(value,(m.get(value)||0)+1);
+  return m;
+}
+function isSubmultiset(values,container){
+  const a=multiset(values),b=multiset(container);
+  for(const [value,count] of a){
+    if(count>(b.get(value)||0))return false;
+  }
+  return true;
+}
+const twoRegisterPartition=Object.fromEntries(outNames.map(name=>{
+  const values=records.map(r=>statistics[name](r.black));
+  const inRecipients=values.filter(value=>inSet.has(value));
+  const frameRecipients=values.filter(value=>!inSet.has(value));
+  const frameFits=isSubmultiset(frameRecipients,cyclicFrameGaps);
+  let leftoverFrame=null;
+  if(frameFits){
+    const have=multiset(frameRecipients),all=multiset(cyclicFrameGaps);
+    leftoverFrame=[];
+    for(const [value,count] of all){
+      for(let i=0;i<count-(have.get(value)||0);i+=1)leftoverFrame.push(value);
+    }
+  }
+  return [name,{values,inRecipients,frameRecipients,frameFits,leftoverFrame}];
+}));
+assert.deepEqual(
+  outNames.filter(name=>twoRegisterPartition[name].frameFits),
+  ['rune_product']
+);
+assert.deepEqual(twoRegisterPartition.rune_product.inRecipients,[23,2,19,27]);
+assert.deepEqual(twoRegisterPartition.rune_product.frameRecipients,[11,13,16,3,3]);
+assert.deepEqual(twoRegisterPartition.rune_product.leftoverFrame,[12]);
+
 const deadCoverage=Object.fromEntries(outNames.map(name=>[name,overlap(name,dead)]));
 assert.deepEqual(deadCoverage.rune_product.values,[3,11,13,16]);
 assert.deepEqual(deadCoverage.rune_product.overlap,[3,11,13,16]);
@@ -251,6 +291,8 @@ console.log(JSON.stringify({
     frameStartGaps,
     typedCoverage,
     uniquelyCompleteOutStatistic:'rune_product',
+    twoRegisterPartition,
+    uniquePartitionStatistic:'rune_product',
   },
   productGraphDeadEnds:{
     pages:dead.map(r=>r.page),
@@ -262,5 +304,5 @@ console.log(JSON.stringify({
     deadSequences,
     orderedOneDeletionMatches:orderedMatches,
   },
-  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely typed by the union of chapter-IN sums and exact frame-start spacings: all 8 distinct PRODUCT outputs lie in that combined source register, while no other OUT statistic is fully covered. Stronger, the five PRODUCT-dead-end outputs in chapter order [11,13,16,3,3] are exactly the cyclic frame-start gaps from p4 [11,12,13,16,3,3] after deleting the sole u=aK=12 marker; no other OUT statistic has any one-deletion cyclic match. This supplies a common ordered source-side PRODUCT cue; it does not by itself define a frame-gap navigation fallback.',
+  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely typed by the two visible registers. Instance-by-instance, its nine outputs partition exactly into four chapter-IN recipients [23,2,19,27] and five frame-gap recipients [11,13,16,3,3], leaving only visual gap12=u unused; no rival statistic's non-IN output multiset fits the frame-gap multiset. Equivalently, all 8 distinct PRODUCT outputs lie in the combined register while no other OUT statistic is fully covered. Stronger, the five PRODUCT-dead-end outputs in chapter order [11,13,16,3,3] are exactly the cyclic frame-start gaps from p4 [11,12,13,16,3,3] after deleting the sole u=aK=12 marker; no other OUT statistic has any one-deletion cyclic match. This supplies a common ordered source-side PRODUCT cue; it does not by itself define a frame-gap navigation fallback.',
 },null,2));
