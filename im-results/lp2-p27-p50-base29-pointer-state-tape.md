@@ -52,6 +52,49 @@ For later structural controls it is also useful to take the ordinary Euclidean q
 
 This historical-BASE29 address view was **not** used to choose the start, radix, hop count, or endpoint. Applying BASE29 to table addresses remains an inferred composition: the signed protocol authenticates both operations separately but does not explicitly instruct an LP2 solver to compose p50 pointer addresses with BASE29.
 
+## Radix-carry self-check: the eight hops reproduce `6C`
+
+The BASE59-to-BASE29 conversion along the pointer walk has a simple digit-level form. If a printed base59 token has digit values `(u,v)`, then
+
+```text
+59u+v
+= 29*(2u + floor((u+v)/29)) + ((u+v) mod29).
+```
+
+Thus each pointer step exposes a small carry
+
+```text
+c = floor((u+v)/29).
+```
+
+On the independently fixed eight-hop path from 186, those carries are
+
+```text
+0 1 1 0 1 1 0 0.
+```
+
+They are all binary. In pointer order, taking the first carry as the conventional most-significant bit gives
+
+```text
+01101100₂ = 108 = 0x6C.
+```
+
+The historical BASE29 spelling of the independently fixed **start address 186 is also literally `6C`**. The pointer/register therefore has a compact post-discovery self-check:
+
+```text
+BASE29(start186) = "6C"
+carry-byte(8 base59->BASE29 steps) = 0x6C.
+```
+
+An exact all-start census makes the coincidence specific. With eight hops and forward pointer order frozen:
+
+- base59 has 153/256 starts whose eight conversion carries are binary, but **only start186** has its carry byte's two-character uppercase hexadecimal spelling equal to its own historical BASE29 spelling;
+- reversing the eight base59 carry bits gives **0/256** self-matches;
+- conventional base60, using its exact `60=2*29+2` conversion law, gives **0/256** forward-order self-matches;
+- reversed base60 has two unrelated matches, starts68 and122, while the source-selected start186 gives `0x16`, not `6C`.
+
+This is a **state-label-free internal checksum**, but the evidentiary limit matters: rendering an 8-bit carry register as uppercase hexadecimal is a newly chosen representation. No first-party LP2 instruction presently says to pack these carries into a byte or print that byte in hex. The result therefore strengthens the view that the selected base59 pointer path is self-structured under BASE29 conversion; it is not an authenticated opcode or a discovery-adjusted probability claim.
+
 ## Strongest algebraic compression: adjacent H of the low BASE29 digits
 
 The eight pre-terminal BASE29 remainders are
@@ -336,4 +379,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`.
