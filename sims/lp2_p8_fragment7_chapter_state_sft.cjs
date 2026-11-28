@@ -552,6 +552,17 @@ assert.deepEqual(H(circumferenceLengths.map(mod)), [p, A, mod(-g), mod(-q)]);
 assert.deepEqual(H(circumferenceSums), [mod(-1), p, q, g + K]);
 assert.deepEqual(H(circumferenceProducts), [K * g, B, 1, p - g]);
 
+// The wording then says "within AND emerge": reverse the shed-ring order and
+// walk from the center outward. The raw sums become [q,g,-1,e].
+const emergeLengths = circumferenceLengths.slice().reverse().map(mod);
+const emergeSums = circumferenceSums.slice().reverse();
+const emergeProducts = circumferenceProducts.slice().reverse();
+assert.deepEqual(emergeSums, [q, g, mod(-1), e]);
+assert.deepEqual(emergeProducts, [q, mod(-(q + g)), K * g, mod(-b)]);
+assert.deepEqual(H(emergeLengths), [a, mod(-A), mod(-g), mod(-q)]);
+assert.deepEqual(H(emergeSums), [1, a, q, g + K]);
+assert.deepEqual(H(emergeProducts), [B, K * g, 1, p - g]);
+
 // Location controls inside the fixed 7x7: the central 5x5 is the only
 // contiguous 5x5 whose characteristic polynomial has root p=23.
 const fiveWindowPRootHits = [];
@@ -1120,6 +1131,12 @@ console.log(JSON.stringify({
     hCircumferenceLengths: H(circumferenceLengths.map(mod)),
     hCircumferenceSums: H(circumferenceSums),
     hCircumferenceProducts: H(circumferenceProducts),
+    emergeLengths,
+    emergeSums,
+    emergeProducts,
+    hEmergeLengths: H(emergeLengths),
+    hEmergeSums: H(emergeSums),
+    hEmergeProducts: H(emergeProducts),
     fiveWindowPRootHits,
     threeWindowStateHits,
     directInner3Hill: inner3HillResults
