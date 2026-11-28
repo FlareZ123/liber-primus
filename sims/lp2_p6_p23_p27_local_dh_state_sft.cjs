@@ -182,6 +182,12 @@ for (const row of reds) {
     }
   }
 }
+assert.deepEqual(allBranchHits, [{
+  page: 27,
+  start: 0,
+  branch: { b: 15, B: 19 },
+  triple: [19, 15, 2],
+}]);
 
 console.log(JSON.stringify({
   classification: "source-only local DH-state handoff; no plaintext/key claim",
