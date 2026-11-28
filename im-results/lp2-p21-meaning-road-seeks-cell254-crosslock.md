@@ -99,7 +99,7 @@ Under that already published route:
 ```text
 SEEKS word6
  -> GP0(SEEKS)=71
- -> canonical base60 low-digit pointer transition for p=23 steps
+ -> canonical raw p50 base60-byte pointer transition for p=23 steps
  -> state32
  -> original p50 byte at cell32 = 115
  -> p50 cell115 token = 47
