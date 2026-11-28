@@ -101,6 +101,57 @@ function walk(values, start, steps) {
   return { nodes, end: current };
 }
 
+/**
+ * Convert each visited token from its source radix to BASE29 and record only
+ * the small quotient carry. For radix b=58+d (d=1 or2):
+ *
+ *   (58+d)u+v = 29*(2u + floor((d*u+v)/29)) + ((d*u+v) mod29).
+ *
+ * @param {59|60} base
+ * @param {number} start
+ * @param {number} steps
+ * @param {boolean} reverseBits
+ */
+function radixCarryTape(base, start, steps, reverseBits = false) {
+  const alphabet = base === 59 ? alphabet59 : alphabet60;
+  const values = base === 59 ? values59 : values60;
+  const delta = base - 58;
+  const run = walk(values, start, steps);
+  const carries = run.nodes.map((address) => {
+    const token = tokens[address];
+    const u = alphabet.indexOf(token[0]);
+    const v = alphabet.indexOf(token[1]);
+    assert.ok(u >= 0 && v >= 0);
+    return Math.floor((delta * u + v) / 29);
+  });
+  const bits = reverseBits ? [...carries].reverse() : carries;
+  const binary = bits.every((bit) => bit === 0 || bit === 1);
+  const byte = binary
+    ? bits.reduce((acc, bit) => (acc << 1) | bit, 0)
+    : null;
+  const hex = byte === null
+    ? null
+    : byte.toString(16).toUpperCase().padStart(2, '0');
+  return { ...run, carries, binary, byte, hex };
+}
+
+/**
+ * @param {59|60} base
+ * @param {boolean} reverseBits
+ */
+function carrySelfCheckCensus(base, reverseBits = false) {
+  const hits = [];
+  let binaryCarryStarts = 0;
+  for (let start = 0; start < 256; start += 1) {
+    const tape = radixCarryTape(base, start, state.A, reverseBits);
+    if (tape.binary) binaryCarryStarts += 1;
+    if (tape.binary && tape.hex === encodeHistoricalBase29(start)) {
+      hits.push(start);
+    }
+  }
+  return { binaryCarryStarts, hits };
+}
+
 /** @param {number[]} values */
 function adjacentH(values) {
   assert.equal(values.length % 2, 0);
@@ -139,6 +190,26 @@ assert.deepEqual(
   historicalBase29Path,
   ['6C', 'J', '14', '3P', '2E', '5G', '7B', '8F', '6F']
 );
+
+// Post-discovery self-check from the exact radix59 -> radix29 carries.
+// Pointer order is the independently selected walk order; first carry is the
+// conventional most-significant bit. Hex is a new representation choice and
+// is therefore reported as an internal checksum, not an authored opcode.
+const carryTape59 = radixCarryTape(59, 186, state.A);
+assert.deepEqual(carryTape59.carries, [0, 1, 1, 0, 1, 1, 0, 0]);
+assert.equal(carryTape59.byte, 0x6C);
+assert.equal(carryTape59.hex, encodeHistoricalBase29(186));
+const carryCensus59 = carrySelfCheckCensus(59, false);
+const carryCensus59Reverse = carrySelfCheckCensus(59, true);
+const carryCensus60 = carrySelfCheckCensus(60, false);
+const carryCensus60Reverse = carrySelfCheckCensus(60, true);
+assert.deepEqual(carryCensus59, { binaryCarryStarts: 153, hits: [186] });
+assert.deepEqual(carryCensus59Reverse, { binaryCarryStarts: 153, hits: [] });
+assert.deepEqual(carryCensus60, { binaryCarryStarts: 143, hits: [] });
+assert.deepEqual(carryCensus60Reverse, {
+  binaryCarryStarts: 143,
+  hits: [68, 122],
+});
 
 // Upstream row-major DH geometry, now cross-read in BASE29.
 assert.equal(state.p * state.A + state.K, 186);
@@ -404,6 +475,15 @@ const summary = {
   dhState: state,
   path59: expectedPath59,
   historicalBase29Path,
+  radixCarrySelfCheck: {
+    selectedCarries: carryTape59.carries,
+    selectedByte: carryTape59.byte,
+    selectedHex: carryTape59.hex,
+    base59Forward: carryCensus59,
+    base59Reverse: carryCensus59Reverse,
+    base60Forward: carryCensus60,
+    base60Reverse: carryCensus60Reverse,
+  },
   base29Pairs: addressPairs,
   sourceNodeLows,
   selectedHighDigits,
