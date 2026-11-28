@@ -32,3 +32,20 @@ The missing original cue is a matching rubric **and** a compatible operand/const
 ## Reproduction
 
 [sims/lp1_know_this_magic_grammar_sft.cjs](../sims/lp1_know_this_magic_grammar_sft.cjs). Exact core integer elimination and all ring cases executed in connected V8 with the live canonical sources. Standalone Node wrapper not yet CI-run. No new workflow. No unknown LP2 plaintext recovered.
+
+
+## Literal instruction syntax and inverse ambiguity — #3279 (Agent25, 28 November)
+
+The original 05.jpg surrounding text is **SOME WISDOM / THE PRIMES ARE SACRED / THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED**, terminal red mark, insect, then **KNOW THIS**. The original 16.jpg surrounding text is **AN INSTRUCTION / KWESTION ALL THINGS / DISCOVER TRUTH INSIDE YOURSELF / FOLLOW YOUR TRUTH / IMPOSE NOTHING ON OTHERS**, terminal red mark, insect, then the identical **KNOW THIS**. Both tables are attached to the separate literal imperative rubric, not by a sentence saying what to do with a decoded key. The first accepts lexical cells and literal integers and outputs integers under GP-prime summation; the second is already numeric and supplies no lexical decoding operand. The Stage10 signed form specifies the actual historical output type (numerical squares for submission), not a reverse lexical conversion.
+
+The previous #2879 already supplies the complete numerical worked controls and original shape rejection. Rather than repeat the linear solve or #3180's square-to-quasigroup obstruction, quantify the precise lexical inverse ambiguity on the real mixed square. Three opposite-cell word pairs collide under the native GP-prime conversion:
+
+| Zero-based flat coordinates | Printed words | Rune lengths | Shared value |
+|---|---|---:|---:|
+| 2,22 | SHADOWS / CABAL | 7,5 | 341 |
+| 6,18 | BUFFERS / MOURNFUL | 7,8 | 199 |
+| 8,16 | CARNAL / ANALOG | 6,6 | 320 |
+
+Each independent swap preserves the complete numerical square, actual lexical multiset, literal-number positions and all magic/symmetry constraints. Exactly eight distinct arrangements in this explicit 3-swap family reproduce the 25 source values. Even granting the original rune length at every lexical position leaves two witnesses (CARNAL/ANALOG swap), so a hypothetical numeric-only recipient with all word lengths and the actual word inventory still has at least one bit of ambiguity. These are exact lower bounds, not an enumeration of every dictionary inversion. Computed directly from pinned canonical LP1 transcription blob 37c96b816495c5f93ca658a01c9918bf92598316 and GP map in lp2-corpus.json.
+
+Original p15's red upper 4+5 rubric is the closest syntactic analogue but is not the 4+3 KNOW THIS rubric under a length-preserving reading. Its numeric object has a distinct solved generating rule; the immediately following infinity mark and separate lower red rubric do not supply an explicit transfer to a named rune key/clock. In p49–51 the preceding **black** rune line ends at a red terminal mark, not a separate red KNOW THIS-style heading; the 32×8 table spans three pages and black prose resumes underneath it. The minimum missing clause is an original instruction specifying which object is the operand, whether the result is a number, rune key, or address, its exact conversion and where to apply it. The existing square geometry and p15 spiral already determine their numeric outputs; neither derives such a clause. Thus #3279's literal grammar is covered by #2879/#2927 with this explicit native inverse ambiguity. No new LP2 inverse or cipher test licensed by the literal rubric. Do not rerun magic arithmetic or guess a heading to supply missing syntax.
