@@ -52,6 +52,52 @@ For later structural controls it is also useful to take the ordinary Euclidean q
 
 This historical-BASE29 address view was **not** used to choose the start, radix, hop count, or endpoint. Applying BASE29 to table addresses remains an inferred composition: the signed protocol authenticates both operations separately but does not explicitly instruct an LP2 solver to compose p50 pointer addresses with BASE29.
 
+## Both literal `39` cells are themselves BASE29 state words
+
+The two source-significant occurrences of literal `39` are not only equivalent transducers; their **table addresses** have compact historical-BASE29 readings:
+
+```text
+cell151 = 5*29 + 6  = BASE29 "56" = [g,a]
+cell254 = 8*29 + 22 = BASE29 "8M" = [A,p-1]
+```
+
+Their separation is itself another state word:
+
+```text
+254 - 151 = 103 = 3*29 + 16 = BASE29 "3G" = [e,AK].
+```
+
+The letters are literal digits of the historically authenticated alphabet, with `M=22=p-1` and `G=16=AK mod29`.
+
+This matters because **cell254 is the actual p27-selected source cell**, before the literal token `39` is dereferenced to numeric value186. Its complete base59 address path is therefore
+
+```text
+254 -> 186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189.
+```
+
+Taking ordinary first differences of the BASE29 quotient/remainder coordinates over this full source path simply prepends one state vector to the packets already derived:
+
+```text
+quotient differences:
+[-K,p,1,K,-1,e,K,1,-K]
+= [27,23,1,2,28,3,2,1,27]
+
+remainder differences:
+[B,g+K,-b,-A,B-1,K,-g,q,F]
+= [19,7,14,21,18,2,24,4,0].
+```
+
+The prepended source-cell edge is therefore exactly
+
+```text
+254=[A,p-1] -> 186=[a,aK]
+delta = [-K,B].
+```
+
+A fresh exact all-start census, now using the full nine-edge trajectory, finds the quotient packet at **start254 only**, the remainder packet at **start254 only**, and their joint packet at **start254 only** under base59. Conventional base60 has zero matches for either packet.
+
+This removes the only bookkeeping discontinuity in the earlier presentation: the state program now begins at the **original p27-selected table cell**, not at a numeric value introduced after dereferencing that cell. The interpretation remains conditional on the existing p27/base59/DH route and the inferred use of historical BASE29 on table addresses.
+
 ## The two literal `39` cells are the only dual-radix eight-hop closures
 
 The original p27 route selected cell254 before the present BASE29 work. Its literal printed token is `39`, with the two surviving numeral interpretations
@@ -450,4 +496,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`.
