@@ -384,6 +384,133 @@ const p33Second = redStates.find((row) => row.page === 33 && row.start === 91);
 assert.deepStrictEqual(p33Second.state, [28, 13]);
 assert.deepStrictEqual(directionPower(p33Second.state, 24), [5, 22]);
 
+/** @param {string} word @returns {number[]} */
+function encodeSignedWord(word) {
+  const normalized = word.toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+  const tokens = corpus.translit
+    .map((symbol, value) => ({ symbol, value }))
+    .sort((left, right) => right.symbol.length - left.symbol.length);
+  const values = [];
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      values.push(21);
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      values.push(27);
+      offset += 2;
+      continue;
+    }
+    const token = tokens.find((candidate) => normalized.startsWith(candidate.symbol, offset));
+    assert.ok(token, word + "@" + offset);
+    values.push(token.value);
+    offset += token.symbol.length;
+  }
+  return values;
+}
+
+/** @param {number[]} h @returns {number[]} */
+function hInverse4(h) {
+  assert.strictEqual(h.length, 4);
+  const inv2 = inv(2);
+  return [
+    mod((h[0] + h[3]) * inv2),
+    mod((h[1] + h[2]) * inv2),
+    mod((h[2] - h[1]) * inv2),
+    mod((h[3] - h[0]) * inv2),
+  ];
+}
+
+/** @param {number[]} v @returns {number[]} */
+function hForward4(v) {
+  assert.strictEqual(v.length, 4);
+  return [
+    mod(v[0] - v[3]),
+    mod(v[1] - v[2]),
+    mod(v[1] + v[2]),
+    mod(v[0] + v[3]),
+  ];
+}
+
+// T^32 from ROAD23 selects p33's second red span at start91/length8.
+// Its black body begins at99; WILL's source number33 points to receiver132.
+const p23RedState = redStates.find((row) => row.page === 23 && row.start === 0).state;
+assert.deepStrictEqual(directionPower(p23RedState, 32), [28, 13]);
+assert.deepStrictEqual(redStateIndex.get("28,13").map((row) => [row.page, row.start, row.length]), [[33, 91, 8]]);
+const p33SecondEnd = 91 + 8;
+const willIndex = 33;
+assert.strictEqual(words[willIndex], "WILL");
+const willReceiverStart = p33SecondEnd + willIndex;
+assert.strictEqual(willReceiverStart, 132);
+const willReceiver = corpus.pages.find((page) => page.page === 33).indices.slice(willReceiverStart, willReceiverStart + 4);
+assert.deepStrictEqual(willReceiver, [3, 15, 17, 22]);
+
+const p15FirstOutput = mul(Q, evaluate(redSpan(15, 0, 9)));
+assert.deepStrictEqual(p15FirstOutput, [23, 8]);
+const q29State = pow(Q, 29);
+assert.deepStrictEqual(q29State, [2, 5]);
+
+const willSerializerFamily = [];
+for (const directionCoordinate of q29State) {
+  for (const edgeDirection of [27, 29]) {
+    for (const operation of ["Hinv", "H"]) {
+      const shell = [...p15FirstOutput, directionCoordinate, edgeDirection];
+      const key = operation === "Hinv" ? hInverse4(shell) : hForward4(shell);
+      const plaintext = willReceiver.map((value, index) => mod(value - key[index]));
+      const label = plaintext.map((value) => corpus.translit[value]).join("");
+      const authenticated = words
+        .map((word, index) => ({ word, index, values: encodeSignedWord(word) }))
+        .filter((row) => row.values.length === 4 && row.values.every((value, index) => value === plaintext[index]))
+        .map((row) => [row.index, row.word]);
+      willSerializerFamily.push({
+        directionCoordinate,
+        edgeDirection,
+        operation,
+        shell,
+        key,
+        plaintext,
+        label,
+        authenticated,
+      });
+    }
+  }
+}
+assert.deepStrictEqual(willSerializerFamily.filter((row) => row.authenticated.length), [{
+  directionCoordinate: 2,
+  edgeDirection: 27,
+  operation: "Hinv",
+  shell: [23, 8, 2, 27],
+  key: [25, 5, 26, 2],
+  plaintext: [7, 10, 20, 20],
+  label: "WILL",
+  authenticated: [[33, "WILL"]],
+}]);
+
+const willKey = [25, 5, 26, 2];
+const signedFourRuneTargets = [...new Map(words
+  .map((word, index) => ({ word, index, values: encodeSignedWord(word) }))
+  .filter((row) => row.values.length === 4)
+  .map((row) => [row.word, row])).values()];
+const willBookEvents = [];
+for (const page of corpus.pages.filter((row) => row.page <= 55)) {
+  for (let start = 0; start + 4 <= page.indices.length; start += 1) {
+    const plaintext = page.indices.slice(start, start + 4)
+      .map((value, index) => mod(value - willKey[index]));
+    for (const target of signedFourRuneTargets) {
+      if (target.values.every((value, index) => value === plaintext[index])) {
+        willBookEvents.push({ page: page.page, start, target: target.word, index: target.index });
+      }
+    }
+  }
+}
+assert.deepStrictEqual(willBookEvents, [{ page: 33, start: 132, target: "WILL", index: 33 }]);
+
 let traceNormMatches = 0;
 let traceNormPrimitiveMatches = 0;
 let exactFrobeniusMatches = 0;
@@ -445,7 +572,13 @@ console.log(JSON.stringify({
     word: row.word,
     edge_count: row.edges.length,
   })),
-  core_24_32_words: words.slice(24, 33),
+    core_24_32_words: words.slice(24, 33),
+  will_route: {
+    source: "p23 --YOU32--> p33 second red; red-end99 + WILL33 -> receiver132",
+    receiver: willReceiver,
+    serializer_family: willSerializerFamily,
+    manuscript_wide_fixed_key_events: willBookEvents,
+  },
   next_after_p27: directionStep([18, 19]),
   finite_charge: {
     nonzero_field_elements: 840,
