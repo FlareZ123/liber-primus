@@ -1038,6 +1038,32 @@ for (const [polyName, polynomial, seedName, seed] of [
 }
 assert.ok(lfsrResults.every((x) => x.score < nativeMin));
 
+// P57 now selects the centered 3x3, and p8 has exactly 243 black runes = 81*3.
+// Freeze the four ordinary Hill presentations: M, M^-1 and their transposes,
+// applied to consecutive printed triples with no phase, shift, or fitted key.
+const inner3 = nestedSquares[2];
+const inner3Inverse = inverseMatrix29(inner3);
+const hillBlocks = (operator, receiver) => {
+  assert.equal(receiver.length % operator.length, 0);
+  const out = [];
+  for (let offset = 0; offset < receiver.length; offset += operator.length) {
+    out.push(...matrixVector(operator, receiver.slice(offset, offset + operator.length)));
+  }
+  return out;
+};
+const inner3HillResults = Object.fromEntries(
+  [
+    ['M', inner3],
+    ['Minv', inner3Inverse],
+    ['MT', transpose(inner3)],
+    ['MinvT', transpose(inner3Inverse)],
+  ].map(([name, operator]) => {
+    const decoded = hillBlocks(operator, p8Black);
+    return [name, { score: score(decoded), ioc: ioc(decoded) }];
+  })
+);
+assert.ok(Object.values(inner3HillResults).every((x) => x.score < nativeMin));
+
 console.log(JSON.stringify({
   hiddenInnerNested: {
     sizes: nestedSquares.map((square) => square.length),
@@ -1049,7 +1075,8 @@ console.log(JSON.stringify({
     hTraces: H(nestedTrace),
     hDeterminants: H(nestedDeterminant),
     fiveWindowPRootHits,
-    threeWindowStateHits
+    threeWindowStateHits,
+    directInner3Hill: inner3HillResults
   },
   status: 'PASS',
   classification: 'source-only p8/chapter state-layout serialization; no plaintext or cipher',
