@@ -147,6 +147,19 @@ assert.equal(state.a * 29 + mod(state.a * state.K, 29), 186);
 assert.equal(state.a * 29 + state.b, 189);
 assert.equal(values59[186], state.B);
 assert.equal(values59[189], 189);
+const base59FixedPoints = values59
+  .map((value, address) => ({ value, address }))
+  .filter(({ value, address }) => value === address)
+  .map(({ address }) => address);
+const base60FixedPoints = values60
+  .map((value, address) => ({ value, address }))
+  .filter(({ value, address }) => value === address)
+  .map(({ address }) => address);
+assert.deepEqual(base59FixedPoints, [189]);
+assert.deepEqual(base60FixedPoints, []);
+assert.equal(Math.floor(189 / 8), state.p);
+assert.equal(189 % 8, state.g);
+assert.equal(encodeHistoricalBase29(189), '6F');
 
 const addressPairs = expectedPath59.map((address) => ({
   address,
@@ -374,6 +387,7 @@ const summary = {
   base29Pairs: addressPairs,
   sourceNodeLows,
   adjacentHPacket: hPacket,
+  fixedPoints: { base59: base59FixedPoints, base60: base60FixedPoints },
   dualPacking: {
     start186: {
       rowMajor: `${state.p}*${state.A}+${state.K}`,
