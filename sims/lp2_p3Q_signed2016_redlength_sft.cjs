@@ -65,6 +65,50 @@ A.deepEqual(hist.slice(0,7),[256,352,173,45,12,3,0]);
 A.ok(hist.slice(7).every(x=>x===0));
 A.deepEqual(survivors,[[17,24]]);
 A.deepEqual(records.filter(x=>readout(Q,x).word_rune_len===x.len).map(x=>x.tag),typed.map(x=>x[0]));
+// Exact counterfactual signed-word rearrangement control, retaining the
+// FOUR independently read matrix-word slots THE MAP AND PATH at their
+// authenticated indices 17,18,24,2 and the 25 other original word lengths.
+// This conditions the prior Q-matrix observation, NOT a discovery p-value.
+// For uniformly random permutations of 25 remaining distinguishable words,
+// count the exact constraints on eight distinct other signed-word slots:
+//   self p40: L10=6;  p56: L1=2;  p54: L0+L20=9;
+//   self p57: L21+L9=7;  p15 first->second: L23+L8=11.
+const pinned=new Set([17,18,24,2]);
+const available=Array(9).fill(0);
+for(let j=0;j<29;j++)if(!pinned.has(j))available[lengths[j]]++;
+A.equal(available.reduce((a,b)=>a+b,0),25);
+A.deepEqual(available,[0,0,7,4,5,5,1,2,1]);
+const falling=n=>{
+  let z=1n;for(let j=0;j<n;j++)z*=BigInt(25-j);return z;
+};
+function favorable(conditions,counts=available){
+  if(!conditions.length)return 1n;
+  const [first,...rest]=conditions, n=counts.reduce((a,b)=>a+b,0);
+  if(typeof first==='number'){
+    const possible=counts[first]||0;
+    if(!possible)return 0n;
+    const next=counts.slice();next[first]--;
+    return BigInt(possible)*favorable(rest,next);
+  }
+  let total=0n;
+  for(let a=0;a<counts.length;a++){
+    const b=first.sum-a;
+    if(b<0||b>=counts.length)continue;
+    const m=counts[a],v=counts[b]-(a===b?1:0);
+    if(m<=0||v<=0)continue;
+    const next=counts.slice();next[a]--;next[b]--;
+    total+=BigInt(m*v)*favorable(rest,next);
+  }
+  return total;
+}
+const fourPattern=[6,2,{sum:9},{sum:7}];
+const linkedPattern=[...fourPattern,{sum:11}];
+const numeratorFour=favorable(fourPattern);
+const numeratorLinked=favorable(linkedPattern);
+const denominatorFour=falling(6),denominatorLinked=falling(8);
+A.equal(numeratorFour*20700n,denominatorFour*7n);
+A.equal(numeratorLinked*51300n,denominatorLinked);
+
 // Q is a primitive element. However, its natural 840-state recurrence
 // fails to continue the independently authenticated p56 prime clock.
 let x=[1,0],order=0;for(let i=1;i<=840;i++){x=mul(x,Q);if(x[0]===1&&x[1]===0){order=i;break;}}
