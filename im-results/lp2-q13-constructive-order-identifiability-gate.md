@@ -1,60 +1,62 @@
-# Q13 polygraph-feedback constructive-order identifiability gate — Director #3259
+# q13 pair-feedback order and opposite-ciphertext traversal — Director #3259 / #3264
 
-## Decision
+**Decision (28 November 2026):** Exact algebra reduces the invertible-matrix version of *backward ciphertext feedback* to the previously tested previous-ciphertext receiver with **plaintext delayed by one digraph**. It is **not** a fixed-coordinate reversal gauge: the same-position models are genuinely different, and an explicit 52-block counterexample is supplied below. The only backward matrices outside the invertible algebraic reduction are **nonzero rank-one matrices** (the zero-matrix case is the already-tested no-feedback receiver). None is selected by an authentic LP2 instruction. No unknown plaintext, authenticated key or new original fit is claimed.
 
-**Negative at the legal-order gate.** The q13 branch that survives the transport-invariant capacity bound does not currently define a constructive cipher. Its survival depends on granting an arbitrary plaintext-coordinate permutation. No authenticated LP2 source fixes a distinct recoverable permutation of the p40–53 black tape, and the low-dimensional order changes that are source-plausible collapse to symmetries of the already-negative ordinary q13 receiver.
+## Existing model: what its negative result actually establishes
 
-Accordingly, no donor, language score, free coordinate permutation, generic feedback tap or period search was introduced. No plaintext/key is claimed.
+For consecutive GP29 ciphertext digraphs `C_i ∈ GF(29)^2`, the earlier ordinary-clock model fixes the *physical* predecessor:
 
-## What is already excluded before transport
+```
+C_i = pi_{i mod 13}(P_i) + A_{i mod 13} C_{i-1}    (mod 29)
+```
 
-The exact q13 ordinary-clock receiver is:
+Each of 13 lanes has its own arbitrary 841-way digraph permutation `pi_r` and independently chosen 2×2 matrix `A_r`. The [all-matrix original-input projective search](lp2-digraph-arbitrary-bijection-linear-feedback-gate.md#authentic-key-length-periodic-extension-all-matrices-and-all-permutations-per-lane) grants all **707,281** matrices, including singular ones, both pair phases and arbitrary lane substitutions. On the original 12,956 runes, the strongest original individual residual collision rate is below every matched native lane; every lane's optimal support lower bound is at least **258**, excluding a fixed 256-symbol residual codebook under that fixed receiver. Planted native controls infer 13/13 matrices uniquely and decode the held pairs *when supplied an oracle pair permutation*. No native q13 plaintext, selector or table was obtained.
 
-[
-C_i = pi_{r}(P_i) + A_r C_{i-1}pmod{29},qquad r=imod 13,
-]
+The [arbitrary plaintext transport bound](lp2-digraph-arbitrary-bijection-linear-feedback-gate.md#arbitrary-plaintext-transport-exact-weighted-collision-capacity-agent40-27-november) is only a relaxed necessary histogram-capacity test: q13 passes that bound, but has no selected transport inverse.
 
-where every lane has an independent arbitrary 841-way digraph bijection (pi_r) and an independently optimized 2×2 feedback matrix (A_r).
+## New theorem: backwards ciphertext generation with invertible feedback
 
-The existing exact projective search already grants all 707,281 matrices independently in all 13 lanes, both global pair phases, and arbitrary lane substitutions. Its strongest original individual collision rate is below every matched native lane; every lane also needs more than 256 residual symbols (minimum support bound 258). Positive native plants recover all 13 hidden matrices uniquely and replay held plaintext with oracle substitutions. Thus **identity/ordinary physical order is not a surviving constructive instance**.
+A genuinely opposite-direction sender has the **successor** as its feedback operand:
 
-The later transport-invariant result deliberately discards order. Its full-book q13 top-eight capacity bound passes every native window. That is only a necessary histogram-capacity statement: it proves that an arbitrary position permutation can erase the previous collision obstruction. It does not identify a permutation, feedback key, substitution, or plaintext.
+```
+C_i = pi_{i mod 13}(P_i) + B_{i mod 13} C_{i+1}.  (1)
+```
 
-## Why simple recoverable order changes are not new q13 instances
+This is distinct from merely reading plaintext backwards while retaining the fixed predecessor. Suppose each `B_r` is invertible. For every interior transition define `j=i+1`, `A'_{r+1}=B_r^{-1}`, `Q_j=P_{j-1}`, and `sigma_{r+1}(x)=-B_r^{-1}pi_r(x)` (indices modulo13). Then
 
-The obvious low-dimensional whole-tape order operations do not escape the prior q13 model.
+```
+C_j = sigma_{j mod 13}(Q_j) + A'_{j mod 13} C_{j-1}.       (2)
+```
 
-### Cyclic block origin
+Because `-B_r^{-1}` is bijective, `sigma` remains an arbitrary 841-way permutation. More strongly, the backward residual `D_i=C_i-B_r C_{i+1}` and the previous-feedback residual `E_{i+1}=C_{i+1}-B_r^{-1}C_i` obey **`D_i=-B_r E_{i+1}`**. Thus their complete equality partitions, collision counts and support sizes are **identical**, not merely similar. No re-estimation of original ciphertext collision maxima is needed for this invertible subclass. The q13 lane label changes from r to r+1, already free in the original search. The boundary changes from a free initial pair to a free terminal pair, leaving the same n−1 interior transitions.
 
-Shifting the complete digraph-block sequence by (s) changes lane label (r) to (r+smod13). Because the model already grants independent ((A_r,pi_r)) for all 13 lanes, this is exactly a lane relabeling. The phase origin was already immaterial in the published q13 search.
+Of all 29⁴=707,281 matrices, `|GL(2,29)|=(29²−1)(29²−29)=682,080` are invertible. The other 25,201 comprise 25,200 nonzero rank-one matrices plus zero. The zero case `C_i=pi_r(P_i)` is a stationary no-feedback digraph substitution already covered by `A_r=0`. Only a genuine rank-one backwards lane is outside this **universal state-inversion identity**. This is a statement about exact model inclusion *after one-block plaintext transport*. It does **not** identify a native plaintext or automatically transfer every finite English calibration without checking its one-block endpoint alignment.
 
-### Global block reversal
+## Exact counterexample: same-position direction is not a gauge
 
-Reversing block order maps lane (r) to (c-rmod13) for a fixed constant (c), again only a permutation of the 13 free lane labels. It cannot create a new collision-capacity class.
+Take 52 GP29 digraphs and `C_52=(0,0)`; let all `C_i=(0,0)` except
 
-### Global rune reversal
+```
+C_5=C_6=(1,0), C_18=C_19=(2,0),
+C_31=C_32=(3,0), C_44=C_45=(4,0).
+```
 
-Reversing the rune tape additionally swaps the two coordinates inside every plaintext digraph. But each (pi_r) is already an arbitrary bijection on all 841 ordered pairs. Precomposing (pi_r) with the coordinate-swap permutation absorbs that change exactly, while the reversed block order merely relabels lanes as above.
+Choose `B_r=I`, `pi_r=identity`, and `P_i=C_i-C_{i+1}`. This is an exact backwards sender. At the four positions `i=5,18,31,44` (all lane5), `P_i=0` and `C_{i-1}=0`, but `C_i` takes four different values. In the *same-position* predecessor model, `C_i-A_5 C_{i-1}=C_i` cannot equal the single required `pi_5(0)` for any `A_5` or arbitrary lane permutation. The sender direction **cannot** be equated by simply relabeling lanes while fixing the plaintext coordinate.
 
-Therefore identity, cyclic block phase, block reversal and full rune reversal are all gauge-equivalent inside the already-tested q13 family. Testing them as separate “orders” would duplicate the prior negative.
+Nevertheless, set `Q_{i+1}=P_i`, `A'=I`, `sigma=-identity`. Then every predecessor transition exactly replays. This demonstrates both halves of the theorem and corrects the earlier unqualified description of plaintext reversal as a full positional gauge. Reversing a plaintext tape preserves per-lane *histograms* up to lane relabeling and within-pair swap, but generally changes **which repeated plaintext positions align with residual equalities**. The previously negative native collision-capacity screen remains a necessary bound under such histogram-preserving transformations; it is not an exact located-crib proof.
 
-The p49–51 horizontal reflection is source-authenticated **for the 32×8 numeric panel itself**. Nothing in the original artifact transfers that table-column reflection to the p40–53 rune coordinates, and doing so would be a new untyped bridge rather than a recoverable q13 order.
+## Direction selectors in the actual source: what survives
 
-## Missing observable
+The original p40–p53 artwork uses mirrored ornamental trees around the runes. The genuine source-selected horizontal reflection `column c→7−c` belongs to the **32×8 numeric panel** on p49–p51, not the chapter's cipher pair clock; moving it into `C_i`/ `C_{i+1}` is an untyped additional operation.
 
-A constructive q13 inverse now requires an independent source to specify an order action not absorbed by those symmetries—for example a fixed nontrivial coordinate permutation, route/transposition grammar, or keyed but recoverable permutation generator applied to the rune tape.
+A potentially misleading clue is the striking red **up-arrow-shaped** glyph at the end of the sixth rune line of original `70.jpg` (physical p53). In Gematria Primus it is simply the ordinary **Tiwaz rune `ᛏ`**, which is shaped like an arrow. The canonical page text includes it exactly after the stop `...ᛞᛗᛖ.ᛏ/`, before the red continuation beginning `ᛈᚹᛇ...`. It is an inline red rune and a red/black transition, **not an independent direction arrow**. The p50 rune-free page makes this physical p53 the 53rd rune-bearing section at zero-based transcription index52; direct physical-image comparison avoids the indexing trap.
 
-That source must determine the permutation before plaintext scoring. Once supplied, the exact existing projective matrix inference can test the ordered receiver and freeze a continuation. Without it, the transport survivor has factorial order freedom in addition to the 13 arbitrary pair substitutions; plaintext order is not observable from the current model.
+Cicada did demonstrably employ byte reversal in image carriers: the original LP1 `05.jpg` includes a reversed JPEG copy and intermediate numeric payload [source corpus](../resources/liber-primus/README.md#jpeg-container-details); a 2014 Onion3 JPEG was also stored with bytes reversed, recoverable from JPEG header/trailer markers ([historical walkthrough](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_%282014%29)). Those cases are *self-identifying file-format reversals*, not a rune-cipher instruction or a selector for a 13-lane terminal-IV feedback equation.
 
-This is exactly the distinction between the two existing results:
+**Current source verdict:** no original p40–p53 mark, period-authentic instruction or known ciphertext anchor ties backward *pair feedback*, its 13-lane period, its terminal state, and a rank-one matrix together. Running a fresh rank-one original sweep would introduce an unselected cipher after the invertible subclass has been shown redundant. Defer it until a real GP text-direction/operand instruction or an independently placed native crib identifies the receiver.
 
-1. **fixed ordinary order:** q13 is calibrated and negative;
-2. **arbitrary transport:** q13 passes a relaxed necessary capacity bound but has no identified inverse.
+## Reproduction / next decision
 
-There is no legal intermediate instance currently selected by LP2 evidence.
+Run `python3 sims/lp2_q13_reverse_feedback_identity_sft.py` with Python ≥3.8 (stdlib only). It exactly checks 104 seeded independent backward transitions across all 13 lanes, their converted forward equations, the full matrix-count theorem by enumeration, and the 52-block same-position counterexample. It does **not** fit original LP2 or claim anything from a synthetic plant.
 
-## Consequence
-
-Retire the present #3259 constructive-q13 attempt until a source-authenticated non-gauge order is recovered. Do not treat the transport-capacity pass as a key candidate or a cipher success.
-
-A future source-selected permutation immediately makes this route executable: apply that permutation, use the existing all-matrix projective inference lane-by-lane, recover/validate the 13 matrices on frozen data, and then test whether the resulting residual classes admit an independently recoverable pair map and plaintext continuation.
+If a future source **independently selects a backwards feedback state**, first test whether its matrix is invertible; do not rerun the already-covered 682,080-matrix subclass as a new cipher. Only a selected rank-one action merits new directional projective-incidence inference, matched native controls and a frozen original continuation. Until then, retire this direction branch rather than substituting another arbitrary permutation.
