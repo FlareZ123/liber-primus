@@ -215,6 +215,31 @@ E(p27 red19) = A * E(p15 first red9)
              = [18,19].
 ```
 
+### P7 is independently selected before the orbit values are opened
+
+The start state is not chosen from the successful orbit. The earlier p15 BASE29 page-count map had already established
+
+```text
+F(6)=8
+F(7)=7
+F(8)=6,
+```
+
+making physical **p7 the fixed point** of the unique p6/p7/p8 red-bearing triple. Its dedicated source-type gate then stopped deliberately because the page map supplied no operation on the red span, concluding that the route should reopen only if a first-party clue supplied “a specific boundary, direction, or serialization.”
+
+The present route supplies exactly that missing ingredient:
+
+```text
+p7 fixed-point page
+ -> its sole complete terminal red span
+ -> p3-field residue [1,6]
+ -> Q multiplication = source-fixed MAP/PATH map
+ -> signed DIRECTION word number 29 = canonical Frobenius
+ -> T = F(Q*x).
+```
+
+No p7 rune was selected because it produced the later p15/p40/p27 chain: “the sole red span” was the earlier frozen common object class, and p7 was already the map's fixed point.
+
 The signed-source indices immediately preceding DIRECTION are also fixed:
 
 ```text
@@ -235,6 +260,22 @@ T^26(p7) = p40 opening red8
 T^27(p7) = p27 opening red19
 T^28(p7) = [28,23] = THE / ROAD
 ```
+
+The reverse directions close on the same source phrase because T has order56:
+
+```text
+T^29(p27)       = p7        -> DIRECTION
+T^30(p40)       = p7        -> SEEK
+T^31(p15 first) = p7        -> AND
+```
+
+So the consecutive signed-source run
+
+```text
+25 THEIR · 26 NUMBERS · 27 ARE · 28 THE · 29 DIRECTION · 30 SEEK · 31 AND
+```
+
+is mirrored by the forward/red-antipode/reverse geometry of the single p7 orbit. In particular, `T^28=-I` on every state and p7's antipode is `-[1,6]=[28,23]`, whose signed-word readout is **THE / ROAD**.
 
 This alignment was charged against the **entire nonzero field**, not merely the 18 manuscript red states. Among all 840 possible nonzero starting states, **exactly one** has complete-red-span states simultaneously at offsets25,26,27: `[1,6]`, the actual p7 red state. Its offset28 state is necessarily `[28,23]`.
 
