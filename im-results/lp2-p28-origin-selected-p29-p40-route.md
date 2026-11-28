@@ -96,7 +96,9 @@ and the exact inverse is:
 = PATHS
 ~~~
 
-The important boundary remains: the **ordered shell-role choice** for p40 was recognized after the local inverse, and the same ciphertext can be made to spell ROAD with a different compact DH shell. The new result removes the index-origin fit, not the shell-role chronology.
+A later source-literal charge narrows the key question further. P6's ten non-empty rune lines have counts `20,24,24,3,18,19,20,24,22,22`, so its repeated counts are `{20,22,24}`; its globally charged red-title packet contains literal atoms `{6,12,14,15,16,17,19,24,27}`. Across every `[r,r,x,y]` built from those sets, both signs, and even every coordinate permutation (**1,389 distinct keys**), the only hit among the 62 typed four-rune source/page receiver pairs is p40 PATHS with `[20,20,12,6]`. The selected tail is independently labeled `aK=12,a=6`.
+
+This removes most of the numeric-shell arbitrariness: the complete key can be extracted from p6 source literals without using p40 ciphertext. The important boundary shifts rather than disappears. The extraction template “repeated p6 line count + two title atoms” was recognized after the PATHS inverse, so it remains post-discovery model selection; the same ciphertext can also spell ROAD under a different compact DH shell outside this family. The new result removes the index-origin fit and sharply narrows key-source freedom, but still needs a prospective transfer to authenticate the template.
 
 ## Fresh transfer 1: PATHS -> VERIFY fails
 

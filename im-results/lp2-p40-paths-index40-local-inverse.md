@@ -240,6 +240,24 @@ The shell is numerically `[14,8,3,26]`. After removing the GP0-forced `H3=-H2` r
 
 Promotion to a reusable cipher mechanism requires a first-party rule fixing those roles before another receiver is opened, or a prospective application in a different source-selected receiver family.
 
+## P6 line-count/title extraction of the complete numeric key
+
+The p6 source now supplies a second, more literal reconstruction that bypasses the p40 H-shell roles entirely.
+
+Its ten non-empty physical rune-line counts are:
+
+~~~text
+20,24,24,3,18,19,20,24,22,22
+~~~
+
+so the repeated counts are `{20,22,24}`. The already charged red-title packet contains literal rune values `{6,12,14,15,16,17,19,24,27}`. Charge every source key `[r,r,x,y]` with `r` any repeated line count and `x,y` any ordered title atoms. There are **243 distinct fixed-order keys**. Across the existing 62 unique same-GP0 four-rune source/page receiver pairs and both signs, exactly one hits: p40 PATHS by subtraction with `[20,20,12,6]`.
+
+Grant every coordinate permutation to charge ordering freedom. The family grows to **1,389 distinct keys**; the same PATHS inverse remains the only hit. Only 52 of those keys have zero GP sum. The globally unique p6 packet grammar independently identifies the selected tail as `12=aK`, `6=a`, hence the key is literally `[20,20,aK,a]`.
+
+This is stronger than merely relabeling the fitted H shell because all four key numbers are extracted from source-visible p6 line geometry and title runes. The family template was nevertheless recognized after the PATHS inverse. Preserve it as a finite, source-literal post-discovery key compression until a prospectively selected receiver passes unchanged.
+
+See [p6 line-count key report](lp2-p6-linecount-p40-paths-key.md) and `sims/lp2_p28_origin_selected_p29_p40_route_sft.cjs`.
+
 ## P6 state-packet cross-check
 
 The later p6 master-state investigation supplies a source-visible reconstruction of this exact shell. P6 is independently selected by authenticated `SEEKS` at index6 and `a=6`. Its unique red-title packet exposes `-b=14`, `e=3`, and `A=q+q=8`, giving

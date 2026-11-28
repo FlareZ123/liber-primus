@@ -281,6 +281,115 @@ const plain = p40Matches[0].values.map((value, index) => mod29(value - key[index
 assert.deepEqual(plain, signed[40].gp);
 assert.equal(signed[40].label, "PATHS");
 
+// Source-literal p6 key charge: repeated physical line counts + red-title atoms.
+const p6LineCounts = parts[6].split("\n")
+  .map((line) => [...line].filter((ch) => runeIndex.has(ch)).length)
+  .filter((count) => count > 0);
+assert.deepEqual(p6LineCounts, [20,24,24,3,18,19,20,24,22,22]);
+const lineFrequency = new Map();
+for (const count of p6LineCounts) {
+  lineFrequency.set(count, (lineFrequency.get(count) || 0) + 1);
+}
+const repeatedLineCounts = [...lineFrequency.entries()]
+  .filter(([, count]) => count >= 2)
+  .map(([value]) => value)
+  .sort((left, right) => left - right);
+assert.deepEqual(repeatedLineCounts, [20,22,24]);
+
+const titleAtoms = [...new Set(title.flatMap((word) => word.values))]
+  .sort((left, right) => left - right);
+assert.deepEqual(titleAtoms, [6,12,14,15,16,17,19,24,27]);
+
+/** @param {number[]} values @returns {number[][]} */
+function uniquePermutations(values) {
+  const result = new Map();
+  /** @param {number[]} prefix @param {number[]} rest */
+  function visit(prefix, rest) {
+    if (rest.length === 0) {
+      result.set(prefix.join(","), prefix.slice());
+      return;
+    }
+    for (let index = 0; index < rest.length; index += 1) {
+      const next = rest.slice();
+      const value = next.splice(index, 1)[0];
+      visit(prefix.concat(value), next);
+    }
+  }
+  visit([], values);
+  return [...result.values()];
+}
+
+const fixedLiteralKeys = new Map();
+const permutedLiteralKeys = new Map();
+for (const repeated of repeatedLineCounts) {
+  for (const left of titleAtoms) {
+    for (const right of titleAtoms) {
+      const base = [repeated, repeated, left, right];
+      fixedLiteralKeys.set(base.join(","), true);
+      for (const candidate of uniquePermutations(base)) {
+        permutedLiteralKeys.set(candidate.join(","), true);
+      }
+    }
+  }
+}
+assert.equal(fixedLiteralKeys.size, 243);
+assert.equal(permutedLiteralKeys.size, 1389);
+assert.equal(
+  [...permutedLiteralKeys.keys()]
+    .map((keyText) => keyText.split(",").map(Number))
+    .filter((candidate) => sum(candidate) % 29 === 0).length,
+  52
+);
+
+const typedFourRunePairs = [];
+for (const target of signed.filter((word) => word.gp.length === 4)) {
+  for (let page = 0; page <= 42; page += 1) {
+    const matches = pageWords(page).filter((word) =>
+      word.len === 4 && word.gp0 === sum(target.gp)
+    );
+    if (matches.length === 1) {
+      typedFourRunePairs.push({ target, page, receiver: matches[0] });
+    }
+  }
+}
+assert.equal(typedFourRunePairs.length, 62);
+
+/** @param {Map<string, boolean>} family */
+function literalKeyHits(family) {
+  const hits = [];
+  for (const pair of typedFourRunePairs) {
+    for (const direction of ["sub", "add"]) {
+      const candidateKey = pair.receiver.values.map((value, index) =>
+        direction === "sub"
+          ? mod29(value - pair.target.gp[index])
+          : mod29(pair.target.gp[index] - value)
+      );
+      if (family.has(candidateKey.join(","))) {
+        hits.push({
+          sourceIndex: pair.target.index,
+          target: pair.target.label,
+          page: pair.page,
+          start: pair.receiver.start,
+          direction,
+          key: candidateKey,
+        });
+      }
+    }
+  }
+  return hits;
+}
+
+const expectedLiteralHit = [{
+  sourceIndex: 40,
+  target: "PATHS",
+  page: 40,
+  start: 71,
+  direction: "sub",
+  key: [20,20,12,6],
+}];
+assert.deepEqual(literalKeyHits(fixedLiteralKeys), expectedLiteralHit);
+assert.deepEqual(literalKeyHits(permutedLiteralKeys), expectedLiteralHit);
+
 const p41Verify = pageWords(41).filter((word) =>
   word.len === signed[41].gp.length && word.gp0 === sum(signed[41].gp)
 );
@@ -300,6 +409,15 @@ console.log(JSON.stringify({
   },
   p25: { transformed, cuts, originRows },
   p40: { shell, key, receiver: p40Matches[0], plaintext: "PATHS" },
+  p6LiteralKeyCharge: {
+    lineCounts: p6LineCounts,
+    repeatedLineCounts,
+    titleAtoms,
+    fixedKeyCount: fixedLiteralKeys.size,
+    permutedKeyCount: permutedLiteralKeys.size,
+    zeroSumPermutedKeyCount: 52,
+    hits: literalKeyHits(permutedLiteralKeys),
+  },
   sealedTransfers: {
     p41VerifyStateMatches: p41Verify.length,
     p42OpenPgpStateMatches: p42OpenPgp.length,

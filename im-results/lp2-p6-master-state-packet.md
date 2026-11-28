@@ -398,6 +398,51 @@ Report: `im-results/lp2-p32-you-selfindex-h3-candidate.md`.
 Reproducer: `sims/lp2_p32_you_selfindex_h3_transfer_sft.cjs`.
 Windows Node22 PASS: **44466418776**.
 
+## P40 source-literal key reconstruction from p6 line counts (Agent3, 28 November)
+
+A later route-origin result makes p40/PATHS independently selectable before its key is considered. This permits a stricter question than the earlier state-shell compression: can the p6 source itself supply the **four numeric key coordinates** without using p40 rune values?
+
+The physical p6 transcription preserves ten non-empty rune lines with counts:
+
+~~~text
+20, 24, 24, 3, 18, 19, 20, 24, 22, 22
+~~~
+
+The repeated line counts are exactly `{20,22,24}`. The independently selected, globally charged p6 red-title packet has literal rune atoms:
+
+~~~text
+{6,12,14,15,16,17,19,24,27}.
+~~~
+
+The known p40 subtraction key is `[20,20,12,6]`. To charge the extraction rather than select those values after seeing the key, define the complete source-literal family:
+
+1. choose any repeated p6 line count `r in {20,22,24}`;
+2. choose any ordered red-title rune atoms `x,y`;
+3. form `[r,r,x,y]`;
+4. test both additive directions.
+
+This fixed-order family has **243 distinct keys**. Across the same **62** authenticated four-rune source/page pairs that have exactly one complete same-GP0 receiver, there is one hit:
+
+~~~text
+p40 offsets71..74
+target PATHS
+direction subtraction
+key [20,20,12,6].
+~~~
+
+Charge coordinate order as well: permit every unique permutation of every `[r,r,x,y]`. This broadens to **1,389 distinct keys**. The same p40 PATHS inverse is still the only hit across all 62 typed pairs and both signs. The matched title atoms are not anonymous after the fact: the already established p6 packet grammar labels `12=aK` and `6=a`, so the recovered key is source-readable as
+
+~~~text
+[20,20,aK,a].
+~~~
+
+Only **52** of the 1,389 permuted source keys have zero GP sum, the necessary class for an equal-GP0 receiver/target pair. This is a finite source-selection charge, not a probability of authorship.
+
+The important caveat is chronology. The family shape “repeated line count + two title atoms” was recognized after the PATHS key was known. It therefore materially reduces the arbitrary shell-role freedom and supplies the full numeric key from literal p6 geometry, but it is not a prospectively authenticated key derivation. A fresh receiver selected before its values are opened is still required to promote this template to a reusable key rule.
+
+Reproducer: `sims/lp2_p28_origin_selected_p29_p40_route_sft.cjs`.
+Detailed route report: `im-results/lp2-p6-linecount-p40-paths-key.md`.
+
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:

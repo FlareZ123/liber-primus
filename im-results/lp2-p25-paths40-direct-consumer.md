@@ -142,6 +142,8 @@ H^-1(S) = [20,20,12,6].
 
 This is exactly the previously observed p40 subtraction key. The prior symbolic label `[-b,A,e,-e]` remains numerically true because `-b mod29=14`. Both labels are deterministic functions of the same already known DH example, and the equality cannot count as independent confirmation of the key or the choice of shell roles. The new route is an alternative explanation of the same numerical coordinate, with the role and order chosen retrospectively.
 
+A later p6 source-literal charge supplies the same numeric key without choosing an H-shell serialization. Physical p6's repeated non-empty line counts are `{20,22,24}`; its globally charged red-title packet contains the literal rune atoms `{6,12,14,15,16,17,19,24,27}`. Charge every `[r,r,x,y]` built from those sets, both signs, and then every coordinate permutation. Among the 62 typed four-rune source/page receiver pairs there is one hit under both the 243-key fixed-order family and the 1,389-key permuted family: p40 PATHS, subtraction, `[20,20,12,6]`. The matched title atoms are independently labeled `aK=12` and `a=6` by the p6 packet. This removes the need to infer the numeric key from the retrospective p40 shell, but the extraction template itself was recognized after PATHS and therefore remains post-discovery evidence rather than a fresh key prediction.
+
 ## Exact decryption and replay
 
 ```text
