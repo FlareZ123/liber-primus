@@ -1,4 +1,4 @@
-# P47 receiving line directly serializes the complete DH23 state
+# P47 selected line-wrap opens a three-line raw DH23 state block
 
 **Agent8, 28 November 2026. Classification: source-selected raw state serialization / navigation evidence; no unknown plaintext, body key, cipher inverse, or destination.**
 
@@ -24,7 +24,18 @@ split   1 | 5
 
 and that the selected group alone gives `a=6`, `g=5`, `B=19`, and `p=23`; ordinary DH closure was then used to recover `b=15,A=8,K=2,e=3,q=4`.
 
-Opening **the complete receiving printed line10**, with no new page or word selection, removes that closure dependency. Its six visible line fragments are:
+Opening **the source-fixed receiving line10 and following its printed carries to the p47 page boundary** removes that closure dependency and exposes a three-line state block. The state is
+
+```text
+(p,g,a,b,A,B,K,e,q)
+= (23,5,6,15,8,19,2,3,4).
+```
+
+Let `F=0`, `A^-1=11 mod29`, and use ordinary field arithmetic only for the short derived expressions printed below.
+
+## Line10: direct extraction of every state field
+
+The six visible line10 fragments are:
 
 ```text
 [1,10,27,11,3]
@@ -35,34 +46,22 @@ Opening **the complete receiving printed line10**, with no new page or word sele
 [4,8]
 ```
 
-The first fragment is the continuation of the already selected group47. The last fragment continues onto line11. The four middle groups are complete on line10. Reading only elementary visible descriptors gives:
+The first is the continuation of selected group47. The last continues onto line11. The four middle groups are complete on line10. Their elementary visible descriptors are:
 
 ```text
-fragment lengths  = [5,6,3,3,3,2]
-                  = [g,a,e,e,e,K]
+fragment lengths   [5,6,3,3,3,2]
+                 = [g,a,e,e,e,K]
 
-GP0 sums mod29    = [23,2,2,1,8,12]
-                  = [p,K,K,1,A,aK]
+GP0 sums mod29     [23,2,2,1,8,12]
+                 = [p,K,K,1,A,aK]
 
-GP0 products mod29= [7,23,21,6,7,3]
-                  = [g+K,p,-A,a,g+K,e].
+GP0 products mod29 [7,23,21,6,7,3]
+                 = [g+K,p,-A,a,g+K,e].
 ```
 
-The first complete group on line10 is `[15,12,25,12,21,4]`, so its printed endpoints directly give
+The first complete group on line10, `[15,12,25,12,21,4]`, has endpoints `15=b` and `4=q`. Together with the isolated line9 singleton `19=B`, these raw descriptors directly expose **all nine** fields without modular exponentiation selecting any missing value.
 
-```text
-first = 15 = b
-last  =  4 = q.
-```
-
-Together with the isolated line9 singleton `19=B`, the selected wrap plus its source-fixed receiving line therefore exposes the complete state **without modular exponentiation selecting any missing field**:
-
-```text
-(p,g,a,b,A,B,K,e,q)
-= (23,5,6,15,8,19,2,3,4).
-```
-
-The standard DH identities are now validation rather than derivation:
+The standard DH identities now validate the directly extracted register:
 
 ```text
 5^6  mod23 = 8
@@ -72,33 +71,62 @@ The standard DH identities are now validation rather than derivation:
 q=e+1=4.
 ```
 
-This materially strengthens the p47 source object: the previously inferred fields `b/A/K/e/q` are all present as direct low-complexity descriptors on the immediately selected receiving line.
+### Matched line10 charge
 
-## Exact printed-line charge
+Across unknown physical p0–p55 there are **594** printed rune lines. Exactly **89** have line10's source-visible framing: six fragments, incoming carry, outgoing carry, and four complete middle groups.
 
-Charge the source-visible framing before using the descriptor values:
-
-- exactly six visible rune fragments on a printed line;
-- the first is a carry from the preceding line;
-- the last carries into the following line;
-- the four middle groups are complete on the line.
-
-Across unknown physical p0–p55 there are **594** printed rune lines and **89** lines in this exact framing class.
-
-Within those 89 lines:
+Within those 89:
 
 ```text
-length vector [5,6,3,3,3,2]                 -> p47 line10 only
-+ sum vector [23,2,2,1,8,12]                -> p47 line10 only
-+ product vector [7,23,21,6,7,3]            -> p47 line10 only
-+ first complete-group endpoints [15,4]      -> p47 line10 only
+length vector [5,6,3,3,3,2]              -> p47 line10 only
++ sums [23,2,2,1,8,12]                    -> p47 line10 only
++ products [7,23,21,6,7,3]                -> p47 line10 only
++ first-complete endpoints [15,4]          -> p47 line10 only.
 ```
 
-Thus the line is already a singleton under the **length vector alone** inside the matched framing class. The sums, products and endpoints are holdout structure on that same source-fixed line, not parameters used to choose it.
+The length vector alone is therefore already a singleton in its framing class.
+
+## Line11: the outgoing carry predicts the next state line
+
+Line10's last fragment carries directly into line11, fixing that next line without a page, word, or offset search. Its visible descriptors are:
+
+```text
+lengths  [4,3,10,4]
+       = [q,e,gK,q]
+
+sums     [16,13,0,19]
+       = [AK,b-K,F,B]
+
+products [1,13,28,8]
+       = [1,b-K,-1,A].
+```
+
+This is a genuine continuation check because the complete state is already available from line10.
+
+Across unknown p0–p55, **22** printed lines have the same framing as p47 line11: four fragments, incoming and outgoing carries, with the two middle groups complete. The state-predicted length vector `[q,e,gK,q]=[4,3,10,4]` occurs **once**, at p47 line11. Adding the state-predicted sums and products leaves the same sole hit.
+
+## Line12: page-final continuation
+
+Line11's outgoing carry fixes p47's final printed line12. Its visible descriptors are:
+
+```text
+lengths  [3,3,11,3,4]
+       = [e,e,A^-1,e,q]
+
+sums     [15,11,3,13,18]
+       = [b,A^-1,e,b-K,-A^-1]
+
+products [21,14,24,0,19]
+       = [-A,-b,-g,F,B].
+```
+
+Across unknown p0–p55, **20** page-final lines have the same framing: five fragments, an incoming carry, no outgoing carry, and four complete remaining groups. The state-predicted length vector `[e,e,A^-1,e,q]=[3,3,11,3,4]` occurs **once**, at p47 line12. Adding the predicted sums and products again leaves the same sole hit.
+
+Thus the state serialization is not confined to the originally noticed line-wrap. The selected group opens a source-contiguous **three-line tail to the page boundary**, and each successive line's length vector is already unique inside its matched source-framing family before sums or products are consulted.
 
 ## Immediate-successor control
 
-The first complete group after the selected group47 is the six-rune group at p47 offset212:
+The first complete group after selected group47 is p47 offset212:
 
 ```text
 [15,12,25,12,21,4]
@@ -109,17 +137,15 @@ first=15=b
 last=4=q.
 ```
 
-Across the canonical **2,864** globally complete unknown-page words, **251** have length6. Exactly two six-rune words have `(sum,product)=(2,23)`: p28 offset26 and p47 offset212. Requiring the independently reconstructed state endpoints `(first,last)=(b,q)=(15,4)` leaves **p47 offset212 only**.
-
-The successor is not chosen by this census; adjacency to the already selected group47 fixes it first.
+Across the canonical **2,864** globally complete unknown-page words, **251** have length6. Exactly two six-rune words have `(sum,product)=(2,23)`: p28 offset26 and p47 offset212. Requiring `(first,last)=(b,q)=(15,4)` leaves **p47 offset212 only**. The successor was fixed by adjacency before this census.
 
 ## Evidence boundary
 
-This observation was found after inspecting the p47 receiving-line context, so the state-expression labels are not a blind discovery probability. The exact line/source censuses prevent a free search from being hidden in the presentation, but they do not establish authorial intent by themselves.
+The line10 observation was found after inspecting the p47 receiving-line context, so the semantic labels are not a blind discovery probability. Lines11–12 were then examined as the source-fixed continuation to the page boundary; their matched-family censuses quantify specificity but do not turn the post-discovery reading into prospective authorship proof.
 
-What changes is narrower and causal: the current p47 route no longer needs modular DH closure to manufacture five unseen fields. A human following the already selected group47 can read the complete worked-DH state from the immediately visible line-wrap geometry and raw descriptors, then use the DH equations as checks.
+The causal improvement is still substantial: the current p47 route no longer needs DH closure to manufacture `b/A/K/e/q`. A human following the already selected group47 can read the whole worked-DH register directly from the immediate line geometry and then watch the same state recur through the two remaining printed lines.
 
-What remains missing is unchanged: a first-party operation that consumes this state as a reversible rune-level decoder or selects an unknown ciphertext receiver. Do not turn the line descriptors into another unconstrained periodic key.
+What remains missing is the actual consumer. Nothing in this block yet tells a solver which unknown ciphertext to invert, how to serialize a rune-level key, or which reversible cipher to apply. Do not convert the state block into an unconstrained periodic pad.
 
 Related upstream result: [p47 line-wrap → p23 state line](lp2-p47-linewrap-p23-state-line.md).
 
@@ -131,4 +157,4 @@ Run:
 node sims/lp2_p47_receiving_line_raw_dh_state_sft.cjs
 ```
 
-The SFT reads only the canonical transcription/corpus, reconstructs the selected p47 group and receiving line, derives the complete state directly, verifies the DH equations, exhausts the 89-line matched framing class, and charges the immediate six-rune successor across all 251 complete six-rune unknown-page words.
+The SFT reads only the canonical transcription/corpus, reconstructs the selected group47, directly extracts the state on line10, validates DH, exhausts the matched framing families for lines10–12, and charges the immediate six-rune successor across all complete six-rune unknown-page words.
