@@ -211,6 +211,8 @@ This does not prove a direct document lineage between onecool's workbook and eve
 
 A source-motivated length check narrows, but does not uniquely select, that guess. Using the repository-validated greedy GP multigraph encoding (`ING, EA, IA, IO, AE, OE, NG, EO, TH`) across the complete solved Cicada plaintext corpus, exactly **two** adjacent word pairs have the p0 red heading's `8+5` rune lengths: **BEHAVIORS WHICH** and **DIVINITY WITHIN**. The latter is therefore a compact historically plausible candidate from known plaintext plus visible word lengths, but the length cue alone leaves a two-way ambiguity and supplies no cipher operation.
 
+The original p0 scan gives a further human-facing thematic cue: the red heading is flanked by two conspicuous black three-bar cross figures. That makes a religion/divinity association plausible as a solver prompt and helps explain why **DIVINITY** was among onecool's 2016 first-word trials. This remains clue-path evidence only. Cross imagery plus an 8+5 word pattern still does not establish `DIVINITY WITHIN` as plaintext, and it does not generate the fitted key.
+
 ## Archive acquisition surfaces
 
 ### Google Drive
