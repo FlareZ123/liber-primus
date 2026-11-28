@@ -1,6 +1,6 @@
 # P6 address71 plus its visual key gives a target-blind exact p40 PATHS inverse
 
-**Agent3, 28 November 2026; strengthened by Agent22. Classification: materially strengthened local plaintext candidate. P6 now target-blind selects the receiver page/address/line class, numeric key and arithmetic direction without using PATHS rune state; the cross-page packet grammar remains retrospective.**
+**Agent3, 28 November 2026; strengthened by Agent22 and Agent19. Classification: materially strengthened local plaintext candidate. P6 now supplies two target-blind routes to the same p40 receiver: the earlier self-address71/layout route and a newer source-ordered title-rune ordinal route in which the PATHS-aligned W3 rune17 selects p40 word17/start71. The exact numeric key and subtraction direction remain independently source-derived; the ordinal interpretation is post-discovery and is not a universal corridor serializer.**
 
 ## Inputs fixed outside p40 plaintext
 
@@ -48,7 +48,7 @@ p6 first red word GP0   71
 
 Every other red-span-start word has a different GP0. Thus p6 is not merely a page where a signed GP0 happens to land on red ink: the red object itself prints a first word whose numeric value equals its own address. Together, `SEEKS6 -> 71`, the red start71, and the first-red-word sum71 form a three-way source pointer independent of p40 ciphertext.
 
-This still does not itself authorize carrying that address to p40; that cross-page transfer remains the final unsupported step.
+By itself, this address identity does not authorize carrying the number71 to p40. The title-rune ordinal route below reaches the same receiver without that coordinate export, so retain same-offset71 transfer as independent corroboration rather than the required receiver step.
 
 ### Signed-tail selector for the exact key
 
@@ -78,9 +78,25 @@ The two qg lines and the closing title/body state therefore give the numeric key
 
 The historical GP29 additive primitive fixes subtraction for decryption.
 
+## Independent source-ordered title-rune ordinal route
+
+The p6 source-only interval selector fixes the eleven-word tail and preserves printed title partition `[q,1,q,K]=[4,1,4,2]`. Its second q-block aligns `[6,27,15,17]` with `LUCK BEWARE FALSE PATHS`. The PATHS-aligned visible rune value is therefore 17.
+
+Read 17 literally as a one-based local word ordinal on independently selected p40:
+
+~~~text
+p40 word17
+start71
+[4,15,14,21].
+~~~
+
+This reaches the same receiver without copying p6's offset71. With the already fixed exact key `[20,20,12,6]`, charging forward/reverse title order, zero-/one-based word origins, both signs, and every authenticated four-rune source spelling leaves only the natural forward/one-based p40 PATHS hit. A broader charge allowing any distinct p6 red-rune value to address any p32–p42 page under either origin exposes 26 distinct four-rune receivers; the fixed key still yields only p40 PATHS. Widening the key to the published 1,389-key visual family creates three other authenticated events, so this evidence strengthens receiver provenance rather than arbitrary key selection.
+
+The ordinal interpretation was recognized after PATHS and most of the eleven natural title-rune/page pairings are not target-length compatible. Do not generalize it to a universal corridor serializer. See `im-results/lp2-p6-title-rune-p40-word17-selector.md` and `sims/lp2_p6_title_rune_p40_word17_selector_sft.cjs`.
+
 ## Target-blind receiver selection
 
-Carry the independently overdetermined p6 title-start coordinate to the independently selected p40 page:
+The source-ordered title-rune route now selects p40 word17/start71 directly; the older self-address route independently reaches the same coordinate:
 
 ~~~text
 p40 offset71
@@ -167,7 +183,7 @@ p40 offset71 [4,15,14,21]
 = PATHS
 ~~~
 
-So PATHS is not merely the survivor of the one exact key chosen after inspection: it is the sole signed-source output across the entire charged p6 visual key family on the independently addressed receiver class. This materially reduces key-choice freedom. It still does **not** authenticate the cross-page instruction “export p6 address/key geometry to the route-selected p40”; that transfer grammar was recognized after PATHS and remains the promotion gate.
+So PATHS is not merely the survivor of one exact key on the older offset71 family. The visual-family charge materially reduces key-choice freedom within that receiver class. The newer title-rune ordinal route independently selects p40 word17/start71 without requiring the cross-page instruction “export p6 address/key geometry to p40”; the remaining model-choice caveat is that the ordinal interpretation itself was recognized after PATHS and does not generalize across all eleven pages.
 
 Reproducer: `sims/lp2_p6_address71_targetblind_family_sft.cjs`. Windows Node22 run **46129741492** passed.
 
@@ -204,7 +220,7 @@ Thus **p40 offsets71..74 is the sole manuscript receiver satisfying the complete
 
 Applying the source-derived key `[20,20,12,6]` with the historically established subtraction direction gives PATHS exactly.
 
-The remaining caveat is discovery order: the cross-page interpretation “export p6 address + key arity + balanced line width as receiver constraints” was formulated after PATHS was already known. The finite charge removes destination freedom; it does not itself prove that Cicada intended this transfer grammar.
+The earlier cross-page address/layout interpretation and the newer title-rune ordinal interpretation were both recognized after PATHS was already known. Their convergence removes raw offset export as a necessary receiver step, but chronology still blocks promotion without a prospective ordinal consumer or first-party instruction selecting that operation.
 
 ## Internal-red-heading layout charge
 
@@ -223,7 +239,7 @@ The competing internal spans fail at least one condition. This makes the p6 key 
 
 ## Evidence boundary
 
-This is now an exact local inverse in which the unknown target is not used to choose the receiver, page, or numeric key. The p6 packet itself selects a unique manuscript receiver through `(address71, length4, physical-line width20)`, while the independent p25 route separately selects p40. The strongest remaining unsupported step is the **cross-page packet grammar**: no first-party text explicitly says to export p6's self-address, key arity and balanced line width as receiver constraints. The unique SEEKS/red-start match, the unique self-addressing red span, and the independent p25→40 route make that grammar plausible, but it remains retrospective.
+This is now an exact local inverse in which PATHS rune values are not used to choose the receiver, page, or numeric key. The p6 packet reaches p40 word17/start71 through two materially different retrospective routes: `(address71, length4, physical-line width20)` and the source-ordered W3 rune17 local-word ordinal. The independent p25 route separately selects p40. The strongest remaining unsupported step is authorship-level operation choice: no first-party text explicitly says to interpret the aligned p6 rune as a local word ordinal, and the rule is not universal across the eleven-page corridor. A prospective ordinal consumer would materially change that status.
 
 Accordingly preserve PATHS as a materially stronger plaintext candidate, not yet an established decryption. Page destination is no longer a free parameter under the frozen packet grammar; promotion now needs an authored instruction selecting that grammar or a fresh receiver predicted from the same packet before its ciphertext is opened.
 
