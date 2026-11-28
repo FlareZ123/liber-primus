@@ -209,6 +209,42 @@ assert.ok(
   )
 );
 
+
+/** @returns {number[][]} */
+function positiveCompositionsOf11() {
+  const out = [];
+  for (let a = 1; a <= 8; a += 1) {
+    for (let b = 1; b <= 8; b += 1) {
+      for (let c = 1; c <= 8; c += 1) {
+        const d = 11 - a - b - c;
+        if (d > 0) out.push([a, b, c, d]);
+      }
+    }
+  }
+  return out;
+}
+
+const compositions11 = positiveCompositionsOf11();
+assert.equal(compositions11.length, 120);
+const compositionLadderHits = compositions11.filter((widths) =>
+  completesOneToSix(widths, outsideInMagnitudes(widths))
+);
+assert.equal(compositionLadderHits.length, 24);
+
+const repeatedFirstThirdSingletonSecond = compositions11.filter(
+  ([a, b, c]) => a === c && b === 1
+);
+assert.deepEqual(repeatedFirstThirdSingletonSecond, [
+  [1, 1, 1, 8],
+  [2, 1, 2, 6],
+  [3, 1, 3, 4],
+  [4, 1, 4, 2],
+]);
+const constrainedLadderHits = repeatedFirstThirdSingletonSecond.filter(
+  (widths) => completesOneToSix(widths, outsideInMagnitudes(widths))
+);
+assert.deepEqual(constrainedLadderHits, [[4, 1, 4, 2]]);
+
 console.log(JSON.stringify({
   status: "PASS",
   p6Widths,
@@ -223,6 +259,12 @@ console.log(JSON.stringify({
   wholeBook: {
     windows: ordinaryWindows,
     hits: ordinaryHits.length,
+  },
+  compositionNull: {
+    positiveOrderedCompositionsOf11: compositions11.length,
+    ladderHits: compositionLadderHits.length,
+    constrainedGrammarCandidates: repeatedFirstThirdSingletonSecond,
+    constrainedGrammarHits: constrainedLadderHits,
   },
   decision: "p6 source geometry locally motivates outside-in H-like pairing, but does not select signed H4 serialization or mirror numeric Q/D order",
 }, null, 2));
