@@ -31,19 +31,25 @@ function collisionsOne(a,k,offset){
   return {blocks,equalPairs,maxMultiplicity};
 }
 function collisionSum(as,k,offset){let equalPairs=0,blocks=0,maxMultiplicity=0;for(const a of as){const s=collisionsOne(a,k,offset);equalPairs+=s.equalPairs;blocks+=s.blocks;maxMultiplicity=Math.max(maxMultiplicity,s.maxMultiplicity);}return {blocks,equalPairs,maxMultiplicity};}
+function collisionsMerged(as,k,offset){
+  const counts=new Map();let blocks=0;
+  for(const a of as)for(let i=offset;i+k<=a.length;i+=k){const x=stateIndex(a,i,k);counts.set(x,(counts.get(x)||0)+1);blocks++;}
+  let equalPairs=0,maxMultiplicity=0;for(const n of counts.values()){equalPairs+=n*(n-1)/2;maxMultiplicity=Math.max(maxMultiplicity,n);}
+  return {blocks,equalPairs,maxMultiplicity};
+}
 function segment(window){let at=0;return lengths.map((n)=>{const a=window.slice(at,at+n);at+=n;return a;});}
 function chapterize(as){const byPage=new Map(pages.map((p,i)=>[p.page,as[i]]));return chapterRanges.map(([lo,hi])=>{const out=[];for(let p=lo;p<=hi;p++)if(byPage.has(p))out.push(...byPage.get(p));return out;});}
 const originalChapters=chapterize(arrays);
 function observed(scope,k,offset){
   if(scope==="shared-continuous")return collisionsOne(tape,k,offset);
-  if(scope==="shared-page-reset")return collisionSum(arrays,k,offset);
+  if(scope==="shared-page-reset")return collisionsMerged(arrays,k,offset);
   if(scope==="chapter-private")return collisionSum(originalChapters,k,offset);
   if(scope==="page-private")return collisionSum(arrays,k,offset);
   throw new Error("scope");
 }
 function control(scope,segs,k,offset){
   if(scope==="shared-continuous")return collisionsOne(segs.flat(),k,offset);
-  if(scope==="shared-page-reset")return collisionSum(segs,k,offset);
+  if(scope==="shared-page-reset")return collisionsMerged(segs,k,offset);
   if(scope==="chapter-private")return collisionSum(chapterize(segs),k,offset);
   if(scope==="page-private")return collisionSum(segs,k,offset);
   throw new Error("scope");
