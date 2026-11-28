@@ -92,7 +92,7 @@ function experiment(raw, options={}) {
       const t=minWords(P);
       if(t===null)continue;
       full.push([a,b,t]);
-      if(!C.every((x,i)=>x===encode(P,a,b)[i]))throw Error("non-bijective replay");
+      if(encode(P,a,b).some((x,i)=>x!==C[i]))throw Error("non-bijective replay");
       if(allReadouts)readouts.push({key:[a,b],minWords:t,runes:P.map(v=>gp.runes[v]).join("")});
     }
     const inKeys=(list,ks)=>ks?list.some(k=>k[0]===ks[0]&&k[1]===ks[1]):null;
