@@ -502,6 +502,28 @@ The factorization was recognized after this transfer matrix was inspected, so th
 
 Reproducer: `sims/lp2_p8_p15_descriptor_transfer_sft.cjs`.
 
+## Projective q-eigenvector fan removes the left/right branch choice
+
+The p16–p21 q-eigenmatrix has both a left and right eigendirection. Charging both, and then charging all three canonical coordinate-to1 normalizations of each, produces p27 fragment ordinals
+
+```text
+left  -> [p,-e,a]
+right -> [p-1,b,a].
+```
+
+The two PRODUCT-normalized charts independently collapse at the same ordinal `a=6`; their vector difference is `[q,b,0]`, orthogonal to the final descriptor column `[K,b-K,g]`. The five distinct p27 fragments then replay the state across every local feature family:
+
+```text
+ordinal     [p,-e,a,p-1,b]
+start mod29 [A^-1,-A,K,A,A]
+end mod29   [-b,-g,g,A^-1,Kg]
+length      [e,e,e,e,K]
+SUM         [-e,-K,K-b,p-g,1]
+PRODUCT     [B,g,b,-g,p-g].
+```
+
+Among 51 pages capable of supporting all five ordinals, p27 alone matches the five starts, five ends, five lengths, five sums, or five products. This is the branch-robust form of the p8→p27 transfer; details and chronology are in [the handoff report](lp2-p8-p27-cell254-p55-handoff.md).
+
 ## Q-eigenvector continuation selects p27 / cell254 / p55 footer
 
 The held-out p16–p21 matrix supplies a normalized left q-eigenvector `[-1,-K,1]`. Contracting it with positions1–6 of the already-fixed L/S/P descriptor schedules gives
@@ -529,7 +551,7 @@ P8 now participates in seven coupled representations/transfers of the same state
 
 This materially changes the route ranking. The p7 orbit-weighted square supplies an actual adjacent-page operation, its signed output selects a seven-page fragment receiver, and the receiver's descriptors in turn act as an executable indexing grammar on the next physical section. The evidence now supports a **p7→p8→p16–p21→p22–p27→cell254 state/navigation chain** and source-derived operand material rather than a direct mono-layer Hill cipher.
 
-The q eigenspace now predicts a new receiver and key coordinate: p27 fragment6 / `(31,6)` / cell254. The next decisive question is what source-visible value-changing operation consumes that junction or its p55 terminal state marker to produce **unknown plaintext before target inspection**. Do not rescue rejected periodic consumers with phase/key tuning.
+The complete q eigenspace now predicts a five-fragment p27 projective fan, with both PRODUCT-normalized eigendirections converging on fragment6 / `(31,6)` / cell254. The next decisive question is what source-visible value-changing operation consumes that junction or its p55 terminal state marker to produce **unknown plaintext before target inspection**. Do not rescue rejected periodic consumers with phase/key tuning.
 
 ## Reproduction
 

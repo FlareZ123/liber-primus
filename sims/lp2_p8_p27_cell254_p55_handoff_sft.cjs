@@ -410,3 +410,148 @@ console.log('selected p27 coordinate', [rawP27.start, rawP27.index], '=> p50 cel
 console.log('selected seven-rune bookend', p27Page.slice(28, 35));
 console.log('marker H6', hEven(marker6));
 console.log('PASS p8->p16-21->p22-27->p27/cell254/p55 handoff');
+
+// --- complete q-eigenvector/projective fan on p27 ---
+
+// The right q-eigenvector is an equally canonical rival to the left vector.
+// Contract it with exactly the same six tail columns rather than choosing an
+// eigendirection by output quality.
+const nextRightSchedule = vectorMatrix(rightEigenvector, tailScheduleMatrix);
+assert.deepEqual(nextRightSchedule, [16, 9, 6, 12, 24, a]);
+const rightP22 = sixPagePacket(22, nextRightSchedule);
+assert.ok(rightP22);
+assert.deepEqual(rightP22.L, [e, g, e, 14, g + K, e]);
+assert.deepEqual(rightP22.S, [B, mod(-K), mod(-1), inv(A), mod(-1), mod(K - b)]);
+assert.deepEqual(rightP22.P, [A, F, p - 1, F, p - K, b]);
+assert.deepEqual(rightP22.picks.at(-1), rawP27);
+
+const rightPackets = [];
+for (let anchor = 0; anchor + 5 <= 55; anchor += 1) {
+  if (anchor <= 50 && anchor + 5 >= 50) continue;
+  const packet = sixPagePacket(anchor, nextRightSchedule);
+  if (packet) rightPackets.push({ anchor, packet });
+}
+assert.equal(rightPackets.length, 44);
+assert.deepEqual(
+  rightPackets.filter((entry) => samePacket(entry.packet, rightP22)).map((entry) => entry.anchor),
+  [22]
+);
+assert.deepEqual(
+  rightPackets.filter((entry) =>
+    entry.packet.L.every((value, i) => value === rightP22.L[i])
+  ).map((entry) => entry.anchor),
+  [22]
+);
+
+// Normalize each nonzero coordinate of both one-dimensional q-eigenspaces to
+// 1. This charges every canonical affine chart; PRODUCT-normalization is not
+// silently privileged.
+function normalizeCoordinate(vector, coordinate) {
+  const scale = inv(vector[coordinate]);
+  return vector.map((value) => mod(value * scale));
+}
+
+const finalDescriptorColumn = [schedules.L[6], schedules.S[6], schedules.P[6]];
+assert.deepEqual(finalDescriptorColumn, [K, b - K, g]);
+
+const projectiveCharts = [
+  { side: 'left', coordinate: 0, vector: normalizeCoordinate(leftEigenvector, 0), expected: p },
+  { side: 'left', coordinate: 1, vector: normalizeCoordinate(leftEigenvector, 1), expected: mod(-e) },
+  { side: 'left', coordinate: 2, vector: normalizeCoordinate(leftEigenvector, 2), expected: a },
+  { side: 'right', coordinate: 0, vector: normalizeCoordinate(rightEigenvector, 0), expected: p - 1 },
+  { side: 'right', coordinate: 1, vector: normalizeCoordinate(rightEigenvector, 1), expected: b },
+  { side: 'right', coordinate: 2, vector: normalizeCoordinate(rightEigenvector, 2), expected: a },
+].map((entry) => ({
+  ...entry,
+  index: mod(entry.vector.reduce(
+    (acc, value, i) => acc + value * finalDescriptorColumn[i], 0
+  )),
+}));
+
+assert.deepEqual(projectiveCharts.map((entry) => entry.index), [p, mod(-e), a, p - 1, b, a]);
+assert.ok(projectiveCharts.every((entry) => entry.index === entry.expected));
+
+// The two product-normalized charts are the only chart pair that collapse to
+// one endpoint. Algebraically their difference is [q,b,0], and the final
+// descriptor column is orthogonal to that difference.
+assert.deepEqual(
+  leftEigenvector.map((value, i) => mod(value - rightEigenvector[i])),
+  [q, b, F]
+);
+assert.equal(mod(q * K + b * (b - K)), F);
+assert.equal(projectiveCharts[2].index, projectiveCharts[5].index);
+assert.equal(projectiveCharts[2].index, a);
+
+// Open the five distinct p27 endpoints only after their ordinals are fixed.
+const fanIndices = [p, mod(-e), a, p - 1, b];
+const fan = fanIndices.map((index) => {
+  const fragment = p27Fragments[index];
+  return {
+    index,
+    start: mod(fragment.start),
+    end: mod(fragment.end),
+    L: fragment.values.length,
+    S: sum(fragment.values),
+    P: product(fragment.values),
+    values: fragment.values,
+  };
+});
+assert.deepEqual(fan.map((entry) => entry.index), [p, mod(-e), a, p - 1, b]);
+assert.deepEqual(fan.map((entry) => entry.start), [inv(A), mod(-A), K, A, A]);
+assert.deepEqual(fan.map((entry) => entry.end), [mod(-b), mod(-g), g, inv(A), K * g]);
+assert.deepEqual(fan.map((entry) => entry.L), [e, e, e, e, K]);
+assert.deepEqual(fan.map((entry) => entry.S), [mod(-e), mod(-K), mod(K - b), p - g, 1]);
+assert.deepEqual(fan.map((entry) => entry.P), [B, g, b, mod(-g), p - g]);
+assert.deepEqual(fan.map((entry) => entry.values), [
+  [mod(-1), a, mod(-A)],
+  [mod(-A), mod(-g), inv(A)],
+  [b + K, p - g, K * g],
+  [p - 1, inv(A), mod(-b)],
+  [b - K, b + K],
+]);
+
+// Matched page census: keep the five ordinals and every feature definition
+// fixed. Among pages that can support all five ordinals, each complete feature
+// column independently isolates p27.
+const eligibleFanPages = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const fragments = pageFragments(page);
+  if (fragments.length <= Math.max(...fanIndices)) continue;
+  eligibleFanPages.push({
+    page,
+    features: fanIndices.map((index) => {
+      const fragment = fragments[index];
+      return [
+        mod(fragment.start),
+        mod(fragment.end),
+        fragment.values.length,
+        sum(fragment.values),
+        product(fragment.values),
+      ];
+    }),
+  });
+}
+assert.equal(eligibleFanPages.length, 51);
+const targetFanFeatures = fan.map((entry) => [entry.start, entry.end, entry.L, entry.S, entry.P]);
+assert.deepEqual(
+  eligibleFanPages.filter((entry) =>
+    entry.features.every((row, i) => row.every((value, j) => value === targetFanFeatures[i][j]))
+  ).map((entry) => entry.page),
+  [27]
+);
+for (let feature = 0; feature < 5; feature += 1) {
+  assert.deepEqual(
+    eligibleFanPages.filter((entry) =>
+      entry.features.every((row, i) => row[feature] === targetFanFeatures[i][feature])
+    ).map((entry) => entry.page),
+    [27]
+  );
+}
+
+console.log('right q-eigenvector schedule', nextRightSchedule);
+console.log('projective chart endpoint indices', projectiveCharts.map((entry) => entry.index));
+console.log('p27 projective fan', fan);
+console.log('PASS complete q-eigenvector/projective p27 fan');
+
+
