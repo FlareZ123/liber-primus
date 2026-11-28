@@ -291,7 +291,7 @@ function experiment(raw, options={}) {
       gpTransliteration:z.P?.map(p=>gp.translit[p]).join("")});
     return {target,inputCount:C.length,truthCount:truth?.length,
       alphabet:{marked,invisible,spaceSlot,spaceInternal},
-      hypothesis:"mod36 strict-repeat with outputs>=29 silent, successive prime_minus_one residues mod36, fixed origin0",
+      hypothesis:"mod36 strict-repeat with seven silent states at the reported invisible indices, successive prime_minus_one residues mod36, fixed origin0",
       origin0:report(a),origin1:report(b)};
   }
   for(let i=(options.start||0);i<(options.start||0)+(options.plants||3);i++){
