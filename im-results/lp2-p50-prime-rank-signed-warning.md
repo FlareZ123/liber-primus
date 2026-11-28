@@ -106,6 +106,19 @@ The source immediately continues:
 
 Base60 value179 (41st prime) exists once at cell129, but 181 (42nd prime) is absent from the table. Therefore the table does **not** encode an automatic `VERIFY OPENPGP` continuation under this rule. Stop at **BEWARE FALSE PATHS**; do not repair the missing 181 with another radix, wrap, offset, or table transform.
 
+## Row/column-preserving geometric null (Director, 28 November)
+
+The direct full-cell random-shuffle null is a weak comparator for a designed 32×8 numerical table: it destroys every physical row and column. A more conservative exact null uniformly permutes the **32 complete rows** and **8 global column labels independently**, retaining row inventories, column inventories, and every token's original row/column incidence. The source-phrase-conditioned event is fixed as follows: in base60, signed indices 17→18 (THE→MAP) point **north** in one column; in base59, indices 22→23 (THE→ROAD) point **east** in one row; their intersection has base60 rank21 (IS). The stronger event also requires base59 rank19 (THEIR) immediately north of MAP. This is a benchmark for the *already observed* candidate, **not a blinded discovery test**.
+
+The pinned table has two base60 rank17 tokens in MAP's column3 (rows6 and27), exactly one rank18 in that column (row26), and a base59 rank19 in row25 of that column. The ROAD row5 contains rank22 at column0 and rank23 at column1 in base59. The base60 rank21 IS token already sits at their column3/row5 crossing. Consequently any global row/column permutation that preserves the two ordered adjacent pairs **automatically preserves IS**: this crossing is not an independent third lucky event. Exact null probabilities, proved by uniform permutation adjacency rather than an independence guess, are:
+
+| Event conditional on the discovered indices/radices | Exact row×column permutation probability |
+| --- | ---: |
+| North-directed THE→MAP and east-directed THE→ROAD meeting at IS | (2/32)×(1/8) = **1/128 ≈ 0.7813%** |
+| Same, plus THEIR immediately north of MAP in the other radix | (2/(32×31))×(1/8) = **1/3968 ≈ 0.0252%** |
+
+[Executable source checks and null derivation](../sims/lp2_p50_maproad_row_column_null.cjs). These are **reference frequencies under one constrained null**, not corrected p-values: the relevant signed words, direction choice, radix mixture, and extension were selected after observing p50 and related fitted routes; the broad earlier family search has not been charged. The data still identify an interesting cross-radix geometric coincidence, but do not supply a cipher, key, typed receiver, or a licensed continuation after THEIR. A proposed new branch needs an **independent source-selected operation with a prediction on untouched original material**, not merely smaller shuffle probabilities.
+
 ## Evidence boundary
 
 Established computational facts under the frozen representation:
@@ -117,7 +130,7 @@ Established computational facts under the frozen representation:
 - the same census under base59 has no two-edge consecutive chain;
 - prime rank42 / OPENPGP cannot continue because value181 is absent.
 
-Interpretive dependencies remain substantial. Ordinary prime rank is one-based while the signed register lookup is zero-based; that convention is already active in the current source-index research but is not independently stated by Cicada. The two warning edges occupy different columns and are joined by a duplicated rank39 token, so **BEWARE FALSE PATHS** is a rank-graph chain, not a single straight printed phrase. The SURFACE-to-top-row reading itself remains provisional. These facts materially strengthen the hypothesis that p50 participates in the signed map/road clue: strict adjacency independently yields THE MAP under base60 and THE ROAD under the uniquely absent-f base59 codec, with IS at their line intersection. They simultaneously warn against treating the PATH/SURFACE loop as an authenticated decoder.
+Interpretive dependencies remain substantial. Ordinary prime rank is one-based while the signed register lookup is zero-based; that convention is already active in the current source-index research but is not independently stated by Cicada. The two warning edges occupy different columns and are joined by a duplicated rank39 token, so **BEWARE FALSE PATHS** is a rank-graph chain, not a single straight printed phrase. The SURFACE-to-top-row reading itself remains provisional. These facts materially strengthen the hypothesis that p50 participates in the signed map/road clue: strict adjacency independently yields THE MAP under base60 and THE ROAD under the uniquely absent-f base59 codec, with IS at their line intersection. They simultaneously warn against treating the PATH/SURFACE loop as an authenticated decoder. The row/column-preserving null above also prevents treating the geometric IS crossing as an independent validation; its evidence remains conditional on post-selected indices and mixed radices.
 
 ## Research decision
 
