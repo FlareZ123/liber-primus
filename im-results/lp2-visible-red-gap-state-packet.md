@@ -83,6 +83,47 @@ visible red-page placement
 
 The repeated `K=2` entries are part of the printed gap sequence rather than a fitted separator. Removing repeated values while preserving first occurrence yields `[1,K,g,a,q,A,e]`.
 
+## Red-feature contingency selects p8 and p40
+
+The source annotations provide two independent visible binary features per page: a complete **red rune span** and a **red large punctuation** mark. Their full p0–p57 contingency table is:
+
+| visible class | pages | count | state identity |
+| --- | --- | ---: | --- |
+| red span **and** red punctuation | p0,3,6,7,15,23,27,33,39,53,54,56,57 | 13 | `b-K` |
+| red span, **no** red punctuation | **p8,p40** | **2** | **`K`** |
+| red punctuation, no red span | p2,14,22,26,32,36,38,49,55 | 9 | `q+g` |
+| neither | remaining 34 pages | 34 | `29+g` |
+
+The marginals close as well:
+
+```text
+pages with red rune spans       = 15 = b
+pages with red large punctuation= 22 = p-1
+union of the two                = 24 = 29-g
+outside the union               = 34 = 29+g.
+```
+
+Adding the one distinct source-visible red-number class, p37, changes the centered partition from `29±g = 24/34` to `29±q = 25/33`. The single added page therefore realizes `g-q=1`, exactly the relation used by the H-state bridge.
+
+Most importantly, the **span-only class independently selects exactly p8 and p40**. Their physical page indices reduce modulo29 to
+
+```text
+[p8,p40] -> [8,11] = [A,A^-1].
+```
+
+The pair is internally state-coded:
+
+```text
+8*11 mod29 = 1
+8+11 mod29 = 19 = B
+11-8       = 3  = e
+H([11,8])  = [3,19] = [e,B].
+```
+
+This is a materially new page-selection result. P8 is the already established DH-state receiver; p40 is the independently established unknown Q-route target. Visible ink morphology selects exactly that pair before any p40 black-body scoring. The p40 selection therefore no longer depends only on Q/base59 navigation.
+
+This table is natural and exhaustive over the two canonical red annotation features, but its state labels were recognized after the state was known. Treat it as a strong source-selected receiver cross-lock, not as a calibrated probability of authorship.
+
 ## Packet-derived p23 and p8 receivers
 
 The repeated gap value `K=2` occurs `e=3` times and gives a natural visible parsing:
