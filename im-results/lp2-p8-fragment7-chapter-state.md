@@ -399,7 +399,7 @@ A complete matched census sharpens the structural observation without turning it
 
 The prospective cipher prediction fails decisively. Freeze the p8 black body (243 runes), phase-zero repetition, the four top/bottom × right/left anchored vectors and their reversals, then test both additive signs: all **16** exact reversible outputs score below the solved-native GP29 floor **+0.709965**. The source-selected primary right/top vector scores **−1.585376** and **−1.745856**; the best charged alternative is still only **−1.323336**. Thus the artwork supplies a compact root/eigenvector **state closure**, but the simplest local periodic use is rejected and must not be rescued by phase or transform tuning.
 
-Reproducer: `sims/lp2_p8_tree_root_eigenvector_receiver_sft.cjs`. It independently reconstructs the eigenspaces, the 479-window census, exact forward replay, and all 16 frozen receiver scores.
+Reproducer: `sims/lp2_p8_tree_root_eigenvector_receiver_sft.cjs`. It independently reconstructs the eigenspaces, the 479-window census, exact forward replay, and all 16 frozen receiver scores. Windows Node 22 workflow run **46141591705** passed.
 
 ## Direct cipher consumers: two bounded negatives
 
