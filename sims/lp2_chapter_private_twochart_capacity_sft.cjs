@@ -146,10 +146,10 @@ function run(corpus, sources) {
   const chapterRanges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
   const nineChapters=chapterRanges.map(([lo,hi])=>{
     const items=corpus.pages.filter(p=>p.page>=lo&&p.page<=hi&&p.indices.length);
-    const h=new Int32Array(A);let n=0;
-    for(const p of items){n+=p.indices.length;for(let i=1;i<p.indices.length;i++)h[(p.indices[i]-p.indices[i-1]+A)%A]++;}
+    const h=new Int32Array(A);let n=0,doublets=0;
+    for(const p of items){n+=p.indices.length;for(let i=1;i<p.indices.length;i++){h[(p.indices[i]-p.indices[i-1]+A)%A]++;if(p.indices[i]===p.indices[i-1])doublets++;}}
     const top2=Array.from(h).sort((a,b)=>b-a).slice(0,2);
-    return {lo,hi,n,initials:items.length,top2,cap:top2[0]+top2[1]+items.length};
+    return {lo,hi,n,initials:items.length,doublets,top2,cap:top2[0]+top2[1]+items.length};
   });
   const fullN=nineChapters.reduce((s,c)=>s+c.n,0);
   assert(fullN===12956,"nine original chapters total");
@@ -162,26 +162,31 @@ function run(corpus, sources) {
       offset+=nineChapters[j].n;
     }
     const windows=seq.length-fullN+1;
-    let min=Infinity,positions=[],witness=null;
+    let min=Infinity,positions=[],witness=null,localDoubletMin=Infinity,localDoubletPositions=[];
     for(let st=0;st<windows;st++){
       if(st){let off=0;for(let j=0;j<hist.length;j++){
         hist[j][seq[st-1+off]]--;
         hist[j][seq[st-1+off+nineChapters[j].n]]++;
         off+=nineChapters[j].n;
       }}
-      let exceptions=0;const local=[];
+      let exceptions=0,postDoublet=0;const local=[];
       for(let j=0;j<hist.length;j++){
         let mx=0,leader=0;
         for(let k=0;k<A;k++)if(hist[j][k]>mx){mx=hist[j][k];leader=k;}
         const missing=Math.max(0,mx-nineChapters[j].cap);
         exceptions+=missing;
+        postDoublet+=Math.max(0,missing-2*nineChapters[j].doublets);
         if(exceptions<=min)local.push({chapter:j,leader,n:mx,missing});
       }
       if(exceptions<min){min=exceptions;positions=[st];witness=local;}
       else if(exceptions===min&&positions.length<6)positions.push(st);
+      if(postDoublet<localDoubletMin){localDoubletMin=postDoublet;localDoubletPositions=[st];}
+      else if(postDoublet===localDoubletMin&&localDoubletPositions.length<6)localDoubletPositions.push(st);
     }
     assert(witness.length===9,"whole-book witness");
-    return {windows,minimumExceptionalRUnes:min,positions,witness};
+    return {windows,minimumExceptionalRUnes:min,positions,witness,
+      minimumAfterAllDoubletAndSuccessorExceptions:localDoubletMin,
+      doubletPositions:localDoubletPositions};
   }
   const controls=[];
   for(const [name,txt] of sources){
@@ -211,6 +216,8 @@ function run(corpus, sources) {
   assert(cursor===N&&decoded===N-pages.length&&seen.every(s=>s.size<=2),"two-chart plant");
   assert(controls.length===3&&controls.every(c=>Object.values(c.variants).every(v=>v.slack>0&&v.skipFNonFSlack>0&&v.maxF<literalFCount&&v.fullBook.minimumExceptionalRUnes>=190)),"all native controls reject both two-output conventions");
   assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.fullBook.minimumExceptionalRUnes)))===190,"best full-book minimum");
+  assert(nineChapters.reduce((s,c)=>s+c.doublets,0)===86,"all original doublets");
+  assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.fullBook.minimumAfterAllDoubletAndSuccessorExceptions)))===48,"worst doublet-local exception");
   return {nineChapters,source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1,
       literalFCount,skipTransitions,skipTopDiff:skipSorted.slice(0,6),
       skipQ2Capacity,skipUncontrolledPageInitials:pages.length,

@@ -61,6 +61,17 @@ All contiguous full-length native GP windows in the same **three pinned donors Ã
 
 Even the **most favorable** passage in these 18 finite reference families requires **at least 190 exceptional symbol emissions** over the original 12,956 runes, despite the nine private chart pairs and wholly arbitrary per-rune chart selection. This is a genuine model-selection consequence: one or two minor local exceptions cannot rescue this entire-source two-chart hypothesis for any of the tested native English passages. **It does not prove the author wrote prose like these references, that section plaintexts are contiguous in any donor, or that Cicada used this cipher.** Selective F holds, new per-page maps, three-or-more residual outputs, different symbol coding, or an independently sourced key remain outside the theorem.
 
+### A local doublet patch cannot rescue either
+
+The manuscript has **86** actual within-page adjacent-equal ciphertext pairs across the nine chapters, distributed as **[4, 6, 9, 10, 11, 13, 12, 18, 3]**. A natural rescue story is that only these rare visible doublets invoke an exceptional rule. Grant each event its own plaintext rune **and the immediately following rune** as completely unmodeled exceptions (up to 172 free positions total, generously ignoring overlaps, pages and the exact residual symbol). The remaining native letters still require
+
+```text
+minimum additional unexplained positions >=
+    sum_over_chapters max(0, max_x N[j,x] - B[j] - 2 * doublets[j]).
+```
+
+The exact same 18 complete native donor families have a **minimum of 48 more exceptional positions** even after *every original doublet and its next physical rune* is freed. The minima by donor and spelling are Gibran **70/70, 58/58, 107/107**; Shakespeare **53/74, 48/70, 62/94**; Emerson **123/123, 110/110, 145/145** (each pair full/body). Therefore the simple source-visible 86-doublet **single- or two-position local patch** is insufficient to make the two-output chapter maps fit any of these complete native sources. A doublet-triggered state change persisting for three or more symbols, special F semantics or a different cipher architecture is not excluded by this bound. This does not claim to identify which original positions are genuinely special.
+
 ## Independent literal-F hold branch: stronger obstruction, no inferred universal F rule
 
 The original known-key WELCOME/LP2 p56 mechanisms allow a literal plaintext F to pass without consuming a key symbol. That does **not** establish that every physical F printed in unknown pages is literal plaintext F. Nevertheless test that explicit alternative rather than extrapolating the ordinary differential law.
