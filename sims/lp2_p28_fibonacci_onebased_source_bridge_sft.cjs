@@ -78,8 +78,6 @@ const direction=words[29]; assert.deepEqual([direction.ordinal,direction.word],[
 const physical30Project=direction.ordinal-1; assert.equal(physical30Project,29);
 const w30=byPage.get(physical30Project).find(w=>w.ordinal===30);
 assert.ok(w30); assert.deepEqual(w30.values,[11,26,11,18]);
-const packet=[...H(w30.values[0],w30.values[3]),...H(w30.values[1],w30.values[2])];
-assert.deepEqual(packet,[22,0,15,8].slice(0,0)); // sentinel replaced below
 // canonical H4 serialization is [x0-x3,x1-x2,x1+x2,x0+x3].
 const h4=[mod(w30.values[0]-w30.values[3]),mod(w30.values[1]-w30.values[2]),mod(w30.values[1]+w30.values[2]),mod(w30.values[0]+w30.values[3])];
 assert.deepEqual(h4,[22,15,8,0]);
