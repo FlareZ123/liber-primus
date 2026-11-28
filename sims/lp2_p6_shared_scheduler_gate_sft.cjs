@@ -221,6 +221,80 @@ function positionFitCounts(left, right) {
   });
 }
 
+
+
+/**
+ * Family C: literal p6 red-title rune tape.
+ *
+ * The printed title is eleven runes long. Charge every nonzero affine source
+ * index map modulo 11 and every origin, then read four consecutive cells
+ * forward or backward. Also charge a global sign, either the raw title or its
+ * canonical outside-in H shell as the 11-cell tape, and whether the four-cell
+ * output is interpreted as the raw key or as the interleaved H shell.
+ *
+ * This is deliberately more permissive than a literal source-index rotation:
+ * 2 tapes * 10 nonzero slopes * 11 offsets * 2 directions * 2 signs
+ * * 2 output interpretations = 1760 complete schedulers.
+ */
+const rawTitleTape = Object.freeze([24,16,14,17,19,6,27,15,17,14,12]);
+
+/** @param {number[]} values @returns {number[]} */
+function outsideInHShell(values) {
+  const out = [];
+  for (let left = 0, right = values.length - 1; left < right; left += 1, right -= 1) {
+    out.push(mod29(values[left] - values[right]));
+    out.push(mod29(values[left] + values[right]));
+  }
+  if (values.length % 2) out.push(values[Math.floor(values.length / 2)]);
+  return out;
+}
+
+const titleTapes = Object.freeze([
+  Object.freeze({ name: "raw-title", values: rawTitleTape }),
+  Object.freeze({ name: "H-title", values: Object.freeze(outsideInHShell(rawTitleTape)) }),
+]);
+
+const titleSchedulers = [];
+for (const tape of titleTapes) {
+  for (let alpha = 1; alpha < 11; alpha += 1) {
+    for (let offset = 0; offset < 11; offset += 1) {
+      for (const direction of [1, -1]) {
+        for (const sign of [1, -1]) {
+          for (const output of ["key", "shell"]) {
+            titleSchedulers.push({
+              tape: tape.name,
+              alpha,
+              offset,
+              direction,
+              sign,
+              output,
+              predict(sourceIndex) {
+                const start = ((alpha * sourceIndex + offset) % 11 + 11) % 11;
+                return [0, 1, 2, 3].map((coordinate) =>
+                  mod29(sign * tape.values[
+                    ((start + direction * coordinate) % 11 + 11) % 11
+                  ])
+                );
+              },
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(titleSchedulers.length, 1760);
+
+const titleSingleFits = Object.fromEntries(candidates.map((candidate) => [
+  candidate.name,
+  titleSchedulers.filter((scheduler) =>
+    scheduler.predict(candidate.sourceIndex).every(
+      (value, coordinate) => value === candidate[scheduler.output][coordinate]
+    )
+  ).length,
+]));
+assert.deepEqual(titleSingleFits, { WILL: 0, LUCK: 0, PATHS: 0 });
+
 const pairRows = [];
 for (let i = 0; i < candidates.length; i += 1) {
   for (let j = i + 1; j < candidates.length; j += 1) {
@@ -231,9 +305,17 @@ for (let i = 0; i < candidates.length; i += 1) {
 
     const arithmeticWhole = arithmetic.reduce((product, count) => product * count, 1);
     const positionWhole = positions.reduce((product, count) => product * count, 1);
+    const literalTitleWhole = titleSchedulers.filter((scheduler) =>
+      [left, right].every((candidate) =>
+        scheduler.predict(candidate.sourceIndex).every(
+          (value, coordinate) => value === candidate[scheduler.output][coordinate]
+        )
+      )
+    ).length;
 
     assert.equal(arithmeticWhole, 0);
     assert.equal(positionWhole, 0);
+    assert.equal(literalTitleWhole, 0);
 
     pairRows.push({
       training: [left.name, right.name],
@@ -241,6 +323,7 @@ for (let i = 0; i < candidates.length; i += 1) {
       arithmeticWholeSchedulers: arithmeticWhole,
       positionCoordinateFits: positions,
       positionWholeSchedulers: positionWhole,
+      literalTitleWholeSchedulers: literalTitleWhole,
     });
   }
 }
@@ -275,6 +358,12 @@ console.log(JSON.stringify({
   positionScheduler: {
     tape: stateTape,
     alphaCount: alphaSet.length,
+  },
+  literalTitleScheduler: {
+    rawTitleTape,
+    hTitleTape: titleTapes[1].values,
+    schedulerCount: titleSchedulers.length,
+    singleTargetFits: titleSingleFits,
   },
   pairRows,
 }, null, 2));
