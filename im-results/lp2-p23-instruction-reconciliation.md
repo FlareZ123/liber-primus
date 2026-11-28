@@ -33,9 +33,9 @@ T(n) = (p_n - 1) mod29.
 
 The red span ends after those four words. The complete selected line contains a fifth black word of length4. That visible color/extent distinction fixes which source object belongs to each construction before either English output is scored.
 
-## Stronger p21 authenticated semantic route selects ROAD=23
+## Stronger p21 numeric route locally selects zero-origin ROAD=23
 
-A later source-selected route now reaches physical p23 **without using the conditional mixed p47 descriptor→DH-role grammar**.
+A later source-selected route reaches physical p23 **without using the conditional mixed p47 descriptor→DH-role grammar**, but its source-word origin must be charged explicitly.
 
 The frozen p47→p46 navigation corridor terminates at p21/group21. Canonical H of that source-selected group is:
 
@@ -43,36 +43,45 @@ The frozen p47→p46 navigation corridor terminates at p21/group21. Canonical H 
 H4(p21/group21) = [20,22,23,6].
 ```
 
-Among all self-indexed H4 groups, inserting the already fixed current page21 into H's first three coordinates uniquely gives authenticated zero-based 2016 source indices
+Across all 10 self-indexed H4 groups, charge every omitted H coordinate, both preserved/reversed order of the other three values, and every insertion position for the already fixed current page21: **320 configurations total**. The sole consecutive numeric hit is
 
 ```text
-[20,21,22,23]
-= MEANING / IS / THE / ROAD,
+omit 6; keep [20,22,23]; insert 21
+-> [20,21,22,23].
 ```
 
-with the unused coordinate `6=SEEKS`.
+The numeric result is origin-independent; the source-text reading is not:
 
-The independently established authenticated-source checksum
+```text
+zero-origin source[20..23] = MEANING IS THE ROAD
+one-based words20..23      = THEIR MEANING IS THE
+
+zero-origin source[6]      = SEEKS
+one-based word6            = EPIPHANY.
+```
+
+For this circuit, the two conventional rivals can be charged with the same frozen downstream operations. The already-established source checksum gives
 
 ```text
 H(GP(SEEKS))
 = [0,13,18,23,1]
-= HELLO / WAY / MAP / ROAD / THE
+= HELLO / WAY / MAP / ROAD / THE,
 ```
 
-then supplies the navigation noun triad. P21's own reconstructed instruction says **MEANING IS THE ROAD**, selecting ROAD from that shell. The signed source sentence says that its words' **numbers are the direction**, so `ROAD=23` selects **physical p23**.
+containing the complete navigation triad `WAY/MAP/ROAD`; 23 raw p50 byte-pointer steps from `GP0(SEEKS)=71` reach p32, then byte115/token47 returns to the corridor source p47. The one-based rival EPIPHANY has `GP0=121`, H `[21,4,15,5,21,5,22,15]` with no complete navigation triad, and the identical 23-step pointer ends at cell114→token `1t`.
 
-This is currently the stronger clue-level page selector:
+Therefore this **specific** p21 circuit locally favors zero-origin source indexing. Under that locally discriminated branch, p21 reads **MEANING IS THE ROAD**, its omitted coordinate selects **SEEKS**, SEEKS' H shell supplies **ROAD**, and the authenticated sentence says word **numbers are the direction**:
 
 ```text
 p21/group21
- -> MEANING IS THE ROAD + SEEKS
+ -> numeric [20,21,22,23] + omitted6
+ -> local zero-origin branch: MEANING IS THE ROAD + SEEKS
  -> H(SEEKS) supplies ROAD
  -> ROAD source number23
  -> physical p23.
 ```
 
-It converges on the same p23 checkpoint as the p47 conditional state interpretation, while avoiding the disputed heterogeneous descriptor-role assignment. It does **not** predict the p23 first-line state vector or decrypt p23 body text; it independently types the destination page and thereby strengthens the already established p23 source-object instructions below.
+This is currently the stronger clue-level page selector because it avoids the disputed heterogeneous p47 descriptor-role assignment and explicitly charges the source-origin rival. It is **not** evidence that all Cicada textual coordinate systems are universally zero-based. It also does not predict the p23 first-line state vector or decrypt p23 body text; it independently types the destination page and strengthens the already established p23 source-object instructions below.
 
 Full report: `im-results/lp2-p21-meaning-road-seeks-cell254-crosslock.md`.
 
