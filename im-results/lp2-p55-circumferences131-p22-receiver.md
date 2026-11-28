@@ -153,7 +153,7 @@ The predeclared typed registers give no continuation for 113:
 - no authenticated signed-2016 word has GP0 113;
 - no solved-p57 word has GP0 113.
 
-So the numeric SHED/table route has a clean stopping point at p22. P22 already carries the independently established signed-source instruction describing words, meaning, road, numbers and direction. The composite route therefore hands control from numeric navigation to an independently recovered instruction page instead of tuning another numeric hop.
+So the numeric SHED/table route has a clean stopping point at p22. P22 already carries the independently established signed-source instruction describing words, meaning, road, numbers and direction. The composite route therefore hands control from numeric navigation to an independently recovered instruction page instead of tuning another numeric hop.\n\n**28 November complementary MAP branch:** the later p50 adjacency census gives a source-constrained reason to treat base59 as ROAD and base60 as MAP inside this exact dual-radix family. Reusing p55's same core-sum cell38, base59(2D)=131 preserves the CIRCUMFERENCES→p22 receiver above. Base60(2D)=133 instead becomes a pointer-map start. P55 supplies both required depths locally: recursive-core center K=2 and terminal-footer H6 coordinate q=4. Those fixed depths land at physical p46 and p47 respectively, uniquely for p55 across the complete legal page-core family; matched base59 pointers land at35/5. Thus the p22 ROAD receiver and p46/p47 MAP receiver are complementary consequences of one original p55 cell rather than competing radix claims. [Cross-lock report and SFT](lp2-p55-core-footer-maproad-crosslock.md).
 
 Meta-regression:
 

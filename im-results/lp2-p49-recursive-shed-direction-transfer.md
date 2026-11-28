@@ -84,7 +84,7 @@ Charge the unchanged recursive-SHED page object on every physical p0-p55 page us
 
 - Exactly **two** pages have `g=5` surviving cores: p49 and p55.
 - P49: sum76 -> byte114 -> two edges -> **115**.
-- P55: sum38 -> byte133 -> two edges -> **46**.
+- P55: sum38 -> byte133 -> two edges -> **46**.\n\n**28 November dual-radix reconciliation:** the failure above remains exact for this report's frozen grammar, which requires K=2 edges and then a literal decimal **cell token**. A distinct later source-typed test uses p50's newly established complementary MAP/ROAD geometry instead: p55's terminal footer independently supplies q=4, the recursive-core center supplies K=2, and the base60 MAP pointer values themselves are treated as directions. From the same start133, K=2 lands at physical p46 and q=4 at physical p47; the matched base59 pointer gives35/5, while direct base59(2D)=131 retains the CIRCUMFERENCES→p22 ROAD branch. The all-page K/q census leaves p55 as the sole base60 (46,47) hit. This does **not** reverse the literal-token negative here; it establishes a separate numeric MAP consumer. See [p55 core/footer MAP/ROAD cross-lock](lp2-p55-core-footer-maproad-crosslock.md).
 - Across **all** p0-p55 pages, not merely the five-core pair, **p49 is the only page** whose recursive-core sum -> base60 byte -> K=2 pointer chain terminates at115.
 
 The old base59 DIRECTION result is therefore retained as an interesting alternate semantic read, but it is no longer the leading continuation. Do not use it to argue that base59 overrides the source-selected base60 table.

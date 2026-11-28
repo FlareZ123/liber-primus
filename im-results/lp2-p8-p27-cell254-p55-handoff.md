@@ -196,6 +196,6 @@ Earlier p27/p55 audits correctly refused to use the rare footer as a plaintext c
 
 It does **not** establish equal plaintext, a periodic key, a page reset, or a shared pad. All prior negative direct six/seven-period, columnar, shared-pad, prime6389-clock and p56-key-transfer tests remain negative. The stronger current classification is a source-selected **state/navigation marker candidate embedded in the unknown corpus**.
 
-The next high-value decision is a source-visible value-changing consumer of the cell254/p39 branch or the p55 body that can be frozen before unknown plaintext is opened.
+A 28 November follow-up now supplies one bounded value-changing consumer for the **p55** half of this marker: p55's recursive-core center fixes K=2, this footer's frozen H6 fixes q=4, and the independently identified p50 base60 MAP branch from core-sum cell38 reaches physical p46 at depth K and p47 at depth q. The matched base59 pointer branch misses both endpoints, while its direct value131 remains the established CIRCUMFERENCES→p22 ROAD receiver. This gives the footer a concrete navigation role without making it a body key. See [the p55 core/footer MAP/ROAD cross-lock](lp2-p55-core-footer-maproad-crosslock.md). The next high-value decision is whether the already fixed p47→p46 downstream machinery produces a fresh consequence from this p55 entry without changing receiver or descriptor grammar.
 
 Reproducer: `sims/lp2_p8_p27_cell254_p55_handoff_sft.cjs`.
