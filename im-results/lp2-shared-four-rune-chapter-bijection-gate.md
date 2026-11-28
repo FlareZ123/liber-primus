@@ -4,7 +4,7 @@
 
 ## Source framing
 
-For this test, a chapter is one of the nine visually framed LP2 sections beginning at logical pages 0, 3, 8, 15, 23, 27, 33, 40 and 54. The original archive stores logical LP2 page p as image p+17; the opening images are therefore 17, 20, 25, 32, 40, 44, 50, 57 and 71. Each opening has its own red initial, ornament or diagram. The page-to-image mapping is documented in resources/liber-primus/README.md. This is an operational source-framing choice, not a claim that the manuscript labels these sections as chapters.
+For this test, a chapter is one of the nine visually framed LP2 sections beginning at logical pages 0, 3, 8, 15, 23, 27, 33, 40 and 54. The original archive stores logical LP2 page p as image p+17; the opening images are therefore 17, 20, 25, 32, 40, 44, 50, 57 and 71. Each opening has its own red initial, ornament or diagram. The page-to-image mapping is documented in resources/liber-primus/README.md. This is an operational source-framing choice, not a claim that the manuscript labels these sections as chapters. A newly recovered dated participant source now gives independent historical support for the same boundaries: `onecool/3301-public`'s LP2 JSON, committed in 2017, assigns section numbers 0–8 exactly to p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 and p54–55. That is evidence that this nine-way visual segmentation was already being used by a 2017 solver, not author authentication or proof that a cipher resets there. See [recovered onecool pre-2018 Git custody](lp2-onecool-pre2018-git-custody.md).
 
 The nine logical page ranges and rune lengths are:
 
