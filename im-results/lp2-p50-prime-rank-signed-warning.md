@@ -139,6 +139,20 @@ This is stronger than selecting cell24 merely because its cell index can itself 
 
 The literal continuation is therefore a compact candidate handoff: **AND24 → address24 → THE/DIRECTION29**. It operationalizes “their numbers are the direction” more directly than the earlier cell-index observation. It still does not prove that every prime rank should be recursively dereferenced; the uniqueness statement is restricted to the already selected MAP/ROAD segment and the authenticated signed register.
 
+The raw token at that selected address adds a separate, human-readable movement consequence. `p50[24]` is literally **`1n`**. Starting from the already fixed AND cell195 with the north heading supplied by THE→MAP, read that as **one north**: it lands at cell187, whose original token is **`1L`**. Keeping the current north heading, **one left** then lands at **cell186**, token `0J`, which equals19 under both base59 and base60.
+
+This endpoint was not created for the present route. Cell186 is independently selected by the p27 red13/DH circuit (the p27 red heading's GP-prime sum1109 is prime #186; its local 13th-rune × residual-length construction also gives186), by solved-p57 MUST's GP-prime sum186, and by the separately derived p29 carry route that had already prospectively selected cell187=`1L` and stepped left to186. The new p50 chain therefore supplies a distinct source-side entrance to the same manuscript object:
+
+```text
+MAP support: cell195 = base60 prime#24 = AND
+AND's number24 -> p50[24] = 1n
+start at cell195, heading north
+  1 north -> cell187 = 1L
+  1 left  -> cell186 = 0J = 19
+```
+
+A finite census keeps this from becoming a free arrow hunt. On the entire fixed THEIR→ROAD support segment, enumerate every base59/base60 prime hit whose rank lies in the authenticated 43-word register, use that rank as a table address, and allow only a positive decimal digit plus `N/S/E/W/L/R/U/D` (case-insensitive) as a movement token with the MAP pair fixing the initial north heading. **Only rank24/AND produces any first movement at all**, and its deterministic two-token program is the sole one that reaches cell186. This is a source-constrained navigation convergence, still not a plaintext decoder. The `1n` and `1L` readings are ordinary human abbreviations suggested by the authenticated word DIRECTION, not a first-party published token grammar; do not expand the alphabet after the fact.
+
 The same zero-based 29 now gives a cleaner selector for the already documented p29 packet: **DIRECTION = source[29] -> project p29 -> canonical zero-based word index29** (one-based word30). That object is p29 offsets108..111 `[11,26,11,18]`, whose fixed H4 is `[22,15,8,0]`. The immediately preceding zero-based word28, offsets106..107 `[8,15]`, has H2 `[22,23]` = **THE ROAD**. This exact phrase independently equals the strict base59 p50 adjacency above.
 
 This does not make DIRECTION p28 plaintext and does not recover any unknown body text. It removes one awkward mixed-origin step from the conditional navigation scaffold: source index29, project page29 and the selected canonical word index29 now share the same zero-based number. The pre-existing p29 H2/H4 arithmetic remains conditional on the fixed H serialization and its semantic packet roles.
@@ -193,6 +207,7 @@ Established computational facts under the frozen representation:
 - the already selected cell74-to-surface column2 begins with prime ranks39 and40, hence **FALSE PATHS**;
 - the same census under base59 has no two-edge consecutive warning chain;
 - the strict MAP/ROAD support geometry reconstructs every source index17..24: **THE MAP THEIR MEANING IS THE ROAD AND**. THEIR is the base59 prime#19 cell immediately north of MAP, MEANING is the exact20-edge northward distance from that cell to the ROAD support line, and the next support cell is the unique base60 prime#24 = AND;
+- AND's recovered number24 selects raw token `1n`; from the fixed AND location and MAP's north heading, `1n -> 1L` deterministically lands on independently source-selected cell186=`0J`=19. Across all signed prime hits on the fixed segment, AND24 is the only rank whose same-number address even begins the declared movement grammar;
 - no prime#20 cell occurs anywhere on that vertical support segment under either live radix, so MEANING is specifically a distance readout rather than an omitted cell hit;
 - prime rank42 / OPENPGP cannot continue because value181 is absent.
 
@@ -200,7 +215,7 @@ Interpretive dependencies remain substantial. Ordinary prime rank is one-based w
 
 ## Research decision
 
-Preserve the complete **THE MAP THEIR MEANING IS THE ROAD AND** support reconstruction and the bounded **AND24 → p50[24] → THE/DIRECTION29** handoff as source-constrained map/navigation evidence. Redirect effort away from extending the terminal PATH loop by additional fitted receivers. The newly resolved MEANING step closes the local signed-clause gap but does not itself type a ciphertext operand. A productive successor must obtain an independently authored operation that converts this map structure into a reversible transform of unknown LP2 ciphertext. In particular, do not turn distance20 into an arbitrary page/key index or resume p55 key sweeps merely because the clause now closes.
+Preserve the complete **THE MAP THEIR MEANING IS THE ROAD AND** support reconstruction, the bounded **AND24 → p50[24] → THE/DIRECTION29** handoff, and the conditional **AND24 → 1n → 1L → cell186** convergence as source-constrained map/navigation evidence. Redirect effort away from extending the terminal PATH loop by additional fitted receivers. The newly resolved MEANING step closes the local signed-clause gap but does not itself type a ciphertext operand. A productive successor must obtain an independently authored operation that converts this map structure into a reversible transform of unknown LP2 ciphertext. In particular, do not turn distance20 into an arbitrary page/key index or resume p55 key sweeps merely because the clause now closes.
 
 Reproduce with:
 

@@ -169,6 +169,70 @@ const segmentDualDereferences = [...segmentSignedRanks].filter((r) =>
 );
 assert.deepEqual(segmentDualDereferences, [24]);
 
+/**
+ * Apply the minimal human movement grammar suggested by DIRECTION.
+ * N/S/E/W are absolute; U/D alias page up/down; L/R turn relative to the
+ * current heading. Only positive one-digit distances are admitted.
+ * @param {number} cell
+ * @param {string} token
+ * @param {"N"|"E"|"S"|"W"} heading
+ * @returns {{cell:number,heading:"N"|"E"|"S"|"W"} | null}
+ */
+function move(cell, token, heading) {
+  const match = /^([1-9])([NSEWLRUD])$/iu.exec(token);
+  if (!match) return null;
+  const steps = Number(match[1]);
+  const op = match[2].toUpperCase();
+  const directions = ["N", "E", "S", "W"];
+  let nextHeading = heading;
+  if (op === "L") {
+    nextHeading = directions[(directions.indexOf(heading) + 3) % 4];
+  } else if (op === "R") {
+    nextHeading = directions[(directions.indexOf(heading) + 1) % 4];
+  } else if (op === "U") {
+    nextHeading = "N";
+  } else if (op === "D") {
+    nextHeading = "S";
+  } else {
+    nextHeading = op;
+  }
+  let row = Math.floor(cell / 8);
+  let column = cell % 8;
+  if (nextHeading === "N") row -= steps;
+  if (nextHeading === "S") row += steps;
+  if (nextHeading === "E") column += steps;
+  if (nextHeading === "W") column -= steps;
+  if (row < 0 || row >= 32 || column < 0 || column >= 8) return null;
+  return {cell: row * 8 + column, heading: nextHeading};
+}
+
+const segmentMovementPrograms = [];
+for (let row = 25; row >= 5; row -= 1) {
+  const origin = row * 8 + 3;
+  for (const [radix, alphabet] of [[60, a60], [59, a59]]) {
+    const r = primeRank.get(decode(tokens[origin], alphabet)) || null;
+    if (r === null || r >= words.length) continue;
+    const firstToken = tokens[r];
+    const first = move(origin, firstToken, "N");
+    if (!first) continue;
+    const secondToken = tokens[first.cell];
+    const second = move(first.cell, secondToken, first.heading);
+    segmentMovementPrograms.push({
+      origin, radix, rank:r, word:words[r], firstToken,
+      firstCell:first.cell, secondToken,
+      secondCell:second ? second.cell : null,
+    });
+  }
+}
+assert.deepEqual(segmentMovementPrograms, [{
+  origin:195, radix:60, rank:24, word:"AND", firstToken:"1n",
+  firstCell:187, secondToken:"1L", secondCell:186,
+}]);
+assert.equal(tokens[186], "0J");
+assert.equal(decode(tokens[186], a59), 19);
+assert.equal(decode(tokens[186], a60), 19);
+assert.equal(words[19], "THEIR");
+
 const luckPrime = primes[36];
 assert.equal(luckPrime, 157);
 const luckCells59 = tokens.flatMap((t, i) => decode(t, a59) === luckPrime ? [i] : []);
@@ -200,6 +264,14 @@ console.log(JSON.stringify({
     dereferenceToken: tokens[24],
     dualWords: ["THE", "DIRECTION"],
     segmentDualDereferences,
+    movementProgram: segmentMovementPrograms[0],
+    movementTerminal: {
+      cell:186,
+      token:tokens[186],
+      base59:decode(tokens[186], a59),
+      base60:decode(tokens[186], a60),
+      sourceWord:words[19],
+    },
   },
   stoppedBeforeMeaning: false,
   foundGoodDoesNotContinueToLuck: true,

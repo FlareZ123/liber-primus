@@ -17,6 +17,12 @@ Thus the unique predicted original input is **cell187 = 1L** (native base60 byte
 
 **Upstream caveat:** the signed text does not explicitly tell us that the p29 H2 output is a row/column coordinate, that L means left, or that an original base60 numeral should be reinterpreted as an instruction. This remains a retrospective coordinate-language hypothesis; the already known p27 address186 is useful as a held-out route destination but is not an authenticated message.
 
+### Independent p50 MAP/DIRECTION entrance to the same 1L → cell186 step
+
+The later p50 MAP/ROAD reconstruction now supplies a separate source-side selector for this exact local movement, without the p29 carry. On the fixed MAP support, cell195 is base60 89 = prime#24 = authenticated source word **AND**. The recovered number24 dereferences p50 address24, whose raw token is **`1n`** and whose two live prime-rank readings are THE/DIRECTION. With THE→MAP already fixing north, applying `1n` from the AND cell lands exactly on **cell187=`1L`**; the same one-left reading used by this report then lands on **cell186=`0J`=19**.
+
+A complete census of signed-range prime hits on the fixed THEIR→ROAD MAP segment finds no rival: AND24 is the only rank whose same-number table address begins the declared positive-digit + N/S/E/W/L/R/U/D movement grammar, and its two-token path uniquely reaches186. This does not authenticate the movement alphabet by itself, but it materially reduces dependence on the p29 carry's coordinate interpretation: the MAP/DIRECTION route and p29-carry route now independently select the same `1L -> 0J` local transition. See [the consolidated p50 analysis](lp2-p50-prime-rank-signed-warning.md) and [its bridge SFT](../sims/lp2_p50_map_road_direction_p29_bridge_sft.cjs).
+
 ## Same raw p29 carry selects the unique p27 original red-marker object
 
 The **raw** p29 mod841 carry `[13,19]`, before applying the H2 map or inventing a table coordinate, is also exactly interpretable as **[red punctuation marker 13, immediately preceding red-rune heading length 19]**. This matches the already documented original p27 scan **44.jpg**: a red 19-rune opening heading followed immediately by a red 13-dot mark. Across the complete canonical original ink-annotation source, there are **18** red rune spans, **16** followed immediately by the same type of 13-marker, and **exactly one** span of length19, at **physical p27, rune offset0**. The other 15 marker-adjacent spans have different lengths.
