@@ -1,155 +1,232 @@
-# P57 circumference instruction exposes IN → OUT and strengthens the p1→p8 entry
+# P57 recursively hides IN THE INNER and selects the inner-circumference p8 receiver
 
-**Agent18, 28 November 2026. Classification: solved-plaintext operation clue plus provisional original-art navigation. No unknown LP2 body plaintext or general cipher is claimed.**
+**Agent18, 28 November 2026. Classification: source-visible solved-plaintext operation clue plus a prospectively typed original-art receiver. No unknown LP2 body plaintext or general cipher is claimed.**
 
-## Solved p57 literally contains an IN → OUT instruction
+## Primary result
 
-Solved physical p57 says:
+Solved physical p57 ends:
 
 ```text
+WE MUST
 SHED OUR OWN CIRCUMFERENCES
 FIND THE DIUINITY WITHIN AND EMERGE
 ```
 
-The established image-level execution of “shed circumferences” on its terminal red23 ornament produces the onion `[14,8,1]`. The same operation can be applied to the **printed solved word itself** with no cipher fitting: repeatedly remove the two outermost letters of the runic-normalized `DIUINITY`:
+The repository had already executed the first instruction on two source objects:
+
+1. the terminal red23 ornament has circumference onion `[14,8,1]`;
+2. earlier DIVINITY work shed the printed GP word once, `DIUINITY -> IUINIT`.
+
+Continue **the same literal operation recursively** on a GP word until only its center one/two runes remain. In the final six-word clause the centers are:
 
 ```text
-DIUINITY
- IUINIT
-  UINI
-   IN
+FIND      -> IN
+THE       -> THE
+DIUINITY  -> IN
+WITHIN    -> TH
+AND       -> N
+EMERGE    -> ER
 ```
 
-The exact two-letter center is therefore **IN**. This extends, rather than replaces, the older p57 DIVINITY lineage: prior work froze the first shed layer `DIUINITY -> IUINIT` and pursued its prime-sum/p50 consequences, but did not continue the literal shedding recursively to `UINI -> IN`.
-
-The local p57 control is useful. Applying the same recursive outer-pair shedding to all 20 solved p57 words yields center `IN` on exactly two words: **FIND** and **DIUINITY**. They are the two operative words in the same clause, `FIND THE DIUINITY...`. `WITHIN` itself also visibly ends in `IN`. Across the broader pinned solved-GP corpus, however, center-`IN` occurs 12 times in 735 words (FIND, THINC, DIUINITY, MIND and literal IN), so the individual word hit is **local instruction redundancy, not a discovery-wide rarity claim**. The stronger complete-window control preserves source order: center-strip every adjacent three-word window inside each solved section. There are **717** such windows, and exactly **one** has centers `IN / THE / IN`: p57's consecutive **FIND / THE / DIUINITY** at word indices14–16. This is a post-discovery finite discriminator, not a blind authorship probability.
-
-The sentence then immediately says **AND EMERGE**, whose ordinary directional complement is **OUT**.
-
-This gives a source-visible instruction-shaped arrow:
+The word **WITHIN** is itself the source instruction telling the reader where to look. Treat it as the operator rather than payload, concatenate the recursively exposed centers of the other five words, and the clause reads exactly:
 
 ```text
-shed circumferences -> find IN within -> emerge OUT
-IN -> OUT.
+IN + THE + IN + N + ER
+= IN THE INNER
 ```
 
-This was recognized after the chapter navigation graph existed, so it is not a blind discovery probability. Its value is causal: the existing chapter rubric had an exact operator-order rival—SUM→PRODUCT and PRODUCT→SUM traverse the same five-node path in opposite directions—and the original route report explicitly noted that the source did not print an arrow. P57 now supplies a literal solved-text **IN→OUT** ordering without touching unknown ciphertext.
+This is a direct human-readable output from solved text under its own stated circumference-shedding operation.
 
-It does **not** independently prove that SUM is IN or PRODUCT is OUT. Those field assignments already have separate support: p23 chronologically holds out the first-black SUM receiver, and the independent frame-spacing register supports PRODUCT as the OUT statistic. The new p57 clue addresses the remaining **direction/orientation** question.
+## Complete solved-corpus controls
 
-## Consequence for the established chapter graph
+The individual center-`IN` observation is not globally rare. Across the pinned solved GP corpus:
 
-The chapter grammar defines, on the first complete black word following each chapter rubric:
+- 735 complete solved words;
+- 12 recursively reduce to center `IN`;
+- in p57, exactly two of 20 words do so: **FIND** and **DIUINITY**.
+
+A stronger source-order control is unique. Across all **717** adjacent three-word windows inside solved sections, only p57 `FIND / THE / DIUINITY` has recursively exposed centers:
 
 ```text
-IN(page)  = GP29 SUM
-OUT(page) = GP29 PRODUCT
+IN / THE / IN.
 ```
 
-and follows `OUT(current) -> matching IN(next)`.
+Most importantly, charge the exact six-word form that produced the English readout without privileging an omission position after the fact:
 
-The established p0 route is:
+- all **690** within-section six-word solved windows;
+- for each, omit each of its six words once;
+- recursively center-strip the other five and concatenate them;
+- total **4,140** presentations.
+
+Exactly **one** presentation reads `INTHEINNER`:
 
 ```text
-p0 --23--> p8 --2--> p27 --19--> p54 --27--> p40.
+section:       p57_parable
+window:        FIND THE DIUINITY WITHIN AND EMERGE
+omitted word:  WITHIN
+centers:       IN / THE / IN / TH / N / ER
+readout:       IN THE INNER
 ```
 
-The exact reverse PRODUCT→SUM construction walks the same edges backward from p40 to p0. P57's center-stripping clue now naturally prefers the forward **IN→OUT** reading.
+This is a post-discovery finite specificity control, **not** a blind probability of authorship. The important causal fact is that the only hit omits the exact word whose semantics nominate the center/interior operation.
 
-For p8 specifically, its source-selected first black word is `[27,9,16]` with:
+## The hidden instruction resolves the p57 ornament ambiguity
+
+The existing original-raster morphology report had already left one explicit receiver choice open on the unique p57 red23 mark:
 
 ```text
-length  = 3
-SUM     = 23 = IN
-PRODUCT = 2  = OUT.
+outer circumference = 14
+inner circumference = 8
+center               = 1
+
+onion = [14,8,1]
 ```
 
-Therefore the established chapter consumer is:
+It already recognized `inner circumference8 -> physical p8` under the authenticated 2016 statement that **the numbers are the direction**, while treating the final `center1 -> p1` continuation as possible but untyped.
+
+The new solved-text readout supplies exactly the missing selection phrase:
 
 ```text
-p8 OUT2 -> the chapter with IN2 -> p27.
+IN THE INNER
+        |
+        +-> inner circumference = 8
+            -> numbers are the direction
+            -> physical p8
 ```
 
-A previously explored direct `OUT2 -> physical p2` reading is a **rejected rival**: it ignores the already-defined chapter address type. Physical p2 does have 201 runes with center rune `N`, but that observation does not repair the type mismatch and is not retained as a navigation claim.
+Thus the best current p57 human-solve path is:
 
-## Independent p57 → p1 → p8 entry remains viable
+```text
+p57 solved instruction
+ -> recursively shed the clause's word circumferences
+ -> IN THE INNER
+ -> p57 terminal red23 inner circumference = 8
+ -> physical p8.
+```
 
-P57's terminal ornament onion ends `[14,8,1]`. Under the separately provisional final-center page-direction reading, center1 selects physical p1 before p1 content is examined.
+This is strictly simpler than continuing to the central1 and inventing a p1 receiver.
 
-P1's exact center pair is left/right `[6,7]`; under the pre-existing upright/right source orientation:
+## Manuscript-wide punctuation consequence
+
+The same fixed raster detector already establishes one morphology for every red large-punctuation class:
+
+```text
+red13: onion [10,3]       multiplicity30
+red10: onion [8,2]        multiplicity4
+red23: onion [14,8,1]     multiplicity1
+```
+
+Reading the **inner shell/circumference** selected by `IN THE INNER` gives:
+
+```text
+13-class -> inner3 -> p3
+10-class -> inner2 -> p2
+23-class -> inner8 -> p8.
+```
+
+Those are not newly fitted values: p3 and p2 were already the direct “shed outer circumference, read the remainder” receivers, and p8 was already the published inner-circumference receiver of the unique p57 mark. The hidden text now supplies a common source-side reason to prefer those inner values.
+
+The state interpretation remains post-discovery but becomes cleaner:
+
+```text
+inner values = [3,2,8] = [e,K,A]
+```
+
+and the unique red23 geometry independently supplies `p=23`, five columns `g=5`; ordinary DH closes the established state.
+
+## Relation to the chapter IN→OUT grammar
+
+The same solved phrase also helps with the chapter route's direction. The text operation visibly exposes repeated **IN**, and the sentence then says **AND EMERGE**, naturally moving from inside to outside. That is compatible with the established chapter convention:
+
+```text
+IN  = first-black GP29 SUM
+OUT = first-black GP29 PRODUCT
+OUT(current) -> matching IN(next).
+```
+
+The exact reverse PRODUCT→SUM graph traverses the same five nodes backward. The p57 clue therefore **favors** IN→OUT as the human-facing orientation, but this part remains semantic: `EMERGE` does not itself reduce to a literal GP word OUT under the tested H/sum/product/prime-sum readouts. Do not treat p57 as an independent proof that SUM means IN or PRODUCT means OUT.
+
+## Center1→p1 is demoted, not erased
+
+This invocation also tested the formerly open p57 center1 branch before discovering `IN THE INNER`.
+
+If final center1 is read as physical p1, p1's exact two-rune center is left/right `[6,7]`, and under the pre-existing upright/right cross orientation:
 
 ```text
 H(right,left) = H(7,6) = [1,13] = UP.
 ```
 
-The original p0–p2 opening pages each carry matched upper/lower infinity ornaments. On p1 the local word `UP` therefore has a literal visual receiver:
+P1 is the sole exact `UP` center among all 23 nonempty even p0–p55 pages under that frozen orientation. The same state is `Q^18=[1,13]`; authenticated signed-source labels read exponent18 **MAP** and coordinates **THE / WAY**. Applying the existing DIRECTION29 Q stride gives:
 
 ```text
-UP -> upper ∞ -> 8 -> p8.
-```
-
-The `∞ -> 8` reading remains interpretive, but it lands on an independently structured chapter receiver. A second, algebraically distinct interpretation of the same p1 center also converges on p8:
-
-```text
-[1,13] = Q^18 = THE WAY / exponent MAP
- -> DIRECTION29
- -> [0,23] = HELLO / ROAD
+Q^18 * Q^29 = Q^47 = [0,23] = HELLO / ROAD
  -> ROAD23 -> p23
  -> five dots -> p5
  -> eight curls -> p8.
 ```
 
-The two p1→p8 channels share the starting state and broad numbers-as-direction convention, so they are not statistically independent. They do use distinct consumers—opening-page art versus Q/signed-source/visual itinerary—and converge on the same already-selective p8 state chapter.
+P1 also has a local art route `UP -> upper infinity -> 8 -> p8`.
 
-## Original opening-raster control
+These are genuine structural observations, but the new p57 readout changes their status: **p57 no longer needs center1→p1 to reach p8.** Preserve the p1 circuit as a secondary cross-route convergence, not as the preferred consumption of the p57 onion.
 
-In original 2400×3600 sources `17.jpg`–`19.jpg`:
+The orientation dependency is explicit. If p1 center-H operand order is allowed to float across all even pages, four page/orientation presentations reach a ROAD23 coordinate after DIRECTION29 (p0 reversed, p1 source-oriented, p18 reversed, p47 reversed). P1's ROAD uniqueness depends on the pre-existing source artwork orientation.
 
-- p1 and p2's complete upper ornament crop `x1100..1279, y600..669` is pixel-identical in original RGB;
-- all three p0–p2 lower ornament crops `x1100..1279, y2925..3004` are pixel-identical;
-- at grayscale threshold125, p1/p2 upper ornament bounding box is `x1132..1246, y618..658` with 966 dark pixels;
-- all three lower ornaments have `x1132..1246, y2943..2983` with 969 dark pixels.
+## Body-cipher boundary
 
-Thus `UP` truly chooses one member of a repeated upper/lower object pair. The ornament is opening-page decoration rather than a p1-unique glyph; selectivity comes from the prospectively recovered p1 center state.
+No body plaintext follows from this result.
 
-## Evidence boundary
+- P1's full center-out H serialization begins `UP` and then scores as nonprose.
+- The exact historical 2014 14-column permutation and a literal bottom-to-top column read on p1 are nonprose.
+- Existing p8 body receivers using direct periodic, matrix, LFSR, affine, erasure and chapter27 operands are already bounded negatives.
+- The result should therefore be consumed as **solve-path/navigation evidence**, not as a recovered body key.
 
-**Exact/source-fixed or independently established:**
+## Evidence classification
 
-- p57 plaintext and terminal onion `[14,8,1]`;
-- prior p57 work established the first shed layer `DIUINITY -> IUINIT`; continuing the identical operation recursively gives `IUINIT -> UINI -> IN`;
-- across all 20 p57 words the only recursive center-`IN` words are FIND and DIUINITY; the broader solved-GP control has 12/735 center-`IN` words; across all 717 solved within-section three-word windows, p57 `FIND / THE / DIUINITY` is the sole window whose recursive centers are exactly `IN / THE / IN`;
-- existing chapter graph uses first-black SUM as IN and PRODUCT as OUT and has the exact reverse operator-order rival;
-- p8 first black is `[27,9,16]`, SUM23/PRODUCT2, and chapter OUT2 addresses p27 via IN2;
-- p1 center `H(right,left)=[1,13]=UP`, unique under the frozen orientation across the 23 even nonempty pages;
-- original opening-page upper/lower ornament geometry above;
-- independent p8 DH-state structure.
+**Exact/reproducible:**
 
-**Interpretive/provisional:**
+- solved p57 wording;
+- prior one-layer `DIUINITY -> IUINIT`;
+- recursive layers `DIUINITY -> IUINIT -> UINI -> IN`;
+- p57 center table above;
+- 12/735 solved center-`IN` words;
+- unique 1/717 solved three-word `IN/THE/IN` center window;
+- unique 1/4,140 six-word/single-omission presentation yielding `IN THE INNER`, with omitted word exactly WITHIN;
+- original red punctuation onions `[10,3]`, `[8,2]`, `[14,8,1]`;
+- p57 mark inner circumference8 and existing p8 receiver/state structure;
+- all p1/Q numeric controls described above.
 
-- reading “EMERGE” specifically as the word OUT;
-- using that solved-text pair as authorial confirmation of the chapter IN→OUT graph;
-- p57 final center1 as page1;
-- `UP -> upper infinity -> 8 -> p8`;
-- Q/ROAD and p23→p5→p8 as an intended alternative route rather than structural coincidence.
+**Interpretive but now source-constrained:**
 
-The direct p8 OUT2→physical-p2 branch is rejected and should not be used.
+- treating WITHIN as the operator to omit from the hidden payload;
+- reading `IN THE INNER` as “select the inner circumference/shell” of the punctuation morphology;
+- applying authenticated numbers-as-direction semantics to obtain p8/p3/p2;
+- reading EMERGE as semantic OUT for chapter-graph orientation.
+
+The hidden English readout is exact under the stated finite transform; its intended downstream referent remains a solve-path hypothesis until an untouched downstream prediction or body operation confirms it.
 
 ## Reproduction
 
-Numeric checks and orientation controls live in:
+Run:
 
 ```
 node sims/lp2_p1_center_h_up_sft.cjs
 ```
 
-The SFT also asserts the complete p57 center census and the 12/735 solved-GP center-`IN` control. The chapter graph's full finite controls are in the existing chapter-rubric reproducer referenced by [the chapter navigation report](lp2-chapter-rubric-sum-product-navigation.md).
+The SFT asserts the solved word/window censuses, the unique `IN THE INNER` presentation, p1 center/Q/ROAD controls and bounded p1 negatives.
+
+Original raster morphology is independently reproduced by:
+
+```
+python sims/lp2_punctuation_circumference_morphology_sft.py
+python sims/lp2_p57_dot_onion_sft.py
+```
 
 Related evidence:
 
+- [p57 DIVINITY one-layer source gate](lp2-p57-divinity-within-source-gate.md)
+- [p57 terminal circumference onion](lp2-p57-dot-circumference-onion.md)
+- [manuscript-wide punctuation morphology](lp2-punctuation-circumference-morphology.md)
 - [chapter SUM→PRODUCT navigation](lp2-chapter-rubric-sum-product-navigation.md)
-- [prior p57 DIVINITY one-layer source gate](lp2-p57-divinity-within-source-gate.md)
-- [p57 circumference onion](lp2-p57-dot-circumference-onion.md)
-- [p1 center / Q / ROAD23 route](lp2-p57-center1-p1-h-up-cross-p3-bridge.md)
+- [p1 center/Q/ROAD23 secondary route](lp2-p57-center1-p1-h-up-cross-p3-bridge.md)
 - [p8 red H state circuit](lp2-p8-red-h-state-circuit.md)
 - [p23→p5→p8 visual navigation](lp2-p23-p5-p8-visual-dh-navigation.md)
