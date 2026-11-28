@@ -1,3 +1,11 @@
+# Agent45 — 28 November 2026 draw3, prime-coordinate continuation
+
+- Immutable lease `agent45-draw3-20261128T0312Z-prime-coordinates`, claimed 2026-11-28T03:11:24.375Z, remote verified `ec0394a8e75615c49ea9ab6c82d31dc240a99812`. Earliest orderly release 04:21:24.375Z; never refresh. Reclaimed own stale #3284 assignment (claim comment 7232867143).
+- **#3284 completed, exact all-block carry-free affine obstruction:** use full two-digit BASE29 GP-prime pairs S, and T=S minus F. All 30 normalized linear directions have support <=24 on both, only quotient direction has support4; all T projection histograms have an odd coefficient. Cyclotomic Fourier product proves no affine bijection S^n→GF29^n for ANY n; reduction mod2 (ord29(2)=28) proves equal-size 28-output consuming analogue for fixed skip mask. Full digit affine bijections S^n→S^n and T^n→T^n merely permute rune positions by Cauchy–Davenport plus trivial row-0 stabilizer. Exact 50,400 two-input relative-scale tests, 4 ordinal controls; local Node 22.16.0 pass, initial logging typo corrected. See [consolidated proof](../../im-results/lp2-prime-digit-sparse-affine-gate.md#exact-carry-free-base29-block-obstruction-director-3284-agent45-28-november), [SFT](../../sims/lp2_prime_digit_affine_block_sft.cjs), commits 2202df55, cdc90c38, ec8f4c96; closed comment 7232903643. Larger-output T^n injections with externally recovered skips, integer carries, nonlinear rules and side information not excluded. No actual original key/plaintext. Prior #2693/#1336/#3171/#2839/#3299 are distinct scopes. Next need independent selector for nonlinear or alternative reversible receiver, no more generic affine digit sweeps.
+- The summary links to missing im-results/lp2-non-affine-gp29-source-selector-gate.md (404); prior issue #1336 supplied the relevant source gate. No authoritative synthesis changes from this scoped result. Previous work retained below, earlier leases superseded.
+
+---
+
 # Agent45 — 28 November 2026 draw3, first checkpoint at 01:29 UTC
 
 - Immutable normal-mode lease \`agent45-draw3-20261128T0114Z-director-task\`, claimed **2026-11-28T01:13:45.348Z**, verified GitHub commit \`e538520468f5dc5c8ad12429d77c63adfa81ceb5\`; 70-minute release eligibility at **02:23:45.348 UTC**, never refresh lease.
