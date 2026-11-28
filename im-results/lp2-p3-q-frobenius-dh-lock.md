@@ -351,6 +351,83 @@ T(E(p27)) = [28,23].
 
 Under the same authenticated zero-based 2016 numbering, those coordinates read **THE / ROAD**. That is a candidate continuation value, not yet a typed manuscript receiver: do not choose physical p28, p23, a signed-source interval, or a body coordinate after seeing this value. The next valid test must fix which address space consumes `[28,23]` from independent source evidence.
 
+## DIRECTION-selected p33 receiver recovers WILL under the route's DH shell
+
+The symmetric block gives an independently selected continuation into physical p33:
+
+```text
+ROAD23 -> physical p23
+T^32(p23 red) = p33 second red, start91 length8
+signed word32 = YOU
+signed word33 = WILL
+```
+
+The selected p33 red span ends at rune offset99. Apply the same source-number-as-direction convention at the selected boundary:
+
+```text
+99 + WILL33 = 132.
+```
+
+Offset132 is exactly the four-rune p33 receiver previously published for the local WILL candidate. The boundary arithmetic alone is not globally unique—7/18 complete red spans have `red_end + page_index` on a canonical word start—but T fixes **this second p33 span** before that test, and its +33 receiver is consequently fixed before opening the four ciphertext runes:
+
+```text
+C[132..135] = [3,15,17,22].
+```
+
+The new route also supplies every coordinate of the previously retrospective p33 H-shell. The already fixed Q action on p15-first gives
+
+```text
+Q * E(p15 first red9) = [23,8] = [p,A].
+```
+
+DIRECTION29/Frobenius gives `Q^29=[2,5]=[K,g]`; the MAP/PATH clue fixes the first coordinate as `PATH=K=2`. The forward spoke from p7 to p27 is signed offset27 (ARE), and modulo29 this is `-K=27`. Therefore the route's smallest ordered four-state shell is
+
+```text
+[p,A,K,-K] = [23,8,2,27].
+```
+
+Using the canonical four-coordinate inverse-H operation already employed on the p33 state objects gives
+
+```text
+H^-1([23,8,2,27]) = [25,5,26,2].
+```
+
+Subtract it from the source-selected receiver:
+
+```text
+[3,15,17,22] - [25,5,26,2]
+= [7,10,20,20]
+= WILL.
+```
+
+This is exact and forward-replays.
+
+### Bounded serializer and manuscript-wide charges
+
+Keep the p33 receiver fixed and charge the immediate ambiguities still visible in the source-derived state:
+
+- choose either coordinate of `Q^29=[2,5]`;
+- choose forward offset27 or reverse offset29 for the p7/p27 spoke;
+- choose H or H^-1.
+
+That is eight configurations. Exactly **one** produces any authenticated four-rune signed-source word:
+
+```text
+Q^29 coordinate2 + forward27 + H^-1
+ -> key [25,5,26,2]
+ -> WILL33.
+```
+
+The other seven outputs are non-authenticated strings (`WNWU, GILM, NNWEA, WDRL, WEORU, GDRM, NEOREA` under canonical transliteration).
+
+Hold the surviving exact key fixed and scan every contiguous four-rune window on physical p0–p55 against every authenticated four-rune signed-source target. There is exactly **one** event in the whole book:
+
+```text
+p33 offset132 -> WILL33.
+```
+
+This materially strengthens the existing WILL candidate because the receiver is now reached by the independent Q/DIRECTION red-span path and the route supplies the exact numeric H-shell. It does **not erase discovery chronology**: `[p,A,K,-K]` was recognized as the p33 key shell in earlier WILL work, so the ordered four-coordinate assembly is not a fresh blind prediction. Classify WILL as a strongly source-selected local plaintext candidate with a newly independent navigation/state explanation, pending a first-party rule that fixes the precise shell serialization without knowledge of WILL or a prospective unchanged transfer to a genuinely new receiver.
+
 ## Immediate consumer check
 
 The most literal fixed 2-rune Hill interpretation of `M_Q` was checked on the source-typed p54 continuation after its red9 opener, including Q/Q^-1, the two local coordinate orders, both stream directions, and the visible offset9/10 boundary alternatives. All presentations are nonprose. This closes only the **stationary one-step Hill** reading.
