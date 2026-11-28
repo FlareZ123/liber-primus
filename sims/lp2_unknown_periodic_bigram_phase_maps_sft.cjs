@@ -95,7 +95,55 @@ for(let r=0;r<restarts;r++){
  const z={r,initAcc,trace,soft:Number.isFinite(soft.ll)?soft.ll:null,strict:Number.isFinite(strict.ll)?strict.ll:null,acc:accuracy(T),T:T.map(x=>Array.from(x))};records.push(z);candidates.push(z)
 }
 candidates.sort((a,b)=>(b.strict??-1e100)-(a.strict??-1e100)||(b.soft??-1e100)-(a.soft??-1e100));
-return {which,truthK,truthMaps:mapTruth,oracle:truth?evaluate(mapTruth):null,records,best:candidates[0]?{...candidates[0],evaluation:evaluate(candidates[0].T)}:null};
+
+function factor(T){
+ const I=T.map(inv),labels=id.slice(1).sort((a,b)=>freq[b]-freq[a]),w=Float64Array.from(freq,x=>Math.sqrt(x)),total=labels.reduce((s,p)=>s+w[p],0)*q,top=[],seen=new Set(),deltas=new Float64Array(Q);let cycles=0,scored=0;
+ function offer(B,a){scored++;const K=new Int8Array(q);let score=0;
+  for(let j=0;j<q;j++){deltas.fill(0);for(const p of labels)deltas[m(B[I[j][p]]-B[I[a][p]])]+=w[p];let k=0;for(let d=1;d<Q;d++)if(deltas[d]>deltas[k])k=d;score+=deltas[k];K[j]=k}
+  if(top.length>=10&&score<=top.at(-1).score+1e-12)return;
+  const k0=K[0];for(let j=0;j<q;j++)K[j]=m(K[j]-k0);
+  const first=K.find(x=>x!==0);if(!first)return;const scale=id.find(x=>m(x*first)===1),b0=B[0],b=Array.from(B,x=>m((x-b0)*scale)),k=Array.from(K,x=>m(x*scale)),key=b.join()+":"+k.join();if(seen.has(key))return;seen.add(key);
+  top.push({B:b,K:k,score,agreement:score/total});top.sort((a,b)=>b.score-a.score);if(top.length>10)top.pop()
+ }
+ for(let a=0;a<q;a++)for(let b=a+1;b<q;b++)for(const count of [23,22,21]){
+  const next=new Int8Array(Q).fill(-1),prev=new Int8Array(Q).fill(-1);
+  for(const p of labels.slice(0,count)){const x=I[a][p],y=I[b][p];next[x]=y;prev[y]=x}
+  const parts=[],visited=new Uint8Array(Q);for(let x=0;x<Q;x++)if(prev[x]<0){const part=[];let y=x;while(y>=0&&!visited[y]){visited[y]=1;part.push(y);y=next[y]}parts.push(part)}
+  if(visited.some(v=>!v)||parts.length!==Q-count)continue;
+  cycles++;const B=new Int8Array(Q);let pos=0;for(const c of parts[0])B[c]=pos++;const remaining=parts.slice(1);
+  function permute(depth,at){if(depth===remaining.length){offer(B,a);return}for(let i=depth;i<remaining.length;i++){[remaining[depth],remaining[i]]=[remaining[i],remaining[depth]];let n=at;for(const c of remaining[depth])B[c]=n++;permute(depth+1,n);[remaining[depth],remaining[i]]=[remaining[i],remaining[depth]]}}
+  permute(0,pos)
+ }
+ return {cycles,scored,top}
+}
+function fromKey(A,B,K){const I=inv(A);return Array.from({length:q},(_,j)=>B.map(v=>I[m(v-K[j])]))}
+function initialAlpha(T,B,K,f){const I=T.map(inv),cost=new Float64Array(Q*Q);for(let p=0;p<Q;p++){for(let v=0;v<Q;v++)if((p===0)!==(v===f))cost[p*Q+v]=1e6;for(let j=0;j<q;j++){const v=m(B[I[j][p]]-K[j]);cost[p*Q+v]-=Math.sqrt(freq[p])}}return Array.from(assignment(cost))}
+function improveA(A,B,K,T,rand){
+ const z=posterior(fit,T,0);if(!z.CC)return A;const H=new Float64Array(Q*Q),S=new Float64Array(Q);
+ for(let j=0;j<q;j++){const prev=(j+q-1)%q;for(let c=0;c<Q;c++){const r=m(B[c]-K[j]);S[r]+=z.ST[j*Q+c];H[r]+=z.HC[j*Q+c];H[r*Q]+=z.CH[j*Q+c];for(let d=0;d<Q;d++){const u=m(B[d]-K[prev]);H[u*Q+r]+=z.CC[j*Q*Q+d*Q+c]}}}
+ function objective(I){let s=0;for(let a=0;a<Q;a++){s+=S[a]*logfreq[I[a]];for(let b=0;b<Q;b++)s+=H[a*Q+b]*LM[I[a]*Q+I[b]]}return s}
+ let bestI=Array.from(inv(A)),best=objective(bestI);
+ for(let rep=0;rep<5;rep++){const I=rep===0?bestI.slice():bestI.slice();if(rep)for(let k=0;k<rep*2;k++){const a=1+Math.floor(rand()*28),b=1+Math.floor(rand()*28);[I[a],I[b]]=[I[b],I[a]]}let score=objective(I);
+  for(let t=0;t<4500;t++){const a=1+Math.floor(rand()*28),b=1+Math.floor(rand()*28);if(a===b)continue;const x=I[a],y=I[b];let d=(S[a]-S[b])*(logfreq[y]-logfreq[x]);
+   for(let j=0;j<Q;j++)if(j!==a&&j!==b){const p=I[j];d+=H[a*Q+j]*(LM[y*Q+p]-LM[x*Q+p])+H[b*Q+j]*(LM[x*Q+p]-LM[y*Q+p])+H[j*Q+a]*(LM[p*Q+y]-LM[p*Q+x])+H[j*Q+b]*(LM[p*Q+x]-LM[p*Q+y])}
+   d+=(H[a*Q+a]-H[b*Q+b])*(LM[y*Q+y]-LM[x*Q+x])+(H[a*Q+b]-H[b*Q+a])*(LM[y*Q+x]-LM[x*Q+y]);const temp=5*Math.pow(.015,t/4499);if(d>=0||rand()<Math.exp(d/temp)){[I[a],I[b]]=[I[b],I[a]];score+=d;if(score>best){best=score;bestI=I.slice()}}
+  }
+ }return Array.from(inv(bestI))
+}
+const factoring=factor(candidates[0].T),legalKeys=[];
+for(const item of factoring.top)for(let f=0;f<Q;f++){
+ const A=initialAlpha(candidates[0].T,item.B,item.K,f).map(v=>m(v-f)),B=item.B.map(v=>m(v-f)),K=item.K.slice(),T=fromKey(A,B,K),s=posterior(fit,T,0,false);if(Number.isFinite(s.ll))legalKeys.push({A,B,K,ll:s.ll,agreement:item.agreement})
+}
+legalKeys.sort((a,b)=>b.ll-a.ll);
+let bestFactor=null;
+for(const item of legalKeys.slice(0,5)){let {A,B,K}=item,T=fromKey(A,B,K),ll=item.ll;
+ for(let it=0;it<3;it++){const a=improveA(A,B,K,T,rand),t=fromKey(a,B,K),s=posterior(fit,t,0,false);if(s.ll<=ll+1e-9)break;A=a;T=t;ll=s.ll}
+ const ds=fit.map(C=>decode(C,T));if(ds.some(x=>!x))continue;const score=ds.reduce((s,x)=>s+x.score,0);
+ if(!bestFactor||score>bestFactor.score)bestFactor={A,B,K,T,ll,score,agreement:item.agreement}
+}
+if(bestFactor){const {A,B,K,T}=bestFactor;bestFactor.evaluation=evaluate(T);bestFactor.evaluation.replay=C.every((row,i)=>{const d=decode(row,T);return !!d&&encrypt(d.P,K,A,B).join()===row.join()});bestFactor.effectiveCorrect=accuracy(T);if(!truth)bestFactor.P=C.map(row=>decode(row,T)?.P??null)}
+
+return {which,truthK,truthMaps:mapTruth,oracle:truth?evaluate(mapTruth):null,records,best:candidates[0]?{...candidates[0],evaluation:evaluate(candidates[0].T)}:null,factoring,legalFactorKeys:legalKeys.length,bestFactor};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"];
 if(typeof require!=="undefined"&&require.main===module){const fs=require('node:fs'),path=require('node:path');console.log(JSON.stringify(study(paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),Number(process.argv[2]||0),Number(process.argv[3]||8)),null,2))}
