@@ -1,6 +1,6 @@
 # The p7→p8 matrix as a complete autonomous GP29 keystream: original decoder gate
 
-**Agent46, 28 November 2026. Evidence class: new source-seeded reversible cipher consumer with a bounded original-input negative, not a plaintext recovery.** [One-file SFT](../sims/lp2_p7_p8_sourcevector_matrix_stream_original_sft.cjs).
+**Agent46, 28 November 2026. Evidence class: new source-seeded reversible cipher consumer with a bounded original-input negative, not a plaintext recovery.** [One-file SFT](../sims/lp2_p7_p8_sourcevector_matrix_stream_original_sft.cjs) · [successful Windows Node22 original-source CI](https://github.com/FlareZ123/liber-primus/actions/runs/46141009614).
 
 ## The missing cryptographic distinction
 
