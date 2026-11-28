@@ -181,6 +181,37 @@ assert.deepEqual(p37NumericHits.map((hit)=>[hit.shell,hit.sign,hit.target]),[
 ]);
 const p37LuckRoutes=p37CarrierLabeledHits.filter((hit)=>hit.target==="LUCK");
 assert.deepEqual(p37LuckRoutes,[{omitted:"OPENPGP",order:["PATHS","FALSE","BEWARE","VERIFY"],fields:["sum","first","diff","diff"],shell:[19,0,2,5],key:[12,1,1,22],sign:-1,target:"LUCK"}]);
+// Broad warning-carrier direct-key family for the prospectively fixed p39 FALSE receiver.
+const carrierAtoms=[];
+for(const word of carrierWarning)for(const field of fieldNames)carrierAtoms.push({word:word.label,field,value:word.fields[field]});
+const p39CarrierKeys=new Map();
+const p39ExactKeyLabels=[];
+for(const x of carrierAtoms){
+  for(const pairWord of carrierWarning){
+    for(const yField of fieldNames)for(const zField of fieldNames){
+      if(yField===zField)continue;
+      const y=pairWord.fields[yField],z=pairWord.fields[zField];
+      for(const w of carrierAtoms){
+        const key=[x.value,mod29(y*z),x.value,z,w.value];
+        const label={x,pairWord:pairWord.label,yField,zField,w,key};
+        p39CarrierKeys.set(key.join(','),label);
+        if(key.join(',')==='19,12,19,2,5')p39ExactKeyLabels.push(label);
+      }
+    }
+  }
+}
+assert.equal(p39CarrierKeys.size,13056);
+assert.equal(p39ExactKeyLabels.length,2);
+const p39Cipher=[19,7,10,17,23];
+const fiveTargetMap=new Map();
+for(const word of signed){if(word.gp.length===5)fiveTargetMap.set(word.gp.join(','),word.label);}
+const p39CarrierHits=[];
+for(const {key} of p39CarrierKeys.values())for(const sign of [-1,1]){
+  const plain=p39Cipher.map((value,index)=>mod29(value+sign*key[index]));
+  const target=fiveTargetMap.get(plain.join(','));
+  if(target)p39CarrierHits.push({key,sign,target,plain});
+}
+assert.deepEqual(p39CarrierHits,[{key:[19,12,19,2,5],sign:-1,target:'FALSE',plain:signed[39].gp}]);
 const schedulerSegments = [
   { seed:[3,7], key:[23,3,24,1,18,17,27], shell:[25,21,15,20,6,13,1] },
   { seed:[13,4], key:[9,13,18,13], shell:[25,22,24,2] },
@@ -198,4 +229,4 @@ function recurrenceReadout(seed,length,A,B,C,reverse,includeSeeds){let u=reverse
 let recurrenceSchedulerHits=0;
 for(const reverse of [false,true])for(const includeSeeds of [false,true])for(let A=0;A<29;A++)for(let B=0;B<29;B++)for(let C=0;C<29;C++)for(const targetType of ["key","shell"]){let ok=true;for(const segment of schedulerSegments){if(recurrenceReadout(segment.seed,segment[targetType].length,A,B,C,reverse,includeSeeds).join(",")!==segment[targetType].join(",")){ok=false;break;}}if(ok)recurrenceSchedulerHits++;}
 assert.equal(recurrenceSchedulerHits,0);
-console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes},null,2));
+console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes,p39CarrierKeyCount:p39CarrierKeys.size,p39ExactKeyLabels,p39CarrierHits},null,2));
