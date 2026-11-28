@@ -160,6 +160,49 @@ const roadDestinationPages = directionRows
   .map(row => row.page);
 assert.deepEqual(roadDestinationPages, [1]);
 
+// Adversarial orientation control: if center operand order is allowed to float,
+// three additional pages can reach ROAD23. The p1 uniqueness claim is therefore
+// conditional on the pre-existing upright/right artwork orientation.
+const bothOrientationRoadHits = [];
+for (const page of corpus.pages.filter(
+  p => p.page < 56 && p.indices.length > 0 && p.indices.length % 2 === 0
+)) {
+  const m = page.indices.length / 2;
+  const left = page.indices[m - 1];
+  const right = page.indices[m];
+  for (const [orientation, a, b] of [
+    ["right-left", right, left],
+    ["left-right", left, right],
+  ]) {
+    const destination = fieldMul(H(a, b), direction29);
+    if (destination.includes(23)) {
+      bothOrientationRoadHits.push({ page: page.page, orientation, destination });
+    }
+  }
+}
+assert.deepEqual(bothOrientationRoadHits, [
+  { page: 0, orientation: "left-right", destination: [23, 7] },
+  { page: 1, orientation: "right-left", destination: [0, 23] },
+  { page: 18, orientation: "left-right", destination: [23, 27] },
+  { page: 47, orientation: "left-right", destination: [23, 1] },
+]);
+
+// Downstream receiver fixed by the existing p8 chapter state circuit.
+const p8 = corpus.pages.find(p => p.page === 8);
+assert(p8);
+assert.deepEqual(p8.indices.slice(12, 15), [27, 9, 16]);
+const p8FirstBlack = p8.indices.slice(12, 15);
+assert.equal(p8FirstBlack.reduce((sum, value) => mod(sum + value), 0), 23);
+assert.equal(p8FirstBlack.reduce((product, value) => mod(product * value), 1), 2);
+
+// The resulting OUT=2 prospectively selects p2. Its odd-length rune stream has
+// a single exact center rune, GP29 9 = N.
+const p2 = corpus.pages.find(p => p.page === 2);
+assert(p2);
+assert.equal(p2.indices.length, 201);
+assert.equal(p2.indices[Math.floor(p2.indices.length / 2)], 9);
+assert.equal(corpus.translit[9], "N");
+
 
 const divisibleBy14 = corpus.pages
   .filter(p => p.page < 56 && p.indices.length > 0 && p.indices.length % 14 === 0)
@@ -210,6 +253,15 @@ console.log(JSON.stringify({
   evenCenterCount: evenCenters.length,
   exactUpCenterPages: upHits.map(row => row.page),
   roadDestinationPages,
+  bothOrientationRoadHits,
+  downstream: {
+    p8FirstBlack,
+    p8FirstBlackSum: 23,
+    p8FirstBlackProduct: 2,
+    p2RuneCount: p2.indices.length,
+    p2CenterValue: p2.indices[Math.floor(p2.indices.length / 2)],
+    p2CenterSpell: corpus.translit[9]
+  },
   divisibleBy14,
   historical2014Order: HISTORICAL_2014_ORDER,
   scores
