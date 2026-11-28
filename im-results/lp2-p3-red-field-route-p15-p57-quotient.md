@@ -128,10 +128,45 @@ As a separate orientation charge, cyclically rotate **each** complete red span t
 
 These gates prevent retrospective cyclic reindexing from being presented as an authored alternate key. They still do not compensate statistically for the many possible operations and recipient-pair choices one could have tried.
 
+## Held-out solved-p56 prime-clock cross-lock (Agent6, 28 November 2026)
+
+The quotient above was already frozen and broadcast before this check. Apply the **same complete field multiplication**, with no phase, sign, scalar or receiver fitting, to the original solved-p56 red opener. Its ciphertext is
+
+```text
+[25,11,22,15,4]
+```
+
+and the authentic p56 prime-minus-one clock starts
+
+```text
+[1,2,4,6,10]
+```
+
+so direct subtraction gives `[24,9,18,9,23] = AN END`. In the p3 field the whole red ciphertext has `E=[3,23]`; with the already frozen `E(Q)=[17,24]`,
+
+```text
+E(Q) * E(p56 red ciphertext) = [1,2].
+```
+
+Thus the complete p56 red rubric maps exactly to the **first two consuming shifts of its authenticated cipher key stream**. This is a solved-cipher cross-holdout: the p56 key and plaintext were established long before Q, while Q itself was derived before this particular p56 receiver was tested.
+
+The finite controls are strict:
+
+- The canonical ink corpus has 18 complete red spans and 225 red runes. Charging both orientations and every cyclic start gives **450** complete-span presentations. Exactly one maps under the frozen Q multiplication to `[1,2]`: **p56, printed orientation, rotation0**.
+- The true p56 sender consumed 84 successive `phi(prime)=prime-1` shifts. Among its **83 adjacent key pairs**, `[1,2]` occurs only at pair0. More strongly, among all 18 printed complete red spans, **p56 is the only span whose Q-product equals any of those 83 adjacent key pairs at all**, and its match is pair0.
+- The p15-second minus p57 polynomial difference has exactly two monic quadratic presentations among all 841 relations that divide it completely. The source-printed p3 relation `u²=3u+8` gives the frozen Q and maps p56 to `[1,2]`; the sole alternate relation `u²=18u+12` maps p56 to `[24,26]` and already fails the independent p15 `[p,A]` product.
+- The established p56 clock control says the red 13-dot mark after AN END does not reset or advance the key; the following black rune consumes the next prime shift. Therefore `[1,2]` is genuinely the stream prefix, not an artifact of treating rubrication as a reset.
+
+This does **not** show that Q is itself a p56 key, nor does it decrypt an unknown page. It supplies the first authenticated solved-cipher consequence of the p3/p15/p57 quotient construction: under one frozen field operation, Q maps a source-typed red ciphertext object to the beginning of that object's real key stream. Because the receiver was inspected after Q was discovered, this remains a post-discovery structural cross-holdout rather than a calibrated probability of authorship.
+
+Reproducer: [`sims/lp2_p3_quotient_p56_prime_prefix_sft.cjs`](../sims/lp2_p3_quotient_p56_prime_prefix_sft.cjs).
+
 ## Scientific boundary and next causal step
 
-The reproducible result is the **exact original GP29 polynomial-factor bridge** between two source-typed marked rubrics, and a derived, complete nine-rune vector. It supplies a concrete candidate operation, a nine-rune operand, and a second exact source-field multiplication that recovers the authenticated DH pair `[p,A]` from the two complementary p15 red spans. These improve the model's internal causal structure without determining an ordered body-cipher key or decrypting unknown ciphertext. However, no untouched original ciphertext was decoded, and no first-party instruction yet mandates the polynomial-reduction operation or specifies a plaintext consumer for Q. The **p15 second-span receiver selection itself is independently supported** by the previously documented p6-like 11-rune/double-red13 source type; this should not be conflated with authorship of the GF29 polynomial cipher. The already-published DH and p15/p57 navigation premises were themselves partly recognized retrospectively.
+The reproducible result is now an **exact original GP29 polynomial-factor bridge plus an authenticated solved-cipher cross-holdout**. The p15-second/p57 factorization derives a complete nine-rune Q; the complementary p15 red span maps through the same p3 field to authenticated DH `[p,A]`; and the independently solved p56 red ciphertext maps to `[1,2]`, the unique opening adjacent pair of its real prime-minus-one key stream. This materially upgrades Q from an unauthenticated potential operand to a source-constrained **serializer candidate** with a genuine cipher-linked consequence.
 
-A genuinely upgrading successor must **freeze a target-blind receiver and a complete use for the nine-rune quotient before opening that receiver's rune identities**. The lowest-description source-typed follow-up is the other p15 red nine-rune span, but its mere length agreement is inadequate; test only an independently justified operation, and do not tune signs/phases to English. If such a receiver or opcode cannot be sourced, retain the p3/p15/p57 identity as structural work in `im-results/`, not as a solved-page claim.
+The boundary remains important. No untouched p0–p55 ciphertext was decoded, Q is not thereby established as a key, and no first-party instruction yet says to perform the polynomial reduction or identifies an unknown recipient. The p15 second-span receiver selection is independently supported by its p6-like 11-rune/double-red13 source type, while the p56 receiver is a solved control inspected after Q was discovered. The DH and p15/p57 navigation premises were also partly recognized retrospectively.
+
+The next causal step is therefore narrower than before: **freeze an unknown recipient and the expected role of its two-coordinate Q product from independent source evidence before opening or grading that recipient**. A successful prediction of a key prefix, opcode, or reversible state transition on untouched ciphertext would elevate the mechanism toward a real LP2 decoder; another post-hoc state label would not.
 
 Read-only reproducer: [`sims/lp2_p3_field_redmap_p15_p57_quotient_sft.cjs`](../sims/lp2_p3_field_redmap_p15_p57_quotient_sft.cjs). It reads only original canonical corpus and ink annotations, derives every numeral, checks original field constraints, exhausts both full modulus/orientation families, and proves exact quotient/recomposition. No external packages or language scoring.
