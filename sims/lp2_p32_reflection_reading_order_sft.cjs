@@ -31,6 +31,26 @@ const mirrored = lines.flatMap(line => [...line].reverse());
 const wholeReverse = [...original].reverse();
 assert.equal(original.length, 121);
 assert.equal(mirrored.length, 121);
+assert.equal(new Set(original).size, 29);
+
+// Independently calibrated literal horizontal glyph-reflection map from the
+// p2 training gallery, already validated on p22 original-image glyphs.
+// Input/output transliteration order is canonical GP29.
+const mirrorOutputs = [
+  "X","M","J","S","G","X","G","X","H","N","I","J","EO","E","X",
+  "O","T","OE","E","E","X","NG","OE","D","OE","S","M","IA","EA",
+];
+const mirrorRunes = mirrorOutputs.map(x => {
+  const i = corpus.translit.indexOf(x);
+  assert.ok(i >= 0);
+  return corpus.runes[i];
+});
+assert.equal(new Set(mirrorRunes).size, 17);
+const mirrorMap = new Map(corpus.runes.map((r, i) => [r, mirrorRunes[i]]));
+const glyphOnly = original.map(ch => mirrorMap.get(ch));
+const fullRasterMirror = lines.flatMap(line =>
+  [...line].reverse().map(ch => mirrorMap.get(ch))
+);
 
 const index = new Map(corpus.runes.map((r, i) => [r, i]));
 const counts = Array.from({length:29}, () => Array(29).fill(0.5));
@@ -72,12 +92,17 @@ native.sort((a, b) => a - b);
 const sOriginal = score(original);
 const sMirror = score(mirrored);
 const sWhole = score(wholeReverse);
+const sGlyphOnly = score(glyphOnly);
+const sFullRaster = score(fullRasterMirror);
 const nativeMin = native[0];
 const q = p => native[Math.min(native.length - 1, Math.floor(p * native.length))];
 
 assert.ok(sMirror > sOriginal, "mirror should reproduce measured slight improvement");
 assert.ok(sMirror < nativeMin, "mirrored p32 must remain below every matched native window");
 assert.ok(sWhole < nativeMin, "whole reverse control must remain below every matched native window");
+assert.ok(sGlyphOnly < nativeMin, "fixed glyph reflection must remain below every matched native window");
+assert.ok(sFullRaster < nativeMin, "complete raster mirror must remain below every matched native window");
+assert.equal(new Set(glyphOnly).size, 17, "p32 uses all29 inputs, so fixed glyph mirror collapses to 17 outputs");
 
 const translit = seq => seq.map(ch => corpus.translit[index.get(ch)]).join("");
 
@@ -89,6 +114,12 @@ console.log(JSON.stringify({
     original: sOriginal,
     mirroredLines: sMirror,
     wholePageReverseControl: sWhole,
+    fixedGlyphReflection: sGlyphOnly,
+    fullRasterMirrorGlyphPlusLineOrder: sFullRaster,
+  },
+  invertibility: {
+    p32DistinctInputRunes: new Set(original).size,
+    fixedMirrorDistinctOutputs: new Set(glyphOnly).size,
   },
   native121RuneWindows: {
     n: native.length,
@@ -100,5 +131,6 @@ console.log(JSON.stringify({
   },
   mirroredMarginBelowWorstNative: nativeMin - sMirror,
   mirroredTransliteration: translit(mirrored),
-  decision: "HORIZONTAL_REFLECTION_DOES_NOT_RECOVER_NATIVE_GP29_TEXT_ORDER",
+  fullRasterMirrorTransliteration: translit(fullRasterMirror),
+  decision: "HORIZONTAL_REFLECTION_DOES_NOT_RECOVER_AN_INVERTIBLE_OR_NATIVE_GP29_TEXT",
 }, null, 2));
