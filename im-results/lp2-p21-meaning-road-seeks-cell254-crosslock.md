@@ -67,19 +67,25 @@ This is unusually literal: the source-selected manuscript object reconstructs th
 
 There are **48** self-indexed page/group objects `pN/groupN` in unknown p0-p55 and only **10** have H-length4.
 
-For every one of those 10 H4 objects, test all four positions for inserting its already-known current page number among H's first three outputs. Also test reversed H-first-three order as an orientation control.
+For every one of those 10 H4 objects, charge the larger finite family:
 
-Exactly one object produces four consecutive signed-word indices in either orientation:
+- omit each of the four H coordinates in turn;
+- preserve the remaining H order or reverse it as the only orientation control;
+- insert the already-known current page number at each of the four possible positions.
+
+That is **32 configurations per H4 object / 320 total configurations**. Exactly one produces four consecutive signed-word indices:
 
 ```text
 p21/group21
 H=[20,22,23,6]
+omit H coordinate3 = 6
+keep [20,22,23] forward
 insert page21 at position1
 -> [20,21,22,23]
 -> MEANING IS THE ROAD.
 ```
 
-The reversed control adds no rival.
+Thus the omitted coordinate **6=SEEKS is itself fixed by the sole familywise sequence hit**. It is not a convenient leftover chosen after the phrase is recognized. No reversed orientation or alternate omitted coordinate yields a rival.
 
 This control charges the sequence property directly; it does not score English after searching arbitrary permutations.
 
