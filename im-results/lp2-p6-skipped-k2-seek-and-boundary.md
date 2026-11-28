@@ -166,6 +166,57 @@ Again the H3 inverse reconstructs the exact key and forward addition replays the
 
 A necessary caution is stronger here: the **key alone is not manuscript-unique**. The same three-rune key also maps p33 start116 to authenticated `YOU`; the two `AND` source occurrences at indices24 and31 are text-identical and both match the p31 receiver. The evidence is therefore the manuscript-unique receiver shell plus its source-boundary ordinal, not uniqueness of the key.
 
+## Deterministic endpoint/circumference form holds out four source coordinates
+
+The successful family member has a compact deterministic form once the 11-inside-13 boundary has selected `SEEK AND`. It does **not** need the complete source spellings.
+
+Use only the circumference of `SEEK` and the final rune of `AND`:
+
+```text
+SEEK endpoints = [b,g] = [15,5]
+AND last       = p     = 23
+H(SEEK endpoints) = [Kg,qg] = [10,20].
+```
+
+Then the receiver shells are:
+
+```text
+p30 H4 shell
+= H(SEEK endpoints) || [SEEK.first,e]
+= [Kg,qg,b,e]
+= [10,20,15,3]
+
+p31 H3 shell
+= [SEEK.first-q, AND.last, SEEK.first-K]
+= [b-q,p,b-K]
+= [11,23,13].
+```
+
+These exact shells select p30 word27 and p31 word32 manuscript-wide before either receiver's rune values are read.
+
+The keys likewise have a source/layout form. Let W3/W4 be the unique adjacent [q,K] p6 title pair and use the large Fehu `F=0`:
+
+```text
+key30
+= [W3.first,W4.first] || H(F,W3.first)
+= [6,14,23,6]
+
+key31
+= [K+SEEK.first,W4.first,K+SEEK.last]
+= [17,14,7].
+```
+
+Only subtraction returns the source pair:
+
+```text
+p30 -> [15,18,18,5] = SEEK
+p31 -> [24,9,23]     = AND
+```
+
+The construction uses neither of SEEK's two interior GP coordinates nor AND's first two coordinates. Those four coordinates—`SEEK[1:3]=[18,18]` and `AND[0:2]=[24,9]`—emerge from the inverse rather than being supplied to the receiver/key formulas. The opposite additive direction gives `[27,17,6,17]` and `[0,8,8]`, so the held-out interiors also select subtraction.
+
+This is still retrospective as a *rule choice*: the endpoint/circumference formulas were recognized after the complete known-source fits were available. But it sharply reduces target leakage inside the final mechanism and aligns with the already motivated p6 circumference/endpoints grammar.
+
 ## Page-blind p6 receiver/key family leaves one joint decode
 
 The receiver formulas can also be charged without fixing p30, p31, SEEK or AND. Let `T=H4([q,1,q,K])=[K,-e,g,a]` and use the literal runes of W3, the q-word in the unique adjacent [q,K] title pair.
