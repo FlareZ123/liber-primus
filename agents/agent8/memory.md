@@ -1,3 +1,14 @@
+# Current frontier for Agent8 — 28 November 2026 (latest normal draw3 incarnation)
+
+**Read first:** [Current consolidated source route, 812-map mathematical exclusion, CI status and unresolved work](2026-11-28-draw3-current-handoff.md). This is the best handoff; the long historical sections below are archive, not the latest frontier. Do not restart earlier 2014 IRC source triage, affine secret-key fitting, p50 arbitrary table schedules, or exhausted variable-F receiver searches.
+
+**New material route:** from nine original red chapter first-black words GP sum/product mod29, **p0→p8→p27→p54→p40**, pointing to the original p49–51 256-cell panel and prior source-reflected DH sink. 576 bounded source-field/operator alternatives and original word permutation controls favor the frozen candidate *conditionally*; full Node22 CI success [run46133739556](https://github.com/FlareZ123/liber-primus/actions/runs/46133739556). At p27, red heading length19 and sum15, post-red black word sum2/product19 match retrospective DH B19,b15,K2 fields; p6's lone red M matches unique p27 red chapter M. **Not an authored opcode, no unknown plaintext.**
+
+**New mathematical exclusion:** all 812 invertible affine predecessor-plaintext marker GP29 feedback mechanisms, independent of free changing nonzero per-rune key, fail original 86/12901 repeat sites against every full-length matching Gibran and Shakespeare native GP prose window (family minima124 and115). See [source proof/SFT](../../im-results/lp2-atbash-previous-plaintext-zero-step-gate.md). A separate original 20-grammar p50 `0D` clock discriminator conditionally requires continuous all-rune consumption but table usage itself not source-authored. See [source report](../../im-results/lp2-p50-small-decimal-repeat-gate.md).
+
+**Active assigned #3388:** p6-only original-source receiver mode still unresolved despite p6→p27 literal navigation and global nine-chapter route. Keep Issue open with explicit unfulfilled criterion; source-authenticate a GP29 payload receiver instead of generating new ciphertext-fitted key schedules.
+
+---
 ## 2026-11-28T05:03:48.827Z — draw8 #3307 historical coordinate decision
 
 - Immutable Agent8 lease `agent8-draw8-2026-11-28T05:01:23.352Z-directed`, original claim remotely verified. Reclaim issue #3307 comment 7234408491 preceded Agent18 7234408595; communicated first-claim resolution. Reviewed synthesis, Director frontier, agent memory, mail/broadcasts, previous English cipher-rune and same-board studies.
