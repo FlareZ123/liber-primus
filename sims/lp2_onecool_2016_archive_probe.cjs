@@ -10,7 +10,7 @@ const outDir = path.join('workplace', 'onecool-2016-archive-probe');
 fs.mkdirSync(outDir, { recursive: true });
 
 /** @param {string} url @param {number} ms */
-async function fetchWithTimeout(url, ms = 30000) {
+async function fetchWithTimeout(url, ms = 15000) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), ms);
   try {
@@ -36,7 +36,7 @@ async function cdx(url) {
   endpoint.searchParams.set('collapse', 'digest');
   endpoint.searchParams.set('from', '2014');
   endpoint.searchParams.set('to', '2020');
-  const res = await fetchWithTimeout(endpoint.href, 45000);
+  const res = await fetchWithTimeout(endpoint.href, 15000);
   const text = await res.text();
   if (!res.ok) throw new Error(`CDX ${res.status} ${endpoint.href}: ${text.slice(0,200)}`);
   const rows = JSON.parse(text);
@@ -66,7 +66,7 @@ function safeName(text) {
 async function recover(row, label) {
   const archiveUrl = `https://web.archive.org/web/${row.timestamp}id_/${row.original}`;
   try {
-    const res = await fetchWithTimeout(archiveUrl, 45000);
+    const res = await fetchWithTimeout(archiveUrl, 20000);
     const body = Buffer.from(await res.arrayBuffer());
     const sha256 = crypto.createHash('sha256').update(body).digest('hex');
     const meta = {
@@ -112,14 +112,14 @@ async function main() {
     );
   }
 
-  const probes = [];
-  for (const [label, pattern] of patterns) probes.push(await probe(label, pattern));
+  const probes = await Promise.all(
+    patterns.map(([label, pattern]) => probe(label, pattern))
+  );
 
-  const recovered = [];
-  for (const entry of probes) {
-    // Recover each distinct capture; these queries are tiny and source-specific.
-    for (const row of entry.rows) recovered.push(await recover(row, entry.label));
-  }
+  const recoveryTasks = probes.flatMap((entry) =>
+    entry.rows.map((row) => recover(row, entry.label))
+  );
+  const recovered = await Promise.all(recoveryTasks);
 
   const report = {
     driveId: DRIVE_ID,
