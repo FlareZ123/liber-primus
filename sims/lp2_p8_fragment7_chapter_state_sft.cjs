@@ -914,7 +914,7 @@ assert.ok(p15OperandResults.every((x) => x.score < nativeMin));
 // The factorization itself suggests a 3-state recurrence. Freeze the minimal
 // cross-seeded construction: one cubic's ordered nonleading coefficients seed
 // the other. Test only the two additive signs on p8 black and p8-p14.
-const p8Black = p8.indices.slice(a * K);
+const p8Black = corpus.pages.find((x) => x.page === 8).indices.slice(a * K);
 assert.equal(p8Black.length, e ** g);
 const lfsrResults = [];
 for (const [polyName, polynomial, seedName, seed] of [
