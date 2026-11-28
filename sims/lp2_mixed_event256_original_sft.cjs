@@ -55,6 +55,43 @@ assert.equal(events[255].offset, 12956);
 const dup = events.map((e,i) => (i>0 && e.offset===events[i-1].offset) ? e.offset : -1).filter(x=>x>=0);
 assert.deepEqual(dup, [1860, 3603, 8385, 9358]);
 const keyBits = events.map(e => e.kind === 'repeat' ? '1' : '0').join('');
+// A geometry-only, full-cycle control for alignment with the existing
+// punctuation: shift the complete 86-position repeat pattern, preserving its
+// internal spacings, against the fixed physical punctuation positions.
+// This is not a null for author intent or page-seam legality.
+const circle = tape.length;
+const gapMean = circle / 256;
+function alignment(shift) {
+  const entries = [
+    ...marks.map(x=>({pos:x.offset,kind:0})),
+    ...repeats.map(x=>({pos:((x.offset-1+shift)%circle)+1,kind:1}))
+  ].sort((a,b)=>a.pos-b.pos || a.kind-b.kind);
+  let prior=0, sumsq=0, greatest=0, adjacentRepeat=0;
+  for(let i=0;i<entries.length;i++) {
+    const gap=entries[i].pos-prior;
+    prior=entries[i].pos;
+    sumsq+=(gap-gapMean)*(gap-gapMean);
+    greatest=Math.max(greatest,gap);
+    if(i>0 && entries[i].kind===1 && entries[i-1].kind===1)adjacentRepeat++;
+  }
+  return {cv2:sumsq/(256*gapMean*gapMean),max:greatest,rr:adjacentRepeat};
+}
+const align0=alignment(0);
+assert.ok(Math.abs(align0.cv2-0.8637016959388801)<1e-12);
+assert.equal(align0.max,292);
+assert.equal(align0.rr,29);
+let cvLow=0, maxLow=0, rrLow=0, rrSum=0;
+for(let shift=0;shift<circle;shift++) {
+  const a=alignment(shift);
+  cvLow+=Number(a.cv2<=align0.cv2);
+  maxLow+=Number(a.max<=align0.max);
+  rrLow+=Number(a.rr<=align0.rr);
+  rrSum+=a.rr;
+}
+assert.equal(cvLow,4871);
+assert.equal(maxLow,5896);
+assert.equal(rrLow,11358);
+
 const key = Buffer.alloc(32);
 for(let i=0;i<32;i++) key[i] = parseInt(keyBits.slice(8*i,8*i+8),2);
 assert.equal(key.toString('hex'),'5052740402cd0901000805b590f8d69720ae08143323e802026095d29182120e');
@@ -107,6 +144,7 @@ assert.equal(sha256(aesPlain),'a86357e6320bc2cd06ac43db3e67478d2901b028b0c12b0a7
 const output={
   source_events:{repeats:repeats.length,four_dots:139,large:31,commas_excluded:5,total:events.length,distinct_boundaries:new Set(events.map(x=>x.offset)).size,empty_intervals:dup},
   event_mask_hex:key.toString('hex'),
+  phase_realign:{cv2:align0.cv2,cv_lower_rank:cvLow,maximum_gap:align0.max,max_lower_rank:maxLow,rr:align0.rr,rr_lower_rank:rrLow,rr_null_mean:rrSum/circle,shifts:circle},
   gap_source_exclusion:{max_gap:292,max_panel_byte:255,zero_gap_count:4,zero_panel_byte_count:2,gap_base60_high_hist:hist60(gaps),panel_base60_high_hist:hist60([...bytes])},
   interval_GP29_subtractive:{original_ioc:origIoC,decoded_ioc:decIoC,forward_exact:true,first_32:plain.slice(0,32).map(x=>corpus.translit[x]).join('')},
   aes256_ecb_base60_grid:{first_16_hex:aesPlain.subarray(0,16).toString('hex'),printable_octets:printable(aesPlain),sha256:sha256(aesPlain)}
