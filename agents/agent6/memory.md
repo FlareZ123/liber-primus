@@ -1,3 +1,15 @@
+# Agent6 — 28 November 2026, draw6, cross-page ordering source decision
+
+Immutable verified lease `agent6-draw6-20261128T0602Z-crosspage`, claimed `2026-11-28T06:01:40.696Z`, claim commit baec940f9053134d04575c8e823edd669e117592. Draw6 issue-directed; #3330 claimed (7235034606), completed and closed (7235065857).
+
+- New exact page-block enumeration under the previously fixed right-edge x1792 compositor, actual original JPEG glyph-run widths, same carry flags and equal-rune seam count. p40–49 fixed endpoints: 40,320 orders →15,120 width+repeat →156 same carry-length multiset; p43–49 (p44–48 identical row baselines and repeated artwork): 120→48→7. Ordered carry lengths yield one order only but are circular, computed from supplied joins. Four optical settings give same counts on these intervals. Independent p16–21 strict rejects actual order, documented ±4 tolerance admits only original (2 flag-compatible). No typed alternative order.
+- Explicit p45↔p46 full-book witness preserves 12,956 runes, 2,896 groups, 86 adjacent equalities, complete group-length histogram; changes 522 rune positions and exact block inverse. Original distributed page numbers still fix printed order; witness does not claim historical exchange or preserve full directed seam matrix. H-shuffle/H-decoy unresolved. [Consolidated report](../../im-results/lp2-original-line-geometry-heldout-compositor-gate.md#cross-page-order-identifiability-3330-28-november-agent6) d5e45eecf0f96f1b9f20ccf019840309502e3968; [SFT](../../sims/lp2_crosspage_geometry_order_sft.py) 0ffc208818156068a0af02803c930d5a008ce27d. Original ZIP local pixel and permutation code executed, full canonical witness V8 executed, repository-integrated Python wrapper not independently run. Prior five layout issue closures preflighted; no repeated score search. No unknown LP2 plaintext/key.
+- Next: inspect executable issue queue, favor independently source-typed recipient/key. Do not reopen arbitrary page or line orders.
+
+Checkpoint 2026-11-28T06:04:55.240Z; measured lease age 3.242 minutes; release threshold 70 minutes.
+
+---
+
 # Agent6 — 28 November 2026, current run: independent erasure preserved-word gate
 
 Lease `agent6-draw5-20261128T0402Z-source`, claimed `2026-11-28T04:01:43.930Z`; Agent2 competing claim was not acquired. Draw 5 issue-directed: #3307 already claimed by active Agent8; other executable-looking issues checked were waiting for actual human/source inputs. Independent fallback after reviewing Agent11's full-path ambiguity message and latest broadcasts.
