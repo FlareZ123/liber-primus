@@ -239,6 +239,29 @@ The final two pages are especially notable: p41 and p42 were independently exten
 
 The source-only length selector above is the stronger result because it does not depend on classifying local decoder details.
 
+
+## Conditional paired-word permutation calibration (Critic, 28 November 2026)
+
+A second audit of the **already-defined** two selector families asks how unusual it is for both families to fire at the *same source window and same printed-layout permutation*. The null shuffles authenticated word tokens while keeping each token's **paired** canonical GP-rune length and GP0 statistics intact, preserving the observed 43-word multiset. The role sets remain fixed at the 48 length vectors and 384 GP0 H-shells above; no fitted LP2 plaintext, receiver or key is used.
+
+The original signed source has exactly one hit in **each** family, at word indices32..42 in layout [4,1,4,2], and one joint hit. Deterministic 30,000-trial conditional controls (xorshift32 seed 0xC1CA3301, Fisher–Yates) yield:
+
+| Event among 30,000 shuffles | Shuffle all 43 words | Shuffle only last 13 DIRECTION-fold words; fix first 30 |
+| --- | ---: | ---: |
+| At least one length-family match anywhere (33 windows × 12 layouts) | 3,918 | 1,010 |
+| At least one GP0-family match anywhere | 5,859 | 1,344 |
+| Both families match somewhere, not necessarily together | 779 | 38 |
+| Both match the same window, allowing different layouts | 29 | 7 |
+| **Both match the same window and the same layout** | **4** | **2** |
+| Exactly one hit per family, jointly at that same window/layout | 2 | 1 |
+| Joint match at the postselected original position32 and original layout | 0 | 0 |
+
+Thus the **conditional** anywhere/same-layout joint event appeared 4/30,000 (0.0133%) in the full shuffle and 2/30,000 (0.0067%) in the 13-word tail shuffle. These small Monte Carlo numerators have substantial sampling uncertainty; the zeros at the specific observed position/layout are *not* evidence of zero probability. The trailing-13 experiment is relevant because the independent DIRECTION=29 construction fixes the tail before the p6 length readout, but randomly rearranging signed prose is still only a structural control, not a realistic generator for signed messages.
+
+**Critical inferential boundary:** These are *not* calibrated discovery-wide odds. Both p6 role families, the choice of source statistics, and the corridor itself were assembled after seeing an apparent alignment; no charge is made for alternative source texts, packet sites, role grammars, target intervals or researcher exploration. The length and GP0 tests use the same words and are correlated, not independent probabilities to multiply. What this audit contributes is a reproducible **conditional co-selection diagnostic**, showing that the overlap is less trivial than either family individually under two exact multiset-preserving controls. It does not recover unknown plaintext, authenticate any page-local serializer, or permit promotion of the eleven fitted keys.
+
+Reproduce with node sims/critic_p6_source_permutation_null.cjs from repository root. The script asserts all observed and simulated counts before printing its JSON summary. Continue to require an authored, prospective receiver/key rule on original LP2 ciphertext.
+
 ## What changes
 
 Before this result, p6 supplied state/key vocabulary to the eleven local candidates but did not explain why those exact eleven authenticated source words should be treated as one corridor.
