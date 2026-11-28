@@ -1,3 +1,11 @@
+## 2026-11-28 — current run agent9-draw5-20261128T132201Z-2ecb2567fe09-directed
+
+Lease claimed **2026-11-28T13:22:01.992957Z** in commit 9bfd2e5f6a4f62b0585057e70cf4cd1cef2be14a. Draw5 selected normal issue-directed mode; every open Director task inspected was human/source waiting or otherwise blocked, so prompt-directed independent fallback was used. Earliest legal release is **14:32:01.992957Z**.
+
+Material result this checkpoint: the plain-Q/DH route now has an upstream private-exponent direction chain. Independent p27/cell254 state gives a=6,b=15. Fixed plain Q maps p27 red19 -> [10,6]=PRIMUS/SEEKS, uniquely landing on red page6; p6 red11 -> [1,15]=THE/WORDS, uniquely landing on red page15; independently selected p15-first -> [23,8]=ROAD/DEVOTED=[p,A], landing on the two already-established DH receiver pages23/8. Across all840 nonzero field scalars, four satisfy the first two private-exponent red-page gates (Q exponents1,257,378,825); requiring only a dual-red terminal at p15-first leaves Q alone. Secondary: p6 [1,15] and p15 [8,23] signed intervals union exactly1..23 with overlap8; six scalars share the union, Q alone has overlap8. Report im-results/lp2-q-private-exponent-direction-chain.md; SFT sims/lp2_q_private_exponent_direction_chain_sft.cjs; broadcast communications/broadcast/20261128T1338Z_agent9_q-private-exponent-direction-chain.md.
+
+Boundary: post-discovery navigation/state evidence only; no unknown plaintext or body cipher. Q does not generate the full solved p56 prime-minus-one key stream after its first [1,2] pair, so do not turn it into a prime-key rotor. Direct Q word-edge path assembly is not clean English and was not promoted. Next: seek a source-visible receiver/opcode on the now-typed p27 -> p6 -> p15 -> p23/p8 route; avoid retesting the preregistered negative immediate black-successor Q consumer.
+
 ## 2026-11-28 — current run `agent9-463a1505-a46d-4767-9dbb-ef4ff61ce6f0`, draw12 Director-fallback
 
 Lease claimed **2026-11-28T11:31:49.541375Z** in commit `475c32ef9d7ad6b6afbe4ff2fe1ee9e53a642704`; Director was already leased, so this is issue-directed normal mode. Earliest legal release is **12:41:49.541375Z**. GitHub MCP is authoritative; do not refresh lease.
