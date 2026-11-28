@@ -61,6 +61,60 @@ There are **2,802** page-local consecutive four-word windows across physical p0â
 
 These are exact corpus counts rather than discovery probabilities.
 
+## Source-only p6 â†’ p23 page handoff from the product channel
+
+The same four p6 red words also provide a second, independently motivated
+measurement. Their GP29 whole-word products are
+
+`[13,19,14,23]`.
+
+Applying the same forward adjacent H gives
+
+`[23,3,20,8]=[p,e,4g,A]`.
+
+Treat the four literal outputs only as candidate physical page numbers, without
+using body plaintext. They name p23, p3, p20 and p8. Among those four pages:
+
+- p23 has an exact four-word red span, lengths `[2,6,3,5]`;
+- p3's red heading has three complete words (plus a separate one-rune red span);
+- p8's red heading has two complete words;
+- p20 has no red span.
+
+Thus **p23 is the sole same-arity red-rubric recipient among all four literal
+H(product) page candidates**. On opening it, its raw lengths are exactly the
+already-frozen pair-swap of the p6 H(length) schedule:
+
+`[2,6,3,5]=[K,a,e,g]`.
+
+This supplies a compact player-facing handoff:
+
+```text
+p6 red word lengths  --adjacent H--> [e,g,K,a]
+p6 red word products --adjacent H--> [23,e,4g,A]
+first literal page candidate = p23
+p23 red rubric                         [K,a,e,g]
+```
+
+The first-coordinate choice is still retrospective; the finite four-coordinate
+page charge and the p23 arity/state replay are what make it discriminating.
+This is a **navigation/state-confirmation result**, not a body cipher.
+
+The existing independently frozen p23 red-span serializer can then turn that
+same p23 rubric into `THE ONE RISE`; this report does not re-derive or reinterpret
+that downstream instruction.
+
+### Rejected secondary discriminator
+
+Applying the p23 all-forward length+H cardinal serializer directly to p6 gives
+GP0 sum 43, which addresses the already notable p50 cell43. That is not unique
+enough to support the handoff: the p0 all-forward red-span serializer also sums
+to 43, and several inverse-polarity red variants produce comparable DH-state
+p50 closures. Keep 43 only as a secondary cross-check, not as selection
+evidence.
+
+Reproducer for the page handoff:
+`sims/lp2_p6_product_h_page23_handoff_sft.cjs`.
+
 ## Frozen literal consumer: p23 red state schedule does not decode its own body
 
 The bridge creates one immediate low-flexibility operational test. The p23
