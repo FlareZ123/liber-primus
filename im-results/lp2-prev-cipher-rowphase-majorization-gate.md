@@ -1,6 +1,6 @@
 # Previous-ciphertext row-permutation capacity: exact 12-phase exclusion
 
-**Original-source, key-independent decision — Agent17, 28 November 2026.** A reversible sender whose only non-clock state is the **previous printed ciphertext rune**, and whose emission is one of at most **twelve shared phase-dependent arbitrary GP29 alphabet permutations**, cannot produce original LP2 p0–55 from **any** matching 12,956-rune GP-native window of the pinned Gibran, Shakespeare or Emerson references. **The exclusion remains exact even after freely exempting all 86 original repeated-rune event positions as special emissions.** This grants all 29! possibilities for each of 29q secret chart rows, arbitrary plaintext alphabet relabeling, and free initial plaintext symbols at every original page or large-mark interval. The result is a **conditional finite-reference exclusion**, not an unknown plaintext or key recovery.
+**Original-source, key-independent decision — Agent17, 28 November 2026.** A reversible sender whose only non-clock state is the **previous printed ciphertext rune**, and whose emission is one of at most **twelve shared phase-dependent arbitrary GP29 alphabet permutations**, cannot produce original LP2 p0–55 from **any** matching 12,956-rune GP-native window of the pinned Gibran, Shakespeare or Emerson references. **The exclusion remains exact even after freely exempting all 86 original repeated-rune event positions as special emissions.** Independently secret chart sets for each original chapter or large-dot interval also fail at one phase, even with the 86 repeated positions exempt. This grants all 29! possibilities for each of 29q secret chart rows, arbitrary plaintext alphabet relabeling, and free initial plaintext symbols at every original page or large-mark interval. The result is a **conditional finite-reference exclusion**, not an unknown plaintext or key recovery.
 
 ## Exact typed sender and source framing
 
@@ -106,6 +106,40 @@ Minimize that integer lower bound over every tested full-length source window (a
 Thus a predecessor-only q1 sender would require **at least 2,843–3,113 arbitrary exceptional positions** to generate even one of these native 12,956-rune windows (about **22–24%** of all symbols), *not merely the 86 observed doublets*. Even q≤11 page-framed, or q≤12 large-mark-framed, needs **more than 86 exceptions at any positions** for *each* native reference. The only narrow remaining q12-page loophole under *arbitrarily located* 86 exceptions is Shakespeare: 1,562 of 204,151 windows pass that looser rank test, but **zero** pass when those 86 exceptions must coincide with the *actual original* doublet positions. This does not exclude unreported repair at many other positions or unpublished-tentative-state cryptosystems.
 
 Four fresh source-matched planted reversible row-permutation books (q1/q13, both frames) are rechecked when each plant's own repeated cipher events are unrestricted; **all 12,956 actual known plaintext runes recover in every plant**, and all 29 relaxed ranks pass. This is a genuine key-independent **original-cipher contradiction** for the complete declared escape family, not a failure of the cipher's implementation or a hypothesis of recovered prose.
+
+## Independent secret charts for each authentic chapter and marker: still excluded at q1
+
+The preceding pooled-chart result leaves a distinct source-plausible alternative: a **completely new set of 29 arbitrary GP29 substitution alphabets at each original chapter or large punctuation**, selected by the previous **published** ciphertext rune. The [literal manuscript transcript](../resources/lp2-transcription.txt), split at actual dollar signs, gives **eight** unsolved chapters with exact GP rune lengths **729, 1,145, 1,738, 1,894, 1,021, 1,433, 1,680, 3,316** (12,956 total). Separately, the 31 original 10/13-dot events yield **29 nonempty large-mark intervals**. Unlike a shared row key, this test allows **8×29=232 independent secret permutation rows** (chapter), **29×29=841** (large-mark), or **55×29=1,595** (physical page, as a permissive comparison). All frame first runes are free.
+
+Within a frame f, the typed reversible output is C(i) = K(f, prior published C)(P(i)), i.e. one arbitrary new 29-way substitution chart per frame and prior-cipher glyph. No key or proposed plaintext is fit. The same key-independent all-29-rank theorem applies with **state (frame, previous ciphertext)**; its sorted output counts are now calculated separately for each new chart. A stronger version makes the second rune of **every one of the 86 original same-page identical-neighbor events** a wholly arbitrary special output, dropping these events from the normal state histograms and granting all their plaintext letters free.
+
+| Independently secret chart epoch | Original free starts | q1 top-one cap | Top-one after 86 freely exempted repeats | Top-ten after repeats |
+| --- | ---: | ---: | ---: | ---: |
+| **Eight actual chapters** | 8 | **1,222** | **1,308** | **7,914** |
+| **29 original large-dot intervals** | 29 | **1,611** | **1,697** | **8,796** |
+| **55 physical pages** | 55 | **2,790** | **2,876** | **12,721** |
+
+Check all 29 ranks, not only these examples, against each of the **562,060** original-length reference windows. The source-native survivors are:
+
+| Reference | Eight chapter-private charts (ordinary / 86-exempt) | 29 marker-private charts | 55 page-private charts |
+| --- | ---: | ---: | ---: |
+| Gibran, 49,537 windows | **0 / 0** | **0 / 0** | 49,537 / 49,537 |
+| Shakespeare, 204,151 | **0 / 0** | **0 / 0** | 204,151 / 204,151 |
+| Emerson, 308,372 | **0 / 0** | **0 / 0** | 308,372 / 308,372 |
+
+**The ordinary GP-native donor envelope is excluded even with new 29-row secrets for every one of the 29 authentic large-mark intervals**, a model with 841 independently secret alphabet charts. It remains excluded when the observed 86 repeated sites are exempt. Stronger still, if an adversary may exempt **any positions whatsoever** rather than those specific repeats, the minimum required exception count from the exact all-rank inequality, minimized over *all* native windows, is:
+
+| Reference | Chapter-private minimum arbitrary exceptions | Large-mark-private minimum | Page-private minimum |
+| --- | ---: | ---: | ---: |
+| Gibran | **1,023** | **243** | **0** |
+| Shakespeare | **880** | **321** | **0** |
+| Emerson | **1,113** | **266** | **0** |
+
+All chapter- and marker-private minima are **greater than 86**. Physical-page-private 29-row alphabets pass this *necessary unigram gate*, which is not evidence that any ordered native passage actually decodes with such keys; actual ordering and row conflicts may still make it impossible. The meaningful threshold is between 29 authentic visible-marker epochs and 55 independent *physical-page* key epochs, under this precise receiver.
+
+**Three additional full-length positive cryptograms:** use actual eight-chapter, 29-marker and 55-page boundaries; sample 29 independent secret GP29 permutation rows afresh for every frame; force the native rare NG rune to emit the previous ciphertext rune. Each emits precisely **100** ciphertext doublets, reverses **12,956/12,956** native rune positions, and passes all 29 original and exception-aware rank constraints. The standalone SFT checks the eight source chapter lengths directly against the unmodified manuscript transcript and exercises **seven** original-length inverse controls across both pooled and frame-private families.
+
+The causal consequence is narrow but actionable: **neither an independent chart set at every actual chapter nor another at every physical large punctuation is enough**, if previous printed C is the only within-epoch state and the intended prose resembles these GP-native sources. A different plaintext register, a genuinely additional evolving state, much more than 86 unreported exceptions, or at least separate physical-page chart sets would be needed to escape the bounded capacity test. No such alternative has yet supplied a source-selected key or unseen-page plaintext.
 
 ## Decision and missing authentic step
 
