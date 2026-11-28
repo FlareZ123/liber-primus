@@ -1,0 +1,216 @@
+{
+  "schema": "q8-native-erasure-affine-constructive-v1",
+  "premise": "oracle phases for remaining revealed words are supplied only to construct a stronger ambiguity counterexample",
+  "source": "seven pinned historical solved native cribs, not unknown LP2",
+  "dictionary": 38938,
+  "erasureSchedule": [
+    [
+      6
+    ],
+    [
+      5
+    ],
+    [
+      6,
+      5
+    ]
+  ],
+  "cases": [
+    {
+      "plant": 0,
+      "removed": [
+        6
+      ],
+      "rank": 47,
+      "nullity": 4,
+      "full_affine_assignments": 707281,
+      "complete": true,
+      "permutations": 58,
+      "primitive": 58,
+      "lex_complete": 1,
+      "distinct_from_planted": 0,
+      "witness": null
+    },
+    {
+      "plant": 0,
+      "removed": [
+        5
+      ],
+      "rank": 48,
+      "nullity": 3,
+      "full_affine_assignments": 24389,
+      "complete": true,
+      "permutations": 2,
+      "primitive": 2,
+      "lex_complete": 1,
+      "distinct_from_planted": 0,
+      "witness": null
+    },
+    {
+      "plant": 0,
+      "removed": [
+        6,
+        5
+      ],
+      "rank": 43,
+      "nullity": 8,
+      "full_affine_assignments": 500246412961,
+      "complete": false,
+      "permutations": 0,
+      "primitive": 0,
+      "lex_complete": 0,
+      "distinct_from_planted": 0,
+      "witness": null,
+      "reason": "exact affine class exceeds computation cap"
+    },
+    {
+      "plant": 1,
+      "removed": [
+        6
+      ],
+      "rank": 47,
+      "nullity": 4,
+      "full_affine_assignments": 707281,
+      "complete": true,
+      "permutations": 116,
+      "primitive": 116,
+      "lex_complete": 2,
+      "distinct_from_planted": 1,
+      "witness": {
+        "pi": [
+          0,
+          1,
+          3,
+          4,
+          17,
+          27,
+          20,
+          22,
+          14,
+          26,
+          12,
+          23,
+          5,
+          11,
+          16,
+          2,
+          19,
+          15,
+          10,
+          18,
+          7,
+          25,
+          13,
+          21,
+          9,
+          28,
+          8,
+          6,
+          24
+        ],
+        "keys": [
+          [
+            3,
+            18,
+            4,
+            28,
+            21,
+            24,
+            20,
+            2
+          ],
+          [
+            8,
+            5,
+            23,
+            24,
+            6,
+            3,
+            26,
+            0
+          ],
+          [
+            15,
+            3,
+            1,
+            3,
+            23,
+            9,
+            19,
+            9
+          ]
+        ],
+        "hidden": [
+          {
+            "i": 6,
+            "words": [
+              {
+                "gp": "i1i7q",
+                "starts": [
+                  4
+                ]
+              }
+            ]
+          }
+        ],
+        "sourceStarts": [
+          0,
+          0,
+          0,
+          0,
+          7,
+          1,
+          4
+        ],
+        "trueHidden": [
+          {
+            "i": 6,
+            "gp": "i1i4q",
+            "start": 4
+          }
+        ]
+      }
+    },
+    {
+      "plant": 1,
+      "removed": [
+        5
+      ],
+      "rank": 47,
+      "nullity": 4,
+      "full_affine_assignments": 707281,
+      "complete": true,
+      "permutations": 6,
+      "primitive": 6,
+      "lex_complete": 1,
+      "distinct_from_planted": 0,
+      "witness": null
+    },
+    {
+      "plant": 1,
+      "removed": [
+        6,
+        5
+      ],
+      "rank": 42,
+      "nullity": 9,
+      "full_affine_assignments": 14507145975869,
+      "complete": false,
+      "permutations": 0,
+      "primitive": 0,
+      "lex_complete": 0,
+      "distinct_from_planted": 0,
+      "witness": null,
+      "reason": "exact affine class exceeds computation cap"
+    }
+  ],
+  "inputs": {
+    "sims/lp2_q8_erasured_native_action_witness_sft.cjs": "8514f286d36a82c69617082b4f92255fa1102861",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "im-results/lp2-q8-seven-crib-conditional-chart-recovery.json": "2546147d60d24d19c88dfaac7eba7c1273a3d89e",
+    "im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json": "037beb1c7d6d3fa7d435bba7b44259f83fe71712",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+  },
+  "interpretation": "Conditional exact ambiguity certificate for one-erasure/phase-oracle test; incomplete for two erasures; no unknown LP2 tested",
+  "generated_utc": "2026-11-28T00:47:45.737Z"
+}
