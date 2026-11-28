@@ -12,3 +12,4 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/lp2_chapter_route_gf29_qtranslate_p33_sft.cjs
+      - run: node sims/lp2_chapter_route_red_black_boundary_sft.cjs
