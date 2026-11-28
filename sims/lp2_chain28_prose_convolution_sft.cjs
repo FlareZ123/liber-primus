@@ -84,6 +84,7 @@ assert.deepEqual(observed.h, [
 const N = observed.h.reduce((a,b) => a+b, 0);
 assert.equal(N, 12869);
 const UNITS = [1,3,5,9,11,13,15,17,19,23,25,27];
+const KEY_MULTIPLIERS=Array.from({length:28},(_,i)=>i);
 const MOD = 28;
 const mod = x => ((x % MOD) + MOD) % MOD;
 const statistic = (counts, probability) => {
@@ -118,7 +119,7 @@ function scan(donors) {
   for(const p of donors) for(const k of donors) {
     let best={statistic:Infinity};
     for(const keyEA of ["mod28","skip28"]) for(const a of UNITS)
-      for(const b of UNITS) for(const sign of [-1,1]) {
+      for(const b of KEY_MULTIPLIERS) for(const sign of [-1,1]) {
         const model=predicted(p.p,k.p,a,b,sign,keyEA);
         const s=statistic(observed.h,model);
         if(s<best.statistic) best={statistic:s,a,b,sign,keyEA};
@@ -263,8 +264,8 @@ const output={
     nonzeroSteps:N,nonzeroVsUniformPearson:originalVsUniform},
   model:"EA=zero; nonzero delta=1+(a*plain+sign*b*key) mod28",
   tested: {donorProfiles:standard.map(x=>x.name),pairs:36,
-    affineMultipliers:UNITS.length,signs:2,keyEAConventions:2,
-    combinationsPerEncoding:36*UNITS.length*UNITS.length*2*2},
+    plainInvertibleMultipliers:UNITS.length,keyAffineMultipliers:KEY_MULTIPLIERS.length,signs:2,keyEAConventions:2,
+    combinationsPerEncoding:36*UNITS.length*KEY_MULTIPLIERS.length*2*2},
   standard:{best:base.global,pairMinimum:base.pairs.map(x=>[x.plaintext,x.key,x.statistic])},
   aliasINGIO:{best:alias.global},
   controls:cal,
