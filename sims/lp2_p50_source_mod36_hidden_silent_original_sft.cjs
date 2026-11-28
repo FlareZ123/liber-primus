@@ -74,7 +74,7 @@ function lcs(a,b){
  return p[b.length];
 }
 const scope=[
- {name:'original-p0-first-260',c:gp.pages[0].indices.slice(0,260)},
+ {name:'original-p0-first-260-prior-known-negative-replication',c:gp.pages[0].indices.slice(0,260)},
  {name:'original-p54-body-plus-p55',c:gp.pages[54].indices.slice(9).concat(gp.pages[55].indices)}
 ];
 const plants=[
