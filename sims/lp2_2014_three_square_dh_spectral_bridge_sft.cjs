@@ -122,6 +122,27 @@ assert.deepEqual([sourceE,dhGroupOrder,inverseInGroup],[3,22,15]);
 assert.equal(inverseInGroup,bFromThreeDeterminants);
 assert.equal(mod(gFromThreeDeterminants*sourceE),inverseInGroup);
 assert.equal((gFromThreeDeterminants*sourceE*sourceE)%dhGroupOrder,1);
+// Feed the candidate wholly-source-derived DH tuple into the ALREADY
+// INDEPENDENTLY reproduced original LP2 p7 -> chapter typed transition:
+// sims/lp2_p7_signed2013_chapter_state_transition_sft.cjs. This source
+// schedule does not read its authenticated 2013 input, nor re-fit chapter
+// records; the downstream original script separately verifies exact p7
+// inverse orientation and raw chapter word SUM->PRODUCT navigation.
+const stage7PredictedP7Row=[allSourceDh.p,allSourceDh.K,allSourceDh.g,allSourceDh.K,allSourceDh.B];
+const stage7PredictedChapterOut=[allSourceDh.K,allSourceDh.B,sourceE,allSourceDh.B,mod(-allSourceDh.K)];
+assert.deepEqual(stage7PredictedP7Row,[23,2,5,2,19]);
+assert.deepEqual(stage7PredictedChapterOut,[2,19,3,19,27]);
+const stage7ToP7Chapter={
+  candidateSourceInputState:stage7PredictedP7Row,
+  independentlyOriginalP7InverseRow:[23,2,5,2,19],
+  independentlyOriginalChapterSelectedPages:[8,27,33,27,54],
+  candidateSourcePredictedOutState:stage7PredictedChapterOut,
+  independentlyOriginalChapterOutState:[2,19,3,19,27],
+  originalReproducer:'sims/lp2_p7_signed2013_chapter_state_transition_sft.cjs',
+  originalDecisionReport:'im-results/lp2-p7-signed2013-chapter-state-transition.md',
+  warning:'These downstream original values predated this proposed 2014 formula and are an interpreted match, not prospectively held-out plaintext.'
+};
+
 
 // Warn against counting these as independent numerical successes:
 // both totient residues equal their prime row-sum minus one mod29.
@@ -380,4 +401,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,sourceTotients,sourcePrimeFromTotient,sourceOtherTotientResidue,allSourceDh,inverseCandidate:{sourceE,dhGroupOrder,inverseInGroup,geMod29:mod(gFromThreeDeterminants*sourceE),ge2ModOrder:(gFromThreeDeterminants*sourceE*sourceE)%dhGroupOrder},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,sourceTotients,sourcePrimeFromTotient,sourceOtherTotientResidue,allSourceDh,stage7ToP7Chapter,inverseCandidate:{sourceE,dhGroupOrder,inverseInGroup,geMod29:mod(gFromThreeDeterminants*sourceE),ge2ModOrder:(gFromThreeDeterminants*sourceE*sourceE)%dhGroupOrder},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));

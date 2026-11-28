@@ -181,6 +181,30 @@ The three authentic p57-stripped cores exactly select the 9/25/9 shapes of **43 
 
 Both inverse pairs roundtrip **all 43/43** original values exactly. A distinct original numerical-source operation is two-sided similarity by each authentic 2014 core: `P=K⁻¹CK` or `P=KCK⁻¹` for the 3×3/5×5/3×3 source-key `K`, treating original p55 interiors as matrix `C` under exactly the same 9/25/9 segmentation. Both invert exactly 43/43, but outputs remain nonlinguistic at respective IoC **0.03322259** and **0.03100775**. Their only source-specific advantage over ordinary Hill is preservation of similarity invariants, not any encoded message. Full original per-rune outputs and exact encryption inverses are printed by the same reproducible program. Therefore **neither the canonical p6 H mirror transform nor a two-sided historical matrix conjugation recovers the missing 43-rune p55 interior plaintext**. This negative does not invalidate the stronger source-only candidate DH key-packet extraction; it constrains which *cipher consumer* could employ it.
 
+## Connection to the already independently decoded LP2 p7 → chapter navigation grammar
+
+The reason to retain this candidate historical Stage7 source key instead of merely accumulating GF29 coincidences is its **specific, executable causal route to original book coordinates**. The independently reported manuscript p7 source-and-chapter state transition does **not** use any 2014 square source to choose its original ciphertext: its own original p7 five red-word products and chapter first-black SUM→PRODUCT have already been independently frozen against the authenticated 2013 DH worked state. [Original p7/chapter reproducer](../sims/lp2_p7_signed2013_chapter_state_transition_sft.cjs) · [independent original-input report](lp2-p7-signed2013-chapter-state-transition.md).
+
+The **new** proposed 2014-only arithmetic schedule `(p,g,A,B,K,a,b,e)=(23,5,8,19,2,6,15,3)` supplies exactly the typed **input key row** `[p,K,g,K,B]=[23,2,5,2,19]`, independently identical to the **original physical p7** five-red-product right-circulant's inverse first row. The p7 original printed orientation is uniquely consistent among 10 cyclic/reverse orientations. Using that row as chapter first-black-word **SUM** selectors, the original manuscript pages `p8→p27→p33→p27→p54` are selected, and their unmodified first-black-word **PRODUCT** outputs are precisely `[2,19,3,19,27]=[K,B,e,B,−K]`, a second row reconstructible from the same candidate 2014 square values.
+
+```text
+2014 original magic square values (first-party)
+  |  candidate φ, det ratios, center H, DH group inverse
+  v
+(p,g,a,b,A,B,K,e) = (23,5,6,15,8,19,2,3)
+  |  typed source row [p,K,g,K,B]
+  v
+original LP2 p7 red-product circulant inverse [23,2,5,2,19]
+  |  chapter opening SUM selector (existing original-source rule)
+  v
+p8 → p27 → p33 → p27 → p54
+  |  raw first-black-word PRODUCT
+  v
+[2,19,3,19,27] = [K,B,e,B,−K]
+```
+
+**Scientific boundary:** this reuses two **independent established original-manuscript structural tests**, giving the 2014 source interpretation an immediately testable *receiver and state transition*, not just a generic historical symbol match. Crucially, the target DH values and the downstream source grammar were **already known before** discovering the magic-square formula. These are **not blinded independent validations** of the proposed 2014 key-generation rules and still do not recover any unknown LP2 body plaintext. A real next advancement must reveal a novel, source-chosen continuation **after** the chapter OUT row, or independently demonstrate that p57/p6 actually instructs these specific 2014 magic square operations. Avoid turning this compact conditional source path into a large fitted opcode search.
+
 ## How much exact alignment survives matched source-order controls?
 
 We exhaust every independent permutation of the **whole printed columns** within each historical square, retaining every original number, each original row's sum, and matrix size; this disrupts original diagonals and 180° symmetry and therefore is a **conditional orientation diagnostic, not a null distribution for authored magic squares**. With the independently fixed register labels `A=8, −g=24`:
