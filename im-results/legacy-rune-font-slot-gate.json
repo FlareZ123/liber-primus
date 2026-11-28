@@ -1,0 +1,429 @@
+{
+  "test": "unencoded-font full-cmap injective oracle slot gate",
+  "observed_classes": 18,
+  "segmentation_line_counts": [
+    17,
+    18,
+    23
+  ],
+  "lp2_repeat_noise": {
+    "pairs": 106,
+    "mean": 0.028279,
+    "p95": 0.086957,
+    "max": 0.101262
+  },
+  "ranking": [
+    {
+      "font": "FUTHA___.TTF",
+      "path": "/tmp/legacy/FUTHA___.TTF",
+      "metadata": {
+        "family": [
+          "Futhark AOE"
+        ],
+        "subfamily": [
+          "Regular"
+        ],
+        "unique": [
+          "Macromedia Fontographer 4.1.2 Futhark AOE"
+        ],
+        "version": [
+          "Macromedia Fontographer 4.1.2 5/26/98"
+        ],
+        "created_mac_epoch": 2979061569
+      },
+      "distinct_rendered_cmap_slots": 26,
+      "mean_iou_distance": 0.333581,
+      "mapping": [
+        {
+          "rune": "ᚹ",
+          "slot_codepoint": 87,
+          "slot_char": "W",
+          "distance": 0.225466
+        },
+        {
+          "rune": "ᛖ",
+          "slot_codepoint": 69,
+          "slot_char": "E",
+          "distance": 0.119672
+        },
+        {
+          "rune": "ᛗ",
+          "slot_codepoint": 77,
+          "slot_char": "M",
+          "distance": 0.159311
+        },
+        {
+          "rune": "ᚢ",
+          "slot_codepoint": 70,
+          "slot_char": "F",
+          "distance": 0.621827
+        },
+        {
+          "rune": "ᛋ",
+          "slot_codepoint": 85,
+          "slot_char": "U",
+          "distance": 0.445181
+        },
+        {
+          "rune": "ᛏ",
+          "slot_codepoint": 116,
+          "slot_char": "t",
+          "distance": 0.373924
+        },
+        {
+          "rune": "ᚻ",
+          "slot_codepoint": 72,
+          "slot_char": "H",
+          "distance": 0.261317
+        },
+        {
+          "rune": "ᛞ",
+          "slot_codepoint": 68,
+          "slot_char": "D",
+          "distance": 0.399511
+        },
+        {
+          "rune": "ᚩ",
+          "slot_codepoint": 65,
+          "slot_char": "A",
+          "distance": 0.368012
+        },
+        {
+          "rune": "ᚱ",
+          "slot_codepoint": 82,
+          "slot_char": "R",
+          "distance": 0.325644
+        },
+        {
+          "rune": "ᚾ",
+          "slot_codepoint": 110,
+          "slot_char": "n",
+          "distance": 0.436754
+        },
+        {
+          "rune": "ᚳ",
+          "slot_codepoint": 80,
+          "slot_char": "P",
+          "distance": 0.535792
+        },
+        {
+          "rune": "ᛁ",
+          "slot_codepoint": 105,
+          "slot_char": "i",
+          "distance": 0.0
+        },
+        {
+          "rune": "ᚠ",
+          "slot_codepoint": 76,
+          "slot_char": "L",
+          "distance": 0.34231
+        },
+        {
+          "rune": "ᚦ",
+          "slot_codepoint": 84,
+          "slot_char": "T",
+          "distance": 0.273651
+        },
+        {
+          "rune": "ᚣ",
+          "slot_codepoint": 66,
+          "slot_char": "B",
+          "distance": 0.614906
+        },
+        {
+          "rune": "ᚪ",
+          "slot_codepoint": 97,
+          "slot_char": "a",
+          "distance": 0.298444
+        },
+        {
+          "rune": "ᚷ",
+          "slot_codepoint": 71,
+          "slot_char": "G",
+          "distance": 0.202741
+        }
+      ],
+      "render_jpeg_control": {
+        "mean_nearest_iou_distance": 0.023688,
+        "p95": 0.050911,
+        "max": 0.070764
+      }
+    },
+    {
+      "font": "Roberts-Runes.ttf",
+      "path": "/tmp/legacy/Roberts-Runes.ttf",
+      "metadata": {
+        "family": [
+          "Bones",
+          "Robert's_Runes"
+        ],
+        "subfamily": [
+          "Regular"
+        ],
+        "unique": [
+          "ATTITUDEINCBONES",
+          "ROBERT'SRunes",
+          "Robert'sRunes"
+        ],
+        "version": [
+          "(C) ATTITUDE INC. All Rights Reserved.              ",
+          "1.0"
+        ],
+        "created_mac_epoch": 2808848894
+      },
+      "distinct_rendered_cmap_slots": 30,
+      "mean_iou_distance": 0.404128,
+      "mapping": [
+        {
+          "rune": "ᚹ",
+          "slot_codepoint": 108,
+          "slot_char": "l",
+          "distance": 0.458355
+        },
+        {
+          "rune": "ᛖ",
+          "slot_codepoint": 100,
+          "slot_char": "d",
+          "distance": 0.31002
+        },
+        {
+          "rune": "ᛗ",
+          "slot_codepoint": 109,
+          "slot_char": "m",
+          "distance": 0.366
+        },
+        {
+          "rune": "ᚢ",
+          "slot_codepoint": 121,
+          "slot_char": "y",
+          "distance": 0.505513
+        },
+        {
+          "rune": "ᛋ",
+          "slot_codepoint": 45,
+          "slot_char": "-",
+          "distance": 0.597509
+        },
+        {
+          "rune": "ᛏ",
+          "slot_codepoint": 116,
+          "slot_char": "t",
+          "distance": 0.270351
+        },
+        {
+          "rune": "ᚻ",
+          "slot_codepoint": 104,
+          "slot_char": "h",
+          "distance": 0.358121
+        },
+        {
+          "rune": "ᛞ",
+          "slot_codepoint": 101,
+          "slot_char": "e",
+          "distance": 0.218411
+        },
+        {
+          "rune": "ᚩ",
+          "slot_codepoint": 97,
+          "slot_char": "a",
+          "distance": 0.514051
+        },
+        {
+          "rune": "ᚱ",
+          "slot_codepoint": 114,
+          "slot_char": "r",
+          "distance": 0.383525
+        },
+        {
+          "rune": "ᚾ",
+          "slot_codepoint": 122,
+          "slot_char": "z",
+          "distance": 0.548544
+        },
+        {
+          "rune": "ᚳ",
+          "slot_codepoint": 99,
+          "slot_char": "c",
+          "distance": 0.556487
+        },
+        {
+          "rune": "ᛁ",
+          "slot_codepoint": 105,
+          "slot_char": "i",
+          "distance": 0.058594
+        },
+        {
+          "rune": "ᚠ",
+          "slot_codepoint": 98,
+          "slot_char": "b",
+          "distance": 0.469938
+        },
+        {
+          "rune": "ᚦ",
+          "slot_codepoint": 46,
+          "slot_char": ".",
+          "distance": 0.417518
+        },
+        {
+          "rune": "ᚣ",
+          "slot_codepoint": 112,
+          "slot_char": "p",
+          "distance": 0.631207
+        },
+        {
+          "rune": "ᚪ",
+          "slot_codepoint": 118,
+          "slot_char": "v",
+          "distance": 0.471169
+        },
+        {
+          "rune": "ᚷ",
+          "slot_codepoint": 103,
+          "slot_char": "g",
+          "distance": 0.138996
+        }
+      ],
+      "render_jpeg_control": {
+        "mean_nearest_iou_distance": 0.022903,
+        "p95": 0.041238,
+        "max": 0.052668
+      }
+    },
+    {
+      "font": "FUTHAI__.TTF",
+      "path": "/tmp/legacy/FUTHAI__.TTF",
+      "metadata": {
+        "family": [
+          "Futhark AOE"
+        ],
+        "subfamily": [
+          "Inline"
+        ],
+        "unique": [
+          "Macromedia Fontographer 4.1.2 Futhark AOE Inline"
+        ],
+        "version": [
+          "Macromedia Fontographer 4.1.2 5/26/98"
+        ],
+        "created_mac_epoch": 2979061617
+      },
+      "distinct_rendered_cmap_slots": 26,
+      "mean_iou_distance": 0.412555,
+      "mapping": [
+        {
+          "rune": "ᚹ",
+          "slot_codepoint": 87,
+          "slot_char": "W",
+          "distance": 0.320309
+        },
+        {
+          "rune": "ᛖ",
+          "slot_codepoint": 69,
+          "slot_char": "E",
+          "distance": 0.243563
+        },
+        {
+          "rune": "ᛗ",
+          "slot_codepoint": 77,
+          "slot_char": "M",
+          "distance": 0.275005
+        },
+        {
+          "rune": "ᚢ",
+          "slot_codepoint": 70,
+          "slot_char": "F",
+          "distance": 0.672459
+        },
+        {
+          "rune": "ᛋ",
+          "slot_codepoint": 85,
+          "slot_char": "U",
+          "distance": 0.500095
+        },
+        {
+          "rune": "ᛏ",
+          "slot_codepoint": 116,
+          "slot_char": "t",
+          "distance": 0.440352
+        },
+        {
+          "rune": "ᚻ",
+          "slot_codepoint": 72,
+          "slot_char": "H",
+          "distance": 0.348266
+        },
+        {
+          "rune": "ᛞ",
+          "slot_codepoint": 68,
+          "slot_char": "D",
+          "distance": 0.464675
+        },
+        {
+          "rune": "ᚩ",
+          "slot_codepoint": 65,
+          "slot_char": "A",
+          "distance": 0.433284
+        },
+        {
+          "rune": "ᚱ",
+          "slot_codepoint": 82,
+          "slot_char": "R",
+          "distance": 0.421838
+        },
+        {
+          "rune": "ᚾ",
+          "slot_codepoint": 110,
+          "slot_char": "n",
+          "distance": 0.492141
+        },
+        {
+          "rune": "ᚳ",
+          "slot_codepoint": 80,
+          "slot_char": "P",
+          "distance": 0.58009
+        },
+        {
+          "rune": "ᛁ",
+          "slot_codepoint": 105,
+          "slot_char": "i",
+          "distance": 0.102648
+        },
+        {
+          "rune": "ᚠ",
+          "slot_codepoint": 76,
+          "slot_char": "L",
+          "distance": 0.423656
+        },
+        {
+          "rune": "ᚦ",
+          "slot_codepoint": 84,
+          "slot_char": "T",
+          "distance": 0.339523
+        },
+        {
+          "rune": "ᚣ",
+          "slot_codepoint": 66,
+          "slot_char": "B",
+          "distance": 0.655332
+        },
+        {
+          "rune": "ᚪ",
+          "slot_codepoint": 97,
+          "slot_char": "a",
+          "distance": 0.397131
+        },
+        {
+          "rune": "ᚷ",
+          "slot_codepoint": 71,
+          "slot_char": "G",
+          "distance": 0.315615
+        }
+      ],
+      "render_jpeg_control": {
+        "mean_nearest_iou_distance": 0.054203,
+        "p95": 0.085489,
+        "max": 0.088564
+      }
+    }
+  ]
+}
