@@ -41,6 +41,23 @@ The separate existing strict-repeat + iid-deletion inverse is run with each peri
 
 Matched known-key controls recover 92.53% Shakespeare and 84.12% Gibran retained plaintext with scores **-3.02934 / -3.08207**. Independent wrong-key controls score **-4.05111 / -4.15931**. Every original decode is at wrong-key scale.
 
+## Authentic solved-p56 prime-clock transfer
+
+The periodic-key tests above still leave open the real stateful mechanism used by solved p56: successive primes, shift `prime(j)-1 mod29`, and transparent/non-consuming plaintext F. The recovered modulus `p=23` gives the only immediately source-typed clock seed; charge both zero/one-based conventions, origins22 and23, on the same two frozen bodies.
+
+No candidate reaches the end:
+
+| receiver | origin | legal extent | first impossible body offset |
+|---|---:|---:|---:|
+| p8 offset12, 243 runes | 22 | 35 runes | **34** |
+| p8 offset12, 243 runes | 23 | 2 runes | **1** |
+| p23 offset16, 197 runes | 22 | 37 runes | **36** |
+| p23 offset16, 197 runes | 23 | 116 runes | **115** |
+
+At each collapse, every surviving clock history would have to consume a ciphertext rune into plaintext F even though authentic p56 semantics permits F only as a literal transparent hold. This is a hard support failure, independent of language scoring.
+
+Thus the causal continuation `Q state -> p-seeded authentic p56 prime clock -> Q-selected black body` is also rejected under both indexing conventions.
+
 ## Decision
 
 Neither the raw seven-field DH state nor its one already-authenticated prime-minus-one representation is the simple periodic key for either calibrated Round48 erasure channel on either Q-selected black body under the natural phase0 transfer. This closes a materially stronger key-delivery hypothesis than arbitrary state-key searches because both the state and the two body receivers are supplied by the same Q navigation route before the erasure inverse is applied.
@@ -51,7 +68,7 @@ The result does not reject the Round48 channel families globally, nor the Q navi
 Q navigation -> p8/p23 state reconstruction -> {raw DH tuple, authentic prime-minus-one image} as periodic erasure key -> black body plaintext.
 ```
 
-A different KDF, clock, receiver or independently authored operation remains open.
+A different independently source-selected KDF, clock, receiver or authored operation remains open; the raw tuple, the authentic prime-minus-one representation, and the authentic p56 prime clock seeded by p/p−1 are now all charged.
 
 ## Reproduction
 
