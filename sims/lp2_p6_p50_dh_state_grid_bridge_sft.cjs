@@ -79,6 +79,25 @@ assert.deepEqual(hits.map(x=>[x.rowField,x.colField,x.token,x.hit60,x.hit59]),[
   ['p','K','0J','B','B'],
 ]);
 
+// Tighter printed-packet charge: restrict rows to H(title lengths)
+// [K,-e,g,a] and columns to primitive state fields fitting the 8-column grid.
+const hRowFields={K:titleH[0],neg_e:titleH[1],g:titleH[2],a:titleH[3]};
+const smallCols=Object.fromEntries(Object.entries(state).filter(([,value])=>value<cols));
+const hFrame=[],hFrameHits=[];
+for(const [rowField,row] of Object.entries(hRowFields)){
+  for(const [colField,col] of Object.entries(smallCols)){
+    const cc=cell(row,col);
+    const hit60=stateByValue.get(cc.v60)||null,hit59=stateByValue.get(cc.v59)||null;
+    const rec={rowField,colField,...cc,hit60,hit59};hFrame.push(rec);
+    if(hit60||hit59)hFrameHits.push(rec);
+  }
+}
+assert.equal(hFrame.length,20);
+assert.deepEqual(hFrameHits.map(x=>[x.rowField,x.colField,x.token,x.hit60,x.hit59]),[
+  ['K','K','0F','b','b'],
+  ['neg_e','K','06','a','a'],
+]);
+
 // State values present as literal base60 bytes are sparse and unique.
 const frequencies={};
 for(const [name,value] of Object.entries(state))frequencies[name]=grid.bytes.filter(x=>x===value).length;
@@ -92,6 +111,7 @@ console.log(JSON.stringify({
   p50Shape:{rows,cols,cells,relations:['cols=2^e=A','rows=2^g','cells=2^A']},
   exactKColumnBridge:bridge,
   primitiveStateAddressCharge:{legal:legal.length,hits:hits.length,hitRows:hits},
+  titleHAddressCharge:{legal:hFrame.length,hits:hFrameHits.length,hitRows:hFrameHits},
   stateValueFrequencies:frequencies,
   note:'The role choice {-e,K,p}-> {a,b,B} was recognized after p50/p6 work; preserve as a compact hypothesis, not a calibrated probability or decoder.'
 },null,2));
