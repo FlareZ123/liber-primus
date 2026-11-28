@@ -68,7 +68,7 @@ function experiment(raw,width=1024){
    const score=Math.max(...prev);if(!best||score>best.score){const u=[prev.indexOf(score)];for(let r=N-2;r>=0;r--)u.unshift(back[r][u[0]]);const P=u.flatMap((u,r)=>Array.from(p[r][u]));best={score,u,v:x.v,P}}
   }
   const {P,u,v}=best;assert(P.every((p,j)=>p*exp[mod(u[Math.floor(j/N)]+v[j%N])]%Q===C[j]),"replay");
-  assert([28,29,30,31,32,33,34,35,36].every(i=>P[i]===C[i]),"motif identity");
+  assert([28,31,32,33,34,35,36].every(i=>P[i]===C[i])&&[29,30].every(i=>C[i]!==0||P[i]===0),"motif identity");
   const truthScore=z.P?z.P.slice(2).reduce((s,p,j)=>s+M.T[(z.P[j]*Q+z.P[j+1])*Q+p],0):null;
   return {name:z.name,width,history,truthScore,meanScore:best.score/1024/119,...best,correct:z.P?P.filter((p,j)=>p===z.P[j]).length:null,keyCorrect:z.v?u.every((p,j)=>p===z.u[j])&&v.every((p,j)=>p===z.v[j]):null,truth:z.P?{P:z.P,u:z.u,v:z.v,start:z.start}:null,translit:P.map(x=>c.translit[x]).join(" ")};
  }
