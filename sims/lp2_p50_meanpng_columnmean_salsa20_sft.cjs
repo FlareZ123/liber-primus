@@ -75,4 +75,11 @@ for(let i=0;i<p0native.length;i++){
 }
 assert.deepEqual(firstInvalid,{offset:19,keyOffset:17,cipher:22,keystream:51});
 out.genuineFTransparentFirstViolation=firstInvalid;
+// The one same-era sister primitive with the identical 32-byte/8-byte
+// original key/nonce ABI is 2008-original (not IETF) ChaCha20/20.
+const cha=require('node:crypto').createCipheriv('chacha20',key,Buffer.concat([Buffer.alloc(8),nonce]));
+const chaFirst=cha.update(Buffer.alloc(64))[0];
+assert.equal(chaFirst,131);assert.equal(getPage(0).indices[0],15);
+assert.equal((getPage(0).indices[0]-chaFirst%29+29)%29,0);
+out.genuineFTransparentChaCha20FirstViolation={offset:0,keyOffset:0,cipher:15,keystream:131};
 console.log(JSON.stringify(out,null,2));
