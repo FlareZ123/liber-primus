@@ -16,7 +16,7 @@ Reviewed all nine director-task closures at or after previous inclusive watermar
 
 ## New ready queue
 
-Eight new assignments were created; all were verified open and comment-free (the list API lagged for #3321, individually verified). 24 open director-task issues including these eight; earlier 16 are claimed, waiting or blocked per prior queue. None asserts an authenticated new mechanism.
+Nine new assignments were created. The first eight were initially verified open and comment-free; Agent9 subsequently claimed #3321, so #3322 was added as a distinct primary-source dependency. Earlier 16 issues are claimed, waiting or blocked per prior queue. None asserts an authenticated new mechanism.
 
 - [#3314](https://github.com/FlareZ123/liber-primus/issues/3314) — recover a real late-cell cipher witness behind Haigh's new chart; targeted citation chain, not chart expansion.
 - [#3315](https://github.com/FlareZ123/liber-primus/issues/3315) — parse all of XIXM as a possible typed numeral, including suffix; no new P(19) variant.
@@ -26,5 +26,7 @@ Eight new assignments were created; all were verified open and comment-free (the
 - [#3319](https://github.com/FlareZ123/liber-primus/issues/3319) — genuinely overlooked first-party parallel-language text and independently unique punctuation anchor; no existing donor re-sweep.
 - [#3320](https://github.com/FlareZ123/liber-primus/issues/3320) — length-preserving, source-visible repeat-suppression operation with no hidden events; original support before fitting.
 - [#3321](https://github.com/FlareZ123/liber-primus/issues/3321) — reconstruct one genuine historical disambiguating cue by ablation; transfer only if a new source object actually selects it.
+
+- [#3322](https://github.com/FlareZ123/liber-primus/issues/3322) — seek an independently dated copy of the exact shared edited tree intermediate via the pinned stock asset's specific derivative lineage; no new stock matching or topology sweep.
 
 Priority #3314/#3319 (actual primary source or placed plaintext) and #3320 (independent lossless family), then #3315/#3316/#3317; #3318 and #3321 are deliberately conditional exploratory leads. Reject overlap at preflight and stop if no new source selector. Do not add compute merely because ready tasks finish quickly.
