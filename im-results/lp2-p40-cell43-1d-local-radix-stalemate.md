@@ -39,6 +39,16 @@ Therefore all three obvious readings land on exact nearby source facts:
 
 The `base60(1D)=73` equality appears to be a genuinely fresh local observation, and it is tempting because the token sits inside the table between those two sentences. But it does **not** authenticate base60: the rival base59 value has an equally exact source-visible match at the immediately preceding sentence segment, and hexadecimal lands on the manuscript's fundamental 29-symbol alphabet.
 
+## The 72/73 pair is also one endpoint under zero/one-based word counting
+
+The two intact table-flanking sentences contain `33+40=73` complete words. Therefore the same dual-radix values can be read without choosing between two different source objects:
+
+```text
+72 = zero-based index of the final word in a 73-word corpus
+73 = one-based count / one-past-end boundary of that same corpus.
+```
+
+Exact token `1D` has this `[72,73]` base59/base60 pair at four table cells (43,69,112,226); the p40 route independently selects **43** before token inspection. This makes the ambiguity potentially useful as an endpoint/count convention, but it still does not specify what operation to apply to the 73-word encrypted corpus.
 ## Decision
 
 Cell43 is now independently selected, but **its token value cannot be used as an independent radix selector or receiver-count instruction** under the natural local count family. Any claim that `1D` means “73 surrounding words” must explain why the equally exact `72` and `29` readings are excluded by another source cue.
