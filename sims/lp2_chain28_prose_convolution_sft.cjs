@@ -81,6 +81,23 @@ assert.deepEqual(observed.h, [
   459,504,440,438,446,430,470,426,510,497,455,449,504,474,
   470,449,404,434,474,467,463,421,486,468,467,457,476,431
 ]);
+const observedWithinPages = (() => {
+  const h = Array(28).fill(0);
+  let doubles=0;
+  for (const page of corpus.pages.filter(p => p.page<=55))
+    for(let i=1;i<page.indices.length;i++){
+      const d=(page.indices[i]-page.indices[i-1]+29)%29;
+      if(d===0) doubles++; else h[d-1]++;
+    }
+  return {h,doubles};
+})();
+assert.equal(observedWithinPages.doubles,86);
+assert.equal(observedWithinPages.h.reduce((a,b)=>a+b,0),12815);
+assert.deepEqual(observedWithinPages.h, [
+  457,503,436,435,445,430,470,425,510,497,454,443,499,470,
+  468,446,401,432,472,467,460,420,485,466,466,456,472,430
+]);
+
 const N = observed.h.reduce((a,b) => a+b, 0);
 assert.equal(N, 12869);
 const UNITS = [1,3,5,9,11,13,15,17,19,23,25,27];
@@ -113,7 +130,7 @@ function predicted(p, k, a, b, sign, keyEA) {
   assert(Math.abs(z.reduce((s,x)=>s+x,0)-1)<1e-12);
   return z;
 }
-function scan(donors) {
+function scan(donors, targetHistogram=observed.h) {
   const pairs=[];
   let global={statistic:Infinity};
   for(const p of donors) for(const k of donors) {
@@ -121,7 +138,7 @@ function scan(donors) {
     for(const keyEA of ["mod28","skip28"]) for(const a of UNITS)
       for(const b of KEY_MULTIPLIERS) for(const sign of [-1,1]) {
         const model=predicted(p.p,k.p,a,b,sign,keyEA);
-        const s=statistic(observed.h,model);
+        const s=statistic(targetHistogram,model);
         if(s<best.statistic) best={statistic:s,a,b,sign,keyEA};
       }
     pairs.push({plaintext:p.name,key:k.name,statistic:best.statistic,
@@ -195,7 +212,10 @@ const standard=donorProfiles(false);
 const aliased=donorProfiles(true);
 const base=scan(standard);
 const alias=scan(aliased);
+const withinBase=scan(standard,observedWithinPages.h);
+const withinAlias=scan(aliased,observedWithinPages.h);
 assert(base.global.statistic > 150 && alias.global.statistic > 150);
+assert(withinBase.global.statistic >150 && withinAlias.global.statistic>150);
 const cal=controls(standard);
 assert(cal.nativeProfileChiQuantiles[4] < base.global.statistic);
 
@@ -266,6 +286,7 @@ const output={
   tested: {donorProfiles:standard.map(x=>x.name),pairs:36,
     plainInvertibleMultipliers:UNITS.length,keyAffineMultipliers:KEY_MULTIPLIERS.length,signs:2,keyEAConventions:2,
     combinationsPerEncoding:36*UNITS.length*KEY_MULTIPLIERS.length*2*2},
+  withinPageOnly:{nonzeroSteps:12815,zeroSteps:86,uniformPearson:statistic(observedWithinPages.h,uniform28),defaultBest:withinBase.global,aliasBest:withinAlias.global},
   standard:{best:base.global,pairMinimum:base.pairs.map(x=>[x.plaintext,x.key,x.statistic])},
   aliasINGIO:{best:alias.global},
   controls:cal,
