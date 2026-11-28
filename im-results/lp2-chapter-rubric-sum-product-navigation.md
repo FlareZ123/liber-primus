@@ -53,6 +53,36 @@ The two independent and precisely reproducible numeric source controls are:
 
 The second control's per-page candidate pool counts are `[11,6,10,7,2,5,13,8,5]` in the chapter order above. Results are fully deterministic for the recorded seed. Overlapping words, source-conditioned punctuation, nonuniform GP rune frequencies, the ability to try alternate checksum operations and the post hoc recognition of p40 as a destination mean the small conditional counts **cannot be interpreted as the probability that a real author intentionally encoded this route**. The exact fixed-marginal permutation gives a different null and deliberately prevents hiding the selection issue behind one deceptively small rate.
 
+## Exact composition with the already-established p50 mirror/sink DH readout
+
+The five-stop route is unusually compatible with a second, **previously independently documented** original object. The p40 chapter contains the physical p49–p51 32×8 panel. Once a player reaches it, the original p50 source has a separate source-motivated (but still unauthenticated as payload decryption) operation: the lowercase `f` digit is never printed; remove it from the base60 alphabet to form radix59, interpret each of the 256 cell values as its next address, and follow the resulting fixed pointer to universal sink **189**. Its source row/column `(23,5)`, original eight-column width, reflected tree artwork and original mirrored cell186 `0J=19` give DH `p=23,g=5,A=8,K=2,B=19`, with computed `a=6,b=15,e=3` and the independently observed eight-pointer return path from186 to189. These facts predate the new chapter route; [the prior standalone p50 source circuit](lp2-p50-base59-pointer-sink-reflection.md) remains the correct primary evidence.
+
+The **new integrated readout** of the nine original first-black words and the old p50 circuit produces the following proposed player sequence without viewing a single hypothetical LP2 plaintext word:
+
+```text
+p0 IN=15(b)  --23(p)--> p8 IN=23(p)
+p8          -- 2(K)--> p27 IN= 2(K), red title length=19(B),
+                               red title sum=305 mod29=15(b),
+                               following black word OUT=19(B)
+p27         --19(B)--> p54 IN=19(B)
+p54         --27(-K mod29)--> p40 IN=27(-K mod29)
+p40         --3(e)--> no new chapter; numeric panel lies in this chapter
+                                      |
+                                   base59 32×8 all-to-189 sink
+                                      |
+                          sink (p,g)=(23,5), width A=8
+                                      |
+                         mirror (23,5) -> (23,2) = K
+                                      |
+                          cell186 original 0J = B=19
+                                      |
+                         discrete logs => a=6,b=15,e=3
+```
+
+The chapter **path outputs** `[23,2,19,27,3]` therefore coincide with independently reconstructed DH `[p,K,B,-K,e]`, with `p0 IN=15=b`, and the special p27 red/black rubric supplies a separate `(B,b,K)` numeric panel. This is a **new cross-artifact synthesis** but is strongly *postselected*: the DH field names were known before this chain was noticed, `27` admits multiple interpretations, and the original author did not write `SUM→PRODUCT` or `pointer-to-next-cell` explicitly. It establishes neither a ciphertext inverse nor any previously unknown plaintext. Its best use is to define a human-executable *candidate* route **to known DH state** and a precise **missing last dependency**: a first-party source-selected GP29 payload consumer/serializer after the p50 mirror/sink circuit.
+
+[Single deterministic integrated source-code SFT](../sims/lp2_chapter_map_p50_dh_integrated_sft.cjs) asserts the whole original p0→p40 itinerary, numeric panel's membership in the p40–53 chapter, all 256 radix59 pointers to sink189, mirror186, exact DH state, 8-edge return route and original p27 rubric readouts. This is a composite assertion, not an independent statistical control or a new decryption.
+
 ## Decision for the solve frontier
 
 This **provisional candidate is materially more operational than a visual theme**: it specifies a finite original-cipher input class, two exact field operations, a deterministic graph, one unique start at book opener p0, five reproducible hops and a plausible final *artifact class*—the numeric table on p50. Unlike a fitted key shell, it requires **no comparison to preselected 2016 signed prose or any guessed LP2 plaintext**. The same route can be checked by a human from original pages.
