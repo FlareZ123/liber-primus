@@ -36,6 +36,22 @@ function tokenizeLatin(s, withSpaces=true) {
   }
   return out;
 }
+
+/** A separate source-calibrated spelling convention; legacy tokenizeLatin is unchanged. */
+function tokenizeLatinCanonical(s,withSpaces=true) {
+  s=s.toLowerCase().replaceAll("qu","cw").replaceAll("q","c")
+    .replaceAll("k","c").replaceAll("v","u").replaceAll("z","s");
+  const aliases=[["ing",21],["th",2],["ng",21],["eo",12],["oe",22],
+                 ["io",27],["ia",27],["ae",25],["ea",28]];
+  const out=[];
+  for(let i=0;i<s.length;) {
+    const alias=aliases.find(([key])=>s.startsWith(key,i));
+    if(alias){out.push(alias[1]);i+=alias[0].length;}
+    else if(LATIN.has(s[i]))out.push(LATIN.get(s[i++]));
+    else{if(withSpaces&&/[\\s.!?;,:"()\\-\\[\\]]/.test(s[i])&&out.length&&out[out.length-1]!==29)out.push(29);i++;}
+  }
+  return out;
+}
 function tokenizeNative(s,withSpaces=true) {
   const out=[];
   for(const c of s){
@@ -224,4 +240,4 @@ function beamDecodeFull(C,K,variant,model,opts={}) {
     hiddenEvents:win.hid,elapsedMs:Date.now()-t0};
 }
 
-module.exports={beamDecodeFull,GP_RUNES,GP_NATIVE,tokenizeLatin,tokenizeNative,trainLanguage,beamDecode,encodePlant,lcs,lcg};
+module.exports={beamDecodeFull,GP_RUNES,GP_NATIVE,tokenizeLatin,tokenizeLatinCanonical,tokenizeNative,trainLanguage,beamDecode,encodePlant,lcs,lcg};

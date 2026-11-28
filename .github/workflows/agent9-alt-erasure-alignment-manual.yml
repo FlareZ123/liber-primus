@@ -31,7 +31,12 @@ jobs:
         with:
           node-version: '22'
       - name: Erasure-aware English recovery against independent keys
-        run: node sims/lp2_alt_erasures_c11_benchmark.cjs ${{ matrix.shard }} ${{ inputs.plants }} ${{ inputs.seed }} ${{ inputs.beam }}
+        env:
+          SHARD: ${{ matrix.shard }}
+          PLANTS: ${{ inputs.plants }}
+          SEED: ${{ inputs.seed }}
+          BEAM: ${{ inputs.beam }}
+        run: node sims/lp2_alt_erasures_c11_benchmark.cjs "$SHARD" "$PLANTS" "$SEED" "$BEAM"
       - uses: actions/upload-artifact@v4
         with:
           name: agent9-c11-alt-shard-${{ matrix.shard }}
