@@ -73,6 +73,27 @@ For the exact five source residues {13,39,192,210,229}, circularly shift the p50
 all 256 phases while holding the original 86 equality positions fixed. Source phase **0 is the
 unique maximum**, covering 10 events; no other phase covers 10.
 
+### Source-selected tree-reflection rival
+
+The p50 artwork independently supplies one non-arbitrary spatial transform: horizontal column
+reflection `c -> 7-c`. Applying exactly that involution to the five `0D` coordinates gives
+residues **{10,32,199,213,226}**.
+
+At the already selected source phase:
+
+- literal `0D` coordinates: **251 opportunities, 10 repeats**;
+- tree-reflected coordinates: **252 opportunities, 1 repeat**.
+
+The two masks are disjoint. Conditioning on the 11 observed repeats inside their combined 503
+opportunities, the exact one-sided hypergeometric probability of at least 10 falling on the
+251-position literal side is **0.0053388417**.
+
+The reflected mask has only one hit at phase 0 and reaches at most nine under any circular phase
+(the maximum occurs at shift 21). Therefore the small-decimal gate is tied to the ordinary
+row-major source coordinates, not to the otherwise source-visible tree reflection. This is a
+useful operation-level discriminator: preserve reflection as an available p50 clue, but do not
+apply it to the gate address without a separate selector.
+
 An exact combinatorial comparator ignores the printed meaning entirely: choose any five of the 256
 residue classes and ask whether they cover at least 10 of the observed equality events. Enumerating
 all `C(256,5)=8,809,549,056` five-residue sets gives:

@@ -226,6 +226,37 @@ assert phase_hits[0] == 10
 assert max(phase_hits) == 10
 assert phase_hits.count(10) == 1
 
+# Independent source-selected spatial rival: p50's mirrored trees select the
+# horizontal involution c -> 7-c. Apply it to the five gate coordinates rather
+# than inventing a new transform.
+reflected_small_decimal = sorted(
+    (residue // 8) * 8 + (7 - (residue % 8))
+    for residue in small_decimal_residues
+)
+assert reflected_small_decimal == [10, 32, 199, 213, 226]
+reflected_set = set(reflected_small_decimal)
+reflected_positions = [i for i in valid if (i & 255) in reflected_set]
+reflected_hits = sum((i & 255) in reflected_set for i in events)
+assert (len(reflected_positions), reflected_hits) == (252, 1)
+assert small_decimal_set.isdisjoint(reflected_set)
+reflection_union_positions = [
+    i for i in valid if (i & 255) in (small_decimal_set | reflected_set)
+]
+reflection_union_hits = sum(
+    (i & 255) in (small_decimal_set | reflected_set) for i in events
+)
+assert (len(reflection_union_positions), reflection_union_hits) == (503, 11)
+direct_vs_reflected_tail = hypergeom_upper(503, 251, 11, 10)
+assert abs(direct_vs_reflected_tail - 0.005338841740600628) < 1e-15
+reflected_phase_hits = []
+for phase in range(256):
+    reflected_phase_hits.append(
+        sum(((i + phase) & 255) in reflected_set for i in events)
+    )
+assert reflected_phase_hits[0] == 1
+assert max(reflected_phase_hits) == 9
+assert reflected_phase_hits.index(9) == 21
+
 # Exact comparator: choose any five of the 256 p50 residues, preserving only
 # residue cardinality, and ask how often they cover >=10 observed equality sites.
 residue_hits = [0] * 256
@@ -612,6 +643,15 @@ print(json.dumps({
         "hypergeom_upper": small_decimal_tail,
         "within_leading_zero_hypergeom_upper": small_decimal_within_leading_tail,
         "phase0_unique_max": True,
+        "tree_reflection_control": {
+            "reflected_residues": reflected_small_decimal,
+            "reflected_opportunities": len(reflected_positions),
+            "reflected_repeat_hits": reflected_hits,
+            "direct_vs_reflected_conditional_upper": direct_vs_reflected_tail,
+            "reflected_phase0_hits": reflected_phase_hits[0],
+            "reflected_best_shift_hits": max(reflected_phase_hits),
+            "reflected_best_shift": reflected_phase_hits.index(max(reflected_phase_hits)),
+        },
         "exact_random_5_residue_tail_ge_10": random5_tail,
         "fixed_0to4_x_DUL_family_bonferroni_upper": field_family_bonferroni,
         "field_classes": field_rows,
