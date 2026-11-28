@@ -1,6 +1,6 @@
 # Signed 2016 tail: exact local candidates on every physical page p32–p42
 
-**Consolidated 28 November 2026; p41/p42 extensions by Agent3; scalar-saturation audit by Agent9. Classification: provisional known-source corridor. All eleven same-number pages carry exact reversible local candidates for the authenticated signed tail. The receiver/serialization rules are heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext. An exact audit shows that coordinatewise p6-state “expressibility” is non-discriminating: the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
+**Consolidated 28 November 2026; p41/p42 extensions by Agent3; identifiability audit by Agent9. Classification: provisional known-source corridor. All eleven same-number pages carry target-conditioned exact additive fits for the authenticated signed tail. The receiver/serialization rules are heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext. An exact audit shows that coordinatewise p6-state “expressibility” is non-discriminating: the nine state residues already generate every element of Z_29 using only a field or a two-field sum.**
 
 ## Coordinate convention
 
@@ -38,7 +38,7 @@ The authenticated tail is:
 | 41 / p41 | VERIFY | ordinal42 -> canonical word42 start178; delete center `F=0` | H6 `[q,Kg,p,A,g+K,B]` | strong local |
 | 42 / p42 | OPENPGP | ordinal43 word43 gives unique `[K,1,F]`; +K -> word45 start211; delete rune1 `F=0` | H7 `[B-1,p+K,-1,e,-1,p+K,p]` | target-blind receiver selector; strong local |
 
-The important change is completeness: every same-number page p32–p42 now has an exact reversible candidate for its assigned authenticated word.
+The important descriptive change is completeness: every same-number page p32–p42 now has a published target-conditioned local fit for its assigned authenticated word. Exact replay itself is not evidence: once an equal-length receiver and known target are fixed, subtraction uniquely supplies `K=C-P mod29`.
 
 ## New terminal constraints
 
@@ -120,14 +120,16 @@ Charging all signed/permuted variants gives 161,280 distinct keys. Across five e
 
 ## What this establishes — and what remains missing
 
-The corridor has two directly checkable properties:
+The corridor has one directly source-level property plus a set of receiver hypotheses:
 
 1. **Page-number convergence:** all authenticated tail indices32..42 map to consecutive physical pages p32..p42 under one reconciled coordinate convention.
-2. **Exact local reversibility:** every page has a concrete operation yielding its assigned authenticated word.
+2. **Receiver/transformation selectors:** some pages have independently motivated local selections (for example p42's manuscript-unique `[K,1,F]` selector), while others remain partly retrospective and must be evaluated individually.
 
-The previously listed third property, **common p6 state vocabulary**, is not independently discriminating. Let `S={K,e,q,g,a,A,b,B,p}={2,3,4,5,6,8,15,19,23}` mod29. The exact finite audit proves `S ∪ (S+S) = Z_29`. Thus every possible GP29 scalar—and therefore every coordinate of an arbitrary raw key or H shell—can be narrated using the much weaker grammar “one field or the sum of two fields.” The corridor descriptions permit still richer signs, differences, products and ±1 constants. Scalar membership contributes zero key-selection information unless a **joint field-role syntax** is frozen before the target is examined.
+**Exact local reversibility is not an independent property of the proposed cipher.** For any equal-length receiver `C` and authenticated target `P`, the unique additive key `K=C-P mod29` exists and replays exactly. The outside-in H transform is bijective on `Z_29` pairs because `2^-1=15 mod29`, so the fitted key also always has a unique H shell.
 
-The corridor remains a useful known-source alignment, but not eleven established plaintexts. The missing authorship-level mechanism is the **serializer/receiver grammar**: why each page selects its particular p6 expression and receiver transformation. Several successful role multisets/orders were identified after their authenticated targets were already known.
+The previously listed property **common p6 state vocabulary** is likewise not independently discriminating. Let `S={K,e,q,g,a,A,b,B,p}={2,3,4,5,6,8,15,19,23}` mod29. The exact finite audit proves `S ∪ (S+S) = Z_29`. Thus every possible GP29 scalar—and therefore every coordinate of an arbitrary raw key or H shell—can be narrated using the much weaker grammar “one field or the sum of two fields.” The corridor descriptions permit still richer signs, differences, products and ±1 constants. Scalar membership contributes zero key-selection information unless a **joint field-role syntax** is frozen before the target is examined.
+
+The corridor remains a useful known-source alignment and receiver-selection program, but the eleven fitted plaintext words are not established decryptions. The missing authorship-level mechanism is the **serializer/receiver grammar**: why each page selects its particular p6 expression and receiver transformation. Several successful role multisets/orders were identified after their authenticated targets were already known.
 
 Prospective transfers are mixed and often negative. Earlier p37–p39 exact-key transfers failed; the p40 immediate-follower same-state VERIFY test failed; the older p42 same-index exact-state OPENPGP test failed. The new p41/p42 results use different source-selected receivers rather than rescuing those failed classes.
 
