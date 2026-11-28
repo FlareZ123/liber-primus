@@ -196,6 +196,23 @@ for (let x = 0; x < MOD; x += 1) {
 }
 assert.strictEqual(exactMapPhraseMultipliers, 1);
 
+
+let primitiveMultiplierCount = 0;
+for (let x = 0; x < MOD; x += 1) {
+  for (let y = 0; y < MOD; y += 1) {
+    if (x === 0 && y === 0) continue;
+    if (multiplicativeOrder([x, y], 3, 8) === 840) primitiveMultiplierCount += 1;
+  }
+}
+assert.strictEqual(primitiveMultiplierCount, 192);
+
+const inverseQ = [22, 5];
+assert.deepStrictEqual(mul(EQ, inverseQ), [1, 0]);
+const inverseMatrix = multiplicationMatrix(inverseQ, 3, 8);
+assert.deepStrictEqual(inverseMatrix, [[22, 5], [26, 13]]);
+const inverseWords = flatten(inverseMatrix).map((index) => words[index].toUpperCase());
+assert.deepStrictEqual(inverseWords, ['THE', 'EPIPHANY', 'NUMBERS', 'WAY']);
+
 const p15First = redSpan(15, 0, 9);
 const p54 = redSpan(54, 0, 9);
 const p56 = redSpan(56, 0, 5);
@@ -260,4 +277,8 @@ console.log(JSON.stringify({
   charged_presentations: presentations,
   p54_target_hits: targetP54Presentations,
   exact_map_phrase_multipliers: exactMapPhraseMultipliers,
+  primitive_multiplier_count: primitiveMultiplierCount,
+  inverse_Q: inverseQ,
+  inverse_matrix: inverseMatrix,
+  inverse_matrix_words: inverseWords,
 }, null, 2));
