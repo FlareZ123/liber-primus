@@ -96,6 +96,23 @@ assert.deepEqual(sameRight,expected);
 const centers=new Set(rows.filter(x=>x.n>=57&&x.n<=72).map(x=>x.center));
 assert.equal(centers.size,16);
 
+// Charge exact outer-frame runs across all 75 original scans rather than only
+// the target. The two final large unsolved runs begin at route nodes p27 and
+// p40; p40..p55 is the longest exact outer-frame run in the archive.
+const frameKey=row=>row.left+'|'+row.right;
+const frameRuns=[];
+let runStart=0;
+for(let i=1;i<=rows.length;i+=1){
+  if(i===rows.length||frameKey(rows[i])!==frameKey(rows[runStart])){
+    frameRuns.push({archiveStart:runStart,archiveEnd:i-1,length:i-runStart});
+    runStart=i;
+  }
+}
+assert.ok(frameRuns.some(r=>r.archiveStart===44&&r.archiveEnd===56&&r.length===13));
+assert.ok(frameRuns.some(r=>r.archiveStart===57&&r.archiveEnd===72&&r.length===16));
+assert.equal(Math.max(...frameRuns.map(r=>r.length)),16);
+assert.equal(frameRuns.filter(r=>r.length===16).length,1);
+
 // LP2 p0 begins at archive 17.jpg, so archive57..72 == p40..p55.
 assert.deepEqual(expected.map(x=>x-17),Array.from({length:16},(_,i)=>40+i));
 
@@ -107,5 +124,10 @@ console.log(JSON.stringify({
   leftCrop:{x:0,y:600,w:380,h:2400,hash:target.left},
   rightCrop:{x:2020,y:600,w:380,h:2400,hash:target.right},
   centerHashesDistinct:centers.size,
-  decision:'p40 begins an exact 16-page mirrored-border section p40..p55; the artwork is section-wide reflection, not a p40-only STOP marker.',
+  frameRuns:frameRuns.map(r=>({
+    ...r,
+    lp2Start:r.archiveStart>=17?r.archiveStart-17:null,
+    lp2End:r.archiveEnd>=17?r.archiveEnd-17:null,
+  })),
+  decision:'p27 begins a 13-page exact frame run and p40 begins the unique longest 16-page run p40..p55; p40 is a section transition, not a p40-only STOP marker.',
 },null,2));
