@@ -44,4 +44,6 @@ These failures are **not evidence of impossibility**; they only show q25 is not 
 
 `sims/lp2_predecessor_q25_cpsat.py` encodes the full q25 feasibility problem with binary predecessor permutations and missing-union cells. The CI workflow `.github/workflows/agent18-predecessor-q25-cpsat.yml` runs OR-Tools CP-SAT with a 600-second exact search budget and fixes one predecessor permutation to identity by global-output relabeling symmetry.
 
-Until that exact solver returns FEASIBLE or INFEASIBLE, q25 remains unresolved. The important research narrowing is that any further progress must use joint compatibility across predecessor-specific relabelings; additional single-symbol frequency/support statistics cannot decide the sharp windows.
+The first exact run, GitHub Actions run 46132969618, returned **INFEASIBLE** for Gibran start5283 in 50.15 seconds (24,054 Boolean variables after presolve, 1,508,357 branches, 197,323 conflicts). Therefore that sharp window cannot be represented by 25 shared permutation charts under **any** choice of the 29 predecessor-specific bijections.
+
+Across the complete control envelope, the exact q>=26 single-pair scan leaves only **319** q25-hard windows: 59 Gibran, 237 Shakespeare, and 23 Emerson. The start5283 proof closes one of them, so **318** exact joint cases remain before q25 can be excluded over all 562,060 native windows. The parameterized solver can run any control/start pair; a three-control cross-check workflow is queued.
