@@ -102,6 +102,8 @@ black separator dot
 
 Thus the original page supplies no ambiguous intermediate gap class: every within-line gap of 19 pixels or more is a printed separator-dot transition, and every non-separator transition is 8 pixels or less.
 
+The separator marks themselves also occupy one fixed vertical rectangle per line: `725..734`, `913..922`, `1102..1111`, and `1290..1299` respectively. There is no within-line vertical separator-position alphabet in the measured source geometry.
+
 ## Rune-advance model
 
 The source uses a proportional rune font, so raw start-to-start distance is not expected to be constant. To distinguish font advance from an independent spacing state, charge one base advance `A[r]` for each observed current GP29 rune `r` and one global separator increment `c`:
