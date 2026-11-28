@@ -82,6 +82,34 @@ for(let i=0;i<tape.length-1;i++){
 }
 assert.deepEqual(pair.map(r=>r.map(x=>x.hit)),[[40,12,0],[25,4,0],[5,0,0]]);
 
+// Split events by the already source-defined first-character-zero mask.  T7
+// is not internal to either channel, and four transition-class mean gaps do
+// not absorb it: the residual ordering correlation stays near the original.
+const typed=events.map(i=>({i,mask:toks[i&255][0]==="0"}));
+const maskSites=typed.filter(x=>x.mask).map(x=>x.i);
+const nonMaskSites=typed.filter(x=>!x.mask).map(x=>x.i);
+assert.equal(maskSites.length,33);
+assert.equal(nonMaskSites.length,53);
+const channelT7={mask:t7(maskSites),nonMask:t7(nonMaskSites)};
+const gaps=typed.slice(1).map((x,k)=>x.i-typed[k].i);
+const classes=typed.slice(1).map((x,k)=>(typed[k].mask?"M":"N")+(x.mask?"M":"N"));
+const transitionMeans={};
+for(const key of ["NN","NM","MN","MM"]){
+  const a=gaps.filter((_,i)=>classes[i]===key);
+  transitionMeans[key]=a.reduce((s,v)=>s+v,0)/a.length;
+}
+const predicted=classes.map(k=>transitionMeans[k]);
+const residual=gaps.map((v,i)=>v-predicted[i]);
+const residualLag1=corr(residual.slice(0,-1),residual.slice(1));
+const meanGap=gaps.reduce((s,v)=>s+v,0)/gaps.length;
+const sst=gaps.reduce((s,v)=>s+(v-meanGap)**2,0);
+const sse=residual.reduce((s,v)=>s+v*v,0);
+const transitionVarianceExplained=1-sse/sst;
+assert.ok(Math.abs(channelT7.mask+0.01779422316719754)<1e-12);
+assert.ok(Math.abs(channelT7.nonMask-0.05085402960384603)<1e-12);
+assert.ok(residualLag1>0.35);
+assert.ok(transitionVarianceExplained<0.07);
+
 /** @param {number} seed @param {number} draws */
 function simulate(seed,draws){
   let state=seed>>>0;
@@ -120,6 +148,12 @@ console.log(JSON.stringify({
   equalityEventsByLiteralZeroCount:eventCounts,
   exact00:{phases:exact00,eventHits:exact00.map(i=>residueHits[i])},
   adjacentZeroPairHits:pair.map(r=>r.map(x=>x.hit)),
+  sourceMaskChannelDecomposition:{
+    channelT7,
+    transitionMeans,
+    transitionVarianceExplained,
+    residualLag1
+  },
   observedT7:observed,
   conditionalDoseNull:runs,
   decision:"P50_ZERO_DOSE_AND_T7_ARE_DISTINCT_CONSTRAINTS;_ZERO_DOSE_ALONE_DOES_NOT_GENERATE_T7"
