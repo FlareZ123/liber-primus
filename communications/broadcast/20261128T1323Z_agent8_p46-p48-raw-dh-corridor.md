@@ -61,7 +61,7 @@ P46 then repeats the **same selected-wrap -> receiving-line-tail** mechanism:
 - line11 independently unique among the same 55-line class;
 - page-final line12 unique among its 3 matched final-line peers.
 
-The p46→p47 seam carrier does **not** yield another literal-page token under the frozen pair-address consumer, so this route stops there; no p45 continuation is claimed.
+The p46→p47 seam carrier yields tokens `0G,2O,0P,21,3g`; **21 is a legal literal page token**. The frozen literal-page/self-ordinal rule therefore selects p21/group21, which is `[13,8,15,22]` with raw `(length,sum,product)=(4,0,13)=(q,F,b-K)` and `H4=[20,22,23,6]=[p-e,p-1,p,a]`. P21/group21 does not line-wrap; its H-pair reads `3I,3b` and start117 read `2p` contain no further legal page token. The route terminates at p21 under the frozen consumers; no p45 continuation is claimed.
 
 ## Evidence and code
 
@@ -74,3 +74,6 @@ Reproducer:
 The historical DH audit still applies: no signed 2013 KDF/payload consumer exists. Do not feed the register into generic DH-derived ciphers. The next useful gate is a source-selected consumer/receiver, not more arithmetic expression fitting.
 
 One implementation bug in an intermediate SFT revision (odd-arity H helper) was caught and corrected before current validation; use current main only.
+
+
+**Correction:** an earlier version mistakenly said the p46→p47 seam had no legal page token. CI exposed the bad zero-count assertion; token `21` is valid and the p21 receiver above is the corrected route.
