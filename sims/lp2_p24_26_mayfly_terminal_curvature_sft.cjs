@@ -151,7 +151,78 @@ assert.deepEqual(
   [[24, 'NUMBERS ARE'], [35, 'EMPTY EPIPHANY'], [38, 'THE ROAD']],
 );
 
-const result = {
+
+const typedTerminalHits = [];
+const chargedTypedTerminalHits = [];
+for (const row of endpointComparisons) {
+  const [a, b, cpage] = pages.filter((p) =>
+    p.page >= row.start && p.page <= row.end
+  );
+  const input = [
+    mod(cpage.runic_count - b.runic_count),
+    mod(cpage.runic_count - a.runic_count),
+  ];
+  const target = [mod(cpage.page), mod(-row.mark)];
+  const output = H(...input);
+  if (output[0] === target[0] && output[1] === target[1]) {
+    typedTerminalHits.push({
+      start: row.start,
+      end: row.end,
+      mark: row.mark,
+      input,
+      output,
+      target,
+    });
+  }
+
+  const counts = [a.runic_count, b.runic_count, cpage.runic_count];
+  const variants = [
+    ['first', mod(counts[1] - counts[0]), mod(counts[2] - counts[0])],
+    ['middle', mod(counts[0] - counts[1]), mod(counts[2] - counts[1])],
+    ['last', mod(counts[2] - counts[1]), mod(counts[2] - counts[0])],
+  ];
+  for (const [vertex, x, y] of variants) {
+    for (const swap of [false, true]) {
+      const candidateInput = swap ? [y, x] : [x, y];
+      const candidateOutput = H(...candidateInput);
+      if (
+        candidateOutput[0] === target[0]
+        && candidateOutput[1] === target[1]
+      ) {
+        chargedTypedTerminalHits.push({
+          start: row.start,
+          end: row.end,
+          mark: row.mark,
+          vertex,
+          swap,
+          input: candidateInput,
+          output: candidateOutput,
+          target,
+        });
+      }
+    }
+  }
+}
+
+assert.deepEqual(typedTerminalHits, [{
+  start: 24,
+  end: 26,
+  mark: 13,
+  input: [21, 24],
+  output: [26, 16],
+  target: [26, 16],
+}]);
+assert.deepEqual(chargedTypedTerminalHits, [{
+  start: 24,
+  end: 26,
+  mark: 13,
+  vertex: 'last',
+  swap: false,
+  input: [21, 24],
+  output: [26, 16],
+  target: [26, 16],
+}]);
+\nconst result = {
   source: {
     mayflyPages: [24, 25, 26],
     counts: [270, 273, 265],
@@ -173,7 +244,7 @@ const result = {
     allThirdPageLargeMarkComparisons: broadComparisons.length,
     allAbsoluteEndpointImbalanceMatches: broadMatches,
     chargedVertexOrderPresentations: (pages.length - 2) * 6,
-    exactH2616Hits: chargedTargetHits,
+    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,
     canonicalSignedSourceBigramHits: canonicalBigramHits,
   },
   decision:
