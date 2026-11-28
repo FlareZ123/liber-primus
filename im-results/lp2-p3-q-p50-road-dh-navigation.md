@@ -165,7 +165,18 @@ step  9  p6 red          k456
 step 21  p15 second red  k748 = solved p57 red
 ```
 
-The first two moves are the transient `236 -> 333 -> 516`; after that the walk follows the 54-cycle. The historical base59 walk starting from the same p15-first state **never reaches k748 before entering its own cycle**. This same-page first-red→second-red closure, with three other marked manuscript states and a solved-page equivalence as waypoints, is the strongest structural consequence of the uniform dlog/table rule found in this run.
+The first two moves are the transient `236 -> 333 -> 516`; after that the walk follows the 54-cycle. The historical base59 walk starting from the same p15-first state **never reaches k748 before entering its own cycle**.
+
+There is also a direct manuscript-internal control. Only p15 and p33 contain two nonzero red spans. Charge both directions on both pages under both radices:
+
+```text
+p15 first  -> second : base60 21 steps; base59 no reach
+p15 second -> first  : no reach under either radix
+p33 first  -> second : no reach under either radix
+p33 second -> first  : no reach under either radix
+```
+
+Thus canonical p15 first→second is the **only same-page red-pair reachability** in this finite class. This closure, with p39→p7→p6 and the solved-p57 equivalence as waypoints, is the strongest structural consequence of the uniform dlog/table rule found in this run.
 
 The matched historical-base59 map has only three cycles (lengths14,14,53) and **no printed red residue lies on any base59 cycle**. This is a finite radix discriminator. It is still post-discovery structural evidence; the dominant base60 basin and the prior visibility of p39/p7 prevent treating the cycle enrichment as a discovery-wide probability.
 
