@@ -160,6 +160,27 @@ H8 = [22,22,19,17,4,0,13,26]
 
 This is a stronger boundary handoff than treating p48 as a fresh page receiver: the same open source object carries the state serialization across the physical page break.
 
+### P48 receiving line stays in the same raw register
+
+The carried word fixes p48 line1 before the rest of that line is inspected. Its seven visible fragments have
+
+```text
+lengths  [4,2,3,3,4,2,4]
+       = [q,K,e,e,q,K,q]
+
+sums     [25,17,11,24,11,24,28]
+       = [-q,b+K,A^-1,-g,A^-1,-g,-1]
+
+products [17,8,1,28,17,0,3]
+       = [b+K,A,1,-1,b+K,F,e].
+```
+
+The complete printed line has **22=p-1 runes** and total GP0 **24=-g**.
+
+Among the 32 unknown-page destinations of cross-page words, only **two** first printed lines have this same framing: an incoming page carry, exactly seven visible fragments, and no line carry out. The state-predicted length vector occurs only on **p48 line1**; adding the sum and product vectors leaves the same sole hit.
+
+This is the furthest justified extension of the present source object. The carried word itself selects p48 line1; no claim below this boundary should treat later p48 lines as selected without a new cue.
+
 ### Cross-page-word charge
 
 The canonical unknown-page parser contains **32** punctuation groups that cross a physical page boundary in p0–p55. Exactly **one** has length8: this p47→p48 carrier. Consequently it is already source-unique under the single predicted field `length=A=8` before its sum, product, half descriptors, or H8 state packet are inspected.
