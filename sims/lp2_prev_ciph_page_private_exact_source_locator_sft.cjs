@@ -73,14 +73,14 @@ for(let f=0;f<spans.length;f++){
 }
 assert.equal(sites.length,N-spans.length);
 const slots=spans.length*A*A;
-function scanner(cipherSites,windows,withEvents){
+function scanner(cipherSites,windows,withEvents,length=N){
   const fSeen=new Uint32Array(slots),rSeen=new Uint32Array(slots);
   const fMap=new Int8Array(slots),rMap=new Int8Array(slots);
   let stamp=0,compatible=0,firstCompatibleStart=null,furthest=-1,furthestStart=-1,
-      firstGapSum=0,firstGapMin=N,firstGapMax=-1,nearMisses=0;
-  for(let start=0;start<=windows.length-N;start++){
+      firstGapSum=0,firstGapMin=length,firstGapMax=-1,nearMisses=0;
+  for(let start=0;start<=windows.length-length;start++){
     stamp++;
-    let failedAt=N;
+    let failedAt=length;
     for(const event of cipherSites){
       if(withEvents && event.repeat)continue;
       const plain=windows[start+event.i],fs=event.row*A+plain,
@@ -92,14 +92,14 @@ function scanner(cipherSites,windows,withEvents){
       fSeen[fs]=stamp;fMap[fs]=event.c;
       rSeen[rs]=stamp;rMap[rs]=plain;
     }
-    if(failedAt===N){compatible++;if(firstCompatibleStart===null)firstCompatibleStart=start;}
+    if(failedAt===length){compatible++;if(firstCompatibleStart===null)firstCompatibleStart=start;}
     else if(failedAt>=spans[0][1])nearMisses++;
     if(failedAt>furthest){furthest=failedAt;furthestStart=start;}
     firstGapSum+=failedAt;
     firstGapMin=Math.min(firstGapMin,failedAt);
     firstGapMax=Math.max(firstGapMax,failedAt);
   }
-  const n=windows.length-N+1;
+  const n=windows.length-length+1;
   return {windows:n,full_compatible:compatible,first_compatible_start:firstCompatibleStart,
     furthest_original_rune_index_before_contradiction:furthest,
     best_donor_start:furthestStart,average_first_conflicting_rune_index:firstGapSum/n,
@@ -107,6 +107,22 @@ function scanner(cipherSites,windows,withEvents){
 }
 const original=refs.map(r=>({name:r.name,ordinary:scanner(sites,r.gp,false),
     all_86_original_repeats_unconstrained:scanner(sites,r.gp,true)}));
+// Strong source-selection independence challenge: allow arbitrary source
+// passage start on EVERY page, no global source alignment. If first p0
+// itself has no source substring, page-by-page jumps cannot rescue it.
+const firstPageLength=spans[0][1]-spans[0][0];
+assert.equal(firstPageLength,262);
+const firstPageSites=sites.filter(e=>e.i<firstPageLength);
+const firstPageSourceWindows=refs.map(r=>({
+  name:r.name,
+  ordinary:scanner(firstPageSites,r.gp,false,firstPageLength),
+  repeated_emissions_exempt:scanner(firstPageSites,r.gp,true,firstPageLength)
+}));
+for(const record of firstPageSourceWindows){
+  assert.equal(record.ordinary.full_compatible,0);
+  assert.equal(record.repeated_emissions_exempt.full_compatible,0);
+}
+
 for(const r of original){
   assert.equal(r.ordinary.full_compatible,0);
   assert.equal(r.all_86_original_repeats_unconstrained.full_compatible,0);
@@ -148,4 +164,15 @@ assert.ok(positive.ordinary.full_compatible>=1);
 assert.equal(positive.ordinary.first_compatible_start,start);
 assert.ok(positive.repeats_unconstrained.full_compatible>=1);
 assert.equal(positive.repeats_unconstrained.first_compatible_start,start);
-console.log(JSON.stringify({model:"Independent secret permutation K[f,previous printed C] at each of 55 physical-page epochs; original order unaltered",original:{runes:N,frames:spans.length,within_page_doublets:repeats,ordinary_observations:sites.length},exact_ordered_original_source_copy:original,known_native_private_key_plant:positive},null,2));
+const plantPageSites=plantSites.filter(e=>e.i<firstPageLength);
+const plantedFirstPage= {
+  ordinary:scanner(plantPageSites,refs[0].gp,false,firstPageLength),
+  repeats_unconstrained:scanner(plantPageSites,refs[0].gp,true,firstPageLength)
+};
+assert.ok(plantedFirstPage.ordinary.full_compatible>=1);
+assert.equal(plantedFirstPage.ordinary.first_compatible_start,start);
+assert.ok(plantedFirstPage.repeats_unconstrained.full_compatible>=1);
+assert.equal(plantedFirstPage.repeats_unconstrained.first_compatible_start,start);
+console.log(JSON.stringify({model:"Independent secret permutation K[f,previous printed C] at each of 55 physical-page epochs; original order unaltered",original:{runes:N,frames:spans.length,within_page_doublets:repeats,ordinary_observations:sites.length},exact_ordered_original_source_copy:original,
+  complete_first_physical_page_source_location:{runes:firstPageLength,donors:firstPageSourceWindows,
+    positive_source_native_plant:plantedFirstPage},known_native_private_key_plant:positive},null,2));
