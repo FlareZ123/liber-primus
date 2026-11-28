@@ -197,6 +197,55 @@ p=23  absent
 
 So the `a`, `b`, and `B` hits above are the unique literal occurrences of those values in the table.
 
+## Index-origin control: the exact schedule is conditional on zero-based coordinates
+
+The support-line bridge above numbers the 32×8 table internally from zero.
+That convention is computationally ordinary, but it is **not printed on the
+manuscript**. Closed source gate #1567 found no first-party rule fixing p50
+cell0/state0, so the coordinate origin must be charged rather than silently
+treated as authored.
+
+Using the same four physical support edges:
+
+```text
+zero-based row/column coordinates : [3,5,6,2] = [e,g,a,K]
+one-based visible counts          : [4,6,7,3]
+```
+
+Retaining the original edge directions changes the directed vectors from
+
+```text
+zero-based : [-3,+5,+6,+2] mod29 = [26,5,6,2]
+one-based  : [-4,+6,+7,+3] mod29 = [25,6,7,3].
+```
+
+The frozen 16-member rotation/reversal/global-sign charge on
+`H4([4,1,4,2])=[2,26,5,6]` has exactly **one** match for the zero-based
+vector and **zero** matches for the one-based vector. Thus the exact cyclic
+p6 schedule does not survive a change to the equally natural human-counted
+origin.
+
+Sparsity does not independently select zero-based indexing either. In the
+broad primitive-state row×legal-column family, zero-based addressing has
+2 state-valued hits while one-based has **3**. In the tighter title-H row
+family, zero-based has 2 hits and one-based 1. These counts are descriptive,
+not a discovery probability.
+
+A concrete physical check makes the convention visible: a human-visible
+row2/column2 location corresponds to zero-based cell(1,1)=index9, token
+`49` (base60 249 / base59 245), whereas the reported
+`(K,K)->b` relation is zero-based cell(2,2)=index18, token
+`0F=15=b`.
+
+Therefore the p6↔p50 geometry remains a useful **conditional** bridge, and
+the independently selected cell186 / column2 facts remain real source
+structure, but the exact state-label equalities `[e,g,a,K]` and cyclic
+H(title) schedule are not yet source-authenticated until an independent clue
+chooses the zero-based origin. Do not use this bridge as an authored decoder
+opcode without that selector.
+
+Reproducer: `sims/lp2_p6_p50_index_origin_control_sft.cjs`.
+
 ## Interpretation
 
 This is a compact typed bridge between two independently important artifacts:
