@@ -1,0 +1,14 @@
+name: Agent24 LP2 no-repeat base28 inverse (manual)
+on:
+  workflow_dispatch:
+jobs:
+  test-original-and-native-plants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original GP and native planted controls
+        run: node sims/lp2_norepeat_base28_repack_original_sft.cjs
