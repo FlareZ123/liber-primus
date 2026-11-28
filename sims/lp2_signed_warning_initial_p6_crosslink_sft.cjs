@@ -70,12 +70,12 @@ assert.deepEqual(verifyOpenpgpInitials,[a-g,e]);
 assert.deepEqual([mod29(verifyOpenpgpInitials[0]-verifyOpenpgpInitials[1]),mod29(verifyOpenpgpInitials[0]+verifyOpenpgpInitials[1])],[mod29(-K),q]);
 
 const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
-const parts=transcription.split(/^\\s*%\\s*$/m).slice(0,55);
+const parts=transcription.split(/^\s*%\s*$/m).slice(0,55);
 const canonicalWords=[];
 for(let block=0;block<parts.length;block++){
   const page=block>=50?block+1:block; let offset=0,start=-1,values=[];
   const flush=()=>{if(values.length){canonicalWords.push({page,start,end:start+values.length,len:values.length,values:values.slice()});values=[];}};
-  for(const ch of parts[block]){const v=runeIndex.get(ch);if(v!==undefined){if(values.length===0)start=offset;values.push(v);offset++;}else if(!/[\\s/]/u.test(ch))flush();}
+  for(const ch of parts[block]){const v=runeIndex.get(ch);if(v!==undefined){if(values.length===0)start=offset;values.push(v);offset++;}else if(!/[\s/]/u.test(ch))flush();}
   flush();
 }
 const redWords=[];
@@ -93,7 +93,7 @@ const p6Ink=ink.pages.find((page)=>page.page===6);
 assert.ok(p6Ink.large_punctuation.some((mark)=>mark[0]===selectedW4.end&&mark[1]===13&&mark[2]==="red"));
 
 const p6Lines=[]; let p6Offset=0;
-for(const rawLine of parts[6].split("\\n")){const count=[...rawLine].filter((ch)=>runeIndex.has(ch)).length;if(!count)continue;p6Lines.push({start:p6Offset,end:p6Offset+count,count});p6Offset+=count;}
+for(const rawLine of parts[6].split("\n")){const count=[...rawLine].filter((ch)=>runeIndex.has(ch)).length;if(!count)continue;p6Lines.push({start:p6Offset,end:p6Offset+count,count});p6Offset+=count;}
 const redStart=71,redEnd=82;
 const blackCounts=p6Lines.map((row)=>{const overlap=Math.max(0,Math.min(row.end,redEnd)-Math.max(row.start,redStart));return {...row,black:row.count-overlap};});
 const upper=blackCounts.filter((row)=>row.end<=redStart).map((row)=>row.black);
