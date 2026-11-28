@@ -50,6 +50,14 @@ Every other red-span-start word has a different GP0. Thus p6 is not merely a pag
 
 This still does not itself authorize carrying that address to p40; that cross-page transfer remains the final unsupported step.
 
+### Signed-tail selector for the exact key
+
+The authenticated post-FOUND clauses now select the p6 key geometry before any p40 value is read. `GOOD LUCK` begins with GP values `[a,qg]=[6,20]`, naming p6 and its balanced line width20. `VERIFY OPENPGP` begins `[a-g,e]=[1,3]`; H2 gives `[-K,q]=[27,4]`.
+
+Across all annotated red text, p6 W3 is the **only** four-rune red word containing `-K=27`. Its following terminal W4 and the closing red13 mark select the marked-edge circumference `[aK,a]=[12,6]`. Together with the two balanced 20-rune black lines, the exact source-selected key is `[20,20,12,6]`.
+
+The clause interpretation was discovered after PATHS, so this is still retrospective evidence about intended routing; it removes the earlier local choice of line value/title pair from the key extraction.
+
 ### Key
 
 Fixed state values are `q=4,g=5,a=6,K=2`. P6 is the sole internal red heading whose surrounding black geometry satisfies all of:

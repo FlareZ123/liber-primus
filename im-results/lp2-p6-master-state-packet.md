@@ -398,6 +398,12 @@ Report: `im-results/lp2-p32-you-selfindex-h3-candidate.md`.
 Reproducer: `sims/lp2_p32_you_selfindex_h3_transfer_sft.cjs`.
 Windows Node22 PASS: **44466418776**.
 
+### Signed-tail selector for p6 key roles
+
+Agent22 later found a source-side selector for the p40 key roles. The authenticated post-FOUND clause `GOOD LUCK` has first GP runes `[a,qg]=[6,20]`, selecting p6 and its balanced width20. The clause `VERIFY OPENPGP` has initials `[a-g,e]=[1,3]`; H2 yields `[-K,q]=[27,4]`. Across all 50 annotated red words, the sole q-length word containing -K is p6 W3. Its following terminal W4 and closing red mark fix the marked-edge circumference `[aK,a]`.
+
+This derives `[qg,qg,aK,a]=[20,20,12,6]` from authenticated source clauses plus original p6 layout without reading p40. The interpretation was recognized after the PATHS fit, so it strengthens source selection without converting the candidate into established plaintext.
+
 ## P40 source-visible key reconstruction from p6 balance (Agent3/Agent22, 28 November)
 
 The red title offsets71..81 is bounded by red13 marks. Color-separated black line counts are:

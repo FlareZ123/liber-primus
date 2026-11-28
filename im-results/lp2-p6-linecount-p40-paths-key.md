@@ -69,6 +69,38 @@ Combining the balanced body counts and marked circumference gives the complete f
 
 No p40 rune value is used in this extraction.
 
+## Signed-tail clauses now select the p6 key geometry
+
+The authenticated message supplies a first-party selector for the two p6 choices that were previously justified only from local balance/title shape. Preserve its authored punctuation after `FOUND`:
+
+~~~text
+GOOD LUCK.
+BEWARE FALSE PATHS.
+VERIFY OPENPGP.
+~~~
+
+The first GP runes of `GOOD LUCK` are `[6,20]=[a,qg]`. Thus `GOOD` independently repeats the p6 selector `a=6`, while `LUCK` names the balanced black-line width `qg=20`. P6 has exactly one black 20-rune line above and one below the title, fixing the doubled prefix `[20,20]`.
+
+The first GP runes of the final clause are `VERIFY OPENPGP = [1,3]=[a-g,e]`. Apply the same two-coordinate H operation:
+
+~~~text
+H([a-g,e]) = [-K,q] = [27,4].
+~~~
+
+Now charge that typed selector against the annotated red corpus: among **50 complete red words**, nine have length `q=4`, and exactly **one** contains literal `-K=27`—p6 W3 at offsets76..79, `[a,-K,b,K+b]`. Its immediately following terminal title word is W4=`[-b,aK]`. The closing red13 marker lies at offset82 immediately to W4's right, so marked-edge circumference gives `[aK,a]=[12,6]`.
+
+Therefore the signed source plus original p6 geometry selects the exact key without consulting p40:
+
+~~~text
+LUCK first rune qg -> balanced pair [20,20]
+VERIFY OPENPGP -> H -> [-K,q] -> unique red W3 -> terminal W4
+marked-edge circumference -> [aK,a] = [12,6]
+key = [20,20,12,6].
+~~~
+
+This removes the earlier freedom to choose the repeated line value or adjacent title pair from the successful inverse. The clause-to-title interpretation was discovered after PATHS, so chronology remains a caveat, but every numeric key coordinate and title-role choice is now selected by authenticated source material plus original layout rather than by p40 ciphertext.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
 ## Finite charges
 
 The original broad charge remains a discovery-order control. Choose any repeated p6 line count `r in {20,22,24}`, any ordered title atoms `x,y`, form `[r,r,x,y]`, test both signs: **243 distinct keys**. Grant every coordinate permutation: **1,389 distinct keys**, 52 with zero GP sum. Across the established **62** authenticated four-rune source/page pairs having exactly one complete same-GP0 receiver, both families have one hit:
@@ -172,7 +204,7 @@ The causal route is materially tighter:
 4. the state-typed, closing-marked title circumference selects `[12,6]`;
 5. exact subtraction returns PATHS.
 
-The remaining objection is chronology. The balance/anchor/circumference grammar was recognized after the PATHS inverse was known. It is strongly source-constrained and removes the earlier free numeric H-role choice, but it is still post-discovery structural compression. Promotion to established plaintext/key requires a pre-existing authored instruction that explicitly selects this grammar or a fresh ciphertext receiver predicted under the frozen rule before opening it.
+The remaining objection is chronology, not numeric key freedom. The signed tail now selects `qg=20` and, through `VERIFY OPENPGP -> H([-K,q])`, the unique red W3 followed by terminal W4; the original marked edge fixes `[aK,a]`. This source rule was recognized after PATHS, so it remains retrospective as an interpretation even though it no longer reads p40 to choose any key coordinate. Promotion still requires an independently anticipated use of this packet grammar or a fresh ciphertext prediction.
 
 The prospectively frozen p41 VERIFY same-state transfer and the older sealed p42 OPENPGP same-state holdout are both negative; those failed receiver classes cannot be used as prospective confirmation.
 
