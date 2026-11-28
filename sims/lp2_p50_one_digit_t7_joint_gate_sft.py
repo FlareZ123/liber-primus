@@ -225,6 +225,86 @@ assert len(nonempty_field_rows) == 14
 assert field_family_bonferroni < 0.0001
 
 
+def simulate_m35_open_gate(reps: int = 30000, seed: int = 3308) -> dict[str, object]:
+    # Concrete count-law bridge:
+    # - outside 0D: 35 hidden states, 29 visible + 6 silent, with immediate
+    #   hidden-state repetition forbidden. The visible-repeat law is
+    #   (35-29)/(29*(35-1)) = 6/(29*34).
+    # - at 0D: disable the hidden no-repeat restriction. Conditioned on visible
+    #   output, adjacent runes are iid uniform GP29, so repeat probability=1/29.
+    # This supplies fixed probabilities rather than fitting the two observed
+    # class rates. T7 remains a held-out ordering diagnostic.
+    n_in = len(small_decimal_positions)
+    k_in = small_decimal_hits
+    n_out = len(valid) - n_in
+    k_out = len(events) - k_in
+    p_out = 6 / (29 * 34)
+    p_in = 1 / 29
+    assert (n_in, k_in, n_out, k_out) == (251, 10, 12650, 76)
+
+    # Exact-count fit diagnostics.
+    expected_out = n_out * p_out
+    expected_in = n_in * p_in
+    assert abs(expected_out - 76.97768762677485) < 1e-12
+    assert abs(expected_in - 8.655172413793103) < 1e-12
+
+    # Conditional distribution of open-gate count given exactly 86 events.
+    states: list[int] = []
+    logs: list[float] = []
+    for k in range(87):
+        kout = 86 - k
+        if k <= n_in and kout <= n_out:
+            states.append(k)
+            logs.append(log_binom(n_in, k, p_in) + log_binom(n_out, kout, p_out))
+    cdf = normalized_cdf(logs)
+
+    # Convert normalized CDF back to point weights for conditional summaries.
+    weights = [cdf[0]] + [cdf[i] - cdf[i - 1] for i in range(1, len(cdf))]
+    conditional_mean_open = sum(k * w for k, w in zip(states, weights))
+    conditional_tail_ge_10 = sum(w for k, w in zip(states, weights) if k >= 10)
+    assert abs(conditional_mean_open - 8.693852992471205) < 1e-12
+    assert abs(conditional_tail_ge_10 - 0.36908024433615977) < 1e-12
+
+    open_positions = small_decimal_positions
+    closed_positions = [i for i in valid if (i & 255) not in small_decimal_set]
+
+    rng = random.Random(seed)
+    samples: list[float] = []
+    exceed = 0
+    for _ in range(reps):
+        kin = states[draw_index(rng, cdf)]
+        event_sample = sorted(
+            rng.sample(open_positions, kin)
+            + rng.sample(closed_positions, 86 - kin)
+        )
+        value = t7(event_sample)
+        samples.append(value)
+        exceed += value >= observed_t7
+
+    samples.sort()
+    return {
+        "m_hidden_states": 35,
+        "visible_states": 29,
+        "silent_states": 6,
+        "outside_repeat_probability": p_out,
+        "open_gate_repeat_probability": p_in,
+        "observed_outside": [k_out, n_out],
+        "observed_open_gate": [k_in, n_in],
+        "expected_outside_repeats": expected_out,
+        "expected_open_gate_repeats": expected_in,
+        "expected_total_repeats": expected_out + expected_in,
+        "conditional_mean_open_hits_given_86": conditional_mean_open,
+        "conditional_tail_open_hits_ge_10_given_86": conditional_tail_ge_10,
+        "reps": reps,
+        "seed": seed,
+        "median_t7": samples[reps // 2],
+        "q025_t7": samples[int(0.025 * reps)],
+        "q975_t7": samples[int(0.975 * reps)],
+        "t7_exceed": exceed,
+        "t7_add_one_upper": (exceed + 1) / (reps + 1),
+    }
+
+
 def simulate_two_rate(reps: int = 30000, seed: int = 3301) -> dict[str, float | int | list[float]]:
     # Give the one-digit mask its observed MLE rates. Conditioning on exactly 86
     # events removes total-count mismatch, making this a favorable held-out T7 test.
@@ -377,11 +457,13 @@ def simulate_adjacent_high_digit_pair(reps: int = 30000, seed: int = 3303) -> di
     }
 
 
+m35_open_gate = simulate_m35_open_gate()
 two_rate = simulate_two_rate()
 zero_dose = simulate_zero_dose()
 adjacent_pair = simulate_adjacent_high_digit_pair()
 
 # The result is intentionally coarse enough to remain stable across Python versions.
+assert m35_open_gate["t7_add_one_upper"] < 0.005
 assert two_rate["add_one_upper"] < 0.005
 assert zero_dose["add_one_upper"] < 0.005
 assert adjacent_pair["add_one_upper"] < 0.005
@@ -419,6 +501,7 @@ print(json.dumps({
         "field_classes": field_rows,
     },
     "observed_t7": observed_t7,
+    "m35_small_decimal_open_gate": m35_open_gate,
     "two_rate_conditioned_exact86": two_rate,
     "three_zero_count_rate_conditioned_exact86": zero_dose,
     "adjacent_high_digit_pair_conditioned_exact86": adjacent_pair,
