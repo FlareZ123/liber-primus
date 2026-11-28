@@ -19,6 +19,10 @@ const corpus = JSON.parse(
 const ink = JSON.parse(
   fs.readFileSync("resources/liber-primus/lp2-ink-annotations.json", "utf8")
 );
+const transcription = fs.readFileSync(
+  "resources/liber-primus/lp2-transcription.txt",
+  "utf8"
+);
 const pages = corpus.pages.filter((p) => p.page >= 0 && p.page <= 55);
 assert.strictEqual(pages.length, 56);
 
@@ -172,6 +176,56 @@ assert.deepStrictEqual(hStateSurvivors, [
   { p: 23, e: 3, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, BminusA: 11 },
 ]);
 
+// Held-object scan: use only the state reconstructed above and the fixed H
+// operation to find physical rune lines whose printed fragments expose both
+// [b,K] and [A,B] as outer-H pairs. Do not require literal "DH", page number,
+// line number, fragment count, or p28 during selection.
+const parts = transcription.split(/^\s*%\s*$/m);
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const runeValues = (textValue) =>
+  [...textValue]
+    .map((char) => runeIndex.get(char))
+    .filter((value) => value !== undefined);
+const lineFragments = (rawLine) =>
+  rawLine
+    .split(/[-.]/u)
+    .map(runeValues)
+    .filter((fragment) => fragment.length > 0);
+const outerH = (fragment) =>
+  fragment.length < 2 ? [] : H(fragment[0], fragment.at(-1));
+const lineRows = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const part = parts[page <= 49 ? page : page - 1];
+  const physicalLines = part.trim().split("/");
+  for (let i = 0; i < physicalLines.length; i += 1) {
+    const fragments = lineFragments(physicalLines[i]);
+    if (!fragments.length) continue;
+    lineRows.push({
+      page,
+      line: i + 1,
+      pairs: fragments.map(outerH),
+    });
+  }
+}
+assert.strictEqual(lineRows.length, 594);
+const packetMatches = lineRows.filter((row) => {
+  const hasBK = row.pairs.some(
+    (pair) => pair.length === 2 && pair[0] === hStateSurvivors[0].b &&
+      pair[1] === hStateSurvivors[0].K
+  );
+  const hasAB = row.pairs.some(
+    (pair) => pair.length === 2 && pair[0] === hStateSurvivors[0].A &&
+      pair[1] === hStateSurvivors[0].B
+  );
+  return hasBK && hasAB;
+});
+assert.deepStrictEqual(packetMatches, [{
+  page: 28,
+  line: 6,
+  pairs: [[15, 2], [14, 4], [12, 12], [23, 12], [8, 19]],
+}]);
+
 // Charge the remaining two edge values as (e,A), both signs of K=±(g-e),
 // both integer relations b-K=13 / b+K=13, and every nonzero DH exponent a.
 // No p28 rune value enters this family.
@@ -236,5 +290,5 @@ console.log("mayfly counts:", [c24, c25, c26]);
 console.log("edge labels:", edge, "=", { e, g, A });
 console.log("contiguous triple hits:", JSON.stringify(hits));
 console.log("H closures:", JSON.stringify(hClosures));
-console.log("H-state survivors:", JSON.stringify(hStateSurvivors));
+console.log("H-state survivors:", JSON.stringify(hStateSurvivors));\nconsole.log("state-packet line matches:", JSON.stringify(packetMatches));
 console.log("charged independent DH survivors:", JSON.stringify(survivors));
