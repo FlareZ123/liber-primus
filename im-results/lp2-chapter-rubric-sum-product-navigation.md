@@ -56,6 +56,35 @@ The same integrated state packet also charges the typographic operand choice wit
 
 The second control's per-page candidate pool counts are `[11,6,10,7,2,5,13,8,5]` in the chapter order above. Results are fully deterministic for the recorded seed. Overlapping words, source-conditioned punctuation, nonuniform GP rune frequencies, the ability to try alternate checksum operations and the post hoc recognition of p40 as a destination mean the small conditional counts **cannot be interpreted as the probability that a real author intentionally encoded this route**. The exact fixed-marginal permutation gives a different null and deliberately prevents hiding the selection issue behind one deceptively small rate.
 
+## P40 is a mirrored-section switch, not a p40-only STOP marker
+
+The original-scan geometry supplies an important terminal discriminator independent of the rejected p3 field route. A pixel-exact census of all 75 original JPEGs finds that the fixed outer crops
+
+```text
+left  x=0..379,    y=600..2999
+right x=2020..2399,y=600..2999
+```
+
+from archive `57.jpg` are reproduced **exactly** on archive images **57 through 72 and nowhere else**. Since LP2 p0 is archive17, this is exactly **LP2 p40 through p55**, a 16-page section. The 16 center-body crop hashes are all distinct, so the equality is the reused mirrored foliage frame rather than duplicated page images.
+
+This changes the p40 dead-end interpretation. The border cannot mean “STOP at p40”: p54 is a live predecessor in the route and carries the same exact frame, as do the p49–p51 numeric-panel pages. Instead, p40 is the **first page of a source-visible mirror-framed section**, and the p50 panel is embedded inside that section. Reflection is therefore present as a section-level operation cue before the p50 sink/mirror circuit is consulted.
+
+The local operand grammar independently sharpens the switch. P40's visible red word lengths are `[3,5]=[e,g]`; its adjacent black descriptor is `[5,27,3]=[g,-K,e]`. After `IN=27` is consumed by the incoming p54 hop, the remaining endpoints `[length,OUT]=[5,3]=[g,e]` are already in physical row/column order for p50's independently fixed ROAD row5 / MAP column3. Their intersection is cell43, whose base59 successor is72, the exact midpoint of the pre-existing mirror186→sink189 return path; cell43 itself is exactly five pointer edges from sink189, equal to `g=5`, and successor72 is four edges away, equal to `q=4`.
+
+Thus #3435's strongest visual alternative is resolved as **operation switch rather than terminal STOP**:
+
+```text
+chapter route arrives at p40
+  -> exact mirrored border begins and persists through p55
+  -> terminal local [length,OUT]=[g,e]
+  -> p50 ROAD(g) x MAP(e) = cell43
+  -> base59: 43 -> 72 -> 161 -> 214 -> 247 -> 189
+                     4 edges = q          sink
+       5 total edges from43 = g
+```
+
+The switch remains post-discovery synthesis, not authenticated plaintext recovery, but it is source-visible and stays inside the reached chapter; it does not invent a physical-page fallback. Reproducer: `sims/lp2_p40_mirrored_section_artwork_sft.cjs` for the 75-scan border census and `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs` for the typed p50 consequence.
+
 ## Exact composition with the already-established p50 mirror/sink DH readout
 
 The five-stop route is unusually compatible with a second, **previously independently documented** original object. The p40 chapter contains the physical p49–p51 32×8 panel. Once a player reaches it, the original p50 source has a separate source-motivated (but still unauthenticated as payload decryption) operation: the lowercase `f` digit is never printed; remove it from the base60 alphabet to form radix59, interpret each of the 256 cell values as its next address, and follow the resulting fixed pointer to universal sink **189**. Its source row/column `(23,5)`, original eight-column width, reflected tree artwork and original mirrored cell186 `0J=19` give DH `p=23,g=5,A=8,K=2,B=19`, with computed `a=6,b=15,e=3` and the independently observed eight-pointer return path from186 to189. These facts predate the new chapter route; [the prior standalone p50 source circuit](lp2-p50-base59-pointer-sink-reflection.md) remains the correct primary evidence.
