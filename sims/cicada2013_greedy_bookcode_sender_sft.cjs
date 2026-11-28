@@ -74,7 +74,7 @@ function analyze(raw) {
  const enc=encode(plaintext);const mismatch=enc.out.flatMap((x,i)=>x!==records[i]?[{i,got:x,want:records[i]}]:[]);
  const sourcePunctuationOutput=records.flatMap((record,i)=>/[.:-]/.test(plaintext[i])?[{record,character:plaintext[i]}]:[]);
  const sourcePunctuationStrippedVerses=verses.map(x=>({
-  id:x.id,s:x.s.replace(/[^\\p{L}\\p{N}]/gu,"")
+  id:x.id,s:x.s.replace(/[^\p{L}\p{N}]/gu,"")
  }));
  const strippedDecoded=records.map(record=>{
   if(!record.includes(":"))return record;
