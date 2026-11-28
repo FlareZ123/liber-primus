@@ -182,8 +182,9 @@ This report shows the converse:
 - an independent p50-conditioned hazard fails T7.
 
 The two observations therefore cannot replace one another. A plausible generator needs a joint
-law. The ordered adjacent-high-digit hazard shows that **sharing a visible p50 operand is not
-enough**. The strongest source-facing target is now a stateful period-256 construction in which the
+law. The ordered adjacent-high-digit hazard shows that **sharing a visible p50 operand in a local hazard is not enough**. A later construction resolves the statistical incompatibility by keeping T7 in the separate correlated two-tap renewal clock and using the source gate only as an additional ordinary `1/29` collision branch; that union passes the full battery and both p50 gate checks. [Passing joint union model](lp2-p50-t7-joint-union-model.md).
+
+ The strongest source-facing target is now a stateful period-256 construction in which the
 p50 high digit affects an **interval/update law or another persistent register**, rather than merely
 setting an independent local repeat probability. Such a mechanism must preserve the source-selected
 forward continuous left-endpoint phase while generating the one-step equality-gap dependence.
