@@ -59,5 +59,14 @@ function selfTest(){
  }
  return tests;
 }
-if(typeof module!=="undefined")module.exports={solve,solveRows,legal,selfTest};
+
+function frequency(raw,donors){
+ const c=JSON.parse(raw),t=c.pages.slice(0,56).flatMap(p=>p.indices),cuts=[0,729,1874,3603,5506,6527,7960,9640,12648,12956],head=[13,16,12,20,16,19,10,8,9];
+ const R=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'],ri=new Map(R.map((r,i)=>[r,i]));
+ function gp(s){let out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/ING/g,"NG").replace(/IO/g,"IA").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let i=0;i<w.length;){let x=w.slice(i,i+2);if(!ri.has(x))x=w[i];out.push(ri.get(x));i+=x.length}}return out}
+ function hist(rows,q){const H=Array.from({length:q},()=>Array(29).fill(0));let F=0;for(const row of rows){let j=0;for(const c of row){if(c===0)F++;else H[j++%q][c]++}}const sums=[0,0,0,0,0];for(const h of H){const a=h.slice(1).sort((a,b)=>b-a);for(let k=0;k<5;k++)sums[k]+=a.slice(0,k+1).reduce((s,x)=>s+x,0)}return {F,sums}}
+ function donor(s,n){const a=gp(s),H=new Int32Array(29),min=new Array(5).fill(Infinity);for(let i=0;i<a.length;i++){H[a[i]]++;if(i>=n)H[a[i-n]]--;if(i<n-1)continue;const h=Array.from(H).slice(1).sort((a,b)=>b-a);let k=0;for(let j=0;j<5;j++){k+=h[j];min[j]=Math.min(min[j],k)}}return {windows:a.length-n+1,min}}
+ const out=[];for(const body of [false,true]){const rows=cuts.slice(0,-1).map((v,i)=>t.slice(v+(body?head[i]:0),cuts[i+1])),n=rows.flat().length,ds=donors.map(s=>donor(s,n));for(const q of [8,13]){const h=hist(rows,q),privateS=rows.map(row=>hist([row],q).sums).reduce((s,v)=>s.map((x,i)=>x+v[i]),[0,0,0,0,0]);out.push({body,q,n,F:h.F,shared:h.sums,privateS,donors:ds})}}return out
+}
+if(typeof module!=="undefined")module.exports={solve,solveRows,legal,selfTest,frequency};
 if(typeof require!=="undefined"&&require.main===module){const fs=require("node:fs"),path=require("node:path");console.log(JSON.stringify(solve(fs.readFileSync(path.join(__dirname,"..","resources/liber-primus/lp2-corpus.json"),"utf8"),Number(process.argv[2]||13),Number(process.argv[3]||100000000),process.argv[4]==="free",process.argv[5]==="body"),null,2))}
