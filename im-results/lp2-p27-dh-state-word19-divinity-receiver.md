@@ -25,7 +25,7 @@ p27 opening red fields
   -> uniquely selects (b,B)=(15,19)
 ```
 
-Now use the selected public value **B=19** as a word number on the already selected p27. Under the zero-based word-number convention used by the authenticated signed-word map, p27 word19 is exactly:
+Now use the selected public value **B=19** as a word number on the already selected p27. Under the zero-based origin retained by the finite charge (and independently favored by the authenticated 2016 word-position DH reconstruction), p27 word19 is exactly:
 
 ```
 EORNSOOCAEYEE
@@ -78,9 +78,32 @@ No alternative state value, one-based origin, or state-derived shedding depth pr
 
 This is a finite conditional specificity result, not an authorship probability. The state roles and the idea of applying word-number navigation inside p27 were recognized after extensive work on these objects.
 
+
+## Reversible H8 consequence: the selected core contains a DH-state packet
+
+The B/K receiver selection has a second consequence that does not depend on treating DIUINITY as plaintext. Apply the repository's already recurring canonical outside-in H transform once to the eight selected core runes:
+
+```
+NSOOCAEY
+GP0 = [9,15,3,3,5,24,18,26]
+
+H8 = [12,26,8,27,8,27,4,6]
+   = [aK, B^-1, A, -K, A, -K, q, a].
+```
+
+All roles on the right are fixed by the independently reconstructed DH23/q state. In particular the middle four coordinates are the exact alternating packet
+
+```
+[A,-K,A,-K] = [8,27,8,27].
+```
+
+Charge that four-coordinate feature against every complete 12-rune word on unknown p0–p55 after the *same* depth-`K=2` symmetric shedding. There are 18 such source words. Only p27 offset79 produces the exact middle packet. Thus the already selected B/K receiver has a non-checksum structural consequence under a reversible operation that predates this observation.
+
+The chronology remains restrictive: this exact symbolic H8 packet was recognized **after** inspecting the selected core. The 18-word census is therefore conditional specificity, not a blind discovery probability or proof that H8 is the authored payload inverse. What it buys is a stronger next decision: a future operation proposal should explain why the B/K-selected DIVINITY receiver itself re-emits the DH register under canonical H, rather than treating the core as an arbitrary eight-rune crib.
+
 ## What this resolves
 
-Earlier p27 DIVINITY reports correctly treated the receiver coordinate as unresolved. The signed 2016 message contains one-based words `their` and `numbers`, but by itself does not say which number is page versus word or which page-origin convention to use. The new route does not need that orientation: p27 is already selected by its red/DH state, and **B itself supplies the word number**.
+Earlier p27 DIVINITY reports correctly treated the receiver coordinate as unresolved. The signed 2016 message says that the manuscript words' numbers are the direction, but by itself does not declare a page/word coordinate pair or a universal indexing origin. The new route does not need that orientation: p27 is already selected by its red/DH state, and **B itself supplies the word number**.
 
 The result also makes the old p27 carrier observation more causally useful. The same complete DH state that p27's red rubric helps select now points back into p27 at a unique word, while the shared value supplies the literal shedding depth. This is a coherent local state-to-receiver handoff rather than a checksum search over arbitrary p27 words.
 

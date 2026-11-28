@@ -29,6 +29,18 @@ const parts = read("resources/liber-primus/lp2-transcription.txt").split("%");
 const runeId = new Map(corpus.runes.map((glyph, i) => [glyph, i]));
 const mod29 = (x) => ((x % 29) + 29) % 29;
 const H = (x, y) => [mod29(x - y), mod29(x + y)];
+const outerH = (values) => {
+  assert.equal(values.length % 2, 0);
+  const half = values.length / 2;
+  const output = [];
+  for (let i = 0; i < half; i += 1) {
+    output.push(mod29(values[i] - values[values.length - 1 - i]));
+  }
+  for (let i = half - 1; i >= 0; i -= 1) {
+    output.push(mod29(values[i] + values[values.length - 1 - i]));
+  }
+  return output;
+};
 const page = (n) => {
   const row = corpus.pages.find((x) => x.page === n);
   assert.ok(row, `missing p${n}`);
@@ -222,6 +234,43 @@ assert.deepEqual(hits, [{
   targetIndex0: 16,
 }]);
 
+
+// Independent structural consequence of the same B/K receiver: canonical
+// outside-in H8 on the selected core yields a dense DH-state packet.
+const selectedCoreValues = p27Words[B].values.slice(K, p27Words[B].values.length - K);
+assert.equal(translit(selectedCoreValues), "NSOOCAEY");
+const selectedH8 = outerH(selectedCoreValues);
+assert.deepEqual(selectedH8, [a * K, mod29(26), A, mod29(-K), A, mod29(-K), 4, a]);
+// Explicitly name the independently fixed roles used above.
+const BInverse29 = 26;
+const q = 4;
+assert.deepEqual(selectedH8, [a * K, BInverse29, A, mod29(-K), A, mod29(-K), q, a]);
+
+// Charge the most discriminating four-coordinate held-out feature against
+// every complete 12-rune word on unknown p0-p55 after the same depth-2 shed.
+const allTwelveRuneCores = [];
+for (const pg of corpus.pages.filter((row) => row.page >= 0 && row.page <= 55 && row.page !== 50)) {
+  for (const w of words(pg.page)) {
+    if (w.values.length !== 12) continue;
+    const core = w.values.slice(K, w.values.length - K);
+    const h8 = outerH(core);
+    allTwelveRuneCores.push({
+      page: pg.page,
+      start: w.start,
+      word: translit(w.values),
+      core: translit(core),
+      h8,
+    });
+  }
+}
+assert.equal(allTwelveRuneCores.length, 18);
+const middlePacketHits = allTwelveRuneCores.filter(({ h8 }) =>
+  h8.slice(2, 6).every((value, i) => value === [A, mod29(-K), A, mod29(-K)][i])
+);
+assert.deepEqual(middlePacketHits.map(({ page, start, core }) => ({ page, start, core })), [
+  { page: 27, start: 79, core: "NSOOCAEY" },
+]);
+
 console.log(JSON.stringify({
   classification:
     "finite source-selected receiver; no rune-level plaintext inverse or KDF established",
@@ -240,5 +289,13 @@ console.log(JSON.stringify({
     chargedNonemptyIndexDepthCases: charged,
     hitCount: hits.length,
     hits,
+  },
+  h8Heldout: {
+    selectedH8,
+    symbolic: ["aK", "B^-1", "A", "-K", "A", "-K", "q", "a"],
+    twelveRuneWordCount: allTwelveRuneCores.length,
+    middlePacket: [A, mod29(-K), A, mod29(-K)],
+    middlePacketHits: middlePacketHits.map(({ page, start, core }) => ({ page, start, core })),
+    chronology: "packet roles recognized after inspecting the selected core; conditional specificity, not a blind authorship probability",
   },
 }, null, 2));
