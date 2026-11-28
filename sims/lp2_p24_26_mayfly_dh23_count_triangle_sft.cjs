@@ -111,6 +111,29 @@ const modPow = (base, exponent, modulus) => {
   return Number(result);
 };
 
+// A cleaner source-motivated construction uses the independently established
+// outer-pair operation H(x,y)=(x-y,x+y) mod29. The mayfly values supply
+// H(g,e)=(K,A), then the repeated local 13 frame supplies
+// H(13,K)=(B-A,b). Adding A recovers B; p=23 makes a the discrete log.
+const H = (x, y) => [
+  ((x - y) % 29 + 29) % 29,
+  ((x + y) % 29 + 29) % 29,
+];
+const [sourceK, sourceA] = H(sourceG, e);
+assert.deepStrictEqual([sourceK, sourceA], [2, 8]);
+assert.strictEqual(sourceA, A);
+const [sourceBminusA, sourceBExp] = H(sourceBoundary, sourceK);
+assert.deepStrictEqual([sourceBminusA, sourceBExp], [11, 15]);
+const sourceB = (sourceA + sourceBminusA) % 29;
+assert.strictEqual(sourceB, 19);
+const sourceAVals = [];
+for (let candidate = 1; candidate < sourceP; candidate += 1) {
+  if (modPow(sourceG, candidate, sourceP) === sourceA) sourceAVals.push(candidate);
+}
+assert.deepStrictEqual(sourceAVals, [6]);
+assert.strictEqual(modPow(sourceB, sourceAVals[0], sourceP), sourceK);
+assert.strictEqual(modPow(sourceA, sourceBExp, sourceP), sourceK);
+
 // Charge the remaining two edge values as (e,A), both signs of K=±(g-e),
 // both integer relations b-K=13 / b+K=13, and every nonzero DH exponent a.
 // No p28 rune value enters this family.
@@ -174,4 +197,4 @@ console.log("PASS lp2_p24_26_mayfly_dh23_count_triangle_sft");
 console.log("mayfly counts:", [c24, c25, c26]);
 console.log("edge labels:", edge, "=", { e, g, A });
 console.log("contiguous triple hits:", JSON.stringify(hits));
-console.log("charged independent DH survivors:", JSON.stringify(survivors));
+console.log("H reconstruction:", JSON.stringify({ p: sourceP, e, g: sourceG, a: sourceAVals[0], b: sourceBExp, A: sourceA, B: sourceB, K: sourceK, BminusA: sourceBminusA }));\nconsole.log("charged independent DH survivors:", JSON.stringify(survivors));
