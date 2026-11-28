@@ -1,0 +1,184 @@
+#!/usr/bin/env node
+'use strict';
+
+/*
+ * Agent13 — chapter PRODUCT vs exact visual-frame spacing gate.
+ *
+ * Reuses the independently validated all-scan frame census and the already
+ * frozen #3445 natural OUT-statistic family. The image-derived frame starts
+ * are never chosen from chapter values.
+ */
+
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+
+const root=path.resolve(__dirname,'..');
+
+// Run the exact original-scan census unchanged and expose its source-selected
+// non-singleton LP2 frame runs.
+const visualCode=fs.readFileSync(
+  path.join(__dirname,'lp2_p40_mirrored_section_artwork_sft.cjs'),'utf8'
+);
+const savedLog=console.log;
+console.log=()=>{};
+try{
+  eval(visualCode + `
+    globalThis.__frameNonSingleton = nonSingleton.map(x=>({...x}));
+  `);
+}finally{
+  console.log=savedLog;
+}
+const frameRuns=globalThis.__frameNonSingleton;
+assert.deepEqual(frameRuns,[
+  {lp2Start:1,lp2End:2,length:2},
+  {lp2Start:4,lp2End:7,length:4},
+  {lp2Start:15,lp2End:21,length:7},
+  {lp2Start:27,lp2End:39,length:13},
+  {lp2Start:40,lp2End:55,length:16},
+  {lp2Start:56,lp2End:57,length:2},
+]);
+const frameStarts=frameRuns.map(x=>x.lp2Start);
+const frameStartGaps=frameStarts.slice(1).map((x,i)=>x-frameStarts[i]);
+assert.deepEqual(frameStarts,[1,4,15,27,40,56]);
+assert.deepEqual(frameStartGaps,[3,11,12,13,16]);
+const gapSet=new Set(frameStartGaps);
+
+// Reconstruct the exact #3445 chapter operands from canonical resources.
+const corpus=JSON.parse(fs.readFileSync(
+  path.join(root,'resources/liber-primus/lp2-corpus.json'),'utf8'
+));
+const ink=JSON.parse(fs.readFileSync(
+  path.join(root,'resources/liber-primus/lp2-ink-annotations.json'),'utf8'
+));
+const transcription=fs.readFileSync(
+  path.join(root,'resources/liber-primus/lp2-transcription.txt'),'utf8'
+).replace(/\r/g,'').split(/^\s*%\s*$/m);
+const runeId=new Map(corpus.runes.map((r,i)=>[r,i]));
+const primes=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109];
+const chapters=[0,3,8,15,23,27,33,40,54];
+const mod29=x=>((x%29)+29)%29;
+
+/** @param {number} page */
+function chapterRecord(page){
+  const source=corpus.pages.find(x=>x.page===page).indices;
+  const ann=ink.pages.find(x=>x.page===page);
+  let redEnd=ann.red_spans[0].length;
+  for(let i=1;i<ann.red_spans.length&&ann.red_spans[i].start===redEnd;i+=1){
+    redEnd+=ann.red_spans[i].length;
+  }
+
+  const text=transcription[page>=51?page-1:page];
+  const words=[]; let current=[]; let offset=0;
+  const emit=()=>{if(current.length){words.push(current.slice());current=[];}};
+  for(const ch of text){
+    if(runeId.has(ch)){
+      assert.equal(source[offset],runeId.get(ch),`transcription mismatch p${page}@${offset}`);
+      current.push({offset,value:source[offset]});
+      offset+=1;
+    }else if('-.&$§'.includes(ch)){
+      emit();
+    }
+  }
+  emit();
+  assert.equal(offset,source.length);
+  const firstBlack=words.find(w=>w[0].offset===redEnd);
+  assert.ok(firstBlack);
+  return {page,black:firstBlack.map(x=>x.value)};
+}
+const records=chapters.map(chapterRecord);
+
+const statistics={
+  length:w=>w.length%29,
+  rune_sum:w=>mod29(w.reduce((a,b)=>a+b,0)),
+  rune_product:w=>w.reduce((a,b)=>mod29(a*b),1),
+  prime_sum:w=>mod29(w.reduce((a,b)=>a+primes[b],0)),
+  prime_product:w=>mod29(w.reduce((a,b)=>a*primes[b],1)),
+  first:w=>w[0],
+  last:w=>w.at(-1),
+  first_plus_last:w=>mod29(w[0]+w.at(-1)),
+  first_times_last:w=>mod29(w[0]*w.at(-1)),
+};
+assert.deepEqual(records.map(r=>[
+  r.page,
+  statistics.length(r.black),
+  statistics.rune_sum(r.black),
+  statistics.rune_product(r.black),
+]),[
+  [0,4,15,23],[3,4,9,11],[8,3,23,2],[15,4,22,13],
+  [23,8,25,16],[27,7,2,19],[33,2,5,3],[40,5,27,3],[54,8,19,27],
+]);
+
+// Freeze the same #3445 OUT family: SUM stays the independently supported IN.
+const outNames=[
+  'length','rune_product','prime_sum','prime_product',
+  'first','last','first_plus_last','first_times_last',
+];
+
+/** @param {string} name @param {object[]} rows */
+function overlap(name,rows){
+  const values=[...new Set(rows.map(r=>statistics[name](r.black)))].sort((a,b)=>a-b);
+  return {values,overlap:values.filter(x=>gapSet.has(x))};
+}
+const allCoverage=Object.fromEntries(outNames.map(name=>[name,overlap(name,records)]));
+assert.deepEqual(
+  Object.fromEntries(outNames.map(name=>[name,allCoverage[name].overlap.length])),
+  {
+    length:1,
+    rune_product:4,
+    prime_sum:0,
+    prime_product:0,
+    first:1,
+    last:1,
+    first_plus_last:2,
+    first_times_last:1,
+  }
+);
+
+// Dead ends are defined only by the already-published SUM->PRODUCT graph.
+const inValues=records.map(r=>statistics.rune_sum(r.black));
+const productEdges=records.map(r=>{
+  const out=statistics.rune_product(r.black);
+  return inValues.flatMap((value,i)=>value===out?[i]:[]);
+});
+const dead=records.filter((r,i)=>productEdges[i].length===0);
+assert.deepEqual(dead.map(r=>r.page),[3,15,23,33,40]);
+
+const deadCoverage=Object.fromEntries(outNames.map(name=>[name,overlap(name,dead)]));
+assert.deepEqual(deadCoverage.rune_product.values,[3,11,13,16]);
+assert.deepEqual(deadCoverage.rune_product.overlap,[3,11,13,16]);
+assert.deepEqual(
+  Object.fromEntries(outNames.map(name=>[name,deadCoverage[name].overlap.length])),
+  {
+    length:0,
+    rune_product:4,
+    prime_sum:0,
+    prime_product:0,
+    first:1,
+    last:0,
+    first_plus_last:2,
+    first_times_last:1,
+  }
+);
+
+// The one visual gap not used by any chapter PRODUCT is independently known
+// p6 state u=aK=12. This is reported as a state observation, not used to pick
+// PRODUCT or alter the frozen family.
+const productGapSet=new Set(deadCoverage.rune_product.overlap);
+const unmatchedGaps=frameStartGaps.filter(x=>!productGapSet.has(x));
+assert.deepEqual(unmatchedGaps,[12]);
+
+console.log(JSON.stringify({
+  status:'PASS',
+  classification:'independent common visual cue for PRODUCT; post-discovery structural authentication, not plaintext',
+  frame:{runs:frameRuns,starts:frameStarts,startGaps:frameStartGaps},
+  frozenOutFamily:allCoverage,
+  productGraphDeadEnds:{
+    pages:dead.map(r=>r.page),
+    coverage:deadCoverage,
+    distinctProducts:deadCoverage.rune_product.values,
+    unmatchedVisualGap:unmatchedGaps[0],
+    unmatchedStateLabel:'u=aK',
+  },
+  decision:'Within the pre-existing #3445 OUT family, rune PRODUCT is uniquely coupled to exact original-frame spacing: all four distinct SUM->PRODUCT dead-end outputs {3,11,13,16} occur in the five frame-start gaps [3,11,12,13,16]. This supplies a common source-side PRODUCT cue; it does not by itself prove the route or define a dead-end navigation fallback.',
+},null,2));
