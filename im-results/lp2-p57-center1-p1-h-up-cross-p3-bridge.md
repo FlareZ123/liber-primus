@@ -101,6 +101,38 @@ p57 center1
 
 This route joins an independently established p23 receiver program. Once p23 is selected, its five isolated dots give p23→p5, and p5's eight visible spiral curls give p5→p8, recovering the already-frozen `[23,8]` DH-state path. The visual continuation remains provisional, but this invocation now supplies a new upstream reason to arrive at p23 without starting from the p15 `[23,8]` output.
 
+## Two independent readings of the p1 state converge on p8
+
+The same source state `[1,13]` has a second, manuscript-local reading that does **not** use the Q orbit or signed-source word register:
+
+```text
+[1,13] in canonical GP = U,P = UP.
+```
+
+The original opening pages have a matched upper/lower pair of small infinity ornaments. Thus the literal local reading is
+
+```text
+UP -> upper infinity -> ∞ -> 8 -> p8.
+```
+
+The `∞ -> 8` step is a visual solve-path hypothesis, but p8 was already fixed independently and contains the selective DH-state circuit. This gives two materially different downstream channels from the prospectively selected p1 center:
+
+```text
+channel A:
+p1 [1,13] -> GP "UP" -> upper ∞ -> 8 -> p8
+
+channel B:
+p1 [1,13] = Q^18 -> MAP/THE WAY
+ -> DIRECTION29 -> ROAD23 -> p23 -> five dots -> p5
+ -> eight curls -> p8.
+```
+
+Both land on the same independently structured receiver **p8**. The channels share the p1 state and the general numbers-as-direction grammar, so this is not statistical independence. Their consumers are nonetheless different: one uses only canonical GP spelling plus p1 artwork, while the other uses finite-field exponentiation, authenticated signed-source labels and the already-published p23/p5 art walk.
+
+P8 then supplies a prospective return into the opening pages: its unique first-black descriptor has `SUM=23=IN` and `PRODUCT=2=OUT`, selecting p2; p2's odd 201-rune stream has exact center rune `N`, which can again select the north/upper infinity and hence return to p8. That secondary `p8 -> p2 -> N -> ∞ -> 8 -> p8` loop is documented separately and remains explicitly provisional.
+
+The orientation dependency is bounded. If the p1-style center H operand order is allowed to float across all 23 even pages, four of 46 page/orientation presentations reach a ROAD23 coordinate after the same Q/DIRECTION29 stride: p0 left→right, p1 right→left, p18 left→right and p47 left→right. Therefore the ROAD uniqueness claim is correctly scoped to the pre-existing upright/right artwork orientation; it is not orientation-free.
+
 ## Secondary p1 artwork bridge to p3
 
 The local GP spelling **UP** also has a literal target on p1: its upright three-bar cross. Counting the three horizontal bars gives a simple provisional `3 -> p3` continuation, where p3 is independently the source of the field relation used by Q.
@@ -144,7 +176,7 @@ The fixed historical row permutation gives score **-3.416230853368736** and read
 - existing `Q=[17,24]` has `Q^18=[1,13]`; Agent2 independently documented its signed readout `THE WAY`;
 - word18 is MAP, word23 ROAD, word29 DIRECTION in the authenticated signed-2016 source;
 - existing DIRECTION29/Q stride sends `[1,13]` exactly to `[0,23]=HELLO/ROAD`;
-- in the complete 23-page even-center charge, p1 alone reaches any ROAD23 coordinate after that same stride;
+- in the complete 23-page even-center charge under the source-fixed right/upright orientation, p1 alone reaches any ROAD23 coordinate after that same stride; allowing both operand orders yields four ROAD presentations and is explicitly controlled;
 - the complete center-out H and two obvious historical-14 body consumers are nonprose.
 
 **Interpretive/provisional:**
@@ -152,6 +184,7 @@ The fixed historical row permutation gives score **-3.416230853368736** and read
 - reading p57's final center1 as physical page1;
 - treating H as the intended p1 center opcode and the upright/right artwork orientation as its operand order;
 - consuming `[0,23]` as ROAD23→physical p23;
+- reading `UP` as the upper opening-page infinity and `∞` as 8→p8;
 - iterating the established p23→p5→p8 visual count route;
 - the secondary upright-cross bar-count→p3 bridge.
 
