@@ -34,6 +34,50 @@ A direct steganographic interpretation is closed. The literal uppercase `M5N7` w
 
 The earlier p15 full-integer H serializer remains a compatible secondary structure: its four authored q-blocks have digit counts `[8,9,10,11]`, whose page-count dynamics select the p6↔p8 cycle with p7 fixed. That length effect spans nearby radices and therefore does not authenticate base29 by itself.
 
+
+## P53 continuation: signed-source 3QO selects a held-out DH-colored page
+
+Reuse the already selected BASE29 digit-sum operation on the authenticated source output `3QO=[3,26,24]`:
+
+```
+3 + 26 + 24 = 53.
+```
+
+This selects physical p53 before inspecting its rune identities. Its original color geometry then matches four quantities predicted from the independently reconstructed DH state:
+
+| p53 source fact | observed | DH-derived prediction |
+|---|---:|---|
+| total GP runes | **179 = 65₍₂₉₎** | `a*29+g = 6*29+5` |
+| terminal red suffix | **51 = 1M₍₂₉₎** | `29+(p-1) = 29+22` |
+| black prefix before red | **128 = 4C₍₂₉₎** | `179-51` |
+| terminal red punctuation | **13 dots** | `b-K = 15-2` |
+
+P53 is the only p0–p55 page with 179 runes, and its 51-rune red suffix is the only red span of length51. The route therefore predicts a specific original page layout, not a plaintext score.
+
+The red51 length also factors with independently reconstructed state values:
+
+```
+51 = e * (b+K) = 3 * 17.
+```
+
+Reshape the original red suffix in source order as three rows of17. Without touching rune identities semantically, its row aggregates are:
+
+```
+row sums mod29     = [13,27,14] = [b-K,-K,-b]
+row products mod29 = [19,19,0]  = [B,B,F].
+```
+
+Across all **10,206** within-page 51-rune windows on p0–p55, the complete ordered sum+product fingerprint occurs **once**, at p53 offset128. The sum tuple alone occurs twice and the product tuple alone occurs twice; their conjunction is unique. This is a finite corpus census after discovery, not an authorship probability.
+
+A direct consumer was frozen from the same geometry. P55 is independently linked to p53 by the shared moth artwork and also satisfies `53+K=55`; it has exactly17 visible page-local segments. Use the p53 3×17 **columns** as 17 ordered three-rune keys, one per p55 segment, repeated within that segment at phase0. Both additive signs remain nonprose: subtraction scores below untouched p55, and addition remains far below solved p57. The exact inverse/replay and a solved-p57-shaped plant pass.
+
+**Decision:** preserve the p53 3×17 aggregate state packet; reject the direct p53-column→p55 segment additive consumer. Do not tune column order, phase, reversal, or signs.
+
+Reproducers:
+- full route plus p53 held-out geometry: `sims/lp2_base29_selfindex_m5n7_p57_shed_sft.cjs`, CI **46142221495**, PASS;
+- p53 3×17 fingerprint and p55 direct consumer: `sims/lp2_p53_dh_3x17_p55_columntriplet_sft.cjs`, CI **46142374043**, PASS.
+
+
 ## P15 integer H4 / BASE29 serializer
 
 The four authored q=4 spiral blocks give:
@@ -278,11 +322,20 @@ A=8, B=19, K=2
 common H value 15 -> p15
         v
 red3299 + K2 = signed-source 3301
+        |
+BASE29 output 3QO; digit sum 53
+        v
+p53 held-out geometry:
+179 total / 128 black / 51 red / 13 dots
+        |
+red51 = 3x17; unique row aggregate state packet
+        |
+direct p55 column-triplet consumer: negative
 ```
 
-The route reconstructs the complete authenticated DH state and closes it back onto p15. This is materially stronger than a generic state-label coincidence because each transition is selected by an earlier source object: historical radix, historical zero-based filenames, original rune counts, the solved p57 instruction, standard DH arithmetic, and the independently preserved 2013 protocol.
+The route reconstructs the complete authenticated DH state, closes it back onto p15, and then predicts held-out p53 color geometry. This is materially stronger than a generic state-label coincidence because each transition is selected by an earlier source object: historical radix, historical zero-based filenames, original rune counts, the solved p57 instruction, standard DH arithmetic, and the independently preserved 2013 protocol.
 
-What remains missing is the **next reversible operation on unknown ciphertext**. The direct periodic additive interpretations and literal `M5N7` OutGuess password are closed; the p57-derived `5N` OutGuess key is separately gated. The next useful experiment should begin from the source-derived ordered DH state or the exact p6–p9 two-column matrix and make a fixed prediction on an untouched original object before any language grading.
+What remains missing is the **next reversible operation on unknown ciphertext**. The direct periodic additive interpretations, literal `M5N7` OutGuess password, and p53-column→p55 additive consumer are closed; the p57-derived `5N` OutGuess key is separately gated. The next useful experiment should begin from the source-derived ordered DH state or the exact p6–p9 two-column matrix and make a fixed prediction on an untouched original object before any language grading.
 
 The p15 integer-H / page-count length cycle is retained only as secondary corroborating geometry. Its radix-span caveat prevents it from carrying the primary causal claim.
 
@@ -290,6 +343,8 @@ The p15 integer-H / page-count length cycle is retained only as secondary corrob
 
 - Source-visible self-index -> M5N7 -> p57 -> full-DH reconstruction SFT:
   `sims/lp2_base29_selfindex_m5n7_p57_shed_sft.cjs`
+- P53 3x17 fingerprint / p55 column-consumer SFT:
+  `sims/lp2_p53_dh_3x17_p55_columntriplet_sft.cjs`
 - Main serializer / staircase / page-count-cycle SFT:
   `sims/lp2_p15_base29_integer_h4_serializer_sft.cjs`
 - Literal M5N7 pinned OutGuess census:
