@@ -97,14 +97,37 @@ This upgrades receiver selection for p36, p41 and p42 while leaving their post-t
 
 See `im-results/lp2-p6-schedule-qF-numbered-receiver-grammar.md` and `sims/lp2_p6_schedule_qF_numbered_receiver_sft.cjs`.
 
+## Coupled q-block receiver grammar
+
+The source-only schedule now resolves to the full per-page GP arity vector
+
+~~~text
+[e,q,K,g | q | q,a,g,q | a,g+K]
+= [3,4,2,5 | 4 | 4,6,5,4 | 6,7].
+~~~
+
+This is unique to source32..42 under the charged within-block family; a broader charge over all 24 labeled block-role orders still leaves only two hits, both on the same source interval, with printed p6 order resolving the sole boundary ambiguity.
+
+More importantly, p6's literal edge packet
+
+~~~text
+[q,K,aK,p-1] = [4,2,12,22]
+~~~
+
+equals the lane-by-lane GP0 difference between the selected second q-block receivers p37..p40 and first q-block receivers p32..p35. Holding the independently selected p37..p40 anchors fixed and enumerating every p6-arity-compatible complete-group sequence on p32..p35 predicts p33 start132 and p35 start25 uniquely; p32 narrows to starts1/30 and p34 to starts4/249, exactly the two ambiguities already resolved by their independent self-index and THEIR-RISE routes.
+
+Across all 24 packet-coordinate permutations and both directions, 46/48 fail on at least one page. The only alternative survivor predicts p33 start185 and p34 start105; the literal printed edge order is the only charged orientation compatible with the full existing q-block route.
+
+This coupling was discovered after the receivers and remains retrospective. It therefore does not authenticate the source words as plaintext, but it replaces eight independent receiver searches with one provisional paired-lane rule. The missing q-block object is now a coordinatewise key serializer or a fresh packet prediction, not merely another local GP0 collision. See [the detailed report](lp2-p6-qblock-edge-gp0-coupling.md).
+
 ## Complete local-inverse corridor
 
 | Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
 |---:|---|---|---|---|
-| 32 / p32 | YOU | canonical body word32, start120 | H3 `[K,0,q]` | strong local |
-| 33 / p33 | WILL | canonical body word33, start132 | H4 `[0,-K,g,2a]` | strong local |
-| 34 / p34 | BE | body34 receiver from p33 THEIR-RISE handoff | direct `[K,K]` | strong local |
-| 35 / p35 | FOUND | canonical body word35 | H5 `[-e,e,g,K,-g]` | strong local |
+| 32 / p32 | YOU | self-indexed first full-stop endpoint, start30 `[0,3,2]` | H3 `[K,0,q]` | strong local; edge packet narrows arity pool to starts1/30 |
+| 33 / p33 | WILL | canonical complete word start132 `[3,15,17,22]` | H4 `[p,A,K,-K]` | strong local; edge packet selects start132 uniquely |
+| 34 / p34 | BE | start4 `[12,23]`, selected from edge-packet starts4/249 by p33 THEIR-RISE handoff | H2 `[B,0]` | strong local |
+| 35 / p35 | FOUND | adjacent packet starts25..29 `[19,17,19,24,11]` | H5 `[K,g-a,A-B,0,g+K]` | strong local; edge packet selects start25 uniquely |
 | 36 / p36 | GOOD | p6 singleton block; unique `p_i/word_i` center-q receiver start169; delete `q=4` | `[p+K,B,-K,-e]` | target-blind receiver; strong local |
 | 37 / p37 | LUCK | canonical word37, start146 | H4 `[B,0,K,g]` | strong local |
 | 38 / p38 | BEWARE | section5 first word, start57 | H6 `[K-b,-g,p,p-e,0,-b]` | strong local |
