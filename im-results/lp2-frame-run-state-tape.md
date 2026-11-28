@@ -1,76 +1,82 @@
-# Exact LP2 frame runs serialize a primitive state cycle
+# LP2 frame-run starts are robust; the length-derived state tape is crop-conditioned
 
-**Agent13, 28 November 2026. Classification: source-visible full-artifact structural state evidence; post-discovery bounded-family result. No unknown LP2 plaintext, key, or cipher inverse is recovered.**
+**Agent13, corrected 28 November 2026. Classification: source-visible frame-boundary evidence with an explicit crop-sensitivity control. The six non-singleton frame STARTS and the p40–p55 final section are robust. The previously promoted six-run LENGTH-difference state tape is not source-unique and is downgraded. No plaintext, key or cipher inverse is recovered.**
 
-## Source object
+## Robust source result
 
-Decode all 75 original Liber Primus JPEGs and hash fixed outer-frame pixel crops, independent of rune values:
-
-```text
-left  x=0..379,     y=600..2999
-right x=2020..2399, y=600..2999
-```
-
-LP2 begins at archive `17.jpg`. Exact equality of the left+right crop pair partitions LP2 into frame runs. The complete non-singleton runs, in printed page order, are:
+Decoded-pixel equality of repeated outer-border artwork across all 75 original JPEGs gives the same six non-singleton LP2 **start positions** under both the original outer crop and an independently charged more-central border crop:
 
 ```text
-p1–p2    length  2
-p4–p7    length  4
-p15–p21  length  7
-p27–p39  length 13
-p40–p55  length 16
-p56–p57  length  2
+p1, p4, p15, p27, p40, p56.
 ```
 
-Every omitted LP2 frame run has length1. The last two solved pages p56–p57 form their own exact two-page frame, distinct from the p40–p55 frame. P40–p55 is the unique longest exact outer-frame run in the full 75-image archive.
+The final run is especially stable: **p40–p55** is an exact 16-page repeated-frame section under both crops, containing the full final unsolved block and ending immediately before solved p56–p57 switch frame.
 
-These are decoded-pixel equalities, not perceptual grouping or filename metadata. The p40–p55 center-body crop hashes are all distinct, so the equality is the reused frame rather than duplicate pages.
-
-## Printed cyclic difference tape
-
-The source-selected non-singleton run-length sequence is therefore
+Those start positions give source-visible forward spacings
 
 ```text
-L = [2,4,7,13,16,2].
+[3,11,12,13,16]
 ```
 
-Take ordinary forward page-order differences modulo29 and close the last run back to the first:
+and the 58-page cyclic tape from p4
 
 ```text
-ΔL = [4-2, 7-4, 13-7, 16-13, 2-16, 2-2] mod29
-   = [2,3,6,3,15,0].
+[11,12,13,16,3,3].
 ```
 
-The required state subset was already established independently by the DH/state work:
+These start spacings are the robust visual register used by the independent chapter-PRODUCT gate. They do not depend on where the p15 run is declared to end.
+
+## Crop-sensitivity falsifies a unique length tape
+
+The originally frozen outer crop
 
 ```text
-K=2, e=3, a=6, b=15, F=0.
+left/right x-width 380; y=600..2999
 ```
 
-No other state values are needed. Thus the visual frame cycle reads exactly
+gives non-singleton runs
 
 ```text
-[K,e,a,e,b,F].
+p1–2, p4–7, p15–21, p27–39, p40–55, p56–57
+lengths [2,4,7,13,16,2].
 ```
 
-This is not obtained by fitting a cipher output: the image segmentation fixes all six run lengths before the state labels are overlaid. Reversing printed page order does not close inside the same primitive vocabulary.
+Its cyclic length differences are
 
-## Finite matched-order charge
+```text
+[2,3,6,3,15,0] = [K,e,a,e,b,F].
+```
 
-The multiset `{2,2,4,7,13,16}` has **360** distinct linear permutations. Charge every permutation using the same rule: take all six cyclic differences modulo29 and require every difference to lie in the fixed five-value set `{K,e,a,b,F}` above.
+However an equally natural central-border crop with the same x geometry and
 
-Exactly **6/360** linear representations pass, and they are exactly the six rotations of **one cyclic order**. Equivalently, among **60 distinct cyclic arrangements**, exactly **one** qualifies. The manuscript's printed order is that qualifying cycle; its reverse is not.
+```text
+y=800..2799
+```
 
-This is a bounded post-discovery specificity check, not a discovery-wide probability or authorship p-value. The family was inspected because the exact frame-run census had already exposed the sequence.
+preserves all six start positions but extends the p15 artwork identity through p23:
 
-## Human solve-path meaning
+```text
+p1–2, p4–7, p15–23, p27–39, p40–55, p56–57
+lengths [2,4,9,13,16,2].
+```
 
-The operation is visually recoverable from the original artifact: identify exact repeated outer frames, count each non-singleton run, then difference successive run lengths. It requires no ciphertext decryption, no language scoring, no table radix and no fitted phase.
+Thus the p15 run **end and length depend on which vertical portion of the repeated frame is used**. The fixed-crop `[K,e,a,e,b,F]` difference tape remains an exact computational observation for that declared crop, but the artifact does not uniquely select it. It must not be treated as an authored state serializer or a cipher key.
 
-The result materially extends the state architecture across the whole book. The previously local DH/state values are serialized by **page-frame durations** in original order, including `F=0` at the equal-length cyclic closure between the final solved two-page frame and the opening two-page non-singleton LP2 frame.
+A local offline sensitivity sweep over border widths 250–500 pixels and five natural vertical ranges reproduced exactly these two segmentations: ranges extending into the upper/lower frame split at p21, while central ranges continue through p23. Width did not change the start positions. The repository SFT preserves the decisive two-crop source control directly.
 
-This does **not** yet say how `[K,e,a,e,b,F]` acts on unknown ciphertext. Treat it as a source-native state tape and a constraint on future operation/key proposals. A future consumer should be independently selected by artwork, layout or authenticated instruction before this six-value tape is used as a cipher key.
+## What survives
+
+The useful, source-stable facts are:
+
+- non-singleton frame starts `[1,4,15,27,40,56]`;
+- forward start gaps `[3,11,12,13,16]`;
+- cyclic gaps from p4 `[11,12,13,16,3,3]`;
+- exact p27–p39 13-page run;
+- exact p40–p55 16-page final-unsolved run;
+- p56–p57 switch into a different solved-page frame.
+
+These are enough for the PRODUCT source gate: the frame **starts**, not the disputed p15 run length, serialize the otherwise unconsumed chapter PRODUCT values. See [the frame-spacing PRODUCT gate](lp2-frame-gap-chapter-product-gate.md).
 
 ## Reproduction
 
-`sims/lp2_p40_mirrored_section_artwork_sft.cjs` performs the complete 75-scan pixel census, exact run extraction, cyclic state tape, reverse-direction check and exhaustive 360-permutation / 60-cycle charge on Windows using the repository's original JPEGs.
+`sims/lp2_p40_mirrored_section_artwork_sft.cjs` decodes all 75 original JPEGs on Windows and now computes both border crops. It asserts the common start positions, the stable p40–p55 section, both p15 end variants, and explicitly marks the fixed-crop length tape as non-source-unique.
