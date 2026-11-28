@@ -1,0 +1,3969 @@
+{
+  "nodes": 53,
+  "roots": 1,
+  "models": 201,
+  "forks": [
+    {
+      "row": 205,
+      "children": [
+        [
+          206,
+          43,
+          44,
+          2
+        ],
+        [
+          206,
+          56,
+          59,
+          5
+        ]
+      ]
+    },
+    {
+      "row": 204,
+      "children": [
+        [
+          205,
+          35,
+          36,
+          2
+        ],
+        [
+          205,
+          42,
+          60,
+          26
+        ]
+      ]
+    },
+    {
+      "row": 203,
+      "children": [
+        [
+          204,
+          65,
+          70,
+          8
+        ],
+        [
+          204,
+          75,
+          83,
+          20
+        ]
+      ]
+    },
+    {
+      "row": 202,
+      "children": [
+        [
+          203,
+          38,
+          62,
+          78
+        ],
+        [
+          203,
+          64,
+          82,
+          47
+        ]
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "removed": 0,
+      "cut": null,
+      "exact": true
+    },
+    {
+      "removed": 2,
+      "cut": [
+        206,
+        43,
+        44,
+        2
+      ],
+      "exact": true
+    },
+    {
+      "removed": 5,
+      "cut": [
+        206,
+        56,
+        59,
+        5
+      ],
+      "exact": true
+    },
+    {
+      "removed": 2,
+      "cut": [
+        205,
+        35,
+        36,
+        2
+      ],
+      "exact": true
+    },
+    {
+      "removed": 26,
+      "cut": [
+        205,
+        42,
+        60,
+        26
+      ],
+      "exact": true
+    },
+    {
+      "removed": 8,
+      "cut": [
+        204,
+        65,
+        70,
+        8
+      ],
+      "exact": true
+    },
+    {
+      "removed": 20,
+      "cut": [
+        204,
+        75,
+        83,
+        20
+      ],
+      "exact": true
+    },
+    {
+      "removed": 78,
+      "cut": [
+        203,
+        38,
+        62,
+        78
+      ],
+      "exact": true
+    },
+    {
+      "removed": 47,
+      "cut": [
+        203,
+        64,
+        82,
+        47
+      ],
+      "exact": true
+    }
+  ],
+  "summary": {
+    "trials": 135,
+    "histogram": {
+      "202": 57,
+      "203": 78
+    },
+    "ties": 0,
+    "nonHorizontal": 0,
+    "minGap": 3,
+    "maxGap": 10
+  },
+  "nominal": [
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 289,
+      "unavoidableAdds": 23,
+      "best": 176,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 307,
+      "unavoidableAdds": 22,
+      "best": 158,
+      "secondGap": 10,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 294,
+      "unavoidableAdds": 23,
+      "best": 169,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    }
+  ],
+  "trials": [
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 293,
+      "unavoidableAdds": 29,
+      "best": 142,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 294,
+      "unavoidableAdds": 28,
+      "best": 143,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 296,
+      "unavoidableAdds": 26,
+      "best": 145,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 297,
+      "unavoidableAdds": 24,
+      "best": 146,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 292,
+      "unavoidableAdds": 14,
+      "best": 141,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 273,
+      "unavoidableAdds": 27,
+      "best": 162,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 275,
+      "unavoidableAdds": 26,
+      "best": 164,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 276,
+      "unavoidableAdds": 26,
+      "best": 165,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 280,
+      "unavoidableAdds": 25,
+      "best": 167,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 276,
+      "unavoidableAdds": 15,
+      "best": 151,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 274,
+      "unavoidableAdds": 29,
+      "best": 163,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 275,
+      "unavoidableAdds": 28,
+      "best": 164,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 277,
+      "unavoidableAdds": 26,
+      "best": 166,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 278,
+      "unavoidableAdds": 24,
+      "best": 167,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 272,
+      "unavoidableAdds": 13,
+      "best": 161,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 314,
+      "unavoidableAdds": 39,
+      "best": 165,
+      "secondGap": 10,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 319,
+      "unavoidableAdds": 39,
+      "best": 170,
+      "secondGap": 10,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 311,
+      "unavoidableAdds": 25,
+      "best": 160,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 323,
+      "unavoidableAdds": 25,
+      "best": 170,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 332,
+      "unavoidableAdds": 25,
+      "best": 179,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 299,
+      "unavoidableAdds": 39,
+      "best": 186,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 300,
+      "unavoidableAdds": 38,
+      "best": 187,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 289,
+      "unavoidableAdds": 23,
+      "best": 176,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 301,
+      "unavoidableAdds": 23,
+      "best": 188,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 313,
+      "unavoidableAdds": 23,
+      "best": 188,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 302,
+      "unavoidableAdds": 42,
+      "best": 193,
+      "secondGap": 3,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 303,
+      "unavoidableAdds": 40,
+      "best": 194,
+      "secondGap": 3,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 293,
+      "unavoidableAdds": 25,
+      "best": 182,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 303,
+      "unavoidableAdds": 24,
+      "best": 190,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 311,
+      "unavoidableAdds": 23,
+      "best": 198,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 351,
+      "unavoidableAdds": 58,
+      "best": 200,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 350,
+      "unavoidableAdds": 56,
+      "best": 199,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 352,
+      "unavoidableAdds": 54,
+      "best": 201,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 353,
+      "unavoidableAdds": 52,
+      "best": 202,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 348,
+      "unavoidableAdds": 42,
+      "best": 197,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 333,
+      "unavoidableAdds": 57,
+      "best": 222,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 335,
+      "unavoidableAdds": 56,
+      "best": 224,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 336,
+      "unavoidableAdds": 56,
+      "best": 225,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 338,
+      "unavoidableAdds": 54,
+      "best": 225,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 334,
+      "unavoidableAdds": 44,
+      "best": 209,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 338,
+      "unavoidableAdds": 61,
+      "best": 227,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 337,
+      "unavoidableAdds": 59,
+      "best": 226,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 339,
+      "unavoidableAdds": 57,
+      "best": 228,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 340,
+      "unavoidableAdds": 55,
+      "best": 229,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 0,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 334,
+      "unavoidableAdds": 44,
+      "best": 223,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 294,
+      "unavoidableAdds": 29,
+      "best": 143,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 297,
+      "unavoidableAdds": 27,
+      "best": 146,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 296,
+      "unavoidableAdds": 26,
+      "best": 145,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 286,
+      "unavoidableAdds": 14,
+      "best": 135,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 288,
+      "unavoidableAdds": 14,
+      "best": 135,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 278,
+      "unavoidableAdds": 26,
+      "best": 153,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 279,
+      "unavoidableAdds": 25,
+      "best": 154,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 298,
+      "unavoidableAdds": 25,
+      "best": 147,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 290,
+      "unavoidableAdds": 15,
+      "best": 139,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 292,
+      "unavoidableAdds": 15,
+      "best": 141,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 273,
+      "unavoidableAdds": 28,
+      "best": 162,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 275,
+      "unavoidableAdds": 25,
+      "best": 164,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 277,
+      "unavoidableAdds": 25,
+      "best": 166,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 267,
+      "unavoidableAdds": 13,
+      "best": 156,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 269,
+      "unavoidableAdds": 13,
+      "best": 156,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 316,
+      "unavoidableAdds": 39,
+      "best": 165,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 305,
+      "unavoidableAdds": 25,
+      "best": 154,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 309,
+      "unavoidableAdds": 25,
+      "best": 156,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 310,
+      "unavoidableAdds": 25,
+      "best": 157,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 321,
+      "unavoidableAdds": 25,
+      "best": 168,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 302,
+      "unavoidableAdds": 40,
+      "best": 177,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 291,
+      "unavoidableAdds": 26,
+      "best": 166,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 307,
+      "unavoidableAdds": 22,
+      "best": 158,
+      "secondGap": 10,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 311,
+      "unavoidableAdds": 22,
+      "best": 160,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 322,
+      "unavoidableAdds": 22,
+      "best": 171,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 298,
+      "unavoidableAdds": 39,
+      "best": 187,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 285,
+      "unavoidableAdds": 24,
+      "best": 174,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 288,
+      "unavoidableAdds": 23,
+      "best": 175,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 289,
+      "unavoidableAdds": 23,
+      "best": 176,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 300,
+      "unavoidableAdds": 23,
+      "best": 187,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 350,
+      "unavoidableAdds": 57,
+      "best": 199,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 353,
+      "unavoidableAdds": 55,
+      "best": 202,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 352,
+      "unavoidableAdds": 54,
+      "best": 201,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 342,
+      "unavoidableAdds": 42,
+      "best": 191,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 344,
+      "unavoidableAdds": 42,
+      "best": 191,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 338,
+      "unavoidableAdds": 56,
+      "best": 213,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 337,
+      "unavoidableAdds": 54,
+      "best": 212,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 356,
+      "unavoidableAdds": 54,
+      "best": 205,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 344,
+      "unavoidableAdds": 42,
+      "best": 193,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 346,
+      "unavoidableAdds": 42,
+      "best": 195,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 335,
+      "unavoidableAdds": 59,
+      "best": 224,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 337,
+      "unavoidableAdds": 56,
+      "best": 226,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 337,
+      "unavoidableAdds": 55,
+      "best": 226,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 325,
+      "unavoidableAdds": 42,
+      "best": 214,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 1,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 327,
+      "unavoidableAdds": 42,
+      "best": 214,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 295,
+      "unavoidableAdds": 29,
+      "best": 144,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 296,
+      "unavoidableAdds": 28,
+      "best": 145,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 296,
+      "unavoidableAdds": 26,
+      "best": 145,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 294,
+      "unavoidableAdds": 24,
+      "best": 143,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 289,
+      "unavoidableAdds": 14,
+      "best": 138,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 273,
+      "unavoidableAdds": 26,
+      "best": 162,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 276,
+      "unavoidableAdds": 26,
+      "best": 163,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 285,
+      "unavoidableAdds": 25,
+      "best": 160,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 286,
+      "unavoidableAdds": 25,
+      "best": 161,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 292,
+      "unavoidableAdds": 15,
+      "best": 141,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 276,
+      "unavoidableAdds": 29,
+      "best": 165,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 275,
+      "unavoidableAdds": 27,
+      "best": 164,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 277,
+      "unavoidableAdds": 26,
+      "best": 166,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 274,
+      "unavoidableAdds": 23,
+      "best": 163,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": -0.5,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 270,
+      "unavoidableAdds": 13,
+      "best": 159,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 316,
+      "unavoidableAdds": 39,
+      "best": 165,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 307,
+      "unavoidableAdds": 25,
+      "best": 156,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 309,
+      "unavoidableAdds": 25,
+      "best": 158,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 322,
+      "unavoidableAdds": 25,
+      "best": 169,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 325,
+      "unavoidableAdds": 25,
+      "best": 172,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 299,
+      "unavoidableAdds": 39,
+      "best": 186,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 289,
+      "unavoidableAdds": 25,
+      "best": 176,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 294,
+      "unavoidableAdds": 23,
+      "best": 169,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 306,
+      "unavoidableAdds": 23,
+      "best": 181,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 323,
+      "unavoidableAdds": 22,
+      "best": 172,
+      "secondGap": 10,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 300,
+      "unavoidableAdds": 40,
+      "best": 189,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 287,
+      "unavoidableAdds": 24,
+      "best": 176,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 289,
+      "unavoidableAdds": 24,
+      "best": 178,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 301,
+      "unavoidableAdds": 23,
+      "best": 188,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 304,
+      "unavoidableAdds": 23,
+      "best": 191,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.3,
+      "base": 351,
+      "unavoidableAdds": 57,
+      "best": 200,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.4,
+      "base": 352,
+      "unavoidableAdds": 56,
+      "best": 201,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.5,
+      "base": 352,
+      "unavoidableAdds": 54,
+      "best": 201,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.6,
+      "base": 350,
+      "unavoidableAdds": 52,
+      "best": 199,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": -0.5,
+      "threshold": 0.7,
+      "base": 345,
+      "unavoidableAdds": 42,
+      "best": 194,
+      "secondGap": 6,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.3,
+      "base": 333,
+      "unavoidableAdds": 56,
+      "best": 222,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.4,
+      "base": 336,
+      "unavoidableAdds": 56,
+      "best": 223,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.5,
+      "base": 343,
+      "unavoidableAdds": 54,
+      "best": 218,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.6,
+      "base": 344,
+      "unavoidableAdds": 54,
+      "best": 219,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0,
+      "threshold": 0.7,
+      "base": 348,
+      "unavoidableAdds": 43,
+      "best": 197,
+      "secondGap": 8,
+      "winners": [
+        {
+          "cuts": [
+            [
+              202,
+              39,
+              78,
+              165
+            ]
+          ],
+          "removed": 165,
+          "horizontal": 202
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.3,
+      "base": 338,
+      "unavoidableAdds": 60,
+      "best": 227,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.4,
+      "base": 337,
+      "unavoidableAdds": 58,
+      "best": 226,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.5,
+      "base": 339,
+      "unavoidableAdds": 57,
+      "best": 228,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.6,
+      "base": 336,
+      "unavoidableAdds": 54,
+      "best": 225,
+      "secondGap": 5,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    },
+    {
+      "fit": 2,
+      "dx": 0.5,
+      "dy": 0.5,
+      "threshold": 0.7,
+      "base": 328,
+      "unavoidableAdds": 42,
+      "best": 217,
+      "secondGap": 4,
+      "winners": [
+        {
+          "cuts": [
+            [
+              203,
+              38,
+              62,
+              78
+            ],
+            [
+              203,
+              64,
+              82,
+              47
+            ]
+          ],
+          "removed": 125,
+          "horizontal": 203
+        }
+      ]
+    }
+  ]
+}
