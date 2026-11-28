@@ -2,7 +2,7 @@
 
 ## Classification
 
-**Source-only structural prediction; no unknown plaintext and no cipher receiver.**
+**Source-constrained navigation and exact operation-receiver selection; no new unknown plaintext.**
 
 The original p6 red four-word rubric has printed lengths `[4,1,4,2]`. Applying the already recurring forward adjacent transform
 
@@ -142,15 +142,28 @@ two-value receiver signature: its **outer printed lengths** are
 
 `[K,g]=[2,5]`.
 
+Because H is invertible, this is an executable receiver construction. With
+`2^-1=15 mod29`,
+
+```text
+H^-1(K,g)
+= [15(K+g),15(g-K)]
+= [18,16]
+= [p-g,A*K].
+```
+
 The pre-existing p25 cube-side family contains 627 eligible five-rune
-predecessor/successor side objects. Under the already fixed outer H condition,
-exactly one object in the complete family has output `[K,g]=[2,5]`:
+predecessor/successor side objects. Exactly one object has those ordered
+outer endpoints / forward H output:
 
 ```text
 p25 word30 predecessor
 source = [18,3,20,10,11,16]
-H(18,16) = [2,5] = [K,g]
+H(18,16) = [2,5] = [K,g].
 ```
+
+The unique match also fixes predecessor-side orientation, while `g=5`
+fixes the five-rune word length and later cut.
 
 This fact existed before the present p6→p23 schedule discovery, but the new
 route changes its causal role. The p25 page no longer needs the disputed
@@ -170,6 +183,17 @@ signed-2016 indices `PATHS / MEANING`. This is still a reconstruction of a
 known structural route rather than a blind plaintext discovery, but it
 eliminates one previously conditional page-selection premise and selects the
 exact p25 receiver before its output is interpreted.
+
+A fixed outside-in H check on the selected cube output gives
+`[12,23,2,18,13,19]=[K*a,p,K,p-g,b-K,B]`. Its final pair
+`[b-K,B]=[13,19]` exactly repeats the first two p6 red-word products.
+Across all 627 cube-side objects the full six-value H vector occurs once at
+p25; the final pair alone occurs twice (p25 and p37), so only the full packet
+is singleton supporting closure.
+
+As a transfer control, the other recurring RISE pair `[e,g]=[3,5]` has
+zero hits in the same 627-object outer-H family. Do not generalize this
+endpoint selector to p33/p40 RISE packets.
 
 Combined reproducer:
 `sims/lp2_p6_p23_p25_endpoint_receiver_sft.cjs`.
@@ -222,6 +246,6 @@ A separate marked rubric at p23 physically instantiates those four outputs in a 
 
 That is the kind of held-out structural consequence requested by the p6 schedule line of research: the p6 layout predicts another original manuscript object rather than merely fitting a plaintext label.
 
-The remaining gap is operational. Nothing here proves whether `[e,g,K,a]` is a key schedule, address, opcode tuple or only a checksum/state echo. A successor should keep the exact schedule and pair-swap fixed and demand a new prospective consequence on a receiver not used to discover this bridge.
+The route now fixes a page handoff, a state/cardinal instruction, and one exact p25 operation receiver. It still does not establish a general LP2 body cipher or recover fresh unknown plaintext. A successor should keep the entire p6→p23→p25 grammar fixed and demand a prospective reversible plaintext consequence rather than another state echo.
 
 Reproducer: `node sims/lp2_p6_adjacent_h_length_schedule_p23_sft.cjs`.

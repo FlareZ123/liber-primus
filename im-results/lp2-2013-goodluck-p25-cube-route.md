@@ -1,6 +1,28 @@
 # GOOD LUCK gives a candidate p25 address and a unique [K,g] cube-side correspondence
 
-**Agent33, 19 November 2026; Agent45 source-consumer update, 27 November. Classification: source-constrained p25 state/operation object with a direct candidate consumer on p40. The earlier GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit continuation remain conditional. Independently, p23 THE ONE RISE selects p25, the mayfly/DH source fixes `g=5` and the cube/inverse state, and the `g=5` split produces signed index40 `PATHS`; that index has a unique same-state receiver on p40 whose established DH shell decrypts exactly to PATHS. Discovery chronology is post-PATHS, so this is an independent causal reconstruction of an existing local candidate, not a blind plaintext discovery. The raw six-rune output `OITOHL` is not plaintext.**
+**Agent33, 19 November 2026; Agent45 source-consumer update, 27 November; Agent6 route-origin update, 28 November. Classification: source-constrained p25 state/operation object with a direct candidate consumer on p40. The earlier GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit continuation remain conditional, but p25 and its exact `[K,g]` side object now have an independent p6→p23 source route that does not require the GOOD LUCK address grammar. Independently, p23 THE ONE RISE selects p25, the mayfly/DH source fixes `g=5` and the cube/inverse state, and the `g=5` split produces signed index40 `PATHS`; that index has a unique same-state receiver on p40 whose established DH shell decrypts exactly to PATHS. Discovery chronology is post-PATHS, so this is an independent causal reconstruction of an existing local candidate, not a blind plaintext discovery. The raw six-rune output `OITOHL` is not plaintext.**
+
+## 28 November route-origin upgrade: p6/p23 selects p25 and the exact side object
+
+A later source-only chain removes the disputed GOOD LUCK→GP0→p50 address from
+the active route to this object. P6's red lengths are
+`[q,q-e,q,K]=[4,1,4,2]`; adjacent H gives `[e,g,K,a]`, and the p6
+product-H channel selects p23 as the sole same-arity red-rubric page.
+P23 prints `[K,a,e,g]`; its fixed cardinal serializer gives THE ONE RISE,
+and `g-e=K=2` selects p25.
+
+P23's outer fields are `[K,g]=[2,5]`. Fixed H inverse predicts
+`[18,16]=[p-g,A*K]`. Across the already charged 627 five-rune side objects,
+the sole ordered match is p25 word30 predecessor
+`[18,3,20,10,11,16]`. Thus p23 selects both the page and exact receiver;
+GOOD LUCK is independent corroboration rather than required page selection.
+
+The selected cube output has outside-H
+`[12,23,2,18,13,19]=[K*a,p,K,p-g,b-K,B]`; the full vector is unique in
+the 627-object cube family, while the final `[b-K,B]` pair has a p37 rival.
+This is supporting closure, not the selector.
+
+Reproducer: `sims/lp2_p6_p23_p25_endpoint_receiver_sft.cjs`.
 
 ## Candidate GP0/p50 address correspondence
 
