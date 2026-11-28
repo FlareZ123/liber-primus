@@ -1,7 +1,10 @@
 'use strict';
 /**
- * Two strict-no-repeat output channels have exactly the same visible law
- * when their keystream symbols are iid uniform.
+ * Two strict-no-repeat output channels have the same event-indexed printed
+ * rune transition law when their keystream symbols are iid uniform.
+ * CAUTION: if the latent source length is FIXED/KNOWN, the distribution of
+ * total printed length is different. This test proves a stopped-on-mth-print
+ * identity, not equality of full finite-horizon joint length distributions.
  *
  * A: v output states, emit each except independently delete with d=h/(v+h).
  * B: v+h output states, hide states [v..v+h-1] and print the others.
@@ -66,6 +69,22 @@ for(const [v,h] of [[2,1],[3,2],[5,3],[29,7]]) {
     approx(pa,pb);
   }
 }
+// Finite-horizon counterexample: conditional on exactly L=2 source symbols,
+// the models have unequal probabilities of printing BOTH source symbols.
+// Mod36: P(visible first)=v/n; P(visible second | visible first)=(v-1)/(n-1).
+// Deletion: P(keep both)=(v/n)^2, independent of first emitted state.
+function finiteHorizonTwo(v,h){const n=v+h,p=v/n;
+  const hiddenBoth=p*(v-1)/(n-1),deletionBoth=p*p;
+  const hiddenNone=(h/n)*((h-1)/(n-1)),deletionNone=(h/n)**2;
+  assert(Math.abs(hiddenBoth-deletionBoth)>1e-5);
+  assert(Math.abs(hiddenNone-deletionNone)>1e-5);
+  // The printed/H mark process is an ergodic two-state chain whose
+  // nontrivial eigenvalue is -1/(n-1), not iid deletion's zero.
+  const eigenvalue=-1/(n-1),stationaryVisible=p;
+  return {sourceLength:2,hiddenBoth,deletionBoth,hiddenNone,deletionNone,
+    markLag1Correlation:eigenvalue,stationaryVisible};
+}
+
 // Exact rational specialization: v=29,h=7,d=7/36.
 // T(same)=7/1015 and T(each distinct)=36/1015.
 const v=29,h=7,N=v+h,edges=12955,observedPairs=86;
@@ -75,7 +94,7 @@ const mleDeletion=(v-1)*obs/(1-obs);
 const likelihood=p=>observedPairs*Math.log(p)
   +(edges-observedPairs)*Math.log((1-p)/(v-1));
 console.log(JSON.stringify({
-  conditionalTheorem:'Full visible sequence law identical for iid-uniform-key hidden alphabet and strict-repeat independent thinning with d=h/(v+h)',
+  conditionalTheorem:'Exactly identical embedded transition law of successively printed symbols when stopping after m visible symbols; not equal fixed-plaintext-length emission counts',
   domainsTested:[[2,1],[3,2],[5,3],[29,7]],
   exactCase:{v,h,N,matchedDeletionRate:h/N,
     conditionalSame:'7/1015',conditionalEachDifferent:'36/1015',
@@ -87,6 +106,7 @@ console.log(JSON.stringify({
     priorCalibratedDeletionRate:0.187,
     logLikelihoodRatioHiddenOverCalibrated:
       likelihood(q)-likelihood(calibrated)},
+  finiteHorizonDistinction:finiteHorizonTwo(v,h),
   independentNumericChecks:'PASS',
-  caveat:'No statement about fixed/periodic/source-constrained keys, nonuniform schedules, page resets, adaptive deletion, authorship, or unknown-page plaintext'
+  caveat:'NOT equality of joint printed-length/event-time laws for a fixed source length. No statement about fixed/periodic/source-constrained keys, nonuniform schedules, page resets, adaptive deletion, authorship, or unknown-page plaintext'
 },null,2));
