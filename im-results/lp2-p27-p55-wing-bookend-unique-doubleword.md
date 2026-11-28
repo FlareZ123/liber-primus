@@ -36,6 +36,10 @@ The exhaustive **runic substring** census across all 12,956 original unknown run
 
 A different historical parser may count **2,896** book-wide words because of alternate sentence and page delimiting rules (used in the separate p50 transposition gate). That does **not** change this source-defined observation: the report's 2,928 tokens are the full original-punctuation delimited words counted under the exact visible printed separators above. Both printed transcript sources yield 2,928 and the same unique copied pair under this parser. Page/line word carry is not used as a delimiter.
 
+## Explicit check of all 28 mirrored page pairs
+
+The 28-page separation need not be a designed clock. To test whether copying is a *routine* relation between the two 28-page halves, freeze all 28 literal pairs **(p0,p28), …, (p27,p55)** and compute each pair's maximum **within-page** matching contiguous rune span. Among all 28 pairs, **26 have no shared four-rune run at all**, **p9/p37** has a four-rune run at offsets 99/161, and **p27/p55 alone has a six-rune run** at the exact 28/70 offsets. No other mirrored-half pair shares a run of length five or more. This exact enumerative evidence supports a *special* bookend relationship, not a repeated every-28-pages cipher-state pattern. The 28-page pairing was specified after noticing the occurrence; it is a source-geometry diagnostic, **not** a pre-registered improbability calculation.
+
 ## Conditional selectivity: exact whole-token random-order null
 
 A source artifact could produce sparse repeats naturally if its word inventory is constrained. The appropriate cheap baseline here is **not an independent random 29-rune stream**: hold fixed *each original whole-word token*, all token multiplicities, the 55 physical page word counts and the 2,873 actual adjacent-in-page word slots. Randomly permute these exact 2,928 intact tokens uniformly between those source slots; ask how many *two-word ordered windows* appear at least twice anywhere, regardless of where the repeats fall.
@@ -61,6 +65,10 @@ This is a strong **original-cipher cross-page literal anchor** for a human puzzl
 The next credible source-constrained decision is to ask **what independently visible art or earlier Cicada instruction would lead a human to copy, compare or follow exactly this two-word value**, without choosing an output word or key after seeing the pair. A useful prospective test would freeze a transfer rule derived from p27's red heading or wing framing, then apply it to p55's final 6-rune pair and at least one genuinely **withheld neighboring segment or another page**; successful results must constitute a reproducible authentic plaintext or a confirmed instruction from the original artifact. If a rule needs unconstrained page-dependent keys, arbitrary rune substitutions or language-model selections, discard it.
 
 Do **not** promote `DJU BEI` to plaintext, an onion address, or an authenticated key. The existing all-840-seed Q/T direct body inverses on p54+p55 remain negative; this new copied phrase by itself does not rescue them or pick a field decoder.
+
+## Independent CI reproduction
+
+[GitHub Actions original-source run **46151205274**](https://github.com/FlareZ123/liber-primus/actions/runs/46151205274) successfully executed the initial exact corpus/complete-word census and analytic shuffled-token null against the checked-in source files. Its [machine-output artifact](https://github.com/FlareZ123/liber-primus/actions/runs/46151205274/artifacts/15265857736) contains the literal `DJU BEI` page positions, source rune indices, sole repeated-six-rune claim, and exact expected null counts. The subsequent script revisions additionally assert the two source-image-annotated red 13-dot marks and the full 28 mirrored-half pair census; these additions are algebraic/source assertions not new proposed cipher keys.
 
 ## Reproduction
 
