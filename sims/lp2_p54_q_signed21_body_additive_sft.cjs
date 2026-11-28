@@ -37,6 +37,16 @@ const table=grid.pages.flatMap(p=>p.bytes);
 assert.equal(table.length,256);
 const keyNumbers=table.slice(0,21).map(v=>v%29);
 assert.deepEqual(keyNumbers,[0,28,22,12,10,5,10,9,5,17,11,19,15,4,9,9,5,28,15,4,15]);
+// Independently pretargeted exact B[address] graph receiver for Q(red54)=[0,20].
+const visits=[],seen=new Set();let cursor=0;
+while(cursor!==20&&!seen.has(cursor)){
+ seen.add(cursor);visits.push(cursor);cursor=table[cursor];
+}
+assert.deepEqual(visits,[0,203,68,199,47,76,114,197,115,247,192]);
+assert.equal(cursor,0);assert(!visits.includes(20));
+const graphDecision={start:0,goal:20,reached:false,firstCycleRepeatAt:0,visited:visits,
+ pretarget:"workplace/lp2-p54-q-map-path-address0-to20-pretarget.md",
+ continuation:"No GP body key derived; path did not reach source-typed target20"};
 const C=page(54).slice(9).concat(page(55));
 assert.equal(page(54).length-9,223);assert.equal(page(55).length,76);assert.equal(C.length,299);
 const iocNumerator=a=>{let h=Array(29).fill(0);for(let x of a)h[x]++;return h.reduce((s,v)=>s+v*(v-1),0);};
@@ -73,6 +83,6 @@ console.log(JSON.stringify({schema:"p54-q-2016-hello-meaning-original-additive-v
  stateProduct:mul(evalQ(q),evalQ(red54)),signedIntervalNames:[words[0],words[20]],
  signedWordCount:words.length,intervalWords:signed21,wordKeyLength:keyRunes.length,
  numeric21:keyNumbers,receiver:[223,76],length:C.length},
- control:{nativeSolvedWindows299:reference.length,minNumerator:reference[0].n,
+ graphReceiver:graphDecision,control:{nativeSolvedWindows299:reference.length,minNumerator:reference[0].n,
   minSource:reference[0].section,originalCipherNumerator:iocNumerator(C)},
  originalResults:output,decision:"Four source-typed additive GP29 original-terminal inverses fail to produce native-GP prose; no unknown plaintext"},null,2));
