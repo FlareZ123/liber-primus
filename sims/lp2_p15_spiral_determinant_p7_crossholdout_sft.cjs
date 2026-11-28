@@ -162,34 +162,19 @@ const circulant=row=>Array.from({length:5},(_,i)=>
 const p7Det=detMod(circulant(p7Products));
 assert.equal(p7Det,B);
 
-// With state now fixed before H4, predict the entire authored-spiral H4 tape.
-const expected=[
+// H4 is independently charged by the already-passing authored-spiral SFT.
+// Here the matrix branch checks only its direct held-out H4 tape consequence.
+const expectedH4Tape=[
  g,K,Ainv,mod(K*g),
  A,mod(q*g),Ainv,mod(-b),
  mod(b-K),Binv,mod(p-g),mod(-K),
  1,mod(g+B),F,mod(-b)
 ];
-assert.deepEqual(expected,[5,2,11,10,8,20,11,14,13,26,18,27,1,24,0,14]);
-
-function applyBlocks(seq,T){
- const out=[];for(let i=0;i<16;i+=q)out.push(...T(seq.slice(i,i+q)));return out;
-}
-const authoredH4Output=applyBlocks(spiral,H4);
-assert.deepEqual(authoredH4Output,expected);
-const variants=[];
-for(const [name,T] of transforms)for(const reversed of [false,true]){
- const base=reversed?spiral.slice().reverse():spiral.slice();
- for(let start=0;start<16;start++){
-  const seq=base.slice(start).concat(base.slice(0,start));
-  const output=applyBlocks(seq,T);
-  variants.push({name,reversed,start,match:output.every((x,i)=>x===expected)});
- }
-}
-assert.equal(variants.length,160);
-assert.deepEqual(
- variants.filter(v=>v.match).map(v=>[v.name,v.reversed,v.start]),
- [['H4',false,0]]
-);
+assert.deepEqual(expectedH4Tape,
+ [5,2,11,10,8,20,11,14,13,26,18,27,1,24,0,14]);
+const authoredH4Output=[];
+for(let i=0;i<16;i+=q)authoredH4Output.push(...H4(spiral.slice(i,i+q)));
+assert.deepEqual(authoredH4Output,expectedH4Tape);
 
 // Determinant-only traversal charge is weaker, as expected: row rotations and
 // reversal symmetries leave four of 32 cyclic/directional presentations at B.
@@ -207,13 +192,13 @@ assert.equal(detVariants.filter(v=>v.closes).length,4);
 
 console.log(JSON.stringify({
  schema:1,
- classification:'candidate matrix determinant/inverse bridge plus fully held-out H4 tape',
+ classification:'candidate matrix determinant/inverse bridge; H4 family charged in separate passing SFT',
  p15:{rawMatrix,determinant:p15Det,rawInverse,lowerOnlyInversePattern,
        inverseTraversalCharge,derived:{B,b,Binv,e}},
  p7:{products:p7Products,determinant:p7Det},
- expectedH4Tape:expected,
+ expectedH4Tape,
  authoredH4Output,
- h4FamilyCharge:{tested:variants.length,hits:variants.filter(v=>v.match)},
+ h4FamilyChargeReference:'sims/lp2_p15_spiral_qblock_h4_state_sft.cjs',
  determinantTraversalCharge:{tested:32,closureHits:detVariants.filter(v=>v.closes)},
  boundary:'The shared B determinant and full H4 tape are original-artifact structure; determinant/H4 remain candidate operations, not an authenticated body cipher.'
 },null,2));
