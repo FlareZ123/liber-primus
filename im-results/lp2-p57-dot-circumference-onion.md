@@ -23,6 +23,10 @@ Direct pixel extraction from canonical resources/liber-primus/74.jpg (Git blob 4
 
 Thus the page's own instruction has a literal raster execution: recursively shed its circumferences and a single central dot remains. The theological or multiplicative-identity reading of that central one is suggestive, not required for the structural result.
 
+A later execution of the **same instruction on the solved words themselves** supplies the missing layer selector. In `FIND THE DIUINITY WITHIN AND EMERGE`, recursively expose each word center; treating WITHIN as the operator and concatenating the other five centers gives exactly **IN THE INNER**. Across all 690 within-section solved six-word windows × six single-word omissions, this is the sole `INTHEINNER` readout among 4,140 presentations. The hidden text therefore favors this ornament's **inner circumference8** over its final center1 as the intended readout.
+
+[Recursive p57 hidden-message gate](lp2-p57-p1-up-infinity-p8-p2-north-loop.md).
+
 ## Exact p40 -> p57 -> [5,8] round-trip
 
 Before this image inspection, the frozen Q orbit had already fixed unknown p40 to exponent153 and coordinate [5,8].
@@ -102,8 +106,8 @@ Established from the original artifact:
 Still provisional:
 
 - the use of column count as the first returned coordinate was recognized after [5,8] was known, so this is a post-observation image cross-lock rather than a sealed blind prediction;
-- divinity = central one / multiplicative identity is an interpretation and is not needed to establish the onion;
+- divinity = central one / multiplicative identity is no longer needed to choose the layer; the later hidden readout IN THE INNER instead favors inner circumference8;
 - the ornament does not specify how to decrypt p40 black text;
 - no unknown LP2 plaintext is claimed.
 
-The next useful step should consume the center-one result or recovered DH state with an operation selected by a first-party source, rather than trying alternate geometric summaries of this same ornament.
+The hidden solved text now selects the inner-circumference receiver p8. The next useful step should consume p8/recovered DH state with an operation selected by a first-party source, rather than reopening center1→p1 or alternate geometric summaries of this same ornament.
