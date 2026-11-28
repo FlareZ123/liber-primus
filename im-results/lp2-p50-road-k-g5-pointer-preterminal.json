@@ -1,0 +1,31 @@
+{
+  "classification": "preterminal address prediction; terminal cell contents withheld",
+  "selector": {
+    "codec": "base59 forward from ROAD+p27 evidence",
+    "start": "ROAD row g=5 x K column=2 = cell42",
+    "hopCount": "g=5"
+  },
+  "base59": {
+    "path": [
+      42,
+      28,
+      148,
+      242,
+      41,
+      83
+    ],
+    "terminal": 83
+  },
+  "base60Rival": {
+    "path": [
+      42,
+      28,
+      150,
+      153,
+      33,
+      114
+    ],
+    "terminal": 114
+  },
+  "terminalGate": "terminal decoded value under traversal radix must be one of {2,3,4,5,6,8,15,19,23}; stronger if token/value is radix-invariant and the same primitive under both codecs"
+}
