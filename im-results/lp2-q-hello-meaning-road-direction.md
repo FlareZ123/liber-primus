@@ -82,41 +82,40 @@ Their equality modulo the p3 trinomial is the defining equivalence used in the o
 
 After deriving this landing, the solved-page plaintext reference supplies an additional semantic checkpoint: p57's complete seven-rune red opener decrypts to **PARABLE**. The route was not selected by that plaintext heading. Thus the uniquely exposed `HELLO / MEANING` state uses MEANING's numeric direction to land on a solved marked object whose plaintext is PARABLE—a human-readable semantic relation consistent with “meaning” without changing any arithmetic. This is suggestive solved-plaintext corroboration, not a preregistered lexical prediction.
 
-## ROAD's number continues to THE ROAD
+## Representation-continuity control stops the algorithm at the solved p57 state
 
-The target coordinate ends at signed word **ROAD=23**.
+A tempting continuation is to read the target exponent coordinate `[25,23]=[THEIR,ROAD]`, use ROAD23 to address cell23=87, and move to `k835=[28,23]=[THE,ROAD]`. That arithmetic is exact, but it **changes representation**.
 
-Word23 addresses physical p49 cell23:
-
-```text
-cell23 token = 1R
-canonical base60 number = 87
-```
-
-Value87 also occurs exactly once in the full 256-cell table.
-
-Continue in the same forward Q-path direction:
+The first hop was selected from the **plain-Q field output**:
 
 ```text
-748 + 87 = 835
-835 = 28*29 + 23
-    = [THE, ROAD].
+Q * E(p54 red) = [0,20] = HELLO / MEANING
 ```
 
-Thus the executable sequence is
+so a uniform second hop must first apply plain Q to the target state at `k748`. That gives:
 
 ```text
-plain Q on complete red class
- -> unique HELLO / MEANING = p54
- -> MEANING20 addresses p49 cell20
- -> number102 is the direction
- -> solved p57 / p15-second Q-defining state [THEIR, ROAD]
- -> ROAD23 addresses p49 cell23
- -> number87 is the direction
- -> [THE, ROAD].
+Q * E(k748) = [21,9] = IS / LIBER.
 ```
 
-The final `THE ROAD` pair is independently familiar from the older p29 numbered-source route. Under the existing source-number-as-project-page convention, ROAD23 hands off to p23, whose current `THE ONE RISE` route gives `+2 -> p25`.
+Keeping the same second-coordinate rule therefore addresses word/cell9, whose canonical table number is249:
+
+```text
+748 + 249 = 997 mod840 = 157
+```
+
+and `k157` is **not** a printed red state. The first-coordinate rival uses cell21=137 and reaches `k45`, also not a printed red state.
+
+Therefore the source-selected plain-Q-output/table algorithm has one supported step:
+
+```text
+unique HELLO / MEANING on p54
+ -> MEANING20 -> table102
+ -> solved p57 / p15-second Q-defining state
+ -> STOP
+```
+
+The separate ROAD87 walk over **Q-discrete-log base29 coordinates** remains an exact and interesting navigation grammar, but it is a different representation. It must not be spliced onto this plain-Q-output rule without an independent clue authorizing that representation change.
 
 ## Finite family charge
 
@@ -150,11 +149,10 @@ The **source-word interpretation itself does** distinguish the origin here: p54'
 MEANING zero-based cell20 -> k748 = THEIR / ROAD
 MEANING one-based  cell21 -> k783 = ARE / HELLO
 
-ROAD zero-based cell23 from k748 -> k835 = THE / ROAD
-ROAD one-based  cell24 from k748 -> k17  = HELLO / THE
+A mixed-representation dlog-coordinate continuation would use ROAD23 from k748 and reach k835 = THE / ROAD; one-based ROAD24 would reach k17 = HELLO / THE. This comparison is retained only as a representation-switch control, not as the uniform continuation of the plain-Q-output algorithm.
 ```
 
-So the same origin that makes the unique `HELLO / MEANING` start intelligible is also the one preserving both downstream source-text checkpoints.
+So zero-based origin is still the source-consistent origin for the validated first hop. The later ROAD checkpoint belongs to the separate dlog-coordinate grammar.
 
 The canonical **zero-based** family therefore has exactly one red→red edge, and it is the HELLO/MEANING start selected above.
 
@@ -178,7 +176,7 @@ The arithmetic, original table addresses, full red-class census, uniqueness of H
 
 The **navigation interpretation is post-discovery**. The result was recognized after Q, p54's output and the signed source were available. It therefore should be treated as a compact human-solve-path candidate, not as a discovery-wide probability or recovered plaintext.
 
-What it materially changes is the research decision: the source text now supports a concrete low-freedom composition of the independently selected plain-Q word map with the original p49 numeric table. This is more promising than another bulk Q keystream or semilinear-state search, both of which have prospective negative controls.
+What it materially changes is the research decision: the source text supports one concrete low-freedom composition of the independently selected plain-Q word map with the original p49 numeric table, and that composition terminates at a solved/Q-defining p57 state. The representation-continuity failure blocks chaining it automatically into the separate ROAD dlog-coordinate walk. This is still more informative than another bulk Q keystream or semilinear-state search, both of which have prospective negative controls.
 
 Reproducer: [`sims/lp2_q_plain_wordnumber_direction_redgraph_sft.cjs`](../sims/lp2_q_plain_wordnumber_direction_redgraph_sft.cjs).  
 ROAD/p39/p7 companion: [`lp2-p3-q-p50-road-dh-navigation.md`](lp2-p3-q-p50-road-dh-navigation.md).  
