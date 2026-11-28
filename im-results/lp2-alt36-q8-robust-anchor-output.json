@@ -1,0 +1,176 @@
+{
+  "scope": "preserved printed groups, q8 mod36, strict repeat rejection, 29..35 silent; free silent gaps for minOOV; original p54 black and p55, 64 complete groups / 299 runes",
+  "lexicon": {
+    "base": 12232,
+    "mid": 32082,
+    "wide": 60399
+  },
+  "anchors": [
+    {
+      "i": 54,
+      "register": "wide",
+      "obs": "hs0eaj15d8lkc",
+      "forms": 28988,
+      "nodes": 137173095,
+      "full": 0,
+      "leaves": 0,
+      "keys": []
+    },
+    {
+      "i": 47,
+      "register": "mid",
+      "obs": "63g2eis46ql",
+      "forms": 3145,
+      "nodes": 563557014,
+      "full": 0,
+      "leaves": 0,
+      "keys": []
+    },
+    {
+      "i": 12,
+      "register": "base",
+      "obs": "n78hl0o5b1",
+      "forms": 1630,
+      "nodes": 374914830,
+      "full": 284771702,
+      "leaves": 3,
+      "keys": [
+        [
+          44321370793,
+          "3fgi9gogr9"
+        ],
+        [
+          53850532201,
+          "ani9ga0a5ogr9"
+        ],
+        [
+          56027314537,
+          "ani9ga0a5ogr9"
+        ]
+      ]
+    },
+    {
+      "i": 45,
+      "register": "base",
+      "obs": "8so5ajebji",
+      "forms": 1630,
+      "nodes": 374914830,
+      "full": 284771702,
+      "leaves": 5,
+      "keys": [
+        [
+          29747019654,
+          "nafon1o9go6i"
+        ],
+        [
+          20244179994,
+          "d4if54adgr9"
+        ],
+        [
+          381348400330,
+          "190ia69inkq"
+        ],
+        [
+          520813317546,
+          "d4ifi41ogr9"
+        ],
+        [
+          128992497051,
+          "d4ifi9gogr9"
+        ]
+      ]
+    }
+  ],
+  "cycles": [
+    {
+      "num": 44321370793,
+      "minOov": 44,
+      "independentUnsupported": 44,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 53850532201,
+      "minOov": 44,
+      "independentUnsupported": 44,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 56027314537,
+      "minOov": 42,
+      "independentUnsupported": 42,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 29747019654,
+      "minOov": 41,
+      "independentUnsupported": 41,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 20244179994,
+      "minOov": 46,
+      "independentUnsupported": 45,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 381348400330,
+      "minOov": 46,
+      "independentUnsupported": 46,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 520813317546,
+      "minOov": 44,
+      "independentUnsupported": 44,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    },
+    {
+      "num": 128992497051,
+      "minOov": 46,
+      "independentUnsupported": 46,
+      "positiveControl": {
+        "n": 64,
+        "minOov": 0,
+        "independentUnsupported": 0
+      }
+    }
+  ],
+  "seedControl": {
+    "word": "do4ga51ko4afi",
+    "printed": "qpi4cjh19hc",
+    "trueCanonicalKey": 202766486394,
+    "compatibleCycles": 1,
+    "recursiveNodes": 96136,
+    "prefixNodes": 89849,
+    "full": 55904
+  },
+  "execution": "All four original anchor experiments and all eight continuous original/control inverse cores ran in V8. Standalone Node wrapper not separately run."
+}
