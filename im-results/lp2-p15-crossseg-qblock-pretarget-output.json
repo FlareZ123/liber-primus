@@ -1,0 +1,397 @@
+{
+  "schema": 1,
+  "grading": "PRETARGET NO-PLAINTEXT",
+  "freezeScriptCommit": "2210d346963440fa7002804002999e9737bad6cc",
+  "sourceOperand": "p15 lower red11 resegmented by p6 native [4,1,4,2] lengths; segment GP29 products",
+  "tape": [
+    10,
+    5,
+    12,
+    0
+  ],
+  "clock": "one derived scalar constant on each of four receiver lanes; same lanes on both q blocks",
+  "receivers": [
+    {
+      "name": "block1",
+      "pages": [
+        32,
+        33,
+        34,
+        35
+      ],
+      "starts": [
+        30,
+        132,
+        4,
+        25
+      ],
+      "arities": [
+        3,
+        4,
+        2,
+        5
+      ]
+    },
+    {
+      "name": "block3",
+      "pages": [
+        37,
+        38,
+        39,
+        40
+      ],
+      "starts": [
+        146,
+        57,
+        132,
+        71
+      ],
+      "arities": [
+        4,
+        6,
+        5,
+        4
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "sign": 1,
+      "blocks": [
+        {
+          "name": "block1",
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "len": 3,
+              "key": 10,
+              "cipher": [
+                0,
+                3,
+                2
+              ],
+              "decoded": [
+                19,
+                22,
+                21
+              ],
+              "translit": "MOENG"
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "len": 4,
+              "key": 5,
+              "cipher": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "decoded": [
+                27,
+                10,
+                12,
+                17
+              ],
+              "translit": "IAIEOB"
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "len": 2,
+              "key": 12,
+              "cipher": [
+                12,
+                23
+              ],
+              "decoded": [
+                0,
+                11
+              ],
+              "translit": "FJ"
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "len": 5,
+              "key": 0,
+              "cipher": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "decoded": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "translit": "MBMAJ"
+            }
+          ]
+        },
+        {
+          "name": "block3",
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "len": 4,
+              "key": 10,
+              "cipher": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "decoded": [
+                22,
+                21,
+                25,
+                17
+              ],
+              "translit": "OENGAEB"
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "len": 6,
+              "key": 5,
+              "cipher": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "decoded": [
+                3,
+                20,
+                9,
+                26,
+                12,
+                17
+              ],
+              "translit": "OLNYEOB"
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "len": 5,
+              "key": 12,
+              "cipher": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "decoded": [
+                7,
+                24,
+                27,
+                5,
+                11
+              ],
+              "translit": "WAIACJ"
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "len": 4,
+              "key": 0,
+              "cipher": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "decoded": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "translit": "RSXNG"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sign": -1,
+      "blocks": [
+        {
+          "name": "block1",
+          "receivers": [
+            {
+              "page": 32,
+              "start": 30,
+              "len": 3,
+              "key": 10,
+              "cipher": [
+                0,
+                3,
+                2
+              ],
+              "decoded": [
+                10,
+                13,
+                12
+              ],
+              "translit": "IPEO"
+            },
+            {
+              "page": 33,
+              "start": 132,
+              "len": 4,
+              "key": 5,
+              "cipher": [
+                3,
+                15,
+                17,
+                22
+              ],
+              "decoded": [
+                8,
+                20,
+                22,
+                27
+              ],
+              "translit": "HLOEIA"
+            },
+            {
+              "page": 34,
+              "start": 4,
+              "len": 2,
+              "key": 12,
+              "cipher": [
+                12,
+                23
+              ],
+              "decoded": [
+                24,
+                6
+              ],
+              "translit": "AG"
+            },
+            {
+              "page": 35,
+              "start": 25,
+              "len": 5,
+              "key": 0,
+              "cipher": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "decoded": [
+                19,
+                17,
+                19,
+                24,
+                11
+              ],
+              "translit": "MBMAJ"
+            }
+          ]
+        },
+        {
+          "name": "block3",
+          "receivers": [
+            {
+              "page": 37,
+              "start": 146,
+              "len": 4,
+              "key": 10,
+              "cipher": [
+                3,
+                2,
+                6,
+                27
+              ],
+              "decoded": [
+                13,
+                12,
+                16,
+                8
+              ],
+              "translit": "PEOTH"
+            },
+            {
+              "page": 38,
+              "start": 57,
+              "len": 6,
+              "key": 5,
+              "cipher": [
+                8,
+                25,
+                14,
+                2,
+                17,
+                22
+              ],
+              "decoded": [
+                13,
+                1,
+                19,
+                7,
+                22,
+                27
+              ],
+              "translit": "PUMWOEIA"
+            },
+            {
+              "page": 39,
+              "start": 132,
+              "len": 5,
+              "key": 12,
+              "cipher": [
+                19,
+                7,
+                10,
+                17,
+                23
+              ],
+              "decoded": [
+                2,
+                19,
+                22,
+                0,
+                6
+              ],
+              "translit": "THMOEFG"
+            },
+            {
+              "page": 40,
+              "start": 71,
+              "len": 4,
+              "key": 0,
+              "cipher": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "decoded": [
+                4,
+                15,
+                14,
+                21
+              ],
+              "translit": "RSXNG"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
