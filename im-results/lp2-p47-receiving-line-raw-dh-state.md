@@ -318,6 +318,21 @@ Among the 48 self-indexed page/group objects, p21/group21 is the only `(4,0,13)`
 
 P21/group21 also lands at the **first rune and first punctuation group of printed line6**. Thus the source-fixed geometry itself reads `page=group=21=-A`, `line=6=a`, `line position=1`, `length=4=q`. Eight of the 48 self-indexed groups lie on line6; p21/group21 is the only one that begins the line.
 
+Because the selected group begins line6, the whole six-group printed line is fixed without another selector. Its descriptors are:
+
+```text
+lengths  [4,2,4,4,5,3]
+       = [q,K,q,q,g,e]
+
+sums     [0,26,12,11,25,8]
+       = [F,-e,aK,A^-1,-q,A]
+
+products [13,17,25,22,6,5]
+       = [b-K,b+K,-q,p-1,a,g].
+```
+
+Across p0–p55, only **16** printed lines have the same six-complete-fragment/no-carry framing. The predicted length vector occurs only on **p21 line6**; adding sums/products preserves that singleton. Thus p21 extends the repeated source-selected state-line mechanism even though its selected group itself does not wrap.
+
 P21/group21 does not cross a printed line. Its two H-pair p50 reads are `3I,3b`, and its start-address117 read is `2p`; none is a legal literal page token. The frozen navigation therefore terminates at **p21**, not at the p46→p47 seam. No p45 continuation is inferred.
 
 ## Immediate-successor control
