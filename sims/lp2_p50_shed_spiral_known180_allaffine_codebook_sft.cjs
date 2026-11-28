@@ -126,11 +126,13 @@ const planted=path0.inner.map(([r,c])=>mod(codebook.get(table[8*r+c])+7*r+11*c))
 assert.equal(maxLookup(path0.inner,planted,7,11).match,180);
 assert.equal(maxLookup(path0.outer,path0.outer.map(([r,c])=>
  mod(codebook.get(table[8*r+c])+7*r+11*c)),7,11).match,76);
-console.log(JSON.stringify({
+const output={
  description:'p50 original rectangular spiral known180 -> outer76; all lookup/affine-secret inverse',
  conclusion:'all 16 source-natural spiral+page-order cases falsify exact stationary byte codebook even after arbitrary cell-coordinate GF29 linear drift',
  authentic_p56_regression:'85/85 with real prime2 F-transparent clock',
  source_geometry:{p50:[32,8],outer:76,inner:180,known:[85,95]},
  positive_plant:{inner:180,outer:76,slope:[7,11]},
  records
-},null,2));
+};
+console.log(JSON.stringify(output,null,2));
+if(process.env.RUNNER_TEMP)fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'source-test-output.json'),JSON.stringify(output,null,2)+'\n');
