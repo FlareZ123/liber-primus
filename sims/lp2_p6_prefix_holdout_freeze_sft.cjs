@@ -55,7 +55,7 @@ function selftest(){
  console.log(JSON.stringify({status:'PASS',name:'p30/p31 sealed original-cipher pretarget commitment selftest',frozenHash:a.sha256,assertions:'length, exact original receiver, sum, reencryption, immutable encoding'}));
 }
 if(require.main===module){
- if(process.argv[2]==='--selftest')selftest();
+ if(process.argv.length===2||process.argv[2]==='--selftest')selftest();
  else {
   assert.equal(process.argv.length,3,'pass a candidate filename or --selftest');
   const candidate=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
