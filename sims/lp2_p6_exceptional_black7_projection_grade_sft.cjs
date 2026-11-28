@@ -6,7 +6,7 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
 const root=path.join(__dirname,'..');
 const frozen=JSON.parse(fs.readFileSync(path.join(root,'im-results/lp2-p6-exceptional-black7-pretarget-output.json'),'utf8'));
 const corpus=JSON.parse(fs.readFileSync(path.join(root,'resources/liber-primus/lp2-corpus.json'),'utf8'));
-const asc=fs.readFileSync(path.join(root,'resources/historical/cicada2016-4gq25-outguess.asc'),'utf8');
+const asc=fs.readFileSync(path.join(root,'resources/historical/cicada2016-4gq25-outguess.asc'),'utf8').replace(/\r\n/g,'\n');
 const body=asc.slice(asc.indexOf('\n\n',asc.indexOf('Hash:'))+2,asc.indexOf('-----BEGIN PGP SIGNATURE-----'));
 const words=body.match(/[A-Za-z]+/g).map(x=>x.toUpperCase());
 assert.equal(words[36],'GOOD');assert.equal(words[41],'VERIFY');assert.equal(words[42],'OPENPGP');
