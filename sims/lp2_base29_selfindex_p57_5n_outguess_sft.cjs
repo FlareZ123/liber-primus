@@ -128,7 +128,8 @@ function main() {
     const output = {
       hypothesis: {
         source: 'M5N7 from Stage11/base29 self-index, transformed by solved p57 circumference instruction',
-        sourceToken: 'M5N7',\n        p57Operation: 'shed outer circumference -> 5N',
+        sourceToken: 'M5N7',
+        p57Operation: 'shed outer circumference -> 5N',
         p57ShedLiteralPassword: KEY,
         variantsTested: 1,
       },
