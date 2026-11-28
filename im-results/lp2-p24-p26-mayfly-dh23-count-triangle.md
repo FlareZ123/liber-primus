@@ -76,6 +76,57 @@ Thus the p32 oak checksum selects p24 before the p24–26 DH-state triangle is e
 
 See `im-results/lp2-rune-poem-artwork-ordinal-navigation-gate.md`.
 
+## Source-calibrated H gives a shorter reconstruction
+
+The same state can be reconstructed with substantially less algebraic freedom by reusing the already source-calibrated outer-pair operation
+
+`H(x,y) = (x-y, x+y) mod29`
+
+that is used elsewhere in the manuscript research and is independently fixed from solved material.
+
+Start only with the mayfly triangle `{3,5,8}`, the source-fixed generator candidate `g=5`, the chapter-local `13`, and `p=23` from the unique p57 terminal mark.
+
+Charge which remaining triangle value is the second H input:
+
+- `H(5,3) = (2,8)`: the sum output **8** closes exactly onto the other observed triangle edge.
+- `H(5,8) = (26,13)`: the sum output does not close onto the other observed edge3.
+
+Thus the triangle plus H itself selects:
+
+```
+e=3
+K=2
+A=8
+```
+
+without importing those labels from p28.
+
+Apply the same fixed H operation to the repeated local frame value and the newly obtained K:
+
+```
+H(13,2) = (11,15).
+```
+
+Charge the two output labels as `(B-A,b)` versus the reverse, derive `B=A+(B-A) mod23`, and require ordinary DH consistency. The first ordering gives:
+
+```
+B-A=11
+b=15
+B=8+11=19
+```
+
+while the reverse ordering gives `B=0 mod23` and cannot be a valid nonzero DH public value. Finally, `5^a=8 mod23` has the unique exponent `a=6` over `1..22`, and both shared-secret equations return K=2.
+
+So the source-motivated H route reconstructs the complete tuple:
+
+```
+(p,e,g,a,b,A,B,K) = (23,3,5,6,15,8,19,2)
+```
+
+with only one small label charge at the second H output, resolved by the standard DH equations. The broader sign/relation exhaustion below is retained as an adversarial control and reaches the same sole historical state once g=5 is source-fixed.
+
+This is the strongest version of the new result because it replaces the ad hoc-looking formulas `K=g-e` and `b-K=13` with an operation already independently motivated in the manuscript.
+
 ## Independent full-state reconstruction without reading p28
 
 The count triangle can now be used as a finite **independent state-recovery gate** when combined only with source objects outside p28.
