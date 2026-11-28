@@ -91,6 +91,57 @@ for(let k=0;k<mainPath.length-1;k++){
 }
 assert.deepEqual(graph[chapters.indexOf(40)],[]);
 assert.equal(pathInfo(graph,0,7).max,5);
+
+// Bounded adversarial alternative-operator census: give each original
+// chapter-opening black word nine conventional GP29 aggregate operations,
+// then check all 72 *ordered distinct* IN/OUT function pairs on this SAME
+// original source and chapter set. No signed-target scoring or learned key.
+// The vocabulary is an exploratory control, not proof of independent author
+// selection, since it too was formulated after the sum/product chain emerged.
+const primeValues=[];
+for(let candidate=2;primeValues.length<29;candidate++)
+  if(primeValues.every(p=>candidate%p!==0))primeValues.push(candidate);
+const mod29=x=>((x%29)+29)%29;
+const operationVocabulary={
+ rune_count:a=>a.length,
+ rune_sum:a=>mod29(a.reduce((s,x)=>s+x,0)),
+ rune_product:a=>a.reduce((s,x)=>s*x%29,1),
+ prime_sum:a=>mod29(a.reduce((s,x)=>s+primeValues[x],0)),
+ prime_product:a=>a.reduce((s,x)=>s*primeValues[x]%29,1),
+ first_rune:a=>a[0],
+ last_rune:a=>a.at(-1),
+ first_plus_last:a=>mod29(a[0]+a.at(-1)),
+ first_times_last:a=>mod29(a[0]*a.at(-1))
+};
+const comparison=[],operators=Object.keys(operationVocabulary);
+for(const input of operators)for(const output of operators){
+ if(input===output)continue;
+ const inValues=records.map(r=>operationVocabulary[input](r.runes));
+ const outValues=records.map(r=>operationVocabulary[output](r.runes));
+ const adjacency=edges(inValues,outValues);
+ let any5=false,p05=false,p0ToP40=false;
+ for(let begin=0;begin<chapters.length;begin++){
+   const seenPaths=[];
+   const walk=(pos,visited,history)=>{
+     if(history.length>=5){
+       any5=true;
+       if(begin===0)p05=true;
+       if(begin===0&&pos===7)p0ToP40=true;
+     }
+     if(history.length>=9)return;
+     for(const next of adjacency[pos])if(!(visited&(1<<next)))
+       walk(next,visited|(1<<next),[...history,next]);
+   };
+   walk(begin,1<<begin,[begin]);
+ }
+ comparison.push({input,output,any5,p05,p0ToP40});
+}
+assert.equal(comparison.length,72);
+assert.equal(comparison.filter(x=>x.any5).length,2);
+assert.equal(comparison.filter(x=>x.p05).length,1);
+assert.equal(comparison.filter(x=>x.p0ToP40).length,1);
+assert.deepEqual(comparison.filter(x=>x.p05).map(x=>[x.input,x.output]),
+ [['rune_sum','rune_product']]);
 // Exact conditional null: fix all nine original sums and the multiset of
 // all nine original products, permute products among the nine page labels.
 // This preserves *every* observed marginal value, including duplicate 3.
@@ -142,6 +193,13 @@ console.log(JSON.stringify({
  chapter_pages:chapters,chapter_records:records,
  main_original_path:mainPath,edges:graph.map((ar,i)=>({
    page:chapters[i],to:ar.map(j=>chapters[j])})),
+ nine_operation_grammar_census:{
+   candidate_operations:operators,ordered_distinct_pairs:comparison.length,
+   any_five_chapter_chain:comparison.filter(x=>x.any5),
+   five_chapter_chain_starting_at_p0:comparison.filter(x=>x.p05),
+   p0_chain_reaching_numeric_chapter_p40:comparison.filter(x=>x.p0ToP40),
+   warning:'finite post-discovery vocabulary; NOT a discovery-wide probability'
+ },
  conditional_fixed_marginal_product_permutation:{
    permutations:total,any_chain_at_least_5:any5,p0_chain_at_least_5:p05,
    p0_to_numeric_chapter_p40_at_depth_at_least_5:p0ToP40,
