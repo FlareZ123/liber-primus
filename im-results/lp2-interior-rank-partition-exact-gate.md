@@ -2,7 +2,7 @@
 
 ## Decision
 
-Additional endpoint move-to-front/back cases are now excluded by an exact all-starting-deck synchronized native register test (see endpoint section below); no original plaintext or author-selected schedule was recovered.
+Additional endpoint move-to-front/back cases are now excluded, including page-private secret decks, by exact all-starting-deck synchronized native register tests (see endpoint section below); no original plaintext or author-selected schedule was recovered.
 
 Retire the continuous GP29 fixed-rank remove/reinsert cipher for ordinary native prose on LP2 p0–2. This is an exact all-initial-alphabet, all-pivot-ranks, all-static-plaintext-rank-relabelings frequency result, not a heuristic optimizer failure. Every output has a top-three cumulative count ≤157 in 729 runes. All 569,402 matched literary windows exceed 157; the original 273 clear-LP1 windows already exceed the exact modal cap 71. No authentic original plaintext or key. The original images do not independently select this opcode; it was explored as a distinct minimal reversible repeat-suppression construction after #3320, not as an authenticated historical cipher.
 
@@ -147,4 +147,22 @@ The independent chapter starts test the same fixed model with fresh starting dec
 
 Eight independently encrypted native LP1 plants (four secret starting decks per endpoint) recover **every rank after the certified cover** exactly. In the authentic original, adjacent ciphertext equality occurs iff the decoded rank equals the update endpoint at the *next* position, so the 86 rare doublets could superficially look like a rare plaintext endpoint symbol; **that diagnostic is not evidence for MTF/MTB**, because the other 28 rank frequencies remain almost uniform instead of linguistic. The exhaustive finite native comparison rejects ordinary unchanged GP29 prose under uninterrupted or these chapter-restored endpoint updates; it does not reject arbitrary decoy plaintext, external changes in the update rule, or pages that fail to cover the full alphabet.
 
-**Decision:** retire literal endpoint MTF/MTB with the original length/order and a static bijective rank→GP29 alphabet. This complements the existing fixed interior-pivot and public moving-rank negatives, but leaves source-authored schedules unresolved. Reproducer: [endpoint exact inverse and native rolling-window SFT](../sims/lp2_extreme_rank_reinsert_sft.cjs). The in-memory V8 core was actually run with pinned canonical corpus and literary donors; the committed standalone Node wrapper still requires independent CI execution before being described as CI-verified.
+**Decision:** retire literal endpoint MTF/MTB with the original length/order and a static bijective rank→GP29 alphabet. This complements the existing fixed interior-pivot and public moving-rank negatives, but leaves source-authored schedules unresolved. Reproducer: [endpoint exact inverse and native rolling-window SFT](../sims/lp2_extreme_rank_reinsert_sft.cjs). The in-memory V8 core was actually run with pinned canonical corpus and literary donors; the committed standalone Node wrapper for uninterrupted/chapter scopes passed [CI run 46125991147](https://github.com/FlareZ123/liber-primus/actions/runs/46125991147). The new page-reset variant's CI was not yet complete at this commit.
+
+
+### Source-selected page resets: 7,143 original ranks exactly recoverable, still nonprose
+
+Allow **completely unrelated secret starting GP29 decks at every original physical page boundary**, while retaining a frozen literal endpoint k=0 (move-to-front) or k=28 (move-to-back) update within each page. Each page self-synchronizes after its first complete 29-label cover. Across original p0–55 there are **7,143 exactly recoverable rank outputs** from 53 such pages; p49 (66 runes) and p55 (76 runes) do not cover all labels, and p50 has no runes. Both endpoint histories have identical pooled histogram statistics up to rank reversal: **modal 286, top-three 838**.
+
+To avoid a continuity-mismatched null, compare the *same actual per-page retained suffix intervals* with every full-book-length GP29-native literary window. This mask contains 53 disjoint intervals and was frozen from original ciphertext coverage, independent of each donor. An exact incremental rolling census updates the 29-bin histogram by deleting each interval's old first item and adding its new last item; no language model, word segmentation, selected donor positions or fitted key is involved.
+
+| Native donor | Matched length-12,956 windows | Lowest modal count | Lowest top-three count | Windows meeting both original thresholds |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran | 34,674 | 741 | 1,885 | 0 |
+| Shakespeare | 204,151 | 733 | 1,809 | 0 |
+| Emerson | 293,896 | 782 | 1,882 | 0 |
+| **Total** | **532,721** | **733** | **1,809** | **0** |
+
+New independent full-book-length literary controls encrypt each physical page with its **own shuffled starting deck**, reverse the emitted text with the exact page-local rank algorithm and assert every recovered symbol after *its own* first coverage. Under the original artifact the page-local native-control capacity fails even when every unsynchronized prefix is unknown and each starting deck is arbitrary. The test is necessary, not sufficient for all possible original plaintexts: it excludes unchanged native GP29 prose under these exact opcode, order, length and page reset assumptions; it does not exclude hidden within-page resets, arbitrary transports, different language, or unselected evolving update laws.
+
+**Decision:** literal endpoint MTF/MTB now fails native controls under both uninterrupted and **independently page-private secret decks**. There is no source instruction selecting either opcode. Report and [enhanced exact reproducer](../sims/lp2_extreme_rank_reinsert_sft.cjs) preserve this bounded original-cipher negative without opening another speculative update schedule.

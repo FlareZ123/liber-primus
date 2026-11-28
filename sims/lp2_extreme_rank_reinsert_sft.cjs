@@ -89,5 +89,53 @@ for(const [lo,hi] of scopes){
   results.push({pages:[lo,hi],k,cipherN:c.length,sync:d.sync,n:d.n,mode:d.mode,top3:d.top3,benchmark});
  }
 }
-console.log(JSON.stringify({schema:'lp2-endpoint-reinsert-v1',plants,results},null,2));
-module.exports={inverse,encrypt,exactWindows,native};
+
+function pageResetMask(pages,k){
+ let intervals=[],h=Array(A).fill(0),off=0,retainedN=0,unsynchronized=[];
+ for(const pg of pages){
+  const d=inverse(pg.indices,k);
+  if(d.sync===null)unsynchronized.push(pg.page);
+  else if(d.n){
+   intervals.push([off+d.sync,off+pg.indices.length-1]);retainedN+=d.n;
+   for(let x=0;x<A;x++)h[x]+=d.hist[x];
+  }
+  off+=pg.indices.length;
+ }
+ let sorted=h.slice().sort((x,y)=>y-x);
+ assert.equal(h.reduce((a,b)=>a+b,0),retainedN);
+ return {N:off,retainedN,intervals,hist:h,unsynchronized,mode:sorted[0],top3:sorted[0]+sorted[1]+sorted[2]};
+}
+function maskedNativeWindows(p,m){
+ const h=new Int32Array(A),end=p.length-m.N;
+ assert(end>=0);
+ for(const [a,b] of m.intervals)for(let j=a;j<=b;j++)h[p[j]]++;
+ let windows=0,pass=0,minMode=Infinity,minTop3=Infinity;
+ for(let shift=0;shift<=end;shift++){
+  windows++;let a=0,b=0,c=0;
+  for(const v of h){if(v>=a){c=b;b=a;a=v}else if(v>=b){c=b;b=v}else if(v>c)c=v;}
+  minMode=Math.min(minMode,a);minTop3=Math.min(minTop3,a+b+c);
+  if(a<=m.mode&&a+b+c<=m.top3)pass++;
+  if(shift<end)for(const [lo,hi] of m.intervals){h[p[shift+lo]]--;h[p[shift+hi+1]]++;}
+ }
+ return {windows,pass,minMode,minTop3};
+}
+const pageReset=[];
+for(const k of [0,28]){
+ const pages=gp.pages.filter(p=>p.page<=55),m=pageResetMask(pages,k);
+ const benchmark=donors.map(x=>({file:x.file,...maskedNativeWindows(x.native,m)}));
+ const planted=[];
+ for(let t=0;t<2;t++){
+  const plain=donors[t].native.slice(0,m.N);assert.equal(plain.length,m.N);
+  let off=0,coveredPages=0,recovered=0;
+  for(const pg of pages){
+   const p=plain.slice(off,off+pg.indices.length),cipher=encrypt(p,k,shuffled()),d=inverse(cipher,k);
+   if(d.sync!==null){coveredPages++;for(let i=d.sync;i<p.length;i++){assert.equal(d.rank[i],p[i]);recovered++;}}
+   off+=pg.indices.length;
+  }
+  planted.push({trial:t,coveredPages,exactSuffix:recovered});
+ }
+ pageReset.push({k,N:m.N,retainedN:m.retainedN,mode:m.mode,top3:m.top3,unsynchronized:m.unsynchronized,benchmark,planted});
+}
+
+console.log(JSON.stringify({schema:'lp2-endpoint-reinsert-v2',plants,results,pageReset},null,2));
+module.exports={inverse,encrypt,exactWindows,native,pageResetMask,maskedNativeWindows};
