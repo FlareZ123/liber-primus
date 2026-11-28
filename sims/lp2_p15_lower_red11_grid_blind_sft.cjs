@@ -78,6 +78,34 @@ assert.deepEqual(lower,[
 ]);
 const [l1,l2,l3]=lower;
 
+// Charge the three obvious repository-native numeric representations before
+// interpreting fields: zero-based rune index, one-based index mod29, and the
+// official Gematria prime value reduced mod29.  The frozen lower-span
+// identities below are satisfied only by GP0.
+const lowerGp1=descriptors(lowerRunes.map(x=>mod(x+1)),[4,2,5]);
+const lowerPrime29=descriptors(
+  lowerRunes.map(x=>mod(corpus.prime[x])),[4,2,5]);
+const lowerIdentityChecks=ds=>{
+  const [x,y,z]=ds;
+  const K0=y.L,a0=y.S,g0=y.P,q0=x.L,F0=z.P;
+  return {
+    repeatedG:z.L===g0&&z.S===g0,
+    Kg:x.P===mod(K0*g0),
+    qEqK2:q0===K0*K0,
+    F:F0,
+    pCandidate:x.S+1,
+    a:a0,g:g0
+  };
+};
+const representationCharge=[
+  ['GP0',lower],['GP1',lowerGp1],['primeMod29',lowerPrime29]
+].map(([name,ds])=>({name,descriptors:ds,checks:lowerIdentityChecks(ds)}));
+assert.deepEqual(
+  representationCharge.filter(x=>x.checks.repeatedG&&x.checks.Kg)
+    .map(x=>x.name),
+  ['GP0']
+);
+
 const K=l2.L;       // 2
 const a=l2.S;       // 6
 const g=l2.P;       // 5
@@ -243,6 +271,7 @@ console.log(JSON.stringify({
   sourceOnly:true,
   phaseAInput:'p15 lower red11 offsets9..19 + established 4x4 printed grid; upper red9 held out',
   lowerDescriptors:lower,
+  representationCharge,
   derivedBeforeUpper:{
     p,g,a,b,A,B,K,e,q,F,Binv,
     Kg:mod(K*g),qg:mod(q*g)
