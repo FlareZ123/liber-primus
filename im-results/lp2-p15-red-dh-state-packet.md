@@ -211,6 +211,56 @@ Thus the two uniquely paired red11 objects are not merely equal-length ornaments
 
 This mutual segmentation is an independent cross-page consequence; the stronger p15-local held-out grid gate below is the main positive result of this invocation.
 
+## Human-solve-path gate: use the already decoded red-origin spiral, then q=4 H4 blocks
+
+The p15 grid has an independently established authored traversal: start at the source-red 3299, move right to 3298, then continue the unique square spiral through all 16 Fibonacci-prime cells. That ordering predates this state result and gives the cell residues
+
+~~~text
+22,21,19,17 | 11,1,10,3 | 20,22,25,7 | 22,12,17,21
+~~~
+
+where the bars simply mark consecutive groups of the lower-red-derived q=4.
+
+Apply the repository-canonical H4 independently to each consecutive four-cell spiral group. The output is
+
+~~~text
+ 5, 2,11,10 |  8,20,11,14 | 13,26,18,27 | 1,24,0,14.
+~~~
+
+This admits a much more causal read than labeling all sixteen coordinates after inspection. **Before reading any transformed grid output**, lower red11 already fixes p=23,g=5,a=6,A=8,A^-1=11,K=2,q=4,F=0. Those fields predict the first **seven** transformed coordinates exactly:
+
+~~~text
+[g,K,A^-1,Kg | A,qg,A^-1]
+= [5,2,11,10 | 8,20,11].
+~~~
+
+The eighth coordinate is then the sole harvested scalar: 14 = -b, hence b=15. The DH equations immediately close
+
+~~~text
+B = g^b mod p = 5^15 mod23 = 19
+B^a mod p = 19^6 mod23 = 2 = K,
+~~~
+
+and fix B^-1=26 and e=3. With no further harvest, the entire remaining half of the tape is predicted:
+
+~~~text
+[b-K,B^-1,p-g,-K | 1,g+B,F,-b]
+= [13,26,18,27 | 1,24,0,14].
+~~~
+
+The full spiral tape therefore reads compactly as
+
+~~~text
+[g,K,A^-1,Kg | A,qg,A^-1,-b |
+ b-K,B^-1,p-g,-K | 1,g+B,F,-b].
+~~~
+
+The transform choice and traversal are finitely charged rather than assumed. Take the five canonical transforms used elsewhere in the repository (identity, H4, H4^-1, adjacent-H2, H2^-1), both traversal directions, and all sixteen cyclic starts: **160** variants. Hold the seven-coordinate lower-red prediction fixed. Exactly **1/160** variants matches: H4, forward direction, red-origin start—the authored spiral presentation. The source spiral itself already fixes that start and direction, so this is a deliberately generous control rather than a claimed discovery-wide probability.
+
+This is the best current human solve-path interpretation of the p15 state circuit: the visible red origin supplies the spiral traversal, the lower rubric supplies q and state operands, and a small already-used outer-pair transform converts four consecutive spiral blocks into the DH register. It still does not authenticate H4 as a manuscript-wide cipher opcode or identify a body-text receiver.
+
+Reproducer: sims/lp2_p15_spiral_qblock_h4_state_sft.cjs.
+
 ## Strongest causal gate: lower red11 + one grid scalar predicts the remaining p15 state
 
 The five-word interpretation above can be made substantially less circular. Hold the **entire upper red9 span out**. Read only the lower red11 descriptors
