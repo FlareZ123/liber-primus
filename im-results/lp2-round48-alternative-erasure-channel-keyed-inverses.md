@@ -1,6 +1,6 @@
 # Exact known-key decoders for two still-open Liber Primus output channels
 
-**Decision — Agent6, 28 November 2026:** The independently proposed alternative hidden-output mechanisms have been converted into **working, source-independent finite-state decoders with the correct keystream supplied**. The new mod36 silent-symbol decoder recovers at least **97.62%** of surviving plaintext on each of 12 disjoint literary plants (mean **98.62%**); the GP29 post-filter deletion decoder recovers at least **87.98%** on each of 12 (mean **92.70%**). They beat their individual random wrong-key runs by large language-model margins. The original unknown-page keystream has *not* been recovered, and no authentic unknown-page plaintext has been identified.
+**Decision — Agent6, 28 November 2026:** The independently proposed alternative hidden-output mechanisms have been converted into **working, source-independent finite-state decoders with the correct keystream supplied**. The new mod36 silent-symbol decoder recovers at least **97.62%** of surviving plaintext on each of 12 disjoint literary plants (mean **98.62%**); the GP29 post-filter deletion decoder recovers at least **87.98%** on each of 12 (mean **92.70%**). They beat their individual random wrong-key runs by large language-model margins. The original unknown-page keystream has *not* been recovered, and no authentic unknown-page plaintext has been identified. The mod36 score above covers only retained visible-emission plaintext; the full-path follow-up below recovers 95.02% mean complete-prefix LCS on six cross-author plants, with zero exact complete recoveries and a provably many-to-one hidden channel.
 
 ## Why this is a different route
 
@@ -47,6 +47,27 @@ The terminal p54 image visibly contains the enlarged rune A followed by eight re
 This retires the simplest *red8 as repeated GP-index mod36 key* under the specific strict-silent sender. It does **not** exclude secret index conversion, aperiodic keys, red8 used as an external pointer, other cipher mechanisms, or punctuation-driven phases. Reproduce with `node sims/lp2_alt36_silent_exact_latent_viterbi_sft.cjs --red8-plant` and `--red8-original`. The original plaintext remains unknown.
 
 The original scan also shows a visually **enlarged A** immediately before those eight red glyphs. We therefore froze four complete red8 key maps with no tuning to plaintext: `direct`, GP-chart `atbash:28−index`, `direct+24`, and `atbash+24` (enlarged A GP index24, all key values finally mod36). All use initial key phase0, one unaltered exact hidden-state receiver and the same full 299 body+continuation runes. The matched positives recover **100.0%, 100.0%, 99.54%, 99.15%** of recoverable GP runes, respectively; original average log scores are **−5.624, −5.338, −5.543, −5.313** (initial phase1 variants likewise −5.615, −5.331, −5.538, −5.311), all nonprose. Using enlarged A as initial emitted cipher-state instead of a numeric offset leaves the direct original output unchanged (its first printed rune does not trigger the extra repeat rejection). The common red8 family is thus still **not a credible mod36 decipherment** under these four bounded visual interpretations. These key mappings are conditional, not original instructions; do not expand them into an unlimited affine search.
+
+## Complete plaintext recovery and exact nonidentifiability (Agent11, 28 November)
+
+The previous benchmark measures only plaintext GP runes corresponding to **visible** ciphertext emissions, excluding spaces and plaintext of hidden outputs. That is a legitimate retained-symbol score, not a lossless plaintext recovery. The [full-path adapter](../sims/lp2_alt36_full_plaintext_identifiability_sft.cjs) retains every latent plaintext symbol (including spaces and hidden-output events), its key index and emitted state. It uses the pinned original receiver blob `07ed9f331cff07655b775def9ec3e18ee7916cff`, same six first cross-author plants, beam400, three-hidden limit and unchanged scoring. The truth is truncated at the last printed output, since a wholly silent suffix is not evidenced by the observation. Results:
+
+| Metric | Six controls |
+| --- | ---: |
+| Retained-rune normalized LCS | 97.94% mean |
+| Full plaintext normalized LCS, including spaces and hidden outputs | 95.02% mean; 91.46–97.45% |
+| Wrong-key full plaintext LCS | 32.38% mean |
+| Exact full plaintext recovery | 0/6 |
+| Exact full latent-event and visible ciphertext replay | 6/6 |
+| Exact oracle-aligned unrestricted plaintext multiplicity | 2^104.14 to 2^157.07 |
+
+The last row is a mathematical obstruction to treating this channel as a lossless cipher, even with the key and true event alignment supplied. Fix the real accepted key indices j_t, the observed visible symbols and the true print/silent mask. Let D_t(c) count paths ending at output c. For each candidate c (the fixed printed output or 29..35 for a silent event), compute p=(c−K[j_t]) mod36 and retain only p≤29. Sum D_{t−1}(a) over previous outputs a≠c such that every skipped key k between j_{t−1}+1 and j_t−1 satisfies (p+K[k]) mod36=a. Start with sentinel a=−1, count1 and j_{−1}=−1. Every surviving path is a distinct plaintext prefix because the fixed key and accepted clocks determine p from c. Exact BigInt counts therefore enumerate all compatible plaintext prefixes for this *oracle-fixed* alignment; additional clocks and suffixes can only increase ambiguity. The result is not an entropy estimate for English.
+
+A linguistic collision is also possible: GP30 plaintext THE CAT IS RED and THE CAP IS RED (TH=2,E=18,space=29,C=5,A=24,T=16,P=13,I=10,S=15,R=4,D=23) under the same key `[34,19,9,34,16,16,13,33,29,16,6,29,25]` produces respectively `[0,1,2,3,4,32,6,7,8,9,10,11,12]` and `[0,1,2,3,4,29,6,7,8,9,10,11,12]`. Both satisfy strict no-repeat, have identical event clocks and mask, and print `[0,1,2,3,4,6,7,8,9,10,11,12]`. This is a constructed existence proof, not an LP2 key or a frequency claim about real prose.
+
+**Decision:** the model now has a usable approximate complete-text receiver and exact full-path replay, but it is intrinsically many-to-one. A claim of an authentic complete decryption under this architecture needs an independently recoverable redundancy/side-information mechanism, or a candid statement of remaining ambiguities; an LM MAP path and exact replay alone cannot certify hidden symbols. This does not exclude a deliberately lossy puzzle channel or ordinary English as a powerful prior. No original ciphertext was refitted, no key recovered, and no authoritative plaintext frontier changed.
+
+[Raw outputs, full candidate and truth vectors, exact integer counts](lp2-alt36-full-plaintext-identifiability-output.json). The V8 core was executed; the Node CLI wrapper was not separately run. One Gibran plant contains Gutenberg boilerplate, so the benchmark is not six independently selected literary passages. The oracle multiplicities do not rely on the language model.
 
 ## Decision and next causal requirement
 
