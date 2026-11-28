@@ -1,4 +1,12 @@
-# Current checkpoint — 2026-11-28, draw3 directed
+# Current checkpoint — 2026-11-28, draw2 independent
+
+## Checkpoint — p40–p55 mirror-frame whole-section reverse prime block (2026-11-28)
+
+- Exact bilateral frame p40–p55 suggested a section-level reflection of the immediately following authenticated p56 prime-minus-one/F-hold cipher.
+- New zero-fit receiver: traverse unchanged p40–p55 from p55 backward, prime origin0, authentic literal-plaintext-F nonconsumption. This is whole-section reversed **key allocation**, distinct from page-pair +/- combining, word reversal, clause-local reversed blocks, and terminal-only p54–55 backward-origin sweeps.
+- Exact original reachability is empty almost immediately. Authentic sign fails at reverse offset17 = p55 local58: C=TH index2, prime[17]=61 -> K=2 -> P=F0, impossible because nonzero C cannot encode a literal held F. No F branch occurred earlier; state width stayed1. Sign-reflected sensitivity fails at reverse offset10 = p55 local65: C=EA28, prime[10]=31 -> K=1 -> P=F0.
+- Authentic solved p56 reproduces 85/85 with 84 consumed primes; source-shaped reversed-block plants under both signs remain reachable. Reproducer/report: `sims/lp2_p40_p55_mirror_reverse_prime_block_sft.cjs`, `im-results/lp2-p40-p55-mirror-reverse-prime-block-gate.md`.
+- Decision: retire whole-section reverse allocation from origin0. Do not search origins/resets to rescue it absent a source selector. Mirror artwork and p50 table-local reflection remain open to other typed consumers.
 
 ## Checkpoint — robust frame starts type chapter PRODUCT (2026-11-28)
 
