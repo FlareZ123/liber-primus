@@ -84,7 +84,7 @@ const opening=(P,n=130)=>P.slice(0,n).map(i=>gp.translit[i]).join("");
 const suffix=(P,n=120)=>P.slice(-n).map(i=>gp.translit[i]).join("");
 function test(C,ref,mode){
  const top=[];
- const best={};// select strictly by training prefix, not heldout
+ // select strictly by training prefix, not heldout
  for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let prev=0;prev<29;prev++){
   const P=dec(C,a,b,prev);
   const score=lang(P,0,cut);
@@ -104,7 +104,6 @@ function test(C,ref,mode){
  });
  const ret={mode,length:C.length,cut,top:ranked,rawIOC:(()=>{const v=Array(29).fill(0);for(const x of C)v[x]++;return v.reduce((s,x)=>s+x*(x-1),0)/(C.length*(C.length-1));})()};
  if(ref){
-  ret.truth=best.trueKey;
   ret.truth=ref.key;
   const encoded=enc(ref.P,...ref.key);
   assert.deepEqual(encoded,C);
@@ -126,7 +125,7 @@ function test(C,ref,mode){
  return ret;
 }
 const donorPaths=["resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt"];
-const donors=donorPaths.map(p=>gpRunes(read(p)).slice(100,829));
+const donors=donorPaths.map(p=>gpRunes(read(p)).slice(12000,12729));
 assert(donors.every(p=>p.length===729));
 const plants=[
  {mode:"Gibran-independent-native-plant",P:donors[0],key:[7,11,5]},
@@ -139,7 +138,7 @@ const out={
  nativeModel:"Shakespeare first300k, GP orthography; separate Gibran/Emerson plants",
  primeResidueSupport:(()=>{let max=0,valid=[],res={};for(let e=1;e<=28;e++){
   let best=0;for(let t=0;t<29;t++){
-   const v=pS.map((p,i)=>mod(t*i+Array.from({length:e},()=>0).length*0+Number((BigInt(p)**BigInt(e))%29n)));
+   const v=pS.map((p,i)=>mod(t*i+Number((BigInt(p)**BigInt(e))%29n)));
    const n=new Set(v).size;if(n>best)best=n;
    if(n===29)valid.push([e,t]);
   }res[e]=best;
