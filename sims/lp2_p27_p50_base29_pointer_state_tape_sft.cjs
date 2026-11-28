@@ -346,6 +346,39 @@ assert.deepEqual(
   [Math.floor(254 / 29), 254 % 29],
   [state.A, state.p - state.one]
 );
+
+// Cell254 is the actual p27-selected table cell. Dereferencing its literal 39
+// prepends one state transition to the already fixed A=8 pointer trajectory.
+const selectedCellPath59 = [254, ...expectedPath59];
+const selectedCellHighDiffs = firstDifferences(
+  selectedCellPath59.map((address) => Math.floor(address / 29))
+);
+const selectedCellLowDiffs = firstDifferences(
+  selectedCellPath59.map((address) => address % 29)
+);
+assert.deepEqual(selectedCellHighDiffs, [
+  mod(-state.K, 29),
+  state.p,
+  state.one,
+  state.K,
+  mod(-state.one, 29),
+  state.e,
+  state.K,
+  state.one,
+  mod(-state.K, 29),
+]);
+assert.deepEqual(selectedCellLowDiffs, [
+  state.B,
+  state.g + state.K,
+  mod(-state.b, 29),
+  mod(-state.A, 29),
+  state.B - state.one,
+  state.K,
+  mod(-state.g, 29),
+  state.q,
+  state.F,
+]);
+
 assert.equal(254 - 151, 103);
 assert.equal(encodeHistoricalBase29(103), '3G');
 assert.deepEqual(
@@ -445,6 +478,30 @@ function structuralCensus(values) {
  * Exact post-discovery census for the two first-difference packets.
  * @param {number[]} values
  */
+function selectedCellDifferenceCensus(values) {
+  const highHits = [];
+  const lowHits = [];
+  const jointHits = [];
+  for (let start = 0; start < 256; start += 1) {
+    const run = walk(values, start, state.A + state.one);
+    const addresses = [...run.nodes, run.end];
+    const highs = firstDifferences(
+      addresses.map((address) => Math.floor(address / 29))
+    );
+    const lows = firstDifferences(addresses.map((address) => address % 29));
+    const highMatch = highs.every(
+      (value, i) => value === selectedCellHighDiffs[i]
+    );
+    const lowMatch = lows.every(
+      (value, i) => value === selectedCellLowDiffs[i]
+    );
+    if (highMatch) highHits.push(start);
+    if (lowMatch) lowHits.push(start);
+    if (highMatch && lowMatch) jointHits.push(start);
+  }
+  return { highHits, lowHits, jointHits };
+}
+
 function differencePacketCensus(values) {
   const highHits = [];
   const lowHits = [];
@@ -473,6 +530,18 @@ assert.deepEqual(differenceCensus59, {
   jointHits: [186],
 });
 assert.deepEqual(differenceCensus60, {
+  highHits: [],
+  lowHits: [],
+  jointHits: [],
+});
+const selectedCellDifferenceCensus59 = selectedCellDifferenceCensus(values59);
+const selectedCellDifferenceCensus60 = selectedCellDifferenceCensus(values60);
+assert.deepEqual(selectedCellDifferenceCensus59, {
+  highHits: [254],
+  lowHits: [254],
+  jointHits: [254],
+});
+assert.deepEqual(selectedCellDifferenceCensus60, {
   highHits: [],
   lowHits: [],
   jointHits: [],
@@ -630,6 +699,13 @@ const summary = {
   highDifferencePacket,
   lowDifferencePacket,
   differencePacketCensus: { base59: differenceCensus59, base60: differenceCensus60 },
+  selectedCellPath59,
+  selectedCellHighDiffs,
+  selectedCellLowDiffs,
+  selectedCellDifferenceCensus: {
+    base59: selectedCellDifferenceCensus59,
+    base60: selectedCellDifferenceCensus60,
+  },
   adjacentHPacket: hPacket,
   fixedPoints: { base59: base59FixedPoints, base60: base60FixedPoints },
   dualPacking: {
