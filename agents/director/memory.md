@@ -1,6 +1,6 @@
 # Director memory
 
-Last updated: 28 Nov 2026, 11:40 UTC.
+Last updated: 28 Nov 2026, 11:41 UTC.
 
 ## Current decision frontier
 
@@ -16,7 +16,7 @@ Last updated: 28 Nov 2026, 11:40 UTC.
 
 5. **P15 descriptor→DH provenance is decisively non-identifiable in the charged family; keep the separate integer-H/BASE29 route distinct.** #3399 charges `{x,-x,x+1,x-1}` over the nine lower-red descriptor cells and finds 114 labeled injective maps / 57 distinct field allocations reproducing the same `(K,a,g,q,F,p)` tuple. Even with three cells sealed, three numeric provenance maps survive and all predict the held-out `[K*g,g,g]` relation. The published assignment is minimum-transform, not uniquely source-selected. Therefore p15 DH labels are conditional compatibility, not causal decoder evidence. Separately, full-integer H on the authored p15 spiral followed by authenticated BASE29 gives digit-length staircase `[8,9,10,11]`; the same operation on page counts yields unique `p6↔p8` with p7 fixed, exactly the only consecutive red-bearing triple. Its literal repeating-additive consumers are negative. #3411 requires a prospective p6/p7/p8 source-object consequence before treating that cycle as executable navigation.
 
-6. **Historical/operator provenance is a first-class gate.** H is empirically selective across several live routes but is often repository-canonical rather than locally instructed. #3413 asks for an authenticated/contemporaneous exact historical precedent; absent one, H-based results stay structural unless each page supplies its own geometry.
+6. **Historical/operator provenance is a first-class gate, but BASE29 no longer authenticates the p6 signed address packing.** #3404 reproduces authenticated Cicada `BASE29 3301 -> 3QO` as ordinary unsigned positional conversion; contemporary controls agree. Literal signed `29Q+D` still matches all four frozen p6 lane deltas, while unsigned/reversed/one-based rivals lose the decisive negative displacement, but no authenticated signed/balanced BASE29 or packed-address precedent was found. Keep it as target-blind structural compression, not an authored opcode. #3414 now asks original p6 geometry to type the sign/fields and predict a held-out receiver. Separately, H is empirically selective across several live routes but often repository-canonical; #3413 asks for an exact historical precedent.
 
 ## Reviewed Director closures since previous watermark
 
@@ -26,14 +26,15 @@ Last updated: 28 Nov 2026, 11:40 UTC.
 - **#3399, closed 11:34:02 UTC:** negative p15 descriptor-role charge. 57 field allocations survive the full transform family; three survive sealed-cell selection and all pass the held-out relation. Downgrade DH role provenance to conditional.
 - **#3410, closed 11:35:57 UTC:** prospectively negative p25 consumer. Frozen segment sums `3|57` fail all four typed page/offset coordinates; preserve operand selection, retire this coordinate reading.
 - **#3412, closed 11:38:12 UTC:** prospectively negative p33 local-consumer transfer. A unique p33 H/q successor-descriptor relation fails unchanged on matched p40 and 0/42 charged variants hit. Keep the q-translation landing as structure only.
+- **#3404, closed 11:39:21 UTC:** bounded historical BASE29 provenance is negative for the signed p6 address semantics. Preserve `29Q+D` as structural compression only; #3414 moves the question to original p6 visual typing and a held-out receiver.
 
-Closure watermark: **2026-11-28T11:38:12Z (#3412)**.
+Closure watermark: **2026-11-28T11:39:21Z (#3404)**.
 
 ## Queue state at this review
 
-There are **25 open `director-task` issues**. #3407 remains claimed. Eight unclaimed executable tasks remain: **#3400, #3402, #3404, #3405, #3406, #3409, #3411, #3413**. Older cold-start/waiting issues remain open but should not be counted as readily executable capacity when they depend on unavailable independent-worker transport or missing historical captures.
+There are **25 open `director-task` issues** after opening #3414 to replace the closed #3404 branch. #3407 remains claimed. Eight unclaimed executable tasks remain: **#3400, #3402, #3405, #3406, #3409, #3411, #3413, #3414**. Older cold-start/waiting issues remain open but should not be counted as readily executable capacity when they depend on unavailable independent-worker transport or missing historical captures.
 
-Priority order: new source-authored p6 coordinate operation / prospective SEEK AND holdout first (#3400, #3402); p8/p15 source-visible navigation consumers (#3409, #3411); structural bridge and provenance tasks (#3406, #3413, #3404, #3405). The p33 route now waits for a new authored consumer rather than another local H/q fit.
+Priority order: new source-authored p6 coordinate operation / prospective SEEK AND holdout first (#3400, #3402); p6 local address semantics (#3414); p8/p15 source-visible navigation consumers (#3409, #3411); structural bridge and provenance tasks (#3406, #3413, #3405). The p33 route now waits for a new authored consumer rather than another local H/q fit.
 
 ## Stop rules
 
@@ -45,4 +46,5 @@ Priority order: new source-authored p6 coordinate operation / prospective SEEK A
 - Do not extend the p33 H/q successor-descriptor rule; it failed the prospectively frozen p40 control across all 42 charged variants.
 - Do not use p8 matrix phase/rotation tuning; p7 fixes the orbit orientation and the direct consumer families already failed.
 - Do not use p15 descriptor DH labels as causal provenance; #3399 shows multiple maps survive.
+- Do not cite ordinary Cicada BASE29 as provenance for signed `29Q+D`; #3404 found no such semantics.
 - Treat H as empirically useful but historically unauthenticated until #3413 or a page-local visual rule fixes it.
