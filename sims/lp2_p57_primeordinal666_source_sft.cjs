@@ -67,6 +67,12 @@ const targetRunes=targetPage.indices.slice(ordinalDifferences[1], ordinalDiffere
 assert.deepEqual(targetRunes,[2,0,0,3,2]);
 const fShedName=targetRunes.filter(r=>r!==0).map(r=>c.translit[r]).join("");
 assert.equal(fShedName,"THOTH");
+const nextPrintedGroupPrefix=targetPage.indices.slice(33,37);
+assert.deepEqual(nextPrintedGroupPrefix,[8,3,19,18]);
+assert.equal(nextPrintedGroupPrefix.map(r=>c.translit[r]).join(""),"HOME");
+const divinityAndNextGroup=fShedName+"."+nextPrintedGroupPrefix
+  .map(r=>c.translit[r]).join("");
+assert.equal(divinityAndNextGroup,"THOTH.HOME");
 const p32Printed=transcription.split(/\n%\n/u)[32].replaceAll("/\n","");
 assert(p32Printed.includes("ᚦᚠ-ᚠᚩᚦ."));
 const containingP32Word=targetPage.indices.slice(25,30);
@@ -181,6 +187,8 @@ console.log(JSON.stringify({
     printedSourceRunes:"TH-F | F-O-TH",
     sourceIndices:targetRunes,
     literalZeroFErasure:fShedName,
+    immediatelyAfterPrintedPeriodOriginalPrefix:nextPrintedGroupPrefix,
+    joinedReadableLocalFragment:divinityAndNextGroup,
     containingCompleteOriginalWord:{start:25,end:29,primeSum:p32WordPrime},
     solvedP57FirstWordPrimeSum:sourceOpeningPrime,
     unsolvedBookAllFErasureMatches:allTHOTH,
