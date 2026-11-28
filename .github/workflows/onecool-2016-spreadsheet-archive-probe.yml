@@ -1,0 +1,26 @@
+name: onecool 2016 spreadsheet archive probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Query exact historical Drive/Imgur archive targets
+        run: node sims/lp2_onecool_2016_archive_probe.cjs
+      - name: Upload recovered archive evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2016-archive-probe
+          path: workplace/onecool-2016-archive-probe/
+          if-no-files-found: warn
