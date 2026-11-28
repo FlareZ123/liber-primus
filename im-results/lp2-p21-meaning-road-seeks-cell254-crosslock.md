@@ -203,6 +203,61 @@ p21/group21 H4
 
 This is precisely the kind of behavior suggested by the authenticated sentence: a manuscript-derived **number** acts as the **direction**, while its authenticated **meaning** names the road/receiver semantics.
 
+### The semantic 39 route reconstructs the numeric radix junction
+
+The literal token has two source-visible numeric readings already live in p50 research:
+
+```text
+base59("39") = 186
+base60("39") = 189.
+```
+
+The semantic direction route independently reaches the conventional-base60 side. Reuse the same self-index convention on physical p39:
+
+```text
+p39/group39 values = [21,2,9,5,14,16,21]
+H7 = [0,15,24,5,23,18,13].
+```
+
+Its adjacent H-pair table addresses are:
+
+```text
+[0,15]  -> cell15
+[24,5]  -> cell189
+[23,18] -> cell173.
+```
+
+Under the independently established base59 pointer graph, **cell189 is the unique fixed point / global sink**. Thus the p39 direction branch has a natural stopping event at exactly **189**, the conventional-base60 value of the original `39` token.
+
+The original p50 mirror-tree artwork then fixes horizontal reflection:
+
+```text
+cell189 = row23,col5
+mirror col5 -> col2
+-> cell186,
+```
+
+and **186 is exactly base59("39")**.
+
+So one printed token now supports a commuting source circuit:
+
+```text
+cell254 token39
+  | numeric base60                     | number-as-direction
+  v                                    v
+cell189 <--- p39/group39 H-pair --- physical p39 / FALSE
+  |
+  | original p50 horizontal mirror
+  v
+cell186 = numeric base59("39").
+```
+
+The p39 H packet has three pair addresses and the choice of 189 is justified by the pre-existing unique base59 fixed-point stopping condition, not by matching the desired numeral afterward. Across all self-indexed groups p24 also has an H pair that reaches189, so “H-pair→189” is **not globally unique**; the evidence here comes from p39 being selected first by the literal token39.
+
+This circuit materially narrows why both radix readings of the p27-selected token are relevant, but it still does not specify a body-cipher consumer.
+
+
+
 
 
 The conditional branch is:
