@@ -182,15 +182,16 @@ This report shows the converse:
 - an independent p50-conditioned hazard fails T7.
 
 The two observations therefore cannot replace one another. A plausible generator needs a joint
-law. The ordered adjacent-high-digit hazard shows that **sharing a visible p50 operand is not
-enough**. The strongest source-facing target is now a stateful period-256 construction in which the
-p50 high digit affects an **interval/update law or another persistent register**, rather than merely
-setting an independent local repeat probability. Such a mechanism must preserve the source-selected
-forward continuous left-endpoint phase while generating the one-step equality-gap dependence.
+law. The ordered adjacent-high-digit hazard shows that **sharing a visible p50 operand in a local hazard is not enough**. A later construction resolves the statistical incompatibility by keeping T7 in the separate correlated two-tap renewal clock and using the source gate only as an additional ordinary `1/29` collision branch; that union passes the full battery and both p50 gate checks. [Passing joint union model](lp2-p50-t7-joint-union-model.md).
 
-This does not license arbitrary functions of p50 values. The next experiment should be tied to a
-visible operation (for example a carry/high-digit transition or another historically motivated
-two-input rule) and must predict both the phase-zero enrichment and T7 before language scoring.
+The strongest source-facing target is now a reversible sender that implements **two
+repeat-enabling paths**: a persistent overlapping exception state accounting for T7, plus the
+literal period-256 `0D` opening where ordinary GP29 collision is allowed. The statistical union
+shows these constraints can coexist; the missing work is to identify the authored transform and
+state update that realizes them on ciphertext.
+
+This does not license arbitrary functions of p50 values. A candidate inverse must source-select its
+state update and reproduce both paths before language scoring.
 
 ## Reproduction
 
