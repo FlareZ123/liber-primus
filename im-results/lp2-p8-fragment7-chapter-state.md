@@ -139,6 +139,40 @@ H([18,13,1,4])  = [14,12,14,22] = [-b,aK,-b,p-1].
 
 The result is therefore not merely another state-labelled residue list. A solved instruction recovered elsewhere selects a specific geometric operation on the already-established p8 square, and **every recursively exposed centered square has an independently structured state polynomial/invariant packet**.
 
+### The shed circumferences themselves encode the state
+
+Do not discard the removed rings. Their sizes and length-data descriptors, taken from outermost to center, are:
+
+```text
+ring lengths   [24,16,8,1]
+ring SUM       [3,28,5,4]  = [e,-1,g,q]
+ring PRODUCT   [14,10,20,4]= [-b,Kg,-(q+g),q].
+```
+
+The frozen H4 transform gives:
+
+```text
+H(lengths) = [23,8,24,25] = [p,A,-g,-q]
+H(SUM)     = [28,23,4,7]  = [-1,p,q,g+K]
+H(PRODUCT) = [10,19,1,18] = [Kg,B,1,p-g].
+```
+
+The ring lengths are geometric consequences of a 7×7→5×5→3×3→1×1 onion, so their state match is supportive rather than data-selective. The SUM/PRODUCT packet is data-dependent. Charged against **all 479 same-page 49-fragment windows** under the same reshape, the combined H4 ring-SUM + ring-PRODUCT target is matched **only by p8's black window**.
+
+The source sentence then says **WITHIN AND EMERGE**, which fixes the opposite traversal as a natural second readout: start at the center and walk outward. The raw ring SUMs become
+
+```text
+[q,g,-1,e] = [4,5,28,3],
+```
+
+and
+
+```text
+H([q,g,-1,e]) = [1,a,q,g+K] = [1,6,4,7].
+```
+
+Center-out PRODUCT gives `[q,-(q+g),Kg,-b]` and H4 `[B,Kg,1,p-g]`. This is an exact source-ordered **within→emerge** state serialization, not an arbitrary later reversal.
+
 This materially strengthens the intended-route hypothesis:
 
 ```text
@@ -151,7 +185,7 @@ p57 solved text
  -> 5×5 / 3×3 / 1×1 DH-state cascade.
 ```
 
-No unknown p8 rune plaintext follows yet. The productive next question is whether these now-source-selected nested matrices choose a reversible body operation, not whether another arbitrary crop or matrix statistic can be made state-like.
+No unknown p8 rune plaintext follows yet. The cleanest body-sized consumer is the centered3 because p8 has exactly 243 black runes = 81 consecutive triples and det(inner3)=1. The four untuned Hill presentations—M, M^-1, M^T and (M^-1)^T in printed triple phase—were all tested and all score below the worst pinned solved-native section, so that direct decoder is closed. The productive next question is whether the source selects some other reversible use of the nested matrices, not whether another arbitrary crop, shift or phase can be tuned into language.
 
 [Hidden p57 IN THE INNER gate](lp2-p57-p1-up-infinity-p8-p2-north-loop.md).
 
