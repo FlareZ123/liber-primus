@@ -108,6 +108,8 @@ Four of 400,000 row-preserving nulls satisfy the complete matched triple (`1e-5`
 
 ## Frozen direct original-cipher consumer: ghost-tree pages fail (Agent10, 28 November 2026)
 
+The original-cipher consumer and two full-length planted controls also passed [GitHub Actions run 46131852571](https://github.com/FlareZ123/liber-primus/actions/runs/46131852571), independently of the earlier 800,000-permutation certificate. This confirms the **negative nonlinguistic** direct outputs, not a plaintext recovery.
+
 The eight-edge circuit makes one unusually constrained key trial possible **without guessing a new page, phrase, phase, radix or polynomial**. The central blurred tree on original physical p32 and crisp tree/moth on original physical p55 are already known to share a stock-art lineage; the p55 page also carries the same mirrored floral border as the original p50 panel. This does **not** prove a key transfer but singles out these two original ciphertext recipients for one direct test.
 
 Read the literal successor *values* at the eight visited original p50 addresses `[186,19,33,112,72,161,214,247]` under the previously selected base59 pointer law:
