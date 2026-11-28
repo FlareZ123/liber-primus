@@ -45,6 +45,31 @@ Physical p54's red heading is **two** words, lengths `[1,8]`, with products `[24
 `[14,5]=[-b,g]`.
 This is a separate, weaker state echo in the broader two-word red-span class and is not used to extend the p6/p23 relation.
 
+## Immediate black successor extends the same state channel
+
+The exact source class also gives a black-text continuation without scanning for a favorable body word: take the **first complete black word immediately after** each of the only two four-word red spans, and reduce it by the same elementary descriptor grammar already used elsewhere in LP2, `(printed length, GP0 sum, GP0 product)`.
+
+- p6 red span ends at82. Its immediate black word is start82, values `[6,9,28,25,6,21,23]`, with descriptor `(7,2,3)=[g+K,K,e]`.
+- p23 red span ends at16. Its immediate black word is start16, values `[28,6,15,25,13,7,19,28]`, with descriptor `(8,25,16)=[A,-q,A*K]`.
+
+Applying the same outside-in H convention to the complete successor words gives
+
+~~~text
+p6  H7 = [12,0,17,1,22,5,25]
+        = [aK,F,K+b,1,p-1,g,-q]
+
+p23 H8 = [0,27,16,25,8,22,12,9]
+        = [F,-K,AK,-q,A,p-1,aK,A+1].
+~~~
+
+The state labels were recognized retrospectively and DH23 expression space is dense, so these equalities are **not** plaintext evidence or a calibrated coincidence probability. The causal gain is the receiver selection: both black words are fixed by immediate physical adjacency to the independently defined red source class before any state comparison.
+
+A manuscript-wide control over the corrected **2,973** physical-page word fragments makes the elementary descriptor result exact. There are **218** seven-rune words; only p6 start82 has `(sum,product)=(2,3)`. There are **160** eight-rune words; only p23 start16 has `(sum,product)=(25,16)`. Thus both source-selected successors are unique under their complete `(length,sum,product)` descriptors.
+
+**Decision:** the p6/p23 red register channel has a directly adjacent black-state continuation. Treat these two successor words as concrete candidate operands for a future authored consumer; do not infer a repeated body key or decoder merely from the state compression.
+
+Reproduction: `node sims/lp2_fourword_red_black_successor_state_gate_sft.cjs`.
+
 ## Exact corpus control
 
 With the physical p50 omission handled correctly, the parser yields **2,973** page-local word fragments and **2,802** page-local consecutive four-word windows across p0–p57.
