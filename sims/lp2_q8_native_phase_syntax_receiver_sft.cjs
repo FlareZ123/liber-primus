@@ -146,6 +146,10 @@ for(let plant=0;plant<2;plant++){
     const bagM=metrics(sets,bag,truth,starts,model),orderM=metrics(sets,ordered,truth,starts,model);
     const perm=shuffle([...Array(sets.length).keys()],rng);
     const falseOrder=infer(perm.map(i=>sets[i]),model,true);
+    const falseMetrics=metrics(perm.map(i=>sets[i]),falseOrder,perm.map(i=>truth[i]),perm.map(i=>starts[i]),model);
+    const shuffleZ=[falseOrder.logZ];
+    for(let trial=1;trial<31;trial++)shuffleZ.push(infer(shuffle(sets,rng),model,true).logZ);
+    const shuffleP=(1+shuffleZ.filter(z=>z>=ordered.logZ-1e-10).length)/32;
     const falseBag=infer(perm.map(i=>sets[i]),model,false);
     assert(Math.abs(bag.logZ-falseBag.logZ)<1e-6);
     const decoy=cipher.map(x=>x.slice());
@@ -157,8 +161,8 @@ for(let plant=0;plant<2;plant++){
     const decoySets=decoy.map(w=>inverse(w,pi,key));
     const decoyModel=infer(decoySets,model,true);
     outputs.push({plant,name:sec.name,groups:truth.length,runes:truth.reduce((a,w)=>a+w.length,0),changed,
-      scores:{ordered:ordered.logZ,bag:bag.logZ,shuffle:falseOrder.logZ,decoy:decoyModel.logZ},
-      bag:bagM,ordered:orderM});
+      scores:{ordered:ordered.logZ,bag:bag.logZ,shuffle:falseOrder.logZ,decoy:decoyModel.logZ,shuffleP},
+      bag:bagM,ordered:orderM,falseOrder:falseMetrics});
   }
 }
 function countwins(a,b){let w=0,t=0;for(const x of outputs){if(x.scores[a]>x.scores[b]+1e-8)w++;else if(Math.abs(x.scores[a]-x.scores[b])<=1e-8)t++;}return {wins:w,ties:t,total:outputs.length};}
@@ -166,7 +170,9 @@ const summary={status:'true action only, no phase oracle, no original unknown LP
   sources:{native:'resources/external/relikd-solved-gp29-native-v1.json',charts:'im-results/lp2-q8-seven-crib-conditional-chart-recovery.json',
     general_language:'Gibran Gutenberg 58585 + Emerson Gutenberg 2944 + leave-one-source-out solved native; fixed unknown-word mass 0.04, bigram backoff 12'},
   controls:outputs.length,word_groups:outputs.reduce((s,x)=>s+x.groups,0),runes:outputs.reduce((s,x)=>s+x.runes,0),
-  bag:pool(outputs,'bag'),ordered:pool(outputs,'ordered'),
+  bag:pool(outputs,'bag'),ordered:pool(outputs,'ordered'),false_order:pool(outputs,'falseOrder'),
+  order_permutation:{n:outputs.length,significant_p_le_005:outputs.filter(x=>x.scores.shuffleP<=.05).length,
+    median_p:outputs.map(x=>x.scores.shuffleP).sort((a,b)=>a-b)[Math.floor(outputs.length/2)]},
   wins:{ordered_vs_shuffled:countwins('ordered','shuffle'),ordered_vs_decoy:countwins('ordered','decoy')},
   mean_per_word_margin:{shuffle:outputs.reduce((s,x)=>s+(x.scores.ordered-x.scores.shuffle)/x.groups,0)/outputs.length,
     decoy:outputs.reduce((s,x)=>s+(x.scores.ordered-x.scores.decoy)/x.groups,0)/outputs.length},
@@ -174,7 +180,7 @@ const summary={status:'true action only, no phase oracle, no original unknown LP
   cases:outputs.map(x=>({plant:x.plant,name:x.name,n:x.groups,ambiguous:x.ordered.ambiguous,phaseMulti:x.ordered.phaseMult,
     top_ordered:x.ordered.top,top_bag:x.bag.top,confident_wrong:x.ordered.confWrong,
     ordered_vs_shuffle:+(x.scores.ordered-x.scores.shuffle).toFixed(3),
-    ordered_vs_decoy:+(x.scores.ordered-x.scores.decoy).toFixed(3)}))
+    ordered_vs_decoy:+(x.scores.ordered-x.scores.decoy).toFixed(3),shuffle_p:x.scores.shuffleP}))
 };
 console.log('Q8_PHASE_NATIVE_RECEIVER_SUMMARY='+JSON.stringify(summary));
 const output=process.env.RUNNER_TEMP;
