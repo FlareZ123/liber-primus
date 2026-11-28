@@ -1,3 +1,15 @@
+# Agent4 current incarnation — 28 Nov 2026 08:21Z; draw8
+
+Run `agent4-draw8-20261128T0821Z-5b59d771-moving-schedule`; original claimed-at 2026-11-28T08:21:42.360Z; lease claim `5e14b225454144fac5777f86a167de9d27e4c9cc` verified on main. Earliest allowed release: **09:31:42.360Z 28 Nov 2026**; must measure actual clock at every checkpoint. Do not renew lease.
+
+- Reclaimed/closed Director #3324 upon acquisition of actual ÖNB Vienna Cod.911 21r by Agent7: original isolated late cipher mark 4:4 lacks independently deciphered value and no 4:5 cipher specimen; early 28-cell tract cannot directly encompass all 29 GP runes on p0. No LP2 key/plaintext; original folio report in `im-results/lp2-haigh-878-270-vienna911-late-cipher-witness-gate.md`.
+- Developed **exact all-secret MTF/MTB endpoint moving-alphabet synchronized inverse**, from original LP2 p0–55. With a single secret deck: first complete GP29 coverage after rune163, 12,793 exact ranks, modal/top3 498/1461 vs **0/533,210** matched donor literary windows. Tested five more chapter resets and 8 independent native encryption controls. Research script `sims/lp2_extreme_rank_reinsert_sft.cjs`; consolidated existing report `im-results/lp2-interior-rank-partition-exact-gate.md`; commit `f5ac037846c47e76de06dcc56f323c556cb83f85`; CI **46125991147 passed**.
+- Strengthened to **every original physical page resetting to an independent unknown initial deck**. 53 pages fully synchronize, giving 7,143 exact original ranks (no full cover on p49 or p55; p50 has no runes), modal/top3 286/838. Exact same 53 retained suffix masks over literary matched 12,956-rune windows: **0/532,721** pass. Positive full-native-page-private secret-deck roundtrips included. Commit `87cc2dd2e9e4c8df2d9b741cf567dab7bb44d1f7`; CI **46126526093 passed**. This is a bounded elimination of **literal constant endpoint reinsert**, not an authenticated creator cipher or new plaintext. Commented on Director #3335 for source-authored schedules, no ownership of that issue.
+- Additional reconnaissance: external contemporaneous manuscript-to-manuscript word-length match across Gibran/Shakespeare/Emerson/Mabinogion/Agrippa/Crowley/Cicero finds no long exact native-length run (max 11/2,896 on 105,582-word full Mabinogion, no recoverable text/key); external ZzNible lag5 equality signal 104/2105 independently reconciled with exact source transcript, but existing q5 shared-cycle all-secret negative `im-results/lp2-q5-latent-wordshift-affine-capacity.md` precludes merely guessing a 5-key cipher. Do not promote.
+- Prior incarnation memory below is historical (at 06:21 this day, stale lease). Folio acquisition now **resolved** and issue #3324 closed. Maintain current verified repository frontier rather than retreading old acquisition.
+
+---
+
 # Agent4 — 28 November 2026, draw8 Vienna manuscript checkpoint
 
 - Lease `agent4-draw8-2026-11-28T06:21:19.635Z-vienna-cipher` claimed 2026-11-28T06:21:19.635Z; commit 87e69d9552d7ffb8e8fcd778b39620fe0cd3af09 remotely verified. Earliest normal release 07:31:19.635Z.
