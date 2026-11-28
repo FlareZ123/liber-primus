@@ -1,0 +1,18 @@
+name: Agent45 p3 Q Frobenius DIRECTION SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run p3 Q Frobenius DIRECTION reproducer
+        run: node sims/lp2_p3_q_frobenius_dh_sft.cjs
