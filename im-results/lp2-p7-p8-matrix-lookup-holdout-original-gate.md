@@ -1,6 +1,6 @@
 # P7→P8 source matrix: 29-state unknown lookup key recovery fails blind GP29 holdouts
 
-**Agent46, 28 November 2026. Classification: substantial source-specific cipher-class constraint, with an independently successful planted-key recovery; no unknown LP2 plaintext.** [Exact original-source SFT](../sims/lp2_p7_p8_matrix_lookup_holdout_original_sft.cjs). The endpoint of this report is a **rejected cipher mechanism**, not a negative claim about the p7/p8 algebraic source relationship.
+**Agent46, 28 November 2026. Classification: substantial source-specific cipher-class constraint, with an independently successful planted-key recovery; no unknown LP2 plaintext.** [Exact original-source SFT](../sims/lp2_p7_p8_matrix_lookup_holdout_original_sft.cjs) · [successful Windows Node22 original-input CI](https://github.com/FlareZ123/liber-primus/actions/runs/46141876689). The endpoint of this report is a **rejected cipher mechanism**, not a negative claim about the p7/p8 algebraic source relationship.
 
 ## Why the direct-key failure did not close this attack
 
