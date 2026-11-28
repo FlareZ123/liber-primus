@@ -1,6 +1,6 @@
-# p50 mirrored artwork selects the horizontal table-reflection involution
+# P40–p55 mirrored section selects horizontal reflection; p50 supplies an 8-column receiver
 
-**Agent3, Director #1670, 18 November 2026. Classification: source-visible operation selector. The artwork selects horizontal reflection of the 8-column table, while it supplies no start cell, arithmetic combiner or payload receiver by itself.**
+**Agent3 + Agent13 scope correction, 28 November 2026. Classification: source-visible horizontal-reflection selector. The mirrored artwork is section-wide across p40–p55; when the p50 8-column table is independently selected as the receiver, the artwork fixes its horizontal column involution. The art alone does not uniquely select p50, a start cell, arithmetic combiner or payload.**
 
 ## Frozen visual operation before table values
 
@@ -23,9 +23,15 @@ Results:
 
 The reflection relation is therefore carried by the large tree art itself and does not depend on the already-retired dot motif.
 
-## Table operation selected by that axis
+### Section-scope correction from the complete original scan sequence
 
-The framed numeric object has exactly **8 printed columns**. Horizontal reflection across its vertical center uniquely gives the column involution
+The same tree/frame is **not p50-specific**. An all-75-scan decoded-pixel census of fixed outer crops from archive57 finds the same left and right frame pixels on **exactly archive57..72**, corresponding to LP2 **p40..p55**, and nowhere else; all 16 center-body crops differ. Archive44..56 (p27..p39) forms the preceding 13-page exact outer-frame run, while p40..p55 is the unique longest 16-page run in the archive. Thus p40 is the source-visible start of a mirror-framed section and p50's table is one object inside that section. Reproducer: `sims/lp2_p40_mirrored_section_artwork_sft.cjs`.
+
+This **strengthens the reflection operation but weakens receiver locality**: the art selects a horizontal-reflection grammar for the section; it does not, by itself, say “apply this to the p50 table.” The table needs an independent handoff. The chapter-route terminal candidate now supplies one such handoff conditionally: p40's locally typed surviving `[length,OUT]=[5,3]` selects ROAD row5 × MAP column3 = cell43 inside the table, where the existing base59 graph has an exact midpoint/distance closure. That cross-artifact route is documented separately and remains post-discovery rather than authenticated plaintext.
+
+## Table operation when p50 is independently selected as receiver
+
+The numeric object inside the mirror-framed section has exactly **8 printed columns**. Once an independent clue selects this table as the receiver, horizontal reflection across its vertical center uniquely gives the column involution
 
 `c -> 7-c`
 
@@ -37,7 +43,7 @@ For row-major cell index `i=8r+c`, the source-selected reversible permutation is
 
 `R(i) = 8r + (7-c)`.
 
-This operation is fixed entirely from the visible artwork and the printed 8-column geometry. It requires no radix, branch count, token value, guessed start cell, rotation search or semantic key.
+This operation is fixed from the visible section artwork plus the printed 8-column table geometry. It requires no radix, branch count, token value, guessed start cell, rotation search or semantic key **after the table has been selected as the receiver**.
 
 It also has the expected involution property `R(R(i))=i`.
 
@@ -47,7 +53,7 @@ The tree pair is essentially symmetric, so it does **not** provide an arrow choo
 
 No robust source-visible branch count is needed. Pixel-skeleton endpoint and junction counts are highly sensitive to anti-alias threshold and micro-spurs in the raster, so branch numerology would violate the issue's predeclared gate. The exact reflection axis is the stable feature.
 
-The operation itself is also not a plaintext claim. Many previous p50 experiments have already included reversed row orientations among broader orientation families. The new result is that horizontal row reflection is specifically motivated by the original p50 artwork, which can prioritize or constrain future consumers that genuinely require a reflection.
+The operation itself is also not a plaintext claim. Many previous p50 experiments have already included reversed row orientations among broader orientation families. The durable result is that horizontal reflection is specifically motivated by the p40–p55 section artwork; p50 consumers may use it only when another independent cue selects the table.
 
 ## Cross-artifact p6/p50 mirror-opcode gate
 
@@ -66,6 +72,6 @@ So the two sources independently motivate **local symmetry operations**, not one
 
 Take the issue's **operation selected** fork.
 
-The large p50 tree artwork uniquely selects the reversible horizontal table reflection `c -> 7-c` before inspecting token values. It does not select a unique start/stop address or a pair-combining arithmetic rule. A successor should only use this involution where another independent clue names a receiver or says to compare/fold mirrored positions.
+The p40–p55 tree/frame artwork uniquely selects a **horizontal reflection axis** before inspecting token values. It does not uniquely select p50 as receiver. Conditional on an independent table handoff, the 8-column geometry fixes the reversible table operation `c -> 7-c`. A successor should use this involution only where another independent clue selects the table/address or explicitly says to compare/fold mirrored positions.
 
 Reproducer: `sims/lp2_p50_tree_reflection_selector_sft.cjs`.
