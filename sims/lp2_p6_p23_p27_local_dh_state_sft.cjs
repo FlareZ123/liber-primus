@@ -164,7 +164,36 @@ const branchMatches = bBranches.filter(
 );
 assert.deepEqual(branchMatches, [{ b: 15, B: 19 }]);
 
-// Charge the same [B,b,K] triple against every physical red span.
+// Charge the same candidate branches against every physical red span.
+// First grant both possible field orientations for the two red observables.
+const twoFieldHits = [];
+for (const row of reds) {
+  for (const branch of bBranches) {
+    for (const orientation of ["B,b", "b,B"]) {
+      const target = orientation === "B,b"
+        ? [branch.B, branch.b]
+        : [branch.b, branch.B];
+      if (row.redLength === target[0] && row.redSumMod29 === target[1]) {
+        twoFieldHits.push({
+          page: row.page,
+          start: row.start,
+          branch,
+          orientation,
+          pair: [row.redLength, row.redSumMod29],
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(twoFieldHits, [{
+  page: 27,
+  start: 0,
+  branch: { b: 15, B: 19 },
+  orientation: "B,b",
+  pair: [19, 15],
+}]);
+
+// Then require the independently repeated K=2 in the first following black word.
 const allBranchHits = [];
 for (const row of reds) {
   for (const branch of bBranches) {
@@ -205,5 +234,6 @@ console.log(JSON.stringify({
     followingBlackSumMod29: p27.followingBlackSumMod29,
   },
   selectedBranch: branchMatches[0],
+  allRedSpanTwoFieldHits: twoFieldHits,
   allRedSpanBranchHits: allBranchHits,
 }, null, 2));
