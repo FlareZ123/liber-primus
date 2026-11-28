@@ -198,6 +198,57 @@ assert.equal(allFiveOrders.length, 120);
 assert.equal(matchingFiveOrders.length, 1);
 assert.deepEqual(matchingFiveOrders[0], p15);
 
+// Derive the DH exchange from the p15 red descriptor packet itself before
+// comparing with the repository's previously established state.
+const powMod=(base,exp,m)=>{
+  let b=base%m, e=exp, r=1;
+  while(e>0){ if(e&1) r=(r*b)%m; b=(b*b)%m; e=Math.floor(e/2); }
+  return r;
+};
+const isPrime=n=>{
+  if(n<2) return false;
+  for(let d=2;d*d<=n;d++) if(n%d===0) return false;
+  return true;
+};
+const inverse29=x=>{
+  for(let y=1;y<29;y++) if(mod(x*y)===1) return y;
+  throw new Error('noninvertible mod29');
+};
+const discreteLog=(g,target,p)=>{
+  let x=1;
+  for(let e=0;e<p-1;e++){ if(x===target) return e; x=(x*g)%p; }
+  throw new Error('no discrete log');
+};
+
+const top=p15Top.descriptors;
+const bottom=p15Bottom.descriptors;
+const derived={
+  q:bottom[0].L,
+  K:bottom[1].L,
+  a:bottom[1].S,
+  g:bottom[1].P,
+  F:bottom[2].P,
+};
+assert.equal(bottom[2].L,derived.g);
+assert.equal(bottom[2].S,derived.g);
+assert.equal(top[1].L,derived.g);
+assert.equal(top[0].L,derived.q);
+assert.equal(top[0].P,derived.F);
+assert.equal(bottom[0].P,mod(derived.K*derived.g));
+derived.p=bottom[0].S+1;
+assert(isPrime(derived.p));
+derived.A=powMod(derived.g,derived.a,derived.p);
+assert.equal(derived.A,top[1].S);
+assert.equal(mod(top[0].S*derived.A),1);
+derived.B=inverse29(top[1].P);
+assert.equal(powMod(derived.B,derived.a,derived.p),derived.K);
+derived.b=discreteLog(derived.g,derived.B,derived.p);
+assert.equal(powMod(derived.g,derived.b,derived.p),derived.B);
+// The physical page number is a held-out self-address check: b was derived
+// from the DH equations above, not assigned from the page number.
+assert.equal(derived.b,15);
+assert.equal(corpus.pages.find(p=>p.page===15).page,derived.b);
+
 // Interpret only after the source-only assertions above.  These state values
 // are already established elsewhere from the DH23/p6/p7 chain.
 const state = {p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4, F: 0};
@@ -280,6 +331,7 @@ console.log(JSON.stringify({
   sourceOnly: true,
   totalRunes,
   printedWords: words.length,
+  derivedDHFromP15RedPacket: derived,
   p15: {
     top: p15Top.descriptors,
     bottom: p15Bottom.descriptors,
