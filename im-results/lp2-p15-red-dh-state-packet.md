@@ -12,6 +12,12 @@ That distinction propagates through every later target built from those role nam
 
 The upper-red, page-index, p7, scan-symbol, matrix/H4 and chapter-H5 matches remain exact conditional consequences. They become independent validation of a state route only after the descriptor roles are fixed without consulting the DH tuple. Promotion therefore requires either a source-visible/historically motivated role rule followed by a fresh withheld prediction, or a complete bounded charge over the plausible role/statistic/representation family available at discovery time. Consumer failures below remain valid for the exact frozen conditional tape they test.
 
+### Bounded descriptor-role charge — issue #3399
+
+The requested bounded charge now makes the selection problem concrete. On the nine lower-red descriptor cells, allow only the elementary transforms `{x,-x,x+1,x-1}`, require distinct physical cells for `K,a,g,q,F,p`, and adjudicate against the already-known state tuple. The full family has **114 labeled injective maps / 57 distinct field allocations**. To create a real original-p15 holdout, seal `w1.P=10,w3.L=5,w3.S=5` and construct the roles only from the remaining six cells. The sign/offset family still leaves **three distinct numeric provenance maps**. The published map is the unique minimum-transform survivor, but all three predict the sealed relation `[w1.P,w3.L,w3.S]=[K*g,g,g]=[10,5,5]` exactly.
+
+This is a finite non-identifiability result, not a rejection of the source arithmetic. An artificially narrower `{x,x+1}` family would select the published map, but #3399 explicitly requires sign/offset constructions and those operations are already routine in the p6/p15 vocabulary. Because all three survivors produce the same state values, later DH/grid/spiral/p7/chapter checks that consume only those values cannot distinguish descriptor provenance. Promotion now requires a genuinely source-visible provenance instruction, not another state-only holdout. [Detailed charge](lp2-p15-descriptor-dh-role-charge.md); reproducer: `sims/lp2_p15_descriptor_dh_role_charge_sft.cjs`.
+
 ## Decision
 
 Physical p15 contains two red rune spans separated in the page design by the proved 4×4 Fibonacci/prime number grid and the infinity mark. In canonical rune order they are adjacent spans at offsets 0..8 and 9..19. Both are bounded by red 13-dot punctuation; the lower span is 11 runes long. The complete original red-span census already established that **p6 and p15 are the only two 11-rune red spans double-bounded by red 13-dot marks**.
