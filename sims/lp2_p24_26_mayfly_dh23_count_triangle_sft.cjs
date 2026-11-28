@@ -16,6 +16,9 @@ const assert = require("assert");
 const corpus = JSON.parse(
   fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8")
 );
+const ink = JSON.parse(
+  fs.readFileSync("resources/liber-primus/lp2-ink-annotations.json", "utf8")
+);
 const pages = corpus.pages.filter((p) => p.page >= 0 && p.page <= 55);
 assert.strictEqual(pages.length, 56);
 
@@ -73,7 +76,96 @@ assert.deepStrictEqual(hits, [
   { start: 24, pages: [24, 25, 26], counts: [270, 273, 265], diffs: [3, 5, 8] },
 ]);
 
+// Source punctuation: p22 locally terminates with 13 dots; p57 terminates
+// with the corpus-unique 23-dot mark. P23's separate five-black-dot graphic
+// and the external image's specimen-5 label independently select g=5.
+const p22Ink = ink.pages.find((row) => row.page === 22);
+const p57Ink = ink.pages.find((row) => row.page === 57);
+assert.deepStrictEqual(p22Ink.large_punctuation, [[131, 13, "red"]]);
+assert.deepStrictEqual(p57Ink.large_punctuation, [
+  [7, 13, "red"],
+  [95, 23, "red"],
+]);
+assert.strictEqual(ink.counts.red23, 1);
+
+const sourceP = 23;
+const sourceBoundary = 13;
+const sourceG = 5;
+
+const modPow = (base, exponent, modulus) => {
+  let result = 1n;
+  let x = BigInt(base);
+  let n = BigInt(exponent);
+  const m = BigInt(modulus);
+  while (n > 0n) {
+    if ((n & 1n) === 1n) result = (result * x) % m;
+    x = (x * x) % m;
+    n >>= 1n;
+  }
+  return Number(result);
+};
+
+// Charge the remaining two edge values as (e,A), both signs of K=±(g-e),
+// both integer relations b-K=13 / b+K=13, and every nonzero DH exponent a.
+// No p28 rune value enters this family.
+const remaining = target.filter((x) => x !== sourceG);
+const survivors = [];
+for (const eCandidate of remaining) {
+  const ACandidate = remaining.find((x) => x !== eCandidate);
+  for (const kSign of [1, -1]) {
+    const KCandidate =
+      ((kSign * (sourceG - eCandidate)) % sourceP + sourceP) % sourceP;
+    if (KCandidate === 0) continue;
+
+    for (const relation of ["b-K=13", "b+K=13"]) {
+      const bCandidate =
+        relation === "b-K=13"
+          ? sourceBoundary + KCandidate
+          : sourceBoundary - KCandidate;
+      if (bCandidate < 1 || bCandidate > sourceP - 1) continue;
+
+      for (let aCandidate = 1; aCandidate < sourceP; aCandidate += 1) {
+        if (modPow(sourceG, aCandidate, sourceP) !== ACandidate) continue;
+        const BCandidate = modPow(sourceG, bCandidate, sourceP);
+        if (
+          modPow(ACandidate, bCandidate, sourceP) === KCandidate &&
+          modPow(BCandidate, aCandidate, sourceP) === KCandidate
+        ) {
+          survivors.push({
+            p: sourceP,
+            e: eCandidate,
+            g: sourceG,
+            a: aCandidate,
+            b: bCandidate,
+            A: ACandidate,
+            B: BCandidate,
+            K: KCandidate,
+            kSign,
+            relation,
+          });
+        }
+      }
+    }
+  }
+}
+
+assert.deepStrictEqual(survivors, [
+  {
+    p: 23,
+    e: 3,
+    g: 5,
+    a: 6,
+    b: 15,
+    A: 8,
+    B: 19,
+    K: 2,
+    kSign: 1,
+    relation: "b-K=13",
+  },
+]);
+
 console.log("PASS lp2_p24_26_mayfly_dh23_count_triangle_sft");
 console.log("mayfly counts:", [c24, c25, c26]);
 console.log("edge labels:", edge, "=", { e, g, A });
 console.log("contiguous triple hits:", JSON.stringify(hits));
+console.log("charged independent DH survivors:", JSON.stringify(survivors));
