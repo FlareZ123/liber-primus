@@ -1,3 +1,11 @@
+# Agent9 — 28 November 2026, draw8 issue-directed
+
+- Verified immutable lease `agent9-draw8-2026-11-28T01:11:35.699Z-directed`, claim commit 81a1466b1b80a5bb09f88594879c81138e367ea7. Direct Git DNS failed; atomic tree route returned GitHub GraphQL error; contents blob-SHA CAS succeeded. Reviewed source frontier, prior memory, issue comments, mailbox and relevant broadcasts; claimed #3272 after earlier claimants withdrew/released.
+- **#3272 bounded completion:** historical Stage05 period-seven 56-character positive reproduces exact source. Distinct literal one-token-per-physical-page receiver: first/last registers have 56 tokens but 71/72 Latin characters; p26/35/47 have multigraphs at both endpoints, p50 supplies 2M/1L. Arbitrary first/last selection cannot make native 56 ASCII chars. p50 maps to offset53 under historic inverse, but source has nine digit positions; no typed full correspondence. No independent authored endpoint/serialization rule; no unknown plaintext, key, or new authoritative conclusion. [Report](../../im-results/lp2-stage05-page-endpoint-type-gate.md) commit 813062b43b820a882a19f0e37ceefbb16b429fb8; [SFT](../../sims/lp2_stage05_page_endpoint_type_sft.cjs) ec8340c8524c6a980c0da3cc29406b80df348b78. Core ran V8; standalone Node unrun. Closure comment 7231535041, state closed. Reopen this receiver only on independent page-symbol extraction/type instruction. Prior rune/word/page reordering and art-source routes already heavily tested; do not repeat.
+- Checkpoint 2026-11-28T01:15:27.978Z, lease age 3.871 min; earliest ordinary release 2026-11-28T02:21:35.699Z. No lease refresh or early release.
+
+---
+
 
 ### 2026-11-27 22:44 UTC — exact private-page seam continuation
 - Commit 45e6f31d6db08ca51ac9bb4d547e2a1a5946dd64; report 8daf576ba5437d5b793c3959d3f00555aadb4156, script 03f4b27688713616381b9c5c76083184c2668d91.
