@@ -406,6 +406,58 @@ assert.deepEqual(terminalMarkerLength5Candidates, [{
   mark: 13,
   values: [13, 28, 8, 27, 1],
 }]);
+\n
+const coordinateOriginVariants = [];
+for (const pageOrigin of ['zero', 'one']) {
+  for (const offsetOrigin of ['zero', 'one']) {
+    const page = pageOrigin === 'zero' ? 26 : 25;
+    const start = offsetOrigin === 'zero' ? 16 : 15;
+    const word = canonicalWords(page).find((candidate) => candidate.start === start);
+    coordinateOriginVariants.push({
+      pageOrigin,
+      offsetOrigin,
+      page,
+      start,
+      wordStart: Boolean(word),
+      values: word?.values ?? null,
+    });
+  }
+}
+assert.deepEqual(
+  coordinateOriginVariants.map((row) => row.wordStart),
+  [true, false, false, false],
+);
+
+const terminalChecksumCandidates = [];
+for (const page of pages) {
+  const marks = (annotationByPage.get(page.page)?.large_punctuation ?? [])
+    .filter(([offset]) => offset === page.runic_count);
+  for (const [, mark, ink] of marks) {
+    for (const word of canonicalWords(page.page)) {
+      if (
+        word.values[0] === mark
+        && mod(word.start + word.values[0]) === 0
+      ) {
+        terminalChecksumCandidates.push({
+          page: page.page,
+          start: word.start,
+          length: word.values.length,
+          leading: word.values[0],
+          mark,
+          ink,
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(terminalChecksumCandidates, [{
+  page: 26,
+  start: 16,
+  length: 5,
+  leading: 13,
+  mark: 13,
+  ink: 'red',
+}]);
 \nconst result = {
   source: {
     mayflyPages: [24, 25, 26],
@@ -428,7 +480,7 @@ assert.deepEqual(terminalMarkerLength5Candidates, [{
     allThirdPageLargeMarkComparisons: broadComparisons.length,
     allAbsoluteEndpointImbalanceMatches: broadMatches,
     chargedVertexOrderPresentations: (pages.length - 2) * 6,
-    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n      markerMatchedLeadingRune: p26Word16.values[0],\n      coreAfterLeadingMarker: markerShedCore,\n      coreDescriptor: descriptor({ values: markerShedCore }),\n      coreH4: H4(markerShedCore),\n      markerToTerminalValues: markerToTerminal,\n      markerToTerminalWords,\n      length5CyclicReversePresentations: length5Words.length * 10,\n      highBigramPresentations,\n      terminalMarkerLength5Candidates,\n    },
+    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n      markerMatchedLeadingRune: p26Word16.values[0],\n      coreAfterLeadingMarker: markerShedCore,\n      coreDescriptor: descriptor({ values: markerShedCore }),\n      coreH4: H4(markerShedCore),\n      markerToTerminalValues: markerToTerminal,\n      markerToTerminalWords,\n      length5CyclicReversePresentations: length5Words.length * 10,\n      highBigramPresentations,\n      terminalMarkerLength5Candidates,\n      coordinateOriginVariants,\n      terminalChecksumCandidates,\n    },
     canonicalSignedSourceBigramHits: canonicalBigramHits,
   },
   decision:
