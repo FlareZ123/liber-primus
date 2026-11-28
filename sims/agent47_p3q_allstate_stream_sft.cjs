@@ -9,6 +9,7 @@ const root = path.resolve(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 const gibran = fs.readFileSync(path.join(root, 'resources/control/gibran_prophet_58585.txt'), 'utf8');
 const signed = fs.readFileSync(path.join(root, 'resources/historical/cicada2016-4gq25-outguess.asc'), 'utf8');
+const correctedTape = fs.readFileSync(path.join(root, 'resources/transcriptions/lp2-image-corrected.txt'), 'utf8');
 const MOD = 29, Q = [17, 24], QINV = [22, 26];
 const mod = (x) => (x % MOD + MOD) % MOD;
 const mul = ([a, b], [c, d]) => [mod(a*c + 8*b*d), mod(a*d + b*c + 3*b*d)];
@@ -85,14 +86,14 @@ function transduce(x,seed,forward,law,stepFamily='Q'){
   return out;
 }
 const inverseLaw=[1,0,3,2];
-function census(x,stepFamily='Q'){
+function census(x,stepFamily='Q',scorer=score){
   let best=[];
   let scanned=0;
   for(const forward of [true,false])
   for(let law=0;law<4;law++)
   for(const seed of states){
     const decoded=transduce(x,seed,forward,law,stepFamily);
-    const value=score(decoded);
+    const value=scorer(decoded);
     const item={score:value,seed,forward,law,
       prefix:decoded.slice(0,22).map(v=>corpus.translit[v]).join('')};
     if(best.length<5 || value>best[best.length-1].score){
@@ -144,6 +145,121 @@ for(const law of [0,2]){
     recoveredTop1:true,top:check.best[0]});
 }
 assert.equal(control.length,16);
+
+// Separate robustness gate: source printed words may be out of native order.
+// Score ONLY rune transitions within each original printed word, never across words.
+// This deliberately removes the English word-order premise from the direct-state result.
+const runeSet = new Set(corpus.runes);
+const transcriptSegments = correctedTape.split('%').map(raw => ({
+  raw,
+  indices:[...raw].filter(x=>runeSet.has(x)).map(x=>corpus.runes.indexOf(x))
+}));
+function printedWords(page){
+  const rawPage=corpus.pages.find(x=>x.page===page).indices;
+  const sources=transcriptSegments.filter(x=>
+    x.indices.length===rawPage.length&&x.indices.every((v,i)=>v===rawPage[i]));
+  assert.equal(sources.length,1,'unique exact canonical page match in corrected transcription');
+  const words=sources[0].raw.replace(/\s|\//g,'').split(/[-.const result={§]+/)
+    .map(t=>[...t].filter(x=>runeSet.has(x)).map(x=>corpus.runes.indexOf(x)))
+    .filter(x=>x.length);
+  assert.deepEqual(words.flat(),rawPage,'printed word parser must preserve every rune');
+  return words;
+}
+const p54words=printedWords(54),p55words=printedWords(55);
+assert.equal(p54words.length,50);
+assert.equal(p55words.length,17);
+assert.deepEqual(p54words.slice(0,2).map(x=>x.length),[1,8]);
+const wordFrames=[
+  {name:'whole-p54p55',words:p54words.concat(p55words)},
+  {name:'after-p54-red9-drop-terminal-rune',
+    words:p54words.slice(2).concat(p55words.slice(0,-1),
+      [p55words[p55words.length-1].slice(0,-1)])}
+];
+assert.deepEqual(wordFrames.map(f=>f.words.flat().length),[308,298]);
+for(let i=0;i<wordFrames.length;i++){
+  assert.deepEqual(wordFrames[i].words.flat(),frames[i].cipher);
+}
+const gibranWords=(gibran.match(/[A-Za-z]+/g)||[]).map(gpWord).filter(w=>w.length);
+const wordCounts=Array.from({length:MOD},()=>Array(MOD).fill(.25));
+let trainingSeen=0;
+for(const word of gibranWords){
+  if(trainingSeen>=20000) break;
+  for(let i=1;i<word.length;i++)wordCounts[word[i-1]][word[i]]++;
+  trainingSeen+=word.length;
+}
+assert.ok(trainingSeen>=20000);
+const wordLogp=wordCounts.map(row=>{
+  const total=row.reduce((a,b)=>a+b,0);
+  return row.map(v=>Math.log(v/total));
+});
+const nativeWordPools=new Map();
+for(const word of gibranWords.slice(6000)){
+  if(!nativeWordPools.has(word.length))nativeWordPools.set(word.length,[]);
+  nativeWordPools.get(word.length).push(word);
+}
+function wordMask(groups){
+  const indices=[];let pos=0;
+  for(const word of groups){
+    for(let k=1;k<word.length;k++)indices.push(pos+k);
+    pos+=word.length;
+  }
+  return indices;
+}
+function scoreInsideWords(sequence,mask){
+  let val=0;
+  for(const i of mask)val+=wordLogp[sequence[i-1]][sequence[i]];
+  return val/mask.length;
+}
+function matchingNativeWords(groups){
+  const used=new Map(),out=[];
+  for(const word of groups){
+    const pool=nativeWordPools.get(word.length);
+    assert.ok(pool&&pool.length,'unavailable held native GP word length '+word.length);
+    const k=used.get(word.length)||0;
+    used.set(word.length,k+1);
+    out.push(...pool[k%pool.length]);
+  }
+  return out;
+}
+const withinPrintedWords=[];
+for(const frame of wordFrames){
+  const original=frame.words.flat(),mask=wordMask(frame.words);
+  const heldNative=matchingNativeWords(frame.words);
+  assert.equal(original.length,heldNative.length);
+  const scorer=x=>scoreInsideWords(x,mask);
+  const familyResults=[];
+  for(const stepFamily of ['Q','T']){
+    const {scanned,best}=census(original,stepFamily,scorer);
+    const controls=[];
+    // Independent held-word-positive controls, with identical word slots and
+    // every original within-word scoring position fixed before searching.
+    for(const seed of [[0,20],[19,8]]){
+      const forward=stepFamily==='Q';
+      const law=seed[0]===0?0:2;
+      const encoded=transduce(heldNative,seed,forward,inverseLaw[law],stepFamily);
+      assert.deepEqual(transduce(encoded,seed,forward,law,stepFamily),heldNative);
+      const plantCensus=census(encoded,stepFamily,scorer);
+      assert.ok(Math.abs(plantCensus.best[0].score-scorer(heldNative))<1e-10,
+        'native word-matched plant must rank first after 6720 candidates');
+      const winning=transduce(encoded,plantCensus.best[0].seed,
+        plantCensus.best[0].forward,plantCensus.best[0].law,stepFamily);
+      assert.deepEqual(winning,heldNative,
+        'exact matched-native word sequence must be recovered');
+      controls.push({seed,forward,law,top1Exact:true,top:plantCensus.best[0]});
+    }
+    familyResults.push({stepFamily,scanned,best,controls});
+  }
+  withinPrintedWords.push({
+    frame:frame.name,wordCount:frame.words.length,runes:original.length,
+    insideWordTransitions:mask.length,
+    originalInsideWordScore:scorer(original),
+    lengthMatchedDisjointNativeInsideWordScore:scorer(heldNative),
+    nativeWordSource:'held Gibran GP29 words after original training prefix; same exact printed-length slots',
+    familyResults
+  });
+}
+assert.deepEqual(withinPrintedWords.map(f=>f.insideWordTransitions),[241,233]);
+
 const result={
   schema:1,
   classification:'all-840-state, both directions, Q or canonical semilinear T steps, four direct GF841 pair-stream inverses; exact original ciphertext',
@@ -154,11 +270,11 @@ const result={
     totalOriginalCandidates:originals.reduce((n,x)=>n+x.scanned,0),
     noPageReset:true,noFreePerRuneKey:true,
     score:'GP29 smoothed bigram log probability per rune from disjoint Gibran prefix'},
-  originals,reference:{
+  originals,withinPrintedWords,reference:{
     signed2016:{runes:signedGp.length,score:score(signedGp)},
     heldGibranWindows:holdScores
   },nativePlants:control,
-  decision:'For both p54-p55 pair framings, no key in the exhaustive direct Q or Frobenius(Q*) semilinear stream families yields native-like original plaintext. All 16 planted control keys recover the exact held-out native 308-runic message at rank 1. This excludes these fixed additive or multiplicative emissions with either source-derived state update, not more complex receiver laws, ciphertext-feedback, side channels, or different plaintext languages.'
+  decision:'For both p54-p55 pair framings, no key in the exhaustive direct Q or Frobenius(Q*) semilinear stream families yields native-like original plaintext even with scoring restricted to exact within-printed-word rune transitions. All 16 full-stream plants and eight length-matched printed-word native plants recover exactly at rank 1. This excludes fixed additive or multiplicative emissions with either source-derived state update, not more complex receiver laws, ciphertext-feedback, side channels, or different plaintext languages.'
 };
 const output=JSON.stringify(result,null,2);
 console.log(output);
