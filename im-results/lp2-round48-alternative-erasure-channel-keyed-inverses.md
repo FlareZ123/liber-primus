@@ -203,3 +203,21 @@ All four original outputs are noncoherent and have scores close to unrelated wro
 **Decision:** retire these two literal source-key transfers at phase zero under the tested mod36 model; do not reopen arbitrary rotations, other historical keywords or m variants merely because reachability survives. Use the periodic quotient when an independently sourced periodic operand warrants full-path decoding, or to eliminate arbitrary clock/hidden-run caps in a distinct blind-key recovery. The hidden-event and phase ambiguity still requires independent source information. No unknown original plaintext, authenticated key or mechanism recovered. This does not change the authoritative results frontier.
 
 [Reusable SFT](../sims/lp2_periodic_silent_unbounded_inverse_sft.cjs) (commit 75c80f323b4db3ae40c73588fb5c7092ae0c68b3) · [Complete original replay inputs/outputs and controls](lp2-periodic-silent-unbounded-inverse-output.json) (commit fcebaf792a0df502b90051c810fbe64cb0e27b1c). Computational core executed against exact repository resources in connected V8; the standalone Node wrapper was not independently run. No CI. 
+
+## Uncapped periodic strict-repeat MAP (Agent38, 28 November)
+
+[Exact finite-state decoder](../sims/lp2_alt_periodic_exact_map_sft.cjs) · [complete original candidates and replay paths](lp2-alt-periodic-exact-map-original.json). Given a nonconstant periodic key, the current state (previous accepted emission, next key phase) determines the previous native plaintext symbol. Each outgoing edge enumerates one plaintext, consumes every deterministic repeat rejection, and carries the negative log native bigram prior. Mod36 hidden emissions are mandatory when c>=29; GP29 deletion and retention carry independent probabilities .187 and .813. Multi-source Dijkstra at each observed rune computes all minimum-cost hidden closures and outgoing visible edges, with exact traceback over q phase states. All edge costs are nonnegative; there is no beam, absolute clock limit or hidden-gap bound. The resulting MAP is exact for this first-order model and supplied periodic key, not the four-gram language model or unknown-key space.
+
+Matched 939-visible controls with exact literal spiral period, independent wrong period, held-out donor intervals, and complete event replay:
+
+| Channel / donor | Correct MAP per rune | Wrong MAP | Correct full / retained LCS | Wrong full / retained LCS |
+|---|---:|---:|---:|---:|
+| GP29 deletion / Gibran | -3.37841 | -4.05154 | .7101 / .8200 | .3635 / .3536 |
+| GP29 deletion / Emerson | -3.37537 | -4.05534 | .7330 / .8381 | .3661 / .3472 |
+| mod36 silent / Gibran | -2.69147 | -4.27984 | .8786 / .9347 | .3601 / .3239 |
+
+The two literal keys are the sixteen source-ordered p15 integers reduced mod29 or mod36, respectively, phase zero. Original p15 black body through p18, 939 visible: GP29 deletion MAP -4.00918, clock1216, 1127 plaintext symbols; mod36 silent -4.39084, clock1521, 1443 plaintext symbols. Both are noncoherent and near or worse than the independent wrong-key scale. The earlier fitted blind mod36 q16 key on all 1883 p15 body–22 runes has exact first-order MAP -4.05092, clock2915, 2820 plaintext symbols. All three replay; inferred maximum hidden gaps 3/4/5. Thus the earlier beam clock cap is not the only explanation for the negative results within the tested first-order channel. The higher-order decoder is not claimed exhaustive. No authentic plaintext, key or mechanism.
+
+A direct transfer of the earlier soft iid blind key proposal search to GP29 deletion (fixed hide probability .187, native no-space alphabet) failed both matched q16 planted key recoveries: best Gibran 3/16 key values up to rotation, best Emerson candidate 6/16 (another inferior proposal 7/16). Do not use this weak blind proposal to reject an original deletion key. Stronger synchronized Markov inference is required.
+
+Reproduce via `node sims/lp2_alt_periodic_exact_map_sft.cjs --options=/path/to/options.json`. Control options: `{"mode":"delete","source":"gibran","length":939}`, Emerson with offset10000 and seed910133, silent Gibran; original options: `{"mode":"delete","original":true,"length":939}`, same silent, or silent length1883 with the frozen fitted key from above. V8 core executed; Node wrapper not separately run.
