@@ -78,6 +78,51 @@ for(let a=0;a<29;a++)for(let b=0;b<29;b++){
     heldSurvivors.push([a,b]);
 }
 A.deepEqual(heldSurvivors,[[17,24]]);
+// Exhaust all monic quadratic relations that exactly factor the original
+// p15 second-red minus p57 solved red. Only the physical p3 and one
+// unsourced challenger divide; charge both against held-out original
+// red-span native-length conditions.
+const difference=Array.from({length:11},(_,i)=>mod(p15[i]-(p57[i]||0)));
+const quotientFor=(r,t)=>{
+  const ff=[mod(-2*t),mod(-2*r),2];
+  const rem=difference.slice(),q=Array(9).fill(0);
+  for(let i=8;i>=0;i--){
+    const v=mod(15*rem[i+2]);q[i]=v;
+    for(let j=0;j<3;j++)rem[i+j]=mod(rem[i+j]-v*ff[j]);
+  }
+  return {q,divides:rem.every(x=>x===0)};
+};
+const fieldMultiply=(r,t,A,B)=>[
+  mod(A[0]*B[0]+t*A[1]*B[1]),
+  mod(A[0]*B[1]+A[1]*B[0]+r*A[1]*B[1])
+];
+const fieldEvaluate=(r,t,ix)=>{
+  let out=[0,0],pow=[1,0];
+  for(const x of ix){
+    out=[mod(out[0]+x*pow[0]),mod(out[1]+x*pow[1])];
+    pow=fieldMultiply(r,t,pow,[0,1]);
+  }
+  return out;
+};
+const factorRelations=[];
+for(let r=0;r<29;r++)for(let t=0;t<29;t++){
+  const div=quotientFor(r,t);
+  if(div.divides)factorRelations.push({r,t,q:div.q,Q:fieldEvaluate(r,t,div.q)});
+}
+A.deepEqual(factorRelations.map(x=>[x.r,x.t]),[[3,8],[18,12]]);
+A.deepEqual(factorRelations[0].Q,[17,24]);
+A.deepEqual(factorRelations[1].Q,[5,19]);
+const rival=factorRelations[1];
+const alternateHeldOut=heldOut.map(([tag,want])=>{
+  const [pg,st]=tag.slice(1).split('@').map(Number);
+  const Ealt=fieldEvaluate(rival.r,rival.t,span(pg,st).ix);
+  const indices=fieldMultiply(rival.r,rival.t,rival.Q,Ealt);
+  const have=lengths[indices[0]]+lengths[indices[1]];
+  return {tag,want,have,words:indices.map(i=>words[i]),indices};
+});
+A.deepEqual(alternateHeldOut.map(x=>x.have),[7,12,10]);
+A.ok(alternateHeldOut.every(x=>x.want!==x.have));
+
 A.deepEqual(records.filter(x=>readout(Q,x).word_rune_len===x.len).map(x=>x.tag),typed.map(x=>x[0]));
 // Exact counterfactual signed-word rearrangement control, retaining the
 // FOUR independently read matrix-word slots THE MAP AND PATH at their
@@ -135,7 +180,12 @@ console.log(JSON.stringify({
  triad:f,quotient:key,Q,order,sourceRedSpans:records.length,sourceSignedWords:words.length,
  selected:typed.map(([tag,n])=>({tag,original_len:n,...readout(Q,by(tag))})),
  chain:chain.map(([a,b,n])=>({from:a,to:b,receiver_len:n,...readout(Q,by(a))})),
- exhaustive841:{survivors,all18_self_histogram:hist,any_four_or_more:hist.slice(4).reduce((s,x)=>s+x,0)},
+ quadratic_factor_rivals:{factorRelations,alternateHeldOut},
+ exhaustive841:{survivors,heldOutThreeSurvivors:heldSurvivors,
+    heldOutThree:heldOut,all18_self_histogram:hist,any_four_or_more:hist.slice(4).reduce((s,x)=>s+x,0)},
+ matrix_word_fixed_shuffle:{heldOutThreeRate:'31/11385',fourTypedRate:'7/20700',
+    fourPlusLinkedRate:'1/51300',numerators:[String(heldNum),String(numeratorFour),String(numeratorLinked)],
+    denominators:[String(heldDen),String(denominatorFour),String(denominatorLinked)]},
  knownPlaintextCounterexamples:{p56:'AN END',p57:'PARABLE',mappedWordsAreNotPlaintext:true},
  p56_Qrotor_second_pair:[24,28],p56_real_prime_second_pair:[4,6]
 },null,2));
