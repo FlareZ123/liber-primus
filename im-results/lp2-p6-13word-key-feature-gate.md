@@ -52,6 +52,15 @@ The **36 distinct checksum predictions** have hit histogram `0:9, 1:21, 2:6`. Th
 **Decision:** the new source-initial/H13 tape materially strengthens receiver/source coupling, but its direct scalar consumption is not the missing ordered serializer. Any successful transfer needs a genuinely vector/stateful authored clock or operation, rather than one scalar applied independently to each page.
 
 Reproduction: `node sims/lp2_p6_13source_scalar_clock_checksum_gate_sft.cjs`.
+### Whole-corridor vector follow-on: cyclic source-tape convolution also fails
+
+The simplest genuinely vector-valued use of the same 13-lane source clocks is circular convolution across the entire palindromic corridor. Freeze the same six distinct source-tape orientations, build their 13×13 GF(29) circulants, and charge forward or inverse action, both global signs, and whether the result is the additive key-sum tape or the plaintext-sum tape. All six circulants are invertible.
+
+This gives **48 distinct target-rune-blind checksum predictions**. Their hit histogram is `0:28, 1:14, 2:6`; the global maximum is again **2/13**, with **0/48** exact page-sum tapes. Forward/reverse clock orientation already covers the corresponding convolution/correlation direction.
+
+**Decision:** neither independent scalar consumption nor the canonical whole-corridor cyclic mixing of the new authenticated source tape supplies the frozen key-sum schedule. Further work on this tape needs a different authored state transition, not phase/order tuning of these two families.
+
+Reproduction: `node sims/lp2_p6_13source_cyclic_convolution_checksum_gate_sft.cjs`.
 
 Reproduction:
 
