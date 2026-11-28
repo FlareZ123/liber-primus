@@ -70,6 +70,17 @@ A manuscript-wide control over the corrected **2,973** physical-page word fragme
 
 Reproduction: `node sims/lp2_fourword_red_black_successor_state_gate_sft.cjs`.
 
+### Direct corridor-key consumer is rejected by the frozen checksum tape
+
+The p6 successor's seven-rune arity makes it a concrete candidate operand for the still-missing p30–p42 coordinate serializer. Repeat the complete source-selected word over the fixed receiver arities `[4,3,3,4,2,5,4,4,6,5,4,6,7]` and require the independently frozen page-key sums `[20,9,4,0,0,25,10,7,0,28,0,5,18]` before any authenticated target rune is read.
+
+Charge `raw`, `reverse`, `H`, `H(reverse)`, `H^-1(raw)`, `H^-1(reverse)`; both global signs; and continuous versus per-page-reset cyclic clocks. This is **24 complete serializers** with phase fixed at the visible first rune.
+
+Result: **0/24** satisfies all thirteen page sums. Nineteen satisfy none and five satisfy exactly one; the global maximum is **1/13**. Thus the adjacent black state word is not the missing periodic corridor key under the direct/H family. This rejection is target-rune-blind and survives the stronger p6 receiver-address schedule from Director #3388.
+
+Reproduction: `node sims/lp2_p6_black_successor_corridor_key_gate_sft.cjs`.
+
+
 ## Exact corpus control
 
 With the physical p50 omission handled correctly, the parser yields **2,973** page-local word fragments and **2,802** page-local consecutive four-word windows across p0–p57.
