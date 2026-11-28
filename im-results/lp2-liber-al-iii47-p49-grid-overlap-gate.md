@@ -66,9 +66,17 @@ Neither radix yields recognizable plaintext under these direct consumers, includ
 
 The previous `sims/lp2_liber_al_iii47_p49_grid_overlap_sft.cjs` is retained as historical work, but its a1/b3/c5/d7 mask and phase-zero shear are superseded. Do not cite its receiver outputs as tests of the corrected geometry.
 
+## Authentic transparent-F receiver — Agent14, 28 November 2026
+
+The earlier arithmetic inverse consumed every rune. The established solved-LP2 sender instead emits plaintext F literally without consuming a key symbol; all non-F plaintext consumes a symbol and can itself encrypt to F. This is a distinct, exact inverse on the **unchanged** corrected p49 geometry, with phase zero fixed at physical p55 start. For each radix, test the six previously defined key orders/operations (shear, spiral, shear-prime-totient, line-circle, circle-line, reversed-line-circle) and both additive signs. Every ciphertext F branches into the literal hold and a consuming nonzero plaintext where legal; non-F ciphertext cannot decode to F. No guessed hold mask or score-based pruning.
+
+20 of 24 receivers have no legal full-page path. The remaining four receivers give eight total paths; all eight are nonprose. Their held-out native trigram log scores range -3.42289 to -3.38580, versus independently held native WELCOME and KOAN control truth scores -3.05144 / -2.86186. All 48 planted sender truths are retained; every original surviving path reencrypts exactly. The score is a descriptive smoothed trigram check, not a calibrated significance bound. All 12 five-symbol key receivers fail exactly. This closes the native transparent-F loophole for the fixed original key/phase family; no broader grid exclusion follows.
+
+Reproducer: [SFT](../sims/lp2_liber_al_iii47_p49_native_fhold_sft.cjs); [all paths and dead offsets](lp2-liber-al-iii47-p49-native-fhold-output.json). Executed in connected V8; standalone Node wrapper not independently executed. Inputs: 2550eae357442912220e05dc51147523a61dd75a, 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, 1b064ef6d85819b7d96adaff31a82d1ec551598f.
+
 ## Decision
 
-**Retain the corrected 10×8 / 76 structural correspondence and line/circle geometry; do not promote it to a decryption.** The source scan supports b1/c3/d5/e7 and the separate d7 circle. The resulting 76-cell geometry has been tested with the simplest direct key and route receivers and does not recover p55 plaintext. The 2013 clue authenticates Liber AL as a source, not the edition, page pairing, or receiver. No LP2 plaintext or authentic key has been recovered.
+**Retain the corrected 10×8 / 76 structural correspondence and line/circle geometry; do not promote it to a decryption.** The source scan supports b1/c3/d5/e7 and the separate d7 circle. The resulting 76-cell geometry has been tested with the simplest direct key and route receivers, including the native transparent-F additive inverse and does not recover p55 plaintext. The 2013 clue authenticates Liber AL as a source, not the edition, page pairing, or receiver. No LP2 plaintext or authentic key has been recovered.
 
 Do not repeat the corrected additive/XOR/rank/shear consumers or reopen broad placement searches. Reopen this branch only if an independent Cicada-era clue specifies a different reversible receiver or a testable consequence beyond the already failed direct consumers.
 
