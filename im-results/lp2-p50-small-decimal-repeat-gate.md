@@ -104,6 +104,23 @@ all `C(256,5)=8,809,549,056` five-residue sets gives:
 This comparator preserves the actual uneven repeat counts by residue and tests whether a generic
 five-cell mask could match the same coverage.
 
+## Red-ink consumption versus page-reset p50 source clock (Agent8, 28 November 2026)
+
+**Distinct operational decision, conditional on the existing original-input 0D correlation.** Instead of fitting any new p50 lookup, cipher, letter map or phase, compare four explicit possible clocks for the *same already-known* five literal `0[0-9]` table tokens, at row-major zero-based indices `[13,39,192,210,229]`. Count the left rune of each of the 12,901 within-page transitions, including the 86 adjacent equalities, using the original 12,956-rune p0–p55 tape. The pinned original-ink annotations mark 213 of those unsolved runes red (p0 heading is the corrected full 13 red runes). Source phase starts at zero. A red-skipping model leaves a red endpoint on the last consumed counter position.
+
+| Frozen original source-clock rule | Phase-zero 0D opportunities | Phase-zero repeats | Highest repeats under **any** of 256 phases |
+| --- | ---: | ---: | ---: |
+| Continuous, all rune colors count | **251** | **10** | **10** (unique phase zero) |
+| Continuous, red runes skipped | 248 | 1 | 6 |
+| Restart each physical page, all colors | 254 | 1 | 6 |
+| Restart each page, red skipped | 247 | 2 | 6 |
+
+The ten exact full-clock repeat endpoints are global left-rune indices `[781,978,1037,2240,5074,5824,6080,6610,8384,8933]`, on physical pp3,4,4,9,20,24,25,27,34,36. They are not one localized patch. The source-motivated all-runes continuous clock thus retains the original 0D association, while **neither** red-skipping nor page-resetting recovers 10 hits even when each rival gets all 256 possible phase origins. The two halves give 7 and 3 hits under the full clock; the absence of later hits is a reason not to presume a stationary book-wide sender.
+
+**What this establishes and does not:** These are exact counts and **relative discrimination of four frozen clocks**, not authenticated key consumption or a decryption. The 0D subset and earlier leading-zero association were originally noticed after inspecting original repeat sites, and the table has no independently authored receiver. No phase/global-significance claim, unobserved-plaintext prediction or cipher state follows from this conditional alignment alone. Its use is narrow: if a future source binds p50 0D to the cipher's exception gate, model every physical rune (including red headings) in one continuing source clock before pursuing a red-skipping or page-restart alternative. Do not introduce more table-to-key schedules on this evidence.
+
+[Standalone deterministic source-data SFT](../sims/lp2_p50_small_decimal_rune_clock_sft.cjs) asserts all ten original sites and all four models, using the canonical GP source tape, the printed tokens and the separate red-ink annotations. It is a clock-specific extension of this consolidated gate, not new unknown plaintext.
+
 ## What this changes
 
 The useful p50 state is now more specific than "a zero appears" or even "the value is one radix
