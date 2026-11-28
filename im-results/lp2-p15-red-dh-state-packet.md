@@ -261,6 +261,38 @@ This is the best current human solve-path interpretation of the p15 state circui
 
 Reproducer: sims/lp2_p15_spiral_qblock_h4_state_sft.cjs.
 
+## Candidate determinant bridge removes the H4 harvest
+
+There is a distinct algebraic route worth preserving because it links p15 to an older, independently documented p7 invariant.
+
+Take the same authored p15 spiral residues and reshape the q=4 consecutive groups as a 4x4 matrix:
+
+~~~text
+22 21 19 17
+11  1 10  3
+20 22 25  7
+22 12 17 21
+~~~
+
+Its determinant modulo29 is **19**. Independently, the pre-existing p7 five-red-product right-circulant has determinant **19**. The p15 lower red11 already supplies p=23,g=5,a=6,K=2, so interpreting this shared determinant as B immediately passes the discriminating DH equation
+
+~~~text
+B^a mod p = 19^6 mod23 = 2 = K.
+~~~
+
+This fixes b=15, B^-1=26 and e=3 **before any H4 output is used**. Under that state, the entire sixteen-coordinate spiral H4 tape becomes held out and is predicted exactly as
+
+~~~text
+[g,K,A^-1,Kg | A,qg,A^-1,-b |
+ b-K,B^-1,p-g,-K | 1,g+B,F,-b].
+~~~
+
+Charging the same 160 transform/direction/start variants against the complete predicted tape leaves exactly the authored H4/forward/red-origin presentation.
+
+This determinant bridge is useful because it separates the two candidate operations: determinant can supply B, while H4 becomes a fully held-out structural check. It is **not** yet an authenticated instruction to take a determinant. A generous 32-way cyclic-start/direction charge of determinant alone has four DH-closing presentations because determinant is invariant under relevant row/reversal symmetries; the source spiral independently fixes the actual start and direction. Treat the shared p15/p7 determinant as cross-object evidence for a common state serialization, not as a body decoder.
+
+Reproducer: sims/lp2_p15_spiral_determinant_p7_crossholdout_sft.cjs.
+
 ## Strongest causal gate: lower red11 + one grid scalar predicts the remaining p15 state
 
 The five-word interpretation above can be made substantially less circular. Hold the **entire upper red9 span out**. Read only the lower red11 descriptors
