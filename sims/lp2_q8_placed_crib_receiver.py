@@ -22,8 +22,10 @@ provided (0..7). Only source-known input words are used to fit. The F rune,
 index zero, is a transparent plaintext bypass; only consuming non-F plaintext
 advances the phase. A ciphertext F can arise from consuming a non-F.
 
-Returns all found full-rank GP29 action solutions up to configurable caps, exact
-forward checks, and set-valued word inverses for queries. Flag cap truncation.
+Returns normalized GP29 action solutions from every consistent affine leaf,
+subject to explicit phase, affine-node and solution caps. All-different chart
+constraints prune entire affine subspaces exactly. Reports phase-tree and
+action-set completeness separately, with set-valued word inverses for queries.
 No vocabulary matching is used in chart/key inference, no source/private key is
 invented and no unknown LP2 source pair is supplied by this script.
 
@@ -71,6 +73,62 @@ class Field:
             row=self.rows[pivot]
             x[pivot]=(self.rhs[pivot]-sum(row[j]*x[j] for j in range(pivot+1,nvars)))%MOD
         return x
+
+def affine_vectors(B,nvars,stats,node_cap,leaf):
+    """Enumerate a consistent GF29 affine leaf, pruning duplicate chart values.
+
+    Each coordinate is an affine form in the nonpivot variables. At depth d
+    all chart forms whose last dependency has been assigned become exact.
+    A duplicate then rejects exactly 29**remaining full assignments.
+    The global node budget counts each attempted free-variable assignment,
+    not just full vectors. A bounded leaf is explicitly unresolved.
+    """
+    free=[i for i in range(nvars) if i not in B.rows]
+    dim=len(free)
+    pos={v:i for i,v in enumerate(free)}
+    forms=[[0]*(dim+1) for _ in range(nvars)]
+    for v,i in pos.items():
+        forms[v][i+1]=1
+    for pivot in sorted(B.rows,reverse=True):
+        a=forms[pivot]
+        a[0]=B.rhs[pivot]
+        for j in range(pivot+1,nvars):
+            c=B.rows[pivot][j]
+            if c:
+                a[:]=[(u-c*v)%MOD for u,v in zip(a,forms[j])]
+    # Chart variables are indexed before key variables, so the free-variable
+    # order typically permits early all-different pruning.
+    buckets=[[] for _ in range(dim+1)]
+    for a in forms[:27]:
+        last=max((j for j,v in enumerate(a[1:],1) if v),default=0)
+        buckets[last].append(a)
+    values=[0]*dim
+    def value(a):
+        return (a[0]+sum(v*t for v,t in zip(a[1:],values)))%MOD
+    def rec(depth,used):
+        if leaf["unresolved"]:
+            return
+        seen=set(used)
+        for a in buckets[depth]:
+            v=value(a)
+            if v in seen:
+                stats["affine_assignments_chart_pruned"]+=MOD**(dim-depth)
+                return
+            seen.add(v)
+        if depth==dim:
+            stats["affine_assignments_examined"]+=1
+            yield [value(a) for a in forms]
+            return
+        for v in range(MOD):
+            if stats["affine_nodes"]>=node_cap:
+                leaf["unresolved"]=True
+                return
+            stats["affine_nodes"]+=1
+            values[depth]=v
+            yield from rec(depth+1,seen)
+            if leaf["unresolved"]:
+                return
+    yield from rec(0,{0,1})
 
 def encode(plain,chart,key,phase):
     inv=[0]*29
@@ -163,7 +221,9 @@ def resolve_original_page_offsets(data):
     copied["ciphertext_source"]="Exact original GP29 physical pages p0-55; source plaintext/authentication NOT certified"
     return copied
 
-def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300,require_primitive=False):
+def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300,require_primitive=False,affine_node_cap=1000000):
+    if min(branch_cap,solution_cap,word_cap)<1 or affine_node_cap<0:
+        raise ValueError("phase/solution/word caps must be positive; affine node cap nonnegative")
     chapter_names=data.get("chapters")
     if not isinstance(chapter_names,list) or not chapter_names or len(set(chapter_names))!=len(chapter_names):
         raise ValueError("chapters must be distinct nonempty chapter IDs")
@@ -199,9 +259,14 @@ def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300,require_primitiv
     basis=Field()
     assert basis.add([1]*27+[0]*(nvars-27),28)  # pi(0)=0, pi(1)=1; sum other=28 mod29
     stats={"branches":0,"dead":0,"full_rank":0,"chart_permutations":0,
-           "primitive_actions":0,"exact_actions":0,"completed":0}
+           "primitive_actions":0,"exact_actions":0,"completed":0,
+           "rank_histogram":{},"affine_assignments_possible":0,
+           "affine_assignments_examined":0,"affine_assignments_chart_pruned":0,
+           "affine_nodes":0,"unresolved_affine_leaves":0}
     solutions=[]
-    truncated=False
+    distinct_actions=set()
+    phase_truncated=False
+    solution_truncated=False
     def add_word(B,ci,p,c,phase):
         for a,b in zip(p,c):
             if a==0:continue
@@ -213,57 +278,85 @@ def solve(data,branch_cap=1000000,solution_cap=100,word_cap=300,require_primitiv
                 return False
             phase=(phase+1)&7
         return True
+    def accept(x,starts):
+        pi=[0,1]+x[:27]
+        if sorted(pi)!=list(range(29)):return
+        stats["chart_permutations"]+=1
+        keys=[x[27+8*ci:27+8*ci+8] for ci in range(len(chapters))]
+        if require_primitive and any(all(key[k]==key[k+4] for k in range(4)) for key in keys):return
+        stats["primitive_actions"]+=1
+        if any(encode(p,pi,keys[ci],starts[w_i])!=c
+               for w_i,(ci,p,c,_) in enumerate(words)):return
+        stats["exact_actions"]+=1
+        distinct_actions.add((tuple(pi),tuple(map(tuple,keys))))
+        result={"chart":pi,"chapter_keys":{name:keys[ci] for name,ci in chapters.items()},
+                "crib_starts_from_anchor":starts}
+        if isinstance(data.get("query"),list):
+            result["query"]=[]
+            for obj in data["query"]:
+                if obj.get("chapter") not in chapters:
+                    raise ValueError("unknown query chapter")
+                ci=chapters[obj["chapter"]]
+                cipher=parse_gp(obj.get("cipher_gp"),"query cipher_gp")
+                decoded=original_word_readouts(cipher,pi,keys[ci],word_cap)
+                result["query"].append({"id":obj.get("id"),"chapter":obj["chapter"],
+                                        "cipher_gp":obj["cipher_gp"],**decoded})
+        solutions.append(result)
+
     def dfs(i,B,starts):
-        nonlocal truncated
-        if truncated:return
+        nonlocal phase_truncated,solution_truncated
+        if phase_truncated or solution_truncated:return
         if i==len(words):
             stats["completed"]+=1
-            x=B.solve(nvars)
-            if x is None:return
-            stats["full_rank"]+=1
-            pi=[0,1]+x[:27]
-            if sorted(pi)!=list(range(29)):return
-            stats["chart_permutations"]+=1
-            keys=[x[27+8*ci:27+8*ci+8] for ci in range(len(chapters))]
-            if require_primitive and any(all(key[k]==key[k+4] for k in range(4)) for key in keys):return
-            stats["primitive_actions"]+=1
-            if any(encode(p,pi,keys[ci],starts[w_i])!=c
-                   for w_i,(ci,p,c,_) in enumerate(words)):return
-            stats["exact_actions"]+=1
-            result={"chart":pi,"chapter_keys":{name:keys[ci] for name,ci in chapters.items()},
-                    "crib_starts_from_anchor":starts}
-            if isinstance(data.get("query"),list):
-                result["query"]=[]
-                for obj in data["query"]:
-                    if obj.get("chapter") not in chapters:
-                        raise ValueError("unknown query chapter")
-                    ci=chapters[obj["chapter"]]
-                    cipher=parse_gp(obj.get("cipher_gp"),"query cipher_gp")
-                    decoded=original_word_readouts(cipher,pi,keys[ci],word_cap)
-                    result["query"].append({"id":obj.get("id"),
-                                            "chapter":obj["chapter"],
-                                            "cipher_gp":obj["cipher_gp"],**decoded})
-            solutions.append(result)
-            if len(solutions)>=solution_cap:truncated=True
+            rank=len(B.rows)
+            stats["rank_histogram"][rank]=stats["rank_histogram"].get(rank,0)+1
+            stats["affine_assignments_possible"]+=MOD**(nvars-rank)
+            if rank==nvars:
+                stats["full_rank"]+=1
+            leaf={"unresolved":False}
+            vectors=affine_vectors(B,nvars,stats,affine_node_cap,leaf)
+            for x in vectors:
+                accept(x,starts)
+                if len(solutions)>=solution_cap:
+                    solution_truncated=True
+                    # Conservative: the current generator and subsequent
+                    # phase leaves have not necessarily been exhausted.
+                    leaf["unresolved"]=True
+                    break
+            if leaf["unresolved"]:
+                stats["unresolved_affine_leaves"]+=1
             return
         ci,p,c,options=words[i]
         for phase in options:
             if stats["branches"]>=branch_cap:
-                truncated=True;return
+                phase_truncated=True;return
             stats["branches"]+=1
             trial=B.copy()
             if not add_word(trial,ci,p,c,phase):
                 stats["dead"]+=1;continue
             dfs(i+1,trial,starts+[phase])
-            if truncated:return
+            if phase_truncated or solution_truncated:return
     dfs(0,basis,[])
+    phase_complete=not (phase_truncated or solution_truncated)
+    action_complete=phase_complete and stats["unresolved_affine_leaves"]==0
+    stats["affine_assignments_unresolved_in_seen_leaves"]=(
+        stats["affine_assignments_possible"]-stats["affine_assignments_examined"]
+        -stats["affine_assignments_chart_pruned"])
+    assert stats["affine_assignments_unresolved_in_seen_leaves"]>=0
+    if action_complete:
+        assert stats["affine_assignments_unresolved_in_seen_leaves"]==0
     return {"source_note":data.get("source_note","Unverified user-provided crib locations"),
             "chapters":chapter_names,"oracle_crib_count":len(cribs),
             "crib_runes":sum(len(w[1]) for w in words),
             "unknown_phase_count":sum(len(w[3])>1 for w in words),
-            "stats":stats,"exhaustive":not truncated,
-            "uniquely_identified_action":not truncated and len(solutions)==1,
-            "require_primitive":require_primitive,"solutions":solutions,"interpretation":"Conditional placed-crib inverse; no built-in original LP2 plaintext, key, or independently authenticated crib locations"}
+            "stats":stats,"exhaustive":action_complete,
+            "phase_tree_complete":phase_complete,"action_set_complete":action_complete,
+            "phase_cap_reached":phase_truncated,"solution_cap_reached":solution_truncated,
+            "distinct_normalized_actions_found":len(distinct_actions),
+            "distinct_start_histories_found":len(solutions),
+            "uniquely_identified_action":action_complete and len(distinct_actions)==1,
+            "require_primitive":require_primitive,"solutions":solutions,
+            "interpretation":"Conditional placed-crib inverse; no built-in original LP2 plaintext, key, or independently authenticated crib locations"}
 
 def fixtures():
     # The sole fixture-only dependency imports the pinned #3046 generator.
@@ -331,12 +424,15 @@ if __name__=="__main__":
     mode.add_argument("--input",type=pathlib.Path)
     ap.add_argument("--branch-cap",type=int,default=1000000)
     ap.add_argument("--solution-cap",type=int,default=100)
+    ap.add_argument("--affine-node-cap",type=int,default=1000000,
+                    help="global attempted free-variable assignments; zero allows only full-rank leaves")
     ap.add_argument("--require-primitive",action="store_true",help="exclude 1/2/4-period q8 keys; synthetic controls use this, unknown original need not")
     args=ap.parse_args()
     if args.fixture:fixtures()
     else:
         data=json.loads(args.input.read_text(encoding="utf-8"))
         data=resolve_original_page_offsets(data)
-        result=solve(data,args.branch_cap,args.solution_cap,require_primitive=args.require_primitive)
+        result=solve(data,args.branch_cap,args.solution_cap,require_primitive=args.require_primitive,
+                     affine_node_cap=args.affine_node_cap)
         if "ciphertext_source" in data:result["ciphertext_source"]=data["ciphertext_source"]
         print(json.dumps(result,indent=2))
