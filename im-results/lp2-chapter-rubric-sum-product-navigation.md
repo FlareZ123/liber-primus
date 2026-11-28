@@ -170,6 +170,20 @@ The selected original token is `1D`. Its hexadecimal pun is unnecessary. Under t
 
 That path has eight edges and 72 is four edges from either endpoint. The full strict ROAD/support crossing charge is discriminating: cell42 `0S→28` and cell46 `3J→196` do not enter this mirror path, while cell43 alone maps to midpoint72. Globally 72 has four p50 predecessors, so the evidence comes from the independently selected line intersection rather than token rarity. The base60 reading `1D=73` does not enter midpoint72 or sink189 and instead enters a cycle in the fixed table graph.
 
+### Cell43 `1D` does not itself authenticate base59
+
+A new local count charge separates the **address** evidence from the **radix** evidence. The intact punctuation-delimited prose immediately around the table is independently fixed at 138 runes / 33 words before and 170 runes / 40 words after, with the pretable sentence contributing 72 runes on p48 and 66 on p49.
+
+The selected token has three exact conventional readings:
+
+```text
+hex(1D)    = 29 = GP alphabet size
+base59(1D) = 72 = p48 rune contribution to the intact pretable sentence
+base60(1D) = 73 = 33+40 complete words in the two intact flanking sentences
+```
+
+The base60 `73` equality is a fresh source-local connection to the flanking-sentence problem, but it prevents using `1D→72` as an independent radix proof: each obvious reading lands on a nearby manuscript quantity. The existing base59 midpoint/sink circuit remains a **codec-specific downstream consequence** once base59 is assumed; the printed token alone does not choose that assumption. [Three-radix stalemate](lp2-p40-cell43-1d-local-radix-stalemate.md) · [reproducer](../sims/lp2_p40_cell43_1d_local_radix_stalemate_sft.cjs).
+
 This is still post-discovery synthesis: the chapter grammar, support-line labels and mirror return path were all already visible when the connection was noticed. But it materially repairs the route's terminal handoff while preserving source type: **reach p40 → use the terminal word's remaining [length,OUT] pair → MAP/ROAD cell43 → base59 midpoint of the existing mirror/sink circuit**. No p3 fallback and no hexadecimal interpretation are required. Reproducer: `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs`.
 
 The **new integrated readout** of the nine original first-black words and the old p50 circuit produces the following proposed player sequence without viewing a single hypothetical LP2 plaintext word:
