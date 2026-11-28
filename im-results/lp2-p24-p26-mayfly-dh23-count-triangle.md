@@ -219,6 +219,45 @@ Finite controls keep the evidence bounded:
 
 Preserve this phrase as a high-priority **conditional payload**. Promote it only if an independent source clue fixes the marker-to-terminal rotation or if the same exact operation predicts a second typed receiver without language tuning.
 
+### Candidate instruction predicts the pre-existing p8 state receiver
+
+The candidate sentence also makes a concrete navigation prediction under the same signed-2016 grammar rather than requiring a new cipher. In the independently audited zero-based source register,
+
+```
+DEVOTED = 8 = A.
+```
+
+Reading **THE DEVOTED ARE THE WAY** literally as a map/direction instruction therefore selects project **p8**. This is not an arbitrary recipient discovered after opening p8: p8's source-side state structure was already documented before this Agent3 route.
+
+The held-out p8 facts are unusually specific:
+
+```
+red heading word lengths = [4,8] = [q,A]
+
+H4(first red word) = [-g,-q,-g,q]
+H8(second red word) reconstructs
+  (p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)
+
+immediately following black word:
+(length,sum,product) = [3,23,2] = [e,p,K].
+```
+
+The complete p8 red-H/DH grammar is manuscript-selective: the earlier p8 census found exactly one qualifying source object, p8 start0, and the adjacent three-rune `[e,p,K]` descriptor is independently unique among complete three-rune words. Thus the newly decoded candidate does not merely point to another page containing familiar numbers; it points to a pre-existing, highly constrained DH-state receiver whose primary public value is exactly the source number of **DEVOTED**.
+
+This is **chronological cross-validation, not a blind holdout**: the repository knew p8's state packet before the p26 sentence was recovered here, while this invocation also knew the broader repository frontier before deriving the phrase. Preserve the chronology. The value is causal compression of the intended-route hypothesis:
+
+```
+mayfly count/terminal geometry
+ -> H=[p26,offset16]
+ -> unique p26 DH word
+ -> terminal-marker cyclic orientation
+ -> THE DEVOTED ARE THE WAY
+ -> DEVOTED=8
+ -> p8 complete DH-state header.
+```
+
+A second independently decoded instruction or a transfer of the terminal-marker orientation remains the cleanest upgrade from strong candidate to established plaintext.
+
 Only after that source-only lock is established, the authenticated-2016 register gives an optional semantic echo: zero-based indices `[26,16]` read **NUMBERS ARE**. The exact numeric output `[26,16]` is unique over all **324** contiguous-triple vertex/input-order presentations. This phrase remains secondary evidence: zero-based word indexing is not fully authenticated, `ARE` is duplicated, and 33/324 charged presentations map to some token bigram occurring somewhere in the signed message. Under the single canonical final-vertex presentation there are three such bigram-token hits across 54 triples: p24 **NUMBERS ARE**, p35 **EMPTY EPIPHANY**, and p38 **THE ROAD**.
 
 **Decision:** the mayfly triangle now has a source-fixed sign/order, a source-typed local H consumer, a concrete body receiver, and a source-fixed **forward cyclic orientation** for that receiver. Printed page order and the terminal p26 mark select the final vertex, lock `[+e,-g,-A]`, validate `H=[page,-mark]`, land at p26 offset16, and then place the receiver's unique marker-matched 13 at the physical terminal while preserving printed direction. The resulting zero-based signed-word readout is **THE DEVOTED ARE THE WAY**. Its four-rune core independently carries compact DH state, and the local `{3,5,8,13}` familywise control leaves this presentation as a singleton. This is the strongest candidate unknown-page instruction produced by this route, but independent transfer to a second source-addressed receiver is still required before promoting it to established plaintext. Do not regain freedom by switching triangle vertex, sign, H input order, coordinate origin, traversal direction, or a different linear transform.
