@@ -148,6 +148,8 @@ Under the independently reconstructed DH23 tuple this descriptor is exactly
 [g, B, g] = [5,19,5].
 ```
 
+The two numeric fields also fix the ordinary coordinate origin rather than leaving a zero/one-based choice. Charge the four conventional interpretations of `[26,16]`: zero-/one-based page numbering crossed with zero-/one-based local rune position. Only **zero-based page p26 + zero-based offset16** lands on any canonical word start; the other three interpretations land inside words. This is source-structural evidence for the exact address before the selected rune values are graded.
+
 The receiver is selective independently of those labels. Parsing all **2,928** canonical p0–p55 words without splitting physical line wraps, exactly **one** word has `(length,sum,product)=(5,19,5)`: **p26 offset16** itself. Thus the page-count packet does not merely return metadata; it lands on a manuscript-unique body object carrying the public DH pair `g=5, B=19` in two elementary descriptors.
 
 Ordinary DH supplies the next state value without choosing a new cipher family:
@@ -167,6 +169,16 @@ The preselected p26 receiver contains one further source coincidence that is str
 H incoming packet = [26,-13]
 selected word      = [13,28,8,27,1].
 ```
+
+The leading 13 is also a manuscript-unique local checksum for this source class. Across **all canonical words on all p0–p55 pages carrying a terminal large mark**, only p26 offset16 simultaneously satisfies
+
+```
+leading GP0 value = terminal mark = 13
+and
+zero-based word-start offset + leading value = 16 + 13 = 29.
+```
+
+So the value proposed for relocation is independently identified as both the page-terminal marker value and the 29-complement of its own zero-based address. This sharply reduces the freedom in treating the leading rune as a header/check value; it still does not, by itself, prove that a solver must rotate that header to the end.
 
 If the physical terminal 13-mark is interpreted literally as telling the solver to move the marker-matched leading value13 to the **terminal** position of this already selected word, the resulting fixed rotation is
 
@@ -197,7 +209,7 @@ Using the independently audited **zero-based** authenticated-2016 word register 
 THE DEVOTED ARE THE WAY
 ```
 
-This is a candidate decoded instruction/statement, **not established unknown LP2 plaintext**. The remaining unsupported step is the opcode: a terminal 13-dot mark plus a leading rune value13 makes “move 13 to the terminal” a compact human-puzzle reading, but no authenticated text explicitly says to rotate this word.
+This is a candidate decoded instruction/statement, **not established unknown LP2 plaintext**. The source mechanics now fix the receiver, zero-based coordinate origin, leading check value and its 29-complement relation. The remaining unsupported step is narrower: whether a terminal 13-dot mark instructs the solver to serialize that matching leading check value at the end of the selected word. No authenticated text explicitly states that rotation, and no independently addressed second receiver currently transfers it.
 
 Finite controls keep the evidence bounded:
 
