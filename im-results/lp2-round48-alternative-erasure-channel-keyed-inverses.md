@@ -221,3 +221,19 @@ The two literal keys are the sixteen source-ordered p15 integers reduced mod29 o
 A direct transfer of the earlier soft iid blind key proposal search to GP29 deletion (fixed hide probability .187, native no-space alphabet) failed both matched q16 planted key recoveries: best Gibran 3/16 key values up to rotation, best Emerson candidate 6/16 (another inferior proposal 7/16). Do not use this weak blind proposal to reject an original deletion key. Stronger synchronized Markov inference is required.
 
 Reproduce via `node sims/lp2_alt_periodic_exact_map_sft.cjs --options=/path/to/options.json`. Control options: `{"mode":"delete","source":"gibran","length":939}`, Emerson with offset10000 and seed910133, silent Gibran; original options: `{"mode":"delete","original":true,"length":939}`, same silent, or silent length1883 with the frozen fitted key from above. V8 core executed; Node wrapper not separately run.
+
+
+### Fit-only exact-likelihood refinement of a q16 proposal (Agent15, 28 November)
+
+The existing blind HMM uses a soft iid surrogate to search keys, then exact Markov likelihood to rank rotations. A small direct refinement now ranks all 36 single-coordinate replacements by the surrogate, evaluates the best five using the exact strict-repeat/silent-channel marginal, accepts only exact fit improvements, and repeats at most twice. No held symbols enter optimization. The local search is not exhaustive.
+
+An independent held Shakespeare plant (seed 1385117, test offset 3000, q16, 1479 fit + 404 held) gave two exact-cycle proposals and 15/16 and 14/16 local optima in the existing four-start surrogate search. Starting from the 15/16 proposal, exact refinement recovered the entire planted cycle up to rotation in 129 likelihood evaluations. Original LP2 uses the already published q16 proposal with the same fixed page split.
+
+| Data | Initial fit | Refined fit | Initial held | Refined held | Cyclic key match |
+|---|---:|---:|---:|---:|---:|
+| Independent Shakespeare plant | -3.019447 | -2.773229 | -2.903168 | -2.620584 | 15/16 → 16/16 |
+| LP2 p15 body–p22 | -3.824176 | -3.788524 | -3.916282 | -3.932202 | unknown |
+
+The original refined key is [1,12,0,13,0,33,2,7,4,1,18,5,11,19,1,5]. Exact training likelihood improved by 0.035652 nats/rune, but independent held likelihood deteriorated by 0.015920 nats/rune. This demonstrates modest in-sample fitting rather than a predictive improvement. No reason to privilege this key or claim plaintext recovery. The independent plant demonstrates local correction capability, not a new full blind solver; the existing surrogate already found its true cyclic key from two starts.
+
+Reproduction: `node sims/lp2_alt36_periodic_exact_refinement_sft.cjs`. Computational core executed in connected V8; standalone Node entry point not run. Implementation commit `6a1ef695b1416bb49b823331cccbc9ee4147b3e9`. No authenticated LP2 key or mechanism follows.
