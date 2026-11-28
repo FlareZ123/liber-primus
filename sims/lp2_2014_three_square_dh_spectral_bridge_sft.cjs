@@ -86,6 +86,36 @@ const outerDhTranscript={p:borrowedDhPrime,g:gFromThreeDeterminants,
 };
 outerDhTranscript.K=powMod(outerDhTranscript.A,outerDhTranscript.b,borrowedDhPrime);
 assert.deepEqual(outerDhTranscript,{p:23,g:5,a:6,b:15,A:8,B:19,K:2});
+// Candidate AUTHENTICALLY SOURCE-NUMERIC p extraction: 3301 and 1033
+// themselves are prime; Euler phi is used explicitly in solved Cicada
+// stages. This one proposed numerical role makes the 2014 construction
+// entirely self-contained in GF29, without borrowing the 2013 p=23.
+const eulerPhi=n=>{
+  let result=n,remaining=n;
+  for(let d=2;d*d<=remaining;d++)if(remaining%d===0){
+    while(remaining%d===0)remaining/=d;
+    result-=result/d;
+  }
+  if(remaining>1)result-=result/remaining;
+  return result;
+};
+const sourceTotients=expectedSums.slice(0,2).map(eulerPhi);
+assert.deepEqual(sourceTotients,[3300,1032]);
+const sourcePrimeFromTotient=mod(sourceTotients[0]);
+const sourceOtherTotientResidue=mod(sourceTotients[1]);
+assert.deepEqual([sourcePrimeFromTotient,sourceOtherTotientResidue],[23,17]);
+const allSourceDh={p:sourcePrimeFromTotient,g:gFromThreeDeterminants,
+  a:aFromSums,b:bFromThreeDeterminants,
+  A:powMod(gFromThreeDeterminants,aFromSums,sourcePrimeFromTotient),
+  B:powMod(gFromThreeDeterminants,bFromThreeDeterminants,sourcePrimeFromTotient),
+};
+allSourceDh.K=powMod(allSourceDh.A,allSourceDh.b,allSourceDh.p);
+assert.deepEqual(allSourceDh,{p:23,g:5,a:6,b:15,A:8,B:19,K:2});
+// Warn against counting these as independent numerical successes:
+// both totient residues equal their prime row-sum minus one mod29.
+assert.equal(sourcePrimeFromTotient,mod(expectedSums[0]-1));
+assert.equal(sourceOtherTotientResidue,mod(expectedSums[1]-1));
+
 
 assert.deepEqual([gFromSum,aFromSums,gFromDet,AFromGAndA,KFromB], [5,6,5,8,2]);
 assert.equal(determinants[1],KFromB);assert.equal(determinants[0],mod(gFromSum*KFromB));
@@ -142,6 +172,9 @@ const alignedState={
   g:equalizedFiveH[2][0],minusATimesK:equalizedFiveH[2][1],
 };
 assert.deepEqual(alignedState,{B:19,A:8,eSquared:9,K:2,g:5,minusATimesK:17});
+assert.equal(alignedState.minusATimesK,sourceOtherTotientResidue);
+assert.equal(alignedState.eSquared,mod(allSourceDh.b-allSourceDh.a));
+
 assert.equal(alignedState.eSquared,mod(determinants[2]*determinants[2]));
 assert.equal(alignedState.minusATimesK,mod(-aFromSums*alignedState.K));
 assert.equal(alignedState.A,powMod(alignedState.g,aFromSums,borrowedDhPrime));
@@ -335,4 +368,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,equalizedFiveH,alignedState,innerHSequence,outerHSequence,title12AdditiveGate,p55GeometryH,matrixSimilarGate,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},outerDhTranscript,sourceTotients,sourcePrimeFromTotient,sourceOtherTotientResidue,allSourceDh,columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));

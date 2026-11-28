@@ -30,7 +30,7 @@ all-three characteristic-polynomial gcd: x+5 ⇒ λ=−g=24
 
 These are exact *source-derived numbers* without reading any unknown LP2 ciphertext. Under the independently established **p15 modulus p=23**, they give `A=g₁^a mod23=5^6 mod23=8`, the established public DH value. Separately the authentic p8 red heading begins the literal Roman `XIX`=19; **if** it is interpreted as the p15 public counterpart `B=19`, then `K=B^a mod23=19^6 mod23=2`, matching the **middle historical square determinant d₂=2**. The terminal determinant `d₃=3` also matches a previously assigned exponent `e=3` in the p28 algebraic DH program, but this is a retrospective state-label match, not a newly source-selected role. Note that p=23 and the identification of XIX as B are **independent external/LP2 premises**, not values recovered from these three matrices.
 
-**Full 2013 DH reconstruction from a single conditional source arithmetic route, without using p8 XIX to generate B.** If the original three square determinants `[d₁,d₂,d₃]=[10,2,3]` are assigned the **single** (unprompted) pair of scalar roles `g=d₁/d₂` and `b=g·d₃` modulo29, then `g=5`, `b=15`. If the original row-sum difference selects `a=(3301−1033) mod29=6` and the independently authenticated 2013 DH transcript supplies `p=23`, the complete derived transcript is:
+**Full 2013 DH reconstruction from conditional source arithmetic, without using p8 XIX to generate B.** If the original three square determinants `[d₁,d₂,d₃]=[10,2,3]` are assigned the **single** (unprompted) pair of scalar roles `g=d₁/d₂` and `b=g·d₃` modulo29, then `g=5`, `b=15`. If the original row-sum difference selects `a=(3301−1033) mod29=6` and the independently authenticated 2013 DH transcript supplies `p=23`, the complete derived transcript is:
 
 ```text
 source-only a = (3301−1033) mod29 = 6
@@ -104,6 +104,32 @@ B^a mod p = 19^6 mod23 = 2 = middle inner H sum
 ```
 
 The same original numeric square set and operation were used in all six cases; no item-level tuning, alphabet shift, ciphertext crib or new external source was introduced. This **materially simplifies the hypothesized intended route to a candidate DH state** and ties it to the original p6 source-pair H transform. It does **not** prove H is what the authors wanted: the important choices **historical square linkage, H sum/difference, top corners, modulus29, and interpretation of source residues as GP29 DH values were proposed after other puzzle research**. The three source-value equalities are cross-relations within one retrospectively studied historical object, not three statistically independent validations. A next-page decipherment or an independent explicit instruction to read shell/inner corner H is required for promotion.
+
+### Source-only candidate DH modulus via genuine Euler totients of the two authentic row sums
+
+The original two magic constants **3301 and1033 are themselves prime**. Euler's totient `φ` is a **genuine prior Cicada arithmetic operation** and features in independently solved LP2 material. Therefore a second *potentially source-motivated* role map, once the independently established GP29 alphabet is fixed, is to let the 2014 **first constant** supply the **DH modulus**:
+
+```text
+φ(3301) = 3300 ≡ 23 (mod29)  → candidate p=23
+φ(1033) = 1032 ≡ 17 (mod29)
+```
+
+The **17** is additionally the unselected final output of the minimal-equalization H packet: `272+151=423≡17 (mod29)`. Thus the published six-field original-number packet `[19,8,9,2,5,17]` has its final residue independently expressible as **φ(1033) mod29**, while its middle first residue9 equals the difference of the two candidate private exponents `b−a=15−6`. These arithmetic cross-identities use all six output slots; they are not separately authenticated key semantics. The totient p23 is **algebraically dependent** on `g=−3301 mod29=5` because prime `φ(3301)=3301−1`, hence `p≡−g−1` (mod29); it is a **possible author-selected operation, not an independent coincidence**.
+
+With this optional prime role included, a **self-contained conditional 2014-source key reconstruction** can calculate *every* standard 2013 DH field with NO 2013 numerical input:
+
+```text
+q=29  (authentic Gematria Primus rune modulus)
+p=φ(3301) mod29                         = 23
+ g=(det5a/det7) mod29                 = 10/2 = 5
+ a=(3301−1033) mod29                 = 6
+ b=g*det5b mod29                     = 5*3 = 15
+ A=g^a mod p                         = 8
+ B=g^b mod p                         = 19
+ K=A^b mod p = B^a mod p             = 2
+```
+
+These match the authentic **2013 DH transcript** `p23,g5,a6,b15,A8,B19,K2` exactly; the independently printed LP2 p8 **Roman XIX** matches predicted B19. Crucial caveat: **2014 did not instruct players to take φ of the first square sum, mod29 determinants, or multiply the last determinant into b**. Those roles are retrospectively proposed and not proved by returning known public DH parameters; source-only *arithmetic* does not establish a source-*chosen* key-generation mechanism. This does, however, remove the previously necessary external p23 value from the candidate mathematical recipe and supplies a concise path for future falsification using original plaintext or source-selected readout. Original numerical squares themselves were given as a historical CGI submission task, which did not require any of these operations.
 
 ### Minimal five-by-five equalization: a six-field complete DH state packet
 
