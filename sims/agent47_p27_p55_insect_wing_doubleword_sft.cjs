@@ -10,6 +10,7 @@ const path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
 const read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
 const corpus=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const ink=JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
 const corrected=read('resources/transcriptions/lp2-image-corrected.txt');
 const historical=read('resources/lp2-transcription.txt');
 const runes=new Set(corpus.runes);
@@ -91,6 +92,14 @@ assert.equal(p55.indices.length,76);
 assert.equal(p27.indices.length,234);
 assert.deepEqual(p55.words.slice(-2),[expectedWordA,expectedWordB]);
 assert.equal(55-27,28,'physical pages separated by one half of 56 unsolved pages');
+const p27Marks=ink.pages.find(p=>p.page===27).large_punctuation;
+const p55Marks=ink.pages.find(p=>p.page===55).large_punctuation;
+assert.deepEqual(p27Marks,[[19,13,'red']]);
+assert.deepEqual(p55Marks,[[76,13,'red']]);
+assert.deepEqual(ink.pages.find(p=>p.page===27).red_spans
+  .map(s=>[s.start,s.length]),[[0,19]]);
+assert.equal(19+9,28,'p27 motif starts nine black runes after its red13 transition marker');
+assert.equal(70+6,76,'p55 motif ends immediately before its red13 final marker');
 
 // Global longest repeated contiguous original-runic substring. This scan
 // spans all 55 rune-bearing page tapes, avoiding postselection on the page pair.
@@ -168,6 +177,9 @@ const result={
     runes:expectedWordA.concat(expectedWordB).map(i=>corpus.runes[i]).join(''),
     numeric:expectedWordA.concat(expectedWordB),
     transliteration:translit(expectedWordA)+' '+translit(expectedWordB),
+    redPunctuation:{page27AtRuneBoundary:19,page55AtRuneBoundary:76,
+      largeDotCount:13,ink:'red',
+      note:'source mark after p55 copied terminal pair is NOT an ordinary Latin period'},
     originalSpelling:expectedWordA.map(i=>corpus.runes[i]).join('')+'-'+
       expectedWordB.map(i=>corpus.runes[i]).join(''),
     positions:audit.duplicatedPairs[0].positions,
