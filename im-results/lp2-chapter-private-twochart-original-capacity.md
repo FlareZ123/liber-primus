@@ -72,6 +72,37 @@ minimum additional unexplained positions >=
 
 The exact same 18 complete native donor families have a **minimum of 48 more exceptional positions** even after *every original doublet and its next physical rune* is freed. The minima by donor and spelling are Gibran **70/70, 58/58, 107/107**; Shakespeare **53/74, 48/70, 62/94**; Emerson **123/123, 110/110, 145/145** (each pair full/body). Therefore the simple source-visible 86-doublet **single- or two-position local patch** is insufficient to make the two-output chapter maps fit any of these complete native sources. A doublet-triggered state change persisting for three or more symbols, special F semantics or a different cipher architecture is not excluded by this bound. This does not claim to identify which original positions are genuinely special.
 
+## Physical-page-private alphabets: all 55 reset boundaries and 110 secret charts
+
+A more permissive rival permits the two output charts to be replaced at **every original nonempty physical page**, not just at nine illustrated headings. This is 55 wholly unrelated page-private pairs (110 hidden bijections); each page has its own unconstrained starting rune and may have its plaintext freely reordered internally. The unique first rune of a page is omitted from its residual count. Neither key material nor a state-switching schedule needs to be inferred.
+
+For each page `p`, the key-independent cap for any native rune is the top two within-page GP29 predecessor-difference bins **plus one free page initial**. The exact 55 caps lie between **12 and 39** (sum 1,573); they are frozen by the unmodified 12,956-rune original and cannot be increased through a different pair of bijections or through state switches. For a matching contiguous native donor window partitioned into the **55 exact source page lengths**, the minimum number of positions that *cannot* be explained by those page-private two-output maps is
+
+```text
+E_page >= sum_{physical page p}
+          max(0, max_{native rune x} nativeCount[p,x] - pageTwoOutputCap[p]).
+```
+
+Every sliding 12,956-rune window of all three tracked controls, with the same predeclared **three** GP spellings and **two** boilerplate policies, gives:
+
+| Donor | Legacy full / body | Greedy full / body | Latin letter-spelled full / body |
+|---|---:|---:|---:|
+| Gibran | 45 / 45 | 42 / 42 | 66 / 66 |
+| Shakespeare | 41 / 51 | **35 / 47** | 41 / 62 |
+| Emerson | 52 / 73 | 49 / 60 | 78 / 79 |
+
+**All 18 families still require at least 35 out-of-model positions**, notwithstanding an independent pair of secret 29-way alphabets on every one of the **55** pages and adversarial plaintext order within each. This is weaker numerically than the chapter-static 190 lower bound **because page-private maps are more expressive**, and it makes an important architectural decision: merely resetting two fixed output charts at each physical page does not reproduce any pinned native complete-book passage without a separate exception law.
+
+In a second extremely generous source-visible escape, mark every one of the **86 original within-page doublets and the following physical rune** as exempt from this page-private alphabet model. The remaining necessary unmodeled positions, after subtracting up to `2 × doubletsInPage` from each page's individual symbol deficit, are:
+
+| Donor | Legacy full / body | Greedy full / body | Latin letter-spelled full / body |
+|---|---:|---:|---:|
+| Gibran | 17 / 17 | 14 / 14 | 25 / 25 |
+| Shakespeare | 11 / 11 | **7 / 12** | 11 / 12 |
+| Emerson | 15 / 24 | 9 / 20 | 26 / 30 |
+
+**Even the best reference window requires seven more unexplained rune positions**, separate from the marked doublet-and-successor patches. Because seven is small relative to the book, this does **not** rule out a genuine extra sourced event channel, a prolonged state transition at some of the 86 marks, a partial literal-F bypass, nonnative data, or a new chart on word boundaries. It only rules out a *fully specified two-chart-per-page sender with no such extra mechanism* for these donors. The new 55-page bound is evaluated by a sliding incremental count-histogram algorithm in the same Node22 SFT; it does not depend on solving any unknown cipher key.
+
 ## Independent literal-F hold branch: stronger obstruction, no inferred universal F rule
 
 The original known-key WELCOME/LP2 p56 mechanisms allow a literal plaintext F to pass without consuming a key symbol. That does **not** establish that every physical F printed in unknown pages is literal plaintext F. Nevertheless test that explicit alternative rather than extrapolating the ordinary differential law.
@@ -88,6 +119,6 @@ The theorem permits chart switches on *every* consuming symbol, including source
 
 ## Research choice
 
-Do not allocate further key searches to a **single or two-output, one-symbol-per-native-rune chapter-private predecessor-difference alphabet** for p40–53 or the whole nine-chapter original layout. A continuation must justify **at least three possible residual outputs for the same frequent plaintext rune**, or give an independent source-selected alphabet reset more often than pages, a **selective, not universally literal physical-F clock**, variable-length or different symbol representation, or a non-prose content hypothesis. For three charts the box test remains inconclusive; it does **not** warrant an unconstrained three-chart key search. This excludes a plausible decoder family but does not by itself recover any part of LP2.
+Do not allocate further key searches to a **single or two-output, one-symbol-per-native-rune chapter-private predecessor-difference alphabet** for p40–53 or the whole nine-chapter original layout. A continuation must justify **at least three possible residual outputs for the same frequent plaintext rune**, or give an independently sourced *within-page* chart reset or more-than-two-symbol local exception law, a **selective, not universally literal physical-F clock**, variable-length or different symbol representation, or a non-prose content hypothesis. For three charts the box test remains inconclusive; it does **not** warrant an unconstrained three-chart key search. This excludes a plausible decoder family but does not by itself recover any part of LP2.
 
-**Reproduce:** `node sims/lp2_chapter_private_twochart_capacity_sft.cjs` from repository root, with only the three tracked donor texts and the original `lp2-corpus.json`. The exact tensor optimizer, both predecessor-register histograms, all nine chapter capacities, complete-book and chapter-native sliding counts, alternative source normalizers, 39 boundary masks and ordinary two-chart plant were run in connected V8 against these pinned files; the standalone Node entrypoint should be rerun on checkout before treating the wrapper as separately verified.
+**Reproduce:** `node sims/lp2_chapter_private_twochart_capacity_sft.cjs` from repository root, with only the three tracked donor texts and the original `lp2-corpus.json`. The exact tensor optimizer, both predecessor-register histograms, all nine chapter and 55 physical-page capacities, complete-book sliding counts, alternative source normalizers, 39 boundary masks and ordinary two-chart plant were run in connected V8 against these pinned files; the standalone Node entrypoint should be rerun on checkout before treating the wrapper as separately verified.

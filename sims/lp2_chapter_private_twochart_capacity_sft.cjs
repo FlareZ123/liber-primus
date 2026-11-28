@@ -188,12 +188,69 @@ function run(corpus, sources) {
       minimumAfterAllDoubletAndSuccessorExceptions:localDoubletMin,
       doubletPositions:localDoubletPositions};
   }
+  // Even 55 completely unrelated page-private output-chart pairs can be tested
+  // without recovering any key. Count the two highest C-difference outputs on
+  // each original physical page and grant the first plaintext rune for free.
+  const pagePrivate=corpus.pages.filter(p=>p.page<=55&&p.indices.length).map(p=>{
+    const residuals=new Int32Array(A);let doublets=0;
+    for(let i=1;i<p.indices.length;i++){
+      residuals[(p.indices[i]-p.indices[i-1]+A)%A]++;
+      if(p.indices[i]===p.indices[i-1])doublets++;
+    }
+    const greatest=Array.from(residuals).sort((a,b)=>b-a).slice(0,2);
+    return {page:p.page,n:p.indices.length,doublets,top2:greatest,
+      cap:greatest[0]+greatest[1]+1};
+  });
+  assert(pagePrivate.length===55&&pagePrivate.reduce((s,p)=>s+p.n,0)===12956,
+    "source page partition");
+  assert(pagePrivate.reduce((s,p)=>s+p.doublets,0)===86,"source page doublets");
+  function fullPagePrivateDeficit(seq){
+    assert(seq.length>=fullN,"native source too short");
+    const cnt=pagePrivate.map(()=>new Uint16Array(A));
+    const freq=pagePrivate.map(p=>new Int16Array(p.n+1));
+    const mx=pagePrivate.map(()=>0),offsets=[];
+    let off=0;
+    function add(j,x){
+      const n=cnt[j][x]++;freq[j][n]--;freq[j][n+1]++;
+      if(n+1>mx[j])mx[j]=n+1;
+    }
+    function rem(j,x){
+      const n=cnt[j][x]--;freq[j][n]--;
+      freq[j][n-1]++;while(mx[j]&&!freq[j][mx[j]])mx[j]--;
+    }
+    for(let j=0;j<pagePrivate.length;j++){
+      offsets.push(off);
+      freq[j][0]=A;
+      for(let i=0;i<pagePrivate[j].n;i++)add(j,seq[off+i]);
+      off+=pagePrivate[j].n;
+    }
+    const windows=seq.length-fullN+1;
+    let min=Infinity,minPost=Infinity,starts=[],postStarts=[];
+    for(let st=0;st<windows;st++){
+      if(st)for(let j=0;j<pagePrivate.length;j++){
+        const i=st-1+offsets[j];
+        rem(j,seq[i]);add(j,seq[i+pagePrivate[j].n]);
+      }
+      let required=0,requiredAfterLocal=0;
+      for(let j=0;j<pagePrivate.length;j++){
+        const deficit=Math.max(0,mx[j]-pagePrivate[j].cap);
+        required+=deficit;
+        requiredAfterLocal+=Math.max(0,deficit-2*pagePrivate[j].doublets);
+      }
+      if(required<min){min=required;starts=[st];}
+      else if(required===min&&starts.length<6)starts.push(st);
+      if(requiredAfterLocal<minPost){minPost=requiredAfterLocal;postStarts=[st];}
+      else if(requiredAfterLocal===minPost&&postStarts.length<6)postStarts.push(st);
+    }
+    return {windows,minimumExceptionalRunePositions:min,starts,
+      minimumAfterDoubletAndSuccessorExceptions:minPost,postStarts};
+  }
   const controls=[];
   for(const [name,txt] of sources){
     const rec={name,variants:{}};
     for(const mode of ["legacy","greedy","latin"])for(const trim of [false,true]){
       const seq=gp(trim?body(txt,name.includes("shakespeare")):txt,mode);
-      rec.variants[mode+"_"+(trim?"body":"full")]={...minMaxLetter(seq),fullBook:fullNativeDeficit(seq)};
+      rec.variants[mode+"_"+(trim?"body":"full")]={...minMaxLetter(seq),fullBook:fullNativeDeficit(seq),pagePrivate:fullPagePrivateDeficit(seq)};
       if(mode==="legacy"&&!trim)rec.maskedTriples=maskedTriple(seq);
     }
     controls.push(rec);
@@ -218,7 +275,9 @@ function run(corpus, sources) {
   assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.fullBook.minimumExceptionalRUnes)))===190,"best full-book minimum");
   assert(nineChapters.reduce((s,c)=>s+c.doublets,0)===86,"all original doublets");
   assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.fullBook.minimumAfterAllDoubletAndSuccessorExceptions)))===48,"worst doublet-local exception");
-  return {nineChapters,source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1,
+  assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.pagePrivate.minimumExceptionalRunePositions)))===35,"page-private q2 source exception minimum");
+  assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.pagePrivate.minimumAfterDoubletAndSuccessorExceptions)))===7,"page-private q2 doublet exception minimum");
+  return {nineChapters,pagePrivateSource:pagePrivate,source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1,
       literalFCount,skipTransitions,skipTopDiff:skipSorted.slice(0,6),
       skipQ2Capacity,skipUncontrolledPageInitials:pages.length,
       skipNecessaryNonFMinimum:skipQ2Capacity+pages.length+1},
