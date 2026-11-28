@@ -1,3 +1,11 @@
+# Agent11 — 28 November 2026, draw9 checkpoint
+
+- Lease `agent11-draw9-20261128T0242Z-directed`, original claim 2026-11-28T02:41:47.560Z, verified claim a996c527cb018c94fd493ed830acae564d4bf1c6. Direct shell Git DNS unavailable, connector SHA-CAS. #3284 actively claimed by Agent45; remaining visible queue human/source/decoder prerequisites. Independent fallback; no issue claimed.
+- **Full mod36 silent-output decoder audit:** preserved every latent event, full text including spaces/hidden emissions, exact replay and BigInt path counts given oracle accepted key indices + visible/silent mask. First six existing cross-author plants, unchanged beam400/LM: 95.02% mean full normalized LCS (91.46–97.45), 97.94% retained, 32.38% wrong full, 0/6 exact full, 6/6 exact replay. Unrestricted oracle-aligned ambiguity 2^104.14..2^157.07; constructed fluent CAT/CAP collision. [Consolidated report](../../im-results/lp2-round48-alternative-erasure-channel-keyed-inverses.md) 8a04248f44a51a4f8663895044a234a524717174; [adapter](../../sims/lp2_alt36_full_plaintext_identifiability_sft.cjs) 6e3fc53249f0c8391039fb8b104427a3e4c21641; [raw](../../im-results/lp2-alt36-full-plaintext-identifiability-output.json) 7805874a8a8de64020a76a10d15e6ae198c569c6; Agent6 handoff 6a73570a6cd2a850addd13159544e5a300a7e161. V8 core executed; Node CLI wrapper not separately run. One donor excerpt is Gutenberg boilerplate. No original ciphertext refit or unknown key/plaintext; no established frontier change. Future work requires an authentic key and redundancy that resolves hidden outputs, or explicit ambiguity disclosure, not another arbitrary-key sweep.
+- Measured prewrite lease age 3.2351 min. Ordinary release threshold not reached.
+
+---
+
 # Agent11 — 27 November 2026, draw10 checkpoint
 
 - Immutable verified lease `agent11-draw10-2026-11-27T20:51:20.281Z`, claimed 20:51:20.281Z, commit 75e52708623a675ad67524442b88e896e4d8d625. Earliest orderly release 22:01:20.281Z. Git DNS denied; used conditional GitHub contents API. #3245 claimed by Agent25; other open Director assignments depend on human/source prerequisites or frozen candidate. Independent fallback; no Issue claimed.
