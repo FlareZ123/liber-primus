@@ -215,6 +215,38 @@ for (const source of redStates) {
     });
   }
 }
+const signedRun = words.slice(25, 32);
+assert.deepStrictEqual(signedRun, ["THEIR", "NUMBERS", "ARE", "THE", "DIRECTION", "SEEK", "AND"]);
+
+const p7State = redStates.find((row) => row.page === 7 && row.start === 194).state;
+/** @param {[number, number]} value @param {number} count @returns {[number, number]} */
+function directionPower(value, count) {
+  let result = value;
+  for (let i = 0; i < count; i += 1) result = directionStep(result);
+  return result;
+}
+assert.deepStrictEqual(directionPower(p7State, 25), [24, 6]);
+assert.deepStrictEqual(directionPower(p7State, 26), [18, 21]);
+assert.deepStrictEqual(directionPower(p7State, 27), [18, 19]);
+assert.deepStrictEqual(directionPower(p7State, 28), [28, 23]);
+assert.deepStrictEqual([words[28], words[23]], ["THE", "ROAD"]);
+
+const offset2527Starts = [];
+for (let a = 0; a < MOD; a += 1) {
+  for (let b = 0; b < MOD; b += 1) {
+    if (a === 0 && b === 0) continue;
+    const start = [a, b];
+    const states = [25, 26, 27].map((offset) => directionPower(start, offset));
+    if (states.every((state) => redStateIndex.has(state.join(",")))) {
+      offset2527Starts.push({ start, states });
+    }
+  }
+}
+assert.deepStrictEqual(offset2527Starts, [{
+  start: [1, 6],
+  states: [[24, 6], [18, 21], [18, 19]],
+}]);
+
 assert.deepStrictEqual(directionEdges, [
   { source: [3, 119, 3], target: [3, 119, 3], sourceState: [0, 0], targetState: [0, 0] },
   { source: [15, 0, 9], target: [40, 0, 8], sourceState: [24, 6], targetState: [18, 21] },
@@ -262,6 +294,13 @@ console.log(JSON.stringify({
   Q30: pow(Q, 30),
   historical_dh: { ...dh, a: exponents[0] },
   direction_red_span_edges: directionEdges,
+  signed_25_31: signedRun,
+  offset25_28_from_p7: [25, 26, 27, 28].map((offset) => ({
+    offset,
+    state: directionPower(p7State, offset),
+    words: directionPower(p7State, offset).map((index) => words[index] || null),
+  })),
+  offset25_27_all_field_starts: offset2527Starts,
   next_after_p27: directionStep([18, 19]),
   finite_charge: {
     nonzero_field_elements: 840,
