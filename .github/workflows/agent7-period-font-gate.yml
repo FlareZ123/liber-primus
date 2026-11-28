@@ -39,7 +39,6 @@ jobs:
           python sims/lp2_period_unicode_font_gate.py \
             --image resources/liber-primus/74.jpg \
             --font '/tmp/junicode/usr/share/fonts/truetype/junicode/*.ttf' \
-            --font '/tmp/junicode/usr/share/fonts/truetype/junicode/*.ttf' \
             --output im-results/junicode-078-gate.json
           cat im-results/junicode-078-gate.json
 
