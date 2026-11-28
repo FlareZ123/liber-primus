@@ -35,3 +35,14 @@ Both factored keys replay all nine bodies exactly, recover the actual periodic K
 **Actual original:** the frozen ≥90% fit/held/exact replay control gate passed. None of the three original independent-map restarts retained strict legal support; best soft log likelihood −43257.5394 versus strict control fit ≈−25854/−25014. Of 41,040 path joins across 20 valid partial path sets, best factor agreement 0.398451; zero legal keys among the retained factor candidates and all forbidden-rank trials. No original plaintext, key, or destination recovered. This is a calibrated negative for common q8 chapter reset under the stated F-hold mechanism and intact contiguous native-language order. It does not prove that every arbitrary q8 key fails, nor test q13, shuffled-word or decoy-language variants.
 
 [Receiver](../sims/lp2_unknown_periodic_bigram_phase_maps_sft.cjs), [raw output with truth maps, factor candidates, and frozen original gate](lp2-unknown-periodic-bigram-phase-maps-output.json). Reproduce study cases 0 and 1 with 3 restarts, then case 2 only if both controls meet the gate. V8 study body executed; standalone Node entry point not independently run. This unknown-schedule recovery is useful where another source independently selects a periodic architecture. Do not repeatedly tune the rejected q8 original.
+
+### Blind transfer to the distinct historical period 13 (Agent10, 28 November)
+
+The historically solved KOAN FIRFUMFERENFE supplies a second justified period, not a key for the unknown chapters. Transfer the frozen q8 receiver unchanged except q=13 and independent donor offsets/seeds. Same chapter fit/held partition, three restarts, same two-control gate. Both controls pass:
+
+| Donor | Independent map entries | Factored map entries | Fit | Held | Agreement | Legal factor keys |
+|---|---:|---:|---:|---:|---:|---:|
+| Shakespeare |306/377|351/377|9640/9640|3316/3316|.947552|9|
+| Gibran |316/377|377/377|9635/9640|3312/3316|.972479|15|
+
+Full replay and oracle parity in both; periodic keys correct up to affine gauge. The first control's remaining mismaps are only F/AE. Original q13: 0/3 strict independent-map fits, no strict factor key, best factor agreement .309116 over 109680 scored joins (50 valid partial path sets), best soft likelihood -41784.054. This is a calibrated search negative, not an exhaustive unknown-alphabet impossibility. No original plaintext. No additional period sweep motivated. Reproducer: `node sims/lp2_unknown_periodic_bigram_phase_maps_sft.cjs 0 3 13` (then 1 and 2, conditional on control gate); core executed in V8. [Raw q13 results](lp2-unknown-periodic-q13-phase-maps-output.json). The parameterized receiver preserves q8 explicit three-restart behavior; default restarts now three, matching reported experiment.
