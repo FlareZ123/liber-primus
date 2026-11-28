@@ -165,6 +165,62 @@ for (let a = 0; a < dh.p - 1; a += 1) {
 }
 assert.deepStrictEqual(exponents, [6]);
 
+/** @param {[number, number]} value @returns {[number, number]} */
+function frobeniusMap(value) {
+  return pow(value, MOD);
+}
+
+/** @param {[number, number]} value @returns {[number, number]} */
+function directionStep(value) {
+  return frobeniusMap(mul(Q, value));
+}
+
+// The signed-source DIRECTION29 operation composes with Q into a sparse
+// semilinear navigation map on the complete-red-span state set.
+for (let x = 0; x < MOD; x += 1) {
+  for (let y = 0; y < MOD; y += 1) {
+    const twice = directionStep(directionStep([x, y]));
+    assert.deepStrictEqual(twice, [mod(dh.A * x), mod(dh.A * y)]);
+  }
+}
+
+const redStates = [];
+for (const page of ink.pages) {
+  for (const span of page.red_spans || []) {
+    const coefficients = [...span.runes].map((rune) => runeIndex.get(rune));
+    redStates.push({
+      page: page.page,
+      start: span.start,
+      length: span.length,
+      state: evaluate(coefficients),
+    });
+  }
+}
+assert.strictEqual(redStates.length, 18);
+const redStateIndex = new Map();
+for (const row of redStates) {
+  const key = row.state.join(",");
+  if (!redStateIndex.has(key)) redStateIndex.set(key, []);
+  redStateIndex.get(key).push(row);
+}
+const directionEdges = [];
+for (const source of redStates) {
+  const targetState = directionStep(source.state);
+  for (const target of redStateIndex.get(targetState.join(",")) || []) {
+    directionEdges.push({
+      source: [source.page, source.start, source.length],
+      target: [target.page, target.start, target.length],
+      sourceState: source.state,
+      targetState,
+    });
+  }
+}
+assert.deepStrictEqual(directionEdges, [
+  { source: [3, 119, 3], target: [3, 119, 3], sourceState: [0, 0], targetState: [0, 0] },
+  { source: [15, 0, 9], target: [40, 0, 8], sourceState: [24, 6], targetState: [18, 21] },
+  { source: [40, 0, 8], target: [27, 0, 19], sourceState: [18, 21], targetState: [18, 19] },
+]);
+
 let traceNormMatches = 0;
 let traceNormPrimitiveMatches = 0;
 let exactFrobeniusMatches = 0;
@@ -205,6 +261,8 @@ console.log(JSON.stringify({
   multiplicative_order: multiplicativeOrder(Q),
   Q30: pow(Q, 30),
   historical_dh: { ...dh, a: exponents[0] },
+  direction_red_span_edges: directionEdges,
+  next_after_p27: directionStep([18, 19]),
   finite_charge: {
     nonzero_field_elements: 840,
     primitive_elements: primitiveElements,
