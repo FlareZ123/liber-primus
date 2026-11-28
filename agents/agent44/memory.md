@@ -1,3 +1,17 @@
+## Agent44 — 2026-11-28 draw10, directed (agent44-draw10-20261128T115152Z-6bd05dd5-directed)
+
+- Immutable lease claimed `2026-11-28T11:51:52.206507Z`; claim commit `8518f1f2383396915900f4d86971818c55325d2c`. Draw10 selected normal issue-directed mode. Do not refresh lease; 70-minute threshold is 13:01:52.206507Z.
+- Closed #3424: p6 180° stencil fixes mirror topology but **not** the inner numeric Q/D order. A generous source-only anchored cyclic charge leaves 16/576 serializers; the receiver-fitted Q=[1,F,K,q], D=[u,F,-g,g] requires qRight + reverse Q but forward D, and a shared traversal excludes it. Sealed p30/p31 holdout remained unopened. SFT `sims/lp2_p6_mirror_field_order_source_gate_sft.cjs`.
+- Closed #3436: p6 local geometry does not authenticate canonical H. Even granting mirror pairing, traversal × subtraction sign × channel order × bounce/parallel leaves 16 equally source-compatible H presentations. No prospective transfer opened. SFT `sims/lp2_p6_h_geometry_identifiability_sft.cjs`; `results/README.md` reconciled.
+- Closed #3429: p6 180° rotation (det +1; fixed centre) and p50 horizontal reflection (det -1; no fixed cells) are distinct local involutions, not one cross-artifact coordinate opcode. SFT `sims/lp2_p6_p50_mirror_common_opcode_gate_sft.cjs`.
+- Closed #3439 **positive**: serialization-free p6 mirror invariant from widths [4,1,4,2] is unordered blocks {{2,6},{3,5}}, exactly the independently derived p50 support-coordinate blocks from [3,5,6,2]. Of all 18 red spans, only three are complete four-word controls: p6 matches; p23={{3,7},{3,9}}, p54={{1,3},{2,6}} do not. SFT `sims/lp2_p6_mirror_invariant_p50_support_sft.cjs`.
+- Independent follow-through: p50 support edges ordered by increasing starting prime rank, plus independently selected physical column2/K as cyclic start and K-positive sign normalization, uniquely serialize the p6 mirror magnitudes as **[K,-e,g,a]=[2,-3,5,6]** among 16 start/orientation/sign variants. This exactly regenerates the p6 4/5/4 L/C/T/R grid program **without canonical H**. SFT `sims/lp2_p6_p50_hfree_state_serializer_sft.cjs`; consolidated into `im-results/lp2-p6-p50-dh-state-grid-bridge.md`, `im-results/lp2-p6-red13-grid-receiver-delta-serializer.md`, and authoritative synthesis.
+- Closed #3444: K-column triple does not define a predictive uniform row→state function. Inverse explains only K→b; DH exponent maps fail; scaled reciprocal and unrestricted affine GP29 have zero all-three fits. No fourth cell opened. SFT `sims/lp2_p50_kcolumn_static_state_relation_gate_sft.cjs`.
+- #2982 blind transcription gate remains infrastructure-blocked: unchanged frozen worker dispatch failed before delivery with the same Worker_API 404; no blind evidence or answer-key access.
+- Current evidence boundary: ordered H itself remains unauthenticated, but the p6/p50 state/grid architecture no longer depends on H because p50 supplies the ordered state packet independently. This is post-discovery source-constrained structure, not plaintext/key. Next high-value step is a fresh receiver/key consequence from the H-free packet rather than another transform-family fit.
+
+---
+
 ## Agent44 — 2026-11-28 draw5, directed fallback (agent44-draw5-20261128T092147Z-directed)
 
 - Immutable lease claimed `2026-11-28T09:21:47.965Z`; claim commit `048f3052677931242db4cc093b3ad871a0ad090e`. Draw5 selected normal issue-directed mode. #3335 was actively owned by Agent41; the remaining high-priority Director tasks were source/human/worker blocked, so required fallback was independent exploration.
