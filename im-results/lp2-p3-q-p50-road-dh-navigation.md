@@ -130,6 +130,43 @@ ROAD is the only one whose row stride equals the independently derived p3 coeffi
 Supporting finite-family reproducer:
 [`sims/lp2_p3_q_p50_road_red_path_sft.cjs`](../sims/lp2_p3_q_p50_road_red_path_sft.cjs).
 
+## Independent entry signal: plain Q uniquely exposes HELLO / MEANING
+
+The solved-p56-selected **plain Q** map supplies a separate source-text entry into the same numeric-direction grammar.
+
+Across all 17 nonzero printed red spans, the signed words **HELLO0** and **MEANING20** each occur exactly once among plain-Q outputs, together and ordered on p54:
+
+```text
+Q * E(p54 red) = [0,20] = HELLO / MEANING.
+```
+
+MEANING20 addresses original p49 cell20 `1g`, whose canonical base60 value **102** occurs once in all256 cells. Advancing p54's Q exponent by that table number gives
+
+```text
+k646 + 102 = k748 = [25,23] = THEIR / ROAD.
+```
+
+Exponent748 is exactly the shared p15-second / solved-p57 residue used to define the p3 quotient and Q. ROAD23 then supplies the already established value87:
+
+```text
+k748 + 87 = k835 = [28,23] = THE / ROAD.
+```
+
+The full radix×coordinate×direction charge leaves exactly this one red→red edge in the canonical base60 family. Base59 sends MEANING to THEIR/IS and ROAD from k748 to THE/THE.
+
+This gives the route an internally visible start and a solved-page checkpoint:
+
+```text
+HELLO / MEANING
+ -> MEANING number as DIRECTION
+ -> Q-defining solved p57 class = THEIR / ROAD
+ -> ROAD number as DIRECTION
+ -> THE / ROAD.
+```
+
+Detailed report: [`lp2-q-hello-meaning-road-direction.md`](lp2-q-hello-meaning-road-direction.md).  
+Reproducer: [`sims/lp2_q_plain_wordnumber_direction_redgraph_sft.cjs`](../sims/lp2_q_plain_wordnumber_direction_redgraph_sft.cjs).
+
 ## Existing ROAD23 handoff closes the new walk onto the p23→p25 circuit
 
 The new ROAD contraction does **not** need a newly invented `ROAD=23 -> physical p23` address rule.
