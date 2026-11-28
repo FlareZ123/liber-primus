@@ -58,8 +58,10 @@ This result does **not** restore:
 - DIRECTION29→p29;
 - ROAD23 as a uniquely numbered page selector;
 - AND24→p50[24] as a uniquely word-authenticated dereference;
-- the cell186 movement branch;
+- DIRECTION29 or any p29 page handoff from text indexing;
 - any unknown LP2 plaintext or cipher receiver.
+
+A separate numeric-only follow-up does recover one narrower consequence without choosing a signed-word origin. Rank24 is an intrinsic anchor of the unique 17..24 scaffold. Under the already published movement grammar, charging table address `r` versus one-based address `r-1` leaves only `r=24` with zero-based addressing on the two-step path `1n → 1L → cell186 = 0J = 19`; the one-based rival goes to cell180. Cell186/19 was independently fixed by the p27 red13/DH audit before this p50 route. This is an internal selector for p50 **table-address origin** conditional on that movement grammar; it does not authenticate DIRECTION29 or the signed-message word origin. [Finite address-origin gate](lp2-p50-scaffold-address-origin-dh19-gate.md).
 
 It also does not prove that the creator intended word-number lookup merely because the numerical interval overlaps a meaningful clause. The p50 scaffold itself was discovered in a source-conditioned search and still lacks an independent ciphertext consumer.
 

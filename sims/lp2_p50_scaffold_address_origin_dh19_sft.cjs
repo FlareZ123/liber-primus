@@ -1,0 +1,25 @@
+"use strict";
+const assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path");
+const root=path.resolve(__dirname,".."),read=r=>fs.readFileSync(path.join(root,r),"utf8").replace(/\r/g,"");
+const grid=JSON.parse(read("resources/liber-primus/lp2-grid-256.json")),signed=read("resources/historical/cicada2016-4gq25-outguess.asc"),p27=read("im-results/lp2-p27-red13-dh-familywise-selection-audit.md");
+assert.match(signed,/their numbers are the direction/i);assert.match(p27,/cell186\s*=\s*0J\s*=\s*length19/i);
+const tokens=grid.pages.flatMap(p=>p.tokens),a60=grid.alphabet,used=new Set(tokens.flatMap(t=>[...t])),missing=[...a60].filter(x=>!used.has(x));
+assert.deepEqual(missing,["f"]);const a59=a60.replace("f","");
+function dec(t,a){const h=a.indexOf(t[0]),l=a.indexOf(t[1]);assert(h>=0&&l>=0);return h*a.length+l;}
+function isP(n){if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;}
+const primes=[];for(let n=2;primes.length<256;n++)if(isP(n))primes.push(n);const rank=new Map(primes.map((p,i)=>[p,i+1]));
+const anchors=[{rank:17,cell:219,radix:60,heading:"N"},{rank:18,cell:211,radix:60,heading:"N"},{rank:19,cell:203,radix:59,heading:"N"},{rank:21,cell:43,radix:60,heading:"N"},{rank:22,cell:40,radix:59,heading:"E"},{rank:23,cell:41,radix:59,heading:"E"},{rank:24,cell:195,radix:60,heading:"N"}];
+for(const a of anchors)assert.equal(rank.get(dec(tokens[a.cell],a.radix===60?a60:a59)),a.rank);
+const dirs=["N","E","S","W"];
+function move(cell,tok,heading,mode){const m=/^([1-9])([NSEWLRUD])$/iu.exec(tok);if(!m)return null;const n=+m[1],op=m[2].toUpperCase();let h=heading;
+ if(op==="L")h=mode==="relative"?dirs[(dirs.indexOf(heading)+3)%4]:"W";else if(op==="R")h=mode==="relative"?dirs[(dirs.indexOf(heading)+1)%4]:"E";else if(op==="U")h="N";else if(op==="D")h="S";else h=op;
+ let r=Math.floor(cell/8),c=cell%8;if(h==="N")r-=n;if(h==="S")r+=n;if(h==="E")c+=n;if(h==="W")c-=n;if(r<0||r>=32||c<0||c>=8)return null;return{cell:r*8+c,heading:h};}
+function trace(a,origin,mode){const address=origin==="zero"?a.rank:a.rank-1,addressToken=tokens[address],cells=[a.cell],tokensRead=[addressToken];let st=move(a.cell,addressToken,a.heading,mode);
+ while(st&&cells.length<8){cells.push(st.cell);tokensRead.push(tokens[st.cell]);const nx=move(st.cell,tokens[st.cell],st.heading,mode);if(!nx)break;st=nx;}
+ const terminal=cells.at(-1);return{rank:a.rank,anchor:a.cell,addressOrigin:origin,address,addressToken,turnMode:mode,cells,tokensRead,terminal,terminalToken:tokens[terminal],terminal59:dec(tokens[terminal],a59),terminal60:dec(tokens[terminal],a60)};}
+const rows=[];for(const a of anchors)for(const origin of["zero","one"])for(const mode of["relative","absolute"])rows.push(trace(a,origin,mode));
+const dh=new Set([23,5,6,15,8,19,2,3,4]),hits=rows.filter(r=>dh.has(r.terminal59)||dh.has(r.terminal60));
+assert.equal(hits.length,2);for(const h of hits){assert.equal(h.rank,24);assert.equal(h.addressOrigin,"zero");assert.deepEqual(h.cells,[195,187,186]);assert.deepEqual(h.tokensRead,["1n","1L","0J"]);assert.equal(h.terminal59,19);assert.equal(h.terminal60,19);}
+const one24=rows.filter(r=>r.rank===24&&r.addressOrigin==="one");assert.equal(one24.length,2);for(const r of one24){assert.deepEqual(r.cells,[195,196,180]);assert.deepEqual(r.tokensRead,["1R","2u","2O"]);}
+const zero23=rows.filter(r=>r.rank===23&&r.addressOrigin==="zero");assert.deepEqual(zero23.map(r=>r.terminal).sort((a,b)=>a-b),[42,49]);assert(zero23.every(r=>!dh.has(r.terminal59)&&!dh.has(r.terminal60)));
+console.log(JSON.stringify({schema:"lp2-p50-scaffold-address-origin-dh19-v1",anchors,chargedBranches:rows.length,dhHits:hits,rank24OneBasedRivals:one24,conclusion:"Only zero-based table address24 reaches independently preselected cell186/raw19; signed-message word origin remains unresolved."},null,2));
