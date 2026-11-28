@@ -105,9 +105,9 @@ The derived `b=15` then matches the **physical p15 page index**. The page number
 This is still a post-discovery interpretation of which elementary word statistic names which field. Its force comes from the simultaneous internal equalities, reciprocal pair, DH exponentiation checks and page-index consequence—not from the density of arbitrary state expressions in GP29.
 
 
-## Authenticated 2013 source supplies a second independent worked-example match
+## Authenticated 2013 source supplies a historical worked-example match
 
-The reconstructed p15 state exactly matches Cicada's signed 2013 TCP specification's worked `DH 23 -> 5 8 -> 19 -> 2` exchange. The same document separately specifies `BASE29 3301 -> 3QO`. This second example also lands exactly on the original p15 object: the uniquely red grid cell `3299` is base29 `3QM=[e,B^-1,p-1]=[3,26,22]`, and the independently recovered `K=2` gives `3299+K=3301`; the source output `3QO` has numeric digits `[e,B^-1,-g]=[3,26,24]`. Thus p15 has two distinct exact worked-example links to one authenticated historical source, providing a concrete human solve-path pointer and source-selecting BASE29 for bounded follow-up. This recovers no unknown body plaintext. [Full source/provenance and gate](lp2-p15-signed2013-tcp-dual-example.md).
+The reconstructed p15 state exactly matches Cicada's signed 2013 TCP specification's worked `DH 23 -> 5 8 -> 19 -> 2` exchange. The same document separately specifies `BASE29 3301 -> 3QO`. This second example also lands exactly on the original p15 object: the uniquely red grid cell `3299` is base29 `3QM=[e,B^-1,p-1]=[3,26,22]`, and the independently recovered `K=2` gives `3299+K=3301`; the source output `3QO` has numeric digits `[e,B^-1,-g]=[3,26,24]`. Thus the **conditional p15 state assignment** has two distinct exact worked-example links to one authenticated historical source, providing a historically plausible clue and source-selecting BASE29 for bounded follow-up. This does not by itself select the descriptor→DH role map criticized above, and it recovers no unknown body plaintext. [Full source/provenance and gate](lp2-p15-signed2013-tcp-dual-example.md).
 
 ## Source-only internal packet
 
@@ -487,11 +487,11 @@ Apply the same canonical outside-in H5 once: `H5([7,6,7,6,2]) = [5,0,7,12,9]`. P
 
 On the actual chapter map, among the 10 p7 cyclic/reversal orientations, only original printed order reproduces that H5 target. A second source-defined row comes from the same chapter operands: the first post-rubric black-word rune lengths along the itinerary are `[3,7,2,7,8]`. Canonical H5 gives `[24,0,2,14,11] = [-g,F,K,-b,A^-1]`, again entirely fixed by the independently reconstructed state.
 
-A third source-defined channel uses GP29 **products of those exact same first-black words**. Along the itinerary they are `[2,19,3,19,27]`. This is already a direct state row **before H5**:
+A third source-defined channel uses GP29 **products of those exact same first-black words**. Along the itinerary they are `[2,19,3,19,27]`. Under the fixed conditional state map, this is already a direct state row **before H5**:
 
 `[K,B,e,B,-K] = [2,19,3,19,27]`.
 
-That matters because the chapter grammar is independently defined as **SUM -> PRODUCT**: the p7 inverse state row `[p,K,g,K,B]` is being used as chapter-IN labels, and the source-defined navigation sends it directly to the second state row `[K,B,e,B,-K]`. Fixed H5 then gives the further consequence `[4,0,3,9,0] = [q,F,e,e+a,F]`. Only original p7 printed order among the 10 cyclic/reversal orientations reproduces all three source-defined channels.
+That matters conditionally because the chapter grammar is independently defined as **SUM -> PRODUCT**: the p7 inverse row, once read as `[p,K,g,K,B]`, is used as chapter-IN labels, and the source-defined navigation sends it to `[K,B,e,B,-K]`. The navigation is source-defined; the DH names remain conditional on the post-selected role map. Fixed H5 then gives the further consequence `[4,0,3,9,0] = [q,F,e,e+a,F]`. Only original p7 printed order among the 10 cyclic/reversal orientations reproduces all three source-defined channels.
 
 A fixed-marginal control preserves the nine observed chapter-IN labels and permutes the **whole observed chapter records** `(span length, first-black-word length)` among them. Holding the p7 inverse row and p15 state targets fixed gives **240/362,880 = 1/1,512** passes for the span row alone; the raw product-state row also has **240/362,880 = 1/1,512** passes. Span+word-length jointly leaves **120/362,880 = 1/3,024**, and requiring the raw/H5 product row too leaves the same 120, so the product channel supplies a typed state transition but no additional fixed-marginal discrimination beyond the existing joint pair. These are post-discovery conditional specificity diagnostics, not authorship probabilities.
 
