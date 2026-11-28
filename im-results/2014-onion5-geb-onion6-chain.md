@@ -181,6 +181,23 @@ Applied in standard GP29 order to LP2 pages 0–55, continuous or page-reset, wi
 
 The only directly source-selected key candidate in the p0 construction is its 13-red-rune title, **SHEOGMIAFSYENGC**. Using it as the 13-symbol Vigenère key, starting after the p0 red13 boundary and holding only the two red13-marked page-start F runes, produces no recognizable plaintext under either additive sign. This rejects only the untransformed title-as-key hypothesis; it does not prove that the red13 candidate could never select a skip for some independently sourced key. The exact positive control, marker census, and bounded title-key test are reproduced in [the source SFT](../sims/2014_onion6_explicit_colon_fskip_lp2_marker_census_sft.cjs). The direct key-transfer hypothesis is rejected; this does not reject other uses of the historical F-skip precedent.
 
+## Worked numerical orbit test — 28 November 2026
+
+The historical GEB selection AWDV:6:2:1 identifies *Aria with Diverse Variations*, which explicitly works the Collatz orbit from 15 through 1 and suggests trying 27 (archived OCR blob `da652686147aa1c8585be659c89d0db60c831571`, lines 22611–22690, [archive](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/007-fifth-onion/eternal-golden-braid.txt)). The 16 interior values of the first orbit match the p15 grid cell count, while 15 and 27 are original chapter-start page numbers. This is an independently motivated hypothesis, not a source-established bridge: neither the endpoint convention, reduction modulo 29 nor application as a repeating additive key is specified by the book.
+
+Tested exactly two endpoint conventions (full orbit or interior only), reduced modulo 29, phase zero at the physical chapter start and continuous through p15–22 / p27–32 respectively. Ordinary subtraction was compared using the same fixed trigram model trained on 383,819 donor runes. The transparent-F variant was tested by exact DP over consumed key indices, allowing ciphertext zero to be either a literal held F or a consuming non-F, excluding consuming plaintext F. All paths exhausted before any full chapter:
+
+| Seed | Orbit convention | Period | Chapter length | First impossible ciphertext offset (zero-based) | Ordinary mean log score | Continuation score |
+|---|---|---:|---:|---:|---:|---:|
+| 15 | full | 18 | 1903 | 245 | -4.329 | -4.328 |
+| 15 | interior | 16 | 1903 | 26 | -4.322 | -4.308 |
+| 27 | full | 112 | 1433 | 14 | -4.342 | -4.349 |
+| 27 | interior | 110 | 1433 | 21 | -4.307 | -4.299 |
+
+Clear p57 scores -2.224 under the same model. The p57 planted transparent-F control retains 15 paths (the true path is among them by construction); authentic p56 prime-minus-one F-hold control retains 22. These are support controls, not claims of unique decoding. No phase fitting or shifted body start was performed. Literal Collatz repeating keys are excluded under the specified phase/start and hold grammar; the ordinary results are unrecognizable and poorly scored, not a mathematical impossibility proof. The numerical coincidences alone cannot establish the bridge. No unknown plaintext/key recovered.
+
+[Reproducer](../sims/lp2_geb_collatz_worked_orbits_sft.cjs) · [Raw output and input hashes](lp2-geb-collatz-worked-orbits-output.json). Core executed in V8; standalone Node file not separately run.
+
 ## Sources
 
 - First-party signed-message archive: [Dukotah/cicada3301, 2014 Onion5 PGP message](https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2014-01-onion5-liber-primus.asc).
