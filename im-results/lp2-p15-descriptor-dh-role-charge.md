@@ -84,6 +84,10 @@ Those later relations can support the existence of a repeated numerical state vo
 
 A positive promotion would need a new source-visible instruction that distinguishes, for example, `g=w2.P` from `g=w1.L+1`, or a held-out observation whose prediction depends on descriptor provenance rather than only on the final state values. No such discriminator is present in the #3399 starting evidence.
 
+## Follow-up: authenticated transcript order still leaves A/B/C
+
+Director #3422 charged all six statistic orders, both word directions and both live g/a internal orders. Seven full-process presentations survive and span A/B/C; public p,g,K leaves nine. Held-out upper-red `[5,8,26]=[g,A,B^-1]` passes all three. Protocol order supplies no missing provenance selector. See [transcript-order gate](lp2-p15-dh-transcript-order-provenance-gate.md).
+
 ## Evidence boundary
 
 Established and preserved:
