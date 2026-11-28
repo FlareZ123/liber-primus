@@ -10,6 +10,9 @@ const M = 29;
 const corpus = JSON.parse(fs.readFileSync(
   path.join(ROOT, 'resources/liber-primus/lp2-corpus.json'), 'utf8',
 ));
+const ink = JSON.parse(fs.readFileSync(
+  path.join(ROOT, 'resources/liber-primus/lp2-ink-annotations.json'), 'utf8',
+));
 const transcription = fs.readFileSync(
   path.join(ROOT, 'resources/liber-primus/lp2-transcription.txt'), 'utf8',
 );
@@ -137,10 +140,53 @@ const columns = Array.from({ length: 17 }, (_, j) => [
   fp.rows[2][j],
 ]);
 
-const p55 = corpus.pages.find((p) => p.page === 55);
-const segmentLengths = [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
+const state = { p: 23, g: 5, A: 8, B: 19, K: 2, b: 15 };
+const p55Pointer = state.p + state.g + state.A + state.B;
+assert.equal(p55Pointer, 55);
+const p55 = corpus.pages.find((p) => p.page === p55Pointer);
+assert(p55);
+assert.equal(p55.runic_count, state.K * M + (state.p - state.g));
+assert.equal(p55.runic_count, 76);
+assert.deepEqual(
+  corpus.pages.filter((p) => p.page >= 0 && p.page <= 55 && p.runic_count === 76)
+    .map((p) => p.page),
+  [55],
+);
+
+const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const rawBlocks = transcription.replace(/\r/g, '').split('%');
+function blockIndices(raw) {
+  return [...raw].map((ch) => runeIndex.get(ch)).filter((x) => x !== undefined);
+}
+const p55Block = rawBlocks.find((raw) =>
+  blockIndices(raw).join(',') === p55.indices.join(',')
+);
+assert(p55Block, 'exact p55 transcription block not found');
+const segmentLengths = [];
+let segment = 0;
+for (const ch of p55Block) {
+  if (runeIndex.has(ch)) {
+    segment++;
+  } else if (ch !== '/' && !/\s/u.test(ch)) {
+    if (segment) segmentLengths.push(segment);
+    segment = 0;
+  }
+}
+if (segment) segmentLengths.push(segment);
+assert.deepEqual(segmentLengths, [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+assert.equal(segmentLengths.length, state.b + state.K);
 assert.equal(segmentLengths.reduce((a, b) => a + b, 0), p55.indices.length);
-assert.equal(p55.indices.length, 76);
+
+const p55Ink = ink.pages.find((p) => p.page === 55);
+assert(p55Ink);
+assert.ok(
+  p55Ink.large_punctuation.some(
+    ([offset, dots, color]) =>
+      offset === p55.runic_count &&
+      dots === state.b - state.K &&
+      color === 'red',
+  ),
+);
 
 function decode(sign) {
   const out = [];
@@ -225,13 +271,19 @@ const output = {
   },
   receiver: {
     page: 55,
+    heldOutGeometry: {
+      pagePointer: 'p+g+A+B = 55',
+      totalRunes: 'K*29+(p-g) = 76 = 2I_base29',
+      visibleSegments: 'b+K = 17',
+      terminalRedDots: 'b-K = 13',
+    },
     segmentLengths,
     keyAssignment: 'p53 3x17 columns, one triplet per visible p55 segment, repeated within segment',
     controls,
     results,
   },
   decision:
-    'Preserve the unique p53 3x17 row aggregate state fingerprint. Reject direct phase-zero repeated-column-triplet additive use on the 17 visible p55 segments under both signs; do not tune phase, column order, or key variants.',
+    'Preserve the unique p53 3x17 row aggregate state fingerprint and p55 held-out geometry (page55, 76 runes, 17 segments, 13 terminal dots). Reject direct phase-zero repeated-column-triplet additive use on the 17 visible p55 segments under both signs; do not tune phase, column order, or key variants.',
 };
 
 const json = JSON.stringify(output, null, 2);
