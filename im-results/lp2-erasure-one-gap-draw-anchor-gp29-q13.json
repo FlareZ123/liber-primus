@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-28T08:10:00Z",
+  "model": "GP29 post-filter deletion sender with strict adjacent-repeat retry",
+  "period": 13,
+  "original_tape": "LP2 p0-p55, 12956 runes, spacing-free",
+  "visibility_gate": "m=max(ceil(0.75*L),q+5)",
+  "anchor_scope": "exactly one internal missing accepted emission OR exactly one internal rejected draw within q=13 key draws; first/last retained; full deterministic prefix/suffix replay",
+  "source_cribs": [
+    {
+      "ci": 0,
+      "L": 42,
+      "m": 32,
+      "translit": "WHO ARE YOU WHO WISHES TO STUDY HERE ASKED THE MASTER"
+    },
+    {
+      "ci": 1,
+      "L": 41,
+      "m": 31,
+      "translit": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+    },
+    {
+      "ci": 2,
+      "L": 37,
+      "m": 28,
+      "translit": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+    },
+    {
+      "ci": 3,
+      "L": 29,
+      "m": 22,
+      "translit": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+    }
+  ],
+  "original": [
+    {
+      "ci": 0,
+      "workflow_run": 46123317118,
+      "elapsed_ms": 137774,
+      "seeds": 8081102,
+      "keys": 111801743,
+      "passes": 38709723,
+      "replays": 0,
+      "hits": 0
+    },
+    {
+      "ci": 1,
+      "workflow_run": 46123320333,
+      "elapsed_ms": 137566,
+      "seeds": 7816547,
+      "keys": 108085275,
+      "passes": 38726437,
+      "replays": 0,
+      "hits": 0
+    },
+    {
+      "ci": 2,
+      "workflow_run": 46123323731,
+      "elapsed_ms": 112796,
+      "seeds": 6757414,
+      "keys": 93206467,
+      "passes": 34876627,
+      "replays": 0,
+      "hits": 0
+    },
+    {
+      "ci": 3,
+      "workflow_run": 46123326928,
+      "elapsed_ms": 58843,
+      "seeds": 4638401,
+      "keys": 63438099,
+      "passes": 27183675,
+      "replays": 0,
+      "hits": 0
+    }
+  ],
+  "original_totals": {
+    "seeds": 27293464,
+    "keys": 376531584,
+    "passes": 139496462,
+    "replays": 0,
+    "hits": 0
+  },
+  "controls": [
+    {
+      "ci": 0,
+      "workflow_run": 46123375578,
+      "elapsed_ms": 67353,
+      "plants": 12,
+      "eligible": 11,
+      "true_key_recovered": 11,
+      "false_cyclic_keys": 2
+    },
+    {
+      "ci": 1,
+      "workflow_run": 46123378674,
+      "elapsed_ms": 81355,
+      "plants": 12,
+      "eligible": 10,
+      "true_key_recovered": 10,
+      "false_cyclic_keys": 52
+    },
+    {
+      "ci": 2,
+      "workflow_run": 46123382076,
+      "elapsed_ms": 63796,
+      "plants": 12,
+      "eligible": 9,
+      "true_key_recovered": 9,
+      "false_cyclic_keys": 72
+    },
+    {
+      "ci": 3,
+      "workflow_run": 46123385411,
+      "elapsed_ms": 20236,
+      "plants": 12,
+      "eligible": 12,
+      "true_key_recovered": 12,
+      "false_cyclic_keys": 609
+    }
+  ],
+  "control_totals": {
+    "plants": 48,
+    "eligible": 42,
+    "true_key_recovered": 42,
+    "false_cyclic_keys": 735
+  },
+  "code": [
+    "sims/lp2_erasure_one_gap_draw_anchor_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci0_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci1_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci2_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci3_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci0_controls_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci1_controls_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci2_controls_sft.cjs",
+    "sims/lp2_erasure_one_gap_gp29_q13_ci3_controls_sft.cjs"
+  ],
+  "interpretation": "No original exact replay exists in this one-gap q13 GP29 source-crib family. This closes the previously timed-out GP29 branch only; it does not exclude two-or-more hidden/rejected events or unrelated plaintext."
+}
