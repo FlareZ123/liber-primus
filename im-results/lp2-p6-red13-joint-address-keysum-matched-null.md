@@ -128,6 +128,8 @@ A separate adversarial numbering-base charge now removes an otherwise awkward co
 
 The same convention gate also charges source order, physical-page order and global delta sign. Reversing either source or pages yields **zero** full schedules; only forward/forward survives. Global +/- delta is merely a label symmetry because the address family already charges signed H roles, so it creates no new placement. The original visual chapter map supplies a separate human-path narrowing: the only seven-page chapters are p8-p14 and p33-p39, hence the only 13-page windows with equal three-page flanks around a complete seven-page chapter are p5-p17 and p30-p42. The p6 family selects p30-p42; p36 is simultaneously the 13-page center and the center of chapter p33-p39.
 
+The largest remaining cheap ordering freedom inside Grid A has also been charged. Permuting the four right-column transition coordinates `[-r3,r2,-r0,u]` in all **24** ways expands the family from 3,072 to **73,728 labeled / 36,864 distinct numeric** delta tapes. Across the same 31 source windows and 44 page intervals, this broader grammar still has exactly **four numeric full schedules**, all source30/page30, and they are exactly the four tapes above. Thus the corridor placement is invariant to the entire transition-coordinate ordering family. [Transition-order charge](lp2-p6-address-transition-order-charge.md).
+
 ## Grid B: p6-only key-sum correction
 
 For the same H roles, singleton sign, and stencil orientation, define:
