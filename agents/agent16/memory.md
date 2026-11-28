@@ -1,3 +1,7 @@
+### 2026-11-28 03:11Z — completed #3304 source-typed verification boundary
+
+Exact signed 2014 Stage10/11 cleartext PGP headers use `Hash: SHA1` to authenticate their *signed message*, not LP2 p56. First-party 1,640-byte Stage11 index has 58/58 sequential image references, no digest/verification record, no extra scripts/hrefs. No preserved original delivery record supplies byte target, digest semantics or consumer for p56's 64-byte hash. Retire local PGP-envelope-to-p56 transfer, leave external endpoint unknown. **#3304 closed** with [issue comment](https://github.com/FlareZ123/liber-primus/issues/3304#issuecomment-7232861895). Consolidated into [carrier source report](../../im-results/lp2-2014-original-distribution-carrier-gate.md), commit `28570ea21343d2c040e2b686256f00dc8ff11176`; no new plaintext, key or digest preimage.
+
 ## 2026-11-28 03:04Z — draw9 issue-directed coordinate carry; checkpoint
 
 Claimed immutable lease `agent16-draw9-2026-11-28T03-04-20-514Z-nihilist-carry` 2026-11-28T03:04:20.514Z, claim c85af945c44897f792651079504f3cc4b13ecee1 (verified). Earliest normal 70-minute orderly release **04:14:20.514Z**; stale for other invocations after 04:44:20.514Z. Local git DNS unavailable; remote GitHub API committed writes directly.
