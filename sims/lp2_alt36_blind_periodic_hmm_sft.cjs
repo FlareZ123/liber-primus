@@ -215,6 +215,14 @@ function search(C,q,cut,m,{seeds=[17,3301,1033,761],sweeps=8}={}){
   rows.sort((a,b)=>b.score-a.score);
   return rows;
 }
+/** Split after the cut-th visible emission; hidden events after that
+ * boundary belong to the predictive continuation. */
+function splitEvents(events,cut){
+  let n=0,i=0;
+  for(;i<events.length;i++)if(events[i].c<VISIBLE&&++n===cut){i++;break;}
+  if(n!==cut)throw Error("visible cut not reached");
+  return [events.slice(0,i),events.slice(i)];
+}
 function lcs(a,b){
   let x=new Uint16Array(b.length+1),y=new Uint16Array(b.length+1);
   for(const p of a){
@@ -253,6 +261,8 @@ function experiment(raw,source,options={}){
   if(options.original){
     C=m.gp.pages[15].indices.slice(20).concat(m.gp.pages.slice(16,23).flatMap(p=>p.indices));
   }else{
+    const starts=options.seeds||[17,3301,1033,761];
+    if(starts.includes(keySeed))throw Error("plant seed collides with a search initializer");
     const r=rng(keySeed);
     Ktruth=Array.from({length:q},()=>r(MOD));
     plant=sender(m.tests[name].slice(options.offset||5000),Ktruth,n);C=plant.C;
@@ -271,11 +281,17 @@ function experiment(raw,source,options={}){
   candidates.sort((a,b)=>b.exactFit-a.exactFit);
   const best=candidates[0],likelihood=exact(C,best.K,m,cut);
   const z=options.noDecode?null:decode(raw,source,C,best.K,options.beam||400);
-  const truth=plant?{key:Ktruth,exact:exact(C,Ktruth,m,cut),cyclicMatches:cyclicMatches(Ktruth,best.K),retainedLCS:z?.indices?lcs(z.indices,plant.retained):null,fullLCS:z?.full?lcs(z.full,plant.events.map(x=>x.p)):null}:null;
+  let holdout=null;
+  if(plant&&z?.events){
+    const [,truthEvents]=splitEvents(plant.events,cut),[,decodedEvents]=splitEvents(z.events,cut);
+    const retained=e=>e.filter(x=>x.c<VISIBLE&&x.p<VISIBLE).map(x=>x.p);
+    holdout={visible:C.length-cut,retainedLCS:lcs(retained(decodedEvents),retained(truthEvents)),fullLCS:lcs(decodedEvents.map(x=>x.p),truthEvents.map(x=>x.p))};
+  }
+  const truth=plant?{key:Ktruth,exact:exact(C,Ktruth,m,cut),cyclicMatches:cyclicMatches(Ktruth,best.K),retainedLCS:z?.indices?lcs(z.indices,plant.retained):null,fullLCS:z?.full?lcs(z.full,plant.events.map(x=>x.p)):null,holdout}:null;
   const result={q,cut,n,source:options.original?"original p15 body through p22":name,seed:options.original?null:keySeed,rows,candidates,best,likelihood,truth,decode:z?{status:z.status,score:z.score,clock:z.lastConsumedKeyIndex,replay:z.replay,retained:z.indices,full:z.full,events:z.events}:null};
   return result;
 }
-if(typeof module!=="undefined")module.exports={rng,words,model,surrogate,coordinate,cyclicMatches,sender,exact,search,lcs,instrument,decode,experiment};
+if(typeof module!=="undefined")module.exports={rng,words,model,surrogate,coordinate,cyclicMatches,sender,exact,search,lcs,splitEvents,instrument,decode,experiment};
 if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===module){
   const fs=require("node:fs"),path=require("node:path"),root=path.resolve(__dirname,"..");
   const read=p=>fs.readFileSync(path.join(root,p),"utf8");
