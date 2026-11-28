@@ -248,6 +248,28 @@ def simulate_m35_open_gate(reps: int = 30000, seed: int = 3308) -> dict[str, obj
     assert abs(expected_out - 76.97768762677485) < 1e-12
     assert abs(expected_in - 8.655172413793103) < 1e-12
 
+    # Integer m profile from the outside count. This is a count fit, not a
+    # source-authenticated state count.
+    m_profile = []
+    for m in range(30, 61):
+        p = (m - 29) / (29 * (m - 1))
+        m_profile.append((m, p, log_binom(n_out, k_out, p)))
+    best_ll = max(row[2] for row in m_profile)
+    best_m = max(m_profile, key=lambda row: row[2])[0]
+    assert best_m == 35
+    likelihood_ratio = {m: math.exp(ll - best_ll) for m, _, ll in m_profile}
+    assert abs(likelihood_ratio[34] - 0.4937415300968265) < 1e-12
+    assert abs(likelihood_ratio[36] - 0.46940807141881574) < 1e-12
+
+    # Under a homogeneous m35 picker, the open class would retain the closed
+    # probability. The observed 10 hits are then extremely high.
+    upper_logs = [log_binom(n_in, k, p_out) for k in range(k_in, n_in + 1)]
+    upper_max = max(upper_logs)
+    homogeneous_open_upper = math.exp(upper_max) * sum(
+        math.exp(value - upper_max) for value in upper_logs
+    )
+    assert abs(homogeneous_open_upper - 4.2042647617336424e-06) < 1e-18
+
     # Conditional distribution of open-gate count given exactly 86 events.
     states: list[int] = []
     logs: list[float] = []
@@ -293,6 +315,10 @@ def simulate_m35_open_gate(reps: int = 30000, seed: int = 3308) -> dict[str, obj
         "expected_outside_repeats": expected_out,
         "expected_open_gate_repeats": expected_in,
         "expected_total_repeats": expected_out + expected_in,
+        "best_integer_m_30_to_60": best_m,
+        "m34_likelihood_ratio_vs_m35": likelihood_ratio[34],
+        "m36_likelihood_ratio_vs_m35": likelihood_ratio[36],
+        "homogeneous_m35_open_hits_ge_10_upper": homogeneous_open_upper,
         "conditional_mean_open_hits_given_86": conditional_mean_open,
         "conditional_tail_open_hits_ge_10_given_86": conditional_tail_ge_10,
         "reps": reps,
