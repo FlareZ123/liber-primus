@@ -6,7 +6,7 @@
 
 LP2 pages 0–55 contain 12,956 runes but only 86 within-page immediate repeated runes. The previously demonstrated universal capacity shortfall of a fixed-repeat, arbitrary-GP29 constrained encoder is **328 bits in one book-wide frame**, **446 bits if page-framed**, and **679 bits if word-framed**; see \`im-results/lp2-enumerative-repeats-punctuation-capacity-original-gate.md\`. Those numbers give the source-driven question: could the physical punctuation glyphs themselves carry the missing per-exception bits, for example by omitting individual dots from their 13- or 10-dot clusters? That possibility is NOT tested by merely counting the glyph-type identities in the text transcription.
 
-The 31 large punctuation ornaments on original unknown pages 0–55 **contain exactly 394 individually visible dot components**: 27 red 13-dot groups, one black 13-dot group, and three red 10-dot groups. If independently switchable, 394 presence bits would exceed the *book-framed* 328-bit side capacity, though not the *page-framed* 446-bit requirement. Therefore checking individual original pixels is an informative test of a possible source carrier, not an unrelated steganographic sweep.
+An additional direct examination now includes every small four-dot sentence stop, rather than only large chapter ornaments. The 31 large punctuation ornaments on original unknown pages 0–55 **contain exactly 394 individually visible dot components**: 27 red 13-dot groups, one black 13-dot group, and three red 10-dot groups. If independently switchable, 394 presence bits would exceed the *book-framed* 328-bit side capacity, though not the *page-framed* 446-bit requirement. Therefore checking individual original pixels is an informative test of a possible source carrier, not an unrelated steganographic sweep.
 
 ## Original-image decision
 
@@ -26,6 +26,22 @@ All 466 dots are present, with **zero per-dot deletions**. All complete arrangem
 For an individual-dot presence/deletion code, **all 394 potential bit positions are constant**. Hence the conspicuous original decorations do *not* supply the required 328-bit lossless exception register through missing, added or re-ordered dot components. This is a stronger constraint than the transcribed 13-vs-10 class counts alone. It neither disproves the general constrained-code explanation nor infers any unknown plaintext.
 
 As a limited color sanity check, 453 red dot centers across all pages have median-sampled red-channel mean **191.313**, SD **2.264**, observed range **185–197** (8-bit). Ordinary JPEG and raster alignment effects can readily produce this continuous local variation. **No stronger color-channel exclusion is claimed**: slight authored color, pixel-level brightness variation, low-order bits, and JPEG DCT channels remain open. Equal visible component topology does not imply bit-identical source JPEG patches.
+
+## Physical sentence stops: the additional 556 visible dot sites
+
+A new *separately searched* physical register covers the small four-dot diamond \`⁘\` sentence stops, not just the large chapter ornaments. The geometric stencil is four independent ~9×9px black/red circular components arranged **top, left, right, bottom** at source offsets \`(0,0),(-15.5,17),(15.5,17),(0,34)\` pixels. The all-page, all-color component finder now discovers:
+
+| Sentence mark | Unknown p0–p55 | Solved p56–p57 | All 58 |
+| --- | ---: | ---: | ---: |
+| Complete four-dot diamonds | **139** | 2 (p57) | **141** |
+| Of which red | 1 (p7) | 0 | 1 |
+| Physically present dot components | **556** | 8 | **564** |
+
+All **139 original unknown-page four-dot diamonds have all four dots**, maximum fitted point residual **0.673 px**. No adjustable four-dot presence mask is observed in these complete marks. Together with the large ornaments, this gives **950 individual physically present dot sites on the unknown pages**, all in complete repeated templates (394 large + 556 small). That is not a 950-bit freely selectable sidecar.
+
+The separately derived \`lp2-punctuation-identity.json\` lists **145** four-dot stop events on unknown pages. Four p15 table-row terminal stops (derived event indices 57–60) are editorial and **not printed** in original 32.jpg; this leaves 141 expected physical stops. The blind image census finds two more exact page-local differences: **p37 has one fewer diamond** (the previously adjudicated absent item-2 stop) and **p38 has one fewer diamond** (its previously adjudicated comma-form rather than a four-dot period). This yields exactly **139 physical four-dot stops**. Every other original page matches its source-derived count. We do **not** call the p38 comma-form an absent *physical* punctuation mark; only the four-dot classification differs. See the prior period-boundary adjudication in \`results/README.md\`. The separately solved p57 provides the two extra real four-dot ornaments absent from the unknown-page punctuation register.
+
+This closes a significant apparent loophole in the large-ornament analysis: the numerous small four-dot stops could independently contain **556 visible on/off dot positions**, enough in abstract to cover the 328-bit globally framed missing-register bound. The original pages, however, show no independent per-dot deletion or altered four-dot geometry across those 139 actual full stops. This is **not** a capacity theorem against relocating all 139 stops among word endings, recoloring tiny components, or encoding analogue/JPEG data; only against *the visible individual-dot presence channel*.
 
 ## A stronger capacity obstruction for this physical carrier
 
@@ -47,7 +63,7 @@ The exact integer calculation is implemented in \`sims/lp2_large_ornament_only_c
 
 ## Reproducer and interpretation
 
-\`python sims/lp2_punctuation_dot_topology_original_sft.py\`, after installing \`numpy pillow scipy opencv-python-headless\`, examines **all 58 original image files**, independently detects all three vector shapes in both ink colors, then checks the resulting full inventory against the derived ink annotation register. It prints all 36 locations, color summary and maximum error. The matching tolerance is 3.15 pixels before subpixel template fitting, with max residual 2px; the observed maximum is only 0.661px. No digit, plaintext, cipher mode, rune transposition, or arbitrary bit threshold is fitted to the answer.
+\`python sims/lp2_punctuation_dot_topology_original_sft.py\`, after installing \`numpy pillow scipy opencv-python-headless\`, examines **all 58 original image files**, independently detects four vector shapes (4, 10, 13 and 23 dots) in both ink colors, then checks the resulting full inventory against the derived ink annotation register. It prints all 36 large-ornament locations, all 141 four-dot sentence-stop locations, color summaries, source-derived per-page exceptions and maximum errors. The matching tolerance is 3.15 pixels before subpixel template fitting, with max residual 2px; the observed maximum is only 0.661px. No digit, plaintext, cipher mode, rune transposition, or arbitrary bit threshold is fitted to the answer.
 
 GitHub Actions original-source run: https://github.com/FlareZ123/liber-primus/actions/runs/46129687875 (initial positive execution, 58 original JPEGs). Blind all-image/all-ink census CI passed at https://github.com/FlareZ123/liber-primus/actions/runs/46130036030 ; its script supersedes the initial source-location-guided version. A combined capacity+census CI is also available as the most recent run of the same manual workflow.
 
