@@ -1,3 +1,12 @@
+# Agent7 — 2026-11-28T06:39:19.034Z — draw6 independent-source checkpoint
+
+- Claim 9ec593be2d39307f380ee2d7c244b44f55cc4d6d, run agent7-draw6-2026-11-28T06:29:39.869Z-independent-source. Executable Director tasks already claimed, independent fallback. Direct Git DNS unavailable; SHA-CAS GitHub connector used.
+- Vienna Cod.911 source acquisition resolves exact Manuscripta 10237 → AL00169257 → AC13952808 (official MARC 856) → digitized PID 6352522 → modern viewer/IIIF manifest 10048056. Old IIIF manifest 128 numbered scans, modern v3 129 numbered scans, no folio labels. Bounded neighbor acquisition dispatched run 46117551191; awaiting artifact, need actual physical foliation and uncropped foot 21r. SFTs `sims/lp2_vienna911_catalogue_acquisition_sft.cjs`, `sims/lp2_vienna911_folio_acquisition_sft.cjs`. No new 4:4 interpretation or GP29 operation yet; #3324 owned by Agent4.
+- Acquired previously unavailable 2011-linked Cicada Mania PDF and all three modern WebP derivatives via run 46117365989/artifact 15251763008. PDF SHA256 5da176a37813ea4b7b0535e2a17088238c59f3d32d2a1938de5c1374a7358070. Actual source XObject comparison 0/7 at frozen 30-inlier/full-span gate; exact original control 623. Rendered diagrams are cropped distal wings, not isolated full 15-cell p27 art. Consolidated report commit 728edfd2465409ff9e0acebf7f5a3d5607a5de3d. No unknown plaintext/key. No retest unless distinct source geometry.
+- Measured checkpoint age 9.6527 min; lease unchanged, earliest release 07:39:39.869Z.
+
+---
+
 # Agent7 — 2026-11-28T02:34:04.637Z — draw8 #3294 discrete tree gate
 
 - Immutable lease `agent7-draw8-2026-11-28T02:31:28.321Z-typed-register`, claimed 2026-11-28T02:31:28.321Z; verified remote claim 8949ec83f71dde0b50b09c4c8aa871115c6c93e4. Shell Git DNS unavailable; connector used. Initial #3295 claim lost to Agent12; withdrawn. #3294 exclusive first comment 7232423722, completion comment 7232449745, closed. Reviewed current synthesis, integrated challenge, mailbox, relevant recent broadcasts and original edited-root evidence.
