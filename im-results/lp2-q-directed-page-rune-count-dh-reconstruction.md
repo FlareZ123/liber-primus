@@ -1,83 +1,83 @@
-# Q-directed page rune counts reconstruct the DH state on p8 and p23
+# Q-directed page-count H-tree reconstructs the complete DH state
 
-**Agent9, 28 November 2026. Classification: post-discovery source-only receiver with a complete 840-scalar × 16-orientation charge. Reproducible state reconstruction; no unknown plaintext or body cipher.**
+**Agent9, 28 November 2026. Classification: post-discovery source-only state receiver. The primary result uses the already-established adjacent H transform on complete original page lengths selected by plain Q; a complete 840-scalar × 4-order charge leaves Q in printed order uniquely. No unknown body plaintext is recovered.**
 
-## Source receiver
+## Source-selected four-page receiver
 
-The frozen p15/Q route already gives [23,8]=[p,A] and directs to physical p23 and p8. Apply the same frozen plain Q only to those pages' complete red spans:
+The upstream Q route fixes Q(p15 first red9) = [23,8] = [p,A] and directs to physical p23 and p8. Apply the same frozen plain Q only to those pages' complete red spans:
 
-    Q(p8 red12)  = [10,16]  -> pages10,16
-    Q(p23 red16) = [17,19]  -> pages17,19.
+    Q(p23 red16) = [17,19] -> physical p17,p19
+    Q(p8 red12)  = [10,16] -> physical p10,p16.
 
-Use the complete original rune count of each directed page, reduced mod29:
+Their complete original rune counts in source-fixed order [p17,p19 | p10,p16] are [273,271 | 263,267]. Modulo29 the leaves are [12,10 | 2,6].
 
-    p10: 263 -> 2        p16: 267 -> 6
-    p17: 273 -> 12       p19: 271 -> 10.
+## H turns those lengths into the DH state
 
-### P8 branch
+Use the already-established adjacent transform H(x,y)=[x-y,x+y] mod29. Within each pair and then down the columns:
 
-Printed order gives directed-page residues [2,6]. Set K=2 and a=6; divide Q's [10,16] by K in GF29:
+    H(12,10) = [2,22]
+    H(2,6)   = [25,8]
+    H(2,25)  = [6,27]
+    H(22,8)  = [14,1].
 
-    [10,16] / 2 = [5,8] = [g,A].
+Thus:
 
-So p8 reconstructs (K,a,g,A)=(2,6,5,8).
+    row p23 : [2,22] = [K,p-1]
+    row p8  : [25,8] = [-q,A]
+    column0 : [6,27] = [a,-K]
+    column1 : [14,1] = [-b,1].
 
-### P23 branch
+This directly recovers K=2,p=23,q=4,A=8,a=6,b=15.
 
-Q gives [17,19]. The ordered endpoint difference gives
+The p23 endpoint pair [17,19] has difference 2=K, typing B=19. Solving g^15 mod23=19 over g=1..22 has the unique solution g=5. The remaining equations verify 5^6 mod23=8=A and 19^6 mod23=2=K.
 
-    K = 19-17 = 2,   B=19.
+The complete worked state is (p,g,a,b,A,B,K,q)=(23,5,6,15,8,19,2,4).
 
-Divide directed-page residues [12,10] by K:
+## Raw tails carry the same state spine
 
-    [12,10] / 2 = [6,5] = [a,g].
+The shortest directed page has263 runes. The four aligned tail lengths are
 
-So p23 independently reconstructs (K,B,a,g)=(2,19,6,5).
+    [10,8 | 0,4] = [gK,A | F,q].
 
-The branches agree on K=2,a=6,g=5 before DH validation. With upstream p=23 and b=15 from the private-exponent direction chain:
+The same H tree gives
 
-    5^6 mod23  = 8 = A
-    5^15 mod23 = 19 = B
-    19^6 mod23 = 2 = K.
+    [2,18] | [25,4] -> [6,27] | [14,22].
 
-Thus this route reconstructs the complete worked exchange (p,g,a,b,A,B,K)=(23,5,6,15,8,19,2) without reading unknown body plaintext.
+The residue and tail trees share exact coordinates K=2,-q=25,a=6,-K=27,-b=14 while complementary cells expose p-1=22,A=8,q=4 and identity1.
 
-## Complete finite family charge
+## Complete finite charge
 
-Charge all 840 nonzero field multipliers (Q is primitive) and the 16 obvious coordinate/orientation rivals:
+Q is primitive, so its840 powers enumerate all nonzero field multipliers. For each scalar, multiply the fixed p23/p8 red residues, use the four outputs as physical pages, read full rune counts, reduce mod29, and construct the same H tree.
 
-1. p8: which directed-page count is K versus a (2);
-2. p8: which output/K is g versus A (2);
-3. p23: which endpoint is B, fixing K=B-other (2);
-4. p23: which directed-page count/K is a versus g (2).
+A label-free internal gate already leaves Q alone among all840 scalars:
 
-That is 13,440 presentations. Require only:
+    row_p23[1] + 1 = source page23
+    row_p8[1]      = source page8
+    col0[1]        = -row_p23[0]
+    col1[1]        = 1.
 
-- both branches derive the same K,a,g;
-- the p8 branch derives A=8, the already fixed directed state;
-- g^a mod23=8;
-- B^a mod23=K.
+Charge independent reversal of each directed pair: 840 ×4 =3,360 presentations. Requiring the exact packet [2,22] | [25,8] | [6,27] | [14,1] leaves exactly Q in printed order. That survivor also has the raw-tail packet above.
 
-Exactly **one** presentation survives: scalar Q^1=Q in the natural printed order. No coordinate swap or endpoint reversal survives.
+This is a finite competitor count, not a discovery-adjusted authorship probability.
 
-This is a finite competitor count, not a discovery probability. The arithmetic grammar was recognized after Q and p23/p8 were already known.
+## Frozen direct body transfer: negative
 
-## Label-free p8 self-check
+The tail packet source-selects a common263-rune prefix. Apply the same two-level H tree position-by-position to p17/p19/p10/p16 in fixed order. Two H layers square to multiplication by4, so the exact inverse is the same H tree followed by 4^-1=22 mod29.
 
-Let Q(p8)=[x,y]=[10,16] and c(n)=rune_count(page n) mod29. Then c(10)=2,c(16)=6 and
+The four inverse outputs have IoCs 0.0329144051, 0.0357588599, 0.0348300583, 0.0345688329. Their canonical prefixes are nonprose and remain below the solved-p57 native-GP IoC benchmark. Therefore this literal common-prefix H-body consumer is a bounded negative. Do not rescue it with phase, order, signs, or fitted scalars without a new first-party cue.
 
-    [x-c(x), y-c(y)] = [8,10] = [source page, x].
+## Secondary arithmetic cross-check
 
-That exact ordered recurrence is unique among all840 nonzero multipliers. A broader ±/target-order family has generic hits, so retain this only as a source-visible cross-check.
+The earlier report version found a second readout: p8 residues [2,6] as [K,a] with [10,16]/K=[g,A]=[5,8]; p23 endpoint difference gives K and B, with [12,10]/K=[a,g]=[6,5]. Across840 scalars ×16 coordinate-role rivals this also leaves Q/printed order uniquely. It is retained as a secondary check; the H-tree is primary because H was already independently present and requires less role-specific arithmetic.
 
 ## Evidence boundary
 
-Established exactly: the four directions, physical page counts, two convergent state reconstructions, all DH equations, and the unique survivor in the 13,440-presentation charged family.
+Established exactly: Q selects pages17,19,10,16; their full lengths are273,271,263,267; the mod29 and raw-tail H trees recover the historical DH state; Q/printed order is the sole survivor among3,360 scalar/order presentations; the direct common-prefix H-body receiver is negative.
 
-Not established: a universal page-count opcode, author intent for the division/difference grammar, any unknown plaintext, or how the recovered state acts on black ciphertext.
+Not established: a universal page-count H opcode, any unknown plaintext, or how the recovered state acts on remaining black ciphertext or selects the next non-state artifact.
 
-This is materially different from the preregistered failed adjacent-black Q consumer: no black rune is interpreted. It identifies a source-derived state receiver after the p23/p8 direction handoff. The remaining missing operation is how the recovered state consumes body ciphertext or selects the next non-state artifact.
-
-Reproducer: ../sims/lp2_q_directed_page_rune_count_dh_sft.cjs
+Reproducers:
+- primary H-tree/body gate: ../sims/lp2_q_directed_page_count_h_tree_sft.cjs
+- secondary arithmetic charge: ../sims/lp2_q_directed_page_rune_count_dh_sft.cjs
 
 Upstream: lp2-q-private-exponent-direction-chain.md · lp2-p3-q-direction-p23-p8-crosslock.md · lp2-p27-p50-base29-pointer-state-tape.md
