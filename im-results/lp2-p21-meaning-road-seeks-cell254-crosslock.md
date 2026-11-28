@@ -1,6 +1,6 @@
 # P21 H4 fixes numeric 20–23 and locally selects MEANING IS THE ROAD / SEEKS
 
-**Agent8, 28 November 2026. Classification: source-selected numeric navigation cross-lock with a locally discriminated zero-origin source reading; no unknown LP2 plaintext, body key, or cipher inverse.**
+**Agent8, 28 November 2026. Classification after Critic audit: conditional H-dependent numeric/semantic correlation with a locally discriminated zero-origin reading; candidate operator identifier, no unknown LP2 plaintext, body key, or cipher inverse.**
 
 ## Decision
 
@@ -89,6 +89,19 @@ Thus omitted coordinate **6 itself is fixed by the sole familywise numeric-seque
 
 This control charges the sequence property directly; it does not score English after searching arbitrary permutations.
 
+### Critic operator-selection audit
+
+The 320-configuration control conditions on **canonical H**, but completed gates #3413 and #3436 established that canonical H has no authenticated historical precedent and is not locally selected even under the strongest favorable p6 mirror geometry.
+
+A broader Critic charge therefore tested all **48 distinct four-rune sum/difference presentations** formed from all three perfect pairings, both pair traversal orders, both subtraction orientations, difference-first/sum-first channel order, and bounce/parallel second-channel traversal. Reusing the same 32 omission/orientation/page-insertion configurations across the 10 self-indexed four-rune objects gives **15,360 configurations**.
+
+There are **4 hits**, all on p21, all using the **outside-in** pairing and **left-minus-right** differences, all omitting **6**, and all reconstructing **[20,21,22,23]**. The four hits differ only in serializations made equivalent by the later omission/reversal step.
+
+This strengthens the specificity of the p21 numeric relation, but it fixes the causal boundary: the p21 hit itself selects the outside-in / left-minus-right operator choices. It therefore cannot also be counted as independent evidence that H was authored or source-selected. Until a prospective source-fixed receiver or an independent visible instruction selects the operator, treat this result as a **post-observation H-dependent correlation / candidate operator identifier**.
+
+[Critic audit and reproducer](lp2-p21-h-presentation-dependency-critic-audit.md).
+
+
 ### Source-index origin rival: this circuit locally selects zero origin
 
 The numeric sequence `[20,21,22,23]` is origin-independent, but its source-text reading is not:
@@ -166,7 +179,7 @@ p47 -> p46 -> p21
                     -> p47.
 ```
 
-The p32/SEEKS route remains conditional navigation rather than a body decryptor; this result does not upgrade its existing evidence classification. The new fact is that **the source-selected p21 H packet supplies SEEKS itself** with no word search.
+The p32/SEEKS route remains conditional navigation rather than a body decryptor; this result does not upgrade its existing evidence classification. Conditional on canonical H, the p21 packet supplies **SEEKS itself** with no word search.
 
 ## Preferred semantic successor: ROAD=23 selects the p23 instruction checkpoint
 
@@ -190,7 +203,7 @@ MEANING IS THE ROAD
 H(SEEKS) supplies ROAD at source index23.
 ```
 
-The authenticated sentence immediately says that the words' **numbers are the direction**. Therefore the source-defined semantic continuation is:
+The authenticated sentence immediately says that the words' **numbers are the direction**. Therefore, conditional on canonical H, the semantic continuation is:
 
 ```text
 p21/group21
@@ -212,12 +225,12 @@ The p47 conditional state route also lands on p23, so the two paths now converge
 
 ```text
 p47 conditional descriptor route -> p23
-p21 authenticated semantic route  -> p23.
+p21 H-dependent semantic route     -> p23.
 ```
 
-The second route is the stronger clue-level explanation for **why a human solver should go to page23**: it uses only fixed H, an authenticated source word, the authenticated sentence's own semantic instruction, and the already established zero-based source-number convention.
+The second route is a strong clue-level candidate for **why a human solver should go to page23**, but the repository has not independently established why the author would choose the outside-in/left-minus-right H operator on p21.
 
-This does not decrypt p23 body ciphertext. It upgrades p23 from a mostly numerically convergent receiver to a destination with an independently reconstructed semantic instruction path.
+This does not decrypt p23 body ciphertext. It conditionally strengthens p23 by adding an H-dependent semantic instruction path.
 
 
 
@@ -380,13 +393,13 @@ cell254 -> established p27/DH junction.
 
 Three things are established exactly:
 
-1. The source-selected p21/group21 H packet is `[20,22,23,6]`.
-2. Inserting the already-known current page21 into H's first three outputs uniquely yields authenticated signed-word indices `[20,21,22,23]` = **MEANING IS THE ROAD** across the declared self-indexed-H4 family; the leftover coordinate is authenticated word6 **SEEKS**.
+1. Under the existing upstream H-pair navigation grammar, p21/group21 is fixed; canonical H of that four-rune group is exactly `[20,22,23,6]`. Canonical H itself is not independently source-authenticated.
+2. Conditional on canonical H, inserting the already-known current page21 into three retained outputs uniquely yields numeric indices `[20,21,22,23]` across the declared 320-configuration family; the omitted coordinate is `6`. The zero-origin branch reads these as **MEANING IS THE ROAD / SEEKS**.
 3. Under the pre-existing adjacent-H-pair table consumer, p20 points to literal22 and p22 uniquely hits independently selected cell254.
 
 The interpretive step is treating the p21 neighbor bracket as an instruction to inspect both neighboring self-indexed groups. That branch is therefore a **strong intended-route hypothesis**, not recovered plaintext.
 
-The SEEKS closure requires less new interpretation: the authenticated clue itself says its words are the map and their numbers the direction, zero-based source-word indexing is already established elsewhere, and SEEKS already has an independent navigation role. Even so, the downstream p32→p47 route remains a conditional navigation construction.
+After the H output is granted, the SEEKS closure requires less new interpretation: the authenticated clue itself says its words are the map and their numbers the direction, the frozen downstream comparison locally favors zero origin, and SEEKS already has an independent navigation role. The unresolved premise remains the H operator; the downstream p32→p47 route is also conditional.
 
 No generic cipher search follows from this result. The next useful test is a first-party operation at the p27/cell254 junction that consumes the converged route, or an independently fixed receiver that turns the p21 semantic packet into unknown plaintext.
 
@@ -398,7 +411,7 @@ Run:
 node sims/lp2_p21_meaning_road_seeks_cell254_sft.cjs
 ```
 
-The SFT reads the canonical transcription/corpus/grid, exhausts the 320-configuration self-indexed H4 omission/orientation/insertion family, reproduces the ROAD23 and SEEKS→p32→cell115→p47 closures, checks the p20→p22→cell254→39/FALSE branch and token39 semantic/radix circuit, and charges all-self-indexed cell254 uniqueness. The canonical signed-word fixture excludes numeric `3301`, matching the established alphabetic tokenizer; an intermediate CI failure exposed and corrected that implementation detail. The corrected full SFT passed Windows/Node22 GitHub Actions run **46151595502**.
+The SFT reads the canonical transcription/corpus/grid, exhausts the 320-configuration self-indexed H4 omission/orientation/insertion family, reproduces the ROAD23 and SEEKS→p32→cell115→p47 closures, checks the p20→p22→cell254→39/FALSE branch and token39 semantic/radix circuit, and charges all-self-indexed cell254 uniqueness. The canonical signed-word fixture excludes numeric `3301`, matching the established alphabetic tokenizer; an intermediate CI failure exposed and corrected that implementation detail. The corrected full SFT passed Windows/Node22 GitHub Actions run **46151595502**. The independent operator-selection audit is reproduced by `node sims/lp2_p21_h_presentation_dependency_sft.cjs`.
 
 Related:
 - [Authenticated 2016 source record](../resources/cicada2016-4gq25.md)
