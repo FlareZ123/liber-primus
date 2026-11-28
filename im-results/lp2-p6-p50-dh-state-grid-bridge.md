@@ -156,7 +156,7 @@ cell = A*g + e = 8*5 + 3 = 43
 p50[43] = 1D
 ~~~
 
-Under the ordinary hexadecimal reading of those two glyphs, `0x1D=29`, the Gematria Primus modulus. This hexadecimal interpretation is **not yet source-licensed**, so it is not promoted to an instruction.
+Under the ordinary hexadecimal reading of those two glyphs, `0x1D=29`, the Gematria Primus modulus. The completed source gate #3419 now classifies that reading as **source-unlicensed coincidence**: 88/256 cells are two-digit-hex readable, exact token `1D` occurs four times, and no p50-local base16 selector exists. Hexadecimal is retired operationally unless a new first-party cue selects it.
 
 A local charge makes the observation sharper without making it unique globally. ROAD row `g=5` crosses the three strict vertical support lines at:
 
@@ -168,7 +168,9 @@ A local charge makes the observation sharper without making it unique globally. 
 
 So the MAP/ROAD crossing is the only strict ROAD/support intersection that even admits a two-digit hex reading. Token `1D` itself occurs four times in the full 256-cell panel, so its global occurrence is not rare. **Hexadecimal is not needed for the newly connected chapter route.**
 
-The provisional chapter SUM→PRODUCT route independently reaches p40 and then stops under its own address grammar. Its terminal first-black word has `[length,IN,OUT]=[5,27,3]=[g,-K,e]`; the `IN` was consumed to enter p40, leaving `[length,OUT]=[5,3]`. Those values exactly name this report's already-fixed **ROAD row5** and **MAP column3**, selecting cell43 without treating `3` as a page number. Across all nine chapter first-black operands, p40 alone has a `[length,OUT]` pair whose first coordinate is the strict horizontal support and whose second coordinate is a strict vertical support.
+The provisional chapter SUM→PRODUCT route independently reaches p40 and then stops under its own address grammar. Original artwork now supplies a source-visible **section switch** at that exact landing: a pixel-exact census of all 75 original scans finds the fixed mirrored-foliage border of archive57 reproduced on **exactly archive57..72 = LP2 p40..p55** and nowhere else, while all 16 center-body crops differ. This is the whole mirror-framed section that contains the p49–p51 numeric panel; it cannot be a p40-only STOP marker because live predecessor p54 carries the same exact section frame.
+
+P40's terminal first-black word has `[length,IN,OUT]=[5,27,3]=[g,-K,e]`; the `IN` was consumed to enter p40, leaving `[length,OUT]=[5,3]`. Those values exactly name this report's already-fixed **ROAD row5** and **MAP column3**, selecting cell43 without treating `3` as a page number. Across all nine chapter first-black operands, p40 alone has a `[length,OUT]` pair whose first coordinate is the strict horizontal support and whose second coordinate is a strict vertical support.
 
 Under the pre-existing missing-`f` base59 pointer codec, cell43's token `1D` has value **72**. This is not just another pointer into the sink basin: 72 is the exact midpoint of the independently established horizontal-reflection return path
 
@@ -176,9 +178,9 @@ Under the pre-existing missing-`f` base59 pointer codec, cell43's token `1D` has
 186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189
 ```
 
-with four edges on each side. The three strict ROAD/support intersections give `cell42: 0S→28`, `cell43: 1D→72`, `cell46: 3J→196`; only the MAP/ROAD crossing enters that mirror path, and it enters exactly at its midpoint. Globally four cells point to72, so the specificity is carried by the independently fixed geometry rather than token rarity. Reading `1D` in base60 gives73; the corresponding fixed pointer walk neither reaches midpoint72 nor sink189 and enters a cycle.
+with four edges on each side. The selected cell43 itself reaches sink189 in **five** base59 pointer edges, exactly its ROAD row / terminal length `g=5`; after the first hop to72 the remaining sink distance is **four=q**. Within physical row5, cell43 is the only cell with sink distance5. The three strict ROAD/support intersections give `cell42: 0S→28`, `cell43: 1D→72`, `cell46: 3J→196`; only the MAP/ROAD crossing enters that mirror path, and it enters exactly at its midpoint. Globally four cells point to72, so the specificity is carried by the independently fixed geometry rather than token rarity. Reading `1D` in base60 gives73; the corresponding fixed pointer walk neither reaches midpoint72 nor sink189 and enters a cycle.
 
-This is a post-discovery cross-artifact handoff, not a recovered plaintext opcode. It does, however, supply the previously missing typed consumer for cell43 and independently favors the already-live base59 pointer reading **without invoking `0x1D=29`**. Reproducer: `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs`.
+This is a post-discovery cross-artifact handoff, not a recovered plaintext opcode. It supplies a typed cell43 consumer and a local base59 consequence **without invoking `0x1D=29`**. Agent9's independent ROAD×K five-hop holdout fails the primitive-state terminal gate, so do not generalize this into globally authenticated base59 pointer semantics. Reproducers: `sims/lp2_p40_mirrored_section_artwork_sft.cjs` for the exact p40–p55 border census and `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs` for the terminal pair, controls and pointer-distance checks.
 ## Independent physical selection of column K
 
 The strongest part of this bridge is that column2 was not chosen by the p6 overlay. Agent10's already frozen p50 route had independently projected from cell74 `(row9,col2)` straight to the surface at cell2, explicitly opening the literal physical column2 tunnel:
