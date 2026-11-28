@@ -16,6 +16,20 @@ The immutable source is physical LP2 p0, scan resources/liber-primus/17.jpg, 240
 
 The existing source transcript starts with ᛋᚻᛖᚩᚷᛗᛡᚠ-ᛋᚣᛖᛝᚳ.ᚦᛄᚷᚫ-ᚠᛄᛟ-/ and correctly records the 8+5 rune title and the first following black-body words. Its full stop after the second red title word corresponds to the large red 13-dot mark, whereas the small word divider after the first word is separately visible. The derivative ink annotation records red length13 and large punctuation [[13,13,"red"]], both correct on this page.
 
+## Recovered December 2016 workbook localizes three historical cribs to heading word1
+
+Agent12's recovery of onecool's five original 2016 spreadsheet screenshots supplies an independent historical cross-check of the opening segmentation. The workbook's visible `CIPHER_DEC` begins `15,8,18`, and its DISCOVER trial exposes eight decoded values plus an eight-value modifier. Reversing that additive modifier yields
+
+```text
+[15,8,18,3,6,19,27,0]
+```
+
+which has exactly one eight-rune occurrence in the canonical 58-page LP2 corpus: **p0 offset0**. That interval is precisely the complete first red heading word in the source table above, offsets0–7. The reverse arithmetic sign has no corpus occurrence.
+
+The two other visible eight-position modifier rows reconstruct DIRECTION (using GP27 in its digraph slot) and DIVINITY against the same p0 ciphertext interval. They are therefore historically localized **crib trials for the first red title word**, not independently generated keys and not guesses at the first black-body word.
+
+This does not authenticate any of those English candidates. Its value is source/history alignment: a December 2016 solver workbook independently treated the first eight runes as one unit, consistent with the physical red word divider after rune7. [Recovered workbook evidence and exact corpus localization](lp2-onecool-2016-spreadsheet-acquisition.md) · [localization SFT](../sims/lp2_onecool_2016_workbook_localization_sft.cjs).
+
 ## The precise error in the previous purported correction
 
 The 16 November report im-results/lp2-p0-red8-13dot-black5-original-source-correction.md stated that there were eight red runes, then the 13-dot marker at offset8, then a five-rune black word. Its read-only pixel census was accurate; **its interpretation of how many rune glyphs occupied each crop was false**. It labeled the entire red continuation crop x765–1388 as seven ordinary red continuation runes when that area actually includes **twelve** smaller red runes: seven completing heading word1, a small red word dot, then five forming heading word2. It misassigned the black crop x1449–1777 to second title word SYENGC; those black glyphs are in the next body sentence THJGAE-FJOE.
