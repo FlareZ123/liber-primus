@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+const { mkdir, writeFile } = require("node:fs/promises");
 const PERIOD = { starttime: "2014-01-01T00:00:00", endtime: "2015-01-01T00:00:00" };
 const TARGETS = [
   { label: "primary-candidate", resource: "31.184.172.36" },
@@ -39,23 +39,26 @@ async function query(target) {
     query_endtime: body?.data?.query_endtime, origins, raw: body,
   };
 }
-const results = [];
-for (const target of TARGETS) {
-  try { results.push(await query(target)); }
-  catch (error) { results.push({ label: target.label, resource: target.resource, error: String(error) }); }
+async function main() {
+  const results = [];
+  for (const target of TARGETS) {
+    try { results.push(await query(target)); }
+    catch (error) { results.push({ label: target.label, resource: target.resource, error: String(error) }); }
+  }
+  const output = {
+    generated_at: new Date().toISOString(), endpoint: ENDPOINT, period: PERIOD,
+    method: "RIPEstat routing-history; min_peers=1; include_first_hop=true; normalise_visibility=true",
+    targets: results,
+  };
+  await mkdir("im-results", { recursive: true });
+  await writeFile("im-results/cicada2014-ip-routing-history-gate.json", JSON.stringify(output, null, 2) + "\n");
+  console.log(JSON.stringify(results.map(item => ({
+    label: item.label, resource: item.resource, http_status: item.http_status,
+    status: item.status, status_code: item.status_code, query_starttime: item.query_starttime,
+    query_endtime: item.query_endtime,
+    routes: (item.origins ?? []).flatMap(origin => origin.prefixes.map(prefix => ({
+      origin: origin.origin, prefix: prefix.prefix, timelines: prefix.timelines,
+    }))), error: item.error,
+  })), null, 2));
 }
-const output = {
-  generated_at: new Date().toISOString(), endpoint: ENDPOINT, period: PERIOD,
-  method: "RIPEstat routing-history; min_peers=1; include_first_hop=true; normalise_visibility=true",
-  targets: results,
-};
-await mkdir("im-results", { recursive: true });
-await writeFile("im-results/cicada2014-ip-routing-history-gate.json", JSON.stringify(output, null, 2) + "\n");
-console.log(JSON.stringify(results.map(item => ({
-  label: item.label, resource: item.resource, http_status: item.http_status,
-  status: item.status, status_code: item.status_code, query_starttime: item.query_starttime,
-  query_endtime: item.query_endtime,
-  routes: (item.origins ?? []).flatMap(origin => origin.prefixes.map(prefix => ({
-    origin: origin.origin, prefix: prefix.prefix, timelines: prefix.timelines,
-  }))), error: item.error,
-})), null, 2));
+main().catch(error => { console.error(error); process.exitCode = 1; });
