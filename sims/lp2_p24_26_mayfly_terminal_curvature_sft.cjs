@@ -307,6 +307,105 @@ for (let exponent = 1; exponent <= 22; exponent += 1) {
 }
 assert.equal(recoveredB, 15);
 assert.equal(sourceWords[recoveredB], 'WORDS');
+\n
+function H4(values) {
+  assert.equal(values.length, 4);
+  return [
+    mod(values[0] - values[3]),
+    mod(values[1] - values[2]),
+    mod(values[1] + values[2]),
+    mod(values[0] + values[3]),
+  ];
+}
+
+assert.equal(p26Word16.values[0], 13);
+const markerShedCore = p26Word16.values.slice(1);
+assert.deepEqual(descriptor({ values: markerShedCore }), {
+  length: 4,
+  sum: 6,
+  product: 16,
+});
+assert.deepEqual(H4(markerShedCore), [27, 10, 6, 0]);
+
+const markerToTerminal = markerShedCore.concat(p26Word16.values[0]);
+const markerToTerminalWords = markerToTerminal.map((value) => sourceWords[value]);
+assert.deepEqual(markerToTerminal, [28, 8, 27, 1, 13]);
+assert.deepEqual(
+  markerToTerminalWords,
+  ['THE', 'DEVOTED', 'ARE', 'THE', 'WAY'],
+);
+
+const sourceBigrams = new Set(
+  sourceWords.slice(0, -1).map((word, index) =>
+    `${word} ${sourceWords[index + 1]}`
+  ),
+);
+
+function rotate(values, amount) {
+  return values.slice(amount).concat(values.slice(0, amount));
+}
+
+function sourceBigramScore(values) {
+  const tokens = values.map((value) => sourceWords[value]);
+  let score = 0;
+  for (let i = 0; i + 1 < tokens.length; i += 1) {
+    if (sourceBigrams.has(`${tokens[i]} ${tokens[i + 1]}`)) score += 1;
+  }
+  return { score, tokens };
+}
+
+const length5Words = allCanonicalWords.filter((word) => word.values.length === 5);
+assert.equal(length5Words.length, 318);
+const highBigramPresentations = [];
+for (const word of length5Words) {
+  for (const reversed of [false, true]) {
+    const base = reversed ? [...word.values].reverse() : word.values;
+    for (let amount = 0; amount < 5; amount += 1) {
+      const values = rotate(base, amount);
+      const scored = sourceBigramScore(values);
+      if (scored.score >= 3) {
+        highBigramPresentations.push({
+          page: word.page,
+          start: word.start,
+          reversed,
+          amount,
+          values,
+          tokens: scored.tokens,
+          score: scored.score,
+        });
+      }
+    }
+  }
+}
+assert.equal(highBigramPresentations.length, 4);
+assert.deepEqual(
+  [...new Set(highBigramPresentations.map((row) => `${row.page}:${row.start}`))],
+  ['26:16', '28:207'],
+);
+
+const terminalMarkerLength5Candidates = [];
+for (const page of pages) {
+  const marks = (annotationByPage.get(page.page)?.large_punctuation ?? [])
+    .filter(([offset]) => offset === page.runic_count);
+  for (const [, mark] of marks) {
+    for (const word of canonicalWords(page.page)) {
+      if (word.values.length === 5 && word.values[0] === mark) {
+        terminalMarkerLength5Candidates.push({
+          page: page.page,
+          start: word.start,
+          mark,
+          values: word.values,
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(terminalMarkerLength5Candidates, [{
+  page: 26,
+  start: 16,
+  mark: 13,
+  values: [13, 28, 8, 27, 1],
+}]);
 \nconst result = {
   source: {
     mayflyPages: [24, 25, 26],
@@ -329,7 +428,7 @@ assert.equal(sourceWords[recoveredB], 'WORDS');
     allThirdPageLargeMarkComparisons: broadComparisons.length,
     allAbsoluteEndpointImbalanceMatches: broadMatches,
     chargedVertexOrderPresentations: (pages.length - 2) * 6,
-    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n    },
+    exactH2616Hits: chargedTargetHits,\n    canonicalTypedTerminalHits: typedTerminalHits,\n    chargedTypedTerminalPresentations: endpointComparisons.length * 6,\n    chargedTypedTerminalHits,\n    canonicalWords: allCanonicalWords.length,\n    selectedBodyReceiver: {\n      page: p26Word16.page,\n      start: p26Word16.start,\n      values: p26Word16.values,\n      descriptor: descriptor(p26Word16),\n      descriptorHits: descriptor5195.map((word) => [word.page, word.start]),\n      discreteLogBase5Mod23: recoveredB,\n      signed2016Word15: sourceWords[recoveredB],\n      markerMatchedLeadingRune: p26Word16.values[0],\n      coreAfterLeadingMarker: markerShedCore,\n      coreDescriptor: descriptor({ values: markerShedCore }),\n      coreH4: H4(markerShedCore),\n      markerToTerminalValues: markerToTerminal,\n      markerToTerminalWords,\n      length5CyclicReversePresentations: length5Words.length * 10,\n      highBigramPresentations,\n      terminalMarkerLength5Candidates,\n    },
     canonicalSignedSourceBigramHits: canonicalBigramHits,
   },
   decision:
