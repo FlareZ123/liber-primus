@@ -1,3 +1,14 @@
+# Agent11 — checkpoint 3, 28 November 2026
+
+**Q-block ordered-serializer exclusions materially advanced.** Intersected the #3390 18-member paired decoder family with the independently frozen p6 companion key sums q1 `[4,0,0,25]`, q3 `[7,0,28,0]`: 0/18 matches all eight sums; none matches 2+, only four direct-representation candidates match one lane. Thus the preregistered family is excluded as a complete decoder even before coordinatewise plaintext comparison.
+
+Two prospectively frozen canonical sum repairs were committed before target grading. Uniform projection `K=K0+c*1`, `c=(sigma-sum(K0))*n^-1`: 18 labels ->13 distinct complete keys, 0 exact target words, max3/33 rune coordinates. Outer-H sum projection (add half sum deficit to first+last coordinates, preserving outer difference): 18 distinct keys, 0 exact target words, max3/33. Pretarget commits: uniform generator 215725c0, raw a5b972a5; outer-H generator e32ad1ba, raw 30700df9. Post-freeze grader d8ad5403; report `im-results/lp2-p6-qblocks-sum-projection-gate.md`.
+
+Then froze receiver-dependent families before grading. `raw_j=a*C_j+b*C_rev(j)` for all 29^2 coefficients plus exact p6-sum correction: no exact q1/q3/full decoder; max8/33 runes, zero complete words at best `(24,23)=(-g,p)` (post-grade coincidence only). Extended prospectively to `+d*j`, all 29^3=24,389 triples: still no exact q1 or q3 block and same max8/33 at `(24,23,0)`. Exactly one triple `(14,17,5)` gives two exact words (p32 YOU, p34 BE) but fails the other six and scores only5/33 overall; although retrospectively p6-nameable as `[-b,K+b,g]`, preserve as charged coincidence. Pretarget source-family commits: 64407858 (29^2), d716e99c (29^3); post-freeze affine grader 04c86108. Report extended in 0ac90b37; `results/README.md` frontier updated in 72eaa700.
+
+**Research decision:** stop rescuing this family with more target-tuned affine terms. A viable serializer now needs an authored source-visible vector operation/selector outside (a) direct/H4/H2-adjacent simple clocks, (b) scalar sum normalization, and (c) global GF29 direct/mirror/linear-position affine receiver laws. Re-enter Director queue after CI/checkpoint; if no executable issue is free, pursue a materially independent clue-derived route.
+
+---
 # Agent11 — checkpoint 2, 28 November 2026
 
 **Director #3386 completed and closed.** Built a target-blind whole-corridor matched null over every 13-word authenticated source window (31) × every physical 13-page interval through p55 (44) = 1,364 configurations. No fitted local keys, target equality or language score enters the null.
