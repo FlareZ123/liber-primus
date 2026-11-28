@@ -76,6 +76,48 @@ Thus the p32 oak checksum selects p24 before the p24–26 DH-state triangle is e
 
 See `im-results/lp2-rune-poem-artwork-ordinal-navigation-gate.md`.
 
+## Independent full-state reconstruction without reading p28
+
+The count triangle can now be used as a finite **independent state-recovery gate** when combined only with source objects outside p28.
+
+The source inputs are:
+
+- **p=23** from the solved p57 terminal 23-dot mark, which is the unique 23-dot large-punctuation object in LP2.
+- **13** from the red 13-dot punctuation terminating p22 immediately before the p23–26 illustrated chapter. Thirteen-dot punctuation is common globally, so only its local boundary role is used.
+- **g=5** from the chapter's redundant source evidence: p23 has five black dots, the independently registered mayfly is Figure4 specimen5, and the exact-copy p24↔p26 art pair has rune-count difference5.
+- The remaining two count-triangle values are **{3,8}**.
+
+Charge the plausible state assignment instead of assuming it:
+
+1. assign {3,8} to `(e,A)` in both orders;
+2. define `K = +(g-e)` or `K = -(g-e)` modulo23;
+3. interpret the local 13 as either `b-K=13` or `b+K=13`;
+4. enumerate every nonzero private exponent `a=1..22`;
+5. require the ordinary DH equations
+   `g^a=A`, `B=g^b`, and `A^b=B^a=K (mod23)`.
+
+Exactly **one** candidate survives the complete charged family:
+
+```
+p = 23
+e = 3
+g = 5
+a = 6
+b = 15
+A = 8
+B = 19
+K = 2
+
+K = g-e
+b-K = 13
+```
+
+This is exactly the independently reconstructed p28 line6 DH state, but **no p28 rune, fragment, line number or plaintext is used by this reconstruction**.
+
+The source-fixed `g=5` discriminator matters. If the three values 3,5,8 are allowed to permute freely over `e,g,A` while also charging both K signs and both 13 relations, two rival g=3 solutions survive in addition to the historical tuple. The external specimen5 / five-dot / exact-copy-edge evidence is therefore doing real selection work rather than merely decorating a prechosen tuple.
+
+The relations `e=g-K` and `b-K=13` were recognized after the DH state was already known elsewhere. This is therefore a **post-discovery independent reconstruction**, not a claim that a blind 2014 solver was already instructed to write those equations. Its evidential value is narrower and strong: four physically separate original-source registers—p22 punctuation, p23–26 art/counts, p57 punctuation, and p28 DH text—encode one internally consistent state.
+
 ## Strongest rival
 
 Page rune counts depend on typography and wrapping, so small differences among neighboring illustrated pages can occur accidentally. The three values 3,5,8 are also visually attractive Fibonacci numbers. The p28 variable `e=3` is a derived state value (`g-K`), while g=5 and A=8 are primary DH values. The relation was recognized after both the page lengths and DH state were known.
@@ -86,7 +128,7 @@ What makes it worth preserving is the concentration of independent source constr
 
 ## Research consequence
 
-Treat p24–26 as a **second original-manuscript serialization of the p28 DH state candidate**, specifically the substate [e,g,A]. This strengthens the hypothesis that the p28 DH tuple is a real organizing register rather than an isolated arithmetic reconstruction.
+Treat p24–26 plus the adjacent p22 boundary and solved p57 terminal mark as a **second original-manuscript reconstruction of the complete p28 DH state candidate**. The triangle itself serializes [e,g,A]; the charged source frame uniquely recovers the remaining a,b,B,K once g=5 is source-fixed. This strengthens the hypothesis that the p28 DH tuple is a real organizing register rather than an isolated arithmetic reconstruction.
 
 Do not infer a new additive/multiplicative key from 3,5,8. The useful next test is source-path discovery: identify whether p24/p25/p26 artwork geometry or an authenticated instruction assigns a direction/order to the three edge labels. Without such an opcode, the triangle is state serialization, not a cipher receiver.
 
