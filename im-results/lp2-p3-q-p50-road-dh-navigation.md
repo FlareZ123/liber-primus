@@ -153,7 +153,7 @@ step 19  k748 [25,23] = THEIR / ROAD     p15-second = solved p57 red
 ... 54 steps total, then back to k516
 ```
 
-Thus the uniform dlog-coordinate walk itself reaches the solved/Q-defining p57 residue without switching to the separate plain-Q-output representation.
+Thus the uniform dlog-coordinate walk itself reaches the solved/Q-defining p57 residue without switching to the separate plain-Q-output representation. The four red-marked arcs around this 54-cycle have exact lengths **[1,6,12,35]**; these are recorded without assigning source-word semantics. P15's first red state `k236` is a two-step transient `236 -> 333 -> 516` that enters the cycle exactly at the p39 red node.
 
 The matched historical-base59 map has only three cycles (lengths14,14,53) and **no printed red residue lies on any base59 cycle**. This is a finite radix discriminator. It is still post-discovery structural evidence; the dominant base60 basin and the prior visibility of p39/p7 prevent treating the cycle enrichment as a discovery-wide probability.
 
