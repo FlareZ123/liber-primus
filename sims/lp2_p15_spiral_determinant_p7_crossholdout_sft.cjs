@@ -174,6 +174,8 @@ assert.deepEqual(expected,[5,2,11,10,8,20,11,14,13,26,18,27,1,24,0,14]);
 function applyBlocks(seq,T){
  const out=[];for(let i=0;i<16;i+=q)out.push(...T(seq.slice(i,i+q)));return out;
 }
+const authoredH4Output=applyBlocks(spiral,H4);
+assert.deepEqual(authoredH4Output,expected);
 const variants=[];
 for(const [name,T] of transforms)for(const reversed of [false,true]){
  const base=reversed?spiral.slice().reverse():spiral.slice();
@@ -210,6 +212,7 @@ console.log(JSON.stringify({
        inverseTraversalCharge,derived:{B,b,Binv,e}},
  p7:{products:p7Products,determinant:p7Det},
  expectedH4Tape:expected,
+ authoredH4Output,
  h4FamilyCharge:{tested:variants.length,hits:variants.filter(v=>v.match)},
  determinantTraversalCharge:{tested:32,closureHits:detVariants.filter(v=>v.closes)},
  boundary:'The shared B determinant and full H4 tape are original-artifact structure; determinant/H4 remain candidate operations, not an authenticated body cipher.'
