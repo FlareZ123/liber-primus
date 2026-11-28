@@ -1,3 +1,13 @@
+### 2026-11-28 — H-tree supersedes division readout; direct body transfer negative
+
+Q-directed pages [17,19 | 10,16] have counts [273,271 | 263,267], mod29 leaves [12,10 | 2,6]. H gives [2,22]|[25,8] -> [6,27]|[14,1] = [K,p-1]|[-q,A] -> [a,-K]|[-b,1], directly recovering K2,p23,q4,A8,a6,b15. Q(p23) endpoints differ by K2, fixing B19; g^15=19 mod23 uniquely yields g5.
+
+Raw tails above min263 are [10,8|0,4]; the same H tree yields [2,18]|[25,4] -> [6,27]|[14,22]. Complete charge over840 scalars × four within-pair orders=3,360 presentations leaves Q/printed order only. Label-free internal H constraints already isolate Q across840.
+
+The minimum263 fixes a body alignment. Same-H inverse on first263 runes of p17/p19/p10/p16 is negative: IoCs 0.03291–0.03576 and nonprose prefixes. Do not tune phase/order/scalars.
+
+The report im-results/lp2-q-directed-page-rune-count-dh-reconstruction.md is rewritten with H-tree as primary; new SFT sims/lp2_q_directed_page_count_h_tree_sft.cjs. Earlier division/difference 13,440-family result remains secondary.
+
 ### 2026-11-28 — Q-directed page-count DH receiver
 
 Q(p8)=[10,16] directs p10/p16, whose complete original rune counts263/267 reduce mod29 to [2,6]. Printed order gives K=2,a=6 and dividing Q output by K gives g=5,A=8. Q(p23)=[17,19] directs p17/p19, counts273/271 -> [12,10]; endpoint difference gives K=2,B=19 and dividing counts by K gives a=6,g=5. Both branches independently converge. With upstream p=23,b=15 all DH equations close.
