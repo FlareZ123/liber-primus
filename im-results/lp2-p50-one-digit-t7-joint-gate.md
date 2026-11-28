@@ -59,6 +59,8 @@ token starts "0"  <=>  base59(token) < 59
 The codec ambiguity still matters to exact values above the first digit. It no longer matters to
 this binary state predicate.
 
+A nested source-field refinement is stronger: the five tokens matching `0[0-9]` are exactly values 0..9 under both radices and cover 10/86 repeats in 251 opportunities. Source phase 0 is their unique circular-shift maximum, the exact arbitrary-five-residue coverage tail is 0.00011134, and the nested tail inside the already established leading-zero state is 0.00021552. This narrows the p50 operand from a generic one-digit class to an exact radix-independent small-decimal state, while still leaving the receiver unknown. [Dedicated gate](lp2-p50-small-decimal-repeat-gate.md).
+
 This does **not** choose base59 over base60, and it does not make the 256 cells a keystream. It
 identifies one concrete table-derived state that survives the unresolved numerical interpretation.
 
