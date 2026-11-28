@@ -1,6 +1,6 @@
 # Common-stock p32/p55/signed-2016 tree candidate reopened (27 November 2026)
 
-Agent 6 fetched and base64-decoded the actual MonokumaBear/cicadaConvolutionKernels originalTreeImage.jpg at commit cead7046c37ed19c482302478605f61f55770db5 (blob 90015384624ee17c24c948c0968b17e03167122f). Length 280214 bytes; SHA-256 6fc875c099081908587fed6f1b3ac96bceece97f276e9fdd5cd52ec5ea791a34. The JS SHA-256 implementation passed standard empty and abc vectors. This exactly matches the ClipartBest stock digest in [Agent 2's positive signed-2016 registration](cicada2016-oak-stock-intrinsic-size-gate.md), and the asset previously visually dismissed in [the historical-source report](lp2-p32-tree-historical-source-gate.md). A p32-only historical-raster holdout now independently confirms **horizontal reflection** as the shared orientation operation, but rejects one exact frozen p32 scale/translation/blur export as a common p55 renderer: the held p55 geometry improves materially after target-specific scale/placement changes. Treat the reflected common intermediate as strengthened; do not treat one shared export placement as established.
+Agent 6 fetched and base64-decoded the actual MonokumaBear/cicadaConvolutionKernels originalTreeImage.jpg at commit cead7046c37ed19c482302478605f61f55770db5 (blob 90015384624ee17c24c948c0968b17e03167122f). Length 280214 bytes; SHA-256 6fc875c099081908587fed6f1b3ac96bceece97f276e9fdd5cd52ec5ea791a34. The JS SHA-256 implementation passed standard empty and abc vectors. This exactly matches the ClipartBest stock digest in [Agent 2's positive signed-2016 registration](cicada2016-oak-stock-intrinsic-size-gate.md), and the asset previously visually dismissed in [the historical-source report](lp2-p32-tree-historical-source-gate.md). A p32-only historical-raster holdout now independently confirms **horizontal reflection** as the shared orientation operation, but rejects one exact frozen p32 scale/translation/blur export as a common p55 renderer: the held p55 geometry improves materially after target-specific scale/placement changes. Treat the reflected common intermediate as strengthened; do not treat one shared export placement as established. A source-selected follow-up also rejects the direct text interpretations of that reflection on both tree pages: linewise reading reversal, a separately calibrated literal glyph mirror, the full raster mirror, and GP29 Atbash all remain far outside matched solved-GP29 language controls. Treat reflection as an image-lineage/construction fact, not a recovered text inverse.
 
 
 ## Distinct 2010 image-title candidate: exact archived file fails tree identity (Agent45, 28 November 2026)
@@ -43,6 +43,26 @@ The **exact export geometry does not transfer**. Nearby, predeclared perturbatio
 **Decision:** #3351 is a bounded failure of a *single frozen* mirror+isotropic-scale+placement+Gaussian export pipeline. It strengthens the shared **horizontal-reflection** operation across targets but does not recover a common numeric export placement/scale that predicts p55 without target-specific adjustment. Do not promote the fitted scale, translations or blur to a rune key or image-derived integer. The more specific shared-root evidence below remains the stronger common-edit result; a future render pipeline needs an independently motivated transfer rule for placement/root editing, rather than using p55 to refit those quantities.
 
 [Reproducer](../sims/lp2_p32_stock_pipeline_p55_holdout_sft.py) · [successful Ubuntu/Python3.12 CI run 46122364905](https://github.com/FlareZ123/liber-primus/actions/runs/46122364905).
+
+
+## Direct reflection as a text opcode on p32 and p55 (Agent11, 28 November)
+
+The p32-only render gate above supplies an independently selected discrete operation—**horizontal reflection**—with no ciphertext scoring involved. That makes one finite downstream question legitimate: does the same operation act directly on the rune text printed on the two tree-linked pages? A source-fixed SFT tests the ordinary literal interpretations and nothing else:
+
+- reverse rune order inside each physical printed line while retaining top-to-bottom line order;
+- apply the independently calibrated original-image GP glyph-reflection map previously frozen from p2 and held out on p22;
+- apply the physically complete raster mirror, combining glyph reflection with linewise order reversal;
+- apply reversible GP29 Atbash `v -> 28-v`, with and without linewise reversal.
+
+No key, phase, substitution fit, plaintext crib, language-selected permutation or downstream page enters the candidate definitions. Each output is scored only afterward with the same smoothed bigram model trained on the repository's 2,979 native solved GP runes, against **every matched-length solved-native window**.
+
+On p32 (121 runes; all 29 GP symbols), the best direct-reflection result is linewise reversal at **-3.944590** mean log transition probability. All **1,990** solved-native 121-rune windows score between **-2.770845 and -2.168095**. Literal glyph reflection is additionally noninvertible here: the independently frozen 29-class mirror map collapses p32's complete 29-symbol inventory to **17** outputs. The full raster mirror scores **-4.153545**; GP29 Atbash scores **-4.206955**, and Atbash plus line mirror **-4.119636**.
+
+The held second tree page gives the same decision. P55 has 76 runes and 25 distinct GP symbols; the frozen literal mirror collapses them to **15** outputs. Its strongest direct candidate is Atbash at **-3.903507**, while all **2,304** solved-native 76-rune windows lie between **-2.874036 and -2.079621**. Line reversal, literal glyph reflection, the full raster mirror and Atbash+line reversal are all weaker still.
+
+**Decision:** horizontal reflection remains strong evidence about the shared artwork lineage, but the finite direct text meanings of that operation are rejected on both linked pages. Do not reinterpret the reflected tree as a license for line reversal, literal mirrored-glyph substitution or alphabet reversal before another cipher. A different keyed or compound mechanism is outside this test and still needs its own first-party selector.
+
+[Source-fixed CommonJS SFT](../sims/lp2_p32_reflection_reading_order_sft.cjs) · [Windows/Node22 CI PASS run 46123376082](https://github.com/FlareZ123/liber-primus/actions/runs/46123376082).
 
 ## New original-input native lattice test
 
