@@ -29,6 +29,48 @@ def acquire():
 def rect(a):
     return tuple(round(float(v),2) for v in (a.x0,a.y0,a.x1,a.y1))
 
+def cluster_strokes(paths):
+    """Fixed small-neighborhood grouping for fragmented single-operation strokes.
+
+    Renderers often encode an authentic diagram as MANY one-dimensional paths,
+    so absence of an individually two-dimensional path cannot prove an empty
+    vector page. Group original path rectangles by overlap of 6pt padding,
+    then retain a component with >=4 paths and union dimensions >=40pt each.
+    This is a source inventory, not a geometric LP2 match/fit.
+    """
+    n=len(paths)
+    if not n:return []
+    parents=list(range(n))
+    def root(i):
+        while parents[i]!=i:
+            parents[i]=parents[parents[i]];i=parents[i]
+        return i
+    def overlap(a,b):
+        return a.x0<=b.x1+6 and a.x1+6>=b.x0 and a.y0<=b.y1+6 and a.y1+6>=b.y0
+    # Sweep sorted x-coordinates, so only potentially adjacent boxes meet.
+    ordered=sorted(range(n),key=lambda i:paths[i]["rect"].x0)
+    for ii,i in enumerate(ordered):
+        a=paths[i]["rect"]
+        for j in ordered[ii+1:]:
+            b=paths[j]["rect"]
+            if b.x0>a.x1+6:break
+            if overlap(a,b):
+                ri,rj=root(i),root(j)
+                if ri!=rj:parents[ri]=rj
+    groups={}
+    for i in range(n):groups.setdefault(root(i),[]).append(i)
+    out=[]
+    for ids in groups.values():
+        if len(ids)<4:continue
+        boxes=[paths[i]["rect"] for i in ids]
+        x0=min(b.x0 for b in boxes);x1=max(b.x1 for b in boxes)
+        y0=min(b.y0 for b in boxes);y1=max(b.y1 for b in boxes)
+        if x1-x0<40 or y1-y0<40:continue
+        count=sum(len(paths[i]["items"]) for i in ids)
+        out.append(dict(path_count=len(ids),total_ops=count,
+                        bbox=[round(x0,2),round(y0,2),round(x1,2),round(y1,2)]))
+    return sorted(out,key=lambda c:(c["path_count"],c["total_ops"]),reverse=True)
+
 def main():
     fitz=install()
     doc=fitz.open(stream=acquire(),filetype="pdf")
@@ -38,6 +80,7 @@ def main():
             page=doc[pno-1]
             paths=page.get_drawings()
             objects=[]
+            grouped=cluster_strokes(paths)
             for i,d in enumerate(paths):
                 box=d["rect"]
                 w=box.width;h=box.height
@@ -55,6 +98,7 @@ def main():
                       "width":round(float(d.get("width") or 0),3)})
             pages.append(dict(dialogue=dlg,pdf_page=pno,
                total_paths=len(paths),qualifying_paths=len(objects),objects=objects,
+               grouped_vector_components=grouped,
                image_xobjects=len(page.get_images(full=True)),artboard=rect(page.rect)))
     ranked=sorted((x for x in pages if x["qualifying_paths"]),
        key=lambda x:(x["qualifying_paths"],sum(v["ops"] for v in x["objects"])),reverse=True)
@@ -65,10 +109,13 @@ def main():
       "pages_with_2d_multiop_drawings":len(ranked),
       "raw_drawings":sum(x["total_paths"] for x in pages),
       "substantive_drawings":sum(x["qualifying_paths"] for x in pages),
+      "multi_stroke_components":sum(len(x["grouped_vector_components"]) for x in pages),
+      "pages_with_multi_stroke_components":sum(bool(x["grouped_vector_components"]) for x in pages),
       "top":ranked[:24],
       "per_dialogue":[{"name":d,"pages":sum(x["dialogue"]==d for x in pages),
           "drawings":sum(x["total_paths"] for x in pages if x["dialogue"]==d),
-          "eligible":sum(x["qualifying_paths"] for x in pages if x["dialogue"]==d)}
+          "eligible":sum(x["qualifying_paths"] for x in pages if x["dialogue"]==d),
+          "clustered":sum(len(x["grouped_vector_components"]) for x in pages if x["dialogue"]==d)}
           for d,_,_ in DIALOGUES],
       "all_source_drawings":pages
     }
