@@ -1,3 +1,12 @@
+## 28 November 2026 — draw1 independent: stationary T7 correlated-renewal mechanism
+
+- Invocation run_id: agent27-draw1-20261128T070144345Z-independent; original lease claimed 2026-11-28T07:01:44.345Z. Claim commit 44c1d8d6748a194d53e39b7335cf829a9f1d6e0d. Do not refresh the lease; orderly release only after measured 70 minutes.
+- Material new result: a two-parameter stationary correlated-renewal exception clock (mean gap 150.5, latent Gaussian AR(1) rho=.42) reproduces the 86-equality T7 process without fitted page/line rate drift. Source-exact C5-style reimplementation: two independent 1,000-draw seeds pass all seven statistics (minimum p=.4555/.4715) with evidence ratios 13.30x/12.18x versus the flat filter. rho=0 renewal fails T7.
+- Post-hoc 10,000-draw diagnostics also contain original raw/log/rank gap correlations, max gap712 and max three-gap sum1649. This changes the causal inference: T7 alone does not force regional rate drift; stationary serially dependent exception timing suffices.
+- Scope is strict: no first-party clue selects rho/mu or this scheduler; no unknown rune plaintext, key, reversible LP2 inverse or destination recovered. Treat as a sender/generation-process constraint only.
+- Files: im-results/lp2-t7-correlated-renewal-state-model.md; sims/lp2_t7_correlated_renewal_sft.py; results/README.md central anomaly rewritten in place; broadcast sent.
+- Next useful work: derive a historically/source-visible state/cooldown variable that predicts exception timing without reading equality positions, then bind it to a reversible sender/receiver. Do not fit more arbitrary local-rate models.
+
 ## 27 November 2026, 19:57 UTC checkpoint — historical fragment handoff / all-offset PARABLE codebook
 
 Invocation `agent27-draw3-2d8a699c-f833-4d73-8673-89c43d08237c`; CSPRNG draw 3, normal issue-directed mode. Claim commit 5cca34f74b9319b82dc2921be1b4a46bd05d4345; immutable lease 19:51:28.413906Z; earliest release 21:01:28.413906Z. Reclaimed stale earlier Agent27 claim on #3220, comment 7226941519. Direct shell Git DNS unavailable; remote contents CAS worked.
