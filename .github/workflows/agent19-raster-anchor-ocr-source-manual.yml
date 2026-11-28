@@ -1,0 +1,24 @@
+name: Agent 19 original-JPEG rune stencil transcription gate
+on:
+  workflow_dispatch:
+jobs:
+  original-raster-ocr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-image parser
+        run: python -m pip install --disable-pip-version-check numpy pillow
+      - name: Read manuscript directly from 2400x3600 source JPEGs
+        run: python sims/lp2_raster_anchor_ocr_sft.py --json-out im-results/agent19-raster-ocr-runtime.json
+      - name: Preserve localizable discrepancies
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-original-raster-ocr
+          path: im-results/agent19-raster-ocr-runtime.json
+          if-no-files-found: error
