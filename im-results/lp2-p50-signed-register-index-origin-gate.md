@@ -53,7 +53,9 @@ distance: rank19 cell -> 20 rows north -> (5,3) rank21
 row5: (5,0) rank22 -> (5,1) rank23
 ```
 
-Thus the table really does contain an origin-independent self-indexed **17..24 numerical scaffold**, with 20 represented by the physical distance. This is a post-discovery exact-shape census, not a familywise discovery p-value, but it means the geometry itself is not created solely by choosing English words.
+Thus the table really does contain an origin-independent self-indexed **17..24 numerical scaffold**, with20 represented by the physical distance. This is a post-discovery exact-shape census, not a familywise discovery p-value, but it means the geometry itself is not created solely by choosing English words.
+
+That unique interval has one further origin-invariant consequence. Zero-origin indices17..24 read **THE MAP THEIR MEANING IS THE ROAD AND**; one-based words17..24 read **ARE THE MAP THEIR MEANING IS THE ROAD**. Their longest common contiguous overlap is seven words: **THE MAP THEIR MEANING IS THE ROAD**. Therefore #3354 rejects the exact endpoint/rank labels and DIRECTION29 handoff, but it does **not** erase this seven-word signed-clause core. [Reproducer](../sims/lp2_p50_origin_invariant_maproad_overlap_sft.cjs).
 
 The same scaffold has an origin-free checksum into the independently observed warning-rank chain:
 
@@ -91,7 +93,7 @@ The 2016 signed prose has no array syntax, index-zero marker or coordinate tuple
 
 ## Consequence
 
-Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every origin-specific signed-message word label derived from `source[r]`, plus DIRECTION29→p29, ROAD23, cell186 and downstream navigation, to a **conditional origin hypothesis**. The new `ROAD23→1R` / `ROAD24→1n` duality explicitly shows that the directional-token readout does not resolve the origin.
+Preserve the p50 alphabets, base59/base60 values, prime ranks, adjacency/support geometry, the unique origin-invariant 17..24 numerical scaffold, its seven-word origin-invariant source overlap **THE MAP THEIR MEANING IS THE ROAD**, cell43 `1D` and its numeric values, and finite token censuses. Downgrade every exact origin-specific signed-message rank↔word label, plus DIRECTION29→p29, ROAD23/ROAD24 numbering, cell186 and downstream navigation, to a **conditional origin hypothesis**. The new `ROAD23→1R` / `ROAD24→1n` duality explicitly shows that the directional-token readout does not resolve the origin.
 
 Issue #3347 must not treat DIRECTION29 as source-supported navigation unless a first-party clue fixes the register origin.
 
