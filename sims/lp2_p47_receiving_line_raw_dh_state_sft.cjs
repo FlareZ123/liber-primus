@@ -495,8 +495,50 @@ for (let index = 0; index + 1 < p46BoundaryH.length; index += 2) {
   p46BoundaryPairTokens.push(p50Tokens[numeral % 256]);
 }
 assert.deepEqual(p46BoundaryPairTokens, ['0G', '2O', '0P', '21', '3g']);
+const p46BoundaryLegalPageTokens = p46BoundaryPairTokens
+  .filter((token) => /^\d{2}$/.test(token) && Number(token) <= 55);
+assert.deepEqual(p46BoundaryLegalPageTokens, ['21']);
+
+const p21Groups = pageGroups(21);
+assert.equal(p21Groups.length, 55);
+const p21Group21 = p21Groups[20];
+const p21Values = p21Group21.sites.map((site) => site.value);
+assert.deepEqual(p21Values, [13, 8, 15, 22]);
+assert.ok(p21Group21.sites.every((site) => site.line === 6));
+const p21Descriptor = descriptor(p21Group21.sites);
+assert.deepEqual(
+  [p21Descriptor.length, p21Descriptor.sum, p21Descriptor.product],
+  [state.q, 0, state.b - state.K]
+);
+const p21H = H(p21Values);
+assert.deepEqual(p21H, [state.p - state.e, state.p - 1, state.p, state.a]);
+
+const p21RawMatch = (row) =>
+  row.d.length === state.q && row.d.sum === 0 && row.d.product === state.b - state.K;
+assert.deepEqual(
+  selfIndexedGroups.filter(p21RawMatch).map(({ page, ordinal }) => [page, ordinal]),
+  [[21, 21]]
+);
+assert.deepEqual(
+  allLocalGroups.filter(p21RawMatch).map(({ page, ordinal }) => [page, ordinal]),
+  [[10, 35], [21, 21]]
+);
+assert.deepEqual(
+  allLocalGroups.filter((row) => row.h.join(',') === p21H.join(','))
+    .map(({ page, ordinal }) => [page, ordinal]),
+  [[21, 21]]
+);
+
+const p21PairTokens = [];
+for (let index = 0; index < p21H.length; index += 2) {
+  const numeral = p21H[index] * 29 + p21H[index + 1];
+  p21PairTokens.push(p50Tokens[numeral % 256]);
+}
+assert.deepEqual(p21PairTokens, ['3I', '3b']);
+assert.equal(p50Tokens[p21Group21.start], '2p');
 assert.equal(
-  p46BoundaryPairTokens.filter((token) => /^\d{2}$/.test(token) && Number(token) <= 55).length,
+  [...p21PairTokens, p50Tokens[p21Group21.start]]
+    .filter((token) => /^\d{2}$/.test(token) && Number(token) <= 55).length,
   0
 );
 
@@ -643,7 +685,15 @@ console.log(JSON.stringify({
     seamToP47: {
       H: p46BoundaryH,
       pairTokens: p46BoundaryPairTokens,
-      legalPageTokens: 0,
+      legalPageTokens: p46BoundaryLegalPageTokens,
+      p21: {
+        ordinal: 21,
+        values: p21Values,
+        raw: [p21Descriptor.length, p21Descriptor.sum, p21Descriptor.product],
+        H: p21H,
+        pairTokens: p21PairTokens,
+        startToken: p50Tokens[p21Group21.start],
+      },
     },
   },
   p48ReceivingLine: {
