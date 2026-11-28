@@ -130,6 +130,54 @@ ROAD is the only one whose row stride equals the independently derived p3 coeffi
 Supporting finite-family reproducer:
 [`sims/lp2_p3_q_p50_road_red_path_sft.cjs`](../sims/lp2_p3_q_p50_road_red_path_sft.cjs).
 
+## Existing ROAD23 handoff closes the new walk onto the p23→p25 circuit
+
+The new ROAD contraction does **not** need a newly invented `ROAD=23 -> physical p23` address rule.
+
+A chronologically earlier p29 route had already used the repository's source-number-as-project-page convention. Its source-selected p29 word29 gives
+
+```text
+H2 = [22,23] = THE ROAD
+```
+
+and the established handoff is
+
+```text
+ROAD23 -> project p23.
+```
+
+That route predates this p39/p7 ROAD87 construction and therefore supplies an independent terminal type. Its own caveat remains: source-number-as-project-page is a navigation convention, not a body-cipher inverse.
+
+The current p23 synthesis then fixes
+
+```text
+THE ONE RISE
+one RISE = +2 pages
+p23 + 2 -> p25.
+```
+
+A later chronological cross-holdout independently supports the destination: p23's red instruction ends at offset16, and its **immediately following complete black word** has raw GP0 sum141, hence `141 mod29 = 25`. Among p23's 42 black words, only the immediate post-rubric length8 word has both that length and sum25. This supports p25 as the page-local operand/destination without using the new ROAD walk.
+
+Therefore the new source/table route attaches to a pre-existing navigation circuit as
+
+```text
+p39 red [17,23]
+ -> signed ROAD23 addresses p49 cell23
+ -> numeric direction87 = 3*29
+ -> p7 red [20,23]
+ -> same ROAD87
+ -> [23,23] = ROAD
+ -> existing ROAD23 handoff
+ -> p23 THE ONE RISE
+ -> +2
+ -> p25.
+```
+
+This is a stronger causal endpoint than treating `[23,23]` as an attractive word label. It still does not recover black-body plaintext; the next missing operation is the reversible payload consumer after the navigation lands.
+
+Earlier p29 handoff report: [`lp2-p29-direction-selfindex-packet.md`](lp2-p29-direction-selfindex-packet.md).  
+P23 causal cross-holdout: [`lp2-p23-one-rise-plus2-p25-convergence.md`](lp2-p23-one-rise-plus2-p25-convergence.md).
+
 ## Independent ordinary-Q DH convergence on physical p23
 
 A separate exact relation reaches physical p23 without the ROAD lookup.
