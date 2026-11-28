@@ -450,13 +450,9 @@ function fullAddressFamilyCount(source, pageStart, block) {
     const page = pageStart + pageOffset + lane;
     let starts;
     if (isQ1 && lane === 3) {
-      starts = lengths[lane] === 5
-        ? adjacent23Hits(page, 0).map(() => null)
-        : [];
-      // adjacent23Hits is residue-oriented, so recover the raw starts directly.
+      starts = [];
       if (lengths[lane] === 5) {
         const words = localWords(page);
-        starts = [];
         for (let index = 0; index + 1 < words.length; index += 1) {
           if (
             words[index].values.length === 2 &&
