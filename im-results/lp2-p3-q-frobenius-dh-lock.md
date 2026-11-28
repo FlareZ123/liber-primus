@@ -281,6 +281,24 @@ This alignment was charged against the **entire nonzero field**, not merely the 
 
 Within the signed-source index range0..42, there are only two ways for a complete-red starting state to hit red states on three consecutive offsets: the trivial already-known p15-first run at offsets0,1,2, and this p7 run at offsets25,26,27. The p7 alignment is therefore not obtained by scanning arbitrary phases until three red states appear.
 
+The minimal semilinear orientation rivals were charged over the same complete field. For each of
+
+```text
+F(Q*x)       Q*F(x)
+F(Q^-1*x)    Q^-1*F(x)
+```
+
+scan every nonzero start and require offsets25,26,27 all to be complete-red-span states. The results are:
+
+```text
+F(Q*x):       one start, [1,6]=p7, targets p15a -> p40 -> p27
+Q*F(x):       no starts
+F(Q^-1*x):    no starts
+Q^-1*F(x):    one start [5,1], not a red span, targets p27 -> p40 -> p15a
+```
+
+Thus **applying the Q MAP first and then the DIRECTION29/Frobenius operation** is the only member of this immediate four-way family whose signed 25–27 run begins on a manuscript red object, and its direction agrees with the printed source order. This is a bounded orientation discriminator rather than license to expand to arbitrary semilinear maps.
+
 This is still a post-discovery finite charge, not a p-value for authorial intent. Its value is operational: the signed phrase **THEIR NUMBERS ARE THE DIRECTION** now names both the numbered offsets and the canonical field direction operation, while p7 uniquely supplies the start whose numbered path lands on the previously typed red receivers.
 
 Applying T once more leaves the red-span set and gives
