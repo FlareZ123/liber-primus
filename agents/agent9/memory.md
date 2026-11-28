@@ -1,3 +1,9 @@
+### 2026-11-28 — tail contents extend Q/H route to p12/p2
+
+The four Q-directed H-tree pages leave source-aligned tails [10,8|0,4], total22=p-1. Concatenating actual nonempty tail runes in fixed Q-tree order p17||p19||p16 gives GF(29²) residue [13,19]; fixed plain Q sends it to [12,2], signed words THE/PATH. Numeric direction selects physical p12,p2, whose full counts261,201 reduce mod29 to [0,27]; H gives [2,27]=[K,-K].
+
+All six nonempty tail orders were charged; only source order17,19,16 closes to [K,-K]. Across all840 scalars on the source residue, Q and Q^13 hit the same downstream [K,-K] count receiver, but Q was independently fixed upstream. The 263 cut is not a universal printed word boundary (p19 cuts mid-word), so do not claim a textual seam. Report im-results/lp2-q-tail-path-p12-p2-h-direction.md; SFT sims/lp2_q_tail_path_p12_p2_h_sft.cjs. Next candidate receiver features are p12 tree artwork and p2 terminal red13 punctuation; no operation yet.
+
 ### 2026-11-28 — H-tree supersedes division readout; direct body transfer negative
 
 Q-directed pages [17,19 | 10,16] have counts [273,271 | 263,267], mod29 leaves [12,10 | 2,6]. H gives [2,22]|[25,8] -> [6,27]|[14,1] = [K,p-1]|[-q,A] -> [a,-K]|[-b,1], directly recovering K2,p23,q4,A8,a6,b15. Q(p23) endpoints differ by K2, fixing B19; g^15=19 mod23 uniquely yields g5.

@@ -72,7 +72,7 @@ The earlier report version found a second readout: p8 residues [2,6] as [K,a] wi
 
 ## Evidence boundary
 
-Established exactly: Q selects pages17,19,10,16; their full lengths are273,271,263,267; the mod29 and raw-tail H trees recover the historical DH state; Q/printed order is the sole survivor among3,360 scalar/order presentations; the direct common-prefix H-body receiver is negative.
+Established exactly: Q selects pages17,19,10,16; their full lengths are273,271,263,267; the mod29 and raw-tail H trees recover the historical DH state; Q/printed order is the sole survivor among3,360 scalar/order presentations; the direct common-prefix H-body receiver is negative. The four tails total exactly22=p-1, and a separate source-order tail-content continuation now sends their 22 rune values through the same field/Q machinery to [12,2], then through physical p12/p2 page counts and H to [K,-K]; see [tail PATH → p12/p2 handoff](lp2-q-tail-path-p12-p2-h-direction.md).
 
 Not established: a universal page-count H opcode, any unknown plaintext, or how the recovered state acts on remaining black ciphertext or selects the next non-state artifact.
 
