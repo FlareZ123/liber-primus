@@ -107,13 +107,41 @@ The result is preserved only as a precisely defined *possible initialization clu
 **Reproducer:** [single-file original-corpus Node22 SFT](../sims/lp2_p50_mirror_p56_initialpair_sft.cjs), including the historical p56 totient/F-hold reconstruction, exact multiset combinatorics, fixed-source full solved-p56 comparator and seeded null; [independent Windows read-only runner](https://github.com/FlareZ123/liber-primus/actions/runs/46087337250).
 
 
+## Test F — ordered, role-private affine byte-chart receiver (Agent47, 28 November)
+
+Test C rules out symmetric stationary combiners but not ordered ones: the one repeated unordered pair reverses direction. The signed 2016 direction language and the physical horizontal mirror suggest considering ordered operands; the exact 128-character solved p56 digest is a candidate receiver, not an author-authenticated assignment. A direction-dependent affine byte combiner is a minimal extension of the historical additive and XOR operations. Test it without selecting a radix or fitting a chart.
+
+Let `D_i = a L(t_left) + b R(t_right) + c (mod 256)`, where `a,b,c` are arbitrary bytes, `L` is any injective assignment of literal tokens to bytes, and `R` can be any assignment (even noninjective). This includes two independently secret byte permutations, subtraction, arbitrary units/nonunits, and both nibble-valued and lowercase-ASCII digest outputs. There is no restriction that the charts equal the base59/60 numeric reading.
+
+Two exact witnesses eliminate the entire family:
+
+- If a is odd, multiplication by a is invertible modulo 256. Same right token and same output on two edges force equal left labels, violating injectivity for distinct literal left tokens.
+- If a is even, output parity depends solely on the right token and the global bias. Same right token and opposite output parities are impossible for every b,c and every choice of right chart.
+
+In each of the four existing fixed orientations, **both witnesses occur**, for both target encodings. Pair indices below are zero-based physical row-major, outer-to-inner (the target orientation changes, not the source edges).
+
+| Target row order | Target pair order | Encoding | Odd-a contradiction | Even-a contradiction |
+| --- | --- | --- | --- | --- |
+| forward | outer→inner | nibble | 2L: 13/66 (left 3I/1Q, output 8) | 2D: 12/17 (outputs 7/10) |
+| forward | outer→inner | ascii | 2L: 13/66 (left 3I/1Q, output 56) | 0W: 49/53 (outputs 49/54) |
+| forward | inner→outer | nibble | 33: 0/5 (left 3N/49, output 6) | 2D: 12/17 (outputs 12/15) |
+| forward | inner→outer | ascii | 33: 0/5 (left 3N/49, output 54) | 2D: 12/17 (outputs 99/102) |
+| reverse | outer→inner | nibble | 0Z: 44/57 (left 3V/2N, output 13) | 2D: 12/17 (outputs 9/6) |
+| reverse | outer→inner | ascii | 0Z: 44/57 (left 3V/2N, output 100) | 33: 0/5 (outputs 97/50) |
+| reverse | inner→outer | nibble | 0k: 37/70 (left 1J/3r, output 14) | 3J: 21/35 (outputs 8/5) |
+| reverse | inner→outer | ascii | 0k: 37/70 (left 1J/3r, output 101) | 33: 0/5 (outputs 52/99) |
+
+This also excludes every ordered Latin-square/quasigroup combiner whose fixed-right map is injective, with separate injective left/right byte charts and a direct digest output: the equal-output witnesses alone suffice. That statement does not extend to truncated/many-to-one output projections. The even-a parity proof is specific to affine arithmetic modulo 256. The test does not exclude arbitrary asymmetric noninjective lookup tables, per-edge state, independently permuted rows, or additional layers. There is no authentic unknown key or plaintext. Retire this exact ordered transfer alongside Test C; do not fit a chart to the target by adding exceptions.
+
+[Standalone SFT](../sims/lp2_p50_ordered_affine_digest_sft.cjs) · [exact witnesses and twenty source-geometry planted controls](lp2-p50-ordered-affine-digest-output.json). The core was executed against the repository grid and p56 digest in connected V8; standalone Node wrapper was not separately run. All 20 plants with independent injective left/right charts pass the appropriate parity-class necessary condition. The witnesses are algebraic contradictions, not a language-score negative. The full 256³ coefficient space is eliminated by the two parity cases, without coefficient enumeration or knowledge of any label values.
+
 ## Decision
 
 Retire these exact receivers:
 
 - horizontal p50 reflection + shed interior + stationary token-to-GP29 codebook;
 - horizontal p50 reflection + clockwise reflected outer76 + base60 compass split + p32 H/cell33 + p56 transparent-F additive inverse to p55;
-- the stationary symmetric mirror-pair digest receiver in the four fixed orders, and every injective nibble-XOR receiver on the same graph;
+- the stationary symmetric mirror-pair digest receiver in the four fixed orders, every injective nibble-XOR receiver on the same graph, and the ordered role-private affine byte receiver of Test F (all coefficients and both direct digest encodings);
 - the two exact unicyclic-component rank keys with the tested terminal additive clocks.
 
 The sole repeated mirror edge happens to reduce to the known first p56 ciphertext/plaintext pair under base60, but its full-known-page extension and source-conditioned null do not establish a receiver; this does not change the negative decipherment decision.

@@ -1,0 +1,386 @@
+{
+  "original": [
+    {
+      "reverseRows": false,
+      "reversePairs": false,
+      "encoding": "nibble",
+      "oddCoefficientImpossible": {
+        "right": "2L",
+        "indices": [
+          13,
+          66
+        ],
+        "left": [
+          "3I",
+          "1Q"
+        ],
+        "values": [
+          8,
+          8
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "2D",
+        "indices": [
+          12,
+          17
+        ],
+        "left": [
+          "1n",
+          "1s"
+        ],
+        "values": [
+          7,
+          10
+        ]
+      }
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": false,
+      "encoding": "ascii",
+      "oddCoefficientImpossible": {
+        "right": "2L",
+        "indices": [
+          13,
+          66
+        ],
+        "left": [
+          "3I",
+          "1Q"
+        ],
+        "values": [
+          56,
+          56
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "0W",
+        "indices": [
+          49,
+          53
+        ],
+        "left": [
+          "2U",
+          "13"
+        ],
+        "values": [
+          49,
+          54
+        ]
+      }
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": true,
+      "encoding": "nibble",
+      "oddCoefficientImpossible": {
+        "right": "33",
+        "indices": [
+          0,
+          5
+        ],
+        "left": [
+          "3N",
+          "49"
+        ],
+        "values": [
+          6,
+          6
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "2D",
+        "indices": [
+          12,
+          17
+        ],
+        "left": [
+          "1n",
+          "1s"
+        ],
+        "values": [
+          12,
+          15
+        ]
+      }
+    },
+    {
+      "reverseRows": false,
+      "reversePairs": true,
+      "encoding": "ascii",
+      "oddCoefficientImpossible": {
+        "right": "33",
+        "indices": [
+          0,
+          5
+        ],
+        "left": [
+          "3N",
+          "49"
+        ],
+        "values": [
+          54,
+          54
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "2D",
+        "indices": [
+          12,
+          17
+        ],
+        "left": [
+          "1n",
+          "1s"
+        ],
+        "values": [
+          99,
+          102
+        ]
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": false,
+      "encoding": "nibble",
+      "oddCoefficientImpossible": {
+        "right": "0Z",
+        "indices": [
+          44,
+          57
+        ],
+        "left": [
+          "3V",
+          "2N"
+        ],
+        "values": [
+          13,
+          13
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "2D",
+        "indices": [
+          12,
+          17
+        ],
+        "left": [
+          "1n",
+          "1s"
+        ],
+        "values": [
+          9,
+          6
+        ]
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": false,
+      "encoding": "ascii",
+      "oddCoefficientImpossible": {
+        "right": "0Z",
+        "indices": [
+          44,
+          57
+        ],
+        "left": [
+          "3V",
+          "2N"
+        ],
+        "values": [
+          100,
+          100
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "33",
+        "indices": [
+          0,
+          5
+        ],
+        "left": [
+          "3N",
+          "49"
+        ],
+        "values": [
+          97,
+          50
+        ]
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": true,
+      "encoding": "nibble",
+      "oddCoefficientImpossible": {
+        "right": "0k",
+        "indices": [
+          37,
+          70
+        ],
+        "left": [
+          "1J",
+          "3r"
+        ],
+        "values": [
+          14,
+          14
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "3J",
+        "indices": [
+          21,
+          35
+        ],
+        "left": [
+          "1O",
+          "3C"
+        ],
+        "values": [
+          8,
+          5
+        ]
+      }
+    },
+    {
+      "reverseRows": true,
+      "reversePairs": true,
+      "encoding": "ascii",
+      "oddCoefficientImpossible": {
+        "right": "0k",
+        "indices": [
+          37,
+          70
+        ],
+        "left": [
+          "1J",
+          "3r"
+        ],
+        "values": [
+          101,
+          101
+        ]
+      },
+      "evenCoefficientImpossible": {
+        "right": "33",
+        "indices": [
+          0,
+          5
+        ],
+        "left": [
+          "3N",
+          "49"
+        ],
+        "values": [
+          52,
+          99
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "a": 0,
+      "b": 0,
+      "passed": true
+    },
+    {
+      "a": 0,
+      "b": 1,
+      "passed": true
+    },
+    {
+      "a": 0,
+      "b": 72,
+      "passed": true
+    },
+    {
+      "a": 0,
+      "b": 255,
+      "passed": true
+    },
+    {
+      "a": 2,
+      "b": 0,
+      "passed": true
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "passed": true
+    },
+    {
+      "a": 2,
+      "b": 72,
+      "passed": true
+    },
+    {
+      "a": 2,
+      "b": 255,
+      "passed": true
+    },
+    {
+      "a": 127,
+      "b": 0,
+      "passed": true
+    },
+    {
+      "a": 127,
+      "b": 1,
+      "passed": true
+    },
+    {
+      "a": 127,
+      "b": 72,
+      "passed": true
+    },
+    {
+      "a": 127,
+      "b": 255,
+      "passed": true
+    },
+    {
+      "a": 128,
+      "b": 0,
+      "passed": true
+    },
+    {
+      "a": 128,
+      "b": 1,
+      "passed": true
+    },
+    {
+      "a": 128,
+      "b": 72,
+      "passed": true
+    },
+    {
+      "a": 128,
+      "b": 255,
+      "passed": true
+    },
+    {
+      "a": 255,
+      "b": 0,
+      "passed": true
+    },
+    {
+      "a": 255,
+      "b": 1,
+      "passed": true
+    },
+    {
+      "a": 255,
+      "b": 72,
+      "passed": true
+    },
+    {
+      "a": 255,
+      "b": 255,
+      "passed": true
+    }
+  ]
+}
