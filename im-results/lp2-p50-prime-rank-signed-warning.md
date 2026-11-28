@@ -90,6 +90,39 @@ A finite follow-up also combines the observed physical directions (MAP points no
 
 This result changes the local radix interpretation: inside this exact adjacency/prime-rank family, base60 and the uniquely absent-`f` base59 reading look **complementary** rather than one simply defeating the other. Do not generalize that dual-radix conclusion to unrelated p50 branches without an equally source-constrained discriminator.
 
+## DIRECTION bridge into the existing p29 numbered packet
+
+Two further finite checks make the map/road geometry operationally relevant without turning it into a plaintext claim.
+
+First, the selected MAP/ROAD intersection token has a second source-native numeric reading. Cell43 is `1D`: base60 gives 73 = prime#21 = **IS**, while ordinary hexadecimal gives `0x1D=29`. Hexadecimal is independently present in the same authenticated 2016 message through the OpenPGP key ID `7A35090F`; zero-based source index29 is **DIRECTION**. The token `1D` occurs four times in p50, so this dual reading is not unique by token value; the map/road geometry is what selects cell43.
+
+Second, enumerate every p50 token whose values under the two source-visible radices are both ordinary primes with authenticated source ranks below43 and whose ranks differ by exactly one. There are exactly **two**:
+
+| Cell | Token | base59 | source | base60 | source |
+| ---: | --- | ---: | --- | ---: | --- |
+| **24** | `1n` | 107 = prime#28 | **THE** | 109 = prime#29 | **DIRECTION** |
+| 223 | `2V` | 149 = prime#35 | FOUND | 151 = prime#36 | GOOD |
+
+The second token does not continue to LUCK by an adjacent cell under either radix, so no phrase is extended there. Cell24 is different: its **cell index itself is source index24 = AND**. Independently, the p28 fixed structural readout already emits **THEIR NUMBERS ARE THE**. Thus the source/register objects meet without fitting a new ciphertext string:
+
+```text
+cell index24                    -> AND
+p28 fixed D4 structural readout -> THEIR NUMBERS ARE THE
+p50[24] = 1n:
+  base59 107 = prime#28         -> THE
+  base60 109 = prime#29         -> DIRECTION
+```
+
+The repeated THE at the p28/p50 boundary is a consistency check, not a license to count it twice. The resulting authenticated clause is **AND THEIR NUMBERS ARE THE DIRECTION**.
+
+The same zero-based 29 now gives a cleaner selector for the already documented p29 packet: **DIRECTION = source[29] -> project p29 -> canonical zero-based word index29** (one-based word30). That object is p29 offsets108..111 `[11,26,11,18]`, whose fixed H4 is `[22,15,8,0]`. The immediately preceding zero-based word28, offsets106..107 `[8,15]`, has H2 `[22,23]` = **THE ROAD**. This exact phrase independently equals the strict base59 p50 adjacency above.
+
+This does not make DIRECTION p28 plaintext and does not recover any unknown body text. It removes one awkward mixed-origin step from the conditional navigation scaffold: source index29, project page29 and the selected canonical word index29 now share the same zero-based number. The pre-existing p29 H2/H4 arithmetic remains conditional on the fixed H serialization and its semantic packet roles.
+
+A broader hex/base60 dual-reading null is important. Six distinct p50 token types have both a valid signed-range hexadecimal source index and a base60-prime signed index, so `1D -> IS/DIRECTION` is **not** evidentially unique in isolation. Its value here comes from being fixed first as the unique MAP/ROAD support-line intersection. Directly dereferencing the four OpenPGP key-ID bytes `7A 35 09 0F` as table addresses yields composite values under both source-visible radices, so that tempting extension is a negative and is not used.
+
+Reproducer for this bridge: [map/road/direction p29 SFT](../sims/lp2_p50_map_road_direction_p29_bridge_sft.cjs).
+
 ## Radix rival and stopping rule
 
 Repeat the identical physical-line family after deleting lowercase `f` from the printed alphabet (the live base59 rival). Only two edges survive, both rank22->23, at column5 downward and row5 right. There is **no two-edge consecutive rank chain**. Thus the **warning-chain** structure remains specific to base60 even though the stricter immediate-adjacency family above gives the complementary base59 phrase THE ROAD.

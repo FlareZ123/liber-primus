@@ -155,6 +155,29 @@ The new bridge therefore strengthens the corrected route without restoring any r
 
 A simple physical-page parser sees the four target words at the same offsets and values. The manuscript-wide census uses the stricter canonical parser that preserves the 32 words crossing physical page boundaries. The result is defined by offsets142..160 and remains unchanged under the canonical contract.
 
+## Independent p50 confirmation of the source continuation
+
+The p28 ciphertext still does **not** itself recover DIRECTION. A new independent p50 structure now selects the same continuation without relying on the p28 phrase match alone.
+
+The original p50 table has exactly one unused digit in its printed 60-symbol alphabet, lowercase `f`, so the live base59 codec is source-visible. Under the two source-visible radices, exactly two table tokens have consecutive ordinary-prime ranks wholly inside the authenticated 43-word register. One is **cell24 = `1n`**:
+
+```text
+base59: 107 = prime#28 -> source[28] THE
+base60: 109 = prime#29 -> source[29] DIRECTION
+```
+
+Cell index24 is itself authenticated source index24 = **AND**. Therefore this independent table object brackets the fixed p28 output:
+
+```text
+source[24] / p50 cell24 -> AND
+p28 fixed readout       -> THEIR NUMBERS ARE THE
+p50[24] dual-radix      -> THE / DIRECTION
+```
+
+The duplicated THE is the shared boundary. Together the source/register structure reconstructs **AND THEIR NUMBERS ARE THE DIRECTION** without assigning DIRECTION as p28 plaintext. This materially strengthens the choice of the signed continuation while preserving the original evidence boundary.
+
+Separately, p50's strict base59 adjacency yields **THE ROAD**, which the already selected p29 predecessor word independently reproduces as H2 `[22,23]`. The map/road intersection token `1D` has hex value29 and therefore also selects zero-based source DIRECTION29 -> project p29 -> zero-based canonical word29. These are cross-artifact navigation checks, not an unknown-text decryption. [P50 bridge report](lp2-p50-prime-rank-signed-warning.md) · [bridge SFT](../sims/lp2_p50_map_road_direction_p29_bridge_sft.cjs).
+
 ## Immediate p28 continuation gate — negative
 
 The next four complete canonical p28 words after offset160 are fixed at offsets161–168:
