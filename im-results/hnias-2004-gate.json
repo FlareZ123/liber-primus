@@ -1,0 +1,52 @@
+{
+  "test": "period Unicode direct-rune font gate",
+  "observed_classes": 18,
+  "segmentation_line_counts": [
+    17,
+    18,
+    23
+  ],
+  "lp2_repeat_noise": {
+    "pairs": 106,
+    "mean": 0.028279,
+    "median": 0.013429,
+    "p95": 0.086957,
+    "max": 0.101262
+  },
+  "ranking": [
+    {
+      "font": "Hnias.ttf",
+      "path": "/tmp/Hnias.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.332188,
+      "median_iou_distance": 0.327167,
+      "max_iou_distance": 0.504277,
+      "per_rune": {
+        "ᚠ": 0.484023,
+        "ᚢ": 0.504277,
+        "ᚣ": 0.485516,
+        "ᚦ": 0.460228,
+        "ᚩ": 0.489796,
+        "ᚪ": 0.483276,
+        "ᚱ": 0.336212,
+        "ᚳ": 0.28125,
+        "ᚷ": 0.293824,
+        "ᚹ": 0.434365,
+        "ᚻ": 0.318122,
+        "ᚾ": 0.168213,
+        "ᛁ": 0.022135,
+        "ᛋ": 0.20963,
+        "ᛏ": 0.218116,
+        "ᛖ": 0.206055,
+        "ᛗ": 0.234945,
+        "ᛞ": 0.349409
+      },
+      "render_jpeg_control": {
+        "mean": 0.019818,
+        "p95": 0.033926,
+        "max": 0.038683
+      }
+    }
+  ],
+  "unscored": []
+}
