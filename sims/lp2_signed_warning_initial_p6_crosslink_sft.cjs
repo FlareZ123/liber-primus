@@ -134,6 +134,53 @@ for(const {x,z,key} of p38SignedFieldKeys.values()){for(const sign of [-1,1]){
   if(target)p38SignedFieldHits.push({x:x.label,xIndex:x.index,z:z.label,zIndex:z.index,key,sign,target,plain});
 }}
 assert.deepEqual(p38SignedFieldHits,[{x:"LUCK",xIndex:37,z:"PATHS",zIndex:40,key:[20,7,7,7,13,4],sign:-1,target:"BEWARE",plain:bewareGp}]);
+// Warning-carrier field charge for the independently selected p37 LUCK shell.
+const carrierWarning = signed.slice(38,43).map((word)=>{
+  const gp0=word.gp.reduce((sum,value)=>sum+value,0);
+  const delta=mod29(word.index-gp0);
+  const len=word.gp.length;
+  return {...word,fields:{first:word.gp[0],len,diff:mod29(delta-len),sum:mod29(delta+len)}};
+});
+const inv2mod29=15;
+const h4Inverse=(shell)=>[
+  mod29((shell[0]+shell[3])*inv2mod29),
+  mod29((shell[1]+shell[2])*inv2mod29),
+  mod29((shell[2]-shell[1])*inv2mod29),
+  mod29((shell[3]-shell[0])*inv2mod29),
+];
+const fieldNames=["first","len","diff","sum"];
+const p37Cipher=[3,2,6,27];
+const fourTargetMap=new Map();
+for(const word of signed){if(word.gp.length===4)fourTargetMap.set(word.gp.join(","),word.label);}
+const p37CarrierShells=new Map();
+const p37CarrierLabeledHits=[];
+for(let omit=0;omit<carrierWarning.length;omit++){
+  const chosen=carrierWarning.filter((_,index)=>index!==omit);
+  for(const order of perms(chosen)){
+    for(const f0 of fieldNames)for(const f1 of fieldNames)for(const f2 of fieldNames)for(const f3 of fieldNames){
+      const fields=[f0,f1,f2,f3],shell=order.map((word,index)=>word.fields[fields[index]]),key=h4Inverse(shell);
+      p37CarrierShells.set(shell.join(","),{shell,key});
+      for(const sign of [-1,1]){
+        const plain=p37Cipher.map((value,index)=>mod29(value+sign*key[index]));
+        const target=fourTargetMap.get(plain.join(","));
+        if(target)p37CarrierLabeledHits.push({omitted:carrierWarning[omit].label,order:order.map((word)=>word.label),fields,shell,key,sign,target});
+      }
+    }
+  }
+}
+assert.equal(p37CarrierShells.size,18720);
+const p37NumericHits=[];
+for(const {shell,key} of p37CarrierShells.values())for(const sign of [-1,1]){
+  const plain=p37Cipher.map((value,index)=>mod29(value+sign*key[index]));
+  const target=fourTargetMap.get(plain.join(","));
+  if(target)p37NumericHits.push({shell,key,sign,target,plain});
+}
+assert.deepEqual(p37NumericHits.map((hit)=>[hit.shell,hit.sign,hit.target]),[
+  [[7,6,0,19],-1,"MEANING"],
+  [[19,0,2,5],-1,"LUCK"],
+]);
+const p37LuckRoutes=p37CarrierLabeledHits.filter((hit)=>hit.target==="LUCK");
+assert.deepEqual(p37LuckRoutes,[{omitted:"OPENPGP",order:["PATHS","FALSE","BEWARE","VERIFY"],fields:["sum","first","diff","diff"],shell:[19,0,2,5],key:[12,1,1,22],sign:-1,target:"LUCK"}]);
 const schedulerSegments = [
   { seed:[3,7], key:[23,3,24,1,18,17,27], shell:[25,21,15,20,6,13,1] },
   { seed:[13,4], key:[9,13,18,13], shell:[25,22,24,2] },
@@ -151,4 +198,4 @@ function recurrenceReadout(seed,length,A,B,C,reverse,includeSeeds){let u=reverse
 let recurrenceSchedulerHits=0;
 for(const reverse of [false,true])for(const includeSeeds of [false,true])for(let A=0;A<29;A++)for(let B=0;B<29;B++)for(let C=0;C<29;C++)for(const targetType of ["key","shell"]){let ok=true;for(const segment of schedulerSegments){if(recurrenceReadout(segment.seed,segment[targetType].length,A,B,C,reverse,includeSeeds).join(",")!==segment[targetType].join(",")){ok=false;break;}}if(ok)recurrenceSchedulerHits++;}
 assert.equal(recurrenceSchedulerHits,0);
-console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits},null,2));
+console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes},null,2));

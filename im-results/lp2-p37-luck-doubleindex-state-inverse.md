@@ -149,6 +149,35 @@ The inverse replays exactly:
 LUCK.
 ```
 
+## Authenticated warning-carrier source for the exact LUCK shell
+
+The final signed warning supplies a second source-visible origin for the frozen `[B,0,K,g]` shell. Using the already fixed carrier fields:
+
+```text
+word      first  len  Hdiff  Hsum
+BEWARE      17    6     2      14
+FALSE        0    5    15      25
+PATHS       13    4    11      19
+VERIFY       1    6     5      17
+OPENPGP      3    7    18       3
+```
+
+one exact serialization is
+
+```text
+[PATHS.Hsum, FALSE.first, BEWARE.Hdiff, VERIFY.Hdiff]
+= [19,0,2,5]
+= [B,0,K,g].
+```
+
+H4 inversion gives the published key `[12,1,1,22]`; subtraction from the independently selected p37 receiver returns `LUCK`.
+
+Charge the role choice broadly: omit any one warning word, permute the remaining four, choose one of `{first,len,Hdiff,Hsum}` independently for each coordinate, and test both signs. This is **61,440 labeled forms**, collapsing to **18,720 numeric shells**. At the fixed p37 receiver there are two numeric authenticated-target operations, one to `MEANING` and one to `LUCK`. Because LUCK was independently source-assigned before this route, the target-specific result is sharper: exactly one labeled form reaches LUCK, the serialization above.
+
+This is independent corroboration, not a familywise singleton; the role order was recognized after LUCK and the separate MEANING operation remains part of the charged family.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## GP0(LUCK)=31 selects p31 as a helper page
 
 The authenticated target supplies a helper-page pointer independently of the p37 key:
