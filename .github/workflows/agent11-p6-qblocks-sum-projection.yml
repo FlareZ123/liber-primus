@@ -22,3 +22,5 @@ jobs:
           node sims/lp2_p6_qblocks_receiver_affine_grader_sft.cjs
           node sims/lp2_p6_qblocks_matrix_recurrence_pretarget_sft.cjs > /dev/null
           node sims/lp2_p6_qblocks_matrix_recurrence_checksum_gate_sft.cjs
+          node sims/lp2_p6_qblocks_mobius_recurrence_pretarget_sft.cjs > /dev/null
+          node sims/lp2_p6_qblocks_mobius_recurrence_checksum_gate_sft.cjs
