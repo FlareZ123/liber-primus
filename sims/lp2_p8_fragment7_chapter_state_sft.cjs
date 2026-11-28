@@ -828,6 +828,28 @@ assert.ok(Object.values(powerScores).every((x) => x.score < nativeMin));
 const pageAffineResult = { score: score(pageAffine), ioc: ioc(pageAffine) };
 assert.ok(pageAffineResult.score < nativeMin);
 
+// The next physical page supplies an exact boundary tile for the new 28-rune
+// operand: its final red rune is -A, and that rune plus all 139 black runes
+// gives exactly g=5 repeats of the operand length. Freeze phase zero and test
+// only ordinary add/subtract; both are direct negatives.
+const p15Page = corpus.pages.find((x) => x.page === 15).indices;
+assert.equal(p15Page[19], mod(-A));
+const p15BoundaryReceiver = p15Page.slice(19);
+assert.equal(p15BoundaryReceiver.length, g * selectedChapterOperand.length);
+assert.equal(p15BoundaryReceiver.length, 140);
+const p15OperandResults = [];
+for (const sign of [-1, 1]) {
+  const decoded = p15BoundaryReceiver.map((x, i) =>
+    mod(x + sign * selectedChapterOperand[i % selectedChapterOperand.length])
+  );
+  const replay = decoded.map((x, i) =>
+    mod(x - sign * selectedChapterOperand[i % selectedChapterOperand.length])
+  );
+  assert.deepEqual(replay, p15BoundaryReceiver);
+  p15OperandResults.push({ sign, score: score(decoded), ioc: ioc(decoded) });
+}
+assert.ok(p15OperandResults.every((x) => x.score < nativeMin));
+
 // The factorization itself suggests a 3-state recurrence. Freeze the minimal
 // cross-seeded construction: one cubic's ordered nonleading coefficients seed
 // the other. Test only the two additive signs on p8 black and p8-p14.
@@ -923,6 +945,12 @@ console.log(JSON.stringify({
     rawChapter:{score:score(chapterBody),ioc:ioc(chapterBody)},
     matrixPowerClock:powerScores,
     pageLengthAffineInverse:pageAffineResult,
+    p15BoundaryOperand:{
+      boundaryRune:p15Page[19],
+      receiverLength:p15BoundaryReceiver.length,
+      repeats:p15BoundaryReceiver.length / selectedChapterOperand.length,
+      results:p15OperandResults,
+    },
     crossSeededCubicLfsr:lfsrResults,
   },
   boundary:

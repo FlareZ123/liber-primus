@@ -228,6 +228,34 @@ This is the first downstream object in this route whose **contents were not insp
 
 The selected 28 runes are not readable native-GP plaintext on inspection. Their current status is **source-derived key/operand material**, not a decryption.
 
+### Immediate p15 boundary consumer
+
+The next physical page supplies an exact boundary relation that was not used to build the operand. P15 has 20 red runes followed by 139 black runes. Its final red rune, at offset19, is
+
+```text
+21 = -A.
+```
+
+Taking that one boundary rune together with the entire black body gives
+
+```text
+140 runes
+= g * 28
+= 5 exact repeats of the new operand length.
+```
+
+That is a source-motivated p15 consumer, so freeze the simplest reversible use immediately: phase-zero repeating additive/subtractive application of the 28-rune operand to the exact `-A | black` slice. Both directions fail the pinned native-GP language gate:
+
+```text
+raw receiver score: -1.32044
+subtract operand:   -1.57149
+add operand:        -1.53448
+solved-native min:  +0.70997
+```
+
+The subtract direction does turn the first boundary rune into `p`, but the complete 140-rune output becomes less language-like. Do not rescue this consumer with phase searches or transformed variants. Preserve the exact tiling as a structural continuation; ordinary repeating Vigenere-style use is rejected.
+
+
 ### The p7 polynomial acting on the p8 matrix
 
 The same adjacent-page objects also compose without selecting a vector. Evaluate the p7 polynomial directly on the p8 matrix:
