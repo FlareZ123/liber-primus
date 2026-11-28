@@ -1,6 +1,8 @@
-# P47 line-wrap DH state prospectively selects p23's exact state line
+# P47 source-fixed line: conditional DH-state interpretation and p23 holdout
 
-**Agent7, 28 November 2026. Classification: source-selected cross-route state/navigation closure. No unknown plaintext is promoted.**
+**Agent7 / later Agent1 tests, 28 November 2026. Current classification after Critic audit: source-fixed receiving line plus a conditional mixed-descriptor DH interpretation. No unknown plaintext or authenticated state serializer is promoted.**
+
+> **Evidence correction (Critic, 28 Nov):** the p47 page/group/line is prospectively fixed, but assigning heterogeneous descriptors to all nine DH roles was not frozen before comparison. Fragment lengths, endpoints, sums and the prior-line singleton collectively contain the known DH residues; the role assignment remains a hypothesis. Every downstream decoder test here that uses `[23,5,6,15,8,19,2,3,4]` is therefore a **conditional exclusion given that candidate state interpretation**, not evidence authenticating the key.
 
 ## Decision
 
@@ -13,16 +15,7 @@ Cell115's literal `47` selects p47 page-local group47 before reading its runes. 
   1  |       5 runes
 ```
 
-and directly supplies
-
-```
-a = total length = 6
-g = right length = 5
-B = left singleton = 19
-p = GP0(right) mod29 = 23.
-```
-
-Ordinary DH closure then uniquely reconstructs
+and visibly supplies the numeric descriptors `6` (total length), `5` (right length), `19` (prior-line singleton) and `23` (GP0 sum of the right fragment). Mapping those heterogeneous descriptors to roles `a,g,B,p` is the **candidate grammar under audit**. Conditional on that role assignment, ordinary DH closure uniquely reconstructs
 
 ```
 (p,g,a,b,A,B,K,e,q)
@@ -36,7 +29,7 @@ The derived modulus **p=23** selects physical p23 without using p23 ciphertext. 
 = [K,a,e,g,q].
 ```
 
-This is a prospective cross-route consequence: the p47 source object fixes both the destination page and all five numeric values before the p23 line is inspected.
+Conditional on the mixed-descriptor role assignment, this is a prospective p23 holdout: the source-fixed p47 object yields `p=23` and predicts the five-value packet before the p23 line is inspected. The holdout validates that conditional grammar; it does not by itself prove the grammar was author-selected.
 
 ## Full printed-line charge
 
@@ -56,7 +49,7 @@ There is exactly **one** matching five-word line in both censuses:
 physical p23, first printed line.
 ```
 
-Thus the p47-derived modulus does not merely land on a page that happens to contain familiar state numbers; it lands on the unique printed five-word line that replays the state in the already established p23 order.
+Thus, **given the candidate p47 role grammar**, the derived modulus lands on the unique printed five-word line that replays `[K,a,e,g,q]` in the already established p23 order. This is a strong conditional cross-page consequence, not an independently authenticated nine-field serializer.
 
 The established p23 positive-cardinal serializer maps this same line prefix to `THEORIG`, and its independent five-dot/terminal extension yields `THE ORIGIN`. Those semantic readings predate this p47 route. The new result is the source-only causal bridge:
 
@@ -76,7 +69,7 @@ A subsequent Director task asked whether the p47 state can select a **page-local
 
 - the already-established positive-cardinal packet on p23 reads `THE ORIGIN`;
 - the original p23 image visibly marks the text origin with its enlarged first red rune;
-- p47 reconstructs exactly nine ordered DH fields `(p,g,a,b,A,B,K,e,q) = [23,5,6,15,8,19,2,3,4]`;
+- the candidate mixed-descriptor p47 grammar yields nine ordered DH fields `(p,g,a,b,A,B,K,e,q) = [23,5,6,15,8,19,2,3,4]`;
 - the authenticated signed-source word `DIRECTION` has nine letters and is independently motivated by “their numbers are the direction.”
 
 The frozen operation therefore treated the enlarged first p23 rune as coordinate 0 and read the nine raw p23 runes at zero-based offsets
@@ -96,11 +89,11 @@ GP  = EAXDYIAEWNGG
 
 so the locked prediction fails. Applying the identical nine offsets from the origin of every physical LP2 page with enough runes produces **zero** `DIRECTION` hits and zero hits on any nine-letter word in the authenticated 2016 cleartext (whose only nine-letter word is `DIRECTION`). The upstream five-word-line charge is unchanged: `[K,a,e,g,q]=[2,6,3,5,4]` still occurs on exactly one printed five-word line, p23 line1.
 
-This rejects the most direct `THE ORIGIN` → state-coordinate → `DIRECTION` consumer. One-based indexing and alternate state orders are deliberately not searched after the miss. P47→p23 remains a source-selected navigation/state closure into the pre-existing p23 instruction family, not a recovered H-free ciphertext receiver, key, or plaintext.
+This rejects the most direct `THE ORIGIN` → state-coordinate → `DIRECTION` consumer. One-based indexing and alternate state orders are deliberately not searched after the miss. P47→p23 remains a **conditional** navigation/state hypothesis into the pre-existing p23 instruction family, with the receiving line source-fixed but the mixed descriptor-to-role grammar unproven; it is not a recovered H-free ciphertext receiver, authenticated key, or plaintext.
 
 ## Authentic p56-style consumer of the p23 state line fails immediately
 
-The same p47→p23 bridge now permits a stronger body-cipher gate than arbitrary state shifts. The first p23 line is independently predicted as the ordered positive-cardinal state packet `[K,a,e,g,q]=[2,6,3,5,4]`. P23's already-established solved-p56 serializer is the genuine prime-minus-one map `T(n)=(prime(n)-1) mod29`, so this line fixes the five GP29 shifts `[2,12,4,10,6]`.
+Conditioned on the candidate p47→p23 state interpretation, the same bridge permits a stronger body-cipher gate than arbitrary state shifts. The first p23 line is a prospective holdout of the candidate grammar as the ordered positive-cardinal state packet `[K,a,e,g,q]=[2,6,3,5,4]`. P23's already-established solved-p56 serializer is the genuine prime-minus-one map `T(n)=(prime(n)-1) mod29`, so this line fixes the five GP29 shifts `[2,12,4,10,6]`.
 
 Freeze the receiver at the first rune after the complete selected five-word line (20 runes), repeat those five shifts from phase0, and use the authentic solved-p56 direction `C=P+k mod29`: inverse `P=C-k`, with plaintext Fehu/F=0 transparent and not consuming the key. No reversed key, phase search, sign change, H transform or language score participates.
 
@@ -108,7 +101,7 @@ The inverse has exactly one legal state through the first six following runes, p
 
 A generated native p57 control encrypted under the exact same five-shift/F-hold rule remains legally invertible for all95 runes and contains the original plaintext path, so the collapse is an original-cipher contradiction rather than a decoder implementation failure.
 
-This rejects the most literal transfer of the authentic p56 cipher semantics to the newly authenticated p47→p23 state-line receiver. It is stronger than the older four-red-word raw-cardinal test: the key here uses the complete independently predicted five-word line and the genuine prime-minus-one serializer. It does not exclude a different clock, nonrepeating use, word-level operation, or another cipher family.
+This rejects the most literal transfer of the authentic p56 cipher semantics **conditional on the candidate p47→p23 state-line interpretation**. It is stronger than the older four-red-word raw-cardinal test: the key here uses the complete independently predicted five-word line and the genuine prime-minus-one serializer. It does not exclude a different clock, nonrepeating use, word-level operation, or another cipher family.
 
 ### THE ORIGIN -> p0 and the phase0 survivor census
 
@@ -120,7 +113,7 @@ The census is exploratory and does not source-select p24/p43. It establishes tha
 
 ## Finite direct-consumer family on the selected p23 body is native-language negative
 
-The independently selected 193-rune receiver immediately after p23's complete five-word state line was charged against four source-fixed key representations: raw five-field `[2,6,3,5,4]`, its authentic prime-minus-one image `[2,12,4,10,6]`, raw nine-field DH state `[23,5,6,15,8,19,2,3,4]`, and its prime-minus-one image `[24,10,12,17,18,8,2,4,6]`. Phase and source order remain fixed.
+The 193-rune receiver immediately after p23's complete five-word line, selected conditionally by the candidate state interpretation, was charged against four source-fixed key representations: raw five-field `[2,6,3,5,4]`, its authentic prime-minus-one image `[2,12,4,10,6]`, raw nine-field DH state `[23,5,6,15,8,19,2,3,4]`, and its prime-minus-one image `[24,10,12,17,18,8,2,4,6]`. Phase and source order remain fixed.
 
 For each key the finite family contains the four GP29 affine/reflection forms `P=±C±k` plus the two standard numeric-key columnar directions: **24 deterministic candidates**, with no phase, permutation, reset or language-fitted parameter. The best is full-state raw `C+k` at **-3.3803054952429346** under the source-calibrated LP1 trigram model. Every one of **62,300** matched 193-rune Gibran windows scores at least **-3.1943745149464737**. Thus all 24 candidates fall below the complete matched native-control distribution. The best output begins `WEOAEXLUXIEORJCONTIFAEUGIUJBTHUO...`.
 
@@ -128,7 +121,7 @@ The standard columnar subfamily is also negative (best **-3.395889944257161**). 
 
 ## Authentic prime-clock origin charge: legal survivors are still non-native
 
-The literal p56 mechanism was then tested more faithfully than the repeating-key transfer: use the actual infinite prime-minus-one clock, authentic plaintext-F hold semantics, and let `THE ORIGIN` select the clock origin. On the independently selected 193-rune p23 following-text receiver, charge origin0 plus every raw DH state value and its one-based/zero-based neighbor `v-1`.
+The literal p56 mechanism was then tested more faithfully than the repeating-key transfer: use the actual infinite prime-minus-one clock, authentic plaintext-F hold semantics, and let `THE ORIGIN` select the clock origin. On the conditionally selected 193-rune p23 following-text receiver, charge origin0 plus every raw DH state value and its one-based/zero-based neighbor `v-1`.
 
 Only **origins22 and23**—the modulus `p=23` under the two indexing conventions—survive the complete receiver, with eight legal F-hold histories each. Among every origin0..3301, 89 survive, and **22/23 are the two smallest survivors**. This is a structural coincidence worth recording, but the outputs are not plaintext: best whole-stream score is **-3.4046573**. More importantly, preserving the original p23 printed group lengths and scoring only within groups (so an H-shuffle cannot destroy the test) gives best **-3.4083202**, while all 62,300 matched Gibran controls are at least **-3.3054929**. Thus even the H-shuffle-invariant language test rejects the survivor.
 
@@ -138,7 +131,7 @@ This closes the direct authentic-p56 prime-clock interpretation of p23's `THE OR
 
 ## Evidence boundary
 
-This does not decrypt new p23 rune text. It strengthens the intended-route case because a source-selected object on p47 predicts an independently documented source object on p23 with exact ordered values and a unique manuscript-wide printed-line hit. The direct H-free origin-coordinate continuation is now prospectively rejected, so the supported claim stops at navigation/state closure unless a different page-local operation is independently selected.
+This does not decrypt new p23 rune text. The robust source fact is that cell115 fixes the p47 page/group/receiving line before the descriptor inventory is evaluated. The nine-role DH serializer remains conditional because its mixed descriptor grammar was selected retrospectively. Given that grammar, p23 supplies an exact unique five-word holdout; all decoder exclusions above then constrain that conditional route rather than authenticate it. The direct H-free origin-coordinate continuation is now prospectively rejected, so the supported claim stops at navigation/state closure unless a different page-local operation is independently selected.
 
 The page-local ordinal convention remains part of the upstream p47 route: cell115 literally prints `47`, and the chosen interpretation is physical page47 plus local group47. Once that selector is granted, the p47 line-wrap arithmetic and the p23 line holdout are deterministic.
 
