@@ -235,6 +235,21 @@ All 58 images decode the same source-forced header `75cf2f65`, giving seed53109 
 
 Reproducer: `sims/lp2_base29_selfindex_m5n7_outguess_sft.cjs`. Pinned runner: Actions run **46140839519**, PASS.
 
+### P57-shed 5N OutGuess password
+
+The solved p57 instruction transforms the source token `M5N7` into the exact inner token `5N`. That is a distinct source stage, so uppercase `5N` was tested once as an OutGuess0.4 password with no case or punctuation variants.
+
+The pinned historical runner again recovers the authentic 2016 Cicada positive-control payload exactly. On the 58 original LP2 images, the forced header is `c077a990` (seed30656, declared length37,033). **55/58** carriers yield full-length pseudo-extractions and three (p32,p56,p57) fail capacity/iterator completion. Among all successful outputs:
+
+- recognizable file/PGP/text flags: **0/55**;
+- entropy is about **7.9943–7.9962 bits/byte**;
+- printable fraction is about **0.376–0.388**;
+- the shared opening bytes again reflect the source-forced header, not a payload signature.
+
+**Decision:** reject exact uppercase `5N` as an OutGuess0.4 payload password. Do not broaden this into a password-family search.
+
+Reproducer: `sims/lp2_base29_selfindex_p57_5n_outguess_sft.cjs`. Pinned runner: Actions run **46142434258**, PASS.
+
 ### Fixed-width 48-rune p15 keys
 
 Two deterministic 48-rune tapes were constructed:
@@ -335,7 +350,7 @@ direct p55 column-triplet consumer: negative
 
 The route reconstructs the complete authenticated DH state, closes it back onto p15, and then predicts held-out p53 color geometry. This is materially stronger than a generic state-label coincidence because each transition is selected by an earlier source object: historical radix, historical zero-based filenames, original rune counts, the solved p57 instruction, standard DH arithmetic, and the independently preserved 2013 protocol.
 
-What remains missing is the **next reversible operation on unknown ciphertext**. The direct periodic additive interpretations, literal `M5N7` OutGuess password, and p53-column→p55 additive consumer are closed; the p57-derived `5N` OutGuess key is separately gated. The next useful experiment should begin from the source-derived ordered DH state or the exact p6–p9 two-column matrix and make a fixed prediction on an untouched original object before any language grading.
+What remains missing is the **next reversible operation on unknown ciphertext**. The direct periodic additive interpretations, literal `M5N7` and p57-derived `5N` OutGuess passwords, and the p53-column→p55 additive consumer are closed. The next useful experiment should begin from the source-derived ordered DH state or the exact p6–p9 two-column matrix and make a fixed prediction on an untouched original object before any language grading.
 
 The p15 integer-H / page-count length cycle is retained only as secondary corroborating geometry. Its radix-span caveat prevents it from carrying the primary causal claim.
 
