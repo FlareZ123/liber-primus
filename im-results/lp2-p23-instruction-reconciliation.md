@@ -33,6 +33,49 @@ T(n) = (p_n - 1) mod29.
 
 The red span ends after those four words. The complete selected line contains a fifth black word of length4. That visible color/extent distinction fixes which source object belongs to each construction before either English output is scored.
 
+## Stronger p21 authenticated semantic route selects ROAD=23
+
+A later source-selected route now reaches physical p23 **without using the conditional mixed p47 descriptor→DH-role grammar**.
+
+The frozen p47→p46 navigation corridor terminates at p21/group21. Canonical H of that source-selected group is:
+
+```text
+H4(p21/group21) = [20,22,23,6].
+```
+
+Among all self-indexed H4 groups, inserting the already fixed current page21 into H's first three coordinates uniquely gives authenticated zero-based 2016 source indices
+
+```text
+[20,21,22,23]
+= MEANING / IS / THE / ROAD,
+```
+
+with the unused coordinate `6=SEEKS`.
+
+The independently established authenticated-source checksum
+
+```text
+H(GP(SEEKS))
+= [0,13,18,23,1]
+= HELLO / WAY / MAP / ROAD / THE
+```
+
+then supplies the navigation noun triad. P21's own reconstructed instruction says **MEANING IS THE ROAD**, selecting ROAD from that shell. The signed source sentence says that its words' **numbers are the direction**, so `ROAD=23` selects **physical p23**.
+
+This is currently the stronger clue-level page selector:
+
+```text
+p21/group21
+ -> MEANING IS THE ROAD + SEEKS
+ -> H(SEEKS) supplies ROAD
+ -> ROAD source number23
+ -> physical p23.
+```
+
+It converges on the same p23 checkpoint as the p47 conditional state interpretation, while avoiding the disputed heterogeneous descriptor-role assignment. It does **not** predict the p23 first-line state vector or decrypt p23 body text; it independently types the destination page and thereby strengthens the already established p23 source-object instructions below.
+
+Full report: `im-results/lp2-p21-meaning-road-seeks-cell254-crosslock.md`.
+
 ## Independent p47 source route now selects p23 and predicts this line packet
 
 A later source-only route now reaches this p23 checkpoint without using either p23 English serializer.
