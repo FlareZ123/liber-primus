@@ -8,7 +8,7 @@
 
 This is a **bounded negative over the accessible GitHub object graph and fork network**. No newly recovered Git object contains a Stage10 POST body, a participant `/cgi-bin/upload` receipt, a callback file, a raw Stage10 acceptance transaction, or a Stage11 HTTP capture beyond the already-known mirrored page/image material.
 
-The audit does identify a more precise missing source than previous generic “no capture” statements: the live-period repository contains a maintainer utility that intentionally wrote verbose `wget -S` response metadata and recursive onion mirrors into **`~/cicada-2014/stage10/tmp/log` and `stage10/tmp/`**. On 2 June 2014 that utility was extended to include the seventh onion `ky2khlqdf7qdznac.onion`. Those runtime outputs were never committed in any reachable history examined here and are absent from the surviving fork snapshots. A maintainer filesystem backup or an independently archived working-tree copy containing that untracked directory is therefore a specifically motivated acquisition target; the public Git object graph itself does not satisfy #2989.
+Prior issue **#551 already isolated** `~/cicada-2014/stage10/tmp/log` as the precise missing `wget -S` capture target. This audit does not claim that path as a new discovery. Its additional contribution is to bound the **lost-ref/fork/object-graph rival** requested by #3355: the public fork network and reachable alternate heads were enumerated and do not preserve that untracked runtime directory or a Stage10/11 transaction object. A maintainer filesystem backup or independently archived working-tree copy remains the motivated acquisition target; ordinary public Git refs/forks do not satisfy #2989.
 
 No plaintext or key is claimed.
 
@@ -27,9 +27,9 @@ The Stage10/11 history is compact:
 
 The recursive trees at `c2dcbfdb23abf4b08064b3e2f37294b134741cbe` and live-period June head `b1d7412afae69e4109223dd8561ae57b73ac4798` were enumerated. Neither contains a path matching `tmp`, `log`, `access`, `request`, `response`, `callback`, `header`, or an upload receipt.
 
-## Source-defined but untracked HTTP capture surface
+## Previously established untracked HTTP capture surface
 
-The important acquisition fact is in `tools/check-onions.sh`.
+Issue #551 had already established the `tools/check-onions.sh` / `stage10/tmp/log` source-availability boundary. It is repeated here only because #3355 specifically asks whether forks/lost refs recover that missing runtime output.
 
 It was introduced at `86cb5c36159ba210fc81752d0fce99fb02200285` on 2014-02-03. Its initial behavior was:
 
@@ -73,7 +73,7 @@ A bounded web search for independently mirrored/bare-clone material found the pu
 
 ## Consequence for the solve frontier
 
-For #3355, the strongest rival wins: the **reachable public repository history behaves as a clean puzzle/solver mirror, not a repository of participant-side callback traffic**.
+For #3355, the strongest rival wins: the **reachable public repository history behaves as a clean puzzle/solver mirror, not a repository of participant-side callback traffic**. This extends #551's current-tree availability boundary across the accessible fork/ref network; it does not supersede or rediscover #551.
 
 For #2989, do not spend more effort mining ordinary branches/forks of this repository for the exact successful Stage10 POST. The Git object graph contains the form and static response but not the transaction.
 
