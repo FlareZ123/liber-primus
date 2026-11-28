@@ -37,7 +37,7 @@ const source=latin.books.flatMap(b=>b.lengths);
 assert.equal(source.length,34199);
 assert.equal(source.reduce((s,x)=>s+x,0),190231);
 assert.equal(Math.max(...words),14);
-const maxK=Math.max(...words),n=source.length;
+const maxK=Math.max(...words,...source),n=source.length;
 const next=Array.from({length:maxK+1},()=>new Int32Array(n+1));
 for(let k=1;k<=maxK;k++){
  next[k][n]=-1;
@@ -49,6 +49,7 @@ function align(target,cutoff=Infinity){
  for(let start=0;start<=maxStart;start++){
   let j=start,skipped=0,matched=0;
   for(let i=0;i<target.length;i++){
+   if(j>=n)break;
    const v=next[target[i]][j];
    if(v<0)break;
    skipped+=v-j;j=v+1;matched++;
