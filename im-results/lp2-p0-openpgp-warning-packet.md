@@ -159,6 +159,27 @@ This pattern is highly selective on the original manuscript. Across **2,713** co
 
 This converts **FALSE PATHS** from a semantic afterthought into a concrete structural instruction candidate: the source says FALSE has the state length that must be removed to expose a p-rune warning packet, while the manuscript inserts a state-sized false boundary inside the PATHS-sized segment.
 
+## Warning initials form a second p6-state tape
+
+The warning-length relation has a parallel source-only relation in the **first GP rune** of each authenticated warning word:
+
+~~~text
+word      first GP rune     GP length
+BEWARE    17 = b+K          6 = a
+FALSE      0                5 = g
+PATHS     13 = b-K          4 = a-K
+VERIFY     1 = a-g          6 = a
+OPENPGP    3 = e            7 = g+K
+~~~
+
+Thus the fixed final window carries two independent state-valued fields: initials `[b+K,0,b-K,a-g,e]` and lengths `[a,g,a-K,a,g+K]`. Charged against every contiguous five-word window in the 43-word authenticated body, each exact vector occurs only at index38, hence their joint hit is the final warning itself. No LP2 ciphertext enters this charge.
+
+Remove FALSE/zero. Source order `BEWARE PATHS VERIFY OPENPGP` gives H4(initials) `[-b,aK,-b,qg]`; the independently used packet order `OPENPGP PATHS VERIFY BEWARE` gives `[b,aK,-b,qg]`, while its H4(lengths) is `[a-g,-K,2g,b-K]`. Across all 24 permutations of the retained words, the exact initial shell `[b,aK,-b,qg]` occurs only in the packet order.
+
+The shell target was recognized after the packet already existed, so this is corroborating source structure rather than a newly source-selected common key scheduler.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## Signed-carrier H coordinates
 
 The authenticated carrier provides a second, independent derivation of the same packet coordinates.

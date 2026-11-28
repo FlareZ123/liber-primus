@@ -461,6 +461,14 @@ This is strong evidence that p6 is a cross-page **state/key vocabulary packet**.
 
 Reproducer: `sims/lp2_p6_p36_good_qcenter_family_sft.cjs`.
 
+## Authenticated warning initials independently encode p6 state
+
+The final signed warning is state-shaped in two independent source fields. Its first GP runes are `[17,0,13,1,3]=[b+K,0,b-K,a-g,e]`; its already established GP lengths are `[6,5,4,6,7]=[a,g,a-K,a,g+K]`. Both exact five-coordinate vectors occur only at the final warning window among all contiguous five-word windows of the authenticated 43-word source.
+
+After removing FALSE/zero, the established packet order `OPENPGP PATHS VERIFY BEWARE` has H4(initials) `[b,aK,-b,qg]` and H4(lengths) `[a-g,-K,2g,b-K]`. This adds a source-only bridge between the authenticated warning and the p6 packet/state vocabulary. The exact shell target was recognized after the warning packet, so it does not by itself solve the remaining serializer problem.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
