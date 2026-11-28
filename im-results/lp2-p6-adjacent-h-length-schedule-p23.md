@@ -103,6 +103,29 @@ The existing independently frozen p23 red-span serializer can then turn that
 same p23 rubric into `THE ONE RISE`; this report does not re-derive or reinterpret
 that downstream instruction.
 
+## Fixed state-algebra cascade from p6 lengths to THE ONE RISE
+
+P6's raw red lengths are themselves a compact state expression:
+
+`[4,1,4,2]=[q,q-e,q,K]`.
+
+Forward adjacent H maps this to `[e,g,K,a]=[3,5,2,6]`; p23 physically
+pair-swaps it to `[K,a,e,g]=[2,6,3,5]`. Both p23 printed pairs sum to
+`A=8`, and forward H gives `[-q,A,-K,A]=[25,8,27,8]`.
+
+Therefore the already-frozen p23 cardinal stream is exactly the state stream
+
+`[K,a,-q,A, e,g,-K,A]`,
+
+which the solved-p56 prime-cardinal map renders **THE ONE RISE**. The page
+step closes internally too: `g-e=5-3=2=K`, so one RISE from p23 is also
+literally `p23+K=p25`.
+
+This makes p6→p23→p25 one fixed state/H/cardinal grammar rather than three
+unrelated numerical readings.
+
+Reproducer: `sims/lp2_p6_p23_state_cardinal_cascade_sft.cjs`.
+
 ## Held-out p25 receiver selected by p23 schedule endpoints
 
 The p23 state replay does more than confirm the p6→p23 page handoff. Its raw
