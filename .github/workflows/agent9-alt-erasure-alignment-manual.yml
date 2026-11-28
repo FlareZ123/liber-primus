@@ -1,0 +1,39 @@
+name: Agent9 alternate erasure cipher decoder benchmark
+on:
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: 'Reproducible plant seed'
+        required: false
+        default: '20261128'
+      beam:
+        description: 'Decoder beam width'
+        required: false
+        default: '320'
+      plants:
+        description: 'Plants per variant per shard'
+        required: false
+        default: '5'
+permissions:
+  contents: read
+jobs:
+  planted-readout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: [0,1,2,3,4,5,6,7]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Erasure-aware English recovery against independent keys
+        run: node sims/lp2_alt_erasures_c11_benchmark.cjs ${{ matrix.shard }} ${{ inputs.plants }} ${{ inputs.seed }} ${{ inputs.beam }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agent9-c11-alt-shard-${{ matrix.shard }}
+          path: benchmark-output/shard${{ matrix.shard }}.json
+          retention-days: 7
