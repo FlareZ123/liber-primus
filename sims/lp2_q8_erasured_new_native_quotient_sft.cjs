@@ -217,5 +217,28 @@ const results={schema:'q8-new-native-erasure-quotient-v1',
   seeds:[74103,74204,74305,74406],erasures:[[6],[5],[6,5]],
   note:'known remaining phases are a *stronger information grant* than #3261 allows; this is a necessary oracle identifiability benchmark, not blind recovery',
   conditions};
+
+// Independently selected full-seven chart identifiability witness: if two
+// original GP labels never appear anywhere in the seven known plaintext or
+// ciphertext strings, exchanging their chart positions leaves *all seven*
+// exact forward encryptions intact while changing the full symbolic action.
+const audit=results.seeds.map(seed=>{
+ const w=newWorld(seed,'common'),full=fieldStatus(w.controls,[]);
+ const privateFull=fieldStatus(newWorld(seed,'private').controls,[]);
+ const seen=new Set(w.controls.flatMap(v=>v.p.concat(v.c)));
+ const unseen=Array.from({length:N},(_,i)=>i).filter(i=>!seen.has(i));
+ const swaps=[];
+ for(let k=1;k<unseen.length;k++){
+  const pi=w.truth.pi.slice(),a=unseen[0],b=unseen[k];
+  [pi[a],pi[b]]=[pi[b],pi[a]];
+  const replay=w.controls.every(v=>
+   JSON.stringify(encode(v.p,pi,w.truth.keys[v.ci],v.start))===JSON.stringify(v.c));
+  const distinct_action=!sameAction(pi,w.truth.keys,w.truth);
+  assert(replay&&distinct_action,'unseen-symbol transposition certificate failed');
+  swaps.push({swapped:[a,b],replay,distinct_action,alternate_pi:pi});
+ }
+ return {seed,full,privateFull,unseen,swaps};
+});
+results.full_seven_chart_coverage=audit;
 console.log('NEW_Q8_ERASURE_SUMMARY='+JSON.stringify(results));
 if(process.env.RUNNER_TEMP)fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'source-test-output.json'),JSON.stringify(results,null,2));
