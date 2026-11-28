@@ -82,15 +82,22 @@ assert.ok(w30); assert.deepEqual(w30.values,[11,26,11,18]);
 const h4=[mod(w30.values[0]-w30.values[3]),mod(w30.values[1]-w30.values[2]),mod(w30.values[1]+w30.values[2]),mod(w30.values[0]+w30.values[3])];
 assert.deepEqual(h4,[22,15,8,0]);
 
+const p33Rises=[1,7,34];
+const p33ZeroLabels=p33Rises.map(n=>words[n].word);
+const p33OneLabels=p33Rises.map(n=>words[n-1].word);
+assert.deepEqual(p33ZeroLabels,["THE","THE","BE"]);
+assert.deepEqual(p33OneLabels,["HELLO","SEEKS","WILL"]);
+
 const out={
   schema:1,
-  classification:"source-origin reconciliation candidate; no new unknown plaintext claimed",
+  classification:"source-origin cross-route gate; no new unknown plaintext claimed",
   mayflyPointer:{counts,diffs,localFrame,pageOrdinal,projectPage},
   signedOneBased:{word29:words[28].word,word30:words[29].word,word35:words[34].word,zeroBased29Rival:words[29].word},
   readout:{projectPage:28,physicalPage:29,decoded:"READOUT",heldoutNext:"THE",heldoutCipher:pred29},
   sameOrdinalTwoRuneFamily:{tested:tested.map(r=>({ordinal:r.ordinal,word:r.word,matches:r.matches})),hits:hitRows},
   follower:{sourceOrdinal:30,word:"DIRECTION",physicalPage:30,projectPage:29,canonicalWordOrdinal:30,cipher:w30.values,h4},
-  consequence:"The p28/p34 held-out source-to-page hits are exactly one-based word29->physical page29 and word35->physical page35. The independently recovered mayfly pointer29 lands on the first hit. Thus this route can be stated without zero-based signed-word dereferencing; READ OUT THE on physical page29 aligns with one-based word29 THE, whose immediate follower is one-based word30 DIRECTION and therefore physical page30/project p29. This does not authenticate the signed message as the intended register by itself."
+  originConflict:{mayflyPointer29:{ordinalTargetProjectPage:28,zeroIndexTargetProjectPage:29},p33Rise34:{oneBasedTargetProjectPage:33,zeroIndexTargetProjectPage:34,zeroBasedLabels:p33ZeroLabels,oneBasedLabels:p33OneLabels}},
+  consequence:"The p28/p34 held-out source-to-page hits are exactly one-based word29->physical page29 and word35->physical page35. The independently recovered mayfly pointer29 lands on the first hit. Thus this route can be stated without zero-based signed-word dereferencing; READ OUT THE on physical page29 aligns with one-based word29 THE, whose immediate follower is one-based word30 DIRECTION and therefore physical page30/project p29. This does not authenticate the signed message as the intended register by itself. It also exposes a cross-route origin conflict: the mayfly/Fibonacci route interprets 29 ordinally (29th page = p28), whereas the promoted p33 body-rise route needs zero-based labels/pages for [1,7,34] = THE,THE,BE and p34. A single global number-to-page/source-origin convention cannot justify both routes unchanged."
 };
 const s=JSON.stringify(out,null,2);console.log(s);
 if(process.env.RUNNER_TEMP)fs.writeFileSync(path.join(process.env.RUNNER_TEMP,"source-test-output.json"),s);
