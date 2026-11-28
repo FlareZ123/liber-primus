@@ -111,6 +111,27 @@ The first decomposition is the already published 32x8 table/DH geometry. The sec
 
 This is unusually compact because the table width is itself `A=8`, so the row-major address grammar is `p*A+column`, while the independently authenticated runic radix supplies the second quotient/remainder grammar.
 
+## State-label-free structural control
+
+A stronger control does not name any DH value. For every possible start, take the same eight-hop walk and ask only whether the eight pre-terminal addresses have:
+
+1. eight distinct remainders modulo29;
+2. eight distinct integer quotients under `floor(address/29)`;
+3. and, after those eight hops, a fixed-point endpoint.
+
+Under base59:
+
+- **86/256** starts have eight distinct remainders;
+- only **6/256** have eight distinct quotients: starts `19,66,104,108,186,254`;
+- only **3/256** have both: starts `66,186,254`;
+- only **start186** has both and then lands on a fixed point.
+
+Under conventional base60, 83 starts have distinct remainders but **0/256** have eight distinct quotients, so none can satisfy the joint or joint-plus-fixed criterion.
+
+The two non-186 base59 controls clarify the topology. Start254 is the immediate predecessor `254 -> 186`, so its eight-node tape is a one-step-shifted prefix of the selected route and stops at247 before reaching the sink. Start66 follows an unrelated path and does not terminate at a fixed point after eight hops.
+
+This test is still post-discovery—the distinctness predicate was noticed after inspecting the selected path—but it is **state-label free**. It shows that the p27-selected start is not merely one of many eight-hop walks whose BASE29 quotient/remainder coordinates look like a permutation; it is the sole joint-distinct tape that also completes at a fixed point under the independently selected hop count.
+
 ## Exact all-start control
 
 The reproducer charges every possible p50 start under each of the two live table codecs, keeping the hop count fixed at eight.
@@ -221,4 +242,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also executes the bounded p49/p51 flank consumer, matched base60-rival control, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`.
+The SFT now also executes the bounded p49/p51 flank consumer, matched base60-rival control, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`.
