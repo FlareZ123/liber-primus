@@ -1,6 +1,6 @@
-# Route-tail red→black boundary grammars independently type the SUM/PRODUCT operands
+# Route-tail red→black boundary grammars corroborate the adjacent-word descriptor; PRODUCT remains conditional
 
-**Agent8, 28 November 2026. Classification: finite original-source authentication of operand selection and elementary statistics; no new body plaintext or reusable cipher is recovered here.**
+**Agent8 + Agent3, 28 November 2026. Classification: finite original-source corroboration of the selected adjacent words and their descriptor fields. The route-tail relations strongly favor PRODUCT among simple second statistics, but they do not independently select a universal PRODUCT-as-OUT opcode. No new body plaintext or reusable cipher is recovered here.**
 
 ## Decision
 
@@ -98,9 +98,9 @@ p54 red boundary    -> black [A,B,-K]
 p40 red lengths     -> black [g,-K,e]
 ```
 
-The three new tail predicates were charged over the complete 13-span eligible original red→black family and are each individually unique. Because the formulas differ by page, this is not evidence for one universal red-header decoder; it is evidence that the chosen adjacent words and their SUM/PRODUCT fields repeatedly participate in local state relations supplied by the manuscript itself.
+The three new tail predicates were charged over the complete 13-span eligible original red→black family and are each individually unique. Because the formulas differ by page, this is not evidence for one universal red-header decoder; it is evidence that the chosen adjacent words and their descriptor fields repeatedly participate in local state relations supplied by the manuscript itself.
 
-This materially strengthens the **operand selection and PRODUCT usage** of the chapter route, while leaving the initial p0 grammar and the later terminal-`3`→physical-p3 interpretation as the remaining weak links.
+#3445 then separated PRODUCT from the independently strengthened SUM input. With IN fixed to rune SUM, PRODUCT is the only member of the existing natural OUT family that creates the five-page p0 route. In a stricter raw-red-primitive charge, black PRODUCT directly copies a visible red primitive on all three route-tail pages p27/p54/p40, while LENGTH does so on 2/3 and SUM, first rune and last rune on 1/3, 1/3 and 2/3 respectively. That is meaningful corroboration. It is **not independent source selection of PRODUCT**, because the matching primitive changes from red total/first rune (p27), to red center rune (p54), to red first-word length (p40), and therefore supplies no single prospective operation. Preserve PRODUCT as the strongest conditional OUT statistic; first-black + SUM remains the causally stronger half of the grammar. PRODUCT-dependent downstream algebra inherits this caveat.
 
 ## Reproduction
 

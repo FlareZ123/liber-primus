@@ -1,6 +1,6 @@
 # LP2 original chapter-opening words: a five-stop GP29 sum→product navigation to the numeric-table chapter
 
-**Agent8, 28 November 2026. Classification: source-exact structural candidate; discovered retrospectively; not authenticated plaintext, cipher opcode, key or destination.**
+**Agent8 + Agent3, 28 November 2026. Classification: source-exact structural candidate. The first-black + SUM selector has a chronological p23 holdout; PRODUCT remains a strongly corroborated but not independently source-selected OUT statistic. No authenticated plaintext, cipher opcode, key or destination is recovered here.**
 
 ## Explicit, reversible-to-a-human page-selection proposal
 
@@ -55,6 +55,53 @@ The same integrated state packet also charges the typographic operand choice wit
 **Solved-heading holdout (an unsearched independent page-class check).** The original book includes two further **already-decrypted** red-headed physical pages, p56 `AN END` and p57 `PARABLE`. Add them as candidate destinations and apply **the identical frozen first-black-whole-word rule**. Their words are `MYLOH` (p56, five GP runes, IN sum18/OUT product16) and `LICE` (p57, four GP runes, IN sum24/OUT product20). Neither receives or emits an edge to the original nine-chapter graph: the p0→p8→p27→p54→p40 route, its unique recipient at each hop and its terminal stop all **survive** adding the solved pages. Retesting the **same 72 fixed word-operator pairs** across all eleven headings still finds **only one** five-chapter route beginning at p0: sum→product. The solved pages were known to exist before this analysis but this explicit extension was tested only **after** the route was discovered, so it is a bounded scope/robustness control rather than a prospective prediction of authorship. It prevents silently excluding the solved pages simply because their inclusion might spoil the itinerary.
 
 The second control's per-page candidate pool counts are `[11,6,10,7,2,5,13,8,5]` in the chapter order above. Results are fully deterministic for the recorded seed. Overlapping words, source-conditioned punctuation, nonuniform GP rune frequencies, the ability to try alternate checksum operations and the post hoc recognition of p40 as a destination mean the small conditional counts **cannot be interpreted as the probability that a real author intentionally encoded this route**. The exact fixed-marginal permutation gives a different null and deliberately prevents hiding the selection issue behind one deceptively small rate.
+
+## Independent PRODUCT source gate (#3445)
+
+The p23 chronological holdout distinguishes two questions that were previously bundled together. The **first adjacent black word** and its **rune-index SUM** have an independent causal check: the p23 first-black SUM is 25, matching the already-established `THE ONE RISE -> +2 -> p25` destination fixed before this chapter grammar existed. PRODUCT has no corresponding pre-existing prediction.
+
+Hold `IN = rune SUM mod29` fixed and charge only the already-declared nine-function word vocabulary as candidate OUT statistics. The longest simple path from book opener p0 is:
+
+```text
+OUT statistic       longest p0 path
+length              1
+rune PRODUCT         5   p0 -> p8 -> p27 -> p54 -> p40
+prime SUM            1
+prime PRODUCT        1
+first rune           3   p0 -> p27 -> p3
+last rune            2   p0 -> p23
+first+last           2   p0 -> p40
+first*last           1
+```
+
+So, **conditional on the independently strengthened SUM input**, PRODUCT is the sole natural statistic in that frozen family that recreates the five-page route. This is useful discrimination, but still retrospective route scoring.
+
+A second, source-only charge asks whether each black descriptor field directly copies a raw visible primitive of its opening red rubric. The predeclared primitive set is: total red-rune length, first rune, last rune, center rune when defined, and each printed red-word length. No derived arithmetic is allowed in this test. On the consecutive route-tail pages p27, p54 and p40:
+
+```text
+field       p27       p54       p40       direct primitive matches
+LENGTH      no        yes       yes       2/3
+SUM         no        yes       no        1/3
+PRODUCT     yes       yes       yes       3/3
+first rune  no        yes       no        1/3
+last rune   no        yes       yes       2/3
+```
+
+The PRODUCT matches are exact but **page-specific**:
+
+```text
+p27 PRODUCT 19 = red total length 19 = red first rune 19
+p54 PRODUCT 27 = red center rune 27
+p40 PRODUCT  3 = first red-word length 3
+```
+
+Across all nine chapter openings, PRODUCT directly matches at least one such primitive on 5/9 pages; LENGTH does so on 4/9, SUM on 2/9, first rune on 1/9 and last rune on 2/9.
+
+This makes PRODUCT the best-supported second statistic in the local source geometry, but it still does **not** provide one executable authored rule for choosing PRODUCT as OUT. The red field that reproduces the product changes from page to page, and the historical 2012 multiplication / 2013 COUNT precedents establish arithmetic operations only in different registers and contexts. With no common source cue selecting PRODUCT and no uninspected receiver whose PRODUCT consequence can be frozen without inventing another page-specific rule, the required prospective gate cannot be completed honestly.
+
+**Decision:** retain the exact sum→product route as the strongest finite structural candidate and retain the p27/p54/p40 PRODUCT coincidences as source-side corroboration. Treat **first-black + SUM** as the causally stronger half of the grammar; keep **PRODUCT-as-OUT conditional** until a common clue or genuinely fresh receiver selects it. PRODUCT-dependent Vieta and terminal constructions inherit that conditional status.
+
+Reproducer: `sims/lp2_chapter_product_independent_gate_sft.cjs`.
 
 ## P40 is a mirrored-section switch, not a p40-only STOP marker
 
