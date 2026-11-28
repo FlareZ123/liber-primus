@@ -47,6 +47,21 @@ The maxima in each column can belong to different row/orientation variants; they
 
 **Control:** the SFT constructs a full 12,956-rune source-native plant by repeating the genuine 95-rune solved p57 register, encrypting with eight newly drawn independent secret 29-symbol permutations under the *actual* p50 source table and section-specific predecessor feedback, and decoding all runes through the genuine inverse. It checks 12,956/12,956 exact recovery and confirms that the planted ciphertext's own assignment upper bounds include its authentic E and E+O frequencies. It also brute-forces three independent 3×3 assignment controls to verify the bound algorithm.
 
+### Nonparametric whole-book English control (same frozen capacity)
+
+Instead of relying only on the solved-Cicada 2,979-rune E/O percentage, a newly executed source-independent control greedily converts the pinned historical **Gibran / The Prophet**, **Shakespeare first300k**, and **Emerson essays** into GP29 symbol streams, using the published GP digraphs `TH NG EO OE AE IA EA`, and common historical Latin normalizations `K→C, Q→C, Z→S, V→U`. Nonalphabetic characters are removed. The threshold **2,213 combined E/O symbols** is the *unchanged original all-secret maximum with every original F and physical/section initial already free*; no threshold is fitted to these controls.
+
+For **every** full-length 12,956-rune contiguous window (overlapping windows, not independent draws), count E+O:
+
+| Independent English source | GP29 stream length | Full-length windows | Minimum E+O | Windows at/below 2,213 |
+|---|---:|---:|---:|---:|
+| The Prophet | 63,114 | 50,159 | **2,556** | **0** |
+| Shakespeare | 218,800 | 205,845 | **2,430** | **0** |
+| Emerson | 324,630 | 311,675 | **2,455** | **0** |
+| **All three** | 606,544 | **567,679** | **2,430** | **0** |
+
+The *separate* E-only bound of1,510 is weaker: many genuine English windows have E at/below it, so the strong discriminant is **joint E+O**, not E alone. These are exact censuses of these three committed source texts, not formal probabilities that all possible English compositions must resemble them. The corpus conversion is specified and asserted in the same original-rune SFT; it does not add any secret-alphabet search. A constrained or intentionally E/O-poor plaintext, a different inner register, or an independently supplied hidden state can still evade the bounded finding.
+
 ## What changes
 
 **Reject this complete section-addressed p50 predecessor lookup plus arbitrary secret section-local outer substitution architecture as the direct encoding of source-native GP English with the familiar solved-Cicada E/E+O content.** This is a newly typed original-source case, distinct from the older eight-phase numeric clocks; its result does not authorize further tuning of base digits, hidden substitution alphabets or arbitrary section offsets. The printed panel's purpose remains unknown.

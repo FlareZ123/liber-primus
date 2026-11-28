@@ -200,8 +200,77 @@ const maxima = {
 };
 assert.deepEqual(maxima, {strictE:1061,strictEO:1771,tolerantE:1510,tolerantEO:2213});
 assert(results.every(x => x.strict.free === 56 && x.tolerant.free === 512));
+
+function nativeEnglishWindowControl() {
+  // Independently supplied and pinned historical English controls.
+  // Unlike a single solved-text aggregate, every contiguous 12,956-rune window
+  // is required to exceed the all-key original EO upper bound.
+  const files = [
+    ['Gibran, The Prophet', 'resources/control/gibran_prophet_58585.txt'],
+    ['Shakespeare', 'resources/control/shakespeare_first300k.txt'],
+    ['Emerson', 'resources/control/emerson_essays_2944.txt']
+  ];
+  const gp = new Map(corpus.translit.map((v,i) => [v,i]));
+  const digraphs = ['TH','NG','EO','OE','AE','IA','EA'];
+  const norm = {V:'U', K:'C', Q:'C', Z:'S'};
+  const report = [];
+  for (const [label, filename] of files) {
+    const sourceText = fs.readFileSync(path.join(base, filename), 'utf8')
+      .toUpperCase().replace(/[VKQZ]/g, ch => norm[ch]);
+    const mapped = [];
+    for (let i = 0; i < sourceText.length;) {
+      let found = false;
+      for (const pair of digraphs) {
+        if (sourceText.startsWith(pair, i)) {
+          mapped.push(gp.get(pair));
+          i += 2;
+          found = true;
+          break;
+        }
+      }
+      if (found) continue;
+      if (gp.has(sourceText[i])) mapped.push(gp.get(sourceText[i]));
+      i++;
+    }
+    assert(mapped.length > source.length);
+    let E = 0, EO = 0;
+    const prefixE = [0], prefixEO = [0];
+    for (const x of mapped) {
+      E += Number(x === e);
+      EO += Number(x === e || x === o);
+      prefixE.push(E);
+      prefixEO.push(EO);
+    }
+    let minE = Infinity, maxE = -Infinity,
+        minEO = Infinity, maxEO = -Infinity,
+        underE = 0, underEO = 0;
+    for (let i = 0; i + source.length <= mapped.length; i++) {
+      const ce = prefixE[i + source.length] - prefixE[i];
+      const ceo = prefixEO[i + source.length] - prefixEO[i];
+      minE = Math.min(minE, ce);
+      maxE = Math.max(maxE, ce);
+      minEO = Math.min(minEO, ceo);
+      maxEO = Math.max(maxEO, ceo);
+      if (ce <= maxima.tolerantE) underE++;
+      if (ceo <= maxima.tolerantEO) underEO++;
+    }
+    const windows = mapped.length - source.length + 1;
+    assert.equal(underEO, 0);
+    report.push({source:label, file:filename, runes:mapped.length,
+      windows, E:{min:minE,max:maxE,atOrBelowBound:underE},
+      EO:{min:minEO,max:maxEO,atOrBelowBound:underEO}});
+  }
+  assert.deepEqual(report.map(x => [x.runes,x.windows,x.EO.min]), [
+    [63114,50159,2556],
+    [218800,205845,2430],
+    [324630,311675,2455]
+  ]);
+  return report;
+}
+const donorControls = nativeEnglishWindowControl();
+
 const plant = plantedControl();
 console.log(JSON.stringify({sectionLengths:lengths,sourceRunes:source.length,
   sourcePages:firstPage.size, cases:results.length, maxima,
   solvedReference:{runes:2979,E:380,O:256,note:'Separate authenticated LP1/LP2 solved profile; not an inference from this decoder'},
-  positive:plant, results},null,2));
+  positive:plant, donorControls, results},null,2));
