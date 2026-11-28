@@ -103,6 +103,54 @@ The existing independently frozen p23 red-span serializer can then turn that
 same p23 rubric into `THE ONE RISE`; this report does not re-derive or reinterpret
 that downstream instruction.
 
+## Held-out p25 receiver selected by p23 schedule endpoints
+
+The p23 state replay does more than confirm the p6→p23 page handoff. Its raw
+red lengths are
+
+`[K,a,e,g]=[2,6,3,5]`.
+
+The same already-frozen p23 serializer reads the second pair `[e,g]=[3,5]`
+as `RISE`, with the established literal displacement `g-e=+2`. Thus one
+RISE selects physical p25 independently of any p25 body value.
+
+Before looking at a p25 receiver output, the p23 rubric also supplies a natural
+two-value receiver signature: its **outer printed lengths** are
+
+`[K,g]=[2,5]`.
+
+The pre-existing p25 cube-side family contains 627 eligible five-rune
+predecessor/successor side objects. Under the already fixed outer H condition,
+exactly one object in the complete family has output `[K,g]=[2,5]`:
+
+```text
+p25 word30 predecessor
+source = [18,3,20,10,11,16]
+H(18,16) = [2,5] = [K,g]
+```
+
+This fact existed before the present p6→p23 schedule discovery, but the new
+route changes its causal role. The p25 page no longer needs the disputed
+`GOOD LUCK -> GP0 66 -> p50[66] -> 25` grammar in order to reach and type
+this receiver:
+
+```text
+p6 H(product) / H(length) -> p23 + [K,a,e,g]
+p23 THE ONE RISE          -> p25
+p23 outer lengths [K,g]   -> unique p25 side object
+g=5                       -> fixed cut5
+```
+
+Applying the pre-existing cube-side operation to that selected object gives
+`[3,10,16,3,8,20]`; cut5 yields sums `[40,20]`, which are authenticated
+signed-2016 indices `PATHS / MEANING`. This is still a reconstruction of a
+known structural route rather than a blind plaintext discovery, but it
+eliminates one previously conditional page-selection premise and selects the
+exact p25 receiver before its output is interpreted.
+
+Combined reproducer:
+`sims/lp2_p6_p23_p25_endpoint_receiver_sft.cjs`.
+
 ### Rejected secondary discriminator
 
 Applying the p23 all-forward length+H cardinal serializer directly to p6 gives
