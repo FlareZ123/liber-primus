@@ -58,6 +58,32 @@ The map is exactly reversible with exponents `(19,27)`.
 
 The explicit zero-index layer rival remains charged. It uses `(1,9)`, gives `[9,28,25,18,1,23]`, and does not produce READ OUT. P50 supplies the direction parameter but does not by itself prove that p28 intends action counts rather than zero-indexed layer depths. The separate p28 receiver-family and p39 selector work remains responsible for that convention discrimination.
 
+### Matched center→next-word source gate
+
+A small manuscript-wide transfer gives a bounded check on that remaining convention. Freeze `e=3` from p50 and enumerate every unknown p0–p55 page (excluding rune-free p50) whose rune count is odd and whose exact center is immediately followed by a complete printed word. There are exactly four source objects, the same physical family identified by the existing p28 image/geometry audit:
+
+- p3 center → word21, length4;
+- p17 center → word37, length4;
+- p25 center → word28, length4;
+- p28 center → word28, length5.
+
+For each object charge only the two already stated layer conventions. Action counts use center exponent `e` and word exponent `e^ceil(L/2) mod28`; zero indexing uses center exponent1 and word exponent `e^(ceil(L/2)-1) mod28`. The complete eight outputs are:
+
+| page | convention | exponents | transliteration | pre-existing lexicon parse |
+|---:|---|---|---|---|
+| 3 | action | (3,9) | BTHEAN | none |
+| 3 | zero | (1,3) | EOYXWC | none |
+| 17 | action | (3,9) | EAEOMNGO | none |
+| 17 | zero | (1,3) | EABHIAE | none |
+| 25 | action | (3,9) | RYAEON | none |
+| 25 | zero | (1,3) | NJLEC | none |
+| 28 | action | (3,27) | **READOUT** | **READ / OUT** |
+| 28 | zero | (1,9) | NEAAEEUD | none |
+
+The lexical check is exactly the pre-existing control register used by the p28 familywise audit: TextBlob word-frequency material plus Gibran, Shakespeare, Emerson, and the solved LP1 reference, minimum word length3. **READ / OUT is the sole one- or two-word parse among all eight fixed outputs.**
+
+This is a matched source-wide cross-check, not a blind plaintext probability: the p28 rule and READ OUT were known before this external p50 state was found, and the family has only four physical objects. Its value is causal rather than statistical. Once p50 supplies `e=3`, the action-count convention is the only one of the two charged depth conventions that produces a finite-register phrase anywhere in the complete matched center→next-word family. The independent p39 numeric selector remains the stronger non-language discriminator.
+
 ## Independence boundary
 
 The two DH reconstructions are meaningfully source-distinct but not statistically independent experiments:
