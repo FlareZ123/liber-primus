@@ -1,6 +1,6 @@
 # P40 PATHS/ROAD local inverse: conditional signed-index and DH-shell fits
 
-**Agent30, 19 November 2026; Agent45 source-selector update, 27 November; Critic calibration, 27 November. Classification: retrospective four-rune candidate. Under zero-based signed-source and physical-page indexing, PATHS selects one length/GP0 receiver, which is also compatible with ROAD. The p25 route regenerates the known PATHS key conditional on the chosen cut, index origins and H-shell roles. These choices have no independently authenticated joint selector. Neither the local inverse nor its exact replay establishes unknown plaintext.**
+**Agent30, 19 November 2026; Agent45 source-selector update, 27 November; Critic calibration, 27 November; upstream-origin update by Agent3, 28 November. Classification: retrospective four-rune candidate with a newly source-selected route origin.** The p28 D4 receiver now fixes zero-origin before the p25 all-cut consumer is evaluated, and its held-out THE fixes the corresponding project-page convention; this removes the prior origin fit from the p28→p29→p23→p25→p40 chain. PATHS still shares its length/GP0 state with ROAD, and the ordered p40 H-shell roles were recognized after the local inverse. Neither exact replay nor the new origin selector alone establishes unknown plaintext.
 
 ## 1. Source word40 selects physical p40
 
@@ -173,7 +173,7 @@ H^-1([14,8,3,26]) = [20,20,12,6],
 
 which decrypts the unique p40 state receiver exactly to PATHS.
 
-This gives an alternative source-motivated expression for the same numeric shell, but does not independently identify its ordered roles: `g^-1 mod p` and `-b mod29` are both deterministic functions of the same historical DH tuple and coincide here. The role choice was retrospective. The corrected cut control remains unique under zero-based source and page indexing; it does not select those origins (see the producer report for the canonical-token and origin-sensitivity audit). No general four-rune cipher or prospective plaintext follows.
+This gives an alternative source-motivated expression for the same numeric shell, but does not independently identify its ordered roles: `g^-1 mod p` and `-b mod29` are both deterministic functions of the same historical DH tuple and coincide here. The role choice was retrospective. The corrected cut control remains unique under zero-based source and page indexing. The later p28 D4 charge now selects those origins upstream for this route rather than allowing p40 to choose them: fixed D4 has one zero-origin signed-source phrase hit across all 2,699 canonical four-word windows and none under the one-based modulo-29 rival, while the held-out p28 THE supplies the zero-index source -> project-page typing. See the producer report for the complete origin-sensitivity audit. The ordered shell roles remain retrospective, so no general four-rune cipher or established plaintext follows.
 
 Detailed producer report: `im-results/lp2-p25-paths40-direct-consumer.md`.
 Reproducer: `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
@@ -234,7 +234,7 @@ subtract
 -> PATHS [13,24,2,15]
 ```
 
-Given the adopted index and state convention, the target/page/receiver can be specified before calculating its subtraction key. That dependency order is not historical blindness or evidence for the convention.
+Within the active p28→p40 route, the index/page convention is now independently selected before this receiver is reached. The target/page/receiver can therefore be specified without choosing an origin from the p40 result. This improves the causal status of the PATHS target but does not retroactively make the shell-role discovery blind.
 
 The shell is numerically `[14,8,3,26]`. After removing the GP0-forced `H3=-H2` relation, the remaining H-state criterion selects only p33 WILL and p40 PATHS among 62 unique four-rune source-state page/target pairs in the full 43×43 control. The original symbolic labeling `[-b,A,e,-e]` was recognized after the local inverse; the later p25/mayfly reconstruction expresses the same numeric vector as `[g^-1 mod p,A,e,-e]`. Its role choice is retrospective and both expressions use the same DH tuple.
 

@@ -1,6 +1,6 @@
 # P25 cut5: conditional reconstruction of the p40 PATHS local fit
 
-**Agent45, 27 November 2026. Classification: source-constrained producer/consumer reconstruction of an existing local plaintext candidate; no blind new plaintext claim.**
+**Agent45, 27 November 2026; route-origin update and sealed transfer checks by Agent3, 28 November 2026. Classification: source-constrained producer/consumer reconstruction of an existing local plaintext candidate; no blind new plaintext claim.** The p28 D4 origin charge now removes the source/page-origin choice from this causal route: the fixed p28 receiver selects zero-origin in the signed register and its held-out THE supplies the matching zero-index source -> project-page conversion. The p40 key-shell role order remains retrospective, so PATHS is still a candidate rather than established plaintext.
 
 ## Result
 
@@ -100,7 +100,11 @@ GP0 = 54.
 
 This control is stronger than merely observing that 40 happens to name PATHS: the alternative p25 cuts do not produce another consumer under the fixed zero-based source and zero-based page convention. The Critic corrected the initial hard-coded MEANING and DIRECTION encodings to the established signed-source GP encoder (including EA, ING and IO) and changed the parser to exclude seam fragments. The same one-hit result survives both corrections.
 
-Index sensitivity is material: using the identical eight integers with source-index/page-number origins (0,0), (0,1), (1,0), (1,1) yields respectively **1, 3, 4, 0 hit indices** (1, 5, 4, 0 complete groups). The (0,1) hits are LIES/p2, THE/p27, AND/p30; (1,0) hits are PATH/p3, THEIR/p20, ARE/p28, THE/p29. Thus the all-cut control is conditional on the previously adopted zero/zero convention; it cannot establish that convention itself. In particular the related p28 DIRECTION branch uses a one-based ordinal and physical-page convention. The four origin variants are a sensitivity check, not a new search for plaintext.
+Index sensitivity is material: using the identical eight integers with source-index/page-number origins (0,0), (0,1), (1,0), (1,1) yields respectively **1, 3, 4, 0 hit indices** (1, 5, 4, 0 complete groups). The (0,1) hits are LIES/p2, THE/p27, AND/p30; (1,0) hits are PATH/p3, THEIR/p20, ARE/p28, THE/p29.
+
+That sensitivity no longer leaves the active route free to pick the successful convention after seeing p40. Agent3's p28 D4 charge fixes the signed-source origin upstream: the fixed receiver has exactly one manuscript-wide contiguous source-phrase hit under zero-origin and zero under the one-based modulo-29 rival. The held-out p28 THE is authenticated source zero-index28 / one-based ordinal29 on project p28, supplying the corresponding zero-index source -> project-page conversion. Therefore the causal p28→p29→p23→p25 route enters this all-cut test with **(source,page)=(0,0)** already fixed. Under that convention, only `40=PATHS -> p40` has an exact-state receiver.
+
+This remains route-local. It does not establish a universal zero-origin dereference for p50 or every historical Cicada book coordinate.
 
 ## Exact upstream key
 
@@ -172,7 +176,9 @@ What remains unresolved:
 - assigning cube exponent3 to the boundary and reciprocal exponent27 to the five-rune p25 word is supported by the existing signed-cube operator and side-object work but remains a local two-part application;
 - p40 PATHS was known before this chain was assembled, so this is not a blind plaintext probability;
 - the same p40 word also decodes to ROAD under another compact DH shell [K,p−1,K,−K], and its fixed key is equally selective in the complete-word signed-vocabulary test; all six ROAD continuation hypotheses fail (see [alternative inverse](lp2-p40-paths-index40-local-inverse.md#roadpaths-ambiguity-and-actual-alternative-continuation-agent1-27-november)). This does not change the fixed p25-derived PATHS numerical key, but the locally fitted H-state relation cannot independently authenticate its target;
-- the mechanism has not yet predicted a fresh second receiver under frozen rules; the choice of signed-index origin, shell role order and left cut output must be locked before any such test;
+- the signed-index/page origin is now locked upstream by the p28 D4 route, while the p40 shell role order remains retrospective;
+- a prospectively frozen immediate-follower transfer `PATHS40 -> VERIFY41` under the same exact-state receiver grammar fails: p41's complete six-rune word sums are 124, 98, 68 and 92, never `GP0(VERIFY)=59`;
+- the older sealed p40 RISE(+2) -> p42 OPENPGP holdout likewise has no complete seven-rune p42 word with `GP0(OPENPGP)=75` (the two seven-rune sums are 101 and 144);
 - no long p40 body plaintext or general LP2 cipher follows.
 
 The next receiver must make a fresh prediction. The direct second-output six-rune receiver is now excluded in the finite scope below; another parameter sweep is not justified.

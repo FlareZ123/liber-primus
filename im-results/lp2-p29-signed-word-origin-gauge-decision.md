@@ -1,6 +1,6 @@
-# P29 numerical packet has an unresolved signed-word index origin
+# P29 numerical packets are locally origin-ambiguous; p28 D4 selects the route origin upstream
 
-**Agent30, 28 November 2026; Director #3306.** Exact previously discovered original p29 GP29 packets are compared under both possible origins in the *authentic signed 2016 sentence*. Both readings remain valid fragments of the same sentence. This is an original-source addressing decision, **not newly recovered unknown plaintext, a key, or a full decoder**. Reproduce with [the direct original and signed-source SFT](../sims/lp2_p29_signed_word_origin_gauge_sft.cjs).
+**Agent30, 28 November 2026; Director #3306; upstream resolution added by Agent3, 28 November 2026.** Exact previously discovered original p29 GP29 packets remain ambiguous when considered *only on p29*: both zero- and one-origin readings are valid fragments of the authentic signed 2016 sentence. A later independent p28 D4 charge now changes the route-level decision. With that receiver frozen, all 2,699 canonical four-word windows contain exactly one signed-source phrase hit under zero-origin and none under the one-based modulo-29 rival; the hit is p28 `[25,26,27,1] -> THEIR NUMBERS ARE THE`. Thus p29 does not discover the origin itself, but the p28→p29 route arrives with zero-origin already selected. This is an original-source addressing result, **not newly recovered unknown plaintext, a key, or a full decoder**. Reproduce the local p29 gauge with [its SFT](../sims/lp2_p29_signed_word_origin_gauge_sft.cjs) and the upstream discriminator with [the p28 D4 SFT](../sims/lp2_p28_numbers_direction_readout_sft.cjs).
 
 ## Fixed, distinct first-party sources
 
@@ -31,8 +31,34 @@ Let n be the project file page index. Under zero-based counting, project page n,
 
 Both yield exactly the same H4 packet [22,15,8,0]. Neither alignment is a separate confirmation of the source's indexing convention. A frozen next named source word SEEK (zero-index30, one-index31) similarly selects the identical original p30 zero-index30/one-index31 three-rune word [22,12,22]. This held-page word provides **no printed H2/H4 operand or complete typed GP29 receiver**. Inventing an odd-length H variant and treating all its values as source lexical indices would violate the original p29 H4's distinct p-1/b/A/F register typing (F=0 is a sentinel, not a valid one-based lexical index).
 
+## Upstream route resolution from p28 D4
+
+The p28 receiver supplies the missing discriminator without asking p29 to prefer the prettier phrase. Its raw D4 output is fixed before source lookup. Across all 2,699 canonical page-local four-word windows in the unchanged difference/difference, GP-first mode:
+
+~~~text
+zero-origin signed lookup       : 1 contiguous four-word source hit
+one-based modulo29 signed lookup: 0 hits
+~~~
+
+The sole zero-origin hit is the already fixed p28 object at offsets142..160:
+
+~~~text
+[25,26,27,1] -> THEIR NUMBERS ARE THE.
+~~~
+
+The maximally favorable one-based cyclic rival reads that same vector as `AND THEIR NUMBERS HELLO`, which is not a contiguous signed-source phrase. This charge was performed after #3354 made origin an explicit rival, so it is post-discovery evidence conditional on accepting D4, not a blind probability.
+
+The held-out p28 `THE` already supplies the typed page-label conversion: authenticated zero-index28 / one-based ordinal29 points to project p28 / physical ordinal29. Carry that same route-local register forward and the formerly gauge-ambiguous p29 values become:
+
+~~~text
+[22,23]       -> THE ROAD
+[24,25,26,27] -> AND THEIR NUMBERS ARE
+~~~
+
+This does **not** turn zero-origin into a universal rule for p50 English labels or unrelated consumers. It resolves only the causal route that enters p29 from the p28 D4 / THE-DIRECTION chain.
+
 ## Decision
 
-**The original p29 H2 phrase THE ROAD does not establish zero-based indexing.** The competing IS THE read under historically used one-based *book coordinates* is exact, and the p29/p50 six-number packet shifts along the same signed sentence without any falsifiable withheld text. The strongest missing input is an author-selected **word-index origin AND typed destination/receiver grammar**; the signed 2016 prose and original LP2 filenames do not choose one together. There is no authenticated original-cipher plaintext or new key. Do not extend the speculative navigation by opportunistically choosing zero origin to obtain ROAD and adding a NEXT operation to the one-origin case to obtain the same ROAD: this would be fitting two different parsers to one observed source.
+**P29 remains intrinsically unable to choose the source-word origin, but the active p28→p29 route no longer has that free choice.** Conditional on the independently charged p28 D4 receiver, zero-origin is selected upstream, so p29 H2 reads `THE ROAD` rather than `IS THE`, and the p29/p50 packet reads `AND THEIR NUMBERS ARE`. The same-numbered page/word alignment remains coordinate-invariant; no new p29 plaintext or key follows merely from relabeling it. Do not use this route-local resolution to rehabilitate p50's independently rejected English MAP/ROAD/DIRECTION labels.
 
 Related: [p29 selfindex packet](lp2-p29-direction-selfindex-packet.md), [p29/p50 quotient](lp2-p29-p50-double-root-signed-index-packet.md), [2012–2014 bookcode conventions](cicada-organizer-bookcode-consumption-convention-gate.md), [p28 original receiver closure](lp2-p28-numbers-direction-readout.md).
