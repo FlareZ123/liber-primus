@@ -158,6 +158,10 @@ Reproducer: `sims/lp2_p6_h_last_rune_crosshold_sft.cjs`.
 
 The ending packet `[g,K,g+K,F]=[5,2,7,0]` now has an executable static-state consumer. Read as p50 rows against independently selected column `K=2`, using p57-selected base59, it gives `[0S,0F,2Q,2l] -> [28,15,28,19]=[-1,b,-1,B]`. Rows/column were fixed before lookup; the Bob-pair pattern was recognized afterward. Across five title descriptor channels ×16 H presentations ×8 columns =640 configurations, this is the sole `[x,b,x,B]` readout; there is no `[x,a,x,A]` analogue. This is a local state-register consumer, not a body cipher.
 
+### Masked title reconstruction consequence
+
+The p50 consumer is stronger than a state-label coincidence. Using only `W1.last=17`, `W3.last=17`, and `W4.last=12`, the selected outer H rows `[g,F]=[5,0]` read `[-1,19]` from base59 columnK, recovering the withheld one-rune `W2=19`. Feeding that recovered19 into the inner H pair with `W3.last=17` gives rows `[K,g+K]=[2,7]`, which read `[15,-1]`, recovering W3's withheld penultimate rune15. The exact two-step procedure has one hit among2,623 eligible LP2 windows; across all8 columns and both radices (41,968 trials), only base59/columnK has any hit.
+
 ## Evidence boundary
 
 This result does **not** establish canonical H as a universal Liber Primus cipher or as a historically explicit operation before 2016. The exact arithmetic words "difference" and "sum" still do not appear in the p57 instruction; p50 supplies that discrimination locally. The result also does not authenticate the target-conditioned p30-p42 coordinate keys or recover new plaintext.
