@@ -136,8 +136,9 @@ assert.deepEqual(
 );
 assert.equal(signedWords[p21.h[3]], 'SEEKS');
 
-// Familywise control: all self-indexed H4 groups, all page insertion positions,
-// and forward/reverse order for H's first three coordinates.
+// Familywise control: all self-indexed H4 groups; omit every H coordinate
+// in turn, preserve or reverse the remaining H order, and try every page
+// insertion position. This charges the "unused SEEKS coordinate" explicitly.
 const self = [];
 for (let page = 1; page <= 55; page += 1) {
   if (page === 50) continue;
@@ -152,33 +153,38 @@ assert.equal(h4.length, 10);
 
 const sequenceHits = [];
 for (const row of h4) {
-  const orientations = [
-    { reversed: false, values: row.h.slice(0, 3) },
-    { reversed: true, values: row.h.slice(0, 3).reverse() },
-  ];
-  for (const orientation of orientations) {
-    for (let pos = 0; pos <= 3; pos += 1) {
-      const seq = orientation.values.slice();
-      seq.splice(pos, 0, row.page);
-      const consecutive = seq.every((value, i) => value === seq[0] + i);
-      if (consecutive) {
-        sequenceHits.push({
-          page: row.page,
-          reversed: orientation.reversed,
-          insertPosition: pos,
-          sequence: seq,
-          remaining: row.h[3],
-        });
+  for (let omittedIndex = 0; omittedIndex < 4; omittedIndex += 1) {
+    const kept = row.h.filter((_, index) => index !== omittedIndex);
+    const orientations = [
+      { reversed: false, values: kept },
+      { reversed: true, values: kept.slice().reverse() },
+    ];
+    for (const orientation of orientations) {
+      for (let pos = 0; pos <= 3; pos += 1) {
+        const seq = orientation.values.slice();
+        seq.splice(pos, 0, row.page);
+        const consecutive = seq.every((value, i) => value === seq[0] + i);
+        if (consecutive) {
+          sequenceHits.push({
+            page: row.page,
+            omittedIndex,
+            omitted: row.h[omittedIndex],
+            reversed: orientation.reversed,
+            insertPosition: pos,
+            sequence: seq,
+          });
+        }
       }
     }
   }
 }
 assert.deepEqual(sequenceHits, [{
   page: 21,
+  omittedIndex: 3,
+  omitted: 6,
   reversed: false,
   insertPosition: 1,
   sequence: [20, 21, 22, 23],
-  remaining: 6,
 }]);
 
 // The remaining source-word index 6 is SEEKS. Reproduce the already-established
@@ -301,7 +307,8 @@ console.log(JSON.stringify({
   familywise: {
     selfIndexedObjects: self.length,
     H4Objects: h4.length,
-    insertionOrientationsTestedPerObject: 8,
+    configurationsTestedPerObject: 32,
+    totalConfigurations: h4.length * 32,
     sequenceHits,
   },
   seeksClosure: {
