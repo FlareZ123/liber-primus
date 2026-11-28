@@ -122,6 +122,32 @@ assert.deepStrictEqual(matrix, [[17, 18], [24, 2]]);
 const matrixWords = flatten(matrix).map((index) => words[index].toUpperCase());
 assert.deepStrictEqual(matrixWords, ['THE', 'MAP', 'AND', 'PATH']);
 
+
+/** @param {[number, number]} element @param {number} r @param {number} t @param {number} limit @returns {number|null} */
+function multiplicativeOrder(element, r, t, limit = MOD * MOD - 1) {
+  /** @type {[number, number]} */
+  let value = [1, 0];
+  for (let exponent = 1; exponent <= limit; exponent += 1) {
+    value = mul(value, element, r, t);
+    if (value[0] === 1 && value[1] === 0) return exponent;
+  }
+  return null;
+}
+
+/** @param {number} n @returns {boolean} */
+function isSquareMod29(n) {
+  for (let x = 0; x < MOD; x += 1) {
+    if (mod(x * x) === mod(n)) return true;
+  }
+  return false;
+}
+
+const sourceDiscriminant = mod(sourceRelation.r * sourceRelation.r + 4 * sourceRelation.t);
+assert.strictEqual(sourceDiscriminant, 12);
+assert.strictEqual(isSquareMod29(sourceDiscriminant), false);
+const qOrder = multiplicativeOrder(EQ, sourceRelation.r, sourceRelation.t);
+assert.strictEqual(qOrder, MOD * MOD - 1);
+
 const factorRelations = [];
 for (let r = 0; r < MOD; r += 1) {
   for (let t = 0; t < MOD; t += 1) {
@@ -144,6 +170,18 @@ assert.strictEqual(factorRelations.length, 2);
 assert.deepStrictEqual(factorRelations.map(({ r, t, words: mapped }) => ({ r, t, words: mapped })), [
   { r: 3, t: 8, words: ['THE', 'MAP', 'AND', 'PATH'] },
   { r: 18, t: 12, words: ['EPIPHANY', 'THEIR', 'THEIR', 'THE'] },
+]);
+
+const factorOrders = factorRelations.map((item) => ({
+  r: item.r,
+  t: item.t,
+  discriminant: mod(item.r * item.r + 4 * item.t),
+  discriminantIsSquare: isSquareMod29(mod(item.r * item.r + 4 * item.t)),
+  order: multiplicativeOrder(item.EQ, item.r, item.t),
+}));
+assert.deepStrictEqual(factorOrders, [
+  { r: 3, t: 8, discriminant: 12, discriminantIsSquare: false, order: 840 },
+  { r: 18, t: 12, discriminant: 24, discriminantIsSquare: true, order: 14 },
 ]);
 
 let exactMapPhraseMultipliers = 0;
@@ -204,6 +242,10 @@ console.log(JSON.stringify({
   E_Q: EQ,
   multiplication_matrix: matrix,
   matrix_words: matrixWords,
+  source_discriminant: sourceDiscriminant,
+  q_multiplicative_order: qOrder,
+  q_nonzero_orbit_size: qOrder,
+  factor_orders: factorOrders,
   factor_relations: factorRelations,
   typed_receivers: typed.map((item) => {
     const output = mul(EQ, evaluate(item.source));
