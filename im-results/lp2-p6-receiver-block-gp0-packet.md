@@ -222,6 +222,142 @@ Thus the title supplies both raw and H-serialized forms without invoking a coord
 
 This remains an aggregate constraint: it predicts the four **block key sums**, not any page's complete ordered rune key. The grammar was recognized after the corridor, so it is a post-discovery mechanism candidate rather than plaintext authentication.
 
+## Page-level key-sum serializer
+
+The aggregate shift can be resolved further: the eleven **individual page-key sums** have compact p6 title/Fehu shells by the same printed block partition.
+
+The fitted local keys imply the following page sums, grouped by p6's `[q,1,q,K]` title lengths:
+
+```text
+block1 p32..p35: [4,0,0,25]
+block2 p36:      [10]
+block3 p37..p40: [7,0,28,0]
+block4 p41..p42: [5,18].
+```
+
+These are not merely short state labels. Each complete block vector is generated from literal p6 title fields under the already frozen H serialization.
+
+### Block1: the two q-word lengths plus Fehu
+
+The two q-length title words W1 and W3 have lengths 4 and4. Their sum is 8. With the visible Fehu `F=0`:
+
+```text
+shell1 = [len(W1)+len(W3), F, F, F]
+       = [8,0,0,0].
+
+H4^-1(shell1)
+= [4,0,0,25].
+```
+
+### Block2: negate the singleton title rune
+
+The singleton title word is:
+
+```text
+W2=[19].
+```
+
+Thus:
+
+```text
+keysum36 = -W2[0] mod29
+         = 10.
+```
+
+### Block3: W1 endpoint difference and singleton length
+
+The endpoints of W1 are 24 and17, so:
+
+```text
+Hdiff(W1 endpoints) = 24-17 = 7.
+len(W2) = 1.
+```
+
+Use the symmetric shell:
+
+```text
+shell3
+= [Hdiff(W1 endpoints), len(W2), -len(W2), Hdiff(W1 endpoints)]
+= [7,1,28,7].
+
+H4^-1(shell3)
+= [7,0,28,0].
+```
+
+### Block4: W1 second rune and W3 endpoint sum
+
+P6 exposes:
+
+```text
+W1[1] = 16
+Hsum(W3 endpoints) = 6+17 = 23.
+```
+
+Therefore:
+
+```text
+shell4 = [16,23].
+
+H2^-1(shell4)
+= [5,18].
+```
+
+Concatenating the four blocks predicts the complete page-key checksum tape:
+
+```text
+Ksum32..42
+= [4,0,0,25 | 10 | 7,0,28,0 | 5,18].
+```
+
+Its p6 block totals are exactly the inner-title shift already derived above:
+
+```text
+[4+0+0+25, 10, 7+0+28+0, 5+18] mod29
+= [0,10,6,23].
+```
+
+### Receiver prediction from signed-source GP0
+
+The authenticated source interval has page-aligned GP0 values:
+
+```text
+YOU WILL BE FOUND | GOOD | LUCK BEWARE FALSE PATHS | VERIFY OPENPGP
+ 1   28   6   7   |  6   |  2     1     19   25   |   1      17
+```
+
+Add the p6-predicted page-key sums:
+
+```text
+predicted receiver GP0
+= [5,28,6,3 | 16 | 9,1,18,25 | 6,6].
+```
+
+These are exactly the GP0 values of the independently prepared corridor receivers.
+
+For the residue/arity grammars, this checksum tape makes an operational prediction. P32 retains starts1/30 because both have GP0=5. P33, p34, p35, p37, p38 and p39 already have unique residue/type receivers and all meet their predicted GP0. P40's three residue/arity candidates have GP0 `3,25,27`, so the predicted value25 selects start71 uniquely without the address71 rule. The exceptional p36/p41/p42 receiver transformations independently land on GP0 `16,6,6`, matching the schedule.
+
+Thus source GP0 + p6 title/Fehu predicts a per-page receiver checksum across the entire eleven-page schedule.
+
+### Finite blockwise role charges
+
+Because the serializer was found after the fitted keys, charge each block against broad title-local role families.
+
+**Block1.** Choose an ordered pair of the four printed title-length roles, sum them, allow either sign, place the resulting value in any of the four H4-shell coordinates, and fill the other three with Fehu zero. The family has 128 labeled forms and 48 distinct output key-sum vectors. The observed block1 vector has one numeric shell, `[8,0,0,0]`; its four labeled aliases are only the repeated q-role choices `W1/W3`.
+
+**Block2.** Allow either sign of any of the eleven printed title-rune positions. The 22 labeled forms collapse to 14 numeric outputs. The observed value10 has exactly one labeled realization: negative W2's singleton rune19.
+
+**Block3.** Choose either endpoint-H coordinate from either q-word, choose any printed title-length role `u`, form `[x,u,-u,x]`, and grant all 24 coordinate permutations. The 384 labeled forms give 144 distinct output vectors. The observed block3 vector has one numeric shell, `[7,1,28,7]`; its two labeled hits are the identical permutation caused by repeated x, with x fixed to W1 endpoint difference7 and u fixed to W2 length1.
+
+**Block4.** Choose any of the eleven title-rune positions, either endpoint-H coordinate from either q-word, and either two-coordinate order. The 88 labeled forms give 71 distinct outputs. The observed `[5,18]` has exactly one labeled realization: shell `[16,23]` from W1[1] and the W3 endpoint sum.
+
+These counts are post-discovery finite-family diagnostics. They show that the published page-sum tape is not automatically produced by the obvious p6 title-local role freedoms, but they do not convert a retrospective checksum fit into an authenticated full key schedule.
+
+### Consequence
+
+The central key problem is now narrower than “find eleven arbitrary page keys.” P6 supplies a candidate **page-level key-sum scheduler** that predicts the GP0 delta for every scheduled page. A complete cipher still needs the within-page coordinate serializer: many equal-sum key vectors remain possible, and the exact local keys were originally obtained using known targets.
+
+A decisive next test should therefore preserve these eleven p6-predicted sums while deriving coordinate order/values from an authored source object, or prospectively apply the same checksum grammar to a genuinely fresh receiver family. The page-sum schedule should be retired rather than tuned if such a transfer fails.
+
 ## Evidence boundary and decision
 
 Preserve:

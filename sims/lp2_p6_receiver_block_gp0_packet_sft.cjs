@@ -26,6 +26,30 @@ function H(left, right) {
   return [mod29(left - right), mod29(left + right)];
 }
 
+/** @param {number[]} shell @returns {number[]} */
+function invertH4(shell) {
+  assert.equal(shell.length, 4);
+  const inv2 = 15;
+  const [d0, d1, s1, s0] = shell;
+  return [
+    mod29((d0 + s0) * inv2),
+    mod29((d1 + s1) * inv2),
+    mod29((s1 - d1) * inv2),
+    mod29((s0 - d0) * inv2),
+  ];
+}
+
+/** @param {number[]} shell @returns {number[]} */
+function invertH2(shell) {
+  assert.equal(shell.length, 2);
+  const inv2 = 15;
+  const [difference, sum] = shell;
+  return [
+    mod29((difference + sum) * inv2),
+    mod29((sum - difference) * inv2),
+  ];
+}
+
 /** @param {number[]} values @returns {number[][]} */
 function permutations(values) {
   const out = [];
@@ -343,6 +367,183 @@ for (const sign of [1, -1]) {
 }
 assert.equal(exactInnerLabels, 1);
 
+// Resolve the aggregate shift to all eleven page-key sums using literal
+// p6 title/Fehu shells.
+const block1KeySums = invertH4([
+  p6Title[0].length + p6Title[2].length,
+  F,
+  F,
+  F,
+]);
+assert.deepEqual(block1KeySums, [4, 0, 0, 25]);
+
+const block2KeySums = [mod29(-W2[0])];
+assert.deepEqual(block2KeySums, [10]);
+
+const w1EndpointH = H(W1[0], W1[W1.length - 1]);
+assert.deepEqual(w1EndpointH, [7, 12]);
+const block3Shell = [
+  w1EndpointH[0],
+  p6Title[1].length,
+  mod29(-p6Title[1].length),
+  w1EndpointH[0],
+];
+assert.deepEqual(block3Shell, [7, 1, 28, 7]);
+const block3KeySums = invertH4(block3Shell);
+assert.deepEqual(block3KeySums, [7, 0, 28, 0]);
+
+const block4Shell = [W1[1], w3EndpointH[1]];
+assert.deepEqual(block4Shell, [16, 23]);
+const block4KeySums = invertH2(block4Shell);
+assert.deepEqual(block4KeySums, [5, 18]);
+
+const pageKeySums = [
+  ...block1KeySums,
+  ...block2KeySums,
+  ...block3KeySums,
+  ...block4KeySums,
+];
+assert.deepEqual(pageKeySums, [4, 0, 0, 25, 10, 7, 0, 28, 0, 5, 18]);
+assert.deepEqual([
+  mod29(block1KeySums.reduce((a, b) => a + b, 0)),
+  block2KeySums[0],
+  mod29(block3KeySums.reduce((a, b) => a + b, 0)),
+  mod29(block4KeySums.reduce((a, b) => a + b, 0)),
+], keyBlockSums);
+
+const signedSourceGp0 = [1, 28, 6, 7, 6, 2, 1, 19, 25, 1, 17];
+const predictedReceiverGp0 = signedSourceGp0.map((value, index) =>
+  mod29(value + pageKeySums[index])
+);
+assert.deepEqual(predictedReceiverGp0, [5, 28, 6, 3, 16, 9, 1, 18, 25, 6, 6]);
+
+const preparedReceiverGp0 = [
+  p32.gp0,
+  p33.gp0,
+  p34.gp0,
+  gp0(p35),
+  gp0(p36),
+  gp0(p37),
+  gp0(p38),
+  gp0(p39),
+  p40Candidates[1].gp0,
+  gp0(p41),
+  gp0(p42),
+];
+assert.deepEqual(preparedReceiverGp0, predictedReceiverGp0);
+
+// Block1 finite role family.
+const block1Outputs = new Set();
+let block1Labels = 0;
+let block1TargetLabels = 0;
+for (let leftRole = 0; leftRole < p6Title.length; leftRole += 1) {
+  for (let rightRole = 0; rightRole < p6Title.length; rightRole += 1) {
+    const lengthSum = mod29(
+      p6Title[leftRole].length + p6Title[rightRole].length
+    );
+    for (const sign of [1, -1]) {
+      const value = mod29(sign * lengthSum);
+      for (let position = 0; position < 4; position += 1) {
+        const shell = [F, F, F, F];
+        shell[position] = value;
+        const output = invertH4(shell);
+        block1Labels += 1;
+        block1Outputs.add(output.join(","));
+        if (output.join(",") === block1KeySums.join(",")) {
+          block1TargetLabels += 1;
+          assert.equal(value, 8);
+          assert.equal(position, 0);
+        }
+      }
+    }
+  }
+}
+assert.equal(block1Labels, 128);
+assert.equal(block1Outputs.size, 48);
+assert.equal(block1TargetLabels, 4);
+
+// Block2 finite role family.
+const block2Outputs = new Set();
+let block2Labels = 0;
+let block2TargetLabels = 0;
+for (let index = 0; index < titleTape.length; index += 1) {
+  for (const sign of [1, -1]) {
+    const output = [mod29(sign * titleTape[index])];
+    block2Labels += 1;
+    block2Outputs.add(output.join(","));
+    if (output.join(",") === block2KeySums.join(",")) {
+      block2TargetLabels += 1;
+      assert.equal(index, 4);
+      assert.equal(sign, -1);
+    }
+  }
+}
+assert.equal(block2Labels, 22);
+assert.equal(block2Outputs.size, 14);
+assert.equal(block2TargetLabels, 1);
+
+// Block3 finite role family.
+const qWords = [p6Title[0].values, p6Title[2].values];
+const qEndpointRoles = qWords.flatMap((word, wordIndex) => {
+  const endpoint = H(word[0], word[word.length - 1]);
+  return endpoint.map((value, coordinate) => ({ wordIndex, coordinate, value }));
+});
+const block3Outputs = new Set();
+let block3Labels = 0;
+let block3TargetLabels = 0;
+for (const endpointRole of qEndpointRoles) {
+  for (let lengthRole = 0; lengthRole < p6Title.length; lengthRole += 1) {
+    const unit = p6Title[lengthRole].length;
+    for (const shell of permutations([
+      endpointRole.value,
+      unit,
+      mod29(-unit),
+      endpointRole.value,
+    ])) {
+      const output = invertH4(shell);
+      block3Labels += 1;
+      block3Outputs.add(output.join(","));
+      if (output.join(",") === block3KeySums.join(",")) {
+        block3TargetLabels += 1;
+        assert.equal(endpointRole.wordIndex, 0);
+        assert.equal(endpointRole.coordinate, 0);
+        assert.equal(lengthRole, 1);
+        assert.deepEqual(shell, [7, 1, 28, 7]);
+      }
+    }
+  }
+}
+assert.equal(block3Labels, 384);
+assert.equal(block3Outputs.size, 144);
+assert.equal(block3TargetLabels, 2);
+
+// Block4 finite role family.
+const block4Outputs = new Set();
+let block4Labels = 0;
+let block4TargetLabels = 0;
+for (let runeIndex = 0; runeIndex < titleTape.length; runeIndex += 1) {
+  for (const endpointRole of qEndpointRoles) {
+    for (const shell of [
+      [titleTape[runeIndex], endpointRole.value],
+      [endpointRole.value, titleTape[runeIndex]],
+    ]) {
+      const output = invertH2(shell);
+      block4Labels += 1;
+      block4Outputs.add(output.join(","));
+      if (output.join(",") === block4KeySums.join(",")) {
+        block4TargetLabels += 1;
+        assert.equal(runeIndex, 1);
+        assert.equal(endpointRole.wordIndex, 1);
+        assert.equal(endpointRole.coordinate, 1);
+        assert.deepEqual(shell, [16, 23]);
+      }
+    }
+  }
+}
+assert.equal(block4Labels, 88);
+assert.equal(block4Outputs.size, 71);
+assert.equal(block4TargetLabels, 1);
+
 const keyBlockH4 = [
   mod29(keyBlockSums[0] - keyBlockSums[3]),
   mod29(keyBlockSums[1] - keyBlockSums[2]),
@@ -376,6 +577,34 @@ console.log(JSON.stringify({
     candidateShifts: candidateKeyBlockSums,
     hits: innerHits,
     exactLabeledRealizations: exactInnerLabels,
+  },
+  pageKeySumSchedule: {
+    pageKeySums,
+    signedSourceGp0,
+    predictedReceiverGp0,
+    preparedReceiverGp0,
+    families: {
+      block1: {
+        labeled: block1Labels,
+        distinct: block1Outputs.size,
+        targetLabels: block1TargetLabels,
+      },
+      block2: {
+        labeled: block2Labels,
+        distinct: block2Outputs.size,
+        targetLabels: block2TargetLabels,
+      },
+      block3: {
+        labeled: block3Labels,
+        distinct: block3Outputs.size,
+        targetLabels: block3TargetLabels,
+      },
+      block4: {
+        labeled: block4Labels,
+        distinct: block4Outputs.size,
+        targetLabels: block4TargetLabels,
+      },
+    },
   },
   note: "p32 starts1 and30 have identical GP0=5, so this checksum does not replace the first-full-stop tie-break",
 }, null, 2));
