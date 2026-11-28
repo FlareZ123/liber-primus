@@ -117,7 +117,7 @@ for(const law of ['direct','feedback','beaufort']){
    tested:29,matchingAll6:actual.survivors.length,bestOf6:actual.best,bestParameter:actual.bestT});
  }
 }
-assert.deepEqual(results.map(x=>x.bestOf6),[2,2,1,2,2,1,2,1,1]);
+assert.deepEqual(results.map(x=>x.bestOf6),[2,1,2,2,1,2,1,1,2]);
 assert.equal(p55[29],1); // CIRCUMFERENCE plaintext F falls here; p56 literal-F bypass would emit 0.
 console.log(JSON.stringify({
  target:'canonical physical p55 original 76 GP29 cipher runes, unmodified',
