@@ -105,13 +105,14 @@ function experiment(raw,which){
  let C,truth=null;
  if(which===0){const P=read(n.sections.find(s=>s.name==="0_welcome").source_text).slice(130,251);truth=plant(P,7,12,817);C=truth.C}
  else if(which===1){const P=gp(lit[3].slice(lit[3].indexOf("Blessed are the poor"))).slice(1094,1215);truth=plant(P,1,1,993);C=truth.C}
- else if(which==="original"){C=c.pages.find(p=>p.page===32)?.indices??c.pages[32].indices}
+ else if(which==="original"||which==="original-full"){C=c.pages.find(p=>p.page===32)?.indices??c.pages[32].indices}
  else throw Error("which");
  if(C.length!==L||!C[A]||C[A+1]||C[A+2]||C.slice(A+3,B).some(x=>!x))throw Error("anchor shape");
+ if(which==="original-full"){const full=inverse(C);return {which,trainingRunes:total,C,full,fullText:full.best&&full.best.P.map(x=>c.translit[x]).join(" "),fullPerRune:full.best&&full.best.score/(1024*L)}}
  const fit=inverse(C.slice(0,cut)),held=fit.best?continuation(C,fit.best):null;
  const hit=truth&&fit.best&&held?.best?{param:fit.best.a===truth.a&&fit.best.b===truth.b,key:same(fit.best.key,truth.key),fit:fit.best.P.filter((p,i)=>p===truth.P[i]).length,held:held.best.P.slice(cut).filter((p,i)=>p===truth.P[cut+i]).length}:null;
  const render=P=>P.map(x=>c.translit[x]).join(" ");
  return {which,trainingRunes:total,C,truth,fit,held,hit,pass:!!(hit&&hit.param&&hit.key&&hit.fit>=75&&hit.held>=38),fitText:fit.best&&render(fit.best.P),heldText:held?.best&&render(held.best.P.slice(cut)),fitPerRune:fit.best&&fit.best.score/(1024*cut),heldPerRune:held?.best&&held.best.score/(1024*(L-cut))};
 }
 module.exports={experiment,files};
-if(require.main===module){const raw=files.map(f=>fs.readFileSync(path.join(__dirname,"..",f),"utf8"));const controls=[experiment(raw,0),experiment(raw,1)];console.log(JSON.stringify({controls,original:controls.every(x=>x.pass)?experiment(raw,"original"):null},null,2))}
+if(require.main===module){const raw=files.map(f=>fs.readFileSync(path.join(__dirname,"..",f),"utf8"));const controls=[experiment(raw,0),experiment(raw,1)];console.log(JSON.stringify({controls,original:controls.every(x=>x.pass)?experiment(raw,"original"):null,originalFull:controls.every(x=>x.pass)?experiment(raw,"original-full"):null},null,2))}
