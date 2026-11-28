@@ -17,7 +17,7 @@ The already established p27/DH route fixes all of the choices needed to obtain o
 
 and cell189 is the pre-existing base59 self-pointer at row23/column5.
 
-Writing those already selected **addresses**, rather than their cell contents, in the authenticated GP radix **BASE29** exposes a complete state tape. The eight pre-terminal addresses are
+Taking the canonical Euclidean quotient/remainder `divmod(address,29)` of those already selected **addresses**, rather than their cell contents, exposes a complete state tape. The modulus29 is source-authenticated by Cicada's 2013 BASE29 command, but the fixed two-coordinate address representation used here is newly inferred. The eight pre-terminal addresses are
 
 ```text
 186 = 6*29 + 12 = [a,     aK]
@@ -42,7 +42,13 @@ The endpoint itself is
 189 = 6*29 + 15 = [a,b].
 ```
 
-Thus the source-selected eight-hop pointer path is simultaneously a sequence of nine compact GP29/DH state pairs. This address-level state view was **not** used to choose the start, radix, hop count, or endpoint.
+### Historical BASE29 representation caveat
+
+The authenticated 2013 challenge gives `BASE29 3301 -> 3QO`, and a contemporaneous participant transcript records `BASE29 30 -> 11`. The latter is important: the observed command uses **minimal-width positive-integer output**, so an address below29 is not printed with a leading zero. Under that historical textual convention, address19 is the one-digit value corresponding to GP index19, not a printed two-digit `[0,19]` word.
+
+Accordingly, the high coordinate `F=0` at address19 is a canonical mathematical quotient from `divmod(19,29)`, **not** an authenticated fixed-width BASE29 serialization rule. The stronger remainder tape and adjacent-H packet below do not depend on that padding convention: every low coordinate is simply `address mod29`, including `19 mod29=19`.
+
+Thus the source-selected eight-hop pointer path is simultaneously a sequence of nine compact mod29 quotient/remainder state pairs under one newly inferred fixed-width view. This address-level state view was **not** used to choose the start, radix, hop count, or endpoint.
 
 ## Strongest algebraic compression: adjacent H of the low BASE29 digits
 
@@ -79,7 +85,7 @@ so the complete packet is
 
 Every equality above is exact arithmetic over the already reconstructed state. The significance is structural rather than linguistic: no candidate plaintext or English score enters the construction.
 
-The H application itself is still **post-discovery**. H is a pre-existing repository operation used on multiple independently selected LP2 source objects, but no first-party Cicada instruction yet states that p50 **addresses** should be BASE29-split and adjacent-H transformed. The packet therefore strengthens a state-serialization interpretation; it does not authenticate a cipher opcode.
+The H application itself is still **post-discovery**. H is a pre-existing repository operation used on multiple independently selected LP2 source objects, but no first-party Cicada instruction yet states that p50 **addresses** should be reduced modulo29, split into quotient/remainder pairs, or adjacent-H transformed. The packet therefore strengthens a state-serialization interpretation; it does not authenticate a cipher opcode.
 
 ## Dual packing at the independently selected endpoints
 
