@@ -1,6 +1,6 @@
 # Previous-ciphertext row-permutation capacity: exact 12-phase exclusion
 
-**Original-source, key-independent decision — Agent17, 28 November 2026.** A reversible sender whose only non-clock state is the **previous printed ciphertext rune**, and whose emission is one of at most **twelve shared phase-dependent arbitrary GP29 alphabet permutations**, cannot produce original LP2 p0–55 from **any** matching 12,956-rune GP-native window of the pinned Gibran, Shakespeare or Emerson references. **The exclusion remains exact even after freely exempting all 86 original repeated-rune event positions as special emissions.** Independently secret chart sets for each original chapter or large-dot interval also fail at one phase, even with the 86 repeated positions exempt. This grants all 29! possibilities for each of 29q secret chart rows, arbitrary plaintext alphabet relabeling, and free initial plaintext symbols at every original page or large-mark interval. The result is a **conditional finite-reference exclusion**, not an unknown plaintext or key recovery.
+**Original-source, key-independent decision — Agent17, 28 November 2026.** A reversible sender whose only non-clock state is the **previous printed ciphertext rune**, and whose emission is one of at most **twelve shared phase-dependent arbitrary GP29 alphabet permutations**, cannot produce original LP2 p0–55 from **any** matching 12,956-rune GP-native window of the pinned Gibran, Shakespeare or Emerson references (plus the independently tested Latin Vulgate GP register). **The exclusion remains exact even after freely exempting all 86 original repeated-rune event positions as special emissions.** Independently secret chart sets for each original chapter or large-dot interval also fail at one phase, even with the 86 repeated positions exempt. This grants all 29! possibilities for each of 29q secret chart rows, arbitrary plaintext alphabet relabeling, and free initial plaintext symbols at every original page or large-mark interval. The result is a **conditional finite-reference exclusion**, not an unknown plaintext or key recovery.
 
 ## Exact typed sender and source framing
 
@@ -140,6 +140,27 @@ All chapter- and marker-private minima are **greater than 86**. Physical-page-pr
 **Three additional full-length positive cryptograms:** use actual eight-chapter, 29-marker and 55-page boundaries; sample 29 independent secret GP29 permutation rows afresh for every frame; force the native rare NG rune to emit the previous ciphertext rune. Each emits precisely **100** ciphertext doublets, reverses **12,956/12,956** native rune positions, and passes all 29 original and exception-aware rank constraints. The standalone SFT checks the eight source chapter lengths directly against the unmodified manuscript transcript and exercises **seven** original-length inverse controls across both pooled and frame-private families.
 
 The causal consequence is narrow but actionable: **neither an independent chart set at every actual chapter nor another at every physical large punctuation is enough**, if previous printed C is the only within-epoch state and the intended prose resembles these GP-native sources. A different plaintext register, a genuinely additional evolving state, much more than 86 unreported exceptions, or at least separate physical-page chart sets would be needed to escape the bounded capacity test. No such alternative has yet supplied a source-selected key or unseen-page plaintext.
+
+## Latin-native independent register challenge
+
+The title *Liber Primus* makes non-English language assumptions worth challenging. The tracked [Latin Vulgate New Testament GP29 reference](../resources/control/latin-vulgate-gp-wholewords.txt) is **already encoded in canonical 0–28 rune indices** as one original Latin word per line (39,835 words, **204,802 GP29 rune indices**). Parse its documented alphabet 0123456789ABCDEFGHIJKLMNOPQRS directly and concatenate source words in their given order. **Do not run English QU/ING normalization on an already-GP-coded source.** This is a different, independently pinned register, not a recoding or reshuffling of the English controls. There are **191,847** additional full-12,956-rune contiguous Latin windows, making **753,907** total full-length tested windows across all four donor registers.
+
+Original-cipher, all-29-rank scans give **zero compatible Latin windows for every q=1…18** under physical-page and original large-mark clocks, both with ordinary shared alphabet charts and with all **86 original doublet sites wholly unconstrained**. In the same independent-chart per-frame test, **zero Latin windows** survives at q1 with eight chapter-private **or** 29 marker-private alphabets, again with/without 86 repeat exemptions. The q1 page-private experiment does not exclude any Latin windows by this *necessary* frequency test. The minimum **arbitrarily positioned** exceptional emissions necessary to evade majorization for even the most favorable Latin passage are:
+
+| Typed row-alphabet cipher | Minimum arbitrary exceptions, Latin |
+| --- | ---: |
+| Shared rows, page clock q1 | **4,504** |
+| Shared rows, page clock q12 | **1,508** |
+| Shared rows, marker clock q12 | **1,598** |
+| Eight chapter-private q1 chart sets | **2,480** |
+| 29 marker-private q1 chart sets | **1,611** |
+| 55 page-private q1 chart sets | 0 (frequency gate cannot decide) |
+
+Unlike the three English references, Latin is still excluded even with 18 shared phases. At q23 the original source capacity becomes weak enough to admit **15,593/191,847** Latin windows on physical pages and **3,347/191,847** under large marks without exception grants; with all 86 original repeats exempt these necessary-only survivors increase to **111,016** and **37,783**, respectively. No q23 key or plaintext is inferred from those numbers.
+
+A fresh **eighth full-length GP29 positive plant** is made from the *already indexed* Latin source, encrypted using independent hidden previous-C substitution rows and the original 29-marker frame under q1. The exact inverse recovers **12,956/12,956** rune positions and passes the same 29 normal and exceptional rank conditions. Thus the Latin exclusion is not a mismatch between the source's digit encoding and the cipher's GP29 indexing.
+
+**Interpretation:** this independently rejects a broad native Latin register for the stated predecessor-only cipher mechanisms, alongside three English sources, and makes it less plausible that changing the hidden plaintext language alone would rescue this specific cipher class. It does not exclude all Latin composition, altered punctuation or spelling, other GP languages, any genuine source key, or a different emission mechanism. Original LP2 remains unsolved.
 
 ## Decision and missing authentic step
 
