@@ -125,6 +125,49 @@ for(const [start,end] of physical)for(let i=start+1;i<end;i++)
 assert.equal(repeatEvents,86);
 const repeatCaps=Object.fromEntries(Object.entries(frames).map(([name, intervals])=>
   [name,Q.map(q=>capacity(original,intervals,q,repeatMask))]));
+// Stronger source-local alternative: the chart set may be independent at
+// each printed $-delimited chapter or each original large-mark interval.
+// Each frame has its OWN 29 predecessor-selected alphabet permutations.
+const sourceChapterLengths=load("resources/lp2-transcription.txt").split("$")
+  .slice(0,8).map(segment=>[...segment].filter(c=>/[\u16A0-\u16FF]/u.test(c)).length);
+assert.equal(JSON.stringify(sourceChapterLengths),
+  JSON.stringify([729,1145,1738,1894,1021,1433,1680,3316]));
+let chapterOffset=0;
+const chapters=sourceChapterLengths.map(n=>{
+  const span=[chapterOffset,chapterOffset+n];
+  chapterOffset+=n;
+  return span;
+});
+assert.equal(chapterOffset,N);
+const privateFrames={chapter:chapters,mark:marked,page:physical};
+function privateCapacity(tape, intervals, exceptionMask=null) {
+  const M=Array.from({length:intervals.length*A},()=>new Uint16Array(A));
+  let free=intervals.length,transitions=0;
+  for(let f=0;f<intervals.length;f++) {
+    const [start,end]=intervals[f];
+    for(let i=start+1;i<end;i++) {
+      if(exceptionMask && exceptionMask[i]){free++;continue;}
+      M[f*A+tape[i-1]][tape[i]]++;
+      transitions++;
+    }
+  }
+  assert.equal(free+transitions,N);
+  const rank=new Uint32Array(A);
+  for(const row of M) {
+    const sorted=Array.from(row).sort((x,y)=>y-x);
+    for(let k=0;k<A;k++)rank[k]+=sorted[k];
+  }
+  let sum=free;
+  const prefix=Array.from(rank,x=>(sum+=x));
+  assert.equal(prefix[A-1],N);
+  return {free,ranked:Array.from(rank),prefix};
+}
+const privateCaps=Object.fromEntries(Object.entries(privateFrames).map(
+  ([name,intervals])=>[name,{
+    ordinary:privateCapacity(original,intervals),
+    repeat:privateCapacity(original,intervals,repeatMask)
+  }]));
+
 const sourceFiles=[
   ["Gibran","resources/control/gibran_prophet_58585.txt",62492],
   ["Shakespeare","resources/control/shakespeare_first300k.txt",217106],
@@ -142,6 +185,9 @@ function scanReference(ref) {
   const survivors=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(0)]));
   const repeatSurvivors=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(0)]));
   const minArbitraryExceptions=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(Infinity)]));
+  const privateSurvivors=Object.fromEntries(Object.keys(privateFrames).map(k=>[k,0]));
+  const privateRepeatSurvivors=Object.fromEntries(Object.keys(privateFrames).map(k=>[k,0]));
+  const privateMinExceptions=Object.fromEntries(Object.keys(privateFrames).map(k=>[k,Infinity]));
   const minimum=Array(A).fill(Infinity);
   const windows=ref.gp.length-N+1;
   for(let start=0;start<windows;start++) {
@@ -162,6 +208,16 @@ function scanReference(ref) {
           Math.min(minArbitraryExceptions[name][qi],deficit);
       }
     }
+    for(const [name,cap] of Object.entries(privateCaps)) {
+      let gap=0,gapRepeat=0;
+      for(let k=0;k<A;k++) {
+        gap=Math.max(gap,cumulative[k]-cap.ordinary.prefix[k]);
+        gapRepeat=Math.max(gapRepeat,cumulative[k]-cap.repeat.prefix[k]);
+      }
+      privateMinExceptions[name]=Math.min(privateMinExceptions[name],gap);
+      if(gap===0)privateSurvivors[name]++;
+      if(gapRepeat===0)privateRepeatSurvivors[name]++;
+    }
   }
   const translate=surv=>Object.fromEntries(Object.entries(surv).map(([name,counts])=>
     [name,Object.fromEntries(Q.map((q,i)=>[String(q),counts[i]]))]));
@@ -175,7 +231,10 @@ function scanReference(ref) {
     minimum_ranked_plaintext_prefix:minimum,
     survivors:byFrame,
     repeat_exception_survivors:translate(repeatSurvivors),
-    minimum_arbitrary_exceptions_to_evade_majorization:translate(minArbitraryExceptions)
+    minimum_arbitrary_exceptions_to_evade_majorization:translate(minArbitraryExceptions),
+    private_charts:{ordinary_survivors:privateSurvivors,
+      repeat_exception_survivors:privateRepeatSurvivors,
+      minimum_arbitrary_exceptions:privateMinExceptions}
   };
 }
 
@@ -224,7 +283,48 @@ function plant(ref, frameName, q, seed) {
     top1_capacity:cap.prefix[0],original_top1_capacity:caps[frameName][Q.indexOf(q)].prefix[0]};
 }
 
+function plantPrivate(ref,frameName,seed){
+  const plain=ref.gp.slice(18000,18000+N),intervals=privateFrames[frameName];
+  assert.equal(plain.length,N);
+  const rand=rng(seed),rare=21;
+  const keys=Array.from({length:intervals.length*A},(_,st)=>{
+    const permutation=Array.from({length:A},(_,j)=>j);
+    for(let j=A-1;j>0;j--){const k=rand()%(j+1);[permutation[k],permutation[j]]=[permutation[j],permutation[k]];}
+    const predecessor=st%A,at=permutation.indexOf(predecessor);
+    [permutation[rare],permutation[at]]=[permutation[at],permutation[rare]];
+    return permutation;
+  });
+  const tape=new Array(N).fill(-1),repeats=new Uint8Array(N);
+  let repeatCount=0,expectedRare=0;
+  for(let f=0;f<intervals.length;f++){
+    const [start,end]=intervals[f];
+    tape[start]=plain[start];
+    for(let i=start+1;i<end;i++){
+      const row=keys[f*A+tape[i-1]];
+      tape[i]=row[plain[i]];
+      assert.equal(row.indexOf(tape[i]),plain[i],"incorrect private receiver at "+i);
+      if(tape[i]===tape[i-1]){repeats[i]=1;repeatCount++;}
+      if(plain[i]===rare)expectedRare++;
+    }
+  }
+  assert.equal(repeatCount,expectedRare);
+  const counts=new Uint16Array(A);
+  for(const x of plain)counts[x]++;
+  assert.ok(majorized(counts,privateCapacity(tape,intervals).prefix));
+  assert.ok(majorized(counts,privateCapacity(tape,intervals,repeats).prefix));
+  return {frame:frameName,seed,decoded_runes:N,repeated_output_neighbors:repeatCount,
+    true_key_all_29_ranks_valid:true};
+}
+
 const reports=refs.map(scanReference);
+for(const report of reports){
+  for(const scope of ["chapter","mark"]){
+    assert.equal(report.private_charts.ordinary_survivors[scope],0);
+    assert.equal(report.private_charts.repeat_exception_survivors[scope],0);
+    assert.ok(report.private_charts.minimum_arbitrary_exceptions[scope]>86);
+  }
+  assert.equal(report.private_charts.ordinary_survivors.page,report.window_count);
+}
 // A change at any <=86 positions can increase the conservative top-k
 // capacity by at most 86. Mark-framed q12 is impossible even with 86
 // exceptions at arbitrary unknown positions, not only printed doublets.
@@ -237,6 +337,8 @@ for(const report of reports)for(const survivors of Object.values(report.repeat_e
 const tests=[];
 for(const frame of Object.keys(frames))for(const q of [1,13])
   tests.push(plant(refs[0],frame,q,31337+q+(frame==="mark"?100:0)));
+const privateControls=Object.keys(privateFrames).map((frame,i)=>
+  plantPrivate(refs[0],frame,44001+i*123));
 const result={
   model:"C[i]=K[phase mod q,previous ciphertext](P[i]); shared arbitrary GP29 permutation per state; frame starts granted free",
   original:{runes:N,physical_rune_pages:physical.length,large_marks:nMarks,unique_mark_boundaries:boundaries.size,
@@ -253,6 +355,12 @@ const result={
         top2:rows[i].prefix[1],top5:rows[i].prefix[4],top10:rows[i].prefix[9],
         top16:rows[i].prefix[15]}]))])),
     all_562060_reference_windows_excluded_for_q1_through_q12:true},
+  private_frame_charts:{source_chapter_lengths:sourceChapterLengths,
+    model:"Each frame independently chooses its own 29 secret predecessor-ciphertext GP29 alphabet permutations, with free frame start and no other dynamic state",
+    capacities:Object.fromEntries(Object.entries(privateCaps).map(([name,c])=>
+      [name,{normal:{top1:c.ordinary.prefix[0],top10:c.ordinary.prefix[9],free:c.ordinary.free},
+             repeat_exempt:{top1:c.repeat.prefix[0],top10:c.repeat.prefix[9],free:c.repeat.free}}])),
+    planted_controls:privateControls},
   references:reports,
   controls:tests
 };
