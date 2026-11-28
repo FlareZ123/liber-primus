@@ -106,24 +106,42 @@ five-cell mask could match the same coverage.
 
 ## Red-ink consumption versus page-reset p50 source clock (Agent8, 28 November 2026)
 
-**Distinct operational decision, conditional on the existing original-input 0D correlation.** Instead of fitting any new p50 lookup, cipher, letter map or phase, compare eight explicitly typed possible clocks for the *same already-known* five literal `0[0-9]` table tokens, at row-major zero-based indices `[13,39,192,210,229]`. Count the left rune of each of the 12,901 within-page transitions, including the 86 adjacent equalities, using the original 12,956-rune p0–p55 tape. The pinned original-ink annotations mark 213 of those unsolved runes red (p0 heading is the corrected full 13 red runes); 458 runes have the original glyph F. Two continuous/page-reset clocks each count (i) all runes, (ii) skip red, (iii) skip literal F, or (iv) skip both. Literal F skipping is specifically motivated by the independent solved-p56 prime-shift rule. Source phase starts at zero. Skipped endpoints remain on the last consumed counter position.
+**New operational fork, conditional on the existing original-input `0D` association.** Keep the *same* five literal printed `0[0-9]` table cells at original row-major indices `[13,39,192,210,229]`, the predecessor/left-rune event convention, and literal source phase0. Do **not** tune a new table predicate, key, letter mapping, cipher or origin. Original p0–p55 has 12,956 runes, 12,901 within-physical-page transitions and 86 adjacent-equality events. Original-ink annotations distinguish 213 red runes; 458 symbols are literal ciphertext F. The solved-p56 prime-clock transparent-F precedent supplies a specific **rival** skip rule, not a license to assume ciphertext F equals plaintext F.
 
-| Frozen original source-clock rule | Phase-zero 0D opportunities | Phase-zero repeats | Highest repeats under **any** of 256 phases |
-| --- | ---: | ---: | ---: |
-| Continuous, all runes consumed | **251** | **10** | **10** (unique phase zero) |
-| Continuous, literal F skipped | 252 | 3 | 6 |
-| Continuous, red runes skipped | 248 | 1 | 6 |
-| Continuous, F and red skipped | 256 | 2 | 7 |
-| Restart each physical page, all runes | 254 | 1 | 6 |
-| Restart each page, F skipped | 243 | 2 | 7 |
-| Restart each page, red skipped | 247 | 2 | 6 |
-| Restart each page, F and red skipped | 250 | 1 | 7 |
+The original typography provides five explicit clock reset scopes: (1) book-continuous, (2) nine pictured/printed chapter starts, (3) 56 physical page starts, (4) 594 physical rune line starts, and (5) 2,896 complete printed group starts (word wraps and 32 physical-page carries correctly joined). Cross each with four typed consumption rules: all original runes count, literal F skips, physically red runes skip, or both skip. Each phase-zero clock is deterministic on **the original ciphertext and source boundaries**. Also grant all 256 candidate starting phases for a *generous adversarial diagnostic*; the alternative peak is not a new ciphertext-fitted positive.
 
-The ten exact full-clock repeat endpoints are global left-rune indices `[781,978,1037,2240,5074,5824,6080,6610,8384,8933]`, on physical pp3,4,4,9,20,24,25,27,34,36. They are not one localized patch. The source-motivated all-runes continuous clock thus retains the original 0D association, while **none** of the seven rivals reaches 10 hits even with all 256 possible phase origins. This includes the source-motivated transparent-F model: **if** the p50 source gate actually drives the cipher, its clock would need to count each printed F, unlike the authentically solved p56 prime-shift clock. The two halves give 7 and 3 hits under the full clock; the absence of later hits is a reason not to presume a stationary book-wide sender.
+| Source clock/reset | Rune consumption | Phase0 gate opportunities | Phase0 equality hits | Most raw hits under **any** of 256 phases |
+| --- | --- | ---: | ---: | ---: |
+| **Book continuous** | **All runes** | **251** | **10** | **10** (only phase0) |
+| Book continuous | Skip F | 252 | 3 | 6 |
+| Book continuous | Skip red | 248 | 1 | 6 |
+| Book continuous | Skip F+red | 256 | 2 | 7 |
+| Chapter reset | All runes | 247 | 2 | 6 |
+| Chapter reset | Skip F | 247 | 2 | 5 |
+| Chapter reset | Skip red | 246 | 1 | 6 |
+| Chapter reset | Skip F+red | 244 | 2 | 6 |
+| Page reset | All runes | 254 | 1 | 6 |
+| Page reset | Skip F | 243 | 2 | 7 |
+| Page reset | Skip red | 247 | 2 | 6 |
+| Page reset | Skip F+red | 250 | 1 | 7 |
+| Line reset | All runes | 583 | 8 | 12 |
+| Line reset | Skip F | 602 | 5 | 11 |
+| Line reset | Skip red | 570 | 8 | 12 |
+| Line reset | Skip F+red | 589 | 5 | 11 |
+| Printed-word reset | All runes | 3 | 0 | 25 |
+| Printed-word reset | Skip F | 1 | 0 | 24 |
+| Printed-word reset | Skip red | 3 | 0 | 25 |
+| Printed-word reset | Skip F+red | 1 | 0 | 24 |
 
-**What this establishes and does not:** These are exact counts and **relative discrimination of eight frozen clocks**, not authenticated key consumption or a decryption. The 0D subset and earlier leading-zero association were originally noticed after inspecting original repeat sites, and the table has no independently authored receiver. No phase/global-significance claim, unobserved-plaintext prediction or cipher state follows from this conditional alignment alone. Its use is narrow: if a future source binds p50 0D to the cipher's exception gate, model every physical rune (including literal F and red headings) in one continuing source clock before pursuing a transparent-F, red-skipping or page-restart alternative. Do not introduce more table-to-key schedules on this evidence.
+**Decision by comparable original-source phase, not post-selected raw event count.** The continuous all-rune clock retains 10/251 (3.984%) events while the all-rune chapter reset yields only 2/247, physical-page reset 1/254, and line reset 8/583 (1.372%). A simple conditional uniform-opportunity 86-of-12,901 hypergeometric test gives phase0 one-sided upper tails respectively `6.2844e-6`, `0.493`, `0.820` and `0.0402`; these are *model diagnostics, not corrected discovery probabilities* because the `0D` subset was originally noticed after ciphertext-event exploration. The printed-word reset is nearly type-incompatible at phase0: its earliest matching literal `0D` index is 13 and only three word-internal left endpoints are deep enough to reach it; **0/3** hit. It would need a separately authored initial phase or register rule.
 
-[Standalone deterministic source-data SFT](../sims/lp2_p50_small_decimal_rune_clock_sft.cjs) asserts all ten original sites and all eight models, using the canonical GP source tape, the printed tokens and the separate red-ink annotations. It is a clock-specific extension of this consolidated gate, not new unknown plaintext.
+For comparison, **do not misread the final column**: the freely rephased line-reset winner gets 12 hits at phase210 only because it has **1,130 gate opportunities (1.062%)**, whereas the freely rephased word-reset winner gets 25 at phase12 among **2,807 opportunities (0.891%)**. These are much weaker densities than 10/251 at the source phase and, unlike the book clock's unique phase0 maximum, do not coincide with an instruction fixing their origins. The long-run all-rune source-clock alignment is not the global winner in *raw hit count over grammars with wildly different numbers of opportunities*; its conditional enrichment is the relevant observation.
+
+The ten exact book-continuous hit left endpoints are zero-based global rune indices `[781,978,1037,2240,5074,5824,6080,6610,8384,8933]`, on physical pages3,4,4,9,20,24,25,27,34,36. They span distinct source ornament chapters. Their absence in p40–55 is **not independently exceptional**: those later pages have only 21 within-page equalities in total and 65 literal `0D` opportunities, giving about 0.41 expected hits under a region-matched independent-event null. Do not mistake this zero for evidence of a deliberate chapter regime switch.
+
+**Inference boundary:** this twenty-model census narrows the typed *operational grammar* **if and only if** an independent first-party clue eventually selects the original p50 `0D` cells as a cipher exception/address rule: count every original rune including red rubric and ciphertext F in one book-continuous clock. It rejects *simple* original chapter/page/line/word reset or F-transparent copies as alternative explanations for the exact phase0 10-site alignment, without excluding more complicated or hidden clocks. This is **not** an authenticated exception mechanism, plaintext-F identification, proof of chance significance, invertible codec, external key, or recovered unknown plaintext. The source table still gives no authored consumer; the original `0D` selector and origin were historically explored after observing ciphertext repeats. Do **not** spend effort constructing arbitrary table-to-key schedules solely from this statistic.
+
+[Exact original-source CommonJS SFT](../sims/lp2_p50_small_decimal_rune_clock_sft.cjs) now reconstructs all 20 scopes/consumption models from the canonical GP corpus, the pinned original full typography, the red-ink annotations and the printed 256 tokens, asserting the 86 original events, 2,896 group carries, 594 physical lines, and all model totals. The equivalent numerical core was independently executed in an actual V8 runtime; the standalone Node filesystem wrapper has not separately been executed in CI.
 
 ## What this changes
 
