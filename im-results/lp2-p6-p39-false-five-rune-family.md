@@ -116,6 +116,25 @@ Exact replay:
 =FALSE mod29.
 ```
 
+## Manuscript-wide exact-key receiver charge
+
+Hold only the already published exact p39 key `[19,12,19,2,5]`. Remove the red-span receiver selector and even word boundaries: scan all **12,736 contiguous five-rune windows** wholly contained in unknown physical pages, both additive signs, against all seven distinct authenticated five-rune source spellings.
+
+Across **178,304 comparisons**, there is exactly one authenticated event:
+
+~~~text
+p39 start132
+[19,7,10,17,23]
+- [19,12,19,2,5]
+= FALSE.
+~~~
+
+Thus the exact key, if accepted from its separate p6/warning-carrier derivation, leaves no receiver or segmentation ambiguity.
+
+The uniqueness itself is not independent key evidence. Across all `29^5 = 20,511,149` possible five-rune keys in the same screen, **176,640** keys have exactly one authenticated hit; 826 have two and four have three. The p39 key is one of the common singleton class.
+
+The companion p40 exact-key screen is also manuscript-wide singleton and lands on the immediately following physical page/source index as PATHS. Together the fixed keys recover the adjacent phrase `FALSE PATHS` at p39/p40, conditional on the two retrospective key grammars. See `im-results/lp2-p39-p40-false-paths-manuscript-wide-fixed-key.md`.
+
 ## Interpretation
 
 This materially upgrades the already source-selected p39 FALSE receiver. The p6 packet now explains local key shells at four, five, and six runes, plus the later p37 LUCK four-rune follow-on.

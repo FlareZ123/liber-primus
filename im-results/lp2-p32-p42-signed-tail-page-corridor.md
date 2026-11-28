@@ -183,6 +183,8 @@ The receiver was frozen prospectively as the first complete `g=5` word after p39
 
 with H5 key shell `[-b,-g,Kg,-b,B]`. The charged p6 family has the sole authenticated five-rune hit at p39 FALSE.
 
+Holding that exact key fixed and removing the receiver gate entirely gives the same sole event across all **12,736** five-rune manuscript windows, both signs and seven authenticated targets (**178,304 comparisons**). This removes receiver/segmentation ambiguity conditional on the exact key. The null boundary is explicit: **176,640** of all `29^5` keys are singleton keys in the same screen, so uniqueness does not authenticate the retrospectively recognized key grammar. Together with the analogous p40 scan, the two fixed keys land on adjacent physical pages/source indices and recover the adjacent authenticated phrase **FALSE PATHS**. See `im-results/lp2-p39-p40-false-paths-manuscript-wide-fixed-key.md`.
+
 ### p40 PATHS
 
 P6 independently overdetermines address71: `GP0(SEEKS)=71`, 71 black runes precede the p6 title, the title starts at71, and its first word has GP0=71. At the independently selected p40 page:
