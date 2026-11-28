@@ -78,8 +78,10 @@ assert(Math.abs(bound-0.00015103610769881385)<1e-14);
 let seed=0x33012016;
 function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
 function classify(a){
- const m=new Map();for(let r=0;r<32;r++)for(let c=0;c<4;c++){
+ const m=new Map(),sourceModPairs=new Set();for(let r=0;r<32;r++)for(let c=0;c<4;c++){
  const left=a[8*r+c],right=a[8*r+7-c],kk=[left,right].sort().join('|');
+ const l=value(left)%29,rr=value(right)%29;
+ sourceModPairs.add(Math.min(l,rr)*29+Math.max(l,rr));
  if(!m.has(kk))m.set(kk,[]);m.get(kk).push({r,c,left,right});
  }
  const doubles=[...m.values()].filter(es=>es.length>1);
@@ -92,10 +94,13 @@ function classify(a){
  if(x.left===y.right&&x.right===y.left){reverse++;
  if((x.r<10&&y.r>=23)||(y.r<10&&x.r>=23))outer++;}
  }
- return{count:doubles.length,target,reverse,outer};
+ let coverage=0;
+ for(let i=0;i<85;i++){const a=Math.min(p56[i],clear[i]),b=Math.max(p56[i],clear[i]);
+ if(sourceModPairs.has(a*29+b))coverage++;}
+ return{count:doubles.length,target,reverse,outer,coverage};
 }
-assert.deepEqual(classify(tokens),{count:1,target:1,reverse:1,outer:1});
-const tests=100000,shuffled=tokens.slice(),stats={repeat:0,single:0,target:0,reverse:0,outer:0,outerSole:0};
+assert.deepEqual(classify(tokens),{count:1,target:1,reverse:1,outer:1,coverage:23});
+const tests=100000,shuffled=tokens.slice(),stats={repeat:0,single:0,target:0,reverse:0,outer:0,outerSole:0,coverageGE:0,coverageSum:0};
 for(let trial=0;trial<tests;trial++){
  for(let i=255;i>0;i--){const j=rng()%(i+1);
  [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];}
@@ -103,8 +108,10 @@ for(let trial=0;trial<tests;trial++){
  if(x.count>0)stats.repeat++;if(x.count===1)stats.single++;
  if(x.target)stats.target++;if(x.reverse)stats.reverse++;
  if(x.outer)stats.outer++;if(x.outer&&x.count===1)stats.outerSole++;
+ stats.coverageSum+=x.coverage;if(x.coverage>=23)stats.coverageGE++;
 }
-assert.deepEqual(stats,{repeat:21750,single:19237,target:169,reverse:97,outer:14,outerSole:8});
+assert.deepEqual(stats,{repeat:21750,single:19237,target:169,reverse:97,outer:14,outerSole:8,
+ coverageGE:54146,coverageSum:2298961});
 console.log(JSON.stringify({
  sourcePair:repeats[0][1],p56First:{C:p56[0],P:clear[0]},
  radix60:receiver[60],radix59:receiver[59],
