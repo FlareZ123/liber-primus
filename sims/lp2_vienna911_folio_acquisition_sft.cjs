@@ -13,10 +13,7 @@ function label(x){return typeof x==='string'?x:Object.values(x||{}).flat().join(
 (async()=>{
  const records=[], canvases=[], folios=[];
  for(const url of [
-   'https://data.onb.ac.at/dtl/'+pid,
-   'https://iiif.onb.ac.at/presentation/REPO/'+pid+'/manifest',
-   'https://api.onb.ac.at/iiif/presentation/v3/manifest/REPO_'+pid,
-   'https://api.onb.ac.at/iiif/presentation/v3/manifest/'+pid
+   'https://api.onb.ac.at/iiif/presentation/v3/manifest/10048056'
  ]){
    const {b,...meta}=await get(url);let body=b?.toString('utf8')||'';
    let m;try{m=JSON.parse(body);}catch{}
