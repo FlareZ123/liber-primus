@@ -132,115 +132,170 @@ p32 arithmetic --------------------------+
 p47 ROAD/FOUND selection -> 32 ----------+
 ```
 
-### The selected p47 word47 is a held-out DH-state navigation packet
+### Selected p47 page-local group47 visibly reconstructs the DH state
 
-The literal page token has a second natural ordinal reading because p47 has 59 printed groups. Charge the two ordinary origins before inspecting any rune transformation:
-
-| interpretation of literal `47` | selected group | length | raw GP0 | GP-prime sum |
-|---|---|---:|---:|---:|
-| **one-based word47** | p47 index46, offset206 | **6** | **71** | **256** |
-| zero-based word47 | p47 index47, offset212 | 6 | 89 | 326 |
-
-The one-based group is source ciphertext `MUIIAJO` under GP transliteration. Its three untouched numeric metrics are independently meaningful:
+The literal cell115 token `47` has a natural page-local ordinal reading, but the transcription convention matters. Physical p47 shows **59 punctuation-delimited page-local groups/fragments**. Because the page begins and ends with words carried across page boundaries, only **57** are globally complete words. The literal ordinal selects:
 
 ```
-length       6   = DH a
+p47 page-local group47
+zero-based local index 46
+rune offsets 206..211
+GP0 indices [19,1,10,27,11,3]
+transliteration MUIIAJO
+```
+
+This selected group is itself a complete word; in the global complete-word census it is **p47 complete word46**. The zero-based local-group rival (local group48) is the six-rune object at offset212 with GP0 sum89 and GP-prime sum326.
+
+#### The printed line wrap is a direct four-field DH source
+
+The selected group visibly crosses the original line9 -> line10 wrap after its first rune:
+
+```
+line9   [19]
+line10  [1,10,27,11,3]
+split   1 | 5
+```
+
+Without applying H or a cipher, the four source-visible quantities are:
+
+```
+total group length       6  = a
+right-fragment length    5  = g
+left singleton rune     19  = B
+right-fragment GP0 sum  52 ≡ 23 mod29 = p
+```
+
+These four values reconstruct the complete DH register uniquely under the ordinary DH relations already present elsewhere in LP2:
+
+```
+p = 23
+g = 5
+a = 6
+B = 19
+
+b = unique x in 1..22 with 5^x mod23 = 19 = 15
+A = 5^6 mod23 = 8
+K = 19^6 mod23 = 2
+  = 8^15 mod23
+e = 15^-1 mod22 = 3
+q = e+1 = 4
+```
+
+Thus this one source-selected, visibly wrapped ciphertext group reconstructs
+
+```
+(p,g,a,b,A,B,K,e,q)
+= (23,5,6,15,8,19,2,3,4).
+```
+
+This is materially simpler than recognizing a post-hoc algebraic role label in an H packet.
+
+#### Manuscript-wide controls
+
+Use the canonical cross-page parser so carried page fragments cannot be mistaken for complete words.
+
+- Unknown p0-p55 contains **2,864 globally complete words**, of which **251** have length6.
+- The selected group is the only complete word with `(length, raw GP0, GP-prime)=(6,71,256)`.
+- Its canonical H6 `[16,19,12,8,12,22]` is also unique among the 251 complete six-rune words.
+- There are **388 globally complete words that cross a printed line wrap**, including **58** six-rune crossings.
+- The exact visible descriptor
+  `(total length6, split1|5, left GP0=19, right GP0 mod29=23)`
+  occurs **once**: p47 page-local group47 / complete word46 at offset206.
+
+The local page-group census gives the same selected object: among 2,928 page-local groups/fragments, its `(6,71,256)` triple is unique. The distinction is now explicit rather than calling all page-local fragments “complete words.”
+
+#### Independent numeric and H confirmations
+
+The selected group also carries two untouched scalar checks:
+
+```
 raw GP0      71  = GP0(SEEKS)
-GP-prime sum 256 = number of p50 table cells
+GP-prime sum 256 = p50 table size
 ```
 
-Across all **2,928 complete words** on unknown p0-p55, this exact `(length,GP0,prime)=(6,71,256)` triple occurs **once**, at this selected p47 word. There are only six words with prime sum256 at all; their raw GP0 values are 69,70,68,66,**71**,69.
-
-The GP0 value closes directly onto the already authenticated signed navigation route:
+Its canonical H6 remains a useful independent checksum:
 
 ```
-p47 word47 GP0 = 71 = SEEKS
-71 -- canonical p50 byte walk, DH p=23 --> p32
-p32 -> cell115 -> literal 47 -> p47 word47
+H6([19,1,10,27,11,3])
+= [16,19,12,8,12,22]
+= [K-b,B,aK,A,aK,p-1].
 ```
 
-The word's source position supplies a second conditional return. Its zero-based rune start is **206**. Original p50 **cell206 is the unique literal token `27`** in the entire 256-cell table. Thus the same selected word conditionally points back to the upstream p27 receiver if original rune offsets are reused as table addresses. Twelve manuscript words happen to begin at offset206, so the offset alone is not selective; the selected p47 word is uniquely fixed by the `(6,71,256)` triple and by the preceding cell115 page/ordinal cue.
+The word's zero-based rune start is **206**; original p50 cell206 is the table's unique literal token `27`, conditionally returning to the upstream p27 receiver.
 
-Most importantly, apply the same canonical outside-in H transform that was already fixed by the p27 receiver:
-
-```
-p47 word47 GP0 indices
-[19,1,10,27,11,3]
-
-H6
-[16,19,12,8,12,22]
-= [K-b, B, aK, A, aK, p-1].
-```
-
-This exact six-coordinate H output occurs **once among all 252 complete six-rune words** on unknown p0-p55: the selected p47 word47. The zero-based p47 word47 rival instead gives `[11,20,13,8,4,19]`.
-
-This is a genuine held-out rune-level prediction in the navigation branch: page and word were fixed by independent table routing before H inspected their symbols. It still does not decrypt the word into prose; it shows that the selected ciphertext group itself re-emits the same DH register.
-
-A final supporting table closure uses no new arithmetic family. Pair the H6 output adjacently as BASE29, reuse the already frozen zero-based mod256 table address rule, and inspect the first canonical pair:
+The GP0=71 equality closes through the independently authenticated signed route:
 
 ```
-[K-b,B] = [16,19] -> BASE29 integer 483 -> cell227 -> literal token 49.
+71 = GP0(SEEKS)
+71 -- canonical p50 byte walk, depth p=23 --> p32
+p32 -> cell115 -> literal47 -> p47 local group47.
 ```
 
-Physical p49 is the opening page of the 256-cell numerical panel. Cell227/token49 was independently present in earlier source-number work, so this is supporting convergence rather than a new operation selector.
+#### Immediate local group48: bounded negative plus unique H-difference
 
-The strongest current circuit is therefore:
-
-```
-p27 B/K receiver
-  -> H8/table convergence cell115 = WITHIN
-  -> literal 47
-  -> p47 one-based word47
-       length6 = a
-       GP0 71 = SEEKS
-       prime sum256 = table size
-       H6 = [K-b,B,aK,A,aK,p-1]
-       start206 -> cell206 literal27
-  -> SEEKS route returns p32
-  -> p32 -> cell115
-```
-
-The loop materially strengthens navigation and the repeated-H state architecture. It does **not** revive previously failed p32/p47 decoder families or establish that these selected ciphertext groups are plaintext.
-
-#### Immediate same-length neighbor: bounded negative plus unique H-difference
-
-The selected one-based word47 is immediately followed by another six-rune word, so one direct receiver is fixed without a phase or span choice. Using the selected word47 H6 packet as a six-rune GP29 additive key on word48 fails both natural directions:
+The immediately following page-local group48 is also six runes, fixing one same-length receiver. Repeating H6(group47) as a direct GP29 additive key fails both natural directions:
 
 ```
-word48 GP0 indices = [15,12,25,12,21,4]
+group48 GP0 indices = [15,12,25,12,21,4]
 
-word48 - H6(word47) = [28,22,13,4,9,11]  -> EAOEPRNJ
-word48 + H6(word47) = [ 2, 2, 8,20,4,26]  -> THTHHLRY
+group48 - H6(group47) = [28,22,13,4,9,11]  -> EAOEPRNJ
+group48 + H6(group47) = [ 2, 2, 8,20,4,26]  -> THTHHLRY
 ```
 
-Neither readout is source-native prose. Retire this exact direct additive transfer; do not tune phase, sign schedules, or permutations.
+Retire that exact additive transfer; do not tune phase, sign schedules, or permutations.
 
-The same fixed neighbor does, however, supply a structural holdout under the already canonical H transform:
+The fixed H-domain comparison is still a structural holdout:
 
 ```
-H(word47) = [16,19,12,8,12,22]
-H(word48) = [11,20,13,8, 4,19]
-
-H(word47) - H(word48) mod29
-          = [5,28,28,0,8,3]
-          = [g,-1,-1,F,A,e].
+H(group47) - H(group48) mod29
+= [5,28,28,0,8,3]
+= [g,-1,-1,F,A,e].
 ```
 
-There are only **19** adjacent complete-word pairs in unknown p0-p55 where both words have length6. Charging this exact ordered H-difference over all 19 leaves **one** hit: p47 word47 -> word48. This remains a state-architecture checksum, not plaintext recovery.
+Across the 19 adjacent **page-local** six-rune group pairs in unknown p0-p55, this exact ordered vector occurs once, at p47 group47 -> group48. This is state architecture, not plaintext.
 
 #### P49 supplies a canonical base60 return to cell115
 
-The selected p47 word47 H6 packet also fixes a return through p49 without reviving the old base59 fork. Its first adjacent BASE29 pair `[K-b,B]=[16,19]` gives integer483, zero-based `mod256` address227, whose original literal token is **`49`**.
-
-On p49, the already frozen recursive-SHED complete-word operation yields centers `[20,19,19,14,4]`, count `g=5`, middle `B=19`, and GP0 sum76. Under canonical base60, p50 cell76 is byte114; advancing the established byte pointer for exactly `K=2` edges gives
+The selected group47 H6 packet also fixes a return through p49. Its three adjacent BASE29 pairs map under the pre-existing zero-based `mod256` address rule to tokens:
 
 ```
-114 -> 197 -> 115 -> literal47.
+[16,19] -> 483 -> cell227 -> literal49
+[12, 8] -> 356 -> cell100 -> 1N
+[12,22] -> 370 -> cell114 -> 3H
 ```
 
-Across all physical p0-p55 pages, p49 is the **only** recursive-SHED page object whose center sum, base60 byte lookup, and K=2 pointer walk lands at115. P55, the only other five-core page, lands at46.
+Only the first canonical pair yields a literal legal LP2 page number.
 
-This closes a p47 -> p49 -> cell115 -> p47 loop under the leading radix. The older conditional base59 p49 output `DIRECTION` remains reproducible but is no longer needed for the continuation.
+On p49, the already frozen recursive-SHED complete-word operation yields centers `[20,19,19,14,4]`, count `g=5`, middle `B=19`, and GP0 sum76. Under canonical base60:
+
+```
+p50[76] = byte114
+114 -> 197 -> 115   (exactly K=2 pointer edges)
+cell115 -> literal47.
+```
+
+Across all physical p0-p55 pages, p49 is the only recursive-SHED page object whose center sum -> base60 byte -> K=2 pointer walk lands at115. Within p49, K=2 is the only reconstructed state depth that lands on any byte-sized solved-p57 word sum, and that hit is `115=GP-prime(WITHIN)`.
+
+The resulting circuit is:
+
+```
+p27 receiver
+ -> H8/p50 -> cell115/WITHIN -> literal47
+ -> p47 local group47
+      visible 1|5 wrap -> (B | g runes summing p)
+      total length a -> full DH reconstruction
+      GP0 71 = SEEKS
+      prime sum256 = table size
+      H6 unique state checksum
+      start206 -> cell206 literal27
+ -> H6 first pair -> literal49 -> p49
+ -> recursive SHED -> byte114 -> K=2 -> cell115
+ -> SEEKS route -> p32 -> cell115
+```
+
+This materially strengthens a human-facing navigation/state architecture. It does **not** establish plaintext for p47/p49 or revive previously failed generic decoders.
+
+Reproducer for the line-wrap/state result: `sims/lp2_p47_group47_linewrap_dh_state_sft.cjs`.
 
 ### Rival controls
 

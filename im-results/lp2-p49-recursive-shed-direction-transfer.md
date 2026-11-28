@@ -10,7 +10,7 @@
 
 A later independent route now resolves the most important ambiguity in this report.
 
-The p47 navigation circuit selects **physical p49 before inspecting p49's rune values**: selected p47 one-based word47 has canonical H6 `[16,19,12,8,12,22]`; its first adjacent BASE29 pair `[16,19]` is integer483, and the already-live zero-based `mod256` table address gives cell227, whose literal token is **`49`**.
+The p47 navigation circuit selects **physical p49 before inspecting p49's rune values**: selected p47 page-local group47 has canonical H6 `[16,19,12,8,12,22]`; its first adjacent BASE29 pair `[16,19]` is integer483, and the already-live zero-based `mod256` table address gives cell227, whose literal token is **`49`**.
 
 On that independently selected page, reuse the recursive-SHED operation fixed upstream by solved p57:
 
@@ -52,7 +52,7 @@ This is stronger than choosing base59 because it uses the independently selected
 
 ### Fixed H6-pair and state-depth controls
 
-The upstream p47 word47 H6 packet has three adjacent pairs. Under the same BASE29 -> `mod256` address rule they land on:
+The upstream p47 group47 H6 packet has three adjacent pairs. Under the same BASE29 -> `mod256` address rule they land on:
 
 | H6 pair | integer | cell | literal token |
 |---|---:|---:|---|

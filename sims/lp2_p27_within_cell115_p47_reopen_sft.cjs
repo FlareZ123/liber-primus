@@ -174,29 +174,29 @@ assert.deepEqual(returning,[
   {cell:254,token:"39",page:39},
 ]);
 
-// Held-out p47 one-based word47 metrics and canonical H6 packet.
-const p47Words=pageWords(47);
-assert.equal(p47Words.length,59);
-const p47OneBased47=p47Words[46];
-const p47ZeroBased47=p47Words[47];
+// Held-out p47 page-local group47 metrics and canonical H6 packet.
+const p47Groups=pageWords(47);
+assert.equal(p47Groups.length,59);
+const p47LocalGroup47=p47Groups[46];
+const p47LocalGroup48=p47Groups[47];
 const metrics=(w)=>({
   length:w.indices.length,
   gp0:w.indices.reduce((a,b)=>a+b,0),
   prime:w.indices.reduce((a,b)=>a+corpus.prime[b],0),
 });
-assert.deepEqual(metrics(p47OneBased47),{length:6,gp0:71,prime:256});
-assert.deepEqual(metrics(p47ZeroBased47),{length:6,gp0:89,prime:326});
-assert.equal(p47OneBased47.start,206);
+assert.deepEqual(metrics(p47LocalGroup47),{length:6,gp0:71,prime:256});
+assert.deepEqual(metrics(p47LocalGroup48),{length:6,gp0:89,prime:326});
+assert.equal(p47LocalGroup47.start,206);
 assert.equal(tokens[206],"27");
 assert.deepEqual(tokens.map((t,i)=>t==="27"?i:null).filter((x)=>x!==null),[206]);
 
-const h47=H(p47OneBased47.indices);
-const h47Zero=H(p47ZeroBased47.indices);
+const h47=H(p47LocalGroup47.indices);
+const h47Zero=H(p47LocalGroup48.indices);
 assert.deepEqual(h47,[16,19,12,8,12,22]);
 assert.deepEqual(h47Zero,[11,20,13,8,4,19]);
 
-let allCompleteWords=0;
-let sixRuneWords=0;
+let allPageLocalGroups=0;
+let sixRuneGroups=0;
 const metricTripleHits=[];
 const h47Hits=[];
 const prime256Words=[];
@@ -204,7 +204,7 @@ const start206Words=[];
 for(let p=0;p<=55;p+=1){
   for(let i=0;i<pageWords(p).length;i+=1){
     const w=pageWords(p)[i];
-    allCompleteWords+=1;
+    allPageLocalGroups+=1;
     const m=metrics(w);
     if(m.prime===256)prime256Words.push({page:p,index0:i,index1:i+1,start:w.start,...m});
     if(w.start===206)start206Words.push({page:p,index0:i,index1:i+1,...m});
@@ -212,15 +212,15 @@ for(let p=0;p<=55;p+=1){
       metricTripleHits.push({page:p,index0:i,index1:i+1,start:w.start});
     }
     if(m.length===6){
-      sixRuneWords+=1;
+      sixRuneGroups+=1;
       if(H(w.indices).join(",")===h47.join(",")){
         h47Hits.push({page:p,index0:i,index1:i+1,start:w.start});
       }
     }
   }
 }
-assert.equal(allCompleteWords,2928);
-assert.equal(sixRuneWords,252);
+assert.equal(allPageLocalGroups,2928);
+assert.equal(sixRuneGroups,252);
 assert.deepEqual(metricTripleHits,[{page:47,index0:46,index1:47,start:206}]);
 assert.deepEqual(h47Hits,[{page:47,index0:46,index1:47,start:206}]);
 assert.equal(prime256Words.length,6);
@@ -234,7 +234,7 @@ assert.deepEqual(h47Addresses,[227,100,114]);
 assert.equal(tokens[h47Addresses[0]],"49");
 
 // Immediate selected neighbor: bounded direct-additive negative and fixed H-difference.
-const p47Word48=p47Words[47];
+const p47Word48=p47Groups[47];
 assert.equal(p47Word48.indices.length,6);
 const add47=p47Word48.indices.map((x,i)=>mod29(x+h47[i]));
 const sub47=p47Word48.indices.map((x,i)=>mod29(x-h47[i]));
@@ -272,10 +272,10 @@ const output={
   lowDigit:{p32:summary(32),p47:summary(47),dualSquare:dual,len32Pages:len32},
   cyclePageTokens,
   wholeTableReturningDecimalTokens:returning,
-  selectedP47Word47:{start:p47OneBased47.start,metrics:metrics(p47OneBased47),h6:h47,startToken:tokens[p47OneBased47.start],h6PairNumbers:h47PairNumbers,h6Addresses:h47Addresses,firstH6Token:tokens[h47Addresses[0]]},
-  selectedP47Controls:{allCompleteWords,sixRuneWords,metricTripleHits,h47Hits,prime256Words,start206WordCount:start206Words.length},
+  selectedP47Word47:{start:p47LocalGroup47.start,metrics:metrics(p47LocalGroup47),h6:h47,startToken:tokens[p47LocalGroup47.start],h6PairNumbers:h47PairNumbers,h6Addresses:h47Addresses,firstH6Token:tokens[h47Addresses[0]]},
+  selectedP47Controls:{allPageLocalGroups,sixRuneGroups,metricTripleHits,h47Hits,prime256Words,start206WordCount:start206Words.length},
   p47ImmediateNeighbor:{word48:p47Word48.indices,h48,add47,sub47,adjacentHDifference,adjacentSixPairs,adjacentHDifferenceHits},
-  decision:"Cell115 literal47 selects p47 word47, whose unique (a,SEEKS,256) metrics and unique canonical H6 DH-state packet close the p27/p32/p47 navigation circuit. No plaintext is recovered; previously failed decoder families remain retired.",
+  decision:"Cell115 literal47 selects p47 page-local group47. Its local-group metrics and H6 are unique in the page-local census; a separate cross-page reproducer verifies the selected group is complete and that its visible 1|5 line wrap reconstructs the DH state. No plaintext is recovered.",
 };
 const json=JSON.stringify(output,null,2);
 console.log(json);

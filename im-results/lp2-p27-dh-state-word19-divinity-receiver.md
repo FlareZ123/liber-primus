@@ -192,28 +192,26 @@ Controls: `47` occurs at cells12 and115, so the numeral itself is not unique; th
 
 This reopens **navigation to p47**, not any previously failed p32/p47 decoder. See `im-results/lp2-p32-p47-lowdigit-road-map.md` and `sims/lp2_p27_within_cell115_p47_reopen_sft.cjs`.
 
-### Held-out p47 word47 state prediction
+### Held-out p47 group47 line-wrap state reconstruction
 
-Following the selected cell115 literal `47` to p47 and taking `47` as the ordinary one-based word ordinal fixes p47 word index46 **before reading its runes**. That word starts at rune offset206 and has untouched metrics
+Cell115 literal `47` selects the **47th page-local punctuation-delimited group** on p47 (local index46, offset206). P47 has 59 visible local groups/fragments but 57 globally complete words because its endpoints carry across pages; the selected group itself is complete and is global p47 complete-word46.
 
-```
-length 6 = a
-raw GP0 71 = GP0(SEEKS)
-GP-prime sum 256 = p50 table size.
-```
-
-The exact `(6,71,256)` triple is unique among all 2,928 complete unknown words. Its canonical H6 is
+The original printed line wrap splits the selected six-rune group as:
 
 ```
-[16,19,12,8,12,22]
-= [K-b,B,aK,A,aK,p-1],
+[19] | [1,10,27,11,3]
+  1  |       5 runes
 ```
 
-unique among all 252 complete six-rune words. The zero-based word47 rival fails both the numeric triple and the H packet.
+This directly gives `a=6`, `g=5`, `B=19`, and right-fragment GP0 `52 mod29 = p=23`. Ordinary DH closure then uniquely recovers
 
-The same word begins at offset206, and p50 cell206 is the table's unique literal token `27`, conditionally closing back to this p27 receiver. Its GP0=71 closes through the already authenticated `SEEKS` 23-step byte-pointer route to p32, which then steps to cell115 again.
+```
+b=15, A=8, K=2, e=3, q=4.
+```
 
-This is a held-out **state/navigation** prediction, not plaintext. It materially strengthens the interpretation that canonical H is exposing designed DH-state packets on source-selected ciphertext objects.
+The exact line-wrap descriptor is unique among all 388 globally complete line-crossing words (58 of length6) on unknown p0-p55. Independently, the same group's `(length,GP0,prime)=(6,71,256)` triple is unique among all 2,864 globally complete words, and its H6 `[16,19,12,8,12,22]` is unique among all 251 complete six-rune words.
+
+This is stronger than the previous H-only interpretation because page/group selection precedes rune inspection and the visible wrap itself reconstructs the primary DH inputs. See `im-results/lp2-p32-p47-lowdigit-road-map.md` and `sims/lp2_p47_group47_linewrap_dh_state_sft.cjs`.
 
 ## What this resolves
 

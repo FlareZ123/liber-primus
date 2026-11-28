@@ -66,8 +66,8 @@ byPage.set(50,[]);
 const state={g:5,K:2,B:19};
 const p47Words=byPage.get(47);
 assert.ok(p47Words);
-assert.equal(p47Words.length,59);
-const selected=p47Words[46];
+assert.equal(p47Words.length,57);
+const selected=p47Words[45];
 assert.equal(selected.length,6);
 assert.equal(selected.reduce((a,b)=>a+b,0),71);
 assert.equal(selected.reduce((a,b)=>a+corpus.prime[b],0),256);
@@ -167,7 +167,7 @@ assert.deepEqual(
 
 const output={
   classification:"source-constrained p47/p49/cell115 navigation closure; no plaintext",
-  p47:{wordOneBased:47,h6:h47,pairNumbers:h47PairNumbers,pairCells:h47PairCells,pairTokens:h47PairTokens,firstPairNumber,p49Cell,p49Token:tokens[p49Cell]},
+  p47:{pageLocalGroupOneBased:47,completeWordOneBased:46,h6:h47,pairNumbers:h47PairNumbers,pairCells:h47PairCells,pairTokens:h47PairTokens,firstPairNumber,p49Cell,p49Token:tokens[p49Cell]},
   p49:{...p49,base60Byte:grid.bytes[p49.sum],routeK2:walk(grid.bytes[p49.sum],state.K),terminalToken:tokens[115]},
   p55Control:{...p55,base60Byte:grid.bytes[p55.sum],routeK2:walk(grid.bytes[p55.sum],state.K)},
   controls:{
