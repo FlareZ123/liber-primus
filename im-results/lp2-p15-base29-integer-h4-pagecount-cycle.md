@@ -75,7 +75,20 @@ Exactly four consecutive pages have `quotient = physical page number`, and they 
 | **8** | 255 | **8N** | 8 | 23 |
 | **9** | 268 | **97** | 9 | 7 |
 
-There are **no other** self-indexing pages at base29 outside this run.
+There are **no other** self-indexing pages at base29 outside this run. The zero origin is source-authenticated rather than a repository convention: the archived original Stage11 index names its carriers `0.jpg` through `57.jpg` in order.
+
+Because each high digit already reproduces the visible filename stem, stripping it leaves:
+
+```
+6M -> M
+75 -> 5
+8N -> N
+97 -> 7
+
+M5N7
+```
+
+The corresponding digit vector is `[22,5,23,7]`. Its sum is **57**, selecting the solved terminal p57. Across all53 consecutive four-page windows, **only p6–p9** has remainder sum57, and only p6–p9 has middle remainder pair `[5,23]`. P57's clear PARABLE instruction then supplies a literal source operation: shed the outer circumference of `M5N7`, leaving `5N=[5,23]=[g,p]`.
 
 A radix charge over every integer base **2..60** is especially discriminating. Only base29 has a maximum self-indexing run of length four. Bases 13,14,16,24 and 55..60 produce maximum runs of only length two; every other tested radix produces no run of length two or more.
 
@@ -95,7 +108,7 @@ The four base29 low digits are `[22,5,23,7]`. Applying the same outside H4 gives
 H4([22,5,23,7]) mod29 = [15,11,28,0].
 ```
 
-Those residues admit current state labels, but the labels are deliberately not used as the evidence because the reconstructed state algebra is dense. The source-exact facts are the self-indexing run, radix uniqueness, and its location on p6–p9.
+Those residues have the locked state reading `[b,A^-1,-1,0]`. To charge the retrospective naming, keep only the four required quotient bins6,7,8,9 and enumerate every compatible ordered source-count choice: there are `3*7*6*32=4,032`, and exactly **one** produces H=`[15,11,28,0]` — the observed p6–p9 counts. The stronger evidence is still the source-visible self-index, `M5N7 -> 57 -> p57 -> 5N` route, because it does not require expression-rich state naming.
 
 ## The same operation on original page counts
 
@@ -148,6 +161,23 @@ These facts make the page-count map more useful as a candidate human navigation 
 ## Direct cipher-consumer gates
 
 The serializer does **not** license arbitrary body-key fitting. Two bounded direct interpretations were tested and rejected.
+
+### Literal M5N7 OutGuess password
+
+The original-carrier audit had left non-default OutGuess open only if an independent clue selected a password. The self-index route now does so without password search: use the exact uppercase token `M5N7`.
+
+The pinned upstream OutGuess0.4 runner first recovers the archived 2016 Cicada signed payload exactly from its authentic positive-control JPEG. It then applies `M5N7` to every original LP2 carrier p0–p57.
+
+All 58 images decode the same source-forced header `75cf2f65`, giving seed53109 and declared length25,903. All 58 produce a 25,903-byte output, but:
+
+- recognizable file/PGP/text flags: **0/58**;
+- entropy range: about **7.9916–7.9941 bits/byte**;
+- printable-byte fraction: about **0.3778–0.3884**;
+- all outputs share the same opening bytes inherited from the common source prefix.
+
+**Decision:** reject literal uppercase `M5N7` as an OutGuess0.4 payload password on the original LP2 carriers. Header consistency is known to be source-forced; do not broaden this negative into case, punctuation, or password variants.
+
+Reproducer: `sims/lp2_base29_selfindex_m5n7_outguess_sft.cjs`. Pinned runner: Actions run **46140839519**, PASS.
 
 ### Fixed-width 48-rune p15 keys
 
