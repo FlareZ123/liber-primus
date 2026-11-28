@@ -34,4 +34,29 @@ For each original first-rubric key, construct both signs of a 95-rune ciphertext
 
 ## Research consequence
 
-**Retire literal cyclic red-rubric keys under both direct historical GP29 additive signs and the exact known plaintext-F bypass, starting at the original following black rune.** This excludes a visually motivated, genuinely finite source-key family across every unknown chapter, and costs no arbitrary keyword search. It does **not** exclude red glyphs as metadata, steganographic selectors, source material for a different cipher family, key derivation from their prime sums, altered chapter clocks, or novel nonperiodic output-aware encryption. The ninth initial red rubric p54 specifically fails with both additive signs and F-transparent reachability even on its 299-rune body, so it cannot supply a literal chapter-start key that directly unlocks the terminal p55. Further red-title parameter permutations are unjustified until another first-party instruction specifies a different receiver.
+**Retire literal cyclic red-rubric keys with native alphabets under both direct historical GP29 additive signs and the exact known plaintext-F bypass, starting at the original following black rune.** This excludes a visually motivated, genuinely finite source-key family across every unknown chapter, and costs no arbitrary keyword search. It does **not** exclude red glyphs as metadata, steganographic selectors, source material for a different cipher family, key derivation from their prime sums, altered chapter clocks, or novel nonperiodic output-aware encryption. The ninth initial red rubric p54 specifically fails with both additive signs and F-transparent reachability even on its 299-rune body, so it cannot supply a literal chapter-start key that directly unlocks the terminal p55. Further red-title parameter permutations are unjustified until another first-party instruction specifies a different receiver.
+
+## Extension: arbitrary shared input/output alphabets (Agent10, 28 November 2026)
+
+The literal nine phase-zero rubrics are unchanged. This tests whether allowing two unrestricted, independently chosen GP29 permutations shared across the nine bodies can rescue the earlier native-alphabet failure; there is no independent authorial selector for these permutations. In the ordinary consuming case let (B(C)=A(P)+K_j\pmod{29}). Both signs are equivalent by negating the two arbitrary maps. Since the inner bijection (A) preserves symbol multiplicities, the largest two decoded symbol counts equal the largest two counts of (B(C)-K_j). For any unordered pair of target residues, common translation of (B) and reversal of the pair reduces it to {0,d}, d=1..14. Let H[c,k] be the exact observed ciphertext/key histogram. For each d maximize the sum over the 29 rows of H[c,B(c)]+H[c,B(c)-d] (indices modulo 29), with B all-different. A Hungarian assignment solves each of the 14 objectives exactly. Direct decoding with the winning B attains the bound. No n-gram heuristic or alphabet search approximation enters this ordinary result.
+
+| Scope | N | Maximum top-two counts, all alphabet pairs | Minimum top-two counts in contiguous native-GP Emerson / Shakespeare / Gibran windows |
+|---|---:|---:|---:|
+| All nine | 12833 | **1198** | 2491 / 2416 / 2526 |
+| First seven | 9534 | 927 | 1837 / 1753 / 1864 |
+| Last two | 3299 | 361 | 606 / 569 / 619 |
+| p0–2 | 716 | 114 | 118 / 115 / 122 |
+| p3–7 | 1129 | 160 | 191 / 186 / 201 |
+| p8–14 | 1717 | 211 | 307 / 284 / 308 |
+| p15–22 | 1883 | 239 | 338 / 312 / 339 |
+| p23–26 | 1005 | 148 | 168 / 165 / 179 |
+| p27–32 | 1414 | 190 | 248 / 234 / 255 |
+| p33–39 | 1670 | 207 | 295 / 275 / 302 |
+| p40–53 | 3000 | 326 | 551 / 516 / 561 |
+| p54–55 | 299 | 55 | 46 / 45 / 46 |
+
+The whole-body maximum 9.335% is below the minimum across all 562,429 same-length windows (18.826% overall minimum; 2416/12833). Individual p54–55 is not excluded by this statistic. Two secret-alphabet literary plants have actual top-two counts 2522 and 2619, and exact maxima 2537 and 2619. This is a rigorous donor-family exclusion, not a universal theorem that English or an arbitrary plaintext must meet these bounds.
+
+For literal plaintext F bypass, normalize A(F)=0; consuming a ciphertext c at phase j is legal iff B(c) differs from K[j], while a visible F may instead hold. Exact single-edge reachability across all nine chapters projects the possible shared B edges from 726 prefix edges to 634 full-body unary edges, retaining a perfect matching. The two secret-alphabet F-hold plants retain all true B edges (672 and 707 unary edges). These unary projections are necessary only: independent per-edge paths may not coincide. No original alphabet, hold path, or readable text is established. Do not extend the ordinary frequency exclusion to the F-hold model.
+
+Reproduce: [CJS exact bound and hold projection](../sims/lp2_nine_rubric_shared_alphabets_cap_sft.cjs), [raw result and source blob identifiers](lp2-nine-red-rubric-shared-alphabets-cap.json). Executed the study body in connected V8 on the actual repository corpus and three source controls; the standalone Node CLI was not separately executed. Ordinary extension is retired; any follow-up on bypass needs a joint path feasibility or calibrated recovery, rather than further ordinary alphabet fitting.
