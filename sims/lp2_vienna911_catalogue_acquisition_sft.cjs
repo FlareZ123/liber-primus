@@ -30,7 +30,10 @@ async function read(url) {
     'https://manuscripta.at/?ID=10237',
     'https://manuscripta.at/_scripts/php/msDescription2_m1_NEU.php?ID=10237&IDinitia=',
     sru('alma.title="In honorem sanctae crucis"'),
-    sru('alma.all="Cod. 911"')
+    sru('alma.all="Cod. 911"'),
+    'https://data.onb.ac.at/rec/AL00169257',
+    sru('alma.all="AL00169257"'),
+    'https://api.onb.ac.at/iiif/manifest/AL00169257'
   ];
   const records=[];
   for (const url of urls) {
