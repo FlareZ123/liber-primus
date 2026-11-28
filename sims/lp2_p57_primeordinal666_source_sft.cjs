@@ -52,6 +52,41 @@ assert.deepEqual(sums.map(n=>rank[n]),[87,205,173,201]);
 assert.equal(sums.reduce((s,n)=>s+n,0),3968);
 assert.equal(sums.reduce((s,n)=>s+rank[n],0),666);
 
+// A conditional original-book navigation reading of the SAME four source
+// ordinals: subtract the SHED sentence's ordinal from its two neighbors,
+// interpret the ordered differences as (physical LP2 page, 0-based rune).
+// Neither the subtraction nor the coordinate type is an authenticated
+// instruction. The original physical glyphs at the addressed interval are
+// exact: TH F | F O TH, with both F-zero symbols across a printed word break.
+const ordinalDifferences = [
+  rank[sums[1]] - rank[sums[2]], rank[sums[3]] - rank[sums[2]]
+];
+assert.deepEqual(ordinalDifferences,[32,28]);
+const targetPage=c.pages.find(p=>p.page===ordinalDifferences[0]);
+const targetRunes=targetPage.indices.slice(ordinalDifferences[1], ordinalDifferences[1]+5);
+assert.deepEqual(targetRunes,[2,0,0,3,2]);
+const fShedName=targetRunes.filter(r=>r!==0).map(r=>c.translit[r]).join("");
+assert.equal(fShedName,"THOTH");
+const p32Printed=transcription.split(/\n%\n/u)[32].replaceAll("/\n","");
+assert(p32Printed.includes("ᚦᚠ-ᚠᚩᚦ."));
+const allTHOTH=[];
+const zeroFDoublets=[];
+for(const page of c.pages.filter(p=>p.page<=55&&p.runic_count>0)){
+  const t=page.indices;
+  for(let i=1;i<t.length;i++){
+    if(t[i]===0 && t[i-1]===0) zeroFDoublets.push([page.page,i-1]);
+  }
+  const nonF=t.flatMap((r,i)=>r===0?[]:[{r,i}]);
+  for(let j=0;j+2<nonF.length;j++){
+    if(nonF[j].r===2 && nonF[j+1].r===3 && nonF[j+2].r===2){
+      allTHOTH.push([page.page,nonF[j].i,nonF[j+1].i,nonF[j+2].i]);
+    }
+  }
+}
+assert.deepEqual(zeroFDoublets,[[9,62],[29,87],[32,29],[36,69]]);
+assert.deepEqual(allTHOTH,[[32,28,31,32]]);
+
+
 // Two intentionally simple, matched-inventory diagnostics, never a discovery
 // p-value. Preserve the title; randomize full body runes at 30/30/28 lengths
 // or the 19 complete original source words at 7/6/6 word counts.
@@ -113,6 +148,15 @@ console.log(JSON.stringify({
   original:"LP2 p57 original printed title and three full-stop-delimited sentences",
   runeCounts:indexed.map(g=>g.length),
   primeSums:sums,primeOrdinals:sums.map(n=>rank[n]),
+  conditionalOrdinalDifferencePointer:{
+    orderedPhysicalPageAndRune:ordinalDifferences,
+    printedSourceRunes:"TH-F | F-O-TH",
+    sourceIndices:targetRunes,
+    literalZeroFErasure:fShedName,
+    unsolvedBookAllFErasureMatches:allTHOTH,
+    originalFFDoublets:zeroFDoublets,
+    authorialIndexingOrCipherNotEstablished:true
+  },
   ordinalTotal:666,solvedP56:{title:"AN END",primeSum:redPrimeSum,primeOrdinal:rank[redPrimeSum],digestBytes:p56Hex.length/2},sourceNativeRuneMatches:indexed.flat().length,
   exploratoryInventoryShuffle:{trials:n,seed:"0x3301666",tallies},
   recoveredUnknownPlaintext:0
