@@ -59,8 +59,10 @@ for($n=0; $n -le 74; $n++) {
     }
     $left  = Get-CropHash $bmp 0 600 380 2400
     $right = Get-CropHash $bmp 2020 600 380 2400
+    $leftInner = Get-CropHash $bmp 0 800 380 2000
+    $rightInner = Get-CropHash $bmp 2020 800 380 2000
     $center = Get-CropHash $bmp 700 600 1000 2400
-    $out += [pscustomobject]@{n=$n;left=$left;right=$right;center=$center}
+    $out += [pscustomobject]@{n=$n;left=$left;right=$right;leftInner=$leftInner;rightInner=$rightInner;center=$center}
   } finally { $bmp.Dispose() }
 }
 $out | ConvertTo-Json -Compress
@@ -99,25 +101,40 @@ assert.equal(centers.size,16);
 // Charge exact outer-frame runs across all 75 original scans rather than only
 // the target. The two final large unsolved runs begin at route nodes p27 and
 // p40; p40..p55 is the longest exact outer-frame run in the archive.
-const frameKey=row=>row.left+'|'+row.right;
-const frameRuns=[];
-let runStart=0;
-for(let i=1;i<=rows.length;i+=1){
-  if(i===rows.length||frameKey(rows[i])!==frameKey(rows[runStart])){
-    frameRuns.push({archiveStart:runStart,archiveEnd:i-1,length:i-runStart});
-    runStart=i;
+const runsByKey=keyFn=>{
+  const runs=[];
+  let runStart=0;
+  for(let i=1;i<=rows.length;i+=1){
+    if(i===rows.length||keyFn(rows[i])!==keyFn(rows[runStart])){
+      runs.push({archiveStart:runStart,archiveEnd:i-1,length:i-runStart});
+      runStart=i;
+    }
   }
-}
+  return runs;
+};
+const frameKey=row=>row.left+'|'+row.right;
+const innerFrameKey=row=>row.leftInner+'|'+row.rightInner;
+const frameRuns=runsByKey(frameKey);
+const innerFrameRuns=runsByKey(innerFrameKey);
 assert.ok(frameRuns.some(r=>r.archiveStart===44&&r.archiveEnd===56&&r.length===13));
 assert.ok(frameRuns.some(r=>r.archiveStart===57&&r.archiveEnd===72&&r.length===16));
 assert.equal(Math.max(...frameRuns.map(r=>r.length)),16);
 assert.equal(frameRuns.filter(r=>r.length===16).length,1);
 
+// Crop-sensitivity control: a more central border crop preserves every
+// non-singleton frame START and the entire p40..p55 section, but extends the
+// p15 run through p23. Therefore starts are robust; the p15 run END/length and
+// any length-difference state tape are crop-conditioned rather than uniquely
+// fixed by source geometry.
+assert.ok(innerFrameRuns.some(r=>r.archiveStart===57&&r.archiveEnd===72&&r.length===16));
+
 // LP2 p0 begins at archive 17.jpg, so archive57..72 == p40..p55.
 assert.deepEqual(expected.map(x=>x-17),Array.from({length:16},(_,i)=>40+i));
 
-// Exact LP2 frame-run state tape. Take every non-singleton exact outer-frame
-// run in printed LP2 order; this criterion is fixed by the pixel census alone.
+// Fixed-crop frame-run length tape. This remains exactly reproducible for the
+// declared y=600..2999 crop, but the inner-crop control above proves that its
+// p15 run length is not source-unique. Preserve it only as a conditioned
+// observation; downstream source claims must use the robust run STARTS.
 const lp2Runs=frameRuns
   .map(r=>({
     lp2Start:r.archiveStart-17,
@@ -126,6 +143,26 @@ const lp2Runs=frameRuns
   }))
   .filter(r=>r.lp2End>=0);
 const nonSingleton=lp2Runs.filter(r=>r.length>1);
+const innerLp2Runs=innerFrameRuns
+  .map(r=>({lp2Start:r.archiveStart-17,lp2End:r.archiveEnd-17,length:r.length}))
+  .filter(r=>r.lp2End>=0);
+const innerNonSingleton=innerLp2Runs.filter(r=>r.length>1);
+assert.deepEqual(
+  nonSingleton.map(r=>r.lp2Start),
+  [1,4,15,27,40,56]
+);
+assert.deepEqual(
+  innerNonSingleton.map(r=>r.lp2Start),
+  [1,4,15,27,40,56]
+);
+assert.deepEqual(innerNonSingleton,[
+  {lp2Start:1,lp2End:2,length:2},
+  {lp2Start:4,lp2End:7,length:4},
+  {lp2Start:15,lp2End:23,length:9},
+  {lp2Start:27,lp2End:39,length:13},
+  {lp2Start:40,lp2End:55,length:16},
+  {lp2Start:56,lp2End:57,length:2},
+]);
 assert.deepEqual(nonSingleton,[
   {lp2Start:1,lp2End:2,length:2},
   {lp2Start:4,lp2End:7,length:4},
@@ -197,7 +234,14 @@ console.log(JSON.stringify({
   leftCrop:{x:0,y:600,w:380,h:2400,hash:target.left},
   rightCrop:{x:2020,y:600,w:380,h:2400,hash:target.right},
   centerHashesDistinct:centers.size,
-  frameStateTape:{
+  cropSensitivity:{
+    outerNonSingleton:nonSingleton,
+    innerNonSingleton,
+    robustStarts:nonSingleton.map(r=>r.lp2Start),
+    p40SectionStable:true,
+    lengthTapeSourceUnique:false,
+  },
+  fixedCropFrameStateTape:{
     nonSingleton,
     runLengths,
     cyclicDiffs,
@@ -212,5 +256,5 @@ console.log(JSON.stringify({
     lp2Start:r.archiveStart>=17?r.archiveStart-17:null,
     lp2End:r.archiveEnd>=17?r.archiveEnd-17:null,
   })),
-  decision:'The six non-singleton LP2 frame runs are 2,4,7,13,16,2; their printed cyclic differences are [K,e,a,e,b,F], the unique qualifying cyclic order of this run-length multiset under the fixed primitive state vocabulary. P40 begins the final 16-page section, not a p40-only STOP marker.',
+  decision:'Robust visual facts are the six non-singleton frame STARTS [1,4,15,27,40,56] and the exact p40..p55 final section. The fixed y=600..2999 crop gives lengths [2,4,7,13,16,2] and state differences [K,e,a,e,b,F], but an equally natural inner crop extends p15 through p23, so the length tape is crop-conditioned and must not be treated as a source-unique serializer.',
 },null,2));
