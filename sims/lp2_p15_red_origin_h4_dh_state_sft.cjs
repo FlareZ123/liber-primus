@@ -121,6 +121,35 @@ for(let r=0;r<4;r++){
 }
 assert.deepEqual(matchingRows,[1]);
 
+// Charge all eight ordinary dihedral orientations of the printed 4x4 square.
+// The row/column predicates remain fixed; neither may be swapped or reversed.
+const rotate90=m=>m[0].map((_,c)=>m.map(row=>row[c]).reverse());
+const mirror=m=>m.map(row=>row.slice().reverse());
+const orientationResults=[];
+let rotated=grid.map(row=>row.slice());
+for(let turns=0;turns<4;turns++){
+  for(const mirrored of [false,true]){
+    const candidate=mirrored?mirror(rotated):rotated.map(row=>row.slice());
+    const rr=candidate.map(row=>row.map(x=>x%29));
+    const rh=rr.map(H4);
+    const ch=Array.from({length:4},(_,c)=>
+      H4(Array.from({length:4},(_,r)=>rr[r][c])));
+    const rows=[];
+    const cols=[];
+    for(let r=0;r<4;r++) if(rh[r][0]===g&&rh[r][3]===Binv) rows.push(r);
+    for(let c=0;c<4;c++)
+      if(ch[c].slice(1).every((x,i)=>x===expectedTail[i])) cols.push(c);
+    orientationResults.push({turns,mirrored,rows,cols,
+      joint:rows.length===1&&cols.length===1});
+  }
+  rotated=rotate90(rotated);
+}
+assert.equal(orientationResults.length,8);
+assert.deepEqual(
+  orientationResults.filter(x=>x.joint).map(x=>[x.turns,x.mirrored,x.rows,x.cols]),
+  [[0,false,[1],[1]]]
+);
+
 // Their intersection predicts row2/column2 (1-based) before consulting color.
 const predicted={row:matchingRows[0],col:matchingCols[0]};
 assert.deepEqual(predicted,{row:1,col:1});
@@ -165,6 +194,7 @@ console.log(JSON.stringify({
   gridResidues:residues,
   H4Rows:rowH,
   H4Columns:colH,
+  dihedralOrientationResults:orientationResults,
   predictedSpecialCell:{
     row1Based:predicted.row+1,
     column1Based:predicted.col+1,
