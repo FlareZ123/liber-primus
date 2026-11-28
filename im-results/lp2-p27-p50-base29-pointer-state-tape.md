@@ -142,6 +142,43 @@ before any modular exponentiation is performed. The standard DH equations then r
 
 This is a stronger description than saying row23/column5 is numerically suggestive: **the row/column coordinates and the historically authenticated BASE29 digits divide the same unique fixed-point address into the four DH input parameters.** The remaining unsupported step is the composition itself—no first-party sentence yet says to BASE29-encode a p50 address.
 
+## The start and sink are the same `+e` move in both coordinate systems
+
+The two p27/DH endpoint addresses have a stronger relation than merely being three integers apart.
+
+Under the visible 32×8 row-major table coordinates:
+
+```text
+186 = (p,K) = (23,2)
+189 = (p,g) = (23,5)
+g - K = 3 = e
+```
+
+Under Euclidean BASE29 coordinates:
+
+```text
+186 = (a,aK) = (6,12)  -> historical text 6C
+189 = (a,b)  = (6,15)  -> historical text 6F
+b - aK = 3 = e  (mod29)
+```
+
+So the same displacement `+e` transforms the start into the unique fixed-point sink while preserving the first coordinate in **both** representations:
+
+```text
+(p,K)  -- +e on coordinate2 -->  (p,g)
+(a,aK) -- +e on coordinate2 -->  (a,b)
+```
+
+This gives a particularly simple cross-radix recovery of the private pair. The pointer route had already selected 186→189 before this BASE29 reading; `BASE29 186 = 6C` exposes `a=6` and `aK=12`, while `BASE29 189 = 6F` exposes `a=6` and **`b=15`**. Those are exactly the private exponents independently reconstructed from p27/p28 layout work.
+
+The eight pre-terminal quotient values add one complementary state fact. They are
+
+```text
+[6,0,1,3,2,5,7,8],
+```
+
+which are the eight distinct values in `0..8` **except 4**. The omitted value is exactly the independently established p7 checksum state `q=4`; q nevertheless appears explicitly as the low digit of address33 = historical BASE29 `14`. This omission is retained as a post-discovery structural observation, not as an independently selected opcode.
+
 ## State-label-free structural control
 
 A stronger control does not name any DH value. For every possible start, take the same eight-hop walk and ask only whether the eight pre-terminal addresses have:
@@ -281,4 +318,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`.
