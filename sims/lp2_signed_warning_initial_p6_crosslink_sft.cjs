@@ -212,6 +212,39 @@ for(const {key} of p39CarrierKeys.values())for(const sign of [-1,1]){
   if(target)p39CarrierHits.push({key,sign,target,plain});
 }
 assert.deepEqual(p39CarrierHits,[{key:[19,12,19,2,5],sign:-1,target:'FALSE',plain:signed[39].gp}]);
+// Broad direct warning-carrier key family for the page-selected p36 GOOD inverse.
+const p36CarrierKeys=new Map();
+const p36ExactLabels=[];
+let p36LabeledWithoutSign=0;
+for(let omit=0;omit<carrierWarning.length;omit++){
+  const chosen=carrierWarning.filter((_,index)=>index!==omit);
+  for(const order of perms(chosen)){
+    for(const f0 of fieldNames)for(const f1 of fieldNames)for(const f2 of fieldNames)for(const f3 of fieldNames){
+      const fields=[f0,f1,f2,f3];
+      for(let mask=0;mask<16;mask++){
+        const key=order.map((word,index)=>mod29((((mask>>index)&1)?-1:1)*word.fields[fields[index]]));
+        p36LabeledWithoutSign++;
+        p36CarrierKeys.set(key.join(','),{key});
+        if(key.join(',')==='25,19,27,26')p36ExactLabels.push({omitted:carrierWarning[omit].label,order:order.map((word)=>word.label),fields,mask,key});
+      }
+    }
+  }
+}
+assert.equal(p36LabeledWithoutSign*2,983040);
+assert.equal(p36CarrierKeys.size,191616);
+assert.equal(p36ExactLabels.length,2);
+const p36Prepared=[2,22,1,20];
+const p36CarrierHits=[];
+for(const {key} of p36CarrierKeys.values())for(const sign of [-1,1]){
+  const plain=p36Prepared.map((value,index)=>mod29(value+sign*key[index]));
+  const target=fourTargetMap.get(plain.join(','));
+  if(target)p36CarrierHits.push({key,sign,target,plain});
+}
+const p36GoodHits=p36CarrierHits.filter((hit)=>hit.target==='GOOD');
+assert.deepEqual(p36GoodHits,[
+  {key:[4,10,2,3],sign:1,target:'GOOD',plain:signed[36].gp},
+  {key:[25,19,27,26],sign:-1,target:'GOOD',plain:signed[36].gp},
+]);
 const schedulerSegments = [
   { seed:[3,7], key:[23,3,24,1,18,17,27], shell:[25,21,15,20,6,13,1] },
   { seed:[13,4], key:[9,13,18,13], shell:[25,22,24,2] },
@@ -229,4 +262,4 @@ function recurrenceReadout(seed,length,A,B,C,reverse,includeSeeds){let u=reverse
 let recurrenceSchedulerHits=0;
 for(const reverse of [false,true])for(const includeSeeds of [false,true])for(let A=0;A<29;A++)for(let B=0;B<29;B++)for(let C=0;C<29;C++)for(const targetType of ["key","shell"]){let ok=true;for(const segment of schedulerSegments){if(recurrenceReadout(segment.seed,segment[targetType].length,A,B,C,reverse,includeSeeds).join(",")!==segment[targetType].join(",")){ok=false;break;}}if(ok)recurrenceSchedulerHits++;}
 assert.equal(recurrenceSchedulerHits,0);
-console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes,p39CarrierKeyCount:p39CarrierKeys.size,p39ExactKeyLabels,p39CarrierHits},null,2));
+console.log(JSON.stringify({status:"PASS",warning:warning.map((x)=>({index:x.index,label:x.label,first:x.gp[0],length:x.gp.length})),expectedInitials,expectedLengths,lengthVectorHits,initialVectorHits,jointVectorHits,sourceInitialShell:h4(retained.map((x)=>x.gp[0])),packetInitialShell:h4(packet.map((x)=>x.gp[0])),packetLengthShell:h4(packet.map((x)=>x.gp.length)),exactOrders:exactOrders.map((order)=>order.map((x)=>x.label)),hStateSchedulerHits,recurrenceSchedulerHits,redSelectorCandidates,balanced,signedSelectedP6Key,directBewareKey,p38SignedFieldKeyCount:p38SignedFieldKeys.size,p38SignedFieldHits,p37CarrierShellCount:p37CarrierShells.size,p37NumericHits,p37LuckRoutes,p39CarrierKeyCount:p39CarrierKeys.size,p39ExactKeyLabels,p39CarrierHits,p36CarrierKeyCount:p36CarrierKeys.size,p36ExactLabels,p36CarrierHits},null,2));

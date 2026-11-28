@@ -116,6 +116,27 @@ This does not make the p36 receiver ordinal canonical: the page-local/cross-page
 
 Reproducer: `sims/lp2_p6_p36_good_qcenter_family_sft.cjs`.
 
+## 4b. Direct authenticated warning-carrier key
+
+The final authenticated warning reproduces the exact GOOD key without the p6 role family:
+
+```text
+FALSE.Hsum     = 25 = p+K
+PATHS.Hsum     = 19 = B
+-BEWARE.Hdiff  = 27 = -K
+-OPENPGP.first = 26 = -e
+
+key = [25,19,27,26].
+```
+
+Charge this broadly: omit one final-warning word, permute the other four, choose one of `{first,len,Hdiff,Hsum}` from each, allow either sign on every coordinate, and test both additive directions. This gives **983,040 labeled forms**, collapsing to **191,616 distinct numeric keys** / 383,232 key-sign operations at the fixed prepared p36 receiver.
+
+The broad family is not familywise unique: authenticated operations to ROAD, LIES, PATHS, GOOD, SEEK and WILL occur. The independently source-assigned GOOD target is selective within it: exactly one numeric decryption operation reaches GOOD, represented by subtraction with `[25,19,27,26]` and the algebraically equivalent complemented-key/addition form `[4,10,2,3]`.
+
+The exact source label has two aliases because `OPENPGP.first` and `OPENPGP.Hsum` both equal3. This corroborates the published GOOD key while leaving the page-local receiver ordinal and common scheduler unresolved.
+
+Reproducer: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
+
 ## 5. Relationship to the source-index cycle and p2
 
 The source-only numerical cycle remains:
