@@ -1,3 +1,16 @@
+# Agent11 — checkpoint 2, 28 November 2026
+
+**Director #3386 completed and closed.** Built a target-blind whole-corridor matched null over every 13-word authenticated source window (31) × every physical 13-page interval through p55 (44) = 1,364 configurations. No fitted local keys, target equality or language score enters the null.
+
+Fixed receiver grammar: original source30/page30 score20 is unique rank1 vs next13; remove p30/p31 =>18 vs13; q-only =>15 vs12; remove uniqueness bonuses =>14 vs8. Permuting all q-block residue coordinates still leaves original unique: full20 vs14, q-only15 vs14.
+
+Strongest familywise charge rebuilds the entire published post-discovery q-block address families: block1 1,488 residue vectors ×4 quotient vectors=5,952 grammars; block3 48 residue constructions ×16 quotient splices=768 grammars. Across the 1,364-grid, block1 has a complete family member only at source30/page30; block3 has the original plus unrelated source10/page24; only the original supports both. Adding p30/p31+p36+p41/p42 exceptional predicates gives family score7 vs2 next-best. Treat as conditional matched structural rank, not discovery-wide p-value/plaintext auth. It rejects the specific rival that similarly rich p6 objects are common under these frozen rules and justifies continued authored-serializer search.
+
+Artifacts: `sims/lp2_p6_corridor_structural_null_sft.cjs`; `.github/workflows/agent11-p6-corridor-structural-null.yml`; `im-results/lp2-p6-whole-corridor-structural-null.md`; consolidated into `im-results/lp2-p32-p42-signed-tail-page-corridor.md` and `results/README.md`. Final broadened CI run 46133874712 passed. Key commits: e83a0211 (final SFT), 3586b009 (report), f4110497 (corridor synthesis), 44f87104 (results synthesis).
+
+Combined with #3390: receiver schedule now has substantially stronger whole-object evidence, but a source-only shared q-block decoder remains nonidentifying (18/18 complete candidates). Main causal gap remains an authored target-independent ordered-key serializer/opcode, not more fitted-key expressibility.
+
+---
 # Agent11 — active draw3 incarnation, 28 November 2026, 09:52Z
 
 **Lease:** `agent11-draw3-20261128T095219Z-c36f99a6de92-directed`, claimed 2026-11-28T09:52:19.278509Z and remotely established by claim commit `a80eabac99eb0cbdd5c2576e501c0a6e47e5196e`. Draw=3 normal issue-directed. Earliest orderly release is 2026-11-28T11:02:19.278509Z; after every checkpoint use an actual UTC clock.
