@@ -91,6 +91,29 @@ It is not a general first-party indexing convention. The wrap is plausibly typog
 
 [Reproducer](../sims/lp2_p50_signed_hardwrap_origin_sft.cjs) parses the exact committed signed bytes, proves the 19→20 hard-wrap boundary, reconstructs the direct/direct/direct/distance/direct scaffold type sequence from the original p50 grid, and asserts that the one-based rival places the same operation switch after MAP instead.
 
+
+## Chronological post-gate p41/p42 selector control also favors zero origin
+
+A second origin discriminator became available **after** #3354 closed. The origin gate closed at 2026-11-28 07:40:06Z. The later p41 VERIFY receiver was committed at 08:50:41Z (`bb414a6b574faf5e806e79aebd29776e601915af`) and the p42 OPENPGP selector at 08:52:47Z (`3f394505b4d6f066390e472c24a88fc741f88b39`). Those structures therefore were not evidence used to construct the original origin decision.
+
+Freeze the two direct-number rivals without looking at target rune values:
+
+- **zero origin:** authenticated source index `i` selects project page `p_i`; local canonical ordinal is the human ordinal `i+1`;
+- **one-based:** authenticated human ordinal `i+1` selects project page `p_(i+1)`; local canonical ordinal remains `i+1`.
+
+The two later target-blind receiver predicates then separate the rivals before any decryption key is scored:
+
+| Target | zero-origin object | zero predicate | one-based object | one predicate |
+|---|---|---|---|---|
+| VERIFY, source index41 / ordinal42, GP length6 | p41 ordinal42 = `[27,12,5,0,17,13,19]` | 7 runes, center `F=0`; remove center → length6 | p42 ordinal42 = `[11,13,11]` | length3; fails |
+| OPENPGP, source index42 / ordinal43, GP length7 | p42 ordinal43 = `[16,0,14]` | `Hpair=[2,1,0]=[K,1,F]`; +K destination ordinal45 has 8 runes with rune1 F; remove marker → length7 | p43 ordinal43 = `[22,17,8]` | `Hpair=[14,1,17]`; fails |
+
+The `[K,1,F]` selector remains manuscript-unique among canonical complete three-rune words, at p42 ordinal43. The frozen structural score is therefore **2/2 for zero origin and 0/2 for the one-based page-shift rival**, with no comparison to VERIFY or OPENPGP rune values.
+
+This is stronger than the signed hard-wrap coincidence because it is ciphertext-side and chronological post-gate evidence. It is still **not an origin-blind holdout**: both later investigations followed the already popular zero-origin numbered route, and their selector grammars were discovered on those zero-origin pages. The result is consequently a finite consistency audit, not a valid familywise p-value or a first-party indexing instruction. It strengthens zero origin as the leading working interpretation but does not by itself restore DIRECTION29→p29 or establish the fitted VERIFY/OPENPGP words as unknown plaintext.
+
+[Reproducer](lp2-p41-p42-zero-origin-chronological-selector-control.md) and [SFT](../sims/lp2_p41_p42_zero_origin_selector_control_sft.cjs).
+
 That unique interval has one further origin-invariant consequence. Zero-origin indices17..24 read **THE MAP THEIR MEANING IS THE ROAD AND**; one-based words17..24 read **ARE THE MAP THEIR MEANING IS THE ROAD**. Their longest common contiguous overlap is seven words: **THE MAP THEIR MEANING IS THE ROAD**. Therefore #3354 rejects the exact endpoint/rank labels and DIRECTION29 handoff, but it does **not** erase this seven-word signed-clause core. [Reproducer](../sims/lp2_p50_origin_invariant_maproad_overlap_sft.cjs).
 
 The same scaffold has an origin-free checksum into the independently observed warning-rank chain:
