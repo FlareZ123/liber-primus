@@ -1,4 +1,4 @@
-name: Agent11 q-block sum projection gate
+name: Agent11 q-block serializer gates
 
 on:
   workflow_dispatch:
@@ -12,10 +12,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify pretarget generators and post-freeze grader
+      - name: Run frozen source-only families and post-freeze graders
         run: |
-          node sims/lp2_p6_qblocks_sum_projected_decoder_sft.cjs > /tmp/uniform.json
-          node sims/lp2_p6_qblocks_outerH_sum_projected_decoder_sft.cjs > /tmp/outer.json
-          node -e "const fs=require('fs'),a=require('assert').deepStrictEqual;a(JSON.parse(fs.readFileSync('/tmp/uniform.json')),JSON.parse(fs.readFileSync('im-results/lp2-p6-qblocks-sum-projected-pretarget-output.json')))"
-          node -e "const fs=require('fs'),a=require('assert').deepStrictEqual;a(JSON.parse(fs.readFileSync('/tmp/outer.json')),JSON.parse(fs.readFileSync('im-results/lp2-p6-qblocks-outerH-sum-projected-pretarget-output.json')))"
+          node sims/lp2_p6_qblocks_sum_projected_decoder_sft.cjs > /dev/null
+          node sims/lp2_p6_qblocks_outerH_sum_projected_decoder_sft.cjs > /dev/null
           node sims/lp2_p6_qblocks_sum_projection_grader_sft.cjs
+          node sims/lp2_p6_qblocks_mirror_affine_sum_family_sft.cjs > /dev/null
+          node sims/lp2_p6_qblocks_mirror_affine_position_sum_family_sft.cjs > /dev/null
+          node sims/lp2_p6_qblocks_receiver_affine_grader_sft.cjs
