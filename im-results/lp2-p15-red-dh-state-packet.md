@@ -494,6 +494,46 @@ Only those two p39 survivors are then graded against the authenticated source wo
 **Decision:** the strongest independently cross-held-out five-lane LP2 operator does not transfer as the corridor's p35/p39 value decoder. Preserve the p7/p15 state identity as evidence of shared serialization, but do not use the p7 circulant as a corridor key mechanism without a new authored consumer instruction.
 
 Reproduction: `node sims/lp2_p7_circulant_corridor5_transfer_gate_sft.cjs`.
+## Spiral-H4 tape → source-arrow p15 body: exact p56-F consumer is impossible
+
+The authored-spiral state tape creates a receiver gate that did not exist when
+#69 was closed. The original p15 arrow had already been source-audited as
+pointing from the nine-rune heading to the **150-rune body**. The red-origin
+clockwise spiral now supplies the fixed 16-value H4 tape
+
+```text
+[5,2,11,10, 8,20,11,14, 13,26,18,27, 1,24,0,14].
+```
+
+This fixes key, orientation, receiver, start and period without scoring
+unknown text. Transfer the native solved-p56 additive rule:
+`C=P+K mod29`, with plaintext F transparent and the key clock held whenever
+F is emitted. Exhaustively preserve that strict-F ambiguity instead of
+choosing a hold pattern by language.
+
+The inverse has **zero complete legal paths**. It first branches at body
+offset9 (ciphertext F). At body offset26 / page-local offset35, the sole
+remaining state has ciphertext **Y=index26** against tape index9
+**26**, forcing decoded F on a consuming step. That is illegal under the
+transferred p56 rule, so the last state dies. This is an algebraic exclusion
+before language scoring.
+
+A simplified all-consuming subtraction was checked first: it round-trips but
+is nonlinguistic (IoC 0.03481 versus source-body 0.03588 and clear p57
+0.06271). The strict-F impossibility is the actual decision.
+
+This does **not** weaken the spiral's state-serialization role. It retires
+exactly:
+
+```text
+p15 red-origin spiral -> q=4 H4 tape
+-> arrow-selected p15 body
+-> solved-p56 additive/transparent-F receiver.
+```
+
+Reproducer:
+`sims/lp2_p15_spiral_h4_body_p56_fhold_gate_sft.cjs`.
+
 ## A natural q-block key use was frozen before grading and fails
 
 The new four-scalar packet
