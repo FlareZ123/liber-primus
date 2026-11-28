@@ -13,6 +13,8 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8').replace(/\r/g, '');
 const raw = read('resources/liber-primus/lp2-transcription.txt');
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const grid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
+const p50Tokens = grid.pages.flatMap((page) => page.tokens);
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const parts = raw.split(/^\s*%\s*$/m);
 const mod29 = (x) => ((x % 29) + 29) % 29;
@@ -305,6 +307,88 @@ assert.deepEqual(
   [[47, 48]]
 );
 
+const boundaryPairs = [];
+for (let index = 0; index < boundaryH.length; index += 2) {
+  const numeral = boundaryH[index] * 29 + boundaryH[index + 1];
+  const address = numeral % 256;
+  boundaryPairs.push({
+    pair: [boundaryH[index], boundaryH[index + 1]],
+    numeral,
+    address,
+    token: p50Tokens[address],
+  });
+}
+assert.deepEqual(boundaryPairs, [
+  { pair: [22, 22], numeral: 660, address: 148, token: '46' },
+  { pair: [19, 17], numeral: 568, address: 56, token: '4E' },
+  { pair: [4, 0], numeral: 116, address: 116, token: '0s' },
+  { pair: [13, 26], numeral: 403, address: 147, token: '2r' },
+]);
+assert.deepEqual(
+  boundaryPairs.filter(({ token }) => /^\d{2}$/.test(token) && Number(token) <= 55),
+  [boundaryPairs[0]]
+);
+
+const p46Groups = pageGroups(46);
+assert.equal(p46Groups.length, 61);
+const p46Group46 = p46Groups[45];
+const p46Values = p46Group46.sites.map((site) => site.value);
+assert.deepEqual(p46Values, [10, 2, 17, 18, 4]);
+assert.deepEqual(p46Group46.sites.map((site) => site.line), [9, 9, 10, 10, 10]);
+const p46Descriptor = descriptor(p46Group46.sites);
+assert.deepEqual(
+  [p46Descriptor.length, p46Descriptor.sum, p46Descriptor.product],
+  [state.g, state.p - 1, state.q]
+);
+const p46H = H(p46Values);
+assert.deepEqual(p46H, [
+  state.a,
+  state.b - state.K,
+  state.b + state.K,
+  state.p - state.e,
+  mod29(-state.b),
+]);
+
+const p46Lines = [...new Set(p46Group46.sites.map((site) => site.line))];
+assert.deepEqual(
+  p46Lines.map((selectedLine) => p46Group46.sites.filter((site) => site.line === selectedLine).length),
+  [state.K, state.e]
+);
+
+const allLocalGroups = [];
+const selfIndexedGroups = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const groups = pageGroups(page);
+  for (let index = 0; index < groups.length; index += 1) {
+    const values = groups[index].sites.map((site) => site.value);
+    const d = descriptor(groups[index].sites);
+    allLocalGroups.push({ page, ordinal: index + 1, values, d, h: H(values) });
+  }
+  if (page >= 1 && groups[page - 1]) {
+    const values = groups[page - 1].sites.map((site) => site.value);
+    const d = descriptor(groups[page - 1].sites);
+    selfIndexedGroups.push({ page, ordinal: page, values, d, h: H(values) });
+  }
+}
+assert.equal(allLocalGroups.length, 2928);
+assert.equal(selfIndexedGroups.length, 48);
+const p46RawMatches = (row) =>
+  row.d.length === state.g && row.d.sum === state.p - 1 && row.d.product === state.q;
+assert.deepEqual(
+  selfIndexedGroups.filter(p46RawMatches).map(({ page, ordinal }) => [page, ordinal]),
+  [[46, 46]]
+);
+assert.deepEqual(
+  allLocalGroups.filter(p46RawMatches).map(({ page, ordinal }) => [page, ordinal]),
+  [[46, 46]]
+);
+assert.deepEqual(
+  allLocalGroups.filter((row) => row.h.join(',') === p46H.join(','))
+    .map(({ page, ordinal }) => [page, ordinal]),
+  [[46, 46]]
+);
+
 const incomingPageDestinations = [...new Set(crossPage.map((w) => physical(w.at(-1).page)))]
   .filter((page) => page <= 55 && page !== 50);
 const p48Line1 = lineFragments(48, 1);
@@ -417,6 +501,17 @@ console.log(JSON.stringify({
       p48: [boundaryRight.length, boundaryRight.sum, boundaryRight.product],
     },
     H: boundaryH,
+  },
+  p46BackwardReceiver: {
+    boundaryPairs,
+    page: 46,
+    ordinal: 46,
+    values: p46Values,
+    raw: [p46Descriptor.length, p46Descriptor.sum, p46Descriptor.product],
+    H: p46H,
+    allLocalGroupCount: allLocalGroups.length,
+    selfIndexedGroupCount: selfIndexedGroups.length,
+    globalRawHits: allLocalGroups.filter(p46RawMatches).map(({ page, ordinal }) => [page, ordinal]),
   },
   p48ReceivingLine: {
     comparableIncomingPageLines: p48LineClass.length,
