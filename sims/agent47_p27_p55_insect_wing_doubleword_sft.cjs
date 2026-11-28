@@ -122,6 +122,37 @@ const onlySix=repeat6.get(stringify(expectedWordA.concat(expectedWordB)));
 assert.ok(onlySix);
 assert.deepEqual(onlySix.map(i=>[audit.global[i].page,audit.global[i].offset]),
  [[27,28],[55,70]]);
+
+// Independent source-layout interpretation of page-distance 28:
+// freeze all 28 corresponding pairs (p0,p28) ... (p27,p55), then ask
+// the largest common *within-page* rune span. This is a census, not a
+// randomly held-out prediction: the halfbook interpretation followed the hit.
+const pageRunes=new Map(corpus.pages.filter(p=>p.page<=55)
+  .map(p=>[p.page,p.indices]));
+function pairedLongest(a,b){
+  for(let n=7;n>=4;n--){
+    const positions=new Map();
+    for(let j=0;j+n<=b.length;j++){
+      const key=stringify(b.slice(j,j+n));
+      if(!positions.has(key))positions.set(key,j);
+    }
+    for(let i=0;i+n<=a.length;i++){
+      const k=positions.get(stringify(a.slice(i,i+n)));
+      if(k!==undefined)return {n,first:i,second:k};
+    }
+  }
+  return {n:0,first:null,second:null};
+}
+const pairedHalves=Array.from({length:28},(_,page)=>({
+  pages:[page,page+28],
+  longestWithinOriginalPages:pairedLongest(pageRunes.get(page),pageRunes.get(page+28))
+}));
+assert.deepEqual(pairedHalves.filter(x=>x.longestWithinOriginalPages.n>=4),[
+  {pages:[9,37],longestWithinOriginalPages:{n:4,first:99,second:161}},
+  {pages:[27,55],longestWithinOriginalPages:{n:6,first:28,second:70}}
+]);
+assert.equal(pairedHalves.filter(x=>x.longestWithinOriginalPages.n>=5).length,1);
+
 const countLength33=[...audit.pairs.values()].reduce((total,entries)=>{
   return total+entries.filter(e=>e.lengths[0]===3&&e.lengths[1]===3).length;
 },0);
@@ -191,6 +222,12 @@ const result={
   },
   completeWordPairDuplicateTypes:audit.duplicatedPairs.length,
   globalLongestRepeatedSubstring:{runes:6,typesAt6:repeat6.size,typesAt7:repeat7.size},
+  matched28PagePairs:{
+    fixedPairs:28,
+    pairsWithWithinPageFourRuneMatch:pairedHalves.filter(x=>x.longestWithinOriginalPages.n>=4),
+    pairsWithFiveRuneMatch:pairedHalves.filter(x=>x.longestWithinOriginalPages.n>=5).length,
+    caveat:'page halves and selected pair noticed after repeat; this is a complete exact census, not blind significance'
+  },
   exactWholeWordShuffleNull:{
     condition:'same multiset of exactly printed whole words and same page word counts; exchangeable token ordering',
     pairWindows:M,overlappingPairs:overlapping,disjointPairs:disjoint,
