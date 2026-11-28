@@ -339,50 +339,33 @@ Primary reproducer: `sims/lp2_p15_lower_red11_grid_blind_sft.cjs`
 Five-word/corpus census: `sims/lp2_p15_red_dh_state_packet_sft.cjs`  
 Earlier all-five red-cell check: `sims/lp2_p15_red_origin_h4_dh_state_sft.cjs`
 
-## Original-only p15 → p7 circulant cross-holdout (Agent7, 28 November)
+## Original-only p15 → p7 circulant and chapter-length cross-holdout (Agent7, 28 November)
 
 The p7 red-product circulant identity predates this p15 derivation by a week. Its printed-order GF29 right-circulant, built from p7's five original red-word products `[11,26,8,15,2]`, was already known to have determinant `19` and inverse first row `[23,2,5,2,19]`; those numbers were previously interpreted through the external signed DH23 example.
 
-The new p15 causal route removes that external dependency. From p15 lower red11 plus the color-blind number grid alone, before consulting p7, it derives
-
-`p=23, K=2, g=5, B=19`.
-
-Those independently original-LP2 values predict the entire five-coordinate p7 inverse-row packet
+The new p15 causal route removes that external dependency. From p15 lower red11 plus the color-blind number grid alone, before consulting p7, it derives `p=23, K=2, g=5, B=19`. Those independently original-LP2 values predict the entire p7 inverse-row packet
 
 `[p,K,g,K,B] = [23,2,5,2,19]`
 
-and independently predict the p7 circulant determinant `B=19`. The p7 matrix reproduces both exactly.
+and independently predict the p7 circulant determinant `B=19`. The p7 matrix reproduces both exactly. Charging the obvious cyclic presentation freedom—five rotations times forward/reversed product order—only the **original printed forward order at rotation0** has that p15-predicted inverse row.
 
-Charge the obvious cyclic presentation freedom rather than keeping only the successful orientation: rotate the five printed product values through all five starts and test both forward and reversed product order, always using the same right-circulant construction. Among these **10** ring orientations, **only the original printed forward order at rotation0** has inverse first row equal to the p15-predicted packet. Thus the equality is not a generic consequence of the product multiset.
+There is a second, typed original-artifact consequence. Every inverse-row value is one of the nine chapter-IN values from the red-rubric SUM→PRODUCT graph, so the printed p7 row addresses chapters
 
-This is a genuine original-artifact cross-holdout: p15's state is derived without p7 or the 2013 tuple, while the p7 circulant identity was established before the p15 route existed. It still does **not** authenticate 'circulant' as an authorial cipher opcode—the five-dot/five-word motivation remains candidate-level—and p7's direct p8 Hill consumer is already negative. The result strengthens a shared state-serialization interpretation, not a plaintext claim.
+`[23,2,5,2,19] -> [p8,p27,p33,p27,p54]`.
+
+Their source-defined physical chapter spans, measured to the next red chapter start and with p54 ending at solved p56, are
+
+`[7,6,7,6,2]`.
+
+Apply the same canonical outside-in H5 once: `H5([7,6,7,6,2]) = [5,0,7,12,9]`. P15 lower red11 had already fixed that entire target independently as
+
+`[g,F,K+g,aK,q+g] = [5,0,7,12,9]`.
+
+On the actual chapter map, among the 10 p7 cyclic/reversal orientations, only original printed order reproduces that H5 target. A fixed-marginal control preserves the nine observed chapter-IN labels and nine observed chapter-span records, uniformly permutes their assignments, and holds the p7 inverse row plus p15 target fixed: **240/362,880 = 1/1,512** assignments pass. This is a post-discovery conditional specificity diagnostic, not an authorship probability.
+
+**Evidence boundary:** this is a genuine original-LP2 cross-holdout connecting three independently built structures—p15 state, p7 red products, and chapter rubrics—and it supplies a concrete typed `p7 inverse row -> chapter address -> chapter length -> H5 state packet` handoff. It still does **not** authenticate 'circulant' as an authorial cipher opcode, and p7's direct p8 Hill consumer remains negative. No unknown plaintext is claimed.
 
 Cross-reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
-## Independent transcription holdout: lower-red/grid state predicts p15 offset6 = Y
-
-The upper red9 confirmation contains one historically disputed rune. The
-August-2017 onecool witness reads **D** at p15 page-local offset6; the
-original scan and canonical corpus read **Y**. Issue #3380 adjudicated that
-pixel as Y before this state prediction was noticed.
-
-Offset6 lies in the upper span, so it is excluded from the strongest state
-derivation. From lower red11 alone derive
-`(p,g,a,K,q,F,A)=(23,5,6,2,4,0,8)`. The source number square and frozen H4
-column selector then give `b=15`, `B=19` and `B^-1=26 mod29`. Before
-opening upper red9, its two printed word descriptors are predicted as
-`(4,11,0)` and `(5,8,26)`.
-
-Vary only p15 offset6 over all **29 GP29 glyphs**, leaving every other source
-rune fixed. Exactly **1/29** candidates satisfies that complete held-out
-descriptor pair: index26 **Y (ᚣ)**. The historical onecool **D (ᛞ,
-index23)** changes upper word2 from `(5,8,26)` to `(5,5,23)` and fails.
-
-This independently adjudicates a real historical transcription ambiguity:
-the disputed coordinate was excluded from state derivation and then
-predicted. It strengthens the p15 packet without supplying a body receiver.
-
-Reproducer: `sims/lp2_p15_offset6_transcription_holdout_sft.cjs`.
-
 ## A natural q-block key use was frozen before grading and fails
 
 The new four-scalar packet

@@ -123,6 +123,15 @@ Original p40–53 bigram score is `-1.5919034279` nats/rune; the decoded tape sc
 **Decision:** retire exactly `H([b,p,K,B,-K,e])` as a cyclic additive key on route-selected p40–53. Do not retune sign, phase, reset or destination. This does not reject H as a structural operation—the p15 visual result and p6 corridor still motivate H—but it closes this direct short-key consumer.
 
 Reproducer: `sims/lp2_chapter_route_h6_p40_additive_sft.cjs`.
+## P7 inverse row addresses chapter spans and reproduces a p15 packet
+
+An independent p7/p15 cross-holdout now gives the chapter graph a typed upstream consumer. P7's older printed-order red-product circulant inverse row is `[23,2,5,2,19]=[p,K,g,K,B]`; p15 now derives those state fields from original LP2 alone. Each number is also a unique chapter-IN label, so the row addresses `[p8,p27,p33,p27,p54]`. Their physical chapter lengths are `[7,6,7,6,2]`, and canonical outside-in H5 gives
+
+`[5,0,7,12,9] = [g,F,K+g,aK,q+g]`,
+
+exactly the packet independently fixed by p15 lower red11. Only original p7 printed order among the 10 cyclic/reversal orientations passes on the actual chapter map. Preserving the nine observed IN labels and nine observed chapter-span records but permuting their assignments gives **240/362,880 = 1/1,512** passes for this fixed p7-row/p15-target test.
+
+This materially strengthens the chapter-IN register as a typed address layer and supplies a concrete `p7 inverse row -> chapter addresses -> chapter spans -> H5 packet` path. It remains post-discovery evidence and does not by itself authenticate the p7 circulant opcode or recover body plaintext. Full integrated reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
 ## Decision for the solve frontier
 
 This **provisional candidate is materially more operational than a visual theme**: it specifies a finite original-cipher input class, two exact field operations, a deterministic graph, one unique start at book opener p0, five reproducible hops and a plausible final *artifact class*—the numeric table on p50. Unlike a fitted key shell, it requires **no comparison to preselected 2016 signed prose or any guessed LP2 plaintext**. The same route can be checked by a human from original pages.

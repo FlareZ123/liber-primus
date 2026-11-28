@@ -65,10 +65,94 @@ for(const reversed of [false,true]){
 }
 const matches=variants.filter(v=>v.match);
 assert.deepEqual(matches.map(v=>[v.reversed,v.rotation]),[[false,0]]);
+
+const H5=v=>[mod(v[0]-v[4]),mod(v[1]-v[3]),mod(v[2]),mod(v[1]+v[3]),mod(v[0]+v[4])];
+
+// Independent chapter-IN register from the red-rubric SUM->PRODUCT route.
+// Reconstruct the first complete black word after each opening red rubric.
+const ink=JSON.parse(fs.readFileSync(path.join(root,'resources/liber-primus/lp2-ink-annotations.json'),'utf8'));
+const transcription=fs.readFileSync(path.join(root,'resources/liber-primus/lp2-transcription.txt'),'utf8').replace(/\r/g,'');
+const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
+const parts=transcription.split(/^\s*%\s*$/m).slice(0,55);
+const chapterStarts=[0,3,8,15,23,27,33,40,54];
+const chapterIns=[];
+for(const page of chapterStarts){
+  const ann=ink.pages.find(x=>x.page===page);
+  assert.ok(ann&&ann.red_spans&&ann.red_spans.length);
+  const spans=ann.red_spans.slice().sort((x,y)=>x.start-y.start);
+  assert.equal(spans[0].start,0);
+  let redEnd=spans[0].length;
+  for(let i=1;i<spans.length&&spans[i].start===redEnd;i++)redEnd+=spans[i].length;
+  const source=corpus.pages.find(x=>x.page===page).indices;
+  const segment=parts[page>=51?page-1:page];
+  const words=[];let word=[],start=0,offset=0;
+  const flush=()=>{if(word.length){words.push({start,values:word.slice()});word=[];}};
+  for(const ch of segment){
+    const value=runeIndex.get(ch);
+    if(value!==undefined){
+      if(!word.length)start=offset;
+      assert.equal(source[offset],value);
+      word.push(value);offset++;
+    }else if(ch==='/'||/\s/u.test(ch)) continue;
+    else flush();
+  }
+  flush();
+  const firstBlack=words.find(w=>w.start===redEnd);
+  assert.ok(firstBlack,'missing first-black word p'+page);
+  chapterIns.push(sum(firstBlack.values));
+}
+assert.deepEqual(chapterIns,[15,9,23,22,25,2,5,27,19]);
+
+// The next chapter start fixes each physical chapter span; p54 ends before
+// solved p56, so terminal boundary56 is source-visible and not fitted.
+const boundaries=chapterStarts.slice(1).concat(56);
+const chapterLengths=chapterStarts.map((p,i)=>boundaries[i]-p);
+assert.deepEqual(chapterLengths,[3,5,7,8,4,6,7,14,2]);
+const lengthByIn=new Map(chapterIns.map((x,i)=>[x,chapterLengths[i]]));
+const itineraryLengths=actual.inverse[0].map(x=>lengthByIn.get(x));
+assert.deepEqual(itineraryLengths,[7,6,7,6,2]);
+const p15LengthTarget=[g,F,mod(K+g),mod(a*K),mod(q+g)];
+assert.deepEqual(p15LengthTarget,[5,0,7,12,9]);
+assert.deepEqual(H5(itineraryLengths),p15LengthTarget);
+
+// On the actual chapter map, only printed p7 ring orientation reproduces the
+// p15 lower-red-derived H5 target.
+const ringLengthMatches=[];
+for(const variant of variants){
+  if(!variant.firstRow.every(x=>lengthByIn.has(x)))continue;
+  const seq=variant.firstRow.map(x=>lengthByIn.get(x));
+  if(H5(seq).every((x,i)=>x===p15LengthTarget[i]))
+    ringLengthMatches.push([variant.reversed,variant.rotation,seq]);
+}
+assert.deepEqual(ringLengthMatches,[[false,0,[7,6,7,6,2]]]);
+
+// Fixed-marginal charge: preserve the nine observed IN labels and nine
+// observed chapter-span records, permute their assignments, and hold the p7
+// inverse row plus p15 H5 target fixed. This is a conditional diagnostic.
+let assignmentHits=0,totalAssignments=0;
+const perm=chapterLengths.slice();
+function enumerate(at){
+  if(at===perm.length){
+    totalAssignments++;
+    const m=new Map(chapterIns.map((x,i)=>[x,perm[i]]));
+    const seq=actual.inverse[0].map(x=>m.get(x));
+    if(H5(seq).every((x,i)=>x===p15LengthTarget[i]))assignmentHits++;
+    return;
+  }
+  for(let i=at;i<perm.length;i++){
+    [perm[at],perm[i]]=[perm[i],perm[at]];
+    enumerate(at+1);
+    [perm[at],perm[i]]=[perm[i],perm[at]];
+  }
+}
+enumerate(0);
+assert.equal(totalAssignments,362880);
+assert.equal(assignmentHits,240);
 console.log(JSON.stringify({
  classification:'original-only cross-holdout: independent p15 state predicts older p7 circulant inverse identity',
  p15Derived:{p,K,g,B,b,predictedInverseRow:p15Predicted},
  p7:{products,determinant:actual.determinant,inverseFirstRow:actual.inverse[0]},
  orientationCharge:{variants:variants.length,matches},
- boundary:'strengthens shared state serialization; does not authenticate circulant as the intended cipher opcode'
+ chapterBridge:{chapterStarts,chapterIns,chapterLengths,itineraryLengths,h5:H5(itineraryLengths),p15LengthTarget,ringLengthMatches,fixedMarginal:{hits:assignmentHits,total:totalAssignments,oneIn:totalAssignments/assignmentHits}},
+ boundary:'strengthens shared state serialization and a typed p7-to-chapter handoff; does not authenticate circulant as the intended cipher opcode or recover plaintext'
 },null,2));
