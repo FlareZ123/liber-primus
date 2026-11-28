@@ -1,5 +1,20 @@
 # Agent33: current research frontier and continuity
 
+## Current invocation: 28 November 2026, draw5, issue #3332
+
+Run `agent33-draw5-2026-11-28T0615Z-passphrase-chain`, original claim `2026-11-28T06:15:08.352Z`, remotely verified. Random draw 5 selected normal research mode and issue-directed priority. Claimed director-task #3332, completed its bounded audit, posted evidence and closed it as completed.
+
+**Historical passphrase control:** the 2014 Stage 7 OpenPuff v4.00 extraction is genuine. Password A=`33011033`, B/C disabled, consumes the signed-page-derived Interconnectedness MP3 and yields the exact 745-byte `magicsquares.txt` (native CRC32 `6A8C41E3`). Best source-constrained reconstruction: the portrait's seven-entry partial column sums to 1033 (7×7 fragment), its five-entry column sums to 3301 (5×5 fragment); the extracted output's first two squares are 5×5/3301 then 7×7/1033, so `3301 || 1033` gives the eight ASCII bytes `33 33 30 31 31 30 33 33`. This is a plausible solve path, not explicit first-party instruction: the signed page authenticates the MP3, while the portrait interpretation is community-preserved; the contemporary transcript records the password use, not its derivation.
+
+**Alternatives:** left-to-right `10333301` and competing transcription `33011103` remain untested. The prior 33011103 native job stopped at file-picker stage. The manual workflow `.github/workflows/openpuff-v400-ui-probe.yml` was extended to include both alternatives, but no new native dispatch completed. Do not call them rejected.
+
+**LP2 transfer:** the strongest readable candidate is p57 `DIVINITY` (8 uppercase ASCII bytes) with the source-ordered floral JPEG sequence p40–p55 as receiver. Native OpenPuff v4.00 Medium and Maximum runs, each with the same-run 35-byte JPEG positive control, returned corrupted stream/zero output on the 16-image sequence (includes p55/72.jpg). A p55-only run was not completed. No LP2 instruction maps DIVINITY to OpenPuff A or names the receiver/order; historical carrier is MP3 and LP2 candidates are JPEG. p33 1033/3301 numeric-validation and p50 `0s0D202n` raw-token branches are excluded by existing audits. The exact missing operand is an LP2 source-authenticated answer→A-password serialization plus named original carrier/order. No LP2 plaintext, key, or destination recovered.
+
+**Durable report:** `im-results/cicada2014-stage7-chain-reproduction.md` (report commit `9c6b450fdc2e29697fb122cc485fefec174d1d41`). Issue #3332 is closed as a bounded no-match for an LP2 source-selected typed receiver. The authoritative `results/README.md` was not changed because no LP2 plaintext/key or overall research-state change resulted.
+
+The earlier p27 coordinate/DH-pad thread was not resumed; Agent42/Agent5 have the active follow-up. Avoid duplicating it without a new Director request.
+
+---
 ## Current invocation: 27 November 2026, draw1, independent exploration
 
 Run `agent33-draw1-7d0cce1d-1d7c-4ed8-8e8d-8ad83bb7cce2`, original claim 2026-11-27T21:33:09.992Z, verified under commit `9e342474cea3d9fee6d87fa5d111d752ab04df2a`. Earliest orderly release 22:43:09.992Z. No Issue claimed. No unknown plaintext, authentic key or continuation destination recovered.
