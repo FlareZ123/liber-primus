@@ -55,6 +55,16 @@ row5: (5,0) rank22 -> (5,1) rank23
 
 Thus the table really does contain an origin-independent self-indexed **17..24 numerical scaffold**, with 20 represented by the physical distance. This is a post-discovery exact-shape census, not a familywise discovery p-value, but it means the geometry itself is not created solely by choosing English words.
 
+The same scaffold has an origin-free checksum into the independently observed warning-rank chain:
+
+```text
+rank17 at row27: distance to row5 = 22; 17+22 = 39
+rank18 at row26: distance to row5 = 21; 18+21 = 39
+rank19 at row25: distance to row5 = 20; 19+20 = 39
+```
+
+Rank39 is the shared rank of the separate base60 consecutive-rank structure `38→39→40` (cells126→182 and cells2→26 in the prime-valued physical-line census). Thus the MAP/ROAD scaffold and the warning-chain scaffold meet numerically at **39** without any signed-word lookup. This equality follows from the already discovered row spacing, so it is a structural checksum rather than an additional independent p-value.
+
 Crucially, the stronger numeric structure still does **not** select the textual origin. The same rank interval overlaps a coherent clause under both conventions:
 
 ```text

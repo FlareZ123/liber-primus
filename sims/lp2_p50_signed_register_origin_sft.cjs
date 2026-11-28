@@ -149,6 +149,19 @@ assert.deepEqual(scaffoldHits, [{
   intersection:[5,3], roadPair:[[5,0],[5,1]], distance:20,
 }]);
 
+const rankDistanceChecksum = [
+  {rank:17, row:27}, {rank:18, row:26}, {rank:19, row:25},
+].map(({rank, row}) => ({rank, distance:row - 5, sum:rank + row - 5}));
+assert.deepEqual(rankDistanceChecksum, [
+  {rank:17, distance:22, sum:39},
+  {rank:18, distance:21, sum:39},
+  {rank:19, distance:20, sum:39},
+]);
+assert.equal(primeRank.get(decode(tokens[126], a60)), 38);
+assert.equal(primeRank.get(decode(tokens[182], a60)), 39);
+assert.equal(primeRank.get(decode(tokens[2], a60)), 39);
+assert.equal(primeRank.get(decode(tokens[26], a60)), 40);
+
 // The two reasonable text origins each turn ROAD's corresponding number into
 // a locally consistent direction token, so this cannot select an origin.
 assert.equal(zeroOrigin(23), "ROAD");
@@ -215,6 +228,7 @@ console.log(JSON.stringify({
   },
   maxLineWords: Math.max(...lineCounts),
   originInvariantNumericScaffold: scaffoldHits[0],
+  rankDistanceChecksum,
   roadDirectionRival: {
     zeroOrigin: {roadNumber:23, token:tokens[23], physical:"right"},
     oneBased: {roadNumber:24, token:tokens[24], physical:"north"},
