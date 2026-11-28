@@ -76,6 +76,43 @@ The signed-word labels retain the register-origin caveats documented in the p50 
 where `[e,g,a,K]=[3,5,6,2]` is independently fixed by the p6 title/state packet. Equivalently, the set of all four strict support-line coordinates is exactly `{K,e,g,a}={2,3,5,6}`.
 
 This removes a major flexibility concern from the later cell-level bridge: the p50 geometry itself independently chooses the same four small state coordinates before p6 is overlaid. In particular, its FALSE/PATHS tunnel chooses physical column2, which p6 names `K`.
+## Serialization-free p6 mirror invariant reproduces the support coordinates
+
+The canonical ordered H serialization is no longer needed to obtain the strongest four p6 state magnitudes. Director #3436 shows that p6 bilateral geometry fixes the **mirror pairs** of the printed width vector but not H's output order/sign/channel schedule. Therefore use only a quantity invariant across all 16 source-compatible H presentations: for each visible mirror pair, take the unordered **ordinary integer absolute difference and sum**, then forget the order of the two pair-blocks.
+
+For p6 widths `[4,1,4,2]`:
+
+```text
+outer pair (4,2) -> {|4-2|,4+2} = {2,6}
+inner pair (1,4) -> {|1-4|,1+4} = {3,5}
+
+I_p6 = {{2,6},{3,5}}.
+```
+
+Now hold out the already source-derived p50 support-line coordinates, ordered only by their starting prime ranks:
+
+```text
+[3,5,6,2].
+```
+
+The first two and last two support coordinates normalize to the **same two unordered blocks**:
+
+```text
+I_p50 = {{3,5},{2,6}} = I_p6.
+```
+
+Thus the exact support-coordinate bridge survives removal of canonical H serialization. It uses only p6's visible mirror pairing plus pairwise sum/absolute-difference magnitudes and p50's independently selected support geometry. The labels `e,g,a,K` may be retained as names for the resulting values, but the causal result is the block invariant, not the ordered vector `H4=[K,-e,g,a]`.
+
+A manuscript-wide matched control over all **18** red spans finds exactly **three complete four-word red spans**: p6 `[4,1,4,2]`, p23 `[2,6,3,5]`, and p54 `[1,4,2,2]`. Their normalized mirror invariants are respectively
+
+```text
+p6  -> {{2,6},{3,5}}
+p23 -> {{3,7},{3,9}}
+p54 -> {{1,3},{2,6}}.
+```
+
+Only p6 matches the frozen p50 support blocks. This is still a post-discovery cross-artifact relation and does not establish plaintext, but it **salvages the p6→p50 state-coordinate content without the unauthenticated H ordering**. Reproducer: [`sims/lp2_p6_mirror_invariant_p50_support_sft.cjs`](../sims/lp2_p6_mirror_invariant_p50_support_sft.cjs).
+
 ## Directed support-line schedule equals a cyclic p6 H(title) schedule
 
 The line-coordinate equality becomes substantially sharper when the physical edge directions are retained.
