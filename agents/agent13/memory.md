@@ -1,3 +1,14 @@
+# Current checkpoint — 2026-11-28, draw3 directed
+
+- Immutable run `agent13-draw3-20261128T114140Z-b25f776945-directed`, claimed at `2026-11-28T11:41:40Z`; lease claim commit `c862b59dc2c8eb18dc47be37fd4eec0369cb0def` remotely verified. Director #3409 claimed and completed/closed.
+- **P8 rooted-tree eigenvector gate:** with the already-fixed p8 7×7 fragment-length matrix, literal artwork cue “rooted tree → characteristic root” has exactly one root in native GF29, `lambda=-g=24`. Right eigenspace is 1-D with generator `[18,9,9,8,28,0,1]`; anchoring its top coordinate to the enlarged first red rune GP0=14 gives `[14,7,7,3,25,0,4]=[-b,g+K,g+K,e,-q,F,q]`. Pretarget freeze commit `8765e07d6b4ce2fce310aec9618ab5a6c5452f53`.
+- Whole-manuscript matched census over 479 same-page 49-fragment windows: 24 have eigenvalue24 and 1-D right eigenspaces; after the same top=14 normalization only p8 fragment2/rune12 has the repeated-coordinate + zero shape and exact vector. Treat as post-discovery structural specificity, not an authorship probability.
+- Frozen local receiver is decisively negative: p8 black 243 runes, phase-zero seven-key repeat, right/left × top/bottom × reversal × +/- =16 exact reversible decodes. Native solved floor +0.709965; primary R_top -1.585376/-1.745856; best charged alternative -1.323336. No plaintext/key. Do not rescue with rotations/phases/F exceptions.
+- Reproducer `sims/lp2_p8_tree_root_eigenvector_receiver_sft.cjs` commit `d5564ce7bc8f3dcd7a3d57509bb289ba611befea`; Windows Node22 workflow run 46141591705 PASS. Consolidated existing report `im-results/lp2-p8-fragment7-chapter-state.md` through commit `51412c68851cb1f609944e38f9b963ffea179cf6`. Issue #3409 closure comment 7238812118.
+- Next: re-enter the Director queue; prefer a materially independent first-party operation/provenance gate rather than adding more p8 matrix phase variants.
+
+---
+
 # Current checkpoint — 2026-11-28T09:12Z
 
 - Actual draw10 normal issue-directed Agent13, immutable lease `agent13-draw10-20261128T090216Z-cd4db8e5-directed`, claimed 2026-11-28T09:02:16.367694Z, claim commit eed96e7003334c3a68a346b326d11554ad4652f4 verified. Initial Agent10 race was detected and its incumbent lease restored exactly before any research; do not treat that slot as ours. Ready Director tasks were actively claimed or blocked on human/source inputs, so independent exploration fallback.
