@@ -16,7 +16,32 @@ const model = buildSourceNativeTrigramModel({ corpus, referenceText });
 
 const MOD = 29;
 const UP = [1, 13];
-const HISTORICAL_2014_ORDER = [2, 8, 9, 1, 12, 13, 11, 4, 5, 7, 3, 0, 6, 10];
+const HISTORICAL_2014_ORDER = [2, 8, 9, 1, 12, 13, 11, 4, 5, 7, 3, 0, 6, 10];\n\n/** @param {number} x @returns {number} */\nfunction mod(x) { return ((x % MOD) + MOD) % MOD; }\n
+// Existing source-derived p3 field map. This report consumes Q rather than
+// re-deriving the polynomial quotient that produced it.
+const Q = [17, 24];
+
+/** @param {[number,number]} x @param {[number,number]} y @returns {[number,number]} */
+function fieldMul(x, y) {
+  return [
+    mod(x[0] * y[0] + 8 * x[1] * y[1]),
+    mod(x[0] * y[1] + x[1] * y[0] + 3 * x[1] * y[1])
+  ];
+}
+
+/** @param {[number,number]} base @param {number} exponent @returns {[number,number]} */
+function fieldPow(base, exponent) {
+  let out = [1, 0];
+  let x = base;
+  let n = exponent;
+  while (n > 0) {
+    if (n & 1) out = fieldMul(out, x);
+    x = fieldMul(x, x);
+    n = Math.floor(n / 2);
+  }
+  return out;
+}
+
 
 /** @param {number} a @param {number} b @returns {[number,number]} */
 function H(a, b) {
@@ -86,7 +111,51 @@ const evenCenters = corpus.pages
   });
 assert.equal(evenCenters.length, 23);
 const upHits = evenCenters.filter(row => row.output[0] === UP[0] && row.output[1] === UP[1]);
+
 assert.deepEqual(upHits.map(row => row.page), [1]);
+
+// The signed 2016 register independently types the Q orbit.
+const signed2016 = fs.readFileSync(
+  path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc"), "utf8"
+);
+const signedBody = signed2016.split("-----BEGIN PGP SIGNATURE-----")[0];
+const signedWords = signedBody.match(/\\b[A-Za-z]+\\b/g)
+  .filter(word => !["BEGIN", "PGP", "SIGNED", "MESSAGE", "Hash", "SHA"].includes(word))
+  .map(word => word.toUpperCase());
+assert.equal(signedWords[18], "MAP");
+assert.equal(signedWords[23], "ROAD");
+assert.equal(signedWords[29], "DIRECTION");
+
+const qLog = new Map();
+let qState = [1, 0];
+for (let k = 0; k < 840; k++) {
+  qLog.set(qState.join(","), k);
+  qState = fieldMul(qState, Q);
+}
+assert.equal(qLog.size, 840);
+assert.equal(qLog.get(centerH.join(",")), 18);
+assert.deepEqual([signedWords[centerH[0]], signedWords[centerH[1]]], ["THE", "WAY"]);
+
+const direction29 = fieldPow(Q, 29);
+assert.deepEqual(direction29, [2, 5]);
+const p1DirectionDestination = fieldMul(centerH, direction29);
+assert.deepEqual(p1DirectionDestination, [0, 23]);
+assert.deepEqual(
+  p1DirectionDestination.map(value => signedWords[value]),
+  ["HELLO", "ROAD"]
+);
+
+// Full even-center charge: after the same +29 Q-path stride, only p1 reaches
+// any coordinate equal to the authenticated ROAD index 23.
+const directionRows = evenCenters.map(row => {
+  const destination = fieldMul(row.output, direction29);
+  return { page: row.page, destination };
+});
+const roadDestinationPages = directionRows
+  .filter(row => row.destination.includes(23))
+  .map(row => row.page);
+assert.deepEqual(roadDestinationPages, [1]);
+
 
 const divisibleBy14 = corpus.pages
   .filter(p => p.page < 56 && p.indices.length > 0 && p.indices.length % 14 === 0)
@@ -130,7 +199,7 @@ console.log(JSON.stringify({
     directedHSpell: model.spell(centerH)
   },
   evenCenterCount: evenCenters.length,
-  exactUpCenterPages: upHits.map(row => row.page),
+  exactUpCenterPages: upHits.map(row => row.page),\n  roadDestinationPages,
   divisibleBy14,
   historical2014Order: HISTORICAL_2014_ORDER,
   scores
