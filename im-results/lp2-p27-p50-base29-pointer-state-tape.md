@@ -102,6 +102,26 @@ The reproducer now derives this tuple **without seeding the extraction with thos
 
 Only after that extraction does the test compare against the known historical tuple and verify the three DH identities. In particular, the current extractor **does not assume** that `22=p-1` in order to obtain p; that relation is now a held internal consistency check. This reduces the role of retrospective state-label assignment: the values are forced by repeated quotient/remainder consistency before the modular-exponentiation check.
 
+### Blind all-cell self-consistency census
+
+To test whether the same arithmetic can manufacture many plausible registers, the reproducer applies the extraction's **unlabeled internal constraints to all 256 cells**, without comparing any candidate against the known DH tuple.
+
+The funnel is exact:
+
+| Constraint, cumulatively | surviving cells |
+| --- | ---: |
+| BASE29 address high digit equals visible table width8 | 24 |
+| base59/base60 token readings land on the same width8 row | 16 |
+| address BASE29 low digit equals that independently derived row minus1 | **1** |
+| the two token readings share a BASE29 high digit | 1 |
+| low digit of the base59 reading equals `a*K mod29` | 1 |
+| derived row is prime and dereferenced B lies in the field | 1 |
+| all three DH equations close | **1** |
+
+The sole survivor is **cell254**, reconstructing `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`.
+
+This is a much stronger control than asking how often hand-labelled state values occur. Cell254 is already unique **before modular exponentiation or comparison to the historical tuple**, once only the visible width, the two live radix interpretations, BASE29 quotient/remainder structure and their repeated row/address consistency are required. The final DH equations then validate rather than select the candidate.
+
 Every field is represented before any unknown LP2 plaintext is inspected. The standard DH identities verify the register exactly:
 
 ```text
@@ -556,4 +576,4 @@ node sims/lp2_p27_p50_base29_pointer_state_tape_sft.cjs
 
 The SFT reads only the pinned original 256-cell table, reconstructs both live radices, verifies the upstream p27-selected paths, checks the DH equations and both endpoint packings, derives every BASE29 pair and adjacent-H packet, and exhausts all 256 starts under base59 and base60.
 
-The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`; one-cell complete-DH register: `a91bce7feb42e4176ef4da73be43a34a386a7554`; tuple-blind register extraction: `4f3d547fc01e9da0f71438ed58b774931f66c7d7`; p-independent extractor tightening: `2e253e4530197a5cdb4036221861d9291612ac6a`.
+The SFT now also verifies the exact historical minimal-width BASE29 strings, executes the bounded p49/p51 flank consumers, matched base60-rival controls, exact forward replay and solved-p57 native plant. Initial state-tape SFT commit: `a56cc42ee5752dc038ed0fda833d87daff4df0df`; raw-flank gate extension: `fd96cf328bd74d27e7ce4bd21d0610aeb6792541`; adjacent-H flank gate: `eab192be0b6376964e9c6a1a05efee74d72c9c2a`; state-label-free structural census: `c41d5caf56cbda88c7e0b2535c04b0e4af915611`; historical minimal-BASE29 verification: `4fec9a80a1a4af39e009bb6c6141ac591338dabb`; terminal `6F=[a,b]` flank gate: `ced09a13025ba2f5272d288b28fc0ac103b6a4f1`; unique fixed-point verification: `818f5e991c2797d4784a0963c9d61eddc150e284`; dual `+e` / omitted-q assertions: `7bca9a8f56b5caaef6201d72bcef2bdaab69fc9d`; radix-carry self-check census: `7d83180d8c22a09a4578dbab6daa871cff1df19d`; dual-radix token closure census: `92683ecc9499df8c2d89213614ce2c6ce380c6fd`; BASE29 first-difference packets: `20d3a1fadfd098f538487c053ead59eb11447fe3`; both-`39` address-state assertions: `8eeb405ae960ec481ddbccea03c131d49e87b558`; p27-cell254 full state trajectory: `98b683f05c3717b50f01366c63f3d89df5acc1ff`; one-cell complete-DH register: `a91bce7feb42e4176ef4da73be43a34a386a7554`; tuple-blind register extraction: `4f3d547fc01e9da0f71438ed58b774931f66c7d7`; p-independent extractor tightening: `2e253e4530197a5cdb4036221861d9291612ac6a`; tuple-blind all-cell register census: `ffb6bad1bc3ddc04d79f02249daa77f54a98b4a1`.
