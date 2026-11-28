@@ -379,7 +379,13 @@ def fixtures():
                     "cipher_gp":''.join(SYM[v] for v in c)})
             # No F/phase/key/chart truth is sent to solve().
             out=solve(data,require_primitive=True)
-            assert out["exhaustive"]
+            assert out["phase_tree_complete"] and out["action_set_complete"]
+            # Independent Critic audit, 2026-11-27: exact consistent-leaf ranks.
+            expected={(0,"common"):{51:18,50:4},(0,"independent"):{50:18,49:9},
+                      (1,"common"):{51:20,50:3,49:1},(1,"independent"):{51:15,50:5,49:3}}
+            assert out["stats"]["rank_histogram"]==expected[(plant,world)],out["stats"]
+            assert out["stats"]["unresolved_affine_leaves"]==0
+            assert out["stats"]["affine_assignments_unresolved_in_seen_leaves"]==0
             if world=="common":
                 assert out["uniquely_identified_action"]
                 sol=out["solutions"][0]
