@@ -129,7 +129,19 @@ A local charge makes the observation sharper without making it unique globally. 
 (g,a) = cell46 -> 3J   (not hex)
 ~~~
 
-So the MAP/ROAD crossing is the only strict ROAD/support intersection that even admits a two-digit hex reading. Token `1D` itself occurs four times in the full 256-cell panel, so its global occurrence is not rare. A future clue would need to license the hexadecimal codec or a mod29 use before this can become an operation.
+So the MAP/ROAD crossing is the only strict ROAD/support intersection that even admits a two-digit hex reading. Token `1D` itself occurs four times in the full 256-cell panel, so its global occurrence is not rare. **Hexadecimal is not needed for the newly connected chapter route.**
+
+The provisional chapter SUM→PRODUCT route independently reaches p40 and then stops under its own address grammar. Its terminal first-black word has `[length,IN,OUT]=[5,27,3]=[g,-K,e]`; the `IN` was consumed to enter p40, leaving `[length,OUT]=[5,3]`. Those values exactly name this report's already-fixed **ROAD row5** and **MAP column3**, selecting cell43 without treating `3` as a page number. Across all nine chapter first-black operands, p40 alone has a `[length,OUT]` pair whose first coordinate is the strict horizontal support and whose second coordinate is a strict vertical support.
+
+Under the pre-existing missing-`f` base59 pointer codec, cell43's token `1D` has value **72**. This is not just another pointer into the sink basin: 72 is the exact midpoint of the independently established horizontal-reflection return path
+
+```text
+186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189
+```
+
+with four edges on each side. The three strict ROAD/support intersections give `cell42: 0S→28`, `cell43: 1D→72`, `cell46: 3J→196`; only the MAP/ROAD crossing enters that mirror path, and it enters exactly at its midpoint. Globally four cells point to72, so the specificity is carried by the independently fixed geometry rather than token rarity. Reading `1D` in base60 gives73; the corresponding fixed pointer walk neither reaches midpoint72 nor sink189 and enters a cycle.
+
+This is a post-discovery cross-artifact handoff, not a recovered plaintext opcode. It does, however, supply the previously missing typed consumer for cell43 and independently favors the already-live base59 pointer reading **without invoking `0x1D=29`**. Reproducer: `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs`.
 ## Independent physical selection of column K
 
 The strongest part of this bridge is that column2 was not chosen by the p6 overlay. Agent10's already frozen p50 route had independently projected from cell74 `(row9,col2)` straight to the surface at cell2, explicitly opening the literal physical column2 tunnel:
