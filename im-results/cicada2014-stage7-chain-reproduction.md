@@ -58,6 +58,14 @@ Use the OpenPuff-native CRC, not zlib's standard CRC32: for these exact bytes zl
 
 The alternate `33011103` matrix job failed at a file-picker stage before extraction. It is **untested**, not a password rejection. The successful `33011033` run is sufficient for the source-documented Stage 7 route.
 
+### 2a. Passphrase answer and serialization audit (#3332)
+
+The password is a real OpenPuff A-field input, not an answer submitted in a URL or web form. The contemporaneous [2014 Stage 7 transcript, Part 8](https://uncovering-cicada.fandom.com/wiki/CICADA_3301_2014_PUZZLE_FACTS_PART_8) records A=`33011033`, B/C disabled, the Interconnectedness MP3, and the recovered `magicsquares.txt`. The preceding [Part 7 transcript](https://uncovering-cicada.fandom.com/wiki/CICADA_3301_2014_PUZZLE_FACTS_PART_7) lists the portrait's two partial columns: left `181, 7, 15, 16, 456, 351, 7` (sum **1033**, seven entries) and right `966, 1071, 626, 204, 434` (sum **3301**, five entries). The 2014 log identifies these as a 7×7 square's first column and a 5×5 square's last column. Direct summation confirms 1033 and 3301.
+
+The exact extracted payload in `resources/cicada2014-openpuff-magic-squares.txt` is ordered 5×5, 7×7, 5×5, with magic constants 3301, 1033, 1033. The strongest source-constrained solve-path reconstruction is therefore to serialize the two visible partial-square constants in square order—5×5 first, then 7×7—rather than portrait left-to-right: `3301 || 1033 = 33011033`. The receiver consumes the eight ASCII digit bytes `33 33 30 31 31 30 33 33` in Password A. This is a real, independently reproduced passphrase handoff; the answer-to-passphrase derivation is a strong reconstruction, not an explicit first-party instruction. The signed page authenticates the MP3 bytes, while the portrait is a later onion-page image and the transcript/archive are community records; the contemporaneous transcript records the password use, not why that ordering was chosen.
+
+The natural portrait left-to-right alternative is `10333301`; the competing transcription `33011103` is also not the concatenation of the two documented constants. Neither alternative has a completed native rejection: the prior `33011103` matrix job stopped at the file-picker stage, and the new manual workflow matrix now includes both `10333301` and `33011103` but was not dispatched in this invocation. Do not describe either as a tested negative. The recovered square order and the explicit signed-page `3301` support the chosen `3301 || 1033` order, but a native wrong-password control remains open.
+
 ### 3. Exact ordered 99-number stream
 
 [Run 44806886086](https://github.com/FlareZ123/liber-primus/actions/runs/44806886086) re-fetches the pinned Stage 7 archive copies and verifies that:
@@ -92,6 +100,12 @@ The exact 99-cell stream has a source-selected order only for Stage10 submission
 The fifth-onion README in the public reconstruction says the squares' use was “currently unknown”; the later Stage10 form supplies the human-visible next step—submit the three matrices. The examined 2012/2013 operations (book code, RSA/PGP, OutGuess, bytewise XOR, prime echo) do not select a magic-square cell-order receiver for LP2. The p33 sum correspondence is the separate #3005 investigation; this gate does not repeat it, and that arithmetic relation does not choose a reversible operation.
 
 **Decision:** no source-selected LP2 receiver exists in the examined first-party chain. Retire the 99-cell key/index hypothesis; preserve the matrices as Stage10 qualification inputs only. No arbitrary flattening, permutation, shift, modulo map or other LP2 transform was tested. No plaintext or key was recovered.
+
+### Human-readable passphrase transfer gate (#3332): no source-selected LP2 receiver
+
+The strongest source-visible LP2 text candidate is the known p57 phrase **“FIND THE DIVINITY WITHIN”**, frozen as the eight-byte ASCII A-password `DIVINITY` (`44 49 56 49 4e 49 54 59`). The most motivated original recipient is the floral JPEG sequence p40–p55, ending at original `72.jpg` (p55). Native OpenPuff v4.00 tested this exact A-password on the full 16-image source-ordered sequence at Medium and Maximum; each complete run first recovered the known 35-byte JPEG positive control, then returned `corrupted stream` and zero output for the LP2 chain. See [the calibrated source gate](lp2-original-center8-divinity-native-openpuff-source-gate.md), especially runs [43696936143](https://github.com/FlareZ123/liber-primus/actions/runs/43696936143) and [43697657991](https://github.com/FlareZ123/liber-primus/actions/runs/43697657991). This rejects that fixed phrase/chain candidate only; it does not reject all LP2 steganography. A p55-only `DIVINITY` run was not completed.
+
+No original LP2 instruction selects OpenPuff, maps `DIVINITY` to Password A, or names the floral JPEG sequence as its receiver. The historical receiver is MP3 audio, while LP2 supplies JPEG pages, so this is also a cross-media transfer. The p33 values 1033/3301 belong to the already-audited magic-square/form-validation branch, and the p50 center-eight `0s0D202n` is raw printed token material; neither is a new human-readable passphrase branch. The exact missing typed operand is a source-authenticated LP2 rule specifying both (1) the answer-to-A-password serialization and (2) the original carrier/page order. No such LP2 pair is presently supported. Close this transfer branch; do not expand into a sweep of other solved words.
 
 ## Direct Stage7 → Stage10 square-form match (#3001)
 
