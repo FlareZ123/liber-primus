@@ -192,6 +192,47 @@ This removes PATHS length/GP0 from the receiver selection. The remaining retrosp
 
 See `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`.
 
+## 5B. Independent p25 MEANING20 convergence on the pre-existing p6 key
+
+A later Agent6 analysis supplies a second, physically distinct construction of
+the same numeric key. This is chronologically useful because the p6
+line-count/title key `[20,20,12,6]` was already committed hours before the
+p25 serializer was proposed.
+
+The source-selected p25 cube output is
+
+`[3,10,16,3,8,20]=[e,Kg,K-b,e,A,qg]`
+
+and its fixed `g=5` cut gives authenticated indices
+`40|20 = PATHS|MEANING`. Treat the second output as the state operand
+`x=qg=20`. P23's printed state pairs are
+`[K,a]|[e,g]=[2,6]|[3,5]`. P40's independently selected receiver has arity4,
+so a typed serializer `[x repeated r, H(e,x)[coordinate], s]` can use only
+the first p23 pair: `K+2=4`, whereas `e+2=5`.
+
+Forward H gives
+
+`H(e,qg)=[aK,p]=[12,23]`,
+
+leaving only two numeric keys and two signs. The `aK` branch is exactly the
+already frozen p6 key:
+
+`[qg,qg,aK,a]=[20,20,12,6]`.
+
+The competing `[20,20,23,6]` key does not yield an authenticated four-rune
+source word at the p40 receiver. Holding both keys and both signs fixed across
+every contiguous four-rune window on p0–p55 and all distinct authenticated
+four-rune signed-source words leaves exactly one event: p40 offset71 -> PATHS
+under the p6 key.
+
+This is independent **numeric-key convergence**, not an independent blind
+plaintext discovery: the p25 serializer shape was recognized after PATHS.
+Its value is that a physically distant p23/p25 route selects the same key
+already frozen by p6 geometry without using p40 values.
+
+See `im-results/lp2-p25-meaning20-p40-key-serializer.md` and
+`sims/lp2_p25_meaning20_p40_key_serializer_sft.cjs`.
+
 ## 6. Manuscript-wide exact-key control
 
 Hold the exact key `[20,20,12,6]` fixed.

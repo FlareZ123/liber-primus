@@ -78,6 +78,42 @@ only one configuration yields any authenticated four-rune source word:
 The other H coordinate and both additive signs produce no authenticated
 four-rune target.
 
+## Independent pre-existing key holdout
+
+This p25 serializer was recognized after the PATHS candidate, but its numeric
+target is independently older than the serializer itself. The p6
+line-count/title-circumference route had already committed the exact key
+`[20,20,12,6]` before this p25 analysis:
+
+- Agent3/22 source-key commits precede 09:00 UTC on 28 November;
+- the target-blind p6 family gate was committed at 09:19 UTC;
+- this p25 MEANING serializer was first committed at 11:13 UTC.
+
+That prior p6 route fixes
+
+`[qg,qg] || [aK,a] = [20,20,12,6]`
+
+from black-line balance, red-title geometry and authenticated signed-tail
+selectors without reading p40 rune values.
+
+The p25 family above has only two arity-compatible numeric keys before sign:
+
+`[qg,qg,aK,a]` and `[qg,qg,p,a]`.
+
+Exactly one equals the independently frozen p6 key: the H-difference branch
+`[qg,qg,aK,a]`. Thus the new p25 object provides a genuine cross-source
+holdout on the **numeric key**, even though the serializer grammar itself was
+recognized retrospectively.
+
+The two routes use materially different source objects:
+
+- p6: physical black-line balance + marked red-title circumference;
+- p23/p25: state schedule + selected cube output + MEANING suffix + outer H.
+
+Their agreement removes the H-coordinate choice in the p25 finite family
+without consulting PATHS plaintext. Discovery chronology still prevents
+treating the combined grammar as prospectively authenticated.
+
 ## Manuscript-wide control
 
 Hold the same two keys and both signs fixed and scan every contiguous four-rune
