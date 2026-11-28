@@ -1,3 +1,9 @@
+### 2026-11-28 — p12/p2 visual receiver: 29 tree terminals, 13 roots
+
+Because fixed [12,2]=THE/PATH selects p12,p2 before visual inspection, audited their source artwork. P12's repeated tree motif has 29 visible terminal tips in four clear vertical groups: 8 crown +4 upper side +4 lower side +13 roots. A clean copy on p14 reproduces the same 29/13 topology. P2's terminal red punctuation has exactly13 dots. This cross-locks a GP29-sized tree and a 13-element root subset with the source-selected 13-dot companion. Report im-results/lp2-q-path-p12-p2-tree-29tip-visual.md.
+
+Interpretation remains provisional: likely next hypothesis is 13-dot selects roots and THE PATH indicates traversal, but no leaf numbering/start-end rule is source-fixed yet. Do not brute-force tree path codes.
+
 ### 2026-11-28 — THE PATH / EMPTY PATH branch and p27 closure
 
 For fixed tail residue [13,19], all840 scalars contain exactly two outputs whose directed page-count residues H-close to [K,-K]=[2,27]: Q->[12,2]=THE/PATH and Q^13->[4,2]=EMPTY/PATH. P12 and p4 both have261 runes, so the count receiver cannot distinguish them; authenticated signed words do. Across all841 ordered physical page pairs, [12,2] and [4,2] are the only [K,-K] aliases.
