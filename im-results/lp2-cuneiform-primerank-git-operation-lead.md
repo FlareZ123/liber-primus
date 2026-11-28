@@ -16,6 +16,25 @@ Thus the source-natural **lower endpoint / interval / upper endpoint** ordering 
 
 This is an arithmetic observation, not proof of author intention. The ordering matters: lower/upper/gap gives `GTI`, while the `GIT` reading inserts the interval between its endpoints. That low/gap/high ordering is natural for an interval description, but the manuscript does not print the three quotient values or the word GIT.
 
+## Corrected p33 giant initials: one independent small *number* but no operator (Director #3311, 28 November)
+
+A physical source correction matters here. The two oversized red initials opening p33's 91-rune upper passage and its following lower passage are **D** (GP29 index23, prime-label **89**) and **NG** (index21, prime-label **79**), not the earlier speculative M/NG. These are exact original GP symbols at p33 rune offsets0 and91; the two cuneiform groups on the same page are numeric **1033** and **3301**. On the real GP chart:
+
+```
+source large-rune prime-label difference:  prime(D) - prime(NG) = 89 - 79 = 10
+source cuneiform prime-rank difference:  (rank(3301) - rank(1033))/29
+                                          = (464 - 174)/29 = 10
+source upper red rubric length:          10 runes
+```
+
+Both left-hand inputs are independently printed on the *same original page* and the first numerical identity is unavailable if D is replaced by the already-corrected-away M. The shared value **10** could be a check on the 10×29 interpretation of the 290-prime interval. That interpretation is **not new**: the full 2013 original prime-echo pauses, 2014 source pair and 10×29 prime matrix were already tested in detail in the cuneiform interval reports. The red-head difference adds a manuscript-visible cross-check, **not** an independently authored subtraction instruction.
+
+One separate minimal mathematical observation: ordinary Euclid on the two numbers gives quotients `[3,5,8,1,3,1,1,2]` and remainders `[3301,1033,202,23,18,5,3,2,1,0]`. Their lengths **8** and **10** match the second and first p33 red rubrics (8 and10 GP symbols), while the first three quotients and the last quotient include **3,5,8,2**, the four red word lengths (physically 2+8 and3+5). For fixed higher endpoint3301, among the 3300 lower positive values only **1033** has Euclidean quotients beginning `3,5,8`. This is a reproducible numeric coincidence *conditioned on a post-hoc selected transform*: a user has no original instruction to take Euclidean quotients, pick the first three plus last, or treat red word lengths as quotient labels. Do not count these intersecting equalities as independent likelihood evidence or derive further operations by exception-fitting.
+
+**No typed receiver or plaintext follows.** Historical 2012–2014 Cicada puzzles used real RSA/prime arithmetic and the signed 2013 `prime_echo` lists these operands, but none of the two p33 oversized runes, original cuneiform numerals, signed 2014 square source or source 2013 shell program says `subtract the two initial prime labels`, `compute continued fractions`, `perform a specific radix/Euclid step on GP29 text`, or selects a plaintext target. The exact original 10×29 prime interval additive/GP28 versions, word-key matrix and 1033×3301 RSA packet and format-preserving receivers have already been executed and rejected as plaintext decoders ([interval gate](lp2-cuneiform-1033-3301-gp29-primeindex-gate.md), [word matrix](lp2-cuneiform-primerank-wordmatrix-wordkey-gate.md), [RSA FPE](lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md)); rebuilding them with this new numerical justification would not turn their original outputs into text. The putative `GIT` interpretation still lacks an authentic creator-era Git repository or object.
+
+**Director decision:** retain this exact D/NG source cross-check as an *untyped candidate selector* with clear provenance inside the existing report, not a decipherment, and **do not commission another key-modulus/phase scan**. What would advance the branch is an independent 2013/2014 instruction specifying *subtraction or Euclid on the two typed visual objects plus an explicit receiving text/file*, or an authenticated Git endpoint. In their absence the p33 image supplies numerals and GP labels but not the reversible operator and recipient required by #3311. No change to `results/README.md` is warranted.
+
 ## Why this is potentially different from the exhausted 290-prime key family
 
 The established cuneiform work treated 1033…3301 as a source-selected **prime interval** and tested several direct GP29/GP28 consumers. Those consumers are already negative and are not reopened here.
