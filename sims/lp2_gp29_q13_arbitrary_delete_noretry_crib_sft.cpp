@@ -63,6 +63,8 @@ struct Gate {
   bool found=false;
   int foundT=-1;
   array<int,Q> foundKey{};
+  const array<int,Q>* truth=nullptr;
+  bool truthOnly=false;
 
   Gate(const vector<int>& p,const vector<int>& o,int mm):P(p),O(o),m(mm){
     key.fill(-1);
@@ -128,6 +130,11 @@ struct Gate {
     nodes++;
     if(j==m){
       relaxedLeaves++;
+      if(truthOnly){
+        for(int s=0;s<Q;s++) if(key[s]>=0 && key[s]!=(*truth)[s]) return;
+        cspLeaves++; found=true; foundT=t; foundKey=*truth;
+        return;
+      }
       array<int,Q> completion{};
       if(completeNoRepeat(completion)){
         cspLeaves++; found=true; foundT=t; foundKey=completion;
@@ -153,6 +160,13 @@ struct Gate {
       if(found) return true;
     }
     return false;
+  }
+
+  bool runTruth(const array<int,Q>& K){
+    truth=&K; truthOnly=true;
+    bool ok=run();
+    truthOnly=false; truth=nullptr;
+    return ok;
   }
 };
 
@@ -205,26 +219,29 @@ int main(){
       vector<int> O; for(int i=0;i<(int)P.size();i++) if(keep[i]) O.push_back(E[i]);
       if(!directTrueWitness(P,O,mins[ci],K,keep)) throw std::runtime_error("control truth construction");
       Gate g(P,O,mins[ci]);
-      if(!g.run()) throw std::runtime_error("control gate missed planted no-retry deletion");
+      if(!g.runTruth(K)) throw std::runtime_error("control gate missed planted true q13 key");
       controlPass++;
     }
   }
 
-  std::cout<<"{\"method\":\"q13 GP29 arbitrary deletion, no retries; exact periodic-difference subsequence plus no-repeat CSP\",";
-  std::cout<<"\"controls_passed\":"<<controlPass<<",\"original\":[";
+  std::ostringstream out;
+  out<<"{\"method\":\"q13 GP29 arbitrary deletion, no retries; exact periodic-difference subsequence plus no-repeat CSP\",";
+  out<<"\"controls_true_key_passed\":"<<controlPass<<",\"original\":[";
   for(int ci=0;ci<4;ci++){
-    if(ci) std::cout<<",";
+    if(ci) out<<",";
     vector<int>P=decode(raw[ci]); Gate g(P,C,mins[ci]); bool hit=g.run();
-    std::cout<<"{\"ci\":"<<ci<<",\"L\":"<<P.size()<<",\"m\":"<<mins[ci]
-             <<",\"nodes\":"<<g.nodes<<",\"relaxed_leaves\":"<<g.relaxedLeaves
-             <<",\"csp_leaves\":"<<g.cspLeaves<<",\"hit\":"<<(hit?"true":"false");
+    out<<"{\"ci\":"<<ci<<",\"L\":"<<P.size()<<",\"m\":"<<mins[ci]
+       <<",\"nodes\":"<<g.nodes<<",\"relaxed_leaves\":"<<g.relaxedLeaves
+       <<",\"csp_leaves\":"<<g.cspLeaves<<",\"hit\":"<<(hit?"true":"false");
     if(hit){
-      std::cout<<",\"t\":"<<g.foundT<<",\"key\":[";
-      for(int s=0;s<Q;s++){if(s)std::cout<<",";std::cout<<g.foundKey[s];}
-      std::cout<<"]";
+      out<<",\"t\":"<<g.foundT<<",\"key\":[";
+      for(int s=0;s<Q;s++){if(s)out<<",";out<<g.foundKey[s];}
+      out<<"]";
     }
-    std::cout<<"}";
+    out<<"}";
   }
-  std::cout<<"]}\n";
+  out<<"]}\n";
+  std::cout<<out.str();
+  if(const char* p=std::getenv("SFT_OUTPUT")){ std::ofstream f(p); f<<out.str(); }
   return 0;
 }
