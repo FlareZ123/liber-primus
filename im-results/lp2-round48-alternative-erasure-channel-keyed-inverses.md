@@ -2,6 +2,38 @@
 
 **Decision — Agent6, 28 November 2026:** The independently proposed alternative hidden-output mechanisms have been converted into **working, source-independent finite-state decoders with the correct keystream supplied**. The new mod36 silent-symbol decoder recovers at least **97.62%** of surviving plaintext on each of 12 disjoint literary plants (mean **98.62%**); the GP29 post-filter deletion decoder recovers at least **87.98%** on each of 12 (mean **92.70%**). They beat their individual random wrong-key runs by large language-model margins. The original unknown-page keystream has *not* been recovered, and no authentic unknown-page plaintext has been identified. The mod36 score above covers only retained visible-emission plaintext; the full-path follow-up below recovers 95.02% mean complete-prefix LCS on six cross-author plants, with zero exact complete recoveries and a provably many-to-one hidden channel. The periodic-key receiver now also has an unbounded silent-event state-quotient implementation with complete replay, calibrated on two historical-key plants; both corresponding original transfers remain nonprose (see the dedicated section below).
 
+## Exact visible-law equivalence of the two iid-key erasure channels (Agent 1, 28 November 2026)
+
+**Mathematical decision:** The independent-deletion GP29 model and hidden-output mod36 model have **identical probabilities for every possible full visible ciphertext**, not merely approximately equal adjacent-repeat rates, when their encryption/retry key candidates are iid uniform and the GP29 deletion rate is set to exactly **7/36**. This is an exact equivalence for the specified models and an identifiability barrier; it does **not** claim that the actual author used either model or that historical/periodic keys are iid.
+
+For an alphabet of \`v\` visible and \`h\` silent symbols, set \`n=v+h\`. Uniform independent key draws followed by strict rejection of the immediately preceding *emitted* symbol make each accepted emitted symbol uniform among the other \`n−1\` states, regardless of the current plaintext. In the hidden-alphabet model, starting from printed rune \`a\`, the next printed rune \`b\` is reached immediately, or after first entering any of the \`h\` invisible states. Once hidden, the first visible hit is uniform among all \`v\` visible symbols. Therefore
+
+\[
+T_{\mathrm{hidden}}(a,a)=\frac{h}{v(n-1)},\qquad
+T_{\mathrm{hidden}}(a,b)=\frac{n}{v(n-1)}\quad(b\ne a).
+\]
+
+In the alternative \`v\`-state strict-nonrepeat sender, delete each *accepted* emission independently with probability \`d\` while still updating the previous-emission state. Let \`P=(J-I)/(v-1)\` be its uniform-off-diagonal transition matrix. The first-retained-symbol kernel is \`(1-d)P(I-dP)^{-1}\`, and exact summation of the geometric series gives
+
+\[
+T_{\mathrm{delete}}(a,a)=\frac{d}{v-1+d},\qquad
+T_{\mathrm{delete}}(a,b)=\frac{1}{v-1+d}\quad(b\ne a).
+\]
+
+Substituting **\`d=h/(v+h)\`** makes the two kernels *entrywise identical*. Both start with a uniform first printed symbol. Thus for any full visible rune sequence \`w_1,\dots,w_m\` containing \`E\` adjacent equalities, both models assign exactly
+
+\[
+\Pr(w_1,\dots,w_m)=\frac{1}{v}
+\left(\frac{h}{v(n-1)}\right)^E
+\left(\frac{n}{v(n-1)}\right)^{m-1-E}.
+\]
+
+This holds at every finite order. No unigram, trigram, gap, higher-order, or whole-ciphertext statistic can identify which *of these two iid-uniform-key senders* generated the observed runes. In the LP2 numbers \`v=29,h=7,n=36\`, the kernel has exact **same-rune probability 7/1015** and probability **36/1015 for each specified different rune**. The corresponding deletion probability is exactly \`7/36=.194444…\`. The original 12,956-rune tape has 86 adjacent equalities in 12,955 global transitions (no equality on a physical page join), versus an expected 89.3448 under the matched kernel (z≈−0.355). The previously calibrated deletion rate 0.187 gives 0.006634264 same-rune probability versus 0.006896552 for the hidden model; their log-likelihood difference on this sufficient statistic is only **−0.063825**. Both remain compatible with the *marginal repeat count*, without proving either sender.
+
+**Important limitation / route change:** The homogeneous visible chain's repeat indicators are iid Bernoulli, so *neither* uniform-key model explains the already established original doublet-gap +0.3800 lag correlation under the source-conditioned controls. That anomaly cannot be resolved by ciphertext-only selection of 29+deletion versus 36+silence within this exact matched family. An actual nonuniform/periodic key, position-dependent deletion, punctuation-conditioned sender, or external side information breaks one or more theorem assumptions and could distinguish models; their known-key decoders remain valid distinct tools. The human solve path must supply a specific **key, hidden-state sidecar, or typed operator**, rather than tuning high-order output-only scores to select either channel.
+
+**Reproducer:** [exact model and independently iterated absorbing-chain/retained-event controls](../sims/lp2_round48_channel_observational_equivalence_sft.cjs), standard Node.js 22, no external packages; independent matrix summations agree for \`(v,h)=(2,1),(3,2),(5,3),(29,7)\`; complete four-visible-symbol word probabilities agree in small exhaustive domains and the first 10,000 fixed full-size cases. Model theorem is algebraic; numerical controls are implementation checks. Source counts come from the original canonical rune tape; their separate original source audit is [the doublet-boundary report](lp2-doublet-gap-source-boundary-conditional-gate.md). **No original plaintext, source-selected key, or continuation was recovered.**
+
 ## Why this is a different route
 
 The [Dukotah Round48 M1 independent pass (27 November)](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round48/M1-INDEPENDENT-PASS.md) and its [complete experiment](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round48/M1-leak-census/RESULTS.md) demonstrate that the original 86/12,955 adjacent equalities do **not** identify the fitted 0.813-repeat suppression rule. A strict-repeat filter, followed by either deletion of ≈18.7% of rune emissions, or a 36-symbol alphabet with seven nonprinting outputs, has virtually indistinguishable visible single-step statistics. The external [C11 public challenge](https://github.com/Dukotah/cicada3301/blob/master/challenges/c11_alt_constructions.py) reports its older keyskip decoder recovering **0/40** known-key plants for each of the two alternatives. These are different ciphertext *channels*, with different inverse paths, even though their visible one-step statistics can coincide. T7's measured lag-one **doublet-gap** correlation +0.380 is still not explained by these mechanisms; this work does not claim otherwise.
