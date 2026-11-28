@@ -71,6 +71,19 @@ This leaves **16 distinct source-compatible presentations** even after the mirro
 
 This is a stronger causal negative than the historical audit alone: current p6 H equalities remain reproducible arithmetic identities, but they cannot be promoted on the claim that the visible frame uniquely instructs the transform. Reproducer: [`sims/lp2_p6_h_geometry_identifiability_sft.cjs`](../sims/lp2_p6_h_geometry_identifiability_sft.cjs).
 
+## Serialization-free successor: the p6/p50 state set survives
+
+Director #3439 separates the part of p6 H that depends on unlicensed serialization from the part that is invariant across all 16 locally compatible presentations. For printed widths `[4,1,4,2]`, visible mirror pairing alone gives pair blocks
+
+```text
+outer (4,2): {|difference|,sum}={2,6}
+inner (1,4): {|difference|,sum}={3,5}.
+```
+
+The unordered block invariant `{{2,6},{3,5}}` exactly equals the independently derived p50 strict-support coordinate blocks from `[3,5,6,2]`. Across the manuscript's three complete four-word red spans, only p6 has this invariant; p23 gives `{{3,7},{3,9}}` and p54 gives `{{1,3},{2,6}}`.
+
+So the negative here applies to **canonical H serialization**, not to all state information obtained from the visibly paired title. The p6→p50 support-coordinate match survives as a serialization-free mirror-pair relation. It remains post-discovery and is not a cipher inverse. Reproducer: [`sims/lp2_p6_mirror_invariant_p50_support_sft.cjs`](../sims/lp2_p6_mirror_invariant_p50_support_sft.cjs).
+
 ## Decision
 
 **Negative historical fork.** No bounded first-party or contemporaneous source currently fixes the exact outside-in H transform, its direction, serialization, and modulo29 arithmetic before the modern LP2 constructions.
