@@ -30,8 +30,12 @@ assert.equal(original.length - words.length, 72);
 const alphabet60 = grid.alphabet;
 const alphabet59 = alphabet60.replace('f', '');
 assert.equal(alphabet59.length, 59);
-const p51Tokens = grid.pages.find(page => page.page === 51).tokens;
-assert.equal(p51Tokens.length, 72);
+const tokenFrom60 = value => alphabet60[Math.floor(value / 60)] + alphabet60[value % 60];
+// Original physical split is 10 rows on p49, 13 on p50, 9 on p51.
+const p51Start = (10 + 13) * 8;
+assert.equal(p51Start, 184);
+const p51Tokens = grid.bytes.slice(p51Start).map(tokenFrom60);
+assert.equal(p51Tokens.length, 9 * 8);
 assert.ok(p51Tokens.every(token => [...token].every(ch => alphabet59.includes(ch))));
 
 const decode59 = token =>
