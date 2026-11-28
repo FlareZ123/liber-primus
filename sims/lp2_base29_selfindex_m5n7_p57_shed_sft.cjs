@@ -255,7 +255,7 @@ assert.deepEqual(dhHits, [{
   a: 6, g: 5, p: 23, A: 8, b: 15, B: 19, K: 2,
 }]);
 
-console.log(JSON.stringify({
+const output = JSON.stringify({
   historicalZeroOrigin: {
     original2014ImageRefs: '0.jpg through 57.jpg',
     count: imageRefs.length,
@@ -289,4 +289,10 @@ console.log(JSON.stringify({
   p15Pointer: dh.b,
   decision:
     'The source-visible zero-based BASE29 self-index block yields M5N7; sum57 selects solved p57, whose circumference instruction exposes 5N=[g,p]. Run start a=6 and the outer difference b=15 then reconstruct the full authenticated DH state uniquely among 4,032 quotient-compatible count choices and point to physical p15. This is a structural/navigation route, not yet a body decryption.',
-}, null, 2));
+}, null, 2);
+const json = JSON.stringify(output, null, 2);
+console.log(json);
+fs.writeFileSync(
+  path.join(process.env.RUNNER_TEMP || process.cwd(), 'source-test-output.json'),
+  json + '\n',
+);
