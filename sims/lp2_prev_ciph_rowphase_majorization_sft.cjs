@@ -171,10 +171,26 @@ const privateCaps=Object.fromEntries(Object.entries(privateFrames).map(
 const sourceFiles=[
   ["Gibran","resources/control/gibran_prophet_58585.txt",62492],
   ["Shakespeare","resources/control/shakespeare_first300k.txt",217106],
-  ["Emerson","resources/control/emerson_essays_2944.txt",321327]
+  ["Emerson","resources/control/emerson_essays_2944.txt",321327],
+  ["Latin Vulgate","resources/control/latin-vulgate-gp-wholewords.txt",204802]
 ];
+function normalizeEncodedLatinGP(raw){
+  const alphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+  assert.equal(alphabet.length,A);
+  const out=[];
+  for(const line of raw.split(/\r?\n/)){
+    const word=line.trim();
+    if(!word || word.startsWith("#"))continue;
+    for(const c of word){
+      const index=alphabet.indexOf(c);
+      assert.ok(index>=0,"invalid encoded Vulgate GP letter "+c);
+      out.push(index);
+    }
+  }
+  return out;
+}
 const refs=sourceFiles.map(([name,file,expected])=>{
-  const raw=load(file),gp=normalizeGP(raw);
+  const raw=load(file),gp=name==="Latin Vulgate"?normalizeEncodedLatinGP(raw):normalizeGP(raw);
   assert.equal(gp.length,expected,name+" normalized rune count changed");
   return {name,file,blob_sha256:crypto.createHash("sha256").update(raw,"utf8").digest("hex"),gp};
 });
@@ -337,6 +353,8 @@ for(const report of reports)for(const survivors of Object.values(report.repeat_e
 const tests=[];
 for(const frame of Object.keys(frames))for(const q of [1,13])
   tests.push(plant(refs[0],frame,q,31337+q+(frame==="mark"?100:0)));
+// Independent actual-GP-index Latin source plant, no English recoding.
+tests.push(plant(refs[3],"mark",1,53731));
 const privateControls=Object.keys(privateFrames).map((frame,i)=>
   plantPrivate(refs[0],frame,44001+i*123));
 const result={
@@ -354,7 +372,8 @@ const result={
       Q.map((q,i)=>[String(q),{free:rows[i].free,top1:rows[i].prefix[0],
         top2:rows[i].prefix[1],top5:rows[i].prefix[4],top10:rows[i].prefix[9],
         top16:rows[i].prefix[15]}]))])),
-    all_562060_reference_windows_excluded_for_q1_through_q12:true},
+    total_reference_windows:reports.reduce((n,r)=>n+r.window_count,0),
+    all_reference_windows_excluded_for_q1_through_q12:true},
   private_frame_charts:{source_chapter_lengths:sourceChapterLengths,
     model:"Each frame independently chooses its own 29 secret predecessor-ciphertext GP29 alphabet permutations, with free frame start and no other dynamic state",
     capacities:Object.fromEntries(Object.entries(privateCaps).map(([name,c])=>
