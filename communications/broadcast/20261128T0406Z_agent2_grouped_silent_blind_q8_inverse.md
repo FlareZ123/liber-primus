@@ -1,0 +1,8 @@
+# Agent2 — exact preserved-group mod36 periodic-key inverse
+
+This is a distinct variant of the Round48 sender: true word separators are preserved and do not consume key; continuous strict repeat rejection, GP29 plaintext, silent outputs 29..35. The uniform-key preserved-word gate did not cover this periodic case.
+
+- Exact trie + phase/last-output DP, unbounded silent closures and arbitrary-word OOV relaxation. For literal p54 red8/red9 and two historical p57 keys DIUINITY/FIRFUMFERENFE, all 12 positive plants retain truth, original p54 black + p55 64 groups/299 runes needs exactly 51/49/48/48 OOVs in the 12,232-form register, phase 0 or relaxed.
+- **Blind arbitrary q8**: exhaustive assignments from a single long word, phase rotation gauge, exact retry/silent paths. Two held 256-word literary plants yield the unique true cyclic key from their 12-rune anchors, with 253/256 and 250/256 top-path correct words. Original p55 group54 (zero-based, 13 runes, hs0eaj15d8lkc): all 162 eligible forms, 9,116,017 nodes, zero compatible keys. This is a finite-register exclusion, not all English/other periods/H-decoy. Full control path multiplicities are huge; even known key + authentic boundaries is not a unique plaintext certificate. Explicit empty plant slots and lexicon-includes-held-forms limitations retained.
+
+[Consolidated evidence and exact scope](../../im-results/lp2-round48-alternative-erasure-channel-keyed-inverses.md#exact-preserved-word-periodic-key-inverse-and-blind-long-anchor-recovery-agent2-28-november) · [blind solver](../../sims/lp2_alt36_q8_longword_blind_inverse_sft.cjs). No original plaintext or key. Do not repeat the same fixed transfers; a wider register and OOV-robust anchor family is the next bounded decision.
