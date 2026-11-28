@@ -58,11 +58,12 @@ assert.equal(nMarks,31);
 assert.equal(marked.length,29);
 assert.equal(marked.reduce((s,[a,b])=>s+(b-a),0),N);
 
-function capacity(tape, intervals, q) {
+function capacity(tape, intervals, q, exceptionMask=null) {
   const M = Array.from({length:q*A},()=>new Uint16Array(A));
-  let transitions=0;
+  let transitions=0,free=intervals.length;
   for (const [start,end] of intervals) {
     for (let i=start+1; i<end; i++) {
+      if(exceptionMask && exceptionMask[i]){free++;continue;}
       M[((i-start)%q)*A+tape[i-1]][tape[i]]++;
       transitions++;
     }
@@ -73,11 +74,11 @@ function capacity(tape, intervals, q) {
     for (let j=0; j<A; j++) ranked[j]+=sorted[j];
   }
   const prefix = new Uint32Array(A);
-  let s=intervals.length;
+  let s=free;
   for(let j=0;j<A;j++){s+=ranked[j];prefix[j]=s;}
-  assert.equal(transitions,N-intervals.length);
+  assert.equal(transitions+free,N);
   assert.equal(prefix[A-1],N);
-  return {prefix:Array.from(prefix),ranked:Array.from(ranked),transitions,free:intervals.length};
+  return {prefix:Array.from(prefix),ranked:Array.from(ranked),transitions,free};
 }
 
 const tokenMap = corpus.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
@@ -113,6 +114,17 @@ const Q=[...Array(18)].map((_,i)=>i+1).concat([23,29]);
 const frames={page:physical,mark:marked};
 const caps=Object.fromEntries(Object.entries(frames).map(([name, intervals])=>
   [name,Q.map(q=>capacity(original,intervals,q))]));
+// Exception-channel challenge: grant the second rune of EVERY original
+// within-page doublet an arbitrary plaintext/output. Nonexception sites still
+// use the shared previous-published-ciphertext secret rows. These positions
+// are source-visible, NOT fitted to a proposed plaintext.
+const repeatMask=new Uint8Array(N);
+let repeatEvents=0;
+for(const [start,end] of physical)for(let i=start+1;i<end;i++)
+  if(original[i]===original[i-1]){repeatMask[i]=1;repeatEvents++;}
+assert.equal(repeatEvents,86);
+const repeatCaps=Object.fromEntries(Object.entries(frames).map(([name, intervals])=>
+  [name,Q.map(q=>capacity(original,intervals,q,repeatMask))]));
 const sourceFiles=[
   ["Gibran","resources/control/gibran_prophet_58585.txt",62492],
   ["Shakespeare","resources/control/shakespeare_first300k.txt",217106],
@@ -128,6 +140,7 @@ function scanReference(ref) {
   const counts=new Uint16Array(A);
   for (let i=0;i<N;i++)counts[ref.gp[i]]++;
   const survivors=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(0)]));
+  const repeatSurvivors=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(0)]));
   const minimum=Array(A).fill(Infinity);
   const windows=ref.gp.length-N+1;
   for(let start=0;start<windows;start++) {
@@ -136,17 +149,20 @@ function scanReference(ref) {
     const cumulative=new Uint16Array(A);
     let s=0;
     for(let j=0;j<A;j++){s+=sorted[j];cumulative[j]=s;minimum[j]=Math.min(minimum[j],s);}
-    for(const [name,cs] of Object.entries(caps)) {
-      for(let qi=0;qi<Q.length;qi++) {
-        let good=true;
+    for(const [mode,collection,dest] of [
+      ["ordinary",caps,survivors],["repeat-free",repeatCaps,repeatSurvivors]
+    ]) {
+      for(const [name,cs] of Object.entries(collection))for(let qi=0;qi<Q.length;qi++){
         const bound=cs[qi].prefix;
+        let good=true;
         for(let j=0;j<A;j++)if(cumulative[j]>bound[j]){good=false;break;}
-        if(good)survivors[name][qi]++;
+        if(good)dest[name][qi]++;
       }
     }
   }
-  const byFrame=Object.fromEntries(Object.entries(survivors).map(([name,counts])=>
+  const translate=surv=>Object.fromEntries(Object.entries(surv).map(([name,counts])=>
     [name,Object.fromEntries(Q.map((q,i)=>[String(q),counts[i]]))]));
+  const byFrame=translate(survivors);
   return {
     name:ref.name,
     file:ref.file,
@@ -154,7 +170,8 @@ function scanReference(ref) {
     normalized_runes:ref.gp.length,
     window_count:windows,
     minimum_ranked_plaintext_prefix:minimum,
-    survivors:byFrame
+    survivors:byFrame,
+    repeat_exception_survivors:translate(repeatSurvivors)
   };
 }
 
@@ -192,12 +209,21 @@ function plant(ref, frameName, q, seed) {
   const plainCounts=new Uint16Array(A);
   for(const r of plain)plainCounts[r]++;
   assert.ok(majorized(plainCounts,cap.prefix),"valid plant rejected by theorem");
+  const localRepeats=new Uint8Array(N);
+  for(const [start,end] of intervals)for(let i=start+1;i<end;i++)
+    if(C[i]===C[i-1])localRepeats[i]=1;
+  const relaxed=capacity(C,intervals,q,localRepeats);
+  assert.ok(majorized(plainCounts,relaxed.prefix),"valid plant rejected by exception theorem");
   return {frame:frameName,q,seed,matched_native_runes:N,repeated_ciphertext_pairs:repeats,
     expected_rare_plaintext_pairs:expectedRare,passes_all_29_capacity_ranks:true,
+    passes_all_29_exception_capacity_ranks:true,
     top1_capacity:cap.prefix[0],original_top1_capacity:caps[frameName][Q.indexOf(q)].prefix[0]};
 }
 
 const reports=refs.map(scanReference);
+for(const report of reports)for(const survivors of Object.values(report.repeat_exception_survivors))
+  for(let q=1;q<=12;q++)assert.equal(survivors[String(q)],0,
+    "original exception-channel q<=12 must be excluded for "+report.name);
 const tests=[];
 for(const frame of Object.keys(frames))for(const q of [1,13])
   tests.push(plant(refs[0],frame,q,31337+q+(frame==="mark"?100:0)));
@@ -210,6 +236,13 @@ const result={
     Q.map((q,i)=>[String(q),{free:rows[i].free,top1:rows[i].prefix[0],
       top2:rows[i].prefix[1],top5:rows[i].prefix[4],top10:rows[i].prefix[9],
       ranked_signature:q===1?rows[i].ranked:undefined}]))])),
+  repeat_exception:{original_same_page_doublet_second_positions:repeatEvents,
+    rule:"At every second rune of a within-page C[i]==C[i-1] event, the underlying row emission may be arbitrary; all other positions still consume one key-row permutation",
+    capacities:Object.fromEntries(Object.entries(repeatCaps).map(([name,rows])=>[name,Object.fromEntries(
+      Q.map((q,i)=>[String(q),{free:rows[i].free,top1:rows[i].prefix[0],
+        top2:rows[i].prefix[1],top5:rows[i].prefix[4],top10:rows[i].prefix[9],
+        top16:rows[i].prefix[15]}]))])),
+    all_562060_reference_windows_excluded_for_q1_through_q12:true},
   references:reports,
   controls:tests
 };
