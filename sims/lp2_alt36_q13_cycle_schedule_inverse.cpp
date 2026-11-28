@@ -9,7 +9,10 @@
 #include <vector>
 #include <omp.h>
 using namespace std;
-constexpr int Q=13, B=6;
+#ifndef LP_PERIOD
+#define LP_PERIOD 13
+#endif
+constexpr int Q=LP_PERIOD, B=6;
 constexpr uint64_t ALL=(1ULL<<36)-1;
 constexpr char A[]="0123456789abcdefghijklmnopqrstuvwxyz";
 int ix(char c){return c<='9'?c-'0':c-'a'+10;}
