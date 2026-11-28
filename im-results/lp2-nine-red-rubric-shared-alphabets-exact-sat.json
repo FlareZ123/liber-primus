@@ -1,0 +1,142 @@
+{
+  "inputFNV32": "fe63c4ed",
+  "initialSolverRuns": {
+    "fullFixed": {
+      "status": "unsat",
+      "seconds": 0.7021424969998407
+    },
+    "fullFree": {
+      "status": "unsat",
+      "seconds": 9.50176011099984
+    },
+    "individualFixed": [
+      "sat",
+      "sat",
+      "sat",
+      "sat",
+      "sat",
+      "sat",
+      "unsat",
+      "unsat",
+      "sat"
+    ],
+    "individualFree": {
+      "6": {
+        "status": "unsat",
+        "seconds": 3.583040118000099
+      },
+      "7": {
+        "status": "unsat",
+        "seconds": 10.524436581999908
+      }
+    }
+  },
+  "sortedClauseRerun": {
+    "controls": [
+      {
+        "fixture": 0,
+        "fixed": 2,
+        "free": 4,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 1,
+        "fixed": 2,
+        "free": 8,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 2,
+        "fixed": 6,
+        "free": 6,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 3,
+        "fixed": 3,
+        "free": 6,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 4,
+        "fixed": 0,
+        "free": 0,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 5,
+        "fixed": 0,
+        "free": 0,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 6,
+        "fixed": 0,
+        "free": 0,
+        "allSATMatchesExhaustive": true
+      },
+      {
+        "fixture": 7,
+        "fixed": 0,
+        "free": 0,
+        "allSATMatchesExhaustive": true
+      }
+    ],
+    "cases": [
+      {
+        "chapters": [
+          6
+        ],
+        "free": false,
+        "status": "unsat",
+        "seconds": 5.233469274000072,
+        "smt_chars": 1745547
+      },
+      {
+        "chapters": [
+          6
+        ],
+        "free": true,
+        "status": "unsat",
+        "seconds": 5.664467828999932,
+        "smt_chars": 1745525
+      },
+      {
+        "chapters": [
+          7
+        ],
+        "free": false,
+        "status": "unsat",
+        "seconds": 2.180987232999996,
+        "smt_chars": 2197790
+      },
+      {
+        "chapters": [
+          7
+        ],
+        "free": true,
+        "status": "unsat",
+        "seconds": 16.512807147999865,
+        "smt_chars": 2197768
+      },
+      {
+        "chapters": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "free": false,
+        "status": "unsat",
+        "seconds": 0.6182376760002626,
+        "smt_chars": 10312428
+      }
+    ],
+    "fullFree": "second run timeout; logically excluded by either free-start chapter UNSAT subset; initial direct UNSAT above"
+  }
+}
