@@ -188,6 +188,24 @@ The original first physical page continues to rune offset 228 and beyond, so **e
 
 This makes the page-private necessary-capacity loophole executable as a real plaintext-source recovery algorithm: an authentic Cicada-authorized book or witness could be indexed and subjected to the same **complete exact row-chart reconstruction**, which immediately identifies its matching passage if the typed mechanism is correct. The important missing input is **source selection** and whether LP2 really retains raw native GP29 rune order. Random keyword or document scanning is not justified as evidence of a historical decoder merely because the forward algorithm can locate a planted source.
 
+### Eliminating the cross-page source-alignment assumption at original p0
+
+One possible objection to the full-book source-copy gate is that the intended manuscript **jumps to a fresh location in a source book at each physical page**, rather than retaining a single 12,956-rune donor passage. Such a page-address cipher would invalidate the global alignment; however, it still requires **its very first 262-rune page** to have a valid predecessor-C substitution key for some *local 262-rune passage* in the indicated source. The original p0 is entirely independent of any later page or source offset.
+
+The exact same full-bijection source locator therefore enumerates **every 262-rune substring** in the *entire* four normalized donor files, including those near the corpus end that are too late to supply the longer full-book window. The total is **804,683** source p0 candidates, with no fitted positions, keywords or alphabet relabelings:
+
+| Independent original p0 donor source | All possible 262-rune source starts | Has an exact invertible 29-row GP29 key for original p0? | Latest first contradiction (p0 local zero-based index) |
+| --- | ---: | ---: | ---: |
+| Gibran | **62,231** | **0** | **63** |
+| Shakespeare | **216,845** | **0** | **62** |
+| Emerson | **321,066** | **0** | **69** |
+| Latin Vulgate | **204,541** | **0** | **66** |
+| **Total** | **804,683** | **0** | By p0 rune 69 |
+
+Allow all the actual within-page equal-rune event positions as arbitrary special emissions. Original p0's **first** such event is at local zero-based position **122**; every donor window's contradiction occurs before that event. Therefore all 804,683 p0 candidates still fail with the event exception policy. This is an **exact partial-row conflict**, not a quality score. It excludes direct source-copy **even if every later page uses an independently chosen source offset, another chart set, and an independent first rune**, as long as p0 itself follows this specifically typed q1 reversible previous-published-C lookup.
+
+The planted source-control key instead turns original-length Gibran donor offset **18,000** into a fresh encrypted book whose first page has the exact **262-rune** original geometry, with a separate secret 29-row alphabet set. When the page-only source locator scans **all 62,231** Gibran starts, it recognizes **one and only one** valid inverse start, at **18,000**, and all 262 runes recover exactly; the full 12,956-rune source locator likewise recognizes a single match and reconstructs a consistent full key assignment. This positive is independent of any original-source decryption claim and confirms that the all-offset first-page rejection is not a failure to detect a true copied plaintext source under the specified mechanism.
+
 ## Decision and missing authentic step
 
 The original conditional row histograms are close to uniform and cannot supply sufficiently many outputs for the most frequent GP-native letters, even if a secret 29-permutation chart is selected by the previous ciphertext glyph at every step. **Retire full-book q≤12 previous-ciphertext-only row-alphabet brute-force searches** under either original physical-page or large-mark reset. A key search cannot repair this key-independent mathematical contradiction under the stated donor envelope.
