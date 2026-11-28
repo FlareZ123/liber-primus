@@ -1,0 +1,19 @@
+{
+  "classification": "raw output frozen before target-word grading",
+  "serializer_commit": "e9e84c46de2e6123a9e41811b491ae40b22a3b67",
+  "slopes": [2,26,5,6],
+  "blocks": [
+    {"name":"q1","rows":[
+      {"page":32,"start":30,"n":3,"sigma":4,"slope":2,"intercept":9,"key":[9,11,13],"cipher":[0,3,2],"plain":[20,21,18],"plain_translit":"LNGE"},
+      {"page":33,"start":132,"n":4,"sigma":0,"slope":26,"intercept":19,"key":[19,16,13,10],"cipher":[3,15,17,22],"plain":[13,28,4,12],"plain_translit":"PEAREO"},
+      {"page":34,"start":4,"n":2,"sigma":0,"slope":5,"intercept":12,"key":[12,17],"cipher":[12,23],"plain":[0,6],"plain_translit":"FG"},
+      {"page":35,"start":25,"n":5,"sigma":25,"slope":6,"intercept":22,"key":[22,28,5,11,17],"cipher":[19,17,19,24,11],"plain":[26,18,14,13,23],"plain_translit":"YEXPD"}
+    ]},
+    {"name":"q3","rows":[
+      {"page":37,"start":146,"n":4,"sigma":7,"slope":2,"intercept":6,"key":[6,8,10,12],"cipher":[3,2,6,27],"plain":[26,23,25,15],"plain_translit":"YDAES"},
+      {"page":38,"start":57,"n":6,"sigma":0,"slope":26,"intercept":22,"key":[22,19,16,13,10,7],"cipher":[8,25,14,2,17,22],"plain":[15,6,27,18,7,15],"plain_translit":"SGIAEWS"},
+      {"page":39,"start":132,"n":5,"sigma":28,"slope":5,"intercept":13,"key":[13,18,23,28,4],"cipher":[19,7,10,17,23],"plain":[6,18,16,18,19],"plain_translit":"GETEM"},
+      {"page":40,"start":71,"n":4,"sigma":0,"slope":6,"intercept":20,"key":[20,26,3,9],"cipher":[4,15,14,21],"plain":[13,18,11,12],"plain_translit":"PEJEO"}
+    ]}
+  ]
+}
