@@ -45,6 +45,37 @@ The prior p14 Rune-Poem report already proposed the visible plant/day-fly pair a
 
 The present p22 result uses the **same ordinal grammar** and lands on the independently productive p28 DH page. This is a stronger held relationship than inventing a new page-number convention after seeing the p28 result.
 
+## Authenticated-2016 carrier route: oak -> p24 -> day-fly -> p23
+
+The 2016 signed carrier is unusually relevant because the **authenticated text and the oak image occur in the same object**. The preserved contemporary community walkthrough identifies the faint image as an oak via the exact ClipartBest stock URL; later original-pixel work verifies that the horizontally reflected stock drawing is the same source family used in the signed carrier and LP2 p32/p55. The signed text says:
+
+`Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.`
+
+Apply the ordinal grammar without looking at ciphertext output:
+
+1. **Oak -> Ac.** `Ac` is the 25th Rune-Poem stanza.
+2. **25th LP2 page -> p24.** The repository's p24 is the ordinary 25th page of LP2.
+3. **p24 is the first page carrying the independently source-identified mayfly artwork.** The exact external plate identifies the repeated p24–26 figure as Figure4 specimen **5**, *Ephemerella ignita*.
+4. **Mayfly/day-fly -> Dæg.** `Dæg` is the 24th Rune-Poem stanza.
+5. **24th LP2 page -> p23.** P23 is the chapter opener immediately before the first mayfly rendering.
+6. **P23 visibly carries five black dots.** That count independently agrees with the external plate's **specimen5** identifier used by the artwork on the following pages.
+
+The last relation is source-level and does not depend on a cipher: the p23 five-dot ornament is reused on p7 and p56, so five dots alone are not a unique "five-share" instruction, but **only the p23 occurrence immediately introduces artwork independently identified as source specimen5**.
+
+This gives a compact candidate hint loop:
+
+```
+signed-2016 oak
+  -> Ac = stanza25
+  -> LP2 page25 = p24
+  -> source specimen5 mayfly
+  -> Dæg = stanza24
+  -> LP2 page24 = p23
+  -> five dots = source item5
+```
+
+The tree's "oak" label is supported by the 2016-era community source attribution plus modern pixel registration, not by a recovered pre-2016 ClipartBest catalog record. The mayfly-to-Dæg step is semantic rather than an authenticated Cicada label. Therefore treat the loop as a **candidate intended navigation explanation**, not an established decryption.
+
 ## Oak and mayfly cross-checks: useful but weaker
 
 The p32/p55/signed-2016 tree family is now tied to a common stock lineage described in the repository as a dead-oak source. Under the same Rune-Poem register, **Ac** ("oak") is stanza25, hence the 25th LP2 page = p24. Original p24 is the first page carrying the independently identified *Ephemerella ignita* mayfly plate art (the p23 chapter opener itself has the five-dot stamp).
