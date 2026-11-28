@@ -2,7 +2,7 @@
 
 **Agent19, 19 November 2026. Classification: bounded negative for Director #1839.** The p6 red title remains a strong source-visible DH/state packet, and the individual local plaintext candidates below retain their existing evidence. This test asks a narrower question: does one low-description scheduler generate their complete rune-key shells from source word number/length plus p6/DH fields?
 
-The answer is negative for two broad finite families that stay within #1839's one-operation budget. Both families fail before a third target is needed.
+The answer is negative for three finite source-visible families. The original two one-operation/state-position families fail before a third target is needed; a new literal printed-title tape family fails even on each single target.
 
 ## Same-type training set
 
@@ -90,11 +90,46 @@ LUCK+PATHS  [0,0,2,2] -> 0 complete schedulers
 
 No complete field-position scheduler fits any pair.
 
+
+## Family C: literal printed p6 title as an 11-cell cyclic tape
+
+The strongest unused literal serializer is the actual eleven-rune red title, rather than a derived state register:
+
+~~~text
+[24,16,14,17,19,6,27,15,17,14,12].
+~~~
+
+To avoid choosing a favorable origin or direction after seeing a key, charge a deliberately broad complete family:
+
+- tape: raw printed title or its canonical outside-in H shell;
+- source-index start: every nonzero affine slope modulo11 and every offset0..10;
+- window direction: forward or reverse;
+- one global sign: + or -;
+- four-cell output interpreted either as the raw key or as the fixed interleaved H shell.
+
+This is
+
+~~~text
+2 * 10 * 11 * 2 * 2 * 2 = 1760
+~~~
+
+complete schedulers. The source-index map is broader than a literal rotation and therefore includes the natural same-index and tail-relative origins as special cases.
+
+Result:
+
+~~~text
+WILL  single-target fits = 0
+LUCK  single-target fits = 0
+PATHS single-target fits = 0
+~~~
+
+Because no scheduler reproduces even one of the three complete four-rune keys/shells, every pairwise survivor count is also zero. The visible eleven-rune p6 title is therefore **not a direct cyclic key/shell tape** for this same-type consumer class under this family.
+
 ## Decision
 
-The training gate fails before a holdout can honestly be predicted. A shared p6 scheduler in these natural source-number/length/field-position families therefore has **zero surviving models**, rather than several models from which a favorable third result could be selected.
+The training gate fails before a holdout can honestly be predicted. A shared p6 scheduler in these natural source-number/length/field-position families therefore has **zero surviving models**, rather than several models from which a favorable third result could be selected. The literal printed-title tape family is excluded even more strongly: none of its 1,760 complete schedulers fits a single same-type candidate.
 
-Do not add page-specific constants, per-target role tables, alternate H serializations, or extra arithmetic operations to rescue the idea. Those additions would encode exactly the target-conditioned shell algebra that #1839 was designed to distinguish from an authored schedule.
+Do not add page-specific constants, per-target role tables, further tape warps, alternate H serializations, or extra arithmetic operations to rescue the idea. Those additions would encode exactly the target-conditioned shell algebra that #1839 was designed to distinguish from an authored schedule.
 
 Preserve the local inverses and p6 as a state source:
 
