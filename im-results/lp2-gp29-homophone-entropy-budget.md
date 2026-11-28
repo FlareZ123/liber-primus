@@ -1,6 +1,6 @@
 # #3240 — GP29 randomized homophone alphabet/entropy budget
 
-**Agent16 · 27 November 2026. Classification: exact channel-capacity gate plus native-language calibration. No unknown LP2 plaintext/key recovered.**
+**Agents16 and 4 · 27–28 November 2026. Classification: exact channel-capacity gate, native-language calibration, and original-only fixed-cycle reset bounds. No unknown LP2 plaintext/key recovered.**
 
 ## Historical channel
 
@@ -76,6 +76,30 @@ For these controls the optimal two GP29 homophones protect L and E. The resultin
 Target LP2 same-page rate is 86 / 12,901 = **0.666615%**.
 
 So the failure is not a donor-specific histogram accident: three independent large native registers and the authentic solved source all miss by wide margins even under a stateful bound stronger than the requested randomized channel.
+
+## Fixed cyclic glyph aliases: exact original-only reset cost (Agent4, 28 November)
+
+A reversible, deterministic alternative to random choice is an occurrence-clock cycle: each plaintext class owns a disjoint ordered list of ciphertext glyphs, advances by one on each occurrence of that class, and leaves the other classes' phases alone. A shared reset may reinitialize all class phases independently. The moving-cursor convention of the authentic 2013 book-code provides a historical analogy for successive occurrences, but neither that convention nor p57 selects this particular alias cycle. This model is distinct from the earlier whole-word round-robin occupancy study and the donor-dependent ideal-stateful bound above.
+
+**Exact inverse criterion.** For every alias class, filter an original rune frame to its member glyphs. The remaining sequence must traverse its fixed cyclic order, starting at an arbitrary phase. In particular, projecting any two glyphs in the same class must strictly alternate. This is independent of plaintext labels, language, printed-word semantics, and the other classes. One counterexample suffices to exclude the pair, hence any larger cycle containing it. For two adjacent projected glyphs at zero-based original positions u<v that violate the successor rule, at least one reset boundary r must satisfy u<r<=v. Conversely, stabbing all such intervals lets each affected frame start at an inferred phase, and the entire abstract class sequence then replays the ciphertext exactly. Greedy selection of the earliest outstanding right endpoint minimizes the number of shared reset boundaries: any solution has a point in that earliest interval, which can be moved to its right endpoint without losing any subsequent interval. Within a single class the violation intervals are disjoint.
+
+**Original result:** every one of the 406 possible pairs is incompatible with a single shared fixed cyclic chart under each of the five reset conventions. Even a free phase reset at every printed word or line fragment leaves a minimum of 29 incompatible projected transitions for the best pair. This excludes all nontrivial cyclic alias classes of any size under these conventions, including arbitrary secret glyph labels, without a donor-language assumption. The exact GP27→GP29 case with all 29 output glyphs used has either two disjoint pairs (71,253 assignments) or one three-cycle (7,308 oriented cycles modulo rotation). Enumerate all of them, granting independently chosen initial phases at every automatic or additional shared reset.
+
+| Free resets | Frames | Best single pair: extra resets | Best two pairs | Best triple | Exact GP27 extra resets |
+|---|---:|---:|---:|---:|---:|
+| None | 1 | 366 | 565 | 772 | **565** |
+| Physical pages | 55 | 339 | 535 | 736 | **535** |
+| Printed lines | 594 | 154 | 295 | 427 | **295** |
+| Complete printed words | 2,896 | 34 | 67 | 117 | **67** |
+| Every printed word/line fragment | 3,316 | 29 | 57 | 100 | **57** |
+
+All framing variants concatenate to the exact same canonical 12,956-rune source; page 50 has no runes, and complete printed words preserve page carries. Fine framing allows a reset at every normalized non-rune delimiter, including numeric and punctuation delimiters; no word or line need correspond to an actual plaintext word. Even if nine chapter charts are unrelated, **every chapter** rejects a nontrivial continuously cycling pair. With all word/line-fragment resets free, three chapters have zero compatible pairs (p8–14, p27–32, p40–53); GP27 needs additional resets in five chapters, totaling at least 13 with arbitrary chapter-private charts. The chapter-private continuous minimum is 411. These are exact bounds for this particular fixed-cycle law, including resets at adversarially selected positions, not a claim that a real author would use these sidecars.
+
+**Controls and witnesses.** Two complete native GP27 plants (2,979 runes), with unrelated affine relabeling of all 29 ciphertext symbols and two-pair or three-cycle aliases, recover exactly the true compatible-pair graphs: two disjoint edges or one triangle, without a supplied chart. All 2,979 source runes are recovered in each when the oracle plaintext-label mapping is supplied; the original cycle partitions alone determine plaintext only up to a relabeling. Cycle replay succeeds on both plants and on every fitted minimizing original reset witness; the latter is a feasibility witness for abstract class symbols, not authentic plaintext. The interval-stabbing implementation agrees with exhaustive subset enumeration on 512 deterministic small cases.
+
+**Decision:** reject fixed cyclic glyph aliases with shared chart and source-visible phase resets; the previous native GP27 alphabet budget remains valid. Even the chapter-private version requires extra hidden resets. The fitted reset lists supply no independent source-selected phase information, so do not search their arbitrary plaintext labels or treat the replay as discovery. General state-dependent choices, dynamically changing alias partitions, and a source-selected additional state/sidecar remain distinct. The results do not exclude all reversible anti-repeat encipherment. No unknown LP2 plaintext, key or continuation recovered.
+
+[Read-only CommonJS SFT](../sims/lp2_fixed_cyclic_glyph_alias_exact_sft.cjs) · [Complete source pins, minimizing groups, reset positions, replay and positive-control results](lp2-fixed-cyclic-glyph-alias-exact-output.json). The actual connected V8 core was run against the three pinned source files; standalone Node CLI wrapper has not been separately executed.
 
 ## Expansion and exceptions
 
