@@ -226,6 +226,62 @@ Result before any target grading:
 ~~~
 
 Thus the projective 2×2 interpretation is rejected at the same target-free checksum gate. Together with Gate5, the most canonical linear-vector and Möbius uses of the four-rune q words fail to serialize the ordered keys.
+## Gate 7: q-word cyclic convolution fails in its permutation-invariant DC channel
+
+The remaining frontier explicitly calls for a genuinely vector-valued operation. A literal four-rune q-word has one standard full-vector use that is not contained in the scalar direct/mirror families above: treat it as a polynomial kernel and circularly convolve each receiver word in `GF(29)[x]/(x^n-1)`. This naturally works at every receiver arity without padding or a fitted coordinate clock.
+
+The test is target-rune-blind. Use W1 on q1 and W3 on q3, allowing the same three already charged source representations (`direct`, `H4`, `H2adjacent`). For a generous closure, the two q blocks may even choose their representations independently. Charge forward or inverse convolution, action on the plaintext or on the additive key, and either global sign.
+
+No coordinate grading is necessary. Every circular convolution has the exact DC identity
+
+~~~text
+sum(kernel ⊛ word) = sum(kernel) * sum(word) mod29.
+~~~
+
+Every permutation of the four kernel coefficients has the same sum, so this one invariant simultaneously covers all 24 coefficient orders per q-word, including rotations, reversals, convolution/correlation orientations and arbitrary printed-order permutations. For an invertible circulant, inverse convolution has DC multiplier `sum(kernel)^-1`; a singular inverse candidate is invalid before decoding.
+
+The original selected receiver sums are
+
+~~~text
+q1 Csum = [5,28,6,3]
+q3 Csum = [9,1,18,25].
+~~~
+
+The independently frozen p6 companion requires
+
+~~~text
+q1 key sums = [4,0,0,25]
+q3 key sums = [7,0,28,0].
+~~~
+
+The three kernel representations have blockwise DC multipliers
+
+~~~text
+direct      [13,7]
+H4          [22,8]
+H2adjacent  [18,13].
+~~~
+
+Exact census:
+
+~~~text
+same representation on both q blocks:
+  24 DC signatures
+  best = 1/8 required page sums
+  exact 8/8 = 0
+
+allow q1/q3 representations independently:
+  72 DC signatures
+  best = 2/8 required page sums
+  exact 8/8 = 0
+~~~
+
+The unique 2/8 signature is forward positive key convolution with q1 `H2adjacent` and q3 `H4`; it predicts `[3,11,21,25 | 14,8,28,26]`, matching only p35 and p39. It cannot be rescued by changing coefficient order because the obstruction is the permutation-invariant DC channel itself.
+
+Accounting for 24 coefficient permutations independently in both q words, the generous charged closure contains **41,472 labeled permutation/action slots** before removing singular inverse cases. Every valid member is already rejected by the necessary checksum. This excludes a natural full-vector family that is genuinely distinct from Gates 4–6: the missing serializer is not circular convolution/correlation by the literal q-word state, its canonical H4 image or its adjacent-H2 image.
+
+Reproduction: `node sims/lp2_p6_qblocks_cyclic_convolution_checksum_gate_sft.cjs`.
+
 ## Evidence boundary
 
 This is a bounded negative, not a proof that p6 has no ordered serializer. The tested family is deliberately small and motivated: three already published p6 four-scalar representations, two signs, three simple clocks, then two canonical ways to enforce a separately frozen scalar sum.
