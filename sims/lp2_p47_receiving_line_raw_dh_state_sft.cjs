@@ -390,6 +390,116 @@ assert.deepEqual(
   [[46, 46]]
 );
 
+const p46Line10 = lineFragments(46, 10);
+const p46Line10Lengths = [state.e, state.e, state.K, state.e, state.g, state.e, state.q];
+const p46Line10Sums = [
+  state.a + state.q,
+  mod29(state.a * state.K),
+  state.K,
+  state.b - state.K,
+  state.K,
+  Ainv,
+  state.g + state.q,
+];
+const p46Line10Products = [
+  state.a,
+  state.e,
+  state.K,
+  state.p - state.e,
+  0,
+  state.p - state.e,
+  state.A,
+];
+assert.deepEqual(p46Line10.map((f) => f.length), p46Line10Lengths);
+assert.deepEqual(p46Line10.map((f) => f.sum), p46Line10Sums);
+assert.deepEqual(p46Line10.map((f) => f.product), p46Line10Products);
+
+const p46SevenCarryClass = printedLines.filter(({ fragments }) =>
+  fragments.length === 7
+  && fragments[0].continuation
+  && fragments.at(-1).continues
+  && fragments.slice(1, -1).every((f) => f.complete)
+);
+assert.equal(p46SevenCarryClass.length, 55);
+const p46Line10LengthHits = p46SevenCarryClass.filter(({ fragments }) =>
+  same(fragments.map((f) => f.length), p46Line10Lengths)
+);
+const p46Line10FullHits = p46Line10LengthHits.filter(({ fragments }) =>
+  same(fragments.map((f) => f.sum), p46Line10Sums)
+  && same(fragments.map((f) => f.product), p46Line10Products)
+);
+assert.deepEqual(p46Line10LengthHits.map(({ page, line }) => [page, line]), [[46, 10]]);
+assert.deepEqual(p46Line10FullHits.map(({ page, line }) => [page, line]), [[46, 10]]);
+
+const p46Line11 = lineFragments(46, 11);
+const p46Line11Lengths = [state.e, state.e, state.q, state.K, state.e, state.A, 1];
+const p46Line11Sums = [
+  mod29(-state.e), mod29(-state.e), mod29(-Ainv), state.q, state.K, 28, mod29(-state.K),
+];
+const p46Line11Products = [
+  state.b - state.K, state.a, state.K, state.A, state.b, 0, mod29(-state.K),
+];
+assert.deepEqual(p46Line11.map((f) => f.length), p46Line11Lengths);
+assert.deepEqual(p46Line11.map((f) => f.sum), p46Line11Sums);
+assert.deepEqual(p46Line11.map((f) => f.product), p46Line11Products);
+const p46Line11LengthHits = p46SevenCarryClass.filter(({ fragments }) =>
+  same(fragments.map((f) => f.length), p46Line11Lengths)
+);
+const p46Line11FullHits = p46Line11LengthHits.filter(({ fragments }) =>
+  same(fragments.map((f) => f.sum), p46Line11Sums)
+  && same(fragments.map((f) => f.product), p46Line11Products)
+);
+assert.deepEqual(p46Line11LengthHits.map(({ page, line }) => [page, line]), [[46, 11]]);
+assert.deepEqual(p46Line11FullHits.map(({ page, line }) => [page, line]), [[46, 11]]);
+
+const p46Line12 = lineFragments(46, 12);
+const p46Line12Lengths = [state.K, state.g + state.q, state.q, state.A];
+const p46Line12Sums = [mod29(-state.e), 28, state.g, state.b - state.K];
+const p46Line12Products = [state.b + state.K, state.a + state.q, state.b - state.K, 0];
+assert.deepEqual(p46Line12.map((f) => f.length), p46Line12Lengths);
+assert.deepEqual(p46Line12.map((f) => f.sum), p46Line12Sums);
+assert.deepEqual(p46Line12.map((f) => f.product), p46Line12Products);
+
+const p46FinalClass = printedLines.filter(({ page, line, fragments }) =>
+  line === lastLineByPage.get(page)
+  && fragments.length === 4
+  && fragments[0].continuation
+  && !fragments.some((f) => f.continues)
+  && fragments.slice(1).every((f) => f.complete)
+);
+assert.equal(p46FinalClass.length, 3);
+const p46Line12LengthHits = p46FinalClass.filter(({ fragments }) =>
+  same(fragments.map((f) => f.length), p46Line12Lengths)
+);
+const p46Line12FullHits = p46Line12LengthHits.filter(({ fragments }) =>
+  same(fragments.map((f) => f.sum), p46Line12Sums)
+  && same(fragments.map((f) => f.product), p46Line12Products)
+);
+assert.deepEqual(p46Line12LengthHits.map(({ page, line }) => [page, line]), [[46, 12]]);
+assert.deepEqual(p46Line12FullHits.map(({ page, line }) => [page, line]), [[46, 12]]);
+
+const p46BoundaryWord = crossPage.find((w) => {
+  const pages = [...new Set(w.map((site) => physical(site.page)))];
+  return pages.length === 2 && pages[0] === 46 && pages[1] === 47;
+});
+assert.ok(p46BoundaryWord);
+assert.deepEqual(
+  p46BoundaryWord.map((site) => site.value),
+  [21, 20, 19, 5, 27, 12, 0, 25, 28, 10, 2]
+);
+const p46BoundaryH = H(p46BoundaryWord.map((site) => site.value));
+assert.deepEqual(p46BoundaryH, [19, 10, 20, 9, 27, 12, 27, 1, 18, 1, 23]);
+const p46BoundaryPairTokens = [];
+for (let index = 0; index + 1 < p46BoundaryH.length; index += 2) {
+  const numeral = p46BoundaryH[index] * 29 + p46BoundaryH[index + 1];
+  p46BoundaryPairTokens.push(p50Tokens[numeral % 256]);
+}
+assert.deepEqual(p46BoundaryPairTokens, ['0G', '2O', '0P', '21', '3g']);
+assert.equal(
+  p46BoundaryPairTokens.filter((token) => /^\d{2}$/.test(token) && Number(token) <= 55).length,
+  0
+);
+
 const incomingPageDestinations = [...new Set(crossPage.map((w) => physical(w.at(-1).page)))]
   .filter((page) => page <= 55 && page !== 50);
 const p48Line1 = lineFragments(48, 1);
@@ -513,6 +623,28 @@ console.log(JSON.stringify({
     allLocalGroupCount: allLocalGroups.length,
     selfIndexedGroupCount: selfIndexedGroups.length,
     globalRawHits: allLocalGroups.filter(p46RawMatches).map(({ page, ordinal }) => [page, ordinal]),
+  },
+  p46ReceivingTail: {
+    line10: {
+      comparableLines: p46SevenCarryClass.length,
+      lengths: p46Line10Lengths,
+      fullHits: p46Line10FullHits.map(({ page, line }) => [page, line]),
+    },
+    line11: {
+      comparableLines: p46SevenCarryClass.length,
+      lengths: p46Line11Lengths,
+      fullHits: p46Line11FullHits.map(({ page, line }) => [page, line]),
+    },
+    line12: {
+      comparableLines: p46FinalClass.length,
+      lengths: p46Line12Lengths,
+      fullHits: p46Line12FullHits.map(({ page, line }) => [page, line]),
+    },
+    seamToP47: {
+      H: p46BoundaryH,
+      pairTokens: p46BoundaryPairTokens,
+      legalPageTokens: 0,
+    },
   },
   p48ReceivingLine: {
     comparableIncomingPageLines: p48LineClass.length,
