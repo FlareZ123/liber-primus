@@ -6,7 +6,7 @@
 
 The p50 17..24 numerical scaffold survives the signed-2016 zero-/one-based word-origin ambiguity. One member of that scaffold is intrinsically **ordinary-prime rank24 at cell195**; calling it AND is optional and origin-dependent.
 
-Charge the previously published movement program without any English rank label: take each direct cell anchor of the unique numeric scaffold; use its intrinsic prime rank as a p50 table address; charge zero-based address `r` and one-based address `r-1`; parse only the already declared positive-digit + `N/S/E/W/L/R/U/D` grammar; and use the scaffold's physical heading at the anchor.
+Charge the previously published movement program without any English rank label. For each direct cell anchor of the unique numeric scaffold, test both source-native numbers exposed at that anchor: its ordinary-prime **rank** `r` and corresponding ordinary-prime **value** `p_r`. Use each as a p50 table address under zero-based `n` and one-based `n-1` origins; parse only the already declared positive-digit + `N/S/E/W/L/R/U/D` grammar; and use the scaffold's physical heading at the anchor. This charges the natural rival that a solver might dereference the printed prime value rather than its ordinal.
 
 Across the seven direct scaffold anchors and both address origins, **only zero-address rank24 reaches the independently established DH state**:
 
@@ -21,7 +21,7 @@ one-based address23 -> 1R
   two up    -> cell180 = 2O
 ```
 
-The rank23 zero-address branch begins with `1R` but stops after one move at a non-DH token; all other direct anchors fail to start. Treating L/R as absolute left/right instead of relative turns changes only that rank23 dead end; both rank24 endpoints are unchanged.
+The rank23 zero-address rank branch begins with `1R` but stops after one move at a non-DH token. The prime-value rival also produces a few legal starts: rank23's prime83 addresses `3D`/`3L`, and rank24's prime89 zero-addresses `3e`; all terminate away from the DH state. Treating L/R as absolute left/right instead of relative turns changes only dead-end geometry; the rank24 rank-address path to cell186 is unchanged.
 
 This corrects #3354's broad downgrade: **cell186 remains conditional on the movement/same-number-dereference grammar, but it is no longer conditional on zero-based indexing of the signed 2016 words.** DIRECTION29 and the p29 page handoff remain origin-gated.
 
@@ -45,7 +45,7 @@ The direct numeric scaffold anchors are:
 | 23 | 41 | 59 | horizontal |
 | 24 | 195 | 60 | vertical |
 
-Rank20 is the established 20-edge distance and has no direct cell anchor. The reproducer evaluates every direct anchor under both address origins and both L/R interpretations. Only the zero-address rank24 branch terminates at cell186/raw19. No other branch terminates on any member of the established DH state set `{23,5,6,15,8,19,2,3,4}`.
+Rank20 is the established 20-edge distance and has no direct cell anchor. The seven anchors expose prime values `59,61,67,73,79,83,89` for ranks `17,18,19,21,22,23,24`. The reproducer evaluates **56 branches**: seven anchors × rank/value address basis × zero/one address origin × relative/absolute L/R semantics. Only the rank-basis, zero-address rank24 branch terminates at cell186/raw19. No prime-value branch, one-based branch, or other anchor terminates on any member of the established DH state set `{23,5,6,15,8,19,2,3,4}`.
 
 ## Evidence boundary
 
@@ -55,6 +55,7 @@ Established under the frozen representation:
 - the authenticated 2016 text literally says that **their numbers are the direction**, independent of how its words are numbered;
 - zero-based p50 address24 is `1n`, followed by `1L`, then cell186=`0J`=19;
 - one-based p50 address23 produces a deterministic rival ending at cell180;
+- dereferencing alternative prime value89 selects p50 address89=`3e` and terminates at cell198, not a DH state; the other prime-value rivals likewise fail;
 - cell186/19 was independently selected by the p27 red13/DH route before this p50 route;
 - the result survives relative-turn versus absolute-left/right interpretation.
 
@@ -69,4 +70,4 @@ Therefore this selects **zero-based p50 table addressing inside this particular 
 
 ## Reproduction
 
-Run `node sims/lp2_p50_scaffold_address_origin_dh19_sft.cjs`. The SFT reconstructs the two live radices, prime ranks and seven anchors; charges both address origins and both L/R semantics; asserts the unique cell186/DH19 hit; and checks the independent p27 report for its prior cell186=`0J`=19 selection.
+Run `node sims/lp2_p50_scaffold_address_origin_dh19_sft.cjs`. The SFT reconstructs the two live radices, prime ranks/values and seven anchors; charges rank versus prime-value dereference, both address origins and both L/R semantics; asserts the unique cell186/DH19 hit across all 56 branches; and checks the independent p27 report for its prior cell186=`0J`=19 selection.
