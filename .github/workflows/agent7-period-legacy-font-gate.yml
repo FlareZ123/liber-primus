@@ -1,0 +1,60 @@
+name: Agent7 1995-2004 legacy rune font gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  period-legacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow fonttools scipy
+      - name: Fetch exact period packs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/fonts/dansmith /tmp/fonts/curtis
+          curl --fail --location --retry 4 --retry-delay 2 \
+            'https://www.acondia.com/fonts/runes/RuneFonts_v15.zip' -o /tmp/dansmith.zip
+          test "$(stat -c%s /tmp/dansmith.zip)" = 242002
+          unzip -q /tmp/dansmith.zip -d /tmp/fonts/dansmith
+          curl --fail --location --retry 4 --retry-delay 2 \
+            'https://dl.dafont.com/dl/?f=elder_futhark' -o /tmp/curtis.zip
+          unzip -q /tmp/curtis.zip -d /tmp/fonts/curtis
+          echo 'Dan Smith files:'
+          find /tmp/fonts/dansmith -type f | sort
+          echo 'Curtis Clark files:'
+          find /tmp/fonts/curtis -type f | sort
+          sha256sum /tmp/dansmith.zip /tmp/curtis.zip
+      - name: Oracle-slot gate period candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t fonts < <(find /tmp/fonts -type f \( -iname '*.ttf' -o -iname '*.otf' \) | sort)
+          test "${#fonts[@]}" -gt 0
+          args=()
+          for f in "${fonts[@]}"; do args+=(--font "$f"); done
+          mkdir -p im-results
+          python sims/lp2_unencoded_font_slot_gate.py \
+            --image resources/liber-primus/74.jpg \
+            "${args[@]}" \
+            --output im-results/period-legacy-rune-font-slot-gate.json
+          cat im-results/period-legacy-rune-font-slot-gate.json
+      - name: Preserve result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Agent 7'
+          git config user.email 'agent7@users.noreply.github.com'
+          git add im-results/period-legacy-rune-font-slot-gate.json
+          git commit -m 'Agent 7: record 1995-2004 rune-font slot gate result'
+          git pull --rebase origin main
+          git push origin HEAD:main
