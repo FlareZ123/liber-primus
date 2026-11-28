@@ -1,0 +1,151 @@
+{
+  "test": "period Unicode direct-rune font gate",
+  "observed_classes": 18,
+  "segmentation_line_counts": [
+    17,
+    18,
+    23
+  ],
+  "lp2_repeat_noise": {
+    "pairs": 106,
+    "mean": 0.028279,
+    "median": 0.013429,
+    "p95": 0.086957,
+    "max": 0.101262
+  },
+  "ranking": [
+    {
+      "font": "Everson Mono Bold.ttf",
+      "path": "/tmp/evermono/evermono-6.2.1/Everson Mono Bold.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.453035,
+      "median_iou_distance": 0.483097,
+      "max_iou_distance": 0.612891,
+      "per_rune": {
+        "ᚠ": 0.596951,
+        "ᚢ": 0.589521,
+        "ᚣ": 0.529199,
+        "ᚦ": 0.541824,
+        "ᚩ": 0.612891,
+        "ᚪ": 0.597535,
+        "ᚱ": 0.55363,
+        "ᚳ": 0.361832,
+        "ᚷ": 0.398093,
+        "ᚹ": 0.474365,
+        "ᚻ": 0.38306,
+        "ᚾ": 0.304701,
+        "ᛁ": 0.013672,
+        "ᛋ": 0.497294,
+        "ᛏ": 0.468179,
+        "ᛖ": 0.491829,
+        "ᛗ": 0.321935,
+        "ᛞ": 0.418127
+      },
+      "render_jpeg_control": {
+        "mean": 0.023496,
+        "p95": 0.042326,
+        "max": 0.046951
+      }
+    },
+    {
+      "font": "Everson Mono.ttf",
+      "path": "/tmp/evermono/evermono-6.2.1/Everson Mono.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.556545,
+      "median_iou_distance": 0.597689,
+      "max_iou_distance": 0.710265,
+      "per_rune": {
+        "ᚠ": 0.702317,
+        "ᚢ": 0.664034,
+        "ᚣ": 0.624578,
+        "ᚦ": 0.63903,
+        "ᚩ": 0.710265,
+        "ᚪ": 0.69669,
+        "ᚱ": 0.654244,
+        "ᚳ": 0.425018,
+        "ᚷ": 0.560271,
+        "ᚹ": 0.611401,
+        "ᚻ": 0.538514,
+        "ᚾ": 0.455758,
+        "ᛁ": 0.009983,
+        "ᛋ": 0.630459,
+        "ᛏ": 0.553247,
+        "ᛖ": 0.583977,
+        "ᛗ": 0.436404,
+        "ᛞ": 0.521615
+      },
+      "render_jpeg_control": {
+        "mean": 0.030117,
+        "p95": 0.063567,
+        "max": 0.084069
+      }
+    },
+    {
+      "font": "Everson Mono Bold Oblique.ttf",
+      "path": "/tmp/evermono/evermono-6.2.1/Everson Mono Bold Oblique.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.671251,
+      "median_iou_distance": 0.671803,
+      "max_iou_distance": 0.814909,
+      "per_rune": {
+        "ᚠ": 0.680954,
+        "ᚢ": 0.701239,
+        "ᚣ": 0.648807,
+        "ᚦ": 0.64238,
+        "ᚩ": 0.727856,
+        "ᚪ": 0.747332,
+        "ᚱ": 0.711751,
+        "ᚳ": 0.814909,
+        "ᚷ": 0.521707,
+        "ᚹ": 0.652474,
+        "ᚻ": 0.682297,
+        "ᚾ": 0.619624,
+        "ᛁ": 0.662652,
+        "ᛋ": 0.587591,
+        "ᛏ": 0.621903,
+        "ᛖ": 0.719215,
+        "ᛗ": 0.651515,
+        "ᛞ": 0.688318
+      },
+      "render_jpeg_control": {
+        "mean": 0.030576,
+        "p95": 0.036309,
+        "max": 0.039129
+      }
+    },
+    {
+      "font": "Everson Mono Oblique.ttf",
+      "path": "/tmp/evermono/evermono-6.2.1/Everson Mono Oblique.ttf",
+      "status": "scored",
+      "mean_iou_distance": 0.73846,
+      "median_iou_distance": 0.739754,
+      "max_iou_distance": 0.843596,
+      "per_rune": {
+        "ᚠ": 0.763711,
+        "ᚢ": 0.745459,
+        "ᚣ": 0.715011,
+        "ᚦ": 0.710958,
+        "ᚩ": 0.807143,
+        "ᚪ": 0.821032,
+        "ᚱ": 0.771879,
+        "ᚳ": 0.843596,
+        "ᚷ": 0.639564,
+        "ᚹ": 0.732134,
+        "ᚻ": 0.751246,
+        "ᚾ": 0.686581,
+        "ᛁ": 0.734049,
+        "ᛋ": 0.684152,
+        "ᛏ": 0.672175,
+        "ᛖ": 0.757002,
+        "ᛗ": 0.710792,
+        "ᛞ": 0.745799
+      },
+      "render_jpeg_control": {
+        "mean": 0.041983,
+        "p95": 0.052034,
+        "max": 0.055893
+      }
+    }
+  ],
+  "unscored": []
+}
