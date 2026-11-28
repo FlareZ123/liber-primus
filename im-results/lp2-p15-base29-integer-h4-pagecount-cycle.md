@@ -1,4 +1,4 @@
-# P15 full-integer H + BASE29 exposes a p6↔p8 page-count cycle with p7 fixed
+# BASE29 page-count self-indexing isolates p6–p9; p15 integer-H supplies a secondary p6↔p8 route
 
 **Agent21, 28 November 2026. Classification: source-exact structural/navigation candidate with finite manuscript-wide controls. The direct repeating-additive consumers tested here are negative. No unknown LP2 plaintext, authenticated payload key, KDF, or continuation endpoint is recovered.**
 
@@ -20,15 +20,18 @@ and independent p15 work already established two source facts before this invest
 
 Earlier p15 analysis reduced these numbers modulo29 before applying H. This report instead keeps the **ordinary signed integers**, applies the same H4 to each four-number spiral block, and only then serializes every integer in ordinary base29.
 
-That operation yields a source-selected radix surface whose **digit lengths are [8,9,10,11]**. Applying the same integer-H/base29 *payload-length* operation to every four-page original rune-count window on physical p0–p55 then gives exactly one nontrivial two-cycle and one fixed point:
+The strongest new result is simpler and genuinely radix-specific. Express every original physical-page rune count in **base29**. Physical **p6,p7,p8,p9 are the manuscript's only four-page run whose leading base29 digit equals the physical page number on every page**:
 
 ```
-p6 -> p8
-p8 -> p6
-p7 -> p7
+p6: 196 = 6M_29
+p7: 208 = 75_29
+p8: 255 = 8N_29
+p9: 268 = 97_29
 ```
 
-Pages **6,7,8 are independently the only three consecutive red-bearing pages** in the unknown manuscript. This is the main new result. It is target-blind with respect to plaintext and does not require assigning DH names to dense GP29 state expressions.
+Across every radix 2..60, **base29 is the only radix that produces any self-indexing run of length four**; every other radix reaches length at most two. Under an exact fixed-marginal permutation of the 56 observed page-count values, the chance that positions p6..p9 receive counts from their respective base29 quotient bins is 0.0004574. This is a post-discovery conditional diagnostic rather than an authorship p-value.
+
+The p15 full-integer H serializer supplies a compatible but weaker secondary structure. Its four q-blocks have digit counts **[8,9,10,11]**; applying the same signed-integer H / digit-count operation to four-page count windows gives the unique cycle `6↔8` and fixed point `7`, exactly on the manuscript's only consecutive red-bearing triple p6,p7,p8. However, that digit-length motif persists across a broad nearby radix interval, so **the cycle is not itself evidence selecting base29**. The self-indexing page counts above are the base29-specific holdout.
 
 The most literal key interpretation is rejected: the six-digit p15 difference arm tiles p6's post-red body exactly 19 times, but all four signed/unsigned additive variants are nonlinguistic and recover zero long solved-register words.
 
@@ -68,6 +71,45 @@ The independently authored red origin fixes **rotation0**. Under that source ori
 
 This is a finite post-discovery specificity charge, not a probability that the author intended the mechanism.
 
+## Base29-specific page-count self-index
+
+The original p0–p55 rune counts have a stronger property that does not depend on state naming or plaintext grading. For each page, write
+
+```
+rune_count(page) = 29 * quotient + remainder.
+```
+
+Exactly four consecutive pages have `quotient = physical page number`, and they are:
+
+| physical page | rune count | base29 | quotient | remainder |
+|---:|---:|---|---:|---:|
+| **6** | 196 | **6M** | 6 | 22 |
+| **7** | 208 | **75** | 7 | 5 |
+| **8** | 255 | **8N** | 8 | 23 |
+| **9** | 268 | **97** | 9 | 7 |
+
+There are **no other** self-indexing pages at base29 outside this run.
+
+A radix charge over every integer base **2..60** is especially discriminating. Only base29 has a maximum self-indexing run of length four. Bases 13,14,16,24 and 55..60 produce maximum runs of only length two; every other tested radix produces no run of length two or more.
+
+A separate exact fixed-marginal control keeps the complete multiset of the 56 observed page rune counts but randomly reassigns those counts to page positions. Counts fall into base29 quotient bins 6,7,8,9 with multiplicities `[3,7,6,32]`. Therefore the exact probability that four distinct reassigned counts land in the required bins at fixed positions p6,p7,p8,p9 is
+
+```
+(3*7*6*32) / (56*55*54*53)
+= 0.00045740423098913663
+≈ 0.04574%.
+```
+
+Summing the fixed-position probabilities for every possible four-page self-index start gives an expected **0.00048055** four-page runs per random reassignment. These values are conditional diagnostics after discovery, not calibrated probabilities of author intent.
+
+The four base29 low digits are `[22,5,23,7]`. Applying the same outside H4 gives
+
+```
+H4([22,5,23,7]) mod29 = [15,11,28,0].
+```
+
+Those residues admit current state labels, but the labels are deliberately not used as the evidence because the reconstructed state algebra is dense. The source-exact facts are the self-indexing run, radix uniqueness, and its location on p6–p9.
+
 ## The same operation on original page counts
 
 For each physical start page `s=0..52`, define:
@@ -93,6 +135,8 @@ Exhausting all 53 valid physical p0–p55 starts gives:
 - unique fixed point: **7**.
 
 The cycle alone does not distinguish the outside pairing from the cross pairing; the p15 authored-origin staircase above is what selects the canonical outside-H branch. The adjacent pairing has no 6↔8 cycle.
+
+**Radix caveat:** the p15 `[8,9,10,11]` digit-length staircase occurs for bases27..43, and the p6↔p8/p7 page-count motif occurs for bases24..47. Therefore the digit-length dynamics are useful for structural routing only after BASE29 has been selected independently; they do not authenticate radix29. The self-indexing run in the preceding section is the radix-specific result.
 
 ## Independent source geometry at the selected pages
 
@@ -170,7 +214,7 @@ The analogous p15 block keys of lengths 8,9,10,11 were also applied directly to 
 
 ## Interpretation and next decision
 
-The strongest supported interpretation is **navigation / serialization**, not decryption:
+The strongest supported interpretation is **base29 page-count structure plus a compatible navigation/serialization candidate**, not decryption:
 
 ```
 signed 2013 BASE29 clue
@@ -180,10 +224,15 @@ authored p15 red-origin spiral
 canonical integer H
         |
         v
-BASE29 digit-length staircase [8,9,10,11]
+BASE29 page counts: p6=6M, p7=75, p8=8N, p9=97
+        |
+        +--> unique four-page self-index run in bases2..60
         |
         v
-same operation on physical page counts
+p15 H digit-length staircase [8,9,10,11]
+        |
+        v
+same H-length operation on physical page counts
         |
         +--> p6 <----> p8
         |      p7 fixed
@@ -191,7 +240,7 @@ same operation on physical page counts
         +--> unique consecutive red-page triple
 ```
 
-This is a materially different route from repeated GP29 key fitting because the receiver addresses arise from **integer size in an explicitly source-selected radix**. A useful successor should ask what original object on p6/p7/p8 consumes the navigation result or the signed integer arms without converting them into another arbitrary periodic key.
+This is a materially different route from repeated GP29 key fitting because the strongest holdout is a **literal radix-29 representation of original page counts** with no plaintext or key fitting. A useful successor should ask what original object on p6/p7/p8 consumes the navigation result or the signed integer arms without converting them into another arbitrary periodic key.
 
 In particular, the next experiment should demand a fresh source-selected consequence on p6/p7/p8 geometry, punctuation, or an independently bounded receiver before any language score is inspected.
 
