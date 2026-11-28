@@ -26,6 +26,19 @@ p6 red title local start      = 71
 p6 first red word GP0         = 71.
 ~~~
 
+### Same-index signed-word / red-heading address charge
+
+The equality `GP0(SEEKS)=71 = p6 red-title start` is not typical of the signed register. Charge every authenticated signed word at indices 0–42 against the red-span starts on its **same-numbered physical page**, without looking at any plaintext output.
+
+Eleven of those same-index pages contain at least one red span: p0, p3, p6, p7, p8, p15, p23, p27, p33, p39 and p40. Across every red-span start on those pages, there is exactly one equality:
+
+~~~text
+source index6  SEEKS   GP0=71
+physical p6 red-span start =71
+~~~
+
+No other signed word GP0 equals a red-span start on its same-index page. This finite control materially strengthens 71 as a source-selected p6 address rather than a scalar noticed only because p40 contains a useful word there. It still does not itself authorize carrying that address to p40; that cross-page transfer remains the final unsupported step.
+
 ### Key
 
 Fixed state values are `q=4,g=5,a=6,K=2`. P6 is the sole internal red heading whose surrounding black geometry satisfies all of:
@@ -130,7 +143,7 @@ The competing internal spans fail at least one condition. This makes the p6 key 
 
 ## Evidence boundary
 
-This is now an exact local inverse in which the unknown target is not used to choose the receiver or numeric key. The strongest remaining unsupported step is **same-offset transfer**: no first-party text yet explicitly says “take the p6 title start and use it as a local offset on the p25-selected page40.” The repeated SEEKS/71 equalities and p6's key-packet role make that transfer plausible, but it was recognized after PATHS was known.
+This is now an exact local inverse in which the unknown target is not used to choose the receiver or numeric key. The strongest remaining unsupported step is **same-offset transfer**: no first-party text yet explicitly says “take the p6 title start and use it as a local offset on the p25-selected page40.” The repeated SEEKS/71 equalities, the **unique same-index signed-GP0/red-heading match**, and p6's key-packet role make that transfer plausible, but it was recognized after PATHS was known.
 
 Accordingly preserve PATHS as a materially stronger plaintext candidate, not yet an established decryption. A fresh page destination selected before its ciphertext is opened, or an authored instruction tying the key packet's local coordinate to another page, would prospectively test the transfer.
 

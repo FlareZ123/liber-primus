@@ -24,6 +24,7 @@ function sum(values) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signedSource = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const inkAnnotations = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
   .map((symbol, value) => ({ symbol, value }))
@@ -96,6 +97,31 @@ const signed = clear.slice(clear.indexOf("Hello."))
     gp: gp(label),
   }));
 assert.equal(signed.length, 43);
+
+// Source-index/page-index charge: a signed word's raw GP0 is treated only as
+// a candidate local address on the same numbered page. Among indices 0..42
+// that page contains red text, SEEKS6 is the sole GP0 that equals a red-span start.
+const signedRedStartMatches = [];
+const signedPagesWithRed = [];
+for (const sourceWord of signed.filter((word) => word.index <= 42)) {
+  const pageInk = inkAnnotations.pages.find((page) => page.page === sourceWord.index);
+  const redStarts = (pageInk?.red_spans || []).map((span) => span.start);
+  if (redStarts.length === 0) continue;
+  const gp0 = sum(sourceWord.gp);
+  signedPagesWithRed.push({ index: sourceWord.index, label: sourceWord.label, gp0, redStarts });
+  for (const start of redStarts) {
+    if (gp0 === start) {
+      signedRedStartMatches.push({ index: sourceWord.index, label: sourceWord.label, gp0, start });
+    }
+  }
+}
+assert.equal(signedPagesWithRed.length, 11);
+assert.deepEqual(signedRedStartMatches, [{
+  index: 6,
+  label: "SEEKS",
+  gp0: 71,
+  start: 71,
+}]);
 
 const parts = transcription.split(/^\s*%\s*$/m).slice(0, 55);
 const words = [];
@@ -262,6 +288,8 @@ const title = [71, 75, 76, 80].map((start) => {
 assert.deepEqual(title.map((word) => word.len), [4,1,4,2]);
 assert.deepEqual(h4(title.map((word) => word.len)), [2,26,5,6]);
 assert.deepEqual(title[0].values, [24,16,14,17]);
+assert.equal(title[0].gp0, 71);
+assert.equal(sum(signed[6].gp), 71);
 
 const b = mod29(-title[0].values[2]);
 const e = mod29(-h4(title.map((word) => word.len))[1]);
@@ -550,6 +578,7 @@ console.log(JSON.stringify({
   },
   p25: { transformed, cuts, originRows },
   p40: { shell, key, receiver: p40Matches[0], plaintext: "PATHS" },
+  signedRedAddressCharge: { signedPagesWithRed, signedRedStartMatches },
   p6LiteralKeyCharge: {
     lineCounts: p6LineCounts,
     repeatedLineCounts,
