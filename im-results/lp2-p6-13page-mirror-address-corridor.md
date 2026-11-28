@@ -37,6 +37,19 @@ Hdiff(AND.first, VERIFY.first)   = 24−1 = 23 = −a mod29
 
 The full H4 of signed-source outside initials `[15,24,1,3]` is `[12,23,25,18]`: its first two outputs exactly equal the p6 outer-K residual modulo29. The remaining coordinates are the independently known state values `[p+K,B−1]` (still not an authored opcode). **Across all 31 contiguous thirteen-word windows** of the authenticated 43-word 2016 signed message, exactly **one** has the two ordered outer initial differences `[12,23]`: source indices **30..42**, `SEEK AND ... VERIFY OPENPGP`. This selection reads *no unknown LP2 ciphertext* and provides a shorter human-solvable route to the same 13-word tail than the earlier 11-field source identities.
 
+The original 2016 **BE/BEWARE mirrored pair** (source indices34 and38) has *identical first GP29 rune* B=17 on both sides of the centre GOOD: the outside-in H2 result is `[17−17,17+17] mod29=[0,5]=[F,g]`, i.e. the actual large Fehu and the third H4(title-width) coordinate. This gives an independent *source-authored* way to obtain the inner residual scalar magnitudes. Along with the previously noted original 2016 outer differences `[Hdiff(SEEK,OPENPGP),Hdiff(AND,VERIFY)]=[12,23]=[u,-a]`, the **entire six-lane signed residual stream** of the original p6 mirror transport can be constructed from signed-source word initials alone:
+
+```text
+source outer pair differences = [12,-6] (balance residue23 to -6)
+source Hpair(BE,BEWARE)       = [0,5]   (= F,g)
+six page-pair residuals       = [u,-a,u,F,-g,g]
+                              = [12,-6,12,0,-5,5]
+p6 title-width quotient      = [e,K,1,F,K,q] = [3,2,1,0,2,4]
+29*quotient + residual       = [99,52,41,0,53,121].
+```
+
+The source 2016 message and p6 physical title thus yield *matching scalar ingredients* before unknown LP2 ciphertext inspection. The **repeated-u, order, sign-lift and mirrored-address opcode** are still analyst-selected after the receiver corridor became known; this is not independently authenticated decryption. The signed source initials and mirrored equality specify a concrete author-clue candidate for #3388's original-p6 human solve path. The same [first-party SFT](../sims/lp2_p6_13source_initials_outer_h_gate_sft.cjs) prints all six signed projected residuals and exact deltas.
+
 Combining those **signed-source-selected residuals** with p6's independent H4 width quotient `[e,K]=[3,2]` yields the outer paired physical address shifts `[99,52]` only when the GP residue23 is interpreted as **balanced −6**, rather than literal unsigned 23 (which would produce 81 and fail). This exact signed-lift choice remains an unproven operand rule; it cannot be silently treated as implied by GP29 residue equality.
 
 **Charge alternatives:** allow either W4 rune (2), either sign, any one of four signed H4 printed-width coordinates and either coordinate order: **64 distinct p6 numeric two-field residual vectors**. Across the same 31 authenticated thirteen-word windows, **four** field/window coincidences survive, at source starts **13,22,27,30**. The literal `[u,-a]` uniquely selects 30 under its frozen role order, but the source field pairing was noticed after the tail had been studied: it is **conditional source-only evidence, not a discovery-wide p-value**. See `sims/lp2_p6_13source_initials_outer_h_gate_sft.cjs` for the exact first-party source, p6 title grammar, 31-window census and 64-vector charge.
