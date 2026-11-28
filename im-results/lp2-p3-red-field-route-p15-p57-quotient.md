@@ -356,6 +356,10 @@ This is a **material independent selector for the existing WILL candidate**, not
 
 [Full route and charges](lp2-p3-q-frobenius-dh-lock.md) · [reproducer](../sims/lp2_p3_q_frobenius_dh_sft.cjs).
 
+## Direct original-body polynomial transfer is now negative
+
+The nine-coefficient Q was originally obtained by **polynomial division**, so the natural untested body-cipher hypothesis was a literal formal-series Q product/quotient on the adjacent untouched p15 black139, not another cyclic key. Agent15 independently committed the fixed physical receiver (p15 offsets20–158) and unchanged GF29 coefficient rule before executing two exact reversible opposites: `C/Q` and `C×Q`. Their native-GP IoCs are **0.03315608** and **0.03503284**; all **1,882** matched 139-rune solved native-GP windows have IoC at least **0.05108956**. Both original outputs are nonprose; full original forward reencryption and source-shaped planted controls succeed. This retires the **one-step Q body-key interpretation at p15**, without weakening the source polynomial identity or Q's independently tested navigation and state uses. [Frozen operation](../workplace/lp2-p3-q9-formal-series-p15-body-pretarget.md) · [actual result](lp2-p3-q9-formal-series-p15-body-gate.md) · [reproducer](../sims/lp2_p3_q9_formal_series_p15_body_sft.cjs).
+
 ## Scientific boundary and next causal step
 
 The reproducible result is now an **exact original polynomial bridge with a source-word opcode lock, a solved-cipher cross-holdout, and one source-typed unknown-page state output**. P15-second/p57 derives Q; Q's linear multiplication matrix is `[[17,18],[24,2]]`, which under the independently established authenticated-2016 numbering reads **THE MAP / AND PATH**; the complementary p15 red9 maps to `[23,8]=[p,A]`; solved p56 maps to the unique opening pair `[1,2]` of its real prime-minus-one stream; and the only other complete red9 span, unknown p54, maps without fitting to `[0,20]` = signed-source word pointers HELLO/MEANING.
