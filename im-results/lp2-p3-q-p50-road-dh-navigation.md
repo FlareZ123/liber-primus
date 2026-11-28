@@ -130,9 +130,9 @@ ROAD is the only one whose row stride equals the independently derived p3 coeffi
 Supporting finite-family reproducer:
 [`sims/lp2_p3_q_p50_road_red_path_sft.cjs`](../sims/lp2_p3_q_p50_road_red_path_sft.cjs).
 
-## Independent entry signal: plain Q uniquely exposes HELLO / MEANING
+## Independent one-step entry: plain Q uniquely exposes HELLO / MEANING
 
-The solved-p56-selected **plain Q** map supplies a separate source-text entry into the same numeric-direction grammar.
+The solved-p56-selected **plain Q** map supplies a separate one-step source/table transition. It must be kept distinct from the Q-discrete-log ROAD walk above.
 
 Across all 17 nonzero printed red spans, the signed words **HELLO0** and **MEANING20** each occur exactly once among plain-Q outputs, together and ordered on p54:
 
@@ -146,23 +146,28 @@ MEANING20 addresses original p49 cell20 `1g`, whose canonical base60 value **102
 k646 + 102 = k748 = [25,23] = THEIR / ROAD.
 ```
 
-Exponent748 is exactly the shared p15-second / solved-p57 residue used to define the p3 quotient and Q. ROAD23 then supplies the already established value87:
+Exponent748 is exactly the shared p15-second / solved-p57 residue used to define the p3 quotient and Q. The solved p57 red opener is **PARABLE**, providing a post-discovery semantic checkpoint for a MEANING-selected landing.
+
+The full radix×coordinate×direction charge leaves exactly this one red→red edge in the canonical zero-based base60 family. Base59 sends MEANING to THEIR/IS.
+
+A representation-continuity control prevents splicing this automatically into the ROAD walk. At k748 the same plain-Q rule produces
 
 ```text
-k748 + 87 = k835 = [28,23] = THE / ROAD.
+Q * E(k748) = [21,9] = IS / LIBER.
 ```
 
-The full radix×coordinate×direction charge leaves exactly this one red→red edge in the canonical base60 family. Base59 sends MEANING to THEIR/IS and ROAD from k748 to THE/THE.
+Using the same second-coordinate table rule then takes cell9=249 to k157, which is not a printed red state. The attractive ROAD23→87 continuation instead reads the **Q-discrete-log coordinate** [25,23], switching representations.
 
-This gives the route an internally visible start and a solved-page checkpoint:
+Therefore the supported plain-Q sequence is only:
 
 ```text
-HELLO / MEANING
- -> MEANING number as DIRECTION
- -> Q-defining solved p57 class = THEIR / ROAD
- -> ROAD number as DIRECTION
- -> THE / ROAD.
+unique HELLO / MEANING on p54
+ -> MEANING number102 as DIRECTION
+ -> Q-defining solved p57 / PARABLE state
+ -> STOP.
 ```
+
+The p39→p7→ROAD contraction remains a separate dlog-coordinate navigation grammar. No clue yet authorizes switching between the two.
 
 Detailed report: [`lp2-q-hello-meaning-road-direction.md`](lp2-q-hello-meaning-road-direction.md).  
 Reproducer: [`sims/lp2_q_plain_wordnumber_direction_redgraph_sft.cjs`](../sims/lp2_q_plain_wordnumber_direction_redgraph_sft.cjs).
