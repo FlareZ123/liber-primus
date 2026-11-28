@@ -119,6 +119,23 @@ This is therefore a **bounded negative for numeric-order authentication**. The 1
 
 Reproducer: [`sims/lp2_p6_mirror_field_order_source_gate_sft.cjs`](../sims/lp2_p6_mirror_field_order_source_gate_sft.cjs).
 
+## Mirror half-gaps form the p6 1–6 H ladder
+
+A later source-only control adds a local solve-path clue for why an outside-in H-like operation is natural on this p6 object. The six 180° page-pair separations are:
+
+```text
+p30↔p42  12
+p31↔p41  10
+p32↔p40   8
+p33↔p39   6
+p34↔p38   4
+p35↔p37   2
+```
+
+Dividing by the visible title width `K=2` gives `[6,5,4,3,2,1]`. Independently, reversal-pairing the four bracketed title widths `[4,1,4,2]` gives ordinary outside-in difference/sum magnitudes `{2,3,5,6}`; together with the printed singleton `1` and repeated width `q=4`, p6 supplies exactly `1..6=[1,K,e,q,g,a]`. Thus the mirror half-gaps read outer-to-inner as `[a,g,q,e,K,1]`.
+
+This does not restore the numeric mirror-field order rejected above. It supplies a **local pairing/magnitude clue**: among all four-complete-word subwindows of red spans, p6 is the sole outside-in width/H-magnitude `1..6` hit; across all 2,785 ordinary four-word windows the same length-only property occurs 33 times, so the red13/mirror context is essential. Adjacent title pairing also completes `1..6`, but the independently established 180° reversal selects the outside-in positional pairing. Signed difference direction and H4 output serialization remain untyped. [Full gate and controls](lp2-p6-mirror-halfgap-h-ladder.md) · [reproducer](../sims/lp2_p6_mirror_halfgap_h_ladder_sft.cjs).
+
 ## Two simple mirrored integer-address operators
 
 For the two outermost `K=2` source pages p30,p31, reverse destination order to p42,p41. Use the H4 title-width fields and final red title rune:
