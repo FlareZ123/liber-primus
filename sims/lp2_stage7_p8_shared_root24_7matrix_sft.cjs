@@ -60,6 +60,45 @@ assert.equal(rowReduce(S).det,2);
 assert.equal(rowReduce(M).det,18);
 assert.deepEqual(roots(S),[8,18,24]);
 assert.deepEqual(roots(M),[24]);
+// Complete black 7x7 objects, not cherry-picked control windows:
+// parse original page text and independently source-annotated red spans.
+const annotated=JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const textPages=transcription.split(/\n%\n/);
+function blackLengthsOnPage(pageNo){
+  const p=corpus.pages.find(x=>x.page===pageNo);
+  const raw=textPages[pageNo<50?pageNo:pageNo-1];
+  assert.ok(raw!==undefined);
+  const red=Array(p.runic_count).fill(false);
+  for(const span of (annotated.pages.find(x=>x.page===pageNo)?.red_spans||[]))
+    for(let k=span.start;k<span.start+span.length;k++)red[k]=true;
+  let i=0,fragment=[],black=[];
+  const flush=()=>{
+    if(!fragment.length)return;
+    assert.ok(fragment.every(x=>x===fragment[0]),'mixed red-black fragment');
+    if(!fragment[0])black.push(fragment.length);
+    fragment=[];
+  };
+  for(const char of raw){
+    if(runeIndex.has(char)){
+      assert.equal(runeIndex.get(char),p.indices[i]);
+      fragment.push(red[i]);i++;
+    }else if(char==='/'||/\s/u.test(char))continue;
+    else flush();
+  }
+  flush();assert.equal(i,p.runic_count);
+  return black;
+}
+const exactly49Black=corpus.pages.filter(p=>p.page<=55&&p.page!==50)
+  .filter(p=>blackLengthsOnPage(p.page).length===49).map(p=>p.page);
+assert.deepEqual(exactly49Black,[8,27,33]);
+const black49Controls=exactly49Black.map(p=>{
+  const values=blackLengthsOnPage(p);
+  const matrix=Array.from({length:7},(_,i)=>values.slice(7*i,7*i+7));
+  return {page:p,fragmentCount:49,rootSet:roots(matrix),root24:roots(matrix).includes(24)};
+});
+assert.deepEqual(black49Controls.map(p=>p.rootSet),[[24],[17,26],[11]]);
+
+
 // Matched source-order null: independently reorder only the seven ORIGINAL
 // columns. It preserves all individual historical rows, every row total,
 // 7x7 dimensions and the exact printed entries, but challenges whether the
@@ -122,4 +161,4 @@ assert.equal(nativeP57.runic_count,95);
 const plain=Array.from({length:7},(_,i)=>nativeP57.indices.slice(i*7,i*7+7));
 assert.deepEqual(mul(Sinv,mul(S,plain)),plain.map(row=>row.map(mod)));
 assert.deepEqual(mul(mul(plain,S),Sinv),plain.map(row=>row.map(mod)));
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-transcription.txt','resources/liber-primus/lp2-corpus.json'],historical7RowSum:1033,stage7Roots:roots(S),p8FragmentRoots:roots(M),stage7ColumnPermutationNull:columnNull,sharedRoot:24,stage7RightVector:sVector,p8RightVector:mVector,sharedRightEigenvector:false,sharedEigenspaceStackRank:commonRank,stage7Mod29Det:rowReduce(S).det,p8Mod29Det:rowReduce(M).det,attempts,positiveNative49:true,classification:'shared root, no authenticated decoder'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-transcription.txt','resources/liber-primus/lp2-corpus.json'],historical7RowSum:1033,stage7Roots:roots(S),p8FragmentRoots:roots(M),stage7ColumnPermutationNull:columnNull,complete49BlackPageControls:black49Controls,sharedRoot:24,stage7RightVector:sVector,p8RightVector:mVector,sharedRightEigenvector:false,sharedEigenspaceStackRank:commonRank,stage7Mod29Det:rowReduce(S).det,p8Mod29Det:rowReduce(M).det,attempts,positiveNative49:true,classification:'shared root, no authenticated decoder'},null,2));
