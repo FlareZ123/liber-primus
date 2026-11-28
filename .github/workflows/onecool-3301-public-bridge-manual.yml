@@ -19,10 +19,19 @@ jobs:
           node-version: 22
       - name: Run exact bridge probe
         run: node sims/lp2_onecool_3301_public_bridge_sft.cjs
-      - name: Upload result
+      - name: Upload bridge result
         uses: actions/upload-artifact@v4
         with:
           name: onecool-3301-public-bridge-output
           path: ${{ runner.temp }}/source-test-output.json
+          if-no-files-found: error
+          retention-days: 7
+      - name: Run custody chronology probe
+        run: node sims/lp2_onecool_pre2018_custody_chronology_sft.cjs
+      - name: Upload custody chronology
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-pre2018-custody-chronology
+          path: ${{ runner.temp }}/custody-chronology-output.json
           if-no-files-found: error
           retention-days: 7
