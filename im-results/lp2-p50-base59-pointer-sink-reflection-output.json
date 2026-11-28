@@ -1,0 +1,50 @@
+{
+  "source": {
+    "missingLowDigit": "f",
+    "base60": {
+      "cycles": [
+        [0,203,68,199,47,76,114,197,115,247,192],
+        [158,249]
+      ],
+      "basins": [252,4]
+    },
+    "base59": {
+      "cycles": [[189]],
+      "basins": [256]
+    },
+    "sink": {
+      "cell": 189,
+      "row": 23,
+      "column": 5,
+      "token": "3C",
+      "base59Value": 189,
+      "base60Value": 192,
+      "maxBase59Depth": 38
+    },
+    "reflectedSink": {
+      "cell": 186,
+      "token": "0J",
+      "value59": 19,
+      "value60": 19
+    }
+  },
+  "monteCarlo": {
+    "trials": 500000,
+    "seed": 20261128,
+    "targetCell": 189,
+    "candidate59": 7933,
+    "candidate60": 3891,
+    "hit59": 80,
+    "hit60": 18,
+    "hitEither": 98,
+    "rateEither": 0.000196
+  },
+  "rowMatchedMonteCarlo": {
+    "trials": 200000,
+    "seed": 2667729073,
+    "hit59": 346,
+    "hit60": 0,
+    "hitEither": 346,
+    "rateEither": 0.00173
+  }
+}
