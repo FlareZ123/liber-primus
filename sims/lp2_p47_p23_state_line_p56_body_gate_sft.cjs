@@ -46,3 +46,39 @@ const native=c.pages.find(p=>p.page===57).indices;let j=0;
 const plant=native.map(P=>P===0?0:mod(P+key[(j++)%5]));assert(enumerate(plant).some(x=>x.p.every((v,i)=>v===native[i])));
 const out={key,cascade:{p23Following:a.trace.at(-1),p0:z.trace.at(-1)},census,scores,gibranFloors:floors,decision:'no native plaintext'};
 console.log(JSON.stringify(out,null,2));fs.writeFileSync(path.join(process.env.RUNNER_TEMP||process.cwd(),'source-test-output.json'),JSON.stringify(out,null,2)+'\n');
+
+// DIRECT-CONSUMER-FAMILY-24
+const dcReceiver=c.pages.find(p=>p.page===23).indices.slice(20);
+assert.equal(dcReceiver.length,193);
+function dcPrime(n){if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;}
+function dcNth(r){let k=0;for(let n=2;;n++)if(dcPrime(n)&&++k===r)return n;}
+const dcT=n=>mod(dcNth(n)-1);
+const dcKeys=[
+ ['line5-raw',[2,6,3,5,4]],
+ ['line5-T',[2,6,3,5,4].map(dcT)],
+ ['state9-raw',[23,5,6,15,8,19,2,3,4]],
+ ['state9-T',[23,5,6,15,8,19,2,3,4].map(dcT)]
+];
+assert.deepEqual(dcKeys[1][1],[2,12,4,10,6]);
+assert.deepEqual(dcKeys[3][1],[24,10,12,17,18,8,2,4,6]);
+const dcOrder=k=>k.map((v,i)=>({v,i})).sort((x,y)=>x.v-y.v||x.i-y.i).map(x=>x.i);
+function dcForward(x,k){const n=k.length,o=dcOrder(k),cols=Array.from({length:n},()=>[]);x.forEach((v,i)=>cols[i%n].push(v));return o.flatMap(j=>cols[j]);}
+function dcInverse(x,k){const n=k.length,o=dcOrder(k),q=Math.floor(x.length/n),r=x.length%n,l=Array.from({length:n},(_,j)=>q+(j<r?1:0)),cols=Array.from({length:n},()=>[]);let p=0;for(const j of o){cols[j]=x.slice(p,p+l[j]);p+=l[j];}const out=[];for(let y=0;y<q+(r?1:0);y++)for(let j=0;j<n;j++)if(y<cols[j].length)out.push(cols[j][y]);return out;}
+const dcRows=[];
+for(const [name,k] of dcKeys){
+ for(const [op,aa,bb] of [['C-k',1,-1],['C+k',1,1],['-C-k',-1,-1],['-C+k',-1,1]]){
+  const plain=dcReceiver.map((C,i)=>mod(aa*C+bb*k[i%k.length]));
+  dcRows.push({key:name,op,score:m.scoreStream(plain).mean,prefix:m.spell(plain.slice(0,30))});
+ }
+ for(const [op,plain] of [['columnar-inverse',dcInverse(dcReceiver,k)],['columnar-forward',dcForward(dcReceiver,k)]])
+  dcRows.push({key:name,op,score:m.scoreStream(plain).mean,prefix:m.spell(plain.slice(0,30))});
+}
+dcRows.sort((x,y)=>y.score-x.score);
+assert.equal(dcRows.length,24);
+assert.deepEqual([dcRows[0].key,dcRows[0].op],['state9-raw','C+k']);
+assert(Math.abs(dcRows[0].score+3.3803054952429346)<1e-12);
+let dcFloor=Infinity,dcCeiling=-Infinity,dcWindows=0;
+for(let i=0;i+193<=g.length;i++){const s=m.scoreStream(g.slice(i,i+193)).mean;dcFloor=Math.min(dcFloor,s);dcCeiling=Math.max(dcCeiling,s);dcWindows++;}
+assert.equal(dcWindows,62300);assert(Math.abs(dcFloor+3.1943745149464737)<1e-12);assert(dcRows.every(x=>x.score<dcFloor));
+const dcOut={...out,directConsumer:{receiver:{page:23,start:20,length:193},candidateCount:24,best:dcRows.slice(0,8),gibran:{windows:dcWindows,floor:dcFloor,ceiling:dcCeiling},decision:'all 24 fixed consumers below every matched native window'}};
+console.log(JSON.stringify(dcOut,null,2));fs.writeFileSync(path.join(process.env.RUNNER_TEMP||process.cwd(),'source-test-output.json'),JSON.stringify(dcOut,null,2)+'\\n');
