@@ -59,6 +59,19 @@ cell43  token 1D  values [72,73]  displacements [29,30].
 
 So the independently selected p40→cell43 address lands on the unique p50 cell whose two conventional radix edges reproduce the already-established authenticated source boundary.
 
+## DIRECTION modulus closes to the p6 grid constants
+
+The source boundary pair has one additional exact consequence under its own authenticated modulus:
+
+```text
+[29,30] mod29 = [0,1] = [F,1].
+```
+
+Those are precisely the two scalar constants consumed repeatedly by the p6 4/5/4 L/C/T/R grid in addition to its four state fields. The H-free p50 support serializer already supplies those four fields as `[K,-e,g,a]`.
+
+This residue observation is weaker than the literal boundary pair: charging all table cells gives two `[0,1] mod29` displacement-pair hits, cell43 and cell225, while **only cell43** has the literal ordered displacement pair `[29,30]`. Therefore the evidence remains the exact DIRECTION/SEEK boundary at the independently selected cell; `[F,1]` is a consequence of that boundary, not an independent uniqueness claim.
+
+The resulting loop is structurally compact—p40 selects cell43, cell43's dual-radix edge gives DIRECTION/SEEK and hence `[F,1]`, and p50 support geometry supplies the p6 state packet—but it still reproduces already-known p6 corridor structure rather than fresh plaintext.
 ## Relationship to the local radix stalemate
 
 The same token also has exact nearby count identities:
