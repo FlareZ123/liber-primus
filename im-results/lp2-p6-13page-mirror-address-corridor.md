@@ -26,6 +26,21 @@ W1.first=24=-g mod29
 
 Here `H4([w,x,y,z])=[w−z,x−y,x+y,w+z] mod29` is the previously published outside-in transform; its authoring role is not proven by these correspondences. The midpoint and all six pair transports below use *only* these physical title/Fehu scalars, GP29 alphabet radix 29 and candidate complete-group geometry. Source word **lengths** and independently selected removable q/F marker modes supply the expected raw receiver arities; signed-source target **values** are not consulted.
 
+## Signed-source outer initial H-differences independently select the 13-word window
+
+The p6 **outer K residual** `[u,-a]=[12,-6]=[12,23] mod29` also has a direct *authenticated-first-party source* interpretation. Under the already frozen outside-in H-pair convention, take the GP29 initial rune of the first signed word minus that of the last, then second minus penultimate:
+
+```text
+Hdiff(SEEK.first, OPENPGP.first) = 15−3 = 12 = W4.last = u
+Hdiff(AND.first, VERIFY.first)   = 24−1 = 23 = −a mod29
+```
+
+The full H4 of signed-source outside initials `[15,24,1,3]` is `[12,23,25,18]`: its first two outputs exactly equal the p6 outer-K residual modulo29. The remaining coordinates are the independently known state values `[p+K,B−1]` (still not an authored opcode). **Across all 31 contiguous thirteen-word windows** of the authenticated 43-word 2016 signed message, exactly **one** has the two ordered outer initial differences `[12,23]`: source indices **30..42**, `SEEK AND ... VERIFY OPENPGP`. This selection reads *no unknown LP2 ciphertext* and provides a shorter human-solvable route to the same 13-word tail than the earlier 11-field source identities.
+
+Combining those **signed-source-selected residuals** with p6's independent H4 width quotient `[e,K]=[3,2]` yields the outer paired physical address shifts `[99,52]` only when the GP residue23 is interpreted as **balanced −6**, rather than literal unsigned 23 (which would produce 81 and fail). This exact signed-lift choice remains an unproven operand rule; it cannot be silently treated as implied by GP29 residue equality.
+
+**Charge alternatives:** allow either W4 rune (2), either sign, any one of four signed H4 printed-width coordinates and either coordinate order: **64 distinct p6 numeric two-field residual vectors**. Across the same 31 authenticated thirteen-word windows, **four** field/window coincidences survive, at source starts **13,22,27,30**. The literal `[u,-a]` uniquely selects 30 under its frozen role order, but the source field pairing was noticed after the tail had been studied: it is **conditional source-only evidence, not a discovery-wide p-value**. See `sims/lp2_p6_13source_initials_outer_h_gate_sft.cjs` for the exact first-party source, p6 title grammar, 31-window census and 64-vector charge.
+
 ## Two simple mirrored integer-address operators
 
 For the two outermost `K=2` source pages p30,p31, reverse destination order to p42,p41. Use the H4 title-width fields and final red title rune:
