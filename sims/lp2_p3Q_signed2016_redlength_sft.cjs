@@ -64,6 +64,20 @@ for(let a=0;a<29;a++)for(let b=0;b<29;b++){
 A.deepEqual(hist.slice(0,7),[256,352,173,45,12,3,0]);
 A.ok(hist.slice(7).every(x=>x===0));
 A.deepEqual(survivors,[[17,24]]);
+// Stronger source-independent part of the evidence: NONE of these three
+// original red rune vectors participates in the algebraic Q derivation
+// (which uses p3 triad, p15 second and solved p57).
+const heldOut=[
+  ['p15@0',11], // Q -> ROAD / DEVOTED, matches p15 second-red11
+  ['p54@0',9],  // Q -> HELLO / MEANING, matches this red9
+  ['p56@0',5]   // Q -> THE / PATH, matches this solved red5
+];
+const heldSurvivors=[];
+for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  if(heldOut.every(([tag,len])=>readout([a,b],by(tag)).word_rune_len===len))
+    heldSurvivors.push([a,b]);
+}
+A.deepEqual(heldSurvivors,[[17,24]]);
 A.deepEqual(records.filter(x=>readout(Q,x).word_rune_len===x.len).map(x=>x.tag),typed.map(x=>x[0]));
 // Exact counterfactual signed-word rearrangement control, retaining the
 // FOUR independently read matrix-word slots THE MAP AND PATH at their
@@ -108,6 +122,9 @@ const numeratorLinked=favorable(linkedPattern);
 const denominatorFour=falling(6),denominatorLinked=falling(8);
 A.equal(numeratorFour*20700n,denominatorFour*7n);
 A.equal(numeratorLinked*51300n,denominatorLinked);
+const heldPattern=[2,{sum:9},{sum:11}];
+const heldNum=favorable(heldPattern),heldDen=falling(5);
+A.equal(heldNum*11385n,heldDen*31n);
 
 // Q is a primitive element. However, its natural 840-state recurrence
 // fails to continue the independently authenticated p56 prime clock.
