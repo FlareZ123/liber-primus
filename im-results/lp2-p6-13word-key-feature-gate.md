@@ -22,9 +22,21 @@ Exact GF(29) ranks are:
 | degree<=2 in `delta,x,xr,j,n,block,slot` | 36 | 34 | 35 | inconsistent |
 | degree<=2 plus source-index residue | 45 | 37 | 38 | inconsistent |
 
-Every family is algebraically inconsistent. This extends the earlier q-block address-only gate: even after adding the new cross-corridor receiver delta and actual source rune values, low-degree scalar arithmetic still cannot generate the fitted keys.
+Every family is algebraically inconsistent. The same charge was then repeated after applying the repository's frozen outside-in H transform to each source word and each fitted key before constructing the observations. The H-coordinate systems have the **same rank pattern** as the raw-coordinate systems:
 
-**Decision:** do not spend more effort on affine/quadratic coordinate formulas over receiver delta/source index, aligned or reverse source rune, coordinate, arity, block and slot. The missing value operation must be structurally richer: an ordered p6 word/field serializer, vector transform, stateful source-selected recurrence, or another reversible mechanism.
+| H-space family | coefficients | rank(A) | rank([A|k]) | Result |
+| --- | ---: | ---: | ---: | --- |
+| affine `delta,x,j,n` | 5 | 5 | 6 | inconsistent |
+| affine + `xr` | 6 | 6 | 7 | inconsistent |
+| affine + block/slot | 8 | 8 | 9 | inconsistent |
+| degree<=2 in `delta,x,xr,j,n,block,slot` | 36 | 34 | 35 | inconsistent |
+| degree<=2 plus source-index residue | 45 | 37 | 38 | inconsistent |
+
+Thus the frozen H representation does not linearize or quadratize the missing value serializer under these features.
+
+This extends the earlier q-block address-only gate: even after adding the new cross-corridor receiver delta and actual source rune values, low-degree scalar arithmetic still cannot generate the fitted keys in either raw or H space.
+
+**Decision:** do not spend more effort on affine/quadratic coordinate formulas over receiver delta/source index, aligned or reverse source rune, coordinate, arity, block and slot. The missing value operation must be structurally richer: an ordered p6 word/field serializer, a genuinely vector-valued transform beyond coordinatewise H-space regression, a stateful source-selected recurrence, or another reversible mechanism.
 
 This does not weaken the receiver-address result and does not exclude nonlinear or cryptographic schedules.
 
