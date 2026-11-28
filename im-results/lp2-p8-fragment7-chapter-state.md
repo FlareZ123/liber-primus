@@ -46,6 +46,115 @@ The two cubic factors have exact root orders **469=7×67** and **24,388=29³−1
 
 This is substantially stronger than assigning familiar names to isolated residues. The complete degree-seven polynomial, its compact factorization, trace, determinant, and order all belong to one exact source matrix.
 
+## P57 now source-selects the previously untested inner-square cascade
+
+A later solved-p57 result supplies a direct operation on this exact 7×7 object. Recursively shedding the word circumferences in `FIND THE DIUINITY WITHIN AND EMERGE`, with **WITHIN** acting as the operator, yields the unique solved-corpus readout **IN THE INNER**. The p57 terminal ornament uses the same circumference grammar and selects inner8→p8. Once p8's independently justified 7×7 black-fragment matrix is reached, the most literal continuation is to shed its matrix circumference repeatedly:
+
+```text
+7×7 -> centered 5×5 -> centered 3×3 -> center 1×1.
+```
+
+This operation was **not** used in the original matrix discovery and was absent from the prior report/SFT. It produces a striking nested state cascade.
+
+### Centered 5×5
+
+The inner matrix is:
+
+```text
+ 2  6  3  7  3
+ 8  4  3  4  5
+ 3  4  4  7  5
+12  4  5  3  2
+ 4  9  6  5  6
+```
+
+Its characteristic polynomial over GF(29) is:
+
+```text
+x^5 + 10x^4 + 13x^3 + 12x^2 + 26x + 16
+
+= (x + a)
+  (x^4 + q x^3 + (p-g)x^2 + (p-e)x + (p-1))
+
+= (x + 6)
+  (x^4 + 4x^3 + 18x^2 + 20x + 22).
+```
+
+So the inner5 has exact root `-a = 23 = p`, trace `19=B`, and determinant `13=b-K`.
+
+Among all **9** contiguous 5×5 submatrices of the fixed 7×7, the central one is the **only** one whose characteristic polynomial has root `p=23`.
+
+### Centered 3×3
+
+The next inner square is:
+
+```text
+4 3 4
+4 4 7
+4 5 3
+```
+
+with:
+
+```text
+χ(x) = x^3 + 18x^2 + 6x + 28
+     = (x-A)(x-a)(x+e)
+     = (x-8)(x-6)(x+3).
+```
+
+Its three eigenvalues are exactly:
+
+```text
+[A, a, -e] = [8,6,26].
+```
+
+Among all **25** contiguous 3×3 submatrices of the fixed 7×7, the central one is the **only** one with this exact characteristic polynomial/state factorization.
+
+### Center 1×1 and nested invariants
+
+The final center cell is:
+
+```text
+[4] = [q].
+```
+
+Across the complete nested chain, traces and determinants are:
+
+```text
+size              7      5       3       1
+trace            23     19      11       4
+state             p      B    A^-1       q
+
+determinant       18     13       1       4
+state            p-g    b-K      1       q
+```
+
+Apply the already canonical outside-in H4 transform:
+
+```text
+H([23,19,11,4]) = [19,8,1,27] = [B,A,1,-K]
+
+H([18,13,1,4])  = [14,12,14,22] = [-b,aK,-b,p-1].
+```
+
+The result is therefore not merely another state-labelled residue list. A solved instruction recovered elsewhere selects a specific geometric operation on the already-established p8 square, and **every recursively exposed centered square has an independently structured state polynomial/invariant packet**.
+
+This materially strengthens the intended-route hypothesis:
+
+```text
+p57 solved text
+ -> IN THE INNER
+ -> p57 inner circumference8
+ -> p8
+ -> p8 7×7 fragment square
+ -> recursively shed square circumferences
+ -> 5×5 / 3×3 / 1×1 DH-state cascade.
+```
+
+No unknown p8 rune plaintext follows yet. The productive next question is whether these now-source-selected nested matrices choose a reversible body operation, not whether another arbitrary crop or matrix statistic can be made state-like.
+
+[Hidden p57 IN THE INNER gate](lp2-p57-p1-up-infinity-p8-p2-north-loop.md).
+
 ## Source path to the 7×7 matrix
 
 P8's two red heading words reconstruct the DH state under the canonical outside-in H transform in the companion [p8 red-state circuit](lp2-p8-red-h-state-circuit.md).
