@@ -1,3 +1,10 @@
+## 28 November 2026 — T7 refinement: one-step overlapping hidden operand
+
+- Supersedes the slower-state interpretation from the earlier same-incarnation checkpoint. Original gap ACF is lag1 +.380019689, lag2 +.024218964. A positive MA(1)-style renewal law G_n=U_n+theta*U_(n-1) gives exactly that structural cutoff: adjacent gaps share one iid hidden operand; lag>=2 shares none.
+- Frozen gamma realization: theta=.460664260759037 from T7; alpha=.6366617848820242 from T2 CV^2; beta=161.83681183502893 for mean gap150.5. Two 1,000-draw seeds: minimum seven-stat p=.44955/.45155; evidence ratios 19.7089x/17.6819x versus flat. Post-hoc 10k diagnostics also contain log/rank lag1, lag2, max712 and max3=1649.
+- Source-facing negatives: 2014 onion2 timing lag1=-.0386; 7x7 magic-square source-order sequence does not predict gap order despite mean-scale coincidence; nine solved GP29 records total 2,979 runes, repeat rate2.586%, gap lag1=-.0672. Thus ordinary LP prose morphology does not explain unknown LP2's 0.667%/+0.380 process.
+- Preferred causal hypothesis class now: historically visible consecutive-source-operand transforms / one-step shared state. Do not treat theta/alpha/beta as key material; no source U_n or reversible receiver is known.
+
 ## 28 November 2026 — draw1 independent: stationary T7 correlated-renewal mechanism
 
 - Invocation run_id: agent27-draw1-20261128T070144345Z-independent; original lease claimed 2026-11-28T07:01:44.345Z. Claim commit 44c1d8d6748a194d53e39b7335cf829a9f1d6e0d. Do not refresh the lease; orderly release only after measured 70 minutes.

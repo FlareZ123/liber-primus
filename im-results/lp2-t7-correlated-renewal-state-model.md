@@ -1,27 +1,40 @@
-# LP2 T7: stationary correlated-renewal exception clock fits the registered battery
+# LP2 T7: a two-input renewal clock explains the residual-repeat ordering
 
-**Agent27, 28 November 2026. Classification: new statistical mechanism constraint; no plaintext, key, source-selected cipher, or destination recovered.**
+**Agent27, 28 November 2026. Classification: statistical mechanism constraint; no plaintext, key, source-selected cipher, or destination recovered.**
 
 ## Decision
 
-The original 12,956-rune p0–55 tape has 86 same-page adjacent equalities and the established T7 correlation between consecutive equality gaps, `r = +0.380019689241`. Existing flat anti-repeat / independent-slip models reproduce the low equality rate but fail T7. A two-parameter **stationary correlated-renewal exception clock** now reproduces T7 without requiring page-specific or line-specific fitted rates, while retaining the other six registered C5 statistics.
+The original 12,956-rune p0–55 tape has 86 adjacent equalities and a strong correlation between consecutive equality gaps: T7 = `+0.380019689241`. A flat independent-slip model explains the low count but fails the gap ordering. The most economical model found here is a **positive two-tap moving-average renewal clock**:
 
-This changes the causal interpretation of T7: **the anomaly does not by itself force regional rate drift.** A stationary process with serially dependent exception intervals is sufficient. It does not identify the intended Liber Primus cipher. No first-party clue currently selects this scheduler, and the model contains no plaintext/key receiver.
+`G_n = U_n + theta * U_(n-1)`
 
-## Frozen model
+where the hidden positive innovations `U_n` are iid gamma variables. Consecutive gaps share exactly one hidden operand; gaps two positions apart share none. That gives the crucial qualitative prediction **lag 1 positive, lag 2 zero**. The original has lag 1 `+0.3800` and lag 2 `+0.0242`.
 
-Two parameters were frozen before the two reported 1,000-draw checks:
+This is a sharper mechanism constraint than the initial Gaussian-AR(1) correlated-renewal fit: a slowly persistent rate is unnecessary. A one-step overlapping hidden operand suffices. That is also closer to a deliberately designed puzzle operation because it has a literal sliding-two-input interpretation.
 
-- mean exception gap `mu = 150.5` runes;
-- latent Gaussian AR(1) correlation `rho = 0.42`.
+It still does **not** identify the intended Liber Primus cipher. The gamma law is a convenient positive innovation family, and no first-party clue currently identifies the hidden `U_n` sequence or says to schedule equality exceptions this way.
 
-Generate a stationary latent Gaussian state `z`; map `Phi(z)` through the inverse exponential CDF to the next positive integer exception gap; then update `z <- rho*z + sqrt(1-rho^2)*N(0,1)`. At scheduled exception sites, emit the same GP29 rune as the previous rune. At all other sites, choose uniformly from the other 28 runes. The model never reads the LP2 ciphertext, its equality positions, or its observed gaps.
+## Frozen two-tap model
 
-This is best understood as a **stateful cooldown/slip scheduler** attached to an otherwise strict anti-repeat output rule. It is a mechanism class for the residual equality process, not a claim that Cicada used a Gaussian copula or literally sampled exponentials.
+Three numerical parameters are fixed by the three observed low-order gap moments, before the two reported 1,000-draw gate checks:
 
-## Frozen seven-statistic gate
+- `theta = 0.460664260759037`, the canonical `theta <= 1` solution of `theta/(1+theta^2) = 0.38001968924100965`;
+- gamma shape `alpha = 0.6366617848820242`, chosen so the unrounded two-tap process has `CV^2 = 0.892419051024709`;
+- gamma scale `beta = 161.83681183502893`, giving mean gap `150.5`.
 
-The reproducer implements the seven statistics and evidence calculation of the public C5 T7 checker pinned at external repository commit `b271334d9718bf68187f7a1e6362731159c36a2a` (`challenges/c5_t7_mechanism.py` blob `e51e4aca6c13496a6218f3d474d5f71616cccd1b`; `b3lib.py` blob `6521341a864c1daa19880e19551fdc37f31a277a`). The external challenge's finish line is all seven two-sided simulation p-values at least 0.05 plus evidence ratio at least 3 against its flat filter on two 1,000-draw seeds. This repository's SFT independently reimplements that battery on the canonical `resources/liber-primus/lp2-corpus.json`; it is not an external maintainer acceptance claim.
+For iid gamma innovations, before integer rounding/truncation,
+
+- `Corr(G_n,G_(n+1)) = theta/(1+theta^2)`;
+- `Corr(G_n,G_(n+k)) = 0` for `k >= 2`;
+- `CV^2(G) = (1+theta^2) / (alpha*(1+theta)^2)`.
+
+Each generated positive gap advances an exception cursor. At an exception site, the emitted GP29 rune equals the previous rune. At every other transition, the next rune is chosen uniformly from the other 28 symbols. The generator does not read the LP2 ciphertext, its equality positions, or its gap sequence.
+
+The earlier latent-Gaussian AR(1) renewal clock (`rho=.42`, exponential marginal, mean gap 150.5) also crossed the same battery, but it is retained only as a robustness benchmark. The two-tap model is preferred because it explains the observed ACF cutoff with less persistent hidden state.
+
+## Seven-statistic C5-style gate
+
+The reproducer implements the seven statistics and evidence calculation of the public C5 T7 checker pinned at external repository `Dukotah/cicada3301` commit `b271334d9718bf68187f7a1e6362731159c36a2a` (`challenges/c5_t7_mechanism.py` blob `e51e4aca6c13496a6218f3d474d5f71616cccd1b`; `b3lib.py` blob `6521341a864c1daa19880e19551fdc37f31a277a`). The public finish line is all seven two-sided simulation p-values at least 0.05 plus evidence ratio at least 3 against its flat filter on two 1,000-draw seeds. This repository independently reimplements that battery; these numbers are not an external maintainer acceptance claim.
 
 Canonical source statistics reproduced exactly:
 
@@ -39,44 +52,54 @@ Canonical source statistics reproduced exactly:
 
 | seed | minimum p over seven stats | T7 p | evidence ratio vs flat | verdict |
 | ---: | ---: | ---: | ---: | --- |
-| 3301 | **0.4555444555** | 0.7612387612 | **13.30493939x** | passes |
-| 123456789 | **0.4715284715** | 0.7672327672 | **12.17719737x** | passes |
+| 3301 | **0.4495504496** | 0.7832167832 | **19.70886486x** | passes |
+| 123456789 | **0.4515484515** | 0.8011988012 | **17.68192421x** | passes |
 
-At seed 3301 the individual two-sided p-values are `n=.9690, T1=.8432, T2=.8352, T3=.4555, T4=.4655, T6=.5195, T7=.7612`. At seed 123456789 they are `n=.9810, T1=.8052, T2=.8571, T3=.4715, T4=.4895, T6=.5095, T7=.7672`.
+At seed 3301, medians are `n=86`, `T1=.10386`, `T2=.83754`, `T3=27.1081`, `T4=57.9394`, `T6=1.10395`, `T7=.35438`. At seed 123456789, medians are `n=86`, `T1=.10358`, `T2=.82781`, `T3=27.0693`, `T4=58.6065`, `T6=1.09747`, `T7=.36378`. Every individual two-sided p-value is comfortably above 0.44 on both seeds.
 
-The matched renewal control with `rho=0` still fails T7: at the two seeds its T7 p-values are approximately `0.001998` and `0.005994`, with evidence ratios `0.785` and `1.303`. Thus merely replacing the flat filter by a renewal process is insufficient; serial dependence is the operative added ingredient.
-
-A coarse pre-commit sensitivity sweep at fixed `mu=150.5` found the seven-stat gate remains compatible over a broad `rho` region rather than at a single knife-edge value: 500-draw runs at `rho=0.20..0.60` had minimum p-values above 0.05, with evidence ratio above 3 through approximately `rho=0.60`. This is a robustness diagnostic, not an additional registered hypothesis family.
+The iid flat exception process remains the relevant null. Its equality-site indicators are exactly iid Bernoulli with probability `(1/29)*(86/447)`, because each fresh proposal equals the previous emitted rune with probability `1/29` and is retained independently with probability `86/447`. Therefore site-only flat simulation is distributionally identical for all seven site statistics to the full public flat rune generator.
 
 ## Independent gap-shape diagnostics
 
-A separate 10,000-draw post-hoc check compared statistics not all present in the seven-stat C5 battery. These are descriptive robustness tests, not preregistered discovery claims.
+A separate 10,000-draw post-hoc check uses statistics not all in the seven-stat gate. These are robustness tests, not preregistered discovery claims.
 
-| gap statistic | original | model median | model 95% interval | model tail / two-sided p |
+| gap statistic | original | two-tap median | two-tap 95% interval | two-tap p |
 | --- | ---: | ---: | ---: | ---: |
-| raw Pearson lag-1 | 0.3800196892 | 0.34234 | [0.11814, 0.56745] | 0.7495 two-sided |
-| log-gap Pearson lag-1 | 0.2294355176 | 0.38232 | [0.16353, 0.57990] | 0.1646 two-sided |
-| midrank/Spearman lag-1 | 0.2670021048 | 0.37949 | [0.16477, 0.57090] | 0.2894 two-sided |
-| maximum single gap | 712 | 709 | [470.975, 1204.1] | 0.4937 upper |
-| maximum sum of 3 consecutive gaps | 1649 | 1413 | [946, 2349.025] | 0.2662 upper |
+| raw Pearson lag 1 | 0.3800196892 | 0.35754 | [0.19640, 0.53092] | 0.7889 two-sided |
+| log-gap Pearson lag 1 | 0.2294355176 | 0.37119 | [0.17072, 0.55149] | 0.1578 two-sided |
+| rank/Spearman lag 1 | 0.2680509985 | 0.38348 | [0.20363, 0.54516] | 0.1974 two-sided |
+| raw Pearson lag 2 | 0.0242189636 | -0.03204 | [-0.23191, 0.22443] | 0.6459 two-sided |
+| maximum single gap | 712 | 688 | [455, 1204.025] | 0.4450 upper |
+| maximum 3-gap sum | 1649 | 1340 | [923, 2183.05] | 0.1862 upper |
 
-The independent-gap renewal control fails the three correlation diagnostics (raw approximately `p=.0010`, log approximately `.0256`, rank approximately `.0062`) while its maximum-gap statistic remains ordinary. This separates the T7 ordering effect from merely having a long-tailed gap distribution.
+The flat control fails the three lag-1 correlation diagnostics (`p≈.0010` raw, `.0244` log, `.0100` rank) while its lag-2 result is ordinary (`p≈.706`). Thus the signal is specifically a one-step ordering dependency, not merely a long-tailed marginal.
+
+The raw T7 covariance is partially concentrated in a few large-gap runs: removing the largest four gaps reduces raw lag-1 correlation to about `0.106`. This is why the rank/log diagnostics matter; both remain positive, and the two-tap model contains them. Do not treat `+0.380` as a uniform effect of equal strength across all 85 intervals.
+
+## Source-facing tests and exclusions
+
+Two obvious same-round source candidates were checked before promoting a source link:
+
+1. The reconciled 2014 second-onion five-minute delay stream has 112 sourced intervals with lag-one correlation **-0.0386**. It does not supply the T7 state law.
+2. The source-authenticated Stage7/Stage10 7x7 magic square has mean cell value `1033/7 = 147.5714`; its natural row-major adjacent-pair average has mean exactly `150.5`. That numerical match is intriguing, but the source-order sequence does **not** predict the original equality-gap order (direct first-49 correlation about `-0.174`, only one exact gap match). The already established historical receiver for those squares is Stage10 form submission. Do not reopen the square as an LP2 clock merely from the mean coincidence.
+
+Known solved GP29 plaintext is also incompatible with the idea that T7 is ordinary Liber Primus language morphology: across the nine pinned solved native-rune records, 2,979 runes have 77 adjacent equalities (`2.586%`, versus `0.667%` in unknown LP2) and equality-gap lag-one correlation about `-0.0672`.
 
 ## What this changes
 
-1. **Retire the inference “T7 implies a drifting local equality rate.”** Drift remains possible, but it is no longer required by the observed battery. Stationary serial dependence in exception timing is a concrete competing explanation.
-2. **Require any proposed anti-repeat inverse to represent correlated exception timing or explain why its sender induces it.** A homogeneous independent-slip law is inadequate.
-3. **Do not turn `rho=0.42` or `mu=150.5` into a key.** They were selected to model the equality process and have no first-party selector. The model does not decode even one unknown rune.
-4. **The next useful discriminator is source-facing.** Look for a historically plausible state variable/cooldown mechanism that predicts exception timing before inspecting the original equality sites, then test it on held-out ciphertext and through an explicit reversible sender/receiver.
+1. **Retire “T7 requires slowly drifting local repeat probability.”** A stationary one-step overlapping hidden operand is sufficient and better matches the observed ACF cutoff.
+2. **Future sender hypotheses should explain a two-input overlap.** A candidate mechanism that forms each exception interval or control state from consecutive source operands naturally predicts lag-1 dependence with little lag-2 dependence.
+3. **Do not turn the fitted gamma parameters into a key.** They summarize the gap law and have no first-party selector.
+4. **Demand an actual source operand.** The productive next test is a historically visible sequence whose fixed, predeclared two-input transform predicts exception intervals or a held subset of them, followed by an explicit reversible sender/receiver on ciphertext.
 
-The result is therefore a material narrowing of the **generation-process** frontier, not a solution of LP2.
+This is a material narrowing of the generation-process frontier, not a solution of LP2.
 
 ## Reproduction
 
-Run from the repository root:
+From repository root:
 
 ```text
 python sims/lp2_t7_correlated_renewal_sft.py
 ```
 
-The SFT reads only the canonical source corpus, re-derives the seven observed statistics, simulates the frozen model and flat control on both fixed seeds, and asserts the published C5-style crossing conditions.
+The SFT reads only the canonical source corpus, re-derives the seven observed statistics, generates the frozen two-tap renewal model and flat control on both fixed seeds, and asserts the crossing conditions.
