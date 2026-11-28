@@ -89,11 +89,25 @@ assert.deepEqual(h4outer.slice(0,2),residuePacket);
 
 // Opposing first-party source and original p6 numbers now independently
 // compute exactly the same outer-K mirror-address residue differences.
-const Qouter=[e,K];
-const delta=Qouter.map((q,i)=>29*q+residuePacket[i]);
+const balanced=x=>{const z=mod(x);return z>14?z-29:z;};
+const Qouter=[e,K],balancedResidual=residuePacket.map(balanced);
+assert.deepEqual(balancedResidual,[12,-6]);
+const delta=Qouter.map((q,i)=>29*q+balancedResidual[i]);
 assert.deepEqual(delta,[99,52]);
 const originalReceiverPairs=[[112,211],[126,178]];
 assert.deepEqual(originalReceiverPairs.map(pair=>pair[1]-pair[0]),delta);
+// Independently signed 2016 initials BE and BEWARE (mirror pages 34/38)
+// have equal GP initial B=17, Hpair(17,17)=[F,g]=[0,5].
+const tail=initials.slice(30,43);
+const centralMirror=[mod(tail[4]-tail[8]),mod(tail[4]+tail[8])];
+assert.deepEqual(centralMirror,[0,5]);
+const projected=[residuePacket[0],residuePacket[1],residuePacket[0],
+                 centralMirror[0],mod(-centralMirror[1]),centralMirror[1]];
+const signedProjected=projected.map(balanced);
+assert.deepEqual(signedProjected,[u,-a,u,0,-g,g]);
+const sixQuotient=[e,K,1,0,K,q];
+const sixDelta=sixQuotient.map((v,i)=>29*v+signedProjected[i]);
+assert.deepEqual(sixDelta,[99,52,41,0,53,121]);
 
 // Charge obvious p6 field choices: either W4 rune, either sign,
 // any signed H4(width) coordinate, and either pair order, deduped.
@@ -128,7 +142,8 @@ console.log(JSON.stringify({
     windows:candidates.length,selectedStart:hits[0].start,
     selectedWords:named,initials:initials.slice(30,43),
     outerH4:h4outer},
-  link:{Qouter,sourceOnlyResidual:residuePacket,delta,
+  link:{Qouter,sourceOnlyResidual:residuePacket,balancedResidual,
+    delta,centralMirror,signedProjected,sixQuotient,sixDelta,
     mirroredOriginalAddressPairs:originalReceiverPairs},
   conditionalFieldCharge:{distinctVectors:charged.size,
     windowsSelected:matches.length,matches},
