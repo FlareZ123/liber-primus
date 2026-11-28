@@ -9,19 +9,19 @@ Two structures were developed independently before this comparison:
 1. The nine red-rubric chapter operands use the first complete black word after the opening rubric. The pre-existing #3445 gate fixed `IN = GP29 rune SUM` and charged a frozen natural family of eight candidate OUT statistics:
    `length, rune PRODUCT, prime SUM, prime PRODUCT, first rune, last rune, first+last, first*last`.
 
-2. A decoded-pixel census of all 75 original JPEGs partitions LP2 by exact outer-frame reuse. The six non-singleton LP2 frame runs start at
+2. A decoded-pixel census of all 75 original JPEGs partitions LP2 by repeated outer-frame artwork. A crop-sensitivity control now matters: an outer crop ends the p15 frame identity at p21, while an equally natural central crop continues it through p23. **Both crops preserve the same six non-singleton frame STARTS**
 
 ```text
 p1, p4, p15, p27, p40, p56
 ```
 
-so their five forward start spacings are
+and therefore the same five forward start spacings
 
 ```text
 [3,11,12,13,16].
 ```
 
-No chapter value was used to choose those frame starts.
+The PRODUCT gate uses only these robust starts. It does **not** depend on the crop-conditioned p15 run length or the retired length-difference state tape. No chapter value was used to choose the frame starts.
 
 ## Complete source-register charge
 
