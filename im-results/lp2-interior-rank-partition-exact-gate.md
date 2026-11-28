@@ -1,10 +1,46 @@
-# Exact two-recency-list concentration gate for fixed interior insertion — Agent4, 2026-11-28
+# Exact rank-insertion inverse gates: fixed and moving public schedules — 28 November 2026
 
 ## Decision
 
-Additional endpoint move-to-front/back cases are now excluded, including page-private secret decks, by exact all-starting-deck synchronized native register tests (see endpoint section below); no original plaintext or author-selected schedule was recovered.
+**Current causal decision:** A new *joint rank-and-pairwise-order synchronizer* closes a real identifiability gap for **varying** public insertion schedules. It gives a sound all-initial-deck certificate at rune 422 on the 12,956-rune original book for a period-16 schedule numerically fixed by the solved p15 spiral. That clock's 12,534 exact original ranks have mode 473/top-three 1,417 and are native-prose-negative against 533,987 full-length matched windows; independently initialized p16–22 and p40–53 scopes also synchronize and fail 567,707 and 563,465 windows. Four GP-native plants recover 690/690 certified suffix runes each. **This is a reusable exact algorithm and a bounded negative, not discovered plaintext or an authenticated cipher:** p15 selects the 16 numbers, but neither the rank-insertion opcode nor periodic reuse of those numbers is first-party instructed. Preserve the synchronizer for any future authentic changing schedule, and do not pursue clocks optimized to the original ciphertext.
 
-Retire the continuous GP29 fixed-rank remove/reinsert cipher for ordinary native prose on LP2 p0–2. This is an exact all-initial-alphabet, all-pivot-ranks, all-static-plaintext-rank-relabelings frequency result, not a heuristic optimizer failure. Every output has a top-three cumulative count ≤157 in 729 runes. All 569,402 matched literary windows exceed 157; the original 273 clear-LP1 windows already exceed the exact modal cap 71. No authentic original plaintext or key. The original images do not independently select this opcode; it was explored as a distinct minimal reversible repeat-suppression construction after #3320, not as an authenticated historical cipher.
+Fixed-rank interior insertion is separately eliminated for ordinary native prose on LP2 p0–2 by an exact all-initial-alphabet, all-pivot-ranks, all-static-plaintext-rank-relabelings concentration bound: top-three ≤157 in 729 original runes, below all 569,402 matched donor windows. The endpoint MTF/MTB cases and other previously frozen public moving schedules are excluded in their own stated scopes below. None of these exploratory mechanisms is authenticated by the original images.
+
+## Stronger exact inverse: joint rank and pairwise order for nonconstant public insertion (Agent41, 28 November 2026)
+
+### What is newly decidable
+
+Under a length-preserving, public-target rank-insertion model, a secret deck initially contains all 29 distinct GP labels in any order. At rune i, plaintext is the **rank** of observed ciphertext label C_i in the current deck; remove that label and reinsert it at publicly fixed rank k_i. Unlike a mere static substitution, this mechanism evolves a permutation after every output. An arbitrary starting deck has 29! possibilities. The older [rank-envelope + Hall synchronizer](../sims/lp2_moving_rank_sync_sft.cjs) certifies some clocks but never certified the specific nonconstant 16-step clock below, even when propagated through all 12,956 original runes.
+
+The new [joint-order implementation](../sims/lp2_p15_spiral_rank_order_sync_sft.cjs) maintains two sound kinds of information. For each label y, a 29-bit mask S_y contains **every still-possible current deck rank**, and for each ordered pair y,z, the relation y≺z is recorded only if it must hold in every deck consistent with the observed ciphertext and the fixed public mutation schedule. Initially S_y includes all ranks and no relative ordering is known.
+
+For an observed label x moved to target k, propagate the existing all-deck-safe rank-envelope transition and prune via perfect matching, retaining exactly the rank edges appearing in some perfect matching of the relaxed masks. Delete all known precedences involving x, **preserve every precedence among unmoved cards** (their relative order cannot change under removal and reinsertion of x), and derive new x relations when all allowed post-update ranks of y lie strictly before or after k. Take transitive closure. If y has b proven predecessors and a proven successors, its rank must lie in [b,28−a], so intersect S_y with that range, add any new forced orders from disjoint rank intervals, apply matching pruning again and repeat to a fixpoint.
+
+Each inference is an over-approximation or a logical consequence of every reachable deck, not an optimizer's guessed permutation. Therefore the authentic, unknown initial deck always remains represented. The instant all 29 S_y are singleton, they determine one full permutation, which must be the current deck for **all** 29! initial decks. Every later plaintext rank is then exactly the observed card's current index; forward removal and reinsertion is the inverse invariant. A failure to reach singletons is inconclusive. In this experiment the joint method succeeds where independent rank masks alone do not.
+
+### Source-locked numerical input and hypotheses still needed
+
+The independent p15 solved numeral grid ([source and formula](../results/lp2-p15-fibonacci-prime-spiral.md), original image 32.jpg) has the 16 marked outward-spiral values
+`3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516`.
+Their direct **GP29 residues**, without any language fitting or observed-ciphertext tuning, fix the sixteen targets
+`[22,21,19,17,11,1,10,3,20,22,25,7,22,12,17,21]`.
+This test explicitly **hypothesizes** a period-16 restart of those targets at each fresh tested scope and one move per rune, with no F holds or other exceptions. The original p15 **does not** specify that periodicity, the rank-reinsertion opcode, the deck-to-GP rank mapping, or any reset boundary. Those are exposed model assumptions, not first-party instructions. The immediately following p16–22 is the most natural scoped original receiver; distant p40–53 and whole-book p0–55 are independently tested robustness assumptions, not hints printed on p15.
+
+### Exact original-cipher test and independent donor comparison
+
+All scopes start with an *arbitrary* secret initial deck. The following are **certified, exact** suffixes after the joint-order fixpoint; the displayed histogram counts are permutation invariant, so any additional fixed relabeling of plaintext rank symbols cannot rescue their concentration profile.
+
+| Original scope / fresh clock | Rune count | First exact next-rune offset | Exact suffix | Mode / top 3 | GP-rank IoC | Matched native donor windows passing both count thresholds |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Physical p16–22 | 1,744 | 450 | 1,294 | 65 / 172 | 0.03450514 | **0 / 567,707** |
+| Physical p40–53 | 3,008 | 300 | 2,708 | 116 / 330 | 0.03452971 | **0 / 563,465** |
+| Physical p0–55, continuous | 12,956 | 422 | 12,534 | 473 / 1,417 | 0.03452790 | **0 / 533,987** |
+
+The three pinned exact-window comparisons use original-runic GP29 normalization of Gibran's *The Prophet*, Shakespeare and Emerson, counting **every** contiguous native window of identical exact suffix length. For p16–22, their respective minimum modal counts are 119/109/117, against original 65; for p40–53, 272/235/265 against original 116; for whole-book, 1,371/1,353/1,444 against original 473. This is not an optimizer miss: every possible secret initial deck gives the same exact suffix. The comparison is finite to these three literary GP controls; it does not exclude arbitrary nonnative source texts, plaintext order shuffles, or the broad family of all moving-alphabet ciphers. A full re-encryption check is necessary for any proposed key but by itself cannot make wrong-key plaintext authentic.
+
+**Planted native controls:** Four distinct independently shuffled starting decks (fixed public seeds 3301, 4078, 4855, 5632), each with 1,001 GP-native clear LP1 symbols, were encrypted under this exact 16-target opcode. On every step before convergence, the true deck rank was asserted inside its sound mask and every proven pair relation was checked against the real planted order; after convergence, the complete recovered deck was compared with the real deck. All four synchronize after 311 symbols and recover **690/690 true suffix ranks**, 2,760/2,760 in total. The implemented sender and inverse use the same length-preserving move rule but are independently checked by the rank and pair invariants. The committed source was executed with the original repository resources in connected V8; any GitHub Actions status is separately verifiable through the reusable manual Node22 runner.
+
+**Decision:** This materially improves identification of a public, varying-rank inverse; specifically, the previous independent-mask failure to synchronize was **not** evidence that the historical ciphertext retained a large unresolved key. The new joint solver closes this source-derived period16 candidate for ordinary native GP29 prose at the listed scopes, but the strongest missing premise is still an authenticated instruction to mutate the deck. Do not extend period16, flip signs, rephase or optimize target clocks against LP2. Reuse the general joint-order algorithm only on a newly source-selected operation/clock, and demand actual unknown plaintext or independently delivered key material before promoting it to `results/`.
 
 ## Sender, inverse and reduction
 
