@@ -78,6 +78,47 @@ That is precisely the independently derived full 13-page mirror architecture bel
 
 The visual result does **not** solve the remaining numeric-order problem. Even after the mirror topology is fixed, the inner p6-only quotient/residual field family still has `24×24=576` orderings before receiver structure or checksums are opened. Thus the marker authenticates a topology, not yet the signed `Q/D` field order or a plaintext decoder. Reproducer: [`sims/lp2_p6_red13_stencil_symmetry_address_sft.cjs`](../sims/lp2_p6_red13_stencil_symmetry_address_sft.cjs).
 
+## Source-only field-order gate: 16/576 survive and the literal order is not geometrically selected
+
+Director #3424 charges the remaining `24×24=576` inner mirror-field permutations **without consulting any receiver start, target checksum, candidate word, or sealed p30/p31 grader**. The p6 source is given unusually favorable anchors so that failure to identify the literal order is meaningful rather than an artifact of an over-restrictive scan.
+
+For the quotient packet, the visible left-to-right register is
+
+```text
+Fehu | W1(q) W2(1) W3(q) W4(K) | red13
+```
+
+while the four abstract roles are `[1,F,K,q]`. Because p6 contains two physically distinct `q` occurrences, retain either one, anchor on the unique singleton `1`, and charge both cyclic directions. This leaves exactly four source-local Q orders:
+
+```text
+qLeft,  forward: [1,K,F,q]
+qLeft,  reverse: [1,q,F,K]
+qRight, forward: [1,q,K,F]
+qRight, reverse: [1,F,K,q]
+```
+
+For the residual packet, p6 supplies three physical anchors on the same object: `F` at the left, `-g=W1.first`, and terminal `u=W4.last`; `+g` is the H4-derived partner of the visible `-g`. Anchor on terminal `u`, allow `+g` immediately on either side of `-g`, and charge both cyclic directions. This leaves exactly four D orders:
+
+```text
+[u,F,-g,+g]
+[u,+g,-g,F]
+[u,F,+g,-g]
+[u,-g,+g,F]
+```
+
+Their Cartesian product leaves **16 of the frozen 576** orderings. The receiver-selected literal order
+
+```text
+Q=[1,F,K,q]
+D=[u,F,-g,+g]
+```
+
+is present exactly once, but only after four independent source-unfixed choices: choose the **right-hand q**, read Q in **reverse**, put `+g` **after -g**, and read D **forward**. Requiring one shared traversal direction for the two packets—the simplest single geometric serializer—leaves **8** models and excludes the receiver-selected order entirely. Direct left-to-right/right-to-left printed scans likewise never produce its Q order.
+
+This is therefore a **bounded negative for numeric-order authentication**. The 180° stencil remains a strong source-local selector of the *mirror topology*, but p6 geometry does not identify the numerical `Q/D` serialization that makes the six receiver shifts work. The original receiver matches remain conditional evidence after choosing one of the surviving source-compatible serializers; they may not be used to choose among these 16. The #3424 p30/p31 holdout stays sealed because no complete source-only field order was frozen.
+
+Reproducer: [`sims/lp2_p6_mirror_field_order_source_gate_sft.cjs`](../sims/lp2_p6_mirror_field_order_source_gate_sft.cjs).
+
 ## Two simple mirrored integer-address operators
 
 For the two outermost `K=2` source pages p30,p31, reverse destination order to p42,p41. Use the H4 title-width fields and final red title rune:
