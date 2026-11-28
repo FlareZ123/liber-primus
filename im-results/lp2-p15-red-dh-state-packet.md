@@ -273,9 +273,10 @@ Exactly one physical column has those three coordinates: column1.
 These two predicates are already enough for the relevant finite controls:
 
 - among identity, `H4`, `H4^-1`, adjacent-pair `H2`, and `H2^-1`, only **H4** produces one exact predicted row and one matching partial column;
-- among all eight rotations/reflections of the square with row/column roles fixed, only the **original printed orientation** satisfies both.
+- among all eight rotations/reflections of the square with row/column roles fixed, only the **original printed orientation** satisfies both;
+- exhaustively charge all **1,152** presentations from 4! row orders × 4! column orders × {untransposed, transposed}: only two presentations satisfy the full-row plus 3/4-column predicates before the missing scalar is opened. The printed presentation harvests `B=19`; the sole rival swaps the two middle rows and harvests `B=10`. Requiring the already-fixed shared-secret equation eliminates that rival because `10^6 mod23=6 != K=2`. Thus exactly **1/1,152** charged presentations survives the unchanged predicates plus DH closure: the printed square.
 
-Thus the transform/orientation charge is completed before the missing column scalar is inspected.
+Thus the transform/orientation charge is completed before the missing column scalar is inspected. The exhaustive presentation result is a finite-family control, not a discovery-wide p-value or authorship probability.
 
 ### One harvested scalar closes the DH exchange; every other transformed line becomes predicted
 
