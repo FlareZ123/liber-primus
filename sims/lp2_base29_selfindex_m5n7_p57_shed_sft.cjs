@@ -130,6 +130,42 @@ const remainderH = [
 ].map((x) => ((x % MOD) + MOD) % MOD);
 assert.deepEqual(remainderH, [15, 11, 28, 0]);
 
+const pageNumberH = [
+  6 - 9,
+  7 - 8,
+  7 + 8,
+  6 + 9,
+].map((x) => ((x % MOD) + MOD) % MOD);
+assert.deepEqual(pageNumberH, [26, 28, 15, 15]);
+
+const crossLockStarts = [];
+for (let start = 0; start <= 52; start++) {
+  const high = [start, start + 1, start + 2, start + 3];
+  const low = pages.slice(start, start + 4).map((p) => p.runic_count % MOD);
+  const hh = [
+    high[0] - high[3],
+    high[1] - high[2],
+    high[1] + high[2],
+    high[0] + high[3],
+  ].map((x) => ((x % MOD) + MOD) % MOD);
+  const hl = [
+    low[0] - low[3],
+    low[1] - low[2],
+    low[1] + low[2],
+    low[0] + low[3],
+  ].map((x) => ((x % MOD) + MOD) % MOD);
+  if (hl[0] === hh[2] && hl[2] === hh[1] && hl[3] === 0) {
+    crossLockStarts.push({ start, high, low, highH: hh, lowH: hl });
+  }
+}
+assert.deepEqual(crossLockStarts, [{
+  start: 6,
+  high: [6, 7, 8, 9],
+  low: [22, 5, 23, 7],
+  highH: [26, 28, 15, 15],
+  lowH: [15, 11, 28, 0],
+}]);
+
 let compatible = 0;
 const quotientBins = new Map();
 for (const p of pages) {
@@ -242,6 +278,9 @@ console.log(JSON.stringify({
   shedDigits,
   shedMatchesHistoricalDh: ['g', 'p'],
   remainderH,
+  pageNumberH,
+  sourceOnlyCrossLockStarts: crossLockStarts,
+  commonPagePointer: pageNumberH[2],
   quotientBinCompatibleAssignments: 3 * 7 * 6 * 32,
   exactRemainderHAssignments: compatible,
   reconstructedDh: dh,
