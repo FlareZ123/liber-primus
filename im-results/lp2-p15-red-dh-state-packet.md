@@ -366,6 +366,20 @@ On the actual chapter map, among the 10 p7 cyclic/reversal orientations, only or
 **Evidence boundary:** this is a genuine original-LP2 cross-holdout connecting three independently built structures—p15 state, p7 red products, and chapter rubrics—and it supplies a concrete typed `p7 inverse row -> chapter address -> chapter length -> H5 state packet` handoff. It still does **not** authenticate 'circulant' as an authorial cipher opcode, and p7's direct p8 Hill consumer remains negative. No unknown plaintext is claimed.
 
 Cross-reproducer: `sims/lp2_p15_to_p7_circulant_crossholdout_sft.cjs`.
+### Corridor five-rune transfer gate: the p7/p15 circulant does not decode p35/p39
+
+The p15 cross-holdout makes the pre-existing p7 five-word circulant the strongest original-artifact five-lane operator currently available: p15 independently predicts its inverse first row `[p,K,g,K,B]=[23,2,5,2,19]`, and the original p7 printed product order is unique in the 10-orientation ring charge. This licenses one bounded transfer to the two selected five-rune corridor receivers, p35 and p39, without inventing a new matrix.
+
+Freeze the original p7 right-circulant from products `[11,26,8,15,2]`. Charge forward/inverse matrix, column-vector versus row-vector (transpose) action, global sign, and whether the matrix output is the additive key or the plaintext. Before any authenticated target coordinate is read, require the independently frozen page key sum.
+
+- p35 receiver `[19,17,19,24,11]`, required key sum25: **0/16** conventions pass the checksum.
+- p39 receiver `[19,7,10,17,23]`, required key sum28: exactly **2/16** pass, both positive inverse-as-plaintext, differing only by row/column orientation.
+
+Only those two p39 survivors are then graded against the authenticated source word FALSE. They predict `[15,6,28,11,17]` and `[25,16,12,22,2]`; **both score 0/5 coordinates**. No parameter is retuned after the checksum.
+
+**Decision:** the strongest independently cross-held-out five-lane LP2 operator does not transfer as the corridor's p35/p39 value decoder. Preserve the p7/p15 state identity as evidence of shared serialization, but do not use the p7 circulant as a corridor key mechanism without a new authored consumer instruction.
+
+Reproduction: `node sims/lp2_p7_circulant_corridor5_transfer_gate_sft.cjs`.
 ## A natural q-block key use was frozen before grading and fails
 
 The new four-scalar packet
