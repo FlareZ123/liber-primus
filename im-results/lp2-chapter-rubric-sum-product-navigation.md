@@ -184,6 +184,20 @@ base60(1D) = 73 = 33+40 complete words in the two intact flanking sentences
 
 The base60 `73` equality is a fresh source-local connection to the flanking-sentence problem, but it prevents using `1D→72` as an independent radix proof: each obvious reading lands on a nearby manuscript quantity. The existing base59 midpoint/sink circuit remains a **codec-specific downstream consequence** once base59 is assumed; the printed token alone does not choose that assumption. [Three-radix stalemate](lp2-p40-cell43-1d-local-radix-stalemate.md) · [reproducer](../sims/lp2_p40_cell43_1d_local_radix_stalemate_sft.cjs).
 
+### The dual-radix edge uniquely reproduces the authenticated DIRECTION/SEEK boundary
+
+The radix stalemate has a stronger use that does **not** require choosing one codec. Treat the selected p50 cell as the source of a natural pointer-table displacement `value-cell`. At cell43:
+
+```text
+base59: 72-43 = 29
+base60: 73-43 = 30.
+```
+
+The p6/authenticated-source corridor independently fixes zero-based source word29 as **DIRECTION** and word30 as **SEEK**, the first word of the 13-word `SEEK ... OPENPGP` tail. Charging every p50 cell readable under both radices finds exactly **one** ordered forward-displacement pair `[29,30]`: cell43/`1D` itself.
+
+Under the authenticated DIRECTION modulus29 this boundary pair becomes `[0,1]=[F,1]`, the two scalar constants used by the p6 grid program; the residue pair alone has one table rival (cell225), so the evidence is the literal `[29,30]` uniqueness rather than `[F,1]` by itself.
+
+This supplies a new cross-artifact loop from the final-section switch back to the first-party source corridor, but it remains post-discovery mechanism evidence. It does not choose base59 versus base60 or specify a new plaintext receiver. [Dual-radix boundary report](lp2-p40-cell43-dual-radix-source-boundary.md).
 This is still post-discovery synthesis: the chapter grammar, support-line labels and mirror return path were all already visible when the connection was noticed. But it materially repairs the route's terminal handoff while preserving source type: **reach p40 → use the terminal word's remaining [length,OUT] pair → MAP/ROAD cell43 → base59 midpoint of the existing mirror/sink circuit**. No p3 fallback and no hexadecimal interpretation are required. Reproducer: `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs`.
 
 The **new integrated readout** of the nine original first-black words and the old p50 circuit produces the following proposed player sequence without viewing a single hypothetical LP2 plaintext word:
