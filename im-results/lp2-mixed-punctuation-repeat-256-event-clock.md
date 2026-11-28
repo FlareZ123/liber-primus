@@ -66,6 +66,38 @@ An additional source-attested control concatenates **2,979 solved GP29 runes** f
 
 The new [all-secret reproducible SFT](../sims/lp2_mixed256_allsecret_substitution_sft.cjs) directly asserts the 20,365/604,532 original equality count, preserves equalities under 256 arbitrarily different invertible affine alphabets, and exercises the full 88-window plus six solved-source controls. It is a decisive negative about **which key-consumer class is worth pursuing**, rather than a new plaintext.
 
+### All-secret first-order feedback, including 29 free coefficients per interval
+
+A still broader first-party-natural explanation for rare repeated runes is *ciphertext feedback*, with the 256 event boundaries resetting a hidden 29-symbol state. Consider every segment-local cipher of the form
+
+\[
+C_j = a_s C_{j-1} + \sigma_s(P_j) \pmod{29}
+\]
+
+for rune positions \(j\) after that segment's first rune. Here \(a_s\) is **any** GP29 residue from0 through28, selected independently for each of the 256 segments, and \(\sigma_s\) is **any secret bijection** of all29 runes, also independent in every segment. The leading rune/seed of each nonempty interval is unconstrained and is excluded from this invariant. This family contains ordinary interval substitution as \(a_s=0\), one-step ciphertext running sums at \(a_s=1\), arbitrary fixed affine first-order feedback at every other coefficient, and every possible unknown per-interval 29! substitution alphabet.
+
+The observable residual \(D_j(a)=(C_j-a C_{j-1})\bmod29\) equals \(\sigma_s(P_j)\) at the authentic secret \(a_s\); consequently its within-segment equality-pair count must equal the underlying plaintext's. **Maximise this count independently across all 29 possible coefficients in each segment**. This gives an *exact adversarial upper bound* on the number of GP29 plaintext equality pairs that **any** allowed source feedback cipher could generate from the authentic ciphertext, no matter how the hidden coefficients/alphabet keys were chosen. No key-search heuristic or fitted English score is involved.
+
+There are **591,828** unordered pairs of continuation-rune positions in the nonempty intervals. The original source yields:
+
+| Key assumption | Exact equal-residual pairs | Rate |
+| --- | ---: | ---: |
+| Every segment \(a_s=0\), arbitrary alphabet | 19,951 | 0.033710808 |
+| Every segment \(a_s=1\), arbitrary alphabet | 21,262 | 0.035925978 |
+| Every segment \(a_s=-1\), arbitrary alphabet | 20,432 | 0.034523544 |
+| **All 29 choices optimised independently for every segment** | **24,229** | **0.040939259** |
+| Lowest of 32 Shakespeare native GP29 controls | — | **0.057440675** |
+| Lowest of 8 Gibran native GP29 controls | — | **0.059483499** |
+| Lowest of 48 Emerson native GP29 controls | — | **0.059892401** |
+| Lowest of six actual solved Cicada GP29 controls | — | **0.060784552** |
+
+The optimistic source upper bound **0.04094** is below **every one of 88 native-language matched-length controls**, including the complete freedom to choose a different feedback coefficient and a different permutation in each original interval. Six fixed rotations of the 2,979-rune actual solved-Cicada control likewise exceed the bound. A positive plant uses a different affine secret alphabet **and** first-order coefficient for each segment, with arbitrary seeds: it regenerates and then exactly recovers every native GP29 continuation rune and preserves the exact invariant under its true secrets, demonstrating sensitivity to the mechanism when present.
+
+**Decision:** conditional on these 256 manuscript-derived intervals delimiting the clock, **reject all constant-per-interval first-order linear ciphertext-feedback ciphers with arbitrary secret GP29 substitution alphabets as a direct encoding of native-English prose**. This strictly widens the previous no-feedback all-secret exclusion; no permutation or exhaustive secret-coefficient search can make those exact original residuals look like the native GP29 register of either three literary sources or solved Cicada text. It does not disprove higher-order/nonlinear feedback, state advances *inside* intervals, fractionating/variable-length encodings, intermediate non-English plaintext, or a different event partition.
+
+Read-only [complete all-secret feedback reproducer](../sims/lp2_mixed256_allsecret_affine_feedback_sft.cjs) has 256×29 exact residual tests, 88 reference windows, six solved-native controls, and independently encrypted/decrypted feedback-positive text.
+
+
 ## Original-event interleaving: exhaustive circular-phase control
 
 A stronger, **frozen-source** internal check asks whether the 86 repeated-rune boundaries are deliberately placed to *fill* the gaps between the 170 physical marks, producing unusually even 256-cell spacing. Keep the full original 86-position repeat pattern and all its internal spacings intact; slide it through **every one of 12,956 circular phases** relative to the fixed physical punctuation. Rebuild 256 event gaps at each phase. This is a relative-phase geometry comparator, **not** a generative null for page-seam legal ciphertext or a familywise author-intent p-value.
