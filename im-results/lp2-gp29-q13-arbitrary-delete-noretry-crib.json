@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-28T08:11:00Z",
+  "workflow_run": 46124450746,
+  "method": "q13 GP29 arbitrary accepted-output deletion with zero retry events; exact periodic-difference subsequence necessary condition plus no-repeat CSP",
+  "tape": "LP2 p0-p55, 12956 runes, spacing-free",
+  "visibility_gate": "m=max(ceil(0.75*L),q+5)",
+  "source_cribs": [
+    {
+      "ci": 0,
+      "L": 42,
+      "m": 32,
+      "translit": "WHO ARE YOU WHO WISHES TO STUDY HERE ASKED THE MASTER"
+    },
+    {
+      "ci": 1,
+      "L": 41,
+      "m": 31,
+      "translit": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+    },
+    {
+      "ci": 2,
+      "L": 37,
+      "m": 28,
+      "translit": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+    },
+    {
+      "ci": 3,
+      "L": 29,
+      "m": 22,
+      "translit": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+    }
+  ],
+  "controls": {
+    "plants": 24,
+    "true_key_recovered": 24
+  },
+  "original": [
+    {
+      "ci": 0,
+      "L": 42,
+      "m": 32,
+      "nodes": 2758029915,
+      "relaxed_leaves": 0,
+      "csp_leaves": 0,
+      "hit": false
+    },
+    {
+      "ci": 1,
+      "L": 41,
+      "m": 31,
+      "nodes": 2759259634,
+      "relaxed_leaves": 0,
+      "csp_leaves": 0,
+      "hit": false
+    },
+    {
+      "ci": 2,
+      "L": 37,
+      "m": 28,
+      "nodes": 1626433425,
+      "relaxed_leaves": 0,
+      "csp_leaves": 0,
+      "hit": false
+    },
+    {
+      "ci": 3,
+      "L": 29,
+      "m": 22,
+      "nodes": 527654875,
+      "relaxed_leaves": 0,
+      "csp_leaves": 0,
+      "hit": false
+    }
+  ],
+  "total_nodes": 7671377849,
+  "code": "sims/lp2_gp29_q13_arbitrary_delete_noretry_crib_sft.cpp",
+  "interpretation": "All four original scans die before the no-repeat CSP: there is no >=75%-visible subsequence whose GP29 differences are consistent with a q13 additive key. Therefore the repeated solved-LP1 cribs cannot occur anywhere on p0-p55 under this q13 GP29 sender with arbitrary deletion and zero retries. This does not exclude one-or-more retry events or unrelated plaintext."
+}
