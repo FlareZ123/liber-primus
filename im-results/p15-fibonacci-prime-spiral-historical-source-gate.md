@@ -4,6 +4,33 @@
 
 **No exact pre-2014 external source or published puzzle matching the complete p15 construction was located.** The closest newly identified mathematical antecedent is Khovanova's 2007 paper (composition, Fibonacci+1 and deduplication for inversion); it does not state the complete p15 formula or select an LP2 receiver. A partial cross-round antecedent is also identified: a public extraction of the 2013 CicadaOS prime_echo script prints primes through 3301, with pauses at 1033 and 3301. This supports a historical prime/3301 cue but does not supply the Fibonacci indexing, absolute-difference rule, spiral, or cipher consumer. The original p15 infinity mark may select one continuation term, but it does not specify how to use that term cryptographically. A separate bounded test of the signed-BASE29-derived repeating-key interpretation below is also negative. The exact 16-cell formula remains reproducible from the original scan; no key or plaintext is recovered. The source-visible 4×4 grid also fails the exact GP29 Hill interpretation on p16–22 and p0–55; see the bounded receiver test below.
 
+## Visual-only exemplar gate (28 November, Agent21, #3317)
+
+**No independently dated matching exemplar or typed next instruction found in this bounded visual search.** Original scan32 (physical p15, 2400×3600) shows an unruled 4×4 array, red 3299 at row 2 column 2, no drawn path/arrow/cell borders/axis or diagonal label, and a separate dark infinity-like mark underneath. The colour locates an origin but alone does not fix the traversal. Enumerating 16 possible origins × 4 first directions × 2 turn senses, with successive run lengths 1,1,2,2,3,3,3 and truncation after 15 moves, yields exactly 8 complete in-bounds paths, 2 at each of the four central cells. At the actual red origin the legal paths are right/down/left/... clockwise and down/right/up/... anticlockwise (transpose of the first). The known numerical rank order selects the first; geometry alone does not. This does not reopen the solved number rule.
+
+Reproduce the exact visual-only count with Python:
+```python
+from itertools import product
+D = [(0,1),(1,0),(0,-1),(-1,0)]
+valid = []
+for r,c,d,h in product(range(4),range(4),range(4),[-1,1]):
+    p = (r,c)
+    path = [p]
+    k = 1
+    while len(path) < 16:
+        for _ in range(min((k+1)//2,16-len(path))):
+            p = (p[0]+D[d][0],p[1]+D[d][1])
+            path.append(p)
+        d = (d+h)%4
+        k += 1
+    if len(set(path)) == 16 and all(0<=a<4 and 0<=b<4 for a,b in path):
+        valid.append((r,c,path[1],h))
+assert len(valid) == 8
+assert [v for v in valid if v[:2]==(1,1)] == [(1,1,(1,2),1),(1,1,(2,1),-1)]
+```
+
+Period comparator: the previously documented [Project Euler #28](https://projecteuler.net/problem=28) supplies right/down orientation and a square array, but a 5×5 conventional diagram and explicit diagonal sum, not the red origin and separate infinity mark or an independently specified GP recipient. A distinct 2014-01 matrix-spiral programming question ([Stack Overflow 21108695](https://stackoverflow.com/questions/21108695)) was indexed with a 4×4 matrix and starting point (1,1); direct retrieval failed, so its actual rendered diagram was not authenticated and it is not evidence of copying. General period spiral route-transposition examples demonstrate the familiar geometry, which by itself is not a distinctive visual match. No matched nonnumeric feature plus independently typed operation was established. No new numeric pad, arbitrary traversal permutations of ciphertext, or receiver search undertaken. Preserve the solved graphic; reopen only on a distinctive independently dated exemplar/legend.
+
 ## Closest period mathematical antecedent: composition and invertibility (24 November, Agent3, #2487)
 
 A stronger partial antecedent than generic prime-indexed-prime literature is Tanya Khovanova's [How to Create a New Integer Sequence](https://arxiv.org/abs/0712.2244), publicly deposited 13 December 2007. The same paper explicitly treats three relevant operations: §2 (printed p5), Fibonacci plus one (OEIS [A001611](https://oeis.org/A001611)); §4 (p10), prime composed with Fibonacci (OEIS [A030427](https://oeis.org/A030427)); and §5 (p12), prime-counting inversion and removing the duplicated initial Fibonacci 1 to permit a left inverse. The 2011 Mathematica/Magma entries of A030427 independently predate LP2. A001611 has the actual shifted ordinal values but retains duplicate 2; A030427 retains duplicate 1 and omits the index offset. Neither is the full p15 sequence. [A105554](https://oeis.org/A105554), dated 2005, instead composes primes with cumulative Fibonacci values (F−1), and [A093309](https://oeis.org/A093309), dated 2004, iterates the unshifted prime composition. Neither supplies the source p15 rule. [Project Euler #28](https://projecteuler.info/problem%3D28) (11 October 2002) supplies the exact right/down clockwise square-spiral geometry, but its diagonal-sum task has no Fibonacci-prime selector or LP2 receiver.
