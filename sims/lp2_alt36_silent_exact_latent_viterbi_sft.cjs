@@ -197,6 +197,21 @@ function experiment(raw, options={}) {
   }
   const LM=language(),beam=options.beam||600,rows=[];
   const separateLM=options.crossAuthor?new Map(sources.map(s=>[s.name,language(s.name)])):null;
+  if(options.decodeInput){
+    const C=options.decodeInput.cipher,K=options.decodeInput.key;
+    if(!Array.isArray(C)||!Array.isArray(K)||!C.length||
+       !C.every(v=>Number.isInteger(v)&&v>=0&&v<29)||
+       !K.every(v=>Number.isInteger(v)&&v>=0&&v<36)||
+       K.length<C.length)throw Error("decodeInput: require cipher GP indices0..28 and key mod36 indices0..35, key length>=cipher");
+    const a=solve(C,K,LM,beam,options.maxHidden||3);
+    if(!a.P)return {status:"no candidate under bounded receiver",failed:a.failed,visited:a.explored};
+    return {status:"candidate decoder output (not an authenticated original plaintext)",
+      hypothesis:"36-output-state strict-repeat with invisible outputs29..35, plaintext GP29 plus SPACE29",
+      inputRunes:C.length,providedKeyValues:K.length,
+      score:a.score,lastConsumedKeyIndex:a.keyLast,explored:a.explored,
+      indices:a.P,runes:a.P.map(p=>gp.runes[p]).join(""),
+      transliteration:a.P.map(p=>gp.translit[p]).join("")};
+  }
   if(options.red8Mode){
     // Authenticated p54 artwork depicts these eight GP runes in red, after
     // one enlarged A rune: M NG D IA TH X I M. Hypothetical repeated key.
@@ -289,8 +304,11 @@ if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===mod
     shakespeare:read("resources/control/shakespeare_first300k.txt"),
     gibran:read("resources/control/gibran_prophet_58585.txt"),
     emerson:read("resources/control/emerson_essays_2944.txt")};
+  const inputArg=process.argv.find(v=>v.startsWith("--input="));
+  const inputJson=inputArg?JSON.parse(fs.readFileSync(inputArg.slice("--input=".length),"utf8")):null;
   console.log(JSON.stringify(experiment(raw,
-    {beam:process.argv.includes("--wide")?1500:600,plants:3,
+    {beam:inputJson?.beam|| (process.argv.includes("--wide")?1500:600),
+      maxHidden:inputJson?.maxHidden||3,decodeInput:inputJson,plants:3,
       primeMode:process.argv.includes("--prime-plant")?"plant":
         process.argv.includes("--prime-original")?"original":undefined,
       red8Mode:process.argv.includes("--red8-plant")||process.argv.includes("--red8-ivA-plant")?"plant":
