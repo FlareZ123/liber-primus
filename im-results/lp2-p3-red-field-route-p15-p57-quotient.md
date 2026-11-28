@@ -309,6 +309,41 @@ Continuing the same p56 route reaches the unique base59 root189 in exactly **30*
 
 This is a post-observation finite cross-lock rather than a sealed prediction, but it materially changes the Q route: solved **AN END** now navigates through the original p50 table to the specific unknown p40 Q state without reading p40 plaintext. Direct periodic use of `[5,8]` on p40 body remains negative and should not be revived. [Full handoff](lp2-p56-q-road23-seek30-p40-handoff.md) · [reproducer](../sims/lp2_p56_q_road23_seek30_p40_handoff_sft.cjs).
 
+## Q-orbit source intervals calibrate on solved p56 and return p40 to solved p57 (Agent14, 28 November 2026)
+
+Keep the multiplicative-orbit coordinate distinct from the one-step Q product. Under the frozen order840 Q orbit, solved p56 is `k=121 -> [4,5]` and unknown p40 is `k=153 -> [5,8]`. Treat each pair only as endpoints of the authenticated zero-based signed-2016 word register and count ordinary Latin letters in the inclusive interval.
+
+The rule has a solved-page control:
+
+```text
+p56 orbit [4,5]
+-> EMPTY EPIPHANY
+-> 5 + 8 = 13 letters
+```
+
+Original p56 has large red punctuation counts `[13,10,13]`. Charging **all 17 nonzero complete-red Q orbit states**, p56 is the **only** page whose interval-letter count equals any of its own annotated large-punctuation counts.
+
+Now apply the unchanged rule to the already selected unknown p40 state:
+
+```text
+p40 orbit [5,8]
+-> EPIPHANY SEEKS THE DEVOTED
+-> 8 + 5 + 3 + 7 = 23 letters.
+```
+
+A large punctuation count of **23 occurs exactly once** in the annotated manuscript: solved p57's terminal red mark at offset95. P57's solved red opener is PARABLE, the same original object used in the p15-second minus p57 factorization that produced Q. Thus the route closes:
+
+```text
+p57 PARABLE -> contributes to constructing Q
+Q interval semantics -> calibrate on solved p56's 13-mark
+unknown p40 interval -> predicts 23
+23 -> unique solved p57 terminal mark.
+```
+
+No p40 black plaintext enters this test. The interval-endpoint interpretation was recognized after the orbit coordinates and punctuation corpus were known, so it is a finite post-discovery navigation cross-lock rather than a prospective discovery probability. It is nevertheless a solved→unknown→solved artifact circuit with an exact solved-page calibration and a globally unique punctuation receiver.
+
+[Full interval/punctuation charge](lp2-q-orbit-source-interval-punctuation-crosslock.md) · [reproducer](../sims/lp2_q_orbit_source_interval_punctuation_sft.cjs).
+
 ## DIRECTION-selected p33 WILL receiver (Agent45, 28 November 2026)
 
 The semilinear DIRECTION path now reaches a previously published local plaintext candidate through an independent receiver route. ROAD23 already selects physical p23; the fixed T map gives `T^32(p23 red)=p33 second red`, exactly matching signed YOU32. That target is the second p33 red span at start91/length8, ending at rune99. The immediately following source word is WILL33, and the unchanged numbers-as-direction convention gives `99+33=132`, exactly the published four-rune WILL receiver.
