@@ -166,6 +166,61 @@ Again the H3 inverse reconstructs the exact key and forward addition replays the
 
 A necessary caution is stronger here: the **key alone is not manuscript-unique**. The same three-rune key also maps p33 start116 to authenticated `YOU`; the two `AND` source occurrences at indices24 and31 are text-identical and both match the p31 receiver. The evidence is therefore the manuscript-unique receiver shell plus its source-boundary ordinal, not uniqueness of the key.
 
+## Page-blind p6 receiver/key family leaves one joint decode
+
+The receiver formulas can also be charged without fixing p30, p31, SEEK or AND. Let `T=H4([q,1,q,K])=[K,-e,g,a]` and use the literal runes of W3, the q-word in the unique adjacent [q,K] title pair.
+
+A deliberately broader four-rune receiver family allows:
+
+```text
+- [q,K] or [K,q] length orientation;
+- any signed T field as multiplier of both lengths;
+- any literal W3 rune as coordinate3;
+- any signed T field as coordinate4.
+```
+
+This produces **512 distinct H4 shells**. Across every complete four-rune manuscript word, only two occurrences land in the family:
+
+```text
+p30 word27/start112  H4=[10,20,15,3]
+p40 word21/start92   H4=[12,24,27,6].
+```
+
+The successful shell is the compact p6 rule:
+
+```text
+g * [K,q] || [b,e] = [Kg,qg,b,e].
+```
+
+For three-rune receivers, allow either [q,K] orientation, any literal W3 rune, and any signed T field in the middle:
+
+```text
+[W3.rune - L0, signed(Tj), W3.rune - L1].
+```
+
+This gives **64 distinct H3 shells** and exactly two complete manuscript occurrences:
+
+```text
+p11 word55/start270  H3=[13,24,15]
+p31 word32/start126  H3=[11,23,13].
+```
+
+The successful shell is:
+
+```text
+[b-q,p,b-K].
+```
+
+Now remove page and target conditioning completely inside this family: cross the two four-rune receiver occurrences, two three-rune receiver occurrences, all **31×66** layout-derived key pairs, both signs independently, and the only two authenticated consecutive [4,3] source pairs. That is **65,472 full configurations**. Exactly one survives:
+
+```text
+p30 word27 + [6,14,23,6], subtraction -> SEEK
+p31 word32 + [17,14,7],    subtraction -> AND
+source indices30–31.
+```
+
+This is the strongest charge in this report because neither page number nor target word participates in receiver or key selection inside the charged family. The remaining caveat is discovery order: the receiver-family grammar and layout-key grammar were formulated after the successful local inverses were observed. Treat the 1/65,472 count as finite family selectivity, **not** a calibrated probability of accidental discovery.
+
 ## Original-layout geometry produces both exact keys
 
 The exact raw keys admit a more restrictive description tied to the original p6 title layout rather than a bag of state scalars. The four red title words are:
