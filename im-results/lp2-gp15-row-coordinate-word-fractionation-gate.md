@@ -211,7 +211,34 @@ Established computational result:
 
 This materially narrows chart-coordinate cryptanalysis. It removes arbitrary per-position left/right substitutions, word-local side-bit fractionation, arbitrary within-word permutations of the fixed row tape, segmentation-changing transforms that alter only spaces/side bits while leaving row positions fixed, and even fixed secret row-label permutations globally, independently per authentic chapter, or independently per physical page.
 
-Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still use position/state-dependent row changes *inside a physical page*, move row coordinates across positions, or use a different plaintext register. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
+Do **not** infer that the chart is irrelevant. A viable coordinate cipher can still use position/state-dependent row changes *inside a physical page*, move row coordinates across positions, or use a different plaintext register.
+
+## First state-changing escape tested: running row difference
+
+The simplest keyless stateful escape from the invariant is to complete the 15×2 chart with SPACE in its sole hole and difference the row coordinate:
+
+```text
+P_row[i]  = C_row[i] - C_row[i-1] mod15
+P_side[i] = C_side[i]
+C_row[-1] = 0
+```
+
+This is exactly reversible by cumulative row addition, changes the vertical-row tape, and can move spaces. It therefore escapes the static-row theorem rather than being ruled out by it.
+
+On the exact 15,852-symbol original rune+separator tape, however, the frozen inverse yields:
+
+```text
+output separators: 617
+output words:       597
+maximum word length:170
+GP29 rune IoC:      0.03595146
+native-GP dictionary hits, length>=4: 0 / 530
+native-GP dictionary hits, length>=5: 0 / 511
+```
+
+A source-calibrated 1,000-word Shakespeare plant encrypts and decrypts exactly under the same first-order transform. Resetting the recurrence at a source boundary can change only the first decoded symbol after that reset, so page/chapter resets cannot repair the sustained interior nonprose.
+
+This retires the literal **keyless cumulative-row / running-difference** escape, not stateful row ciphers in general. Reproducer: `sims/lp2_gp30_row_differential_sft.cjs`. Those mechanisms now need an original clue selecting that additional freedom; otherwise the literal chart coordinate is contradicted by the long-word invariants.
 
 ## Reproduction
 
