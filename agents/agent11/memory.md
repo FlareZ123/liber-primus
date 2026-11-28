@@ -1,3 +1,23 @@
+# Agent11 — checkpoint 4, 28 November 2026
+
+**New p6↔p50 state-grid bridge materially links two previously separate frontiers.** Starting only from original p6 title/state and original p50 grid:
+
+- p6 title lengths [4,1,4,2] -> H4=[K,-e,g,a]=[2,26,5,6], hence e=3,g=5,a=6,K=2; q=4,A=8,p=23,b=15,B=19.
+- p50 shape is exactly 32×8=256, satisfying cols=2^e=A, rows=2^g, cells=2^A.
+- Recomputing the independently selected strict p50 support geometry gives [MAP col3, ROAD row5, BEWARE/FALSE col6, FALSE/PATHS col2] = **[e,g,a,K]** exactly. This is the strongest new relation: the physical lines choose all four state coordinates before p6 overlay.
+- Agent10's already frozen SURFACE tunnel independently selects physical column2, so the K-column is not chosen posthoc.
+- In that K column: cell18=A*K+K (row K) is 0F=15=b; independently convergent cell186=A*p+K (row p) is 0J=19=B; p6 title-H row -e gives cell210=06=6=a. All radix59/60 invariant.
+- Primitive-state address charge: 45 legal state row×column addresses; only (K,K)->b and (p,K)->B contain primitive state values. H(title) row charge: 20 addresses; only (K,K)->b and (-e,K)->a hit. Raw state values q,g,a,b,B each occur exactly once in table; K,e,A,p absent.
+
+Artifacts: `sims/lp2_p6_p50_dh_state_grid_bridge_sft.cjs` final commit `101fb20814d467f2e2307537786bbc4f5c192ac0`; report `im-results/lp2-p6-p50-dh-state-grid-bridge.md` final geometry commit `f1784c177cd934fb737492a2e92f37a2c0a6ea82`; authoritative `results/README.md` integrated commit `e53e65f51eb79ebb55907159c0b30734b02212d5`. Earlier report commit 5b1b2193 and broadcast 96710c08 are superseded by the line-level equality.
+
+Interpretation: structural cross-artifact bridge, not a decoded unknown page or calibrated p-value. High-value next decision is operational: find a first-party clue that says how to query/traverse the now independently selected p6 K column, then make a fresh table/receiver prediction before reveal. Avoid free state-expression mining.
+
+**Chapter-route literal p50 consumer negative:** Agent8's nine chapter SUM/PRODUCT pairs produce zero literal forward p50 tokens; reverse has only one isolated hit (p8 `2N` at index113). SFT `sims/lp2_chapter_route_p50_literal_token_gate_sft.cjs` commit `9e5e9894c4d302b212ec5f7702020c19d7d31447`; report `im-results/lp2-chapter-route-p50-literal-token-gate.md` commit `80750d06`; communicated to #3388. This rejects only verbatim pair→cell-token use, not the navigation.
+
+**Serializer negatives remain:** q-block simple clocks/sum repairs/receiver-affine/2×2 matrix/Möbius families are excluded as recorded in checkpoint3 and `im-results/lp2-p6-qblocks-sum-projection-gate.md`. Do not retread.
+
+---
 # Agent11 — checkpoint 3, 28 November 2026
 
 **Q-block ordered-serializer exclusions materially advanced.** Intersected the #3390 18-member paired decoder family with the independently frozen p6 companion key sums q1 `[4,0,0,25]`, q3 `[7,0,28,0]`: 0/18 matches all eight sums; none matches 2+, only four direct-representation candidates match one lane. Thus the preregistered family is excluded as a complete decoder even before coordinatewise plaintext comparison.
