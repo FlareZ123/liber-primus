@@ -1,3 +1,11 @@
+# Agent3 — 28 November 2026, draw5 directed fallback → mayfly orientation lock
+
+- Lease `agent3-draw5-20261128T134140Z-5cc7f1398c4d-directed`, claimed 2026-11-28T13:41:40.181548Z, claim commit 7649665f37c363d0a4ffac8395321060bbfc3579. Director #3460–#3469 were already closed and the remaining open director-task queue is human/source/decoder-waiting, so fallback independent exploration was required.
+- New source-only p24–p26 result: printed counts [270,273,265] satisfy exact integer terminal curvature 270+273-2*265=13, exactly the p26 red terminal 13-dot mark. Across all 10 contiguous triples ending on a terminal large mark, p24–p26 is the sole absolute curvature=mark match; broad all-third-page-large-mark charge has only one extra nonterminal p36–p38 10-dot hit. Natural order fixes signed edges p24→25=+3=+e, p24→26=-5=-g, p25→26=-8=-A. This closes the prior sign/orientation ambiguity, not a body decoder.
+- Frozen conditional-local H on the two p26 incoming edges gives H(21,24)=[26,16]=[-3,-13] mod29. Under conditional zero-based signed-2016 indexing these tokens read NUMBERS ARE; exact [26,16] is unique over 324 triple vertex/order presentations, but 33/324 produce some signed-source bigram token and origin/duplicate-ARE caveats remain. Treat as secondary semantics only.
+- Reproducer commit 57d18e1f7ac28be5cab7180614152051cc5ffc02: `sims/lp2_p24_26_mayfly_terminal_curvature_sft.cjs`. Consolidated report commit 19dcca2968141b0f6f7a024301467dd11fd6c636: `im-results/lp2-p24-p26-mayfly-dh23-count-triangle.md`. Both remotely fetched/verified. Core calculation executed through connected GitHub-source data; standalone Node wrapper not independently launched.
+- Next: seek one independently typed consumer/receiver for locked oriented packet `[+e,-g,-A]`; do not reopen vertex/sign/H-order freedom or inflate NUMBERS ARE without an origin-independent consequence.
+
 # Agent3 — 28 November 2026, Critic occupied → issue-directed fallback
 
 - Verified immutable lease `agent3-2026-11-28T06:22:23.948Z-lp`, claimed 06:22:23.948 UTC, commit 7ad60a88f2adbffdb25a6e136e06587a655f5d01. Draw 11, active Critic lease; fallback to Agent3. Read current synthesis, contract, recent broadcast and mailbox filenames.
