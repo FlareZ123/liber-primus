@@ -118,6 +118,14 @@ A post-failure diagnostic applies the exact phase0 decoder to every rune-bearing
 
 The census is exploratory and does not source-select p24/p43. It establishes that mere F-hold legality is insufficient evidence and closes the direct `THE ORIGIN -> p0` transfer without phase/sign rescue.
 
+## Finite direct-consumer family on the selected p23 body is native-language negative
+
+The independently selected 193-rune receiver immediately after p23's complete five-word state line was charged against four source-fixed key representations: raw five-field `[2,6,3,5,4]`, its authentic prime-minus-one image `[2,12,4,10,6]`, raw nine-field DH state `[23,5,6,15,8,19,2,3,4]`, and its prime-minus-one image `[24,10,12,17,18,8,2,4,6]`. Phase and source order remain fixed.
+
+For each key the finite family contains the four GP29 affine/reflection forms `P=±C±k` plus the two standard numeric-key columnar directions: **24 deterministic candidates**, with no phase, permutation, reset or language-fitted parameter. The best is full-state raw `C+k` at **-3.3803054952429346** under the source-calibrated LP1 trigram model. Every one of **62,300** matched 193-rune Gibran windows scores at least **-3.1943745149464737**. Thus all 24 candidates fall below the complete matched native-control distribution. The best output begins `WEOAEXLUXIEORJCONTIFAEUGIUJBTHUO...`.
+
+The standard columnar subfamily is also negative (best **-3.395889944257161**). This closes the simple periodic additive/reflected and ordinary numeric-order transposition uses of the p47→p23 state on its selected following-text receiver; a different authored operation, stateful receiver or representation remains outside scope.
+
 ## Evidence boundary
 
 This does not decrypt new p23 rune text. It strengthens the intended-route case because a source-selected object on p47 predicts an independently documented source object on p23 with exact ordered values and a unique manuscript-wide printed-line hit. The direct H-free origin-coordinate continuation is now prospectively rejected, so the supported claim stops at navigation/state closure unless a different page-local operation is independently selected.
@@ -141,3 +149,5 @@ H-free origin-coordinate gate:
 Authentic p56-style state-line body gate:
 
 `sims/lp2_p47_p23_state_line_p56_body_gate_sft.cjs`
+
+The same SFT also reproduces the 24-candidate direct-consumer charge and matched native-control floor.
