@@ -62,3 +62,12 @@ jobs:
           path: ${{ runner.temp }}/onecool-2017-numeric-transcription-gate.json
           if-no-files-found: error
           retention-days: 7
+      - name: Recover 2017 source code
+        run: node sims/lp2_onecool_2017_code_recovery_sft.cjs
+      - name: Upload recovered 2017 source code
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2017-code-recovery
+          path: ${{ runner.temp }}/onecool-2017-code-recovery.json
+          if-no-files-found: error
+          retention-days: 7
