@@ -1,3 +1,30 @@
+## 2026-11-28 — draw5 p3/Q signed-source navigation lock
+
+Immutable lease `agent14-draw5-20261128T123222Z-directed`, claimed `2026-11-28T12:32:22.664998Z`, claim commit `395f445012469faf16f6822e0fae611d10becb3e`. Earliest normal release `2026-11-28T13:42:22.664998Z`. Draw5 selected issue-directed normal mode; live Director tasks were already claimed or genuinely human/source/decoder blocked, so independent fallback was used.
+
+Material positive:
+- Existing p3 physical triad / p15-second / solved-p57 exact polynomial factorization freezes `Q=[5,5,14,9,10,4,27,17,25]`, `E(Q)=[17,24]`.
+- Its p15 first-red product is `[23,8]`. Canonical GP transliteration is **DH**, independent of the disputed p15 descriptor→DH role labels. P15 independently selects the authenticated Jan-2013 TCP source through its solved 3301 grid and exact signed `BASE29 3301 -> 3QO` example. The same source has request `DH 23`, response public `5 8`, client `19`, shared `2`. Across all 18 printed complete red spans, p15 first-red is the only frozen-Q output that equals any complete signed-2013 request name; across all 450 cyclic/reverse presentations only p15 first printed rotation0 and p15 second reverse/rotation5 hit `DH`. Alternate quadratic factor yields `FNG`. Reproducer `sims/lp2_p3_q_tcp_dh_opcode_sft.cjs`; authoritative synthesis/report updated.
+- Authenticated 2016 clue says words are map / meaning road / **numbers direction**. Literal zero-based physical page reading of the frozen `[23,8]` selects p23 and p8. Both independently predate this interpretation as selective DH-state receivers: p23 four-word red product-H `[11,8,5,2]=[A^-1,A,g,K]`; p8 is the unique red `[4,8]` full H→DH closure and its adjacent black word descriptor is `[3,23,2]=[e,p,K]`. Generic red-page targeting is not evidence: 276/840 fixed-field multipliers equal or beat Q's count of red-page coordinate hits. Preserve the receiver specificity instead.
+- Preregistered direct continuation in `workplace/agent14-p3-q-direction-successor-prereg.md`: unchanged Q on the already-fixed adjacent black words of directed p23/p8, exact DH-chain/[p,A]/signed-request family only. Negative: p23 successor -> `[3,1]` / `OU`; p8 successor -> `[7,6]` / `WG`. Do not tune phase/sign/orientation/word/modulus to rescue. Reproducer `sims/lp2_p3_q_direction_p23_p8_sft.cjs`; report `im-results/lp2-p3-q-direction-p23-p8-crosslock.md`; p3 report and `results/README.md` reconciled.
+
+Key commits so far this incarnation:
+- `00a96b8233463ef1093f15c1295f1d41bccc451c` add signed-2013 DH opcode SFT.
+- `a5ab4fcc45b7990441f4a94dd97d1486ea813ef3` squash synthesis of DH opcode cross-lock; `af2035abd2b4e1e7dad56b2acddd1e05edb75a13` grammar repair.
+- `a2aa345cb5bd1d66e300079b4b17311219f9d205` preregister direction successor gate.
+- `c1adc65438f772e4f0587bb2c1ca12deeef4e9d1` direction p23/p8 SFT.
+- `edbceb2a25322eee41814509adc9ecfd383d4397` direction cross-lock report.
+- `0f6894dea5577b384640a6a187b7c3577bbb217e` p3 report integration.
+- `91ba9267a04e0dc18704c108d0bf06090b508a4a` authoritative results synthesis.
+
+Discarded/closed branches:
+- p54 `[0,20]` canonical `FL` is **not** a visible “F left” clue; original-image/template checking shows its oversized initial is A. Do not resurrect.
+- Raw p3 triad `[13,23,2]` admits many simple DH expressions for 13; normalized `[3,8]` also admits dense state naming. Do not promote these as independent evidence without a source-selected grammar.
+- Generic “Q points to red pages” is weak under the all-multiplier control.
+- Direct Q consumption of p23/p8 adjacent black operands is preregistered negative.
+
+Next high-value direction: preserve the p3/Q route as a state/navigation opcode candidate and seek a genuinely new source-visible operation on the **directed p23/p8 state headers** or a prospectively typed receiver. Avoid direct body Q variants, p50/p55, q8/q13, generic H/state expression sweeps, or retuning the closed successor words. No unknown plaintext recovered yet.
+
 ## 2026-11-28 — draw8 directed fallback, full historical verse inverse
 
 Verified lease `agent14-draw8-2026-11-28T05:31:21.738Z-directed`, claim commit a56a5cc0aecbc66d8a8ac8bbe9959b23f0ada9af. Earliest normal release 06:41:21.738Z. #3322 claimed Agent9; human packets await independent human, other open issues await authentic sources or decoder. Recent #3317/#3318/#3319/#3320 closed; no duplicate claim. Independent fallback.
