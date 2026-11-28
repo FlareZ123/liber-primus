@@ -97,11 +97,27 @@ The full original-image-backed Windows CJS SFT reconstructs **all 2,896** genuin
 
 For calibration, if the five red products were independent uniform GF29 values and the p8 red outputs were specified beforehand, the two fixed-point equations have exact probability **1/29²**, and the condition of *no other GF29 fixed points* has exact probability **11,536/29⁵ = 0.00056242583**. The additional derivative condition `P'(4)=17` is a third independent linear condition, giving **1/29³** before the full-root requirement, and exactly **409/29⁵ = 0.00001994037** when the root-set requirement is also imposed. These are **conditional source-null diagnostics**, not discovery-wide significance: five red products, ascending coefficients, fixed-point operator, and choosing the 4/3 heading were recognized during exploratory study. Thousands of manuscript operators have been tried, and original title values were visible before this test.
 
-## Irreducible factor selects a further exact finite-field candidate
+## Irreducible factor order-56 page clock: exact monomial obstruction (Agent49, 28 November 2026)
 
-The residual quadratic `X²-8` names an entirely source-derived extension **GF(29²)=GF29[α] / (α²-8)**. Because 8 has multiplicative order28 in GF29 and is a quadratic nonresidue, the element α has **order56** in GF(29²): α²⁸ = −1 and α⁵⁶ =1. This is a finite candidate page-state clock of length56, numerically equal to the p0–p55 unresolved physical-page count. It is an interesting possible route from a source-selected polynomial to a reversible linear field action, but manuscript page numbering was not printed in the distribution, and there is **no original instruction** that says to use α as a page clock, choose α versus −α, apply it to GP29 rune pairs, or interpret the rune-free table page as a state. Do not promote the count match to a key.
+The residual factor `X²-8` still names the exact extension **GF(29²)=GF29[α]/(α²-8)**, and α has multiplicative order **56**. The earlier version of this report left a concrete fork open: use α as a reversible state clock across the **56 unresolved physical pages p0–p55**. The original May-2014 delivery does give a source-visible numerical order through filenames `0.jpg`…`57.jpg`, although the special choice to stop the clock before solved p56/p57 remains an interpretation rather than an authored opcode. This fork has now been executed and has a stronger algebraic obstruction than a finite key search.
 
-The polynomial's next concrete research fork is a source-authored invertible **consumer**, such as an explicitly specified field multiplication or a keyed state transition, followed by a frozen **complete original page** test. A plain scalar multiplication by 17 or12 only renames GP29 symbols, preserving equality patterns and index of coincidence; it does not by itself solve the ciphertext. An unrestricted polynomial Feistel or multi-round search would add choices absent from original evidence. The strongest existing alternatives remain an unrelated p7/p8 source coincidence and the previously conditional GF4/p50 key-fit route, which requires several other unsourced conventions.
+For an adjacent pair represented as `a+bα`, every possible clock state is **monomial**:
+
+```text
+α^(2k)   = 8^k
+α^(2k+1) = 8^k α
+
+(a,b) * α^(2k)   = (8^k a, 8^k b)
+(a,b) * α^(2k+1) = (8^(k+1) b, 8^k a)
+```
+
+Thus multiplication by **any α power, under any exponent schedule**, can only relabel the two paired-position symbol alphabets and optionally swap the lanes. It never genuinely mixes the two GP29 coordinates. For either page-local pair registration (leave the possible trailing singleton or leading singleton outside the pairs), the two paired-lane symbol histograms—and therefore their IoCs—are exact invariants up to swapping. This covers arbitrary page exponents, not merely the filename exponent `e=p`.
+
+On all **12,956 original unknown runes** (55 rune-bearing pages; p50 is rune-free), the mean of the page-local lane IoCs is **0.0340141579** with pairs starting at offset0 and **0.0340458044** at offset1. As a page-length-matched native control, 512 deterministic windows from the archived Gibran GP29 register have minimum corresponding means **0.0577156176** and **0.0576012469**, with means **0.0595061498** and **0.0595095330**. Because the original lane statistic is invariant under every α-power schedule, no choice of page exponent can move this exact family toward the native-prose regime.
+
+A direct finite receiver scan additionally charges both roots ±α, exponent direction ±, filename origin `p` versus `p+1`, coordinate orientation, and the two singleton framings: **32 complete reversible variants**. Their whole-tape IoCs occupy only **0.0344522070–0.0345028847**; the best remains ciphertext-like. All 32 independently constructed native GP plants recover every rune exactly, so the negative is not an inverse-implementation failure. [Read-only SFT](../sims/lp2_p7_gf841_order56_pageclock_sft.py).
+
+**Decision:** retire **α^page (and, more strongly, arbitrary α^e(page)) multiplication on adjacent GP29 pairs** as an ordinary-prose decoder of the unknown pages. This closes the explicit order-56 page-clock fork without weakening the source-local fixed-point/derivative relation. It does **not** exclude multiplication by a general independently selected `u+vα`, a nonlinear GF841 construction, or a different recipient—but the p7 source presently selects only the quadratic factor/root, not such an additional element or consumer. Do not replace the failed α clock with a free GF841 key search absent a new authored selector.
 
 ## Source-derived reversible projective and paired-rune consumers
 
