@@ -86,7 +86,7 @@ function experiment(raw,base,opt={}){
   if(starts.includes(seed))throw Error("plant seed collides with initialization");
   for(const s of starts){
     const g=base.rng(s),init=Array.from({length:q},()=>g(A)),a=fit(C,init,m,ker,g,opt.steps||24);
-    rows.push({seed:s,initial:init,...a,matches:cyclicMatches(a.K,K),hold:forward(plant.C,a.K,m,ker)*length/cut-a.score});
+    rows.push({seed:s,initial:init,...a,matches:cyclicMatches(a.K,K),hold:(forward(plant.C,a.K,m,ker)*length-a.score*cut)/(length-cut)});
   }
   rows.sort((a,b)=>b.score-a.score);
   return {source:name,q,cut,length,truth:K,trueScore:forward(C,K,m,ker),tailBound:ker.tail,rows};
