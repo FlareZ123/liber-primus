@@ -226,7 +226,7 @@ assert.deepEqual(chargedTypedTerminalHits, [{
   output: [26, 16],
   target: [26, 16],
 }]);
-\n
+
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const transcriptionParts = transcription.split(/^\s*%\s*$/m);
 
@@ -342,7 +342,7 @@ for (let exponent = 1; exponent <= 22; exponent += 1) {
 }
 assert.equal(recoveredB, 15);
 assert.equal(sourceWords[recoveredB], 'WORDS');
-\n
+
 function H4(values) {
   assert.equal(values.length, 4);
   return [
@@ -441,7 +441,6 @@ assert.deepEqual(terminalMarkerLength5Candidates, [{
   mark: 13,
   values: [13, 28, 8, 27, 1],
 }]);
-\n
 
 const localMayflyFrame = new Set([3, 5, 8, 13]);
 const localFramePhraseHits = [];
