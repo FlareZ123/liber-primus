@@ -104,6 +104,8 @@ plausible receiver should explain why small decimal values are special, preserve
 selected forward continuous left-endpoint clock, and jointly satisfy T7 rather than merely fitting
 the 10 sites.
 
+A concrete count-law follow-up now exists: if a 35-state hidden picker (29 visible + 6 silent) normally forbids immediate hidden-state repeats but `0D` disables that restriction, it predicts 76.98 repeats outside the gate and 8.66 inside, versus 76 and 10 observed. The fixed hybrid makes the observed gate count ordinary conditional on 86 total events (upper tail 0.369), but it still fails held-out T7 at add-one 0.00046665. This is a source-gated count bridge, not a sufficient sender. [m35 open-gate bridge](lp2-p50-m35-open-gate-count-bridge.md).
+
 The byte values 0,4,5,6 have standard ASCII control-code names, but no inspected first-party source
 selects ASCII control semantics for this table. Treat NUL/EOT/ENQ/ACK interpretations as
 **unselected speculation** unless an independent Cicada source supplies that binding.
