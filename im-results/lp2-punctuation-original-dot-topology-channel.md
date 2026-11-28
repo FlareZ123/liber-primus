@@ -27,10 +27,28 @@ For an individual-dot presence/deletion code, **all 394 potential bit positions 
 
 As a limited color sanity check, 453 red dot centers across all pages have median-sampled red-channel mean **191.374**, SD **2.234**, observed range **185–197** (8-bit). Ordinary JPEG and raster alignment effects can readily produce this continuous local variation. **No stronger color-channel exclusion is claimed**: slight authored color, pixel-level brightness variation, low-order bits, and JPEG DCT channels remain open. Equal visible component topology does not imply bit-identical source JPEG patches.
 
+## A stronger capacity obstruction for this physical carrier
+
+An independent integer-count calculation now closes the same *large ornament only* option even if the ornament instances could be relocated and change type.
+
+Hold fixed the original **2,896 printed word boundaries**, the book-wide **12,956-rune unrestricted GP29 source register**, and exactly **86** adjacent repeats. The unconstrained GP29 source space is \`29^12956\`, whereas the book-wide repeat-constrained output codebook is \`29 × C(12955,86) × 28^12869\`. Their quotient requires **328 bits** of independent universal side information; this is the previously established #2273 result, included here for a direct exact comparison.
+
+Now grant the author far more control than the page visibly uses: allow *each* of the 31 large markers to move to *any* printed word boundary, allow multiple marks at one boundary, and allow **six** distinguishable visible classes per mark (red or black × 10-, 13-, or 23-dot glyph). The maximal ordered-placement-and-type channel is only
+
+\[
+\binom{2896+31-1}{31}\;6^{31}\quad\text{or}\quad 2^{324.196636\ldots}\text{ states}.
+\]
+
+Even allowing **zero through 31** ornaments, rather than exactly31, gives essentially the same sub-325-bit capacity. That is strictly *less than the 328-bit required quotient*, by more than3.8bits. With the **actually observed class inventory** (27 red13, three red10, one black13), but still allowing arbitrary relocation, the carrier is only **261.004258 bits**.
+
+This is a full-alphabet universal-capacity exclusion **specific to the printed large-ornament position+visible-type carrier**. It holds without choosing an intensity threshold, cipher key, trial plaintext or hidden message. The proof does *not* forbid a sidecar encoded in any of the other 180 punctuation events, dynamically changing word breaks, more than31 authored glyphs, pixel brightness, JPEG coefficients, or a genuinely narrower original plaintext alphabet.
+
+The exact integer calculation is implemented in \`sims/lp2_large_ornament_only_capacity_sft.cjs\`. The original image census independently establishes that the 394 physical dot positions do not add per-dot presence bits, so the extra hypothesized component-mask alphabet is absent from the actual original scans.
+
 ## Reproducer and interpretation
 
 \`python sims/lp2_punctuation_dot_topology_original_sft.py\`, after installing \`numpy pillow scipy opencv-python-headless\`, examines **all 58 original image files**, independently detects all three vector shapes in both ink colors, then checks the resulting full inventory against the derived ink annotation register. It prints all 36 locations, color summary and maximum error. The matching tolerance is 3.15 pixels before subpixel template fitting, with max residual 2px; the observed maximum is only 0.661px. No digit, plaintext, cipher mode, rune transposition, or arbitrary bit threshold is fitted to the answer.
 
-GitHub Actions original-source run: https://github.com/FlareZ123/liber-primus/actions/runs/46129687875 (initial positive execution, 58 original JPEGs). The updated source-independent all-image/all-ink scan supersedes the first source-location-guided version; the later run is linked separately when complete.
+GitHub Actions original-source run: https://github.com/FlareZ123/liber-primus/actions/runs/46129687875 (initial positive execution, 58 original JPEGs). Blind all-image/all-ink census CI passed at https://github.com/FlareZ123/liber-primus/actions/runs/46130036030 ; its script supersedes the initial source-location-guided version. A combined capacity+census CI is also available as the most recent run of the same manual workflow.
 
 **Research decision:** do not treat the 394 printed dots as 394 *author-selectable presence bits*. Conditional arithmetic-coder explanations still need a *distinct, independently sourced sidecar or a source-restricted input alphabet*. Avoid filling any missing sidecar with arbitrary dot-color thresholds chosen to make ciphertext look English. A genuinely new, predeclared brightness/depth channel or original editable compositor object would justify reopening the physical-glyph branch.
