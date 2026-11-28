@@ -1,3 +1,7 @@
+## 2026-11-28 — #3291 literal rectangular Playfair
+
+Closed #3291; commit 56c3bf9a6ab6bd73f445e13fe279f814b4408a43. Actual chart viewed from historical JPEG: 15+14 entries. One missing cell in any 30-cell rectangle forces 54 distinct-pair illegal outputs (55 with explicit equal-pair extension). All 120 hole/orientation boards and 100,920 legal-pair cycle-walk inverses checked. Repair is stationary and preserves diagonal, inherits prior #1480 and p24 exclusion scopes. No author-selected repair or key; no repeated original search. Report im-results/lp2-rectangular-playfair-domain-obstruction.md; V8 core executed.
+
 ## 2026-11-28 — #3293 exact XOR word-forest gate
 
 Closed #3293; commit 00249a5f55abdbb7ddd699b20fd67c432e0e9c96, report im-results/lp2-twoframe-xor-wordforest-gate.md. Only zero XOR mask universally preserves GP29; aligned pair mask multiplicities 29/28/26, original classes 39/66/611, log10 unconditioned legality -60.59271688. Exact interval-overlap forest dictionary count/MAP plus trigram fallback recovered 633/716, 368/716, 380/716 in both lanes of three held shared-pad controls. Last two miss 70% gate, so no original language fit; no plaintext/key. Reusable forest method applies to other jointly constrained two-frame receivers if cuts are genuine. V8 core executed; local Node wrapper not independently launched. Do not rerun this unchanged.
