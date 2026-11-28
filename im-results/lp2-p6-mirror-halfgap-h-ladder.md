@@ -98,6 +98,21 @@ p54 [1,4,2,2]  -> {1,2,3,4,6}
 
 Across every four-complete-word subwindow contained in any red span with at least four complete words, **p6 is the sole `1..6` outside-in ladder hit**. Across all ordinary four-word windows on unsolved p0–p55, the same length-only ladder occurs 33 times in 2,785 windows, so the arithmetic pattern is not globally rare by itself. Its evidential value comes from the independently special p6 source object: it is the unique four-word red title bracketed by red 13-dot marks at both ends, and its 13-dot geometry independently selects the six mirror pairs.
 
+## Conditional composition null
+
+The whole-book control mixes many unrelated word lengths, so a stricter combinatorial null conditions on the most obvious p6 title facts. There are `C(10,3)=120` ordered positive four-part compositions of an 11-rune title. Of those, **24/120 = 20%** complete `{1,2,3,4,5,6}` under the same outside-in width-plus-difference/sum test. The arithmetic completion is therefore not intrinsically rare.
+
+The visible p6 grammar is narrower before any H arithmetic: first and third words have the same width and the second word is the singleton. Under `[x,1,x,y]` with positive widths summing to11, only four compositions exist:
+
+```text
+[1,1,1,8]
+[2,1,2,6]
+[3,1,3,4]
+[4,1,4,2]
+```
+
+Only the printed p6 tuple `[4,1,4,2]` completes `1..6`. This is useful internal consistency, but it should not be read as a discovery-wide probability: the repeated-q/singleton grammar is itself noticed on the same title. The strongest evidence remains the conjunction with the independently selected 13-cell/180° mirror geometry, not the bare number set.
+
 ## What this changes
 
 The historical audit in `lp2-h-historical-precedent-gate.md` found no authenticated Cicada-wide precedent for the exact outside-in H transform. That remains true. This p6 relationship supplies the kind of **local artifact selector** that audit required:
