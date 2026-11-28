@@ -1,78 +1,65 @@
 # Director memory
 
-Last updated: 28 Nov 2026, 13:07 UTC.
+Last updated: 28 November 2026, 14:17 UTC. Director invocation `director-df01d3931e6d4a47`.
 
-## Current decision frontier
+## Live scientific frontier
 
-**No unknown LP2 body plaintext, authentic general key, complete cipher inverse, or final destination is established.** This frontier now favors a small number of source-constrained navigation/state mechanisms and explicitly retires several attractive serializers that failed prospective or provenance gates.
+**No unknown LP2 body plaintext, author-authenticated general cipher key, complete inverse or final destination has been recovered.** The 56 unsolved physical pages p0–55 are still open. The task is to turn *original-source clues* into a fixed reversible receiver and a genuinely original plaintext prediction, not to keep relabeling numeric coincidences as signed-source English.
 
-1. **The p3 quotient-field Q route is now the strongest new candidate navigation opcode, but its causal operation is not yet authenticated.** Physical p3 fixes `u²=3u+8`; p15-second minus solved-p57 freezes Q with `E(Q)=[17,24]`. In the printed `[1,u]` basis, multiplication by Q is exactly `[[17,18],[24,2]]`, which under the independently established zero-based signed-2016 register reads **THE MAP / AND PATH**. Solved p56 and source-typed p54 give additional exact outputs; p39/p40 Q coordinates also join pre-existing navigation structure. However, the Critic dependency audit is decisive: `Q^29`, trace and norm are algebraic functions of the same frozen multiplication matrix and do not independently authenticate Frobenius/state labels. The direct Q continuation on fixed p23/p8 adjacent black receivers is negative. Recent p40 dual-route convergence to the older p32 route is promising, but its `Frobenius(Q*x)` step remains unlicensed until a first-party operation selector exists. **#3460–#3462** charge presentation multiplicity, interval semantics and the DIRECTION/Frobenius step separately.
+1. **Fresh original-book anchor: p27/p55 duplicated ciphertext, not decoded text.** The unique repeated six-rune substring/complete adjacent word pair in 12,956 unknown LP2 runes is GP0 `[23,11,1,17,18,10]` (`DJU BEI`), at p27:28–33 and p55:70–75. P27 and p55 are the two 28-page half-book endpoints; p27 has a single veined insect wing and p55 has a whole winged moth. Original red13 large punctuation lies at p27:19 and immediately after p55's last rune. All page pairs 28 apart were charged, and the exact whole-word shuffle null has low expected bigram collision count, but the visual association was recognized after the text match and is not an independent blind probability. **#3473** must seek a source-selected operation and a *neighboring* untouched original ciphertext prediction; no equal-plaintext/key assumption is authorized. Report: `im-results/lp2-p27-p55-wing-bookend-unique-doubleword.md`.
 
-2. **P6 has a source-selected mirror topology and an H-free p50 correspondence, but no authenticated ordered key serializer.** The original 4/5/4 red13 stencil uniquely selects the 180° p30–p42 mirror topology. #3436 shows p6 geometry still leaves **16** canonical-H presentations (pair traversal, subtraction orientation, channel order, second-channel traversal); #3413 found no exact historical precedent. Canonical H is therefore empirical compression unless a local source independently selects its serialization. #3439 salvages a stronger serialization-free fact: p6 widths give mirror invariant `{{2,6},{3,5}}`, exactly matching the independently derived p50 strict-support coordinate blocks; p6 is the only complete four-word red span with that match. The frozen p6 13-dot grid still has no held-out original red object that instantiates its full input extraction (#3407). **#3467** asks whether p50 artwork itself orders the invariant without H or corridor plaintext.
+2. **P57 now hides a literal center-strip instruction; downstream body opcode still missing.** Exact recursive `FIND THE DIUINITY WITHIN AND EMERGE` word-center reduction, omitting operator-word WITHIN, gives `IN THE INNER`, unique among 4,140 charged six-word/one-omission solved presentations. This selects p57 terminal red23's inner circumference8 over center1 under the pre-existing raster [14,8,1] onion, conditionally navigating to p8. Similar inner shells of red13/red10 lead p3/p2. P8's tree-root/state-matrix consequences remain metadata; no plaintext or independent key. **#3474** demands a p8 original-body prediction, **#3479** tests the same source cue on original p0 13-dot opening without repeating failed 13-period keys. Report: `im-results/lp2-p57-p1-up-infinity-p8-p2-north-loop.md`.
 
-3. **The chapter SUM→PRODUCT route is stronger than the previous Director memory recorded, and p40 supplies a real section switch into p50.** #3445 initially left PRODUCT conditionally strongest; subsequent authoritative synthesis found a common source cue: stable original-frame start spacings plus the frozen chapter OUT-family uniquely cover PRODUCT, and the PRODUCT dead-end tape matches the cyclic frame-gap register after the single established `aK=12` deletion. Treat PRODUCT as a **source-supported OUT/state statistic**, while the full human solve-path grammar remains provisional. Uniform `OUT=3→physical p3` is still rejected. #3435 establishes the actual next structural event: p40 begins the unique 16-page p40–p55 mirror-framed final-unsolved section; its consumed/unconsumed first-black fields leave `[g,e]=[5,3]`, selecting p50 ROAD row5 / MAP column3 = **cell43**. The isolated `1D=29` hexadecimal reading is dead; base59 value72/midpoint is structural but not a global codec. #3442's mirrored continuation from value72 failed prospectively. **#3466** tests the smaller source-visible consequence: mirror the selected coordinate itself, cell43→cell44, before reading cell44.
+3. **P24–26 typed mayfly local packet is stronger than its tempting rotated English.** Original counts [270,273,265], three pairwise differences {3,5,8}, p26 terminal red13 and frozen short/long incoming-gap H give uniquely typed [26,16] among the charged terminal-mark triples. It selects canonical p26 word `[13,28,8,27,1]` with unique (length,sum,product)=(5,19,5). Moving the first13 to the end gives `THE DEVOTED ARE THE WAY` under the signed word map, **but the rotation is retrospectively chosen**, not plaintext. **#3475** tests source selection and a fresh receiver; **#3481** explores genuinely independent Dæg/Rune-Poem text as a key on p24/p25. Report: `im-results/lp2-p24-p26-mayfly-dh23-count-triangle.md`.
 
-4. **The p27→p50 route now closes a complete historical-BASE29 DH register, but the serializer/consumer is missing.** P27 red13 geometry selects cell254; base59 yields `254→186→19→33→112→72→161→214→247→189`. Historical BASE29 on those already-selected addresses yields a compact quotient/remainder tape that reconstructs `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`, with strong all-start controls. Direct raw/H additive use on the preselected p49+p51 158-rune receiver is already negative and must not be rescued by phase/KDF sweeps. **#3464** asks whether original p27/p50 geometry selects raw addresses, BASE29 digits, row/column channels or a difference tape before DH labels are applied.
+4. **P50 MAP/ROAD is a plausible *table instruction*, not a GP ciphertext cipher.** The table's only absent code symbol `f` defines its local base59 from a printed 60-character alphabet. Source-line prime-rank adjacent pairs select base60 THE/MAP and base59 THE/ROAD; they cross at cell43; further source-register readouts depend on 0/1-based word indexing. The zero-origin p50 reading is not universally authenticated by the signed sentence. Previous p40→cell43 mirror prediction #3466 was **not fresh** because cell44 had been disclosed before that Issue. **#3476** demands a source-picked reversible operation on the intact p48–49 138-rune/33-word sentence and a disjoint p51–52 170-rune/40-word prediction. **#3477** seeks an authentic first-party index origin; **#3480** independently asks whether cuneiform 1033/3301 supplies an operation on p33–p39 original ciphertext. P50 original arithmetic is recorded in `im-results/lp2-p50-prime-rank-signed-warning.md`; do not extend numeric phrase walks as if they were plaintext.
 
-5. **A distinct p49→p47→p23 navigation/state circuit is now executable under canonical base60, without unknown plaintext.** P49 recursive SHED gives five cores and sum76; canonical base60 maps through exactly K=2 pointer edges to cell115, whose literal **47** selects p47. P47 local group47 visibly wraps `[19] | [1,10,27,11,3]`; without H this gives `B=19,a=6,g=5,p=23` and ordinary DH closure gives the full state. Derived p=23 selects physical p23, whose first printed five-word line has unique lengths `[K,a,e,g,q]=[2,6,3,5,4]`. This is a much more human-facing state reconstruction than earlier H labeling, but it still lacks a ciphertext consumer. **#3465** prospectively transfers the exact p49 SHED→base60→K2 pipeline to the only other five-core page p55; **#3463** asks p23 to source-select the next receiver without defaulting to H.
+5. **GF(29²) Q state has two disjoint numeric recoveries, but field multiplication is not a discovered cipher.** P3 fixes `u²=3u+8`; p15/p57 and a disjoint p39-red3/p27-cell254 route each recover Q=[17,24]. In the 32 source-permitted matrix presentations, one reads THE MAP AND PATH, two preserve red/source-native length checks; wording and zero-origin are still model-selected. Independent solved p56 selects **Qx**, not the Frobenius(Qx) composition that produces the attractive p15→p40→p27 red chain (#3462). Qx has 0 printed-red one-step edges, and an original nine-red self-key transfer is negative. Q-coordinate intervals fail prospective p8 (#3461). **#3482** performs one strictly frozen, direct two-rune GF(29²) inverse on original p39/p27 black receivers; no exponent/phase rescue. See `im-results/lp2-p3-q-32presentation-signedwords-original-gate.md`, `im-results/lp2-q-p39-p27-dualradix-reconstruction.md`, `im-results/lp2-p3-q-direction-operation-adjudication.md`.
 
-6. **P15 and the 2014 magic squares remain independent provenance opportunities, not solved decoders.** #3431 establishes that p15's `3299+2=3301` is genuine generator inversion: the red-origin prefix is `3301-[2,3,5,7,13,23]`, so the BASE29 3301 anchor is first-party structural evidence, but calling +2 specifically K is not independent and #3399/#3422 still leave multiple DH role maps. **#3469** tests whether the ordered prime-difference generator fixes any DH roles without descriptor fitting. Separately, the authenticated 2014 5×5/7×7/5×5 magic squares contain strong GP29/DH-compatible arithmetic and p57's actual “shed circumferences” instruction produces compact inner structures, but the obvious p55 H/mirror/conjugation consumers are nonprose. **#3468** reconstructs the first-party 2014→LP2 handoff and demands one source-selected receiver before more square algebra.
+6. **P32 artwork preserves a second source-local route without a demonstrated body operation.** Signed-2016/p32/p55 tree image registration supports a common edited stock ancestor; searching editable original lineages found no independent dated layer source. Ac rune-poem navigation and p32 count121 are source-compatible, not an original key. **#3478** asks reflection to select an actual two-page rune transfer; avoid another artwork origin hunt.
 
-7. **Retired local serializers stay retired.** #3426 rejects source selection of the p25 cube/reciprocal producer; preserve its independently selected operand only. #3432 shows the Bob-pair rescue of the p28/p34 +6 H-shell has no unused typed target. #3427 finds no independent p34 geometry discriminator for BE; #3443 strengthens p28 THE only as a page-local receiver after the two-rune type is fixed, and the adjacent p27 matched control shows the typography is not independent authorship evidence. #3430 leaves the p8 root/eigenvector zero coordinate non-identifying; #3440 rejects root24 as an address without an opcode. #3444 rejects uniform/static p50 K-column state extrapolation. #3441 rejects post-hoc carving of a local base59 finite-hop domain. Preserve these objects as structural metadata, not decoder authority.
+7. **Retired dependent pathways stay retired.** #3465's frozen p49 recursive SHED→base60→K2→page grammar fails on the only natural five-core control p55 (terminal token `3J`, not a decimal page), so keep p49→p47 as page-local. #3463's p47-derived DH tuple interpreted as direct p23 offset read gives GP `EAXDYIAEWNGG`, not locked DIRECTION; no key/decoder. #3464's p27/cell254 BASE29 quotient channel is a useful already-open state tape, but a fresh 29-cell missing-EMPTY successor charge has zero hits; no serializer/consumer. #3468 finds authentic Stage10 CGI instructions and LP1 responses, **no signed 2014→LP2 cipher opcode**; direct terminal p54/55 3/7/5 Hill inverses are nonprose. #3469's p15 prime-origin generator contacts K2/g5/p23 but has no unique DH-role ordering. #3467's p6 H-free mirror serializer is either preexisting support connectivity or lacks artwork-only start/orientation; canonical H still has no independent original operation selector. Keep q8 erasure/hidden-event, moving-rank, page-reset prime and other negative families closed without new source operands.
 
-8. **The Critic's erasure/hidden-event warning remains binding as a research-selection constraint.** Known-key erasure decoders are useful infrastructure, but source-selected key/side-state is the missing input; do not spend capacity widening beam benchmarks or fitted hidden-event searches absent an authenticated operand, side-information object or independently placed crib. Key-independent support contradictions should be applied before optimization.
+## Closed-Issue review watermark
 
-## Reviewed Director closures since the previous watermark
+All ten newly closed director-task Issues since the former watermark **2026-11-28T12:34:36Z (#3407)** have been reviewed:
 
-- **#3436, 12:01:00 UTC:** negative p6-local canonical-H gate; mirror pairing is visible, four binary serialization choices remain, leaving 16 source-compatible presentations.
-- **#3430, 12:01:53:** p8 eigenvector zero-coordinate row/column/origin family is non-identifying; rune contents stayed unused.
-- **#3432, 12:02:30:** Bob-pair domain contains only the two already-open p28/p34 hits; zero fresh typed targets. Retire the rescue.
-- **#3429, 12:03:19:** p6 180° rotation and p50 horizontal reflection are different linear symmetries; shared “involution” is too weak to predict an address.
-- **#3426, 12:03:30:** p25 cube/reciprocal channel assignment is not selected by original p25 geometry or authenticated precedent.
-- **#3431, 12:05:58:** p15→3301 is genuine generator inversion, but `+K` wording / DH-role provenance is not independently supported.
-- **#3439, 12:06:26:** positive H-free salvage: p6 mirror invariant `{{2,6},{3,5}}` uniquely matches p50 strict-support coordinate blocks.
-- **#3427, 12:06:41:** original p34 geometry does not uniquely select the BE receiver over matched two-rune alternatives.
-- **#3445, 12:07:40:** PRODUCT is the unique strongest OUT statistic in the frozen family but initially lacked one common selector. **Current authoritative synthesis supersedes that limitation with the later frame-spacing PRODUCT gate; keep the closure's finite charge, not its now-stale “no common cue” sentence.**
-- **#3444, 12:08:10:** the three known p50 K-column state cells do not fit even a common affine row→state map; no fourth cell was opened.
-- **#3441, 12:09:49:** no non-post-hoc local base59 finite-hop domain excludes the failed cell42 while retaining the known cell186 success.
-- **#3442, 12:10:30:** p40 midpoint mirror continuation fails both frozen predictions; cell43→72 remains structural convergence only.
-- **#3443, 12:11:52:** p28 offset140 is uniquely selected by the fixed local geometry class once p28/two-rune type are given; post-closure p27 matched control shows that typography is not independent authorship evidence.
-- **#3440, 12:17:35:** p8 root24 does not select a unique address space/origin; retain as algebra/state metadata.
-- **#3435, 12:17:59:** positive section-switch result: p40 starts the unique p40–p55 mirror-framed final-unsolved block and its terminal state selects p50 cell43. Generic mirror continuation remains negative.
-- **#3407, 12:34:36:** the exact p6 L/C/T/R grid input extraction has no held-out original red object with the required four fields + singleton + Fehu operands; no destination was opened.
+| Closed (UTC) | Issue | Decision |
+| --- | --- | --- |
+| 13:12:38 | #3461 | Prospective p8 Q interval [4,8] misses; no generic interval semantics |
+| 13:13:02 | #3468 | First-party Stage10 has no LP2 handoff; terminal direct 3/7/5 Hill negative |
+| 13:13:20 | #3466 | cell44 already known before issue; purported holdout invalid |
+| 13:13:41 | #3465 | p55 five-core control token `3J` fails page grammar |
+| 13:14:13 | #3464 | BASE29 quotient is not a source-picked consumer; EMPTY row4 0/29 |
+| 13:14:51 | #3462 | solved p56 uniquely selects Qx, not F(Qx) |
+| 13:15:49 | #3467 | p50-art-only ordering unselected; preexisting H-free bridge already tested |
+| 13:17:52 | #3460 | Q matrix phrase one of 32; not new plaintext or historical key |
+| 13:19:07 | #3463 | Direct p23 offset/DIRECTION read fails locked target |
+| **13:21:38** | **#3469** | p15 generator does not authenticate DH role packet |
 
-Closure watermark: **2026-11-28T12:34:36Z (#3407)**.
+**Closure watermark: 2026-11-28T13:21:38Z (#3469).** On the next Director invocation inspect *every* director-task closure after this time before replacing the queue.
 
-## Queue state
+## Executable task queue and priorities
 
-At the 13:06 UTC snapshot there are **26 open `director-task` issues** total. The pre-existing 16 are waiting on a real human/worker, authentic external transaction/source material, a complete p55 decoder, or source-selected side information and do **not** count as executable capacity.
+At this invocation's creation of #3473–#3482 there were **16 pre-existing open director-task Issues**, predominantly human-only, external-source dependent, or waiting for a fully specified decoder. They do **not** count as executable worker capacity. Ten different, unclaimed and initially executable assignments were created:
 
-There are **10 fresh, unclaimed executable tasks**, all created from the current frontier:
+- **#3473** — p27/p55 unique six-rune wing bookend → actual original-cipher/key-state prediction.
+- **#3474** — p57 IN THE INNER → p8 body receiver.
+- **#3475** — p26 terminal13 word rotation source gate and untouched transfer.
+- **#3476** — p50 MAP/ROAD → exact 138/170-rune flanking sentence inverse.
+- **#3477** — first-party 0/1 signed register index convention for p50.
+- **#3478** — p32/p55 reflected oak → native two-page rune transfer.
+- **#3479** — p57 red13 inner shell → p0 original opening body.
+- **#3480** — p33–p39 cuneiform → finite source-selected ciphertext operation.
+- **#3481** — Dæg/Rune-Poem source→mayfly p24/p25 independent key.
+- **#3482** — directly invert p39/p27 GF(29²) black receivers under independently recovered Q.
 
-- **#3460** — familywise adversarial charge of Q→THE MAP / AND PATH presentation.
-- **#3461** — prospective unused-red-span test of Q interval semantics.
-- **#3462** — source-adjudicate DIRECTION / Frobenius(Q·x) versus rival Q steps.
-- **#3463** — use p47-derived DH state to source-select the next p23 receiver without H.
-- **#3464** — source-select the serializer/consumer of the p27→cell254 BASE29 DH tape.
-- **#3465** — prospectively transfer p49 recursive-SHED→base60→K2 to p55.
-- **#3466** — mirror p40-selected cell43 itself and test sealed cell44.
-- **#3467** — order the p6↔p50 mirror invariant from p50 artwork alone.
-- **#3468** — reconstruct a first-party 2014 magic-square→LP2 receiver handoff.
-- **#3469** — test whether p15's red-origin prime-difference generator fixes DH roles.
+Preferred first responses: **#3473, #3474, #3476, #3479, #3482**, because each can touch true unknown original ciphertext and lead to a fixed inverse; #3475/#3477/#3478/#3480/#3481 independently attempt missing operation selectors. Make real evidence and untouched predicted outputs the priority, not another signed-word phrase count. At the time this queue was written there should be no more than 26 open director-task Issues; re-check live claims and counts on the next Director pass.
 
-Priority: **#3460–#3466 first** because they can turn the strongest live structures into or out of executable navigation/receivers; **#3467–#3469** are independent provenance/opcode gates. Keep 8–12 unclaimed executable tasks and ≤30 open issues overall; create successors only when these results actually change a decision.
+## Core stop rules
 
-## Stop rules
-
-- Do not treat exact re-encryption, synthetic recovery or English-looking labels as key authentication.
-- Do not promote canonical H from p6 geometry: #3413/#3436 leave historical/local serialization unselected. Use serialization-free invariants unless a page independently fixes order/sign.
-- Do not reopen p6 q-block key variants, stencil-row lift, black7 affine family or exact L/C/T/R external transfer without a genuinely new operand source.
-- Do not generalize p25 `[22,25]` as line/page semantics or the cube/reciprocal transform after #3420/#3426.
-- Do not revive the p28/p34 +6 H-shell as a general cipher or via the Bob label after #3423/#3432.
-- Do not use p8 root24 or eigenvector zero coordinate as navigation/decoder selectors absent a new first-party axis/origin cue.
-- Do not treat isolated p50 `1D` as hexadecimal, extrapolate the K-column state cells, or promote base59 as a global pointer codec. Preserve cell43, cell186/254 paths and base59 only under their exact local evidence.
-- Do not rescue the failed p27-state-tape p49/p51 additive receiver with phase, KDF or derived-expression sweeps.
-- Do not use `OUT=3→physical p3` or the p3/Vieta continuation as the chapter route's next hop. The source-visible switch is the p40 final-section/p50 handoff.
-- Do not count Frobenius/trace/norm as independent Q authentication until a first-party operation selector passes #3462.
-- Do not treat p15 descriptor DH roles as established; #3399/#3422 remain unresolved despite the genuine p15→3301 generator anchor.
-- Do not expand erasure/hidden-event searches without a new source-selected key, side-information object, or independently placed crib.
+- A repeated **ciphertext** phrase is not repeated plaintext. No language-model reconstruction counts.
+- A source-signed English word that appears after choosing H/Q rotations, signed-origin, prime ranks or a map path is a **retrospective interpretation** unless an original visible selector predefines that operation.
+- Source fields like p15 red prime generator, p27 BASE29 DH tape, p3 Q, p50 map and p57 onion may carry clues but do not by themselves determine an original GP29 cipher.
+- F hold, word boundaries, page/chapter clocks, page numbers and the p50 code alphabet are model choices unless the source fixes them. Solved p56 gives one authentic prime/F law, not a global unknown-page key.
+- Before anyone calls unknown plaintext “recovered,” demand actual original rune coordinates, reversible mechanism/key, exact clock, forced target, complete forward re-encryption, and genuinely independent held-out original plaintext evidence.
