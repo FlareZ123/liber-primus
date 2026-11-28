@@ -60,6 +60,24 @@ The second control's per-page candidate pool counts are `[11,6,10,7,2,5,13,8,5]`
 
 The five-stop route is unusually compatible with a second, **previously independently documented** original object. The p40 chapter contains the physical p49–p51 32×8 panel. Once a player reaches it, the original p50 source has a separate source-motivated (but still unauthenticated as payload decryption) operation: the lowercase `f` digit is never printed; remove it from the base60 alphabet to form radix59, interpret each of the 256 cell values as its next address, and follow the resulting fixed pointer to universal sink **189**. Its source row/column `(23,5)`, original eight-column width, reflected tree artwork and original mirrored cell186 `0J=19` give DH `p=23,g=5,A=8,K=2,B=19`, with computed `a=6,b=15,e=3` and the independently observed eight-pointer return path from186 to189. These facts predate the new chapter route; [the prior standalone p50 source circuit](lp2-p50-base59-pointer-sink-reflection.md) remains the correct primary evidence.
 
+A direct terminal handoff now avoids the rejected `OUT=3→physical p3` type switch. The terminal p40 first-black word has complete descriptor
+
+```text
+[length, IN=sum, OUT=product] = [5,27,3] = [g,-K,e].
+```
+
+Its `IN=27` has already been consumed to enter p40, leaving the typed pair `[length,OUT]=[5,3]`. Independently, the p50 strict prime-support geometry already fixes exactly one horizontal support, **ROAD row5**, and three vertical supports including **MAP column3**. Thus the terminal pair selects the physical MAP/ROAD intersection **cell43** without reinterpreting 3 as a page number. Charging the same `[length,OUT]` grammar across all nine chapter operands leaves p40 as the **only** word whose first coordinate is the strict support row and whose second coordinate is one strict support column.
+
+The selected original token is `1D`. Its hexadecimal pun is unnecessary. Under the already-live missing-`f` base59 pointer codec, `1D=72`; node72 is exactly the midpoint of the pre-existing horizontally reflected return path
+
+```text
+186 -> 19 -> 33 -> 112 -> 72 -> 161 -> 214 -> 247 -> 189.
+```
+
+That path has eight edges and 72 is four edges from either endpoint. The full strict ROAD/support crossing charge is discriminating: cell42 `0S→28` and cell46 `3J→196` do not enter this mirror path, while cell43 alone maps to midpoint72. Globally 72 has four p50 predecessors, so the evidence comes from the independently selected line intersection rather than token rarity. The base60 reading `1D=73` does not enter midpoint72 or sink189 and instead enters a cycle in the fixed table graph.
+
+This is still post-discovery synthesis: the chapter grammar, support-line labels and mirror return path were all already visible when the connection was noticed. But it materially repairs the route's terminal handoff while preserving source type: **reach p40 → use the terminal word's remaining [length,OUT] pair → MAP/ROAD cell43 → base59 midpoint of the existing mirror/sink circuit**. No p3 fallback and no hexadecimal interpretation are required. Reproducer: `sims/lp2_chapter_terminal_p50_midpoint_bridge_sft.cjs`.
+
 The **new integrated readout** of the nine original first-black words and the old p50 circuit produces the following proposed player sequence without viewing a single hypothetical LP2 plaintext word:
 
 ```text
@@ -70,8 +88,17 @@ p8          -- 2(K)--> p27 IN= 2(K), red title length=19(B),
 p27         --19(B)--> p54 IN=19(B)
 p54         --27(-K mod29)--> p40 IN=27(-K mod29)
 p40         --3(e)--> no new chapter; numeric panel lies in this chapter
+                     terminal [length,OUT]=[5,3]=[g,e]
                                       |
-                                   base59 32×8 all-to-189 sink
+                              ROAD row5 × MAP col3
+                                      |
+                                 cell43 = 1D
+                                      |
+                              base59 1D -> 72
+                                      |
+                  midpoint of mirror186 -> sink189 return path
+                                      |
+                    72 -> 161 -> 214 -> 247 -> 189
                                       |
                           sink (p,g)=(23,5), width A=8
                                       |
