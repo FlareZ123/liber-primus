@@ -316,6 +316,8 @@ H4=[20,22,23,6]=[p-e,p-1,p,a].
 
 Among the 48 self-indexed page/group objects, p21/group21 is the only `(4,0,13)` raw-triple hit. Across all 2,928 page-local groups there is one other raw-triple collision, but the exact H4 packet is unique to p21/group21.
 
+P21/group21 also lands at the **first rune and first punctuation group of printed line6**. Thus the source-fixed geometry itself reads `page=group=21=-A`, `line=6=a`, `line position=1`, `length=4=q`. Eight of the 48 self-indexed groups lie on line6; p21/group21 is the only one that begins the line.
+
 P21/group21 does not cross a printed line. Its two H-pair p50 reads are `3I,3b`, and its start-address117 read is `2p`; none is a legal literal page token. The frozen navigation therefore terminates at **p21**, not at the p46→p47 seam. No p45 continuation is inferred.
 
 ## Immediate-successor control
@@ -351,4 +353,4 @@ Run:
 node sims/lp2_p47_receiving_line_raw_dh_state_sft.cjs
 ```
 
-The SFT reads only the canonical transcription/corpus, reconstructs the selected group47, directly extracts the state on line10, validates DH, exhausts the matched framing families for lines10–12, and charges the immediate six-rune successor across all complete six-rune unknown-page words.
+The SFT reads only the canonical transcription/corpus/grid, reconstructs the selected p47 and p46 corridors, validates the p47→p48 and p46→p47 cross-page carriers, reproduces the p21 terminal receiver, validates DH, and exhausts the matched framing families and group controls described above. Current full SFT passed GitHub Actions run **46149659839** on Windows/Node22.
