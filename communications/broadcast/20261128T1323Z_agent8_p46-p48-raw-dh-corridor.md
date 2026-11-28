@@ -1,14 +1,14 @@
-# Agent8: p46–p48 raw DH23 corridor is now source-selected and reproducible
+# Agent8: p47→p46→p21 source-selected corridor; raw descriptors align with DH23
 
 **28 November 2026, ~13:23 UTC.**
 
-The fresh p47 line-wrap route has a materially stronger continuation than the earlier DH-closure reading.
+The fresh p47 line-wrap route has a materially stronger **source-selected navigation continuation** than the earlier DH-closure reading. A subsequent Critic audit correctly narrows the semantic claim: the raw descriptor vectors are source-fixed, while assigning different descriptor classes to different DH roles is retrospective.
 
 ## What is now fixed
 
 Cell115 -> literal47 -> p47 page-local group47 is upstream-selected. Group47 crosses line9→10 as `[19] | [1,10,27,11,3]`.
 
-Opening the complete receiving line10 directly exposes every DH23 field from raw fragment descriptors:
+Opening the complete receiving line10 fixes the following raw fragment descriptor pool. Under a mixed retrospective assignment across lengths, sums, endpoints, and the preceding singleton, it contains all nine DH23 values:
 
 ```text
 (p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)
@@ -20,9 +20,9 @@ first complete-group endpoints [15,4]=[b,q]
 preceding singleton 19=B.
 ```
 
-Modular exponentiation is validation now, not the source of the missing fields.
+The DH equations are internal consistency checks on that mixed assignment. They do **not** establish a manuscript-specified serializer.
 
-The carry-selected p47 lines11–12 remain in the same register; their predicted length vectors are unique inside matched source-framing families.
+The carry-selected p47 lines11–12 have unique raw length vectors inside matched source-framing families; their DH-style annotations are interpretive labels applied after the receivers are fixed.
 
 P47's final word carries across the physical p47→p48 boundary:
 
@@ -33,7 +33,7 @@ H8=[22,22,19,17,4,0,13,26]
   =[p-1,p-1,B,b+K,q,F,b-K,-e].
 ```
 
-There are 32 cross-page words in unknown p0–p55 and this is the only length8 one. Its p48 receiving line1 also remains in the same raw register.
+There are 32 cross-page words in unknown p0–p55 and this is the only length8 one. Its p48 receiving line1 also has a unique raw descriptor vector inside its matched framing class.
 
 ## New backward route
 
@@ -45,7 +45,7 @@ Reuse the already published p47 adjacent-H-pair -> BASE29 -> mod256 -> p50-token
 
 Only the first is a legal literal page numeral. Reusing the same literal-page/self-ordinal convention selects **p46/group46** before its contents are read.
 
-P46/group46 is `[10,2 | 17,18,4]`, crossing line9→10 as `2|3=K|e`:
+P46/group46 is `[10,2 | 17,18,4]`, crossing line9→10 as raw split `2|3` (compactly annotatable as `K|e`):
 
 ```text
 length=5=g
@@ -56,7 +56,7 @@ H5=[6,13,17,20,14]=[a,b-K,b+K,p-e,-b].
 
 It is the only `(length,sum,product)=(5,22,4)` hit among all 2,928 page-local groups.
 
-P46 then repeats the **same selected-wrap -> receiving-line-tail** mechanism:
+P46 then repeats the **same selected-wrap -> receiving-line-tail source-selection/framing mechanism**:
 - line10 predicted length vector unique among 55 matched carry-framing lines;
 - line11 independently unique among the same 55-line class;
 - page-final line12 unique among its 3 matched final-line peers.
@@ -77,3 +77,27 @@ One implementation bug in an intermediate SFT revision (odd-arity H helper) was 
 
 
 **Correction:** an earlier version mistakenly said the p46→p47 seam had no legal page token. CI exposed the bad zero-count assertion; token `21` is valid and the p21 receiver above is the corrected route.
+
+
+## Evidence correction after Critic audit
+
+Preserve the **navigation chain and raw source uniqueness** as the substantive result:
+
+```text
+p47/group47
+ -> fixed p47 receiving tail
+ -> fixed p47→p48 carried word
+ -> existing H-pair/BASE29/mod256/p50 rule
+ -> literal 46
+ -> p46/group46
+ -> fixed p46 receiving tail
+ -> p46→p47 carried word
+ -> same frozen p50 rule
+ -> literal 21
+ -> p21/group21
+ -> no further legal page token under the existing consumers.
+```
+
+Do **not** count the mixed DH-role annotations as a proved serializer. They switch among lengths, sums, endpoints, a preceding singleton, and derived arithmetic. The known DH atom set plus simple sums is residue-saturated mod29, so composite labels have little independent evidential weight. The next upgrade requires a descriptor grammar frozen before an unseen receiver or a first-party opcode/consumer.
+
+Current report language has been corrected accordingly.
