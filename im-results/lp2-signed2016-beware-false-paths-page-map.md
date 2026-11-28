@@ -1,6 +1,6 @@
-# Signed 2016 page-index map is sharp at BEWARE/p38 and FALSE/p39
+# Signed 2016 indices36–40 align with five consecutive exact local inverses
 
-**Agent30 original page-map result; Agent43 p37 extension; Agent4 p36 GOOD decoder, 19 November 2026. Classification: intended-route / page-navigation candidate with strong local p36 `GOOD`, p37 `LUCK`, and p38 `BEWARE` correspondences under the existing source-number convention. P39 carries a dominant red X under `FALSE`; p40 `PATHS` artwork remains weak.**
+**Agent30 original page-map result; Agent43 p37 extension; Agent4 p36 GOOD decoder, 19 November 2026; p39/p40 inverse synthesis updated by Agent3, 28 November 2026. Classification: leading page-navigation corridor with exact reversible local candidates for all five authenticated words `GOOD LUCK BEWARE FALSE PATHS`. The five receiver/key grammars are not one demonstrated page cipher, and several key forms remain post-discovery.**
 
 ## Fixed source index convention
 
@@ -167,57 +167,119 @@ signed word38 = BEWARE
 page38        = independently BEWARE-selected
 ```
 
-## Page39 visually says FALSE
+## Page39 has a prospectively selected local FALSE inverse
 
-Physical p39 is original archive image `56.jpg`.
+Physical p39 is original archive image `56.jpg`. Its dominant red X remains a useful human-visible warning, but it is no longer the strongest evidence for the index39 correspondence.
 
-The page carries a very large **red X-shaped mark** dominating the lower-left portion of the manuscript body. Under the already fixed page-index map:
+Director #1784 prospectively fixed p39 offsets132..136 **before their rune values were opened**: authenticated zero-based word39 is `FALSE`, p39 has the unique red-X route, `g=5`, and the first complete five-rune word after p39's sole red span is the receiver. Reveal:
 
-```text
-signed word39 = FALSE
-page39        = large red X
-```
+~~~text
+cipher = [19,7,10,17,23].
+~~~
 
-A red X is a direct, ordinary human visual convention for false/wrong/rejected. This is source-visible evidence and does not depend on interpreting the p39 rune body or the red triad as a cipher.
+A later p6 master-packet family supplies the exact subtraction key
 
-This correspondence is especially important because p39 contains the attractive red-triad polynomial structure used by the current p29/p39/p50 algebraic branch. The page-index result should be treated as a warning against assuming every attractive p39 algebraic route is intended. It does **not** prove that all information on p39 is a decoy.
+~~~text
+key = [19,12,19,2,5]
+H5(key) = [14,24,10,14,19]
+        = [-b,-g,K*g,-b,B].
+~~~
 
-## Page40 PATHS visual is a weak continuation, not an independent hit
+Exact inverse:
 
-Physical p40 is original archive image `57.jpg`.
+~~~text
+[19,7,10,17,23]
+-
+[19,12,19,2,5]
+mod29
+=
+[0,24,20,15,18]
+=
+FALSE.
+~~~
 
-The page is framed on both sides by large mirrored branching vine/root illustrations with many visible forks and terminal branches. However, essentially the same botanical frame continues on p41 and p42.
+The frozen p6 family has 6,144 labeled forms / 1,555 unique shells. Across all canonical five-rune unknown words and all seven authenticated five-rune source targets, the sole unique hit is this p39 FALSE inverse. The role grammar was recognized after FALSE was known, so it remains a strong **local** candidate rather than a reusable decoder. Two prospective transfers of the rule failed: WORDS16 and the exact p39 key on the matched p3 red-span receiver.
 
-Under the same unchanged index map:
+The red X is therefore supporting visual evidence for a receiver that already has a source-selected location and exact reversible inverse; it should not be used to label the rest of p39 a decoy.
 
-```text
-signed word40 = PATHS
-page40        = branching multi-route artwork
-```
+[Detailed FALSE report](lp2-p6-p39-false-five-rune-family.md).
 
-The branching form is compatible with `PATHS`, but the repeated frame means p40 is not a distinctive page-local visual prediction. Treat it as contextual continuation only.
+## Page40 now has a target-blind exact PATHS inverse
 
-## Combined phrase
+Physical p40 is original archive image `57.jpg`. The repeated branching artwork on p40–p42 remains weak evidence and is no longer needed for the PATHS assignment.
 
-The three consecutive authenticated words map to three consecutive physical pages:
+The p28→p29→p23→p25 route independently selects physical p40. P6 independently supplies both a local address and a numeric key without using PATHS's rune state.
 
-```text
-38 BEWARE -> p38 independently BEWARE-selected
-39 FALSE  -> p39 giant red X
-40 PATHS  -> p40 branching multi-path artwork
-```
+P6 overdetermines address **71**:
 
-The adjacent source words36-37 are `GOOD LUCK`. Physical pages p36-p38 are exactly the three-page authored numbered-section block: p36 begins section1, p37 carries sections2-4, and p38 carries section5. This gives the wider source/page corridor:
+~~~text
+GP0(SEEKS)                    = 71
+black runes before p6 title   = 71
+p6 red-title start            = 71
+GP0(first red-title word)     = 71.
+~~~
 
-```text
+Its fixed state/layout supplies the key:
+
+~~~text
+q=4, g=5, a=6, K=2
+[qg,qg,aK,a]
+=
+[20,20,12,6].
+~~~
+
+Carry address71 to already selected p40:
+
+~~~text
+p40 offset71 = [4,15,14,21].
+~~~
+
+Apply the historical GP29 subtraction primitive:
+
+~~~text
+[4,15,14,21]
+-
+[20,20,12,6]
+mod29
+=
+[13,24,2,15]
+=
+PATHS.
+~~~
+
+This receiver selection does **not** use PATHS's GP spelling, length or GP0. Among all simple p6-title scalars (word starts/ends, word GP0 sums, word lengths, title start/end), 71 alone begins a complete four-rune word on p40. Across the entire unknown manuscript, only 12 complete words begin at local offset71 and only five have four runes; fixed key plus both signs yields exactly one authenticated four-rune 2016 output: p40 PATHS under subtraction.
+
+The remaining retrospective premise is the **same-offset transfer** from p6 to the independently selected p40 page. No first-party instruction has yet explicitly stated that transfer, so PATHS remains a materially strengthened plaintext candidate rather than an established decryption.
+
+[Target-blind PATHS report](lp2-p6-address71-p40-paths-source-only-inverse.md).
+
+## Combined phrase: five consecutive exact local candidates
+
+The authenticated source interval is:
+
+~~~text
 36 GOOD
 37 LUCK
 38 BEWARE
 39 FALSE
 40 PATHS
-```
+~~~
 
-The strongest evidence now includes the global punctuation endpoints `36=GOOD` and `40=PATHS`, the p36 EMPTY-center `GOOD` recovery plus section1 `MEANING`, the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40's repeated artwork is no longer needed to obtain the PATHS endpoint.
+Each same-number physical page now contains an exact reversible local candidate for its assigned word:
+
+| Source/page | Receiver | Frozen/local operation | Output |
+|---|---|---|---|
+| 36 / p36 | offsets169..173 `[2,22,4,1,20]` | remove center `q=4=EMPTY`; subtract `[25,19,27,26]` | **GOOD** |
+| 37 / p37 | word37 offsets146..149 `[3,2,6,27]` | subtract `[12,1,1,22]` | **LUCK** |
+| 38 / p38 | section5 offsets57..62 `[8,25,14,2,17,22]` | subtract `[20,7,7,7,13,4]` | **BEWARE** |
+| 39 / p39 | first `g=5` word after red span, offsets132..136 `[19,7,10,17,23]` | subtract `[19,12,19,2,5]` | **FALSE** |
+| 40 / p40 | p6-addressed offset71 `[4,15,14,21]` | subtract `[20,20,12,6]` | **PATHS** |
+
+This is substantially stronger than the old mixed visual corridor. It is **not** evidence for one shared cipher: p36 uses center deletion, p37 a four-rune H-state key, p38 a six-rune state shell, p39 a five-rune p6 shell, and p40 the p6 visual/address packet. Several key grammars were discovered after their targets were available, and prospective transfers of the p37–p39 local keys have failed.
+
+The convergence matters because it changes the research decision. The signed instruction `THEIR NUMBERS ARE THE DIRECTION` now points into a consecutive five-page region where every assigned word has a reproducible local inverse, while p40 no longer depends on a semantic artwork reading or a PATHS-state receiver. Future work should seek the **authored transition rule between these local mechanisms**, not another unconstrained page-wide cipher.
+
+Machine-checkable arithmetic synthesis: `sims/lp2_good_luck_beware_false_paths_corridor_sft.cjs`.
 
 ## Relationship to the new p0 XY route
 
@@ -243,21 +305,21 @@ The newly observed raw `XY` word suggests a coordinate interpretation, but that 
 
 ## Decision and research consequence
 
-Preserve this as a leading **page-navigation interpretation** of the signed clue:
+Preserve the zero-based number-as-direction reading as a leading intended-route interpretation:
 
-```text
-"their numbers are the direction"
--> zero-based authenticated word number can select the same-number LP2 page
-```
+~~~text
+THEIR NUMBERS ARE THE DIRECTION
+-> authenticated index i selects physical p_i
+~~~
 
-The mapping now has two materially different support regions:
+It now has two qualitatively different support regions:
 
-1. p28/p29: `THE -> DIRECTION`, followed by the p29 repeated-root branch;
-2. p37-p39: a strong local `LUCK` inverse on p37, the independent p38 `BEWARE` state match, and the dominant p39 red-X visual. P40 `PATHS` is a weak continuation because its frame is reused.
+1. p28/p29, where the fixed D4 receiver locally discriminates zero-origin and recovers `THEIR NUMBERS ARE THE` before the `DIRECTION` continuation;
+2. p36–p40, where every consecutive same-index page carries an exact reversible local candidate for `GOOD LUCK BEWARE FALSE PATHS`.
 
-Do not turn the p39 X into a blanket decoy label. Agent6 subsequently derived a source-selected p57→p50→p33→p39 route whose fixed `DIVINITY` address and literal circumference shedding recover `VERIFY`; that is a concrete counterexample to the idea that p39 itself must be discarded. The safer reading is that the source/page alignment warns against false routes while still allowing source-selected operations on the page.
+The five-page corridor does **not** establish a universal per-page cipher. The local selectors and key grammars differ, and the strongest unresolved causal question is how the puzzle tells the solver which p6/state/layout operation to use on each page. The p40 advance is especially important because its receiver and numeric key can now be selected without PATHS's target state; only the same-offset transfer remains retrospective.
 
-A high-value successor is to test whether another authenticated word at index `i` predicts a distinctive, independently defined feature on p`i` before that page is opened for the test.
+Do not reduce p39 to a visual decoy: its FALSE receiver has a prospective selection and exact p6-family inverse, while other source-selected p39 operations remain valid. Do not promote p36–p40 to established plaintext until the transition/key grammar is prospectively fixed or independently authored.
 
 ## Reproduction and source images
 
