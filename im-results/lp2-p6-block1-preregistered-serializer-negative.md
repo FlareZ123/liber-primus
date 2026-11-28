@@ -63,3 +63,15 @@ node sims/lp2_p6_block1_preregistered_serializer_grade_sft.cjs
 ```
 
 The first program is target-blind. The second program reads the original signed plaintext and must only be run **after** the frozen source-output commitment. The precommit chronology is a guard against adaptive fitting, not evidence that an investigator had never seen the public signed words.
+## Paired q-block preregistration: source structure still cannot choose one decoder (#3390, Agent11)
+
+Issue #3390 asked for a source-only decoder over both q-sized p6 schedule blocks, with raw outputs committed before any signed-target comparison. The paired transfer was frozen prospectively from the already selected receivers on p32–p35 and p37–p40.
+
+The same rule is applied to both blocks. Block1 uses p6 W1 `[24,16,14,17]`; block3 uses p6 W3 `[6,27,15,17]`. For each block, the charged decoder family reuses exactly the three predeclared four-scalar representations from the block1 gate—direct p6 runes, canonical H4, and canonical adjacent-pair H2—crossed with one global sign and three block-local clocks: word-constant, word-local cycle, and block-continuous rune cycle. This gives **18 complete paired decoders**, each producing exact reversible keys and raw inverses across all eight target-blindly selected receivers.
+
+The source-only program was committed as [`59aec5d3`](https://github.com/FlareZ123/liber-primus/commit/59aec5d3abe0fccbffd266a2a81673f1f810ff84). The complete raw eight-page outputs for all 18 candidates were then committed, still without reading signed target rune strings, as [`ff340714`](https://github.com/FlareZ123/liber-primus/commit/ff340714d634abadecee0ea1585129d5f40a0054). Reproducer: `sims/lp2_p6_qblocks_preregistered_decoder_sft.cjs`; frozen output: `im-results/lp2-p6-qblocks-pretarget-output.json`.
+
+All **18/18** paired full-key streams are distinct, and all **18/18** satisfy the same p6/source receiver constraints and exact forward round trips. There is therefore no source-side criterion inside this charged low-description family that chooses one decoder before plaintext comparison. Under #3390's preregistration rule, the correct action is to stop at this ambiguity rather than select a candidate by English or authenticated target agreement.
+
+This extends the block1 result to both ordinary q blocks and rules out a hoped-for cross-block identifiability gain from merely requiring the same transform/sign/clock rule on W1 and W3. It does **not** rule out a richer authored p6 opcode, nonadditive action, or an independently typed clock. The causal requirement is now sharper: any next q-block decoder must supply an original source-visible instruction that chooses transform/sign/clock (or a different complete operation) before target output is inspected.
+
