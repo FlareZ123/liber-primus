@@ -112,27 +112,65 @@ const modPow = (base, exponent, modulus) => {
 };
 
 // A cleaner source-motivated construction uses the independently established
-// outer-pair operation H(x,y)=(x-y,x+y) mod29. The mayfly values supply
-// H(g,e)=(K,A), then the repeated local 13 frame supplies
-// H(13,K)=(B-A,b). Adding A recovers B; p=23 makes a the discrete log.
+// outer-pair operation H(x,y)=(x-y,x+y) mod29. Charge which of the two
+// remaining observed edge values is e: only one choice makes H(g,e)'s sum
+// output close onto the other observed edge value.
 const H = (x, y) => [
   ((x - y) % 29 + 29) % 29,
   ((x + y) % 29 + 29) % 29,
 ];
-const [sourceK, sourceA] = H(sourceG, e);
-assert.deepStrictEqual([sourceK, sourceA], [2, 8]);
-assert.strictEqual(sourceA, A);
-const [sourceBminusA, sourceBExp] = H(sourceBoundary, sourceK);
-assert.deepStrictEqual([sourceBminusA, sourceBExp], [11, 15]);
-const sourceB = (sourceA + sourceBminusA) % 29;
-assert.strictEqual(sourceB, 19);
-const sourceAVals = [];
-for (let candidate = 1; candidate < sourceP; candidate += 1) {
-  if (modPow(sourceG, candidate, sourceP) === sourceA) sourceAVals.push(candidate);
+const observedOtherEdges = target.filter((x) => x !== sourceG);
+const hClosures = [];
+for (const eCandidate of observedOtherEdges) {
+  const otherObserved = observedOtherEdges.find((x) => x !== eCandidate);
+  const [KCandidate, sumCandidate] = H(sourceG, eCandidate);
+  if (sumCandidate === otherObserved) {
+    hClosures.push({
+      e: eCandidate,
+      K: KCandidate,
+      A: sumCandidate,
+    });
+  }
 }
-assert.deepStrictEqual(sourceAVals, [6]);
-assert.strictEqual(modPow(sourceB, sourceAVals[0], sourceP), sourceK);
-assert.strictEqual(modPow(sourceA, sourceBExp, sourceP), sourceK);
+assert.deepStrictEqual(hClosures, [{ e: 3, K: 2, A: 8 }]);
+const sourceClosure = hClosures[0];
+
+// The repeated local 13 frame then gives H(13,K). Charge which returned
+// value is B-A and which is b, derive B modulo p, and require the standard
+// DH equations. This avoids labeling the H outputs from the known p28 tuple.
+const framePair = H(sourceBoundary, sourceClosure.K);
+assert.deepStrictEqual(framePair, [11, 15]);
+const hStateSurvivors = [];
+for (const assignment of [
+  { BminusA: framePair[0], b: framePair[1] },
+  { BminusA: framePair[1], b: framePair[0] },
+]) {
+  const BCandidate =
+    (sourceClosure.A + assignment.BminusA) % sourceP;
+  if (BCandidate === 0) continue;
+  for (let aCandidate = 1; aCandidate < sourceP; aCandidate += 1) {
+    if (modPow(sourceG, aCandidate, sourceP) !== sourceClosure.A) continue;
+    if (
+      modPow(sourceClosure.A, assignment.b, sourceP) === sourceClosure.K &&
+      modPow(BCandidate, aCandidate, sourceP) === sourceClosure.K
+    ) {
+      hStateSurvivors.push({
+        p: sourceP,
+        e: sourceClosure.e,
+        g: sourceG,
+        a: aCandidate,
+        b: assignment.b,
+        A: sourceClosure.A,
+        B: BCandidate,
+        K: sourceClosure.K,
+        BminusA: assignment.BminusA,
+      });
+    }
+  }
+}
+assert.deepStrictEqual(hStateSurvivors, [
+  { p: 23, e: 3, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, BminusA: 11 },
+]);
 
 // Charge the remaining two edge values as (e,A), both signs of K=±(g-e),
 // both integer relations b-K=13 / b+K=13, and every nonzero DH exponent a.
@@ -197,4 +235,6 @@ console.log("PASS lp2_p24_26_mayfly_dh23_count_triangle_sft");
 console.log("mayfly counts:", [c24, c25, c26]);
 console.log("edge labels:", edge, "=", { e, g, A });
 console.log("contiguous triple hits:", JSON.stringify(hits));
-console.log("H reconstruction:", JSON.stringify({ p: sourceP, e, g: sourceG, a: sourceAVals[0], b: sourceBExp, A: sourceA, B: sourceB, K: sourceK, BminusA: sourceBminusA }));\nconsole.log("charged independent DH survivors:", JSON.stringify(survivors));
+console.log("H closures:", JSON.stringify(hClosures));
+console.log("H-state survivors:", JSON.stringify(hStateSurvivors));
+console.log("charged independent DH survivors:", JSON.stringify(survivors));
