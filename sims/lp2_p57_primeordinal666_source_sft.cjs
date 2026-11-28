@@ -93,6 +93,25 @@ for(const page of c.pages.filter(p=>p.page<=55&&p.runic_count>0)){
   }
 }
 assert.deepEqual(zeroFDoublets,[[9,62],[29,87],[32,29],[36,69]]);
+const allPrintedPages=transcription.split(/\n%\n/u);
+// An F-F doublet can be internal to a word, or exactly straddle a
+// printed word boundary. Only the source-selected p32 doublet straddles.
+const seamFDoublets=[];
+for(const page of c.pages.filter(p=>p.page<=55&&p.runic_count>0)){
+  const physicalIndex=page.page<50?page.page:page.page-1; // numeric-only p50
+  const manuscript=allPrintedPages[physicalIndex].replaceAll("/\n","");
+  const seams=new Set();
+  let count=0;
+  for(const glyph of [...manuscript]){
+    if(runeIndex.has(glyph)) count++;
+    else if(glyph==="-") seams.add(count-1);
+  }
+  assert.equal(count,page.runic_count);
+  for(const [pg,i] of zeroFDoublets){
+    if(pg===page.page && seams.has(i)) seamFDoublets.push([pg,i]);
+  }
+}
+assert.deepEqual(seamFDoublets,[[32,29]]);
 assert.deepEqual(allTHOTH,[[32,28,31,32]]);
 
 
@@ -166,6 +185,7 @@ console.log(JSON.stringify({
     solvedP57FirstWordPrimeSum:sourceOpeningPrime,
     unsolvedBookAllFErasureMatches:allTHOTH,
     originalFFDoublets:zeroFDoublets,
+    doubletsStraddlingActualPrintedWordSeparator:seamFDoublets,
     authorialIndexingOrCipherNotEstablished:true
   },
   ordinalTotal:666,solvedP56:{title:"AN END",primeSum:redPrimeSum,primeOrdinal:rank[redPrimeSum],digestBytes:p56Hex.length/2},sourceNativeRuneMatches:indexed.flat().length,
