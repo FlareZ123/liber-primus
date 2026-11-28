@@ -1,0 +1,3847 @@
+{
+  "definition": "mod36 strict repeat retry; P in GP29; visible 0..28, silent 29..35; printed separators copy genuine word boundaries, no space token/key advance; continuous cipher state",
+  "lexicon": 12232,
+  "trainingForms": 9265,
+  "originalGroups": 64,
+  "originalRunes": 299,
+  "out": [
+    {
+      "name": "red8",
+      "K": [
+        19,
+        21,
+        23,
+        27,
+        2,
+        14,
+        10,
+        19
+      ],
+      "controls": [
+        {
+          "source": "authentic p57",
+          "words": 20,
+          "printed": 78,
+          "emptyGroups": 0,
+          "exactCount": "32",
+          "bestCorrect": 20,
+          "truthRetained": true
+        },
+        {
+          "source": "held Gibran",
+          "words": 64,
+          "printed": 195,
+          "emptyGroups": 0,
+          "exactCount": "299851776",
+          "bestCorrect": 63,
+          "truthRetained": true
+        },
+        {
+          "source": "held Emerson",
+          "words": 64,
+          "printed": 176,
+          "emptyGroups": 7,
+          "exactCount": "74240969932800",
+          "bestCorrect": 61,
+          "truthRetained": true
+        }
+      ],
+      "fixed": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 51,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 2,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 3,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 4,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 5,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 6,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 7,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 8,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 9,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 10,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 11,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 12,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 13,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 14,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 15,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 16,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 17,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 18,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 19,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 20,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 21,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 22,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 23,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 24,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 25,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 26,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 27,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 28,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 29,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 30,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 31,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 32,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 33,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 34,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 35,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 36,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 37,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 38,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 39,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 40,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 41,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 42,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 43,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 44,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 45,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 46,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 47,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 48,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 49,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 50,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 51,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 52,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 53,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 54,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 55,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 56,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 57,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 58,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 59,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 49
+          },
+          {
+            "i": 60,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 49
+          },
+          {
+            "i": 61,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 50
+          },
+          {
+            "i": 62,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 50
+          },
+          {
+            "i": 63,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 51
+          }
+        ],
+        "bestText": null
+      },
+      "allInitialPhases": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 51,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 2,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 3,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 4,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 5,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 6,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 7,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 8,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 9,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 10,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 11,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 12,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 13,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 14,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 15,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 16,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 17,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 18,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 19,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 20,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 21,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 22,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 23,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 24,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 25,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 26,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 27,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 28,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 29,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 30,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 31,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 32,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 33,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 34,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 35,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 36,
+            "states": 59,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 37,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 38,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 39,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 40,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 41,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 42,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 43,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 44,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 45,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 46,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 47,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 48,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 49,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 50,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 51,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 52,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 53,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 54,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 55,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 56,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 57,
+            "states": 55,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 58,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 59,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 49
+          },
+          {
+            "i": 60,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 49
+          },
+          {
+            "i": 61,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 50
+          },
+          {
+            "i": 62,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 50
+          },
+          {
+            "i": 63,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 51
+          }
+        ],
+        "bestText": null
+      }
+    },
+    {
+      "name": "red9",
+      "K": [
+        24,
+        19,
+        21,
+        23,
+        27,
+        2,
+        14,
+        10,
+        19
+      ],
+      "controls": [
+        {
+          "source": "authentic p57",
+          "words": 20,
+          "printed": 74,
+          "emptyGroups": 0,
+          "exactCount": "72",
+          "bestCorrect": 19,
+          "truthRetained": true
+        },
+        {
+          "source": "held Gibran",
+          "words": 64,
+          "printed": 190,
+          "emptyGroups": 2,
+          "exactCount": "6899200",
+          "bestCorrect": 62,
+          "truthRetained": true
+        },
+        {
+          "source": "held Emerson",
+          "words": 64,
+          "printed": 167,
+          "emptyGroups": 7,
+          "exactCount": "21154011217920",
+          "bestCorrect": 62,
+          "truthRetained": true
+        }
+      ],
+      "fixed": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 49,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 2,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 3,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 4,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 5,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 6,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 7,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 8,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 9,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 10,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 11,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 12,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 13,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 14,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 15,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 16,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 17,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 18,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 19,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 20,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 21,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 22,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 23,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 24,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 25,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 26,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 27,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 28,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 29,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 30,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 31,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 32,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 33,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 34,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 35,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 36,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 37,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 38,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 39,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 40,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 41,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 42,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 43,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 44,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 45,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 46,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 47,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 48,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 49,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 50,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 51,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 52,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 53,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 54,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 55,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 56,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 57,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 58,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 59,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 60,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 61,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 62,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 63,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 49
+          }
+        ],
+        "bestText": null
+      },
+      "allInitialPhases": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 49,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 2,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 3,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 4,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 5,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 6,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 7,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 8,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 9,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 10,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 11,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 12,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 13,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 14,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 15,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 16,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 17,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 18,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 19,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 20,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 21,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 22,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 23,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 24,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 25,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 26,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 27,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 28,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 29,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 30,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 31,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 32,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 33,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 34,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 35,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 36,
+            "states": 67,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 37,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 38,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 39,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 40,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 41,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 42,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 43,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 44,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 45,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 46,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 47,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 48,
+            "states": 65,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 49,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 50,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 51,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 52,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 53,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 54,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 55,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 56,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 57,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 58,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 59,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 60,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 61,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 62,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 63,
+            "states": 66,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 49
+          }
+        ],
+        "bestText": null
+      }
+    },
+    {
+      "name": "DIUINITY",
+      "K": [
+        23,
+        10,
+        1,
+        10,
+        9,
+        10,
+        16,
+        26
+      ],
+      "controls": [
+        {
+          "source": "authentic p57",
+          "words": 20,
+          "printed": 80,
+          "emptyGroups": 0,
+          "exactCount": "2",
+          "bestCorrect": 20,
+          "truthRetained": true
+        },
+        {
+          "source": "held Gibran",
+          "words": 64,
+          "printed": 186,
+          "emptyGroups": 1,
+          "exactCount": "379330560",
+          "bestCorrect": 63,
+          "truthRetained": true
+        },
+        {
+          "source": "held Emerson",
+          "words": 64,
+          "printed": 174,
+          "emptyGroups": 5,
+          "exactCount": "29440454400",
+          "bestCorrect": 59,
+          "truthRetained": true
+        }
+      ],
+      "fixed": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 48,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 2,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 3,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 4,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 5,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 6,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 7,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 8,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 9,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 10,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 11,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 12,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 13,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 14,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 15,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 16,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 17,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 18,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 19,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 20,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 21,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 22,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 23,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 24,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 25,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 26,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 27,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 28,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 29,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 30,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 31,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 32,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 33,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 34,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 35,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 36,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 37,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 38,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 39,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 40,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 41,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 42,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 43,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 44,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 45,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 46,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 47,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 48,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 49,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 50,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 51,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 52,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 53,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 54,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 55,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 56,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 57,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 58,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 59,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 60,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 61,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 62,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 63,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          }
+        ],
+        "bestText": null
+      },
+      "allInitialPhases": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 48,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 2,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 3,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 4,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 5,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 6,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 7,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 8,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 9,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 10,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 11,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 12,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 13,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 14,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 15,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 16,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 17,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 18,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 19,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 20,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 21,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 22,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 23,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 24,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 25,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 26,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 27,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 28,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 29,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 30,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 31,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 32,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 33,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 34,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 35,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 36,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 37,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 38,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 39,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 40,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 41,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 42,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 43,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 44,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 45,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 46,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 47,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 48,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 49,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 50,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 51,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 52,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 53,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 54,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 55,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 56,
+            "states": 54,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 57,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 58,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 59,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 60,
+            "states": 56,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 61,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 62,
+            "states": 58,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          },
+          {
+            "i": 63,
+            "states": 57,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          }
+        ],
+        "bestText": null
+      }
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "K": [
+        0,
+        10,
+        4,
+        0,
+        1,
+        19,
+        0,
+        18,
+        4,
+        18,
+        9,
+        0,
+        18
+      ],
+      "controls": [
+        {
+          "source": "authentic p57",
+          "words": 20,
+          "printed": 85,
+          "emptyGroups": 0,
+          "exactCount": "6",
+          "bestCorrect": 18,
+          "truthRetained": true
+        },
+        {
+          "source": "held Gibran",
+          "words": 64,
+          "printed": 214,
+          "emptyGroups": 1,
+          "exactCount": "12",
+          "bestCorrect": 64,
+          "truthRetained": true
+        },
+        {
+          "source": "held Emerson",
+          "words": 64,
+          "printed": 197,
+          "emptyGroups": 2,
+          "exactCount": "384",
+          "bestCorrect": 63,
+          "truthRetained": true
+        }
+      ],
+      "fixed": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 48,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 2,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 3,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 4,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 5,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 6,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 7,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 8,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 9,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 10,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 11,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 12,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 13,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 14,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 15,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 16,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 17,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 18,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 19,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 20,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 21,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 22,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 23,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 24,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 25,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 26,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 27,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 28,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 29,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 30,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 31,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 32,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 33,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 34,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 35,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 36,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 37,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 38,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 39,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 40,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 41,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 42,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 43,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 44,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 45,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 46,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 47,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 48,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 49,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 50,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 51,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 52,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 53,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 54,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 55,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 56,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 57,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 58,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 59,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 60,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 61,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 62,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 63,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          }
+        ],
+        "bestText": null
+      },
+      "allInitialPhases": {
+        "prefix": 64,
+        "firstExactFailure": 0,
+        "minOov": 48,
+        "exactCount": "0",
+        "best": null,
+        "perGroup": [
+          {
+            "i": 0,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 1,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 1
+          },
+          {
+            "i": 2,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 3,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 2
+          },
+          {
+            "i": 4,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 5,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 3
+          },
+          {
+            "i": 6,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 4
+          },
+          {
+            "i": 7,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 5
+          },
+          {
+            "i": 8,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 6
+          },
+          {
+            "i": 9,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 10,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 7
+          },
+          {
+            "i": 11,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 8
+          },
+          {
+            "i": 12,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 9
+          },
+          {
+            "i": 13,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 10
+          },
+          {
+            "i": 14,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 11
+          },
+          {
+            "i": 15,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 12
+          },
+          {
+            "i": 16,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 13
+          },
+          {
+            "i": 17,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 14
+          },
+          {
+            "i": 18,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 15
+          },
+          {
+            "i": 19,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 16
+          },
+          {
+            "i": 20,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 17
+          },
+          {
+            "i": 21,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 22,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 18
+          },
+          {
+            "i": 23,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 24,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 19
+          },
+          {
+            "i": 25,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 20
+          },
+          {
+            "i": 26,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 21
+          },
+          {
+            "i": 27,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 22
+          },
+          {
+            "i": 28,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 23
+          },
+          {
+            "i": 29,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 30,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 24
+          },
+          {
+            "i": 31,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 25
+          },
+          {
+            "i": 32,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 33,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 26
+          },
+          {
+            "i": 34,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 27
+          },
+          {
+            "i": 35,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 28
+          },
+          {
+            "i": 36,
+            "states": 61,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 29
+          },
+          {
+            "i": 37,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 38,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 30
+          },
+          {
+            "i": 39,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 31
+          },
+          {
+            "i": 40,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 32
+          },
+          {
+            "i": 41,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 33
+          },
+          {
+            "i": 42,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 34
+          },
+          {
+            "i": 43,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 44,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 35
+          },
+          {
+            "i": 45,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 46,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 36
+          },
+          {
+            "i": 47,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 37
+          },
+          {
+            "i": 48,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 49,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 38
+          },
+          {
+            "i": 50,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 39
+          },
+          {
+            "i": 51,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 40
+          },
+          {
+            "i": 52,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 53,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 41
+          },
+          {
+            "i": 54,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 42
+          },
+          {
+            "i": 55,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 43
+          },
+          {
+            "i": 56,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 57,
+            "states": 63,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 44
+          },
+          {
+            "i": 58,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 45
+          },
+          {
+            "i": 59,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 60,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 46
+          },
+          {
+            "i": 61,
+            "states": 60,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 62,
+            "states": 62,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 47
+          },
+          {
+            "i": 63,
+            "states": 64,
+            "exactStates": 0,
+            "exactCount": "0",
+            "minOov": 48
+          }
+        ],
+        "bestText": null
+      }
+    }
+  ]
+}
