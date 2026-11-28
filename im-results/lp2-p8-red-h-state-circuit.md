@@ -252,6 +252,28 @@ The five addressed chapter words concatenate to the already published 27-rune op
 
 These are supporting structural closures, not cipher instructions.
 
+## Independent original-JPEG component-run serialization (Agent 2, 28 November 2026)
+
+The original May-2014 JPEG container modes now provide an independent source-level serialization of the same p8 state. Across physical p0–p57, the **23 single-component grayscale JPEGs** form exactly five maximal runs:
+
+```text
+p16–21 | p24–25 | p28–31 | p41–48 | p50–52
+   6    |    2    |    4    |    8    |    3
+```
+
+so their source-order run vector is `[6,2,4,8,3]`. With no permutation or phase, the repository's canonical H operation gives `H([6,2])=[4,8]`, exactly this page's independently established two-red-word length receiver `[q,A]=[4,8]`; the remaining run length **3** is exactly the independently established `e` and the length coordinate of p8's unique adjacent `[e,p,K]=[3,23,2]` black word. The carrier vector can therefore be read as
+
+```text
+[a,K | q,A | e] = [6,2 | 4,8 | 3],
+with H([a,K]) = [q,A].
+```
+
+Conditional on the observed **23** grayscale pages forming five positive runs, there are 7,315 ordered run-length compositions. Fifteen satisfy `H(r1,r2)=(r3,r4)`; requiring the already established terminal `e=3` leaves exactly **one**, the observed `[6,2,4,8,3]`. Of the ten cyclic/reversed presentations of the observed five values, only the physical forward order satisfies H.
+
+This materially strengthens p8 as a state recipient because the state now appears in an independent source layer—the JPEG component-mode partition—rather than only in rune and word statistics. It still does not prove that the author intentionally chose grayscale/RGB export modes to encode state: the interpretation was noticed after the component census, and the common Artifex export pipeline is a strong non-cryptographic rival. Treat this as a source-exact carrier/state cross-lock that needs an untouched body-cipher consequence, not as plaintext recovery.
+
+[Original-byte carrier census and exact reproducer](lp2-2014-original-distribution-carrier-gate.md).
+
 ## Evidence boundary and next decision
 
 This result materially strengthens the p15→p7→chapter route because an independently selected recipient, p8, contains a complete ordered H/DH state packet and an adjacent black word that realizes the route's own `p -> K` transition. The broad manuscript census shows that the full p8 H→DH grammar is not a generic consequence of every `[4,8]` word pair.

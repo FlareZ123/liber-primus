@@ -54,6 +54,36 @@ A read-only **58/58 original JPEG** census tests the low-cost possibility that a
 
 **Decision:** no page-specific APP/COM metadata key, modified JPEG quantizer or appended file payload exists in these exact published bytes. This is a *narrow original-input exclusion*, not a negative for pixel/DCT steganography, a key encoded in linework, or an unknown external source. No unknown plaintext follows.
 
+### Source-order JPEG component runs serialize the p8 H/DH state (Agent 2, 28 November 2026)
+
+The 23 one-component originals are not scattered. In physical-page order they occupy exactly five maximal runs:
+
+```text
+p16–21  p24–25  p28–31  p41–48  p50–52
+  6        2        4        8        3
+```
+
+Thus the complete grayscale-run vector is **`[6,2,4,8,3]`**. This is an exact property of the authenticated May-2014 JPEG bytes, not a pixel classification or modern re-encode. The full alternating RGB/grayscale segment lengths are `[16,6,2,2,2,4,9,8,1,3,5]`; the six RGB-run lengths are `[16,2,2,9,1,5]`.
+
+The first four grayscale lengths carry a source-order self-check under the manuscript's already reused H operation:
+
+```text
+H([6,2]) = [6-2, 6+2] = [4,8] mod29.
+```
+
+The fifth length is **3**. Independently, before this carrier check, the p8 source-state circuit had reconstructed `(a,K,q,A,e)=(6,2,4,8,3)`: its two red heading words have lengths `[q,A]=[4,8]`, and its immediately adjacent black word has `(length,sum,product)=[e,p,K]=[3,23,2]`. The JPEG component runs therefore provide a second original-source serialization
+
+```text
+[a,K | H(a,K)=q,A | e]
+= [6,2 | 4,8 | 3].
+```
+
+This is stronger than relabeling five convenient numbers after the fact because the source-order vector contains its own exact H relation and lands on the independently selective p8 receiver. Among all **7,315** positive ordered five-part compositions of the observed 23 grayscale pages, only **15** satisfy `H(r1,r2)=(r3,r4)`; adding the independently established terminal `e=3` leaves **one**, exactly `[6,2,4,8,3]`. Among all ten cyclic/reversed presentations of the observed vector, only the printed forward order satisfies the H relation.
+
+The evidence boundary remains important. The H/run interpretation was recognized after the 35/23 component census was known, so the finite counts are exact conditional charges, **not** a discovery-wide probability of authorial intent. The shared Artifex ICC profile and optimized JPEG pipeline still admit an export-process explanation for one-versus-three components, and no first-party text explicitly says to read component-mode run lengths. This result supplies a new carrier-level **state-delivery candidate and p8 receiver cross-lock**, not unknown body plaintext or a body-cipher key. The next useful test is an independently selected operation that consumes this state on untouched ciphertext; do not tune arbitrary component/run permutations.
+
+[P8 state circuit](lp2-p8-red-h-state-circuit.md).
+
 ## Lossless JPEG entropy/Huffman origin test (Agent 10, 17 November 2026)
 
 An independent original-image encoding question is whether the 58 released scans hide a separate signal through a freely selected Huffman table or noncanonical compressed entropy representation, above and beyond their quantized DCT coefficients. The new [read-only 58-image libjpeg test](../sims/lp2_jpeg_huffman_reencode_sft.c) extracts each original JPEG's *unchanged quantized DCT coefficient arrays*, recompresses those coefficients with libjpeg `optimize_coding=TRUE` and the image's original critical parameters, then compares both exact DHT segment bytes and the complete post-SOS entropy-coded payload, ending at the original EOI. It neither modifies source coefficients nor compares visually re-encoded pixels.
