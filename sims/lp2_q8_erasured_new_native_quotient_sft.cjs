@@ -172,8 +172,8 @@ function newPi(random){
  const inv=inv29(arr[0]);return [0,...arr.map(x=>x*inv%29)];
 }
 function newWorld(seed,world){
- const random=rng(seed),commonPi=newPi(random);
- const pis=CHAPTERS.map(()=>world==='common'?commonPi:newPi(random));
+ const random=rng(seed),commonPi=newPi(rng(seed+500000));
+ const pis=CHAPTERS.map((_,ci)=>world==='common'?commonPi:newPi(rng(seed+600000+ci*199)));
  const keys=CHAPTERS.map(()=>{let k;do{k=Array.from({length:8},()=>Math.floor(random()*29));}while(![0,1,2,3].some(j=>k[j]!==k[j+4]));return k;});
  const phase=ANCHORS.map(()=>Math.floor(random()*8));
  const controls=ANCHORS.map(([name,wordidx],i)=>{
