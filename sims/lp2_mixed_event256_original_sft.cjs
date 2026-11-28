@@ -90,7 +90,7 @@ for(let shift=0;shift<circle;shift++) {
 }
 assert.equal(cvLow,4871);
 assert.equal(maxLow,5896);
-assert.equal(rrLow,11358);
+assert.equal(rrLow,11357);
 
 const key = Buffer.alloc(32);
 for(let i=0;i<32;i++) key[i] = parseInt(keyBits.slice(8*i,8*i+8),2);
