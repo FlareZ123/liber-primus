@@ -16,7 +16,11 @@ const model = buildSourceNativeTrigramModel({ corpus, referenceText });
 
 const MOD = 29;
 const UP = [1, 13];
-const HISTORICAL_2014_ORDER = [2, 8, 9, 1, 12, 13, 11, 4, 5, 7, 3, 0, 6, 10];\n\n/** @param {number} x @returns {number} */\nfunction mod(x) { return ((x % MOD) + MOD) % MOD; }\n
+const HISTORICAL_2014_ORDER = [2, 8, 9, 1, 12, 13, 11, 4, 5, 7, 3, 0, 6, 10];
+
+/** @param {number} x @returns {number} */
+function mod(x) { return ((x % MOD) + MOD) % MOD; }
+
 // Existing source-derived p3 field map. This report consumes Q rather than
 // re-deriving the polynomial quotient that produced it.
 const Q = [17, 24];
@@ -45,7 +49,7 @@ function fieldPow(base, exponent) {
 
 /** @param {number} a @param {number} b @returns {[number,number]} */
 function H(a, b) {
-  return [(a - b + MOD) % MOD, (a + b) % MOD];
+  return [mod(a - b), mod(a + b)];
 }
 
 /** @param {number[]} values @returns {number[]} */
@@ -119,7 +123,7 @@ const signed2016 = fs.readFileSync(
   path.join(root, "resources/historical/cicada2016-4gq25-outguess.asc"), "utf8"
 );
 const signedBody = signed2016.split("-----BEGIN PGP SIGNATURE-----")[0];
-const signedWords = signedBody.match(/\\b[A-Za-z]+\\b/g)
+const signedWords = signedBody.match(/\b[A-Za-z]+\b/g)
   .filter(word => !["BEGIN", "PGP", "SIGNED", "MESSAGE", "Hash", "SHA"].includes(word))
   .map(word => word.toUpperCase());
 assert.equal(signedWords[18], "MAP");
@@ -196,10 +200,16 @@ console.log(JSON.stringify({
     centerIndices: [132, 133],
     centerValuesLeftRight: [leftCenter, rightCenter],
     directedHRightLeft: centerH,
-    directedHSpell: model.spell(centerH)
+    directedHSpell: model.spell(centerH),
+    qExponent: qLog.get(centerH.join(",")),
+    qExponentWord: signedWords[qLog.get(centerH.join(","))],
+    coordinateWords: centerH.map(value => signedWords[value]),
+    direction29Destination: p1DirectionDestination,
+    direction29DestinationWords: p1DirectionDestination.map(value => signedWords[value])
   },
   evenCenterCount: evenCenters.length,
-  exactUpCenterPages: upHits.map(row => row.page),\n  roadDestinationPages,
+  exactUpCenterPages: upHits.map(row => row.page),
+  roadDestinationPages,
   divisibleBy14,
   historical2014Order: HISTORICAL_2014_ORDER,
   scores
