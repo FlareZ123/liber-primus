@@ -180,6 +180,78 @@ const replay = [
 ];
 assert.deepEqual(replay, source);
 
+// Matched manuscript-wide source gate: every odd-rune unknown page whose exact
+// center is immediately followed by a complete printed word. Freeze e=3 from
+// p50 and charge only action-count versus zero-index layer depth.
+const dictionaryWords = read("resources/control/english_wordfreq_textblob.txt")
+  .toLowerCase().split(/\s+/u).filter(Boolean);
+for (const relative of [
+  "resources/control/gibran_prophet_58585.txt",
+  "resources/control/shakespeare_first300k.txt",
+  "resources/control/emerson_essays_2944.txt",
+  "resources/liber-primus/lp1-plaintext-reference.txt",
+]) {
+  dictionaryWords.push(...(read(relative).toLowerCase().match(/[a-z]+/gu) || []));
+}
+const lexicon = new Set(dictionaryWords.filter((word) =>
+  /^[a-z]+$/u.test(word) && word.length >= 3
+));
+/** @param {string} text */
+function oneOrTwoWordParses(text) {
+  const lower = text.toLowerCase();
+  const parses = [];
+  if (lexicon.has(lower)) parses.push([lower]);
+  for (let cut = 3; cut <= lower.length - 3; cut += 1) {
+    const left = lower.slice(0, cut);
+    const right = lower.slice(cut);
+    if (lexicon.has(left) && lexicon.has(right)) parses.push([left, right]);
+  }
+  return parses;
+}
+const matchedCenterObjects = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const parsed = parsePage(physicalPart(page));
+  if (parsed.runes.length % 2 === 0) continue;
+  const pageCenter = (parsed.runes.length - 1) / 2;
+  const nextWord = parsed.words.find((word) => word.start === pageCenter + 1);
+  if (!nextWord) continue;
+  const layers = Math.ceil(nextWord.len / 2);
+  const object = [parsed.runes[pageCenter], ...nextWord.values];
+  for (const convention of ["action", "zero"]) {
+    const centerExponent = convention === "action" ? e : 1;
+    const wordExponent = modPow(
+      e,
+      convention === "action" ? layers : layers - 1,
+      28
+    );
+    const output = [
+      modPow(object[0], centerExponent, 29),
+      ...object.slice(1).map((value) => modPow(value, wordExponent, 29)),
+    ];
+    matchedCenterObjects.push({
+      page,
+      word:nextWord.word,
+      wordLength:nextWord.len,
+      layers,
+      convention,
+      exponents:[centerExponent, wordExponent],
+      text:spell(output),
+      parses:oneOrTwoWordParses(spell(output)),
+    });
+  }
+}
+assert.equal(matchedCenterObjects.length, 8);
+assert.deepEqual(
+  [...new Set(matchedCenterObjects.map((row) => row.page))],
+  [3,17,25,28]
+);
+const lexicalHits = matchedCenterObjects.filter((row) => row.parses.length > 0);
+assert.deepEqual(lexicalHits, [{
+  page:28,word:28,wordLength:5,layers:3,convention:"action",
+  exponents:[3,27],text:"READOUT",parses:[["read","out"]]
+}]);
+
 console.log(JSON.stringify({
   status:"PASS",
   p50DerivedDh:{p,g,a,b,A,B,K,e},
@@ -193,6 +265,10 @@ console.log(JSON.stringify({
     zeroIndexedExponents:zeroIndexedPair,
     zeroIndexedOutput,
     zeroIndexedText:spell(zeroIndexedOutput)
+  },
+  matchedCenterGate:{
+    configurations:matchedCenterObjects,
+    lexicalHits
   },
   classification:"post-discovery independent state transfer: p50 supplies e=3 and K=2 without p28 DH-line state; action-count layering on the established p28 center+word28 object yields READOUT. The p28-specific assignment/layer convention remains a caveat."
 }, null, 2));
