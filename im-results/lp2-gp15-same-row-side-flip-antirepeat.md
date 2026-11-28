@@ -54,7 +54,31 @@ Using the repository's source-calibrated English→GP encoder, scan **every cont
 
 Total exhaustive native windows: **562,060**.
 
+
 No same-length native-GP window approaches the LP2 conditional rate. The lowest control is more than twice the LP2 exact-given-row probability.
+
+The effect is also **row-wide rather than symbol-local**. Against aggregate native controls, every one of the 14 paired vertical rows has a lower exact-repeat rate conditional on staying in that row:
+
+| row | GP pair | LP2 exact/same-row | LP2 rate | native rate |
+|---:|---|---:|---:|---:|
+| 0 | F / AE | 0/29 | 0.00% | 42.45% |
+| 1 | U / O | 1/31 | 3.23% | 29.23% |
+| 2 | TH / R | 3/26 | 11.54% | 31.49% |
+| 3 | O / C | 1/26 | 3.85% | 33.97% |
+| 4 | R / G | 3/34 | 8.82% | 37.86% |
+| 5 | C / W | 6/32 | 18.75% | 40.08% |
+| 6 | G / H | 1/38 | 2.63% | 32.35% |
+| 7 | W / N | 5/33 | 15.15% | 37.19% |
+| 8 | H / I | 7/38 | 18.42% | 45.09% |
+| 9 | N / J | 14/34 | 41.18% | 64.74% |
+| 10 | I / EO | 10/40 | 25.00% | 47.13% |
+| 11 | J / P | 4/36 | 11.11% | 43.17% |
+| 12 | EO / X | 9/42 | 21.43% | 58.32% |
+| 13 | P / S | 20/38 | 52.63% | 74.33% |
+
+Row14 is the expected structural control: it contains only the unpaired left-table rune X, so all 6 same-row transitions are necessarily exact (100%), just as in native GP.
+
+That all 14 paired rows move in the same direction strongly disfavors a few symbol-specific substitutions. The side-avoidance pressure is a chart-wide property.
 
 This strengthens the earlier GP15 row-tape result. The ciphertext is not merely suppressing vertical-row repetition and exact-rune repetition independently. Conditional on the rare event that the row does repeat, the **side coordinate is strongly anti-persistent**.
 
