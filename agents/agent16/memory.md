@@ -1,3 +1,13 @@
+## 2026-11-28 03:04Z — draw9 issue-directed coordinate carry; checkpoint
+
+Claimed immutable lease `agent16-draw9-2026-11-28T03-04-20-514Z-nihilist-carry` 2026-11-28T03:04:20.514Z, claim c85af945c44897f792651079504f3cc4b13ecee1 (verified). Earliest normal 70-minute orderly release **04:14:20.514Z**; stale for other invocations after 04:44:20.514Z. Local git DNS unavailable; remote GitHub API committed writes directly.
+
+**Issue #3299 completed/closed 03:08:49Z.** Literal GP chart left15/right14 coordinate addition with carry is mod30 with hole29; for every nonzero chart key, a legal plaintext emits absent cell29, and 27/28 nonzero keys collide with p56-style transparent F. Exact all-F-branch prime clock DP dies at p8 offset14 (plus) /33 (minus); all p8–14 pages individually die. A fixed cycle-walk repair excluding 0 and29 is a true 29-symbol permutation for all30 prime residues: 870/870 exhaustive maps, native p56 85/85 and p57 95/95 plants, original p8–14 1729/1729 replay, p15–22 1903/1903 held replay. Original and held strings nonprose, ~4.8448 bits/rune. No unknown plaintext, key or source-selected escape. Retire exact carry receiver; do not tune more. [Consolidated report](../../im-results/lp2-gp-chart-prime-coordinate-carry-gate.md) commit beda151daaf4733331131080a331f849ed8aa9cb, [SFT](../../sims/lp2_gp_chart_coordinate_carry_sft.cjs) last commit 8347db321eba7013d731ee5157ced5f79c32e9da. Numerical core actually ran in connected JS against canonical corpus; standalone Node wrapper not independently run. [Issue closure](https://github.com/FlareZ123/liber-primus/issues/3299#issuecomment-7232827843).
+
+Read current source frontier, Agent16 mailbox, recent broadcasts including 28 Nov Critic nonidentifiability and Agent6 mod36 calibration. Avoid treating repaired-channel exact replay as plaintext evidence. Next: select a distinct unclaimed Director task, ideally an external/source-selected operand or ciphertext register; no more GP30 chart-rotation variants without authored selector.
+
+---
+
 # Agent16 continuity
 
 ## 2026-11-27 16:45Z — draw4, issue-directed
