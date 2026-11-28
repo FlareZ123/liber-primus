@@ -174,9 +174,11 @@ again unique across the same 479 windows.
 
 This is the strongest new page-to-page operation in this report: p7 supplies an executable polynomial and a source-fixed seven-state orbit; p8 supplies a state-motivated square of literal source lengths; ordinary GF29 dot products produce a compact DH-state checksum.
 
-### Source-selected seven-page signed-fragment receiver
+### Source-selected seven-page dual fragment receiver
 
-The weighted-row packet is more than a checksum. In ordinary signed state notation it is
+The weighted-row packet is more than a checksum. It has **two source-native index readings** that independently select 28-rune operands.
+
+First, in ordinary signed state notation it is
 
 ```text
 [K,-1,g,-1,p,-1,-K]
@@ -224,9 +226,38 @@ H7(sums)     = [Kg,b-K,q,Kg,F,K-b,g+K]
 H7(products) = [B^-1,1,g+K,b+K,aK,b,g+K].
 ```
 
-This is the first downstream object in this route whose **contents were not inspected to choose it**. The schedule came entirely from the preceding p7 polynomial, the p8 fragment-length square, and their ordinary GF29 product. It therefore deserves more weight than retrospective state naming inside p8.
+This is a downstream object whose **contents were not inspected to choose it**. The schedule came entirely from the preceding p7 polynomial, the p8 fragment-length square, and their ordinary GF29 product.
 
-The selected 28 runes are not readable native-GP plaintext on inspection. Their current status is **source-derived key/operand material**, not a decryption.
+Second, keep the exact GF29 residues without signed lifting:
+
+```text
+[2,28,5,28,23,28,27].
+```
+
+Use those directly as GP0 page-local fragment indices. This independently selects **28 runes** with held-out descriptor rows
+
+```text
+lengths  = [e,e,K,q+g,K,e,a]
+sums     = [p,F,K,p-g,-K,b,b+K]
+products = [K,-K,-g,F,b+K,q+g,-A],
+```
+
+and aggregate
+
+```text
+(length,SUM,PRODUCT)=(-1,b,F)=(28,15,0).
+```
+
+The signed and raw-GP0 operands are different but have equal length, so coordinate-wise combination is also fixed without reindexing:
+
+```text
+raw - signed: (length,SUM,PRODUCT)=(-1,A^-1,F)
+raw + signed: (length,SUM,PRODUCT)=(-1,B,a).
+```
+
+This **dual receiver** is stronger than the earlier signed-only interpretation: the direct GP0 reading needs no residue-to-negative convention, while the signed reading follows the state expression `[K,-1,g,-1,p,-1,-K]`; both independently land on 28-rune state-bearing operands.
+
+Neither 28-rune sequence is readable native-GP plaintext on inspection. Their current status is **source-derived key/operand material**, not a decryption.
 
 ### Immediate p15 boundary consumer
 
@@ -244,7 +275,7 @@ Taking that one boundary rune together with the entire black body gives
 = 5 exact repeats of the new operand length.
 ```
 
-That is a source-motivated p15 consumer, so freeze the simplest reversible use immediately: phase-zero repeating additive/subtractive application of the 28-rune operand to the exact `-A | black` slice. Both directions fail the pinned native-GP language gate:
+That is a source-motivated p15 consumer, so freeze the simplest reversible use immediately: phase-zero repeating additive/subtractive application of each 28-rune branch to the exact `-A | black` slice. Both directions on both branches fail the pinned native-GP language gate. For the signed branch:
 
 ```text
 raw receiver score: -1.32044
@@ -253,7 +284,7 @@ add operand:        -1.53448
 solved-native min:  +0.70997
 ```
 
-The subtract direction does turn the first boundary rune into `p`, but the complete 140-rune output becomes less language-like. Do not rescue this consumer with phase searches or transformed variants. Preserve the exact tiling as a structural continuation; ordinary repeating Vigenere-style use is rejected.
+The raw-GP0 branch is worse still (scores **−1.73073** and **−1.68045**). The signed subtract direction does turn the first boundary rune into `p`, but the complete 140-rune output becomes less language-like. A separately checked multiplicative/divisive use of the nonzero signed operand is also negative. Do not rescue this consumer with phase searches or transformed variants. Preserve the exact tiling as a structural continuation; ordinary repeating SUM/PRODUCT stream use is rejected.
 
 
 ### The p7 polynomial acting on the p8 matrix
