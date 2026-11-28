@@ -109,14 +109,37 @@ Both results are post-discovery finite-family compression. They materially reduc
 
 See `im-results/lp2-p6-block1-receiver-residue-grammar.md`, `sims/lp2_p6_block1_receiver_residue_sft.cjs`, and `im-results/lp2-p6-block3-receiver-residue-grammar.md`.
 
+## Coupled q-block receiver grammar
+
+The source-only schedule resolves to the full per-page GP arity vector
+
+~~~text
+[e,q,K,g | q | q,a,g,q | a,g+K]
+= [3,4,2,5 | 4 | 4,6,5,4 | 6,7].
+~~~
+
+This is unique to source32..42 under the charged within-block family; a broader charge over all 24 labeled block-role orders still leaves only two hits, both on the same source interval, with printed p6 order resolving the sole boundary ambiguity.
+
+P6 also exposes the literal physical edge packet
+
+~~~text
+[q,K,aK,p-1] = [4,2,12,22].
+~~~
+
+It equals the lane-by-lane GP0 difference between the selected second q-block receivers p37..p40 and first q-block receivers p32..p35. Holding the independently selected p37..p40 anchors fixed and enumerating every p6-arity-compatible complete-group sequence on p32..p35 predicts p33 start132 and p35 start25 uniquely; p32 narrows to starts1/30 and p34 to starts4/249, exactly the two ambiguities resolved independently by the full-stop and THEIR-RISE gates. The newer block1 residue selectors are stronger target-blind receiver evidence; the edge packet is an independent cross-block compression of the same receiver set.
+
+Across all 24 packet-coordinate permutations and both directions, 46/48 fail on at least one page. The only alternative survivor predicts p33 start185 and p34 start105; the literal printed edge order is the only charged orientation compatible with the full existing q-block route.
+
+This coupling was discovered after the receivers and remains retrospective. It does not authenticate the source words as plaintext. It changes the next decision by replacing eight independent receiver searches with one provisional paired-lane rule: seek an authored/fresh packet prediction and a coordinatewise key serializer. See [the detailed report](lp2-p6-qblock-edge-gp0-coupling.md).
+
 ## Complete local-inverse corridor
 
 | Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
 |---:|---|---|---|---|
-| 32 / p32 | YOU | first-full-stop terminal word start30; block1 residue1 leaves starts1/30 and full-stop fixes30 | H3 `[K,0,q]` | target-blind block residue + independent tie-break; strong local |
-| 33 / p33 | WILL | canonical word start132; block1 residue16 unique at source arity4 | H4 `[0,-K,g,2a]` | target-blind block residue; strong local |
-| 34 / p34 | BE | p33 THEIR-RISE receiver start4; block1 residue4 unique at source arity2 | direct `[K,K]` | target-blind block residue + independent handoff; strong local |
-| 35 / p35 | FOUND | manuscript-unique state-shaped adjacent 2+3 packet start25; block1 residue25 unique in that class | H5 `[-e,e,g,K,-g]` | target-blind block residue within independent packet class; strong local |
+| 32 / p32 | YOU | first-full-stop terminal word start30; block1 residue1 leaves starts1/30 and full-stop fixes30 | H3 `[K,0,q]` | target-blind block residue + independent tie-break; edge packet independently narrows starts1/30; strong local |
+| 33 / p33 | WILL | canonical word start132; block1 residue16 unique at source arity4 | H4 `[p,A,K,-K]` | target-blind block residue; edge packet independently selects start132; strong local |
+| 34 / p34 | BE | p33 THEIR-RISE receiver start4; block1 residue4 unique at source arity2 | H2 `[B,0]` | target-blind block residue + independent handoff; edge packet narrows starts4/249; strong local |
+| 35 / p35 | FOUND | manuscript-unique state-shaped adjacent 2+3 packet start25; block1 residue25 unique in that class | H5 `[K,g-a,A-B,0,g+K]` | target-blind block residue within independent packet class; edge packet independently selects start25; strong local |
 | 36 / p36 | GOOD | p6 singleton block; unique `p_i/word_i` center-q receiver start169; delete `q=4` | `[p+K,B,-K,-e]` | target-blind receiver; strong local |
 | 37 / p37 | LUCK | start146; block3 residue1 unique at source arity4 | H4 `[B,0,K,g]` | target-blind block residue; strong local |
 | 38 / p38 | BEWARE | start57; block3 residue28 unique at source arity6 | H6 `[K-b,-g,p,p-e,0,-b]` | target-blind block residue; independent section5 support |
