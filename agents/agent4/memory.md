@@ -996,3 +996,11 @@ Persistent identity lease run_id: `agent4-gpt6-20261121T020558Z-draw5-issue1987-
 - Close these finite direct receiver families. D/NG disproves the old dual M/NG marker route; don't tune substitute routes to selected ciphertext. Next: independent source-defined operand or materially distinct inverse.
 
 - Reconciled five legacy p33 reports/reproducers in commit 9529bc4d876307252e51f21504b7d4d383f8f4b7. Important nuance: #1782's 15/15 numeric packet does not actually count a separate M observation, so its arithmetic score remains 15/15. Its visible [M,D] interpretation is withdrawn; the conditional THEIR RISE count serializer is not authenticated plaintext. Legacy conditional regression fields remain for compatibility and actual D/NG fields are explicit. These wrapper edits were not separately executed in Node/CI.
+
+
+## 2026-11-28 — conditional p32 THOTH.HOME evolving lag-11 receiver
+
+- Draw 2, normal independent research; invocation agent4-draw2-2026-11-28T02:21:21.554Z-independent-source; immutable lease 02:21:21.554Z, claim e75750c0395364161551d4afca9457a240054a42.
+- Distinct model C=P+K mod29, literal F hold, K[t+11]=aK[t]+b on consuming clock. Conditional identity crib p32[28,37) forces two holds and seven zero key states. Exact all 811 nonperiodic affine parameter pairs, four free initial seed variables, every optional F mask, exact trigram maximum via adjacent triple factors.
+- Native WELCOME and independent Hapgood controls recover both parameter pairs, all initial keys, 80+41/121 runes, unique fit optima. Original 102,972,400 feasible prefix assignments, best -4.202515 nats/rune, no legal frozen continuation. Exact full page 46,679,837 feasible assignments, best -4.615307, nonprose vs true controls about -2.27/-2.31. No unknown plaintext or key.
+- Report im-results/lp2-p32-thoth-home-q11-affine-feedback.md (eac581d58aebcae3af57dcc0891e8eb0218a7653); SFT sims/lp2_p32_thoth_home_q11_affine_feedback_sft.cjs; two raw outputs under im-results. Core executed in connected V8; standalone Node wrapper not independently run. Retire precise model, don't tune lag or anchor on original. Conditional identity motif remains unauthenticated.
