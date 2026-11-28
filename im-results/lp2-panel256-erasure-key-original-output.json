@@ -1,0 +1,177 @@
+{
+  "scope": {
+    "pages": [
+      51,
+      52,
+      53
+    ],
+    "counts": [
+      92,
+      263,
+      179
+    ],
+    "radices": [
+      60,
+      59
+    ],
+    "order": "physical row-major",
+    "phase": 0,
+    "keyLength": 256,
+    "senderModes": [
+      "silent",
+      "delete"
+    ],
+    "controlOffsets": 5000,
+    "controlSeed": 19033,
+    "wrongSeed": 771921,
+    "decoder": "exact first-order MAP, no hidden-run or absolute clock cap"
+  },
+  "blobs": {
+    "gp": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "grid": "2550eae357442912220e05dc51147523a61dd75a",
+    "decoder": "028da8d0bcdc5a3bf175d0600391c7df2fb1acf7",
+    "gibran": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "emerson": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "shakespeare": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  },
+  "columns": [
+    "score",
+    "suffixScore",
+    "lastKeyIndex",
+    "visitedStates",
+    "maxHiddenGap",
+    "hiddenEvents",
+    "fullLCS",
+    "retainedLCS"
+  ],
+  "silent": {
+    "59": {
+      "right": [
+        -2.7506816012594646,
+        -2.776073521887467,
+        684,
+        896616,
+        3,
+        129,
+        0.8968609865470852,
+        0.9375
+      ],
+      "wrong": [
+        -4.322729784759923,
+        -4.291927282490067,
+        907,
+        937736,
+        6,
+        328,
+        0.35498839907192575,
+        0.3354564755838641
+      ],
+      "original": [
+        -4.313577721572758,
+        -4.284631179317876,
+        879,
+        896647,
+        6,
+        308
+      ],
+      "candidatePrefix": "DEDINT BUBED BATEOPEADECE M NOTHEWO IEN AL AISTREXIFOOOPTUPUSERMANIS"
+    },
+    "60": {
+      "right": [
+        -2.732062046759389,
+        -2.7306720457929896,
+        681,
+        884779,
+        3,
+        127,
+        0.9160419790104948,
+        0.965675057208238
+      ],
+      "wrong": [
+        -4.225584408000659,
+        -4.223744783038337,
+        805,
+        937766,
+        4,
+        245,
+        0.35686777920410784,
+        0.32150313152400833
+      ],
+      "original": [
+        -4.270168744609732,
+        -4.2330985657990405,
+        910,
+        885100,
+        5,
+        334
+      ],
+      "candidatePrefix": "LLL ASTANDE MP PEAPRUSUNTOUSP OFT S NC MPLEA LELEOPARERECHANIAUNG"
+    }
+  },
+  "delete": {
+    "59": {
+      "right": [
+        -3.416891461637761,
+        -3.386972473027325,
+        690,
+        3964417,
+        2,
+        99,
+        0.736214605067064,
+        0.8558052434456929
+      ],
+      "wrong": [
+        -4.001348698821626,
+        -3.9662454938118965,
+        651,
+        3964417,
+        2,
+        86,
+        0.35469448584202684,
+        0.352059925093633
+      ],
+      "original": [
+        -3.99447852143542,
+        -3.970343607285173,
+        645,
+        3964417,
+        4,
+        79
+      ],
+      "candidatePrefix": "ISTYOUNTECOPOEATPESANTHYOMNGTHEEERIDIXEGEHESHIWLGUGOWHESPUSAJEUNTHETHYFEN"
+    },
+    "60": {
+      "right": [
+        -3.359814212002903,
+        -3.3667145827792346,
+        686,
+        3964417,
+        2,
+        97,
+        0.7257824143070045,
+        0.848314606741573
+      ],
+      "wrong": [
+        -4.0192922759496446,
+        -3.985965635817243,
+        671,
+        3964417,
+        2,
+        97,
+        0.3621460506706408,
+        0.3539325842696629
+      ],
+      "original": [
+        -4.018806366601288,
+        -4.014652191295487,
+        658,
+        3964417,
+        2,
+        89
+      ],
+      "candidatePrefix": "WHAYOLATICICEDURBOMSTOFESFORSTYTHALYOREAGHANEXPHTYBERYTDTOUMHOFTEAP"
+    }
+  },
+  "all12Replay": true,
+  "execution": "Actual connected V8 exact solver core. Node wrapper generated after experiment, not separately executed. Suffix score from joint full MAP, not a causal prefix-only forecast."
+}
