@@ -131,7 +131,12 @@ assert.deepEqual(H5(itineraryWordLengths),p15WordLengthTarget);
 // Third typed row from exactly the same first-black words: GP29 products.
 const productByIn=new Map(chapterIns.map((x,i)=>[x,chapterProducts[i]]));
 const itineraryProducts=actual.inverse[0].map(x=>productByIn.get(x));
-assert.deepEqual(itineraryProducts,[2,19,3,19,27]);
+// This is stronger than the transformed checksum: the independently defined
+// chapter SUM->PRODUCT navigation maps the p7 inverse state row directly to a
+// second state row, without H5.
+const rawProductStateTarget=[K,B,e,B,mod(-K)];
+assert.deepEqual(rawProductStateTarget,[2,19,3,19,27]);
+assert.deepEqual(itineraryProducts,rawProductStateTarget);
 const p15ProductTarget=[q,F,e,mod(e+a),F];
 assert.deepEqual(p15ProductTarget,[4,0,3,9,0]);
 assert.deepEqual(H5(itineraryProducts),p15ProductTarget);
@@ -156,7 +161,7 @@ assert.deepEqual(ringLengthMatches,[[false,0,[7,6,7,6,2],[3,7,2,7,8],[2,19,3,19,
 // Fixed-marginal charge: preserve the nine observed IN labels and nine
 // observed chapter-span records, permute their assignments, and hold the p7
 // inverse row plus p15 H5 target fixed. This is a conditional diagnostic.
-let assignmentHits=0,jointAssignmentHits=0,tripleAssignmentHits=0,totalAssignments=0;
+let assignmentHits=0,jointAssignmentHits=0,rawProductHits=0,tripleAssignmentHits=0,totalAssignments=0;
 const records=chapterLengths.map((span,i)=>[span,chapterWordLengths[i],chapterProducts[i]]);
 const perm=records.slice();
 function enumerate(at){
@@ -168,10 +173,12 @@ function enumerate(at){
     const products=actual.inverse[0].map(x=>m.get(x)[2]);
     const spanOk=H5(seq).every((x,i)=>x===p15LengthTarget[i]);
     const wordOk=H5(words).every((x,i)=>x===p15WordLengthTarget[i]);
+    const rawProductOk=products.every((x,i)=>x===rawProductStateTarget[i]);
     const productOk=H5(products).every((x,i)=>x===p15ProductTarget[i]);
     if(spanOk)assignmentHits++;
+    if(rawProductOk)rawProductHits++;
     if(spanOk&&wordOk)jointAssignmentHits++;
-    if(spanOk&&wordOk&&productOk)tripleAssignmentHits++;
+    if(spanOk&&wordOk&&rawProductOk&&productOk)tripleAssignmentHits++;
     return;
   }
   for(let i=at;i<perm.length;i++){
@@ -184,12 +191,13 @@ enumerate(0);
 assert.equal(totalAssignments,362880);
 assert.equal(assignmentHits,240);
 assert.equal(jointAssignmentHits,120);
+assert.equal(rawProductHits,240);
 assert.equal(tripleAssignmentHits,120);
 console.log(JSON.stringify({
  classification:'original-only cross-holdout: independent p15 state predicts older p7 circulant inverse identity',
  p15Derived:{p,K,g,B,b,predictedInverseRow:p15Predicted},
  p7:{products,determinant:actual.determinant,inverseFirstRow:actual.inverse[0]},
  orientationCharge:{variants:variants.length,matches},
- chapterBridge:{chapterStarts,chapterIns,chapterLengths,chapterWordLengths,chapterProducts,itineraryLengths,h5:H5(itineraryLengths),p15LengthTarget,itineraryWordLengths,wordH5:H5(itineraryWordLengths),p15WordLengthTarget,itineraryProducts,productH5:H5(itineraryProducts),p15ProductTarget,ringLengthMatches,fixedMarginal:{spanHits:assignmentHits,jointHits:jointAssignmentHits,tripleHits:tripleAssignmentHits,total:totalAssignments,spanOneIn:totalAssignments/assignmentHits,jointOneIn:totalAssignments/jointAssignmentHits,tripleOneIn:totalAssignments/tripleAssignmentHits}},
+ chapterBridge:{chapterStarts,chapterIns,chapterLengths,chapterWordLengths,chapterProducts,itineraryLengths,h5:H5(itineraryLengths),p15LengthTarget,itineraryWordLengths,wordH5:H5(itineraryWordLengths),p15WordLengthTarget,itineraryProducts,rawProductStateTarget,productH5:H5(itineraryProducts),p15ProductTarget,ringLengthMatches,fixedMarginal:{spanHits:assignmentHits,rawProductHits,jointHits:jointAssignmentHits,tripleHits:tripleAssignmentHits,total:totalAssignments,spanOneIn:totalAssignments/assignmentHits,rawProductOneIn:totalAssignments/rawProductHits,jointOneIn:totalAssignments/jointAssignmentHits,tripleOneIn:totalAssignments/tripleAssignmentHits}},
  boundary:'strengthens shared state serialization and a typed p7-to-chapter handoff; does not authenticate circulant as the intended cipher opcode or recover plaintext'
 },null,2));
