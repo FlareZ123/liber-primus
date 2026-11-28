@@ -1,13 +1,16 @@
 "use strict";
 
 /**
- * LP2 p32 horizontal-reflection reading-order gate.
+ * LP2 p32/p55 source-selected horizontal-reflection text-opcode gate.
  *
- * The tree source independently selects horizontal reflection. Test the exact
- * corresponding text operation on the same physical page: reverse rune order
- * within each printed line, preserve the vertical line order, and compare the
- * resulting 121-rune stream with native solved GP29 bigram controls.
+ * The common tree source independently selects horizontal reflection on both
+ * illustrated pages. Test the finite direct text interpretations:
+ *   - reverse rune order within each physical line;
+ *   - the independently calibrated literal GP glyph-reflection map;
+ *   - the physically complete glyph+line raster mirror;
+ *   - reversible GP29 Atbash, with and without line reversal.
  *
+ * Compare every output with matched-length native solved-GP29 bigram windows.
  * No key, phase, language-guided permutation or downstream ciphertext is fit.
  */
 const assert = require("node:assert/strict");
@@ -16,26 +19,15 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const read = rel => fs.readFileSync(path.join(root, rel), "utf8").replace(/\r/g, "");
-
 const transcript = read("resources/liber-primus/lp2-transcription.txt");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
-
-const page = transcript.split("\n%\n")[32].split("\n&")[0].trim();
+const pages = transcript.split("\n%\n");
 const runeSet = new Set(corpus.runes);
-const lines = page.split("\n").map(line => [...line].filter(ch => runeSet.has(ch)));
-assert.deepEqual(lines.map(x => x.length), [25, 23, 23, 21, 22, 7]);
-
-const original = lines.flat();
-const mirrored = lines.flatMap(line => [...line].reverse());
-const wholeReverse = [...original].reverse();
-assert.equal(original.length, 121);
-assert.equal(mirrored.length, 121);
-assert.equal(new Set(original).size, 29);
+const index = new Map(corpus.runes.map((r, i) => [r, i]));
 
 // Independently calibrated literal horizontal glyph-reflection map from the
-// p2 training gallery, already validated on p22 original-image glyphs.
-// Input/output transliteration order is canonical GP29.
+// p2 original-image training gallery, already held-out on p22.
 const mirrorOutputs = [
   "X","M","J","S","G","X","G","X","H","N","I","J","EO","E","X",
   "O","T","OE","E","E","X","NG","OE","D","OE","S","M","IA","EA",
@@ -47,28 +39,14 @@ const mirrorRunes = mirrorOutputs.map(x => {
 });
 assert.equal(new Set(mirrorRunes).size, 17);
 const mirrorMap = new Map(corpus.runes.map((r, i) => [r, mirrorRunes[i]]));
-const glyphOnly = original.map(ch => mirrorMap.get(ch));
-const fullRasterMirror = lines.flatMap(line =>
-  [...line].reverse().map(ch => mirrorMap.get(ch))
-);
-
-// The reversible alphabet-level interpretation of a reflection clue: GP29
-// Atbash, v -> 28-v, with and without the same physical line reversal.
 const atbashMap = new Map(corpus.runes.map((r, i) => [r, corpus.runes[28 - i]]));
-const atbash = original.map(ch => atbashMap.get(ch));
-const atbashLineMirror = lines.flatMap(line =>
-  [...line].reverse().map(ch => atbashMap.get(ch))
-);
 
-const index = new Map(corpus.runes.map((r, i) => [r, i]));
-const counts = Array.from({length:29}, () => Array(29).fill(0.5));
+const counts = Array.from({length: 29}, () => Array(29).fill(0.5));
 const totals = Array(29).fill(29 * 0.5);
-
 const sections = solved.sections.map(s =>
   [...s.source_text].filter(ch => index.has(ch)).map(ch => index.get(ch))
 );
 assert.equal(sections.flat().length, 2979);
-
 for (const seq of sections) {
   for (let i = 0; i + 1 < seq.length; i++) {
     counts[seq[i]][seq[i + 1]] += 1;
@@ -88,66 +66,92 @@ function score(seq) {
   return s / (a.length - 1);
 }
 
-const native = [];
-for (const seq of sections) {
-  for (let i = 0; i + original.length <= seq.length; i++) {
-    native.push(score(seq.slice(i, i + original.length)));
+/** @param {number} n */
+function nativeWindowScores(n) {
+  const out = [];
+  for (const seq of sections) {
+    for (let i = 0; i + n <= seq.length; i++) out.push(score(seq.slice(i, i + n)));
   }
+  out.sort((a, b) => a - b);
+  return out;
 }
-assert.equal(native.length, 1990);
-native.sort((a, b) => a - b);
-
-const sOriginal = score(original);
-const sMirror = score(mirrored);
-const sWhole = score(wholeReverse);
-const sGlyphOnly = score(glyphOnly);
-const sFullRaster = score(fullRasterMirror);
-const sAtbash = score(atbash);
-const sAtbashLine = score(atbashLineMirror);
-const nativeMin = native[0];
-const q = p => native[Math.min(native.length - 1, Math.floor(p * native.length))];
-
-assert.ok(sMirror > sOriginal, "mirror should reproduce measured slight improvement");
-assert.ok(sMirror < nativeMin, "mirrored p32 must remain below every matched native window");
-assert.ok(sWhole < nativeMin, "whole reverse control must remain below every matched native window");
-assert.ok(sGlyphOnly < nativeMin, "fixed glyph reflection must remain below every matched native window");
-assert.ok(sFullRaster < nativeMin, "complete raster mirror must remain below every matched native window");
-assert.ok(sAtbash < nativeMin, "GP29 Atbash must remain below every matched native window");
-assert.ok(sAtbashLine < nativeMin, "Atbash plus line mirror must remain below every matched native window");
-assert.equal(new Set(glyphOnly).size, 17, "p32 uses all29 inputs, so fixed glyph mirror collapses to 17 outputs");
-assert.equal(new Set(atbash).size, 29, "Atbash must remain a bijection on p32's complete alphabet");
 
 const translit = seq => seq.map(ch => corpus.translit[index.get(ch)]).join("");
 
+/** @param {number} block @param {number[]} expectedLengths @param {string} name */
+function testPage(block, expectedLengths, name) {
+  const page = pages[block].split("\n&")[0].trim();
+  const lines = page.split("\n").map(line => [...line].filter(ch => runeSet.has(ch)));
+  assert.deepEqual(lines.map(x => x.length), expectedLengths);
+
+  const original = lines.flat();
+  const lineMirror = lines.flatMap(line => [...line].reverse());
+  const wholeReverse = [...original].reverse();
+  const glyphMirror = original.map(ch => mirrorMap.get(ch));
+  const fullRasterMirror = lines.flatMap(line =>
+    [...line].reverse().map(ch => mirrorMap.get(ch))
+  );
+  const atbash = original.map(ch => atbashMap.get(ch));
+  const atbashLineMirror = lines.flatMap(line =>
+    [...line].reverse().map(ch => atbashMap.get(ch))
+  );
+
+  const candidates = {
+    original,
+    lineMirror,
+    wholeReverseControl: wholeReverse,
+    fixedGlyphReflection: glyphMirror,
+    fullRasterMirrorGlyphPlusLineOrder: fullRasterMirror,
+    gp29Atbash: atbash,
+    gp29AtbashPlusLineMirror: atbashLineMirror,
+  };
+  const scores = Object.fromEntries(
+    Object.entries(candidates).map(([k, v]) => [k, score(v)])
+  );
+  const native = nativeWindowScores(original.length);
+  const nativeMin = native[0];
+  for (const [k, v] of Object.entries(scores)) {
+    if (k === "original") continue;
+    assert.ok(v < nativeMin, `${name} ${k} unexpectedly reaches native solved-GP range`);
+  }
+
+  return {
+    transcriptionBlock: block,
+    physicalLineLengths: expectedLengths,
+    runeCount: original.length,
+    distinctInputRunes: new Set(original).size,
+    fixedGlyphMirrorDistinctOutputs: new Set(glyphMirror).size,
+    scores,
+    nativeWindows: {
+      n: native.length,
+      min: nativeMin,
+      median: native[Math.floor(native.length / 2)],
+      max: native[native.length - 1],
+    },
+    bestDirectReflectionScore: Math.max(
+      scores.lineMirror, scores.fixedGlyphReflection,
+      scores.fullRasterMirrorGlyphPlusLineOrder,
+      scores.gp29Atbash, scores.gp29AtbashPlusLineMirror
+    ),
+    fullRasterMirrorTransliteration: translit(fullRasterMirror),
+    atbashTransliteration: translit(atbash),
+  };
+}
+
+const p32 = testPage(32, [25, 23, 23, 21, 22, 7], "p32");
+const p55 = testPage(54, [24, 22, 22, 8], "p55");
+assert.equal(p32.runeCount, 121);
+assert.equal(p32.distinctInputRunes, 29);
+assert.equal(p32.fixedGlyphMirrorDistinctOutputs, 17);
+assert.equal(p32.nativeWindows.n, 1990);
+assert.equal(p55.runeCount, 76);
+assert.equal(p55.distinctInputRunes, 25);
+assert.equal(p55.fixedGlyphMirrorDistinctOutputs, 15);
+assert.equal(p55.nativeWindows.n, 2304);
+
 console.log(JSON.stringify({
-  sourceOperation: "horizontal reflection -> reverse rune order within each printed line",
-  physicalLineLengths: lines.map(x => x.length),
-  runeCount: original.length,
-  scores: {
-    original: sOriginal,
-    mirroredLines: sMirror,
-    wholePageReverseControl: sWhole,
-    fixedGlyphReflection: sGlyphOnly,
-    fullRasterMirrorGlyphPlusLineOrder: sFullRaster,
-    gp29Atbash: sAtbash,
-    gp29AtbashPlusLineMirror: sAtbashLine,
-  },
-  invertibility: {
-    p32DistinctInputRunes: new Set(original).size,
-    fixedMirrorDistinctOutputs: new Set(glyphOnly).size,
-  },
-  native121RuneWindows: {
-    n: native.length,
-    min: nativeMin,
-    q05: q(.05),
-    median: q(.5),
-    q95: q(.95),
-    max: native[native.length - 1],
-  },
-  mirroredMarginBelowWorstNative: nativeMin - sMirror,
-  mirroredTransliteration: translit(mirrored),
-  fullRasterMirrorTransliteration: translit(fullRasterMirror),
-  atbashTransliteration: translit(atbash),
-  atbashLineMirrorTransliteration: translit(atbashLineMirror),
-  decision: "HORIZONTAL_REFLECTION_DOES_NOT_RECOVER_AN_INVERTIBLE_OR_NATIVE_GP29_TEXT",
+  sourceOperation: "common reflected tree -> finite direct horizontal-reflection text operations",
+  p32,
+  p55,
+  decision: "NO_DIRECT_REFLECTION_TEXT_OPCODE_RECOVERS_NATIVE_GP29_ON_EITHER_TREE_PAGE",
 }, null, 2));
