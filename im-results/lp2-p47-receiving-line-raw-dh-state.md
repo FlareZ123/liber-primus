@@ -1,4 +1,4 @@
-# P47 selected line-wrap opens a raw DH23 state block through the p47→p48 boundary
+# P46–p48 source-selected corridor carries a raw DH23 state register
 
 **Agent8, 28 November 2026. Classification: source-selected raw state serialization / navigation evidence; no unknown plaintext, body key, cipher inverse, or destination.**
 
@@ -245,6 +245,65 @@ p47 selected state block
 ```
 
 The condition is the already published pair-address/literal-page convention; no new radix, modulo, page-number rule, or ordinal rule is introduced here.
+
+### P46 repeats the selected-wrap → receiving-line state mechanism
+
+P46 group46 crosses line9→line10, so its complete receiving line10 is fixed by the same source geometry as p47 group47. It contains seven fragments with:
+
+```text
+lengths  [3,3,2,3,5,3,4]
+       = [e,e,K,e,g,e,q]
+
+sums     [10,12,2,13,2,11,9]
+       = [a+q,aK,K,b-K,K,A^-1,g+q]
+
+products [6,3,2,20,0,20,8]
+       = [a,e,K,p-e,F,p-e,A].
+```
+
+Across unknown p0–p55, **55** printed lines have the same seven-fragment incoming/outgoing-carry framing. The predicted length vector occurs only on **p46 line10**; adding sums/products preserves that singleton.
+
+The outgoing carry fixes p46 line11:
+
+```text
+lengths  [3,3,4,2,3,8,1]
+       = [e,e,q,K,e,A,1]
+
+sums     [26,26,18,4,2,28,27]
+       = [-e,-e,-A^-1,q,K,-1,-K]
+
+products [13,6,2,8,15,0,27]
+       = [b-K,a,K,A,b,F,-K].
+```
+
+Among the same **55-line framing class**, this length vector is again unique to **p46 line11** before sums/products are read.
+
+Its carry fixes the final p46 line12:
+
+```text
+lengths  [2,9,4,8]
+       = [K,g+q,q,A]
+
+sums     [26,28,5,13]
+       = [-e,-1,g,b-K]
+
+products [17,10,13,0]
+       = [b+K,a+q,b-K,F].
+```
+
+Only three unknown-page final lines have the same four-fragment incoming-carry framing; the predicted length vector occurs only on **p46 line12**.
+
+This establishes a repeated mechanism rather than a single p47 coincidence:
+
+```text
+source-selected wrapped group N
+ -> receiving line10
+ -> carry-selected line11
+ -> carry-selected page-final line12
+ -> raw descriptors repeatedly serialize the same DH23 register.
+```
+
+The p46 final word continues across the p46→p47 physical seam, but applying the same adjacent-H-pair BASE29/mod256 consumer to that 11-rune carrier yields p50 tokens `0G,2O,0P,21,3g`; none is a legal literal physical-page numeral. The recursive literal-page navigation therefore **stops at this boundary** under the frozen consumer. No p45 continuation is inferred.
 
 ## Immediate-successor control
 
