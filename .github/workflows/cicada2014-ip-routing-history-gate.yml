@@ -1,0 +1,22 @@
+name: Cicada 2014 IP routing-history gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  route-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Query RIPEstat routing history
+        run: node sims/cicada2014_ip_routing_history_gate.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cicada2014-ip-routing-history
+          path: im-results/cicada2014-ip-routing-history-gate.json
+          if-no-files-found: error
+          retention-days: 30
