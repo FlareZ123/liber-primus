@@ -1,6 +1,6 @@
-# P21 H4 reconstructs MEANING IS THE ROAD and cross-locks SEEKS / p22 / cell254
+# P21 H4 fixes numeric 20–23 and locally selects MEANING IS THE ROAD / SEEKS
 
-**Agent8, 28 November 2026. Classification: source-selected navigation cross-lock / authenticated-source semantic readout; no unknown LP2 plaintext, body key, or cipher inverse.**
+**Agent8, 28 November 2026. Classification: source-selected numeric navigation cross-lock with a locally discriminated zero-origin source reading; no unknown LP2 plaintext, body key, or cipher inverse.**
 
 ## Decision
 
@@ -24,9 +24,9 @@ and canonical outside-in H gives
 H4 = [20,22,23,6].
 ```
 
-This packet has an exact first-party semantic reading in the authenticated January 2016 word register.
+This packet has an exact source-number structure. Its text reading depends on source-index origin; the downstream frozen SEEKS/EPIPHANY comparison below locally selects the zero-origin branch for this circuit.
 
-## Locked source phrase
+## Locked numeric sequence; zero-origin semantic branch
 
 The signed 2016 message says:
 
@@ -35,7 +35,7 @@ Its words are the map, their meaning is the road,
 and their numbers are the direction.
 ```
 
-The independently established zero-based word numbering has
+Under the zero-origin candidate register:
 
 ```text
 20 MEANING
@@ -61,7 +61,7 @@ The unused fourth H output is
 6 = SEEKS.
 ```
 
-This is unusually literal: the source-selected manuscript object reconstructs the authenticated instruction fragment **MEANING IS THE ROAD**, while its one remaining coordinate selects the authenticated source word **SEEKS**.
+The manuscript-fixed result at this point is the numeric packet `[20,21,22,23]` plus omitted coordinate `6`. Under zero origin these read **MEANING IS THE ROAD / SEEKS**; under one-based numbering they read **THEIR MEANING IS THE / EPIPHANY**. The frozen downstream comparison below discriminates those rivals locally.
 
 ### Familywise control
 
@@ -73,7 +73,7 @@ For every one of those 10 H4 objects, charge the larger finite family:
 - preserve the remaining H order or reverse it as the only orientation control;
 - insert the already-known current page number at each of the four possible positions.
 
-That is **32 configurations per H4 object / 320 total configurations**. Exactly one produces four consecutive signed-word indices:
+That is **32 configurations per H4 object / 320 total configurations**. Exactly one produces four consecutive numeric source indices:
 
 ```text
 p21/group21
@@ -82,10 +82,10 @@ omit H coordinate3 = 6
 keep [20,22,23] forward
 insert page21 at position1
 -> [20,21,22,23]
--> MEANING IS THE ROAD.
+-> numeric interval 20..23.
 ```
 
-Thus the omitted coordinate **6=SEEKS is itself fixed by the sole familywise sequence hit**. It is not a convenient leftover chosen after the phrase is recognized. No reversed orientation or alternate omitted coordinate yields a rival.
+Thus omitted coordinate **6 itself is fixed by the sole familywise numeric-sequence hit**. Its `SEEKS` label belongs to the locally favored zero-origin branch; it is not a coordinate chosen after recognizing English. No reversed orientation or alternate omitted coordinate yields a rival.
 
 This control charges the sequence property directly; it does not score English after searching arbitrary permutations.
 
