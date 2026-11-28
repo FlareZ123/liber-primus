@@ -374,6 +374,8 @@ The integer 1,729 and the factorization 7×13×19 were already documented in the
 
 ## Direct cipher consumers: two bounded negatives
 
+There is now also a source-complete **autonomous generator** trial, distinct from moving Hill blocks: seed M with the already fixed p7 seven-cycle `v`, advance the field state per rune or printed fragment, and sample GP29 key coordinate `K=2` from the actual first black-word product. The [12 original p8 and continuous p8–p14 additive inverses](lp2-p7-p8-sourcevector-matrix-stream-original-gate.md) all remain below solved-native IoC (best p8 **0.036425** vs native 243-rune minimum **0.054450**), despite the state running its exact **24,388**-step orbit. This eliminates the simplest p7→p8 source-seeded keystream consumer without altering the previously established algebraic source packet. Do not repeat this by fitting generator phase or output coordinate.
+
 The matrix structure suggests an immediate stateful cipher that the earlier fixed-Hill7 exclusions do **not** cover: use successive powers of `M` on the chapter's **247 consecutive seven-rune blocks**.
 
 Freeze the eight conventional variants only:
