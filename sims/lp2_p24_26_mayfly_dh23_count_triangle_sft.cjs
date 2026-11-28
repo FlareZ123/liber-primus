@@ -290,5 +290,6 @@ console.log("mayfly counts:", [c24, c25, c26]);
 console.log("edge labels:", edge, "=", { e, g, A });
 console.log("contiguous triple hits:", JSON.stringify(hits));
 console.log("H closures:", JSON.stringify(hClosures));
-console.log("H-state survivors:", JSON.stringify(hStateSurvivors));\nconsole.log("state-packet line matches:", JSON.stringify(packetMatches));
+console.log("H-state survivors:", JSON.stringify(hStateSurvivors));
+console.log("state-packet line matches:", JSON.stringify(packetMatches));
 console.log("charged independent DH survivors:", JSON.stringify(survivors));
