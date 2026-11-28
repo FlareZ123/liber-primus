@@ -86,6 +86,21 @@ assert.deepEqual(histogram(dottedGaps), {
 });
 assert.ok(Math.max(...plainGaps) < Math.min(...dottedGaps));
 
+// The separator glyph itself is also placed on one fixed vertical register per line.
+const dotYRectsByLine = {};
+for (const dot of source.interword_dots) {
+  const key = String(dot.line);
+  const yRect = [dot.rect[1], dot.rect[3]];
+  if (dotYRectsByLine[key] === undefined) dotYRectsByLine[key] = yRect;
+  assert.deepEqual(dotYRectsByLine[key], yRect);
+}
+assert.deepEqual(dotYRectsByLine, {
+  1: [725, 734],
+  2: [913, 922],
+  3: [1102, 1111],
+  4: [1290, 1299],
+});
+
 /**
  * Fit a simple typesetting model:
  * next_x - current_x = A[current GP29 rune] + c*[separator dot] + residual.
@@ -209,6 +224,7 @@ console.log(JSON.stringify({
     dottedTransitionCount: dotted.length,
     plainGapHistogram: histogram(plainGaps),
     dottedGapHistogram: histogram(dottedGaps),
+    separatorDotYRectByLine: dotYRectsByLine,
     fittedDotIncrementPx: best.dotIncrement,
     fittedResidualHistogramPx: histogram(best.residuals),
     exactTransitions: best.residuals.filter((value) => value === 0).length,
