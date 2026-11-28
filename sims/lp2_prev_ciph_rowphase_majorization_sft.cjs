@@ -141,6 +141,7 @@ function scanReference(ref) {
   for (let i=0;i<N;i++)counts[ref.gp[i]]++;
   const survivors=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(0)]));
   const repeatSurvivors=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(0)]));
+  const minArbitraryExceptions=Object.fromEntries(Object.keys(frames).map(k=>[k,Array(Q.length).fill(Infinity)]));
   const minimum=Array(A).fill(Infinity);
   const windows=ref.gp.length-N+1;
   for(let start=0;start<windows;start++) {
@@ -154,9 +155,11 @@ function scanReference(ref) {
     ]) {
       for(const [name,cs] of Object.entries(collection))for(let qi=0;qi<Q.length;qi++){
         const bound=cs[qi].prefix;
-        let good=true;
-        for(let j=0;j<A;j++)if(cumulative[j]>bound[j]){good=false;break;}
-        if(good)dest[name][qi]++;
+        let deficit=0;
+        for(let j=0;j<A;j++)deficit=Math.max(deficit,cumulative[j]-bound[j]);
+        if(deficit===0)dest[name][qi]++;
+        if(mode==="ordinary")minArbitraryExceptions[name][qi]=
+          Math.min(minArbitraryExceptions[name][qi],deficit);
       }
     }
   }
@@ -171,7 +174,8 @@ function scanReference(ref) {
     window_count:windows,
     minimum_ranked_plaintext_prefix:minimum,
     survivors:byFrame,
-    repeat_exception_survivors:translate(repeatSurvivors)
+    repeat_exception_survivors:translate(repeatSurvivors),
+    minimum_arbitrary_exceptions_to_evade_majorization:translate(minArbitraryExceptions)
   };
 }
 
@@ -221,6 +225,12 @@ function plant(ref, frameName, q, seed) {
 }
 
 const reports=refs.map(scanReference);
+// A change at any <=86 positions can increase the conservative top-k
+// capacity by at most 86. Mark-framed q12 is impossible even with 86
+// exceptions at arbitrary unknown positions, not only printed doublets.
+for(const report of reports)assert.ok(
+  report.minimum_arbitrary_exceptions_to_evade_majorization.mark["12"]>86,
+  "source must need more than 86 arbitrary exceptions for q12 mark");
 for(const report of reports)for(const survivors of Object.values(report.repeat_exception_survivors))
   for(let q=1;q<=12;q++)assert.equal(survivors[String(q)],0,
     "original exception-channel q<=12 must be excluded for "+report.name);
