@@ -153,6 +153,10 @@ The reproducible Node 22 SFT pins corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac
 The exact partition is real; the simple Vigenère, keyed-alphabet, OTP, dimension-matched linear, and direct title-keyed columnar transposition receivers are negative. This does not exclude a different source-selected matrix use, but there is currently no source-selected operation that turns the 55×13 payload into an executable key schedule. Do not continue enumerating grid or transposition variants without an independent cipher instruction. Reproduction: [13×55 matrix gate](../sims/lp2_p0_13x55_matrix_gate.cjs) · [columnar transposition SFT](../sims/lp2_p0_13x55_columnar_transposition_sft.cjs).
 
 
+### Independent horizontal crossbar-tip line-key transfer (28 November)
+
+The [original geometric line-key gate](lp2-opening-stave-linekey-gate.md) fixes left line starts 8,9,11 on p0/p1 and 8,9 on p2 under all four foreground thresholds; right tips fall between printed lines. The resulting eight-GP29-token key fails direct additive transfer to the whole p3–7 chapter in both signs; the exact transparent-plaintext-F paths are empty. Retire that specific receiver; horizontal projection and key use were hypotheses, not instructions.
+
 ## Decisive next tests
 
 1. Reopen an E-hold, branch-coordinate fractionation, or 13×55 matrix receiver only if an independent source supplies the key/state rule; do not repeat the failed title-key, p56-prime-clock, row-key, keyed-alphabet, OTP, or direct keyworded columnar tests.
