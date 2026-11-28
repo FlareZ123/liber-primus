@@ -69,6 +69,15 @@ const fShedName=targetRunes.filter(r=>r!==0).map(r=>c.translit[r]).join("");
 assert.equal(fShedName,"THOTH");
 const p32Printed=transcription.split(/\n%\n/u)[32].replaceAll("/\n","");
 assert(p32Printed.includes("ᚦᚠ-ᚠᚩᚦ."));
+const containingP32Word=targetPage.indices.slice(25,30);
+assert.deepEqual(containingP32Word,[27,4,16,2,0]);
+const p32WordPrime=containingP32Word.reduce((sum,glyph)=>sum+c.prime[glyph],0);
+const instarOpeningWord=indexed[1].slice(0,4);
+assert.deepEqual(instarOpeningWord,[20,10,5,18]); // LICE ("LIKE")
+const sourceOpeningPrime=instarOpeningWord.reduce((sum,glyph)=>sum+c.prime[glyph],0);
+assert.equal(sourceOpeningPrime,184);
+assert.equal(p32WordPrime,sourceOpeningPrime);
+assert(p32Printed.includes("ᛡᚱᛏᚦᚠ-ᚠᚩᚦ."));
 const allTHOTH=[];
 const zeroFDoublets=[];
 for(const page of c.pages.filter(p=>p.page<=55&&p.runic_count>0)){
@@ -153,6 +162,8 @@ console.log(JSON.stringify({
     printedSourceRunes:"TH-F | F-O-TH",
     sourceIndices:targetRunes,
     literalZeroFErasure:fShedName,
+    containingCompleteOriginalWord:{start:25,end:29,primeSum:p32WordPrime},
+    solvedP57FirstWordPrimeSum:sourceOpeningPrime,
     unsolvedBookAllFErasureMatches:allTHOTH,
     originalFFDoublets:zeroFDoublets,
     authorialIndexingOrCipherNotEstablished:true
