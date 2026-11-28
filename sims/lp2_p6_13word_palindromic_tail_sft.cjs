@@ -306,6 +306,97 @@ for (let start = 0; start <= source.length - 13; start += 1) {
 assert.deepEqual(initialShellExactHits.map((row) => row.start), [30]);
 assert.deepEqual(initialShellMultisetHits.map((row) => row.start), [30]);
 
+// Two more word-resolution channels use the same 13-unit fold.
+const tailLengths = source.slice(30).map((row) => row.length);
+const tailGp0 = source.slice(30).map((row) => row.gp0);
+const tailLengthShell = hShell(tailLengths);
+const tailGp0Shell = hShell(tailGp0);
+
+assert.deepEqual(tailLengthShell, [
+  mod29(-state.e),
+  mod29(state.b - state.q),
+  mod29(-state.e),
+  mod29(-state.q * state.g),
+  mod29(-1),
+  mod29(state.K + state.g),
+  mod29(-1),
+  mod29(-state.q * state.g),
+  mod29(-state.q),
+  state.A,
+  mod29(state.a - state.g),
+  mod29(-state.q * state.g),
+  state.q,
+]);
+assert.deepEqual(tailLengthShell, [
+  26, 11, 26, 9, 28, 7, 28, 9, 25, 8, 1, 9, 4,
+]);
+
+assert.deepEqual(tailGp0Shell, [
+  mod29(state.K * state.g),
+  state.b,
+  mod29(-state.e),
+  mod29(-1),
+  state.g,
+  mod29(-state.e),
+  mod29(-state.q * state.g),
+  mod29(state.B - 1),
+  state.g,
+  mod29(state.K + state.g),
+  state.g,
+  mod29(-state.q * state.g),
+  state.a,
+]);
+assert.deepEqual(tailGp0Shell, [
+  10, 15, 26, 28, 5, 26, 9, 18, 5, 7, 5, 9, 6,
+]);
+
+const wordResolutionHits = {
+  initialExact: [],
+  initialMultiset: [],
+  lengthExact: [],
+  lengthMultiset: [],
+  gp0Exact: [],
+  gp0Multiset: [],
+  jointExact: [],
+  jointMultiset: [],
+};
+
+for (let start = 0; start <= source.length - 13; start += 1) {
+  const rows = source.slice(start, start + 13);
+  const shells = {
+    initial: hShell(rows.map((row) => row.values[0])),
+    length: hShell(rows.map((row) => row.length)),
+    gp0: hShell(rows.map((row) => row.gp0)),
+  };
+  const exact = {
+    initial: shells.initial.join(",") === tailInitialShell.join(","),
+    length: shells.length.join(",") === tailLengthShell.join(","),
+    gp0: shells.gp0.join(",") === tailGp0Shell.join(","),
+  };
+  const multiset = {
+    initial: multisetKey(shells.initial) === multisetKey(tailInitialShell),
+    length: multisetKey(shells.length) === multisetKey(tailLengthShell),
+    gp0: multisetKey(shells.gp0) === multisetKey(tailGp0Shell),
+  };
+
+  if (exact.initial) wordResolutionHits.initialExact.push(start);
+  if (multiset.initial) wordResolutionHits.initialMultiset.push(start);
+  if (exact.length) wordResolutionHits.lengthExact.push(start);
+  if (multiset.length) wordResolutionHits.lengthMultiset.push(start);
+  if (exact.gp0) wordResolutionHits.gp0Exact.push(start);
+  if (multiset.gp0) wordResolutionHits.gp0Multiset.push(start);
+  if (exact.initial && exact.length && exact.gp0) {
+    wordResolutionHits.jointExact.push(start);
+  }
+  if (multiset.initial && multiset.length && multiset.gp0) {
+    wordResolutionHits.jointMultiset.push(start);
+  }
+}
+
+for (const hits of Object.values(wordResolutionHits)) {
+  assert.deepEqual(hits, [30]);
+}
+
 // Charge every 13-word source window and every distinct permutation of the
 // [K,q,1,q,K] widths. Both exact H5 state shells must hold simultaneously.
 const exactLengthHits = [];
@@ -416,6 +507,36 @@ const result = {
     exactHits: initialShellExactHits.length,
     multisetHits: initialShellMultisetHits.length,
     winner: initialShellExactHits[0],
+  },
+  wordResolutionH13: {
+    channels: {
+      initial: {
+        values: tailInitials,
+        shell: tailInitialShell,
+        labels: [
+          "aK", "B-1", "p", "p+K", "b-K", "Kg",
+          "K+g", "K+g", "F", "g", "-qg", "qg", "a",
+        ],
+      },
+      length: {
+        values: tailLengths,
+        shell: tailLengthShell,
+        labels: [
+          "-e", "b-q", "-e", "-qg", "-1", "K+g",
+          "-1", "-qg", "-q", "A", "a-g", "-qg", "q",
+        ],
+      },
+      gp0: {
+        values: tailGp0,
+        shell: tailGp0Shell,
+        labels: [
+          "Kg", "b", "-e", "-1", "g", "-e",
+          "-qg", "B-1", "g", "K+g", "g", "-qg", "a",
+        ],
+      },
+    },
+    sourceWindows: source.length - 13 + 1,
+    hits: wordResolutionHits,
   },
   charge: {
     sourceWindows: source.length - 13 + 1,
