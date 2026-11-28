@@ -127,4 +127,4 @@ if(require.main===module)console.log(JSON.stringify({
  results, status:'No full six-symbol held-out prediction; no unknown LP2 plaintext or key recovered'
 },null,2));
 
-module.exports={recover,encrypt,decrypt,plain,p55,donor,C,mod,norm,terminal};
+module.exports={recover,encrypt,decrypt,plain,p55,donor,C,mod,norm,terminal,solveAffine,expandKey,knownKey};
