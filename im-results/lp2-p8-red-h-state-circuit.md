@@ -104,7 +104,7 @@ All conditions hold exactly. This construction is deterministic once the H packe
 
 ### Manuscript-wide finite discriminator
 
-Scan every same-page consecutive printed word pair in physical p0–p55, excluding the runeless/numeric p50 representation. There are **2,873** pairs. Exactly **29** have lengths `[4,8]`.
+Scan source-aware complete printed words across the runic p0–p49 and p51–p55 tapes, treating a physical page break as *not* a word separator. There are **2,895** adjacent complete-word pairs. Exactly **27** have lengths `[4,8]`.
 
 Apply the exact H-symmetry → DH-closure procedure above to all 29. There is **one** hit:
 
@@ -140,7 +140,7 @@ H3([27,9,16])
 = [A^-1,q+g,-b].
 ```
 
-Across all **726** complete three-rune words on p0–p55, this p8 word is the sole word with descriptor `(3,23,2)`, and independently the sole word with H3 `[11,9,14]`.
+Across all **720** source-aware complete three-rune words on p0–p55, this p8 word is the sole word with descriptor `(3,23,2)`, and independently the sole word with H3 `[11,9,14]`.
 
 This continuation is especially important because the chapter navigation graph already defines each opener's first black word as
 

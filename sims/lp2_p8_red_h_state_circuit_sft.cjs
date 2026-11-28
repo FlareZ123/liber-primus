@@ -383,38 +383,91 @@ const p8Decoded = decodeP8Pair(red4, red8);
 assert.ok(p8Decoded);
 assert.deepEqual(p8Decoded.state, { p, g, q, e, a, K, b, A, B });
 
-// Broad manuscript charge over every printed consecutive [4,8] pair.
+// Broad manuscript charge over source-aware complete words. The '%' page
+// separator is not a word delimiter: some printed words cross physical pages.
+// P50 is the nonrunic numeric table and therefore separates the two rune tapes.
+function seamWords(pageRange) {
+  const words = [];
+  let current = [];
+  let first = null;
+  const flush = () => {
+    if (!current.length) return;
+    words.push({ values: current.slice(), first });
+    current = [];
+    first = null;
+  };
+  for (const page of pageRange) {
+    const source = corpus.pages.find((x) => x.page === page).indices;
+    const segment = parts[page >= 51 ? page - 1 : page];
+    let offset = 0;
+    for (const ch of segment) {
+      const value = runeIndex.get(ch);
+      if (value !== undefined) {
+        assert.equal(source[offset], value, 'seam transcription mismatch p' + page + '@' + offset);
+        if (!current.length) first = { page, local: offset };
+        current.push(value);
+        offset += 1;
+      } else if (ch === '/' || /\\s/u.test(ch)) {
+        continue;
+      } else {
+        flush();
+      }
+    }
+    assert.equal(offset, source.length, 'seam transcription length p' + page);
+    // Intentionally do not flush at a physical page boundary.
+  }
+  flush();
+  return words;
+}
+
+const sourceWords = [
+  ...seamWords(Array.from({ length: 50 }, (_, i) => i)),
+  ...seamWords([51, 52, 53, 54, 55]),
+];
 let pairCount = 0;
 let arity48Count = 0;
 const pairHits = [];
 let threeRuneCount = 0;
 const firstBlackDescriptorHits = [];
 const firstBlackHHits = [];
-for (const pageObj of corpus.pages.filter((x) => x.page <= 55 && x.page !== 50)) {
-  const words = wordsAt(pageObj.page);
-  for (let i = 0; i + 1 < words.length; i += 1) {
-    pairCount += 1;
-    if (words[i].values.length === 4 && words[i + 1].values.length === 8) {
-      arity48Count += 1;
-      const decoded = decodeP8Pair(words[i], words[i + 1]);
-      if (decoded) pairHits.push({ page: pageObj.page, start: words[i].start, ...decoded });
-    }
-  }
-  for (const word of words) {
-    if (word.values.length !== 3) continue;
-    threeRuneCount += 1;
-    if (sum(word.values) === p && product(word.values) === K) {
-      firstBlackDescriptorHits.push({ page: pageObj.page, start: word.start, values: word.values });
-    }
-    if (JSON.stringify(H(word.values)) === JSON.stringify([inverseScalar(A), q + g, mod(-b)])) {
-      firstBlackHHits.push({ page: pageObj.page, start: word.start, values: word.values });
+for (let i = 0; i + 1 < sourceWords.length; i += 1) {
+  pairCount += 1;
+  const left = sourceWords[i];
+  const right = sourceWords[i + 1];
+  if (left.values.length === 4 && right.values.length === 8) {
+    arity48Count += 1;
+    const decoded = decodeP8Pair(left, right);
+    if (decoded) {
+      pairHits.push({
+        page: left.first.page,
+        start: left.first.local,
+        ...decoded,
+      });
     }
   }
 }
-assert.equal(pairCount, 2873);
-assert.equal(arity48Count, 29);
+for (const word of sourceWords) {
+  if (word.values.length !== 3) continue;
+  threeRuneCount += 1;
+  if (sum(word.values) === p && product(word.values) === K) {
+    firstBlackDescriptorHits.push({
+      page: word.first.page,
+      start: word.first.local,
+      values: word.values,
+    });
+  }
+  if (JSON.stringify(H(word.values)) === JSON.stringify([inverseScalar(A), q + g, mod(-b)])) {
+    firstBlackHHits.push({
+      page: word.first.page,
+      start: word.first.local,
+      values: word.values,
+    });
+  }
+}
+assert.equal(pairCount, 2895);
+assert.equal(arity48Count, 27);
 assert.deepEqual(pairHits.map((x) => [x.page, x.start]), [[8, 0]]);
-assert.equal(threeRuneCount, 726);
+assert.equal(threeRuneCount, 720);
 
 let redTwoWordSpans = 0;
 let redArity48 = 0;
