@@ -32,6 +32,30 @@ These are exact *source-derived numbers* without reading any unknown LP2 ciphert
 
 The distinct physical p8 7×7 black-fragment-length matrix has **only eigenroot24** over GF29. Its [prior original matrix gate](lp2-stage7-p8-seven-matrix-root24-crosssource.md) already ruled out direct 7×7 Hill/matrix word-length transport as plaintext. This all-source convergence makes the historical magic squares a potentially independent route to candidate **g=5/K=2**, rather than a generic arbitrary-key guess; it **does not** specify any reversible operation on the original p8 or p40–55 ciphertext.
 
+## Physical p57 circumference operation: the three smaller original source squares
+
+The independently solved p57 instruction to **shed circumferences and find divinity within** supplies a plausible original-source instruction to remove each large square's outer row and outer column. This yields the **unaltered, interior** 3×3, 5×5 and 3×3 matrices used in earlier direct p55 Hill-cipher tests (which were negative). Their GF29 invariants give a **second structured source-only DH packet** that was not used in those cipher tests:
+
+| Original Stage7 square | Interior size after one border | Interior determinant mod29 | **Every linear eigenroot of the interior** |
+| --- | ---: | ---: | --- |
+| First 5×5 (3301) | 3×3 | **24 = −g** | **{10 = gK}** |
+| Middle 7×7 (1033) | 5×5 | **8 = A** | **{2 = K}** |
+| Final 5×5 (1033) | 3×3 | **24 = −g** | **{24 = −g}** |
+
+All **three cores have exactly one GF29 eigenroot** in original printed order. Their ordered root tape is **[10,2,24]** and obeys the exact internal GP29 identity `10 = −2×24 mod29`, or `g = −24 = 10/2 = 5`. The ordered interior determinant tape is **[24,8,24]**: its outer flanks coincide with the all-three original-square common eigenvalue **−g**, and its middle coincides with the independently known public value **A=8**. The **first two core roots equal the first two full-square determinants exactly** ([10,2]); the final core root equals the full-square common root24. These identities need no LP2 unknown ciphertext, English model, key phase or postselected rune location. They offer a concrete, author-visible source transformation (*strip an outer border*) that the isolated 7×7 spectral coincidence lacked. **The eigenvalue/determinant extraction step is still not explicitly instructed by p57**; these are retrospectively recognized exact identities, not authenticated key semantics.
+
+A maximally literal p55 reader is nevertheless testable. The original **17 p55 words contain exactly 43 strict interior runes**, partitioned **9/25/9** against the source interior cells. Preserve all original word boundaries, use each corresponding interior determinant [24,8,24] or unique interior root [10,2,24] as a fixed scalar GP29 additive shift for exactly that block, and grant both signs with no phase, skip or tuned matrix reordering. All four candidates return nonprose, with GP29 IoC respectively:
+
+| Exact p55 43-interior model | IoC | Native plaintext recovered? |
+| --- | ---: | --- |
+| Source unaltered | 0.03433001 | unknown cipher, not prose |
+| Core determinants, subtract | **0.03211517** | no |
+| Core determinants, add | 0.03765227 | no |
+| Core eigenroots, subtract | 0.02436323 | no |
+| Core eigenroots, add | 0.02768549 | no |
+
+All four originals re-encrypt **43/43** under their own fixed key streams, validating implementation but not plaintext. This rejects the simplest **scalar-additive p55 inner-page consumer** of the newly derived packets; it does not reject a genuinely source-selected nonadditive instruction, the p57 circumference clue itself, or the exact GP29 key-like source identities.
+
 ## How much exact alignment survives matched source-order controls?
 
 We exhaust every independent permutation of the **whole printed columns** within each historical square, retaining every original number, each original row's sum, and matrix size; this disrupts original diagonals and 180° symmetry and therefore is a **conditional orientation diagnostic, not a null distribution for authored magic squares**. With the independently fixed register labels `A=8, −g=24`:
@@ -46,6 +70,6 @@ The original fixed order belongs to the small double-root subsets in both 1033 s
 
 ## Decision and reproduction
 
-**Preserve the complete triple-square GF29 fingerprint as conditional candidate authentic key material, not an authenticated decryption.** The within-source equality `−g=common root` and `g=det(first)/det(second)`, plus the separate p8 root24 and p15 DH public values, is materially more constrained than choosing 24 from an arbitrary GP rune. Nevertheless GP29 reduction and spectra/determinants are *unprompted operations*: the historical puzzle explicitly required the three square values to be submitted as form text, not factored. The next credible advancement is a first-party clue instructing determinant/characteristic-root consumption **and** a held-out original unknown-page plaintext or cipher output, ideally without adjusting direction, phase or GP alphabet. The immediate simple 7×7 matrix-word-length transports and direct 16×16 p50 terminal page pad have already failed; do not repeat those failures with new fitted exceptions.
+**Preserve the complete triple-square and circumference-stripped interior GF29 fingerprints as conditional candidate authentic key material, not an authenticated decryption.** The within-source equality `−g=common root` and `g=det(first)/det(second)`, plus the separate p8 root24 and p15 DH public values, is materially more constrained than choosing 24 from an arbitrary GP rune. Nevertheless GP29 reduction and spectra/determinants are *unprompted operations*: the historical puzzle explicitly required the three square values to be submitted as form text, not factored. The next credible advancement is a first-party clue instructing determinant/characteristic-root consumption **and** a held-out original unknown-page plaintext or cipher output, ideally without adjusting direction, phase or GP alphabet. The immediate simple 7×7 matrix-word-length transports and direct 16×16 p50 terminal page pad have already failed; do not repeat those failures with new fitted exceptions.
 
 Reproduce with `node sims/lp2_2014_three_square_dh_spectral_bridge_sft.cjs`. It reparses the *unchanged* historical source, asserts row, column and diagonal sums, computes GF29 determinants, characteristic polynomials, **full polynomial gcds**, enumerates all 5!/7!/5! column-permutation controls, confirms original p8 `XIX` in the canonical rune corpus, and prints all source-only and explicitly borrowed LP2 checks. It uses no unknown ciphertext, language model, scraped prose or invented reconstructed plaintext.

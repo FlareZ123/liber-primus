@@ -77,6 +77,55 @@ assert.equal(determinants[1],KFromB);assert.equal(determinants[0],mod(gFromSum*K
 assert.equal(mod(-gFromSum),24);
 const corpus=JSON.parse(fs.readFileSync(path.join(root,'resources/liber-primus/lp2-corpus.json'),'utf8'));
 assert.equal(corpus.pages.find(p=>p.page===8).indices.slice(0,3).map(i=>corpus.translit[i]).join(''),'XIX');
+// Independently source-directed by the authentic solved p57 injunction
+// to shed circumferences: strip one full outer border from EACH of the
+// original 5x5,7x7,5x5 Stage7 matrices, preserving source order.
+const cores=squares.map(A=>A.slice(1,-1).map(row=>row.slice(1,-1)));
+assert.deepEqual(cores.map(A=>A.length),[3,5,3]);
+const coreDeterminants=cores.map(det),coreRoots=cores.map(roots);
+assert.deepEqual(coreDeterminants,[24,8,24]);
+assert.deepEqual(coreRoots,[[10],[2],[24]]);
+assert.equal(coreRoots[0][0],mod(-coreRoots[1][0]*coreRoots[2][0]));
+assert.equal(coreRoots[0][0],determinants[0]);
+assert.equal(coreRoots[1][0],determinants[1]);
+assert.equal(coreRoots[2][0],mod(-gFromSum));
+assert.equal(coreDeterminants[0],mod(-gFromSum));
+assert.equal(coreDeterminants[1],AFromGAndA);
+assert.equal(coreDeterminants[2],mod(-gFromSum));
+
+// Literal one-step consumer of these exact source-selected inner invariants:
+// p55 17 printed words have 43 strict interiors; pair the native 9/25/9
+// interior segments to original core dimensions 3x3,5x5,3x3; fixed GP29
+// additive sign only, no shift/phase/word resegmentation or scoring fit.
+const transcription=fs.readFileSync(path.join(root,'resources/liber-primus/lp2-transcription.txt'),'utf8').replace(/\r/g,'');
+const text55=transcription.split(/\n%\n/)[54],runeMap=new Map(corpus.runes.map((r,i)=>[r,i]));
+let words=[],word=[];
+const flush=()=>{if(word.length){words.push(word);word=[];}};
+for(const ch of text55){
+  if(runeMap.has(ch))word.push(runeMap.get(ch));
+  else if(ch==='/'||/\s/u.test(ch))continue;
+  else flush();
+}
+flush();assert.equal(words.length,17);
+assert.equal(words.reduce((n,w)=>n+w.length,0),76);
+const inside55=words.flatMap(w=>w.slice(1,-1));assert.equal(inside55.length,43);
+const ioc=values=>{const count=Array(29).fill(0);for(const v of values)count[v]++;
+  return count.reduce((n,v)=>n+v*(v-1),0)/(values.length*(values.length-1));};
+const keySets={innerDet:coreDeterminants,innerRoot:coreRoots.map(x=>x[0])};
+const p55DirectGate={originalIoc:ioc(inside55)};
+for(const [name,coeffs] of Object.entries(keySets)){
+  const k=[...Array(9).fill(coeffs[0]),...Array(25).fill(coeffs[1]),...Array(9).fill(coeffs[2])];
+  for(const sign of [-1,1]){
+    const output=inside55.map((v,i)=>mod(v+sign*k[i]));
+    assert.deepEqual(output.map((v,i)=>mod(v-sign*k[i])),inside55);
+    p55DirectGate[name+(sign<0?'Minus':'Plus')]={ioc:ioc(output),runes:output};
+  }
+}
+assert.ok(Math.abs(p55DirectGate.innerDetMinus.ioc-0.03211517165005537)<1e-14);
+assert.ok(Math.abs(p55DirectGate.innerDetPlus.ioc-0.03765227021040975)<1e-14);
+assert.ok(Math.abs(p55DirectGate.innerRootMinus.ioc-0.024363233665559248)<1e-14);
+assert.ok(Math.abs(p55DirectGate.innerRootPlus.ioc-0.02768549280177187)<1e-14);
+
 function* perms(a,pos=0){if(pos===a.length){yield a.slice();return;}
   for(let i=pos;i<a.length;i++){
     [a[pos],a[i]]=[a[i],a[pos]];yield* perms(a,pos+1);[a[pos],a[i]]=[a[i],a[pos]];
@@ -96,4 +145,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
