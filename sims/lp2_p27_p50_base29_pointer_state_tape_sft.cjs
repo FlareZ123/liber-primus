@@ -353,6 +353,16 @@ assert.ok(indexOfCoincidence(p57) > 0.06);
 
 // Native GP implementation plant: encrypt solved p57 with the state key and
 // recover it exactly with the conventional subtraction inverse.
+const terminalPrivateKey = [state.a, state.b];
+assert.deepEqual(terminalPrivateKey, [6, 15]);
+const terminalPrivateModels = flankModels(terminalPrivateKey);
+const bestTerminalPrivateIoC = Math.max(
+  ...terminalPrivateModels.map((model) => model.ioc)
+);
+assert.ok(Math.abs(bestTerminalPrivateIoC - 0.03386277513504797) < 1e-15);
+
+// Native GP implementation plant: encrypt solved p57 with the state key and
+// recover it exactly with the conventional subtraction inverse.
 const p57PlantCipher = applyAdditive(p57, stateKey, 0, 1);
 const p57PlantRecovered = applyAdditive(p57PlantCipher, stateKey, 0, -1);
 assert.deepEqual(p57PlantRecovered, p57);
@@ -395,6 +405,9 @@ const summary = {
     hBase60RivalModels: rivalHFlankModels,
     bestHStateIoC: bestStateHFlankIoC,
     bestHBase60RivalIoC: bestRivalHFlankIoC,
+    terminalPrivateKey,
+    terminalPrivateModels,
+    bestTerminalPrivateIoC,
     nativePlantRecovered95of95: p57PlantRecovered.length,
   },
 };
