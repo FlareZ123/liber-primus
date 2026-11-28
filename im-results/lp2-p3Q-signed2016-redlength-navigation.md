@@ -41,6 +41,18 @@ signed GP lengths            →  2 + 5 = 7   → solved p57 red7
 
 The second arrow's output is not a fresh independent field equality: p15 second red and solved p57 red have **identical complete field remainders [14,25]** by construction of Q, so p57 itself also maps to IS LIBER. The direction `p15 first → p15 second → p57` is attractive because the visual source has exactly two red pieces in this order and the second is an already independently highlighted, original doubly-red13-bracketed operand that algebraically connects to solved p57. A naked length11 alone is *not* unique among all original red rubrics (p6 has another), so claiming a unique global red-span address would be unjustified.
 
+### A complete rival-quadratic check on the derivation-disjoint red headings
+
+To avoid crediting the physical p3 field merely because its quotient was used to construct Q, evaluate the **only other monic quadratic** that exactly factors the original full p15-second minus p57 red difference without editing a single source rune. Exhausting all841 relations `u²=r u+t` produces exactly the original p3 `(r,t)=(3,8)` and an alternate `(18,12)`. With the same leading coefficient2, the alternate's unique quotient evaluates to `Q_alt=[5,19]` *in that alternate relation*. Apply it to exactly the three held-out visible red operands with the same signed zero-based word numbering and canonical native-GP29 lengths:
+
+| Source red pointer | Printed/target rune length | Original p3 Q output | Alternate Q output | Alternate length |
+| --- | ---: | --- | --- | ---: |
+| p15 first red9 → p15 second red11 | **11** | ROAD DEVOTED (4+7) | HELLO IS | **7** |
+| p54 opener red9 self | **9** | HELLO MEANING (5+4) | DEVOTED LIBER | **12** |
+| p56 solved red5 self | **5** | THE PATH (2+3) | AND NUMBERS | **10** |
+
+The original **source-marked p3 relation passes all3 held-out source length gates; the only other quadratic capable of explaining the exact p15/p57 red factorization fails all3**, using its own fixed quotient. Under the alternative modulus, the multiplier matrix gives signed words EPIPHANY THEIR / THEIR THE instead of THE MAP / AND PATH. This is a sharper, explicitly rival-charged *causal* argument for the physical p3 polynomial and the newly observed word-length readout. It remains a retrospective discovery, not a plaintext result or a valid sampling p-value. The integrated SFT enumerates both factor relations and recomputes all original red rubrics in each.
+
 ## Complete 18-span census and all-841 multiplier charge
 
 Do not select only the four matches in the previous table and claim an unconditional miracle. The canonical ink source has **18 complete red spans**; under fixed Q exactly **four have word-pair rune length equal to their own red-span length**: p40 opening, p54 opening, solved p56 opening, solved p57 opening. The other14 do not. Across **all 841** field multipliers `(a,b)`, even including zero, the number of self-length matches among **all18** is distributed as:
