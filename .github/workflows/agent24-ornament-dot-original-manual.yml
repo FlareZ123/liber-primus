@@ -1,0 +1,16 @@
+name: Agent24 original ornament dot topology (manual)
+on:
+  workflow_dispatch:
+jobs:
+  physical-presence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original-image toolchain
+        run: python -m pip install numpy pillow scipy opencv-python-headless
+      - name: Census physical 13-, 10- and 23-dot glyphs in 58 original scans
+        run: python sims/lp2_punctuation_dot_topology_original_sft.py
