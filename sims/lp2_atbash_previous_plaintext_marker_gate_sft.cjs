@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 "use strict";
 /*
- * A source-typed, KEY-INDEPENDENT necessary-condition gate for a new
- * reversible GP29 predecessor-PLAINTEXT Atbash marker architecture.
+ * A KEY-INDEPENDENT necessary-condition gate for the authentic
+ * GP29 Atbash predecessor-marker example AND ALL 812 affine variants.
  *
  * No phase/marker/key/word fitting:
  *      C_0=P_0
@@ -140,8 +140,93 @@ const plantedCipher=encrypt(sourcePlant);
 assert.deepEqual(decrypt(plantedCipher),sourcePlant);
 assert.equal(countRepeatedCipher(plantedCipher),countAtbashPlain(sourcePlant));
 
+// Exhaustive *familywide* extension: any invertible affine GP29 marker
+//    m_i = a*P_(i-1) + b (mod29), 1<=a<=28, 0<=b<=28.
+// This includes the authentic Atbash predecessor rule (a,b)=(28,28).
+// For any nonzero changing multiplier k_i, C_i=C_(i-1) iff P_i=m_i.
+// Thus the comparison needs no key, no plaintext score and no guess at
+// printed word boundaries.
+//
+// Full exact seam-aware scans for ALL 812 models are unnecessary: for a
+// model with raw consecutive-window minimum r, at most the 54 original
+// physical page seams can be deleted, so its exact same-page minimum is
+// >=r-54. Visit models by increasing raw minimum. After an actual exact
+// window minimum M is known, every unvisited model with r-54>M is
+// CERTIFIED incapable of lowering the family minimum. This branch and
+// bound is exact and retains the correct matched source-window inventory.
+function affineFamilyCensus(source,sourceName){
+  const windows=source.length-original.length+1;
+  assert.ok(windows>0);
+  const candidates=[];
+  for(let a=1;a<29;a++)for(let b=0;b<29;b++){
+    const markerHit=new Uint8Array(source.length);
+    for(let i=1;i<source.length;i++)
+      markerHit[i]=Number(source[i]===((a*source[i-1]+b)%29));
+    let rolling=0;
+    for(let i=1;i<original.length;i++)rolling+=markerHit[i];
+    let rawMin=rolling;
+    for(let first=1;first<windows;first++){
+      rolling+=markerHit[first+original.length-1]-markerHit[first];
+      if(rolling<rawMin)rawMin=rolling;
+    }
+    candidates.push({a,b,rawMin});
+  }
+  assert.equal(candidates.length,812);
+  candidates.sort((x,y)=>x.rawMin-y.rawMin);
+  let best=Infinity,winning=null,exactModels=0;
+  for(const {a,b,rawMin} of candidates){
+    if(rawMin-starts.length>best)break;
+    exactModels++;
+    const markerHit=new Uint8Array(source.length);
+    const prefix=new Uint32Array(source.length+1);
+    for(let i=1;i<source.length;i++)
+      markerHit[i]=Number(source[i]===((a*source[i-1]+b)%29));
+    for(let i=0;i<source.length;i++)
+      prefix[i+1]=prefix[i]+markerHit[i];
+    let exactMin=Infinity,firstMin=0;
+    for(let first=0;first<windows;first++){
+      let count=prefix[first+original.length]-prefix[first+1];
+      for(const cut of starts)count-=markerHit[first+cut];
+      if(count<exactMin){exactMin=count;firstMin=first;}
+    }
+    if(exactMin<best){
+      best=exactMin;
+      winning={a,b,min_exact:best,raw_min:rawMin,first_min_window:firstMin};
+    }
+  }
+  return {
+    source:sourceName,source_runes:source.length,
+    matched_original_window_runes:original.length,matched_samepage_edges:12901,
+    windows,models:candidates.length,models_exactly_scanned:exactModels,
+    models_certified_by_raw_lower_bound:candidates.length-exactModels,
+    lower_bound_method:"raw_min minus 54 excluded page seams",
+    minimum_hits_over_all_models_and_windows:best,winning,
+    original_cipher_equals:originalEvents
+  };
+}
+const gibranFamily=affineFamilyCensus(english,"Gibran proper Gutenberg interior");
+assert.equal(gibranFamily.models_exactly_scanned,13);
+assert.equal(gibranFamily.minimum_hits_over_all_models_and_windows,124);
+assert.deepEqual(gibranFamily.winning,{
+  a:3,b:9,min_exact:124,raw_min:125,first_min_window:6917
+});
+const shakespeare=read("resources/control/shakespeare_first300k.txt");
+const shakeValues=[];
+for(const word of shakespeare.match(/[A-Za-z]+/g)||[]){
+  const a=encodeWord(word);if(a)shakeValues.push(...a);
+}
+assert.equal(shakeValues.length,217106);
+const shakespeareFamily=affineFamilyCensus(shakeValues,"Pinned Shakespeare first300k");
+assert.equal(shakespeareFamily.models_exactly_scanned,13);
+assert.equal(shakespeareFamily.minimum_hits_over_all_models_and_windows,115);
+assert.deepEqual(shakespeareFamily.winning,{
+  a:20,b:16,min_exact:115,raw_min:117,first_min_window:70708
+});
+assert.ok(gibranFamily.minimum_hits_over_all_models_and_windows>originalEvents);
+assert.ok(shakespeareFamily.minimum_hits_over_all_models_and_windows>originalEvents);
+
 console.log(JSON.stringify({
-  model:"nonzero-key GP29 Atbash(previous plaintext) zero-step marker",
+  model:"nonzero-key GP29 Atbash(previous plaintext) and full affine predecessor-marker family",
   algebra:"C_i=C_(i-1) iff P_i+P_(i-1)=28 mod29 for i>=1",
   original:{
     runes:original.length,within_page_edges:original.length-1-starts.length,
@@ -152,5 +237,10 @@ console.log(JSON.stringify({
   gibran_control:{runes:english.length,window_length:original.length,
     excluded_page_seams:starts.length,windows,min,mean:total/windows,max,
     min_window_starts:atMin},
-  decision:"reject direct word/page-preserving Atbash-predecessor marker over these exact native-GP registers; no unknown plaintext"
+  full_affine_predecessor_family:{
+    gibran:gibranFamily,
+    shakespeare:shakespeareFamily,
+    congruence:"C_i=C_(i-1) iff P_i=(a P_(i-1)+b) mod29 for all k_i in GP29*"
+  },
+  decision:"reject all 812 affine predecessor-marker architectures on both finite native-GP corpora; no unknown plaintext"
 },null,2));
