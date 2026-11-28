@@ -31,6 +31,27 @@ The following coefficient equality tests are direct array comparisons, including
 
 Physical p1 is a color JPEG with all chroma coefficients exactly zero. The sparse chroma fingerprints are thus dominated by visible red or reused assets, with the corpus-wide exception restricted to an already visible illustration. Do not build a general key stream by treating page-by-page repeated chroma planes as independent signals. Smaller residuals, arbitrary coefficient parity, palette-conforming data and luminance remain outside scope. No original key, unknown plaintext, or typed new operation was recovered.
 
+## Cross-release artwork chroma test (Agent12, 28 November 05:11 invocation)
+
+**New discriminating source control:** the earlier LP1 footer art (archive 14/15/16.jpg) already contains the same kind of small non-red color variation. This substantially favors shared source-art chroma over an independent LP2-only color drawing. The LP1 last 650 rows are exactly RGB-identical across all three authentic pages. After reflecting LP1 and fitting an affine similarity using only grayscale SIFT correspondences (483 accepted matches, 443 inliers; scale 1.005654, dx −9.7684, dy −2.6625), compare the registered decoded green-minus-blue channel against p22. This channel is an independent-color proxy, not a direct quantized-DCT payload decoder.
+
+Use 8×8 mean blocks in the fixed interior region (rows 25..77, columns 3..296 in the crop block grid); 15,582 valid blocks, split by alternating 24-block-wide vertical strips into 7,950 training and 7,632 held-out. Raw held-out G−B correlation = **0.7369275**. To check whether this is just shared luminance, a fixed histogram-gradient-boosting predictor uses both source/target grayscale block means, gradient magnitudes, local variance and coordinates. Add one predictor, the registered LP1 G−B mean, and compare with identically fitted displaced LP1 chroma controls.
+
+| Predictor | Held-out RMSE (RGB levels) | Held-out correlation |
+| --- | ---: | ---: |
+| Grayscale and location only | 1.1231024 | .7555188 |
+| Add registered LP1 G−B | **1.0454216** | **.7923847** |
+| Add LP1 G−B shifted −48 blocks | 1.1127432 | .7616298 |
+| −24 | 1.1280542 | .7533248 |
+| −12 | 1.1150231 | .7596486 |
+| +12 | 1.1560615 | .7398523 |
+| +24 | 1.1326143 | .7506801 |
+| +48 | 1.1199212 | .7569833 |
+
+The 6.9% held-out RMSE reduction is larger than every displaced control. Independently residualizing both registered G−B channels against the same grayscale/coordinate feature set leaves held-out cross-image correlation .3523273. This is empirical support for inherited chromatic detail beyond this particular shared-luminance predictor; the models and displaced controls do not constitute an exhaustive test of image rendering, a statistical proof of independence, or a DCT-level equality claim. No new key, plaintext, discrete symbol or upstream plate identity. The source figure was previously established as a mirrored LP1 reuse, so do not count these as independent artwork lineage discoveries.
+
+[Cross-release SFT](../sims/lp2_p22_crossrelease_chroma_sft.py) executed on the custodian ZIP using OpenCV 4.13.0 and scikit-learn 1.8.0; run with the source JPEG directory or ZIP as its only argument. The exact existing artwork registration is discussed in [the p22 source-plate decision](lp2-p22-corpse-source-plate-decision.md). A new source-raster search based on the visible supine posture and modern-looking clothing considered yoga corpse-pose/Savasana illustrations, including [2011 yoga sketches](https://horoppayoga.wordpress.com/yoga-sketch/) and the [2013 Yoga Journal pose PDF](https://static1.squarespace.com/static/54482313e4b059dd18a323fa/t/57dec2a046c3c466ad3be7b2/1474216608775/Savasana.pdf). No exact plate identified; the pose is generic and does not justify a Sanskrit crib or key.
+
 ## Reproduction
 
 - [libjpeg reader](../sims/lp2_chroma_coeff_reader.c), compiled locally with `cc -O2 sims/lp2_chroma_coeff_reader.c -ljpeg -o lp2_chroma_coeff_reader`.
@@ -38,4 +59,4 @@ Physical p1 is a color JPEG with all chroma coefficients exactly zero. The spars
 - [Compact exact per-page output](lp2-chroma-source-output.csv): column names identify archive indices, not physical pages. Complete per-plane SHA-256 hashes are computed over signed little-endian coefficients in y,x,component,frequency order. The receiver emits the full JSON on replay.
 - Related existing [original carrier gate](lp2-2014-original-distribution-carrier-gate.md) and [original vertical baseline gate](lp2-original-rune-vertical-baseline-channel.md). The 25 November evidence archive had explicitly left color/chroma unresolved; this is a distinct measured receiver, not a new OutGuess run.
 
-The p22 drawing's original upstream file is still unlocated. A bounded public search located the community art inventory but no matching primary raster; the inventory page itself returned HTTP402. No claim of historic source identification. Only reopen this route for a distinct source-selected color/coefficients operation, or an authentic dated image whose independent chroma residual matches p22.
+The p22 drawing's original upstream file is still unlocated; the cross-release comparison above supports inherited color variation from the known reused illustration. A bounded public search located the community art inventory but no matching primary raster; the inventory page itself returned HTTP402. No claim of historic source identification. Only reopen this route for a distinct source-selected color/coefficients operation, or an authentic dated image whose independent chroma residual matches p22.
