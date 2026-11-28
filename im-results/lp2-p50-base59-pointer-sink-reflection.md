@@ -48,6 +48,18 @@ Thus the source-visible/pointer geometry now packs five authenticated public/sta
 
 `row = p=23, width = A=8, sink column = g=5, mirror column = K=2, mirror-cell value = B=19`.
 
+### Complete DH23 exponent-family charge
+
+Hold only the authenticated modulus/base `p=23,g=5` fixed and enumerate every nonzero exponent-residue pair `(a,b)∈{1,…,22}²` (484 pairs), deriving `A=5^a mod23`, `B=5^b mod23`, and `K=B^a mod23`.
+
+The table geometry gives `A=8`; the source reflection gives `K=A-1-g=2`. Exactly **two** exponent pairs satisfy those two geometric state conditions:
+
+- `(a,b,A,B,K)=(6,4,8,4,2)`;
+- `(6,15,8,19,2)`.
+
+The reflected cell's untouched source value is `B=19`, leaving **exactly one of 484 pairs**: `(a,b)=(6,15)`, the historical worked exchange. This is a finite identifiability result inside the DH23 family, not a chance p-value: the DH comparison and p50 geometry were explored before this combined charge.
+
+
 This is a substantially cleaner human-solve-path closure than the older `p×A+K` lookup because the artwork supplies the `g -> K` column move.
 
 
