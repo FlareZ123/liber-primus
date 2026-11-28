@@ -156,7 +156,7 @@ For each fixed right token with equal output for different left tokens, z must b
 
 The product witness indices are (edge forcing left bit, edge forcing right bit, contradictory edge). For natural-order nibble output, edges 18 and 26 force the bits of left token 3H and right token 2p respectively, yet edge 58 joins them with even output. For u=1, the same-right equal-output witness independently forces u=0. The other seven cases have similarly short recorded witnesses. This proves the exclusion for every ordered bi-affine byte combiner `A L R + B L + C R + E mod256` (all 256⁴ coefficients), and the larger stated polynomial class. It does not exclude non-parity-preserving right-conditioned coefficients, nonlinear left dependence, truncation, dynamic state or another target. The digest assignment remains a hypothesis; no original unknown plaintext follows.
 
-[Polynomial SFT](../sims/lp2_p50_ordered_polynomial_digest_sft.cjs) · [all sixteen contradiction certificates and 72 valid plants](lp2-p50-ordered-polynomial-digest-output.json). Executed the exact function core in connected V8 against canonical inputs. The 64 bi-affine and eight cubic/quadratic coefficient plants all retain their true u. Standalone Node wrapper not separately run.
+[Polynomial SFT](../sims/lp2_p50_ordered_polynomial_digest_sft.cjs) · [all sixteen contradiction certificates and 40 valid plants](lp2-p50-ordered-polynomial-digest-output.json). Executed the exact function core in connected V8 against canonical inputs. The 32 bi-affine and eight cubic/quadratic coefficient plants all retain their true u. Standalone Node wrapper not separately run.
 
 ## Decision
 
