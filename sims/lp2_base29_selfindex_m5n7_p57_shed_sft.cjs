@@ -154,6 +154,71 @@ for (const a of quotientBins.get(6)) {
 }
 assert.equal(compatible, 1);
 
+function modPow(base, exponent, modulus) {
+  let b = BigInt(base);
+  let e = BigInt(exponent);
+  const m = BigInt(modulus);
+  let out = 1n;
+  while (e > 0n) {
+    if (e & 1n) out = (out * b) % m;
+    b = (b * b) % m;
+    e >>= 1n;
+  }
+  return Number(out);
+}
+
+const dh = {
+  a: selfIndexed[0].page,
+  g: shedDigits[0],
+  p: shedDigits[1],
+  b: ((digits[0] - digits[3]) % MOD + MOD) % MOD,
+};
+dh.A = modPow(dh.g, dh.a, dh.p);
+dh.B = modPow(dh.g, dh.b, dh.p);
+dh.K = modPow(dh.A, dh.b, dh.p);
+assert.deepEqual(dh, { a: 6, g: 5, p: 23, b: 15, A: 8, B: 19, K: 2 });
+assert.equal(dh.A, selfIndexed[2].page);
+assert.equal(dh.K, ((digits[3] - digits[1]) % MOD + MOD) % MOD);
+
+let dhCompatible = 0;
+const dhHits = [];
+for (const c6 of quotientBins.get(6)) {
+  for (const c7 of quotientBins.get(7)) {
+    for (const c8 of quotientBins.get(8)) {
+      for (const c9 of quotientBins.get(9)) {
+        const r0 = c6;
+        const candidateG = c7;
+        const candidateP = c8;
+        const r3 = c9;
+        if (candidateP < 2 || candidateG <= 0 || candidateG >= candidateP) continue;
+        let isPrime = true;
+        for (let d = 2; d * d <= candidateP; d++) {
+          if (candidateP % d === 0) { isPrime = false; break; }
+        }
+        if (!isPrime) continue;
+        const candidateA = modPow(candidateG, 6, candidateP);
+        if (candidateA !== 8) continue;
+        const candidateBExp = ((r0 - r3) % MOD + MOD) % MOD;
+        const candidateB = modPow(candidateG, candidateBExp, candidateP);
+        const candidateK = modPow(candidateA, candidateBExp, candidateP);
+        const observedK = ((r3 - candidateG) % MOD + MOD) % MOD;
+        if (candidateK !== observedK) continue;
+        dhCompatible++;
+        dhHits.push({
+          remainders: [r0, candidateG, candidateP, r3],
+          a: 6, g: candidateG, p: candidateP, A: candidateA,
+          b: candidateBExp, B: candidateB, K: candidateK,
+        });
+      }
+    }
+  }
+}
+assert.equal(dhCompatible, 1);
+assert.deepEqual(dhHits, [{
+  remainders: [22, 5, 23, 7],
+  a: 6, g: 5, p: 23, A: 8, b: 15, B: 19, K: 2,
+}]);
+
 console.log(JSON.stringify({
   historicalZeroOrigin: {
     original2014ImageRefs: '0.jpg through 57.jpg',
@@ -179,6 +244,10 @@ console.log(JSON.stringify({
   remainderH,
   quotientBinCompatibleAssignments: 3 * 7 * 6 * 32,
   exactRemainderHAssignments: compatible,
+  reconstructedDh: dh,
+  dhCompatibleAssignments: dhCompatible,
+  dhHits,
+  p15Pointer: dh.b,
   decision:
-    'The source-visible zero-based BASE29 self-index block deterministically yields M5N7; its digit sum selects solved p57, whose literal circumference instruction reduces it to 5N=[g,p]=[5,23]. This is a structural/navigation route, not yet a body decryption.',
+    'The source-visible zero-based BASE29 self-index block yields M5N7; sum57 selects solved p57, whose circumference instruction exposes 5N=[g,p]. Run start a=6 and the outer difference b=15 then reconstruct the full authenticated DH state uniquely among 4,032 quotient-compatible count choices and point to physical p15. This is a structural/navigation route, not yet a body decryption.',
 }, null, 2));
