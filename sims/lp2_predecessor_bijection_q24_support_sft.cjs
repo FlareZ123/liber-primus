@@ -110,7 +110,7 @@ function lowerBound(values, value) {
  * @param {number[]} plain
  * @returns {object}
  */
-function scanControl(plain) {
+function scanControl(plain, threshold = THRESHOLD) {
   const totalWindows = plain.length - original.length + 1;
   assert.ok(totalWindows > 0);
 
@@ -140,7 +140,7 @@ function scanControl(plain) {
 
     let newlyCertified = 0;
     for (let start = 0; start < totalWindows; start += 1) {
-      if (unresolved[start] && popcount(masks[start]) >= THRESHOLD) {
+      if (unresolved[start] && popcount(masks[start]) >= threshold) {
         unresolved[start] = 0;
         remaining -= 1;
         newlyCertified += 1;
@@ -163,7 +163,7 @@ function scanControl(plain) {
   return {
     totalWindows,
     goodEPositions: goodE.length,
-    threshold: THRESHOLD,
+    threshold,
     certified: totalWindows - survivors.length,
     survivors,
     progress,
@@ -194,6 +194,38 @@ function boundAt(plain, start, cipher) {
     }
   }
   return { bound, predecessor, supports };
+}
+
+/**
+ * Exact max over every non-F plaintext rune and predecessor label.
+ * @param {number[]} plain
+ * @param {number} start
+ * @param {number[]} cipher
+ * @returns {{bound:number, plaintext:number, predecessor:number}}
+ */
+function jointBoundAt(plain, start, cipher) {
+  const masks = new Uint32Array(A * A);
+  for (let i = 1; i < cipher.length; i += 1) {
+    if (pageStarts.has(i)) continue;
+    const x = plain[start + i];
+    if (x === F || plain[start + i - 1] === F) continue;
+    const u = cipher[i - 1];
+    masks[x * A + u] |= (1 << cipher[i]) >>> 0;
+  }
+  let bound = 0;
+  let plaintext = -1;
+  let predecessor = -1;
+  for (let x = 1; x < A; x += 1) {
+    for (let u = 0; u < A; u += 1) {
+      const support = popcount(masks[x * A + u]);
+      if (support > bound) {
+        bound = support;
+        plaintext = x;
+        predecessor = u;
+      }
+    }
+  }
+  return { bound, plaintext, predecessor };
 }
 
 /**
@@ -268,6 +300,18 @@ const sharp = boundAt(controls[0].plain, 8500, original);
 assert.equal(sharp.bound, 25);
 assert.equal(sharp.predecessor, 5);
 
+const gibran26 = scanControl(controls[0].plain, 26);
+assert.equal(gibran26.survivors.length, 119);
+const jointHard = gibran26.survivors.map((start) => ({
+  start,
+  ...jointBoundAt(controls[0].plain, start, original),
+}));
+assert.equal(jointHard.filter((row) => row.bound === 25).length, 59);
+const jointSharp = jointBoundAt(controls[0].plain, 5283, original);
+assert.equal(jointSharp.bound, 25);
+assert.equal(jointSharp.plaintext, 3);
+assert.equal(jointSharp.predecessor, 23);
+
 const planted = plant(controls[1].plain.slice(0, original.length), 5);
 assert.ok(planted.bound <= 5);
 
@@ -284,10 +328,20 @@ console.log(JSON.stringify({
   predecessorOrder,
   results,
   sharpnessWitness: {
-    file: CONTROL_FILES[0],
-    start: 8500,
-    bound: sharp.bound,
-    predecessor: sharp.predecessor,
+    eOnly: {
+      file: CONTROL_FILES[0],
+      start: 8500,
+      bound: sharp.bound,
+      predecessor: sharp.predecessor,
+    },
+    eBelow26Windows: gibran26.survivors.length,
+    allRuneStill25Windows: jointHard.filter((row) => row.bound === 25).length,
+    allRuneExample: {
+      file: CONTROL_FILES[0],
+      start: 5283,
+      ...jointSharp,
+      plaintextLabel: corpus.translit[jointSharp.plaintext],
+    },
   },
   plantedQ5Bound: planted.bound,
 }, null, 2));
