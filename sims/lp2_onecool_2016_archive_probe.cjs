@@ -74,6 +74,9 @@ async function directRecover(label, url) {
       sha256,
     };
     console.log(JSON.stringify({ direct: meta }));
+    if (label.includes('imgur-cdn-png-') && res.ok && (meta.contentType || '').includes('image/png')) {
+      console.log(`B64:${label}:${body.toString('base64')}`);
+    }
     if (res.ok && body.length > 0 && body.length <= 10_000_000) {
       const type = meta.contentType || '';
       const ext = type.includes('image/png') ? '.png'
