@@ -63,6 +63,10 @@ No robust source-visible branch count is needed. Pixel-skeleton endpoint and jun
 
 The operation itself is also not a plaintext claim. Many previous p50 experiments have already included reversed row orientations among broader orientation families. The durable result is that horizontal reflection is specifically motivated by the p40–p55 section artwork; p50 consumers may use it only when another independent cue selects the table.
 
+## Cell43 value72 is not a source-native p55 filename pointer
+
+One modern packaging coincidence must be excluded from the cell43 story. Under base59, `1D=72`; in the repository's combined community image archive, `72.jpg` happens to be LP2 p55. The dated 11 May 2014 Stage11 source archive proves that LP2 was originally distributed as **`0.jpg..57.jpg`**, with p55 named `55.jpg`. The repository's `72.jpg` arises only because the later community archive prepended the 17 LP1 images, i.e. original `N.jpg -> (N+17).jpg`. Therefore `72 -> p55` requires a later +17 packaging convention and is not an authenticated page-address operation. Preserve cell43's graph value72; reject the filename-pointer reading. [Provenance gate](lp2-p50-cell43-value72-p55-archive-provenance-gate.md).
+
 ## Cross-artifact p6/p50 mirror-opcode gate
 
 Director #3429 asks whether the p40–p55 frame's horizontal reflection, when applied to the independently selected p50 table, and p6's independently selected red13 **180° rotation** are one reusable manuscript mirror opcode. A source-only invariant check rejects that stronger unification before any fresh target is opened.
