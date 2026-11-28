@@ -11,6 +11,9 @@ const BASE29 = '0123456789ABCDEFGHIJKLMNOPQRS';
 const corpus = JSON.parse(
   fs.readFileSync(path.join(ROOT, 'resources/liber-primus/lp2-corpus.json'), 'utf8'),
 );
+const ink = JSON.parse(
+  fs.readFileSync(path.join(ROOT, 'resources/liber-primus/lp2-ink-annotations.json'), 'utf8'),
+);
 const originalIndex = fs.readFileSync(
   path.join(ROOT, 'resources/historical/cicada2014-onion7-original-index.html'),
   'utf8',
@@ -255,7 +258,47 @@ assert.deepEqual(dhHits, [{
   a: 6, g: 5, p: 23, A: 8, b: 15, B: 19, K: 2,
 }]);
 
-const output = JSON.stringify({
+const signedBase29Output = base29(3301);
+assert.equal(signedBase29Output, '3QO');
+const signedBase29Digits = [...signedBase29Output].map((ch) => BASE29.indexOf(ch));
+assert.deepEqual(signedBase29Digits, [3, 26, 24]);
+const p53Pointer = signedBase29Digits.reduce((sum, d) => sum + d, 0);
+assert.equal(p53Pointer, 53);
+
+const p53 = corpus.pages.find((p) => p.page === p53Pointer);
+const p53Ink = ink.pages.find((p) => p.page === p53Pointer);
+assert(p53 && p53Ink);
+assert.equal(p53.runic_count, dh.a * MOD + dh.g);
+assert.equal(p53.runic_count, 179);
+assert.equal(base29(p53.runic_count), '65');
+assert.deepEqual(
+  corpus.pages.filter((p) => p.page >= 0 && p.page <= 55 && p.runic_count === 179)
+    .map((p) => p.page),
+  [53],
+);
+
+const predictedRedSuffixLength = MOD + (dh.p - 1);
+assert.equal(predictedRedSuffixLength, 51);
+assert.deepEqual(
+  p53Ink.red_spans.map((s) => [s.start, s.length]),
+  [[128, 51]],
+);
+assert.equal(p53Ink.red_spans[0].start + p53Ink.red_spans[0].length, p53.runic_count);
+const predictedBlackPrefixLength = p53.runic_count - predictedRedSuffixLength;
+assert.equal(predictedBlackPrefixLength, 128);
+assert.equal(base29(predictedBlackPrefixLength), '4C');
+assert.equal(base29(predictedRedSuffixLength), '1M');
+
+const predictedTerminalDots = dh.b - dh.K;
+assert.equal(predictedTerminalDots, 13);
+assert.ok(
+  p53Ink.large_punctuation.some(
+    ([offset, dots, color]) =>
+      offset === p53.runic_count && dots === predictedTerminalDots && color === 'red',
+  ),
+);
+
+const output = {
   historicalZeroOrigin: {
     original2014ImageRefs: '0.jpg through 57.jpg',
     count: imageRefs.length,
@@ -287,9 +330,28 @@ const output = JSON.stringify({
   dhCompatibleAssignments: dhCompatible,
   dhHits,
   p15Pointer: dh.b,
+  p53Continuation: {
+    signedBase29Output,
+    signedBase29Digits,
+    pagePointer: p53Pointer,
+    totalRunes: p53.runic_count,
+    totalBase29: base29(p53.runic_count),
+    predictedFromDh: {
+      total: 'a*29+g = 179',
+      redSuffix: '29+(p-1) = 51',
+      blackPrefix: '179-51 = 128',
+      terminalDots: 'b-K = 13',
+    },
+    observed: {
+      redSpan: [p53Ink.red_spans[0].start, p53Ink.red_spans[0].length],
+      blackPrefixBase29: base29(predictedBlackPrefixLength),
+      redSuffixBase29: base29(predictedRedSuffixLength),
+      terminalRedDots: predictedTerminalDots,
+    },
+  },
   decision:
-    'The source-visible zero-based BASE29 self-index block yields M5N7; sum57 selects solved p57, whose circumference instruction exposes 5N=[g,p]. Run start a=6 and the outer difference b=15 then reconstruct the full authenticated DH state uniquely among 4,032 quotient-compatible count choices and point to physical p15. This is a structural/navigation route, not yet a body decryption.',
-}, null, 2);
+    'The source-visible zero-based BASE29 self-index block yields M5N7; sum57 selects solved p57, whose circumference instruction exposes 5N=[g,p]. Run start a=6 and outer difference b=15 reconstruct the full authenticated DH state uniquely among 4,032 quotient-compatible count choices and point to physical p15. The signed-source 3QO digit sum then selects p53, whose held-out color geometry matches four DH-derived predictions: total179=a*29+g, red suffix51=29+(p-1), black prefix128, and terminal13=b-K. This is a structural/navigation route, not yet a body decryption.',
+};
 const json = JSON.stringify(output, null, 2);
 console.log(json);
 fs.writeFileSync(
