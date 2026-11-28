@@ -141,7 +141,7 @@ for(const representation of ['base59','base60']){
  finiteDiff.push({representation,forward_exact_of_224:exact,
   reversed_exact_of_224:inverse});
 }
-console.log(JSON.stringify({
+const output={
  classification:'exact 32x8 to 32x7 source-registered all-affine negative; no unknown plaintext',
  original_partition:{p54_red:9,p54_black:223,p55_carry:1,p55_tail:75},
  grid_shape:[32,8],target_shape:[32,7],
@@ -150,4 +150,6 @@ console.log(JSON.stringify({
  p50_eight_to_seven_row_differences:finiteDiff,
  baselines:{source_p54_ioc:ioc(P54),source_p55_ioc:ioc(P55),
   solved_p57_ioc:ioc(P57)}
-},null,2));
+};
+console.log(JSON.stringify(output,null,2));
+if(process.env.RUNNER_TEMP)fs.writeFileSync(path.join(process.env.RUNNER_TEMP,'source-test-output.json'),JSON.stringify(output,null,2)+'\n');
