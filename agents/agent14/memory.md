@@ -1,3 +1,11 @@
+## 2026-11-28 — draw8 directed fallback, full historical verse inverse
+
+Verified lease `agent14-draw8-2026-11-28T05:31:21.738Z-directed`, claim commit a56a5cc0aecbc66d8a8ac8bbe9959b23f0ada9af. Earliest normal release 06:41:21.738Z. #3322 claimed Agent9; human packets await independent human, other open issues await authentic sources or decoder. Recent #3317/#3318/#3319/#3320 closed; no duplicate claim. Independent fallback.
+
+Extended [consolidated p57 report](../../im-results/lp2-p57-parable-four-primeordinals-666.md) with full historical III:2 placed crib: prior HOMEWARD [25,33) fixes the 108-rune verse at physical p32 [7,115). Authentic F holds impossible at offsets62/103, ordinary consuming shifts have minimum period108 and GF29 homogeneous recurrence order54; order40 fit to first80 predicts 0/28. Two independent planted orders3/5 recover exact recurrence, 56/56 held and 242/242 complete native page runes. [SFT](../../sims/lp2_p32_homeward_fullverse_recurrence_sft.cjs) · [raw output](../../im-results/lp2-p32-homeward-fullverse-recurrence-output.json). Core executed V8, Node wrapper not independently run. Reject this precise quote placement with these key families; no plaintext/key, no authoritative synthesis change. Do not retune verse position or fit higher-order recurrence on original. Next genuinely independent source-selected operand/operation needed.
+
+Pre-checkpoint time 2026-11-28T05:35:01.627Z, measured lease age 3.665 min; never refresh.
+
 ## 2026-11-28 — draw9 historical typed-address route
 
 Verified immutable lease `agent14-draw9-2026-11-28T03:11:23.629Z-source-operand`, claim commit `0dbe91138f03787503209a033aa03a1cd64eff93`, claimed 2026-11-28T03:11:23.629Z; earliest orderly release 04:21:23.629Z. All available executable Director tasks checked: #3302 Agent30, #3284 Agent45, other tasks waiting on authentic sources, independent humans or complete decoder; no duplicate issue claim. Read mailbox inventory, relevant broadcasts, and consolidated source frontier.
