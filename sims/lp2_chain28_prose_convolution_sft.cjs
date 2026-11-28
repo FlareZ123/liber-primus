@@ -279,6 +279,92 @@ function opening729(donors) {
 const originalOpening729 = opening729(standard);
 assert(Math.max(...originalOpening729.cases.map(c=>c.originalIoC))<0.036);
 
+
+/*
+ * Optional but stronger convex-hull exclusion:
+ * Let each of the 36 ordered donor source pairs contribute its entire GP28
+ * convolution vector. Grant an arbitrary *mixture of those pairs*, even
+ * changing between events. This is a superset of independently mixed donor
+ * profiles at fixed affine parameters.
+ *
+ * Use Neyman's quadratic χ² objective N*sum((q_i-target_i)^2/target_i)
+ * so that a Frank-Wolfe supporting hyperplane gives a VERIFIED GLOBAL
+ * lower bound for every convex combination of the 36 vectors. Its
+ * upper/lower bracket is computed from the true analytic linear oracle
+ * (minimum over all 36 extreme points), not from an optimizer success flag.
+ * A positive lower bound across every tested affine row rigorously blocks
+ * this donor-mixture class regardless of unobserved selection weights.
+ */
+function convexDonorHull(donors, targetCounts, iterations=150) {
+  const N=targetCounts.reduce((a,b)=>a+b,0);
+  const t=targetCounts.map(v=>v/N);
+  assert(t.length===28 && t.every(v=>v>0));
+  const inv=t.map(v=>1/v);
+  const sq=q=>{
+    let sum=0;
+    for(let k=0;k<28;k++)sum+=(q[k]-t[k])**2*inv[k];
+    return N*sum;
+  };
+  const lowerBound=(q,basis)=>{
+    let best=Infinity;
+    for(let j=0;j<basis.length;j++){
+      const c=basis[j];
+      let linear=0;
+      for(let k=0;k<28;k++)
+        linear+=(q[k]-t[k])*inv[k]*(c[k]-q[k]);
+      if(linear<best)best=linear;
+    }
+    return sq(q)+2*N*best-1e-8; // conservative numeric safety
+  };
+  let allBounds=Infinity,allUpper=Infinity,lowest=null;
+  let weakestGap={gap:-Infinity};
+  let tested=0;
+  for(const keyEA of ["mod28","skip28"]) for(const a of UNITS)
+    for(const b of KEY_MULTIPLIERS) for(const sign of [-1,1]){
+      const basis=[];
+      for(const p of donors)for(const k of donors)
+        basis.push(predicted(p.p,k.p,a,b,sign,keyEA));
+      let idx=0;
+      for(let j=1;j<basis.length;j++)
+        if(sq(basis[j])<sq(basis[idx]))idx=j;
+      const q=basis[idx].slice();
+      let gap=Infinity;
+      for(let z=0;z<iterations;z++){
+        let jBest=-1,minSlope=Infinity;
+        for(let j=0;j<basis.length;j++){
+          let slope=0,other=basis[j];
+          for(let k=0;k<28;k++)
+            slope+=(q[k]-t[k])*inv[k]*(other[k]-q[k]);
+          if(slope<minSlope){minSlope=slope;jBest=j;}
+        }
+        gap=Math.max(0,-2*N*minSlope);
+        if(gap<1e-6)break;
+        const dst=basis[jBest];
+        let numerator=0,denominator=0;
+        for(let k=0;k<28;k++){
+          const d=dst[k]-q[k];
+          numerator-=(q[k]-t[k])*inv[k]*d;
+          denominator+=d*d*inv[k];
+        }
+        const alpha=denominator>0 ? Math.min(1,Math.max(0,numerator/denominator)):0;
+        if(alpha<1e-12)break;
+        for(let k=0;k<28;k++)q[k]+=alpha*(dst[k]-q[k]);
+      }
+      const lower=lowerBound(q,basis);
+      const upper=sq(q);
+      tested++;
+      if(lower<allBounds)allBounds=lower;
+      if(upper<allUpper){allUpper=upper;lowest={a,b,sign,keyEA,upper,lower,gap}};
+      if(gap>weakestGap.gap)weakestGap={a,b,sign,keyEA,gap,upper,lower};
+    }
+  assert.equal(tested,UNITS.length*KEY_MULTIPLIERS.length*2*2);
+  return {sourcePairs:36,operatorFamilies:tested,iterations,
+    certifiedMinimumLower:allBounds,minimumObservedUpper:allUpper,
+    bestUpperModel:lowest,worstFWGap:weakestGap};
+}
+
+const convexHullBase=convexDonorHull(standard, observed.h,100);
+const convexHullAlias=convexDonorHull(aliased, observed.h,100);
 const output={
   observed:{runes:ORIGINAL.length,zeroSteps:observed.doubles,
     nonzeroSteps:N,nonzeroVsUniformPearson:originalVsUniform},
@@ -290,6 +376,8 @@ const output={
   standard:{best:base.global,pairMinimum:base.pairs.map(x=>[x.plaintext,x.key,x.statistic])},
   aliasINGIO:{best:alias.global},
   controls:cal,
+  convexHullBase,
+  convexHullAlias,
   opening729:originalOpening729,
   conclusion:"No authenticated unknown LP2 plaintext/key; exclusion conditional on independent donor-like plaintext/key unigram statistics and this exact GP28 chain emission."
 };
