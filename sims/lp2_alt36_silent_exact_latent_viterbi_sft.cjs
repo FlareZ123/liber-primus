@@ -38,11 +38,12 @@ function experiment(raw, options={}) {
   ];
   function tape(W){const P=[];for(const w of W){P.push(...w,SPACE);}return P;}
   function rng(seed){let s=seed>>>0;return n=>{s^=s<<13;s^=s>>>17;s^=s<<5;return(s>>>0)%n;};}
-  function language(){
+  function language(excludeSource=null){
     const U=new Float64Array(30),B=new Float64Array(Q*Q),T=new Float64Array(Q*Q*Q),
       F=new Uint32Array(Q*Q*Q*Q),Ub=new Float64Array(Q),
       Bb=new Float64Array(Q*Q),Tb=new Uint32Array(Q*Q*Q);
     for(const source of sources) {
+      if(excludeSource===source.name)continue;
       const W=source.W.slice(0,Math.floor(source.W.length*.57));
       let a=SENT,b=SENT,c=SENT;
       for(const p of tape(W)){
@@ -188,6 +189,7 @@ function experiment(raw, options={}) {
     return p[b.length];
   }
   const LM=language(),beam=options.beam||600,rows=[];
+  const separateLM=options.crossAuthor?new Map(sources.map(s=>[s.name,language(s.name)])):null;
   if(options.primeMode){
     // One bounded transfer from the authenticated LP2 p56 successive
     // prime-minus-one schedule into a conjectural mod36 silent-output channel.
@@ -221,9 +223,10 @@ function experiment(raw, options={}) {
       origin0:report(a),origin1:report(b)};
   }
   for(let i=(options.start||0);i<(options.start||0)+(options.plants||3);i++){
-    const source=sources[i%sources.length],s=plant(source,91923+i*991);
-    const right=solve(s.C,s.K,LM,beam,options.maxHidden||3),
-      wrong=solve(s.C,s.WK,LM,beam,options.maxHidden||3);
+    const source=sources[i%sources.length],s=plant(source,91923+i*991),
+      lm=separateLM?.get(source.name)||LM;
+    const right=solve(s.C,s.K,lm,beam,options.maxHidden||3),
+      wrong=solve(s.C,s.WK,lm,beam,options.maxHidden||3);
     rows.push({source:s.source,seed:s.seed,printed:s.printed,
       recoverableLength:s.truth.length,actualLastKeyIndex:s.actualLastKeyIndex,
       actualSilentEmissions:s.actualSilentEmissions,
@@ -234,7 +237,7 @@ function experiment(raw, options={}) {
   }
   return {scope:"Independent exact generative mod36 V-SILENT inverse for known keystream, not original LP2 solve",
     training:"first57% words for 3 fixed donors; test exclusively last43%",
-    beam,maxHidden:options.maxHidden||3,rows};
+    beam,maxHidden:options.maxHidden||3,crossAuthor:!!options.crossAuthor,rows};
 }
 if(typeof module!=="undefined")module.exports={experiment};
 if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===module){
