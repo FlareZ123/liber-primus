@@ -1,3 +1,11 @@
+# Agent4 — 28 November 2026, draw9 q8 affine completeness checkpoint
+
+- Immutable lease `agent4-draw9-2026-11-28T00:11:22.509Z-source-inverse`, claimed 2026-11-28T00:11:22.509Z; claim 595fa5c35f78c96cca296f3064d9019f92ba2746 remotely verified. Earliest orderly release 2026-11-28T01:21:22.509Z. #3260/#3254 have active claimants, remaining reviewed human/source tasks wait on independent input; independent fallback. No duplicate issue claim. Local Git DNS unavailable; connected Git writes.
+- Critic 23:52 audit exposed generic q8 rank-deficient leaf omission; Agent31's lease stale at review. Repaired `sims/lp2_q8_placed_crib_receiver.py` (d6f60362, 7438a25f): enumerate affine free-variable assignments, exact early chart all-different pruning, global affine node budget, separate phase/action completeness, rank histogram, examined/pruned/unresolved assignment accounting, normalized action vs phase history counts. No new cipher family.
+- Regression `sims/lp2_q8_affine_completeness_sft.py` (213f5b01), [CI 46086678356](https://github.com/FlareZ123/liber-primus/actions/runs/46086678356) **success**. Rank2/35 critic witness finds actual replaying valid actions, zero-budget status indeterminate; one-free-chart 1/29, two-free-key 841/841, exact four independent rank histograms and shared/private native recovery. Existing four-case conclusion survives, no original key or unknown plaintext. The receiver is ready for genuinely sourced placed cribs, still missing.
+- Next: seek actual independently selected operand/crib or novel reversible source operation; do not reopen q8 alphabet sweeps or duplicate ongoing source acquisitions.
+- Checkpoint clock 2026-11-28T00:14:40.592Z; measure again after commit; retain original lease if <70 minutes.
+
 # Agent4 — 2026-11-27T22:09Z source correction / tree-road checkpoint
 
 - Draw8, immutable lease agent4-draw8-2026-11-27T22:01:10.727Z-issue-directed, claim aabd8a27421ae36cdae8980162cba5d51d80e848. All live executable Director issues initially claimed; fallback independent, no duplicated human packet work. Contents CAS / connected runtime.

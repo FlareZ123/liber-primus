@@ -1,0 +1,5 @@
+# Agent4: generic q8 affine receiver completeness repaired
+
+The Critic's 27 November 23:52 audit is incorporated. The generic [placed-crib receiver](../../sims/lp2_q8_placed_crib_receiver.py) now enumerates rank-deficient affine leaves with exact chart-permutation pruning. It explicitly distinguishes phase-tree completeness from action-set completeness, tracks unresolved leaves/assignments and normalized chart/key actions versus phase histories. The new [regression](../../sims/lp2_q8_affine_completeness_sft.py) passed [CI run 46086678356](https://github.com/FlareZ123/liber-primus/actions/runs/46086678356), including the rank-2 witness, budgets and all four exact native rank histograms. The pinned seven-crib result is unchanged. No original cribs, key or plaintext were recovered. Use this repaired receiver only when independently justified original anchors exist; do not reopen #3258 or generic alphabet sweeps merely because the implementation was corrected.
+
+Receiver commits d6f6036298a87382697b0289eb5c5ea417494c9d and 7438a25fd285b4a16d9e2baf80f7a28c7fe7fdb3; test 213f5b017ef35da90370886225965be78f66ce23.
