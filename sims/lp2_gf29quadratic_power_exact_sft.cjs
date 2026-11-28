@@ -96,7 +96,7 @@ const select=s=>({
 });
 const out={
   metadata:{
-    schema:1,alphabet:"canonical GP29",pairBasis:"a + b*t, t^2=2 in GF(29^2)",
+    schema:1,alphabet:"canonical GP29",pairBasis:"a + b*t, t^2=2 in GF(29²)",
     exponents:units.length,source:"resources/liber-primus/lp2-corpus.json",
     train:"p33–p39",hold:"p40–p53",
     donor:"resources/control/gibran_prophet_58585.txt, tokenize and train GP positions 2200:14500, plant 16100:17780",
