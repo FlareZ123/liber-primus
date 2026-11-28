@@ -1,6 +1,6 @@
 # LP2 JPEG production fingerprint: exact Artifex/Ghostscript profile and export invariants
 
-**Agent 8 — 2026-11-28.** This is an artifact-forensics result on the original LP2 JPEG bytes. It does **not** recover plaintext or prove a cryptographic mechanism. It materially narrows the historical-source search: all 58 LP2 pages came through a highly uniform JPEG production/export pipeline carrying an exact historical Ghostscript color-profile blob, unlike LP1.
+**Agent 8 — 2026-11-28.** This is an artifact-forensics result on the original LP2 JPEG bytes. It does **not** recover plaintext or prove a cryptographic mechanism. It integrates a fresh byte-level audit in this repository with independent prior toolchain work in [`Dukotah/cicada3301`](https://github.com/Dukotah/cicada3301). The useful addition here is a compact reproducible SFT plus the exact historical Git-object provenance of the embedded ICC payload. Together the evidence constrains the creator-side export pipeline and the source artifact worth recovering.
 
 ## Established byte facts
 
@@ -70,6 +70,12 @@ dated **2011-12-05 18:03:47Z**, added device ICC-profile embedding to Ghostscrip
 
 This provides a source-code-level lower bound on the direct Ghostscript JPEG path carrying this type of ICC marker and is important for the grayscale asymmetry below.
 
+Independent prior work supplies the empirical release boundary that source inspection alone does not. `Dukotah/cicada3301` Round 34 built Ghostscript 9.04, 9.05, 9.06, 9.07, 9.09, 9.10, 9.12 and 9.14 and rendered a controlled JPEG page at Q92/400 dpi. Under that recipe, **9.04 does not embed APP2 ICC; 9.05–9.14 do, with the same 2,576-byte profile**. Intersecting that measured boundary with Onion7's May-2014 publication gives the useful direct-render band **Ghostscript 9.05–9.14**. It does not distinguish one minor release inside that band and it remains conditional on Ghostscript itself having inserted the ICC rather than a later stage.
+
+Relevant upstream evidence:
+- [Round 34 S1 build-box results](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round34/S1-build-box/RESULTS.md)
+- [Round 18 L1 toolchain results](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round18/L1-toolchain/RESULTS.md)
+
 ## Controlled reproduction
 
 Local Ghostscript **10.05.1** was used to render a 6×9-inch PostScript page with:
@@ -93,20 +99,24 @@ All 23 one-component LP2 grayscale JPEGs still carry the **3-component RGB** `de
 
 Ghostscript's own JPEG-profile embedding code requires the device/profile component counts to match. A straightforward direct `jpeggray` export therefore does not explain a one-component JPEG carrying this RGB profile. Current Ghostscript `jpeggray` also emits its gray profile instead.
 
-A strong candidate is a later **lossless JPEG component-drop** operation on RGB exports. For example, libjpeg's `jpegtran -grayscale` discards chrominance channels while preserving luminance DCT coefficients, and its marker-copy options can preserve ICC APP markers. That mechanism would naturally leave:
+The robust inference is therefore **a secondary conversion or equivalent nonstandard metadata path**, not one uniquely identified utility. At least two mechanisms are viable in principle:
 
-1. one JPEG component;
-2. the same luma Q92 quantization table;
-3. a stale RGB ICC APP2 marker;
-4. no luminance recompression loss.
+1. a lossless JPEG component-drop such as `jpegtran -grayscale` while copying APP markers, which would discard chroma without recompressing luminance and could retain a stale RGB ICC profile;
+2. a decode/re-encode stage that explicitly converts some pages to `L` while carrying the original ICC metadata.
 
-This candidate is **not yet established**: the exact 2014 conversion tool/command has not been reproduced from historical binaries, and another metadata-preserving component-drop tool could produce the same state.
+The second family is independently demonstrated in `Dukotah/cicada3301` Round 19: its red-team reproduced the grayscale class, including stale sRGB-on-grayscale, with a Ghostscript → PIL chain, and showed that the earlier ImageMagick-specific encoder attribution was not unique. Its `jpegtran` arm remained untested. Accordingly **the component asymmetry establishes a multi-stage/nonstandard path but does not identify the second-stage program**.
+
+Relevant prior evidence:
+- [Round 19 R1 red-team](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round19/R1/RESULTS.md)
+- [Round 19 R1 ledger](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round19/R1/ledger.json)
 
 ## What this changes
 
 The original Onion7 carrier is a static set of 58 JPEGs plus `index.html`; the dated participant archive contains no sibling PDF/PS/layout source. The byte fingerprint makes the missing historical input much more concrete.
 
-The highest-value source-recovery target is now:
+Independent Round 30/34 work in `Dukotah/cicada3301` had already converged on the same off-repository target: recover the creator-side source PDF/PostScript or equivalent page-layout source. The present audit strengthens that route with an exact historical ICC Git object and a local parser/SFT.
+
+The highest-value source-recovery target remains:
 
 > a **pre-JPEG LP2 page-layout or raster precursor** and/or the conversion command/script that produced the 2400×3600, 400-dpi, Q92 JPEG set through the Artifex/Ghostscript pipeline.
 
@@ -128,3 +138,17 @@ python sims/lp2_jpeg_pipeline_fingerprint_sft.py /path/to/liber-primus-jpegs.zip
 ```
 
 The SFT parses JPEG markers directly; no image decoder is required. It reconstructs ICC chunks, computes both SHA-256 and Git blob SHA, identifies IJG quantization quality, verifies dimensions/density/sampling/page-mode sets, and checks LP1 as a control.
+
+## Prior-work boundary
+
+The artifact fingerprint itself is **not claimed as globally novel**. After the local checkpoint, repository-wide GitHub search located the extensive independent audit in `Dukotah/cicada3301`, which had already established the 400-dpi Artifex/Ghostscript rendering signature, tested multiple second-stage encoders, and later built historical Ghostscript releases. That work should be treated as a reusable external research corpus rather than repeated.
+
+What this repository contributes here is:
+
+- a direct parser over the maintainer-supplied 75-JPEG source archive with an LP1 control;
+- the exact ICC SHA-256 and Git blob SHA;
+- the exact link from LP2's embedded bytes to Artifex commit `eaec68d05c8d223cb97d89b6a3a9a96e550feeb2`;
+- integration of the historical `gdevjpeg.c` component-count condition with the observed RGB/grayscale asymmetry;
+- a compact SFT that future source candidates can be checked against immediately.
+
+Do not treat the toolchain as a key. Its value is causal: it identifies a much richer missing artifact class — the creator-side page-layout/vector source or pre-JPEG intermediate — that could preserve source-selected fonts, coordinates, object order, colors, or metadata destroyed by the published JPEGs.
