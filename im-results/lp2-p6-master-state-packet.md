@@ -508,11 +508,20 @@ p39 FALSE
 p40 PATHS
   signed-tail selectors choose p6 qg=20 and the unique red [-K,q] title word,
   yielding [qg,qg,aK,a] = [20,20,12,6].
+
+p41 VERIFY
+  [-OPENPGP.first,p,VERIFY.first,OPENPGP.length,PATHS.first,-OPENPGP.length]
+  = [26,23,1,7,13,22].
+
+p42 OPENPGP
+  [OPENPGP.length,VERIFY.first,BEWARE.length*BEWARE.Hdiff,p,
+   PATHS.first,BEWARE.Hdiff,OPENPGP.Hdiff]
+  = [7,1,12,23,13,2,18].
 ```
 
-The charges have different strengths. P39 is familywise unique numerically across 13,056 direct warning-carrier keys and seven five-rune targets. P38 is the sole authenticated six-rune hit in its 589-key / 1,178-sign source family. P37 has one additional numeric MEANING operation in the broad carrier-field family, so its warning route is target-specific corroboration. P36's very broad signed-field family reaches several four-rune targets, though the independently assigned GOOD target has one numeric operation.
+The charges have different strengths. P41 and p42 are especially sharp: their receivers were target-blind before the direct-key constructions, their complete substitution families contain 125/125 and 625/625 distinct keys respectively, and each has exactly one authenticated target hit. P39 is familywise unique numerically across 13,056 direct warning-carrier keys and seven five-rune targets. P38 is the sole authenticated six-rune hit in its 589-key / 1,178-sign source family. P37 has one additional numeric MEANING operation in the broad carrier-field family, so its warning route is target-specific corroboration. P36's very broad signed-field family reaches several four-rune targets, though the independently assigned GOOD target has one numeric operation.
 
-This changes the causal interpretation: p6 remains an important original-manuscript packet and supplies the p40 geometric selector, but p36–p39 no longer depend exclusively on retrospective p6 shell-role assignments. The authenticated warning itself contains enough typed numeric fields to reproduce their exact local key material. No single source-selected serialization rule yet predicts all five page mechanisms.
+This changes the causal interpretation: p6 remains an important original-manuscript packet and supplies the p40 geometric selector, but p36–p42 no longer depend exclusively on retrospective p6 shell-role assignments. The authenticated warning itself contains enough typed numeric fields to reproduce their exact local key material through page-specific compact grammars. No single source-selected serialization rule yet predicts all seven page mechanisms.
 
 Reproducer for the warning-field charges: `sims/lp2_signed_warning_initial_p6_crosslink_sft.cjs`.
 
