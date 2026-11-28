@@ -151,6 +151,6 @@ p28 D4
  -> existing exact PATHS inverse
 ~~~
 
-This materially strengthens PATHS as the route-selected p40 target and removes the prior ability to choose among four origin pairs after seeing the receiver. It still does not authenticate the p40 key schedule because its ordered H roles remain retrospective.
+This materially strengthens PATHS as the route-selected p40 target and removes the prior ability to choose among four origin pairs after seeing the receiver. P6 now supplies both a source-visible numeric key and an overdetermined local address71; carrying that address to the already selected p40 page yields the exact four-rune receiver and decrypts to PATHS without using PATHS length/GP0. The remaining retrospective premise is the p6->p40 same-offset transfer grammar, not the numeric key or target-state receiver.
 
 Do not extend PATHS by a literal +1 signed-follower receiver: the prospectively frozen VERIFY41 test fails. Do not claim p42 OPENPGP plaintext from its RISE-selected page label: the predeclared exact-state holdout fails. The next decisive promotion must fix the p40 shell roles from first-party structure **before** another ciphertext receiver is opened, or predict a different fresh receiver with a complete reversible key.

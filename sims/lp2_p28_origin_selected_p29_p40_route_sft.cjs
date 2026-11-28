@@ -457,6 +457,80 @@ for (let index = 0; index + 1 < title.length; index += 1) {
 assert.equal(adjacentCircumferenceKeys.size, 6);
 assert.deepEqual(literalKeyHits(adjacentCircumferenceKeys), expectedLiteralHit);
 
+// Target-blind p6 address71 -> p40 receiver charge.
+assert.equal(signed[6].label, "SEEKS");
+assert.equal(sum(signed[6].gp), 71);
+assert.equal(title[0].start, 71);
+assert.equal(title[0].gp0, 71);
+assert.equal(sum(upperLineCounts), 71);
+assert.equal(upperLineCounts.length, 4);
+assert.equal(lowerLineCounts.length, 6);
+assert.equal(upperLineCounts.filter((value) => value === 20).length, 1);
+assert.equal(lowerLineCounts.filter((value) => value === 20).length, 1);
+assert.equal(20, 4 * 5);
+assert.equal(terminalTitleRune, 6 * 2);
+
+const p40Offset71 = pageWords(40).filter((word) => word.start === 71);
+assert.equal(p40Offset71.length, 1);
+assert.deepEqual(p40Offset71[0].values, [4,15,14,21]);
+assert.deepEqual(
+  p40Offset71[0].values.map((value, index) => mod29(value - sourceFixedKey[index])),
+  signed[40].gp
+);
+
+// Charge simple title scalars before selecting 71.
+const titleScalars = new Set([71,82]);
+for (const word of title) {
+  titleScalars.add(word.start);
+  titleScalars.add(word.start + word.len);
+  titleScalars.add(word.gp0);
+  titleScalars.add(word.len);
+}
+assert.deepEqual([...titleScalars].sort((a,b) => a - b),
+  [1,2,4,19,26,65,71,75,76,80,82]);
+const p40FourRuneScalarStarts = [...titleScalars].filter((scalar) =>
+  pageWords(40).some((word) => word.start === scalar && word.len === 4)
+);
+assert.deepEqual(p40FourRuneScalarStarts, [71]);
+
+const signedFourRuneByGp = new Map();
+for (const target of signed.filter((word) => word.gp.length === 4)) {
+  const signature = target.gp.join(",");
+  if (!signedFourRuneByGp.has(signature)) signedFourRuneByGp.set(signature, []);
+  signedFourRuneByGp.get(signature).push({ index: target.index, label: target.label });
+}
+const offset71Words = canonical.filter((word) => word.start === 71);
+assert.equal(offset71Words.length, 12);
+const offset71FourRuneWords = offset71Words.filter((word) => word.len === 4);
+assert.equal(offset71FourRuneWords.length, 5);
+const offset71AuthenticatedHits = [];
+for (const receiver of offset71FourRuneWords) {
+  for (const direction of ["sub","add"]) {
+    const output = receiver.values.map((value, index) =>
+      direction === "sub"
+        ? mod29(value - sourceFixedKey[index])
+        : mod29(value + sourceFixedKey[index])
+    );
+    const targets = signedFourRuneByGp.get(output.join(",")) || [];
+    for (const target of targets) {
+      offset71AuthenticatedHits.push({
+        page: receiver.page,
+        start: receiver.start,
+        direction,
+        target,
+        output,
+      });
+    }
+  }
+}
+assert.deepEqual(offset71AuthenticatedHits, [{
+  page: 40,
+  start: 71,
+  direction: "sub",
+  target: { index: 40, label: "PATHS" },
+  output: [13,24,2,15],
+}]);
+
 const p41Verify = pageWords(41).filter((word) =>
   word.len === signed[41].gp.length && word.gp0 === sum(signed[41].gp)
 );
@@ -494,6 +568,11 @@ console.log(JSON.stringify({
     adjacentCircumferenceKeyCount: adjacentCircumferenceKeys.size,
     adjacentCircumferenceHits: literalKeyHits(adjacentCircumferenceKeys),
     sourceFixedHits: literalKeyHits(sourceFixedFamily),
+    titleScalars: [...titleScalars].sort((a,b) => a - b),
+    p40FourRuneScalarStarts,
+    offset71WordCount: offset71Words.length,
+    offset71FourRuneWordCount: offset71FourRuneWords.length,
+    offset71AuthenticatedHits,
     hits: literalKeyHits(permutedLiteralKeys),
   },
   sealedTransfers: {

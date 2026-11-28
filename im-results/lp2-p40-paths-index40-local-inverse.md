@@ -180,6 +180,18 @@ A later source-layout tightening removes the *numeric* H-role choice entirely. P
 Detailed producer report: `im-results/lp2-p25-paths40-direct-consumer.md`.
 Reproducer: `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
 
+## Target-blind receiver reconstruction from p6 address71
+
+P6 supplies not only the numeric key but a local address. `GP0(SEEKS)=71`, the black body before p6's red title has71 runes, the title begins at71, and its first red word has GP0=71. The p25 route independently selects physical p40.
+
+Transfer that p6 title-start coordinate to p40 without consulting PATHS's GP spelling. At local offset71 p40 has the complete four-rune word `[4,15,14,21]`. Applying the source-derived key `[20,20,12,6]` by historical subtraction yields `[13,24,2,15]=PATHS`.
+
+Among every simple scalar exposed by the p6 title (word starts/ends, word GP0 sums, word lengths, title start/end), 71 alone begins a four-rune p40 word. Across all unknown pages, 12 complete words begin at offset71, five are four runes, and the fixed p6 key under both signs produces exactly one authenticated four-rune source word: p40 PATHS by subtraction.
+
+This removes PATHS length/GP0 from the receiver selection. The remaining retrospective premise is the same-offset transfer from p6 to the already selected p40 page.
+
+See `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`.
+
 ## 6. Manuscript-wide exact-key control
 
 Hold the exact key `[20,20,12,6]` fixed.

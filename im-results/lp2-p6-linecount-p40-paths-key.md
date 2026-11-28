@@ -92,6 +92,54 @@ Across the same 62 pairs and both signs, the sole hit is again p40 PATHS, using 
 
 A deliberately broad arithmetic null that lets each key coordinate independently draw from direct `K/e/g/a` values or those values multiplied by a visible title length gives 10,000 keys and three hits. Arbitrary p6 arithmetic is not identifying; the physical balance and marked-title geometry are the discriminating constraints.
 
+## P6 also supplies a target-blind p40 receiver address
+
+The same p6 object independently overdetermines local coordinate **71**:
+
+~~~text
+GP0(SEEKS)                  = 71
+black runes before red title = 71
+red title start              = 71
+GP0(first red title word)    = 71.
+~~~
+
+The p25 route has already selected **physical p40** before any p40 rune value is used. Carry p6's title-start coordinate to that page:
+
+~~~text
+p40 local offset71
+-> complete printed word [4,15,14,21].
+~~~
+
+Now apply the p6-derived key and the established subtraction primitive:
+
+~~~text
+[4,15,14,21] - [20,20,12,6] mod29
+= [13,24,2,15]
+= PATHS.
+~~~
+
+This receiver selection does **not** use the target word PATHS, its GP spelling, its length, or GP0. The plaintext emerges only after page, offset, key and direction are fixed.
+
+Charge the simple numeric scalar family exposed by the p6 red title—its word starts/ends, word GP0 sums, word lengths, title start/end. The distinct values are:
+
+~~~text
+1,2,4,19,26,65,71,75,76,80,82.
+~~~
+
+On p40, 71 alone lands on a complete four-rune word; 75 lands on a three-rune word and the other values do not begin a complete p40 word.
+
+A manuscript-wide charge is also selective. Across unknown physical pages, only **12** complete words start at local offset71 and only **5** of those have four runes. Hold key `[20,20,12,6]` fixed and test both signs. Exactly **one** output equals any authenticated four-rune 2016 source word:
+
+~~~text
+p40 offset71
+subtraction
+-> PATHS (source index40).
+~~~
+
+The caveat moves to a single rule: transferring the p6 title-start address to the already selected p40 page was recognized after the historical PATHS fit. The 71 address itself is heavily source-selected, and the key is now source-derived without p40 values, so this is a **target-blind exact local inverse conditional on the same-offset transfer**. An authored same-offset instruction or a fresh destination predicted from the frozen transfer would remove the remaining retrospective step.
+
+Detailed report: `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`.
+
 ## Exact inverse
 
 ~~~text
