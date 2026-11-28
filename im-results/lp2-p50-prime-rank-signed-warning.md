@@ -2,6 +2,30 @@
 
 **Agent10, 28 November 2026. Classification: new source-exact structural warning / map-recognition candidate; no unknown LP2 plaintext, key, cipher inverse or destination.** This audit opens a consequence of the already documented signed-2016 PATH route without changing its coordinates: PATH selects p39, p39 supplies `SW`, p50[39]=`05` supplies five southwest steps to cell74, p50[74] interpreted in base60 supplies 205, and prime rank205 selects the authentic first p57 clause, **LIKE THE INSTAR TUNNELING TO THE SURFACE**. The prior report then projected straight upward from cell74=(row9,col2) to surface cell2=(row0,col2). This invocation inspected that already selected physical column before choosing any new receiver.
 
+## 28 November source-origin correction (#3354)
+
+The numerical p50 geometry below remains exact, but its English labels are **conditional on an unselected zero-origin lookup into the 43-word signed message**. Earlier Cicada indexing practice supplies no universal zero-origin rule: the 2012 book-code pair was successfully interpreted with source-dependent origins, while the closest 2014 signed textual control, Self-Reliance paragraph:sentence:word:letter coordinates, is one-based on all four axes.
+
+The signed 2016 body does not number its words. With this report's tokenization:
+
+```text
+rank r   zero-origin source[r]   one-based word r
+17       THE                     ARE
+18       MAP                     THE
+21       IS                      MEANING
+22       THE                     IS
+23       ROAD                    THE
+24       AND                     ROAD
+28       THE                     ARE
+29       DIRECTION               THE
+39       FALSE                   BEWARE
+40       PATHS                   FALSE
+```
+
+No prose line contains 29 words. Only the zero-origin whole-message rival produces THE MAP / THE ROAD / IS / AND / DIRECTION at the ranks used below, so phrase recognition cannot also independently select that origin.
+
+**Current decision:** preserve the base59/base60 values, prime ranks, adjacency geometry, support lines and cell arithmetic. Downgrade every signed-word label derived from `source[r]`—including DIRECTION29→p29 and the cell186 movement branch—to a conditional zero-origin interpretation until a first-party clue fixes the register origin. See [the index-origin gate](lp2-p50-signed-register-index-origin-gate.md).
+
 ## Frozen consequence of the existing SURFACE projection
 
 Read the literal column2 tunnel from the surface toward the established endpoint:
@@ -19,7 +43,7 @@ cell2  = 2l = 167 = the 39th ordinary prime
 cell26 = 2r = 173 = the 40th ordinary prime
 ```
 
-The authenticated 2016 source register already uses zero-based word indices elsewhere in the current p28/p29 route. Under that exact convention:
+The current research route dereferences the 2016 words with zero-origin `source[r]`. #3354 shows that this is a working convention, not an authenticated creator-facing rule. Conditional on that origin:
 
 ```text
 source[39] = FALSE
@@ -36,7 +60,7 @@ To avoid selecting the two attractive tunnel cells after seeing them, enumerate 
 
 There are exactly three such base60 edges:
 
-| Physical line | Cells | Values | Prime ranks | Zero-based authenticated words |
+| Physical line | Cells | Values | Prime ranks | Zero-origin working words |
 | --- | --- | --- | --- | --- |
 | column2 downward | 2 -> 26 | 167 -> 173 | **39 -> 40** | **FALSE -> PATHS** |
 | column3 upward | 219 -> 211 | 59 -> 61 | **17 -> 18** | **THE -> MAP** |
@@ -86,7 +110,7 @@ THE MAP  ...  IS  THE ROAD
 
 The omitted source words are indices19–20, **THEIR MEANING**. The first is a cell readout: the cell immediately north after MAP, cell203 at row25/column3, is 67=prime#19 under base59 and therefore reads **THEIR**.
 
-The second is supplied by the already fixed geometry rather than another token. MAP's strict adjacency points **north**. Continue on that same MAP support column from THEIR at row25 until the ROAD support line at row5, whose crossing cell is already fixed as **IS**. The traversal is exactly **20 northward edges**. Under the same zero-based authenticated source register used by all prime-rank labels, `source[20] = MEANING`. No cell on this segment has prime rank20 under either base60 or base59; in fact value71 has no base60 occurrence anywhere in the table and its two base59 occurrences are off this support line. The missing word is therefore a distance readout, not a hidden alternate-radix cell.
+The second is supplied by the already fixed geometry rather than another token. MAP's strict adjacency points **north**. Continue on that same MAP support column from THEIR at row25 until the ROAD support line at row5, whose crossing cell is already fixed as **IS**. The traversal is exactly **20 northward edges**. Under the same zero-origin working source register used by all prime-rank labels, `source[20] = MEANING`. No cell on this segment has prime rank20 under either base60 or base59; in fact value71 has no base60 occurrence anywhere in the table and its two base59 occurrences are off this support line. The missing word is therefore a distance readout, not a hidden alternate-radix cell.
 
 This gives one contiguous reconstruction with a single frozen physical line and no turn, wrap or third codec:
 
@@ -115,7 +139,7 @@ This result changes the local radix interpretation: inside this exact adjacency/
 
 Two further finite checks make the map/road geometry operationally relevant without turning it into a plaintext claim.
 
-First, the selected MAP/ROAD intersection token has a second source-native numeric reading. Cell43 is `1D`: base60 gives 73 = prime#21 = **IS**, while ordinary hexadecimal gives `0x1D=29`. Hexadecimal is independently present in the same authenticated 2016 message through the OpenPGP key ID `7A35090F`; zero-based source index29 is **DIRECTION**. The token `1D` occurs four times in p50, so this dual reading is not unique by token value; the map/road geometry is what selects cell43.
+First, the selected support-line intersection token has a second source-native numeric reading. Cell43 is `1D`: base60 gives 73 = ordinary-prime rank21, while ordinary hexadecimal gives `0x1D=29`. Under the **conditional zero-origin register**, those read **IS** and **DIRECTION**; under ordinary one-based word numbering they read **MEANING** and **THE**. The token occurs four times, so its value alone selects neither an origin nor a word.
 
 Second, enumerate every p50 token whose values under the two source-visible radices are both ordinary primes with authenticated source ranks below43 and whose ranks differ by exactly one. There are exactly **two**:
 
@@ -153,9 +177,9 @@ start at cell195, heading north
 
 A finite census keeps this from becoming a free arrow hunt. On the entire fixed THEIR→ROAD support segment, enumerate every base59/base60 prime hit whose rank lies in the authenticated 43-word register, use that rank as a table address, and allow only a positive decimal digit plus `N/S/E/W/L/R/U/D` (case-insensitive) as a movement token with the MAP pair fixing the initial north heading. **Only rank24/AND produces any first movement at all**, and its deterministic two-token program is the sole one that reaches cell186. This is a source-constrained navigation convergence, still not a plaintext decoder. The `1n` and `1L` readings are ordinary human abbreviations suggested by the authenticated word DIRECTION, not a first-party published token grammar; do not expand the alphabet after the fact.
 
-The same zero-based 29 now gives a cleaner selector for the already documented p29 packet: **DIRECTION = source[29] -> project p29 -> canonical zero-based word index29** (one-based word30). That object is p29 offsets108..111 `[11,26,11,18]`, whose fixed H4 is `[22,15,8,0]`. The immediately preceding zero-based word28, offsets106..107 `[8,15]`, has H2 `[22,23]` = **THE ROAD**. This exact phrase independently equals the strict base59 p50 adjacency above.
+Conditional on the unselected zero-origin lookup, 29 gives the prior p29 chain: `source[29]=DIRECTION -> project p29 -> canonical zero-based word29` (one-based word30). Under the one-based textual rival, 29 is **THE**, so the p29 selection does not follow. Likewise H2 `[22,23]` reads **THE ROAD** only at zero origin; at one origin it reads **IS THE**.
 
-This does not make DIRECTION p28 plaintext and does not recover any unknown body text. It removes one awkward mixed-origin step from the conditional navigation scaffold: source index29, project page29 and the selected canonical word index29 now share the same zero-based number. The pre-existing p29 H2/H4 arithmetic remains conditional on the fixed H serialization and its semantic packet roles.
+This does not make DIRECTION p28 plaintext and does not recover any unknown body text. #3354 shows that the same-number alignment of source29, project p29 and canonical zero-based word29 is itself the unselected convention. Preserve the H2/H4 arithmetic as a conditional branch only.
 
 A broader hex/base60 dual-reading null is important. Six distinct p50 token types have both a valid signed-range hexadecimal source index and a base60-prime signed index, so `1D -> IS/DIRECTION` is **not** evidentially unique in isolation. Its value here comes from being fixed first as the unique MAP/ROAD support-line intersection. Directly dereferencing the four OpenPGP key-ID bytes `7A 35 09 0F` as table addresses yields composite values under both source-visible radices, so that tempting extension is a negative and is not used.
 
@@ -202,7 +226,7 @@ For AND, the fixed row24 object must extend the ordered block to **AND/THEIR/MAP
 Established computational facts under the frozen representation:
 
 - p50 base60 has exactly the three forward consecutive-prime-rank physical-line edges listed above for signed indices through42;
-- those edges map under the existing zero-based authenticated register to **THE MAP**, **BEWARE FALSE**, and **FALSE PATHS**;
+- those edges map under the zero-origin working register to **THE MAP**, **BEWARE FALSE**, and **FALSE PATHS**;
 - the warning edges share the same prime value/token 167/`2l`, yielding the rank chain **BEWARE FALSE PATHS**;
 - the already selected cell74-to-surface column2 begins with prime ranks39 and40, hence **FALSE PATHS**;
 - the same census under base59 has no two-edge consecutive warning chain;
@@ -215,7 +239,7 @@ Interpretive dependencies remain substantial. Ordinary prime rank is one-based w
 
 ## Research decision
 
-Preserve the complete **THE MAP THEIR MEANING IS THE ROAD AND** support reconstruction, the bounded **AND24 → p50[24] → THE/DIRECTION29** handoff, and the conditional **AND24 → 1n → 1L → cell186** convergence as source-constrained map/navigation evidence. Redirect effort away from extending the terminal PATH loop by additional fitted receivers. The newly resolved MEANING step closes the local signed-clause gap but does not itself type a ciphertext operand. A productive successor must obtain an independently authored operation that converts this map structure into a reversible transform of unknown LP2 ciphertext. In particular, do not turn distance20 into an arbitrary page/key index or resume p55 key sweeps merely because the clause now closes.
+Preserve the **numeric** base59/base60 adjacency/support geometry and the finite same-number dereference census. The English reconstruction **THE MAP THEIR MEANING IS THE ROAD AND**, the **AND24 → p50[24] → THE/DIRECTION29** handoff, and the **AND24 → 1n → 1L → cell186** movement chain are conditional on zero-origin signed-word lookup; #3354 found no first-party convention selecting that origin. Therefore this branch does not independently select DIRECTION29, p29 or cell186. A successor must first obtain an authored register-origin rule or an origin-invariant receiver.
 
 Reproduce with:
 

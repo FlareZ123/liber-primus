@@ -1,6 +1,6 @@
 # Conditional READ OUT THE → signed-source DIRECTION continuation selects a p29 DH/derivative packet
 
-**Agent1, 19 November 2026; paired source-number extension by Agent42, 27 November 2026. Classification: conditional structural operation candidate with an exact, previously known numeric consequence on p29 and a new source-numbered ROAD handoff.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
+**Agent1, 19 November 2026; paired source-number extension by Agent42, 27 November 2026; source-origin audit by Agent20, 28 November 2026. Classification: conditional structural operation candidate. The p29 arithmetic is exact, but #3354 removes p50's zero-origin register as independent evidence for DIRECTION29, THE ROAD or p29.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
 
 ```text
 [22,15,8,0] = [p-1,b,A,F].
@@ -10,7 +10,20 @@ Those numbers reconstruct `p=23`, `e=b^-1 mod(p-1)=3`, and `K=A^b mod p=2`. The 
 
 No p29 body plaintext is claimed here. The four-rune packet is numerical state material.
 
-## 28 November independent p50 selector: zero-based DIRECTION29 and THE ROAD echo
+## 28 November source-origin correction (#3354)
+
+P50's numeric geometry does **not** independently select this packet. The signed 2016 text never numbers its words, and historical Cicada controls do not establish a universal zero origin:
+
+```text
+29 -> zero-origin source[29] = DIRECTION
+29 -> one-based word29      = THE
+H2 [22,23] at zero origin   = THE ROAD
+H2 [22,23] at one origin    = IS THE
+```
+
+Thus p50→DIRECTION29→p29 and the THE ROAD echo survive only as a conditional zero-origin branch. Preserve the word29/30 H arithmetic below, but do not count p50 as an independent selector. See [the source-origin gate](lp2-p50-signed-register-index-origin-gate.md).
+
+## Historical p50 zero-origin branch (superseded as an independent selector by #3354)
 
 Agent10's source-first p50 adjacency census supplies an independent selector that was not available when this report's ordinal/follower rule was proposed. In the original 32×8 p50 field, the only physically adjacent consecutive-prime-rank pair under base60 is **THE MAP** and the only such pair inside the signed register under the uniquely absent-`f` base59 codec is **THE ROAD**. Their support lines intersect at cell43, original token `1D`. Its base60 value73 is prime#21 = signed index21 **IS**; the same printed token read as ordinary hex is `0x1D=29`, and signed zero-based index29 is **DIRECTION**.
 
@@ -26,7 +39,7 @@ p50 MAP/ROAD intersection 1D
  -> H4 [22,15,8,0].
 ```
 
-The immediately preceding zero-based word28 (one-based word29) still gives H2 `[22,23]` = **THE ROAD**, exactly the phrase independently selected by p50's strict base59 adjacency. Thus p50 supplies both a DIRECTION29 selector and an independent THE ROAD echo for the existing p29 pair.
+The immediately preceding zero-based word28 (one-based word29) still gives H2 `[22,23]` = **THE ROAD**, exactly the phrase independently selected by p50's strict base59 adjacency. Under zero-origin lookup p50 reproduces DIRECTION29 and THE ROAD, but #3354 shows that neither is independent of the unselected register origin.
 
 The `1D` token is not globally unique: it occurs at four p50 cells, and a broader hex/base60 signed-index census has six distinct dual-readable token types. Its evidentiary role comes from the independently fixed MAP/ROAD intersection, not from mining all tokens for the word DIRECTION. The p29 H serialization and DH role labels remain conditional, and no p29 body plaintext is recovered. Reproducer: [p50 map/road/direction p29 bridge](../sims/lp2_p50_map_road_direction_p29_bridge_sft.cjs).
 
@@ -94,7 +107,7 @@ H2([8,15])
 = [22,23].
 ```
 
-Those are authenticated zero-based source indices:
+Conditional on zero-origin signed-message lookup, those are source indices:
 
 ```text
 22 THE

@@ -1,6 +1,10 @@
-# P22 NUMBERS plus square-derived e selects DIRECTION29 and closes through the p29 state packet
+# Conditional P22 value26 + e reaches 29; DIRECTION/p29 interpretation is register-origin dependent
 
 **Agent13, 19 November 2026. Classification: source/state navigation candidate. Every arithmetic step is exact and uses pre-existing state/register conventions. The `+e` semantic translation was recognized after the source register was known, so preserve the route as a conditional architecture hypothesis rather than independent corroboration or a blind plaintext discovery.**
+
+## 28 November source-origin correction (#3354)
+
+The arithmetic `26 + e = 29` is exact. Its labels are origin-dependent: zero-origin gives 26=NUMBERS and29=DIRECTION; one-based word numbering gives 26=THEIR and29=THE. The signed 2016 text does not choose an origin, so the cycle below is only a conditional zero-origin construction and does not independently select p29. See [the register-origin gate](lp2-p50-signed-register-index-origin-gate.md).
 
 ## Inputs already fixed independently
 
@@ -29,11 +33,11 @@ Take `26 = NUMBERS` from the mirrored p22 square and apply the square-derived fi
 26 + e = 26 + 3 = 29 = DIRECTION.
 ```
 
-Charging direct shifts by the reconstructed state fields `{g,a,b,A,B,K,e,q}`, only `e` lands on source index29 DIRECTION. Under the already established zero-based source-index/project-page convention, `DIRECTION29 -> p29`.
+Charging direct shifts by the reconstructed state fields `{g,a,b,A,B,K,e,q}`, only `e` lands on numeric register value29 from26. Under the **conditional zero-origin** lookup that value is DIRECTION and may be read as p29; under the one-based textual rival it is THE, so the page handoff is not source-selected.
 
 ## P29 returns e from DIRECTION's same-numbered object
 
-DIRECTION is zero-based source index29 and one-based source word30. Project p29 is physical LP2 page30, so the established numbered-object convention selects canonical word30:
+Conditional on zero-origin lookup, DIRECTION is source index29 and one-based word30. The proposed branch then maps that number to project p29 / physical page30 and selects canonical word30:
 
 ```text
 offset108
@@ -74,7 +78,7 @@ The p22 BASE29 branch previously consumed ARE27 through the numbered route. This
 
 ## Evidence boundary
 
-Exact and reproducible: center809 gives mirrored register values26,27; square metadata gives `e=3`; `26+3=29`; only `e` among the reconstructed state fields maps NUMBERS26 to DIRECTION29; DIRECTION selects p29 under the existing convention; p29 word30 H-decodes to `[22,15,8,0]`; that packet reconstructs `e=3`.
+Exact and reproducible: center809 gives mirrored numeric values26,27; square metadata gives `e=3`; `26+3=29`; p29 word30 H-decodes to `[22,15,8,0]`; that packet reconstructs `e=3`. Conditional on zero-origin lookup, 26 and29 are NUMBERS/DIRECTION and numeric29 is used as p29; one-based lookup changes them to THEIR/THE.
 
 Interpretive: the author intended `+e` as an executable navigation operation, and this local cycle belongs to a larger route. No p29 body plaintext is recovered.
 
