@@ -5,7 +5,7 @@
 'use strict';
 const A=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
-const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8').replace(/\r\n?/g,'\n');
 const load=p=>JSON.parse(read(p));
 const corpus=load('resources/liber-primus/lp2-corpus.json');
 const ink=load('resources/liber-primus/lp2-ink-annotations.json');
