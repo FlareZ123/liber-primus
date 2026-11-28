@@ -68,49 +68,59 @@ The p32 ambiguity is resolved independently: the pre-existing source rule select
 
 Thus the block-level receiver rule reconstructs the complete existing start vector [30,132,4,25].
 
-## Finite post-discovery charge
+## Direct p6 artifact serializer and finite charge
 
-The exact shell was noticed after the receiver vector, so charge a wider p6-visible family.
-
-Let:
+The state labels above are not needed to construct the successful shell. Each coordinate has a concrete, typed source on p6 itself:
 
 ~~~text
-L = H4(p6 printed title lengths) = [K,-e,g,a] = [2,26,5,6]
-W4 = [-b,aK] = [14,12]
-M = {q,1,K} = {4,1,2}.
+H4(title lengths)[2]                =  5
+terminal rune of terminal word W4  = 12
+unique black width appearing
+  exactly once above and below
+  the red title                     = 20
+GP0(W4) mod29                       = 26
 ~~~
 
-Enumerate:
-
-1. x: any coordinate of L (4 choices);
-2. z: a different coordinate of L (3 choices);
-3. y: either rune of W4 (2 choices);
-4. m: any printed title length role in M (3 choices);
-5. all 4! coordinate permutations of the multiset [x,y,m*x,z].
-
-This is 4×3×2×3×24 = **1,728 labeled constructions**, collapsing to **1,404 distinct numeric shells**.
-
-For every distinct shell, apply frozen H4 inverse to obtain four residues. Require only that p32 has a complete three-rune word at residue r0, p33 a complete four-rune word at r1, p34 a complete two-rune word at r2, and p35 an adjacent 2+3 packet at r3.
-
-Exactly **1/1,404 distinct shells** supports all four receiver classes:
+Thus the source object directly exposes
 
 ~~~text
-shell    [5,12,20,26] = [g,aK,qg,-e]
+[5,12,20,26],
+~~~
+
+and the already frozen H4 inverse converts it to the receiver residues
+
+~~~text
+[1,16,4,25].
+~~~
+
+This is a more literal human-scale route than the first algebraic description `[g,aK,qg,-e]`: the four numbers are read from title-length geometry, the terminal red rune, physical black-line width, and the terminal red word sum.
+
+Because this typed readout was recognized after the receiver vector, charge the source choices broadly rather than holding the successful coordinates fixed. Let:
+
+- `A` be any of the four coordinates of `H4([4,1,4,2])=[2,26,5,6]`;
+- `B` be either rune of the terminal title word `W4=[14,12]`;
+- `C` be either black line width that occurs on both sides of the red title, `{20,24}`;
+- `D` be any title-word GP0 modulo29, `{13,19,7,26}`;
+- and allow all 24 coordinate orders of `[A,B,C,D]`.
+
+This gives **1,536 labeled constructions**, collapsing to **1,488 distinct numeric shells**. For each distinct shell, apply the frozen H4 inverse and require only the four pre-existing receiver classes:
+
+- p32: a complete three-rune word at residue r0;
+- p33: a complete four-rune word at residue r1;
+- p34: a complete two-rune word at residue r2;
+- p35: an adjacent 2+3 packet at residue r3.
+
+Exactly **1/1,488 distinct shells** supports all four classes:
+
+~~~text
+shell    [5,12,20,26]
 residues [1,16,4,25]
 hits     p32 {1,30}; p33 {132}; p34 {4}; p35 {25}
 ~~~
 
-It is also one labeled construction:
+The successful typed choices are also the source-most constrained members of their categories: 20 is the only shared width that occurs exactly once on each side; 12 is the marked terminal rune; 26 is the sum of that same terminal word. The earlier first-full-stop selector independently resolves the p32 two-way ambiguity to start30.
 
-~~~text
-x = L[2] = g
-y = W4[1] = aK
-m = q
-z = L[1] = -e
-order = [x,y,m*x,z].
-~~~
-
-The earlier first-full-stop selector resolves the remaining p32 two-way ambiguity to start30.
+For audit continuity, the earlier state-expression discovery family remains reproducible: 1,728 labeled / 1,404 distinct shells built from transformed title-length fields, W4, and printed length multipliers also leaves the same sole supporting shell. The typed artifact charge above is the stronger interpretation because it removes the invented product coordinate from the causal route.
 
 ## Consequence for the corridor
 
@@ -123,7 +133,7 @@ The receiver story is therefore substantially more uniform than the prior page-b
 
 ## Evidence boundary
 
-The four receiver starts predate this shell. The family itself was designed after observing the vector, so 1/1,404 is a bounded family count rather than a discovery-wide significance claim.
+The four receiver starts predate this shell. The typed artifact family itself was designed after observing the vector, so 1/1,488 is a bounded family count rather than a discovery-wide significance claim.
 
 P35's adjacent 2+3 type is not inferred from FOUND; its raw five-rune H5 state packet was independently selected before target insertion. P32's full-stop tie-break is likewise independently source-visible.
 
@@ -137,4 +147,4 @@ Run:
 node sims/lp2_p6_block1_receiver_residue_sft.cjs
 ~~~
 
-The SFT rebuilds canonical cross-page word segmentation, the signed-source GP lengths, the p6 title state, the four receiver classes, all 1,728 labeled / 1,404 distinct shells, and the unique supporting shell.
+The SFT rebuilds canonical cross-page word segmentation, signed-source GP lengths, p6 title fields, color-separated line geometry, the four receiver classes, the 1,536 labeled / 1,488 distinct typed-artifact shells, and the unique supporting shell. It also retains the earlier 1,728 / 1,404 algebraic family as an audit control.

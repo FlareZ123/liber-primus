@@ -78,13 +78,91 @@ const pools=[pageWords(32).filter((word)=>word.length===sourceLengths[0]),pageWo
 const directHits=selectedResidues.map((residue,slot)=>pools[slot].filter((receiver)=>receiver.start%29===residue).map((receiver)=>receiver.start));
 assert.deepEqual(directHits,[[1,30],[132],[4],[25]]);
 
-const w4=p6Title[3].values,multipliers=[state.q,1,state.K];
-let labeledCount=0;const uniqueShells=new Map();
-for(let xIndex=0;xIndex<lengthShell.length;xIndex+=1)for(let zIndex=0;zIndex<lengthShell.length;zIndex+=1){if(zIndex===xIndex)continue;for(let yIndex=0;yIndex<w4.length;yIndex+=1)for(const multiplier of multipliers){const roles=[lengthShell[xIndex],w4[yIndex],mod29(multiplier*lengthShell[xIndex]),lengthShell[zIndex]];for(const shell of permutations(roles)){labeledCount+=1;const key=shell.join(",");if(!uniqueShells.has(key))uniqueShells.set(key,{shell,labels:[]});uniqueShells.get(key).labels.push({xIndex,zIndex,yIndex,multiplier});}}}
-assert.equal(labeledCount,1728);assert.equal(uniqueShells.size,1404);
+const w4=p6Title[3].values;
+const titleGp0=p6Title.map((word)=>mod29(word.values.reduce((total,value)=>total+value,0)));
+assert.deepEqual(titleGp0,[13,19,7,26]);
 
-const supported=[];
-for(const entry of uniqueShells.values()){const residues=h4Inv(entry.shell);const hits=residues.map((residue,slot)=>pools[slot].filter((receiver)=>receiver.start%29===residue).map((receiver)=>receiver.start));if(hits.every((row)=>row.length>0))supported.push({shell:entry.shell,residues,hits,labels:entry.labels});}
-assert.equal(supported.length,1);assert.deepEqual(supported[0].shell,[5,12,20,26]);assert.deepEqual(supported[0].residues,[1,16,4,25]);assert.deepEqual(supported[0].hits,[[1,30],[132],[4],[25]]);assert.deepEqual(supported[0].labels,[{xIndex:2,zIndex:1,yIndex:1,multiplier:4}]);
+// Reconstruct p6's color-separated physical line widths around the known
+// red title offsets71..81. The lower title line contains 11 red runes, so
+// only its seven black runes belong to the after-title region.
+let p6RuneOffset=0;
+const p6LineRegions=blocks[6].split("\n").map((line)=>{
+  let before=0,red=0,after=0;
+  for(const ch of line){
+    if(!runeIndex.has(ch))continue;
+    if(p6RuneOffset<71)before+=1;
+    else if(p6RuneOffset<82)red+=1;
+    else after+=1;
+    p6RuneOffset+=1;
+  }
+  return {before,red,after};
+});
+assert.equal(p6RuneOffset,corpus.pages.find((page)=>page.page===6).indices.length);
+const upperLineCounts=p6LineRegions.map((line)=>line.before).filter(Boolean);
+const lowerLineCounts=p6LineRegions.map((line)=>line.after).filter(Boolean);
+assert.deepEqual(upperLineCounts,[20,24,24,3]);
+assert.deepEqual(lowerLineCounts,[7,19,20,24,22,22]);
+const sharedLineWidths=[...new Set(upperLineCounts)].filter((value)=>lowerLineCounts.includes(value)).sort((a,b)=>a-b);
+assert.deepEqual(sharedLineWidths,[20,24]);
+const occurrences=(values,target)=>values.filter((value)=>value===target).length;
+const balancedLineWidths=sharedLineWidths.filter((value)=>occurrences(upperLineCounts,value)===1&&occurrences(lowerLineCounts,value)===1);
+assert.deepEqual(balancedLineWidths,[20]);
 
-console.log(JSON.stringify({p6:{titleStarts:p6Title.map((word)=>word.start),titleLengths,lengthShell,w4},block1:{sourceWords:signedWords.slice(32,36),sourceLengths,selectedStarts,selectedResidues,selectedShell,targetBlindHits:directHits,p32FirstPeriodEnd:firstPeriodEnd(32)},family:{labeledConstructions:labeledCount,distinctShells:uniqueShells.size,supportedShells:supported.length,survivor:supported[0]}},null,2));
+// Direct typed p6 artifact shell: transformed title-length coordinate,
+// terminal title rune, balanced physical width, terminal-word GP0.
+const typedVisualShell=[lengthShell[2],w4[w4.length-1],balancedLineWidths[0],titleGp0[3]];
+assert.deepEqual(typedVisualShell,[5,12,20,26]);
+assert.deepEqual(h4Inv(typedVisualShell),selectedResidues);
+
+// Broad typed-artifact charge: any H(length) coordinate, either terminal-word
+// rune, either width shared across the red divider, any title-word GP0, and
+// every coordinate order. This does not read target rune values.
+let typedLabeledCount=0;
+const typedUniqueShells=new Map();
+for(const a of lengthShell){
+  for(const b of w4){
+    for(const c of sharedLineWidths){
+      for(const d of titleGp0){
+        for(const shell of permutations([a,b,c,d])){
+          typedLabeledCount+=1;
+          const key=shell.join(",");
+          if(!typedUniqueShells.has(key))typedUniqueShells.set(key,{shell,labels:[]});
+          typedUniqueShells.get(key).labels.push({a,b,c,d});
+        }
+      }
+    }
+  }
+}
+assert.equal(typedLabeledCount,1536);
+assert.equal(typedUniqueShells.size,1488);
+const typedSupported=[];
+for(const entry of typedUniqueShells.values()){
+  const residues=h4Inv(entry.shell);
+  const hits=residues.map((residue,slot)=>pools[slot].filter((receiver)=>receiver.start%29===residue).map((receiver)=>receiver.start));
+  if(hits.every((row)=>row.length>0))typedSupported.push({shell:entry.shell,residues,hits,labels:entry.labels});
+}
+assert.equal(typedSupported.length,1);
+assert.deepEqual(typedSupported[0].shell,[5,12,20,26]);
+assert.deepEqual(typedSupported[0].residues,[1,16,4,25]);
+assert.deepEqual(typedSupported[0].hits,[[1,30],[132],[4],[25]]);
+assert.deepEqual(typedSupported[0].labels,[{a:5,b:12,c:20,d:26}]);
+
+// Preserve the original algebraic discovery family as a reproducibility
+// control. It is weaker causally because q*g was constructed after discovery.
+const multipliers=[state.q,1,state.K];
+let algebraicLabeledCount=0;
+const algebraicUniqueShells=new Map();
+for(let xIndex=0;xIndex<lengthShell.length;xIndex+=1)for(let zIndex=0;zIndex<lengthShell.length;zIndex+=1){if(zIndex===xIndex)continue;for(let yIndex=0;yIndex<w4.length;yIndex+=1)for(const multiplier of multipliers){const roles=[lengthShell[xIndex],w4[yIndex],mod29(multiplier*lengthShell[xIndex]),lengthShell[zIndex]];for(const shell of permutations(roles)){algebraicLabeledCount+=1;const key=shell.join(",");if(!algebraicUniqueShells.has(key))algebraicUniqueShells.set(key,{shell,labels:[]});algebraicUniqueShells.get(key).labels.push({xIndex,zIndex,yIndex,multiplier});}}}
+assert.equal(algebraicLabeledCount,1728);
+assert.equal(algebraicUniqueShells.size,1404);
+const algebraicSupported=[];
+for(const entry of algebraicUniqueShells.values()){const residues=h4Inv(entry.shell);const hits=residues.map((residue,slot)=>pools[slot].filter((receiver)=>receiver.start%29===residue).map((receiver)=>receiver.start));if(hits.every((row)=>row.length>0))algebraicSupported.push({shell:entry.shell,residues,hits,labels:entry.labels});}
+assert.equal(algebraicSupported.length,1);
+assert.deepEqual(algebraicSupported[0].shell,[5,12,20,26]);
+
+console.log(JSON.stringify({
+  p6:{titleStarts:p6Title.map((word)=>word.start),titleLengths,lengthShell,w4,titleGp0,upperLineCounts,lowerLineCounts,sharedLineWidths,balancedLineWidths,typedVisualShell},
+  block1:{sourceWords:signedWords.slice(32,36),sourceLengths,selectedStarts,selectedResidues,selectedShell,targetBlindHits:directHits,p32FirstPeriodEnd:firstPeriodEnd(32)},
+  typedFamily:{labeledConstructions:typedLabeledCount,distinctShells:typedUniqueShells.size,supportedShells:typedSupported.length,survivor:typedSupported[0]},
+  algebraicAudit:{labeledConstructions:algebraicLabeledCount,distinctShells:algebraicUniqueShells.size,supportedShells:algebraicSupported.length,survivor:algebraicSupported[0]},
+},null,2));
