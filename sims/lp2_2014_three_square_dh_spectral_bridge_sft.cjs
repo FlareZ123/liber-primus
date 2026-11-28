@@ -102,6 +102,32 @@ assert.deepEqual(reflectedCornerPairs,[
   {topLeft:812,topRight:280,rawTopDifference:532,gp29TopDifference:10,middleRowDifference:0,bottomDifference:-532},
   {topLeft:199,topRight:320,rawTopDifference:-121,gp29TopDifference:24,middleRowDifference:0,bottomDifference:121},
 ]);
+// Use one frozen H(a,b)=[a-b,a+b] mod29 on the two printed top
+// corners of each original square, both before and after p57's perimeter
+// operation. No hand-selected alternative cells, dimension-specific signs,
+// or privileged output positions are used in constructing these tapes.
+const H=(x,y)=>[mod(x-y),mod(x+y)];
+const topCorners=A=>[A[0][0],A[0][A.length-1]];
+const sixPairs=squares.map((A,i)=>({sourceIndex:i,
+  outerCorners:topCorners(A),outerH:H(...topCorners(A)),
+  innerCorners:topCorners(cores[i]),innerH:H(...topCorners(cores[i])),
+}));
+assert.deepEqual(sixPairs.map(p=>p.outerH),[[19,8],[0,14],[5,17]]);
+assert.deepEqual(sixPairs.map(p=>p.innerH),[[10,19],[9,2],[24,26]]);
+const innerHSequence=sixPairs.flatMap(p=>p.innerH);
+const outerHSequence=sixPairs.flatMap(p=>p.outerH);
+// The source-extracted DH packet is internally redundant rather than
+// relying on a few isolated residues from arbitrary page coordinates.
+const BFromFirstInnerSum=sixPairs[0].innerH[1];
+const KFromMiddleInnerSum=sixPairs[1].innerH[1];
+const gFromLastInnerDifference=mod(-sixPairs[2].innerH[0]);
+const firstDifferencePrediction=mod(gFromLastInnerDifference*KFromMiddleInnerSum);
+const outerAFromFirstSum=sixPairs[0].outerH[1];
+assert.deepEqual([BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum],[19,2,5,10,8]);
+assert.equal(firstDifferencePrediction,sixPairs[0].innerH[0]);
+assert.equal(KFromMiddleInnerSum,powMod(BFromFirstInnerSum,aFromSums,borrowedDhPrime));
+assert.equal(outerAFromFirstSum,powMod(gFromLastInnerDifference,aFromSums,borrowedDhPrime));
+
 const gFromMirroredCorners=mod(-reflectedCornerPairs[1].gp29TopDifference);
 const kFromMirroredCorners=mod(reflectedCornerPairs[0].gp29TopDifference*inv(gFromMirroredCorners));
 assert.deepEqual([gFromMirroredCorners,kFromMirroredCorners],[5,2]);
@@ -175,4 +201,4 @@ assert.deepEqual(columnDiagnostics,[
   {n:5040,root8:197,root18:5040,root24:229,both8and24:9},
   {n:120,root8:7,root18:120,root24:19,both8and24:3}
 ]);
-console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));
+console.log(JSON.stringify({status:'PASS',sources:['resources/cicada2014-openpuff-magic-squares.txt','resources/liber-primus/lp2-corpus.json'],modulus:q,expectedSums,determinants,eigenRoots,characteristicPolynomials,coreDeterminants,coreRoots,reflectedCornerPairs,gFromMirroredCorners,kFromMirroredCorners,sixPairs,innerHSequence,outerHSequence,sourceHChecks:{BFromFirstInnerSum,KFromMiddleInnerSum,gFromLastInnerDifference,firstDifferencePrediction,outerAFromFirstSum},p55DirectGate,commonGcdAscending:common,commonOf1033SquaresAscending:pair1033,sourceOnly:gFromSum===gFromDet?{gFromSum,gFromDet,aFromSums,firstDetAsGTimesSecond:mod(gFromSum*determinants[1]),thirdDet:determinants[2],sharedEigenvalue:24}:null,borrowedExternalChecks:{p15Prime:borrowedDhPrime,p8RomanB:borrowedRomanB,AFromGAndA,KFromB},columnDiagnostics,classification:'exact arithmetic, unselected eigen/determinant opcode, no unknown LP2 plaintext'},null,2));

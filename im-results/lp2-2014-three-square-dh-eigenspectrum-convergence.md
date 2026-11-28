@@ -73,6 +73,26 @@ K = −Δ_first / Δ_last mod29 = 10/5 mod29 = 2
 
 The middle row of each original 3×3 core has equal endpoints, and the final row gives the exact opposite difference, so this is a verifiable original reflection invariant rather than an algebraic artifact of computing characteristic polynomials. It extracts the same candidate **DH generator5 and shared value2** from just four visible *2014 source cells*, the actual solved p57 **circumference removal**, and two identical source-shaped 5×5 matrices; the unused 7×7 still independently has full determinant2. This is more feasible for a human puzzle solver than diagonalizing the 7×7 matrix. Crucially, **neither p57 nor the 2014 squares explicitly commands left–right top-corner subtraction, modulo29 conversion, or the quotient**. Thus the arithmetic is real and economical, but identifying these exact historical values as *authored* DH keys is still a prospective hypothesis needing a target-frozen original-ciphertext decryption or an explicit mirror/key-extraction cue. No derived 3×3 eigenroot is an independent second witness to these same two corner differences: they are algebraically the same observation.
 
+### The complete source-order shell-and-interior H packet (no selective corner picking)
+
+Use the **same** frozen two-input operation `H(x,y)=[x−y,x+y] mod29` on the **top left and top right visible corners** of *each* original magic square, first on the complete printed matrices, then on all three after stripping the outer border. This is the sum/difference operation already investigated in p6's Fehu/red-title packet, although **p6 does not specifically instruct its use on historical Stage7 squares**. The result is a **fixed six-pair object**, not independent searches for convenient congruences:
+
+| 2014 source square | Entire original top corners | Entire H = [difference,sum] | P57-stripped inner top corners | Inner H = [difference,sum] |
+| --- | --- | --- | --- | --- |
+| First 3301, 5×5 | [434,966] | **[19,8]** | [812,280] | **[10,19]** |
+| Middle 1033, 7×7 | [7,181] | [0,14] | [223,98] | **[9,2]** |
+| Last 1033, 5×5 | [272,151] | [5,17] | [199,320] | **[24,26]** |
+
+Therefore the **complete inner tape** is `[10,19,9,2,24,26]` and outer tape `[19,8,0,14,5,17]`. Every entry is shown, including 9,14,17,26, for which a source-selected plaintext meaning is **not** established. Without decomposing a matrix, the inner tape contains **B=19** (first pair sum), **K=2** (middle pair sum), **−g=24** (last pair difference), and predicts **gK=10** (first pair difference) from the other two. The outer first pair supplies the complete independently known DH public values **[B,A]=[19,8]**; the outer final difference independently equals **g=5**. Under the independently existing source sum-difference exponent `a=(3301−1033) mod29=6` and established modulus `p=23`, two additional exact checks close:
+
+```text
+B^a mod p = 19^6 mod23 = 2 = middle inner H sum
+ g^a mod p =  5^6 mod23 = 8 = first outer H sum
+ g × K mod29 = 5 × 2 = 10 = first inner H difference
+```
+
+The same original numeric square set and operation were used in all six cases; no item-level tuning, alphabet shift, ciphertext crib or new external source was introduced. This **materially simplifies the hypothesized intended route to a candidate DH state** and ties it to the original p6 source-pair H transform. It does **not** prove H is what the authors wanted: the important choices **historical square linkage, H sum/difference, top corners, modulus29, and interpretation of source residues as GP29 DH values were proposed after other puzzle research**. The three source-value equalities are cross-relations within one retrospectively studied historical object, not three statistically independent validations. A next-page decipherment or an independent explicit instruction to read shell/inner corner H is required for promotion.
+
 ## How much exact alignment survives matched source-order controls?
 
 We exhaust every independent permutation of the **whole printed columns** within each historical square, retaining every original number, each original row's sum, and matrix size; this disrupts original diagonals and 180° symmetry and therefore is a **conditional orientation diagnostic, not a null distribution for authored magic squares**. With the independently fixed register labels `A=8, −g=24`:
