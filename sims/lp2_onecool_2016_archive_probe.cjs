@@ -57,6 +57,40 @@ async function probe(label, pattern) {
   }
 }
 
+
+/** @param {string} label @param {string} url */
+async function directRecover(label, url) {
+  try {
+    const res = await fetchWithTimeout(url, 15000);
+    const body = Buffer.from(await res.arrayBuffer());
+    const sha256 = crypto.createHash('sha256').update(body).digest('hex');
+    const meta = {
+      label,
+      url,
+      finalUrl: res.url,
+      status: res.status,
+      contentType: res.headers.get('content-type'),
+      bytes: body.length,
+      sha256,
+    };
+    console.log(JSON.stringify({ direct: meta }));
+    if (res.ok && body.length > 0 && body.length <= 10_000_000) {
+      const type = meta.contentType || '';
+      const ext = type.includes('image/png') ? '.png'
+        : type.includes('image/jpeg') ? '.jpg'
+        : type.includes('text/html') ? '.html'
+        : '.bin';
+      fs.writeFileSync(path.join(outDir, `direct_${safeName(label)}${ext}`), body);
+      fs.writeFileSync(path.join(outDir, `direct_${safeName(label)}.json`), JSON.stringify(meta, null, 2));
+    }
+    return meta;
+  } catch (error) {
+    const meta = { label, url, error: String(error) };
+    console.log(JSON.stringify({ directError: meta }));
+    return meta;
+  }
+}
+
 /** @param {string} text */
 function safeName(text) {
   return text.replace(/[^A-Za-z0-9._-]+/g, '_').slice(0, 120);
@@ -97,6 +131,19 @@ async function recover(row, label) {
 }
 
 async function main() {
+  const directTargets = [];
+  for (const id of IMGUR_IDS) {
+    directTargets.push(
+      [`imgur-page-${id}`, `https://imgur.com/${id}`],
+      [`imgur-cdn-png-${id}`, `https://i.imgur.com/${id}.png`],
+      [`imgur-cdn-jpg-${id}`, `https://i.imgur.com/${id}.jpg`],
+      [`imgur-cdn-jpeg-${id}`, `https://i.imgur.com/${id}.jpeg`],
+    );
+  }
+  const direct = await Promise.all(
+    directTargets.map(([label, url]) => directRecover(label, url))
+  );
+
   const patterns = [
     ['drive-open-http', `http://drive.google.com/open?id=${DRIVE_ID}`],
     ['drive-open-https', `https://drive.google.com/open?id=${DRIVE_ID}`],
@@ -125,12 +172,14 @@ async function main() {
     driveId: DRIVE_ID,
     imgurIds: IMGUR_IDS,
     generatedAt: new Date().toISOString(),
+    direct,
     probes,
     recovered,
   };
   fs.writeFileSync(path.join(outDir, 'report.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify({
     status: 'PASS',
+    direct200: direct.filter((item) => item.status === 200).length,
     probeCount: probes.length,
     totalCdxHits: probes.reduce((sum, item) => sum + item.rows.length, 0),
     recoveredCount: recovered.filter((item) => item.status === 200).length,
