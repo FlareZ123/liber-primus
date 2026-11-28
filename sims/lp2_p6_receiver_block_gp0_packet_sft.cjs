@@ -50,6 +50,25 @@ function invertH2(shell) {
   ];
 }
 
+/** @param {number[]} values @returns {number[]} */
+function hSplit(values) {
+  const differences = [];
+  const sums = [];
+  const half = Math.floor(values.length / 2);
+  for (let index = 0; index < half; index += 1) {
+    const left = values[index];
+    const right = values[values.length - 1 - index];
+    differences.push(mod29(left - right));
+    sums.push(mod29(left + right));
+  }
+  const out = differences.slice();
+  if (values.length % 2 === 1) {
+    out.push(values[half]);
+  }
+  out.push(...sums.reverse());
+  return out;
+}
+
 /** @param {number[]} values @returns {number[][]} */
 function permutations(values) {
   const out = [];
@@ -544,6 +563,98 @@ assert.equal(block4Labels, 88);
 assert.equal(block4Outputs.size, 71);
 assert.equal(block4TargetLabels, 1);
 
+// Extend the checksum tape across the independently established skipped-K=2
+// SEEK AND boundary using the older p30/p31 literal geometry keys.
+const W4 = p6Title[3].values;
+const key30Geometry = [
+  W3[0],
+  W4[0],
+  ...H(F, W3[0]),
+];
+assert.deepEqual(key30Geometry, [6, 14, 23, 6]);
+
+const key31Geometry = [
+  W3[W3.length - 1],
+  W4[0],
+  H(W1[0], W1[W1.length - 1])[0],
+];
+assert.deepEqual(key31Geometry, [17, 14, 7]);
+
+const boundaryKeySums = [
+  gp0(key30Geometry),
+  gp0(key31Geometry),
+];
+assert.deepEqual(boundaryKeySums, [20, 9]);
+
+// The outer H-difference constraints predict those two older sums from the
+// new p41/p42 core sums before using the p30/p31 key vectors.
+const predictedBoundaryKeySums = [
+  mod29(pageKeySums[10] + p6Title[3].length),
+  mod29(pageKeySums[9] + p6Title[0].length),
+];
+assert.deepEqual(predictedBoundaryKeySums, [20, 9]);
+assert.deepEqual(predictedBoundaryKeySums, boundaryKeySums);
+
+const keySum13 = [
+  ...boundaryKeySums,
+  ...pageKeySums,
+];
+assert.deepEqual(keySum13, [
+  20, 9, 4, 0, 0, 25, 10, 7, 0, 28, 0, 5, 18,
+]);
+
+const keySum13H = hSplit(keySum13);
+assert.deepEqual(keySum13H, [
+  2, 4, 4, 1, 0, 18, 10, 3, 0, 28, 4, 14, 9,
+]);
+
+const expectedBoundaryPrefix = [
+  p6Title[3].length,
+  p6Title[0].length,
+  p6Title[2].length,
+  p6Title[1].length,
+  F,
+  w3EndpointH[0],
+  mod29(-W2[0]),
+];
+assert.deepEqual(expectedBoundaryPrefix, [2, 4, 4, 1, 0, 18, 10]);
+assert.deepEqual(keySum13H.slice(0, 7), expectedBoundaryPrefix);
+
+// Broad prefix charge: all title-word role orders, all q-word endpoint-H
+// roles, and both signs of all title-rune positions for the center.
+const boundaryPrefixFamily = new Set();
+let boundaryPrefixLabels = 0;
+let boundaryPrefixTargetLabels = 0;
+for (const lengthRoleOrder of permutations([0, 1, 2, 3])) {
+  const emittedLengths = lengthRoleOrder.map(
+    (role) => p6Title[role].length
+  );
+  for (const endpointRole of qEndpointRoles) {
+    for (let runeIndex = 0; runeIndex < titleTape.length; runeIndex += 1) {
+      for (const sign of [1, -1]) {
+        const prefix = [
+          ...emittedLengths,
+          F,
+          endpointRole.value,
+          mod29(sign * titleTape[runeIndex]),
+        ];
+        boundaryPrefixLabels += 1;
+        boundaryPrefixFamily.add(prefix.join(","));
+        if (prefix.join(",") === expectedBoundaryPrefix.join(",")) {
+          boundaryPrefixTargetLabels += 1;
+          assert.equal(endpointRole.wordIndex, 1);
+          assert.equal(endpointRole.coordinate, 0);
+          assert.equal(runeIndex, 4);
+          assert.equal(sign, -1);
+        }
+      }
+    }
+  }
+}
+assert.equal(boundaryPrefixLabels, 2112);
+assert.equal(boundaryPrefixFamily.size, 672);
+assert.equal(boundaryPrefixTargetLabels, 2);
+
 const keyBlockH4 = [
   mod29(keyBlockSums[0] - keyBlockSums[3]),
   mod29(keyBlockSums[1] - keyBlockSums[2]),
@@ -603,6 +714,18 @@ console.log(JSON.stringify({
         labeled: block4Labels,
         distinct: block4Outputs.size,
         targetLabels: block4TargetLabels,
+      },
+    },
+    boundary13: {
+      keySums: keySum13,
+      hSplit: keySum13H,
+      prefix: expectedBoundaryPrefix,
+      predictedPrefixKeySums: predictedBoundaryKeySums,
+      independentGeometryKeySums: boundaryKeySums,
+      family: {
+        labeled: boundaryPrefixLabels,
+        distinct: boundaryPrefixFamily.size,
+        targetLabels: boundaryPrefixTargetLabels,
       },
     },
   },

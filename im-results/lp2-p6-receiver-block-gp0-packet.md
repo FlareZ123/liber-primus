@@ -358,6 +358,110 @@ The central key problem is now narrower than “find eleven arbitrary page keys.
 
 A decisive next test should therefore preserve these eleven p6-predicted sums while deriving coordinate order/values from an authored source object, or prospectively apply the same checksum grammar to a genuinely fresh receiver family. The page-sum schedule should be retired rather than tuned if such a transfer fails.
 
+## Thirteen-page boundary checksum shell
+
+The signed-tail boundary object is thirteen words, p30..p42: the p6-selected eleven-word core plus the independently motivated omitted `K=2` prefix `SEEK AND`. The earlier boundary report already derives complete p30 and p31 geometry keys from p6 title endpoints:
+
+```text
+key30 = [6,14,23,6]  -> sum20
+key31 = [17,14,7]    -> sum9.
+```
+
+See [the skipped-K2 boundary report](lp2-p6-skipped-k2-seek-and-boundary.md). Those complete keys predate the page-sum schedule derived here.
+
+Prefix their sums to the new p32..p42 tape:
+
+```text
+Ksum30..42
+= [20,9,4,0,0,25,10,7,0,28,0,5,18].
+```
+
+Apply the frozen split H serialization to this odd-length 13-vector. Its outer-to-inner differences, center, then inside-to-outside sums are:
+
+```text
+Hsplit(Ksum30..42)
+= [2,4,4,1,0,18 | 10 | 3,0,28,4,14,9].
+```
+
+The **entire six-coordinate difference half plus center** is literal p6 title/Fehu data:
+
+```text
+[2,4,4,1,0,18 | 10]
+=
+[len(W4), len(W1), len(W3), len(W2),
+ F, Hdiff(W3 endpoints) | -W2[0]].
+```
+
+Numerically:
+
+```text
+len(W4)=2
+len(W1)=4
+len(W3)=4
+len(W2)=1
+F=0
+Hdiff(6,17)=18
+-W2[0]=-19=10 mod29.
+```
+
+This gives six symmetric page-sum constraints and a center constraint:
+
+```text
+k30 - k42 =  2 = len(W4)
+k31 - k41 =  4 = len(W1)
+k32 - k40 =  4 = len(W3)
+k33 - k39 =  1 = len(W2)
+k34 - k38 =  0 = F
+k35 - k37 = 18 = Hdiff(W3 endpoints)
+k36         = 10 = -W2[0].
+```
+
+The first two are especially useful because they cross the 11-page core boundary. Starting only from the p6-derived core sums:
+
+```text
+k42=18 -> k30 = 18+len(W4) = 20
+k41=5  -> k31 =  5+len(W1) =  9.
+```
+
+Those are exactly the sums of the **previously independently derived complete** p30/p31 geometry keys. Thus the new core page-sum scheduler predicts a property of the older skipped-prefix inverses rather than merely restating an in-core fit.
+
+### Broad seven-field prefix charge
+
+Charge the ordered seven-field Hsplit prefix without keeping the successful title roles fixed:
+
+- permute the four printed title-word **roles** in all 24 orders and emit their lengths;
+- choose either endpoint-H coordinate from either q-word (4 roles);
+- choose either sign of any of the eleven printed title-rune positions for the center (22 roles);
+- keep the visible Fehu zero in the fifth difference slot.
+
+This gives:
+
+```text
+24 * 4 * 22 = 2,112 labeled constructions.
+```
+
+Because the two q-word lengths are both4 and several title rune values repeat, these collapse to **672 distinct numeric seven-field prefixes**.
+
+The observed prefix
+
+```text
+[2,4,4,1,0,18,10]
+```
+
+has exactly **two labeled representations**, differing only by swapping the two q-length word roles W1/W3 in positions that both emit4. The endpoint role is uniquely W3 difference; the center role is uniquely negative W2. So the nontrivial fields are not supplied by a large collection of interchangeable title coordinates.
+
+Again, this is a post-discovery finite charge. Its value is cross-boundary consistency and a concrete H-difference skeleton for the page-sum tape, not a calibrated authorship probability.
+
+### What remains unresolved in the 13-shell
+
+The remaining Hsplit sum half is:
+
+```text
+[3,0,28,4,14,9].
+```
+
+Several entries have short p6 descriptions, but no single authored rule currently fixes all six without retrospective expression choices. Do **not** complete the shell by freely naming those residues. The established advance is the six difference constraints, the center, and the two held-out boundary-sum predictions.
+
 ## Evidence boundary and decision
 
 Preserve:
