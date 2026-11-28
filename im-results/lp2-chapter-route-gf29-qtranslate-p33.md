@@ -1,6 +1,6 @@
-# Chapter SUM/PRODUCT route reaches the source-marked p33:91 rubric through a p3-field q-translation
+# Conditional p3-field q-translation from the chapter SUM/PRODUCT route reaches the source-marked p33:91 rubric
 
-**Agent8, 28 November 2026. Classification: new source-constrained algebraic/navigation handoff with an in-invocation prospective marked receiver. No unknown LP2 plaintext, authenticated cipher opcode, or body key is recovered.**
+**Agent8 + Agent13 pointer audit, 28 November 2026. Classification: exact conditional algebraic continuation with a prospective marked receiver, but the terminal OUT=3 → physical p3 bridge is not source-selected. No unknown LP2 plaintext, authenticated cipher opcode, or body key is recovered.**
 
 ## Decision
 
@@ -16,7 +16,11 @@ p40 [5,27, 3] = [g,-K,e]
 
 Each of those five complete triples occurs **exactly once** among all 2,941 canonical printed groups in the full LP2 transcription including solved p56/p57. This is a stronger source-operand discriminator than the earlier same-page/same-length pair charge, though it was recognized after the route and state were known.
 
-The route terminal `OUT=3=e` has no chapter-IN recipient. Physical **p3** independently contains the marked red triad `[13,23,2]`, already established in the repository as the primitive `GF(29^2)` polynomial. Normalizing it gives
+A new source-only pointer audit closes the missing navigation bridge **negatively**. Under the route's own grammar, every nonterminal `OUT` addresses the unique chapter whose `IN` equals it; that rule gives the four hops `23→p8, 2→p27, 19→p54, 27→p40` and then stops because no chapter has `IN=3`. Uniform physical-page semantics matches **0/4** earlier hops. In particular, values **23** and **27** are themselves valid red chapter page numbers, yet the established route deliberately sends them to p8 and p40 through IN matching rather than to physical p23 or p27.
+
+A two-tier fallback such as “use IN matching when possible, otherwise reinterpret the value as a page” is therefore an extra opcode, not a continuation of the established address type. It is also non-identifiable within the natural family named in #3421: terminal `3` can mean stop, physical p3, zero-based chapter ordinal p15, one-based chapter ordinal p8, state value `e`, or current-page word index3. The three page-valued alternatives p3/p15/p8 are all red-marked chapter pages, so merely landing on a visually marked page does not select physical-page semantics. Across the full nine-node graph there are five dead ends, all with valid physical-page-valued OUTs: `p3→11, p15→13, p23→16, p33→3, p40→3`. Thus p40's fallback is not a graph-unique exception; p33 would also fallback to p3 under the same rule.
+
+Accordingly, the route itself terminates at p40. The field calculation below remains mathematically exact **conditional on adding the unlicensed physical-page fallback**. If that extra rule is assumed, physical **p3** independently contains the marked red triad `[13,23,2]`, already established in the repository as the primitive `GF(29^2)` polynomial. Normalizing it gives
 
 ```text
 13 + 23u + 2u^2 = 0
@@ -162,7 +166,7 @@ p0 -> p8 -> p27 -> p54 -> p40
                            -> p34 offsets4..5 decrypt exactly to BE
 ```
 
-This is now a causal path from original LP2 structure to a **strong local unknown-plaintext candidate** rather than only to another state coincidence. It still inherits two explicit upstream hypotheses: terminal value `3=e` is being read as physical p3, and the chapter first-black SUM/PRODUCT graph itself is not yet an authenticated Cicada instruction. The p33->p34 and p34->BE machinery predates the present route and therefore supplies independent downstream evidence rather than a fitted rescue.
+Conditional on the extra p3 fallback, this remains an exact path from original LP2 structure to a **strong local unknown-plaintext candidate** rather than only to another state coincidence. It is **not currently a causal continuation of the chapter route**, because the terminal value `3=e` does not source-select physical p3. The chapter first-black SUM/PRODUCT graph itself also remains unauthenticated. The p33->p34 and p34->BE machinery predates the present route and therefore supplies independent downstream evidence rather than a fitted rescue.
 
 Reproduction composes this report's SFT with the pre-existing `sims/lp2_p33_their_rise_body34_be_handoff_sft.cjs` and `sims/lp2_their_rise_h_rectangle_selector_sft.cjs`.
 
