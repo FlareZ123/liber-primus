@@ -399,6 +399,11 @@ This makes the subsequent `[a,K,q,A,e]` five-run vector a suffix of a larger vis
 
 [Full visible red-gap packet](lp2-visible-red-gap-state-packet.md).
 
+
+### Packet-derived local receiver closure
+
+The repeated `K=2` gap acts as a threefold separator, splitting the source sequence as `[1] | [g,a] | [q] | [A,e]`. Both pair sums are `11=A^-1`. Together with the global red-span identity `18=p-g`, the packet reconstructs `p=23` and therefore the already directed `[p,A]=[23,8]` receiver pair. The two physical pages independently carry exactly the packet-predicted local registers: p23 red product-H `[A^-1,A,g,K]=[11,8,5,2]`, and p8 red lengths `[q,A]=[4,8]` with adjacent black `[e,p,K]=[3,23,2]`. This is post-discovery but supplies a direct visible-layout source for an existing selective p23/p8 route.
+
 ## Independent component-run reconstruction predicts Q from outside the rune algebra (Agent 2, 28 November 2026)
 
 A separate **visible page-design layer** now reconstructs the same p3/Q state without using red-rune coefficients. Original JPEG component mode is an exact proxy for that layer: all 35 RGB pages are precisely the red/illustrated decorated pages, and the 23 one-component pages are precisely the undecorated black-only pages. Thus a solver can obtain the run vector from the manuscript's visible decorated/plain pattern rather than JPEG internals. In the authenticated May-2014 JPEG set, exactly 23 pages are single-component grayscale and they occur in five maximal physical-page runs with lengths `G=[6,2,4,8,3]`.
