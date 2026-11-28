@@ -105,6 +105,34 @@ assert.equal(a, 6);
 assert.equal(b, 15);
 assert.equal(powMod(dh.B, a, dh.p), dh.K);
 
+// Complete finite DH23 charge: preserve p=23,g=5 and enumerate all 22x22
+// nonzero exponent residues. The table width fixes A=8; the source mirror
+// fixes K=A-1-g=2; the mirrored cell fixes B=19.
+const dhFamily = [];
+const mirrorStateFamily = [];
+const fullGeometryFamily = [];
+for (let candidateA = 1; candidateA <= dh.p - 1; candidateA += 1) {
+  const publicA = powMod(dh.g, candidateA, dh.p);
+  for (let candidateB = 1; candidateB <= dh.p - 1; candidateB += 1) {
+    const publicB = powMod(dh.g, candidateB, dh.p);
+    const shared = powMod(publicB, candidateA, dh.p);
+    const row = {a:candidateA,b:candidateB,A:publicA,B:publicB,K:shared};
+    dhFamily.push(row);
+    if (publicA === width && shared === width - 1 - dh.g) {
+      mirrorStateFamily.push(row);
+      if (publicB === values59[reflectedCell]) fullGeometryFamily.push(row);
+    }
+  }
+}
+assert.equal(dhFamily.length, 484);
+assert.deepEqual(mirrorStateFamily, [
+  {a:6,b:4,A:8,B:4,K:2},
+  {a:6,b:15,A:8,B:19,K:2}
+]);
+assert.deepEqual(fullGeometryFamily, [
+  {a:6,b:15,A:8,B:19,K:2}
+]);
+
 // Exact coordinate-placement charge under a uniform permutation of all 256
 // source tokens. Value 19 is unique in both radices; value189 occurs four
 // times in base59 and twice in base60. The two sink-value token classes are
