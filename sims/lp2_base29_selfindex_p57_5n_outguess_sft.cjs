@@ -159,11 +159,11 @@ function main() {
         return acc;
       }, {}),
       decision: recognizable.length
-        ? 'At least one M5N7 extraction has a recognizable structural flag and requires independent authentication.'
+        ? 'At least one 5N extraction has a recognizable structural flag and requires independent authentication.'
         : 'No 5N extraction has file magic, PGP armor, high printability, or low entropy; source-forced header success alone is rejected.',
     };
 
-    console.log('LP2_M5N7_OUTGUESS_RESULT ' + JSON.stringify(output));
+    console.log('LP2_5N_OUTGUESS_RESULT ' + JSON.stringify(output));
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
