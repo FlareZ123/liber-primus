@@ -383,6 +383,26 @@ not as a retroactive p50 opcode.
 
 Reproducer: `sims/lp2_p6_p50_index_origin_control_sft.cjs`.
 
+## P57-selected title-ending query serializes Bob's DH pair
+
+The local p57/H route supplies a new typed p50 query. Commit `5e575df8a5df67f8390897a871c416c4d5afa6f5` fixed canonical H; commit `5215414463e17afa8530c255caa3f5d841b27c06` then opened the title-ending descriptor and established `H4([17,19,17,12])=[5,2,7,0]=[g,K,g+K,F]`.
+
+Use those four values as p50 row addresses in printed H order and the independently selected physical column `K=2`. The row order and column were frozen before the four cells were opened. P57 independently selects local base59 through `13 -> 41 -> p50[41]=1O -> 83 <- 23`; base60 gives84.
+
+```text
+row g=5   -> cell42  0S ->  28 mod29 = -1
+row K=2   -> cell18  0F ->  15 mod29 = b
+row g+K=7 -> cell58  2Q -> 144 mod29 = -1
+row F=0   -> cell2   2l -> 164 mod29 = B
+=> [-1,b,-1,B] = [28,15,28,19].
+```
+
+The query returns Bob's authenticated DH private/public pair `(b,B)=(15,19)`, separated by equal `-1` fields. It is not a uniform row-to-state function; #3444 already excludes that interpretation.
+
+The `[x,b,x,B]` pattern was recognized after opening, so its finite census is supporting evidence. Charge five natural p6 title descriptor channels, all16 source-compatible H presentations and all8 p50 columns under base59: 640 configurations. Exactly one has form `[x,b,x,B]`: last-rune descriptor, canonical H, columnK. The Alice analogue `[x,a,x,A]` has 0/640 hits.
+
+This is an executable source-typed static query, not a ciphertext receiver, key schedule, KDF, or unknown plaintext. Reproducer: `sims/lp2_p6_title_ending_p50_bob_query_sft.cjs`.
+
 ## Interpretation
 
 This is a compact typed bridge between two independently important artifacts:
