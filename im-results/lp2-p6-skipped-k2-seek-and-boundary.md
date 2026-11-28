@@ -1,0 +1,160 @@
+# P6 skipped-K2 boundary: source-only SEEK AND selector and p30/p31 receiver shells
+
+**28 November 2026 — Agent1. Classification: provisional source/receiver bridge, not recovered unknown plaintext.**
+
+The p6 source-tail selector already established that the authenticated signed 2016 source interval used by the current corridor begins at index32:
+
+```text
+32 YOU 33 WILL 34 BE 35 FOUND 36 GOOD 37 LUCK
+38 BEWARE 39 FALSE 40 PATHS 41 VERIFY 42 OPENPGP
+```
+
+and that it omits exactly `K=2` immediately preceding words. Those omitted words are:
+
+```text
+30 SEEK
+31 AND
+```
+
+This note asks a narrow question: **does the omitted K=2 boundary itself contain a source-selected relationship to untouched LP2 p30/p31, without searching LP2 language scores?**
+
+The answer is yes at the source/receiver level. Both omitted words participate in unusually compact, manuscript-unique state-shaped receiver selectors. Their exact additive keys also compress to the previously established p6/DH state, but those key-shell orderings were recognized after the known source words were in hand. Therefore the result materially extends the known-source corridor's causal boundary while remaining provisional.
+
+## Frozen state and source conventions
+
+Use the already established p6/DH state:
+
+```text
+q=4, K=2, e=3, g=5, a=6, p=23, b=15, A=8, B=19, F=0
+qg=20, Kg=10, aK=12
+```
+
+Canonical GP spelling gives:
+
+```text
+SEEK = [15,18,18,5], length4, GP0 sum56 ≡ 27 = -K mod29
+AND  = [24,9,23],    length3, GP0 sum56 ≡ 27 = -K mod29
+```
+
+Across all 42 consecutive pairs in the authenticated 43-word source, **SEEK AND is the sole pair** satisfying all of:
+
+```text
+lengths        = [q,e] = [4,3]
+GP0 residues   = [-K,-K] = [27,27]
+H2(initials)   = [qg,Kg] = [20,10]
+initials       = [b,-g] = [15,24]
+```
+
+The individual conditions are not all unique: for example `ROAD AND` also has lengths [4,3], and four individual source words have GP0 residue27. Their conjunction selects only source indices30–31. This computation reads no unknown LP2 ciphertext.
+
+## P30: target-blind receiver selected by the skipped pair
+
+Reverse the pair's source-only H2(initials) and append two already fixed source/state fields:
+
+```text
+reverse([qg,Kg]) || [SEEK.first,e]
+= [Kg,qg,b,e]
+= [10,20,15,3].
+```
+
+Search every complete four-rune printed word in original LP2 p0–p55 for this exact H4 shell. There is **one hit**:
+
+```text
+p30 local word27, start112
+cipher = [21,3,12,11]
+H4(cipher) = [10,20,15,3] = [Kg,qg,b,e].
+```
+
+This receiver also has an independent address coincidence: its one-based local ordinal is **27**, exactly `GP0(SEEK) mod29 = -K`. Among same-number authenticated four-rune source/page cases for which the GP0 residue points to a length-compatible local word, the other candidates are THEIR19, MEANING20, ROAD23, WILL33 and LUCK37; none has the frozen receiver shell.
+
+The authenticated source word has its own compact state shell:
+
+```text
+H4(SEEK) = [10,0,7,20]
+         = [Kg,F,g+K,qg].
+```
+
+Exact subtraction is:
+
+```text
+[21,3,12,11] - [6,14,23,6]
+= [15,18,18,5]
+= SEEK.
+```
+
+The required key has:
+
+```text
+H4(key) = [0,20,8,12]
+        = [F,qg,A,aK].
+```
+
+The inverse H4 transform reconstructs the exact key and forward addition reproduces the original ciphertext. With that exact key frozen, testing both additive signs over every complete four-rune manuscript word and every authenticated four-rune source occurrence gives **one hit**, p30→SEEK.
+
+The important evidentiary split is that the **receiver** is selected without reading its ciphertext values, whereas the exact key-shell ordering `[F,qg,A,aK]` was recognized after the known target was available. Exact replay therefore remains an implementation invariant, not plaintext authentication.
+
+## P31: second manuscript-unique state receiver at the corridor boundary
+
+The following direct state shell:
+
+```text
+[b-q,p,b-K] = [11,23,13]
+```
+
+occurs as H3 of exactly one complete three-rune manuscript word:
+
+```text
+p31 local word32, start126
+cipher = [12,23,1]
+H3(cipher) = [11,23,13].
+```
+
+Its local ordinal **32** is exactly the source index where the p6-selected eleven-word corridor begins. This supplies a second boundary address independent of p31 ciphertext values.
+
+For the authenticated `AND=[24,9,23]`:
+
+```text
+[12,23,1] - [17,14,7]
+= [24,9,23]
+= AND
+```
+
+and:
+
+```text
+H3(key) = [10,14,24]
+        = [Kg,-b,-g].
+```
+
+Again the H3 inverse reconstructs the exact key and forward addition replays the original ciphertext.
+
+A necessary caution is stronger here: the **key alone is not manuscript-unique**. The same three-rune key also maps p33 start116 to authenticated `YOU`; the two `AND` source occurrences at indices24 and31 are text-identical and both match the p31 receiver. The evidence is therefore the manuscript-unique receiver shell plus its source-boundary ordinal, not uniqueness of the key.
+
+## Why this changes the frontier
+
+Before this check, p6's source-only selector treated `SEEK AND` mainly as the exact `K=2` prefix omitted from the selected p32–p42 interval. The omitted pair is now itself highly structured:
+
+1. It is uniquely selected inside the signed source by three independent source/state descriptions: `[q,e]` lengths, two `-K` GP0 residues, and H2(initials) `[qg,Kg]`.
+2. Its p30 receiver is the sole manuscript H4 match to a shell directly constructed from that pair and the already fixed state, and its ordinal independently equals `-K`.
+3. Its p31 receiver is the sole manuscript H3 match to `[b-q,p,b-K]`, and its ordinal is exactly the p6-selected corridor start index32.
+4. Both exact known-source inverses have compact p6/DH-state key shells and exact forward replay.
+
+This is enough to expand the **research corridor** from an isolated p32–p42 packet to a candidate p30–p42 boundary object. It is not enough to call SEEK or AND recovered LP2 plaintext. The receiver-shell formulas and especially the key-shell orders were recognized during post-discovery analysis, and the existing state-expression saturation results show how easy it is to name GP29 coordinates after the fact.
+
+## Decision / next discriminating test
+
+Preserve p30/p31 as **source-selected receiver candidates** attached to the p6 corridor boundary. Do not promote their plaintexts until a single authored or prospectively frozen serialization rule predicts the complete key/operation on a fresh receiver.
+
+The highest-value follow-up is now narrower than another state-expression search: find an original clue that orders the state fields used in the p30/p31 key shells, or derive a common serializer whose next output is locked before opening another receiver. Arbitrary signed-field permutations, pairwise arithmetic, or language-score tuning would only re-enter the already demonstrated identifiability problem.
+
+## Reproduction
+
+Standalone source test:
+
+```text
+sims/lp2_p6_skipped_k2_seek_and_sft.cjs
+```
+
+It reconstructs the signed source and canonical LP2 printed words from repository resources, proves the source-pair uniqueness, checks manuscript-wide receiver-shell uniqueness, verifies H inverses and exact forward replay, and records the p31 key collision control.
+
+No unknown plaintext, authenticated unknown-page key, complete original-cipher mechanism, or continuation endpoint is claimed here.
