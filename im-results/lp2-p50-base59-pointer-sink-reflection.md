@@ -38,15 +38,32 @@ and the reflected sink is
 
 Original cell186 is `0J`, value **19 under both surviving radices**, hence **B=19**. No DH state value is used to choose that mirror destination; `K=2` is recovered as the reflected column.
 
-The historical DH operation then closes the same packet:
+The DH algebra then closes the same packet:
 
 - `log_5(8) mod23 = 6 = a`;
 - `log_5(19) mod23 = 15 = b`;
-- `19^6 mod23 = 2 = K`, the same column selected by the mirror.
+- `19^6 mod23 = 2 = K`, the same column selected by the mirror;
+- `15^-1 mod22 = 3 = e`.
 
-Thus the source-visible/pointer geometry now packs five authenticated public/state values before private discrete logs are taken:
+So after recognizing the object as the historical DH23 teaching packet, the table geometry itself reconstructs the complete state used elsewhere in the repository:
+
+`(p,g,a,b,A,B,K,e) = (23,5,6,15,8,19,2,3)`.
+
+The values needed before taking the tiny discrete logs are all physically selected by the panel plus artwork:
 
 `row = p=23, width = A=8, sink column = g=5, mirror column = K=2, mirror-cell value = B=19`.
+
+### Plausible human solve path
+
+This route now has a compact source-to-state sequence rather than a list of retrofitted DH labels:
+
+1. Across the 256 printed two-character numerals, **lowercase `f` is the only character from the conventional 60-character alphabet that never occurs at all**; deleting that absent digit gives the unique source-visible 59-character rival.
+2. The authenticated 2016 wording that the book's numbers are the direction independently motivates the already-known value-as-next-address interpretation. Under the drop-`f` radix, all 256 addresses converge to the self-pointer `3C = 189`.
+3. In the printed 32×8 panel, address189 is coordinate `(23,5)`; the width is 8.
+4. The original mirrored artwork independently fixes `c -> 7-c`, taking column5 to column2 and therefore address189 to address186.
+5. The untouched numeral at 186 is `0J = 19`. The visible state is consequently `p=23,g=5,A=8,K=2,B=19`; the DH arithmetic uniquely supplies `a=6,b=15,e=3`.
+
+The 2013 signed source is needed to recognize this exact five-number object as a DH worked exchange, but it is no longer needed to *choose* the five visible values after the base59 sink and mirror are fixed. This is the principal causal improvement over the older coordinate coincidence.
 
 ### Complete DH23 exponent-family charge
 
@@ -139,7 +156,7 @@ Run:
 
 `node sims/lp2_p50_pointer_sink_reflection_sft.cjs`
 
-The SFT reads the canonical panel and the repository's authenticated 2013 TCP-source record, rechecks the prior sink, verifies the source-mirror/DH geometry, recovers `a=6,b=15` by exact discrete logs, verifies `B^a=K`, and runs the corrected conditional nulls.
+The SFT reads the canonical panel and the repository's authenticated 2013 TCP-source record, asserts that `f` is the only absent numeral-alphabet character, rechecks the prior sink, verifies the source-mirror/DH geometry, reconstructs `(p,g,a,b,A,B,K,e)=(23,5,6,15,8,19,2,3)`, verifies `B^a=K`, and runs the corrected conditional nulls.
 
 Prior work explicitly credited here:
 
