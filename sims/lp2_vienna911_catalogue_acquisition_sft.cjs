@@ -33,7 +33,9 @@ async function read(url) {
     sru('alma.all="Cod. 911"'),
     'https://data.onb.ac.at/rec/AL00169257',
     sru('alma.all="AL00169257"'),
-    'https://api.onb.ac.at/iiif/manifest/AL00169257'
+    sru('alma.mms_id="21302414450003338"'),
+    sru('alma.other_system_number="AC13952808"'),
+    'https://search.onb.ac.at/primaws/rest/pub/pnxs/L/ONB_alma21302414450003338?vid=ONB&lang=de_DE&search_scope=ONB_gesamtbestand&adaptor=Local%20Search%20Engine'
   ];
   const records=[];
   for (const url of urls) {
