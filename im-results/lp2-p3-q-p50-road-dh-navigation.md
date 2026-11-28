@@ -155,7 +155,7 @@ step 19  k748 [25,23] = THEIR / ROAD     p15-second = solved p57 red
 
 Thus the uniform dlog-coordinate walk itself reaches the solved/Q-defining p57 residue without switching to the separate plain-Q-output representation. The four red-marked arcs around this 54-cycle have exact lengths **[1,6,12,35]**; these are recorded without assigning source-word semantics.
 
-More strongly, the two distinct red spans on **the same physical p15** are joined by this one uniform map. Starting from p15's first red residue `k236`:
+More strongly, the two distinct red spans on **the same physical p15** are joined by this one uniform map. They are not arbitrary selections: the original-derived annotation has adjacent red rune blocks at offsets `0..8` and `9..19`, bounded by large red punctuation at offsets **0, 9 and 20**. Their transcription word shapes are respectively **[4,5]** and **[4,2,5]**. Starting from the first marked block's residue `k236`:
 
 ```text
 step  0  p15 first red   k236
