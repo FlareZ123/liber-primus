@@ -275,7 +275,9 @@ Each same-number physical page now contains an exact reversible local candidate 
 | 39 / p39 | first `g=5` word after red span, offsets132..136 `[19,7,10,17,23]` | subtract `[19,12,19,2,5]` | **FALSE** |
 | 40 / p40 | p6-addressed offset71 `[4,15,14,21]` | subtract `[20,20,12,6]` | **PATHS** |
 
-This is substantially stronger than the old mixed visual corridor. It is **not** evidence for one shared cipher: p36 uses center deletion, p37 a four-rune H-state key, p38 a six-rune state shell, p39 a five-rune p6 shell, and p40 the p6 visual/address packet. Several key grammars were discovered after their targets were available, and prospective transfers of the p37–p39 local keys have failed.
+This is substantially stronger than the old mixed visual corridor. A new cross-link shows that **all five local keys p36–p40 draw their numeric state from the independently selected p6 master packet**. P36's key is `[p+K,B,-K,-e]`; a 192-key signed/permuted p6 family charged over every q-centered five-rune receiver has one authenticated hit, p36 GOOD. P37–p40 already had p6 packet routes.
+
+This still is **not** evidence for one shared cipher: p36 uses center deletion, p37 a four-rune H-state shell, p38 a six-rune shell, p39 a five-rune shell, and p40 the p6 visual/address packet. Several serialization/order grammars were discovered after their targets were available, and prospective transfers of p37–p39 local mechanisms have failed. The commonality is now the **key vocabulary**, not a demonstrated common transition rule.
 
 The convergence matters because it changes the research decision. The signed instruction `THEIR NUMBERS ARE THE DIRECTION` now points into a consecutive five-page region where every assigned word has a reproducible local inverse, while p40 no longer depends on a semantic artwork reading or a PATHS-state receiver. Future work should seek the **authored transition rule between these local mechanisms**, not another unconstrained page-wide cipher.
 

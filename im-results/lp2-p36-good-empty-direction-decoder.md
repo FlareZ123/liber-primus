@@ -63,7 +63,60 @@ A second parser carries possible words across physical page boundaries and retai
 
 The receiver therefore survives the stricter complete-word control. The parser distinction changes its ordinal, not its ciphertext or inverse.
 
-## 4. Relationship to the source-index cycle and p2
+## 4. P6 master-packet family uniquely reconstructs the GOOD key
+
+A later cross-link removes much of the apparent independence of the four key atoms. The already established p6 packet exposes:
+
+~~~text
+K = 2
+-e = 26
+B = 19
+-K = 27
+a = 6, hence p = -a = 23.
+~~~
+
+Therefore the published GOOD key has the direct p6 reading:
+
+~~~text
+[p+K, B, -K, -e]
+=
+[25,19,27,26].
+~~~
+
+The center deletion is also packet-typed: p6 exposes `q=4`, exactly the center rune required by the receiver.
+
+To charge this connection rather than select the successful signs/order after seeing GOOD, enumerate the complete compact p6 family:
+
+1. first state atom is either `p+K` or `p-K`;
+2. include the singleton `B`;
+3. include either `K` or `-K`;
+4. include either `e` or `-e`;
+5. allow every coordinate permutation.
+
+Algebraic collisions leave **192 distinct four-rune keys**. Apply them under both additive directions to all **nine** canonical complete five-rune unknown words whose center is `q=4`, delete that center, and compare with all ten authenticated four-rune signed-source occurrences.
+
+The full charged family has exactly one hit:
+
+~~~text
+p36 offsets169..173 [2,22,4,1,20]
+delete center q=4
+prepared [2,22,1,20]
+
+key [25,19,27,26]
+    [p+K,B,-K,-e]
+sign subtraction
+
+plain [6,3,3,23]
+= GOOD.
+~~~
+
+No other q-centered receiver, p6 key, sign, or authenticated four-rune occurrence hits. This is **34,560 receiver/key/target/sign configurations** before collapsing duplicate source text labels.
+
+This does not make the p36 receiver ordinal canonical: the page-local/cross-page word-number ambiguity described above remains. It does show that once p36 is selected by source index36, both the EMPTY-center operation and the exact numeric key live inside the same independently selected p6 state packet that already supports the p37–p40 warning corridor.
+
+Reproducer: `sims/lp2_p6_p36_good_qcenter_family_sft.cjs`.
+
+## 5. Relationship to the source-index cycle and p2
 
 The source-only numerical cycle remains:
 
@@ -74,7 +127,7 @@ The p2 candidate independently decrypts a source-selected local receiver to GOOD
 
 The p35 FOUND candidate and source-only cycle are documented in im-results/lp2-p33-p35-found-road-map.md. The p2 entry point is documented in im-results/lp2-p2-good-reflection-pair-key.md.
 
-## 5. Evidence boundary
+## 6. Evidence boundary
 
 Supported:
 

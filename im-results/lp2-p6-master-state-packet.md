@@ -422,6 +422,45 @@ This removes the numeric H-role choice from the local key reconstruction. The ex
 Reproducer: `sims/lp2_p28_origin_selected_p29_p40_route_sft.cjs`.
 Detailed report: `im-results/lp2-p6-linecount-p40-paths-key.md`.
 
+## P36 GOOD becomes a fifth warning-corridor packet consumer (Agent3, 28 November)
+
+The p36 EMPTY-center candidate uses:
+
+~~~text
+cipher [2,22,4,1,20]
+delete center q=4
+prepared [2,22,1,20]
+key [25,19,27,26]
+plain GOOD.
+~~~
+
+The packet now supplies both the deletion marker and all key atoms:
+
+~~~text
+q = 4
+[25,19,27,26]
+=
+[p+K, B, -K, -e].
+~~~
+
+Here `K,-e,a` come from `H(title lengths)=[K,-e,g,a]`, `p=-a`, `B` is the singleton W2, and `-K` is literal W3[1].
+
+Charge a conservative family rather than keeping the successful signs/order fixed: choose `p±K`, `B`, `±K`, `±e`, permit every permutation, and test both additive signs. This gives **192 distinct keys**. Across all nine canonical complete five-rune unknown words with center `q=4` and all ten authenticated four-rune source occurrences, the sole hit is p36 offsets169..173, subtraction, GOOD with `[p+K,B,-K,-e]`.
+
+Thus the p6 packet now supplies source-derived key material to every local candidate in the consecutive warning corridor p36–p40:
+
+~~~text
+p36 GOOD   [p+K,B,-K,-e] after deleting q
+p37 LUCK   H4 shell [B,0,K,g]
+p38 BEWARE H6 shell [K-b,-g,p,p-e,0,-b]
+p39 FALSE  H5 shell [-b,-g,K*g,-b,B]
+p40 PATHS  visual/layout key [qg,qg,aK,a].
+~~~
+
+This is strong evidence that p6 is a cross-page **state/key vocabulary packet**. It is still not one universal decoder: each consumer uses a different receiver shape and serialization, and several successful orderings were recognized after their targets. The high-value missing piece is an authored rule that maps a selected page/receiver type to the appropriate p6 serialization.
+
+Reproducer: `sims/lp2_p6_p36_good_qcenter_family_sft.cjs`.
+
 ## Decision
 
 P6's red title is the strongest current source-visible explanation for several previously isolated key shells:
