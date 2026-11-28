@@ -1,0 +1,102 @@
+{
+  "schema": "GEB_2016_exact_dialogue_vector_inventory_v1",
+  "source_sha256": "0c30a5c957557a580557fced796c9121c4be63bb82fee0b7eea134ff2e65522e",
+  "source_bytes": 23151550,
+  "source_pdf_pages": 801,
+  "chosen_dialogues": 14,
+  "selected_physical_pages": 183,
+  "raw_path_drawings": 0,
+  "pages_with_drawings": 0,
+  "individual_eligible_drawings": 0,
+  "source_2016": "https://web.archive.org/web/20160411161235id_/https://dl.dropboxusercontent.com/u/40373160/GEB.pdf",
+  "reproducer": "sims/geb_exact_pdf_dialogue_vector_only_sft.py",
+  "runner": "https://github.com/FlareZ123/liber-primus/actions/runs/46090380141",
+  "runner_commit": "be1c557bc131262279bebed48ff9c7555d6f823e",
+  "controls": [
+    {
+      "dialogue": "3PI",
+      "pages": 5,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "LML",
+      "pages": 26,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "ETOATS",
+      "pages": 17,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "...AF",
+      "pages": 28,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "AMO",
+      "pages": 16,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "CC",
+      "pages": 7,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "CBIA",
+      "pages": 7,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "CFAF",
+      "pages": 6,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "SPR",
+      "pages": 24,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "C[1]",
+      "pages": 8,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "AWDV",
+      "pages": 16,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "C[2]",
+      "pages": 9,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "SC",
+      "pages": 5,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    },
+    {
+      "dialogue": "AOGS",
+      "pages": 9,
+      "vector_paths": 0,
+      "multiop_eligible": 0
+    }
+  ],
+  "interpretation": "The exact 2016 captured PDF contains no native PDF drawing paths on any of the 183 pages within the 14 precommitted, authenticated book-code dialogue spans. This excludes the unexplored PDF vector graphics source class in those spans (as exposed by PyMuPDF get_drawings). Previously 31 bitmap XObjects were tested separately. Not a global historical figure or semantic operation exclusion; annotation, Type3 glyph and bitmap contents not examined here."
+}
