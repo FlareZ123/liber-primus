@@ -57,16 +57,16 @@ The operation itself is also not a plaintext claim. Many previous p50 experiment
 
 ## Cross-artifact p6/p50 mirror-opcode gate
 
-Director #3429 asks whether this p50 reflection and p6's independently selected red13 **180° rotation** are one reusable manuscript mirror opcode. A source-only invariant check rejects that stronger unification before any fresh target is opened.
+Director #3429 asks whether the p40–p55 frame's horizontal reflection, when applied to the independently selected p50 table, and p6's independently selected red13 **180° rotation** are one reusable manuscript mirror opcode. A source-only invariant check rejects that stronger unification before any fresh target is opened.
 
 The two selected coordinate operations are different symmetry classes:
 
 - p6: `(x,y) -> (-x,-y)`, a 180° rotation with determinant **+1**, cycle profile **one fixed cell + six transpositions** on the 13-dot stencil (p36 fixed);
-- p50: `(row,col) -> (row,7-col)`, a horizontal reflection with determinant **-1**, cycle profile **128 transpositions and no fixed cells** on the 32×8 table.
+- p40–p55/p50: the section-wide frame supplies a horizontal axis; conditional on an independent p50 table handoff this becomes `(row,col) -> (row,7-col)`, determinant **-1**, with **128 transpositions and no fixed cells** on the 32×8 table.
 
-Applying p50's horizontal-reflection grammar to p6 gives the already charged left↔right stencil reflection, **not** the uniquely selected p30↔p42, …, p36↔p36 map. Applying p6's half-turn grammar to p50 would additionally reverse table rows, which the mirrored tree art does not select. The only common abstraction is “an involution,” but that discards the axis/orientation information needed to predict any new address and therefore has no prospective content.
+Applying the section-frame horizontal-reflection grammar to p6 gives the already charged left↔right stencil reflection, **not** the uniquely selected p30↔p42, …, p36↔p36 map. Applying p6's half-turn grammar to p50 would additionally reverse table rows, which the section frame does not select. The only common abstraction is “an involution,” but that discards the axis/orientation information needed to predict any new address and therefore has no prospective content.
 
-So the two sources independently motivate **local symmetry operations**, not one shared coordinate opcode. No new mirrored receiver was opened. Reproducer: [`sims/lp2_p6_p50_mirror_common_opcode_gate_sft.cjs`](../sims/lp2_p6_p50_mirror_common_opcode_gate_sft.cjs).
+So the source geometries motivate **different local symmetry operations**, not one shared coordinate opcode. The p50 reflection remains conditional on the independent table handoff; the artwork is section-wide rather than p50-exclusive. No new mirrored receiver was opened. Reproducer: [`sims/lp2_p6_p50_mirror_common_opcode_gate_sft.cjs`](../sims/lp2_p6_p50_mirror_common_opcode_gate_sft.cjs).
 
 ## Director fork
 
