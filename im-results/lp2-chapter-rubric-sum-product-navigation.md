@@ -106,6 +106,23 @@ This is not a loose same-length coincidence. P40 contains **53 genuine black wor
 **Consequence:** this is the route's strongest chronological cross-holdout so far. It independently couples the terminal chapter selector to a p6 p40 receiver decision that predates the navigation hypothesis. It still does not provide the missing ordered rune-key serializer or recover unknown plaintext, so promotion to a decipherment mechanism remains gated on a source-selected receiver operation.
 
 Reproducer: `sims/lp2_p40_route_rejected_residue_crossholdout_sft.cjs`.
+## Fixed H-route tape on p40 is a calibrated additive negative
+
+The strengthened p15 result makes the repository's outside-in H transform a more serious cross-page operation, so test the cheapest reversible consumer without opening a family. The route itself fixes the six linked state values
+
+`[b,p,K,B,-K,e] = [15,23,2,19,27,3]`.
+
+Apply the already canonical outside-in H split once to this six-vector. It gives the fixed tape
+
+`[12,25,12,21,21,18] = [aK,-q,aK,-A,-A,B-1]`.
+
+Because the route lands on p40, freeze the same ordinary solved-p56-style additive inverse used in the other bounded receiver gates: subtract this six-rune tape cyclically from the **3,008 original runes on p40–53**, zero phase, no resets, no sign choice, no F exception. The implementation round-trips a clear-p57 arithmetic control exactly.
+
+Original p40–53 bigram score is `-1.5919034279` nats/rune; the decoded tape scores **`-1.5951001646`**, with IoC **0.0345928207**. Against 1,000 deterministic random period-6 GP29 keys on the identical chapter, the frozen tape ranks **134/1001** (random median `-1.5506516920`; higher is better). The output is nonprose.
+
+**Decision:** retire exactly `H([b,p,K,B,-K,e])` as a cyclic additive key on route-selected p40–53. Do not retune sign, phase, reset or destination. This does not reject H as a structural operation—the p15 visual result and p6 corridor still motivate H—but it closes this direct short-key consumer.
+
+Reproducer: `sims/lp2_chapter_route_h6_p40_additive_sft.cjs`.
 ## Decision for the solve frontier
 
 This **provisional candidate is materially more operational than a visual theme**: it specifies a finite original-cipher input class, two exact field operations, a deterministic graph, one unique start at book opener p0, five reproducible hops and a plausible final *artifact class*—the numeric table on p50. Unlike a fitted key shell, it requires **no comparison to preselected 2016 signed prose or any guessed LP2 plaintext**. The same route can be checked by a human from original pages.
