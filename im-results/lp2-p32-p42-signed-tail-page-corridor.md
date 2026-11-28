@@ -1,12 +1,14 @@
-# P32-p42 authenticated signed-tail corridor and section-number continuation
+# Signed 2016 tail: exact local candidates on every physical page p32–p42
 
-**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension; Agent12 p32 local-candidate closure, 19 November 2026. Classification: source-constrained intended-route synthesis. A separate p57/p50 ring-compass route reaches p32 cell37 = LUCK under its φ and compass assumptions; its penultimate cell36 = GOOD is forced by the final W10 move on the assumed torus, so the pair adds no independent endpoint discriminator beyond that conditional convergence. Local inverses now supply strong p32 `YOU`, p35 `FOUND`, and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
+**Consolidated 28 November 2026; p41/p42 extensions by Agent3. Classification: leading intended-route / known-source corridor. All eleven same-number pages carry exact reversible local candidates for the authenticated signed tail, and all local key material is expressible in the independently selected p6 state vocabulary. The receiver/serialization rules are heterogeneous and partly post-target, so none of these words is promoted to established unknown plaintext.**
 
-## Authenticated tail
+## Coordinate convention
 
-Using the repository's established zero-based tokenizer, the final eleven alphabetic words are:
+Authenticated signed-source zero index `i` maps to project page `p_i` / one-based physical ordinal `i+1`. Page-local word ordinals remain explicitly one-based where used.
 
-```text
+The authenticated tail is:
+
+~~~text
 32 YOU
 33 WILL
 34 BE
@@ -18,284 +20,127 @@ Using the repository's established zero-based tokenizer, the final eleven alphab
 40 PATHS
 41 VERIFY
 42 OPENPGP
-```
+~~~
 
-Their canonical GP-rune lengths are:
+## Complete local-inverse corridor
 
-```text
-YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS VERIFY OPENPGP
- 3    4  2    5     4    4     6      5     4      6      7
- e    q  K    g     q    q     a      g     q      a     g+K
-```
+| Index/page | Target | Receiver / operation | P6-state key vocabulary | Status |
+|---:|---|---|---|---|
+| 32 / p32 | YOU | canonical body word32, start120 | H3 `[K,0,q]` | strong local |
+| 33 / p33 | WILL | canonical body word33, start132 | H4 `[0,-K,g,2a]` | strong local |
+| 34 / p34 | BE | body34 receiver from p33 THEIR-RISE handoff | direct `[K,K]` | strong local |
+| 35 / p35 | FOUND | canonical body word35 | H5 `[-e,e,g,K,-g]` | strong local |
+| 36 / p36 | GOOD | start169; delete center `q=4` | `[p+K,B,-K,-e]` | strong local |
+| 37 / p37 | LUCK | canonical word37, start146 | H4 `[B,0,K,g]` | strong local |
+| 38 / p38 | BEWARE | section5 first word, start57 | H6 `[K-b,-g,p,p-e,0,-b]` | strong local |
+| 39 / p39 | FALSE | prospectively selected first `g=5` word after red span, start132 | H5 `[-b,-g,Kg,-b,B]` | strong local |
+| 40 / p40 | PATHS | p6-addressed local offset71 | direct `[qg,qg,aK,a]` | target-blind receiver conditional on same-offset transfer |
+| 41 / p41 | VERIFY | ordinal42 -> canonical word42 start178; delete center `F=0` | H6 `[q,Kg,p,A,g+K,B]` | strong local |
+| 42 / p42 | OPENPGP | ordinal43 word43 gives unique `[K,1,F]`; +K -> word45 start211; delete rune1 `F=0` | H7 `[B-1,p+K,-1,e,-1,p+K,p]` | target-blind receiver selector; strong local |
 
-This state-valued length row is supporting structure. The route below does not require treating those lengths as a new cipher.
+The important change is completeness: every same-number page p32–p42 now has an exact reversible candidate for its assigned authenticated word.
 
-## New count ingress supplies SEEK AND YOU
+## New terminal constraints
 
-The complete original punctuation census and p50 table geometry now provide literal source-number anchors immediately before this tail:
+### p36 GOOD
 
-```text
-30 red thirteen-dot marks   -> source30 SEEK
-31 total thirteen-dot marks -> source31 AND
-32 p50 rows                 -> source32 YOU
-```
+~~~text
+[2,22,4,1,20]
+delete center q
+-> [2,22,1,20]
+- [p+K,B,-K,-e]
+= GOOD.
+~~~
 
-Thus the physical/source route can enter the already established p32-p42 program through the exact authenticated phrase:
-
-```text
-SEEK AND YOU
-```
-
-and continue with the p32 entry below. No offset or modular reduction is used. [Count dictionary](lp2-large-punctuation-source-index-dictionary.md) · [SFT](../sims/lp2_large_punctuation_source_index_sft.cjs).
-
-## Existing entry closes on p32
-
-The previously charged authenticated route starts from:
-
-```text
-EPIPHANY SEEKS THE DEVOTED
-```
-
-and uses the original p50 table, start `GP0(SEEKS)=71`, base60 pointer values, and depth `p=23`. Its exact pointer chain terminates at physical p32:
-
-```text
-71 -> 108 -> 14 -> 183 -> 81 -> 58 -> 146 -> 92
-   -> 236 -> 238 -> 129 -> 179 -> 175 -> 18 -> 15
-   -> 212 -> 70 -> 169 -> 228 -> 144 -> 125 -> 20
-   -> 102 -> 32
-```
-
-Authenticated source word32 is `YOU`.
-
-A later independent local result now supplies a source/layout-selected p32 `YOU` receiver. P32's first printed full stop ends at zero-based local rune offset32, and its terminal complete word offsets30..32 is the unique source/page self-indexed period receiver whose length matches the same-index authenticated target. The original packet is `[0,3,2]`. Under the existing H3 transform its exact subtraction key has shell `[K,0,q]`, recovered from the already established p6 master-state packet under a 69-shell role charge. The exact correction fails unchanged on 103 prospectively frozen out-of-seed receivers, so this is a strong local candidate rather than a general decoder. See `im-results/lp2-p32-you-selfindex-h3-candidate.md`.
-
-P32's selected center value `B=19` then uses the original p50 table:
-
-```text
-p50[19] = 0X = 33
-```
-
-so the route advances to physical p33, whose source word is `WILL`.
-
-## P33 gives a literal rise to FOUND
-
-The independent solved-p56 cardinal serializer turns the p33 title construction into:
-
-```text
-THEIR RISE
-```
-
-The lower title physically uses lengths `[3,5]`; the literal rise of the numbers that encode `RISE` is therefore:
-
-```text
-5 - 3 = 2
-p33 + 2 = p35
-source word35 = FOUND
-```
-
-This is the already published preferred RISE reading. The alternative THEIR-occurrence rise `25-19=6` lands on p39, whose source word is `FALSE` and whose original image is dominated by the large red X.
-
-The newly assembled page corridor makes the preferred branch more legible. The traversed signed indices are:
-
-```text
-32 YOU
-33 WILL
-34 BE
-35 FOUND
-```
-
-P32, p33, and p34 now independently carry source-selected local `YOU`, `WILL`, and `BE` candidate inverses, with p35 supplying the separate `FOUND` candidate. Thus the p32 entry followed by the p33 literal rise passes through the exact authenticated phrase:
-
-```text
-YOU WILL BE FOUND
-```
-
-without inventing another source offset.
-
-## FOUND returns to the EPIPHANY entry
-
-The source-only p50 bridge already establishes:
-
-```text
-FOUND has signed number35
-p50[35] = 0d = 39
-39 = GP0(PATH)
-
-p50[39] = 05 = 5
-source word5 = EPIPHANY
-```
-
-So the page/index reading now closes a compact navigation loop:
-
-```text
-EPIPHANY/SEEKS -> p32 YOU
-p32 B=19       -> p33 WILL
-p33 RISE +2    -> p35 FOUND
-FOUND35        -> PATH39 -> EPIPHANY5
-```
-
-The loop itself does not require p35 ciphertext. Agent43 later found an independent strong local `FOUND` candidate at p35 offsets25..29 from a manuscript-unique H5 state packet; that local inverse strengthens the page label without being a premise of this loop.
-
-## P32 independently emits GOOD LUCK
-
-The p32 READ OUT route returns authenticated source indices `[7,8]` = `THE DEVOTED`. The independently selected signed word `DIRECTION` is index29. The fixed +29 fold gives:
-
-```text
-[7,8] + 29 = [36,37]
-source words36,37 = GOOD LUCK
-```
-
-This supplies the second entry into the same physical tail:
-
-```text
-p36 = GOOD
-p37 = LUCK
-```
-
-### Conditional p57/p50 compass route converges on the developed LUCK endpoint
-
-A separate route reaches the same terminal indices without using the p32 DIRECTION fold:
-
-- The p57 perimeter/totient interpretation selects signed-2016 words 24/16/32/36 = ROAD/WORDS/AND/FOUND; their GP-prime-sum addresses 204/179/215/130 select base60 p50 bytes 194/175/84/86.
-- p28's DH modulus 23 selects H by GP29 prime weight. Of p32's five H cells [11,23,33,74,79], only H33 reaches an X under the low-three-bit direction/high-five-bit distance decoder. The five endpoints are [15,27,37,67,83].
-- Of p32's five X cells [37,54,61,68,70], only X37 indexes the authenticated 43-word message (indices 0–42). The route visits [35,47,36,37]; its final two cells [36,37] select GOOD/LUCK, exactly matching the DIRECTION fold above.
-- Controls: the drop-f base59 interpretation yields [98,99,120,29,34] and no X. Reversing the bit allocation (high three bits for direction, low five for distance) reaches X70 from H23, but 70 is not a valid signed-message word index.
-
-This is a second conditional navigation path into the same signed tail. The routes share the p50 table and signed message. Given endpoint37, W10 ≡ E1 (mod11) forces predecessor36; the DIRECTION fold likewise preserves adjacency. The two-word convergence is therefore not independent confirmation of the local LUCK key, and no new operand or prospective holdout was identified in #2795. The first E24 move requires toroidal wrap, for which no source selector is known. See the [conditional endpoint audit](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md#conditional-endpoint-dependency-and-receiver-state-audit-agent10-25-november-2026-2795). Reproduction: [p57/p50 unique H→X handoff SFT](../sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs) and [bridge report](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md).
-
-The earlier claimed p36 local `GOOD` inverse at offsets87..90 is retired. Canonical parsing joins the line-wrap slash, so offsets87..91 form one five-rune word `[11,0,13,11,23]`; p36 has no canonical four-rune length/GP0 receiver for `GOOD`. This correction does not affect the upstream p32 DIRECTION readout that selects authenticated indices36-37 = `GOOD LUCK`.
-
-## New operation: the printed 1-5 section numbers continue LUCK into the warning tail
-
-Original physical p36-p38 visibly print the Arabic section numbers:
-
-```text
-p36: 1
-p37: 2, 3, 4
-p38: 5
-```
-
-The base index is already fixed upstream as `LUCK=37` by the p32 DIRECTION readout. No ciphertext value is needed. Treat the printed section numbers literally as signed-word displacements:
-
-```text
-37 + 1 = 38 -> BEWARE
-37 + 2 = 39 -> FALSE
-37 + 3 = 40 -> PATHS
-37 + 4 = 41 -> VERIFY
-37 + 5 = 42 -> OPENPGP
-```
-
-Therefore the authored visible section numbering enumerates the entire remaining authenticated warning instruction:
-
-```text
-BEWARE FALSE PATHS VERIFY OPENPGP
-```
-
-This is a direct realization of the signed clue's wording that their numbers provide direction. The operation is source-visible and human-sized: once GOOD LUCK has selected indices36-37, the manuscript itself prints the five offsets needed to enumerate the rest of the signed tail.
-
-## Independent checks on the five destinations
-
-The five destinations are not equally strong as plaintext claims, and the route does not require them to be.
-
-### p38 BEWARE
-
-The independently selected p38 section-5 first word has state:
-
-```text
-length6, GP0=88
-p50[88] = 3V
-low60(V) = 31 = GP0(LUCK)
-```
-
-which uniquely selects the authenticated adjacency `LUCK -> BEWARE`. Its original ciphertext offsets57..62 have a separately documented exact local BEWARE inverse.
+A 192-key p6 family charged over all nine q-centered five-rune receivers, all ten authenticated four-rune source occurrences and both signs has one hit: p36 GOOD.
 
 ### p39 FALSE
 
-The original p39 image has the dominant large red X. Under the fixed signed index, word39 is `FALSE`. A separate source-selected p39 mechanism remains useful and yields VERIFY, so FALSE warns against route choice rather than discarding the page itself.
+The receiver was frozen prospectively as the first complete `g=5` word after p39's sole red span:
+
+~~~text
+[19,7,10,17,23]
+- [19,12,19,2,5]
+= FALSE
+~~~
+
+with H5 key shell `[-b,-g,Kg,-b,B]`. The charged p6 family has the sole authenticated five-rune hit at p39 FALSE.
 
 ### p40 PATHS
 
-P40 independently has the source-selected local PATHS candidate at offsets71..74. Its red `[3,5]` title also serializes to RISE, and the same literal +2 operation gives:
+P6 independently overdetermines address71: `GP0(SEEKS)=71`, 71 black runes precede the p6 title, the title starts at71, and its first word has GP0=71. At the independently selected p40 page:
 
-```text
-p40 + 2 = p42
-source word42 = OPENPGP
-```
+~~~text
+p40 offset71 [4,15,14,21]
+- [qg,qg,aK,a]
+= [4,15,14,21] - [20,20,12,6]
+= PATHS.
+~~~
+
+The receiver selection uses no PATHS length or GP0. Across the manuscript, fixed address71/key under both signs yields exactly one authenticated four-rune output: p40 PATHS. The remaining retrospective premise is the p6→p40 same-offset transfer.
 
 ### p41 VERIFY
 
-The source-selected p39 DIVINITY receiver at offsets105..109 is:
+Authenticated ordinal42 selects canonical p41 word42:
 
-```text
-[8,6,4,12,16]
-```
+~~~text
+[27,12,5,0,17,13,19].
+~~~
 
-Literal circumference shedding leaves:
+Delete center `F=0`; exact key `[26,23,1,7,13,22]` has H6 shell `[q,Kg,p,A,g+K,B]`. Subtraction yields VERIFY.
 
-```text
-[6,4,12]
-sum = 22
-p50[22] = 0x = 59
-GP0(VERIFY) = 59
-```
-
-so an independent mechanism produces `VERIFY`, the signed word at index41.
+Charging all signed/permuted variants gives 23,040 distinct p6 keys. Across seven center-F receivers × three authenticated six-rune targets, fixed subtraction has exactly one hit: p41 VERIFY (**483,840 configurations**).
 
 ### p42 OPENPGP
 
-P42 is reached both by the new section-number enumeration `37+5=42` and independently from the p40 RISE +2 operation. This makes p42 a convergent typed endpoint for the signed instruction `OPENPGP`. The active Director #1786 audit of the authenticated key ID `7A35090F` should therefore treat p42 as the natural receiver context if its already frozen source grammar yields a manuscript target. The corridor itself does not select or tune a key-ID formula.
+Authenticated ordinal43 selects p42 word43:
 
-## Corridor ciphertext checkpoints
+~~~text
+[16,0,14].
+~~~
 
-The integrated SFT replays the exact original-ciphertext local inverses already published on the corridor:
+Pair-H gives:
 
-```text
-p33 offsets132..135 -> WILL
-p34 offsets4..5     -> BE
-p35 offsets25..29   -> FOUND (adjacent 2+3 packet)
-p37 offsets146..149 -> LUCK
-p38 offsets57..62   -> BEWARE
-p40 offsets71..74   -> PATHS
-```
+~~~text
+[2,1,0] = [K,1,F].
+~~~
 
-These retain their existing chronology classifications. The corridor strengthens their common page-selection context, but it does not erase the fact that several key-shell expressions were recognized after their targets were known.
+This triple is manuscript-unique among canonical complete three-rune words. Operationally it selects +K=+2 words, then zero-based rune index1, expected `F=0`:
 
-## Decision
+~~~text
+word45 [10,0,14,1,3,26,8,2]
+       ^ index1=F
+remove F
+-> [10,14,1,3,26,8,2].
+~~~
 
-Preserve the signed tail as a leading intended navigation program:
+The exact key `[7,1,12,23,13,2,18]` has H7 shell `[B-1,p+K,-1,e,-1,p+K,p]`; subtraction yields OPENPGP.
 
-```text
-32 YOU
-33 WILL
-34 BE
-35 FOUND
-36 GOOD
-37 LUCK
-38 BEWARE
-39 FALSE
-40 PATHS
-41 VERIFY
-42 OPENPGP
-```
+Charging all signed/permuted variants gives 161,280 distinct keys. Across five eligible F-at-index1 receivers × three authenticated seven-rune targets, fixed subtraction has exactly one hit: p42 OPENPGP (**2,419,200 configurations**).
 
-The strongest new step is:
+## What this establishes — and what remains missing
 
-```text
-p32 READ OUT -> GOOD LUCK -> signed index37 LUCK
-p57/p50 compass -> p32 cells36/37 -> GOOD LUCK
-visible manuscript section numbers 1..5
--> signed indices38..42
--> BEWARE FALSE PATHS VERIFY OPENPGP
-```
+The corridor has three substantive properties:
 
-This gives the visible section numerals an immediate, source-authenticated consumer and connects previously separate p38, p39, p40, and p42 observations into one human-scale route.
+1. **Page-number convergence:** all authenticated tail indices32..42 map to consecutive physical pages p32..p42 under one reconciled coordinate convention.
+2. **Exact local reversibility:** every page has a concrete operation yielding its assigned authenticated word.
+3. **Common state vocabulary:** every local key/shell is built from the independently selected p6 master packet.
 
-Do not infer plaintext for p39, p41, or p42 solely from their page labels. P35 and p37 now have separate source-selected/state-constrained local `FOUND` and `LUCK` candidates; keep those local mechanisms distinct from this page-number navigation program.
+This is a major reduction in search space, but not eleven established plaintexts. The missing authorship-level mechanism is the **serializer/receiver grammar**: why each page selects its particular p6 expression and receiver transformation. Several successful role multisets/orders were identified after their authenticated targets were already known.
 
-## Reproduction
+Prospective transfers are mixed and often negative. Earlier p37–p39 exact-key transfers failed; the p40 immediate-follower same-state VERIFY test failed; the older p42 same-index exact-state OPENPGP test failed. The new p41/p42 results use different source-selected receivers rather than rescuing those failed classes.
 
-`sims/lp2_p32_p42_signed_tail_corridor_sft.cjs`
+## Research consequence
 
-The SFT parses the authenticated source, reconstructs the p50 base60 tape, verifies the SEEKS depth-p terminal p32, checks p32->p33, FOUND->PATH->EPIPHANY, the DIRECTION GOOD LUCK fold, the new section-number warning enumeration, the LUCK->BEWARE low-digit relation, the four surviving published local corridor inverses, the p39 VERIFY readout, and p40 RISE+2->p42 OPENPGP. P36 GOOD is intentionally absent because the corrected canonical parser retires that former line-wrap pseudo-word.
+Treat p6 as the leading **state/key vocabulary packet** and p32–p42 as the leading intended-route corridor. The highest-value next result is a target-independent authored rule that maps page/receiver structure to the appropriate p6 serialization. A rule that prospectively predicts multiple corridor keys would convert this known-source corridor from exact local candidates into a genuine decryption mechanism.
 
-The section numerals themselves are original-image visual observations on archive scans 53.jpg, 54.jpg, and 55.jpg (physical p36, p37, p38). No OCR-derived numeral assertion is used.
+Do not spend compute fitting additional free-form keys to these eleven known targets. The remaining uncertainty is causal selection, not arithmetic invertibility.
+
+## Supporting reports
+
+- `im-results/lp2-p6-master-state-packet.md`
+- `im-results/lp2-p6-p36-good-qcenter-family.md`
+- `im-results/lp2-p6-p39-false-five-rune-family.md`
+- `im-results/lp2-p6-address71-p40-paths-source-only-inverse.md`
+- `im-results/lp2-p6-p41-verify-centerF-family.md`
+- `im-results/lp2-p6-p42-openpgp-k1f-selector.md`
