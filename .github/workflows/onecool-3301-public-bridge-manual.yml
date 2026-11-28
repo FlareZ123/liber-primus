@@ -71,3 +71,12 @@ jobs:
           path: ${{ runner.temp }}/onecool-2017-code-recovery.json
           if-no-files-found: error
           retention-days: 7
+      - name: Scan historical method code
+        run: node sims/lp2_onecool_2017_historical_method_grep_sft.cjs
+      - name: Upload historical method scan
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-2017-historical-method-grep
+          path: ${{ runner.temp }}/onecool-2017-historical-method-grep.json
+          if-no-files-found: error
+          retention-days: 7
