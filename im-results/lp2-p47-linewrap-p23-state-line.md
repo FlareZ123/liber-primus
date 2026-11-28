@@ -126,6 +126,16 @@ For each key the finite family contains the four GP29 affine/reflection forms `P
 
 The standard columnar subfamily is also negative (best **-3.395889944257161**). This closes the simple periodic additive/reflected and ordinary numeric-order transposition uses of the p47→p23 state on its selected following-text receiver; a different authored operation, stateful receiver or representation remains outside scope.
 
+## Authentic prime-clock origin charge: legal survivors are still non-native
+
+The literal p56 mechanism was then tested more faithfully than the repeating-key transfer: use the actual infinite prime-minus-one clock, authentic plaintext-F hold semantics, and let `THE ORIGIN` select the clock origin. On the independently selected 193-rune p23 following-text receiver, charge origin0 plus every raw DH state value and its one-based/zero-based neighbor `v-1`.
+
+Only **origins22 and23**—the modulus `p=23` under the two indexing conventions—survive the complete receiver, with eight legal F-hold histories each. Among every origin0..3301, 89 survive, and **22/23 are the two smallest survivors**. This is a structural coincidence worth recording, but the outputs are not plaintext: best whole-stream score is **-3.4046573**. More importantly, preserving the original p23 printed group lengths and scoring only within groups (so an H-shuffle cannot destroy the test) gives best **-3.4083202**, while all 62,300 matched Gibran controls are at least **-3.3054929**. Thus even the H-shuffle-invariant language test rejects the survivor.
+
+Receiver-boundary controls also reject applying the clock from p23 rune0 or p0 rune0 for origins0/22/23. The only adjacent-page state-origin survivor in the small state family is p24 with `a=6`; it has one legal path, but scores **-3.4190** whole-stream and **-3.3983** within printed groups, below matched 270-rune control floors **-3.1694/-3.2840**.
+
+This closes the direct authentic-p56 prime-clock interpretation of p23's `THE ORIGIN` on both the selected following text and the immediate p24 receiver. The survival of p/p−1 is not promoted because its decoded stream is decisively non-native under both ordinary and shuffle-invariant controls.
+
 ## Evidence boundary
 
 This does not decrypt new p23 rune text. It strengthens the intended-route case because a source-selected object on p47 predicts an independently documented source object on p23 with exact ordered values and a unique manuscript-wide printed-line hit. The direct H-free origin-coordinate continuation is now prospectively rejected, so the supported claim stops at navigation/state closure unless a different page-local operation is independently selected.
