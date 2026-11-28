@@ -1,5 +1,18 @@
 # Current checkpoint — 2026-11-28, draw3 directed
 
+## Checkpoint — robust frame starts type chapter PRODUCT (2026-11-28)
+
+- **Important correction:** the earlier fixed-crop frame-length state tape was overclaimed. A second equally natural central border crop preserves all six non-singleton frame STARTS `[1,4,15,27,40,56]` and the exact p40–p55 final section, but extends the p15 repeated-frame identity from p21 through p23. Therefore the fixed outer-crop lengths `[2,4,7,13,16,2]` and `[K,e,a,e,b,F]` cyclic differences are crop-conditioned, not source-unique. Corrected SFT `sims/lp2_p40_mirrored_section_artwork_sft.cjs` commit `dcf8b219c2c453128381b6ebaab045d38523b3ea`; corrected report commit `c03c1e3084f4c38a3d6c9bb5382c6d34c552e459`; README correction `6b07af8318801b638bc7ef317a558880debc37c0`; correction broadcast `f43fcc6c959d23d99a5a66bf398ccf36928278bc`.
+- The **robust frame-start register survives**: non-singleton starts `p1,p4,p15,p27,p40,p56`, forward gaps `[3,11,12,13,16]`, 58-page cyclic gaps from p4 `[11,12,13,16,3,3]`. These depend only on repeated-frame STARTS, not the crop-sensitive p15 end.
+- This supplies the missing common source cue for chapter PRODUCT. In the frozen #3445 OUT family, union of chapter-IN SUM values with robust frame gaps fully covers all 8 distinct rune-PRODUCT outputs; every rival covers at most 5 values.
+- Stronger instance-level partition: nine PRODUCT outputs `[23,11,2,13,16,19,3,3,27]` split exactly into chapter-IN recipients `[23,2,19,27]` plus frame-gap recipients `[11,13,16,3,3]`, leaving only visual gap `12=u=aK`. No rival OUT statistic's non-IN multiset fits the six frame-gap multiset.
+- Ordered control: PRODUCT outputs on the five no-IN-recipient chapters p3,p15,p23,p33,p40 are `[11,13,16,3,3]`, exactly cyclic frame gaps from p4 `[11,12,13,16,3,3]` after deleting the single `12=u`; allowing any cyclic rotation + one deletion, no other frozen OUT statistic matches.
+- PRODUCT SFT `sims/lp2_frame_gap_chapter_product_gate_sft.cjs`: initial `7bd4120bef271fcc748f2da8ac634afea6021f09`, combined-register `3765c495a3035e9c5c2d6e3ba153cad2c88b042c`, ordered `3b2c403cd643361a64db6d83bda74baba910005c`, two-register partition `c2081fdc2723f0aeea3442199fbe07dcb53de6d0`. Report `im-results/lp2-frame-gap-chapter-product-gate.md` commits `42bbaf83e00dda55b1c7914373a20982c18534a9`, `41cfd8fbc7bd2e54795d006e15fc2caf706c1ff0`, robust-start clarification `cf93bb59d7a5be8d5b249e45a153a17b22dbf135`.
+- Synthesis upgraded PRODUCT from “no common cue” to **source-supported OUT/state statistic** in chapter report commit `fd25aff6657725d002df04b2562db9a166572d31` and README commit `43f13cd81a66ddef56fab8d45c2df562829a91ba`. Route remains provisional; frame-gap matches do not define a navigation fallback; rejected OUT3→physical-p3 remains rejected.
+- CI for the latest PRODUCT gate is pending because GitHub Actions API rate-limited until ~12:42 UTC. Inspect latest run before final promotion/comment.
+- Adversarial p6 control frozen in `sims/lp2_p6_corridor_visual_frame_rival_sft.cjs` commit `99494e8354232b42c9810b34567f3fd99c17580d`: compare frozen p30–p42 corridor grammar against source-visible p27–p39 exact 13-page frame. CI result also pending API reset.
+
+
 ## Checkpoint — #3435 p40 final-section switch and cell43 bridge (2026-11-28)
 
 - Claimed/closed Director #3435; closure comment 7239130428. Result is **positive operation-switch / negative p40-only STOP**, conditional on the provisional chapter SUM→PRODUCT route.
