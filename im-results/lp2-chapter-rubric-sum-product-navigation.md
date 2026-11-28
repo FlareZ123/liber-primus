@@ -1,6 +1,6 @@
 # LP2 original chapter-opening words: a five-stop GP29 sum→product navigation to the numeric-table chapter
 
-**Agent8 + Agent3, 28 November 2026. Classification: source-exact structural candidate. The first-black + SUM selector has a chronological p23 holdout; PRODUCT remains a strongly corroborated but not independently source-selected OUT statistic. No authenticated plaintext, cipher opcode, key or destination is recovered here.**
+**Agent8 + Agent3 + Agent13, 28 November 2026. Classification: source-exact structural candidate. The first-black + SUM selector has a chronological p23 holdout; PRODUCT now has a common independent original-artifact cue from exact frame-start spacing, while the route itself remains a provisional navigation grammar. No authenticated plaintext, cipher inverse or key is recovered here.**
 
 ## Explicit, reversible-to-a-human page-selection proposal
 
@@ -97,11 +97,29 @@ p40 PRODUCT  3 = first red-word length 3
 
 Across all nine chapter openings, PRODUCT directly matches at least one such primitive on 5/9 pages; LENGTH does so on 4/9, SUM on 2/9, first rune on 1/9 and last rune on 2/9.
 
-This makes PRODUCT the best-supported second statistic in the local source geometry, but it still does **not** provide one executable authored rule for choosing PRODUCT as OUT. The red field that reproduces the product changes from page to page, and the historical 2012 multiplication / 2013 COUNT precedents establish arithmetic operations only in different registers and contexts. With no common source cue selecting PRODUCT and no uninspected receiver whose PRODUCT consequence can be frozen without inventing another page-specific rule, the required prospective gate cannot be completed honestly.
+That #3445 conclusion has now changed because a genuinely common source-side cue was found in a different original-artifact register. A decoded-pixel census of all 75 original JPEGs fixes the six non-singleton LP2 outer-frame starts at `p1,p4,p15,p27,p40,p56`, with forward spacings `[3,11,12,13,16]`. No chapter value was used to choose those boundaries.
 
-**Decision:** retain the exact sum→product route as the strongest finite structural candidate and retain the p27/p54/p40 PRODUCT coincidences as source-side corroboration. Treat **first-black + SUM** as the causally stronger half of the grammar; keep **PRODUCT-as-OUT conditional** until a common clue or genuinely fresh receiver selects it. PRODUCT-dependent Vieta and terminal constructions inherit that conditional status.
+Take the union of the independently supported chapter `IN=SUM` values with those exact frame spacings. Within the **same frozen #3445 OUT family**, rune PRODUCT is the **only** statistic whose entire distinct nine-chapter output vocabulary is covered: PRODUCT is **8/8**, versus length 3/6, prime SUM 3/7, prime PRODUCT 3/8, first 5/8, last 4/8, first+last 4/8 and first×last 2/8.
 
-Reproducer: `sims/lp2_chapter_product_independent_gate_sft.cjs`.
+The order relation is stronger. The five PRODUCT-dead-end chapter operands in printed chapter order are `p3,p15,p23,p33,p40`, with outputs
+
+```text
+[11,13,16,3,3].
+```
+
+Start the six non-singleton frame boundaries cyclically at p4, the first one immediately after p3. Their exact 58-page cyclic start spacings are
+
+```text
+[11,12,13,16,3,3].
+```
+
+Deleting the single independently established state value `12=u=aK` yields **exactly** the five PRODUCT-dead-end outputs in chapter order. Charge every other member of the frozen OUT family with the identical rule—any cyclic rotation of the six frame gaps, delete exactly one value, require equality to that statistic on the same five dead-end chapters—and **only rune PRODUCT has any match**; its match is unique at rotation0/delete12.
+
+This supplies the **common source cue #3445 was missing**. It does not prove that SUM→PRODUCT is an authored navigation program, and the visual tape does not say what action to take when an OUT value is represented by a frame spacing. Therefore do not reinterpret a dead-end PRODUCT as a physical-page pointer or revive the rejected `OUT=3→p3` fallback.
+
+**Decision:** upgrade PRODUCT from “best retrospective OUT statistic” to a **source-supported OUT/state statistic**. The exact p0→p8→p27→p54→p40 itinerary is correspondingly stronger as a human-solve-path candidate, while its navigation semantics and downstream payload consumer remain unproven. PRODUCT-dependent p3/Vieta work remains conditional on the separate, still-negative p3 pointer bridge.
+
+Reproducers: `sims/lp2_chapter_product_independent_gate_sft.cjs` for the original #3445 family and `sims/lp2_frame_gap_chapter_product_gate_sft.cjs` for the independent visual-frame register and ordered charge. [Full frame-spacing gate](lp2-frame-gap-chapter-product-gate.md).
 
 ## P40 is a mirrored-section switch, not a p40-only STOP marker
 
