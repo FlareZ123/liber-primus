@@ -229,9 +229,25 @@ The later p33 recovery of `THEIR RISE` changes that decision. The authored +6 op
 
 The exact fixed key remains nonunique when applied indiscriminately across every unknown two-rune word and several authenticated targets. That older manuscript-wide control is still valid. It is no longer the relevant selection family because the source now fixes both the target BE and physical page34 before the key prediction is made.
 
+## Source-only geometry charge: p34 first-line versus terminal receiver (28 November, Director #3427)
+
+**Evidence status: geometrically distinguishable, but not source-uniquely selected.** The original p34 image `resources/liber-primus/51.jpg` visibly has a two-row cuneiform header above its first rune line, with no red rune span, special rune at either candidate, direction mark, or arrow to a specific word. The two registered complete two-rune receivers were held as opaque coordinates **A=offset4** and **B=offset249**; no GP values, BE identity, predicted cipher or key were used in choosing the following finite source-feature family: physical text line, printed word boundary, complete two-rune status, preceding full stop, neighboring word lengths, contiguous two-rune-run membership, and proximity to the header drawing. The independent matched original p22 scan `39.jpg` has its illustration **below** rather than above an opening two-rune trio.
+
+| Source-only feature | A: offsets4–5 | B: offsets249–250 | Matched controls |
+| --- | --- | --- | --- |
+| Complete two-rune word | yes, zero-based word2 | yes, word57 | 10 on p34; 465 on unsolved p0–55 |
+| Text line | first of 12 | last of 12 | first line contains three 2-rune words: starts0,2,4 |
+| Adjacent original stop | no; preceding separator is a word divider | **immediately follows printed full stop at249** | p34 has two stop-following 2-rune words, at211 and249; 30 across unsolved pages |
+| Word-length neighborhood | two preceding words both length2, following length4 | preceding complete word length12 (wraps line), following length5 | p34 opening length2 run occupies starts0,2,4; no visible mark chooses its third member |
+| Header artwork | same first line as two other length2 words, below centered cuneiform | far below header | only p22 and p34 open with three two-rune words; p22 has artwork below text |
+
+The unique page-opening **third** word test can be made to select A, but its ordinal is an added choice not demanded by the image. A neutral "under the cuneiform" rule selects **three** original p34 words, not A uniquely. Likewise "after a full stop" selects **two** p34 words, not B uniquely. Neither candidate begins at a text-line boundary; the late B receiver follows a 12-rune group crossing the previous line and a genuine period. Therefore no independent original-image criterion uniquely endorses A among matched typed alternatives. Original geometry *does* distinguish the early and late candidates as source types; it does **not** supply the missing key/receiver selector. Do not use the line/illustration coincidence to upgrade BE to authenticated plaintext. The +6/H-shell exact-cipher selector remains a separate, retrospective local argument and its p7 transfer failure remains intact.
+
+**Reproduction:** `node sims/lp2_p34_original_geometry_control_sft.cjs` parses the unmodified transcription, checks every physical page against `lp2-corpus.json`, and reports 57 rune-bearing pages (55 unsolved), 12,956 unsolved runes, the ten p34 two-rune starts `[0,2,4,31,70,102,105,211,249,256]`, stops `[10,16,154,211,249]`, and the full word/line/control census. Its page34 positions, marks and drawing placement were checked against the original p34 JPEG; the derivative punctuation stream was not treated as independent evidence. This result is a **bounded negative for natural geometry selectors**, not an exclusion of any future independently indicated ordinal or artwork operation.
+
 ## Evidence boundary
 
-Preserve p34 offsets4..5 as a **strong local BE plaintext candidate**:
+Preserve p34 offsets4..5 as a **strong local BE plaintext candidate** selected by the source-rise key, **not independently by p34 image geometry**:
 
 ```text
 THEIR RISE
