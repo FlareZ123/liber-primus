@@ -50,9 +50,25 @@ The follow-up search was restricted to public, released participant archives and
 
 This is a bounded public-source negative. It does not rule out an encrypted private email or a response retained only on the participant's original server; neither is present in the examined public artifacts, and no private mailbox or hidden service was accessed.
 
+## Distinct participant-owned version-control acquisition route (#3328, Agent 3, 28 November 2026)
+
+The new source class is early participant-owned repositories and their historical trees, rather than another scan of the modern aggregated archive or Stage10 POST reproduction.
+
+| Historical source | Result |
+|---|---|
+| [iIIustrious/3301code, 2015 local-working-files import b66622a](https://github.com/iIIustrious/3301code/tree/b66622a9af72570cd81d82904b225ca088084aae/3301code/server) | Repository created 24 January 2014; January 2014 commit sequence, then 10 March 2015 local-working-files import. README identifies 2013/2014 solving scripts. The imported `server/save_file.py` and `server/server.py` both save the uploaded bytes under a relative `files/` directory. The import contains only the four server source/HTML files, no received files, key or request log. The subsequent [pre-removal duplicate tree 36efd2a](https://github.com/iIIustrious/3301code/tree/36efd2a66a62d20c8559fd8468a2f50e8a77c5be) has identical server objects under the duplicated paths; removal of the extra folder did not remove an archived payload. This is an independently accessible, concrete acquisition lead: a contemporaneous local copy of that server's received-file directory (if actually used) and matching recipient record, not the committed script. The import date and code alone do not establish actual May 2014 participation or receipt. |
+| [dynomite27/33012014](https://github.com/dynomite27/33012014) and [dynomite27/cicada](https://github.com/dynomite27/cicada) | The known IRC handle's public repositories have respectively three and one commits, all 12 January 2014; the surviving trees have only README files. No later callback record. |
+| [Lafolie/cicada](https://github.com/Lafolie/cicada) and [vessarion/cicada](https://github.com/vessarion/cicada) | Shared January 12 histories; early onion material only. The Onion2 Message.txt object is identical across the two trees, not independent May delivery. |
+| [235711101131pp/cicada2014](https://github.com/235711101131pp/cicada2014) | Eight blobs, early-stage RSA/hex/PDF/JPEG material and scripts; no Stage10 callback record. |
+| [kenorb/cicada-2014](https://github.com/kenorb/cicada-2014) | Shares the micheloosterhof May 11–25 commits, including first LP2 upload; its additional June–September commits reorganize files, add JPEG analysis, or hash-search tools, not an individualized reply. |
+
+Search scope: GitHub repositories matching cicada/3301 created in 2014, followed by actual tree and historical commit inspection of puzzle-related candidates. Unrelated projects were excluded by descriptions and paths. The earliest distinct server implementation above is the actionable preservation object, not an authenticated encrypted reply. No contact with any operator or live service, no private mailbox/key access, and no ciphertext hash or recipient fingerprint can be reported. To advance, a willing participant would need to supply the original received file and contemporaneous recipient-binding metadata; if encrypted, an authorized decryption or authenticated plaintext must connect the result to LP2. The recovered scripts supply no LP2 operand.
+
+**Decision:** #3328's bounded no-copy outcome is satisfied. Preserve the local-file acquisition lead, and leave the external-delivery hypothesis conditional; no unknown LP2 plaintext or shared key is recovered.
+
 ## Decision
 
-Close #2998 and #3004 as bounded public-source no-copy results. Retire the participant /key.asc as a candidate for a **shared LP2 decryption key**; retain its supported role as a participant-specific communication key. Reopen only if an original 2014 participant-service snapshot, saved upload, email attachment, or cryptographically linked encrypted reply is recovered with provenance and exact bytes.
+Close #2998, #3004 and #3328 as bounded public-source no-copy results. Retire the participant /key.asc as a candidate for a **shared LP2 decryption key**; retain its supported role as a participant-specific communication key. Reopen only if an original 2014 participant-service snapshot, saved upload, email attachment, or cryptographically linked encrypted reply is recovered with provenance and exact bytes.
 
 ## Sources
 
