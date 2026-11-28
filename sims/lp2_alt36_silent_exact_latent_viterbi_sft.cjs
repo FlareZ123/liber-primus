@@ -67,7 +67,7 @@ function experiment(raw, options={}) {
     return P4;
   }
   function strict(P,K) {
-    let j=0,prev=-1;const out=[];
+    let j=0,prev=options.ivA?24:-1;const out=[];
     for(const p of P) {
       while(mod(p+K[j])===prev) {
         j++;if(j>=K.length)throw Error("insufficient key");
@@ -152,7 +152,7 @@ function experiment(raw, options={}) {
     return rows;
   }
   function solve(C,K,LM,beam,maxHidden=3){
-    let states=[{j:-1,prev:-1,a:SENT,b:SENT,c:SENT,score:0,path:null}],
+    let states=[{j:-1,prev:options.ivA?24:-1,a:SENT,b:SENT,c:SENT,score:0,path:null}],
       explored=0,bestClock=0;
     for(let i=0;i<C.length;i++){
       const maxJ=Math.ceil((i+1)*1.65+16),accepted=[];
@@ -215,7 +215,7 @@ function experiment(raw, options={}) {
       recovery:truth&&z.P?lcs(z.P,truth)/Math.max(z.P.length,truth.length):null,
       text:z.P?.map(p=>gp.translit[p]).join(""),
       originalRuneOutput:z.P?.map(p=>gp.runes[p]).join("")});
-    return {target,originalKey:key,scope:"one source-selected cyclic key but newly hypothesized mod36 silent-output cipher; no LP2 decrypt established",
+    return {target,originalKey:key,ivA:!!options.ivA,scope:"one source-selected cyclic key but newly hypothesized mod36 silent-output cipher; no LP2 decrypt established",
       count:C.length,truthLength:truth?.length,phase0:result(a),phase1:result(b)};
   }
   if(options.primeMode){
@@ -279,6 +279,7 @@ if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===mod
     {beam:process.argv.includes("--wide")?1500:600,plants:3,
       primeMode:process.argv.includes("--prime-plant")?"plant":
         process.argv.includes("--prime-original")?"original":undefined,
-      red8Mode:process.argv.includes("--red8-plant")?"plant":
-        process.argv.includes("--red8-original")?"original":undefined}),null,2));
+      red8Mode:process.argv.includes("--red8-plant")||process.argv.includes("--red8-ivA-plant")?"plant":
+        process.argv.includes("--red8-original")||process.argv.includes("--red8-ivA-original")?"original":undefined,
+      ivA:process.argv.includes("--red8-ivA-plant")||process.argv.includes("--red8-ivA-original")}),null,2));
 }
