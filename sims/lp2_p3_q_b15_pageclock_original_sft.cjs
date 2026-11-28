@@ -155,6 +155,22 @@ for(let i=0;i<red.length;i++)for(let j=0;j<red.length;j++){
  if(eq(mul(red[i].state,powers[e]),red[j].state))redEdges.push([i,j]);
 }
 assert.equal(redEdges.length,0);
+// The solved p56 red title supplies independently authenticated initial
+// [1,2] prime-minus-one shifts under the already-source-frozen multiplier Q.
+// If the Q^15 clock transfers that *same* key packet across the 56
+// unresolved pages, its nine long original page-initial headings must agree
+// with the solved p56 seed transported by (page-56) steps.
+const p56red=red.find(r=>r.page===56&&r.start===0&&r.length===5);
+assert(p56red && eq(mul(Q,p56red.state),[1,2]));
+const anchoredClock=red.filter(r=>r.page<=55&&r.start===0&&r.length>=8)
+ .map(r=>({
+  page:r.page,
+  observedQRed:mul(Q,r.state),
+  predicted:mul([1,2],powers[mod840(15*(r.page-56))])
+ }));
+for(const r of anchoredClock)r.matches=eq(r.observedQRed,r.predicted);
+assert.equal(anchoredClock.length,9);
+assert.equal(anchoredClock.filter(r=>r.matches).length,0);
 const report={
  schema:1,classification:'source-motivated Q^15 56-page cycle; direct original-cipher negative',
  origin:{field:'GF29[u]/(u^2-3u-8)',Q,orderQ:840,b2013:15,clock:powers[15],orderClock:56,
@@ -166,7 +182,7 @@ const report={
          scalar:'4 schedules x [trace(840 phases),norm(28 phases)]; coefficient readouts and +/- are phase-equivalent',
          pairFraming:'page-local consecutive complete pairs; at most one leftover rune per page omitted',
          red:'18 full printed red spans; ordered distinct-page Q^(15*pageDelta) transitions'},
- redEdges,pairModes,scalarModes,
+ redEdges,anchoredClock,pairModes,scalarModes,
  decision:'Direct page-clock GF841 pair transports and trace/norm GP29 keystreams produce no native plaintext on LP2, despite rank-one native planted controls. This does not exclude a keyed/reordered/nonsimple cipher. No authenticated LP2 plaintext or author-selected page clock.'
 };
 assert.equal(Math.max(...pairModes.map(m=>m.originalBest[0].score))<-4.55,true);
