@@ -66,3 +66,8 @@ No receiver offset, alternate page start, grid rotation, sign, operation class, 
 - **Any prediction fails:** reject this exact post-OPENPGP source/grid restart. Do not move to a neighboring word/page, rotate the grid, change the sign, or reinterpret a miss as partial success.
 
 The test is intentionally stricter than the retrospective p30-p42 matched null. It asks whether the now-frozen aggregate navigation/checksum mechanism predicts fresh original ciphertext structure.
+
+
+## Revealed outcome
+
+The frozen rule **fails 2/3 lanes at the target-independent structural gate**: p43 has no required five-rune ordinal-residue candidate and p44 has no required two-rune candidate. P45 alone is an exact prospective hit at ordinal34/start139, values `[18,18,7]`, GP0=14, matching PATH. Per the frozen decision rule the exact loop is rejected without retuning. See `im-results/lp2-p6-grid-post-openpgp-restart-holdout.md`.
