@@ -120,6 +120,10 @@ def run(images,ink):
               hit['offset'][0]+xx,hit['offset'][1]+yy))
     twodot=[]
     for hit in candidates2:
+        # Printed punctuation dots are ~81–100 dark pixels each;
+        # reject smaller illustration speckles (p57 has a 36/48px pair).
+        if min(hit['area'])<70:
+            continue
         known=registered[(hit['page'],hit['ink'])]
         ax,ay=hit['offset']
         def is_registered(x,y):
