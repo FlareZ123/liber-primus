@@ -28,7 +28,7 @@ lines and local positions count runes only.
 | p8 | 25 | 213 | 11:6 | A ᚪ → O ᚩ | current O |
 | p10 | 27 | 169 | 8:18 anchor | extra W ᚹ | printed **7**, not rune |
 | p12 | 29 | 165 | 8:16 | A ᚪ → O ᚩ | current O |
-| p15 | 32 | 6 | 1:6 | D ᛞ → Y ᚣ | current red Y |
+| p15 | 32 | 6 | 1:6 | D ᛞ → Y ᚣ | current red Y; independently predicted by held-out lower-red/grid DH state (1/29 glyph variants) |
 | p17 | 34 | 150 | 7:14 | omitted AE ᚫ | visible AE |
 | p17 | 34 | 151 | 7:15 | omitted IA ᛡ | visible IA |
 | p24 | 41 | 172 | 8:15 | A ᚪ → AE ᚫ | current AE |
@@ -60,6 +60,18 @@ labels: **1, 2, 3, 4, 5, 7**. Onecool encoded their shapes as GP runes
 U, TH, O, R, C, W respectively. They occur exactly at the numbered line
 starts and are layout metadata, not ciphertext. This explains the entire
 historical insertion/deletion imbalance without any cipher assumption.
+
+### Independent p15 state cross-check
+
+After this image adjudication was completed, the p15 lower-red11/number-square
+state route supplied a genuinely independent check on the disputed p15
+offset6. That coordinate lies in the withheld upper red span. Deriving the
+DH23 state without it predicts upper word2 descriptor
+`(L,S,P)=(5,8,26)`; exhaustive substitution of all 29 GP glyphs at
+offset6 leaves only **Y/index26**. The onecool **D/index23** reading instead
+gives `(5,5,23)`. See
+`sims/lp2_p15_offset6_transcription_holdout_sft.cjs` and
+`im-results/lp2-p15-red-dh-state-packet.md`.
 
 ## Consequence
 
