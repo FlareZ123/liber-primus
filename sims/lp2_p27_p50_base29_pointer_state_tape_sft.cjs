@@ -160,6 +160,18 @@ assert.deepEqual(base60FixedPoints, []);
 assert.equal(Math.floor(189 / 8), state.p);
 assert.equal(189 % 8, state.g);
 assert.equal(encodeHistoricalBase29(189), '6F');
+assert.equal(state.g - state.K, state.e);
+assert.equal(mod(state.b - mod(state.a * state.K, 29), 29), state.e);
+assert.equal(189 - 186, state.e);
+assert.equal(encodeHistoricalBase29(186), '6C');
+assert.deepEqual(
+  [Math.floor(186 / 29), 186 % 29],
+  [state.a, mod(state.a * state.K, 29)]
+);
+assert.deepEqual(
+  [Math.floor(189 / 29), 189 % 29],
+  [state.a, state.b]
+);
 
 const addressPairs = expectedPath59.map((address) => ({
   address,
@@ -181,6 +193,14 @@ assert.deepEqual(addressPairs, [
 
 const sourceNodeLows = addressPairs.slice(0, 8).map((pair) => pair.low);
 assert.deepEqual(sourceNodeLows, [12, 19, 4, 25, 14, 16, 11, 15]);
+
+const selectedHighDigits = path59.nodes.map((address) => Math.floor(address / 29));
+assert.deepEqual(selectedHighDigits, [6, 0, 1, 3, 2, 5, 7, 8]);
+assert.deepEqual(
+  [0, 1, 2, 3, 4, 5, 6, 7, 8].filter((x) => !selectedHighDigits.includes(x)),
+  [state.q]
+);
+assert.ok(sourceNodeLows.includes(state.q));
 
 const hPacket = adjacentH(sourceNodeLows);
 const expectedHPacket = [
@@ -386,6 +406,8 @@ const summary = {
   historicalBase29Path,
   base29Pairs: addressPairs,
   sourceNodeLows,
+  selectedHighDigits,
+  omittedHighDigit: state.q,
   adjacentHPacket: hPacket,
   fixedPoints: { base59: base59FixedPoints, base60: base60FixedPoints },
   dualPacking: {
