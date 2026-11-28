@@ -1,0 +1,2056 @@
+{
+  "cases": [
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 0,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 1,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 2,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 3,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 4,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 5,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 6,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 7,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 8,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 9,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 10,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 11,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 12,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 13,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 14,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 15,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 16,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 17,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 18,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 19,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 20,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 21,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 22,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 23,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 24,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 25,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 26,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 27,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 28,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 15,
+      "cols": 2,
+      "hole": 29,
+      "bad": {
+        "equal": 1,
+        "row": 0,
+        "column": 26,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 0,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 1,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 2,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 3,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 4,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 5,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 6,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 7,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 8,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 9,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 10,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 11,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 12,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 13,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 14,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 15,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 16,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 17,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 18,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 19,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 20,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 21,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 22,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 23,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 24,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 25,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 26,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 27,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 28,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 2,
+      "cols": 15,
+      "hole": 29,
+      "bad": {
+        "equal": 1,
+        "row": 26,
+        "column": 0,
+        "rectangle": 28
+      },
+      "walk": {
+        "1": 786,
+        "2": 53,
+        "3": 2
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 0,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 1,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 2,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 3,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 4,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 5,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 6,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 7,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 8,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 9,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 10,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 11,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 12,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 13,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 14,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 15,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 16,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 17,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 18,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 19,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 20,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 21,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 22,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 23,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 24,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 25,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 26,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 27,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 28,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 5,
+      "cols": 6,
+      "hole": 29,
+      "bad": {
+        "equal": 1,
+        "row": 8,
+        "column": 6,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 0,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 1,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 2,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 3,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 4,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 5,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 6,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 7,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 8,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 9,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 10,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 11,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 12,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 13,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 14,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 15,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 16,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 17,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 18,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 19,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 20,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 21,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 22,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 23,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 24,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 25,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 26,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 27,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 28,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    },
+    {
+      "rows": 6,
+      "cols": 5,
+      "hole": 29,
+      "bad": {
+        "equal": 1,
+        "row": 6,
+        "column": 8,
+        "rectangle": 40
+      },
+      "walk": {
+        "1": 786,
+        "2": 51,
+        "3": 4
+      },
+      "replay": 841
+    }
+  ],
+  "boards": 120,
+  "pairs": 100920,
+  "chartWitness": {
+    "input": [
+      "S/Z",
+      "EA"
+    ],
+    "output": [
+      "T",
+      "missing cell"
+    ]
+  }
+}
