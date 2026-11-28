@@ -59,6 +59,23 @@ cell43  token 1D  values [72,73]  displacements [29,30].
 
 So the independently selected p40→cell43 address lands on the unique p50 cell whose two conventional radix edges reproduce the already-established authenticated source boundary.
 
+## The pair brackets the literal instruction/corridor transition
+
+The two indices are not merely adjacent vocabulary entries. In the signed 2016 source they straddle a printed sentence boundary:
+
+```text
+... their numbers are the DIRECTION.
+SEEK and you will be found.
+```
+
+Under the already-established numbered source route, zero-based source indices `30..42` are the 13-word `SEEK ... OPENPGP` tail associated with the physical p30–p42 corridor. Thus the selected cell43's two source-plausible radix edges land on the exact **last word before the corridor / first word of the corridor** boundary:
+
+```text
+base59 edge displacement 29 -> DIRECTION (instruction immediately before the tail)
+base60 edge displacement 30 -> SEEK      (first word of the 13-word tail)
+```
+
+This gives a human-readable interpretation of why retaining both radix edges may be useful: together they bracket an operation transition already visible in the first-party text, rather than forcing a choice between two unrelated numeric coincidences. It still does not specify a fresh unknown-page cipher.
 ## DIRECTION modulus closes to the p6 grid constants
 
 The source boundary pair has one additional exact consequence under its own authenticated modulus:
