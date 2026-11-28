@@ -26,6 +26,41 @@ The existing three donor files were GP-normalized using the repository's *docume
 
 **All 18 complete window families exceed 258**, including Shakespeare's weakest margin of **two native runes** (260−258). This is deterministic for these three finite donors; it must not be generalized into a proof about every author-composed passage. The Shakespeare raw-text margin is narrow; removing speaker labels or using either alternative spelling increases it, but neither adjustment is needed to obtain the raw bound.
 
+## Nine independent illustrated-chapter alphabets: at least 190 required exceptions
+
+The most permissive whole-book extension gives each of the **nine original illuminated chapters** an entirely separate pair of unknown output alphabets. Charts may switch adversarially on every rune. All nonempty page beginnings carry arbitrary plaintext and **the complete plaintext may be rearranged inside each illustrated chapter**. The only retained cipher rule is that, within one chapter, each native rune has at most two possible GP29 predecessor-difference outputs, with one ciphertext symbol per native rune.
+
+For chapter `j`, denote by `B_j` the sum of its two largest *original* within-page residual counts plus its number of nonempty physical pages. For a native 12,956-rune donor passage aligned to the nine original section lengths, let `N_{j,x}` be the count of rune `x` within that section. Then even if all top output bins are reserved solely for that chapter's most common letter, the encoder must use at least this many out-of-model positions:
+
+```text
+minimum exceptional rune positions >=
+    sum_over_nine_chapters max(0, max_x N[j,x] - B[j]).
+```
+
+This is an exact necessary-condition bound, not a language-model likelihood. One exceptional rune position cannot repair more than one deficit. Different chapters receive wholly unrelated secret maps; no shared key or chart permutation is assumed.
+
+| Original illustrated chapter | Runes | Free physical initials | Two-output cap `B_j` |
+| --- | ---: | ---: | ---: |
+| p0–2 | 729 | 3 | 79 |
+| p3–7 | 1,145 | 5 | 113 |
+| p8–14 | 1,729 | 7 | 160 |
+| p15–22 | 1,903 | 8 | 175 |
+| p23–26 | 1,021 | 4 | 96 |
+| p27–32 | 1,433 | 6 | 134 |
+| p33–39 | 1,680 | 7 | 160 |
+| p40–53 | 3,008 | 13 | 258 |
+| p54–55 | 308 | 2 | 41 |
+
+All contiguous full-length native GP windows in the same **three pinned donors × three GP spellings × full/book-body text** were independently exhaustively scanned; the table gives each source/variant's *smallest* required number of exceptional positions, after optimizing over every starting offset (0 windows reach zero).
+
+| Donor | Legacy full / body | Greedy full / body | Latin-letter spelling full / body |
+| --- | ---: | ---: | ---: |
+| Gibran | 213 / 213 | 199 / 199 | 266 / 266 |
+| Shakespeare | 199 / 229 | **190 / 219** | 225 / 258 |
+| Emerson | 290 / 290 | 276 / 276 | 303 / 303 |
+
+Even the **most favorable** passage in these 18 finite reference families requires **at least 190 exceptional symbol emissions** over the original 12,956 runes, despite the nine private chart pairs and wholly arbitrary per-rune chart selection. This is a genuine model-selection consequence: one or two minor local exceptions cannot rescue this entire-source two-chart hypothesis for any of the tested native English passages. **It does not prove the author wrote prose like these references, that section plaintexts are contiguous in any donor, or that Cicada used this cipher.** Selective F holds, new per-page maps, three-or-more residual outputs, different symbol coding, or an independently sourced key remain outside the theorem.
+
 ## Independent literal-F hold branch: stronger obstruction, no inferred universal F rule
 
 The original known-key WELCOME/LP2 p56 mechanisms allow a literal plaintext F to pass without consuming a key symbol. That does **not** establish that every physical F printed in unknown pages is literal plaintext F. Nevertheless test that explicit alternative rather than extrapolating the ordinary differential law.
@@ -42,6 +77,6 @@ The theorem permits chart switches on *every* consuming symbol, including source
 
 ## Research choice
 
-Do not allocate further key searches to a **single or two-output, one-symbol-per-native-rune chapter-private predecessor-difference alphabet** on p40–53. A continuation must justify **at least three possible residual outputs for the same frequent plaintext rune**, or give an independent source-selected alphabet reset more often than pages, a **selective, not universally literal physical-F clock**, variable-length or different symbol representation, or a non-prose content hypothesis. For three charts the box test remains inconclusive; it does **not** warrant an unconstrained three-chart key search. This excludes a plausible decoder family but does not by itself recover any part of LP2.
+Do not allocate further key searches to a **single or two-output, one-symbol-per-native-rune chapter-private predecessor-difference alphabet** for p40–53 or the whole nine-chapter original layout. A continuation must justify **at least three possible residual outputs for the same frequent plaintext rune**, or give an independent source-selected alphabet reset more often than pages, a **selective, not universally literal physical-F clock**, variable-length or different symbol representation, or a non-prose content hypothesis. For three charts the box test remains inconclusive; it does **not** warrant an unconstrained three-chart key search. This excludes a plausible decoder family but does not by itself recover any part of LP2.
 
-**Reproduce:** `node sims/lp2_chapter_private_twochart_capacity_sft.cjs` from repository root, with only the three tracked donor texts and the original `lp2-corpus.json`. The exact tensor optimizer, both predecessor-register histograms, native sliding counts, alternative source normalizers, 39 boundary masks and ordinary two-chart plant were run in connected V8 against these pinned files; the standalone Node entrypoint should be rerun on checkout before treating the wrapper as separately verified.
+**Reproduce:** `node sims/lp2_chapter_private_twochart_capacity_sft.cjs` from repository root, with only the three tracked donor texts and the original `lp2-corpus.json`. The exact tensor optimizer, both predecessor-register histograms, all nine chapter capacities, complete-book and chapter-native sliding counts, alternative source normalizers, 39 boundary masks and ordinary two-chart plant were run in connected V8 against these pinned files; the standalone Node entrypoint should be rerun on checkout before treating the wrapper as separately verified.

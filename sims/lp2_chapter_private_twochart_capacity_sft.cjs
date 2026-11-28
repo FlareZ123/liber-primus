@@ -140,12 +140,55 @@ function run(corpus, sources) {
     }
     return {minMaxTrigram:min,q2Pass:passQ2,q3Pass:passQ3};
   }
+  // All nine original chapter alphabets may be entirely independent. For a
+  // frequent native symbol in one chapter, two source residual bins + all
+  // physical page initials are an exact keyless occupancy upper bound.
+  const chapterRanges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+  const nineChapters=chapterRanges.map(([lo,hi])=>{
+    const items=corpus.pages.filter(p=>p.page>=lo&&p.page<=hi&&p.indices.length);
+    const h=new Int32Array(A);let n=0;
+    for(const p of items){n+=p.indices.length;for(let i=1;i<p.indices.length;i++)h[(p.indices[i]-p.indices[i-1]+A)%A]++;}
+    const top2=Array.from(h).sort((a,b)=>b-a).slice(0,2);
+    return {lo,hi,n,initials:items.length,top2,cap:top2[0]+top2[1]+items.length};
+  });
+  const fullN=nineChapters.reduce((s,c)=>s+c.n,0);
+  assert(fullN===12956,"nine original chapters total");
+  function fullNativeDeficit(seq){
+    assert(seq.length>=fullN,"full native source too short");
+    const hist=nineChapters.map(()=>new Int32Array(A));
+    let offset=0;
+    for(let j=0;j<hist.length;j++){
+      for(let i=0;i<nineChapters[j].n;i++)hist[j][seq[offset+i]]++;
+      offset+=nineChapters[j].n;
+    }
+    const windows=seq.length-fullN+1;
+    let min=Infinity,positions=[],witness=null;
+    for(let st=0;st<windows;st++){
+      if(st){let off=0;for(let j=0;j<hist.length;j++){
+        hist[j][seq[st-1+off]]--;
+        hist[j][seq[st-1+off+nineChapters[j].n]]++;
+        off+=nineChapters[j].n;
+      }}
+      let exceptions=0;const local=[];
+      for(let j=0;j<hist.length;j++){
+        let mx=0,leader=0;
+        for(let k=0;k<A;k++)if(hist[j][k]>mx){mx=hist[j][k];leader=k;}
+        const missing=Math.max(0,mx-nineChapters[j].cap);
+        exceptions+=missing;
+        if(exceptions<=min)local.push({chapter:j,leader,n:mx,missing});
+      }
+      if(exceptions<min){min=exceptions;positions=[st];witness=local;}
+      else if(exceptions===min&&positions.length<6)positions.push(st);
+    }
+    assert(witness.length===9,"whole-book witness");
+    return {windows,minimumExceptionalRUnes:min,positions,witness};
+  }
   const controls=[];
   for(const [name,txt] of sources){
     const rec={name,variants:{}};
     for(const mode of ["legacy","greedy","latin"])for(const trim of [false,true]){
       const seq=gp(trim?body(txt,name.includes("shakespeare")):txt,mode);
-      rec.variants[mode+"_"+(trim?"body":"full")]=minMaxLetter(seq);
+      rec.variants[mode+"_"+(trim?"body":"full")]={...minMaxLetter(seq),fullBook:fullNativeDeficit(seq)};
       if(mode==="legacy"&&!trim)rec.maskedTriples=maskedTriple(seq);
     }
     controls.push(rec);
@@ -166,8 +209,9 @@ function run(corpus, sources) {
     }
   }
   assert(cursor===N&&decoded===N-pages.length&&seen.every(s=>s.size<=2),"two-chart plant");
-  assert(controls.length===3&&controls.every(c=>Object.values(c.variants).every(v=>v.slack>0&&v.skipFNonFSlack>0&&v.maxF<literalFCount)),"all native controls reject both two-output conventions");
-  return {source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1,
+  assert(controls.length===3&&controls.every(c=>Object.values(c.variants).every(v=>v.slack>0&&v.skipFNonFSlack>0&&v.maxF<literalFCount&&v.fullBook.minimumExceptionalRUnes>=190)),"all native controls reject both two-output conventions");
+  assert(Math.min(...controls.flatMap(c=>Object.values(c.variants).map(v=>v.fullBook.minimumExceptionalRUnes)))===190,"best full-book minimum");
+  return {nineChapters,source:{chapter:"p40-53",N,nonemptyPages:pages.length,transitions,triples,topDiff:sorted.slice(0,6),q2Capacity,uncontrolledPageInitials:pages.length,necessaryNativeMinimum:q2Capacity+pages.length+1,
       literalFCount,skipTransitions,skipTopDiff:skipSorted.slice(0,6),
       skipQ2Capacity,skipUncontrolledPageInitials:pages.length,
       skipNecessaryNonFMinimum:skipQ2Capacity+pages.length+1},
