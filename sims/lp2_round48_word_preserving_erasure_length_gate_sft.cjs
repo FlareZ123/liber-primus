@@ -178,6 +178,64 @@ for(const [label,lens]of donors){
  out.push({label,delete:select(D),hidden36:select(H),controls});
 }
 assert(out.every(x=>x.delete.zObservedMean>25&&x.hidden36.zObservedMean>25));
+/**
+ * An exact analytic model-independent inverse of the unbounded integer
+ * word-length distribution for iid deletion, CONDITIONAL on true word breaks.
+ *
+ * Let Q_t(z)=[(q+p*z)^t-q^t]/(1-q^t), the PGF of retained K conditional K>0.
+ * H(z)=sum_t w_t Q_t(z), where w_t is fraction of surviving groups whose
+ * original length was t. Then H'(-q/p)=w_1, exactly. A negative sample
+ * inversion is possible due finite sampling, but no actual model can have
+ * a negative w_1. This identity holds for ARBITRARY unknown native lengths.
+ */
+const counts=Array(Math.max(...originalWords)+1).fill(0);
+for(const k of originalWords)counts[k]++;
+assert.equal(counts[1],83);assert.equal(counts[2],448);assert.equal(counts[3],720);
+assert.equal(counts[8],156);assert.equal(counts.reduce((a,b)=>a+b,0),2896);
+const x=-q/p,phi=k=>k*x**(k-1);
+const inverseSurvivorSingleton=counts.reduce((s,n,k)=>k?s+n*phi(k):s,0)/2896;
+const moment2=counts.reduce((s,n,k)=>k?s+n*phi(k)**2:s,0)/2896;
+const singletonInverseSE=Math.sqrt((moment2-inverseSurvivorSingleton**2)/2896);
+assert(Math.abs(inverseSurvivorSingleton-(-.011020765))<2e-8);
+assert(singletonInverseSE>.0049&&singletonInverseSE<.0051);
+/** Fit arbitrary source pre-erasure word lengths 1..14 by EM, with no lexical
+ * donor or key. A small deviance is a concrete counterexample to universal
+ * rejection of deletion based on original printed word-lengths alone. */
+function arbitraryNativeLengthFit(model){
+ const maxT=14,amount=2896;
+ const M=Array.from({length:maxT},(_,k)=>Array.from({length:maxT},(_,j)=>{
+   const d=model(j+1);
+   return d[k+1]===undefined?0:d[k+1]/(1-d[0]);
+ }));
+ const w=Array(maxT).fill(1/(maxT-1));w[0]=0;
+ for(let z=0;z<14000;z++){
+  const denom=Array(maxT).fill(0);
+  for(let k=0;k<maxT;k++)for(let t=0;t<maxT;t++)denom[k]+=M[k][t]*w[t];
+  const next=w.map((val,t)=>val*counts.slice(1).reduce(
+   (s,ct,k)=>s+ct*M[k][t]/Math.max(1e-50,denom[k]),0)/amount);
+  const sum=next.reduce((a,b)=>a+b,0);
+  for(let t=0;t<maxT;t++)w[t]=next[t]/sum;
+ }
+ const pred=Array(maxT).fill(0);
+ for(let k=0;k<maxT;k++)for(let t=0;t<maxT;t++)pred[k]+=M[k][t]*w[t];
+ const deviance=2*pred.reduce((sum,y,k)=>sum+
+   (counts[k+1]?counts[k+1]*Math.log(counts[k+1]/(amount*y)):0),0);
+ return {arbitrarySourceMaxNativeWordLen:maxT,
+  deviance,sourceSurvivingSingletonWeight:w[0],
+  meanSourceNativeLength:w.reduce((s,v,j)=>s+v*(j+1),0),
+  sourceSurvivingWordLengths:w.map((v,i)=>({length:i+1,frequency:v}))
+    .filter(x=>x.frequency>=.005),
+  expectedPrintedCounts:pred.map(x=>Math.round(x*amount*10)/10)};
+}
+const sourceFreeFit={
+ deletion:arbitraryNativeLengthFit(deletionDist),
+ hidden36:arbitraryNativeLengthFit(silentDist)
+};
+assert(sourceFreeFit.deletion.deviance<7);
+assert(sourceFreeFit.hidden36.deviance<6);
+assert(sourceFreeFit.deletion.sourceSurvivingSingletonWeight===0);
+assert(sourceFreeFit.hidden36.sourceSurvivingSingletonWeight===0);
+
 const digest={
  source:"Original canonical 2,896 printed groups and 12,956 p0–55 runes; four independent source-native word-length calibration corpora",
  crucialPremise:"PRINTED word/group separators are authentic plaintext word boundaries, preserved after the cipher; HYPOTHETICAL, not source-established",
