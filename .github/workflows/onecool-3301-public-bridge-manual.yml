@@ -1,0 +1,28 @@
+name: Onecool 3301-public LP2 bridge probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bridge-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run exact bridge probe
+        run: node sims/lp2_onecool_3301_public_bridge_sft.cjs
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: onecool-3301-public-bridge-output
+          path: ${{ runner.temp }}/source-test-output.json
+          if-no-files-found: error
+          retention-days: 7
