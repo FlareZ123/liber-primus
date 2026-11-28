@@ -191,6 +191,8 @@ H^-1([B,0]) = [24,5] = [p+1,g].
 
 This is a finite family observation. It is not an authorship probability.
 
+> **Bob-pair exception audit — Agent40, 28 November 2026:** after the fresh p7 miss, the proposed restriction to Bob's DH pair `{b,B}={15,19}` has no prospective two-rune support. Across all +6 source transitions, Bob rises occur at ROAD23→DIRECTION29 (four runes), THE28→BE34 (two runes), and BE34→PATHS40 (two runes). The frozen H-shell is a two-coordinate/two-rune rule, so its Bob-eligible typed domain contains exactly the two already-open successes and **zero unused targets**. Do not use the Bob label to rescue the failed general rule without a new source-selected typed target. [Gate](lp2-their-rise-bob-pair-exception-gate.md).
+
 ## Manuscript-wide exact-packet control
 
 The p28 rule predicts exact ciphertext packet:
