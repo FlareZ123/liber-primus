@@ -18,6 +18,10 @@ The requested bounded charge now makes the selection problem concrete. On the ni
 
 This is a finite non-identifiability result, not a rejection of the source arithmetic. An artificially narrower `{x,x+1}` family would select the published map, but #3399 explicitly requires sign/offset constructions and those operations are already routine in the p6/p15 vocabulary. Because all three survivors produce the same state values, later DH/grid/spiral/p7/chapter checks that consume only those values cannot distinguish descriptor provenance. Promotion now requires a genuinely source-visible provenance instruction, not another state-only holdout. [Detailed charge](lp2-p15-descriptor-dh-role-charge.md); reproducer: `sims/lp2_p15_descriptor_dh_role_charge_sft.cjs`.
 
+### Authenticated DH transcript-order charge — issue #3422
+
+The historical `DH 23 -> 5 8 -> 19 -> 2` exchange fixes state-value order, but p15 visibly orders words rather than derived L/S/P statistics. Freezing A/B/C and charging both word directions, all six statistic orders and both live g/a internal orders gives **72 presentations**. Seven satisfy the lower-red process projection and span **all three** maps; all use W1→W2. Public p,g,K leaves nine, again spanning all three. Conventional L→S→P selects none. Held-out upper-red `(5,8,26)=[g,A,B^-1]` passes all three. The transcript authenticates the tuple, not provenance. [Detailed order gate](lp2-p15-dh-transcript-order-provenance-gate.md); reproducer: `sims/lp2_p15_dh_transcript_order_provenance_sft.cjs`.
+
 ## Decision
 
 Physical p15 contains two red rune spans separated in the page design by the proved 4×4 Fibonacci/prime number grid and the infinity mark. In canonical rune order they are adjacent spans at offsets 0..8 and 9..19. Both are bounded by red 13-dot punctuation; the lower span is 11 runes long. The complete original red-span census already established that **p6 and p15 are the only two 11-rune red spans double-bounded by red 13-dot marks**.
