@@ -475,6 +475,20 @@ assert.deepEqual(jointSerializerHits, [{
   targets: ["SEEK", "AND"],
 }]);
 
+// Prospectively frozen receiver-address extrapolation from the newly observed
+// p30 ordinal27 -> p31 ordinal32 = +g. The precommit fixes one backward step:
+// p29 ordinal22 must have DIRECTION's eight-rune arity. It fails structurally.
+const p29Target = sourceWords[29];
+assert.equal(p29Target.word, "DIRECTION");
+assert.equal(p29Target.length, 8);
+const gStepOrdinal = 27 - state.g;
+assert.equal(gStepOrdinal, 22);
+const p29GStepReceiver = localWords(29)[gStepOrdinal - 1];
+assert.ok(p29GStepReceiver);
+assert.equal(p29GStepReceiver.start, 85);
+assert.equal(p29GStepReceiver.values.length, 2);
+assert.notEqual(p29GStepReceiver.values.length, p29Target.length);
+
 const result = {
   status: "PASS",
   classification:
@@ -501,6 +515,13 @@ const result = {
     key: p31Key,
     keyShell: p31KeyShell,
     exactKeyManuscriptHits: p31ExactKeyHits,
+  },
+  prospectiveGStepReceiver: {
+    precommit: "workplace/agent1-p30p31-ordinal-g-step-p29-precommit.md",
+    prediction: { page: 29, ordinal: gStepOrdinal, requiredLength: p29Target.length },
+    observed: { start: p29GStepReceiver.start, length: p29GStepReceiver.values.length },
+    pass: false,
+    decision: "reject the 27->32 ordinal +g recurrence; do not retune the address",
   },
   jointSerializerCharge: {
     titleH,

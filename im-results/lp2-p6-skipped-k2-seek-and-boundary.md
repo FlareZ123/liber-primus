@@ -176,6 +176,19 @@ target pair = SEEK AND at source indices30-31.
 
 This finite charge is **not** a discovery-wide probability: the serializer skeleton was formulated after the local inverses were noticed. Its value is mechanistic compression. The two pages no longer require unrelated fitted key vectors; one small p6-only family contains a unique coupled serializer for the already source-selected omitted pair.
 
+## Prospective receiver-address extrapolation fails
+
+After the p30/p31 receiver addresses were frozen as ordinals27 and32, their difference `32-27=5=g` suggested one cheap prospective test. Before inspecting the predicted receiver, `workplace/agent1-p30p31-ordinal-g-step-p29-precommit.md` froze the one-step backward continuation:
+
+```text
+p29 predicted ordinal = 27-g = 22
+source target index29 = DIRECTION, GP length8.
+```
+
+The canonical p29 word22 exists at local start85 but has **length2**, so it fails the gate before any rune value or key is considered. The simple ordinal arithmetic progression is rejected. No ordinal21/23, wrap, alternate step, or reverse-direction repair is permitted under this test.
+
+This negative matters because it prevents the new p30/p31 boundary from being overextended into an unsupported page-address scheduler. The surviving result is the source-selected omitted pair, its two manuscript-unique receiver shells, and the charged joint p6 serializer—not a general `+g` receiver recurrence.
+
 ## Why this changes the frontier
 
 Before this check, p6's source-only selector treated `SEEK AND` mainly as the exact `K=2` prefix omitted from the selected p32–p42 interval. The omitted pair is now itself highly structured:
