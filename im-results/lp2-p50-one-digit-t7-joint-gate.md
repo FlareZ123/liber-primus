@@ -133,8 +133,39 @@ Again condition exactly on 86 total events. Seed 3302, 30,000 draws:
 
 The more permissive zero-dose model does not repair the ordering.
 
-These are conditional model diagnostics, not universal cipher p-values. Both models deliberately
-use parameters estimated from the original p50 enrichment; T7 is the held-out feature.
+### Model C: ordered adjacent high-digit pair hazard
+
+The most literal source-visible two-input follow-up uses the ordered pair
+`(z_i, z_(i+1))`, where `z=1` means the p50 cell is in the one-digit/high-digit-zero state.
+Consecutive pair states share exactly one p50 operand, so this grants the model the overlap shape
+suggested by T7 without inventing a hidden sequence.
+
+Give all four ordered classes their own observed maximum-likelihood repeat rates:
+
+| `z_i z_(i+1)` | opportunities | repeats | fitted rate |
+| --- | ---: | ---: | ---: |
+| 00 | 7,556 | 42 | 0.55585% |
+| 01 | 2,320 | 11 | 0.47414% |
+| 10 | 2,318 | 29 | 1.25108% |
+| 11 | 707 | 4 | 0.56577% |
+
+The direction already selected by the source association is visible here: enrichment is concentrated
+in class `10`, where the **left/current** cell is one-digit and the next is not. Nevertheless,
+conditioning exactly on 86 total events and drawing 30,000 times with standard-library seed 3303
+still gives:
+
+| statistic | result |
+| --- | ---: |
+| median simulated T7 | **-0.01726** |
+| central 95% interval | **[-0.20164, +0.21150]** |
+| draws with T7 >= original | **5 / 30,000** |
+| add-one upper tail | **0.00019999** |
+
+Thus even an explicitly overlapping adjacent p50 high-digit state, with four independently fitted
+hazards, does not reproduce the long-range equality-gap ordering.
+
+These are conditional model diagnostics, not universal cipher p-values. All three models
+deliberately use parameters estimated from the original p50 enrichment; T7 is the held-out feature.
 
 ## Relationship to the existing two-tap result
 
@@ -149,10 +180,11 @@ This report shows the converse:
 - an independent p50-conditioned hazard fails T7.
 
 The two observations therefore cannot replace one another. A plausible generator needs a joint
-law. The strongest source-facing target is now a **stateful period-256 construction whose local
-state is derived from the p50 high digit and whose transition law overlaps consecutive operands**.
-That shape has a causal path to the two measured constraints without inventing a new page-local
-clock.
+law. The ordered adjacent-high-digit hazard shows that **sharing a visible p50 operand is not
+enough**. The strongest source-facing target is now a stateful period-256 construction in which the
+p50 high digit affects an **interval/update law or another persistent register**, rather than merely
+setting an independent local repeat probability. Such a mechanism must preserve the source-selected
+forward continuous left-endpoint phase while generating the one-step equality-gap dependence.
 
 This does not license arbitrary functions of p50 values. The next experiment should be tied to a
 visible operation (for example a carry/high-digit transition or another historically motivated
